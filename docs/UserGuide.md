@@ -2,9 +2,17 @@
 layout: page
 title: User Guide
 ---
+<!-- This UG's structure is inspired by 
+https://ay2021s2-cs2103t-t11-2.github.io/tp/UserGuide.html#1-introduction
+-->
 
-## 1. Introduction
-Welcome to our **User Guide** and thank you for using CakeCollate! Are you a home baker searching for a reliable tool to keep track of your orders? 
+<div class="toc-no-bullet-points">
+  * Table of Contents
+  {:toc}
+</div>
+
+## **1. Introduction**
+Welcome to our User Guide and thank you for using CakeCollate! Are you a home baker searching for a reliable tool to keep track of your orders? 
 While there may be other modern applications such as Microsoft Excel that may be able to help you keep track of your data, they may not be the most efficient or simplest
 way for you to manage your data. 
 
@@ -16,49 +24,36 @@ CakeCollate promises to be an efficient desktop application that allows you to e
 
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
-
 --------------------------------------------------------------------------------------------------------------------
+## **2. Using the User Guide**
+In this section, you can learn more about the different terminologies and what to expect from each section of the User Guide.
+This allows you to better comprehend the terms that are used and quickly navigate to sections where the solution to your questions
+may lie.
 
-## Quick start
+### **2.1 What's in the User Guide**
 
-1. Ensure you have Java `11` or above installed in your Computer.
+In [Section 2.2: Reading the User Guide](#22-reading-the-user-guide), you can find essential information that enables to read
+the user guide seamlessly.
 
-1. Download the latest `cakecollate.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-4/tp/releases).
+In [Section 3: Quick Start](#3-quick-start), you can find the instructions of how and where you can start installing and setting up 
+CakeCollate.
 
-1. Copy the file to the folder you want to use as the _home folder_ for your CakeCollate.
+In [Section 4: Features](#4-features), you can find instructions on what are the existing features and commands in CakeCollate
+and how you can use them to suit your needs.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. 
-You can use the sample data pre-loaded in the application to get play around and get used to the available commands. Use the command `clear`
- to remove all sample data when you are used to the commands and want to begin inputting your own data.<br><br>
-   ![Ui](images/Ui.png)
+In [Section 5: FAQ](#5-faq), you can find solutions to commonly asked questions.
+
+In [Section 6: Command Summary](#6-command-summary), you can find a summary to all of existing CakeCollate's commands.
 
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display the help window.<br>
-   Some example commands you can try:
+### **2.2 Reading the User Guide**
+In this section, you will learn how to read CakeCollate's User Interface (UI), the format of commands, and the user inputs
+commands may receive.
 
-   * **`list`** : Lists all orders in the CakeCollate database.
+#### **2.2.1 Sections of the UI**
+![User Interface](images/Annotated%20UI.png)
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/2 x Strawberry Cake` : Adds a `2 x Strawberry Cake` order to CakeCollate.
-
-   * **`delete`**`3` : Deletes the 3rd order shown in the current list.
-   
-   * **`remind`**`2` : Lists all orders that are 2 days within the current local date.
-
-   * **`clear`** : Deletes all order in the CakeCollate database.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
-
-<div markdown="span" class="alert alert-info">
-**:information_source: You can remove all the sample data using the clear command once you are ready to use CakeCollate.**<br>
-</div>
-
---------------------------------------------------------------------------------------------------------------------
-
-## Features
+#### **2.2.2 Formatting of Commands**
 
 <div markdown="block" class="alert alert-info">
 
@@ -67,10 +62,10 @@ You can use the sample data pre-loaded in the application to get play around and
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-* Items in square brackets are optional.<br>
+* Items in square brackets are optional fields that the user can choose to include or not as an input.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times. <br>  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc. <!-- order desc? --> 
+* Items with `…`​ after them can be used multiple times. <br>  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc. <!-- order desc? --> 
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -91,20 +86,65 @@ You can use the sample data pre-loaded in the application to get play around and
 
 </div>
 
-### Viewing help : `help`
+#### **2.2.3 Types of User Input**
+To expand.
 
-* Gives instructions on how to enter orders into the CLI.
-* Displays a message with a list of all available commands and their format.
-* To return to the main order list click on the `Return to the main order list` button. 
-* Help can also be accessed by clicking the `help` button in the top left corner of the application or by clicking the `F1` keyboard key.
+##### `NAME`
+* The name of the customer who has placed the order.
+* The name of the customer must not be empty, it can take in numbers, letters or a mix of both.
 
-Format: `help`
+:information_source: _Fun Fact: Elon Musk, the world richest man has a son named X Æ A-12._
 
-### Adding an order: `add`
+## **3. Quick start**
+
+1. Ensure you have Java `11` or above installed in your Computer.
+
+1. Download the latest `cakecollate.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-4/tp/releases).
+
+1. Copy the file to the folder you want to use as the _home folder_ for your CakeCollate.
+
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. 
+You can use the sample data pre-loaded in the application to get play around and get used to the available commands. <br>
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** You can remove all the sample data using the `clear` command once you are ready to use CakeCollate.<br>
+</div> <br>
+   
+![Ui](images/Ui.png)
+
+
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display the help window.<br>
+   Some example commands you can try:
+
+   * **`list`** : Lists all orders in the CakeCollate database.
+
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/2 x Strawberry Cake` : Adds a `2 x Strawberry Cake` order to CakeCollate.
+
+   * **`delete`**`3` : Deletes the 3rd order shown in the current list.
+   
+   * **`remind`**`2` : Lists all orders that are 2 days within the current local date.
+
+   * **`clear`** : Deletes all order in the CakeCollate database.
+
+   * **`exit`** : Exits the app.
+
+1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **4. Features**
+
+This section contains information about all existing commands and features that we have implemented.
+Being well-versed in this section will enable you to use our application to it's fullest potential. 
+
+### **4.1 Orders**
+
+#### **4.1.1** ***Interacting with orders***
+
+##### Adding an order: `add`
 
 Adds an order to the CakeCollate database. The order will be initialised as undelivered, but can be modified with the `delivered` and `cancelled` commands found below.
 
-#### Simple format
+###### Simple format
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...`
 
@@ -115,7 +155,7 @@ Examples:
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 d/13-05-2100 o/chocolate cake` adds an order with all compulsory fields, one order description and no tags.
 
 
-#### Alternative format 
+###### Alternative format 
 
 Advanced Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_ITEM_INDEXES [o/ORDER_DESCRIPTION]... [t/TAG]...`
 
@@ -137,13 +177,86 @@ Examples
 
 When you specify an order description using the prefix `o/`, e.g. `o/chocolate cake`, the app automatically adds it into the order items table. As such, you don't need to go through extra steps to add in items into the order items table manually.
 
-### List all existing orders : `list`
+##### Adding a special request to an order: `request`
 
-Shows a list of all orders in the CakeCollate database.
+Adds a special request to an existing order in the CakeCollate database.
 
-Format: `list`
+Format: `request INDEX r/REQUEST`
 
-### Editing an order : `edit`
+* Adds a special request to the order at the specified `INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
+* You can remove an order’s special request by typing `r/` without specifying any requests after it.
+
+Examples:
+* `request 1 r/More sugar, spice and everything nice.` Sets the special request of the 1st order to be `More sugar, spice and everything nice.`
+* `request 2 r/` Removes the 2nd order's current special request.
+
+##### Deleting an order : `delete`
+
+Deletes the specified orders from the CakeCollate database.
+
+Format: `delete INDEXES`
+
+* Deletes the orders with the specified `INDEXES`.
+* The `INDEXES` refers to the order `INDEXES` number shown in the list of orders.
+* One or more `INDEXES` can be entered.
+* The `INDEXES` **must be valid**.
+
+Examples:
+* `delete 2` deletes the order with `INDEX` 2 from the CakeCollate database.
+* `delete 2 3` deletes the orders with `INDEXES` 2 and 3 from the CakeCollate database.
+
+##### Updating Delivery Status of an order
+
+###### Setting the delivery status of an order as undelivered : `undelivered`
+
+Sets the delivery status of the specified order/orders from the CakeCollate database as `undelivered`.
+
+Format: `undelivered ID...`
+
+* Sets the delivery status of the orders with the specified ids as `undelivered`.
+* The `ID` refers to the order `ID` number shown in the list of orders.
+* One or more ids can be entered.
+* The `ID` **must be valid**.
+
+Examples:
+* `list` followed by `undelivered 2` sets the delivery status of the orders with `ID` 2 from the 
+  CakeCollate database as `undelivered`.
+* `undelivered 2 3` sets the delivery status of the orders with ids 2 and 3 from the 
+  CakeCollate database as `undelivered`.
+
+###### Setting the delivery status of an order as delivered : `delivered`
+
+Sets the delivery status of the specified order/orders from the CakeCollate database as `delivered`.
+
+Format: `delivered ID...`
+
+* Sets the delivery status of the orders with the specified ids as `delivered`.
+* The `ID` refers to the order `ID` number shown in the list of orders.
+* One or more ids can be entered.
+* The `ID` **must be valid**.
+
+Examples:
+* `list` followed by `delivered 2` sets the delivery status of the orders with `ID` 2 from the
+  CakeCollate database as `delivered`.
+* `delivered 2 3` sets the delivery status of the orders with ids 2 and 3 from the CakeCollate database as `delivered`.
+
+###### Setting the delivery status of an order as cancelled : `cancelled`
+
+Sets the delivery status of the specified order/orders from the CakeCollate database as `cancelled`.
+
+Format: `cancelled ID...`
+
+* Sets the delivery status of the orders with the specified ids as cancelled.
+* The `ID` refers to the order `ID` number shown in the list of orders.
+* One or more ids can be entered.
+* The `ID` **must be valid**.
+
+Examples:
+* `list` followed by `cancelled 2` sets the delivery status of the orders with `ID` 2 from the
+  CakeCollate database as `cancelled`.
+* `cancelled 2 3` sets the delivery status of the orders with ids 2 and 3 from the CakeCollate database as `cancelled`.
+
+##### Editing an order : `edit`
 
 Edits an existing order in the CakeCollate database.
 
@@ -160,7 +273,21 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st order to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd order to be `Betsy Crower` and clears all existing tags.
 
-### Locating orders by name: `find`
+
+##### Clearing all existing orders: `clear`
+
+Deletes all existing orders in the CakeCollate database.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This is not an un-doable action! With this command, all existing orders are deleted from the CakeCollate database
+and you will not be able to retrieve them. 
+</div>
+
+Format: `clear`
+
+#### **4.1.2** ***Order Functionalities*** 
+
+##### Locating orders by name: `find`
 
 Find orders whose specified field contain any of the given keywords.
 
@@ -187,23 +314,13 @@ Examples:
 * `find n/Alex Charlotte o/Chocolate` will return all orders that matches (`Alex` or `Charlotte`) and `Chocolate`. <br>
   ![result for 'find n/Alex Charlotte o/Chocolate'](images/findAlexCharlotteChocolate.PNG) <br>
   
+##### List all existing orders : `list`
 
-### Deleting an order : `delete`
+Shows a list of all orders in the CakeCollate database.
 
-Deletes the specified orders from the CakeCollate database.
+Format: `list`
 
-Format: `delete INDEXES`
-
-* Deletes the orders with the specified `INDEXES`.
-* The `INDEXES` refers to the order `INDEXES` number shown in the list of orders.
-* One or more `INDEXES` can be entered.
-* The `INDEXES` **must be valid**.
-
-Examples:
-* `delete 2` deletes the order with `INDEX` 2 from the CakeCollate database.
-* `delete 2 3` deletes the orders with `INDEXES` 2 and 3 from the CakeCollate database.
-
-### Receiving reminders for orders : `remind`
+##### Receiving reminders for orders : `remind`
 
 Displays a list of reminder for orders that are X days within the current date.
 
@@ -217,78 +334,10 @@ Examples:
 * `remind 0` lists all orders that have a delivery date for today.
 * `remind 3` lists all orders that have a delivery date within 3 days from today.
 
-### Adding a special request to an order: `request`
 
-Adds a special request to an existing order in the CakeCollate database.
+### **4.2 Order Items**
 
-Format: `request INDEX r/REQUEST`
-
-* Adds a special request to the order at the specified `INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
-* You can remove an order’s special request by typing `r/` without specifying any requests after it.
-
-Examples:
-* `request 1 r/More sugar, spice and everything nice.` Sets the special request of the 1st order to be `More sugar, spice and everything nice.`
-* `request 2 r/` Removes the 2nd order's current special request.
-
-
-### Setting the delivery status of an order as undelivered : `undelivered`
-
-Sets the delivery status of the specified order/orders from the CakeCollate database as `undelivered`.
-
-Format: `undelivered ID...`
-
-* Sets the delivery status of the orders with the specified ids as `undelivered`.
-* The `ID` refers to the order `ID` number shown in the list of orders.
-* One or more ids can be entered.
-* The `ID` **must be valid**.
-
-Examples:
-* `list` followed by `undelivered 2` sets the delivery status of the orders with `ID` 2 from the 
-  CakeCollate database as `undelivered`.
-* `undelivered 2 3` sets the delivery status of the orders with ids 2 and 3 from the 
-  CakeCollate database as `undelivered`.
-
-### Setting the delivery status of an order as delivered : `delivered`
-
-Sets the delivery status of the specified order/orders from the CakeCollate database as `delivered`.
-
-Format: `delivered ID...`
-
-* Sets the delivery status of the orders with the specified ids as `delivered`.
-* The `ID` refers to the order `ID` number shown in the list of orders.
-* One or more ids can be entered.
-* The `ID` **must be valid**.
-
-Examples:
-* `list` followed by `delivered 2` sets the delivery status of the orders with `ID` 2 from the
-  CakeCollate database as `delivered`.
-* `delivered 2 3` sets the delivery status of the orders with ids 2 and 3 from the CakeCollate database as `delivered`.
-
-### Setting the delivery status of an order as cancelled : `cancelled`
-
-Sets the delivery status of the specified order/orders from the CakeCollate database as `cancelled`.
-
-Format: `cancelled ID...`
-
-* Sets the delivery status of the orders with the specified ids as cancelled.
-* The `ID` refers to the order `ID` number shown in the list of orders.
-* One or more ids can be entered.
-* The `ID` **must be valid**.
-
-Examples:
-* `list` followed by `cancelled 2` sets the delivery status of the orders with `ID` 2 from the
-  CakeCollate database as `cancelled`.
-* `cancelled 2 3` sets the delivery status of the orders with ids 2 and 3 from the CakeCollate database as `cancelled`.
-
-### Clearing all existing orders: `clear`
-
-Deletes all existing orders in the CakeCollate database.
-
-Warning: this is an undo-able operation.
-
-Format: `clear`
-
-### Adding order items: `addItem`
+#### Adding order items: `addItem`
 
 Adds an order item to the order items table on the right side of the GUI.
 
@@ -299,7 +348,7 @@ Format: `addItem ORDER_ITEM_DESCRIPTION`
 Examples:
 * `addItem 2 x Red Velvet` adds an order item with the specified description to the order items table.
 
-### Deleting order items: `deleteItem`
+#### Deleting order items: `deleteItem`
 
 Deletes order items from the order items table based on the specified list of indices.
 
@@ -313,17 +362,28 @@ Examples:
 * `deleteItem 2` deletes the order items with `ORDER_ITEM_INDEX` 2 from the order items table.
 * `deleteItem 2 3` deletes the order items with `ORDER_ITEM_INDEXES` 2 and 3 from the order items table.
 
-### Exiting the program : `exit`
+### **4.3 Others**
+
+#### Viewing help : `help`
+
+* Gives instructions on how to enter orders into the CLI.
+* Displays a message with a list of all available commands and their format.
+* To return to the main order list click on the `Return to the main order list` button. 
+* Help can also be accessed by clicking the `help` button in the top left corner of the application or by clicking the `F1` keyboard key.
+
+Format: `help`
+
+#### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+#### Saving the data
 
 CakeCollate data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing the data file
 
 CakeCollate data is saved as a JSON file `[JAR file location]/data/cakecollate.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -331,11 +391,7 @@ CakeCollate data is saved as a JSON file `[JAR file location]/data/cakecollate.j
 If your changes to the data file makes its format invalid, CakeCollate will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
-### Keyboard shortcuts you can use
+#### Keyboard shortcuts you can use
 
 * Click the `up` arrow in the keyboard to traverse up the previously inputted commands if they exist. 
 * Click the `down` arrow in the keyboard to traverse down the previously inputted commands if they exist. 
@@ -343,14 +399,14 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## **5. FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CakeCollate home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## **6. Command summary**
 
 Action  | Format, Examples
 --------|------------------
@@ -374,3 +430,4 @@ Action  | Format, Examples
 ## Acknowledgements
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
