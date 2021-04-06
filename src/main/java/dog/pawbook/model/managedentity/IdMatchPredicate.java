@@ -1,3 +1,4 @@
+//@@author ZhangAnli
 package dog.pawbook.model.managedentity;
 
 import java.util.Collection;
@@ -18,6 +19,7 @@ public class IdMatchPredicate implements Predicate<Pair<Integer, Entity>> {
      * Construct a predicate from a list of IDs.
      */
     public IdMatchPredicate(Collection<Integer> idList) {
+        assert (!idList.isEmpty());
         this.relatedIds.addAll(idList);
     }
 
@@ -25,11 +27,13 @@ public class IdMatchPredicate implements Predicate<Pair<Integer, Entity>> {
      * Construct a predicate for a single ID.
      */
     public IdMatchPredicate(Integer id) {
+        assert(!id.equals(null));
         this.relatedIds.add(id);
     }
 
     @Override
     public boolean test(Pair<Integer, Entity> idEntityPair) {
+        assert(!idEntityPair.equals(null));
         return relatedIds.stream().anyMatch(id -> idEntityPair.getKey().equals(id));
     }
 

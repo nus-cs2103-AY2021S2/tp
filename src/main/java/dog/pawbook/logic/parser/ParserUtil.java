@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import dog.pawbook.commons.core.Messages;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.model.managedentity.dog.Breed;
@@ -190,7 +191,7 @@ public class ParserUtil {
         try {
             return Integer.parseInt(trimmedOwnerId);
         } catch (NumberFormatException e) {
-            throw new ParseException("ID must be a positive integer!");
+            throw new ParseException(Messages.MESSAGE_INVALID_ENTITY_ID);
         }
     }
 

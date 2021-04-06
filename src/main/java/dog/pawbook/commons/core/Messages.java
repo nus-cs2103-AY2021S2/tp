@@ -25,4 +25,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_DOG_ID = "The dog ID provided is invalid.";
     public static final String MESSAGE_ENTITIES_LISTED_OVERVIEW = "%1$d entities listed!";
     public static final String MESSAGE_DOG_MISSING_OWNER_ID = "Dog to be added is missing owner ID.";
+    public static final String MESSAGE_NEGATIVE_ENTITY_ID = "Entity ID must be a positive integer!";
 }

@@ -1,7 +1,9 @@
+//@@author ZhangAnli
 package dog.pawbook.logic.parser;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ENTITY_ID;
+import static dog.pawbook.commons.core.Messages.MESSAGE_NEGATIVE_ENTITY_ID;
 
 import dog.pawbook.logic.commands.ViewCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
@@ -29,6 +31,10 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             id = Integer.parseInt(trimmedArgs);
         } catch (NumberFormatException e) {
             throw new ParseException(MESSAGE_INVALID_ENTITY_ID);
+        }
+
+        if (id < 1) {
+            throw new ParseException(MESSAGE_NEGATIVE_ENTITY_ID);
         }
         return new ViewCommand(id);
     }
