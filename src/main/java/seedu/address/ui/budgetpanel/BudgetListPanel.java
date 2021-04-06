@@ -8,7 +8,6 @@ import javafx.scene.layout.Region;
 import seedu.address.model.budget.Budget;
 import seedu.address.ui.UiPart;
 
-
 public class BudgetListPanel extends UiPart<Region> {
 
     private static final String FXML = "budgetpanel/BudgetListPanel.fxml";
@@ -18,13 +17,20 @@ public class BudgetListPanel extends UiPart<Region> {
 
     /**
      * Primary constructor.
+     * Instantiate a placeholder if there is no existing budget in the {@code budgetList}.
+     *
      * @param budgetList Budget list to add to ListView
      */
     public BudgetListPanel(ObservableList<Budget> budgetList) {
         super(FXML);
-        assert budgetList.size() > 0;
-        budgetListView = new ListView<>(budgetList);
+        budgetListView.setItems(budgetList);
         budgetListView.setCellFactory(listview -> new BudgetListViewCell());
+
+        /* If empty, shows a placeholder with budget $0 */
+        budgetListView.setMaxHeight(30);
+        BudgetCard budgetCard = new BudgetCard(new Budget("0"));
+        budgetCard.getRoot().setStyle("-fx-background-color: #515658;");
+        budgetListView.setPlaceholder(budgetCard.getRoot());
     }
 
     /**
@@ -40,9 +46,8 @@ public class BudgetListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new BudgetCard(budget, getIndex() + 1).getRoot());
+                setGraphic(new BudgetCard(budget).getRoot());
             }
         }
     }
-
 }
