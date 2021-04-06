@@ -17,7 +17,6 @@ import static seedu.smartlib.testutil.TypicalModels.HARRY;
 import static seedu.smartlib.testutil.TypicalModels.LIFE;
 import static seedu.smartlib.testutil.TypicalModels.RECORD_A;
 import static seedu.smartlib.testutil.TypicalModels.RECORD_B;
-import static seedu.smartlib.testutil.TypicalModels.RECORD_C;
 import static seedu.smartlib.testutil.TypicalModels.SECRET;
 import static seedu.smartlib.testutil.TypicalModels.getTypicalSmartLib;
 
