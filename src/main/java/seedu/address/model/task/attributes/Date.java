@@ -1,4 +1,4 @@
-package seedu.address.model.task;
+package seedu.address.model.task.attributes;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -9,12 +9,14 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.model.task.ValidDateFormatter;
+
 
 /**
  * Represents a Task's date in the planner.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class Date {
+public class Date implements Attribute {
     public static final String FIELD_NAME = "Date";
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -29,6 +31,7 @@ public class Date {
             Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public final LocalDate value;
+    public final boolean isOverdued;
 
     /**
      * Constructs a {@code Date}.
@@ -38,6 +41,18 @@ public class Date {
     public Date(String date) {
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         value = parseDate(date);
+        if (date.length() != 0) {
+            LocalDate today = LocalDate.now();
+            LocalDate parsedDate = LocalDate.parse(date,
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            if (parsedDate.isAfter(today)) {
+                isOverdued = false;
+            } else {
+                isOverdued = true;
+            }
+        } else {
+            isOverdued = false;
+        }
     }
 
     /**
@@ -47,6 +62,12 @@ public class Date {
      */
     public Date(LocalDate date) {
         value = date;
+        LocalDate today = LocalDate.now();
+        if (date.isAfter(today)) {
+            isOverdued = false;
+        } else {
+            isOverdued = true;
+        }
     }
 
     /**
@@ -55,14 +76,13 @@ public class Date {
     public static boolean isValidDate(String test) {
         Pattern p = Pattern.compile(VALIDATION_REGEX);
         Matcher m = p.matcher(test);
-        boolean validDate = false;
-        if (!test.isEmpty() && m.matches()) {
-            LocalDate today = LocalDate.now();
-            LocalDate parsedDate = LocalDate.parse(test,
-                DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            validDate = parsedDate.isAfter(today);
+        boolean isValidDate;
+        if (test.length() != 0) {
+            isValidDate = ValidDateFormatter.isValid(test);
+        } else {
+            isValidDate = false;
         }
-        return (m.matches() && validDate) || test.isEmpty();
+        return m.matches() && isValidDate || test.isEmpty();
 
     }
 

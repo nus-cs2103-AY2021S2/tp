@@ -2,8 +2,9 @@ package seedu.address.model.task.predicates;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.task.Date;
+import seedu.address.model.task.AttributeManager;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.attributes.Date;
 
 /**
  * Predicate testing whether the task's date being tested falls on the date provided.
@@ -23,6 +24,6 @@ class TaskDateOnDatePredicate implements Predicate<Task> {
      */
     @Override
     public boolean test(Task task) {
-        return task.hasSameDate(date);
+        return new AttributeManager(task).hasSameDate(date);
     }
 }

@@ -16,6 +16,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.task.attributes.RecurringSchedule;
+
 public class RecurringScheduleTest {
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     @Test

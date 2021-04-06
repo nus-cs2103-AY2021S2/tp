@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.conditions.IndexManager;
 import seedu.address.model.Model;
+import seedu.address.model.task.AttributeManager;
 import seedu.address.model.task.Task;
 
 /**
@@ -54,19 +55,17 @@ public class CountdownCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         int targetIndexValue = index.getZeroBased();
-        boolean isInvalidIndex = targetIndexValue >= lastShownList.size();
 
-        if (isInvalidIndex) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        }
+        IndexManager.verifyIndex(index, lastShownList);
 
         Task taskToCountdown = lastShownList.get(targetIndexValue);
+        AttributeManager attributeManager = new AttributeManager(taskToCountdown);
 
-        if (taskToCountdown.isDateEmpty()) {
+        if (attributeManager.isEmptyDate()) {
             throw new CommandException(MESSAGE_EMPTY_DEADLINE);
         }
 
-        if (taskToCountdown.dateOver()) {
+        if (attributeManager.dateOver()) {
             logger.info("User entered date that's already over.");
             throw new CommandException(MESSAGE_DEADLINE_OVER);
         }

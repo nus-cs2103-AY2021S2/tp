@@ -27,7 +27,7 @@ in workload management.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -55,7 +55,75 @@ in workload management.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# How to use this guide
+
+Here are some symbols you might need to know:
+ * :information_source: : Helpful information you should take note of.
+ * :bulb: : Useful tips that might help you.
+ * :exclamation: : Important information that might affect your usage of PlanIT.
+ 
+--------------------------------------------------------------------------------------------------------------------
+
+# Features
+## Tasks
+PlanIT contains a list of tasks.
+Tasks can have the following attributes:
+
+### Title: `t/`
+A short description or name for the task. Titles can only contain alphanumeric values.
+
+:information_source:  Every task must have a title.
+
+### Date: `set/`
+A date to represent the deadline of a Task or to represent the day that the task will be carried out.
+
+Dates should be of the format dd/mm/yyyy e.g 02/06/2021
+
+### Duration: `s/`
+The start and end time of a task. You should specify start time and end time in the 24-hour clock format.
+
+Duration should be of the format hh:mm-hh:mm e.g 12:30-13:30
+
+### Recurring Schedule: `r/`
+Represents a task that might repeat weekly or biweekly.
+
+:bulb: You can use this to quickly add weekly tutorials or biweekly lab session for the entire semester.
+
+Recurring Schedule should be of the format [dd/mm/yyyy][DAY][FREQUENCY] e.g [23/10/2021][mon][weekly]
+
+DAY should be either: mon, tue, wed, thu, fri, sat, sun. Days are case-insensitive.
+
+FREQUENCY should be either: weekly or biweekly and is also case-insensitive.
+
+### Description: `d/`
+A text description of the task. Your description should only contain alphanumeric values.
+
+### Tag: `t/`
+A label attached to a task for easy grouping and searching of tasks. Your tag should only contain alphanumeric values.
+
+:bulb: You can use this to group tasks by modules e.g adding a `CS2103` tag to a task.
+
+### Status: 's/'
+Reflects the current status of your task. Status can only be either 'done' or 'not done'.
+
+:information_source:   Your task's status will be set to 'not done' by default.
+
+
+## Constraints
+In order to maximise the efficiency of adding tasks and ensuring that there are no unnecessary attributes, there are
+two constraints to the attributes that can exist on the tasks that you create or edit.
+1. Tasks cannot have Date and Recurring Schedule at the same time.
+2. Tasks cannot have Duration on its own without a Date or Recurring Schedule.
+
+When it comes to Dates and Recurring Schedules, the main purpose of a Date attribute is to give a task a deadline or
+a single day to carry out the task itself. This should not co-exist with a Recurring Schedule, which can also indicate
+a task's deadline or day to carry out the event, except it is being repeated on a weekly or biweekly basis.
+
+As for the Duration of a task, it will be confusing to you as a user when you have multiple tasks with durations but no
+date specified. As such, this might cause you to miss your task or lower the efficiency of utilizing PlanIT when 
+searching for tasks.
+
+## List of Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -149,8 +217,6 @@ Format: `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION]
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
-* You can remove the task’s field by typing its prefix (e.g. `t/`) without
-  specifying anything after it.
 
 Examples:
 *  `edit 1 set/10/10/2021 d/Remember to update User Guide` Edits the date and description of the 1st task to be
@@ -183,29 +249,44 @@ Format: `mk n/TITLE r/[END DATE][DAY OF WEEK][WEEK FREQUENCY]` or `edit INDEX r/
 * An example of `RECURRING SCHEDULE`: `[23/10/2021][Mon][weekly]`
 
 Examples:
-*  `mk n/CS21o3 team meeting r/[31/05/2021][mon][weekly]` Adds the task with the title `CS2103 team meeting` to the
+*  `mk n/CS2103 team meeting r/[31/05/2021][mon][weekly]` Adds the task with the title `CS2103 team meeting` to the
    planner and generate recurring dates that is on `mon` `weekly` up to `31/05/2021`.
 *  `edit 1 r/[23/12/2021][mon][biweekly]` modifies the first task in the planner and generate recurring dates that
    is on `mon` `biweekly` up to `23/12/2021`.
 
-### Adding date to a task : `mk`
+### Adding date to a task : `edit`
 
 Adds a date to an existing task in the planner
 so that you can have the option to set a deadline to the task or use it for a single day event task.
 
 Format: `edit INDEX [set/DATE]…​`
-Date should only be in the format of DD/MM/YYYY as specified above. 
+Date should only be in the format of dd/mm/yyyy as specified above. 
 
-* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list. 
+The index **must be a positive integer** 1, 2, 3, …​
 * Date field must be provided.
 * Existing values will be updated to the input values.
-* When editing dateline, the existing dates of the task will be removed i.e adding of dateline is not cumulative.
-* You can remove all the task’s dateline by typing `set/` without
+* When editing date, the existing dates of the task will be removed i.e adding of date is not cumulative.
+* You can remove all the task’s date by typing `set/` without
   specifying any date after it.
 
 Examples:
 *  `edit 1 set/13/05/2021` Adds a date to the 1st task on the list which is to be `13 May 2021`.
 *  `edit 2 set/` Clears the existing date of 2nd task on the list.
+
+### Postpone a task's date : `snooze`
+
+Postpones your task's date by a specified number of days.
+
+Format: `snooze INDEX [DAYS]`
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list.
+ The index **must be a positive integer** e.g 1, 2, 3, …​
+* The DAYS is optional and it's default value will be 1 if no number is specified in your command.
+* The snooze command will only successfully update the date of the task if the task contains a date.
+
+Examples:
+* `snooze 2` Postpones the date of the task at index 2 in the list by 1 day.
+* `snooze 3 4 ` Postpones the date of the task at index 3 in the list by 4 days.
 
 ### Listing all tasks : `ls`
 
@@ -239,20 +320,26 @@ Format: `sort by a` or `sort by d`
 * If two tasks have the same dates, they will be ordered in equal priority.
 
 
-### Searching a task by title: `find`
+### Searching a task by title or description: `find` or `find d/`
 
 Find matching tasks based on the title keyword(s) provided 
 so that you can find matching tasks quickly when only certain words from the title of the task can be remembered.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Find matching tasks based on the description keywords provided
+so that you can find matching tasks quickly when only certain words from the multi-line description can be remembered.
 
-* The search is case-insensitive. e.g `project` will match `Project`
+Format: `find KEYWORD [MORE_KEYWORDS]` or `find d/KEYWORD [MORE_KEYWORDS]`
+
+* The search is **case-insensitive**. e.g `project` will match `Project`
 * The order of the keywords does not matter. e.g. `CS2103 Project` will match `Project CS2103`
 * Only full keywords will be matched e.g. `proj` will not match `projects`
 * Tasks matching at least one keyword will be returned e.g. `find proj` will match `find projects`
+* No `t/` or `d/` should be in the search by title query
+* No `t/` should be in the search by description query
 
 Examples:
 * `find CS2103 team project` returns matching tasks with title of following words `CS2103`, `team`, `project`
+* `find d/write user guide` returns matching tasks with description of following words `user`, `guide`, `write`
 
 ### Searching a task by tag: `find t/`
 
@@ -261,11 +348,12 @@ so that you can find matching tasks from the same category quickly when only the
 
 Format: `find t/KEYWORD`
 
-* The search is case-insensitive. e.g `cs2103t` will match `CS2103T`
-* The keyword must be single, alphanumeric and no spacing allowed. e.g. `project CS2103` will not be allowed
+* The search is **case-insensitive**. e.g `cs2103t` will match `CS2103T`
+* The keyword must be **single, alphanumeric and no spacing** allowed. e.g. `project CS2103` will not be allowed
   but `projectCS2103` will be acceptable.
 * Only full keyword will be matched e.g. `cs2103` will not match `cs2103t`
-* Suppose a task with multiple tags of `cs2103` and `cs2105`, it will be returned as a matching task
+* No `d/` should be in the search by tag query
+* Suppose a task with **multiple tags** of `cs2103` and `cs2105`, it will be returned as a matching task
   if the user inputs falls under the following cases:
   1. `t/cs2103` only
   2. `t/cs2105` only
@@ -273,21 +361,6 @@ Format: `find t/KEYWORD`
 
 Examples:
 * `find t/CS2103` returns matching tasks with tag of `CS2103` or `cs2103`
-
-### Searching a task by description: `find d/`
-
-Find matching tasks based on the description keywords provided
-so that you can find matching tasks quickly when only certain words from the multi-line description can be remembered.
-
-Format: `find d/KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `write user guide` will match `write User Guide`
-* The order of the keywords does not matter. e.g. `user guide` will match `guide user`
-* Only full keywords will be matched e.g. `proj` will not match `projects`
-* Tasks matching at least one keyword will be returned e.g. `write guide` will match `write user guide`
-
-Examples:
-* `find d/write user guide` returns matching tasks with description of following words `user`, `guide`, `write`
 
 ### Removing a task : `rmt`
 
@@ -384,12 +457,12 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
+## Saving the data
 
 PlanIT data are saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
 
-### Editing the data file
+## Editing the data file
 
 PlanIT data are saved as a JSON file `[JAR file location]/data/planit.json`.
 Advanced users are welcome to update data directly by editing that data file.

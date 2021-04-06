@@ -10,18 +10,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.conditions.IndexManager;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Duration;
-import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.Status;
+import seedu.address.model.task.AttributeManager;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.attributes.Date;
+import seedu.address.model.task.attributes.Description;
+import seedu.address.model.task.attributes.Duration;
+import seedu.address.model.task.attributes.RecurringSchedule;
+import seedu.address.model.task.attributes.Status;
+import seedu.address.model.task.attributes.Title;
 
 /**
  * Postpones the date of a task by a specified number of days, if the number is
@@ -66,7 +67,7 @@ public class SnoozeCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        checkForValidIndex(lastShownList);
+        IndexManager.verifyIndex(index, lastShownList);
         Task taskToSnooze = retrieveSelectedTask(lastShownList);
         enforceNonEmptyDate(taskToSnooze);
 
@@ -77,24 +78,14 @@ public class SnoozeCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SNOOZE_TASK_SUCCESS, snoozedTaskTitle, snoozeAmount));
     }
 
-    private void checkForValidIndex(List<Task> lastShownList) throws CommandException {
-        int indexValue = index.getZeroBased();
-        boolean isInvalidIndex = indexValue >= lastShownList.size();
-
-        if (isInvalidIndex) {
-            logger.info("Invalid Index detected: " + Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        }
-    }
-
     private Task retrieveSelectedTask(List<Task> list) {
         return list.get(index.getZeroBased());
     }
 
     private void enforceNonEmptyDate(Task taskToSnooze) throws CommandException {
-        if (taskToSnooze.isDateEmpty()) {
+        AttributeManager attributeManager = new AttributeManager(taskToSnooze);
+        if (attributeManager.isEmptyDate()) {
             logger.log(Level.INFO, "The task selected has no date attribute.\n" + MESSAGE_USAGE);
-
             throw new CommandException("The task selected has no date attribute.\n" + MESSAGE_USAGE);
         }
     }

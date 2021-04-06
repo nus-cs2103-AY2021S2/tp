@@ -19,17 +19,18 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.conditions.ConditionManager;
+import seedu.address.logic.conditions.ConstraintManager;
+import seedu.address.logic.conditions.IndexManager;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Duration;
-import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.attributes.Date;
+import seedu.address.model.task.attributes.Description;
+import seedu.address.model.task.attributes.Duration;
+import seedu.address.model.task.attributes.RecurringSchedule;
+import seedu.address.model.task.attributes.Status;
+import seedu.address.model.task.attributes.Title;
 
 /**
  * Deletes a specific field in a task identified using it's displayed index from the planner.
@@ -80,16 +81,12 @@ public class DeleteFieldCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         int targetIndexValue = targetIndex.getZeroBased();
-        boolean isInvalidIndex = targetIndexValue >= lastShownList.size();
 
-        if (isInvalidIndex) {
-            logger.info("Invalid index entered:" + targetIndexValue);
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        }
+        IndexManager.verifyIndex(targetIndex, lastShownList);
 
         Task taskToDeleteFieldFrom = lastShownList.get(targetIndexValue);
         Task taskWithFieldDeleted = deleteFieldFromTask(taskToDeleteFieldFrom, targetField);
-        ConditionManager.enforceAttributeConstraints(taskWithFieldDeleted);
+        ConstraintManager.enforceAttributeConstraints(taskWithFieldDeleted);
 
         if (targetField.equals(PREFIX_TAG)) {
             taskToDeleteFieldFrom.getTags().forEach(model::deleteTag);

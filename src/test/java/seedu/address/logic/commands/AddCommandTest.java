@@ -25,6 +25,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.conditions.ConstraintManager;
 import seedu.address.model.Model;
 import seedu.address.model.ObservableCalendarDate;
 import seedu.address.model.Planner;
@@ -70,7 +71,7 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubAcceptingTaskAdded();
 
         assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DATE_RECURRING_SCHEDULE_CONFLICT, () -> addCommand.execute(modelStub));
+                ConstraintManager.MESSAGE_DATE_RECURRING_SCHEDULE_CONFLICT, () -> addCommand.execute(modelStub));
     }
 
     @Test
