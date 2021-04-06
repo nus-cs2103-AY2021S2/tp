@@ -5,6 +5,7 @@ import static java.time.DayOfWeek.SUNDAY;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.function.Function;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -111,6 +112,13 @@ public class Goal {
         }
 
         return deadline;
+    }
+
+    /**
+     * Returns the UI string representation of this object
+     */
+    public String toUi() {
+        return this.toString().toLowerCase(Locale.ROOT);
     }
 
     @Override

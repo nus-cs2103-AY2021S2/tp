@@ -175,6 +175,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Goal} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGoal(Goal goal) {
+        this.goal = goal;
+        return this;
+    }
+
+    /**
      * Builds the person with the information within the PersonBuilder.
      * @return Person object
      */
