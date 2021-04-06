@@ -177,7 +177,7 @@ Format: <br>
 <br> `stats NUS`
 <br> `stats all`
 
-* Only one requested condition should be specified at a time. 
+* Only one condition should be specified at a time. 
 * If there is no available data for the requested faculty or school residence, a message will be displayed to inform
   users that the requested faculty or School Residence has no available data.
 
