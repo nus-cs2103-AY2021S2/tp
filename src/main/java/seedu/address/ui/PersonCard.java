@@ -60,7 +60,12 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label currTag = new Label(tag.tagName);
+                    currTag.setWrapText(true);
+                    currTag.setMaxWidth(300);
+                    tags.getChildren().add(currTag);
+                });
     }
 
     @Override

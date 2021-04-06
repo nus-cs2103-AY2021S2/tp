@@ -56,7 +56,7 @@ public class SessionCard extends UiPart<Region> {
                 .forEach(tag -> {
                     Label currTag = new Label(tag.tagName);
                     currTag.setWrapText(true);
-                    currTag.setMaxWidth(325);
+                    currTag.setMaxWidth(300);
                     tags.getChildren().add(currTag);
                 });
     }
