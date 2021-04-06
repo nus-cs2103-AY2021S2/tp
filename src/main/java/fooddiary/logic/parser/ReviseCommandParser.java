@@ -21,7 +21,7 @@ public class ReviseCommandParser implements Parser<ReviseCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new ReviseCommand(index);
         } catch (IndexOutOfBoundsException e) {
-            throw new ParseException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL);
+            throw new ParseException(e.getMessage());
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReviseCommand.MESSAGE_USAGE), pe);
