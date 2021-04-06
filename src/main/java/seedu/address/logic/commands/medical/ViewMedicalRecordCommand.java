@@ -38,7 +38,10 @@ public class ViewMedicalRecordCommand extends Command {
         if (patient == null) {
             throw new CommandException(Messages.MESSAGE_NOT_VIEWING_PATIENT);
         }
-        if (index.getZeroBased() >= patient.getRecords().size()) {
+        if (patient.getRecords().size() == 0) {
+            throw new CommandException(String.format(Messages.MESSAGE_NO_MEDICAL_RECORD_FOUND,
+                                                        patient.getName().fullName, patient.getName().fullName));
+        } else if (index.getZeroBased() >= patient.getRecords().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEDICAL_RECORD_INDEX);
         }
         MedicalRecord mrec = patient.getRecords().get(index.getZeroBased());
