@@ -384,8 +384,6 @@ public class ModelManager implements Model {
         return null;
     }
 
-
-
     /**
      * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
      *

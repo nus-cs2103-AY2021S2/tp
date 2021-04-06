@@ -30,6 +30,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.smartlib.commons.core.GuiSettings;
 import seedu.smartlib.commons.core.name.Name;
+import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.book.exceptions.BookNotFoundException;
 import seedu.smartlib.model.book.exceptions.DuplicateBookException;
@@ -38,6 +39,7 @@ import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.reader.exceptions.DuplicateReaderException;
 import seedu.smartlib.model.reader.exceptions.ReaderNotFoundException;
 import seedu.smartlib.model.record.exceptions.DuplicateRecordException;
+import seedu.smartlib.testutil.BookBuilder;
 import seedu.smartlib.testutil.SmartLibBuilder;
 
 public class ModelManagerTest {
@@ -572,6 +574,42 @@ public class ModelManagerTest {
         // EP: valid book name -> returns barcode of book
         assertEquals(SECRET.getBarcode(), modelManager.getBookBarcode(SECRET.getName()));
         assertEquals(HARRY.getBarcode(), modelManager.getBookBarcode(HARRY.getName()));
+    }
+
+    @Test
+    public void getFirstAvailableBookBarcode() {
+        modelManager = new ModelManager(smartLib, userPrefs);
+
+        // EP: null book name
+        assertThrows(NullPointerException.class, () -> modelManager.getFirstAvailableBookBarcode(null));
+
+        // EP: invalid book name -> returns first null
+        assertNull(modelManager.getFirstAvailableBookBarcode(HABIT.getName()));
+        assertNull(modelManager.getFirstAvailableBookBarcode(LIFE.getName()));
+
+        // EP: valid book name -> returns first available barcode of book
+        modelManager.addBook(new BookBuilder()
+                .withName(SECRET.getName().toString())
+                .withAuthor(SECRET.getAuthor().toString())
+                .withPublisher(SECRET.getPublisher().toString())
+                .withIsbn(SECRET.getIsbn().toString())
+                .withBarcode(SECRET.getBarcode().getValue() + 1 + "")
+                .withGenre(SECRET.getGenre().toString())
+                .build()
+        );
+        modelManager.addBook(new BookBuilder()
+                .withName(SECRET.getName().toString())
+                .withAuthor(SECRET.getAuthor().toString())
+                .withPublisher(SECRET.getPublisher().toString())
+                .withIsbn(SECRET.getIsbn().toString())
+                .withBarcode(SECRET.getBarcode().getValue() + 2 + "")
+                .withGenre(SECRET.getGenre().toString())
+                .build()
+        );
+        assertEquals(new Barcode(SECRET.getBarcode().getValue() + 1),
+                modelManager.getFirstAvailableBookBarcode(SECRET.getName()));
+        assertNotEquals(new Barcode(SECRET.getBarcode().getValue() + 2),
+                modelManager.getFirstAvailableBookBarcode(SECRET.getName()));
     }
 
     @Test
