@@ -374,16 +374,23 @@ public class ParserUtilTest {
 
     @Test
     public void parseClientAskingPrice_validValueWithoutWhitespace_returnsAskingPrice() throws Exception {
-        AskingPrice expectedAskingPrice = new AskingPrice(VALID_CLIENT_ASKING_PRICE);
+        Long askingPrice = Long.parseLong(VALID_CLIENT_ASKING_PRICE
+                .replace("$", "")
+                .replace(",", ""));
+        AskingPrice expectedAskingPrice = new AskingPrice(askingPrice);
         assertEquals(expectedAskingPrice, ParserUtil.parseClientAskingPrice(VALID_CLIENT_ASKING_PRICE));
     }
 
     @Test
     public void parseClientAskingPrice_validValueWithWhitespace_returnsTrimmedAskingPrice() throws Exception {
+        Long askingPrice = Long.parseLong(VALID_CLIENT_ASKING_PRICE
+                .replace("$", "")
+                .replace(",", ""));
         String askingPriceWithWhitespace = WHITESPACE + VALID_CLIENT_ASKING_PRICE + WHITESPACE;
-        AskingPrice expectedAskingPrice = new AskingPrice(VALID_CLIENT_ASKING_PRICE);
+        AskingPrice expectedAskingPrice = new AskingPrice(askingPrice);
         assertEquals(expectedAskingPrice, ParserUtil.parseClientAskingPrice(askingPriceWithWhitespace));
     }
+
     // ===== Tests for appointment parser methods ================================================================
 
     @Test
