@@ -21,7 +21,7 @@ import seedu.address.model.cheese.ExpiryDate;
 import seedu.address.model.cheese.ManufactureDate;
 
 /**
- * Edits the details of an existing cheese in the address book.
+ * Edits the details of an existing cheese in CHIM.
  */
 public class EditCheeseCommand extends EditCommand {
 

@@ -12,7 +12,8 @@ import seedu.address.model.order.Order;
 import seedu.address.model.util.predicate.FieldPredicate;
 
 /**
- * Finds the orders in CHIM matching the input parameters and lists them to the user.
+ * Finds the orders in CHIM matching the input keywords; keyword matching is case insensitive.
+ * Lists the matching orders to the user.
  */
 public class FindOrderCommand extends Command {
 

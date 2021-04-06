@@ -13,13 +13,13 @@ import seedu.address.model.Model;
 import seedu.address.model.cheese.Cheese;
 
 /**
- * Adds a cheese to the address book.
+ * Adds a cheese to CHIM.
  */
 public class AddCheeseCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "addcheese";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a cheese to the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a cheese to CHIM.\n"
             + "Parameters: "
             + PREFIX_CHEESE_TYPE + "CHEESE TYPE "
             + PREFIX_QUANTITY + "QUANTITY "

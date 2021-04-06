@@ -4,7 +4,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Adds an object to the address book.
+ * Adds a customer, an order, or cheeses to CHIM.
  */
 public abstract class AddCommand extends Command {
 

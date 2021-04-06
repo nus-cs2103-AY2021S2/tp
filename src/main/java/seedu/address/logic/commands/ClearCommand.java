@@ -6,7 +6,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 
 /**
- * Clears the address book.
+ * Clears CHIM and all saved data.
  */
 public class ClearCommand extends Command {
 

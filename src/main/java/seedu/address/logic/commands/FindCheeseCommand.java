@@ -10,7 +10,7 @@ import seedu.address.model.cheese.Cheese;
 import seedu.address.model.util.predicate.FieldPredicate;
 
 /**
- * Finds the cheeses in CHIM matching the input parameters.
+ * Finds the cheeses in CHIM matching the input keywords; keyword matching is case insensitive.
  * Lists the matching cheeses to the user.
  */
 public class FindCheeseCommand extends Command {

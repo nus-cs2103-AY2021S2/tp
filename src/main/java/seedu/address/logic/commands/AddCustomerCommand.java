@@ -12,13 +12,13 @@ import seedu.address.model.Model;
 import seedu.address.model.customer.Customer;
 
 /**
- * Adds a customer to the address book.
+ * Adds a customer to CHIM.
  */
 public class AddCustomerCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "addcustomer";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a customer to the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a customer to CHIM.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -34,7 +34,7 @@ public class AddCustomerCommand extends AddCommand {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New customer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_CUSTOMER = "Customer with that phone number already exists in CHIM.";
 
     private final Customer toAdd;
 

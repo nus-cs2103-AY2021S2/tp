@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 import seedu.address.model.Model;
 
 /**
- * Lists all customers in the address book to the user.
+ * Lists all customers in CHIM to the user.
  */
 public class ListCustomersCommand extends Command {
 
