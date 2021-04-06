@@ -103,13 +103,13 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
    help to the user.
-
+   
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API
-call.
+calls respectively.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
@@ -243,104 +243,370 @@ GUI proceeds to show it on the result display.
     
 
 
-### \[Proposed\] Undo/redo feature
+### Add feature `add`
 
-#### Proposed Implementation
+#### Actual Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedStoreMando`. It extends `StoreMando` with undo/redo
-history, stored internally as an `storeMandoStateList` and `currentStatePointer`. Additionally, it implements the
-following operations:
+The `add` feature allows users to add an item's details to the inventory. An item's details is made up of it's name, 
+quantity, location, expiry date (optional), and tags (optional).
 
-* `VersionedStoreMando#commit()` — Saves the current inventory state in its history.
-* `VersionedStoreMando#undo()` — Restores the previous inventory state from its history.
-* `VersionedStoreMando#redo()` — Restores a previously undone inventory state from its history.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** 
+An item's name, quantity and location are compulsory fields that must be supplied by the user.
+</div>
 
-These operations are exposed in the `Model` interface as `Model#commitStoreMando()`, `Model#undoStoreMando()`
-and `Model#redoStoreMando()` respectively.
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+issues the command `add n/apple q/2 l/kitchen`.
 
-Given below is an example usage scenario and how undo/redo mechanism behaves at each step.
+![AddSequenceDiagram][images/AddSequenceDiagram.png]
 
-Step 1. The user launches the application for the first time. The `VersionedStoreMando` will be initialized with the
-initial inventory state, and the `currentStatePointer` pointing to that single inventory state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+From the diagram above:
 
-Step 2. The user executes `delete 5` command to delete the 5th item in the inventory. The `delete` command
-calls `Model#commitStoreMando()`, causing the modified state of the inventory after the `delete 5` command executes to
-be saved in the `storeMandoStateList`, and the `currentStatePointer` is shifted to the newly inserted inventory state.
+1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input.
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
+3. The `StoreMandoParser` parses the user input and identifies it as an `AddCommand` and instantiates `AddCommandParser`. 
+4. `StoreMandoParser` then invokes the `parse` method of `AddCommandParser` to further parse the arguments provided. In the `parse` method,
+   the `AddCommandParser` ensures that the input is of the correct format and identifies the input for item name, quantity, 
+   location, expiry date and tag(s).
+5. If all the arguments of the `add` command are valid, The `AddCommandParser` creates a new `Item` object, 
+   and instantiates a new `AddCommand` object that contains the `Item` object. This `AddCommand` object will be
+   returned to the `LogicManager`.
+6. The `LogicManager` will then invoke the `execute` method of the `AddCommand` object with `model` as argument.   
+7. Consequently, `AddCommand` object will add the `Item` object to `Model`, and return a `CommandResult` to `LogicManager`.
+8. This `CommandResult` will be returned at the end.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+The following activity diagram summarizes what happens when a user executes a new `add` command:
+![AddActivityDiagram][images/AddActivityDiagram.png]
 
-Step 3. The user executes `add n/David …​` to add a new item. The `add` command also calls `Model#commitStoreMando()`,
-causing another modified inventory state to be saved into the `storeMandoStateList`.
+##### Proposed Improvements
+1. Items with the same name, location and expiry date cannot co-exist in the inventory. Thus, every item that 
+   is to be added has to be checked and validated that it is not a duplicate item. The current implementation to do so
+   involves iterating through the list of all items to check if there already exists an item in the inventory that has 
+   exactly the same name, location and expiry date. This process is slow and runs in O(n) time. It can be improved by 
+   implementing a `HashMap` containing all the items currently stored in the inventory. This will allow the search to be 
+   done in O(1) time. This feature was not implemented as it would introduce unnecessary complexity, and the current 
+   solution meets the non-functional requirements regarding performance.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+##### Design Considerations:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitStoreMando()`, so the inventory state will not be saved into the `storeMandoStateList`.
+##### Aspect: Identifying the addition of duplicate item
+* **Alternative 1 (current choice):** Compare item to be added and existing items in the inventory by name, location 
+  **and** expiry date.
+    * Pros: Allows users to store the same products that may have been produced in different batches. This would also 
+      help users identify and differentiate similar products by their expiry date.
+    * Cons: Items with the same name and location may be a potential source of confusion.
+
+* **Alternative 2:** Compare item to be added and existing items in the inventory by name and location only.
+    * Pros: Allows users to clearly distinguish items with the same names by location. This would prevent confusion and
+      save users from going through the hassle of distinguishing items by expiry date.
+    * Cons: Users would not be able to store similar items that have different expiry dates as a result of being 
+      produced in different batches.
+
+      
+### Sort Feature `sort`
+
+#### Actual Implementation
+
+The `sort` feature allows users to view the items in the displayed list of items in a specific order.
+The `sort quantity asc` and` sort quantity desc` commands allows users to view all items in the displayed list in 
+ascending or descending order of quantity respectively. In comparison, the `sort expirydate` command allows users to 
+view items in the displayed list in chronological order of their expiry date.
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+issues the command `sort quantity asc`.
+
+![SortSequenceDiagram][images/SortSequenceDiagram.png]
+
+From the diagram above:
+1. `LogicManager`'s `execute` is called when the user enters an input into the command box.
+2. `LogicManager` then calls `parseCommand` of `StoreMandoParser` to parse the user input.
+3.  The `StoreMandoParser` identifies the input as an `SortCommand` and initializes `SortCommandParser`.
+4. `StoreMando` then invokes the method `parse` of `SortCommandParser` to further parse the user input.
+   The `SortCommandParser` ensures that the input is of the correct format and identifies the type of 
+   sorting to be done.
+5. If all the arguments of the `sort quantity asc` command are valid, The `SortCommandParser` initiates a new 
+   `SortAscendingQuantityCommand` object. This `SortAscendingQuantityCommand` object will be returned to the 
+   `LogicManager`.
+6. The `LogicManager` will then invoke the `execute` method of the `SortAscendingQuantityCommand` object.
+7. The `SortAscendingQuantityCommand` object will then retrieve the currently displayed list of items through the 
+   `getFilteredItemList` method of `Model`to check if there are items to be sorted.
+8. If there are items to be sorted, `SortAscendingQuantityCommand` will create an `ItemComparatorByIncreasingQuantity` 
+   comparator object that determines how any two items in the list should be compared.
+9. `SortAscendingQuantityCommand` passes this comparator to `Model` through `Model`'s `updateSortedItemList` method 
+   to sort the list of items. 
+10. `SortAscendingQuantityCommand` will then call `setItems` method of `Model` and pass in the sorted list of items 
+    retrieved from `Model` through it's `getSortedItemList` method. This would result in the sorted list of items
+    being displayed.
+    
+11. Upon completion, `SortAscendingQuantityCommand` creates a `CommandResult` object and passes it back to `LogicManager`.
+    
+12. This `CommandResult` will be returned at the end by `LogicManager`.
+
+The following activity diagram summarizes what happens when a user executes a `sort quantity asc` command:
+![AddActivityDiagram][images/AddActivityDiagram.png]
+
+
+##### Design Considerations:
+
+##### Aspect: Determining the implementation of sort as initial implementation of filtered list had no sorting capability.
+
+* **Alternative 1 (current choice):** Maintain current implementation of filtered list and utilise a new sorted list to sort items.
+    * Pros: Faster alternative and easy to implement as existing components need not be modified.
+    * Cons: Have to ensure the toggling between sorted list and filtered list is done accurately for each command.
+
+* **Alternative 2:** Change underlying list implementation from filtered list to a list that supports sorting.
+    * Pros: Easy to maintain once implemented.
+    * Cons: Changing of underlying list implementation introduces unnecessary complexity and delay as all the other components
+      that depend on filtered list implementation would have to be changed as well. 
+
+      
+### Delete Item `Delete`
+
+#### Actual Implementation
+
+The `delete` feature allows users to delete an item in their Inventory by the item's index in the list.
+
+The following sequence diagram shows how the delete operation works:
+
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+
+Given below is an example usage scenario and how delete mechanism behaves at each step.
+
+Step 1. User executes `delete 5` to delete the 5th item in the list. `StoreMandoParser` takes in the user input and
+determines the command word (delete) and argument (5) respectively.
+
+Step 2. An instance of `DeleteCommandParser` will be created, followed by a call on its `parse` method, taking in the
+argument stated in step 1 (5).
+
+Step 3. The `parse` method will check for the validity of the index. If valid, a new `DeleteCommand` instance will be
+created and returned to `LogicManager` class via `StoreMandoParser` class.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If the index is determined to be invalid, a parseException will be thrown to notify the
+user of the error.
 
 </div>
 
-Step 4. The user now decides that adding the item was a mistake, and decides to undo that action by executing the `undo`
-command. The `undo` command will call `Model#undoStoreMando()`, which will shift the `currentStatePointer` once to the
-left, pointing it to the previous inventory state, and restores the inventory to that state.
+Step 4. The overridden `execute` method of `DeleteCommand` will be called, deleting the item from the list. 
 
-![UndoRedoState3](images/UndoRedoState3.png)
+Step 5. Finally, a `CommandResult` object is created and returned to `LogicManager`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial StoreMando state, then there are no previous StoreMando states to restore. The `undo` command uses `Model#canUndoStoreMando()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
+##### Aspect: How `delete` executes
+
+* **Alternative 1 (current choice):** Delete item by an index.
+    * Pros: Easy to implement.
+    * Cons: Requires user to scroll through the list to find the item and specify the index.
+
+* **Alternative 2:** Delete item by item name.
+    * Pros: Will be easier for the user especially when the list is huge.
+    * Cons: There are items with the same name but in different location, will cause confusion.
+
+### List Items `list`, `list l/LOCATION` or `list t/TAG`
+
+#### Actual Implementation
+
+The `list` feature allows users to list all items in the inventory based on the order they were added.
+The `list l/LOCATION` and `list t/TAG` features allow users to list all items in a specific location
+or with a specific tag respectively.
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `list`:
+![Interactions Inside the Logic Component for the `list` Command](images/ListStoreMandoSequenceDiagram.png)
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `list l/kitchen`:
+![Interactions Inside the Logic Component for the `list l/kitchen` Command](images/ListLocationSequenceDiagram.png)
+
+Given below is an example usage scenario and how the list operation behaves at each step.
+
+Step 1. The user execute `list` to list all the items in the inventory. `StoreMandoParser` takes in the user input and
+determines the command word (list) and argument ("") respectively.
+
+Step 2. An instance of `ListCommandParser` will be created, followed by a call on its `parse` method, taking in the
+argument stated in step 1 (""), which will be initialised to true.
+
+Step 3. The `parse` method will check for the validity of the user input. If valid, a new `ListCommand` instance will be
+created and returned to `LogicManager` class via `StoreMandoParser` class.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** If the command format is determined to be invalid, a parseException will be thrown to notify the
+user of the error.
 </div>
 
-The following sequence diagram shows how the undo operation works:
+Step 4. The overridden `execute` method will be called. The current predicate and filtered item list of the `Model` will
+be updated, and all items in the inventory will be listed. An instance of `CommandResult` will be created, generating
+the result of the execution. The `LogicManager` class will receive the result of the execution.
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+The following activity diagram summarizes what happens when a user executes the list command:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoStoreMando()`, which shifts the `currentStatePointer` once to
-the right, pointing to the previously undone state, and restores the inventory to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `storeMandoStateList.size() - 1`, pointing to the latest inventory state, then there are no undone StoreMando states to restore. The `redo` command uses `Model#canRedoStoreMando()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the inventory, such as `list`,
-will usually not call `Model#commitStoreMando()`, `Model#undoStoreMando()` or `Model#redoStoreMando()`. Thus,
-the `storeMandoStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitStoreMando()`. Since the `currentStatePointer` is not
-pointing at the end of the `storeMandoStateList`, all inventory states after the `currentStatePointer` will be purged.
-Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop
-applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+![ListActivityDiagram](images/ListActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: How list executes
 
-* **Alternative 1 (current choice):** Saves the entire inventory.
+* **Alternative 1 (current choice):** List the entire inventory in the order they were added.
     * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+    * Cons: The overview of all the items in the inventory may appear disorganised.
 
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the item being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** List the entire inventory categorised in their specific locations.
+    * Pros: More organised overview of all the items in the inventory.
+    * Cons: More difficult to implement.
 
 _{more aspects and alternatives to be added}_
+
+### Find Item `find KEYWORD [MORE_KEYWORDS]` or `find */KEYWORD [MORE_KEYWORDS]`
+
+#### Actual Implementation
+
+The `find KEYWORD [MORE_KEYWORDS]` and `find */KEYWORD [MORE_KEYWORDS]` features find and display all items whose names
+contain any of the given keywords, either in full or partially respectively.
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `find Chocolate`:
+![Interactions Inside the Logic Component for the `find KEYWORD [MORE_KEYWORDS]` Command](images/FindFullSequenceDiagram.png)
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `find */cheese egg`:
+![Interactions Inside the Logic Component for the `find */KEYWORD [MORE_KEYWORDS]` Command](images/FindPartialSequenceDiagram.png)
+
+Given below is an example usage scenario and how the find operation behaves at each step.
+
+Step 1. The user execute `find Chocolate` to find all the items in the inventory whose names fully match the keyword.
+`StoreMandoParser` takes in the user input and determines the command word (find) and argument ("Chocolate") respectively.
+
+Step 2. An instance of `FindCommandParser` will be created, followed by a call on its `parse` method, taking in the
+argument stated in step 1 ("Chocolate").
+
+Step 3. The `parse` method will check for the presence of keyword(s). If keywords are present, a new `FindCommand` instance will be
+created and returned to `LogicManager` class via `StoreMandoParser` class.
+
+<div markdown="span" class="alert alert-info"> 
+:information_source: **Note:** If the command format is determined to be invalid, a parseException will be thrown to notify the
+user of the error.
+</div>
+
+Step 4. The overridden `execute` method will be called. The current predicate and filtered item list of the `Model` will
+be updated, and all items in the inventory that matches the keyword in full will be listed. An instance of
+`CommandResult` will be created, generating the result of the execution. The String parameter passed in the `CommandResult` depends
+on whether the number of items that matched the keyword is more than one or less than two. The `LogicManager` class will receive the
+result of the execution.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How find executes
+
+* **Alternative 1 (current choice):** Find items in the current list that matches the keyword, either fully or partially.
+    * Pros: Easy to implement.
+    * Cons: The search is limited to matching names. If there are many items containing that keyword, the search may not be efficient.
+
+* **Alternative 2:** Find items in the current list that matches the keyword and an attribute e.g. tag.
+    * Pros: More efficiently retrieve the item needed.
+    * Cons: Users need to remember the items' attributes.
+
+_{more aspects and alternatives to be added}_
+
+### Reminder Feature
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+issues the command `reminder 1 week`.
+
+![ReminderSequenceDiagram](images/ReminderWeeksSequenceDiagram.png)
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+issues the command `reminder 3 days`.
+
+![ReminderSequenceDiagram](images/ReminderDaysSequenceDiagram.png)
+
+#### Actual Implementation
+
+This portion describes the implementation of the reminder feature which allows users to view items that are expiring 
+within a certain number of days as specified by the user.
+
+1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input. 
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the given command.
+3. `StoreMandoParser` parses the command and determines that the command given is a `ReminderCommand`. 
+    Then, a `ReminderCommandParser` object is created to further parse the command.
+4. `StoreMandoParser` then calls on the `parse` method of `ReminderCommandParser` to parse the arguments provided.
+5. `ReminderCommandParser` calls on its own `timeConversion` method to convert the string into an integer. A 
+    `CommandParseException` will be thrown if this is not possible. 
+6. `ReminderCommandParser` then calls on the constructor of `ItemExpiringPredicate` with the integer as parameter to 
+    create an `ItemExpiringPredicate` object and then calls on the constructor of `ReminderCommand` with the `ItemExpiringPredicate` object as 
+    a parameter. 
+7. The `ReminderCommand` object will be created and returned to `StoreMandoParser` which returns it to `LogicManager` 
+8. `LogicManager` then calls on the `execute` method of `ReminderCommand` with `model` as argument.
+9. `ReminderCommand` calls the `updateCurrentPredicate` method of `model` and passes its own `ItemExpiringPredicate`
+    as argument.
+10. `ReminderCommand` calls the `getCurrentPredicate` method of `model` to obtain the current predicate and uses it
+    to update the list by calling on `updateFilteredItemList` method of `model` with the current predicate as argument.
+11. `ReminderCommand` then creates a `ItemComparatorByExpiryDate` object and calls `model`'s `updateSortedItemList` with 
+    `ItemComparatorByExpiryDate` as argument to sort the list.
+12. Finally, a `CommandResult` object is created and returned to `LogicManager`.    
+
+The following activity diagram summarizes what happens when a user executes a new `reminder` command:
+
+![ReminderActivityDiagram](images/ReminderActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How `reminder` executes
+
+**Alternative 1 (current choice)** : provide integer as an input argument
+    * Pros: Faster to type as compared to date in a particular format.
+    * Cons: More cases to consider when parsing the commmand.
+
+**Alternative 2** : provide a date in the format of YYYY-MM-DD as input
+    * Pros: Easier to compare between items as the input date can be used to create an `expiryDate` object 
+            which can be used to compare with all the items' expiry dates.
+    * Cons: When the user wants to find items that are already expired, it is easier to key in a number then to 
+            find a particular date and key it in. This is more taxing on the user.
+
+### Clear Feature
+
+This portion describes the implementation of the clear feature which allows users to clear items that are either in
+a particular location or clear all items in the list.
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `clear`
+
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `clear l/Kitchen`
+
+![ClearLocationSequenceDiagram](images/ClearLocationSequenceDiagram.png)
+
+#### Actual Implementation 
+
+1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input.
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the given command.
+3. `StoreMandoParser` parses the string and determines the command given is a `ClearCommand`.
+    Then, a `ClearCommandParser` object is created to further parse the command.
+4. `StoreMandoParser` then calls on the `parse` method of `ClearCommandParser` to parse the arguments provided.
+5. `ClearCommandParser` checks if the argument provided is an empty string. If so, the constructor of `ClearCommand`
+    without any parameters is called. Else, a `LocationContainsPredicate` object will be created with the arguments
+    as parameter.`CommandParseException` will be thrown if this is not possible.
+6. `ClearCommand` object will be returned to `ClearCommandParser` which then returns it to `LogicManager`. `LogicManager`
+    then calls the `execute` method of `ClearCommand` with a `Model` object, model, as parameter.
+7. `ClearCommand` calls on the `clearLocation` method of model with the `ClearCommand`'s attribute predicate as parameter.
+    Subsequently, it calls on model's `updateFilteredItemList`.
+8. Finally, a `CommandResult` object is created and is returned to `LogicManager`.
+
+The following activity diagram summarizes what happens when a user executes a clear by location command:
+
+![ClearActivityDiagram](images/ClearLocationActivityDiagram.png)
 
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -365,11 +631,11 @@ _{Explain here how the data archiving feature will be implemented}_
 * has a lot of perishable items with various expiry dates that are difficult to remember
 * prefers desktop applications over other types
 * fast typist
-* prefers typing to using mouse 
+* prefers typing to using mouse
 * comfortable using CLI applications
 
-**Value proposition**: Every info of every item you have at home - all in one place. One command is all you have to key 
-in to add, delete or find for an item. StoreMando keeps track of everything you need so that you don't have to 
+**Value proposition**: Every info of every item you have at home - all in one place. One command is all you have to key
+in to add, delete or find for an item. StoreMando keeps track of everything you need so that you don't have to
 physically search for an item to obtain information on it. Get everything you need from StoreMando - locations,
 quantities and expiry dates.
 
@@ -415,12 +681,12 @@ otherwise)
     * 1a1. StoreMando shows an error message.
 
       Use case resumes at step 1.
-    
+
 * 1b. Duplicate item exists in the inventory.
 
     * 1b1. StoreMando shows an error message.
 
-      Use case resumes at step 1.    
+      Use case resumes at step 1.
 
 **Use case: UC2 - Delete an item in a specific location**
 
@@ -436,13 +702,13 @@ otherwise)
 **Extensions**
 
 * 2a. There are no items in the specified location.
-  
-  Use case ends. 
+
+  Use case ends.
 
 * 3a. The index keyed in by the user does not exist in the displayed list.
 
     * 3a1. StoreMando shows an error message.
-    
+
       Use case resumes at step 3.
 
 **Use case: UC3 - List all items in a specific location**
@@ -461,7 +727,6 @@ otherwise)
     * 1a1. StoreMando shows an error message.
 
       Use case resumes at step 1.
-
 
 **Use case: UC4 - Find an item**
 
@@ -486,14 +751,14 @@ otherwise)
 * 1a. The command keyed in by the user has an invalid syntax.
 
     * 1a1. StoreMando shows an error message.
-    
+
       Use case resumes at step 1.
 
 * 1b. The new details keyed in by the user is the same as the existing details of the item.
 
     * 1b1. StoreMando shows an error message.
 
-      Use case resumes at step 1.    
+      Use case resumes at step 1.
 
 **Use case: UC6 - Check for expiring items**
 
@@ -509,7 +774,7 @@ otherwise)
 * 1a. User inputs a negative number.
 
     * 1a1. StoreMando shows an error message.
-    
+
       Use case resumes at step 1.
 
 * 1a. Time unit input is neither day(s) or week(s)
@@ -577,7 +842,7 @@ Use case ends.
 * 1a. The location keyed in by the user does not exist in the inventory.
 
     * 1a1. StoreMando shows an error message.
-    
+
       Use case resumes at step 1.
 
 *{More to be added}*
@@ -591,16 +856,15 @@ Use case ends.
 3. **Portability**
     * Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 4. **Usability**
-    * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should 
-      be able to accomplish most of the tasks faster by typing rather than using the mouse. 
+    * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+      be able to accomplish most of the tasks faster by typing rather than using the mouse.
     * StoreMando should work with or without Internet connection.
-
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **StoreMando**: Name of the application
-* **CLI**: Command Line Interface    
+* **CLI**: Command Line Interface
 * **GUI**: Graphical User Interface
 * **Inventory**: List of all items stored in StoreMando
 
