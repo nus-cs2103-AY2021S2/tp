@@ -7,15 +7,15 @@ import java.util.UUID;
 
 public class DoctorMap {
 
-    public static final Map<UUID, Doctor> DOCTOR_HASH_MAP = new HashMap<>();
+    public static final Map<UUID, Doctor> DOCTOR_MAP = new HashMap<>();
 
-    public static Map<UUID, Doctor> getDoctorHashMap() {
-        return DOCTOR_HASH_MAP;
+    public static Map<UUID, Doctor> getDoctorMap() {
+        return DOCTOR_MAP;
     }
 
     public static Doctor getDoctorFromUuid(UUID doctorUuid) {
-        assert DOCTOR_HASH_MAP.containsKey(doctorUuid);
-        return DOCTOR_HASH_MAP.get(doctorUuid);
+        assert DOCTOR_MAP.containsKey(doctorUuid);
+        return DOCTOR_MAP.get(doctorUuid);
     }
 
     /**
@@ -24,7 +24,7 @@ public class DoctorMap {
      */
     public static void updateDoctorHashMap(List<Doctor> doctorList) {
         for (Doctor dr: doctorList) {
-            DOCTOR_HASH_MAP.put(dr.getUuid(), dr);
+            DOCTOR_MAP.put(dr.getUuid(), dr);
         }
     }
 }

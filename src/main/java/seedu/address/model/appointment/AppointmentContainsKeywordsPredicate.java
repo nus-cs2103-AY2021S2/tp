@@ -39,8 +39,8 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
 
     @Override
     public boolean test(Appointment appointment) {
-        Map<UUID, Patient> patientHashMap = PatientMap.getPatientHashMap();
-        Map<UUID, Doctor> doctorHashMap = DoctorMap.getDoctorHashMap();
+        Map<UUID, Patient> patientHashMap = PatientMap.getPatientMap();
+        Map<UUID, Doctor> doctorHashMap = DoctorMap.getDoctorMap();
 
         Predicate<String> isMatchPatient = keyword -> StringUtil.containsWordIgnoreCase(
                 patientHashMap.get(appointment.getPatientUuid())

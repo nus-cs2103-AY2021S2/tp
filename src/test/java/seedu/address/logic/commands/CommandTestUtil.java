@@ -176,7 +176,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredAppointmentList().size());
 
         Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
-        Map<UUID, Patient> patientHashMap = PatientMap.getPatientHashMap();
+        Map<UUID, Patient> patientHashMap = PatientMap.getPatientMap();
         PatientMap.updatePatientHashMap(model.getPatientRecords().getPersonList());
 
         UUID patientUuid = appointment.getPatientUuid();

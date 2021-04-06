@@ -38,8 +38,8 @@ public class AppointmentListPanel extends UiPart<Region> {
 
         // maintain a hashmap to improve speed of searching
         ObservableList<AppointmentDisplay> displayAppointmentList = FXCollections.observableArrayList();
-        Map<UUID, Patient> patientHashMap = PatientMap.getPatientHashMap();
-        Map<UUID, Doctor> doctorHashMap = DoctorMap.getDoctorHashMap();
+        Map<UUID, Patient> patientHashMap = PatientMap.getPatientMap();
+        Map<UUID, Doctor> doctorHashMap = DoctorMap.getDoctorMap();
 
         PatientMap.updatePatientHashMap(patientList);
         DoctorMap.updateDoctorHashMap(doctorList);
