@@ -55,6 +55,7 @@ public class EditCommand extends UndoableCommand {
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the iScam book.";
+    public static final String MESSAGE_NO_CHANGES = "No changes found in any field.";
 
     private final Index index;
     private final EditClientDescriptor editClientDescriptor;
@@ -112,6 +113,10 @@ public class EditCommand extends UndoableCommand {
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
+        }
+
+        if (clientToEdit.equals(editedClient)) {
+            throw new CommandException(MESSAGE_NO_CHANGES);
         }
 
         model.setClient(clientToEdit, editedClient);
