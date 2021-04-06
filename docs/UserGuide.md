@@ -236,7 +236,7 @@ Format: `add-appt pt/PATIENT_INDEX dr/DOCTOR_INDEX at/TIMESLOT_START [to/TIMESLO
 
 * The `TIMESLOT_START` and `TIMESLOT_END` must be either in a recognisable datetime format or prefixed with keyword `NEXT` followed by a datetime unit (DAY, MONTH, YEAR) or weekday (MONDAY, TUESDAY …​)<br>
 
-* Either and only one, `TIMESLOT_END` or `TIMESLOT_DURATION`, must be provided.<br>
+* Where both fields `TIMESLOT_END` and `TIMESLOT_DURATION` are provided, priority is granted to `TIMESLOT_END`.<br>
 
 * Raises an exception if there are conflicts in schedule for the patient or the doctor.<br>
 
