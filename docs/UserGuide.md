@@ -8,8 +8,8 @@ title: User Guide
 # Overview
 
 Welcome to the Pawbook User Guide! 
-In this section, you will be given a brief overview of what Pawbook is all about and what you can takeaway from this document. 
-We will guide you from a user's perspective as to how to use Pawbook. 
+In this section, you will be given a brief overview of what Pawbook is all about and what you can takeaway from this user guide. 
+We will show you from a user's perspective as to how to use Pawbook. 
 
 This user guide contains (but not limited to) a [quick start guide](#quick-start), a [features walkthrough](#commands) and a [command summary table](#command-summary) for easy reference. 
 In each feature or functionality, we further provide command formats and command examples to ensure that users can become proficient in using Pawbook.
@@ -35,11 +35,12 @@ Pawbook also has the benefits of a **Graphical User Interface (GUI)** to provide
 
 ## Purpose
 
-The aim of this user guide is to guide novel users on how to get started with Pawbook. 
+The aim of this user guide is to help novel users on how to get started with Pawbook. 
 It also aids more experienced users by providing a detailed explanation on the different features and components of Pawbook. 
-This allows old and new users alike to easily use the various features and functionalities provided by Pawbook. 
+This allows old and new users alike to easily learn and use the various features and functionalities provided by Pawbook. 
 
 # About the User Guide 
+
 In this section, we will teach you everything you need to know to effectively use this user guide. 
 
 ## Contributors
@@ -71,15 +72,18 @@ Here are some important syntax to take note of to facilitate your reading before
 |<kbd>Enter</kbd> | Indicates the enter button on the user's keyboard |
 | `Markdown` | Example of what to type in the command textbox |
 | **Bold** | Note-worthy keywords |
-| :bulb: | Indicates there is something important to take note of
+| :bulb: | Indicates an important note that will enhance your user experience
 | :heavy_exclamation_mark: | Indicates something that the user should take caution of. |
 
 ## Syntax Format
 
-Syntax | Meaning  | Example
---------|------------------|----------
-**`lower_case/`** |  Prefix | `n/`, `p/`, `t/`
-**`[UPPER_CASE]`** |  Parameter | [keyword] [entity ID]
+Syntax | Meaning  | Example | Explanation
+--------|------------------|----------|---------
+`lower_case/` |  Prefix | `n/`, `p/`, `t/` | -
+normal font | Compulsory parameter | schedule | - 
+CAPS_WITH_UNDERSCORE | Variable parameter | delete dog DOG_ID | `delete dog` is a compulsory parameter, while DOG_ID is variable because you can delete any valid dog ID.
+[SQUARE BRACKETS] | Optional parameter | [t/TAG] | When adding a dog for example, the tags to be added are optional.
+Ellipsis | Multiple parameters | [t/TAG]... | When adding a dog for example, multiple tags can be added.
 
 ## GUI Layout
 
@@ -141,15 +145,15 @@ In this section, you will learn about the commands available in Pawbook and how 
 
 ### Add Command
 
-**Function**: Adds a **dog/owner/program** to Pawbook.<br>
+**Function**: Adds an entity (dog/owner/program) to Pawbook.<br>
 **Usage**: When you want to add an entity into Pawbook, you can simply use the add command. The add command adds the new entity at the end of the current list. 
 For instance, when a new dog arrives at the school with its owner, you will need to add the owner profile and the dog profile and store it in Pawbook. 
 
 Note: 
 
-- Date-time format used for sessions is d-M-yyyy HH:mm. Same applies to the day format of date of birth which follows d-M-yyyy.<br>
-  d -> Day: From 1-31 (Please take note that months like February does not have 29 days in certain years)<br>
-  M -> Month: From 1-12<br>
+- Date-time format used for sessions is dd-MM-yyyy HH:mm. Same applies to the day format of date of birth which follows dd-MM-yyyy.<br>
+  dd -> Day: From 1-31 (Please take note that months like February does not have 29 days in certain years)<br>
+  MM -> Month: From 1-12<br>
   yyyy -> Valid year<br>
   HH -> From 1-12<br>
   mm -> From 0-59<br>
@@ -157,14 +161,15 @@ Note:
 Format:
 
 ```
-add dog n/[DOGNAME] b/[BREED] d/[DATEOFBIRTH] s/[SEX] o/[OWNERID] t/[TAG]
-add owner n/[OWNERNAME] p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS]
-add program n/[PROGRAMNAME] s/[TIMEANDDATEOFSESSION] t/[TAG]
+add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]...
+add owner n/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...
+add program n/PROGRAM_NAME s/TIME_AND_DATE_OF_SESSION [t/TAG]...
 ```
 
 Note:
+
 - Different prefixes should be used for the respective entities to specify details.
-- Tags are optional.
+- Tags are optional and multiple tags can be added.
 
 Examples:
 
@@ -175,14 +180,14 @@ Examples:
 3. Creates a program with program name Obedience Training. <br>
    Command: `add program n/Obedience Training s/02-02-2020 18:00 t/puppies`
    
-:bulb: The order of the prefixes do not matter, feel free to add your information in any order that is convenient for you!
+:bulb: The order of the prefixes do not matter, feel free to add your information in any order that is convenient for you! 
 
 ![Add Command](images/AddCommandScreenshot1.png) ![Add Command Result](images/AddCommandScreenshot2.png)
 
 ### Delete Command
 
 **Function**: Deletes an entity (dog/owner/program) from Pawbook. <br>
-**Usage**: When you want to delete an entity, you can use the delete command and delete the entity that you want via the ID number. 
+**Usage**: When you want to delete an entity, you can simply use the delete command and delete the entity that you want via the ID number. 
 For instance, when a dog is no longer under your care, you can delete the dog's profile using this command. 
 
 :heavy_exclamation_mark: Take note that deleting an owner will automatically delete all the dogs that belong to that owner as well. 
@@ -191,14 +196,14 @@ We do not allow dogs in Pawbook to not have an owner tagged to it!
 Format:
 
 ```
-delete dog [DOG ID]
-delete owner [OWNER ID]
-delete program [PROGRAM ID]
+delete dog DOG_ID
+delete owner OWNER_ID
+delete program PROGRAM_ID
 ```
 
 Note: 
 
-- The ID must be a positive integer 1, 2, 3 etc
+- The ID must be a positive integer 1, 2, 3 etc.
 
 Examples:
 
@@ -221,19 +226,19 @@ When a new entity is added to Pawbook, the system assigns a unique ID to each en
 **Function**: Edits a dog/owner/program from Pawbook.<br>
 **Usage**: This command allows you to edit the information of the entity (dog/owner/program) in your Pawbook. Let's say 
 you just added an entry for a dog but you realised that you filled in the owner information wrongly. The edit command 
-allows you to quickly correct that mistake. More details about the formatting of date of birth and session available _[here](#add-command)_
+allows you to quickly correct that mistake. More details about the formatting of date of birth and session available _[here](#add-command)_.
 
 Format:
 
 ```
-edit dog [DOG ID] n/[NAME] b/[BREED] d/[DATEOFBIRTH] s/[SEX] o/[OWNERID] [t/TAGS]...
-edit owner [OWNER ID] n/[NAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] [t/TAGS]...
-edit program [PROGRAM ID] n/[NAME] [s/SESSION]... [t/TAGS]...
+edit dog DOG_ID n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAGS]...
+edit owner OWNER_ID n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAGS]...
+edit program PROGRAM_ID n/PROGRAM_NAME [s/SESSION]... [t/TAGS]...
 ```
 
 Note: 
 
-- The ID must be a positive integer 1, 2, 3, ...
+- The ID must be a positive integer 1, 2, 3 etc.
 - Only include the variables that need to be edited after the integer
 
 :heavy_exclamation_mark: Take note that editing tags for an entity will automatically override **all** its current tags!
@@ -254,7 +259,7 @@ Examples:
 
 **Function**: Adds a specified dog to a specified program that the dog was previously not enrolled in. Batch enrolment 
 is supported, which means that multiple dogs can be enrolled into the same program, or one dog can be enrolled into 
-multiple programs.  <br>
+multiple programs.<br>
 **Usage**: When you want to enrol a dog into a specific program, you can use this command. One instance is when after 
 a new dog Bruce has just joined the school and is enrolled for Obedience Training. You can then enrol Bruce into the 
 Obedience training program after you have added Bruce into the system. 
@@ -262,9 +267,9 @@ Obedience training program after you have added Bruce into the system.
 Format:
 
 ```
-enrol d/[DOG ID] p/[PROGRAM ID]
-enrol d/[DOG ID]...d/[DOG ID] p/[PROGRAM ID] (enrolling multiple dogs into one program)
-enrol d/[DOG ID] p/[PROGRAM ID]...p/[PROGRAM ID] (enrolling one dog into multiple programs)
+enrol d/DOG_ID p/PROGRAM_ID
+enrol d/DOG_ID...d/DOG_ID p/PROGRAM_ID (enrolling multiple dogs into one program)
+enrol d/DOG_ID p/PROGRAM_ID...p/PROGRAM_ID (enrolling one dog into multiple programs)
 ```
 
 Note: 
@@ -272,6 +277,7 @@ Note:
 - The dogs and programs must be valid.
 - Dog must not be enrolled in the program.
 
+:bulb: Even for batch enrolment, the dog must not be enrolled in any of the programs, or all dogs must not be enrolled in that program, in order for the command to work.<br>
 :heavy_exclamation_mark: Take note that enrolling multiple dogs into multiple programs at once is **NOT** allowed! 
 For example, `enrol d/2 d/3 p/4 p/5` is **NOT** allowed!
 
@@ -300,19 +306,22 @@ this command. After a dog has been dropped from the program, the program will no
 
 Format:
 ```
-drop d/[DOG ID] p/[PROGRAM ID]
-drop d/[DOG ID]...d/[DOG ID] p/[PROGRAM ID] (dropping multiple dogs from one program)
-drop d/[DOG ID] p/[PROGRAM ID]...p/[PROGRAM ID] (dropping one dog from multiple programs)
+drop d/DOG_ID p/PROGRAM_ID
+drop d/DOG_ID...d/DOG_ID p/PROGRAM_ID (dropping multiple dogs from one program)
+drop d/DOG_ID p/PROGRAM_ID...p/PROGRAM_ID (dropping one dog from multiple programs)
 ```
 
 Note:
+
 - The dog and program must both be valid.
 - Dog must be enrolled in the program.
 
+:bulb: Even for batch dropping, the dog must be enrolled in all of the programs, or all dogs must be enrolled in that program, in order for the command to work.<br>
 :heavy_exclamation_mark: Take note that dropping multiple dogs from multiple programs at once is **NOT** allowed! 
 For example, `drop d/2 d/3 p/4 p/5` is **NOT** allowed!
 
 Examples:
+
 1. Drop dog with Dog ID 2 from program with Program ID 3, assuming that Dog ID 2 was previously enrolled in 
    Program ID 3. <br> 
    Command: `drop d/2 p/3`
@@ -332,11 +341,14 @@ Examples:
 lined up on any given day. 
 
 Format:
+
 ```
-schedule [date]
+schedule DATE
 ```
+
 Note: 
-- Date has to be specified in the `d-M-yyyy` format.
+
+- Date has to be specified in the `dd-MM-yyyy` format.
 - If no date is provided, the schedule command will display all programs that occur on the current day.
 
 Examples:
@@ -348,13 +360,17 @@ Examples:
 
 ### List Command
 
-**Function**: Display entities filtered by type.
+**Function**: Display entities filtered by type.<br>
 **Usage**: To see the three different types of entities (dog/owner/program), you can simply use this command. Let's say
 you want to see all the dogs that you are in-charge of. Simply list them and this command will provide you the full list.
 
 Format:
+
 ```
-list [dog/owner/program]
+list dog
+list owner
+list program
+list
 ```
 
 Note:
@@ -383,12 +399,11 @@ can also find multiple entities by providing multiple keywords. This may be help
 Format: 
 
 ```
-find [KEYWORD1] 
-find [KEYWORD1] [KEYWORD2] 
-find [KEYWORD1] [KEYWORD2] [KEYWORD3] 
+find KEYWORD_1 [KEYWORD_2]...[KEYWORD_N]
 ```
 
 Note: 
+
 - At least one keyword is needed. 
 
 Examples: 
@@ -398,7 +413,7 @@ Examples:
 2. Find all entities with the name 'Alice' or 'Bob' or 'Charlie'.<br>
    Command: `find alice bob charlie`
    
-:bulb: Find is able to take in multiple keywords and returns all results as long as the name contains any one of the keywords. 
+:bulb: `find` is able to take in multiple keywords and return all results as long as the name contains any one of the keywords. 
 
 ![Find Command](images/FindCommandScreenshot1.png) ![Find Command Result](images/FindCommandScreenshot2.png)
 
@@ -411,7 +426,7 @@ all its related entities. For instance, when you view Bruce the dog, you will fi
 owner's profile and finally all the programs that Bruce is enrolled in. 
 
 ```
-view [ENTITY ID] 
+view ENTITY_ID
 ```
 
 You can use this command to have a quick overview of the entities related to each other.
@@ -434,6 +449,7 @@ Examples:
 instructions.
 
 Format: 
+
 ```
 help
 ```
@@ -443,13 +459,12 @@ help
 
 ### Exit Command
 
-**Function**: Exit Program. <br>
+**Function**: Exits Pawbook. <br>
 **Usage**: It's the end of the day and you want to close Pawbook. Simply use this command to exit. The data will be 
-automatically saved upon exit and will be ready for use the next time you reopen Pawbook. 
-
-Pawbook automatically saves the existing information of the dogs and will close the program.
+automatically saved upon exit and will still be there the next time you reopen Pawbook. 
 
 Format: 
+
 ```
 exit
 ```
@@ -487,15 +502,15 @@ A: Pawbook does not access any web services and can be run completely offline.
 
 Action | Format
 --------|------------------
-**Add** | 1. `add dog n/[DOGNAME] b/[BREED] d/[DATE OF BIRTH] s/[SEX] o/[OWNERID] t/[TAG]`<br> 2. `add owner n/[OWNERNAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] [t/TAG]...`<br> 3. `add  program n/[NAME] [s/DATE OF SESSION]... [t/tag]...`
-**Delete** | 1. `delete dog [DOGID]`<br> 2. `delete owner [OWNERID]`<br> 3. `delete program [PROGRAMID]`
-**Edit** | 1. `edit dog d/[DOG ID] n/[NAME] b/[BREED] d/[DATEOFBIRTH] s/[SEX] o/[OWNERID] [t/TAGS]...`<br> 2. `edit owner o/[OWNER ID] n/[NAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] [t/TAGS]...`<br> 3. `edit program o/[PROGRAM ID] n/[NAME] [s/SESSION]... [t/TAGS]...`
-**Enrol** | `enrol d/[DOG ID] p/[PROGRAM ID]`
-**Drop** | `drop d/[DOG ID] p/[PROGRAM ID]`
-**List** | `list [dog/owner/program]`
-**Find** | `find [keyword1] [keyword2] [keyword3] ...`
-**View** | `view [ID number]`
-**Schedule** | `schedule [DATE]`
+**Add** | 1. `add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]...`<br> 2. `add owner n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br> 3. `add program n/PROGRAM_NAME [s/DATE_OF_SESSION]... [t/TAG]...`
+**Delete** | 1. `delete dog DOG_ID`<br> 2. `delete owner OWNER_ID`<br> 3. `delete program PROGRAM_ID`
+**Edit** | 1. `edit dog DOG_ID n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAGS]...`<br> 2. `edit owner OWNER_ID n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAGS]...`<br> 3. `edit program PROGRAM_ID n/PROGRAM_NAME [s/SESSION]... [t/TAGS]...`
+**Enrol** | 1. `enrol d/DOG_ID p/PROGRAM_ID`<br> 2. `enrol d/DOG_ID...d/DOG_ID p/PROGRAM_ID`<br> 3. `enrol d/DOG_ID p/PROGRAM_ID...p/PROGRAM_ID`
+**Drop** | 1. `drop d/DOG_ID] p/PROGRAM_ID]`<br> 2. `drop d/DOG_ID...d/DOG_ID p/PROGRAM_ID`<br> 3. `drop d/DOG_ID p/PROGRAM_ID...p/PROGRAM_ID`
+**Schedule** | `schedule DATE`
+**List** | 1. `list dog`<br> 2. `list owner`<br> 3. `list program`<br> 4. `list`
+**Find** | `find KEYWORD_1 [KEYWORD_2]...[KEYWORD_N]`
+**View** | `view ENTITY_ID`
 **Help** | `help`
 **Exit** | `exit`
 
