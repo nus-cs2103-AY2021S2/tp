@@ -436,9 +436,14 @@ the data of your previous SmartLib home folder.
     lowercase letters from 'a' to 'z', and
     numbers from '0` to '9'.
 
-* **Barcode**:
+* **Barcode**: A barcode is an unique identifier for a book. Books with the same name will share the same ISBN,
+    but each copy of a book with have a different barcode. This is to ensure that you will not be having a headache
+    when trying to keep track of which copy of a book has been returned and which copy hasn't.
 
 * **Command Box**: The _Command Box_ is the component of the GUI where you will be entering your user input.
+
+* **International Standard Book Number (ISBN)**: The ISBN is a numeric commercial book identifier which is intended to
+    be unique for each book. Books with the same name will share the same ISBN.
 
 * **Result Display**: The _Result Display_ is the component of the GUI where you will be notified whether your command
     was successfully executed by SmartLib.
