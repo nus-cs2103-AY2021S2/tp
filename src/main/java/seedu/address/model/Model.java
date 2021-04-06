@@ -69,6 +69,11 @@ public interface Model {
     boolean hasProperty(Property property);
 
     /**
+     * Returns true if there is at least one property in the property book
+     */
+    boolean hasProperty();
+
+    /**
      * Deletes the given property.
      * The property must exist in the property book.
      */
@@ -159,6 +164,11 @@ public interface Model {
      * Returns true if an appointment with the same identity as {@code appointment} exists in the appointment book
      */
     boolean hasAppointment(Appointment appointment);
+
+    /**
+     * Returns true if there is at least one appointment in the appointment book
+     */
+    boolean hasAppointment();
 
     /**
      * Deletes the given appointment.
