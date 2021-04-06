@@ -40,6 +40,6 @@ public class ViewMedicalRecordCommand extends Command {
         }
         MedicalRecord mrec = patient.getRecords().get(index.getZeroBased());
         return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()), false, true,
-                patient, mrec, null, false);
+                patient, mrec, null, null, false);
     }
 }

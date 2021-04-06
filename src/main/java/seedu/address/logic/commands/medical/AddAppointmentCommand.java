@@ -69,7 +69,7 @@ public class AddAppointmentCommand extends Command {
         model.setPerson(patient, patient);
         model.updateFilteredPersonList(PREDICATE_SHOW_MAIN_PATIENTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, appointment.getDateDisplay()),
-                false, false, patient, null, null, false);
+                false, false, patient, null, null, null, false);
     }
 
     @Override

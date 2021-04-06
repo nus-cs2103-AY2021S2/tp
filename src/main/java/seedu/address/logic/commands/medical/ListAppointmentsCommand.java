@@ -41,7 +41,7 @@ public class ListAppointmentsCommand extends Command {
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_PATIENTS_WITH_APPT);
         //model.sortFilteredPersonList(Model.COMPARATOR_BY_FIRST_APPT_DATE);
         return new CommandResult(MESSAGE_SUCCESS,
-                false, false, null, null, appointments, false);
+                false, false, null, null, appointments, null, false);
     }
 
 }
