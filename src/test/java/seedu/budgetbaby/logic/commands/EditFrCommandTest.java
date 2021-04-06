@@ -20,7 +20,7 @@ import seedu.budgetbaby.model.BudgetBabyModelManager;
 import seedu.budgetbaby.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindFrCommand}.
+ * Contains integration tests (interaction with the Model) for {@code EditFrCommand}.
  */
 public class EditFrCommandTest {
     private BudgetBabyModel model = new BudgetBabyModelManager(getTypicalBudgetTracker(), new UserPrefs());
