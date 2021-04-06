@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -25,6 +27,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Timeslot;
+import seedu.address.model.appointment.exceptions.NegativeOrZeroDurationException;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 import seedu.address.model.tag.Tag;
@@ -41,8 +44,8 @@ public class EditAppointmentCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_PATIENT + "PATIENT] "
-            + "[" + PREFIX_DOCTOR + "DOCTOR] "
+            + "[" + PREFIX_PATIENT + "PATIENT_INDEX] "
+            + "[" + PREFIX_DOCTOR + "DOCTOR_INDEX] "
             + "[" + PREFIX_TIMESLOT_START + "TIMESLOT START] "
             + "[" + PREFIX_TIMESLOT_END + "TIMESLOT END] "
             + "[" + PREFIX_TIMESLOT_DURATION + "TIMESLOT DURATION] "
@@ -116,8 +119,25 @@ public class EditAppointmentCommand extends Command {
             doctorUuid = appointmentToEdit.getDoctorUuid();
         }
 
-        Appointment editedAppointment = createEditedAppointment(patientUuid, doctorUuid, appointmentToEdit,
-                editAppointmentDescriptor);
+        // Timeslot
+        Timeslot updatedTimeslot;
+        LocalDateTime start = (editAppointmentDescriptor.getStart().isPresent()) ? editAppointmentDescriptor.start
+                : appointmentToEdit.getTimeslot().getStart();
+        try {
+            if (editAppointmentDescriptor.getEnd().isPresent()) {
+                updatedTimeslot = new Timeslot(start, editAppointmentDescriptor.end);
+            } else if (editAppointmentDescriptor.getDuration().isPresent()) {
+                updatedTimeslot = new Timeslot(start, editAppointmentDescriptor.duration);
+            } else {
+                updatedTimeslot = new Timeslot(start, appointmentToEdit.getTimeslot().getEnd());
+            }
+        } catch (NegativeOrZeroDurationException e) {
+            throw new CommandException(Timeslot.MESSAGE_CONSTRAINTS);
+        }
+
+        // Tags
+        Set<Tag> updatedTags = editAppointmentDescriptor.getTags().orElse(appointmentToEdit.getTags());
+        Appointment editedAppointment = new Appointment(patientUuid, doctorUuid, updatedTimeslot, updatedTags);
 
         if (model.hasConflictingAppointmentExcludingTarget(appointmentToEdit, editedAppointment)) {
             throw new CommandException(MESSAGE_APPOINTMENT_CONFLICT);
@@ -126,19 +146,6 @@ public class EditAppointmentCommand extends Command {
         model.setAppointment(appointmentToEdit, editedAppointment);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));
-    }
-
-    /**
-     * Creates and returns a {@code Appointment} with the details of {@code appointmentToEdit}
-     * edited with {@code editAppointmentDescriptor}.
-     */
-    private static Appointment createEditedAppointment(UUID patientUuid, UUID doctorUuid, Appointment appointmentToEdit,
-                                                       EditAppointmentDescriptor editAppointmentDescriptor) {
-        assert appointmentToEdit != null;
-        Timeslot updatedTimeslot = editAppointmentDescriptor.getTimeslot().orElse(appointmentToEdit.getTimeslot());
-        Set<Tag> updatedTags = editAppointmentDescriptor.getTags().orElse(appointmentToEdit.getTags());
-
-        return new Appointment(patientUuid, doctorUuid, updatedTimeslot, updatedTags);
     }
 
     @Override
@@ -166,7 +173,9 @@ public class EditAppointmentCommand extends Command {
     public static class EditAppointmentDescriptor {
         private Index patientIndex;
         private Index doctorIndex;
-        private Timeslot timeslot;
+        private LocalDateTime start;
+        private LocalDateTime end;
+        private Duration duration;
         private Set<Tag> tags;
 
         public EditAppointmentDescriptor() {}
@@ -178,7 +187,9 @@ public class EditAppointmentCommand extends Command {
         public EditAppointmentDescriptor(EditAppointmentDescriptor toCopy) {
             setPatientIndex(toCopy.patientIndex);
             setDoctorIndex(toCopy.doctorIndex);
-            setTimeslot(toCopy.timeslot);
+            setStart(toCopy.start);
+            setEnd(toCopy.end);
+            setDuration(toCopy.duration);
             setTags(toCopy.tags);
         }
 
@@ -186,7 +197,7 @@ public class EditAppointmentCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(patientIndex, doctorIndex, timeslot, tags);
+            return CollectionUtil.isAnyNonNull(patientIndex, doctorIndex, start, end, duration, tags);
         }
 
         public void setPatientIndex(Index patientIndex) {
@@ -205,12 +216,28 @@ public class EditAppointmentCommand extends Command {
             return Optional.ofNullable(doctorIndex);
         }
 
-        public void setTimeslot(Timeslot timeslot) {
-            this.timeslot = timeslot;
+        public void setStart(LocalDateTime start) {
+            this.start = start;
         }
 
-        public Optional<Timeslot> getTimeslot() {
-            return Optional.ofNullable(timeslot);
+        public Optional<LocalDateTime> getStart() {
+            return Optional.ofNullable(start);
+        }
+
+        public void setEnd(LocalDateTime end) {
+            this.end = end;
+        }
+
+        public Optional<LocalDateTime> getEnd() {
+            return Optional.ofNullable(end);
+        }
+
+        public void setDuration(Duration duration) {
+            this.duration = duration;
+        }
+
+        public Optional<Duration> getDuration() {
+            return Optional.ofNullable(duration);
         }
 
         /**
@@ -247,7 +274,9 @@ public class EditAppointmentCommand extends Command {
 
             return getPatientIndex().equals(e.getPatientIndex())
                     && getDoctorIndex().equals(e.getDoctorIndex())
-                    && getTimeslot().equals(e.getTimeslot())
+                    && getStart().equals(e.getStart())
+                    && getEnd().equals(e.getEnd())
+                    && getDuration().equals(e.getDuration())
                     && getTags().equals(e.getTags());
         }
     }
