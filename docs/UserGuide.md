@@ -104,7 +104,7 @@ automatically from the existing task upon application startup.**
 * END DATE should be in the format dd/mm/yyyy, any number greater than 31 is invalid for the day 
   and any number greater than 12 is invalid for the month.
 
-* DAY should be either: mon, tue, wed, thu, fri, sat, sun. Days are case-insensitive.
+* DAY should be either: mon, tue, wed, thu, fri, sat, sun and is case-insensitive.
 
 * FREQUENCY should be either: weekly or biweekly and is also case-insensitive.
 
@@ -513,7 +513,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete Task** | `rmt INDEX`<br> e.g., `rmt 3`
 **Delete Field** | `rmf INDEX FIELD`<br> e.g., `rmf 1 d/`
-**Edit** | `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee`
+**Edit** | `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Leemax`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find CS2103 team project` <br><br>`find [t/TAG] `<br>  e.g., `find t/CS2103` <br><br> `find [d/DESCRIPTION] ` <br> e.g., `find d/CS2103 milestone postmortem`
 **Countdown** | `count INDEX` <br> e.g., `count 2`
 **Statistics** | `stat`
