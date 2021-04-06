@@ -254,7 +254,7 @@ Examples:
 * `sort le/` sorts students based on the chronological order of their respective earliest lesson 
   of the week.
 * `sort n/ s/` sorts students by the alphabetical orders of their names.
-* `sort t/chem` sorts students by subject, ignoring the extra words.
+* `sort t/` sorts students by subjects alphabetically in the order of `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, ignoring the extra words.
 
 ### Advancing all students: `levelup`
 
