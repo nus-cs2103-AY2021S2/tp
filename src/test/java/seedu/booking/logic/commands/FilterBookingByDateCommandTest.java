@@ -17,7 +17,7 @@ import seedu.booking.commons.core.Messages;
 import seedu.booking.model.Model;
 import seedu.booking.model.ModelManager;
 import seedu.booking.model.UserPrefs;
-import seedu.booking.model.booking.BookingWithinDatePredicate;
+import seedu.booking.model.booking.BookingDateContainsKeywordPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FilterBookingByDateCommand}.
@@ -31,10 +31,10 @@ public class FilterBookingByDateCommandTest {
         LocalDate localDateFeb = LocalDate.parse(VALID_DATE_FEBRUARY);
         LocalDate localDateMarch = LocalDate.parse(VALID_DATE_MARCH);
 
-        BookingWithinDatePredicate firstPredicate =
-                new BookingWithinDatePredicate(localDateFeb);
-        BookingWithinDatePredicate secondPredicate =
-                new BookingWithinDatePredicate(localDateMarch);
+        BookingDateContainsKeywordPredicate firstPredicate =
+                new BookingDateContainsKeywordPredicate(localDateFeb);
+        BookingDateContainsKeywordPredicate secondPredicate =
+                new BookingDateContainsKeywordPredicate(localDateMarch);
 
         FilterBookingByDateCommand findFirstCommand = new FilterBookingByDateCommand(firstPredicate);
         FilterBookingByDateCommand findSecondCommand = new FilterBookingByDateCommand(secondPredicate);
@@ -59,7 +59,7 @@ public class FilterBookingByDateCommandTest {
     @Test
     public void execute_zeroKeywords_noBookingFound() {
         String expectedMessage = Messages.MESSAGE_BOOKING_FILTER_FAILED + " on " + "2020-01-01";
-        BookingWithinDatePredicate predicate = preparePredicate(LocalDate.parse("2020-01-01"));
+        BookingDateContainsKeywordPredicate predicate = preparePredicate(LocalDate.parse("2020-01-01"));
         FilterBookingByDateCommand command = new FilterBookingByDateCommand(predicate);
         expectedModel.updateFilteredBookingList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -69,7 +69,7 @@ public class FilterBookingByDateCommandTest {
     /**
      * Parses {@code userInput} into a {@code BookingWithinDatePredicate}.
      */
-    private BookingWithinDatePredicate preparePredicate(LocalDate userInput) {
-        return new BookingWithinDatePredicate(userInput);
+    private BookingDateContainsKeywordPredicate preparePredicate(LocalDate userInput) {
+        return new BookingDateContainsKeywordPredicate(userInput);
     }
 }

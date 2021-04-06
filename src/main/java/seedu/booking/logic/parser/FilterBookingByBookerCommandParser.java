@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.FilterBookingByBookerCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
-import seedu.booking.model.booking.BookingContainsBookerPredicate;
+import seedu.booking.model.booking.BookerMatchesKeywordPredicate;
 import seedu.booking.model.person.Email;
 
 /**
@@ -31,7 +31,7 @@ public class FilterBookingByBookerCommandParser implements Parser<FilterBookingB
 
         Email email = new Email(argMultimap.getValue(PREFIX_EMAIL).get());
 
-        return new FilterBookingByBookerCommand(new BookingContainsBookerPredicate(email));
+        return new FilterBookingByBookerCommand(new BookerMatchesKeywordPredicate(email));
     }
 
     /**

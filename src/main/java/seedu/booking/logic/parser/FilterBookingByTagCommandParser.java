@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.FilterBookingByTagCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
-import seedu.booking.model.booking.BookingContainsTagPredicate;
+import seedu.booking.model.booking.BookingTagContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FilterBookingByTagCommand object.
@@ -31,7 +31,7 @@ public class FilterBookingByTagCommandParser implements Parser<FilterBookingByTa
         String tagName = argMultimap.getValue(PREFIX_TAG).get();
         assert !tagName.isEmpty() : "tagName should not be empty";
 
-        return new FilterBookingByTagCommand(new BookingContainsTagPredicate(tagName));
+        return new FilterBookingByTagCommand(new BookingTagContainsKeywordsPredicate(tagName));
     }
 
     /**

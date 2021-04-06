@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.booking.commons.core.Messages;
 import seedu.booking.model.Model;
-import seedu.booking.model.booking.BookingWithinDatePredicate;
+import seedu.booking.model.booking.BookingDateContainsKeywordPredicate;
 
 public class FilterBookingByDateCommand extends Command {
 
@@ -15,9 +15,9 @@ public class FilterBookingByDateCommand extends Command {
             + "Parameters: date/date\n"
             + "Example: " + COMMAND_WORD + " date/2020-02-12";
 
-    private final BookingWithinDatePredicate predicate;
+    private final BookingDateContainsKeywordPredicate predicate;
 
-    public FilterBookingByDateCommand(BookingWithinDatePredicate predicate) {
+    public FilterBookingByDateCommand(BookingDateContainsKeywordPredicate predicate) {
         this.predicate = predicate;
     }
 

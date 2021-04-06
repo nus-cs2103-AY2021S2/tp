@@ -16,7 +16,7 @@ import seedu.booking.commons.core.Messages;
 import seedu.booking.model.Model;
 import seedu.booking.model.ModelManager;
 import seedu.booking.model.UserPrefs;
-import seedu.booking.model.booking.BookingContainsTagPredicate;
+import seedu.booking.model.booking.BookingTagContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FilterBookingByTagCommand}.
@@ -27,10 +27,10 @@ public class FilterBookingByTagCommandTest {
 
     @Test
     public void equals() {
-        BookingContainsTagPredicate firstPredicate =
-                new BookingContainsTagPredicate(VALID_TAG_FRIEND);
-        BookingContainsTagPredicate secondPredicate =
-                new BookingContainsTagPredicate(VALID_TAG_HUSBAND);
+        BookingTagContainsKeywordsPredicate firstPredicate =
+                new BookingTagContainsKeywordsPredicate(VALID_TAG_FRIEND);
+        BookingTagContainsKeywordsPredicate secondPredicate =
+                new BookingTagContainsKeywordsPredicate(VALID_TAG_HUSBAND);
 
         FilterBookingByTagCommand findFirstCommand = new FilterBookingByTagCommand(firstPredicate);
         FilterBookingByTagCommand findSecondCommand = new FilterBookingByTagCommand(secondPredicate);
@@ -55,7 +55,7 @@ public class FilterBookingByTagCommandTest {
     @Test
     public void execute_keywordNotInBookingSystem_noBookingFound() {
         String expectedMessage = Messages.MESSAGE_BOOKING_FILTER_FAILED;
-        BookingContainsTagPredicate predicate = preparePredicate(VALID_TAG_FRIEND);
+        BookingTagContainsKeywordsPredicate predicate = preparePredicate(VALID_TAG_FRIEND);
         FilterBookingByTagCommand command = new FilterBookingByTagCommand(predicate);
         expectedModel.updateFilteredBookingList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -65,7 +65,7 @@ public class FilterBookingByTagCommandTest {
     /**
      * Parses {@code userInput} into a {@code BookingContainsTagPredicate}.
      */
-    private BookingContainsTagPredicate preparePredicate(String userInput) {
-        return new BookingContainsTagPredicate(userInput);
+    private BookingTagContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new BookingTagContainsKeywordsPredicate(userInput);
     }
 }

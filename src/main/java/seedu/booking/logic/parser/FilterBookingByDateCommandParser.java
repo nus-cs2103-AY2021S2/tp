@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.FilterBookingByDateCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
-import seedu.booking.model.booking.BookingWithinDatePredicate;
+import seedu.booking.model.booking.BookingDateContainsKeywordPredicate;
 
 public class FilterBookingByDateCommandParser implements Parser<FilterBookingByDateCommand> {
 
@@ -37,7 +37,7 @@ public class FilterBookingByDateCommandParser implements Parser<FilterBookingByD
         }
         assert date == null : "date should not be null";
 
-        return new FilterBookingByDateCommand(new BookingWithinDatePredicate(date));
+        return new FilterBookingByDateCommand(new BookingDateContainsKeywordPredicate(date));
     }
 
     /**

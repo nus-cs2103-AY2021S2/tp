@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.booking.commons.core.Messages;
 import seedu.booking.model.Model;
-import seedu.booking.model.booking.BookingContainsTagPredicate;
+import seedu.booking.model.booking.BookingTagContainsKeywordsPredicate;
 
 /**
  * Finds and lists bookings in the system whose venue corresponds to the venue name given as argument
@@ -19,9 +19,9 @@ public class FilterBookingByTagCommand extends Command {
             + "Parameters: t/tag\n"
             + "Example: " + COMMAND_WORD + " t/Central";
 
-    private final BookingContainsTagPredicate predicate;
+    private final BookingTagContainsKeywordsPredicate predicate;
 
-    public FilterBookingByTagCommand(BookingContainsTagPredicate predicate) {
+    public FilterBookingByTagCommand(BookingTagContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

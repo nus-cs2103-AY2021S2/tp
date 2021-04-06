@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.FilterBookingByVenueCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
-import seedu.booking.model.booking.BookingContainsVenuePredicate;
+import seedu.booking.model.booking.BookingVenueContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FilterBookingByVenueCommand object.
@@ -32,7 +32,7 @@ public class FilterBookingByVenueCommandParser implements Parser<FilterBookingBy
         String venueName = argMultimap.getValue(PREFIX_VENUE).get();
         assert venueName == "" : "venueName should not be empty";
 
-        return new FilterBookingByVenueCommand(new BookingContainsVenuePredicate(Arrays.asList(venueName)));
+        return new FilterBookingByVenueCommand(new BookingVenueContainsKeywordsPredicate(Arrays.asList(venueName)));
     }
 
     /**

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.booking.commons.core.Messages;
 import seedu.booking.model.Model;
-import seedu.booking.model.booking.BookingContainsBookerPredicate;
+import seedu.booking.model.booking.BookerMatchesKeywordPredicate;
 
 /**
  * Finds and lists bookings in the system whose booker name corresponds to the booker name given as argument
@@ -19,9 +19,9 @@ public class FilterBookingByBookerCommand extends Command {
             + "Parameters: e/[EMAIL]\n"
             + "Example: " + COMMAND_WORD + " e/JohnRose@abc.com";
 
-    private final BookingContainsBookerPredicate predicate;
+    private final BookerMatchesKeywordPredicate predicate;
 
-    public FilterBookingByBookerCommand(BookingContainsBookerPredicate predicate) {
+    public FilterBookingByBookerCommand(BookerMatchesKeywordPredicate predicate) {
         this.predicate = predicate;
     }
 

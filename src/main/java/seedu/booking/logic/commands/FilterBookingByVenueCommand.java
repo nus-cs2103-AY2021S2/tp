@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.booking.commons.core.Messages;
 import seedu.booking.model.Model;
-import seedu.booking.model.booking.BookingContainsVenuePredicate;
+import seedu.booking.model.booking.BookingVenueContainsKeywordsPredicate;
 
 /**
  * Finds and lists bookings in the system whose venue corresponds to the venue name given as argument
@@ -19,9 +19,9 @@ public class FilterBookingByVenueCommand extends Command {
             + "Parameters: v/venueName\n"
             + "Example: " + COMMAND_WORD + " v/Victoria Hall";
 
-    private final BookingContainsVenuePredicate predicate;
+    private final BookingVenueContainsKeywordsPredicate predicate;
 
-    public FilterBookingByVenueCommand(BookingContainsVenuePredicate predicate) {
+    public FilterBookingByVenueCommand(BookingVenueContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

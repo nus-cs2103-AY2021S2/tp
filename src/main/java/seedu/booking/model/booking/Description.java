@@ -1,6 +1,7 @@
 package seedu.booking.model.booking;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a description in the booking system.
@@ -17,6 +18,7 @@ public class Description {
      */
     public Description(String description) {
         requireNonNull(description);
+        checkArgument(isValidDescription(description), MESSAGE_CONSTRAINTS);
         value = description;
     }
 
@@ -24,7 +26,8 @@ public class Description {
      * Returns true if a given string is a valid description.
      */
     public static boolean isValidDescription(String test) {
-        return !test.isEmpty();
+        String trimmedTest = test.trim();
+        return !trimmedTest.isEmpty();
     }
 
 
