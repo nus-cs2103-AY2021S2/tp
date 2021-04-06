@@ -82,7 +82,7 @@ public class EditCommand extends Command {
             + MESSAGE_API_EXAMPLE_6
             + MESSAGE_API_EXAMPLE_7;
 
-    public static final String MESSAGE_EDIT_ENDPOINT_SUCCESS = "Edited endpoint: %1$s";
+    public static final String MESSAGE_EDIT_ENDPOINT_SUCCESS = "Edited endpoint:\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ENDPOINT = "This API endpoint already exists in the "
             + "API endpoint list.";

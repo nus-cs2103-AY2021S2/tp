@@ -126,10 +126,13 @@ Here are some general rules to follow when entering prefixes and parameters:
   
 * To add multiple parameters of the same prefix, add the prefix multiple times before each parameter.<br>
   e.g. To add two TAGs, enter `-t tagOne -t tagTwo`.<br>
-  e.g. To add three HEADERS, enter `-h "header: one" -h "header: two" -h "header: three"`.<br>
+  e.g. To add three HEADERs, enter `-h "header: one" -h "header: two" -h "header: three"`.<br>
   
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.<br>
+
+* Multiple headers/tags must be unique and duplicates will be ignored.
+  e.g. `edit 1 -t tag -t tag` will only create one `tag`.
 
 About the URL Parameter:
 * We do not check the validity of the URLs during input as it is impossible to verify if it exists without sending a request to the server. We will instead prevent impossible URL from being keyed in. e.g. `abc.com\go` (`\` cannot exist in a valid URL)
@@ -192,9 +195,6 @@ Check out the screenshot of each command for an idea of the expected output in t
   <img width="450px" src="images/commands/add.png" >
 </p>
 
-<div markdown="span" class="alert alert-danger">:exclamation: **Caution**
-Multiple headers/tags must be unique and duplicates will be ignored
-</div>
 
 #### 4.2.2 Edit an API endpoint: <span class="main-command">edit</span>
 
@@ -209,12 +209,9 @@ Multiple headers/tags must be unique and duplicates will be ignored
 </p>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-When editing tags, the existing tags of the endpoint will be removed. i.e adding of tags is not cumulative <br>
+When editing tags, the existing tags of the endpoint will be removed. <br>
+i.e adding of tags is not cumulative.<br>
 You may remove all the endpoint’s tags by typing ` -t` without specifying any tags after it
-</div>
-
-<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-Multiple headers/tags must be unique and duplicates will be ignored
 </div>
 
 #### 4.2.3 Show an API endpoint: <span class="main-command">show</span>
@@ -246,7 +243,7 @@ be a positive integer).
 
 #### 4.2.5 Find a saved API endpoint: <span class="main-command">find</span>
 
-**Description:** Find API routes containing the search word in any of its fields **(defaults to all fields if not specified and requires at least one keyword)**.
+**Description:** Find endpoints containing the search word/s through all fields **(requires at least one keyword)**.
 
 **Format:** <span class="main-command">find</span> <span class="optional-param">[KEYWORD]</span>
 
@@ -256,18 +253,31 @@ be a positive integer).
   <img width="450px" src="images/commands/find.png" >
 </p>
 
-<div markdown="span" class="alert alert-warning">:bulb: **Tip:**<br>
-* The search is case-insensitive and the order of the keywords do not matter.<br>
-* Partial Words will be matched. e.g. `appl` will match `Apple`<br>
-* This is a **OR** search and all Endpoints matching either keywords will be returned.
+**Description (Precise Search):** Find endpoints containing the search word/s based on the [prefix](#prefix-table) **(requires at least one keyword)**
+
+**Format (Precise Search):** <span class="main-command">find</span> <span class="optional-param">-x [METHOD]</span> <span class="optional-param">-u [URL]</span> <span class="optional-param">-d [DATA]</span> <span class="optional-param">-h [HEADER]</span> <span class="optional-param">-t [TAG]</span>
+
+**Example & Output:** : <span class="main-command">find</span> <span class="optional-param">-x get</span> <span class="optional-param">-u google</span>
+
+to-do tanjin update pic here (will match `get` from the Method field **and** `google` from the URL field)
+<p align="center">
+  <img width="450px" src="images/commands/find.png" >
+</p>
+
+**Example & Output:**: <span class="main-command">find</span> <span class="optional-param">-x get post</span> <span class="optional-param">-u google</span>
+
+to-do tanjin update pic here (will match `get OR post` from the Method field **and** `google` from the URL field)
+<p align="center">
+  <img width="450px" src="images/commands/find.png" >
+</p>
+
+
+<div markdown="span" class="alert alert-warning">:bulb: **Tip:** The search is case-insensitive and the order of the keywords do not matter.<br>
+Partial Words **will** be matched. e.g. `appl` will match `Apple`<br>
+Searches with no none or a single [prefix](#prefix-table) will preform an **OR** search and all Endpoints matching either keywords will be returned.<br>
+Searches across multiple [prefixes](#prefix-table) will preform an **AND** search and only endpoints matching all keywords will be returned.
 </div>
 
-<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-You may include [prefixes](#prefix-table) to scope your search terms!<br>
-* **Example**: <span class="main-command">find</span> <span class="optional-param">-x get</span> <span class="optional-param">-u google</span> (will match `get` from the Method field **and** `google` from the URL field)<br>
-* **Example**: <span class="main-command">find</span> <span class="optional-param">-x get post</span> (will match `get OR post` from the Method field)<br>
-* This is a **AND** search and only Endpoints matching all [prefixes](#prefix-table) will be returned.
-</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -330,15 +340,6 @@ A shorthand for <span class="optional-param">GET</span> requests can be done wit
 (for example: <span class="main-command">run</span> <span class="optional-param">https://api.data.gov.sg/v1/environment/pm25</span>).
 </div>
 
-<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-For URL, we do not check if your URL actually exists<br>
-If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be specified for an API request to be carried out<br>
-For instance, if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
-</div>
-
-<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-Multiple headers/tags must be unique and duplicates will be ignored
-</div>
 
 <div style="page-break-after: always;"></div>
 
