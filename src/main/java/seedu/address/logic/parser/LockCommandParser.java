@@ -46,6 +46,6 @@ public class LockCommandParser implements Parser<LockCommand> {
      * @return true if password is valid.
      */
     private boolean isPasswordValid(String password) {
-        return password.chars().allMatch(c -> c >=0x20 && c < 0x7F);
+        return password.chars().allMatch(c -> c >= 0x20 && c < 0x7F);
     }
 }
