@@ -125,6 +125,16 @@ public interface Model {
      */
     void setEntry(Entry target, Entry editedEntry);
 
+    /**
+     * Returns true if the given entry has dates overlapping with other entries in the list.
+     */
+    boolean isOverlappingEntry(Entry toAdd);
+
+    /**
+     * Removes all entries that are overdue.
+     */
+    void clearOverdueEntries();
+
     /** Returns an unmodifiable view of the filtered entry list. */
     ObservableList<Entry> getFilteredEntryList();
 
@@ -187,4 +197,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
 }

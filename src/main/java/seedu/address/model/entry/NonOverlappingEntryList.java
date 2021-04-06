@@ -96,6 +96,12 @@ public class NonOverlappingEntryList implements Iterable<Entry> {
     }
 
     /**
+     * Removes all overdue entries
+     */
+    public void clearOverdueEntries() {
+        internalList.removeIf(Entry::isOverdue);
+    }
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Entry> asUnmodifiableObservableList() {
@@ -132,4 +138,5 @@ public class NonOverlappingEntryList implements Iterable<Entry> {
         }
         return true;
     }
+
 }

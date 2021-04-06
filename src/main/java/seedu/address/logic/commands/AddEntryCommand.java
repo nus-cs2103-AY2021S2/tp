@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATED_ENTRY;
+import static seedu.address.commons.core.Messages.MESSAGE_OVERLAPPING_ENTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
@@ -47,8 +47,8 @@ public class AddEntryCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasEntry(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATED_ENTRY);
+        if (model.isOverlappingEntry(toAdd)) {
+            throw new CommandException(MESSAGE_OVERLAPPING_ENTRY);
         }
 
         model.addEntry(toAdd);

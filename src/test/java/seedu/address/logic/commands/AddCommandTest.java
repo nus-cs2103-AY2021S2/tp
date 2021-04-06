@@ -145,6 +145,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean isOverlappingEntry(Entry toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearOverdueEntries() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Entry> getFilteredEntryList() {
             throw new AssertionError("This method should not be called.");
         }
