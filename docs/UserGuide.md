@@ -767,7 +767,7 @@ application to exit the program.
 ## 4. FAQ
 
 **Q: Can I add an assignment/exam first before the module?**<br>
-A: No, You need to add a module first.
+A: No, you need to add a module first.
 
 **Q: Can I add multiple modules with the same name?**<br>
 A: No, modules must have unique names to identify them.
