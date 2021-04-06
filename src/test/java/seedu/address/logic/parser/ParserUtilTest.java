@@ -66,7 +66,7 @@ public class ParserUtilTest {
             DateTimeFormatter.ofPattern("HHmm"));
 
     public static final String INVALID_CLIENT_NAME = "Alice&"; // '&' not allowed in names
-    public static final String INVALID_CLIENT_CONTACT = "+91234567"; // + not allowed
+    public static final String INVALID_CLIENT_CONTACT = "+91234"; // Shorter than  7 digits
     public static final String INVALID_CLIENT_EMAIL = "alice.example.com"; // missing @
     public static final String INVALID_CLIENT_ASKING_PRICE = "$00800000"; // leading zeros not allowed
 
