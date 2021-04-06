@@ -162,6 +162,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean doesAppointmentClash(Name name, AppointmentDateTime timeFrom, AppointmentDateTime timeTo) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean doesTutorTeachSubject(Name name, SubjectName subjectName) {
             throw new AssertionError("This method should not be called.");
         }

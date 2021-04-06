@@ -107,6 +107,25 @@ public class AppointmentDateTime {
         return this.getValue().isBefore(givenAppointment.getValue());
     }
 
+    /**
+     * @param otherAppointmentTime Other appointment date time to check with.
+     * @return True if current appointment date time is before or equals
+     */
+    public boolean isTimeBefore(AppointmentDateTime otherAppointmentTime) {
+        return this.getValue().isBefore(otherAppointmentTime.getValue())
+                || this.getValue().isEqual(otherAppointmentTime.getValue());
+    }
+
+    /**
+     * @param otherAppointmentTime Other appointment date time to check with.
+     * @return True if current appointment date time is after or equals
+     */
+    public boolean isTimeAfter(AppointmentDateTime otherAppointmentTime) {
+        return this.getValue().isAfter(otherAppointmentTime.getValue())
+                || this.getValue().isEqual(otherAppointmentTime.getValue());
+    }
+
+
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mma");

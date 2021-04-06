@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_CLASH_EDIT;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_APPOINTMENT;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT;
@@ -47,7 +48,10 @@ public class EditAppointmentCommand extends Command {
             + "[" + PREFIX_LOCATION + "LOCATION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "chloe lim "
-            + PREFIX_SUBJECT_NAME + "Science";
+            + PREFIX_SUBJECT_NAME + "Science "
+            + PREFIX_DATE + "2021-1-5 "
+            + PREFIX_TIME_FROM + "9:00am "
+            + PREFIX_TIME_TO + "11:00am";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -88,6 +92,9 @@ public class EditAppointmentCommand extends Command {
                 editedAppointment.getSubject())) {
             throw new CommandException(String.format(MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT,
                     editedAppointment.getSubject()));
+        } else if (model.doesAppointmentClash(editedAppointment.getName(),
+                editedAppointment.getTimeFrom(), editedAppointment.getTimeTo())) {
+            throw new CommandException(MESSAGE_DATE_CLASH_EDIT);
         }
 
         model.setAppointment(appointmentToEdit, editedAppointment);

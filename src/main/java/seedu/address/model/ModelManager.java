@@ -245,7 +245,7 @@ public class ModelManager implements Model {
         filteredTutors.setPredicate(predicate);
     }
 
-    //=========== AppointmentList ============================================================================
+    //=========== AppointmentBook============================================================================
 
     /**
      * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
@@ -305,6 +305,16 @@ public class ModelManager implements Model {
     }
 
     /**
+     * @param name Name of tutor to match.
+     * @return True if new appointment to be added clashes.
+     */
+    @Override
+    public boolean doesAppointmentClash(Name name, AppointmentDateTime timeFrom, AppointmentDateTime timeTo) {
+        return appointmentBook.doesAppointmentClash(name, timeFrom, timeTo);
+    }
+
+
+    /**
      * Checks if {@code AppointmentDateTime} exists in the appointment list.
      *
      * @param appointmentDateTime Appointment DateTime to be checked
@@ -314,6 +324,7 @@ public class ModelManager implements Model {
     public boolean hasAppointmentDateTime(AppointmentDateTime appointmentDateTime) {
         return !filteredAppointment.filtered(new DateViewPredicate(appointmentDateTime)).isEmpty();
     }
+
 
     //============== Budget ============================================================
 
