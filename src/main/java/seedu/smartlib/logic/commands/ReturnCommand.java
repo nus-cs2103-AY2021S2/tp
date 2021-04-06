@@ -30,12 +30,13 @@ public class ReturnCommand extends Command {
             "No such record found. The book has either been returned, or has never been borrowed.";
     public static final String NO_BOOK_FOUND = "Sorry, we can't find the "
             + "book which you have specified. Please check if you have keyed in the correct barcode.";
-    public static final String NO_READER_FOUND = "Sorry, the reader who borrowed this book "
-            + "is not in our registered reader list";
+    public static final String NO_READER_FOUND = "Sorry, we could not find the borrow record of this barcode.";
     public static final String NO_READER_AND_BOOK_FOUND = "Sorry, we are unable to find "
             + "the book via the barcode. Please check if you have keyed in the correct barcode.";
     public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error has occurred with the codebase and we are"
             + " unable to update it.";
+    public static final String BOOK_NOT_BORROWED = "Sorry, unable to perform return activity because"
+            + " the book specified is not loaned out.";
 
     private final IncompleteRecord incompleteRecord;
 
@@ -50,11 +51,14 @@ public class ReturnCommand extends Command {
     }
 
     private void verifyRegistration(Model model) throws CommandException {
+        if (!model.getBookByBarcode(incompleteRecord.getBookBarcode()).isBorrowed()) {
+            throw new CommandException(BOOK_NOT_BORROWED);
+        }
         if (!model.hasBookWithBarcode(incompleteRecord.getBookBarcode())) {
             throw new CommandException(NO_BOOK_FOUND);
         }
 
-        if (!model.hasReader(model.getReaderNameForReturn(incompleteRecord.getBookBarcode()))) {
+        if (model.getReaderNameForReturn(incompleteRecord.getBookBarcode()) == null) {
             throw new CommandException(NO_READER_FOUND);
         }
 

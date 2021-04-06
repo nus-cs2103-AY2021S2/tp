@@ -134,6 +134,11 @@ public class AddReaderCommandTest {
         }
 
         @Override
+        public Book getBookByBarcode(Barcode barcode) {
+            return null;
+        }
+
+        @Override
         public Barcode getFirstAvailableBookBarcode(Name bookName) {
             return null;
         }
@@ -226,6 +231,11 @@ public class AddReaderCommandTest {
         @Override
         public void addBook(Book book) {
 
+        }
+
+        @Override
+        public ArrayList<Book> getBooksByName(Name bookName) {
+            return null;
         }
 
         @Override
