@@ -1,8 +1,8 @@
 package seedu.address.model.property;
 
-import java.util.function.Predicate;
-
 import static java.util.Objects.requireNonNull;
+
+import java.util.function.Predicate;
 
 /**
  * Tests that a {@code Property}'s {@code Address} matches the address given.
@@ -10,6 +10,9 @@ import static java.util.Objects.requireNonNull;
 public class PropertyAddressPredicate implements Predicate<Property> {
     private final String address;
 
+    /**
+     * Constructs a PropertyAddressPredicate.
+     */
     public PropertyAddressPredicate(String address) {
         requireNonNull(address);
         this.address = address;

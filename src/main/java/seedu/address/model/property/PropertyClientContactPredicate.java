@@ -1,10 +1,8 @@
 package seedu.address.model.property;
 
-import java.util.function.Predicate;
-
-import seedu.address.model.property.client.Contact;
-
 import static java.util.Objects.requireNonNull;
+
+import java.util.function.Predicate;
 
 /**
  * Tests that a {@code Client}'s {@code Name} matches any of the keywords given.
@@ -12,6 +10,9 @@ import static java.util.Objects.requireNonNull;
 public class PropertyClientContactPredicate implements Predicate<Property> {
     public final String contact;
 
+    /**
+     * Constructs a PropertyClientContactPredicate.
+     */
     public PropertyClientContactPredicate(String contact) throws NullPointerException {
         requireNonNull(contact);
         this.contact = contact;

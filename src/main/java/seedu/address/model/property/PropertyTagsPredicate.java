@@ -1,13 +1,13 @@
 package seedu.address.model.property;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.model.tag.Tag;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Tests that a {@code Property}'s {@code Tags} contains the tags given.

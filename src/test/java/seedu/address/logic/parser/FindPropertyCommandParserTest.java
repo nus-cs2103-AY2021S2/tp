@@ -135,7 +135,7 @@ public class FindPropertyCommandParserTest {
     public void validPostalCodeTest() {
         List<Predicate<Property>> predicates = new ArrayList<>();
 
-        predicates.add(new PropertyPostalCodePredicate(new PostalCode("123456")));
+        predicates.add(new PropertyPostalCodePredicate("123456"));
 
         FindPropertyCommand expected =
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
@@ -163,7 +163,7 @@ public class FindPropertyCommandParserTest {
     public void validAddressTest() {
         List<Predicate<Property>> predicates = new ArrayList<>();
 
-        predicates.add(new PropertyAddressPredicate(new Address("BLK 123 Kent Ridge Ave 1")));
+        predicates.add(new PropertyAddressPredicate("BLK 123 Kent Ridge Ave 1"));
 
         FindPropertyCommand expected =
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
