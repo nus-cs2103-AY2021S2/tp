@@ -106,7 +106,7 @@ public class Task {
 
     /**
      * Returns an updated task with the assignee specified removed from the set of
-     * assignees assignees to this task.
+     * assignees to this task.
      *
      * @param assignee that is about to be removed.
      * @return Task that is updated without the specified assignee.
