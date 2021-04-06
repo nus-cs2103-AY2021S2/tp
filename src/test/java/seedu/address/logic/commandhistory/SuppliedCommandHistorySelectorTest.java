@@ -20,6 +20,14 @@ public class SuppliedCommandHistorySelectorTest {
     private SuppliedCommandHistorySelector typicalSelector;
     private SuppliedCommandHistorySelector emptySelector;
 
+    @BeforeEach
+    public void setUp() {
+        emptyHistory = new CommandHistory();
+        emptySelector = new SuppliedCommandHistorySelector(() -> emptyHistory);
+        typicalHistory = getTypicalCommandHistory();
+        typicalSelector = new SuppliedCommandHistorySelector(() -> typicalHistory);
+    }
+
     @Test
     public void navigateToOnePastLast_onEmptyHistory_doesNotThrow() {
         assertDoesNotThrow(() -> emptySelector.navigateToOnePastLast());
@@ -98,13 +106,5 @@ public class SuppliedCommandHistorySelectorTest {
             Optional<String> entryText = Optional.of(entries.get(i).value);
             assertEquals(entryText, typicalSelector.selectPreviousUntilFirst());
         }
-    }
-
-    @BeforeEach
-    public void setUp() {
-        emptyHistory = new CommandHistory();
-        emptySelector = new SuppliedCommandHistorySelector(() -> emptyHistory);
-        typicalHistory = getTypicalCommandHistory();
-        typicalSelector = new SuppliedCommandHistorySelector(() -> typicalHistory);
     }
 }
