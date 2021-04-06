@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import seedu.address.model.person.Patient;
 
 /**
@@ -55,7 +56,15 @@ public class PatientCard extends UiPart<Region> {
         email.setText(patient.getEmail().value);
         patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label label = new Label(tag.tagName);
+                    // dummy Text object to do width calculation
+                    Text text = new Text(tag.tagName);
+                    if (text.getLayoutBounds().getWidth() > 250) {
+                        label.setPrefWidth(250);
+                    }
+                    tags.getChildren().add(label);
+                });
     }
 
     @Override
