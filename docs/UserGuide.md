@@ -40,127 +40,28 @@ Commands in this user guide follow this format:
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `ilist`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-
-### Command Parameters
+### Glossary of parameters
 
 Many SunRez commands use various parameters. Their formats, constraints and rationale are provided in this subsection.
 
-#### `ALIAS_NAME`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
-#### `CATEGORY`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
-#### `COMMAND`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
-#### `COUNT`
-The number of items wanted (from some collection).
-* Must be a positive integer: 1, 2, 3, ...
-* Must be at most the size of the collection of items (this number depends on the relevant collection).
-
-
-#### `DESCRIPTION`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
-#### `EMAIL`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
-#### `INDEX`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
-#### `KEYWORD`
-A keyword used in the various find commands.
-* Format: Single word consisting of any character except spaces.
-* For best usage: Use English characters only.
-
-
-#### `NAME`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
-#### `PHONE_NUMBER`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
-#### `ROOM_NUMBER`
-Room number for a room.
-* Format: `XY-ABC`, where XY can be any pair of digits except 00, and ABC can be any 3 digits.
-    * Valid examples: 01-000, 11-100, 12-345.
-    * Invalid examples: 00-000, 00-100.
-* Room numbers are unique within SunRez.
-* We disallow floor numbers being 00. However, unit numbers can be 000.
-
-
-#### `ROOM_TYPE`
-Room type of a room.
-* Must be one of the following strings: `corridor_ac`, `corridor_non_ac`, `suite_ac`, `suite_non_ac`.
-* Strings are not case-sensitive.
-
-
-#### `STATUS`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
-#### `TAG`
-The tag associated with a room or issue.
-* Tags must be non-blank and alphanumeric (spaces are not allowed).
-* Tags are limited to 25 characters.
-* Tags are case-sensitive: e.g. `SHN`,`shn` and `Shn` are each considered separate tags.
-* Insertion order of tags does not guarantee display order in any part of the user interface.
-* Duplicate tags will be accepted as input, but only one instance will be recorded.
-* For the best experience, we recommend keeping tags short and having fewer than 20 of them per entry. There is no 
-  theoretical limit to the number of tags an entry can have, but SunRez may slow down or run into unexpected problems 
-  for a huge number of tags.
-
-
-#### `TIMESTAMP`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
-#### `YEAR`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
+| Parameter | Prefix | Applicable to | Description |
+|---|---|---|---|
+| `ALIAS_NAME` | `a/` | `alias` `unalias` | The name of an alias. <ul><li> Must be alphanumeric. </li><li> Must not be a reserved keyword i.e. names of other system commands. </li></ul> |
+| `CATEGORY` | `c/` | `iadd` `iedit`| DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
+| `COMMAND` | `cmd/`| `alias` | The command that an alias is short for.  <ul><li> Must not be empty. </li></ul> |
+| `COUNT` | - | `history` | The number of items wanted (from some collection). <ul><li> Must be a positive integer: 1, 2, 3, ... </li><li> Must be at most the size of the collection of items (this number depends on the relevant collection). </li></ul> |
+| `DESCRIPTION` | `d/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
+| `EMAIL` | `e/` | `radd` `redit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
+| `INDEX` | `-` | `redit` `rdel` `oedit` `odel` `iedit` `iclo` `idel` `alloc` `dealloc`| DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
+| `KEYWORD` | `-` | `rfind` `ofind` `ifind` | A keyword used in the various find commands. <ul><li> Format: Single word consisting of any character except spaces. </li><li> For best usage: Use English characters only. </li></ul> |
+| `NAME` | `n/` | `radd` `redit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
+| `PHONE_NUMBER` | `p/` | `radd` `redit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
+| `ROOM_NUMBER` | `r/` | `oadd` `oedit` `iadd` `iedit` | Room number for a room. <ul><li> Format: `XY-ABC`, where XY can be any pair of digits except 00, and ABC can be any 3 digits. <ul><li> Valid examples: 01-000, 11-100, 12-345. </li><li> Invalid examples: 00-000, 00-100. </li></ul> </li><li> Room numbers are unique within SunRez. </li><li> We disallow floor numbers being 00. However, unit numbers can be 000. </li></ul> |
+| `ROOM_TYPE` | `t/` | `oadd` `oedit` | Room type of a room. <ul><li> Must be one of the following strings: `corridor_ac`, `corridor_non_ac`, `suite_ac`, `suite_non_ac`. </li><li> Strings are not case-sensitive. </li></ul> |
+| `STATUS` | `s/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
+| `TAG` | `g/` | `oadd` `oedit` `iadd` `iedit` | The tag associated with a room or issue. <ul><li> Tags must be non-blank and alphanumeric (spaces are not allowed). </li><li> Tags are limited to 25 characters. </li><li> Tags are case-sensitive: e.g. `SHN`,`shn` and `Shn` are each considered separate tags. </li><li> Insertion order of tags does not guarantee display order in any part of the user interface. </li><li> Duplicate tags will be accepted as input, but only one instance will be recorded. </li><li> For the best experience, we recommend keeping tags short and having fewer than 20 of them per entry. There is no theoretical limit to the number of tags an entry can have, but SunRez may slow down or run into unexpected problems for a huge number of tags. </li></ul> |
+| `TIMESTAMP` | `t/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
+| `YEAR` | `y/` | `radd` `redit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
 
 ## Quick start
 
@@ -276,7 +177,7 @@ Format: `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]`
 * Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info. 
   
 Parameters:
-* [ROOM_NUMBER](#room_number) The room number of the room to add.
+* [ROOM_NUMBER](#room_nu) The room number of the room to add.
 * [ROOM_TYPE](#room_type) The type of the room being added.
 * [TAG](#tag) Optional tags that may be specified to assist in management of the room.
 
