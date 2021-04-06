@@ -182,11 +182,14 @@ Shows a list of all persons in the booking app.
 
 Format: `list_person`
 
-#### 3.3.5. Finding a person : `find_person` (Edit this Vanessa!)
+#### 3.3.5. Finding a person : `find_person`
 
-Shows information about the person corresponding to the given email. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
+Shows information about the person corresponding to the specified field(s) - at least one field must be provided. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
 
-Format: `find_person e/EMAIL`
+Format: `find_person [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
+
+Example:
+* `find_person n/John Doe t/Student`
 
 ### 3.4. Venue
 
@@ -227,14 +230,14 @@ Shows a list of all venues in the booking app.
 
 Format: `list_venue`
 
-#### 3.4.5. Finding a venue : `find_venue` (rmb to edit this vanessa!!!)
+#### 3.4.5. Finding a venue : `find_venue`
 
-Shows information about the venue corresponding to the given venue name. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
+Shows information about the venue corresponding to the specified field(s) - at least one field must be provided. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching.
 
-Format: `find_venue v/VENUE_NAME`
+Format: `find_venue [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]`
 
 Example:
-* `find_venue v/Victoria Hall`
+* `find_venue v/Hall max/50 `
 
 ### 3.5. Booking
 
@@ -272,50 +275,14 @@ Shows a list of all bookings and their corresponding IDs in the booking app.
 
 Format: `list_booking`
 
-#### 3.5.5. Finding a booking : `find_booking` (Edit this Vanessa!)
+#### 3.5.5. Finding a booking : `find_booking` 
 
-Shows information about the booking corresponding to the given booking ID. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
+Shows information about the booking corresponding to the specified field(s) - at least one field must be provided. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching.
 
-Format: `find_booking INDEX`
-
-Example:
-* `find_booking 1` 
-
-#### 3.5.6. Filtering bookings by date : `filter_booking_by_date`
-
-Shows a list of bookings on the specified date.
-
-Format: `filter_booking_by_date date/DATE`
+Format: `find_booking [e/BOOKER_EMAIL] [date/DATE] [v/VENUE_NAME] [d/DESCRIPTION] [t/TAG]`
 
 Example:
-* `filter_booking_by_date date/2020-12-12`
-
-#### 3.5.7. Filtering bookings by booker : `filter_booking_by_booker`
-
-Shows a list of bookings booked by the booker identified by the email address given.
-
-Format: `filter_booking_by_booker e/EMAIL`
-
-Example:
-* `filter_booking_by_booker e/JohnRose@abc.com`
-
-#### 3.5.8. Filtering bookings by venue : `filter_booking_by_venue`
-
-Shows a list of bookings at the specified venue.
-
-Format: `filter_booking_by_venue v/VENUE`
-
-Example:
-* `filter_booking_by_venue v/Sports Hall`
-
-#### 3.5.9. Filtering bookings by tag : `filter_booking_by_tag`
-
-Shows a list of bookings with the specified tag.
-
-Format: `filter_booking_by_tag t/TAG`
-
-Example:
-* `filter_booking_by_tag t/student`
+* `find_booking e/johnd@gmail.com v/Hall `
 
 ### 3.6. Upcoming
 

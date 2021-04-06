@@ -34,8 +34,12 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
+        * Wrote command examples
+        * Updated command descriptions
     * Developer Guide:
-
+        * Wrote uses cases
+        * Updated user stories
+  
 * **Community**:
 
 * **Tools**:
