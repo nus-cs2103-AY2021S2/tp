@@ -187,73 +187,30 @@ Examples:
 
 Searches for a student’s contact whose details contain any of the given keywords.
 
-Format: `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`
+Format: `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS]`
+
+Prefix | Searching Criteria
+------ | -----------------
+`n/`   | Name
+`s/`   | School
+`t/`   | Subject
 
 * At least one prefix must be used.
 * Any number of prefixes can be used concurrently.
 * The search is case-insensitive. E.g. `TAN` will match `Tan` .
-* The order of the keywords does not matter. E.g. `Tan Alice` will match `Alice Tan`.
+* The order of the keywords does not matter. E.g. `n/Tan Alice` will match `Alice Tan`.
 * Name, school and subjects can be searched according to the prefix.
 * Only full words will be matched e.g. `Ta` will not match `Tan`
 * Contacts matching at least one keyword will be returned. 
-  E.g. `Alice Tan` will return `Alice Ng` and `Bob Tan`.
+  E.g. `n/Alice Tan` will return contacts with names `Alice Ng` and `Bob Tan`.
 
 Examples:
 * `search n/eliza s/woodlands t/math` returns student whose name is `Eliza`, students who are studying in `woodlands primary school`, and students with `math` subject
-* `search n/Patrick Lim` returns `patrick lim` and `Lim Zi Ying`
+* `search n/Patrick Lim` returns students whose names are `patrick lim` and `Lim Zi Ying`
 * `search s/woodlands` returns students studying in `woodlands primary school` and `woodlands secondary school`
 * `search s/raffles hwa` returns students studying in `Raffles Institution` and `Hwa chong institution`
+* `search t/CHEM`, `search t/chem`, and `search t/Chem` will all return students with the subject `chem`
 
-
-### Searching for a contact by name: `search n/...`
-Searches for a student’s contact whose contact name contains any of the given keywords.
-
-Format: `search n/KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. <br/>
-  E.g. `TAN` will match `Tan`
-* The order of the keywords does not matter. <br/>
-  E.g. `Tan Alice` will match `Alice Tan`
-* Only the name is searched.
-* Only full words will be matched. <br/>
-  E.g. `Ta` will not match `Tan`
-* Contacts matching at least one keyword will be returned. <br/>
-  E.g. `Alice Tan` will return `Alice Ng` and `Bob Tan`
-
-Examples:
-* `search n/eliza` returns `Eliza` and `Eliza Ng`
-* `search n/Patrick Lim` returns `patrick lim` and `Lim Zi Ying`
-
-### Searching for a contact by school: `search s/...`
-Searches for a student's contact from a specific school using keywords
-
-Format: `search s/KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. <br/>
-  e.g `RAFFLES JUNIOR COLLEGE` will match students studying in `Raffles junior college`
-* The order of the keywords does not matter.<br/>
-  e.g. `Chong Hwa` will match students studying in `Hwa Chong Institution`
-* Only the stated keyword is searched.
-* Only full words will be matched e.g. `Raffle` will not match `Raffles`
-* The contact matching at least one keyword will be returned (i.e. OR search). <br/>
-  e.g. `Raffles Hwa` will return students studying in `Raffles Junior College`or `Hwa Chong Institution`
-
-Examples:
-* `search s/woodlands` returns students studying in `woodlands primary school` and `woodlands secondary school`
-* `search s/raffles hwa` returns students studying in `Raffles Institution` and `Hwa chong institution`
-
-### Searching for a contact by subject: `search t/...`
-Searches for a student's contact with a specific subject using keywords
-
-Format: `search t/KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. <br/>
-  e.g `MATH` will match students with subject `math`
-* Only the stated keyword is searched.
-* Only full words will be matched e.g. `Math` will not match `Maths`
-
-Examples:
-* `search t/CHEM`, `search t/chem`, and `search t/Chem` can all return students with the subject `chem`
 
 ### Sorting contacts: `sort`
 Sorts the student contacts list by name, school, subjects or lessons.
