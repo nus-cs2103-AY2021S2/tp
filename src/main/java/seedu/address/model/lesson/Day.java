@@ -8,8 +8,8 @@ import java.util.Locale;
 public class Day implements Comparable<Day> {
 
     public static final String VALIDATION_REGEX = "(monday|tuesday|wednesday|thursday|friday|saturday|sunday)";
-    public static final String MESSAGE_CONSTRAINTS = "Days should take on one of the following: Monday, "
-            + "Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday";
+    public static final String MESSAGE_CONSTRAINTS = "Days should be in lowercase and take on one of the following: " +
+        "monday, tuesday, wednesday, thursday, friday, saturday, sunday. ";
     public final String dayOfTuition;
 
     /**
@@ -27,13 +27,13 @@ public class Day implements Comparable<Day> {
      * Returns true if a given string is a valid day.
      */
     public static boolean isValidDay(String test) {
-        return test.toLowerCase(Locale.ROOT).matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX);
     }
 
     int dayToInt(String day) {
         int value = 0;
 
-        switch (day.toLowerCase()) {
+        switch (day) {
 
         case "monday":
             value = 1;
