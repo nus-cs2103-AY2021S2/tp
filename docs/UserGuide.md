@@ -25,11 +25,11 @@ effectively.
 ## 2. **About**
 This user guide provides documentation on the installation and usage of TutorBuddy.
 It also provides a comprehensive description of features available to you and
-includes a [quick-start](#quick-start) section that helps you get started.
+includes a [quick-start](#3-quick-start) section that helps you get started.
 
 This guide uses the following features to make it easier for you to navigate around:
 
-* Words that look like [this](#about) can be clicked to jump to the related section.
+* Words that look like [this](#2-about) can be clicked to jump to the related section.
 * Words that look like `this` refer to keywords used as part of commands or responses from TutorBuddy.
 * Words that look like <kbd>this</kbd> refer to keyboard keys that you can press.
 
@@ -102,7 +102,7 @@ There are three main areas in TutorBuddy:
   * **`add_rec_session`** `n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80 b/7 e/2021-01-15`: Adds a 7-day recurring session for John Doe happening from 2021-01-01 to 2021-01-15
   * **`exit`** : Exits the application.<br>
 
-Refer to the [Commands](#commands) below for details of each command.
+Refer to the [Commands](#42-commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
