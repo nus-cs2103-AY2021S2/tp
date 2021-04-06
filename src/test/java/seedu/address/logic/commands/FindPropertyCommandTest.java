@@ -20,9 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.property.Address;
 import seedu.address.model.property.Deadline;
-import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.PropertyAddressPredicate;
 import seedu.address.model.property.PropertyClientContactPredicate;
 import seedu.address.model.property.PropertyClientEmailPredicate;
@@ -231,7 +229,7 @@ public class FindPropertyCommandTest {
         PropertyPredicateList predicate =
                 new PropertyPredicateList(
                         Collections.singletonList(
-                                new PropertyAddressPredicate(new Address("1 Jurong East Street 32, #08-111"))));
+                                new PropertyAddressPredicate("1 Jurong East Street 32, #08-111")));
         FindPropertyCommand command = new FindPropertyCommand(predicate);
         expectedModel.updateFilteredPropertyList(predicate.combine());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -270,7 +268,7 @@ public class FindPropertyCommandTest {
         PropertyPredicateList predicate =
                 new PropertyPredicateList(
                         Collections.singletonList(
-                                new PropertyPostalCodePredicate(new PostalCode("731784"))));
+                                new PropertyPostalCodePredicate("731784")));
         FindPropertyCommand command = new FindPropertyCommand(predicate);
         expectedModel.updateFilteredPropertyList(predicate.combine());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -339,7 +337,7 @@ public class FindPropertyCommandTest {
                                 new PropertyNamePredicate(Collections.singletonList("jurong")),
                                 new PropertyPricePredicate("300", false),
                                 new PropertyPricePredicate("50000000", true),
-                                new PropertyAddressPredicate(new Address("Jurong Ave 1, #01-01")),
+                                new PropertyAddressPredicate("Jurong Ave 1, #01-01"),
                                 new PropertyTypePredicate("hdb"),
                                 new PropertyDeadlinePredicate(parsePropertyDeadline("01-04-2021"))
                                 ));

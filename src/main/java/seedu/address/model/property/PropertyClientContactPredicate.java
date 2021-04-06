@@ -1,23 +1,31 @@
 package seedu.address.model.property;
 
-import java.util.function.Predicate;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.property.client.Contact.MESSAGE_CONSTRAINTS;
+import static seedu.address.model.property.client.Contact.isValidContact;
 
-import seedu.address.model.property.client.Contact;
+import java.util.function.Predicate;
 
 /**
  * Tests that a {@code Client}'s {@code Name} matches any of the keywords given.
  */
 public class PropertyClientContactPredicate implements Predicate<Property> {
-    public final Contact contact;
+    public final String contact;
 
-    public PropertyClientContactPredicate(String contact) throws IllegalArgumentException {
-        this.contact = new Contact(contact);
+    /**
+     * Constructs a PropertyClientContactPredicate.
+     */
+    public PropertyClientContactPredicate(String contact) throws NullPointerException {
+        requireNonNull(contact);
+        checkArgument(isValidContact(contact), MESSAGE_CONSTRAINTS);
+        this.contact = contact;
     }
 
     @Override
     public boolean test(Property property) {
         return property.getClient() != null
-               && this.contact.equals(property.getClient().getClientContact());
+               && property.getClient().getClientContact().contact.contains(this.contact);
     }
 
     @Override
