@@ -144,7 +144,7 @@ Output:
 
 Adds a scheduled upcoming appointment to DocBob's list.  An appointment can be added to a patient.  This appointment is specified by it's date and time.  And the patient is identified by their index.  So basically, we can add an appointment (of a date and time) to a patient (identified by index).
 
-Format: `appt INDEX /dDATE`
+Format: `appt INDEX d/DATE`
 where INDEX must be a positive integer (1,2,3,...)
 and DATE is DDMMYYYYhhmm or DDMMhhmm
 
