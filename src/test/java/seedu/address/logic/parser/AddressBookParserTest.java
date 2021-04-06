@@ -97,13 +97,12 @@ public class AddressBookParserTest {
 
     @Test
     public void parseEmailCommand() throws Exception {
-        assertTrue(parser.parseCommand(EmailCommand.COMMAND_WORD) instanceof ListCommand);
+        assertTrue(parser.parseCommand(EmailCommand.COMMAND_WORD) instanceof EmailCommand);
     }
 
     @Test
     public void parseGetMonthlyFeeCommand() throws Exception {
-        assertTrue(parser.parseCommand(GetMonthlyFeeCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(GetMonthlyFeeCommand.COMMAND_WORD + " n/someone m/12 y/2021") instanceof ListCommand);
+        assertTrue(parser.parseCommand(GetMonthlyFeeCommand.COMMAND_WORD + " n/someone m/12 y/2021") instanceof GetMonthlyFeeCommand);
     }
 
     @Test
