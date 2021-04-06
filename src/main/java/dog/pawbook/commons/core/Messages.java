@@ -30,6 +30,7 @@ public class Messages {
 
     public static final String MESSAGE_ID_MISMATCH_FORMAT = "The ID provided does not belong to a %s.";
 
+    public static final String MESSAGE_ENTITIES_LISTED_OVERVIEW_FOR_ONE = "1 entity listed!";
     public static final String MESSAGE_ENTITIES_LISTED_OVERVIEW = "%1$d entities listed!";
     public static final String MESSAGE_DOG_MISSING_OWNER_ID = "Dog to be added is missing owner ID.";
 

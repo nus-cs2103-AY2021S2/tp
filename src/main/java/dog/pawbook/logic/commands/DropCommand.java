@@ -9,7 +9,7 @@ public class DropCommand extends ProgramRegistrationCommand {
     public static final String COMMAND_WORD = "drop";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Drops a dog from a program."
-            + "Parameters: "
+            + " Parameters: "
             + PREFIX_DOGID + "DOG_ID "
             + PREFIX_PROGRAMID + "PROGRAM_ID...\n"
             + "Example: " + COMMAND_WORD + " d/2 p/3";
