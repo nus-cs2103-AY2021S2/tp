@@ -145,7 +145,7 @@ public class ParserUtil {
         if (!VaccinationStatus.isValidStatus(trimmedVacStatus)) {
             throw new ParseException(VaccinationStatus.MESSAGE_CONSTRAINTS);
         }
-        return new VaccinationStatus(trimmedVacStatus);
+        return new VaccinationStatus(trimmedVacStatus.toLowerCase());
     }
 
     /**
