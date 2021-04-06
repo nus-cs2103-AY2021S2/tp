@@ -153,7 +153,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Actual Implementation
 
-The `list` feature allows users to list all items in the inventory based on the order they were added. 
+The `list` feature allows users to list all items in the inventory based on the order they were added.
 The `list l/LOCATION` and `list t/TAG` features allow users to list all items in a specific location
 or with a specific tag respectively.
 
@@ -177,7 +177,7 @@ user of the error.
 </div>
 
 Step 4. The overridden `execute` method will be called. The current predicate and filtered item list of the `Model` will
-be updated, and all items in the inventory will be listed. An instance of `CommandResult` will be created, generating 
+be updated, and all items in the inventory will be listed. An instance of `CommandResult` will be created, generating
 the result of the execution. The `LogicManager` class will receive the result of the execution.
 
 The following activity diagram summarizes what happens when a user executes the list command:
@@ -202,7 +202,7 @@ _{more aspects and alternatives to be added}_
 
 #### Actual Implementation
 
-The `find KEYWORD [MORE_KEYWORDS]` and `find */KEYWORD [MORE_KEYWORDS]` features find and display all items whose names 
+The `find KEYWORD [MORE_KEYWORDS]` and `find */KEYWORD [MORE_KEYWORDS]` features find and display all items whose names
 contain any of the given keywords, either in full or partially respectively.
 
 Given below is an example usage scenario and how the find operation behaves at each step.
@@ -210,7 +210,7 @@ Given below is an example usage scenario and how the find operation behaves at e
 ![Interactions Inside the Logic Component for the `find KEYWORD [MORE_KEYWORDS]` Command](images/FindFullSequenceDiagram.png)
 ![Interactions Inside the Logic Component for the `find */KEYWORD [MORE_KEYWORDS]` Command](images/FindPartialSequenceDiagram.png)
 
-Step 1. The user execute `find Chocolate` to find all the items in the inventory whose names fully match the keyword. 
+Step 1. The user execute `find Chocolate` to find all the items in the inventory whose names fully match the keyword.
 `StoreMandoParser` takes in the user input and determines the command word (find) and argument ("Chocolate") respectively.
 
 Step 2. An instance of `FindCommandParser` will be created, followed by a call on its `parse` method, taking in the
@@ -225,9 +225,9 @@ user of the error.
 </div>
 
 Step 4. The overridden `execute` method will be called. The current predicate and filtered item list of the `Model` will
-be updated, and all items in the inventory that matches the keyword in full will be listed. An instance of 
+be updated, and all items in the inventory that matches the keyword in full will be listed. An instance of
 `CommandResult` will be created, generating the result of the execution. The String parameter passed in the `CommandResult` depends
-on whether the number of items that matched the keyword is more than one or less than two. The `LogicManager` class will receive the 
+on whether the number of items that matched the keyword is more than one or less than two. The `LogicManager` class will receive the
 result of the execution.
 
 The following activity diagram summarizes what happens when a user executes a new command:
@@ -248,10 +248,99 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Reminder Feature
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+issues the command `reminder 1 week`.
+
+![ReminderSequenceDiagram](images/ReminderWeeksSequenceDiagram.png)
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+issues the command `reminder 3 days`.
+
+![ReminderSequenceDiagram](images/ReminderDaysSequenceDiagram.png)
+
+#### Implementation
+
+This portion describes the implementation of the reminder feature which allows users to view items that are expiring 
+within a certain number of days as specified by the user.
+
+1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input. 
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the given command.
+3. `StoreMandoParser` parses the command and determines that the command given is a `ReminderCommand`. 
+    Then, a `ReminderCommandParser` object is created to further parse the command.
+4. `StoreMandoParser` then calls on the `parse` method of `ReminderCommandParser` to parse the arguments provided.
+5. `ReminderCommandParser` calls on its own `timeConversion` method to convert the string into an integer. A 
+    `CommandParseException` will be thrown if this is not possible. 
+6. `ReminderCommandParser` then calls on the constructor of `ItemExpiringPredicate` with the integer as parameter to 
+    create an `ItemExpiringPredicate` object and then calls on the constructor of `ReminderCommand` with the `ItemExpiringPredicate` object as 
+    a parameter. 
+7. The `ReminderCommand` object will be created and returned to `StoreMandoParser` which returns it to `LogicManager` 
+8. `LogicManager` then calls on the `execute` method of `ReminderCommand` with `model` as argument.
+9. `ReminderCommand` calls the `updateCurrentPredicate` method of `model` and passes its own `ItemExpiringPredicate`
+    as argument.
+10. `ReminderCommand` calls the `getCurrentPredicate` method of `model` to obtain the current predicate and uses it
+    to update the list by calling on `updateFilteredItemList` method of `model` with the current predicate as argument.
+11. `ReminderCommand` then creates a `ItemComparatorByExpiryDate` object and calls `model`'s `updateSortedList` with 
+    `ItemComparatorByExpiryDate` as argument to sort the list.
+12. Finally, a `CommandResult` object is created and returned to `LogicManager`.
+
+The following activity diagram summarizes what happens when a user executes a new `reminder` command:
+
+![ReminderActivityDiagram](images/ReminderActivityDiagram.png)
+
+#### Design consideration:
+
+#### Aspect: How `reminder` executes
+
+**Alternative 1 (current choice)** : provide integer as an input argument
+    * Pros: Faster to type as compared to date in a particular format.
+    * Cons: More cases to consider when parsing the commmand.
+
+**Alternative 2** : provide a date in the format of YYYY-MM-DD as input
+    * Pros: Easier to compare between items as the input date can be used to create an `expiryDate` object 
+            which can be used to compare with all the items' expiry dates.
+    * Cons: When the user wants to find items that are already expired, it is easier to key in a number then to 
+            find a particular date and key it in. This is more taxing on the user.
+
+### Clear Feature
+
+This portion describes the implementation of the clear feature which allows users to clear items that are either in
+a particular location or clear all items in the list.
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `clear`
+
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `clear l/Kitchen`
+
+![ClearLocationSequenceDiagram](images/ClearLocationSequenceDiagram.png)
+
+#### Implementation
+
+1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input.
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the given command.
+3. `StoreMandoParser` parses the string and determines the command given is a `ClearCommand`.
+    Then, a `ClearCommandParser` object is created to further parse the command.
+4. `StoreMandoParser` then calls on the `parse` method of `ClearCommandParser` to parse the arguments provided.
+5. `ClearCommandParser` checks if the argument provided is an empty string. If so, the constructor of `ClearCommand`
+    without any parameters is called. Else, a `LocationContainsPredicate` object will be created with the arguments
+    as parameter.`CommandParseException` will be thrown if this is not possible.
+6. `ClearCommand` object will be returned to `ClearCommandParser` which then returns it to `LogicManager`. `LogicManager`
+    then calls the `execute` method of `ClearCommand` with a `Model` object, model, as parameter.
+7. `ClearCommand` calls on the `clearLocation` method of model with the `ClearCommand`'s attribute predicate as parameter.
+    Subsequently, it calls on model's `updateFilteredItemList`.
+8. Finally, a `CommandResult` object is created and is returned to `LogicManager`.
+
+The following activity diagram summarizes what happens when a user executes a clear by location command:
+
+![ClearActivityDiagram](images/ClearLocationActivityDiagram.png)
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
