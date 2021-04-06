@@ -90,7 +90,7 @@ public class PersonCard extends UiPart<Region> {
             if (child instanceof Label) {
                 Label label = (Label) child;
                 label.setWrapText(true);
-                label.setMaxWidth(150);
+                label.setMaxWidth(200);
             }
         });
     }

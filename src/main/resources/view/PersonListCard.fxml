@@ -36,7 +36,7 @@
                     <Label fx:id="birthdate" styleClass="cell_small_label" text="\$birthdate"/>
                     <Label fx:id="numNotes" styleClass="cell_small_label" text="\$numNotes"/>
                 </VBox>
-                <VBox GridPane.columnIndex="1" GridPane.hgrow="NEVER" minWidth="150" prefWidth="150" maxWidth="150">
+                <VBox GridPane.columnIndex="1" GridPane.hgrow="NEVER" minWidth="200" prefWidth="200" maxWidth="200">
                     <FlowPane fx:id="plans"/>
                 </VBox>
             </GridPane>
