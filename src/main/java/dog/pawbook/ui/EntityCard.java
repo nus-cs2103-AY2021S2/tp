@@ -21,6 +21,9 @@ import javafx.scene.layout.VBox;
 public class EntityCard extends UiPart<Region> {
 
     private static final String FXML = "EntityListCard.fxml";
+    private static final Image dogImage = new Image("images/dog.png");
+    private static final Image ownerImage = new Image("images/owner.png");
+    private static final Image programImage = new Image("images/program.png");
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -47,9 +50,7 @@ public class EntityCard extends UiPart<Region> {
     @FXML
     private ImageView entityImage;
 
-    private static final Image dogImage = new Image("images/dog.png");
-    private static final Image ownerImage = new Image("images/owner.png");
-    private static final Image programImage = new Image("images/program.png");
+
 
     /**
      * Creates a {@code EntityCard} with the given {@code Entity} and index to display.
