@@ -97,46 +97,4 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
-
-    @Test
-    public void person_getGoalDeadline() {
-        Person aliceCopy = new PersonBuilder(ALICE).build();
-        LocalDate date = LocalDate.of(2021, 3, 30);
-
-        Person editedAlice = new PersonBuilder(aliceCopy).build()
-                .withGoal(new Goal(Goal.Frequency.WEEKLY));
-        assertEquals(ZERO_DAY, editedAlice.getGoalDeadline(date));
-
-        editedAlice = new PersonBuilder(aliceCopy).build()
-                .withGoal(new Goal(Goal.Frequency.WEEKLY))
-                .withMeetings(Arrays.asList(TypicalPersons.getSampleEvents().clone()));
-        assertEquals(LocalDate.of(2021, 2, 7), editedAlice.getGoalDeadline(date));
-
-        editedAlice = new PersonBuilder(aliceCopy).build()
-                .withGoal(new Goal(Goal.Frequency.MONTHLY))
-                .withMeetings(Arrays.asList(TypicalPersons.getSampleEvents().clone()));
-        assertEquals(LocalDate.of(2021, 2, 28), editedAlice.getGoalDeadline(date));
-
-        editedAlice = new PersonBuilder(aliceCopy).build()
-                .withGoal(new Goal(Goal.Frequency.YEARLY))
-                .withMeetings(Arrays.asList(TypicalPersons.getSampleEvents().clone()));
-        assertEquals(LocalDate.of(2022, 12, 31), editedAlice.getGoalDeadline(date));
-
-        // leap day
-        editedAlice = new PersonBuilder(aliceCopy).build()
-                .withGoal(new Goal(Goal.Frequency.MONTHLY))
-                .withMeetings(Collections.singletonList(new EventBuilder()
-                        .withDate(LocalDate.of(2024, 1, 15))
-                        .withDescription("Some meeting")
-                        .build()));
-        assertEquals(LocalDate.of(
-                2024, 2, 29),
-                editedAlice.getGoalDeadline(LocalDate.of(2024, 1, 20)));
-
-        // no prior meetings
-        editedAlice = new PersonBuilder(aliceCopy).build()
-                .withGoal(new Goal(Goal.Frequency.WEEKLY))
-                .withMeetings(new ArrayList<>());
-        assertEquals(ZERO_DAY, editedAlice.getGoalDeadline(date));
-    }
 }
