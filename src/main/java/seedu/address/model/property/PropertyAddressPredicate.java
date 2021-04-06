@@ -20,7 +20,7 @@ public class PropertyAddressPredicate implements Predicate<Property> {
 
     @Override
     public boolean test(Property property) {
-        return property.getAddress().propertyAddress.contains(address);
+        return property.getAddress().propertyAddress.toLowerCase().contains(address.toLowerCase());
     }
 
     @Override
