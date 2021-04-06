@@ -16,7 +16,7 @@ a Command Line Interface (CLI) application which handles user requests that are 
 With HEY MATEz, managing and distributing tasks will never be a headache again! :smile:
 
 ## About this User Guide
-This user guide includes information on the **features** of HEY MAYEz as well as a walkthrough on how to use them. The features 
+This user guide includes information on the **features** of HEY MATEz as well as a walkthrough on how to use them. The features 
 are further divided into 3 sections which include the **General features**, **Member related features** as well as the **Task related features**.
 Member related features allow you to manage a list of members and find members. On the other hand, Task related features allow you
 to manage tasks which can be identified by their unique deadlines or priorities.
@@ -156,9 +156,13 @@ With new members joining the club, you can add a new member along with his/ her 
 Format: `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]`
 
 * The field ROLE is optional.
-* ROLE field can take on any values with alphanumeric characters.
+* NAME and ROLE fields can take on any values with alphanumeric characters.
 * PHONE field has to have a minimum length of 3 digits and maximum length of 15 digits.
 * If role field is not specified, person will be assigned a default role of member.
+
+Assumptions:
+* Every member in the CCA has a different name. An error will be prompted when you add a member with the same name but with
+a different phone number, email or role.
 
 Examples: 
 * `addMember Dylan -p 64529356 -e dylan@gmail.com`
@@ -171,8 +175,10 @@ As members leave the club, you can delete a member along with all of his/her con
 
 Format: `deleteMember NAME`
 
+* The name specified must match the member's name in the list exactly, case-sensitive. 
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The name you specify must belong to an exisitng Member in the Application
+The name you specify must belong to an existing Member in the Application.
 </div>
 
 Examples:
@@ -200,24 +206,33 @@ Format: `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMA
 * At least one of the optional fields must be provided.
 * ROLE field can take on any values with alphanumeric characters.
 * Existing values will be updated to the input values.
+* NEW_NAME field can take on any values with alphanumeric characters.
 
 Examples: 
-* `editMember Alice -e newAlice@gmail.com -r Events head`
+* `editMember Alice -n Alice Tan`
+* `editMember Alice -n Alice Tan -p 98154155 -e aliceTan@gmail.com`
+* `editMember Alice -n Alice Tan -p 98154155 -e aliceTan@gmail.com -r Events head`
 
 <a name="findMember"></a>
 ### 5. Find Members by Keywords: `findMembers`
 
 With so many members in the club, you may want to find a particular member's details quickly. 
-This feature allows you to find all members whose details contain any of the specified keywords.
+This feature allows you to find all members whose NAME, PHONE_NUMBER, EMAIL or ROLE contain
+any of the specified keywords.
 
-Format: `findMembers KEYWORD [MORE_KEYWORDS]`
+Format: `findMembers KEYWORD [MORE_KEYWORDS]...`
+
+* KEYWORD must match an entire word exactly in order for the particular member to be found. 
+  * E.g. A member whose name is `Rachel` will not be found with `findMembers Rach`.
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
 Keywords are case-insensitive.
 </div>
 
 Examples: 
+* `findMembers Rachel`
 * `findMembers Rachel 98562154 john@gmail.com`
+* `findMembers Rachel 98562154 john@gmail.com President`
 
 -------------------------------------------------------------------------------------------------------------
 <a name="tasks"></a>
@@ -267,10 +282,9 @@ Examples:
 With ever-changing task requirements, you can edit a task at the task index that is specified with the new details 
 you key in.
 
-Format: `editTask INDEX [-n NEW_TITLE] [-d NEW_DESCRIPTION] [-b NEW_DEADLINE] [-s NEW_STATUS] [-p NEW_PRIORITY] [-a NEW_ASSIGNEE]`
+Format: `editTask INDEX [-n NEW_TITLE] [-d NEW_DESCRIPTION] [-b NEW_DEADLINE] [-s NEW_STATUS] [-p NEW_PRIORITY] [-a NEW_ASSIGNEE]...`
 
 * Edits the Task at the specified index.
-* The fields NEW_TITLE, NEW_DESCRIPTION, NEW_DEADLINE, NEW_STATUS, NEW_PRIORITY, NEW_ASSIGNEE are all optional
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * If the assignee field is being edited, the previous assignees will be overwritten. 
@@ -309,10 +323,13 @@ Examples:
 ### 7. Find Tasks by Keywords: `findTasks`
 
 With so many tasks, you may want to find tasks with given keywords quickly.
-This feature allows you to find all tasks containing any of the specified keywords in its title or description.
+This feature allows you to find all tasks with its TITLE or DESCRIPTION containing any of the specified keywords.
 
-Format: `findTasks [KEYWORD]...`
+Format: `findTasks KEYWORD [MORE_KEYWORDS]...`
 
+* KEYWORD must match an entire word exactly in order for the particular task to be found.
+  * E.g. A task with title `Proposal` will not be found with `findTasks Prop`.
+  
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Keywords are case-insensitive. 
 </div>
