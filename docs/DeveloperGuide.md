@@ -405,7 +405,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **MSS**
 
-1.  User requests to list tutors who are favourited.
+1.  User requests to list tutors who were added as favourite.
 2.  TutorTracker shows a list of favourite tutor(s).
 
     Use case ends.
