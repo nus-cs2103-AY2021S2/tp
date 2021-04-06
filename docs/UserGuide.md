@@ -78,6 +78,13 @@ Format: `add-patient n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`
 
 * The patient can have any number of tags (including 0).<br>
 
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+
+* When a tag is too long, an ellipsis will be automatically added to prevent overflow. 
+It is recommended that tags not be too long to avoid this.<br>
+
 </div><br>
 
 Examples:
@@ -167,6 +174,13 @@ Format: `add-doctor n/NAME [t/TAG]…​`
 
 * The doctor can have any number of tags (including 0).<br>
 
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+
+* When a tag is too long, an ellipsis will be automatically added to prevent overflow. 
+It is recommended that tags not be too long to avoid this.<br>
+
 </div><br>
 
 Examples:
@@ -243,6 +257,13 @@ Format: `add-appt pt/PATIENT_INDEX dr/DOCTOR_INDEX at/TIMESLOT_START [to/TIMESLO
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 
 * The appointment can have any number of tags (including 0). It is recommended to use the tags to define the purpose of the appointment.<br>
+
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+
+* When a tag is too long, an ellipsis will be automatically added to prevent overflow. 
+It is recommended that tags not be too long to avoid this.<br>
 
 </div><br>
 
