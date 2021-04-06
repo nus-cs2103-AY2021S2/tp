@@ -119,7 +119,7 @@ Adds a student’s contact to TutorsPet.
 
 Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]…​ [le/LESSON]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
@@ -127,23 +127,23 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
   
 * Education Levels are represented by abbreviated names. Available levels cover
   
-    - Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`
+    > Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`
       
-    - Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`
+    > Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`
       
-    - Junior College: `jc1`, `jc2`
+    > Junior College: `jc1`, `jc2`
       
-    - Post Junior College: `graduated` 
+    > Post Junior College: `graduated` 
 
 * Subjects are represented by abbreviated names. Available subjects cover commonly tutored ones, including
   
-    - Languages: `cn`, `eng`
+    > Languages: `cn`, `eng`
       
-    - Mathematics & Sciences: `math`, `bio`, `chem`, `phys`, `sci`
+    > Mathematics & Sciences: `math`, `bio`, `chem`, `phys`, `sci`
       
-    - Humanities: `econ`, `geo`, `hist`
+    > Humanities: `econ`, `geo`, `hist`
       
-    - They represent subjects Chinese, English, Mathematics, Biology, Chemistry, Physics, Science,
+    > They represent subjects Chinese, English, Mathematics, Biology, Chemistry, Physics, Science,
       Economics, Geography and History in order of the above listing.
 
 * A student’s contact can have any number of subjects (including 0). 
@@ -180,7 +180,7 @@ Edits an existing student in TutorsPet.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [le/LESSON]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
@@ -228,7 +228,7 @@ Prefix | Searching Criteria
 `s/`   | School
 `t/`   | Subject
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
@@ -273,7 +273,7 @@ Prefix | Sorting Criteria
 `t/`   | Subject          
 `le/`  | Lesson           
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
@@ -299,7 +299,7 @@ This feature can be used at the start of the school year.
 
 Format: `levelup ex/[INDEX]...`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
@@ -329,7 +329,7 @@ This feature can be used to undo `levelup` or indicate retainees.
 
 Format: `leveldown ex/[INDEX]...`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
@@ -360,7 +360,7 @@ be displayed.
 
 Format: `detail INDEX`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
@@ -382,7 +382,7 @@ Permanently deletes the specified student's contact from TutorsPet.
 
 Format: `delete INDEX`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
@@ -422,7 +422,7 @@ Permanently deletes the specified important date from TutorsPet.
 
 Format: `delete-date INDEX`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
