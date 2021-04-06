@@ -24,6 +24,8 @@ import seedu.partyplanet.model.event.predicates.EventNameContainsKeywordsPredica
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.partyplanet.testutil.EditPersonDescriptorBuilder;
+import seedu.partyplanet.testutil.EventBuilder;
+import seedu.partyplanet.testutil.PersonBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -84,6 +86,11 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final String ADD_DEFAULT_PERSON_COMMAND = "add DEFAULT_PERSON";
+    public static final String DELETE_FIRST_PERSON_COMMAND = "delete 1";
+    public static final String ADD_DEFAULT_EVENT_COMMAND = "eadd DEFAULT_EVENT";
+    public static final String DELETE_FIRST_EVENT_COMMAND = "edelete 1";
 
     public static final EditFieldCommand.EditPersonDescriptor DESC_AMY;
     public static final EditFieldCommand.EditPersonDescriptor DESC_BOB;
@@ -218,5 +225,40 @@ public class CommandTestUtil {
         model.updateFilteredEventList(allEvents);
 
         assertEquals(targetIndexes.length, model.getFilteredEventList().size());
+    }
+
+    /**
+     * Adds a default person from PersonBuilder into {@code model}'s address book
+     */
+    public static void addDefaultPerson(Model model) {
+        Person defaultPerson = new PersonBuilder().build();
+        model.addPerson(defaultPerson);
+        model.addState(ADD_DEFAULT_PERSON_COMMAND);
+    }
+
+    /**
+     * Deletes the first person in {@code model}'s filtered list from {@code model}'s address book
+     */
+    public static void deleteFirstPerson(Model model) {
+        Person firstPerson = model.getFilteredPersonList().get(0);
+        model.deletePerson(firstPerson);
+        model.addState(DELETE_FIRST_PERSON_COMMAND);
+    }
+    /**
+     * Adds a default event from EventBuilder into {@code model}'s event book
+     */
+    public static void addDefaultEvent(Model model) {
+        Event defaultEvent = new EventBuilder().build();
+        model.addEvent(defaultEvent);
+        model.addState(ADD_DEFAULT_EVENT_COMMAND);
+    }
+
+    /**
+     * Deletes the first event in {@code model}'s filtered list from {@code model}'s event book
+     */
+    public static void deleteFirstEvent(Model model) {
+        Event firstEvent = model.getFilteredEventList().get(0);
+        model.deleteEvent(firstEvent);
+        model.addState(DELETE_FIRST_EVENT_COMMAND);
     }
 }
