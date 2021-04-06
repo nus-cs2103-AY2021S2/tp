@@ -209,24 +209,25 @@ Parameters:
 
 KEYWORD(s) of any number and sequence:
 1. To add on a review: `[re/REVIEW] ...`
-2. To add on a price: `[p/PRICE] ...`
+2. To add on a price: `[p/PRICE]`
 
 Note:
-- Adds on a review and/or a price to a FoodDiary entry at the specified `INDEX`.
+- Adds on review(s) and/or a price to a FoodDiary entry at the specified `INDEX`.
 - Multiple reviews with one price can be added on.
 - Index refers to the index number shown in the displayed FoodDiary entry list. The index must be a
   positive integer (e.g. 1,2,3,...).
 - At least one of the optional fields must be provided.
 - Existing reviews in the FoodDiary entry (at the specified `INDEX`) will be added on to the input reviews.
 - Existing price in the FoodDiary entry (at the specified `INDEX`) will be updated according to the
-input price only if price added is beyond current range.
+input price only if price added is beyond current range (e.g. Price range $5-10 will not be updated when a price of 
+  $6 is added on)
 
 Examples:
 
     addon 1 re/I like the way the rice is cooked p/6
     addon 2 re/I like the way the rice is cooked
     addon 3 p/6
-    addon 3 p/6 re/I like the way the rice is cooked
+    addon 3 p/6 re/I like the way the rice is cooked re/I also liked the way the chicken was marinated
 
 ### Delete a FoodDiary entry: `delete`
 
@@ -431,7 +432,7 @@ Parameters: none
 
 Q: How do I transfer my data to another Computer?
 
-A: Install the app in the other computer and overwrite the empty data file it creates with the file that
+A: Install the FoodDiary app in the other computer and overwrite the empty data file it creates with the file that
 contains the data of your previous AddressBook home folder.
 
 
@@ -441,7 +442,7 @@ contains the data of your previous AddressBook home folder.
 
 Action | Format, Examples
 --------|------------------
-**Add**     | `add <n/RESTAURANT NAME> <ra/RATING FROM 0-5> <p/PRICE> <re/REVIEW> <a/ADDRESS> [c/CATEGORY]... [s/SCHOOL LOCATION]...` <br> e.g. `add n/Al Amaan Restaurant ra/4 p/6 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim`
+**Add**     | `add <n/RESTAURANT NAME> <ra/RATING> <p/PRICE> <re/REVIEW> <a/ADDRESS> [c/CATEGORY]... [s/SCHOOL LOCATION]...` <br> e.g. `add n/Al Amaan Restaurant ra/4 p/6 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim`
 **AddOn**   | `addon <INDEX> <KEYWORD> ...` <br>e.g.`addon 1 re/I like this food a lot p/5`
 **Delete**  | `delete <INDEX>` <br> e.g. `delete 1`
 **List**    | `list` <br> e.g. `list`
