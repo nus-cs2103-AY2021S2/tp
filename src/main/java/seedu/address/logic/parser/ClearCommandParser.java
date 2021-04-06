@@ -1,10 +1,12 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENERAL_EVENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.clearcommand.ClearCommand;
@@ -36,7 +38,7 @@ public class ClearCommandParser {
             command = new ClearModulesCommand();
         } else if (clearEventsCondition(argumentMultimap)) {
             command = new ClearEventsCommand();
-        } else if (argumentMultimap.getPreamble().isEmpty()) {
+        } else if (clearRemindCondition(argumentMultimap)) {
             command = new ClearCommand();
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -47,16 +49,26 @@ public class ClearCommandParser {
 
     private boolean clearModulesCondition(ArgumentMultimap argumentMultimap) {
         return arePrefixesPresent(argumentMultimap, PREFIX_MODULE)
-                && argumentMultimap.getPreamble().isEmpty();
+                && argumentMultimap.getPreamble().isEmpty()
+                && argumentMultimap.getValue(PREFIX_MODULE).equals(Optional.of(""));
     }
 
     private boolean clearContactsCondition(ArgumentMultimap argumentMultimap) {
         return arePrefixesPresent(argumentMultimap, PREFIX_NAME)
-                && argumentMultimap.getPreamble().isEmpty();
+                && argumentMultimap.getPreamble().isEmpty()
+                && argumentMultimap.getValue(PREFIX_NAME).equals(Optional.of(""));
     }
 
     private boolean clearEventsCondition(ArgumentMultimap argumentMultimap) {
         return arePrefixesPresent(argumentMultimap, PREFIX_GENERAL_EVENT)
+                && argumentMultimap.getPreamble().isEmpty()
+                && argumentMultimap.getValue(PREFIX_GENERAL_EVENT).equals(Optional.of(""));
+    }
+
+    private boolean clearRemindCondition(ArgumentMultimap argumentMultimap) {
+        return !arePrefixesPresent(argumentMultimap, PREFIX_MODULE)
+                && !arePrefixesPresent(argumentMultimap, PREFIX_NAME)
+                && !arePrefixesPresent(argumentMultimap, PREFIX_GENERAL_EVENT)
                 && argumentMultimap.getPreamble().isEmpty();
     }
 
