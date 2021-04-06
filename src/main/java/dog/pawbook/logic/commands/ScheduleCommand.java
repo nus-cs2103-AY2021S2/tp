@@ -19,6 +19,8 @@ public class ScheduleCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Here's your schedule!";
 
+    public static final String MESSAGE_SUCCESS_NO_SCHEDULE = "No programs are scheduled on this day.";
+
     private final LocalDate date;
 
     public ScheduleCommand(LocalDate date) {
@@ -30,6 +32,10 @@ public class ScheduleCommand extends Command {
         requireNonNull(model);
         model.updateFilteredEntityList(IS_PROGRAM_PREDICATE.and(new ProgramOccursOnDatePredicate(date)));
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        if (model.getFilteredEntityList().size() == 0) {
+            return new CommandResult(MESSAGE_SUCCESS_NO_SCHEDULE);
+        } else {
+            return new CommandResult(MESSAGE_SUCCESS);
+        }
     }
 }

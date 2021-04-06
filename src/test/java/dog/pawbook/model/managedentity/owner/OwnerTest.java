@@ -6,8 +6,8 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static dog.pawbook.testutil.Assert.assertThrows;
-import static dog.pawbook.testutil.TypicalOwners.ALICE;
-import static dog.pawbook.testutil.TypicalOwners.BOB;
+import static dog.pawbook.testutil.TypicalEntities.ALICE;
+import static dog.pawbook.testutil.TypicalEntities.BOB;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

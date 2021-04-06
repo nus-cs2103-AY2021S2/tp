@@ -1,8 +1,8 @@
 package dog.pawbook.model.managedentity.owner;
 
 import static dog.pawbook.testutil.Assert.assertThrows;
-import static dog.pawbook.testutil.TypicalOwners.ALICE;
-import static dog.pawbook.testutil.TypicalOwners.BOB;
+import static dog.pawbook.testutil.TypicalEntities.ALICE;
+import static dog.pawbook.testutil.TypicalEntities.BOB;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

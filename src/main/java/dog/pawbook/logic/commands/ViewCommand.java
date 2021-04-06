@@ -2,6 +2,7 @@
 package dog.pawbook.logic.commands;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW;
+import static dog.pawbook.commons.core.Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW_FOR_ONE;
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ENTITY_ID;
 import static java.util.Objects.requireNonNull;
 
@@ -71,7 +72,13 @@ public class ViewCommand extends Command {
         model.updateFilteredEntityList(new IdMatchPredicate(targetIdList));
         model.sortEntities(new ViewCommandComparator(targetEntity.getClass()));
 
-        return new CommandResult(String.format(MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
+        if (model.getFilteredEntityList().size() == 1) {
+            return new CommandResult(String.format(
+                    MESSAGE_ENTITIES_LISTED_OVERVIEW_FOR_ONE, model.getFilteredEntityList().size()));
+        } else {
+            return new CommandResult(String.format(
+                    MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
+        }
     }
 
     @Override

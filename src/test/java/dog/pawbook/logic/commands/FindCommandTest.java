@@ -2,10 +2,10 @@ package dog.pawbook.logic.commands;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static dog.pawbook.testutil.TypicalOwners.CARL;
-import static dog.pawbook.testutil.TypicalOwners.ELLE;
-import static dog.pawbook.testutil.TypicalOwners.FIONA;
-import static dog.pawbook.testutil.TypicalOwners.getTypicalDatabase;
+import static dog.pawbook.testutil.TypicalEntities.CARL;
+import static dog.pawbook.testutil.TypicalEntities.ELLE;
+import static dog.pawbook.testutil.TypicalEntities.FIONA;
+import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
