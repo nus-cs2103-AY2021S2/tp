@@ -13,10 +13,8 @@ public class ListCommand extends Command {
 
     private static final String MESSAGE_SUCCESS = "Listed all saved API endpoints on the left-hand-side panel.\n";
 
-    private static final String MESSAGE_FILLED_LIST = "Want to see the details of an API endpoint?\n"
-            + "Use the show command with the index of an endpoint!\n"
-            + "Example (to show the details of the first endpoint):\n"
-            + "show 1";
+    private static final String MESSAGE_FILLED_LIST = "Try using the show command to "
+            + "display the details of a particular endpoint!\n";
 
     private static final String MESSAGE_EMPTY_LIST = "It seems like your list is empty!\n"
             + "Try using the add command to populate your list!\n";

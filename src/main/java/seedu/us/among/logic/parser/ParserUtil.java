@@ -1,6 +1,7 @@
 package seedu.us.among.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_INDEX;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -21,7 +22,7 @@ import seedu.us.among.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading

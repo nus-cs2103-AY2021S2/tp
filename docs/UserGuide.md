@@ -48,7 +48,7 @@ Before diving into the rest of the contents in our user guide, the following are
 | <span class="main-command">Main Command</span> | Indicates the keyword describing the main action of a command |
 | <span class="compulsory-param">Compulsory Parameter</span> | Indicates the compulsory parameters/prefixes of a command |
 | <span class="optional-param">Optional Parameter</span> | Indicates the optional parameters/prefixes of a command |
-| [Repeated Parameters]   | Indicates the parameters/prefixes that may be repeated multiple times    |
+| [Repeated Parameters]   | Indicates the parameters/prefixes that may be repeated multiple times, including zero times    |
 
 
 <div style="page-break-after: always;"></div>
@@ -109,10 +109,35 @@ In the example above, <span class="main-command">add</span> is the command word 
 | INDEX        |  None  | The index of the endpoint as shown in the endpoint panel list         |
 | THEME        |  None  | The theme for the application                                         |
 | METHOD       |   -x   | The [request method](#84-request-methods) to use for an endpoint      |
-| ADDRESS      |   -u   | The URL to use for an endpoint                                        |
+| URL          |   -u   | The URL to use for an endpoint                                        |
 | HEADER       |   -h   | The header to use for an endpoint **(must be enclosed with \"\")**      |
-| DATA         |   -d   | The data to use for an endpoint **(must be in JSON format)**          |
+| DATA         |   -d   | The data to use for an endpoint **(must be in [JSON](#85-json-format) format)**          |
 | TAG          |   -t   | The tag to label an endpoint                 |
+
+Here are some general rules to follow when entering prefixes and parameters:
+* A whitespace must be included before every prefix.<br>
+  e.g. `-x METHOD-u URL` is not acceptable, and `-x METHOD -u URL` is in the correct format.<br>
+  
+* Parameters can be in any order.<br>
+  e.g. If the command specifies `-x METHOD -u URL`, `-u URL -x METHOD` is also acceptable.<br>
+  
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. If you specify `-u https://github.com/ -u https://google.com/`, only `-u https://google.com/` will be taken.<br>
+  
+* To add multiple parameters of the same prefix, add the prefix multiple times before each parameter.<br>
+  e.g. To add two TAGs, enter `-t tagOne -t tagTwo`.<br>
+  e.g. To add three HEADERs, enter `-h "header: one" -h "header: two" -h "header: three"`.<br>
+  
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. If the command specifies `help 123`, it will be interpreted as `help`.<br>
+
+* Multiple headers/tags must be unique and duplicates will be ignored.
+  e.g. `edit 1 -t tag -t tag` will only create one `tag`.
+
+About the URL Parameter:
+* We do not check the validity of the URLs during input as it is impossible to verify if it exists without sending a request to the server. We will instead prevent impossible URL from being keyed in. e.g. `abc.com\go` (`\` cannot exist in a valid URL)
+
+* If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be specified for an API request to be carried out.For instance, if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 Check out the screenshot of each command for an idea of the expected output in the application's **Result Display**!
@@ -122,7 +147,7 @@ Check out the screenshot of each command for an idea of the expected output in t
 
 ### 4.1 General
 
-#### 4.1.1 View help: `help`
+#### 4.1.1 View help: <span class="main-command">help</span>
 
 **Description:** New or stuck with one of the commands? Get the relevant helpful information through a quick pop up window!
 
@@ -134,7 +159,7 @@ Check out the screenshot of each command for an idea of the expected output in t
   <img width="450px" src="images/helpMessage.png" >
 </p>
 
-#### 4.1.2 Toggle theme: `toggle`
+#### 4.1.2 Toggle theme: <span class="main-command">toggle</span>
 
 **Description:** Seeking a more personal visual design? Choose from our themes consisting of **light, dark, material or imposter**!
 
@@ -148,7 +173,7 @@ Check out the screenshot of each command for an idea of the expected output in t
 
 <div style="page-break-after: always;"></div>
 
-#### 4.1.3 Exit program: `exit`
+#### 4.1.3 Exit program: <span class="main-command">exit</span>
 
 **Description:** Looking to exit the application? A simple command does the job but do come back soon!
 
@@ -158,41 +183,38 @@ Check out the screenshot of each command for an idea of the expected output in t
 
 ### 4.2 Endpoint
 
-#### 4.2.1 Add an API endpoint: `add`
+#### 4.2.1 Add an API endpoint: <span class="main-command">add</span>
 
 **Description:** Add an API endpoint to the API endpoint list.
 
 **Format:** <span class="main-command">add</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span> <span class="optional-param">[-t TAG]</span>
 
-**Example & Output:** <span class="main-command">add</span> <span class="compulsory-param">-x POST</span> <span class="compulsory-param">-u https://reqres.in/api/users</span> <span class="optional-param">-d {\"name\": \"tarzan\", \"job\": \"the jungle man\"}</span> <span class="optional-param">-h \"Content-Type: application/json\"</span> <span class="optional-param">-t nature</span>
+**Example & Output:** <span class="main-command">add</span> <span class="compulsory-param">-x POST</span> <span class="compulsory-param">-u https://reqres.in/api/users</span> <span class="optional-param">-d {\"name\": \"tarzan\", \"job\": \"the jungle man\"}</span> <span class="optional-param">-h \"Content-Type: application/json\"</span> <span class="optional-param">-t nature</span> <span class="optional-param">-t important</span>
 
 <p align="center">
   <img width="450px" src="images/commands/add.png" >
 </p>
 
-<div markdown="span" class="alert alert-danger">:exclamation: **Caution**
-Multiple headers/tags must be unique and duplicates will be ignored
-</div>
 
-<div style="page-break-after: always;"></div>
-
-#### 4.2.2 Edit an API endpoint: `edit`
+#### 4.2.2 Edit an API endpoint: <span class="main-command">edit</span>
 
 **Description:** Edit the API endpoint at the specified index shown in the API endpoint list **(at least one optional argument must be provided)**.
 
 **Format:** <span class="main-command">edit</span> <span class="compulsory-param">INDEX</span> <span class="optional-param">-x METHOD</span> <span class="optional-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span> <span class="optional-param">[-t TAG]</span>
 
-**Example & Output:** <span class="main-command">edit</span> <span class="compulsory-param">1</span> <span class="optional-param">-x POST</span> <span class="optional-param">-u https://reqres.in/api/users</span> <span class="optional-param">-d {"name": "john doe", "job": "developer"}</span>
+**Example & Output:** <span class="main-command">edit</span> <span class="compulsory-param">1</span> <span class="optional-param">-x POST</span> <span class="optional-param">-u https://reqres.in/api/users</span> <span class="optional-param">-d {\"name\": \"john doe\", \"job\": \"developer\"}</span> <span class="optional-param">-t common</span> <span class="optional-param">-t important</span>
 
 <p align="center">
   <img width="450px" src="images/commands/edit.png" >
 </p>
 
-<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-Multiple headers/tags must be unique and duplicates will be ignored
+<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
+When editing tags, the existing tags of the endpoint will be removed. <br>
+i.e adding of tags is not cumulative.<br>
+You may remove all the endpoint’s tags by typing ` -t` without specifying any tags after it
 </div>
 
-#### 4.2.3 Show an API endpoint: `show`
+#### 4.2.3 Show an API endpoint: <span class="main-command">show</span>
 
 **Description:** Show the details of the API endpoint at the specified index shown in the API endpoint list (index must 
 be a positive integer).
@@ -207,7 +229,7 @@ be a positive integer).
 
 <div style="page-break-after: always;"></div>
 
-#### 4.2.4 Remove an API endpoint: `remove`
+#### 4.2.4 Remove an API endpoint: <span class="main-command">remove</span>
 
 **Description:** Remove the API endpoint at the specified index shown in the API endpoint list.
 
@@ -219,9 +241,9 @@ be a positive integer).
   <img width="450px" src="images/commands/remove.png" >
 </p>
 
-#### 4.2.5 Find a saved API endpoint: `find`
+#### 4.2.5 Find a saved API endpoint: <span class="main-command">find</span>
 
-**Description:** Find API routes containing the search word in any of its fields **(defaults to all fields if not specified and requires at least one keyword)**.
+**Description:** Find endpoints containing the search word/s through all fields **(requires at least one keyword)**.
 
 **Format:** <span class="main-command">find</span> <span class="optional-param">[KEYWORD]</span>
 
@@ -231,13 +253,36 @@ be a positive integer).
   <img width="450px" src="images/commands/find.png" >
 </p>
 
-<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-You may include [prefixes](#prefix-table) to scope your search terms!
+**Description (Precise Search):** Find endpoints containing the search word/s based on the [prefix](#prefix-table) **(requires at least one keyword)**
+
+**Format (Precise Search):** <span class="main-command">find</span> <span class="optional-param">-x [METHOD]</span> <span class="optional-param">-u [URL]</span> <span class="optional-param">-d [DATA]</span> <span class="optional-param">-h [HEADER]</span> <span class="optional-param">-t [TAG]</span>
+
+**Example & Output:** <span class="main-command">find</span> <span class="optional-param">-x get</span> <span 
+class="optional-param">-u google</span>
+
+to-do tanjin update pic here (will match `get` from the Method field **and** `google` from the URL field)
+<p align="center">
+  <img width="450px" src="images/commands/find.png" >
+</p>
+
+**Example & Output:** <span class="main-command">find</span> <span class="optional-param">-x get post</span> <span 
+class="optional-param">-u google</span>
+
+to-do tanjin update pic here (will match `get OR post` from the Method field **and** `google` from the URL field)
+<p align="center">
+  <img width="450px" src="images/commands/find.png" >
+</p>
+
+<div markdown="span" class="alert alert-warning">:bulb: **Tip:** The search is case-insensitive and the order of the keywords do not matter.<br>
+Partial Words **will** be matched. e.g. `appl` will match `Apple`<br>
+Searches with no none or a single [prefix](#prefix-table) will preform an **OR** search and all Endpoints matching either keywords will be returned.<br>
+Searches across multiple [prefixes](#prefix-table) will preform an **AND** search and only endpoints matching all keywords will be returned.
 </div>
+
 
 <div style="page-break-after: always;"></div>
 
-#### 4.2.6 List all saved API endpoints: `list`
+#### 4.2.6 List all saved API endpoints: <span class="main-command">list</span>
 
 **Description:** Show a list of all API endpoints in the API endpoint list. If there are no endpoints in the API endpoint list, nothing will show up on the Endpoint List bar.
 
@@ -249,7 +294,7 @@ You may include [prefixes](#prefix-table) to scope your search terms!
   <img width="450px" src="images/commands/list.png" >
 </p>
 
-#### 4.2.7 Clear all saved API endpoints: `clear`
+#### 4.2.7 Clear all saved API endpoints: <span class="main-command">clear</span>
 
 **Description:** Clear all API endpoints in the API endpoint list.
 
@@ -267,11 +312,11 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
 
 <div style="page-break-after: always;"></div>
 
-#### 4.2.8 Call a saved API endpoint: `send`
+#### 4.2.8 Call a saved API endpoint: <span class="main-command">send</span>
 
 **Description:** [Call](#glossary-call) an API endpoint from the API endpoint list **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
-**Format** <span class="main-command">send</span> <span class="compulsory-param">INDEX</span>
+**Format:** <span class="main-command">send</span> <span class="compulsory-param">INDEX</span>
 
 **Example & Output:** <span class="main-command">send</span> <span class="compulsory-param">1</span>
 
@@ -279,7 +324,7 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
   <img width="450px" src="images/commands/send.png" >
 </p>
 
-#### 4.2.9 Call an API endpoint directly without saving: `run`
+#### 4.2.9 Call an API endpoint directly without saving: <span class="main-command">run</span>
 
 **Description:** [Call](#glossary-call) an API endpoint directly (without saving) **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
@@ -291,8 +336,21 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
   <img width="450px" src="images/commands/run.png" >
 </p>
 
+**Description (Shortcut):** [Call](#glossary-call) an API endpoint directly (without saving) to send a GET 
+request that does not specify any data or header **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + 
+<kbd>d</kbd>)**.
+
+**Format (Shortcut):** <span class="main-command">run</span> <span class="compulsory-param">URL</span>
+
+**Example & Output:** <span class="main-command">run</span> <span class="compulsory-param">https://api.data.gov.sg/v1/environment/pm25</span>
+
+<p align="center">
+  <img width="450px" src="images/commands/run.png" >
+</p>
+
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-A shorthand for <span class="compulsory-param">GET</span> requests can be done without specifying <span class="compulsory-param">-x</span> and <span class="compulsory-param">-u</span> (for example: <span class="main-command">run</span> <span class="compulsory-param">https://api.data.gov.sg/v1/environment/pm25</span>).
+The above shortcut for run command is designed for users to easily verify outputs for common API endpoints that 
+do not require other input data or header. Note that this feature is only meant for sending GET requests.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -310,7 +368,7 @@ command box with the last command.
 
 #### 4.3.2 Switch focused component
 
-**Description:** As users may wish to switch the focused component (e.g. to type commands in the commandbox or to scroll responses in the result display), the <kbd>tab</kbd> key is available as an option to toggle the focused component (highlighted with an orange outline).
+**Description:** As users may wish to switch the focused component (e.g. to type commands in the command box or to scroll responses in the result display), the <kbd>tab</kbd> key is available as an option to toggle the focused component (highlighted with an orange outline).
 
 **Format:** <kbd>tab</kbd>
 
@@ -334,9 +392,7 @@ command box with the last command.
 
 **Q**: How do I transfer my data to another Computer?
 <br/><br/> 
-**A**: Install the
-application in the other computer and overwrite the empty data file it creates
-with the file that contains the data of your previous imPoster home folder.
+**A**: Install the application in the other computer and place your current data folder in the same directory as the newly installed application (overwrite the data folder of the new application if applicable).
 
 **Q**: How can I send non-JSON data in the request body?
 <br/><br/>
@@ -345,7 +401,7 @@ with the file that contains the data of your previous imPoster home folder.
 <a name="data-file"></a>
 **Q**: Where are the data of imPoster saved?
 <br/><br/>
-**A**: imPoster data are saved automatically into a JSON file named `<JAR file location>/data/imposter.json` after any command that changes the data.
+**A**: imPoster data are saved automatically after every command into a JSON file named `imposter.json`. This file is stored within the `data` folder in the same location as the application `JAR` file and is created after the initial launch (and a command execution) of a fresh installation.
 
 <div style="page-break-after: always;"></div>
 
@@ -355,25 +411,25 @@ A quick overview of all supported commands, their formats and examples are given
 
 ### 6.1 General
 
-| Command    | Format                                |
-| ---------- | ------------------------------------- |
-| **Help**   | `help`                                |
-| **Toggle** | `toggle`                              |
-| **Exit**   | `exit`                                |
+| Command    | Format                                 |
+| ---------- | -------------------------------------  |
+| **Help**   | <span class="main-command">help</span> |
+| **Toggle** | <span class="main-command">toggle</span> <span class="compulsory-param">THEME</span> |
+| **Exit**   | <span class="main-command">exit</span> |
 
 ### 6.2 Endpoint
 
 | Command    | Format                                | 
 | ---------- | ------------------------------------- |
-| **Add**    | `add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…` <br>  |
-| **Edit**   | `edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…`<br> |
-| **Show**   | `show INDEX`<br>                      |
-| **Remove** | `remove INDEX`<br>                    |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]…`<br> |
-| **List**   | `list`                                |
-| **Clear**  | `clear`                               |
-| **Send**   | `send INDEX` <br>                     |
-| **Run**    | `run -x METHOD -u URL [-d DATA] [-h HEADER]…` <br> |
+| **Add**    | <span class="main-command">add</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span> <span class="optional-param">[-t TAG]</span><br>|
+| **Edit**   | <span class="main-command">edit</span> <span class="compulsory-param">INDEX</span> <span class="optional-param">-x METHOD</span> <span class="optional-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span> <span class="optional-param">[-t TAG]</span><br> |
+| **Show**   | <span class="main-command">show</span> <span class="compulsory-param">INDEX</span><br>                   |
+| **Remove** | <span class="main-command">remove</span> <span class="compulsory-param">INDEX</span>                     |
+| **Find**   | <span class="main-command">find</span> <span class="optional-param">[KEYWORD]</span><br>                 |
+| **List**   | <span class="main-command">list</span><br>                                                               |
+| **Clear**  | <span class="main-command">clear</span><br>                                                              |
+| **Send**   | <span class="main-command">send</span> <span class="compulsory-param">INDEX</span><br>                   |
+| **Run**    | <span class="main-command">run</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span><br>|
 
 <div style="page-break-after: always;"></div>
 
@@ -391,6 +447,7 @@ A quick overview of all supported commands, their formats and examples are given
 | **JSON** | JSON is short for **JavaScript Object Notation** which is a lightweight format for data storage (a more detailed explanation can be found [here](#85-json-format)) |
 | **CURL** | <a name="glossary-curl"></a> CURL is short for **Client URL** and is a command-line tool used in the transfer of data via different network protocols |
 | **Index** | Index in this guide refers to the position of the endpoint in the endpoint list (represented by the number beside the endpoint) |
+| **Protocol** | <a name="glossary-protocol"></a> A protocol is a system of rules that define how data is exchanged within or between systems |
 
 <div style="page-break-after: always;"></div>
 
@@ -421,19 +478,19 @@ As of the latest version of our application, we support 7 commonly used request 
 
 | Method      | Description                                                                                                 |
 | ----------- | ----------------------------------------------------------------------------------------------------------- |
-| **GET**     | Retrieves information from a server through a specified URI                  |
+| **GET**     | Retrieves information from a server through a specified URL                  |
 | **POST**    | Sends data to a server, commonly in JSON/html form format           |
 | **PUT**     | Sends data to a server, commonly in JSON/html form format      |
-| **DELETE**  | Removes information from a server through a specified URI             |
+| **DELETE**  | Removes information from a server through a specified URL             |
 | **HEAD**    | Similar to GET, but returns only the header section of the response                                         |
 | **PATCH**   | Sends data to a server, commonly in JSON/html form format |
-| **OPTIONS** | Retrieves the allowed communication options (methods) for a specified URI                                   |
+| **OPTIONS** | Retrieves the allowed communication options (methods) for a specified URL                                   |
 
 ### 8.5 JSON Format
 JSON is short for JavaScript Object Notation and is a common lightweight format for data storage (in the form of key/value pairs). In an API call, the JSON format is also commonly used to send data between two systems. For the current version of our application, JSON is the only format supported for sending data. The following are some examples of data in JSON format:
-- `{}`
-- `{"name": "john doe"}`
-- `{"persons": {"name": "john doe"}}`
+- `{}` - represents an empty JSON data
+- `{"name": "john doe"}` - represents a single level JSON data 
+- `{"persons": {"name": "john doe"}}` - represents a nested JSON data
 
 ### 8.6 Sample Endpoints
 

@@ -8,26 +8,26 @@ class UserGuideTest {
     private final UserGuide userGuide = new UserGuide();
 
     @Test
-    void getAction() {
-        assertEquals(userGuide.getAction(), "");
+    void getCommand() {
+        assertEquals(userGuide.getCommand(), "");
     }
 
     @Test
-    void setAction() {
-        userGuide.setAction("Hello");
-        assertEquals(userGuide.getAction(), "Hello");
-        userGuide.setAction("");
+    void setCommand() {
+        userGuide.setCommand("Hello");
+        assertEquals(userGuide.getCommand(), "Hello");
+        userGuide.setCommand("");
     }
 
     @Test
-    void getFormat() {
-        assertEquals(userGuide.getFormat(), "");
+    void getExample() {
+        assertEquals(userGuide.getExample(), "");
     }
 
     @Test
-    void setFormat() {
-        userGuide.setFormat("Hello");
-        assertEquals(userGuide.getFormat(), "Hello");
-        userGuide.setFormat("");
+    void setExample() {
+        userGuide.setExample("Hello");
+        assertEquals(userGuide.getExample(), "Hello");
+        userGuide.setExample("");
     }
 }

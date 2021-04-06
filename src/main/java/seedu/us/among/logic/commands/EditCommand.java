@@ -67,7 +67,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of an existing API endpoint "
             + "identified using its displayed index from the API endpoint list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX "
             + "[" + PREFIX_METHOD + " METHOD] "
             + "[" + PREFIX_ADDRESS + " ADDRESS] "
             + "[" + PREFIX_DATA + " DATA] "
@@ -82,7 +82,7 @@ public class EditCommand extends Command {
             + MESSAGE_API_EXAMPLE_6
             + MESSAGE_API_EXAMPLE_7;
 
-    public static final String MESSAGE_EDIT_ENDPOINT_SUCCESS = "Edited endpoint: %1$s";
+    public static final String MESSAGE_EDIT_ENDPOINT_SUCCESS = "Edited endpoint:\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ENDPOINT = "This API endpoint already exists in the "
             + "API endpoint list.";
@@ -108,7 +108,7 @@ public class EditCommand extends Command {
         List<Endpoint> lastShownList = model.getFilteredEndpointList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
         }
 
         Endpoint endpointToEdit = lastShownList.get(index.getZeroBased());
@@ -119,7 +119,7 @@ public class EditCommand extends Command {
         }
 
         model.setEndpoint(endpointToEdit, editedEndpoint);
-        model.updateFilteredEndpointList(Model.PREDICATE_SHOW_ALL_ENDPOINTS);
+        model.updateFilteredEndpointList(model.getFilteredPredicate());
         return new CommandResult(String.format(MESSAGE_EDIT_ENDPOINT_SUCCESS, editedEndpoint));
     }
 

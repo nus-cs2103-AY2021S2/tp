@@ -88,4 +88,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEndpointList(Predicate<Endpoint> predicate);
+
+    /**
+     * Returns the predicate used to filter the EndpointList.
+     */
+    Predicate<Endpoint> getFilteredPredicate();
 }
