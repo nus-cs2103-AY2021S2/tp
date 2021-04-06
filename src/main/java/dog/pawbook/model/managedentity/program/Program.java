@@ -2,15 +2,12 @@ package dog.pawbook.model.managedentity.program;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
-import static java.util.stream.Collectors.toList;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.Vector;
@@ -126,14 +123,12 @@ public class Program extends Entity {
     public Collection<String> getOtherPropertiesAsString() {
         Collection<String> properties = new Vector<>();
 
-        List<Session> upcomingSessions = sessionSet.stream()
-                .filter(session -> LocalDateTime.now().isBefore(session.dateTime)).collect(toList());
-        if (upcomingSessions.size() > 0) {
-            properties.add(upcomingSessions.stream()
-                    .sorted(Comparator.comparing(session -> session.dateTime))
-                    .map(session -> session.value)
-                    .collect(Collectors.joining(", ", "Upcoming timeslot(s): ", "")));
-        }
+        String timeslots = sessionSet.stream()
+                .sorted(Comparator.comparing(session -> session.dateTime))
+                .map(session -> session.value)
+                .collect(Collectors.joining(", "));
+        properties.add("Timeslot(s): " + timeslots);
+
         if (!dogidSet.isEmpty()) {
             properties.add(dogidSet.stream()
                     .sorted()
