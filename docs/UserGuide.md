@@ -35,7 +35,7 @@ JSON files. It will start with an empty Address Book and Event Book if there is 
 
 | Parameter | Prefix | Applicable to | Description |
 |---|---|---|---|
-| `ADDRESS` | `-a`, `--address` | Contact | Any value |
+| `ADDRESS` | `-a`,`--address` | Contact | Any value |
 | `BIRTHDAY` | `-b`, `--birthday` | Contact | Valid date, with or without a year:{::nomarkdown}<ul><li>Year must be a positive integer between 0001 and 9999 if specified, and birthday must be in the past</li><li>If the day is incompatible with the month and year, the closest valid date may be matched<br>e.g. <code>29 Feb 2021</code> is mapped to <code>28 Feb 2021</code></li><li>Accepted date formats are listed below, case-insensitive:<ul><li>ISO format: <code>--01-09</code> / <code>1997-01-09</code></li><li>Dot delimited: <code>9.1</code> / <code>9.1.1997</code></li><li>Slash delimited: <code>9/1</code> / <code>9/1/1997</code></li><li>Long DMY format: <code>9 Jan</code> / <code>9 Jan 1997</code></li><li>Full DMY format: <code>9 January</code> / <code>9 January 1997</code></li><li>Long YMD format: <code>Jan 9</code> / <code>Jan 9 1997</code></li><li>Full YMD format: <code>January 9</code> / <code>January 9 1997</code></li></ul></li></ul>{:/} |
 | `COMMAND` | - | - | Any valid command listed [below](#party-planet-commands) |
 | `DATE` | `-d`, `--date` | Event | Valid date with a year:{::nomarkdown}<ul><li>Year must be present and a positive integer between 0001 and 9999</li><li>See <code>BIRTHDAY</code> parameter above for available date formats</li></ul>{:/} |
@@ -180,26 +180,31 @@ Displays a list of contacts in the contact list, with optional search criteria.
 
 Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`
 1. If no search parameters specified, `list [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts in contact list
-   * `-s` parameter optionally sorts contacts by `SORT_FIELD`:
-     * `n`, `name`: names in (case-sensitive) lexicographical order (by default, if `-s` not specified)
-     * `b`, `birthday`: day and month of the birthday (Insensitive to year, will not sort by year)
-     * `u`, `upcoming`: days left to next upcoming birthday
-   * `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`:
-     * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
-     * `d`, `desc`, `descending`: descending
-     * Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order
 2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts matching the search criteria
-   * Search criteria, case-insensitive:
-     * `-n`, `--name` filters the contacts by name
-     * `-t`, `--tag` filters the contacts by tags
-     * `-b`, `--birthday` filters contacts by birthday month
-       * If `BIRTHDAY` is "0" or unspecified, filtered contacts do not have a birthday.
-       * Otherwise `BIRTHDAY` must be one of the 12 months, represented either by the month value or string,
-         i.e. `12`, `Dec`, `December` filters contacts with a birthday in December.
-  * Partial matches to names and tags are performed by default, unless `--exact` is specified for exact matches.
-  * All searches are case-insensitive.
-  * All specified search criteria must be fulfilled by each contact by default, unless `--any` is specified for any match.
-  * The filtered contacts can be additionally sorted using the `-s` and `-o` prefixes, as above.
+
+Search criteria, case-insensitive:
+* `-n`, `--name` filters the contacts by name
+* `-t`, `--tag` filters the contacts by tags
+* `-b`, `--birthday` filters contacts by birthday month
+  * If `BIRTHDAY` is "0" or unspecified, displays filtered contacts without birthday.
+  * Otherwise, `BIRTHDAY` must be one of the 12 months, represented either by the month value or string, 
+    i.e. `12`, `Dec`, `December` filters contacts with a birthday in December.
+    
+Partial matches to names and tags are performed by default, unless `--exact` is specified for exact matches. 
+`--exact` requires exact spelling match, but is still case-insensitive. e.g. `alEx yeOh` will match `Alex Yeoh`.
+
+All specified search criteria must be fulfilled by each contact by default, unless `--any` is specified for any match. 
+
+Filtered contacts can be additionally sorted using the `-s` and `-o` prefixes (except upcoming birthdays), as below.
+   
+`-s` parameter optionally sorts contacts by `SORT_FIELD`. Possible values of `SORT_FIELD`:
+* `n`, `name`: names in (case-sensitive) lexicographical order (by default, if `-s` not specified)
+* `b`, `birthday`: day and month of the birthday (Insensitive to year, will not sort by year)
+* `u`, `upcoming`: days left to next upcoming birthday (only sorts in `ascending` order regardless of `SORT_ORDER` paramter)
+
+`-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`:
+* `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
+* `d`, `desc`, `descending`: descending
 
 Examples:
 * `list` Lists out all the contacts in the contact list.
@@ -250,26 +255,29 @@ Shows a list of all events in PartyPlanet's Event List. Similar to `list`.
 Format: `elist [--exact] [--any] [-n NAME] [-r REMARK]... [-s SORT] [-o ORDER]`
 
 1. If no search parameters specified, `elist [-s SORT_FIELD] [-o SORT_ORDER]`: List out all events in event list.
-    * `-s` parameter optionally sorts events by `SORT_FIELD`. Possible values of 
-      `SORT_FIELD`:
-      * `n`, `name`: names (case-sensitive) in lexicographical order (by default, if `-s` not specified)
-      * `d`, `date`: event dates (Sensitive to year, will sort according to date with respect to year)
-      * `u`, `upcoming`: days left to next upcoming event (All events marked as `done` will appear at the bottom of the list regardless of the date)
-    * `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`. Possible values of SORT_ORDER:
-      * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
-      * `d`, `desc`, `descending`: descending
-      * Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order
-2. If search parameters specified, `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT_FIELD] [-o 
+2. If search parameters specified, `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT_FIELD] [-o
    SORT_ORDER]`: List all events matching the search criteria
-    * Search criteria, case-insensitive: 
-        * `-n`, `--name` filters the events by event name
-        * `-r`, `--remark` filters the events by event remarks
-    * All searches are case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
+
+Search criteria, case-insensitive:
+* `-n`, `--name` filters the events by event name
+* `-r`, `--remark` filters the events by event remarks
     * Partial matches to event names and remarks are performed by default, e.g. `key` will match `turkey`.
-    * If exact match is desired, specify an additional `--exact` flag.
-    * If multiple names/tags are specified, all specified search criteria must be fulfilled by each event by 
-      default, unless `--any` is specified for any match. 
-    * The filtered events can be additionally sorted using the `-s` and `-o` prefixes, as above.
+    * If exact match is desired, specify an additional `--exact` flag. `--exact` requires exact spelling match, but is not case-sensitive.
+    * All searches are case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
+    * If multiple names/tags are specified, all specified search criteria must be fulfilled by each event by
+      default, unless `--any` is specified for any match.
+    * The filtered events can be additionally sorted using the `-s` and `-o` prefixes, as below.
+   
+`-s` parameter optionally sorts events by `SORT_FIELD`. Possible values of `SORT_FIELD`:
+* `n`, `name`: names (case-sensitive) in lexicographical order (by default, if `-s` not specified)
+* `d`, `date`: event dates (Sensitive to year, will sort according to date with respect to year)
+* `u`, `upcoming`: days left to next upcoming event (All events marked as `done` will appear at the bottom of the list regardless of the date)
+
+Note: Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order  
+
+`-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`. Possible values of SORT_ORDER:
+* `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
+* `d`, `desc`, `descending`: descending
 
 Examples:
 * `elist --exact -n Graduation party -r Get job` Lists out all events whose name is exactly "Graduation party" and remark is exactly "Get job"
