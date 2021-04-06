@@ -26,6 +26,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueRoomList rooms;
     private final UniqueResidentRoomList residentRooms;
     private final IssueList issues;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -258,6 +259,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         issues.remove(key);
     }
 
+    /**
+     * Checks if any issues have the given room associated with it
+     *
+     * @param target Room to check if it has issues associated with it.
+     * @return true if there are issues with the given room associated with it
+     */
+    public boolean issuesContainRoom(Room target) {
+        return issues.containsRoom(target);
+    }
+
     //// util methods
 
     @Override
@@ -292,9 +303,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                        && residents.equals(((AddressBook) other).residents)
-                        && rooms.equals(((AddressBook) other).rooms)
-                        && issues.equals(((AddressBook) other).issues));
+                && residents.equals(((AddressBook) other).residents)
+                && rooms.equals(((AddressBook) other).rooms)
+                && issues.equals(((AddressBook) other).issues));
     }
 
     @Override

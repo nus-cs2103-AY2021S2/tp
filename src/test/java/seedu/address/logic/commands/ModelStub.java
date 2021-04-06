@@ -208,6 +208,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean issuesContainRoom(Room target) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableList<Issue> getFilteredIssueList() {
         throw new AssertionError("This method should not be called.");
     }

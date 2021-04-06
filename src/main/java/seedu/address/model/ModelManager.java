@@ -44,7 +44,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook, userPrefs and commandHistory.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-            ReadOnlyCommandHistory commandHistory) {
+                        ReadOnlyCommandHistory commandHistory) {
         super();
         requireAllNonNull(addressBook, userPrefs, commandHistory);
 
@@ -332,6 +332,12 @@ public class ModelManager implements Model {
 
         setIssue(target, closedIssue);
     }
+
+    @Override
+    public boolean issuesContainRoom(Room target) {
+        return statefulAddressBook.issuesContainRoom(target);
+    }
+
 
     // =========== Filtered Issue List Accessors =============================================================
 
