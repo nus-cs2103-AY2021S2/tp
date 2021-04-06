@@ -114,7 +114,9 @@ In the example above, <span class="main-command">add</span> is the command word 
 | DATA         |   -d   | The data to use for an endpoint **(must be in [JSON](#85-json-format) format)**          |
 | TAG          |   -t   | The tag to label an endpoint                 |
 
+<a name="general-rules"></a>
 Here are some general rules to follow when entering prefixes and parameters:
+
 * A whitespace must be included before every prefix.<br>
   e.g. `-x METHOD-u URL` is not acceptable, and ` -x METHOD -u URL` is in the correct format.<br>
   
@@ -124,15 +126,16 @@ Here are some general rules to follow when entering prefixes and parameters:
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. If you specify `-u https://github.com/ -u https://google.com/`, only `-u https://google.com/` will be taken.<br>
   
-* To add multiple parameters of the same prefix, add the prefix multiple times before each parameter.<br>
+* For Add, Edit and Run commands, to add multiple parameters of the same prefix, add the prefix multiple times before each parameter.<br>
   e.g. To add two TAGs, enter `-t tagOne -t tagTwo`.<br>
   e.g. To add three HEADERs, enter `-h "header: one" -h "header: two" -h "header: three"`.<br>
   
+* Multiple headers/tags must be unique and duplicates will be ignored.
+  e.g. `edit 1 -t tag -t tag` will only create one `tag`.
+
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.<br>
 
-* Multiple headers/tags must be unique and duplicates will be ignored.
-  e.g. `edit 1 -t tag -t tag` will only create one `tag`.
 
 About the URL Parameter:
 * We do not check the validity of the URLs during input as it is impossible to verify if it exists without sending a request to the server. We will instead prevent impossible URL from being keyed in. e.g. `abc.com\go` (`\` cannot exist in a valid URL)
@@ -275,6 +278,11 @@ to-do tanjin update pic here (will match `get OR post` from the Method field **a
 Partial Words **will** be matched. e.g. `appl` will match `Apple`<br>
 Searches with no none or a single [prefix](#prefix-table) will preform an **OR** search and all Endpoints matching either keywords will be returned.<br>
 Searches across multiple [prefixes](#prefix-table) will preform an **AND** search and only endpoints matching all keywords will be returned.
+</div>
+
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
+`find -x get -x post` is not the same as `find -x get post`. <br>
+The first command will only search for items matching post (as stated [here](#general-rules)), while the second command will search for all items matching get and post.
 </div>
 
 
