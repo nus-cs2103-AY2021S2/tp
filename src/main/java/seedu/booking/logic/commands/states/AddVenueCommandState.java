@@ -45,6 +45,7 @@ public class AddVenueCommandState extends CommandState {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void processInput(Object value) {
         String state = this.getState();
         switch (state) {
@@ -55,7 +56,11 @@ public class AddVenueCommandState extends CommandState {
             addVenueIntermediate.setDescription((String) value);
             break;
         case STATE_TAG:
-            addVenueIntermediate.setTags((Set<Tag>) value);
+            try {
+                addVenueIntermediate.setTags((Set<Tag>) value);
+            } catch (ClassCastException e) {
+                throw new ClassCastException();
+            }
             break;
         default:
         }

@@ -29,4 +29,11 @@ public class PromptPersonTagsCommand extends Command {
         ModelManager.setStateInactive();
         return result;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PromptPersonTagsCommand // instanceof handles nulls
+                && this.tagSet.equals(((PromptPersonTagsCommand) other).tagSet));
+    }
 }

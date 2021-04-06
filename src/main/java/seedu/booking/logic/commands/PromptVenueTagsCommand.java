@@ -28,4 +28,11 @@ public class PromptVenueTagsCommand extends Command {
         result = new AddVenueCommand(venue).execute(model);
         return result;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PromptVenueTagsCommand // instanceof handles nulls
+                && this.tagSet.equals(((PromptVenueTagsCommand) other).tagSet));
+    }
 }

@@ -20,16 +20,11 @@ public class AddPersonIntermediate implements Intermediate<AddPersonCommand> {
     /**
      * Initialised a Person Intermediate to store temporary user input
      */
-    public AddPersonIntermediate() {
-        this.name = null;
+    public AddPersonIntermediate(Name name) {
+        this.name = name;
         this.phone = null;
         this.email = null;
         this.tags = null;
-    }
-
-    public void setName(Name name) {
-        this.name = name;
-        System.out.println("Intermediate: " + this.name.toString());
     }
 
     public void setPhone(Phone phone) {

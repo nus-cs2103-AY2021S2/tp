@@ -182,7 +182,7 @@ This appears to be what we need to get a String of the remark. But what about th
 
 ``` java
 Index index = ParserUtil.parseIndex(args);
-return new DeleteCommand(index);
+return new DeletePersonCommand(index);
 ```
 
 There appears to be another utility class that obtains an `Index` from the input provided by the user.

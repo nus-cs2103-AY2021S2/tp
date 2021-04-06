@@ -80,6 +80,7 @@ public class AddBookingCommandState extends CommandState {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void processInput(Object value) {
         String state = this.getState();
         switch (state) {
