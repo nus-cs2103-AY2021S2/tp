@@ -63,7 +63,7 @@ public class EditCommand extends Command {
             + PREFIX_METHOD + " METHOD "
             + PREFIX_ADDRESS + " ADDRESS "
             + PREFIX_DATA + " DATA "
-            + "[" + PREFIX_HEADER + " HEADER]"
+            + "[" + PREFIX_HEADER + " HEADER] "
             + "[" + PREFIX_TAG + " TAG]\n"
             + "All parameters are optional, but least one parameter to edit must be provided.\n\n"
             + "Examples: \n"
