@@ -138,9 +138,21 @@ Here are some general rules to follow when entering prefixes and parameters:
 
 
 About the URL Parameter:
-* We do not check the validity of the URLs during input as it is impossible to verify if it exists without sending a request to the server. We will instead prevent impossible URL from being keyed in. e.g. `abc.com\go` (`\` cannot exist in a valid URL)
+* We understand that the technical specifications of what constitutes a valid [URL](https://en.wikipedia.org/wiki/URL) 
+  can be complex. Our application focuses on API testing, and we have no plans to direct all our efforts in verifying 
+  every technically valid or invalid URLs against the official [URL standard](https://url.spec.whatwg.org/#url-parsing). 
+  While we prevent certain user inputs from being interpreted as valid URLs, we will also provide relevant error 
+  messages to keep users informed if an invalid URL is used to establish a connection.
+  * e.g.`abc.com\go` is an invalid URL as `\` cannot exist in a valid URL.
 
-* If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be specified for an API request to be carried out.For instance, if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
+* If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be 
+  specified for an API request to be carried out. 
+  * e.g. if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`.
+
+About the INDEX Parameter:
+* Index provided should be a non-zero unsigned integer within the allowed range of Java's `int` data type:
+  * the maximum value an `int` can have is (2^31)-1.
+  * the minimum value an `int` can have is -(2^31).
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 Check out the screenshot of each command for an idea of the expected output in the application's **Result Display**!
