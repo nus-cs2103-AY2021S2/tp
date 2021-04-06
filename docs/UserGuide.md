@@ -76,7 +76,7 @@ Example: `list`
 
 Output:
 
-![image](https://user-images.githubusercontent.com/48408342/112432500-f7092e80-8d7b-11eb-85b9-2aaab776d47d.png)
+![image](https://user-images.githubusercontent.com/48408342/113679268-2ad84280-96f2-11eb-96c5-c9cb86b651b4.png)
 
 ### Editing a patient information : `edit`
 
