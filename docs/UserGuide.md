@@ -133,7 +133,10 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 - `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional.
   
 - A student’s contact can have any number of subjects (including 0)
-  
+
+- Subjects are represented by abbreviated name. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`.
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics and Physics respectively.
+
 - A student’s contact can have any number of lessons (including 0)
 
 - Lessons should only consist of the lesson day and time e.g. `Monday 1300`
@@ -174,6 +177,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 * When editing subjects or lessons, the existing subjects or lessons of the student will be removed i.e adding of subjects or lessons are not cumulative.
 * You can remove all the student’s subjects by typing `t/` without specifying any subject names after it.
 * You can remove all the student’s lessons by typing `le/` without specifying any lesson details after it.
+* Subjects are represented by abbreviated name. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`.
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics and Physics respectively.
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:** Edited information can be displayed on the Contact details panel by retyping
