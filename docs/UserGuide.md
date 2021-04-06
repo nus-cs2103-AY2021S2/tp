@@ -49,10 +49,10 @@ contains some sample data.<br>
 list all the current books in store.<br>
    Some example commands you can try:
 
-   * **`addreader`**`r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a reader named
+   * **`addreader`** `r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a reader named
    `John Doe` to SmartLib.
 
-   * **`deletereader`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`deletereader`** `3` : Deletes the 3rd contact shown in the current list.
 
    * **`listbook`** : Lists all contacts.
 
@@ -101,17 +101,17 @@ to keep track of your readers.
 Before you head into the usage of each feature, you may want to take a look at the table of command parameters
 given below, and familiarize yourself with them.
 
-| Parameter       | Description                                                                                                                                                                                                                                              | Valid examples                                                                   |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `NAME`          | The name of the reader.<br><br>It must be alphanumeric (may contain spaces).                                                                                                                                                                             | `Bob Tan`, `noobmaster69`, `X AE A12`                                            |
-| `PHONE_NUMBER`  | The contact number of the reader.<br><br>It must consist only of numbers, and be at least 3 digits long.                                                                                                                                                 | `98765432`, `012`                                                                |
-| `EMAIL`         | The email of the client.<br><br>Emails should be in `name@domain` format, where the `name` part should only contain alphanumeric and special characters, whereas the `domain` part should only contain alphanumeric characters with a period in between. | `bob@bmail.com`, `bob-123@bobby.sg`                                              |
-| `ADDRESS`       | The address of the reader.<br><br>There are no restrictions for this field.                                                                                                                                                                              | `#01-23, Blk 13, Bukit Timah Road`                                               |
-| `TAG`           | The tag that you would like to attach to or search for your reader.<br><br>It must be a single alphanumeric word.                                                                                                                                        | `VIP`, `MostBorrows`                                                             |
-| `INDEX`         | The index of the reader in the displayed list.<br><br>It must be a valid index number (i.e. in the range [`1`,`2`, ..., `length of list`]).                                                                                                              | `1`                                                                              |
-| `KEYWORD`       | The keyword that you would like to use to search for your target reader(s).<br><br>It must be a single alphanumeric word.                                                                                                                                | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
-| `MORE_KEYWORDS` | Other keywords that you may want to use to search for your target reader(s).<br><br>Each additional keyword must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.                                     |                                                                                  |
-| `MORE_TAGS`     | Other tags that you may want to use to search for your target reader(s).<br><br>Each additional tag must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.                                             |                                                                                  |
+| Parameter       | Description                                                                                                                                                                                                                                                                                                                                                   | Valid examples                                                                   |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `NAME`          | The name of the reader.<br><br>It must be alphanumeric (may contain spaces).<br><br>Reader names must be unique (this restriction will be lifted in a later version of our app).                                                                                                                                                                              | `Bob Tan`, `noobmaster69`, `X AE A12`                                            |
+| `PHONE_NUMBER`  | The contact number of the reader.<br><br>It must consist only of numbers, and be at least 3 digits long.                                                                                                                                                                                                                                                      | `98765432`, `012`                                                                |
+| `EMAIL`         | The email of the client.<br><br>Emails should be in `name@domain` format, where the `name` part should only contain alphanumeric and special characters, whereas the `domain` part should only contain alphanumeric characters with a period in between.<br><br>Different readers may share the same email (as we understand that some families may do that). | `bob@bmail.com`, `bob-123@bobby.sg`                                              |
+| `ADDRESS`       | The address of the reader.<br><br>It must be made up of alphanumeric and special characters (may contain spaces), and should not be blank.<br><br>Different readers may share the same address (as we understand that some readers may come from the same family).                                                                                            | `#01-23, Blk 13, Bukit Timah Road`                                               |
+| `TAG`           | The tag that you would like to attach to or search for your reader.<br><br>It must be a single alphanumeric word.                                                                                                                                                                                                                                             | `VIP`, `MostBorrows`                                                             |
+| `INDEX`         | The index of the reader in the displayed list.<br><br>It must be a valid index number (i.e. in the range [`1`,`2`, ..., `length of list`]).                                                                                                                                                                                                                   | `1`                                                                              |
+| `KEYWORD`       | The keyword that you would like to use to search for your target reader(s).<br><br>It must be a single alphanumeric word.                                                                                                                                                                                                                                     | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
+| `MORE_KEYWORDS` | Other keywords that you may want to use to search for your target reader(s).<br><br>Each additional keyword must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.                                                                                                                                          |                                                                                  |
+| `MORE_TAGS`     | Other tags that you may want to use to search for your target reader(s).<br><br>Each additional tag must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.                                                                                                                                                  |                                                                                  |
 
 #### Adding a reader : `addreader`
 
@@ -249,14 +249,14 @@ given below, and familiarize yourself with them.
 
 | Parameter       | Description                                                                                                                                                                                                          | Valid examples                                                                   |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `NAME`          | The name of the book.<br><br>It must be alphanumeric (may contain spaces).                                                                                                                                           | `A Book`, `noobbook69`, `X AE A12`                                               |
+| `NAME`          | The name of the book.<br><br>It must be alphanumeric (may contain spaces).<br><br>SmartLib is able to hold multiple books with the same name.                                                                        | `A Book`, `noobbook69`, `X AE A12`                                               |
 | `AUTHOR`        | The author of the book.<br><br>It must be alphanumeric (may contain spaces).                                                                                                                                         | `Bob Tan`, `noobmaster69`, `X AE A12`                                            |
 | `PUBLISHER`     | The publisher of the book.<br><br>It must be alphanumeric (may contain spaces).                                                                                                                                      | `Bob Tan`, `noobmaster69`, `X AE A12`                                            |
-| `ISBN`          | The ISBN of the book.<br><br>It must consist only of numbers, and be exactly 13 digits long.                                                                                                                         | `1234567890123`                                                                  |
+| `ISBN`          | The ISBN of the book.<br><br>It must consist only of numbers, and be exactly 13 digits long.<br><br>The ISBN must be the same for books with the same name, and different books cannot share the same ISBN.          | `1234567890123`                                                                  |
 | `GENRE`         | The genre of the book.<br><br>It must be alphanumeric (may contain spaces).                                                                                                                                          | `Fantasy`, `Folk Tales`                                                          |
 | `INDEX`         | The index of the book in the displayed list.<br><br>It must be a valid index number (i.e. in the range [`1`,`2`, ..., `length of list`]).                                                                            | `1`                                                                              |
 | `KEYWORD`       | The keyword that you would like to use to search for your target book(s).<br><br>It must be a single alphanumeric word.                                                                                              | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
-| `MORE_KEYWORDS` | Other keywords that you may want to use to search for your target book(s).<br><br>Each additional keyword must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional. |                                                                                  |
+| `MORE_KEYWORDS` | Other keywords that you may want to use to search for your target book(s).<br><br>Each additional keyword must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.   |                                                                                  |
 
 #### Adding a book : `addbook`
 
@@ -296,11 +296,11 @@ Format: `findbook KEYWORD [MORE_KEYWORDS]`
 * Refer to [Books' Command Parameters](#books-command-parameters) for more details about each parameter.
 
 Examples:
-*`findbook Suspense` returns books under the genre Suspense.
-*`findbook American History` returns books related to history, especially American history.
-*`findbook Brandon Sanderson` returns books by the author Brandon Sanderson.
-*`findbook Bloomsbury` returns books published by Bloomsbury.
-*`findbook 1234567890123` returns books with the corresponding ISBN.
+* `findbook Suspense` returns books under the genre Suspense.
+* `findbook American History` returns books related to history, especially American history.
+* `findbook Brandon Sanderson` returns books by the author Brandon Sanderson.
+* `findbook Bloomsbury` returns books published by Bloomsbury.
+* `findbook 1234567890123` returns books with the corresponding ISBN.
 
 #### Listing all books : `listbook`
 
@@ -436,7 +436,14 @@ the data of your previous SmartLib home folder.
     lowercase letters from 'a' to 'z', and
     numbers from '0` to '9'.
 
+* **Barcode**: A barcode is an unique identifier for a book. Books with the same name will share the same ISBN,
+    but each copy of a book with have a different barcode. This is to ensure that you will not be having a headache
+    when trying to keep track of which copy of a book has been returned and which copy hasn't.
+
 * **Command Box**: The _Command Box_ is the component of the GUI where you will be entering your user input.
+
+* **International Standard Book Number (ISBN)**: The ISBN is a numeric commercial book identifier which is intended to
+    be unique for each book. Books with the same name will share the same ISBN.
 
 * **Result Display**: The _Result Display_ is the component of the GUI where you will be notified whether your command
     was successfully executed by SmartLib.
@@ -460,7 +467,7 @@ Action | Format, Examples
 **Delete book** | `deletebook INDEX`<br> e.g., `deletebook 3`
 **Find book** | `findbook KEYWORD [MORE_KEYWORDS]`<br> e.g., `findbook Thomas the Tank Engine`
 **List books** | `listbook`
-**Return book** | `return b/BOOKNAME r/READERNAME`<br> e.g., `return b/The Old Man and the Sea r/Alex Yeoh`
+**Return book** | `return bc/BARCODE`<br> e.g., `return bc/1202179131`
 **Clear** | `clear`
 **Help** | `help`
 **Exit** | `exit`

@@ -30,6 +30,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.smartlib.commons.core.GuiSettings;
 import seedu.smartlib.commons.core.name.Name;
+import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.book.exceptions.BookNotFoundException;
 import seedu.smartlib.model.book.exceptions.DuplicateBookException;
@@ -38,12 +39,12 @@ import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.reader.exceptions.DuplicateReaderException;
 import seedu.smartlib.model.reader.exceptions.ReaderNotFoundException;
 import seedu.smartlib.model.record.exceptions.DuplicateRecordException;
+import seedu.smartlib.testutil.BookBuilder;
 import seedu.smartlib.testutil.SmartLibBuilder;
 
 public class ModelManagerTest {
 
-    private ModelManager modelManager = new ModelManager();
-    private SmartLib smartLib = new SmartLibBuilder()
+    private final SmartLib smartLib = new SmartLibBuilder()
             .withReader(ALICE).withReader(BENSON)
             .withBook(HARRY).withBook(SECRET)
             .withRecord(RECORD_C)
@@ -54,6 +55,8 @@ public class ModelManagerTest {
 
     @Test
     public void constructorWithoutParams() {
+        ModelManager modelManager = new ModelManager();
+
         // empty constructor
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
@@ -73,8 +76,8 @@ public class ModelManagerTest {
     public void getUserPrefs() {
         userPrefs.setSmartLibFilePath(filePath);
         userPrefs.setGuiSettings(guiSettings);
-        modelManager = new ModelManager(smartLib, userPrefs);
 
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(smartLib, userPrefs);
         ModelManager modelManager2 = new ModelManager();
 
@@ -91,11 +94,13 @@ public class ModelManagerTest {
 
     @Test
     public void setUserPrefs_nullUserPrefs_throwsNullPointerException() {
+        ModelManager modelManager = new ModelManager();
         assertThrows(NullPointerException.class, () -> modelManager.setUserPrefs(null));
     }
 
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
+        ModelManager modelManager = new ModelManager();
         userPrefs.setSmartLibFilePath(filePath);
         userPrefs.setGuiSettings(guiSettings);
         assertDoesNotThrow(() -> modelManager.setUserPrefs(userPrefs));
@@ -113,7 +118,7 @@ public class ModelManagerTest {
     public void getGuiSettings() {
         userPrefs.setSmartLibFilePath(filePath);
         userPrefs.setGuiSettings(guiSettings);
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
 
         ModelManager modelManagerCopy = new ModelManager(smartLib, userPrefs);
         ModelManager modelManager2 = new ModelManager();
@@ -131,11 +136,13 @@ public class ModelManagerTest {
 
     @Test
     public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
+        ModelManager modelManager = new ModelManager();
         assertThrows(NullPointerException.class, () -> modelManager.setGuiSettings(null));
     }
 
     @Test
     public void setGuiSettings_validGuiSettings_setsGuiSettings() {
+        ModelManager modelManager = new ModelManager();
         assertDoesNotThrow(() -> modelManager.setGuiSettings(guiSettings));
 
         modelManager.setGuiSettings(guiSettings);
@@ -146,7 +153,7 @@ public class ModelManagerTest {
     public void getSmartLibFilePath() {
         userPrefs.setSmartLibFilePath(filePath);
         userPrefs.setGuiSettings(guiSettings);
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
 
         ModelManager modelManagerCopy = new ModelManager(smartLib, userPrefs);
         ModelManager modelManager2 = new ModelManager();
@@ -164,11 +171,13 @@ public class ModelManagerTest {
 
     @Test
     public void setSmartLibFilePath_nullPath_throwsNullPointerException() {
+        ModelManager modelManager = new ModelManager();
         assertThrows(NullPointerException.class, () -> modelManager.setSmartLibFilePath(null));
     }
 
     @Test
     public void setSmartLibFilePath_validPath_setsSmartLibFilePath() {
+        ModelManager modelManager = new ModelManager();
         assertDoesNotThrow(() -> modelManager.setSmartLibFilePath(filePath));
 
         modelManager.setSmartLibFilePath(filePath);
@@ -179,7 +188,7 @@ public class ModelManagerTest {
     public void getSmartLib() {
         userPrefs.setSmartLibFilePath(filePath);
         userPrefs.setGuiSettings(guiSettings);
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
 
         ModelManager modelManagerCopy = new ModelManager(smartLib, userPrefs);
         ModelManager modelManager2 = new ModelManager();
@@ -197,11 +206,13 @@ public class ModelManagerTest {
 
     @Test
     public void setSmartLib_nullSmartLib_throwsNullPointerException() {
+        ModelManager modelManager = new ModelManager();
         assertThrows(NullPointerException.class, () -> modelManager.setSmartLib(null));
     }
 
     @Test
     public void setSmartLib_validSmartLib_setsSmartLib() {
+        ModelManager modelManager = new ModelManager();
         assertDoesNotThrow(() -> modelManager.setSmartLib(smartLib));
 
         modelManager.setSmartLib(smartLib);
@@ -210,114 +221,114 @@ public class ModelManagerTest {
 
     @Test
     public void hasBook_nullBook_throwsNullPointerException() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertThrows(NullPointerException.class, () -> modelManager.hasBook((Book) null));
     }
 
     @Test
     public void hasBook_bookNotInSmartLib_returnsFalse() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertFalse(modelManager.hasBook(HABIT));
         assertFalse(modelManager.hasBook(LIFE));
     }
 
     @Test
     public void hasBook_bookInSmartLib_returnsTrue() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertTrue(modelManager.hasBook(HARRY));
         assertTrue(modelManager.hasBook(SECRET));
     }
 
     @Test
     public void hasBookWithName_nullBookName_throwsNullPointerException() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertThrows(NullPointerException.class, () -> modelManager.hasBook((Name) null));
     }
 
     @Test
     public void hasBookWithName_bookNotInSmartLib_returnsFalse() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertFalse(modelManager.hasBook(HABIT.getName()));
         assertFalse(modelManager.hasBook(LIFE.getName()));
     }
 
     @Test
     public void hasBookWithName_bookInSmartLib_returnsTrue() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertTrue(modelManager.hasBook(HARRY.getName()));
         assertTrue(modelManager.hasBook(SECRET.getName()));
     }
 
     @Test
     public void hasBookWithBarcode_nullBarcode_throwsNullPointerException() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertThrows(NullPointerException.class, () -> modelManager.hasBookWithBarcode(null));
     }
 
     @Test
     public void hasBookWithBarcode_bookNotInSmartLib_returnsFalse() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertFalse(modelManager.hasBookWithBarcode(HABIT.getBarcode()));
         assertFalse(modelManager.hasBookWithBarcode(LIFE.getBarcode()));
     }
 
     @Test
     public void hasBookWithBarcode_bookInSmartLib_returnsTrue() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertTrue(modelManager.hasBookWithBarcode(HARRY.getBarcode()));
         assertTrue(modelManager.hasBookWithBarcode(SECRET.getBarcode()));
     }
 
     @Test
     public void isBookWithBarcodeBorrowed() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertFalse(modelManager.isBookWithBarcodeBorrowed(HARRY.getBarcode()));
         assertTrue(modelManager.isBookWithBarcodeBorrowed(SECRET.getBarcode()));
     }
 
     @Test
     public void hasReader_nullReader_throwsNullPointerException() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertThrows(NullPointerException.class, () -> modelManager.hasReader((Reader) null));
     }
 
     @Test
     public void hasReader_readerNotInSmartLib_returnsFalse() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertFalse(modelManager.hasReader(AMY));
         assertFalse(modelManager.hasReader(IDA));
     }
 
     @Test
     public void hasReader_readerInSmartLib_returnsTrue() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertTrue(modelManager.hasReader(ALICE));
         assertTrue(modelManager.hasReader(BENSON));
     }
 
     @Test
     public void hasReaderWithName_nullReaderName_throwsNullPointerException() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertThrows(NullPointerException.class, () -> modelManager.hasReader((Name) null));
     }
 
     @Test
     public void hasReaderWithName_readerNotInSmartLib_returnsFalse() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertFalse(modelManager.hasReader(AMY.getName()));
         assertFalse(modelManager.hasReader(IDA.getName()));
     }
 
     @Test
     public void hasReaderWithName_readerInSmartLib_returnsTrue() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertTrue(modelManager.hasReader(ALICE.getName()));
         assertTrue(modelManager.hasReader(BENSON.getName()));
     }
 
     @Test
     public void canReaderBorrow() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
 
         // EP: null reader
         assertThrows(NullPointerException.class, () -> modelManager.canReaderBorrow(null));
@@ -335,29 +346,27 @@ public class ModelManagerTest {
 
     @Test
     public void hasRecord_nullRecord_throwsNullPointerException() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertThrows(NullPointerException.class, () -> modelManager.hasRecord(null));
     }
 
     @Test
     public void hasRecord_recordNotInSmartLib_returnsFalse() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertFalse(modelManager.hasRecord(RECORD_A));
         assertFalse(modelManager.hasRecord(RECORD_B));
     }
 
     @Test
     public void hasRecord_recordInSmartLib_returnsTrue() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertTrue(modelManager.hasRecord(RECORD_C));
     }
 
     @Test
     public void borrowBook_hasNullParam_throwsNullPointerException() {
-        modelManager = new ModelManager(smartLib, userPrefs);
-
-        // EP: valid reader name and barcode
-        assertDoesNotThrow(() -> modelManager.borrowBook(ALICE.getName(), HARRY.getBarcode()));
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
 
         // EP: null reader name and barcode
         assertThrows(NullPointerException.class, () -> modelManager.borrowBook(null, null));
@@ -371,10 +380,16 @@ public class ModelManagerTest {
 
     @Test
     public void borrowBook_noNullParam() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
 
         // EP: valid reader name and barcode -> can borrow
-        assertTrue(modelManager.borrowBook(ALICE.getName(), HARRY.getBarcode()));
+        modelManager.addBook(HABIT);
+        modelManager.addReader(IDA);
+        assertTrue(modelManager.borrowBook(IDA.getName(), HABIT.getBarcode()));
+        modelManager.returnBook(IDA.getName(), HABIT.getBarcode());
+        modelManager.deleteBook(HABIT);
+        modelManager.deleteReader(IDA);
 
         // EP: invalid reader name, valid barcode -> cannot borrow
         modelManager = new ModelManager(smartLib, userPrefs);
@@ -392,20 +407,15 @@ public class ModelManagerTest {
         assertFalse(modelManager.borrowBook(BENSON.getName(), HARRY.getBarcode()));
 
         // EP: reader with a borrowed book, the book he/she borrowed -> cannot borrow
-        modelManager.borrowBook(ALICE.getName(), HARRY.getBarcode());
-        assertFalse(modelManager.borrowBook(ALICE.getName(), HARRY.getBarcode()));
         assertFalse(modelManager.borrowBook(BENSON.getName(), SECRET.getBarcode()));
     }
 
     @Test
     public void returnBook_hasNullParam_throwsNullPointerException() {
-        modelManager = new ModelManager(smartLib, userPrefs);
-
-        // EP: valid reader name and barcode
-        assertDoesNotThrow(() -> modelManager.returnBook(BENSON.getName(), SECRET.getBarcode()));
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
 
         // EP: null reader name and barcode
-        modelManager = new ModelManager(smartLib, userPrefs);
         assertThrows(NullPointerException.class, () -> modelManager.returnBook(null, null));
 
         // EP: null reader name, valid barcode
@@ -417,13 +427,18 @@ public class ModelManagerTest {
 
     @Test
     public void returnBook_noNullParam() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
 
         // EP: valid reader name and barcode -> can return
-        assertTrue(modelManager.returnBook(BENSON.getName(), SECRET.getBarcode()));
+        modelManager.addBook(HABIT);
+        modelManager.addReader(IDA);
+        modelManager.borrowBook(IDA.getName(), HABIT.getBarcode());
+        assertTrue(modelManager.returnBook(IDA.getName(), HABIT.getBarcode()));
+        modelManager.deleteBook(HABIT);
+        modelManager.deleteReader(IDA);
 
         // EP: invalid reader name, valid barcode -> cannot return
-        modelManager = new ModelManager(smartLib, userPrefs);
         assertFalse(modelManager.returnBook(AMY.getName(), SECRET.getBarcode()));
         assertFalse(modelManager.returnBook(IDA.getName(), SECRET.getBarcode()));
 
@@ -438,17 +453,16 @@ public class ModelManagerTest {
         assertFalse(modelManager.returnBook(ALICE.getName(), SECRET.getBarcode()));
 
         // EP: reader with without a borrowed book, an un-borrowed book -> cannot return
-        modelManager.returnBook(BENSON.getName(), SECRET.getBarcode());
         assertFalse(modelManager.returnBook(ALICE.getName(), HARRY.getBarcode()));
         assertFalse(modelManager.returnBook(ALICE.getName(), SECRET.getBarcode()));
         assertFalse(modelManager.returnBook(BENSON.getName(), HARRY.getBarcode()));
-        assertFalse(modelManager.returnBook(BENSON.getName(), SECRET.getBarcode()));
     }
 
     @Test
     public void deleteBook() {
-        modelManager = new ModelManager(smartLib, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(smartLib, userPrefs);
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(smartLibCopy, userPrefs);
 
         // EP: null book
         assertThrows(NullPointerException.class, () -> modelManager.deleteBook(null));
@@ -462,16 +476,17 @@ public class ModelManagerTest {
         assertNotEquals(modelManagerCopy, modelManager);
         assertFalse(modelManager.hasBook(SECRET));
 
-        modelManager = new ModelManager(smartLib, userPrefs);
-        modelManager.deleteBook(HARRY);
-        assertNotEquals(modelManagerCopy, modelManager);
-        assertFalse(modelManager.hasBook(HARRY));
+        ModelManager modelManager2 = new ModelManager(smartLibCopy, userPrefs);
+        modelManager2.deleteBook(HARRY);
+        assertNotEquals(modelManagerCopy, modelManager2);
+        assertFalse(modelManager2.hasBook(HARRY));
     }
 
     @Test
     public void deleteReader() {
-        modelManager = new ModelManager(smartLib, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(smartLib, userPrefs);
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(smartLibCopy, userPrefs);
 
         // EP: null reader
         assertThrows(NullPointerException.class, () -> modelManager.deleteReader(null));
@@ -485,15 +500,16 @@ public class ModelManagerTest {
         assertNotEquals(modelManagerCopy, modelManager);
         assertFalse(modelManager.hasReader(ALICE));
 
-        modelManager = new ModelManager(smartLib, userPrefs);
-        modelManager.deleteReader(BENSON);
-        assertNotEquals(modelManagerCopy, modelManager);
-        assertFalse(modelManager.hasReader(BENSON));
+        ModelManager modelManager2 = new ModelManager(smartLibCopy, userPrefs);
+        modelManager2.deleteReader(BENSON);
+        assertNotEquals(modelManagerCopy, modelManager2);
+        assertFalse(modelManager2.hasReader(BENSON));
     }
 
     @Test
     public void addBook() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
 
         // EP: null book
         assertThrows(NullPointerException.class, () -> modelManager.addBook(null));
@@ -511,7 +527,8 @@ public class ModelManagerTest {
 
     @Test
     public void addReader() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
 
         // EP: null reader
         assertThrows(NullPointerException.class, () -> modelManager.addReader(null));
@@ -529,7 +546,8 @@ public class ModelManagerTest {
 
     @Test
     public void addRecord() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
 
         // EP: null record
         assertThrows(NullPointerException.class, () -> modelManager.addRecord(null));
@@ -546,7 +564,8 @@ public class ModelManagerTest {
 
     @Test
     public void markRecordAsReturned() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
 
         // EP: null record
         assertThrows(AssertionError.class, () -> modelManager.markRecordAsReturned(null));
@@ -560,7 +579,8 @@ public class ModelManagerTest {
 
     @Test
     public void getBookBarcode() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
 
         // EP: null book name
         assertThrows(NullPointerException.class, () -> modelManager.getBookBarcode(null));
@@ -575,8 +595,46 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFirstAvailableBookBarcode() {
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
+
+        // EP: null book name
+        assertThrows(NullPointerException.class, () -> modelManager.getFirstAvailableBookBarcode(null));
+
+        // EP: invalid book name -> returns first null
+        assertNull(modelManager.getFirstAvailableBookBarcode(HABIT.getName()));
+        assertNull(modelManager.getFirstAvailableBookBarcode(LIFE.getName()));
+
+        // EP: valid book name -> returns first available barcode of book
+        modelManager.addBook(new BookBuilder()
+                .withName(SECRET.getName().toString())
+                .withAuthor(SECRET.getAuthor().toString())
+                .withPublisher(SECRET.getPublisher().toString())
+                .withIsbn(SECRET.getIsbn().toString())
+                .withBarcode(SECRET.getBarcode().getValue() + 1 + "")
+                .withGenre(SECRET.getGenre().toString())
+                .build()
+        );
+        modelManager.addBook(new BookBuilder()
+                .withName(SECRET.getName().toString())
+                .withAuthor(SECRET.getAuthor().toString())
+                .withPublisher(SECRET.getPublisher().toString())
+                .withIsbn(SECRET.getIsbn().toString())
+                .withBarcode(SECRET.getBarcode().getValue() + 2 + "")
+                .withGenre(SECRET.getGenre().toString())
+                .build()
+        );
+        assertEquals(new Barcode(SECRET.getBarcode().getValue() + 1),
+                modelManager.getFirstAvailableBookBarcode(SECRET.getName()));
+        assertNotEquals(new Barcode(SECRET.getBarcode().getValue() + 2),
+                modelManager.getFirstAvailableBookBarcode(SECRET.getName()));
+    }
+
+    @Test
     public void getBookNameForReturn() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
 
         // EP: null barcode
         assertThrows(NullPointerException.class, () -> modelManager.getBookNameForReturn(null));
@@ -592,7 +650,8 @@ public class ModelManagerTest {
 
     @Test
     public void getReaderNameForReturn() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
 
         // EP: null barcode
         assertThrows(NullPointerException.class, () -> modelManager.getReaderNameForReturn(null));
@@ -601,12 +660,17 @@ public class ModelManagerTest {
         assertNull(modelManager.getReaderNameForReturn(HABIT.getBarcode()));
         assertNull(modelManager.getReaderNameForReturn(LIFE.getBarcode()));
 
-        // EP: valid barcode -> returns name of borrower, if any
+        // EP: valid barcode with borrower -> returns name of borrower
+        assertEquals(BENSON.getName(), modelManager.getReaderNameForReturn(SECRET.getBarcode()));
+
+        // EP: valid barcode without borrower -> returns null
+        assertNull(modelManager.getReaderNameForReturn(HARRY.getBarcode()));
     }
 
     @Test
     public void setReader() {
-        modelManager = new ModelManager(smartLib, userPrefs);
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
         modelManager.addReader(ELLE);
 
         // EP: valid target and editedReader
@@ -632,23 +696,27 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredReaderList_modifyList_throwsUnsupportedOperationException() {
+        ModelManager modelManager = new ModelManager();
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredReaderList().remove(0));
     }
 
     @Test
     public void getFilteredBookList_modifyList_throwsUnsupportedOperationException() {
+        ModelManager modelManager = new ModelManager();
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredBookList().remove(0));
     }
 
     @Test
     public void getFilteredRecordList_modifyList_throwsUnsupportedOperationException() {
+        ModelManager modelManager = new ModelManager();
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredRecordList().remove(0));
     }
 
     @Test
     public void equals() {
+        SmartLib smartLibCopy = new SmartLib(smartLib);
         SmartLib differentSmartLib = new SmartLib();
-        modelManager = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
 
         // EP: same object
         assertTrue(modelManager.equals(modelManager));
@@ -661,7 +729,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(" "));
 
         // EP: same values
-        ModelManager modelManagerCopy = new ModelManager(smartLib, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(smartLibCopy, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // EP: different smartLib
@@ -670,7 +738,7 @@ public class ModelManagerTest {
         // EP: different filteredList
         String[] keywords = ALICE.getName().toString().split("\\s+");
         modelManager.updateFilteredReaderList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(smartLib, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(smartLibCopy, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
@@ -678,7 +746,7 @@ public class ModelManagerTest {
         // EP: different userPrefs
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setSmartLibFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(smartLib, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(smartLibCopy, differentUserPrefs)));
     }
 
 }

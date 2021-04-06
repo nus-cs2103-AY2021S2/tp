@@ -8,7 +8,8 @@ import seedu.smartlib.commons.core.name.Name;
 public class Genre {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Genre should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Genre should only contain alphanumeric characters (it may contain spaces between characters), "
+            + "and it should not be blank.";
 
     private final Name genreName;
 

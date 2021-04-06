@@ -2,14 +2,25 @@ package seedu.smartlib.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_MAZE;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_VIP;
 import static seedu.smartlib.testutil.Assert.assertThrows;
 import static seedu.smartlib.testutil.TypicalModels.ALICE;
+import static seedu.smartlib.testutil.TypicalModels.BENSON;
+import static seedu.smartlib.testutil.TypicalModels.BOB;
+import static seedu.smartlib.testutil.TypicalModels.HABIT;
+import static seedu.smartlib.testutil.TypicalModels.HARRY;
+import static seedu.smartlib.testutil.TypicalModels.LIFE;
+import static seedu.smartlib.testutil.TypicalModels.RECORD_A;
+import static seedu.smartlib.testutil.TypicalModels.RECORD_B;
+import static seedu.smartlib.testutil.TypicalModels.SECRET;
 import static seedu.smartlib.testutil.TypicalModels.getTypicalSmartLib;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -95,6 +106,70 @@ public class SmartLibTest {
     @Test
     public void getReaderList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> smartLib.getReaderList().remove(0));
+    }
+
+    @Test
+    public void getReaderByBarcode() {
+        // EP: null barcode
+        assertThrows(NullPointerException.class, () -> smartLib.getReaderByBarcode(null));
+
+        // EP: invalid barcode -> returns null
+        assertNull(smartLib.getReaderByBarcode(HABIT.getBarcode()));
+        assertNull(smartLib.getReaderByBarcode(LIFE.getBarcode()));
+
+        // EP: valid barcode -> returns name of borrower, if any
+        ArrayList<Reader> newReaderList = new ArrayList<>();
+        newReaderList.add(ALICE);
+        newReaderList.add(BENSON);
+        smartLib.setReaders(newReaderList);
+
+        ArrayList<Book> newBookList = new ArrayList<>();
+        newBookList.add(SECRET);
+        smartLib.setBooks(newBookList);
+
+        assertEquals(BENSON, smartLib.getReaderByBarcode(SECRET.getBarcode()));
+
+        // clear data
+        smartLib.resetData(new SmartLib());
+    }
+
+    @Test
+    public void hashCodeTest() {
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        int hashcode = smartLib.hashCode();
+
+        // same object, same hashcode
+        assertEquals(hashcode, smartLib.hashCode());
+
+        // different object, same data -> same hashcode
+        assertEquals(hashcode, smartLibCopy.hashCode());
+
+        // different object, different booklist -> different hashcode
+        ArrayList<Book> newBookList = new ArrayList<>();
+        newBookList.add(SECRET);
+        newBookList.add(HARRY);
+        smartLibCopy.setBooks(newBookList);
+        assertNotEquals(hashcode, smartLibCopy.hashCode());
+
+        smartLibCopy = new SmartLib(smartLib);
+        assertEquals(hashcode, smartLibCopy.hashCode());
+
+        // different object, different readerlist -> different hashcode
+        ArrayList<Reader> newReaderList = new ArrayList<>();
+        newReaderList.add(ALICE);
+        newReaderList.add(BOB);
+        smartLibCopy.setReaders(newReaderList);
+        assertNotEquals(hashcode, smartLibCopy.hashCode());
+
+        smartLibCopy = new SmartLib(smartLib);
+        assertEquals(hashcode, smartLibCopy.hashCode());
+
+        // different object, different recordlist -> different hashcode
+        ArrayList<Record> newRecordList = new ArrayList<>();
+        newRecordList.add(RECORD_A);
+        newRecordList.add(RECORD_B);
+        smartLibCopy.setRecords(newRecordList);
+        assertNotEquals(hashcode, smartLibCopy.hashCode());
     }
 
     /**

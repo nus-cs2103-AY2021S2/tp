@@ -29,7 +29,6 @@ import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
 import seedu.smartlib.model.record.RecordContainsBarcodePredicate;
-import seedu.smartlib.testutil.EditReaderDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -98,18 +97,6 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
-    public static final EditCommand.EditReaderDescriptor DESC_AMY;
-    public static final EditCommand.EditReaderDescriptor DESC_BOB;
-
-    static {
-        DESC_AMY = new EditReaderDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_MEMBERSHIP).build();
-        DESC_BOB = new EditReaderDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_VIP, VALID_TAG_MEMBERSHIP).build();
-    }
 
     /**
      * Executes the given {@code command}, confirms that <br>

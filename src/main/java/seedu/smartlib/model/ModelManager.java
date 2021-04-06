@@ -330,6 +330,14 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Retrieves the list of books that has the bookName
+     * @param bookName bookName to query
+     * @return the list of bookNames
+     */
+    public ArrayList<Book> getBooksByName(Name bookName) {
+        return smartLib.getBooksByName(bookName);
+    }
+    /**
      * Adds the given reader.
      * {@code reader} must not already exist in the registered reader base.
      *
@@ -362,20 +370,7 @@ public class ModelManager implements Model {
      */
     @Override
     public Record markRecordAsReturned(Record record) {
-        Record foundRecord = null;
-        for (Record r : smartLib.getRecordList()) {
-            if (r.equals(record)) {
-                foundRecord = r;
-            }
-        }
-        if (foundRecord != null) {
-            foundRecord.setDateReturned(record.getDateReturned());
-        }
-        updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
-
-        assert foundRecord != null : "The record must exist in this step of execution";
-
-        return foundRecord;
+        return smartLib.markRecordAsReturned(record);
     }
 
     /**
@@ -397,7 +392,11 @@ public class ModelManager implements Model {
         return null;
     }
 
-
+    @Override
+    public Book getBookByBarcode(Barcode barcode) {
+        requireNonNull(barcode);
+        return smartLib.getBookByBarcode(barcode);
+    }
 
     /**
      * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
