@@ -143,7 +143,6 @@ public class UniqueMeetingList implements Iterable<Person> {
                             sb.append(String.format(template, person.getName().fullName,
                                     datetime.toLocalTime().format(DateTimeFormatter.ofPattern("h:mm a")))));
         }
-        sb.append("\n");
         return sb.toString();
     }
 
