@@ -173,9 +173,10 @@ This section explains how to add entries into your RemindMe.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
+
 * Duplicate entries are not allowed. Example:<br>
   * Person/Module with the same name.
-  * Assignments with the same description and date-time in the same module. 
+  * Assignments with the same description and date-time in the same module.
   * Exams with the same date for the same module.
   * General events with the same name and date-time. 
 </div>
