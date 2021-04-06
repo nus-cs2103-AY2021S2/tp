@@ -8,10 +8,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidContact(String)}.
  */
 public class Contact {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Contact numbers should only contain numbers, and it should be at least 3 digits long";
+    public static final String MESSAGE_CONSTRAINTS = "Note the following conditions for specifying a contact number:\n"
+            + "1. The starting plus sign (+) is optional.\n"
+            + "2. Minimum length is 7 digits and maximum length is 15 digits";
 
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+    public static final String VALIDATION_REGEX = "\\+?\\d{7,15}";
 
     public final String contact;
 
