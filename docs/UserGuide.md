@@ -81,7 +81,7 @@ Start scheduling a better work life with RemindMe [here](#2-quick-start)!
 <br>
 <br>
 
-2. Download the latest `remindMe.jar` from our [GitHub release page](https://github.com/AY2021S2-CS2103T-W15-1/tp/releases).
+2. Download the latest `RemindMe.jar` from our [GitHub release page](https://github.com/AY2021S2-CS2103T-W15-1/tp/releases).
 Copy the file to the folder you want to use as the home folder for your RemindMe.
 Double click the file to start the app. 
 <br>
@@ -146,7 +146,7 @@ feature works!
   
 * If you specify a parameter, that RemindMe expects only once, multiple times, RemindMe will only use the last 
   parameter. <br>
-  For example: In add m/MOD1 m/MOD2, RemindMe will create a module called MOD2.
+  For example: In `add m/MOD1 m/MOD2`, RemindMe will create a module called `MOD2`.
   
 **Tips:**<br>
 * `DATE-TIME` should follow format day/month/year hour minutes: `DD/MM/YYYY HHMM`.
@@ -158,7 +158,7 @@ feature works!
 For example: If you input `help 123`, RemindMe will return the result of the `help` function.
 
 * Parameters must follow the order given.<br>
-  For example: add b/BIRTHDAY n/NAME is not allowed.
+  For example: `add b/BIRTHDAY n/NAME` is not allowed.
 
 * If you have the [calendar window](#39-viewing-calendar-calendar-c) 
 when adding/editing/deleting/clearing events, it will not be automatically reflected on the calendar window.
@@ -339,9 +339,11 @@ You can update your friend's identity, either changing their name, their birthda
 **Tip:**<br>
 * You can find the contact you would want to change first with RemindMe's `find`, 
   such that you can easily update the existing details.
+  
+* You can use `t\ ` to remove all tags on the person you are editing!
 </div>
 
-Command: `edit INDEX n/NEW/OLD NAME [b/NEW BIRTHDAY] [t/NEW TAG]`
+Command: `edit INDEX n/NEW NAME [b/NEW BIRTHDAY] [t/NEW TAG]`
 
 Examples:
 * `edit 1 n/Jason`
