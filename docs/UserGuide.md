@@ -128,13 +128,13 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 
 * Levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
   `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `graduated`.
-  They cover the education levels in Primary School, Secondary School and Junior College. For more details, see the **Field Format Summary** below.
+  They cover the education levels in Primary School, Secondary School and Junior College. For more details, see the [Field Format Summary](#field-format-summary) below.
 
 
 * Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
 
   They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
-  For more details, see the **Field Format Summary** below.
+  For more details, see the [Field Format Summary](#field-format-summary) below.
 
 * A student’s contact can have any number of subjects (including 0). 
   
@@ -186,7 +186,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 
 * Levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
   `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `graduated`.
-  They cover the education levels in Primary School, Secondary School and Junior College. For more details, see the **Field Format Summary** below.
+  They cover the education levels in Primary School, Secondary School and Junior College. For more details, see the [Field Format Summary](#field-format-summary) below.
 
 * When editing subjects or lessons, the existing subjects or lessons of the student will be removed i.e adding of subjects or lessons are not cumulative.
   
@@ -197,7 +197,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 * Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
   
   They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
-  For more details, see the **Field Format Summary** below.
+  For more details, see the [Field Format Summary](#field-format-summary) below.
 </div>
 
 <div markdown="span" class="alert alert-warning">
