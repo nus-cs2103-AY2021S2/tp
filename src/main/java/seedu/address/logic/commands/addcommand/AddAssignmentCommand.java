@@ -28,6 +28,7 @@ public class AddAssignmentCommand extends AddCommand {
      */
     public AddAssignmentCommand(Module module, Assignment assignment) {
         requireNonNull(assignment);
+        requireNonNull(module);
         target = module;
         toAdd = assignment;
     }
@@ -51,6 +52,7 @@ public class AddAssignmentCommand extends AddCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddAssignmentCommand // instanceof handles nulls
+                && target.equals(((AddAssignmentCommand) other).target)
                 && toAdd.equals(((AddAssignmentCommand) other).toAdd));
     }
 }

@@ -68,6 +68,7 @@ public class AddExamCommand extends AddCommand {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof AddExamCommand)
+                && target.equals(((AddExamCommand) other).target)
                 && toAdd.equals(((AddExamCommand) other).toAdd);
     }
 }

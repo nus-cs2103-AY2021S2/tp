@@ -5,8 +5,10 @@ import java.util.Collections;
 
 import seedu.address.model.person.Birthday;
 
+/**
+ * A list specifically to store events.
+ */
 public class EventList {
-    public static final String NO_ASSIGNMENTS_OUTPUT = "You have no events! Yay! :)\n";
     private ArrayList<Event> events;
 
     public EventList() {
