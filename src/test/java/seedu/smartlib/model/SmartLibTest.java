@@ -128,10 +128,6 @@ public class SmartLibTest {
         newBookList.add(SECRET);
         smartLib.setBooks(newBookList);
 
-        ArrayList<Record> newRecordList = new ArrayList<>();
-        newRecordList.add(RECORD_C);
-        smartLib.setRecords(newRecordList);
-
         assertEquals(BENSON, smartLib.getReaderByBarcode(SECRET.getBarcode()));
 
         // clear data
