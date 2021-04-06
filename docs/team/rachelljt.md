@@ -20,7 +20,7 @@ Given below are my contributions to the project.
       2 for Invalid Integers(Non-positive integers) and 3 for Invalid Input(spaces, alphanumeric) such that different error messages would be thrown 
       should the index differ from the format.
 
-* **New Feature**: Added the ability to view a list of uncompleted tasks. (Pull Requests: [\#117](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/117))
+* **New Feature**: Added the ability to view a list of uncompleted tasks. (Pull Requests: [\#117](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/117), [\#246](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/246)) 
   * What it does: Allows the user to view a list of tasks that they have not completed.
   * Justification: This feature improves the product significantly because a user can easily view a list of uncompleted tasks upon inputting the command
     which greatly saves the time of the user. 
@@ -29,7 +29,7 @@ Given below are my contributions to the project.
     Also, I had to update the testing to account for the different scenarios of usage.
 
 * **New Feature**: Added the ability to view a list of unassigned tasks.
-  * What it does: Allows the user to view a list of tasks that they have not assigned to any member. [\#162](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/162))
+  * What it does: Allows the user to view a list of tasks that they have not assigned to any member. [\#162](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/162), [\#246](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/246)
   * Justification: This feature improves the product significantly because a user can easily view a list of unassigned tasks upon inputting the command
     which greatly saves the time of the user of searching for the list of unassigned tasks.
   * Highlights: The implementation was challenging as it required me to create another predicate to filter a list of
@@ -39,8 +39,25 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=rachelljt&tabRepo=AY2021S2-CS2103T-W14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-  * Create issues
-  * Add profile pictures of group members into the team list.
+  * Create issues.
+  * Set up unit testing for tasks.
+  * Managed milestones and issues
 
 * **Enhancements to existing features**:
   * Change the UI of the app  (Pull requests: [\#110](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/110), [\#128](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/128), [\#238](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/238))
+
+* **Documentation**:
+  * User Guide:
+    * Added documentation for the commands `deleteTask`, `viewUncompletedTasks`, `viewUnassignedTasks` (Pull requests: [\#117](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/117))
+    * Embed link to download Java 11 at the Quick Start section (Pull Requests: [\#189](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/189))
+
+  * Developer Guide:
+    * Update the user stories in the Developer Guide (Pull requests: [\#138](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/138), [\#169](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/169))
+    * Update the UI UML Diagram, Sequence Diagram in the Developer Guide (Pull requests: [\#185](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/185))
+    * Update Architecture Sequence Diagram in the Developer Guide (Pull requests: [\#189](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/189))
+    * Add implementation explanation for deleteTask (Pull requests: [\#185](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/185))
+
+* **Community**:
+  * PRs reviewed (Pull requests: [\#247](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/247))
+  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/182))
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/rachelljt/ped/issues/4), [2](https://github.com/rachelljt/ped/issues/1), [3](https://github.com/rachelljt/ped/issues/6))
