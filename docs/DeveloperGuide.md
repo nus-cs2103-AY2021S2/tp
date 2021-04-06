@@ -139,7 +139,7 @@ The Resident family of features consist of the following features: Add Resident,
 #### The Resident Class
 The Resident class consists of 5 fields, each of which contain their own methods to verify their respective input. 
 This allows for a low degree of coupling, and individual fields can change their input verification rules without affecting the other classes. 
-Similarly, the Room class can expand to contain more fields without affecting existing fields too.
+Similarly, the Resident class can expand to contain more fields without affecting existing fields too.
 
 Examples of verification functions in each of the fields include `Resident#isValidName()` etc.
 
@@ -147,7 +147,20 @@ Examples of verification functions in each of the fields include `Resident#isVal
 
 The `Resident` objects are stored in a `UniqueResidentList` which is held by `AddressBook`.
 
+#### Add Resident
+This section will detail the implementation of the Add Resident feature via the `radd` command,
 
+##### Overview of Insertion Process
+The AddResidentCommand is triggered through the use of `radd` followed by valid parameters such as name, phone, etc. 
+The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, a Resident object is constructed and added to the model and saved to the backing store. Upon successful insertion, a feedback message is displayed to the user.
+
+This process is summarised in the diagram below
+![Adding a Resident](images/resident/AddResidentCommandActivityDiagram.png)
+
+##### Detailed execution pathway
+The diagram below details how the user's command to add a resident propagates through the system to eventually add a resident.
+
+![Adding a Resident](images/resident/AddResidentCommandSeqDiagram.png)
 
 
 ### Room Features
@@ -227,7 +240,7 @@ Example: `alloc ri/1 oi/2`
 * Set the `ROOM` of the resident to be the room number of the room.
 * Set the `OCCUPATION_STATUS` of the room to `Y`.
 
-  ![Activity Diagram of Allocation](images/residentroom/ResidentRoomAllocationDiagram.png)
+  ![Activity Diagram of Allocation](images/residentroom/ResidentRoomAllocationActivityDiagram.png)
 
 The `dealloc` command will do the following:
 
@@ -252,8 +265,8 @@ The following implementation alternatives were considered:
         * Less user control.
 * **Alternative 2:** Resident-Room allocation is modelled as a Parent-Child where the parent is the
   `Room` and the child is the `Resident`.
-  *Pros:
-    * Simpler to implement.
+    * Pros:
+        * Simpler to implement.
     * Cons:
         * Lack of 2-way updates. Room number of the `Resident` cannot be updated and viewed.
           The problem is reversed if the parent-child roles are swapped where the occupancy
@@ -302,14 +315,6 @@ The diagram below details how the user's command to add an issue propagates thro
 
 ![Adding an Issue](images/issue/AddIssueCommandSeqDiagram.png)
 
-### Command History Feature
-The command history feature has a few sub-features:
-1. View history command: the user can list the command history.
-1. Navigate history: the user can navigate their command history like in a terminal program.
-1. Save/load history: command history persists across SunRez runs.
-
-This section starts with an overview of the command history model then looks at each sub-feature in turn.
-
 
 ### Alias feature
 The `Alias` feature allows users to define a shortcut for a longer command that is often used. The longer command can then be executed by entering the alias instead of the full or partial command.
@@ -350,6 +355,14 @@ When a user executes a new command, `AddressBookParser` will follow these steps:
 The following diagram illustrates the flow:
 
 ![AliasExecutionActivityDiagram](images/alias/AliasExecutionActivityDiagram.png)
+
+### Command History Feature
+The command history feature has a few sub-features:
+1. View history command: the user can list the command history.
+1. Navigate history: the user can navigate their command history like in a terminal program.
+1. Save/load history: command history persists across SunRez runs.
+
+This section starts with an overview of the command history model then looks at each sub-feature in turn.
 
 #### Implementation
 

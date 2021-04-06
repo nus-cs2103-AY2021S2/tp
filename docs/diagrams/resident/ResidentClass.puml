@@ -20,9 +20,9 @@ Class Room
 
 AddressBook *--> UniqueResidentList
 UniqueResidentList "1" *--> "*" Resident
-Resident *--> Name
-Resident *--> Phone
-Resident *--> Email
-Resident *--> Year
-Resident *--> Room
+Resident *--> "1" Name
+Resident *--> "1" Phone
+Resident *--> "1"  Email
+Resident *--> "1"  Year
+Resident *--> "0..1"  Room
 @enduml
