@@ -44,21 +44,6 @@ public class Picture {
         this.filePath = filePath;
     }
 
-    /**
-     * Checks if the given @{code str} is a valid file path to an image file
-     */
-    public static boolean isValidFilePath(String str) {
-        Path path;
-
-        try {
-            path = ParserUtil.parseFilePath(str);
-        } catch (ParseException pe) {
-            return false;
-        }
-
-        return isValidFilePath(path);
-    }
-
     public static boolean isValidFilePath(Path path) {
         return FileUtil.isFileExists(path) && FileUtil.hasExtension(path, ALLOWED_FILE_EXTENSIONS);
     }
