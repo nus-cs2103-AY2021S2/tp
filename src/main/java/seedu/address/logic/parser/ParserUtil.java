@@ -12,7 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.Assignment;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Title;
@@ -26,6 +26,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static final String LOCAL_DATE_TIME_CONSTRAINT = "DATE-TIME should be DD/MM/YYYY HHmm";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -101,52 +102,48 @@ public class ParserUtil {
      * Parses a {@code String deadline} into a {@code LocalDateTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code deadline} is invalid.
      */
-    public static LocalDateTime parseDeadline(String deadline) throws ParseException {
+    public static LocalDateTime parseDeadline(String deadline) {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
         try {
-            LocalDateTime assignmentDeadline = LocalDateTime.parse(trimmedDeadline,
-                                                                    DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
-            return assignmentDeadline;
+            return LocalDateTime.parse(trimmedDeadline,
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
         } catch (DateTimeParseException e) {
-            throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
+            return null;
+        }
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDateTime parseEventDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDeadline = date.trim();
+        try {
+            LocalDateTime eventDate = LocalDateTime.parse(trimmedDeadline,
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+            return eventDate;
+        } catch (DateTimeParseException e) {
+            throw new ParseException(GeneralEvent.DATE_CONSTRAINT);
         }
     }
 
     /**
      * Parses a {@code String examDateInput} into {@code LocalDateTime}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the {@code examDateIput} is of an invalid format.
+     * returns null if the {@code examDateIput} is of an invalid format.
      */
-    public static LocalDateTime parseExamDate(String examDateInput) throws ParseException {
+    public static LocalDateTime parseExamDate(String examDateInput) {
         String trimmedExamDateInput = examDateInput.trim();
         try {
-            LocalDateTime examDate = LocalDateTime.parse(trimmedExamDateInput,
-                    Exam.EXAM_DATE_FORMATTER);
-
-            return examDate;
+            return LocalDateTime.parse(trimmedExamDateInput, Exam.EXAM_DATE_FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
+            return null;
         }
-    }
-
-    /**
-     * Parses a {@code String examDateInput} into {@code LocalDateTime}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the {@code examDateIput} is of an invalid format.
-     */
-    public static Birthday parseBirthday(String birthdayInput) throws ParseException {
-        requireNonNull(birthdayInput);
-        String trimmedBirthdayInput = birthdayInput.trim();
-        if (!Birthday.isValidBirthday(trimmedBirthdayInput)) {
-            throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
-        }
-
-        return new Birthday(birthdayInput);
     }
 
     /**
@@ -175,11 +172,12 @@ public class ParserUtil {
     public static Title parseTitle(String titleInput) throws ParseException {
         requireNonNull(titleInput);
         String trimmedTitle = titleInput.trim();
-
-        if (!Title.isValidTitle(trimmedTitle)) {
+        Title title;
+        try {
+            title = new Title(trimmedTitle);
+        } catch (IllegalArgumentException e) {
             throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
-
-        return new Title(trimmedTitle);
+        return title;
     }
 }

@@ -44,7 +44,7 @@ public class JsonAdaptedModuleTest {
     @Test
     void toModelType_invalidTitle_throwsIllegalValueException() {
         JsonAdaptedModule module = new JsonAdaptedModule("", new ArrayList<>(), new ArrayList<>());
-        String expectedMessage = Title.MESSAGE_CONSTRAINTS;
+        String expectedMessage = String.format(Title.MESSAGE_CONSTRAINTS, "Modules");
         assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);
     }
 }

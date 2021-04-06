@@ -69,20 +69,22 @@ public class MainWindow extends UiPart<Stage> {
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
         requireAllNonNull(primaryStage, logic);
+
         // Set dependencies
         this.primaryStage = primaryStage;
+        this.logic = logic;
+
         // When main window is closed, all other window closes.
         primaryStage.setOnHidden(e -> {
             Platform.exit();
             System.exit(0);
         });
-        this.logic = logic;
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
         setAccelerators();
 
-        //Create calendar dependecies and window
+        //Create calendar dependencies and window
         calendarStorage = new CalendarStorage(logic);
         upcomingSchedule = new UpcomingSchedule(calendarStorage);
         calendarWindow = new CalendarWindow(calendarStorage, upcomingSchedule);
