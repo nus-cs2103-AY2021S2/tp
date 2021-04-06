@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete 5")
 activate LogicManager
 
-LogicManager -> StoreMandoParser : parseCommand("delete 1")
+LogicManager -> StoreMandoParser : parseCommand("delete 5")
 activate StoreMandoParser
 
 create DeleteCommandParser
@@ -26,7 +26,7 @@ activate DeleteCommandParser
 DeleteCommandParser --> StoreMandoParser
 deactivate DeleteCommandParser
 
-StoreMandoParser -> DeleteCommandParser : parse("1")
+StoreMandoParser -> DeleteCommandParser : parse("5")
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -45,10 +45,16 @@ destroy DeleteCommandParser
 StoreMandoParser --> LogicManager : d
 deactivate StoreMandoParser
 
-LogicManager -> DeleteCommand : execute()
+LogicManager -> DeleteCommand : execute(model)
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model : getFilteredItemList()
+activate Model
+
+Model --> DeleteCommand
+deactivate Model
+
+DeleteCommand -> Model : deleteItem(5)
 activate Model
 
 Model --> DeleteCommand
@@ -58,7 +64,7 @@ create CommandResult
 DeleteCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteCommand : result
 deactivate CommandResult
 
 DeleteCommand --> LogicManager : result
