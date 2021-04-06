@@ -210,8 +210,9 @@ Examples:
    Command: `delete program 3`
    
 :bulb: Deleting using ID instead of name? Yes, all commands other than `add` and `find` uses the entity's ID. 
-When a new entity is added to Pawbook, the system assigns a unique ID to each entity and is given by the first number
-of each entity in the list.
+When a new entity is added to Pawbook, the system assigns a unique ID to each entity.
+
+![ID](images/DeleteCommandIDScreenshot.png)
 
 ![Delete Command](images/DeleteCommandScreenshot1.png) ![Delete Command Result](images/DeleteCommandScreenshot2.png)
 
@@ -235,6 +236,8 @@ Note:
 - The ID must be a positive integer 1, 2, 3, ...
 - Only include the variables that need to be edited after the integer
 
+:heavy_exclamation_mark: Take note that editing tags for an entity will automatically override **all** its current tags!
+
 Examples:
 
 1. Edits the owner with ID 1 in Pawbook.<br>
@@ -249,7 +252,9 @@ Examples:
    
 ### Enrol Command
 
-**Function**: Adds a specified dog to a specified program that the dog was previously not enrolled in. <br>
+**Function**: Adds a specified dog to a specified program that the dog was previously not enrolled in. Batch enrolment 
+is supported, which means that multiple dogs can be enrolled into the same program, or one dog can be enrolled into 
+multiple programs.  <br>
 **Usage**: When you want to enrol a dog into a specific program, you can use this command. One instance is when after 
 a new dog Bruce has just joined the school and is enrolled for Obedience Training. You can then enrol Bruce into the 
 Obedience training program after you have added Bruce into the system. 
@@ -258,39 +263,65 @@ Format:
 
 ```
 enrol d/[DOG ID] p/[PROGRAM ID]
+enrol d/[DOG ID]...d/[DOG ID] p/[PROGRAM ID] (enrolling multiple dogs into one program)
+enrol d/[DOG ID] p/[PROGRAM ID]...p/[PROGRAM ID] (enrolling one dog into multiple programs)
 ```
 
 Note: 
 
-- The dog and program must both be valid.
+- The dogs and programs must be valid.
+- Dog must not be enrolled in the program.
+
+:heavy_exclamation_mark: Take note that enrolling multiple dogs into multiple programs at once is **NOT** allowed! 
+For example, `enrol d/2 d/3 p/4 p/5` is **NOT** allowed!
 
 Examples:
 
-1. Enrol dog with Dog ID 2 into program with Program ID 3, assuming that Dog ID 2 was previously not enrolled in 
+1. Enrol dog with Dog ID 2 into program with Program ID 3, assuming that Dog ID 2 was not previously enrolled in 
    Program ID 3. <br> 
    Command: `enrol d/2 p/3`
+2. Enrol dogs with Dog ID 2 and Dog ID 3 into program with Program ID 4, assuming that Dog ID 2 and Dog ID 3
+   were not previously enrolled in Program ID 4. <br> 
+   Command: `enrol d/2 d/3 p/4`
+3. Enrol dog with Dog ID 2 into programs with Program ID 3 and Program ID 4, assuming that Dog ID 2 was not previously 
+   enrolled in Program ID 3 and Program ID 4. <br> 
+   Command: `enrol d/2 p/3 p/4`
+
    
 ![Enrol Command](images/EnrolCommandScreenshot1.png) ![Enrol Command Result](images/EnrolCommandScreenshot2.png)
 
 ### Drop Command
 
-**Function**: Removes a specified dog from a specified program that the dog was previously enrolled in. <br>
+**Function**: Removes a specified dog from a specified program that the dog was previously enrolled in. Batch dropping 
+is supported, which means that multiple dogs can be dropped from the same program, or one dog can be dropped from 
+multiple programs.<br>
 **Usage**: After a dog has finished a program or has dropped out of the program, you can drop him from the program using
 this command. After a dog has been dropped from the program, the program will no longer have that dog ID stored. 
 
 Format:
 ```
 drop d/[DOG ID] p/[PROGRAM ID]
+drop d/[DOG ID]...d/[DOG ID] p/[PROGRAM ID] (dropping multiple dogs from one program)
+drop d/[DOG ID] p/[PROGRAM ID]...p/[PROGRAM ID] (dropping one dog from multiple programs)
 ```
 
 Note:
 - The dog and program must both be valid.
 - Dog must be enrolled in the program.
 
+:heavy_exclamation_mark: Take note that dropping multiple dogs from multiple programs at once is **NOT** allowed! 
+For example, `drop d/2 d/3 p/4 p/5` is **NOT** allowed!
+
 Examples:
-1. Remove dog with Dog ID 2 from program with Program ID 3, assuming that Dog ID 2 was previously enrolled in 
+1. Drop dog with Dog ID 2 from program with Program ID 3, assuming that Dog ID 2 was previously enrolled in 
    Program ID 3. <br> 
    Command: `drop d/2 p/3`
+2. Drop dogs with Dog ID 2 and Dog ID 3 from program with Program ID 4, assuming that Dog ID 2 and Dog ID 3
+   were previously enrolled in Program ID 4. <br> 
+   Command: `drop d/2 d/3 p/4`
+3. Drop dog with Dog ID 2 from programs with Program ID 3 and Program ID 4, assuming that Dog ID 2 was previously 
+   enrolled in Program ID 3 and Program ID 4. <br> 
+   Command: `drop d/2 p/3 p/4`
    
 ![Drop Command](images/DropCommandScreenshot1.png) ![Drop Command Result](images/DropCommandScreenshot2.png)
 
