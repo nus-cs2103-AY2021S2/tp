@@ -17,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.budgetpanel.BudgetListPanel;
 import seedu.address.ui.reminderpanel.ReminderListPanel;
 import seedu.address.ui.schedulepanel.ScheduleListPanel;
 import seedu.address.ui.timetablepanel.TimeTableWindow;
@@ -45,6 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private ReminderListPanel reminderListPanel;
     private FiltersPanel filtersPanel;
     private ScheduleListPanel scheduleListPanel;
+    private BudgetListPanel budgetListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -75,6 +77,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane reminderListPanelPlaceholder;
+
+    @FXML
+    private StackPane budgetPanelPlaceholder;
 
     @FXML
     private TabPane tabPanePlaceHolder;
@@ -151,6 +156,9 @@ public class MainWindow extends UiPart<Stage> {
         appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
+        budgetListPanel = new BudgetListPanel(logic.getBudgetList());
+        budgetPanelPlaceholder.getChildren().add(budgetListPanel.getRoot());
+
         scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
 
@@ -174,6 +182,25 @@ public class MainWindow extends UiPart<Stage> {
         filtersPanelPlaceholder.getChildren().add(filtersPanel.getRoot());
         filtersPanel.fillInnerParts(logic.getPersonFilterStringList(),
                 logic.getAppointmentFilterStringList());
+
+        setTabsWidth(tabPanePlaceHolder);
+        setTabsWidth(tabSidePanePlaceHolder);
+    }
+
+    //@@author Mantas Visockis-reused
+    //Reused from https://stackoverflow.com/questions/31051756/javafx-tab-fit-full-size-of-header
+    //with minor modifications
+    /**
+     * Sets the width programmatically according to the window's size and number of tabs.
+     * @param tabPane TabPane to be adjusted
+     */
+    private void setTabsWidth(TabPane tabPane) {
+        assert tabPane != null;
+        tabPane.widthProperty().addListener((observable, oldValue, newWidth) -> {
+            int numTabs = tabPane.getTabs().size();
+            tabPane.setTabMinWidth(newWidth.doubleValue() / numTabs - (20));
+            tabPane.setTabMaxWidth(newWidth.doubleValue() / numTabs - (20));
+        });
     }
 
     /**

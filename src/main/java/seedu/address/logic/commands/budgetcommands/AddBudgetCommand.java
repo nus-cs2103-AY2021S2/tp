@@ -13,7 +13,7 @@ public class AddBudgetCommand extends Command {
 
     public static final String COMMAND_WORD = "add_budget";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "Adds a budget to the "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " :Adds a budget to the "
             + "user system. "
             + PREFIX_BUDGET + "BUDGET "
             + "Example: add_budget "

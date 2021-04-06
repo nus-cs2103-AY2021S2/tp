@@ -390,18 +390,13 @@ Deletes the specific appointment at the specified INDEX.
 The index refers to the index number shown in the displayed person list.
 The index must be a positive integer e.g. `1, 2, 3, …​`
 
-Referencing to the example output from `list_appointments`,
-
 Example:
 `delete_appointment 1`
 
 Example Output:
 ```
-1. Science
-Tutor: Bernice Yu
-Mar 27 2021
-03:00 PM - 05:00 PM
-Location: Hougang
+Deleted Appointment: Appointment with Tutor (Alex Poon) from 
+Mar 10 2021 05:00PM to Mar 10 2021 07:00PM
 ```
 
 #### Editing an appointment: `edit_appointment`

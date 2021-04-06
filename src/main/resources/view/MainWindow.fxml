@@ -195,6 +195,20 @@
                                             </VBox>
                                         </content>
                                     </Tab>
+                                    <Tab closable="false" text="Budget">
+                                        <content>
+                                            <VBox>
+                                                <VBox fx:id="budgetcard"
+                                                      prefWidth="75.0"
+                                                      styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                                                    <padding>
+                                                        <Insets bottom="10" left="10" right="10" top="10" />
+                                                    </padding>
+                                                    <StackPane fx:id="budgetPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                                                </VBox>
+                                            </VBox>
+                                        </content>
+                                    </Tab>
                                 </tabs>
                             </TabPane>
                         </children>
