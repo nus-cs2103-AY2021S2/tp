@@ -1,6 +1,7 @@
 package seedu.us.among.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
 
 import java.util.List;
 
@@ -18,8 +19,8 @@ public class RemoveCommand extends Command {
     public static final String COMMAND_WORD = "remove";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Remove an API endpoint identified using it's displayed index from the API endpoint list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Removes an existing API endpoint identified using its displayed index from the saved endpoint list.\n"
+            + "Parameters: INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_REMOVE_ENDPOINT_SUCCESS = "Remove endpoint: %1$s";
@@ -34,9 +35,9 @@ public class RemoveCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Endpoint> lastShownList = model.getFilteredEndpointList();
-
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_ERROR,
+                    Messages.MESSAGE_INDEX_NOT_WITHIN_LIST, RemoveCommand.MESSAGE_USAGE));
         }
 
         Endpoint endpointToRemove = lastShownList.get(targetIndex.getZeroBased());

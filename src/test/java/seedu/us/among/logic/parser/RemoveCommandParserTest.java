@@ -1,6 +1,7 @@
 package seedu.us.among.logic.parser;
 
-import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_FIRST_ENDPOINT;
@@ -17,6 +18,8 @@ import seedu.us.among.logic.commands.RemoveCommand;
  * therefore should be covered by the ParserUtilTest.
  */
 public class RemoveCommandParserTest {
+    private static final String MESSAGE_INVALID_FORMAT_NAN = String.format(MESSAGE_INVALID_COMMAND_ERROR,
+            MESSAGE_INVALID_INDEX, RemoveCommand.MESSAGE_USAGE);
 
     private RemoveCommandParser parser = new RemoveCommandParser();
 
@@ -27,6 +30,10 @@ public class RemoveCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT_NAN);
+        assertParseFailure(parser, "a", MESSAGE_INVALID_FORMAT_NAN);
+        assertParseFailure(parser, "1000000000000000000", MESSAGE_INVALID_FORMAT_NAN); // overflow
+        assertParseFailure(parser, "-99999999999999999", MESSAGE_INVALID_FORMAT_NAN); // underflow
+        assertParseFailure(parser, "one", MESSAGE_INVALID_FORMAT_NAN); // invalid number (should be numeric)
     }
 }
