@@ -15,9 +15,9 @@ import seedu.address.model.room.RoomNumberOrTagsContainsKeywordsPredicate;
 import seedu.address.testutil.room.EditRoomDescriptorBuilder;
 
 public class RoomCommandTestUtil {
-    public static final String VALID_ROOM_NUMBER_ONE = "15-312";
-    public static final String VALID_ROOM_NUMBER_TWO = "12-322";
-    public static final String VALID_ROOM_NUMBER_THREE = "09-121";
+    public static final String VALID_ROOM_NUMBER_ONE = "05-123";
+    public static final String VALID_ROOM_NUMBER_TWO = "15-123";
+    public static final String VALID_ROOM_NUMBER_THREE = "22-123";
     public static final List<String> VALID_ROOM_TYPES = new ArrayList<>(
             Arrays.asList("corridor_non_ac", "corridor_ac", "suite_non_ac", "suite_ac"));
     public static final List<String> VALID_ROOM_OCCUPANCIES = new ArrayList<>(Arrays.asList("y", "n"));

@@ -16,7 +16,7 @@ public class AddRoomCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a room to SunRez. "
             + "Parameters: "
-            + PREFIX_ROOM_NUMBER + "NAME "
+            + PREFIX_ROOM_NUMBER + "ROOM_NUMBER "
             + PREFIX_ROOM_TYPE + "TYPE "
             + "[" + PREFIX_ROOM_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "

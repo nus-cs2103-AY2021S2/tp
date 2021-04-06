@@ -48,7 +48,7 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(addressBook, userPrefs, commandHistory);
 
-        logger.fine("Initializing with address book: " + addressBook + ", user prefs " + userPrefs
+        logger.fine("Initializing with data file: " + addressBook + ", user prefs " + userPrefs
                 + " and command history " + commandHistory);
 
         this.statefulAddressBook = new StatefulAddressBook(addressBook);
