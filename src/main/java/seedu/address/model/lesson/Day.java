@@ -3,13 +3,11 @@ package seedu.address.model.lesson;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Locale;
-
 public class Day implements Comparable<Day> {
 
     public static final String VALIDATION_REGEX = "(monday|tuesday|wednesday|thursday|friday|saturday|sunday)";
-    public static final String MESSAGE_CONSTRAINTS = "Days should be in lowercase and take on one of the following: " +
-        "monday, tuesday, wednesday, thursday, friday, saturday, sunday. ";
+    public static final String MESSAGE_CONSTRAINTS = "Days should be in lowercase and take on one of the following: "
+        + "monday, tuesday, wednesday, thursday, friday, saturday, sunday. ";
     public final String dayOfTuition;
 
     /**
