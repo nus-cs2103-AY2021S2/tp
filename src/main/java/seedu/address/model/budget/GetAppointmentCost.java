@@ -14,7 +14,7 @@ import seedu.address.model.tutor.Name;
  */
 public class GetAppointmentCost {
 
-    public static final String ADDRESS_BOOK_PATH = "data/addressbook.json";
+    public static final String ADDRESS_BOOK_PATH = "data/tutorbook.json";
 
     private double appointmentCost;
 

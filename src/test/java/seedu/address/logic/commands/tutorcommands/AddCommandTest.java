@@ -262,7 +262,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void removeAppointmentIndex(int indexToRemove) {
+        public Appointment removeAppointmentIndex(int indexToRemove) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -302,6 +302,11 @@ public class AddCommandTest {
 
         @Override
         public void deleteBudget() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Budget> getBudgetList() {
             throw new AssertionError("This method should not be called.");
         }
 

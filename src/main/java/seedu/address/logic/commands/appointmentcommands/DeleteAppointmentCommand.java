@@ -50,7 +50,8 @@ public class DeleteAppointmentCommand extends Command {
         requireNonNull(model);
         // Delete by index
         try {
-            model.removeAppointmentIndex(targetIndex.getZeroBased());
+            Appointment removedAppointment =
+                    model.removeAppointmentIndex(targetIndex.getZeroBased());
             return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS,
                     toDelete), TabName.APPOINTMENT);
         } catch (IndexOutOfBoundsException e) {

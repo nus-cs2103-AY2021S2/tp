@@ -12,7 +12,7 @@ public class DeleteBudgetCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_budget";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "Deletes the current "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " :Deletes the current "
             + "budget stored in the user system. "
             + "Example: delete_budget ";
 
