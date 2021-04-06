@@ -1,3 +1,4 @@
+//@@author ZhangAnli
 package dog.pawbook.logic.commands;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW;
@@ -32,7 +33,15 @@ public class ViewCommand extends Command {
 
     private final int targetEntityId;
 
+    /**
+     * Constructs a View Command object.
+     *
+     * @param targetEntityId of the searched entity.
+     */
     public ViewCommand(int targetEntityId) {
+        // Check that targetEntityId is not invalid.
+        assert (targetEntityId > 0);
+
         this.targetEntityId = targetEntityId;
     }
 
@@ -57,6 +66,8 @@ public class ViewCommand extends Command {
                 .map(Pair::getKey)
                 .collect(Collectors.toList());
         targetIdList.addAll(enrolledPrograms);
+
+        assert(!targetIdList.isEmpty());
 
         model.updateFilteredEntityList(new IdMatchPredicate(targetIdList));
         model.sortEntities(new ViewCommandComparator(targetEntity.getClass()));

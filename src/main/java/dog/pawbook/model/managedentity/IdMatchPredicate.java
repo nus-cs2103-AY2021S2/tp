@@ -1,4 +1,7 @@
+//@@author ZhangAnli
 package dog.pawbook.model.managedentity;
+
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -18,6 +21,7 @@ public class IdMatchPredicate implements Predicate<Pair<Integer, Entity>> {
      * Construct a predicate from a list of IDs.
      */
     public IdMatchPredicate(Collection<Integer> idList) {
+        requireNonNull(idList);
         this.relatedIds.addAll(idList);
     }
 
@@ -25,11 +29,13 @@ public class IdMatchPredicate implements Predicate<Pair<Integer, Entity>> {
      * Construct a predicate for a single ID.
      */
     public IdMatchPredicate(Integer id) {
+        requireNonNull(id);
         this.relatedIds.add(id);
     }
 
     @Override
     public boolean test(Pair<Integer, Entity> idEntityPair) {
+        requireNonNull(idEntityPair);
         return relatedIds.stream().anyMatch(id -> idEntityPair.getKey().equals(id));
     }
 

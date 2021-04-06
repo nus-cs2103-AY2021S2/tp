@@ -1,5 +1,6 @@
 package dog.pawbook.logic.parser;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ENTITY_ID;
 import static dog.pawbook.model.managedentity.dog.DateOfBirth.DATE_FORMAT;
 import static dog.pawbook.model.managedentity.dog.DateOfBirth.DATE_FORMATTER;
 import static dog.pawbook.model.managedentity.program.Session.DATETIME_FORMATTER;
@@ -190,7 +191,7 @@ public class ParserUtil {
         try {
             return Integer.parseInt(trimmedOwnerId);
         } catch (NumberFormatException e) {
-            throw new ParseException("ID must be a positive integer!");
+            throw new ParseException(MESSAGE_INVALID_ENTITY_ID);
         }
     }
 
