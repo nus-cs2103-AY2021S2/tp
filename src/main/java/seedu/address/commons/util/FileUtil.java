@@ -81,10 +81,10 @@ public class FileUtil {
     }
 
     public static void unlockFile(Path file) {
-        file.toFile().setWritable(true, true);
+        file.toFile().setWritable(true, false);
     }
 
     public static void lockFile(Path file) {
-        file.toFile().setWritable(false, false);
+        file.toFile().setWritable(false);
     }
 }
