@@ -2,6 +2,7 @@ package seedu.booking.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.commons.core.Messages.PROMPT_CAPACITY_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_TAG_MESSAGE;
@@ -113,7 +114,7 @@ public class PromptAddVenueCommandTest {
         commandState.processInput(VALID_VENUE_DESCRIPTION_HALL);
         ModelManager.setState(STATE_TAG);
 
-        Set set = new HashSet<Tag>();
+        Set<Tag> set = new HashSet<>();
         set.add(new Tag(VALID_VENUE_TAGS_HALL));
         PromptVenueTagsCommand command = new PromptVenueTagsCommand(set);
 
@@ -124,7 +125,20 @@ public class PromptAddVenueCommandTest {
         }
 
         String state = ModelManager.getState();
-        assertEquals(null, state);
+        assertNull(state);
+        assertFalse(ModelManager.isStateActive());
+
+        ModelManager.resetCommandState();
+    }
+
+    @Test
+    void execute_changeStateAfterTagState_invalidState() {
+        CommandState commandState = new AddVenueCommandState(new VenueName(VALID_VENUE_NAME_HALL));
+        ModelManager.setState(STATE_TAG);
+        commandState.setNextState();
+        String state = ModelManager.getState();
+
+        assertEquals(STATE_TAG, state);
         assertFalse(ModelManager.isStateActive());
 
         ModelManager.resetCommandState();

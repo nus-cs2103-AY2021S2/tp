@@ -42,4 +42,11 @@ public class PromptAddVenueCommand extends Command {
         ModelManager.setState(STATE_CAPACITY);
         return new CommandResult(PROMPT_CAPACITY_MESSAGE);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PromptAddVenueCommand // instanceof handles nulls
+                && venueName.equals(((PromptAddVenueCommand) other).venueName));
+    }
 }

@@ -38,12 +38,15 @@ import seedu.booking.logic.commands.states.AddPersonCommandState;
 import seedu.booking.logic.commands.states.AddVenueCommandState;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.logic.parser.promptparsers.PromptAddPersonCommandParser;
-import seedu.booking.logic.parser.promptparsers.PromptAddVenueCommandParser;
 import seedu.booking.logic.parser.promptparsers.PromptBookingDescParser;
 import seedu.booking.logic.parser.promptparsers.PromptBookingEndParser;
-import seedu.booking.logic.parser.promptparsers.PromptBookingStartParsr;
+import seedu.booking.logic.parser.promptparsers.PromptBookingStartParser;
 import seedu.booking.logic.parser.promptparsers.PromptBookingTagParser;
 import seedu.booking.logic.parser.promptparsers.PromptEmailParser;
+import seedu.booking.logic.parser.promptparsers.PromptVenueCapacityParser;
+import seedu.booking.logic.parser.promptparsers.PromptVenueDescParser;
+import seedu.booking.logic.parser.promptparsers.PromptVenueNameCommandParser;
+import seedu.booking.logic.parser.promptparsers.PromptVenueTagsParser;
 import seedu.booking.model.ModelManager;
 
 /**
@@ -78,7 +81,7 @@ public class BookingSystemParser {
                     return new PromptEmailParser().parse(userInput);
 
                 case AddBookingCommandState.STATE_VENUE:
-                    return new PromptAddVenueCommandParser().parse(userInput);
+                    return new PromptVenueNameCommandParser().parse(userInput);
 
                 case AddBookingCommandState.STATE_DESC:
                     return new PromptBookingDescParser().parse(userInput);
@@ -87,19 +90,19 @@ public class BookingSystemParser {
                     return new PromptBookingTagParser().parse(userInput);
 
                 case AddBookingCommandState.STATE_START:
-                    return new PromptBookingStartParsr().parse(userInput);
+                    return new PromptBookingStartParser().parse(userInput);
 
                 case AddBookingCommandState.STATE_END:
                     return new PromptBookingEndParser().parse(userInput);
 
                 case AddVenueCommandState.STATE_CAPACITY:
-                    return new PromptAddVenueCommandParser().parseCapacity(userInput);
+                    return new PromptVenueCapacityParser().parse(userInput);
 
                 case AddVenueCommandState.STATE_DESC:
-                    return new PromptAddVenueCommandParser().parseDescription(userInput);
+                    return new PromptVenueDescParser().parse(userInput);
 
                 case AddVenueCommandState.STATE_TAG:
-                    return new PromptAddVenueCommandParser().parseTags(userInput);
+                    return new PromptVenueTagsParser().parse(userInput);
 
                 case AddPersonCommandState.STATE_EMAIL:
                     return new PromptAddPersonCommandParser().parseEmail(userInput);
@@ -132,7 +135,7 @@ public class BookingSystemParser {
             return new PromptAddBookingCommand();
 
         case PromptAddVenueCommand.COMMAND_WORD:
-            return new PromptAddVenueCommandParser().parse(arguments);
+            return new PromptVenueNameCommandParser().parse(arguments);
 
         case PromptAddPersonCommand.COMMAND_WORD:
             return new PromptAddPersonCommand();

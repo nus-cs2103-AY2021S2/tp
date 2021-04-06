@@ -80,8 +80,10 @@ public class CommandTestUtil {
     public static final String BOOKING_ID_INPUT_BOOKING_2 = DeleteBookingCommand.COMMAND_WORD
             + " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_2;
 
+    public static final String VALID_VENUE_NAME_APOSTROPHE = "Jo's House";
     public static final String VALID_VENUE_NAME_COURT = "Court";
     public static final String VALID_VENUE_NAME_HALL = "Victoria Hall";
+    public static final String VALID_VENUE_NAME_HYPHEN = "Jon-And-Co";
     public static final String VALID_VENUE_NAME_FIELD = "Town Green";
     public static final String VALID_VENUE_NAME_VENUE1 = "Venue1";
     public static final String VALID_VENUE_NAME_VENUE2 = "Venue2";
@@ -92,7 +94,9 @@ public class CommandTestUtil {
     public static final String VALID_VENUE_DESCRIPTION_FIELD = "Popular sports location.";
     public static final String VALID_VENUE_TAGS_HALL = "Indoors";
 
+    public static final String VENUE_NAME_DESC_APOSTROPHE = " " + PREFIX_VENUE + VALID_VENUE_NAME_APOSTROPHE;
     public static final String VENUE_NAME_DESC_HALL = " " + PREFIX_VENUE + VALID_VENUE_NAME_HALL;
+    public static final String VENUE_NAME_DESC_HYPHEN = " " + PREFIX_VENUE + VALID_VENUE_NAME_HYPHEN;
     public static final String VENUE_NAME_DESC_FIELD = " " + PREFIX_VENUE + VALID_VENUE_NAME_FIELD;
     public static final String VENUE_NAME_DESC_VENUE1 = " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE1;
     public static final String VENUE_NAME_DESC_VENUE2 = " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE2;

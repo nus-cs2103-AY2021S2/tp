@@ -24,7 +24,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.booking.logic.commands.AddVenueCommand;
 import seedu.booking.logic.commands.PromptAddVenueCommand;
-import seedu.booking.logic.parser.promptparsers.PromptAddVenueCommandParser;
+import seedu.booking.logic.parser.promptparsers.PromptVenueCapacityParser;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 import seedu.booking.testutil.VenueBuilder;
@@ -78,7 +78,7 @@ public class AddVenueCommandParserTest {
 
         // check default capacity is set to 10 if no capacity is parsed
         assertEquals(expectedVenueWithoutCapacity.getCapacity().toString(),
-                String.valueOf(PromptAddVenueCommandParser.DEFAULT_CAPACITY));
+                String.valueOf(PromptVenueCapacityParser.DEFAULT_CAPACITY));
 
         // missing description prefix
         assertParseSuccess(parser, VENUE_NAME_DESC_HALL

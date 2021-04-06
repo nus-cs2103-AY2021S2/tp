@@ -21,7 +21,7 @@ public class AddPersonCommandState extends CommandState {
     public static final String STATE_TAG = "PERSON_TAG";
 
 
-    private AddPersonIntermediate addPersonIntermediate;
+    private final AddPersonIntermediate addPersonIntermediate;
 
     /**
      * Initialises a PersonCommandState
@@ -49,6 +49,7 @@ public class AddPersonCommandState extends CommandState {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void processInput(Object value) {
         String state = this.getState();
 
