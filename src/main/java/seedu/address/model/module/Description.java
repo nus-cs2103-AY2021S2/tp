@@ -33,7 +33,7 @@ public class Description {
      * Returns true if a given string is a valid assignment description.
      */
     public static boolean isValidDescription(String description) {
-        return description.matches(VALIDATION_REGEX);
+        return description.matches(VALIDATION_REGEX) && !description.isBlank();
     }
 
 
