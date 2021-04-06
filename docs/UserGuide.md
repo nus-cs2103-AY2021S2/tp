@@ -149,7 +149,10 @@ feature works!
   For example: In `add m/MOD1 m/MOD2`, RemindMe will create a module called `MOD2`.
   
 **Tips:**<br>
+
 * `DATE-TIME` should follow format day/month/year hour minutes: `DD/MM/YYYY HHMM`.
+* `Commnands` are case-insensitive.<br>
+    For example: `ADD` and `add` are both valid.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
