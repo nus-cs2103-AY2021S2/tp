@@ -23,6 +23,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_OWNER_ID = "The owner ID provided is invalid.";
     public static final String MESSAGE_INVALID_PROGRAM_ID = "The program ID provided is invalid.";
     public static final String MESSAGE_INVALID_DOG_ID = "The dog ID provided is invalid.";
+    public static final String MESSAGE_ENTITIES_LISTED_OVERVIEW_FOR_ONE = "1 entity listed!";
     public static final String MESSAGE_ENTITIES_LISTED_OVERVIEW = "%1$d entities listed!";
     public static final String MESSAGE_DOG_MISSING_OWNER_ID = "Dog to be added is missing owner ID.";
 }
