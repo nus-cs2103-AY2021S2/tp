@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHILD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
@@ -31,7 +31,7 @@ public class TagCommandParser implements Parser<TagCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX, pe);
         }
 
         Optional<String> option = argMultimap.getValue(PREFIX_OPTION);
