@@ -19,6 +19,7 @@ nav-text: Developer Guide
 {:toc}
 
 <div style="page-break-after: always;"></div>
+
 ## **Introduction**
 imPoster is a desktop application for beginners of API development to quickly grasp the basics. 
 imPoster's simple and minimalistic style can help beginner API developers **explore** and **test** APIs, whether those **found online** or those that they have **built** themselves.
@@ -33,7 +34,9 @@ However, it is highly recommended for readers to refer to proper tutorial conten
 Readers are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application.
 
 * to-do brief description and some navigation tips about the developer guide as to what was similarly done in the user guide.
+
 <div style="page-break-after: always;"></div>
+
 ## **Design**
 ### Architecture
 
@@ -184,10 +187,14 @@ An `Endpoint` contains the following attributes:
 * `Data` can be empty, as some API calls do not send any data to the server
 * Before an API call is made, the `Response` object will be empty
 * Only when a Request#executeTimed(request) is called will a `Response` contain information about the API call response
+
 <div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes how an endpoint is created when a user executes an add command:
 ![AddActivityDiagram](images/AddActivityDiagram.png)
+
 <div style="page-break-after: always;"></div>
+
 #### Design consideration:
 ##### Aspect: How the components within `Endpoint` are added or changed
 * **Current Choice**: Attributes within `Endpoint` are immutable, meaning that if there is an attribute that has to be
@@ -246,7 +253,7 @@ Step 3. `Model#updateFilteredEndpointList` will be called and model will be upda
 The following activity diagram summarizes what happens when a user executes a find command:
 
 <p align="centre">
-    ![FindActivityDiagram](images/FindActivityDiagram.png)
+    <img alt="FindActivityDiagram" src="images/FindActivityDiagram.png">
 </p>
 
 ### Send/run command feature
