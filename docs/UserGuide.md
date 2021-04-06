@@ -46,8 +46,14 @@ However, the colours will be arranged such that no two modules with the same col
 </div>
 
 1. Tasks are colour coded based on done status. 
-   1. Done tasks are coloured green. 
-   1. Tasks that are not done are coloured pink.
+   1. Done tasks are coloured pink. 
+   1. Tasks that are not done are classified into 4 different categories (colors):
+   1. Color | Time to deadline
+      --------|------------------
+      **Green** | More than 3 days
+      **Yellow** | Between 1 to 3 days
+      **Orange** | Less than 1 day      
+      **Purple** | Expired
    
 1. The pie chart is used to show workload distribution.
    1. The color of pie chart is randomly assigned.
@@ -67,19 +73,30 @@ However, the colours will be arranged such that no two modules with the same col
 
     Module Code | Subject Description
     --------|------------------
-    CS1101S | Basic Programming Course
-    CS1231S | Discrete Mathematics
-    CS2030 | Intermediate Programming Course
-    CS2040 | Introductory Data Structures and Algorithms
+    CS1101S | Programming Methodology 
+    CS1010S | Programming Methodology in Python
+    CS1231S | Discrete Structures
+    CS2030 | Programming Methodology II
+    CS2040S | Data Structures and Algorithms
     CS2101 | Effective Communication for Computing Professionals
-    CS2103T | Introductory Software Engineering
+    CS2103T | Software Engineering
     CS2105 | Introduction to Computer Networks
     CS2106 | Introduction to Operating Systems
-    CS3230 | Advanced Algorithm Design and Analysis
+    CS3103 | Computer Networks Practice
+    CS3210 | Parallel Computing
+    CS3212 | Programming Languages
+    CS3217 | Software Engineering on Modern Application Platforms
+    CS3219 | Software Engineering Principles and Patterns
+    CS3220 | Computer Architecture
+    CS3223 | Database Systems Implementation
+    CS3225 | Combinatory Methods in Bioinformatics
+    CS3230 | Design and Analysis of Algorithm
+    CS3231 | Theory of Computation
+    CS3233 | Competitive Programming
     CS3243 | Introduction to Artificial Intelligence
     CS3244 | Machine Learning
     IS1103 | Computing Ethics
-    ST2131 | Statistics
+    ST2131 | Probability
     If your module code does not appear in the above table, 
     you may use a substitute module code based on the subject description.
   
@@ -151,7 +168,9 @@ However, the colours will be arranged such that no two modules with the same col
 
    * **`sort`** : Sort tasks
    
-   * **`recur`** :  Recur tasks
+   * **`recur`** : Recur tasks
+   
+   * **`refresh`** : Refresh all showing tasks
 
    * **`exit`** : Close the app
 
@@ -193,7 +212,6 @@ Format: `list`
 
 ![add message](images/listCommand.png)
 
-
 ### Add a task: `add`
 
 Adds a task to ModuleBook3.5. All newly added tasks are not done by default.
@@ -204,7 +222,7 @@ Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORK
 
 * If you wish to include a start time for your task, the start time should not be later than deadline.
 
-* Recurrence should be either "daily", "weekly" or "monthly".
+* Recurrence should be either "daily", "weekly" or "biweekly".
 
 * Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm set to 00:00)
 
@@ -276,15 +294,17 @@ Examples:
 * `find Quiz` followed by `notdone 1` marks the 1st task in the results of the `find` command as not done.
 
 
-### Add a tag: `tag`
+### Add tag(s): `tag`
 
-Adds a tag to a task.
+Adds a tag or multiple tags to a task.
 
 Application: Used to briefly indicate the nature of the task.
 
 Format: `tag INDEX t/TAG [t/MORETAGS]...​` 
 
 * Attaches one or more tags to the task associated with INDEX. Tags can be used to identify related tasks.
+* If only `/t` is provided without preceding value, no tag will be added but MB3.5 will show you the existing tags
+associated to the task you tried to tag.
 
 ![add message](images/tagCommand.png)
 
@@ -308,7 +328,9 @@ Examples:
 
 ### Search tasks with tag: `findTag`
 
-Searches for tasks with an associated tag. Note that tags are case-sensitive.
+Searches for tasks with an associated tag. Tag is case-insensitive for your convenience.
+
+One Tag allowed. Tag provided must be alphanumerical.
 
 Application: Used to find tasks that are similar in nature.
 
@@ -362,7 +384,7 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Recurrence should be either "daily", "weekly" or "monthly".
+* Recurrence should be either "daily", "weekly" or "biweekly".
 * Existing values will be updated to the input values.
 * If you wish to include a start time for your task, the start time should not be later than deadline.
 * Editing tags through the `edit` command overrides all existing tags. If you wish to add or delete only certain tags, use `tag` and `deleteTag` commands instead.
@@ -397,7 +419,7 @@ Examples:
 
 ### Recur tasks: `recur`
 
-Recurs a task either daily, monthly or weekly or removes the recurrence of the task.
+Recurs a task either daily, biweekly or weekly or removes the recurrence of the task.
 
 Application: Used to reset the recurring task deadline and done status when appropriate without having to manually edit the task.
 
@@ -407,7 +429,7 @@ Format: `recur INDEX r/RECURRENCE`
 * `INDEX` refers to the index number displayed in ModuleBook3.5.
    It must be a positive integer.
 * `RECURRENCE` refers to the regularity of the task that recurs periodically.
-* `RECURRENCE` can only be `daily`, `weekly` or `monthly` if a task needs to be recurred.
+* `RECURRENCE` can only be `daily`, `weekly` or `biweekly` if a task needs to be recurred.
 * `RECURRENCE` should be left empty if the recurrence of a task needs to be removed.
    The prefix `r/` must still be used.
 
@@ -415,10 +437,16 @@ Format: `recur INDEX r/RECURRENCE`
 
 
 Examples:
-* `recur 1 r/monthly` Recurs the 1st task in ModuleBook3.5 every month.
+* `recur 1 r/biweekly` Recurs the 1st task in ModuleBook3.5 every two weeks.
 * `recur 2 r/weekly` Recurs the 4th task in ModuleBook3.5 every week.
 * `recur 3 r/daily` Recurs the 3rd task in ModuleBook3.5 every day.
 * `recur 4 r/` Removes the recurrence of the 4th task in ModuleBook3.5.
+
+### Refresh all tasks: `refresh`
+
+Refreshes the current list that is showing, updates the deadline if necessary.
+
+Format: `refresh`
 
 <div style="page-break-after: always;"></div>
 
@@ -474,6 +502,7 @@ Action | Format, Examples
 **findTag** | `findTag KEYWORD`<br> e.g. `find Assignment`
 **mod** | `mod MODULE`<br> e.g. `mod CS2103T`
 **edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g. `edit 2 d/Eat Biscuits b/2021-03-21 10:10`
-**recur** | `recur INDEX r/RECURRENCE`<br> e.g. `recur 1 r/monthly`
+**recur** | `recur INDEX r/RECURRENCE`<br> e.g. `recur 1 r/biweekly`
+**refresh** | `refresh`
 **sort** | `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` <br> e.g. `sort b/`
 **exit** | `exit`

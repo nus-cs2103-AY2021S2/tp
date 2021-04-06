@@ -59,8 +59,14 @@ public class SortCommandParser implements Parser<SortCommand> {
         return Stream.of(prefixes).allMatch(argumentMultimap::contains);
     }
 
+    /**
+     * Returns true if there exists only one prefix without extra parameters.*
+     * @param argumentMultimap the maps of the arguments.
+     * @return true if the argument is valid for sort command.
+     */
     private static boolean isValidArgument(ArgumentMultimap argumentMultimap) {
-        return argumentMultimap.getPrefixesSize() <= 2;
+        return argumentMultimap.areLessThanTwoPrefixes()
+                && argumentMultimap.arePrefixesNotWithParameter();
     }
 
 }
