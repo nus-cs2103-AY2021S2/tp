@@ -46,8 +46,8 @@ public class CommandTestUtil {
     public static final String VALID_GUARDIAN_PHONE_BOB = "44444444";
     public static final String VALID_SUBJECT_CHEM = "chem";
     public static final String VALID_SUBJECT_MATH = "math";
-    public static final String VALID_LESSON_AMY = "Monday 1500";
-    public static final String VALID_LESSON_BOB = "Wednesday 1100";
+    public static final String VALID_LESSON_AMY = "monday 1500";
+    public static final String VALID_LESSON_BOB = "wednesday 1100";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -73,7 +73,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_SUBJECT_DESC = " " + PREFIX_SUBJECT + "hubby"; // 'hubby' is not a subject
-    public static final String INVALID_LESSON_DESC = " " + PREFIX_LESSON + "Monday"; // time must be included after day
+    public static final String INVALID_LESSON_DESC = " " + PREFIX_LESSON + "monday"; // time must be included after day
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

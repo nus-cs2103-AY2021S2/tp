@@ -14,7 +14,7 @@ import seedu.address.model.person.Person;
 public class Lesson implements Comparable<Lesson> {
 
     public static final String MESSAGE_CONSTRAINTS = "Lesson should only consist of two words - the lesson day, "
-            + "followed by the lesson time \nExample: Monday 1500";
+            + "followed by the lesson time. Lesson day should be in lowercase. \nExample: monday 1500";
     public static final int INDEX_OF_DAY = 0;
     public static final int INDEX_OF_TIME = 1;
     public static final int SIZE_OF_ARRAY = 2;
@@ -56,7 +56,9 @@ public class Lesson implements Comparable<Lesson> {
         return day.toString();
     }
 
-    public Set<Person> getPersonSet() { return this.persons; }
+    public Set<Person> getPersonSet() {
+        return this.persons;
+    }
 
     public Time getTime() {
         return time;
