@@ -248,10 +248,17 @@ Format: `sort_task ARGUMENT`
    * `deadline`: Sorts by task deadline, in increasing date order
    * `completion`: Sorts by task completion status, with completed tasks at the bottom
    * `priority`: Sorts by task priority, in decreasing order, from priority 0 on top, to priority 9 at the bottom
-
+* On subsequent boots, the following will happen:
+   * Relative order from previous launch will be preserved.
+   * However, if any order-altering command is issued, tasks will be sorted by name by default, unless otherwise stated by another `sort_task` command.
+    
 Examples:
 * `sort_task completion` sorts the task list by completion status.
 * `sort_task name` sorts the task list by name.
+
+#### Illustration of usage of `sort_task`:
+![Example of usage of `sort_task`](images/SortTaskUsage.png)
+
 
 [Return to Feature List](#feature-list)
 
@@ -264,13 +271,19 @@ Format: `pin_task INDEX`
 * Already pinned tasks will be unable to be pinned a second time.
 * The index refers to the index number shown in the displayed task list.
 * The index must be a positive and valid integer 1, 2, 3, ...
-* After pinning, the Task List will be sorted either according to previously entered `sort_task` command, or name (by default).
+* After pinning, the Task List will be sorted either according to previously entered `sort_task` command, or name (by default). See [here](#illustration-of-the-interaction-between-pin_task-and-sort_task).
     * Should there be two or more pinned tasks, the pinned tasks will be sorted as well.
     * Only the fact that pinned tasks will appear over the unpinned tasks is guaranteed. Internal order of pinned tasks is not persistent over `sort_task`.
 * Pinned tasks are persistent over instances of SOChedule.
 
 Examples:
 * `pin_task 1` pins the first task in Task List
+
+#### Illustration of usage of `pin_task`:
+![Example of usage of `pin_task`](images/PinTaskUsage.png)
+
+#### Illustration of the interaction between `pin_task` and `sort_task`:
+![Example of interaction of `pin_task` with `sort_task`](images/PinTaskInteractionWithSortTask.png)
 
 [Return to Feature List](#feature-list)
 
@@ -284,6 +297,9 @@ Format: `unpin_task INDEX`
 
 Examples:
 * `unpin_task 1` unpins the first task in Task List
+
+#### Illustration of usage of `unpin_task`:
+![Example of usage of `unpin_task`](images/UnpinTaskUsage.png)
 
 [Return to Feature List](#feature-list)
 
@@ -300,20 +316,24 @@ Format: `clear_completed_task`
 Clear tasks with past deadlines.
 
 Format: `clear_expired_task`
+* For a task to be considered expired, the task should have past deadline compare to the local date on the user's computer, 
+hence changing of date on a computer could affect the judgement of expiration.
 
 [Return to Feature List](#feature-list)
 
 
 ### Adding an event: `add_event`
 Adds an event to the SOChedule Event Scheduler.
-Format: `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`
-* `n/` is followed by the task name, it is case-sensitive.
+Format: `add_event n/EVENTNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`
+* `n/` is followed by the event name, it is case-sensitive.
 * `sd/` is followed by the starting date, it has to be a **valid date** and in the format of **YYYY-MM-DD**. Here, Y is the year, M is the month, D is the day and all has to be integers.
 * `st/` is followed by the time in the 24-hour format and in the format of **hh:mm** Here, h is the hour, m is the minute and all has to be integers.
 * `ed/` is followed by the end date, it has to be a **valid date** and in the format of **YYYY-MM-DD**.
 * `et/` is followed by the time in the 24-hour format and in the format of **hh:mm**.
+* The STARTDATE and STARTTIME provided can be in the past (ongoing event).
 * The STARTDATE and STARTTIME provided should be earlier than ENDDATE and ENDTIME.
 * The ENDDATE and ENDTIME provided cannot be a past date time.
+* Time overlapping events are allowed.
 * `c/` is followed by the category. It is optional.
 * `t/` is followed by the tag. It is optional.
 
@@ -344,6 +364,7 @@ Format: `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDAT
 * Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
 * You can only edit the details of an unexpired event.
 * At least one of the optional fields must be provided.
+* The STARTDATE and STARTTIME provided can be in the past (ongoing event).
 * The STARTDATE and STARTTIME provided should be earlier than ENDDATE and ENDTIME.
 * The ENDDATE and ENDTIME provided cannot be a past date time.
 * Existing values will be updated to the input values.
@@ -385,9 +406,11 @@ Format: `find_event KEYWORDS`
 
 
 ### Clearing expired events: `clear_expired_event`
-Clears tasks with past end date time.
+Clears events with past end date time.
 
 Format: `clear_expired_event`
+* For an event to be considered expired, the event should have past end date time compare to the local time on the user's computer, 
+hence changing of timing on a computer could affect the judgement of expiration.
 
 [Return to Feature List](#feature-list)
 

@@ -124,6 +124,9 @@ public class SocheduleParserUtil {
     public static Date parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
+        if (!Date.isValidDateFormat(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS_FORMAT);
+        }
         if (!Date.isValidDate(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }

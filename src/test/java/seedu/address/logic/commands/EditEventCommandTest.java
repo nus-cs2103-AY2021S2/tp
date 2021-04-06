@@ -72,18 +72,6 @@ public class EditEventCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditEventCommand editEventCommand = new EditEventCommand(INDEX_FIRST_EVENT, new EditEventDescriptor());
-        Event editedEvent = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
-
-        String expectedMessage = String.format(EditEventCommand.MESSAGE_EDIT_EVENT_SUCCESS, editedEvent);
-
-        Model expectedModel = new ModelManager(new Sochedule(model.getSochedule()), new UserPrefs());
-
-        assertCommandSuccess(editEventCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_filteredList_success() {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
 
@@ -167,6 +155,13 @@ public class EditEventCommandTest {
         EditEventCommand editEventCommand = new EditEventCommand(indexLastEvent, descriptor);
 
         assertCommandFailure(editEventCommand, model, Messages.MESSAGE_PAST_EVENT_END_DATE_TIME);
+    }
+
+    @Test
+    public void execute_noFieldSpecifiedUnfilteredList_failure() {
+        EditEventCommand editEventCommand = new EditEventCommand(INDEX_FIRST_EVENT, new EditEventDescriptor());
+
+        assertCommandFailure(editEventCommand, model, EditEventCommand.MESSAGE_NO_CHANGE);
     }
 
     @Test

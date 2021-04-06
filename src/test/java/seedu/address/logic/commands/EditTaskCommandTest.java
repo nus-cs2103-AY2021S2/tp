@@ -73,19 +73,6 @@ public class EditTaskCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditTaskCommand editTaskCommand =
-                new EditTaskCommand(INDEX_FIRST_TASK, new EditTaskCommand.EditTaskDescriptor());
-        Task editedTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-
-        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
-
-        Model expectedModel = new ModelManager(new Sochedule(model.getSochedule()), new UserPrefs());
-
-        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_filteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
@@ -161,6 +148,14 @@ public class EditTaskCommandTest {
         EditTaskCommand editTaskCommand = new EditTaskCommand(indexLastTask, descriptor);
 
         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_PAST_DEADLINE);
+    }
+
+    @Test
+    public void execute_noFieldSpecifiedUnfilteredList_failure() {
+        EditTaskCommand editTaskCommand =
+                new EditTaskCommand(INDEX_FIRST_TASK, new EditTaskCommand.EditTaskDescriptor());
+
+        assertCommandFailure(editTaskCommand, model, EditTaskCommand.MESSAGE_NO_CHANGE);
     }
 
     @Test
