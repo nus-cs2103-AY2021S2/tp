@@ -73,10 +73,9 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 
-        FileUtil.createIfMissing(filePath);
-        FileUtil.unlockFile(filePath);
+        FileUtil.createRegardless(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
-        FileUtil.lockFile(filePath);
+        FileUtil.readOnly(filePath);
     }
 
 }
