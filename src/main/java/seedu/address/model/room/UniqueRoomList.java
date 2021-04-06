@@ -87,6 +87,7 @@ public class UniqueRoomList implements Iterable<Room> {
         if (!internalList.remove(toRemove)) {
             throw new RoomNotFoundException();
         }
+        FXCollections.sort(internalList);
     }
 
     public void setRooms(UniqueRoomList replacement) {
