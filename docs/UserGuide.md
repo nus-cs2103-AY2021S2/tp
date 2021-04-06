@@ -126,19 +126,20 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb:**Tip:**<br>
+:bulb:**Tip:**
 
-* `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional.
+*  `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional.
   
-* A student’s contact can have any number of subjects (including 0)
+*  A student’s contact can have any number of subjects (including 0)
   
-* A student’s contact can have any number of lessons (including 0)
+*  A student’s contact can have any number of lessons (including 0)
 
-* Lessons should only consist of the lesson day and time e.g. `Monday 1300`
+*  Lessons should only consist of the lesson day and time e.g. `Monday 1300`
   
-* Lesson day must take on one of the values: **Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday**.
+*  Lesson day must take on one of the values: **Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday**.
 
-* Lesson time must be in **HHmm** format e.g. **1300**
+*  Lesson time must be in **HHmm** format e.g. **1300**
+
 </div>
 
 <div markdown="span" class="alert alert-warning">
