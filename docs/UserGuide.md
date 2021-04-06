@@ -247,7 +247,7 @@ but can be from 15 March 16:00 - 22 march 15:59.
 Format: `addm n/NAME st/TIME ed/TIME des/DESCRIPTIONS pr/PRIORITY [p/PERSON RELATED]… [g/GROUP]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A meeting can have any number of groups that are already existed in the contacts (including 0). 
+A meeting can have any number of groups.(including 0)
 It will add all the persons belong to that group into the person related field.
 </div>
 
