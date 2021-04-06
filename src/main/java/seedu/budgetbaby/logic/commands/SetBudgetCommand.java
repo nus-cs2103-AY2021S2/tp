@@ -30,6 +30,9 @@ public class SetBudgetCommand extends BudgetBabyCommand {
     @Override
     public CommandResult execute(BudgetBabyModel model) throws CommandException {
         requireNonNull(model);
+        if (toSet.getAmount() < 0) {
+            return new CommandResult(String.format("Budget amount cannot be negative!", toSet), false, false);
+        }
         model.setBudget(toSet);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toSet), false, false);
     }
