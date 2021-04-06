@@ -32,7 +32,7 @@ public class ClearAssigneesCommand extends Command {
 
     public static final String MESSAGE_CLEARED_ASSIGNEES_SUCCESS = "Cleared all Members Assigned to Task: %1$s";
 
-    public static final String MESSAGE_LIST_IS_EMPTY = "The task index specified is invalid as there " 
+    public static final String MESSAGE_LIST_IS_EMPTY = "The task index specified is invalid as there "
             + "are no displayed tasks in view!";
 
     private final Index targetIndex;
