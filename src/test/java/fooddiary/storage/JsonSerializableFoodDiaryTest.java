@@ -26,7 +26,7 @@ public class JsonSerializableFoodDiaryTest {
         JsonSerializableFoodDiary dataFromFile = JsonUtil.readJsonFile(TYPICAL_ENTRIES_FILE,
                 JsonSerializableFoodDiary.class).get();
         FoodDiary foodDiaryFromFile = dataFromFile.toModelType();
-        FoodDiary typicalEntriesFoodDiary = TypicalEntries.getTypicalFoodDiary();
+        FoodDiary typicalEntriesFoodDiary = TypicalEntries.getTypicalFoodDiaryWithMultipleEntries();
         assertEquals(foodDiaryFromFile, typicalEntriesFoodDiary);
     }
 

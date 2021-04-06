@@ -40,7 +40,7 @@ public class ReviseCommand extends Command {
         List<Entry> lastShownList = model.getFilteredEntryList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL);
         }
 
         assert lastShownList.get(targetIndex.getZeroBased()) != null : "Entry do not exist";

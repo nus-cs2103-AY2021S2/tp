@@ -1,7 +1,7 @@
 package fooddiary.logic.commands;
 
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiaryWithMultipleEntries;
 import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -24,7 +24,7 @@ import fooddiary.testutil.AddOnEntryDescriptorBuilder;
  */
 public class AddOnCommandTest {
 
-    private Model model = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFoodDiaryWithMultipleEntries(), new UserPrefs());
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
@@ -45,7 +45,7 @@ public class AddOnCommandTest {
                 .withReviews(CommandTestUtil.VALID_REVIEW_B).build();
         AddOnCommand addOnCommand = new AddOnCommand(outOfBoundIndex, descriptor);
 
-        CommandTestUtil.assertCommandFailure(addOnCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(addOnCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL);
     }
 
     @Test

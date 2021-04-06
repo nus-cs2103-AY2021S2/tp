@@ -4,7 +4,7 @@ import static fooddiary.testutil.Assert.assertThrows;
 import static fooddiary.testutil.TypicalEntries.ENTRY_A;
 import static fooddiary.testutil.TypicalEntries.ENTRY_H;
 import static fooddiary.testutil.TypicalEntries.ENTRY_I;
-import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiaryWithMultipleEntries;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -64,7 +64,7 @@ public class JsonFoodDiaryStorageTest {
     @Test
     public void readAndSaveFoodDiary_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempFoodDiary.json");
-        FoodDiary original = getTypicalFoodDiary();
+        FoodDiary original = getTypicalFoodDiaryWithMultipleEntries();
         JsonFoodDiaryStorage jsonFoodDiaryStorage = new JsonFoodDiaryStorage(filePath);
 
         // Save in new file and read back

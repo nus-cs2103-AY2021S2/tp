@@ -1,7 +1,7 @@
 package fooddiary.logic.commands;
 
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiaryWithMultipleEntries;
 import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -25,7 +25,7 @@ import fooddiary.testutil.EntryBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFoodDiaryWithMultipleEntries(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -122,7 +122,7 @@ public class EditCommandTest {
                 .withName(CommandTestUtil.VALID_NAME_B).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL);
     }
 
     /**
@@ -139,7 +139,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_B).build());
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL);
     }
 
     @Test

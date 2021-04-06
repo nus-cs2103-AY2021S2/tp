@@ -3,7 +3,7 @@ package fooddiary.logic.commands;
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandFailure;
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static fooddiary.logic.commands.CommandTestUtil.showEntryAtIndex;
-import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiaryWithMultipleEntries;
 import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -24,7 +24,7 @@ import fooddiary.model.entry.Entry;
  */
 class ReviseCommandTest {
 
-    private Model model = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFoodDiaryWithMultipleEntries(), new UserPrefs());
 
     /**
      * Checks if given valid index number for unfiltered entry list, correct entry is returned
@@ -49,7 +49,7 @@ class ReviseCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEntryList().size() + 1);
         ReviseCommand reviseCommand = new ReviseCommand(outOfBoundIndex);
 
-        assertCommandFailure(reviseCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+        assertCommandFailure(reviseCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL);
     }
 
     /**
@@ -83,7 +83,7 @@ class ReviseCommandTest {
 
         ReviseCommand reviseCommand = new ReviseCommand(outOfBoundIndex);
 
-        assertCommandFailure(reviseCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+        assertCommandFailure(reviseCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL);
     }
 
     @Test

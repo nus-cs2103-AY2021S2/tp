@@ -38,7 +38,7 @@ public class AddOnCommandParser implements Parser<AddOnCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IndexOutOfBoundsException e) {
-            throw new ParseException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+            throw new ParseException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOnCommand.MESSAGE_USAGE), pe);
         }

@@ -131,6 +131,7 @@ public class CommandTestUtil {
         assertEquals(expectedFoodDiary, actualModel.getFoodDiary());
         assertEquals(expectedFilteredList, actualModel.getFilteredEntryList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the entry at the given {@code targetIndex} in the
      * {@code model}'s food diary.
@@ -143,6 +144,24 @@ public class CommandTestUtil {
         model.updateFilteredEntryList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[1])));
 
         assertEquals(1, model.getFilteredEntryList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the entries at the given {@code targetIndexFirst} and
+     * {@code targetIndexSecond} in the {@code model}'s food diary.
+     */
+    public static void showEntriesAtIndexes(Model model, Index targetIndexFirst, Index targetIndexSecond) {
+        assertTrue(targetIndexFirst.getZeroBased() < model.getFilteredEntryList().size());
+        assertTrue(targetIndexSecond.getZeroBased() < model.getFilteredEntryList().size());
+
+        Entry entryFirst = model.getFilteredEntryList().get(targetIndexFirst.getZeroBased());
+        Entry entrySecond = model.getFilteredEntryList().get(targetIndexSecond.getZeroBased());
+        final String[] splitNameFirst = entryFirst.getName().fullName.split("\\s+");
+        final String[] splitNameSecond = entrySecond.getName().fullName.split("\\s+");
+        model.updateFilteredEntryList(
+                new NameContainsKeywordsPredicate(Arrays.asList(splitNameFirst[1], splitNameSecond[1])));
+
+        assertEquals(2, model.getFilteredEntryList().size());
     }
 
 }
