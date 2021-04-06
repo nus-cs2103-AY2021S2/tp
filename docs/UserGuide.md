@@ -198,7 +198,12 @@ t/ | TAG |
    In the above example, `m/CS2103T` is ignored.
 
 1. However, if the last argument happens to be invalid, the command will not execute.<br>
-   E.g. for `edit 1 m/CS2101 m/Invalid`, `m/Invalid` will be taken as the module argument, which is invalid. Even though m/CS2101 is valid, it is ignored entirely.
+   E.g. for `edit 1 m/CS2101 m/Invalid`, `m/Invalid` will be taken as the module argument, which is invalid. 
+   Even though m/CS2101 is valid, it is ignored entirely.
+   
+1. Tag prefix for `add`, `tag` and `edit` commands are an exception. For 2 or more tags which share the same spelling,
+   only the first tag is accepted. Note that tag spelling check is case-insensitive.
+   E.g. for `tag 1 t/quiz t/QUIZ, t/Quiz`, only `t/quiz` is accepted and the actual tag will be spelt as `quiz`.
 
 <div style="page-break-after: always;"></div>
 
@@ -360,7 +365,8 @@ Examples:
 
 ### Delete tag of Task: `deleteTag`
 
-Deletes a tag from its associated task. Note that tags are case-sensitive.
+Deletes a tag from its associated task. Tags are case-insensitive, so a tag with the same spelling (regardless of case)
+will be deleted.
 
 Application: Used to remove a tag without the need to reset all other tags.
 
@@ -387,7 +393,8 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 * Recurrence should be either "daily", "weekly" or "biweekly".
 * Existing values will be updated to the input values.
 * If you wish to include a start time for your task, the start time should not be later than deadline.
-* Editing tags through the `edit` command overrides all existing tags. If you wish to add or delete only certain tags, use `tag` and `deleteTag` commands instead.
+* Editing tags through the `edit` command overrides all existing tags. 
+  If you wish to add or delete only certain tags, use `tag` and `deleteTag` commands instead.
 
 ![add message](images/editCommand.png)
 
