@@ -1,6 +1,7 @@
 package seedu.us.among.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
 
 import java.util.List;
 
@@ -19,8 +20,8 @@ public class ShowCommand extends Command {
     public static final String COMMAND_WORD = "show";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the details of an existing API endpoint "
-            + "identified using it's displayed index from the API endpoint list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "identified using its displayed index from the saved endpoint list.\n"
+            + "Parameters: INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
     private final Index index;
@@ -39,7 +40,9 @@ public class ShowCommand extends Command {
         requireNonNull(model);
         List<Endpoint> lastShownList = model.getFilteredEndpointList();
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_ERROR,
+                    Messages.MESSAGE_INDEX_NOT_WITHIN_LIST,
+                    ShowCommand.MESSAGE_USAGE));
         }
 
         Endpoint endpointToShow = lastShownList.get(index.getZeroBased());

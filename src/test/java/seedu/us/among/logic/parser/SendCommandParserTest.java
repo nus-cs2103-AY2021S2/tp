@@ -1,6 +1,7 @@
 package seedu.us.among.logic.parser;
 
-import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_FIRST_ENDPOINT;
@@ -11,10 +12,10 @@ import seedu.us.among.logic.commands.SendCommand;
 
 public class SendCommandParserTest {
 
-    private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            SendCommand.MESSAGE_USAGE);
+    private static final String MESSAGE_INVALID_FORMAT_NAN = String.format(MESSAGE_INVALID_COMMAND_ERROR,
+            MESSAGE_INVALID_INDEX, SendCommand.MESSAGE_USAGE);
 
-    private SendCommandParser parser = new SendCommandParser();
+    private final SendCommandParser parser = new SendCommandParser();
 
     @Test
     public void parse_validArgs_returnsSendCommand() {
@@ -23,18 +24,20 @@ public class SendCommandParserTest {
 
     @Test
     public void parse_emptyArgs_returnsSendCommand() {
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, " ", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT_NAN);
+        assertParseFailure(parser, " ", MESSAGE_INVALID_FORMAT_NAN);
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, ".", MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "1a.", MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "a1", MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, ".1", MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "1.", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1000000000000000000", MESSAGE_INVALID_FORMAT_NAN); // overflow
+        assertParseFailure(parser, "-99999999999999999", MESSAGE_INVALID_FORMAT_NAN); // underflow
+        assertParseFailure(parser, "a", MESSAGE_INVALID_FORMAT_NAN);
+        assertParseFailure(parser, ".", MESSAGE_INVALID_FORMAT_NAN);
+        assertParseFailure(parser, "1a.", MESSAGE_INVALID_FORMAT_NAN);
+        assertParseFailure(parser, "a1", MESSAGE_INVALID_FORMAT_NAN);
+        assertParseFailure(parser, ".1", MESSAGE_INVALID_FORMAT_NAN);
+        assertParseFailure(parser, "1.", MESSAGE_INVALID_FORMAT_NAN);
     }
 
 }

@@ -118,7 +118,7 @@ In the example above, <span class="main-command">add</span> is the command word 
 Here are some general rules to follow when entering prefixes and parameters:
 
 * A whitespace must be included before every prefix.<br>
-  e.g. `-x METHOD-u URL` is not acceptable, and ` -x METHOD -u URL` is in the correct format.<br>
+  e.g. `-x METHOD-u URL` is not acceptable, and `-x METHOD -u URL` is in the correct format.<br>
   
 * Parameters can be in any order.<br>
   e.g. If the command specifies `-x METHOD -u URL`, `-u URL -x METHOD` is also acceptable.<br>
@@ -260,14 +260,16 @@ be a positive integer).
 
 **Format (Precise Search):** <span class="main-command">find</span> <span class="optional-param">-x [METHOD]</span> <span class="optional-param">-u [URL]</span> <span class="optional-param">-d [DATA]</span> <span class="optional-param">-h [HEADER]</span> <span class="optional-param">-t [TAG]</span>
 
-**Example & Output:** : <span class="main-command">find</span> <span class="optional-param">-x get</span> <span class="optional-param">-u google</span>
+**Example & Output:** <span class="main-command">find</span> <span class="optional-param">-x get</span> <span 
+class="optional-param">-u google</span>
 
 to-do tanjin update pic here (will match `get` from the Method field **and** `google` from the URL field)
 <p align="center">
   <img width="450px" src="images/commands/find.png" >
 </p>
 
-**Example & Output:**: <span class="main-command">find</span> <span class="optional-param">-x get post</span> <span class="optional-param">-u google</span>
+**Example & Output:** <span class="main-command">find</span> <span class="optional-param">-x get post</span> <span 
+class="optional-param">-u google</span>
 
 to-do tanjin update pic here (will match `get OR post` from the Method field **and** `google` from the URL field)
 <p align="center">
@@ -322,7 +324,7 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
 
 **Description:** [Call](#glossary-call) an API endpoint from the API endpoint list **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
-**Format** <span class="main-command">send</span> <span class="compulsory-param">INDEX</span>
+**Format:** <span class="main-command">send</span> <span class="compulsory-param">INDEX</span>
 
 **Example & Output:** <span class="main-command">send</span> <span class="compulsory-param">1</span>
 
@@ -334,19 +336,30 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
 
 **Description:** [Call](#glossary-call) an API endpoint directly (without saving) **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
-**Format:** <span class="main-command">run</span> <span class="optional-param">-x METHOD</span> <span class="optional-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span>
+**Format:** <span class="main-command">run</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span>
 
-**Example & Output:** <span class="main-command">run</span> <span class="optional-param">-x GET</span> <span class="optional-param">-u https://api.data.gov.sg/v1/environment/pm25</span>
+**Example & Output:** <span class="main-command">run</span> <span class="compulsory-param">-x GET</span> <span class="compulsory-param">-u https://api.data.gov.sg/v1/environment/pm25</span>
+
+<p align="center">
+  <img width="450px" src="images/commands/run.png" >
+</p>
+
+**Description (Shortcut):** [Call](#glossary-call) an API endpoint directly (without saving) to send a GET 
+request that does not specify any data or header **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + 
+<kbd>d</kbd>)**.
+
+**Format (Shortcut):** <span class="main-command">run</span> <span class="compulsory-param">URL</span>
+
+**Example & Output:** <span class="main-command">run</span> <span class="compulsory-param">https://api.data.gov.sg/v1/environment/pm25</span>
 
 <p align="center">
   <img width="450px" src="images/commands/run.png" >
 </p>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-A shorthand for <span class="optional-param">GET</span> requests can be done without specifying <span class="optional-param">-x</span> and <span class="optional-param">-u</span> 
-(for example: <span class="main-command">run</span> <span class="optional-param">https://api.data.gov.sg/v1/environment/pm25</span>).
+The above shortcut for run command is designed for users to easily verify outputs for common API endpoints that 
+do not require other input data or header. Note that this feature is only meant for sending GET requests.
 </div>
-
 
 <div style="page-break-after: always;"></div>
 
@@ -424,7 +437,7 @@ A quick overview of all supported commands, their formats and examples are given
 | **List**   | <span class="main-command">list</span><br>                                                               |
 | **Clear**  | <span class="main-command">clear</span><br>                                                              |
 | **Send**   | <span class="main-command">send</span> <span class="compulsory-param">INDEX</span><br>                   |
-| **Run**    | <span class="main-command">run</span> <span class="optional-param">-x METHOD</span> <span class="optional-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span><br>|
+| **Run**    | <span class="main-command">run</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span><br>|
 
 <div style="page-break-after: always;"></div>
 

@@ -1,8 +1,12 @@
 package seedu.us.among.logic.parser;
 
-import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
 
+import java.util.logging.Logger;
+
+import seedu.us.among.commons.core.LogsCenter;
 import seedu.us.among.commons.core.index.Index;
+import seedu.us.among.commons.util.StringUtil;
 import seedu.us.among.logic.commands.RemoveCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 
@@ -10,6 +14,7 @@ import seedu.us.among.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new RemoveCommand object
  */
 public class RemoveCommandParser implements Parser<RemoveCommand> {
+    private static final Logger logger = LogsCenter.getLogger(RemoveCommandParser.class);
 
     /**
      * Parses the given {@code String} of arguments in the context of the RemoveCommand
@@ -21,8 +26,10 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new RemoveCommand(index);
         } catch (ParseException pe) {
+            logger.warning(StringUtil.getDetails(pe));
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_ERROR, pe.getMessage(),
+                            RemoveCommand.MESSAGE_USAGE), pe);
         }
     }
 

@@ -3,6 +3,8 @@ package seedu.us.among.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INDEX_NOT_WITHIN_LIST;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
 import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.us.among.logic.commands.CommandTestUtil.showEndpointAtIndex;
 import static seedu.us.among.testutil.Assert.assertThrows;
@@ -15,7 +17,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.us.among.commons.core.Messages;
 import seedu.us.among.commons.core.index.Index;
 import seedu.us.among.commons.util.JsonUtil;
 import seedu.us.among.logic.commands.exceptions.CommandException;
@@ -27,7 +28,8 @@ import seedu.us.among.model.UserPrefs;
 import seedu.us.among.model.util.SampleDataUtil;
 
 public class SendCommandTest {
-
+    private static final String MESSAGE_INVALID_FORMAT_OUT_OF_BOUND = String.format(MESSAGE_INVALID_COMMAND_ERROR,
+            MESSAGE_INDEX_NOT_WITHIN_LIST, SendCommand.MESSAGE_USAGE);
     private final Model model = new ModelManager(getTypicalEndpointList(), new UserPrefs());
     private final String sampleValidResponse = SampleDataUtil.getSampleValidResponse();
 
@@ -55,7 +57,7 @@ public class SendCommandTest {
     public void execute_outOfBoundEndpointIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEndpointList().size() + 1);
         SendCommand sendCommand = new SendCommand(outOfBoundIndex);
-        assertCommandFailure(sendCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+        assertCommandFailure(sendCommand, model, MESSAGE_INVALID_FORMAT_OUT_OF_BOUND);
     }
 
     @Test
@@ -66,7 +68,7 @@ public class SendCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getEndpointList().getEndpointList().size());
 
         assertCommandFailure(new SendCommand(outOfBoundIndex), model,
-                Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+                MESSAGE_INVALID_FORMAT_OUT_OF_BOUND);
     }
 
     @Test

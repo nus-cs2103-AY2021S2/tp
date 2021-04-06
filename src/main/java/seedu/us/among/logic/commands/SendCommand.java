@@ -1,5 +1,6 @@
 package seedu.us.among.logic.commands;
 
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
 import static seedu.us.among.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -24,8 +25,8 @@ public class SendCommand extends Command {
 
     public static final String COMMAND_WORD = "send";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Calls a saved API endpoint using the displayed index from the API endpoints list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Calls a saved API endpoint using the displayed index from the saved endpoints list.\n"
+            + "Parameters: INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     private static final Logger logger = LogsCenter.getLogger(SendCommand.class);
@@ -46,8 +47,10 @@ public class SendCommand extends Command {
     public CommandResult execute(Model model) throws CommandException, RequestException, AbortRequestException {
         List<Endpoint> lastShownList = model.getFilteredEndpointList();
         if (index.getZeroBased() >= lastShownList.size()) {
-            logger.info("Illegal index found, out of bound");
-            throw new CommandException(Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+            logger.warning("Illegal index found, out of bound");
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_ERROR,
+                    Messages.MESSAGE_INDEX_NOT_WITHIN_LIST,
+                    SendCommand.MESSAGE_USAGE));
         }
 
         Endpoint endpointToSend = lastShownList.get(index.getZeroBased());
