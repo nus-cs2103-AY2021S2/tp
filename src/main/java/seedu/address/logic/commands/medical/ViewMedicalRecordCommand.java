@@ -31,7 +31,7 @@ public class ViewMedicalRecordCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         Patient patient = model.getSelectedPatient();
         MedicalRecord mrec = patient.getRecords().get(index.getZeroBased());

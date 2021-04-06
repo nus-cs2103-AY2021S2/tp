@@ -25,7 +25,7 @@ public class ViewMedicalRecordCommandParser implements Parser<ViewMedicalRecordC
             return new ViewMedicalRecordCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenMedicalRecordCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewMedicalRecordCommand.MESSAGE_USAGE), pe);
         }
     }
 }
