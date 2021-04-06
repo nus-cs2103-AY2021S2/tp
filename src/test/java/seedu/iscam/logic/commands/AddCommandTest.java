@@ -19,9 +19,9 @@ import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
-import seedu.iscam.model.ReadOnlyUserPrefs;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.meeting.Meeting;
+import seedu.iscam.model.user.ReadOnlyUserPrefs;
 import seedu.iscam.model.util.clientbook.ClientBook;
 import seedu.iscam.model.util.clientbook.ObservableClient;
 import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
@@ -172,6 +172,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasConflictingMeetingWith(Meeting meeting, Meeting... exclusions) {
             throw new AssertionError("This method should not be called.");
         }
 

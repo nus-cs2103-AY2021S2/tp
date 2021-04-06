@@ -27,6 +27,7 @@ import static seedu.iscam.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.iscam.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.iscam.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.iscam.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_THIRD_CLIENT;
@@ -68,10 +69,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_INDEX);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -82,18 +83,18 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_TYPE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_LENGTH_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_LOCATION_DESC, Location.MESSAGE_CONSTRAINTS); // invalid iscam
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_LENGTH_CONSTRAINTS);
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_LENGTH_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Client} being edited,
         // parsing it together with a valid tag results in error
@@ -103,7 +104,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_LOCATION_AMY + VALID_PHONE_AMY,
-                Name.MESSAGE_CONSTRAINTS);
+                Name.MESSAGE_TYPE_CONSTRAINTS);
     }
 
     @Test

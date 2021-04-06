@@ -10,7 +10,7 @@ import static seedu.iscam.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.iscam.logic.commands.CommandTestUtil.showClientAtIndex;
-import static seedu.iscam.testutil.TypicalClients.getTypicalLocationBook;
+import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
@@ -22,8 +22,8 @@ import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
-import seedu.iscam.model.UserPrefs;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.user.UserPrefs;
 import seedu.iscam.model.util.clientbook.ClientBook;
 import seedu.iscam.model.util.meetingbook.MeetingBook;
 import seedu.iscam.testutil.ClientBuilder;
@@ -34,7 +34,7 @@ import seedu.iscam.testutil.EditClientDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalLocationBook(), getTypicalMeetingBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalClientBook(), getTypicalMeetingBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {

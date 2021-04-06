@@ -16,6 +16,8 @@ import seedu.iscam.commons.core.LogsCenter;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.meeting.Meeting;
+import seedu.iscam.model.user.ReadOnlyUserPrefs;
+import seedu.iscam.model.user.UserPrefs;
 import seedu.iscam.model.util.clientbook.ClientBook;
 import seedu.iscam.model.util.clientbook.ObservableClient;
 import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
@@ -172,6 +174,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasConflictingMeetingWith(Meeting meeting, Meeting... exclusions) {
+        requireNonNull(meeting);
+        return meetingBook.hasConflictingMeetingWith(meeting, exclusions);
+    }
+
+    @Override
     public void deleteMeeting(Meeting target) {
         meetingBook.removeMeeting(target);
     }
@@ -227,7 +235,6 @@ public class ModelManager implements Model {
         return filteredMeetings;
     }
 
-    //TODO: header
     @Override
     public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireNonNull(predicate);

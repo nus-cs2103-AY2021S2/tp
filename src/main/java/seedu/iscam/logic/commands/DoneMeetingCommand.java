@@ -38,7 +38,7 @@ public class DoneMeetingCommand extends Command {
      */
     private Meeting completeMeeting(Meeting meeting) {
         return new Meeting(meeting.getClientName(), meeting.getDateTime(), meeting.getLocation(),
-                meeting.getDescription(), meeting.getTags(), true);
+                meeting.getDescription(), meeting.getTags(), meeting.getStatus().complete());
     }
 
     @Override

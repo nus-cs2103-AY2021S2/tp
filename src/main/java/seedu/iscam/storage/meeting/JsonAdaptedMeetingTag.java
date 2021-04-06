@@ -1,4 +1,4 @@
-package seedu.iscam.storage;
+package seedu.iscam.storage.meeting;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -9,7 +9,7 @@ import seedu.iscam.model.commons.Tag;
 /**
  * Jackson-friendly version of {@link Tag}.
  */
-class JsonAdaptedTag {
+class JsonAdaptedMeetingTag {
 
     private final String tagName;
 
@@ -17,14 +17,14 @@ class JsonAdaptedTag {
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedTag(String tagName) {
+    public JsonAdaptedMeetingTag(String tagName) {
         this.tagName = tagName;
     }
 
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
-    public JsonAdaptedTag(Tag source) {
+    public JsonAdaptedMeetingTag(Tag source) {
         tagName = source.tagName;
     }
 
@@ -41,6 +41,9 @@ class JsonAdaptedTag {
     public Tag toModelType() throws IllegalValueException {
         if (!Tag.isValidTagName(tagName)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        if (!Tag.isValidLength(tagName)) {
+            throw new IllegalValueException(Tag.MESSAGE_LENGTH_CONSTRAINTS);
         }
         return new Tag(tagName);
     }

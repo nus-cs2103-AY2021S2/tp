@@ -1,4 +1,4 @@
-package seedu.iscam.storage;
+package seedu.iscam.storage.client;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.iscam.testutil.Assert.assertThrows;
@@ -25,7 +25,7 @@ public class JsonSerializableClientBookTest {
         JsonSerializableClientBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_CLIENTS_FILE,
                 JsonSerializableClientBook.class).get();
         ClientBook clientBookFromFile = dataFromFile.toModelType();
-        ClientBook typicalClientsClientBook = TypicalClients.getTypicalLocationBook();
+        ClientBook typicalClientsClientBook = TypicalClients.getTypicalClientBook();
         assertEquals(clientBookFromFile, typicalClientsClientBook);
     }
 

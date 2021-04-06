@@ -14,7 +14,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.commons.exceptions.DataConversionException;
-import seedu.iscam.model.UserPrefs;
+import seedu.iscam.model.user.UserPrefs;
+import seedu.iscam.storage.user.JsonUserPrefsStorage;
 
 public class JsonUserPrefsStorageTest {
 

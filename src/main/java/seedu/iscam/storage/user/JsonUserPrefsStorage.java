@@ -1,4 +1,4 @@
-package seedu.iscam.storage;
+package seedu.iscam.storage.user;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -6,8 +6,8 @@ import java.util.Optional;
 
 import seedu.iscam.commons.exceptions.DataConversionException;
 import seedu.iscam.commons.util.JsonUtil;
-import seedu.iscam.model.ReadOnlyUserPrefs;
-import seedu.iscam.model.UserPrefs;
+import seedu.iscam.model.user.ReadOnlyUserPrefs;
+import seedu.iscam.model.user.UserPrefs;
 
 /**
  * A class to access UserPrefs stored in the hard disk as a json file

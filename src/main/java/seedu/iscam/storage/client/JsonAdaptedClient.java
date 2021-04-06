@@ -1,4 +1,4 @@
-package seedu.iscam.storage;
+package seedu.iscam.storage.client;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -31,7 +31,7 @@ class JsonAdaptedClient {
     private final String email;
     private final String insurancePlan;
     private final String location;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedClientTag> tagged = new ArrayList<>();
     private final String imageRes;
 
     /**
@@ -40,7 +40,7 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("location") String location,
-            @JsonProperty("plan") String insurancePlan, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("plan") String insurancePlan, @JsonProperty("tagged") List<JsonAdaptedClientTag> tagged,
             @JsonProperty("image") String imageRes) {
         this.name = name;
         this.phone = phone;
@@ -65,7 +65,7 @@ class JsonAdaptedClient {
         insurancePlan = source.getPlan().planName;
         location = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+                .map(JsonAdaptedClientTag::new)
                 .collect(Collectors.toList()));
         imageRes = source.getImageRes().value;
     }
@@ -77,7 +77,7 @@ class JsonAdaptedClient {
      */
     public Client toModelType() throws IllegalValueException {
         final List<Tag> clientTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
+        for (JsonAdaptedClientTag tag : tagged) {
             clientTags.add(tag.toModelType());
         }
 
@@ -85,15 +85,24 @@ class JsonAdaptedClient {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Name.MESSAGE_TYPE_CONSTRAINTS);
+        }
+        if (!Name.isValidLength(name)) {
+            throw new IllegalValueException(Name.MESSAGE_LENGTH_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Phone.isValidPhoneLength(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_LENGTH_CONSTRAINTS);
+        }
+        if (!Phone.isValidNumbersOnly(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_INPUT_CONSTRAINTS);
+        }
+        if (!Phone.isValidPhoneNumber(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_STARTING_DIGIT_CONSTRAINTS);
         }
         final Phone modelPhone = new Phone(phone);
 
@@ -102,6 +111,9 @@ class JsonAdaptedClient {
         }
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        }
+        if (!Email.isValidLength(email)) {
+            throw new IllegalValueException(Email.MESSAGE_LENGTH_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
 
@@ -113,6 +125,9 @@ class JsonAdaptedClient {
             throw new IllegalValueException(String.format(Location.MESSAGE_CONSTRAINTS,
                     Location.class.getSimpleName()));
         }
+        if (!Location.isValidLength(location)) {
+            throw new IllegalValueException(Location.MESSAGE_LENGTH_CONSTRAINTS);
+        }
         final Location modelLocation = new Location(location);
 
         if (insurancePlan == null) {
@@ -121,6 +136,9 @@ class JsonAdaptedClient {
         }
         if (!InsurancePlan.isValidPlan(insurancePlan)) {
             throw new IllegalValueException(InsurancePlan.MESSAGE_CONSTRAINTS);
+        }
+        if (!InsurancePlan.isValidLength(insurancePlan)) {
+            throw new IllegalValueException(InsurancePlan.MESSAGE_LENGTH_CONSTRAINTS);
         }
         final InsurancePlan modelPlan = new InsurancePlan(insurancePlan);
 

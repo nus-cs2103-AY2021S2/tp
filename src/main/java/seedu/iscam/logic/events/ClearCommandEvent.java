@@ -4,7 +4,7 @@ package seedu.iscam.logic.events;
 import seedu.iscam.logic.commands.UndoableCommand;
 import seedu.iscam.logic.events.Event;
 import seedu.iscam.model.Model;
-import seedu.iscam.model.ReadOnlyUserPrefs;
+import seedu.iscam.model.user.ReadOnlyUserPrefs;
 import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
 import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
 

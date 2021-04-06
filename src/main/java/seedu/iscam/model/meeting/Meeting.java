@@ -11,6 +11,7 @@ import java.util.Set;
 import seedu.iscam.model.commons.Location;
 import seedu.iscam.model.commons.Name;
 import seedu.iscam.model.commons.Tag;
+import seedu.iscam.model.meeting.CompletionStatus.Status;
 
 /**
  * Represents a Meeting in the client book.
@@ -27,7 +28,7 @@ public class Meeting {
     private Location location;
     private Description description;
     private Set<Tag> tags = new HashSet<>();
-    private boolean isDone;
+    private CompletionStatus status;
 
     /**
      * Every field must be present and not null.
@@ -40,14 +41,14 @@ public class Meeting {
         this.location = location;
         this.description = description;
         this.tags = tags;
-        this.isDone = false;
+        this.status = new CompletionStatus(Status.INCOMPLETE);
     }
 
     /**
      * Secondary constructor to indicate completion status of a meeting.
      */
     public Meeting(Name clientName, DateTime dateTime, Location location, Description description, Set<Tag> tags,
-                   boolean isDone) {
+                   CompletionStatus status) {
         requireAllNonNull(clientName, dateTime, location, description, tags);
         this.clientName = clientName;
         this.dateTime = dateTime;
@@ -55,7 +56,7 @@ public class Meeting {
         this.location = location;
         this.description = description;
         this.tags = tags;
-        this.isDone = isDone;
+        this.status = status;
     }
 
     public Name getClientName() {
@@ -74,8 +75,8 @@ public class Meeting {
         return description;
     }
 
-    public boolean getIsDone() {
-        return isDone;
+    public CompletionStatus getStatus() {
+        return status;
     }
 
     /**
@@ -126,13 +127,13 @@ public class Meeting {
                 && otherMeeting.getLocation().equals(this.location)
                 && otherMeeting.getDescription().equals(this.description)
                 && otherMeeting.getTags().equals(this.tags)
-                && otherMeeting.getIsDone() == this.isDone;
+                && otherMeeting.getStatus().equals(this.status);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(clientName, dateTime, location, description, tags, isDone);
+        return Objects.hash(clientName, dateTime, location, description, tags, status);
     }
 
     @Override
@@ -152,8 +153,8 @@ public class Meeting {
             tags.forEach(builder::append);
         }
 
-        builder.append("; Completed: ")
-                .append(isDone);
+        builder.append("; Status: ")
+                .append(status.toDisplayString());
 
         return builder.toString();
     }

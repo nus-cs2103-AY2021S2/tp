@@ -21,7 +21,7 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "location" : "wall street",
-    "plan" : "Plan C",
+    "plan" : "Life",
     "tagged" : [ ],
     "image" : "default.png"
   }, {
@@ -34,23 +34,23 @@
     "image" : "default.png"
   }, {
     "name" : "Elle Meyer",
-    "phone" : "9482224",
+    "phone" : "89482224",
     "email" : "werner@example.com",
     "location" : "michegan ave",
-    "plan" : "Plan C",
+    "plan" : "Protect",
     "tagged" : [ ],
     "image" : "default.png"
   }, {
     "name" : "Fiona Kunz",
-    "phone" : "9482427",
+    "phone" : "64824273",
     "email" : "lydia@example.com",
     "location" : "little tokyo",
-    "plan" : "Plan B",
+    "plan" : "MediShield",
     "tagged" : [ ],
     "image" : "default.png"
   }, {
     "name" : "George Best",
-    "phone" : "9482442",
+    "phone" : "94824412",
     "email" : "anna@example.com",
     "location" : "4th street",
     "plan" : "Plan A",

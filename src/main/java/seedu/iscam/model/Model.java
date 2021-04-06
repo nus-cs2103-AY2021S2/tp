@@ -9,6 +9,7 @@ import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.meeting.Meeting;
+import seedu.iscam.model.user.ReadOnlyUserPrefs;
 import seedu.iscam.model.util.clientbook.ObservableClient;
 import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
 import seedu.iscam.model.util.meetingbook.ObservableMeeting;
@@ -139,6 +140,12 @@ public interface Model {
      * Returns true if a meeting with the same identity as {@code meeting} exists in the iscam book.
      */
     boolean hasMeeting(Meeting meeting);
+
+    /**
+     * Returns true if any meeting except the ones in {@code exclusions} has conflicting date-time with {@code
+     * meeting}.
+     */
+    boolean hasConflictingMeetingWith(Meeting meeting, Meeting... exclusions);
 
     /**
      * Deletes the given meeting.

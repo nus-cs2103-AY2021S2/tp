@@ -13,7 +13,7 @@ import seedu.iscam.model.util.meetingbook.MeetingBook;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Client book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "All clients and meetings have been cleared!";
 
     @Override
     public CommandResult execute(Model model) {

@@ -16,7 +16,7 @@ public class ListMeetingsCommand extends Command {
     public static final String COMMAND_WORD = "listmeet";
 
     public static final String MESSAGE_SUCCESS = "Listed all meetings.";
-    public static final String MESSAGE_EMPTY_LIST = "There is no meeting in the iscam book.";
+    public static final String MESSAGE_EMPTY_LIST = "There is no meeting in the iScam book.";
 
     private String stringifyMeetings(ObservableList<Meeting> meetings) {
         String str = "";

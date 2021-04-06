@@ -1,4 +1,4 @@
-package seedu.iscam.storage;
+package seedu.iscam.storage.client;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -6,7 +6,7 @@ import static seedu.iscam.testutil.Assert.assertThrows;
 import static seedu.iscam.testutil.TypicalClients.ALICE;
 import static seedu.iscam.testutil.TypicalClients.HOON;
 import static seedu.iscam.testutil.TypicalClients.IDA;
-import static seedu.iscam.testutil.TypicalClients.getTypicalLocationBook;
+import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -63,7 +63,7 @@ public class JsonClientBookStorageTest {
     @Test
     public void readAndSaveClientBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempClientBook.json");
-        ClientBook original = getTypicalLocationBook();
+        ClientBook original = getTypicalClientBook();
         JsonClientBookStorage jsonClientBookStorage = new JsonClientBookStorage(filePath);
 
         // Save in new file and read back

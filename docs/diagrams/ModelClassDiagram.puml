@@ -27,6 +27,7 @@ Class Client
 Class Email
 Class Phone
 Class InsurancePlan
+Class Image
 }
 
 
@@ -49,6 +50,7 @@ Client *--> Email
 Client *--> Phone
 Client *--> InsurancePlan
 Client *--> "*" Tag
+Client *-left-> Image
 
 Meeting *--> Name
 Meeting *--> DateTime
