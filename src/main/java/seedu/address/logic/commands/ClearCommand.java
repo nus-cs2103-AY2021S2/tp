@@ -13,7 +13,7 @@ public class ClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
     public static final String MESSAGE_DISPLAYED_IN_VIEW_PATIENT_BOX = "You don't have any patients left, Doc.\n"
-                                                        +"Start adding patients with the 'add' command!";
+                                                        + "Start adding patients with the 'add' command!";
 
 
     @Override

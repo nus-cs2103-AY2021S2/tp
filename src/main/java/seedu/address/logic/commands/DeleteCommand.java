@@ -24,6 +24,9 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
+    public static final String MESSAGE_DISPLAYED_IN_VIEW_PATIENT_BOX = "Goodbye, %s!";
+
+
     private final Index targetIndex;
 
     public DeleteCommand(Index targetIndex) {
@@ -41,7 +44,9 @@ public class DeleteCommand extends Command {
 
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(patientToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, patientToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, patientToDelete),
+        false, false, null, null, null, String.format(MESSAGE_DISPLAYED_IN_VIEW_PATIENT_BOX, patientToDelete.getName().fullName), false);
+
     }
 
     @Override
