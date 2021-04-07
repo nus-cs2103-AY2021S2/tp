@@ -80,7 +80,7 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `ColabParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a contact).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -225,7 +225,7 @@ Below is a sequence diagram of how an `updateP` command is executed.
 
 Step 1. The user types an update project command `updateP 1 n/Group Project`.
 
-Step 2. User input is passed to the `addressBookParser`, which creates a new `UpdateProjectCommand`.
+Step 2. User input is passed to the `colabParser`, which creates a new `UpdateProjectCommand`.
 
 Step 3. The `UpdateProjectCommand` will then be executed by calling its `execute` method.
 
@@ -239,7 +239,7 @@ The other update commands require some more work because events, deadlines, task
 
 Step 1. The user types an update project command `updateG 1 n/Alice`.
 
-Step 2. User input is passed to the `addressBookParser`, which creates a new `UpdateGroupmateCommand`.
+Step 2. User input is passed to the `colabParser`, which creates a new `UpdateGroupmateCommand`.
 
 Step 3. The `UpdateGroupmateCommand` will then be executed by calling its `execute` method.
 
