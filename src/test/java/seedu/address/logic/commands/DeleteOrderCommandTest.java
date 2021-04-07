@@ -16,6 +16,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.customer.Name;
 import seedu.address.model.order.Order;
 import seedu.address.model.util.predicate.FieldPredicate;
 
@@ -31,8 +32,9 @@ public class DeleteOrderCommandTest {
         Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST_ORDER.getZeroBased());
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST_ORDER);
 
+        Name name = model.getCustomerWithId(orderToDelete.getCustomerId()).getName();
         String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS,
-                orderToDelete);
+                orderToDelete, name);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteOrder(orderToDelete);
@@ -55,9 +57,10 @@ public class DeleteOrderCommandTest {
 
         Order orderToDelete = model.getFilteredOrderList().get(INDEX_FIRST_ORDER.getZeroBased());
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST_ORDER);
+        Name name = model.getCustomerWithId(orderToDelete.getCustomerId()).getName();
 
         String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS,
-                orderToDelete);
+                orderToDelete, name);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteOrder(orderToDelete);

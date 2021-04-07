@@ -186,21 +186,15 @@ public class Order {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
 
-        builder.append(getOrderId())
-            .append("; Cheese Type: ")
+        builder.append("Cheese Type: ")
             .append(getCheeseType())
             .append("; Quantity: ")
             .append(getQuantity())
             .append("; Order Date: ")
             .append(getOrderDate())
             .append("; Completed Date: ")
-            .append(getCompletedDate().map(x -> x.toString()).orElse("-"))
-            .append("; Customer ID: ")
-            .append(getCustomerId())
-            .append("; Cheese IDs: ")
-            .append(getCheeses());
+            .append(getCompletedDate().map(x -> x.toString()).orElse("-"));
 
         return builder.toString();
     }
-
 }

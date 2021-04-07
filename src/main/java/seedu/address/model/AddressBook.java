@@ -188,6 +188,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns a customer with {@code id} if exists in the address book.
+     */
+    public Customer getCustomerWithId(CustomerId id) {
+        requireNonNull(id);
+        return customers.getCustomerWithId(id);
+    }
+
+
+    /**
      * Adds a customer to the address book.
      * The customer must not already exist in the address book.
      */

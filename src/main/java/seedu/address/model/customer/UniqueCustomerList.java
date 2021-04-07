@@ -53,6 +53,14 @@ public class UniqueCustomerList implements Iterable<Customer> {
     }
 
     /**
+     * Returns first {@code Customer} instance with equivalent id as the given argument or null if it does not exist.
+     */
+    public Customer getCustomerWithId(CustomerId id) {
+        requireNonNull(id);
+        return internalList.stream().filter(customer -> customer.getId().equals(id)).findFirst().orElse(null);
+    }
+
+    /**
      * Adds a customer to the list.
      * The customer must not already exist in the list.
      */

@@ -71,6 +71,8 @@ public class CommandTestUtil {
     public static final EditCustomerCommand.EditCustomerDescriptor DESC_AMY;
     public static final EditCustomerCommand.EditCustomerDescriptor DESC_BOB;
 
+    //public static final EditOrderCommand.EditOrderDescriptor DESC_BRIE;
+
     public static final EditCheeseCommand.EditCheeseDescriptor DESC_EDIT_CHEESE;
 
     public static final int VALID_QUANTITY_1 = 1;
@@ -137,6 +139,14 @@ public class CommandTestUtil {
                 .withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_MOZZARELLA))
                 .withManufactureDate(VALID_MANUFACTURE_DATE_5)
                 .withExpiryDate(VALID_EXPIRY_DATE_5).build();
+
+        /*
+        DESC_BRIE = new EditOrderDescriptorBuilder()
+                .setCheeseType(VALID_CHEESE_TYPE_BRIE).withQuantity(VALID_QUANTITY_1)
+                .withOrderDate(VALID_ORDER_DATE_3).withCompletedDate(null)
+                .withCustomerId(CARL.getId()).withOrderId(1)
+                .build();
+         */
     }
 
     /**

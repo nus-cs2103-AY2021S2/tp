@@ -12,6 +12,7 @@ import seedu.address.model.cheese.Cheese;
 import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.CustomerId;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderId;
@@ -202,6 +203,12 @@ public class ModelStub implements Model {
     public Customer getCustomerWithPhone(Phone phone) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public Customer getCustomerWithId(CustomerId id) {
+        throw new AssertionError("This method should not be called.");
+    }
+
 
     @Override
     public Set<CheeseId> getUnassignedCheeses(CheeseType cheesetype, Quantity quantity) {

@@ -127,8 +127,7 @@ public class Cheese {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
 
-        builder.append(getCheeseId())
-            .append("; Cheese Type: ")
+        builder.append("Cheese Type: ")
             .append(getCheeseType())
             .append("; Manufacture Date: ")
             .append(getManufactureDate())
