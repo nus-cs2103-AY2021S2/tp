@@ -187,6 +187,11 @@ Classes used by multiple components are in the `seedu.smartlib.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+## Book
+
+### Adding a book
+The execution of adding a book `addbook` is very similar to adding a reader `addreader` (refer to diagrams under Reader)
+
 ### Deleting a book
 
 The execution of deleting a book and deleting a reader is very similar (refer to the sequence diagram under
@@ -224,6 +229,8 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![FindBookActivityDiagram](images/FindBookActivityDiagram.png)
 
+# Reader
+
 ### Adding a reader
 Adding a reader into a class requires user input from the CLI.
 The `SmartLibParser` will parse the user input to check the validity of it, the input is valid if
@@ -250,6 +257,11 @@ The following sequence diagram shows how the `addreader` operation works:
 The following activity diagram summarizes what happens when a user executes the `addreader` command:
 
 ![AddReaderActivityDiagram](images/AddReaderActivityDiagram.png)
+
+
+### Deleting a reader
+The execution of deleting a reader `deletereader` is very similar to deleting a book `deletebook` (refer to diagrams under Book)
+
 
 ### Listing all readers
 
@@ -286,6 +298,8 @@ refer to the diagrams under [**`Finding books with keywords`**](#finding-books-w
 The only differences are that `FindReaderCommandParser` is used to parse the argument(s) and instead of
 `FindBookCommandParser`, and an object of `FindReaderCommand` is created. In order to find a reader using keywords,
 `Model#updateFilteredReaderList()` is called instead of `Model#updateFilteredBookList()`.
+
+## Record
 
 ### Borrowing a book
 
