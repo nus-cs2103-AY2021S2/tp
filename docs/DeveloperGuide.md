@@ -880,12 +880,14 @@ Use case ends.
 ## Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 records (residents, rooms and issues) without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. Should be able to hold up to 1000 records (residents, rooms and issues) without more than 1 second of lag for
+   typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+   be able to accomplish most of the tasks faster using commands than using the mouse.
 4. A user should be able to learn the basic commands within half an hour of initial usage.
 5. Should work without the internet.
 6. Should be a highly portable to enable transfer between different computers with different OS.
-7. Executable program should occupy less than 20MB on the computer.
+7. The executable program (excluding data files) should occupy less than 20 MB of disk space on the computer.
 8. Should not require an installer.
 9. The data should not be stored in a Database Management System (DBMS).
 10. Should not depend on any remote server.
