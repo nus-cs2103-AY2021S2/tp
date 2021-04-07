@@ -140,7 +140,7 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Location.MESSAGE_LENGTH_CONSTRAINTS);
         }
         final Location modelLocation = new Location(location);
-        
+
         final Set<InsurancePlan> modelPlans = new HashSet<>(clientPlans);
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
