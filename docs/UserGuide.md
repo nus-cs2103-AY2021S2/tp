@@ -34,7 +34,8 @@ Commands in this user guide follow this format:
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence 
+  of the parameter will be taken.<br>
   e.g. if you specify `n/John Doe n/Jane Doe`, only `n/Jane Doe` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `ilist`, `exit` and `clear`) will be ignored.<br>
@@ -52,7 +53,8 @@ The resident's name will take the **later** occurrence of name and create a resi
 
 On the other hand, **all** [tags](#tag) specified will be taken. 
 
-For instance, `radd n/John Doe n/Timmy Tan p/91234567 e/e0123456@u.nus.edu y/3 g/tag_one g/tag_two g/tag_three` will create a resident with tags `tag_one`, `tag_two` and `tag_three`.
+For instance, `radd n/John Doe n/Timmy Tan p/91234567 e/e0123456@u.nus.edu y/3 g/tag_one g/tag_two g/tag_three` will 
+create a resident with tags `tag_one`, `tag_two` and `tag_three`.
 
 
 #### Interpreting parameter values
@@ -62,7 +64,8 @@ For example, if you key in this command:
 
 `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3`
 
-The resident's name will be all characters that follows `n/` until just before the start of `p/`, including the space. Most commands, however, trim leading and trailing spaces.
+The resident's name will be all characters that follows `n/` until just before the start of `p/`, including the space. 
+Most commands, however, trim leading and trailing spaces.
 
 Let us break this down further and assume `radd` only takes in 2 parameters for the purposes of explanation. 
 We can break the command down as follows:
@@ -71,7 +74,8 @@ We can break the command down as follows:
 
 A user can enter a `NAME_STRING` that consists of anything, including text that contains prefix-like strings such as `s/`. 
 For example, a user could enter `John s/o Tom`. 
-However, as `s/` is not a valid prefix for the `radd` command, the command parser will treat `John s/o Tom` as the value for the name parameter. 
+However, as `s/` is not a valid prefix for the `radd` command, the command parser will treat `John s/o Tom` as the 
+value for the name parameter. 
 
 
 The validation for the `Name` parameter will process `John s/o Tom` and may reject it based on the stated validation rules.
@@ -79,9 +83,11 @@ However, a known limitation of this approach is that parameter values containing
 
 Let us take a look at another example:
 
-If `NAME_STRING` = `John p/ Tom`, the command keyed in could look like `radd p/[VALID_PHONE_NUM] n/John p/ Tom` (Remember that prefix order does not matter.) 
+If `NAME_STRING` = `John p/ Tom`, the command keyed in could look like `radd p/[VALID_PHONE_NUM] n/John p/ Tom` 
+(Remember that prefix order does not matter.) 
 
-This will create the presence of 2 phone number parameters. In such a case, the latter value will be taken. As `Tom` is not a valid phone number, it will be rejected.
+This will create the presence of 2 phone number parameters. In such a case, the latter value will be taken. 
+As `Tom` is not a valid phone number, it will be rejected.
 
 
 ### Command Parameters
@@ -115,15 +121,18 @@ Many SunRez commands use various parameters. Their formats, constraints and rati
 
 3. Copy the file to the folder you want to use as the _home folder_ for your SunRez.
 
-4. Double-click the file to start the app. A GUI like the one pictured below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. A GUI like the one pictured below should appear in a few seconds. 
+   Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type a command in the command box and press Enter to execute it. 
+   e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     * **`rlist`** : Lists all residents.
 
-    * **`radd`**`n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2` : Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, a 2nd year student.
+    * **`radd`**`n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2` : 
+      Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, a 2nd year student.
 
     * **`rdel`**`3` : Deletes the 3rd resident shown in the current resident list.
 
@@ -152,7 +161,9 @@ Parameters:
 * [YEAR](#year) The year of the resident.
 
 Examples:
-* `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3` Adds a resident named `John Doe` with phone number `91234567`, email `e0123456@u.nus.edu`, and as a 3rd year student, without any room allocated.
+* `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3` 
+  Adds a resident named `John Doe` with phone number `91234567`, email `e0123456@u.nus.edu`, and as a 3rd year student, 
+  without any room allocated.
 
 
 #### List all residents : `rlist`
@@ -196,8 +207,8 @@ Parameters:
 * [YEAR](#year) The year of the resident.
 
 Example:
-* `redit 1 p/91234567 e/e0123456@u.nus.edu` Edits the phone number and email address of the 1st resident to be `91234567` and `e0123456@u.nus.edu` respectively.
-  
+* `redit 1 p/91234567 e/e0123456@u.nus.edu` Edits the phone number and email address of the 1st resident to 
+  be `91234567` and `e0123456@u.nus.edu` respectively.
 
 
 #### Delete a resident : `rdel`
@@ -205,10 +216,10 @@ Example:
 Deletes the resident record at a specified index.
 
 Format: `rdel INDEX`
-*  A resident allocated to a room cannot be deleted until it is first deallocated. Run `dealloc` commmand before deletion. 
+*  A resident allocated to a room cannot be deleted until it is first deallocated. Run `dealloc` commmand before deletion.
    See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
 
-Parameters: 
+Parameters:
 * [INDEX](#index) The index of the displayed resident.
 
 Example:
@@ -232,7 +243,8 @@ Adds a room to the housing management system.
 Format: `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]`
 * Room is initialised with default occupancy status of "No".
 * The occupancy status cannot be defaulted to "Yes" during room addition.
-* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info. 
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. 
+  See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info. 
   
 Parameters:
 * [ROOM_NUMBER](#room_number) The room number of the room to add.
@@ -256,7 +268,8 @@ Finds all rooms by room number or tag that contain any of the given keywords.
 
 Format: `ofind KEYWORD [MORE_KEYWORDS]`
 * The search matches any part of the room number. e.g. `10` will match `10-111` and `14-101`.
-* The search for tags matches any part of the tag and is NOT case-sensitive. e.g `mell`, `smell`, `smelly` or `room` all work to match `smellyroom`. `s` will match both `smellyroom` and `SHN`.
+* The search for tags matches any part of the tag and is NOT case-sensitive. e.g `mell`, `smell`, `smelly` or `room` 
+  all work to match `smellyroom`. `s` will match both `smellyroom` and `SHN`.
 * The order of the keywords does not matter. e.g. `11- 10-` will match `10-100`, `10-101`, `11-100`, and `11-101`.
 * Only the room number and tags are searched.
 * Rooms matching at least one keyword will be returned (i.e. OR search). e.g. `10 20` will return `10-100`, `11-120`.
@@ -282,7 +295,9 @@ Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
 * Existing values will be updated to the input values.
 * `oedit` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before making further edits.
 * The occupancy status is not controllable through the `oedit` command.
-* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. 
+  See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
+
 
 Parameters:
 * [INDEX](#index) The index of the room to edit.
@@ -300,8 +315,11 @@ Deletes the room at a specified index.
 
 Format: `odel INDEX`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
-* `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room.
-  See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
+* `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room. 
+  See [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
+* `odel` will be blocked if the there are issues associated with the room. 
+  Run `idel` to delete all issues associated the room before attempting to delete the room. 
+  See [delete an issue](#delete-an-issue--idel) for more info.
 
 Parameters:
 * [INDEX](#index) The index of the room to delete.
@@ -336,6 +354,7 @@ Example:
 Deallocates an existing resident from an existing room.
 
 Format: `dealloc INDEX`
+* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
 * The resident at the `INDEX` must already be allocated.
 
 Parameters:
@@ -354,7 +373,8 @@ Adds an issue to the housing management system.
 Format: `iadd r/ROOM_NUMBER d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
 
 Example:
-* `iadd r/10-100 d/Broken light c/Furniture` Creates an issue for room number `10-100` with description `Broken light` under the category `Furniture`.
+* `iadd r/10-100 d/Broken light c/Furniture` 
+  Creates an issue for room number `10-100` with description `Broken light` under the category `Furniture`.
 
 
 #### List all issues : `ilist`
@@ -371,10 +391,12 @@ Finds all issues that contain any of the given keywords in the description, room
 Format: `ifind KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g. `broken` will match `Broken`.
 * The order of the keywords does not matter. e.g. `Broken light` will match `light broken`.
-* The search for tags and description matches any part of the tag and is NOT case-sensitive. e.g `high`, `HIGH` or `h` all work to match `High`. `H` will match both `Hot` and `High`.
+* The search for tags and description matches any part of the tag and is NOT case-sensitive. 
+  e.g `high`, `HIGH` or `h` all work to match `High`. `H` will match both `Hot` and `High`.
 * The search matches any part of the room number. e.g. `10` will match `10-111` and `14-101`.
 * Only the description, room number, and tags are searched.
-* Issues matching at least one keyword will be returned (i.e. OR search). e.g. `Broken window` will return `Broken light`, `Dirty window`, and `Broken window`.
+* Issues matching at least one keyword will be returned (i.e. OR search). 
+  e.g. `Broken window` will return `Broken light`, `Dirty window`, and `Broken window`.
 
 Examples:
 * `ifind chair` returns `Broken chair` and `Chair missing wheel`.
