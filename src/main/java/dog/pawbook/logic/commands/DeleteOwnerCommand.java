@@ -60,8 +60,6 @@ public class DeleteOwnerCommand extends DeleteCommand<Owner> {
         // then actually delete the owner
         model.deleteEntity(targetId);
 
-        filteredListShowAllAscendingId(model);
-
         return new CommandResult(MESSAGE_SUCCESS + ownerToDelete);
     }
 

@@ -6,6 +6,7 @@ import static dog.pawbook.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_OWNER_PREDICATE;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalEntities.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,7 +27,7 @@ import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.ReadOnlyDatabase;
 import dog.pawbook.model.UserPrefs;
-import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.storage.JsonDatabaseStorage;
 import dog.pawbook.storage.JsonUserPrefsStorage;
@@ -65,9 +66,9 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand,
-                String.format(ListCommand.MESSAGE_SUCCESS_FORMAT, Entity.class.getSimpleName().toLowerCase()), model);
+        String listCommand = ListCommand.COMMAND_WORD + " " + Dog.ENTITY_WORD;
+        assertCommandSuccess(listCommand, String.format(ListCommand.MESSAGE_NO_ENTITY_AVAILABLE, Dog.ENTITY_WORD),
+                model);
     }
 
     @Test
@@ -86,6 +87,7 @@ public class LogicManagerTest {
         Owner expectedOwner = new OwnerBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addEntity(expectedOwner);
+        expectedModel.updateFilteredEntityList(IS_OWNER_PREDICATE);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

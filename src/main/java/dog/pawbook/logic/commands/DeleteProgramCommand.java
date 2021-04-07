@@ -31,8 +31,6 @@ public class DeleteProgramCommand extends DeleteCommand<Program> {
 
         model.deleteEntity(targetId);
 
-        filteredListShowAllAscendingId(model);
-
         return new CommandResult(MESSAGE_SUCCESS + programToDelete);
     }
 

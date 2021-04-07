@@ -88,6 +88,7 @@ public class DeleteDogCommandTest {
 
         String expectedMessage = DeleteDogCommand.MESSAGE_SUCCESS + entity;
         ModelManager expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
+        expectedModel.updateFilteredEntityList(IS_OWNER_PREDICATE);
         expectedModel.deleteEntity(pair.getKey());
         int ownerId = ((Dog) pair.getValue()).getOwnerId();
         Owner owner = (Owner) model.getEntity(ownerId);
