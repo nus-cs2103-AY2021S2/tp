@@ -603,6 +603,7 @@ Example Output:
 ```
 1) Budget does not already exist. Please ensure there is a budget. You can use the 
 add_budget function to add a budget.
+
 2) Here is your budget.
 Budget: 600
 Total Cost of Appointments: 100.
