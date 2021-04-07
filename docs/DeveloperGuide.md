@@ -2,7 +2,7 @@
 layout: page
 title: Developer Guide
 ---
-Table of Contents
+## Table of Contents
 1. [Preface](#1-preface)<br>
 1. [Setting up, getting started](#2-setting-up-getting-started)<br>
 1. [Design](#3-design)<br>
@@ -13,9 +13,15 @@ Table of Contents
    3.5  [Storage Component](#35-storage-component)<br>
    3.6  [Common Classes](#36-common-classes)<br>
 1. [Implementation](#4-implementation)<br>
-   4.1 [Sochedule](#41-sochedule)<br>
+   4.1 [SOChedule](#41-sochedule)<br>
+       4.1.1 [Overview](#411-overview)<br>
+       4.1.2 [Implementation of SOChedule-level Commands](#412-implementation)<br>
    4.2 [Task](#42-task)<br>
+       4.1.1 [Overview](#421-overview)<br>
+       4.1.2 [Implementation of Task-level Commands](#422-implementation)<br>
    4.3 [Event](#43-event)<br>
+       4.1.1 [Overview](#431-overview)<br>
+       4.1.2 [Implementation of Event-level Commands](#432-implementation)<br>
 1. [Planned Features](#5-documentation-logging-testing-configuration-dev-ops)<br>
 1. [Appendix](#appendix)<br>
    A1. [Product Scope](#a1-product-scope)<br>
@@ -123,6 +129,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTaskCommandParser`should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+[Return to Table of Contents](#table-of-contents)  
+
 ### 3.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -189,6 +197,8 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
+[Return to Table of Contents](#table-of-contents)  
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4 Implementation
@@ -219,6 +229,8 @@ The sequence diagram for `ClearCommand` can be found below.
 
 ![Sequence Diagram of Clear Command](images/ClearCommandSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)  
+
 **Implementation of SummaryCommand**  
 The following is a detailed explanation on how SummaryCommand is implemented.
 
@@ -240,6 +252,8 @@ A success message will be appended with `CommandResult#MESSAGE_SUCCESS`.
 The sequence diagram for `SummaryCommand` can be found below.
 
 ![Sequence Diagram of Summary Command](images/SummaryCommandSequenceDiagram.png)
+
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of FindScheduleCommand**  
 The following is a detailed explanation on how SummaryCommand is implemented.
@@ -271,6 +285,8 @@ when calling the method `Model#updateFilteredTaskList(TaskFindSchedulePredicate 
 Same for the method `Model#updateFilteredEventList(EventFindSchedulePredicate eventPredicate)`.
 </div>
 
+[Return to Table of Contents](#table-of-contents)  
+
 ### 4.2 Task
 
 #### 4.2.1 Overview
@@ -297,6 +313,8 @@ The sequence diagram for `AddTaskCommand` can be found below.
 
 ![Sequence Diagram of AddTask Command](images/AddTaskCommandSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)  
+
 **Implementation of DeleteTaskCommand**  
 The following is a detailed explanation on how DeleteTaskCommand is implemented.
 
@@ -317,6 +335,7 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 
 ![Sequence Diagram of DeleteTask Command](images/DeleteTaskCommandSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of UndoneTaskCommand**  
 The following is a detailed explanation on how UndoneTaskCommand is implemented.
@@ -372,6 +391,7 @@ The sequence diagram for `EditTaskCommand` can be found below.
 
 ![Sequence Diagram of EditTask Command](images/EditTaskCommandSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of SortTaskCommand**  
 The following is a detailed explanation on how SortTaskCommand is implemented in the Logic component.
@@ -396,6 +416,8 @@ The sequence diagram for `sortTaskCommand` can be found below.
 ***Lower Level implementation***  
 The following is a brief explanation , as shown in a sequence diagram, of how sorting is implemented inside the Model component.
 ![Sequence Diagram of SortTaskCommand in Model Component](images/SortTaskModelSequenceDiagram.png)
+
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of PinTaskCommand/UnpinTaskCommand**  
 The following is a detailed explanation on how PinTaskCommand is implemented.
@@ -423,6 +445,8 @@ It is largely similar to `SortTaskCommand`, with a some minor differences:
 
 ![Sequence Diagram of PinTaskCommand](images/PinTaskSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)  
+
 **Implementation of ClearCompletedTaskCommand**  
 The following is a detailed explanation on how ClearCompletedTaskCommand is implemented.
 
@@ -440,6 +464,7 @@ The sequence diagram for `ClearCompletedTaskCommand` can be found below.
 
 ![Sequence Diagram of Clear Command](images/ClearCompletedTaskCommandSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of ClearExpiredTaskCommand**  
 The following is a detailed explanation on how ClearExpiredTaskCommand is implemented.
@@ -458,7 +483,7 @@ The sequence diagram for `ClearExpiredTaskCommand` can be found below.
 
 ![Sequence Diagram of Clear Command](images/ClearExpiredTaskCommandSequenceDiagram.png)
 
-
+[Return to Table of Contents](#table-of-contents)  
 
 ### 4.3 Event
 
@@ -486,6 +511,7 @@ The sequence diagram for `AddEventCommand` can be found below.
 
 ![Sequence Diagram of AddEvent Command](images/AddEventCommandSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of DeleteEventCommand**  
 The following is a detailed explanation on how DeleteEventCommand is implemented.
@@ -507,6 +533,7 @@ The sequence diagram for `DeleteEventCommand` can be found below.
 
 ![Sequence Diagram of DeleteEvent Command](images/DeleteEventCommandSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of EditEventCommand**  
 The following is a detailed explanation on how EditEventCommand is implemented.
@@ -531,6 +558,7 @@ The sequence diagram for `EditEventCommand` can be found below.
 
 ![Sequence Diagram of EditEvent Command](images/EditEventCommandSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of FindFreeTimeCommand**  
 The following is a detailed explanation on how FindFreeTaskCommand is implemented.
@@ -551,7 +579,7 @@ The sequence diagram for `FindFreeTimeCommand` can be found below.
 
 ![Sequence Diagram of FindFreeTimeCommand](images/FindFreeTimeCommandSequenceDiagram.png)
 
-
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of ClearExpiredEventCommand**  
 The following is a detailed explanation on how ClearExpiredEventCommand is implemented.
@@ -570,7 +598,7 @@ The sequence diagram for `ClearExpiredEventCommand` can be found below.
 
 ![Sequence Diagram of Clear Command](images/ClearExpiredEventCommandSequenceDiagram.png)
 
-
+[Return to Table of Contents](#table-of-contents)  
 
 --------------------------------------------------------------------------------------------------------------------
 
