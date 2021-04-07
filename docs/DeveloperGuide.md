@@ -208,28 +208,19 @@ The following activity diagram summarizes what happens when a user executes the 
 The following sequence diagram summarizes what happens when a user executes the `emails` command:
 ![EmailCommandSequenceDiagram.png](images/sam/EmailCommandSequenceDiagram.png)
 
-
 ### Add Session Feature
-The add session feature allows users to add individual tuition sessions with specific details of each session.
-
-This section explains the implementation of the add session mechanism and highlights the design considerations
-taken into account when implementing this feature.
-<!--
-### Session Feature
 The session feature is facilitated by the `Session` class which stores specific details of
 a tuition session with one student. Each session is composed within a `Student`,
 and a `Student` can have multiple `Session`s.
--->
+
+The add session feature allows users to add individual tuition sessions with specific details of each session.
+
+This section explains the implementation of the `add_session` mechanism and highlights the design considerations taken into account when implementing this feature.
 
 #### Implementation
-The add attendance mechanism is facilitated by `AddAttendanceCommand` and it extends `Command`. The method,
-`AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
-before adding the session.
-<!--
 The creation of a session is facilitated by `AddSessionCommand` and it extends `Command`. The method,
 `AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
 before adding the session.
--->
 
 The following sequence diagram shows the interactions between the Model and Logic components during the execution of
 an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`:
@@ -263,7 +254,7 @@ updated student index id. Student name on the other hand, stays constant through
 which he also has knowledge of. Therefore, student name can be easily entered without reference to the AddressBook, saving much more time compared
 to alternative 2.
 
-###Delete Session Feature
+### Delete Session Feature
 The `DeleteSessionCommand` does the opposite of `AddSessionCommand` -- it calls `Model#deleteSession(studentName, sessionIndex)` instead
 which calls `AddressBook#removeSession(studentName, sessionIndex)` and
 `UniqueStudentList#deleteSession(targetStudent, sessionIndex)`.
@@ -273,6 +264,48 @@ The following sequence diagram shows how deleting a session works:
 
 It shares the same design considerations as what is mentioned in Add Session Feature.
 
+### Calculating Monthly Fee Feature
+The monthly `fee` feature allows user to quickly calculate the amount of money they would have received
+from a particular student in a given month and year.
+
+This section explains the implementation of the `fee` command and highlights the design considerations taken into account when implementing this feature.
+
+#### Implementation
+The creation of a session is facilitated by `GetMonthlyFeeCommand` and it extends `Command`. The method,
+`GetMonthlyFeeCommand#execute()`, performs a validity check on student name input to ensure that the student name exists in the application.
+
+The following sequence diagram shows the interactions between the Model and Logic components during the execution of
+an `GetMonthlyFeeCommand` with user input `fee n/STUDENT_NAME m/MONTH y/YEAR`:
+
+![GetMonthlyFeeSequenceDiagram](images/enhao/GetMonthlyFeeSequenceDiagram.png)
+
+1. `Logic` uses the `AddressBookParser` class to parse the user command.
+2. A new instance of an `GetMonthlyFeeCommand` would be created by the `GetMonthlyFeeCommandParser` and returned to `AddressBookParser`.
+3. `AddressBookParser` encapsulates the `AddSessionCommand` object as a `Command` object which is executed by the `LogicManager`.
+4. The command execution calls `hasStudent(name)` to validate the inputs.
+5. The command execution the calls the `getFeePerStudent(student, startPeriod, endPeriod)` static method in `FeeUtil` and perform the calculation.  
+6. The calculation result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
+
+#### Design Considerations
+Aspect 1: Calculation for the fees
+* **Alternative 1 (current choice)**: Abstracting out the calculation to a common file such as `FeeUtil`.
+    * Pros:
+        * Ensures the "don't repeat yourself" software development principle by allowing both this command, and the 3 monthly fee feature to make use of the same methods in `FeeUtil`.
+        * Potentially easier to be maintained by further developer.
+    * Cons:
+        * Increases coupling.
+
+* **Alternative 2**: Performing the calculation inside `GetMonthlyFeeCommand`.
+    * Pros:
+        * Reduces coupling.
+    * Cons:
+        * Repeated code and increased difficult for maintence when there is a need to update the calculation algorithm.
+
+Alternative 1 was chosen because the pros of implementing alternative 1 outweighs the cons derived from it. By having
+an abstracted `FeeUtil` method, we will only need to update the methods in `FeeUtil` which will have a rippling effect
+to the rest of the features that uses this method. Although there is increased coupling, however, with proper testing in place,
+we could mitigate the risk as we ensure that changes in the `FeeUtil` method do not unintentionally changes the behaviour
+of the other feature.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -300,9 +333,9 @@ It shares the same design considerations as what is mentioned in Add Session Fea
 
 
 **Value proposition**:
-* Cut down admin overhead for independent tutors
-* All in one platform to manage their students' information
-
+* All in one platform to manage their students’ contacts
+* Provide a quick overview of scheduled tuition sessions
+* Handle monthly tuition fees calculation
 
 
 ### User stories
