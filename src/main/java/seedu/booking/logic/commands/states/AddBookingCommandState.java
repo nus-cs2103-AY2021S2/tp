@@ -46,6 +46,14 @@ public class AddBookingCommandState extends CommandState {
         this.addBookingIntermediate = addBookingIntermediate;
     }
 
+    /**
+     * Initialises a BookingCommandState with email provided
+     */
+    public AddBookingCommandState(Email email) {
+        super();
+        this.addBookingIntermediate = new AddBookingIntermediate(email);
+    }
+
     public AddBookingIntermediate getAddBookingIntermediate() {
         return this.addBookingIntermediate;
     }
@@ -80,6 +88,7 @@ public class AddBookingCommandState extends CommandState {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void processInput(Object value) {
         String state = this.getState();
         switch (state) {

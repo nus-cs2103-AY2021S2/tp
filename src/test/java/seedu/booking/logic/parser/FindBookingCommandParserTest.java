@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.booking.logic.commands.FindBookingCommand;
 import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.BookingContainsVenuePredicate;
+import seedu.booking.model.booking.BookingVenueContainsKeywordsPredicate;
 
 public class FindBookingCommandParserTest {
 
@@ -30,8 +30,8 @@ public class FindBookingCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindBookingCommand() {
         List<Predicate<Booking>> predicateList = new ArrayList<>();
-        BookingContainsVenuePredicate venueNamePredicate =
-                new BookingContainsVenuePredicate(Arrays.asList("Victoria", "Hall"));
+        BookingVenueContainsKeywordsPredicate venueNamePredicate =
+                new BookingVenueContainsKeywordsPredicate(Arrays.asList("Victoria", "Hall"));
         predicateList.add(venueNamePredicate);
 
         FindBookingCommand expectedFindBookingCommand = new FindBookingCommand(predicateList);

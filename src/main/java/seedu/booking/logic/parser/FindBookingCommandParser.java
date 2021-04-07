@@ -36,24 +36,28 @@ public class FindBookingCommandParser implements Parser<FindBookingCommand> {
                 PREFIX_VENUE, PREFIX_DESCRIPTION);
 
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            predicateList.add(ParserUtil.parseBookingContainsBookerPredicate(argMultimap.getValue(PREFIX_EMAIL).get()));
+            predicateList.add(ParserUtil.parseBookerMatchesKeywordPredicate(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
 
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            predicateList.add(ParserUtil.parseBookingWithinDatePredicate(argMultimap.getValue(PREFIX_DATE).get()));
+            predicateList.add(ParserUtil
+                    .parseBookingDateContainsKeywordPredicate(argMultimap.getValue(PREFIX_DATE).get()));
         }
 
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            predicateList.add(ParserUtil.parseBookingContainsTagPredicate(argMultimap.getValue(PREFIX_TAG).get()));
+            predicateList
+                    .add(ParserUtil.parseBookingTagContainsKeywordsPredicate(argMultimap.getValue(PREFIX_TAG).get()));
         }
 
         if (argMultimap.getValue(PREFIX_VENUE).isPresent()) {
-            predicateList.add(ParserUtil.parseBookingContainsVenuePredicate(argMultimap.getValue(PREFIX_VENUE).get()));
+            predicateList
+                    .add(ParserUtil
+                            .parseBookingVenueContainsKeywordsPredicate(argMultimap.getValue(PREFIX_VENUE).get()));
         }
 
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             predicateList.add(ParserUtil
-                    .parseBookingContainsDescriptionPredicate(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+                    .parseBookingDescContainsKeywordsPredicate(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
 
         if (predicateList.isEmpty()) {

@@ -71,7 +71,7 @@ This section gives an overview of BookCoin’s layout so that you can get starte
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
-  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`. 
+  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 </div>
 
@@ -118,7 +118,7 @@ Format: `exit`
 
 **:information_source: More information about multi-step commands:**<br>
 
-* Some commands require multiple input information which can be very tedious to type in one go. 
+* Some commands require multiple input information which can be very tedious to type in one go.
 Multi-step commands therefore allow such commands to be used with greater ease by users as the system will prompt them to input items one at a time. To skip input for optional fields, you can just press the <kbd>Enter</kbd> key without typing anything when prompted to enter an optional field.
 * The multi-step commands currently supported in v1.4 are `add_person`, `add_venue` and `add_booking`.
 * The commands listed in this section are specific to multi-step commands and are only applicable when the user is in the middle of a multi-step command.
@@ -153,10 +153,12 @@ Format: `exit_prompt`
 #### 3.3.1. Adding a person : `add_person` (Multi step command)
 
 Adds a new person for the booking app. `add_person` is a multi-step command that will prompt you for additional input. Inputting 
-`add_person` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
+`add_person n/NAME` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
 
-Email and phone number must be unique. Tags are optional.<br>
-Format: `add_person`
+After keying in a valid initial input, the multi-step prompting will prompt you to enter details for the field email, phone and tags.
+Email and phone number must be unique. Tags are optional.
+Emails should be of the format local-part@domain. Phone numbers should only contain numbers, and it should be between 7 to 15 digits long (inclusive). <br>
+Format: `add_person n/NAME`
 
 #### 3.3.2. Editing a person : `edit_person`
 
@@ -182,11 +184,14 @@ Shows a list of all persons in the booking app.
 
 Format: `list_person`
 
-#### 3.3.5. Finding a person : `find_person` (Edit this Vanessa!)
+#### 3.3.5. Finding a person : `find_person`
 
-Shows information about the person corresponding to the given email. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
+Shows information about the person corresponding to the specified field(s) - at least one field must be provided. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
 
-Format: `find_person e/EMAIL`
+Format: `find_person [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
+
+Example:
+* `find_person n/John Doe t/Student`
 
 ### 3.4. Venue
 
@@ -227,14 +232,14 @@ Shows a list of all venues in the booking app.
 
 Format: `list_venue`
 
-#### 3.4.5. Finding a venue : `find_venue` (rmb to edit this vanessa!!!)
+#### 3.4.5. Finding a venue : `find_venue`
 
-Shows information about the venue corresponding to the given venue name. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
+Shows information about the venue corresponding to the specified field(s) - at least one field must be provided. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching.
 
-Format: `find_venue v/VENUE_NAME`
+Format: `find_venue [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]`
 
 Example:
-* `find_venue v/Victoria Hall`
+* `find_venue v/Hall max/50 `
 
 ### 3.5. Booking
 
@@ -272,50 +277,14 @@ Shows a list of all bookings and their corresponding IDs in the booking app.
 
 Format: `list_booking`
 
-#### 3.5.5. Finding a booking : `find_booking` (Edit this Vanessa!)
+#### 3.5.5. Finding a booking : `find_booking` 
 
-Shows information about the booking corresponding to the given booking ID. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
+Shows information about the booking corresponding to the specified field(s) - at least one field must be provided. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching.
 
-Format: `find_booking INDEX`
-
-Example:
-* `find_booking 1` 
-
-#### 3.5.6. Filtering bookings by date : `filter_booking_by_date`
-
-Shows a list of bookings on the specified date.
-
-Format: `filter_booking_by_date date/DATE`
+Format: `find_booking [e/BOOKER_EMAIL] [date/DATE] [v/VENUE_NAME] [d/DESCRIPTION] [t/TAG]`
 
 Example:
-* `filter_booking_by_date date/2020-12-12`
-
-#### 3.5.7. Filtering bookings by booker : `filter_booking_by_booker`
-
-Shows a list of bookings booked by the booker identified by the email address given.
-
-Format: `filter_booking_by_booker e/EMAIL`
-
-Example:
-* `filter_booking_by_booker e/JohnRose@abc.com`
-
-#### 3.5.8. Filtering bookings by venue : `filter_booking_by_venue`
-
-Shows a list of bookings at the specified venue.
-
-Format: `filter_booking_by_venue v/VENUE`
-
-Example:
-* `filter_booking_by_venue v/Sports Hall`
-
-#### 3.5.9. Filtering bookings by tag : `filter_booking_by_tag`
-
-Shows a list of bookings with the specified tag.
-
-Format: `filter_booking_by_tag t/TAG`
-
-Example:
-* `filter_booking_by_tag t/student`
+* `find_booking e/johnd@gmail.com v/Hall `
 
 ### 3.6. Upcoming
 
@@ -343,7 +312,7 @@ contains the data of your previous BookCoin home folder.
 
 Action | Format, Example
 --------|------------------
-**add person** | `add_person` <br> (Note: add_person is a multi-step command)
+**add person** | `add_person n/NAME` <br> (Note: add_person is a multi-step command)
 **delete person** | `delete_person e/EMAIL` <br> e.g. `delete_person e/jane@gmail.com`
 **edit person** | `edit_person eo/EMAIL [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]` <br> e.g., `edit_person eo/jane@example.com p/94857267`
 **find person** | `find_person e/EMAIL` <br> e.g., `find_person e/jane@example.com` 

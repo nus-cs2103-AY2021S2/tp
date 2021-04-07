@@ -17,11 +17,11 @@ import seedu.booking.commons.core.index.Index;
 import seedu.booking.commons.util.StringUtil;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.Tag;
-import seedu.booking.model.booking.BookingContainsBookerPredicate;
-import seedu.booking.model.booking.BookingContainsDescriptionPredicate;
-import seedu.booking.model.booking.BookingContainsTagPredicate;
-import seedu.booking.model.booking.BookingContainsVenuePredicate;
-import seedu.booking.model.booking.BookingWithinDatePredicate;
+import seedu.booking.model.booking.BookerMatchesKeywordPredicate;
+import seedu.booking.model.booking.BookingDateContainsKeywordPredicate;
+import seedu.booking.model.booking.BookingDescContainsKeywordsPredicate;
+import seedu.booking.model.booking.BookingTagContainsKeywordsPredicate;
+import seedu.booking.model.booking.BookingVenueContainsKeywordsPredicate;
 import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
 import seedu.booking.model.booking.StartTime;
@@ -61,7 +61,6 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
-
 
     /**
      * Parses a {@code String name} into a {@code Name}.
@@ -109,7 +108,6 @@ public class ParserUtil {
         return new PhoneMatchesKeywordPredicate(trimmedPhoneKeyword);
     }
 
-
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
@@ -150,8 +148,8 @@ public class ParserUtil {
     public static Description parseBookingDescription(String userInput) throws ParseException {
         requireNonNull(userInput);
         String trimmedDescription = userInput.trim();
-        if (!Description.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        if (trimmedDescription.isEmpty()) {
+            trimmedDescription = "No description provided.";
         }
         return new Description(trimmedDescription);
     }
@@ -164,20 +162,25 @@ public class ParserUtil {
     public static String parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
-        if (!Description.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        if (trimmedDescription.isEmpty()) {
+            trimmedDescription = "No description provided.";
         }
         return trimmedDescription;
     }
 
     /**
-     * Parses a {@code String keywords} into a {@code VenueDescContainsKeywordsPredicate}.
+     * Parses a {@code String descKeywords} into a {@code VenueDescContainsKeywordsPredicate}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @throws ParseException if the given {@code descKeywords} is invalid.
      */
-    public static VenueDescContainsKeywordsPredicate parseVenueDescContainsKeywordsPredicate(String descKeywords) {
+    public static VenueDescContainsKeywordsPredicate parseVenueDescContainsKeywordsPredicate(String descKeywords)
+            throws ParseException {
         requireNonNull(descKeywords);
         String trimmedDescKeywords = descKeywords.trim();
+        if (trimmedDescKeywords.isEmpty()) {
+            trimmedDescKeywords = "No description provided.";
+        }
         String[] splitDescKeywords = trimmedDescKeywords.split("\\s+");
         return new VenueDescContainsKeywordsPredicate(Arrays.asList(splitDescKeywords));
     }
@@ -286,7 +289,8 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Set<
+            Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
@@ -410,12 +414,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String keyword} into a {@code BookingContainsBookerPredicate}.
+     * Parses a {@code String keyword} into a {@code BookerMatchesKeywordPredicate}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code keyword} is invalid.
      */
-    public static BookingContainsBookerPredicate parseBookingContainsBookerPredicate(String keyword)
+    public static BookerMatchesKeywordPredicate parseBookerMatchesKeywordPredicate(String keyword)
             throws ParseException {
         requireNonNull(keyword);
         String trimmedEmailKeyword = keyword.trim();
@@ -423,16 +427,16 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         Email emailKeyword = new Email(trimmedEmailKeyword);
-        return new BookingContainsBookerPredicate(emailKeyword);
+        return new BookerMatchesKeywordPredicate(emailKeyword);
     }
 
     /**
-     * Parses a {@code String keyword} into a {@code BookingWithinDatePredicate}.
+     * Parses a {@code String keyword} into a {@code BookingDateContainsKeywordPredicate}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code keyword} is invalid.
      */
-    public static BookingWithinDatePredicate parseBookingWithinDatePredicate(String keyword)
+    public static BookingDateContainsKeywordPredicate parseBookingDateContainsKeywordPredicate(String keyword)
             throws ParseException {
         requireNonNull(keyword);
         String trimmedDateKeyword = keyword.trim();
@@ -442,32 +446,32 @@ public class ParserUtil {
         } catch (Exception e) {
             throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
         }
-        return new BookingWithinDatePredicate(date);
+        return new BookingDateContainsKeywordPredicate(date);
     }
 
     /**
-     * Parses a {@code String tagKeyword} into a {@code BookingContainsTagPredicate}.
+     * Parses a {@code String tagKeyword} into a {@code BookingTagContainsKeywordsPredicate}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tagKeyword} is invalid.
      */
-    public static BookingContainsTagPredicate parseBookingContainsTagPredicate(String tagKeyword)
+    public static BookingTagContainsKeywordsPredicate parseBookingTagContainsKeywordsPredicate(String tagKeyword)
             throws ParseException {
         requireNonNull(tagKeyword);
         String trimmedTagKeyword = tagKeyword.trim();
         if (!Tag.isValidTagName(trimmedTagKeyword)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new BookingContainsTagPredicate(trimmedTagKeyword);
+        return new BookingTagContainsKeywordsPredicate(trimmedTagKeyword);
     }
 
     /**
-     * Parses a {@code String venueKeywords} into a {@code BookingContainsVenuePredicate}.
+     * Parses a {@code String venueKeywords} into a {@code BookingVenueContainsKeywordsPredicate}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code venueKeywords} is invalid.
      */
-    public static BookingContainsVenuePredicate parseBookingContainsVenuePredicate(String venueKeywords)
+    public static BookingVenueContainsKeywordsPredicate parseBookingVenueContainsKeywordsPredicate(String venueKeywords)
             throws ParseException {
         requireNonNull(venueKeywords);
         String trimmedVenueKeywords = venueKeywords.trim();
@@ -475,19 +479,22 @@ public class ParserUtil {
             throw new ParseException(VenueName.MESSAGE_CONSTRAINTS);
         }
         String[] splitVenueKeywords = trimmedVenueKeywords.split("\\s+");
-        return new BookingContainsVenuePredicate(Arrays.asList(splitVenueKeywords));
+        return new BookingVenueContainsKeywordsPredicate(Arrays.asList(splitVenueKeywords));
     }
 
 
     /**
-     * Parses a {@code String descKeywords} into a {@code BookingContainsDescriptionPredicate}.
+     * Parses a {@code String descKeywords} into a {@code BookingDescContainsKeywordsPredicate}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static BookingContainsDescriptionPredicate parseBookingContainsDescriptionPredicate(String descKeywords) {
+    public static BookingDescContainsKeywordsPredicate parseBookingDescContainsKeywordsPredicate(String descKeywords) {
         requireNonNull(descKeywords);
         String trimmedDescKeywords = descKeywords.trim();
+        if (trimmedDescKeywords.isEmpty()) {
+            trimmedDescKeywords = "No description provided.";
+        }
         String[] splitDescKeywords = trimmedDescKeywords.split("\\s+");
-        return new BookingContainsDescriptionPredicate(Arrays.asList(splitDescKeywords));
+        return new BookingDescContainsKeywordsPredicate(Arrays.asList(splitDescKeywords));
     }
 
 

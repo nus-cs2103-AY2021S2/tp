@@ -2,6 +2,7 @@ package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_EMAIL;
+import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_TRY_AGAIN;
 
 import seedu.booking.logic.commands.exceptions.CommandException;
@@ -32,7 +33,7 @@ public class PromptBookingEmailCommand extends Command {
 
         ModelManager.processStateInput(email);
         ModelManager.setNextState();
-        return new CommandResult(ModelManager.getNextPromptMessage());
+        return new CommandResult(ModelManager.getNextPromptMessage() + PROMPT_MESSAGE_EXIT_PROMPT);
     }
 
 }

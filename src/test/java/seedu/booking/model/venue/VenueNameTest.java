@@ -36,5 +36,7 @@ public class VenueNameTest {
         assertTrue(VenueName.isValidVenueName("peter the 2nd")); // alphanumeric characters
         assertTrue(VenueName.isValidVenueName("Capital Tan")); // with capital letters
         assertTrue(VenueName.isValidVenueName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(VenueName.isValidVenueName("David-Jo")); // with hyphens
+        assertTrue(VenueName.isValidVenueName("David's Jo")); // with apostrophes
     }
 }

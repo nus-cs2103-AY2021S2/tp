@@ -3,6 +3,7 @@ package seedu.booking.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.PROMPT_CAPACITY_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_DUPLICATE_VENUE_MESSAGE;
+import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 import static seedu.booking.logic.commands.states.AddVenueCommandState.STATE_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
@@ -18,7 +19,8 @@ import seedu.booking.model.venue.VenueName;
  */
 public class PromptAddVenueCommand extends Command {
     public static final String COMMAND_WORD = "add_venue";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Starts multi-step process to add venue.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " "
+            + PREFIX_VENUE + "VENUE_NAME: Starts multi-step process to add venue.\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_VENUE + "Victoria Hall";
 
@@ -40,6 +42,13 @@ public class PromptAddVenueCommand extends Command {
         ModelManager.setCommandState(commandState);
         ModelManager.setStateActive();
         ModelManager.setState(STATE_CAPACITY);
-        return new CommandResult(PROMPT_CAPACITY_MESSAGE);
+        return new CommandResult(PROMPT_CAPACITY_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PromptAddVenueCommand // instanceof handles nulls
+                && venueName.equals(((PromptAddVenueCommand) other).venueName));
     }
 }
