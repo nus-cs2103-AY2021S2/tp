@@ -11,7 +11,7 @@ import seedu.address.model.tag.Filterable;
  */
 public class SubjectName implements Filterable {
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Subject names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the subject name must not be a whitespace,
