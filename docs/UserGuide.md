@@ -90,8 +90,7 @@ Format: `clear-patient`
 
 * Entries in the patient records can only be cleared if there are no existing appointments in the appointment schedule. <br>
 * Otherwise, `clear-appt` have to called first. <br>
-
-
+* The above-mentioned requirements are similarly applicable to [`clear-doctor`](#clearing-all-entries-in-doctor-records-clear-doctor)
 
 ### Deleting a patient : `delete-patient`
 Deletes the specified patient from the patient records.<br>
@@ -103,6 +102,7 @@ Format: `delete-patient [--force] INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The specified patient can only be deleted if there are no existing appointments associated with him/her in the appointment schedule.
   Otherwise, `--force` must be included before `INDEX` to force delete the specified patient, along with all associated appointments in the appointment schedule.
+* The above-mentioned requirements are similarly applicable to [`delete-doctor`](#deleting-a-doctor--delete-doctor)
 
 Examples:
 * `list-patient` followed by `delete-patient 3` deletes the 3rd patient in the patient records.
@@ -136,6 +136,7 @@ Format: `find-patient KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched e.g. `Edwar` will not match `Edward`.
 * Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Edward Charlotte` will return `Edward Hyde` and `Charlotte Oliveiro`.
+* The above-mentioned requirements are similarly applicable to [`find-doctor`](#locating-doctors-by-name-find-doctor)
 
 Examples:
 * `find-patient John` returns `john` and `John Doe` 
@@ -332,7 +333,7 @@ Changes the displayed appointment list to show all appointments in the appointme
 Format: `list-appt`
 
 
-### *Overall Commands*
+### *Overall Commands*:
 
 ### Exiting the program : `exit`
 
