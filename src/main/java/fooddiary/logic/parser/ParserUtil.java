@@ -1,5 +1,6 @@
 package fooddiary.logic.parser;
 
+import static fooddiary.commons.core.Messages.MESSAGE_INVALID_ENTRY_INDEX_OUT_OF_BOUNDS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import fooddiary.model.tag.TagSchool;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not an integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -33,8 +34,13 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+        String integerRegex = "^-?\\d+$";
+        if (!trimmedIndex.matches(integerRegex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
+        } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new IndexOutOfBoundsException(MESSAGE_INVALID_ENTRY_INDEX_OUT_OF_BOUNDS);
+        } else if (Integer.parseInt(trimmedIndex) == 0 || Integer.parseInt(trimmedIndex) > 1000000) {
+            throw new IndexOutOfBoundsException(MESSAGE_INVALID_ENTRY_INDEX_OUT_OF_BOUNDS);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }

@@ -39,8 +39,11 @@ public class ReviseCommand extends Command {
         requireNonNull(model);
         List<Entry> lastShownList = model.getFilteredEntryList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+        if (targetIndex.getZeroBased() >= lastShownList.size() && lastShownList.size() == 1) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_SINGULAR);
+        } else if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL,
+                    lastShownList.size()));
         }
 
         assert lastShownList.get(targetIndex.getZeroBased()) != null : "Entry do not exist";

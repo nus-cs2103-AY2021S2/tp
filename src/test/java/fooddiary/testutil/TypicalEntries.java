@@ -60,13 +60,22 @@ public class TypicalEntries {
     private TypicalEntries() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical entries.
+     * Returns a {@code FoodDiary} with all the typical entries.
      */
-    public static FoodDiary getTypicalFoodDiary() {
+    public static FoodDiary getTypicalFoodDiaryWithMultipleEntries() {
         FoodDiary ab = new FoodDiary();
         for (Entry entry : getTypicalEntries()) {
             ab.addEntry(entry);
         }
+        return ab;
+    }
+
+    /**
+     * Returns a {@code FoodDiary} with a single typical entry.
+     */
+    public static FoodDiary getTypicalFoodDiaryWithSingleEntry() {
+        FoodDiary ab = new FoodDiary();
+        ab.addEntry(getTypicalEntries().get(0));
         return ab;
     }
 

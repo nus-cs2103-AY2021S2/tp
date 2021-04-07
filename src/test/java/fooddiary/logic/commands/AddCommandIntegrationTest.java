@@ -1,7 +1,7 @@
 package fooddiary.logic.commands;
 
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiaryWithMultipleEntries;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
+        model = new ModelManager(getTypicalFoodDiaryWithMultipleEntries(), new UserPrefs());
     }
 
     @Test

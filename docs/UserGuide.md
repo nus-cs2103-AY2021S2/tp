@@ -73,7 +73,7 @@ This section discusses the main semantics and purpose of the design of The Food 
 ### List of Entries
 * This component features a list of entries currently stored in The Food Diary.
 
-* A list of entries is autopopulated on start up, or when there is no existing data. To start afresh, use the `clear`
+* A list of entries is auto-populated on start up, or when there is no existing data. To start afresh, use the `clear`
  function as stated below.
 
 * Each entry displayed contains 5 compulsory fields, and 2 optional fields:
@@ -128,6 +128,7 @@ This section discusses the main semantics and purpose of the design of The Food 
 
 ### View & Revise Window
 * These windows are described in detail in the `view` and `revise` features below respectively.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -194,11 +195,13 @@ Note:
  as legitimate.
 - Multiple entries can exist with the same name but different locations, and vice versa.
 - A FoodDiary entry can have any number of categories or schools.
+- Food Diary can contain up to 1,000,000 entries, beyond which it will not be possible to
+add more entries until one or more existing entries have been deleted.
 
 Example:
 
-    add  n/Al Amaan Restaurant ra/5 p/8 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian s/FOE
-    add  n/7 Eleven ra/3 p/4 re/Mac and cheese there is amazing a/NUS c/Halal s/YIH s/SOC
+    add n/Al Amaan Restaurant ra/5 p/8 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian s/FOE
+    add n/7 Eleven ra/3 p/4 re/Mac and cheese there is amazing a/NUS c/Halal s/YIH s/SOC
 
 ### Addon a review or a price to a FoodDiary entry: `addon`
 Adds-on additional review and/or a price to a FoodDiary entry of the Food Diary quickly.
@@ -243,7 +246,7 @@ Example:
 
     delete 1
 
-### Find FoodDiary entries generally: `find`
+### Find FoodDiary entries by keywords: `find`
 
 Finds FoodDiary entries whose names, ratings, price, address, categories and schools match any of the provided keywords.
 
@@ -261,12 +264,17 @@ KEYWORD(s) of any number and sequence:
 7. To search by schools: `[SCHOOL LOCATION] ...`
 
 Note:
-- More than one keyword per field can be accepted as a parameter.
-- Different fields can also be simultaneously accepted as parameters.
+- More than one keyword per entry field can be accepted as a parameter.
+- Different entry fields can also be simultaneously accepted as parameters.
+- Keywords need to match a full word from the entry fields to return the corresponding entry as a result
+  (Example: Keyword 'Clem' will not match with 'Clementi' but keyword Techno will match with 'Techno Edge')
 - Rating should be an integer between 0 and 5. Note the syntax.
 - For the price field, a price range can also be accepted as a parameter, and any
- FoodDiary entry that contains at least one of the prices within the specified range
- will be returned as a search result. Note the syntax.
+  FoodDiary entry that contains at least one of the prices within the specified range
+  will be returned as a search result. Note the syntax.
+- When finding by price, the entries are assumed to contain every single price within its own price range.
+  (Example: An entry with price field '$4-8' is assumed to contain '$4', '$5', '$6', '$7' and '$8'
+  even if the only prices added previously to this entry were '$4' and '$8')
 - Note the syntax, especially for `rating` and `price` parameters.
 
 Example:
@@ -276,7 +284,7 @@ Example:
     find fastfood indian $6
     find clementi 5/5 $8-15 western
 
-### Find specific FoodDiary entries: `findall`
+### Find specific FoodDiary entries by keywords: `findall`
 
 Finds FoodDiary entries whose names, ratings, price, address, categories and schools matches all of the provided keywords.
 
@@ -294,10 +302,15 @@ KEYWORD(s) of any number and sequence:
 7. To search by schools: `[SCHOOL LOCATION] ...`
 
 Note:
-- More than one keyword per field can be accepted as parameters.
-- Different fields can also be simultaneously accepted as parameters.
+- More than one keyword per entry field can be accepted as parameters.
+- Different entry fields can also be simultaneously accepted as parameters.
+- Keywords need to match a full word from the entry fields to return the corresponding entry as a result
+  (Example: Keyword 'Clem' will not match with 'Clementi' but keyword Techno will match with 'Techno Edge')
 - For the price field, a price range can also be accepted as a parameter, and any FoodDiary entry that contains at least
- one of the prices within the specified range will be returned as a search result.
+  one of the prices within the specified range will be returned as a search result.
+- When finding by price, the entries are assumed to contain every single price within its own price range.
+  (Example: An entry with price field '$4-8' is assumed to contain '$4', '$5', '$6', '$7' and '$8'
+  even if the only prices added previously to this entry were '$4' and '$8')
 - **Unlike the find feature, the findall feature only returns search results of FoodDiary entries that contain all of
  the provided keywords.**
 - Note the syntax, especially for `rating` and `price` parameters.
@@ -315,7 +328,7 @@ Format: `view <INDEX>`
 
 Parameter:
 
-1. The Index of The Food Diary entry: `<INDEX>`
+1. The index of The Food Diary entry: `<INDEX>`
 
 Example:
 
@@ -360,7 +373,7 @@ Format: `revise <INDEX>`
 
 Parameter:
 
-1. The Index of FoodDiary entry: `<INDEX>`
+1. The index of FoodDiary entry: `<INDEX>`
 
 Available Shortcut keys for fast typists:
 - `TAB` key to iterate through fields.
@@ -375,7 +388,7 @@ Note:
 
 Expected behaviour: Revise window will close, showing successful edit of entry in Main Window's command box.
 
-Unexpected behaviour: Revise window will close, showing error message in Main Window's command box.
+Unexpected behaviour: Revise window will close, showing an error message in Main Window's command box.
 
 Example:
 
@@ -388,7 +401,7 @@ Example:
 Edits the details of the FoodDiary entry specified. Existing values will be overwritten by the new values.
 Mainly used if previous entry values do not matter in new edit.
 
-Format: `edit <INDEX> <KEYWORD> ...``
+Format: `edit <INDEX> <KEYWORD> ...`
 
 Parameters:
 
@@ -432,9 +445,13 @@ Parameters: none
 
 Q: How do I transfer my data to another Computer?
 
-A: Install the FoodDiary app in the other computer and overwrite the empty data file it creates with the file that
-contains the data of your previous AddressBook home folder.
+A: Download the latest version of The Food Diary app in the other computer,
+and overwrite the empty data file it creates with the file that
+contains the data of your previous Food Diary home folder. The image below shows the file directory to get the 
+`foodDiary.json` file, and where you should add it to if you would like the app to
+read from the new data. 
 
+![Food Diary Json File Directory](images/FoodDiaryJsonFileDirectory.png)
 
 -------------------------------------------------------------------------------------
 
@@ -451,7 +468,7 @@ Action | Format, Examples
 **Help**    | `help` <br> e.g. `help`
 **View**    | `view <INDEX>` <br> e.g. `view 1`
 **Revise**  | `revise <INDEX>` <br> e.g. `revise 1`
-**Edit**    | `edit <INDEX> <KEYWORD> ...` <br> e.g `edit 1 ra/5 p/7 re/I like this food a lot! a/Science c/Indian c/Halal s/Ventus`
+**Edit**    | `edit <INDEX> <KEYWORD> ...` <br> e.g. `edit 1 ra/5 p/7 re/I like this food a lot! a/Science c/Indian c/Halal s/Ventus`
 **Clear**   | `clear` <br> e.g. `clear`
 **Exit**    | `exit` <br> e.g. `exit`
 
