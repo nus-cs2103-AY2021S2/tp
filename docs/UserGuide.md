@@ -18,11 +18,11 @@ Green Mileage Efforts(GME) is a holistic carpooling management solution designed
 GME is a platform that follows a Command-Line Interface (CLI) such that power users that are familiar can efficiently navigate the program.
 
 ### 1.2 Navigating the User Guide
-For help regarding the set up of GME, refer to the [“Quick Start"](#quickstart) section.
+For help regarding the set up of GME, refer to the [“Quick Start"](#2-quick-start-) section.
 
-For a full list and more information about GME's features and commands, use the [“Features”](#features) section.
+For a full list and more information about GME's features and commands, use the [“Features”](#3-features-) section.
 
-For a quick overview of GME’s commands, refer to the [“Command Summary”](#summary) section.
+For a quick overview of GME’s commands, refer to the [“Command Summary”](#5-command-summary-) section.
 
 Please note the following symbols used in the User Guide which may serve as points of interests:
 
@@ -42,7 +42,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 3. Copy the file to the folder you want to use as the *home* folder for your **GreenMileageEfforts**.
 4. Double click the file to start the app.
 5. Type the command in the command box and press `Enter` to execute it
-6. Refer to the [Features](#features) below for the details on each command.
+6. Refer to the [Features](#3-features-) below for the details on each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -81,7 +81,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### 3.2 Add passengers: `add`
+### 3.2 Adding passengers: `add`
 
 Adds a new passenger in the GME terminal.
 
@@ -119,7 +119,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]…
 </div>
 
 **Examples:**
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+* `edit 1 p/91234567` Edits the phone number of the 1st person to be `91234567` respectively.
 * `edit 2 n/Betsy Crower tag/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### 3.5 Locating passengers by prefixes: `find`
@@ -149,7 +149,7 @@ Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p
 * `find d/Monday d/Tuesday` returns `Alex Yeoh`, `Irfan Ibrahim` and `Roy Balakrishnan`
   ![result for 'find d/Monday d/Tuesday'](images/findCommandExampleDay.png)
 
-### 3.6 Delete passengers: `delete`
+### 3.6 Deleting passengers: `delete`
 
 Deletes the specific passenger from the GME terminal.
 
@@ -172,7 +172,7 @@ Format: `delete INDEX [INDEX INDEX...]`
 * `delete 1 2 5` deletes the 1st, 2nd and 5th person in the passenger list. 
 
 
-### 3.7 Select passengers to arrange a carpool: `pool`
+### 3.7 Selecting passengers to arrange a carpool: `pool`
 
 Selects passengers from the current view in the GME terminal to arrange a carpool.
 
@@ -194,7 +194,7 @@ Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX d/DAY t/TIME [c/INDEX c/INDEX
   results of `find tag/female` command, and assigns *Alice* with number *91234567* to be the driver of the passengers specified by the indices.
 
 
-### 3.8 Remove pools: `unpool`
+### 3.8 Removing pools: `unpool`
 
 Removes the pool specified by an index from the GME terminal.
 
@@ -232,7 +232,7 @@ Format: `findPool n/KEYWORD [n/KEYWORD c/KEYWORD...]`
 
 ### 3.10 Clearing all entries : `clear`
 
-Clears all entries from the passenger list.
+Clears all entries from the passenger list and pool list.
 
 Format: `clear`
 
@@ -248,7 +248,7 @@ GME data is saved in the hard disk automatically after any command that changes 
 
 ### 3.13 Editing the data file
 
-GME data is saved as a JSON file `[JAR file location]/data/GreenMileageEfforts.json`. Advanced users are welcome to update data directly by editing that data file.
+GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="block" class="alert-warning">
 
@@ -262,7 +262,7 @@ GME data is saved as a JSON file `[JAR file location]/data/GreenMileageEfforts.j
 
 **Q:** Where can I find the data stored by GME terminal?
 
-**A:** The json file containing the data stored is named `GreenMileageEfforts.json` and can be found in the `../data` folder, where `..` is the path to your `GreenMileageEfforts.jar` file.
+**A:** The json file containing the data stored is named `GMEdata.json` and can be found in the `data` folder in the same directory where `GreenMileageEfforts.jar` file is saved.
 
 --------------------------------------------------------------------------------------------------------------------
 
