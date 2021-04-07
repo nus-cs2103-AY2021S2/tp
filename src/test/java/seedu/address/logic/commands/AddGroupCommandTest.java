@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.group.Group;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.GroupBuilder;
 
@@ -43,7 +45,10 @@ public class AddGroupCommandTest {
 
         AddGroupCommand addGroupCommand = new AddGroupCommand(indexes, group.getName());
 
-        String expectedMessage = String.format(AddGroupCommand.MESSAGE_ADD_GROUP_SUCCESS, group.getName());
+        String expectedMessage = String.format(
+                AddGroupCommand.MESSAGE_ADD_GROUP_SUCCESS,
+                group.toUi(),
+                group.getName());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addGroup(group);

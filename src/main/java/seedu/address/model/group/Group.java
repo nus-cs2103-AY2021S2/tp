@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -86,6 +87,10 @@ public class Group {
 
         return otherGroup != null
                 && otherGroup.getName().equals(getName());
+    }
+
+    public String toUi() {
+        return this.persons.stream().map(Name::toString).sorted().collect(Collectors.joining(", "));
     }
 
     /**

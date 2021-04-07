@@ -75,7 +75,7 @@ public class AddGroupCommand extends Command {
         model.updateFilteredPersonList(p -> group.getPersonNames().contains(p.getName()));
         return new CommandResult(String.format(
                 MESSAGE_ADD_GROUP_SUCCESS,
-                group.getPersonNames().stream().map(Name::toString).sorted().collect(Collectors.joining(", ")),
+                group.toUi(),
                 groupName));
     }
 
