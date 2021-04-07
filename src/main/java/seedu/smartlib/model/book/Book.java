@@ -150,10 +150,15 @@ public class Book {
         return barcode;
     }
 
-
+    /**
+     * Returns the borrow date of the book.
+     *
+     * @return the borrow date of the book.
+     */
     public DateBorrowed getDateBorrowed() {
         return dateBorrowed;
     }
+
     /**
      * Returns true if both books have the same name and barcode.
      * This defines a weaker notion of equality between two books.
