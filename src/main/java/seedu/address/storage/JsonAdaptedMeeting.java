@@ -56,9 +56,9 @@ public class JsonAdaptedMeeting {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
         }
 
-        if (!Meeting.isValidMeeting(date, time, description)) {
+        if (!Meeting.isValidMeeting(date, time, description.trim())) {
             throw new IllegalValueException(Meeting.MESSAGE_CONSTRAINTS);
         }
-        return new Meeting(date, time, description);
+        return new Meeting(date, time, description.trim());
     }
 }

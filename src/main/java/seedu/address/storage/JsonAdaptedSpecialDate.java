@@ -48,9 +48,9 @@ public class JsonAdaptedSpecialDate {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
         }
 
-        if (!SpecialDate.isValidSpecialDate(date, description)) {
+        if (!SpecialDate.isValidSpecialDate(date, description.trim())) {
             throw new IllegalValueException(SpecialDate.MESSAGE_CONSTRAINTS);
         }
-        return new SpecialDate(date, description);
+        return new SpecialDate(date, description.trim());
     }
 }

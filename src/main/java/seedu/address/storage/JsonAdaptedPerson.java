@@ -113,79 +113,29 @@ class JsonAdaptedPerson {
         return sb.toString();
     }
 
-    /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
-     *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
-     */
-    public Person toModelType() throws IllegalValueException {
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
-
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
-        if (birthday == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Birthday.class.getSimpleName()));
-        }
-        if (!Birthday.isValidBirthday(birthday)) {
-            throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
-        }
-        final Birthday modelBirthday = new Birthday(birthday);
-
-        if (!Goal.isValidGoal(goal)) {
-            throw new IllegalValueException(Goal.MESSAGE_CONSTRAINTS);
-        }
-        final Goal modelGoal = new Goal(Goal.parseFrequency(goal.toLowerCase(Locale.ROOT)));
-
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
-        Picture modelPicture = null;
-        if (picture != null) {
-            modelPicture = picture.toModelType();
-        }
-
-        if (debt == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Debt.class.getSimpleName()));
-        }
-        if (!Debt.isValidDebt(debt)) {
-            throw new IllegalValueException(Debt.MESSAGE_CONSTRAINTS);
-        }
-        final Debt modelDebt = new Debt(debt);
-
+    private Set<Tag> tagsToModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
+
+            // Ignores null values in tagged list in json file
+            if (tag == null) {
+                continue;
+            }
+
             personTags.add(tag.toModelType());
         }
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        return new HashSet<>(personTags);
+    }
 
+    private List<SpecialDate> datesToModelType(Birthday modelBirthday, Name modelName) throws IllegalValueException {
         final List<SpecialDate> modelDates = new ArrayList<>();
         for (JsonAdaptedSpecialDate date : dates) {
+
+            // Ignores null values in dates list in json file
+            if (date == null) {
+                continue;
+            }
+
             SpecialDate dateModel = date.toModelType();
             LocalDate dateToCheck = dateModel.getDate();
 
@@ -197,8 +147,18 @@ class JsonAdaptedPerson {
             modelDates.add(dateModel);
         }
 
+        return modelDates;
+    }
+
+    private List<Meeting> meetingsToModelType(Birthday modelBirthday, Name modelName) throws IllegalValueException {
         final List<Meeting> modelMeetings = new ArrayList<>();
         for (JsonAdaptedMeeting meeting : meetings) {
+
+            // Ignores null values in meetings list in json file
+            if (meeting == null) {
+                continue;
+            }
+
             Meeting modelMeeting = meeting.toModelType();
             LocalDate dateToCheck = modelMeeting.getDate();
 
@@ -209,6 +169,88 @@ class JsonAdaptedPerson {
 
             modelMeetings.add(modelMeeting);
         }
+
+        return modelMeetings;
+    }
+
+    /**
+     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     */
+    public Person toModelType() throws IllegalValueException {
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final Name modelName = new Name(trimmedName);
+
+        if (phone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
+        String trimmedPhone = phone.trim();
+        if (!Phone.isValidPhone(trimmedPhone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final Phone modelPhone = new Phone(trimmedPhone);
+
+        if (email == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        }
+        String trimmedEmail = email.trim();
+        if (!Email.isValidEmail(trimmedEmail)) {
+            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        }
+        final Email modelEmail = new Email(trimmedEmail);
+
+        if (birthday == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Birthday.class.getSimpleName()));
+        }
+        String trimmedBirthday = birthday.trim();
+        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+            throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
+        }
+        final Birthday modelBirthday = new Birthday(trimmedBirthday);
+
+        if (goal == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Goal.class.getSimpleName()));
+        }
+        String trimmedGoal = goal.trim();
+        if (!Goal.isValidGoal(trimmedGoal)) {
+            throw new IllegalValueException(Goal.MESSAGE_CONSTRAINTS);
+        }
+        final Goal modelGoal = new Goal(Goal.parseFrequency(trimmedGoal.toLowerCase(Locale.ROOT)));
+
+        if (address == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        }
+        String trimmedAddress = address.trim();
+        if (!Address.isValidAddress(trimmedAddress)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+        final Address modelAddress = new Address(trimmedAddress);
+
+        Picture modelPicture = null;
+        if (picture != null) {
+            modelPicture = picture.toModelType();
+        }
+
+        if (debt == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Debt.class.getSimpleName()));
+        }
+        String trimmedDebt = debt.trim();
+        if (!Debt.isValidDebt(trimmedDebt)) {
+            throw new IllegalValueException(Debt.MESSAGE_CONSTRAINTS);
+        }
+        final Debt modelDebt = new Debt(trimmedDebt);
+
+        final Set<Tag> modelTags = tagsToModelType();
+        final List<SpecialDate> modelDates = datesToModelType(modelBirthday, modelName);
+        final List<Meeting> modelMeetings = meetingsToModelType(modelBirthday, modelName);
 
         return new Person(modelName, modelPhone, modelEmail, modelBirthday, modelGoal, modelAddress, modelPicture,
                 modelDebt, modelTags, modelDates, modelMeetings);
