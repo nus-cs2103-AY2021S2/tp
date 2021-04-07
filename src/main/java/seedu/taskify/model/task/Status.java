@@ -13,13 +13,13 @@ public class Status {
     public static final String MESSAGE_CONSTRAINTS = "Status should be 'uncompleted' or 'completed'";
     public static final String INVALID_STATUS_STRING = "Invalid status!";
 
+    public static final String EXPIRED_VALID_INPUT = "expired";
+    public static final String COMPLETED_VALID_INPUT = "completed";
+    public static final String UNCOMPLETED_VALID_INPUT = "uncompleted";
+
     private static final String EXPIRED_STRING = "Expired";
     private static final String UNCOMPLETED_STRING = "Uncompleted";
     private static final String COMPLETED_STRING = "Completed";
-
-    private static final String EXPIRED_VALID_INPUT = "expired";
-    private static final String COMPLETED_VALID_INPUT = "completed";
-    private static final String UNCOMPLETED_VALID_INPUT = "uncompleted";
 
     private static final String NULL_STATUS_TYPE = "Error, status does not have a status type!";
 
@@ -62,7 +62,15 @@ public class Status {
      * Returns true if a given String is a valid status.
      */
     public static boolean isValidStatus(String statusString) {
-        return (statusString.equals(UNCOMPLETED_VALID_INPUT)) || (statusString.equals(COMPLETED_VALID_INPUT));
+        return (statusString.equals(UNCOMPLETED_VALID_INPUT)) || (statusString.equals(COMPLETED_VALID_INPUT))
+                || (statusString.equals(EXPIRED_VALID_INPUT));
+    }
+
+    /**
+     * Returns true if a given String is a status that an edited task can have
+     */
+    public static boolean isValidStatusForEditing(String statusString) {
+        return !statusString.equals(EXPIRED_VALID_INPUT);
     }
 
     /**

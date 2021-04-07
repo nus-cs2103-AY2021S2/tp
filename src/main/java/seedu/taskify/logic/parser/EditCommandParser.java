@@ -7,6 +7,7 @@ import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.taskify.model.task.Status.isValidStatusForEditing;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -23,6 +24,8 @@ import seedu.taskify.model.tag.Tag;
  * Parses input arguments and creates a new EditCommand object
  */
 public class EditCommandParser implements Parser<EditCommand> {
+
+    public static final String MESSAGE_EDIT_STATUS_TO_EXPIRED = "Task status cannot be edited to expired!";
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -52,6 +55,10 @@ public class EditCommandParser implements Parser<EditCommand> {
                     (argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
+            boolean isValidStatusForEditing = isValidStatusForEditing(argMultimap.getValue(PREFIX_STATUS).get());
+            if (!isValidStatusForEditing) {
+                throw new ParseException(MESSAGE_EDIT_STATUS_TO_EXPIRED);
+            }
             editTaskDescriptor.setStatus(ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get()));
         }
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
