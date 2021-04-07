@@ -168,9 +168,11 @@ Sample Output for `stats PGPH`:
 
 Adds an appointment to Vax@NUS' records. 
 
+Appointments can be added for both unvaccinated and vaccinated students, as appointments can also entail follow-ups or check-ups in addition to vaccinations.
+
 Format: `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME`
 
-[Conditions for valid appointments](#conditions-for-valid-appointments)
+> For a smooth user experience, please refer to the [conditions for valid appointments](#conditions-for-valid-appointments) section below for more information regarding what the details of an appointment accepted by Vax@NUS.
 
 Examples:
 * `addAppt i/A1234567X d/2021-12-13 ts/13:00`
@@ -199,7 +201,7 @@ It is optional to include the following details:
 
 Format: `editAppt MATRICULATION_NUMBER d/DATE ts/START_TIME`
 
-[Conditions for valid appointments](#conditions-for-valid-appointments)
+> For a smooth user experience, please refer to the [conditions for valid appointments](#conditions-for-valid-appointments) section below for more information regarding what the details of an appointment accepted by Vax@NUS.
 
 Examples:
 * `editAppt A1234567X d/2021-12-13 ts/14:00`
@@ -332,6 +334,12 @@ Vax@NUS saves your current date in the hard disk automatically after any command
  * USP (for University Scholars Programme)
  * UTR (for Utown Residences)
 
+### Conditions for valid appointments
+* `DATE` must be of the format `YYYY-MM-DD`
+* `START_TIME` must be of the format `HH:00` or `HH:30`.
+* The duration of each appointment is fixed at 30 minutes.
+* No appointment should clash with any other appointments.
+* The student that the appointment is for must exist in the records.
 
 ## Command Summary
 
