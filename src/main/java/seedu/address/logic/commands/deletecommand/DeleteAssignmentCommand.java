@@ -2,8 +2,6 @@ package seedu.address.logic.commands.deletecommand;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.List;
 
@@ -21,13 +19,6 @@ import seedu.address.model.module.Title;
  * Deletes a person identified using it's displayed index from the remind Me.
  */
 public class DeleteAssignmentCommand extends DeleteCommand {
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the assignment identified by the index in Assignment list of the module\n"
-            + "Parameters: Index\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103T "
-            + PREFIX_ASSIGNMENT + "1";
 
     public static final String MESSAGE_DELETE_ASSIGNMENT_SUCCESS = "Deleted Assignment: %1$s";
 
@@ -60,7 +51,7 @@ public class DeleteAssignmentCommand extends DeleteCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
         }
         Assignment assignmentToDelete = moduleToGet.getAssignment(assignmentIndex.getZeroBased());
-        moduleToGet.deleteAssignment(assignmentIndex.getZeroBased());
+        model.deleteAssignment(moduleToGet, assignmentToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_ASSIGNMENT_SUCCESS, assignmentToDelete));
     }
 

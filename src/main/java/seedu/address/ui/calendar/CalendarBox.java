@@ -20,10 +20,11 @@ import seedu.address.ui.UiPart;
 import seedu.address.ui.calendar.schedule.UpcomingSchedule;
 
 /**
- * Represents a box for a date in the calendar.
+ * Represents a box for a date in the calendar, where the calendar is on the right side of the {@code CalendarWindow}.
  */
 public class CalendarBox extends UiPart<Region> {
     private static final String FXML = "CalendarBox.fxml";
+    private static final Color RED = Color.RED;
 
     private LocalDate dateTime;
     private EventList events;
@@ -44,27 +45,32 @@ public class CalendarBox extends UiPart<Region> {
     /**
      * Constructs a CalendarBox object to display the entries on that day.
      *
-     * @param dateTime the date time of the day cell in the calendar view.
+     * @param dateTime Date time of the day cell in the calendar view.
      */
     public CalendarBox(LocalDate dateTime, EventList events) {
         super(FXML);
         requireAllNonNull(dateTime, events);
         this.dateTime = dateTime;
         this.events = events;
-        initializeCalenderBoxInfo(dateTime);
+        initializeCalenderBoxInfo();
     }
 
-    private void initializeCalenderBoxInfo(LocalDate dateTime) {
-        loadDate();
-        loadEventsCount();
-    }
-
+    /**
+     * Adds mouse click event handler for {@code CalendarBox}.
+     *
+     * @param upcomingSchedule To update when the {@code CalendarBox} is clicked.
+     */
     public void addClickEventHandler(UpcomingSchedule upcomingSchedule) {
         dateHolder.addEventHandler(MouseEvent.MOUSE_CLICKED, upcomingSchedule);
     }
 
     public LocalDate getDate() {
         return dateTime;
+    }
+
+    private void initializeCalenderBoxInfo() {
+        loadDate();
+        loadEventsCount();
     }
 
     private void loadDate() {
@@ -101,28 +107,28 @@ public class CalendarBox extends UiPart<Region> {
 
     private void setBirthdayText(int birthdayCount) {
         if (birthdayCount > 0) {
-            birthday.setTextFill(Color.RED);
+            birthday.setTextFill(RED);
         }
         birthday.setText(birthdayCount + " Birthday(s)");
     }
 
     private void setAssignmentText(int assignmentCount) {
         if (assignmentCount > 0) {
-            assignment.setTextFill(Color.RED);
+            assignment.setTextFill(RED);
         }
         assignment.setText(assignmentCount + " Assignment(s)");
     }
 
     private void setExamCount(int examCount) {
         if (examCount > 0) {
-            exam.setTextFill(Color.RED);
+            exam.setTextFill(RED);
         }
         exam.setText(examCount + " Exam(s)");
     }
 
     private void setEventText(int eventCount) {
         if (eventCount > 0) {
-            event.setTextFill(Color.RED);
+            event.setTextFill(RED);
         }
         event.setText(eventCount + " Event(s)");
     }

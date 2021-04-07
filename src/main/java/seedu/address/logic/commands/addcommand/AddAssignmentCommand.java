@@ -1,9 +1,6 @@
 package seedu.address.logic.commands.addcommand;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -13,15 +10,10 @@ import seedu.address.model.module.Module;
 
 public class AddAssignmentCommand extends AddCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to the module."
-            + "\nParameters: "
-            + PREFIX_MODULE + "TITLE "
-            + PREFIX_ASSIGNMENT + "DESCRIPTION "
-            + PREFIX_DEADLINE + "DEADLINE"
-            + "\nExample: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103T "
-            + PREFIX_ASSIGNMENT + "TP v1.2 "
-            + PREFIX_DEADLINE + "28/3/2021 2359";
+    public static final String MESSAGE_USAGE =
+            "Missing necessary prefixes: m/, a/, and by/\n"
+            + "Assignment: add m/TITLE a/DESCRIPTION by/DEADLINE\n"
+            + "Example: add m/MOD1 a/ASSGN1 by/03/02/2021 2359";
 
     public static final String MESSAGE_SUCCESS = "New assignment added: %1$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in the module";
@@ -36,6 +28,7 @@ public class AddAssignmentCommand extends AddCommand {
      */
     public AddAssignmentCommand(Module module, Assignment assignment) {
         requireNonNull(assignment);
+        requireNonNull(module);
         target = module;
         toAdd = assignment;
     }
@@ -59,6 +52,7 @@ public class AddAssignmentCommand extends AddCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddAssignmentCommand // instanceof handles nulls
+                && target.equals(((AddAssignmentCommand) other).target)
                 && toAdd.equals(((AddAssignmentCommand) other).toAdd));
     }
 }

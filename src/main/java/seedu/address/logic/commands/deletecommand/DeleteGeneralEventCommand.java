@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.deletecommand;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GENERAL_EVENT;
 
 import java.util.List;
 
@@ -16,12 +15,6 @@ import seedu.address.model.event.GeneralEvent;
  * Deletes a person identified using it's displayed index from the remindMe.
  */
 public class DeleteGeneralEventCommand extends DeleteCommand {
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the event identified by the index number used in the displayed general event list.\n"
-            + "Parameters: INDEX\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_GENERAL_EVENT + "1";
 
     public static final String MESSAGE_GENERAL_EVENT_SUCCESS = "Deleted General Event: %1$s";
 

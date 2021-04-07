@@ -57,12 +57,17 @@ all the [features](#3-features) in the RemindMe app. You can also access the pro
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. Introduction
-RemindMe aims to help students from the School of Computing(SOC) at the National University of Singapore(NUS). It helps 
-manage school modules and events while keeping track of deadlines and friends' birthdays. RemindMe provides a calendar 
-view for events, allowing you to visualize and plan your schedules. RemindMe uses Command Line Interface(CLI) and 
-Graphical User Interface(GUI), making it perfect for you if you like these attributes. If you can type fast, you will 
-reap more benefits from RemindMe than traditional GUI scheduling apps. Let's get started with [Section 2](#2-quick-start)
-and schedule towards a better work-life!
+Thank you for downloading RemindMe! We really appreciate that you chose to trust us to take care of your scheduling
+needs! RemindMe aims to help School of Computing students manage their work, assignments, submissions and exams. We
+to help you take back control of YOUR life.
+
+RemindMe visualises the tasks of our users using a combination of a list and a calendar, to help you plan your time
+the best way that works for you!
+
+We also use a Command-Line Interface, so that all the fast-fingered SOC students can use RemindMe quickly and
+comfortably.
+
+Start scheduling a better work life with RemindMe [here](#2-quick-start)!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -76,7 +81,7 @@ and schedule towards a better work-life!
 <br>
 <br>
 
-2. Download the latest `remindMe.jar` from our [GitHub release page](https://github.com/AY2021S2-CS2103T-W15-1/tp/releases).
+2. Download the latest `RemindMe.jar` from our [GitHub release page](https://github.com/AY2021S2-CS2103T-W15-1/tp/releases).
 Copy the file to the folder you want to use as the home folder for your RemindMe.
 Double click the file to start the app. 
 <br>
@@ -134,22 +139,39 @@ feature works!
 
 * Words in `UPPER_CASE` are the parameters you supply.<br>
   For example: In `add m/MODULE`, `MODULE` is a parameter you provide, such as `add m/CS2103`.
-
-
+  
 * Items in square brackets are optional.<br>
   For example: In `add n/NAME b/BIRTHDAY [t/TAG]`, the `TAG` parameter is optional. 
   Therefore, both `add n/Alice b/23/03/2021 t/friends` and `add n/Alice b/23/03/2021` are valid.
-  
+ 
 **Tips:**<br>
+
 * `DATE-TIME` should follow format day/month/year hour minutes: `DD/MM/YYYY HHMM`.
+* `Commnands` are case-insensitive.<br>
+    For example: `ADD` and `add` are both valid.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
+
+RemindMe will not accept multiple parameters if it only takes in one!<br>
+
 Commands that do not take in parameters (such as `help` and `exit`) ignore extraneous parameters.<br>
-For example: If you input `help 123`, RemindMe will return the result of the `help` function.
+For example: If you input `help 123`, RemindMe will return the result of the `help` function.<br>
+
+Parameters must follow the order given.<br>
+For example: `add b/BIRTHDAY n/NAME` is not allowed.<br>
+
+If you have the [calendar window](#39-viewing-calendar-calendar-c) 
+when adding/editing/deleting/clearing events, it will not be automatically reflected on the calendar window.
+You would need to press on the **refresh button** to refresh the calendar. 
+
 </div>
 
+![refreshButton](images/refreshbutton.png)
+*[refresh button to refresh calendar]*
+
 [Back to Table of Contents](#table-of-contents)
+
 
 ### 3.1 Viewing Help: `help`
 The help function shows the URL to the user guide for RemindMe, which is this current document!
@@ -173,11 +195,12 @@ This section explains how to add entries into your RemindMe.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
-* Duplicate entries are not allowed. Example:<br>
-  * Person/Module with the same name.
-  * Assignments with the same description and date-time in the same module. 
-  * Exams with the same date for the same module.
-  * General events with the same name and date-time. 
+
+Duplicate entries are not allowed. Example:<br>
+Person/Module with the same name.<br>
+Assignments with the same description and date-time in the same module.<br>
+Exams with the same date for the same module.<br>
+General events with the same name and date-time. 
 </div>
 
 You can add:
@@ -297,7 +320,7 @@ saving you the hassle of deleting and recreating an entry just because of a tiny
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
-* Editing of a person/module/event should not result in duplicates. 
+Editing of a person/module/event should not result in duplicates. 
 </div>
 
 You can edit:
@@ -317,9 +340,11 @@ You can update your friend's identity, either changing their name, their birthda
 **Tip:**<br>
 * You can find the contact you would want to change first with RemindMe's `find`, 
   such that you can easily update the existing details.
+  
+* You can use `t/` to remove all tags on the person you are editing!
 </div>
 
-Command: `edit INDEX [n/NEW NAME b/NEW BIRTHDAY [t/NEW TAG]]`
+Command: `edit INDEX n/NEW NAME [b/NEW BIRTHDAY] [t/NEW TAG]`
 
 Examples:
 * `edit 1 n/Jason`
@@ -352,6 +377,10 @@ Results expected:
 #### 3.3.3 Editing an assignment
 Did an assignment's deadline get postponed? You can update the assignment's deadline using the edit function. Not only 
 that, you can change the assignment name too.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
+At least one of the optional input is needed!<br>
+</div>
 
 Command: `edit m/MODULE a/ASSIGNMENT INDEX [d/NEW DESCRIPTION by/NEW DEADLINE]`
 
@@ -386,6 +415,10 @@ Result expected:
 
 #### 3.3.5 Editing a general event
 You can also update the name and date-time of your general events.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
+At least one of the optional input is needed!<br>
+</div>
 
 Command: `edit INDEX [g/NEW DESCRIPTION on/NEW DATE]`
 
@@ -507,7 +540,7 @@ Command: `list`
 
 ### 3.6 Marking as done: `done`
 When you complete your assignments, you can mark them as done to remind yourself you complete the task and pat yourself 
-on the back!
+on the back! If you need to refine your assignments further, you can remove the done status by calling `done` again!
 
 <div markdown="block" class="alert alert-info">
 
@@ -633,8 +666,12 @@ Expected Result:
 This section shows features that deals with the clearing of entries in the RemindMe app.  
 
 <br>
-<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**
-All cleared data cannot be recover.
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
+
+All cleared data cannot be recovered.
+
+Although the tags used for clearing person, modules, and general events are optional, they are needed to remove only 
+that specific component of RemindMe.Else, RemindMe will clear everything.
 </div>
 <br>
 
@@ -654,17 +691,17 @@ Command: `clear`
 #### 3.8.2 Clearing all persons
 You can remove all contacts in RemindMe.  
 
-Command: `clear [n/]`
+Command: `clear n/`
 
 #### 3.8.3 Clearing all modules
 You can remove all modules in RemindMe.  
 
-Command: `clear [m/]`
+Command: `clear m/`
 
 #### 3.8.4 Clearing all general events
 You can clear all general events in RemindMe.
 
-Command: `clear [g/]`
+Command: `clear g/`
 
 **If you follow along, your RemindMe should be empty. Now let's start using RemindMe to remind you!**<br>
 The following features are more ways for you to view your tasks in RemindMe.
@@ -699,7 +736,8 @@ The calendar window as shown below will be displayed.
 <br>
 You may browse through the calendar over the months by clicking the 
 left arrow button `<` and right arrow button `>` on the top right of the calendar window.
-Additionally, you may click on the `today` button to browse back to the month of the current day's date.
+Additionally, you may click on the `today` button to browse back to the month of the current day's date,
+and refresh the calendar with the `refresh` button.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -742,7 +780,7 @@ application to exit the program.
 ## 4. FAQ
 
 **Q: Can I add an assignment/exam first before the module?**<br>
-A: No, You need to add a module first.
+A: No, you need to add a module first.
 
 **Q: Can I add multiple modules with the same name?**<br>
 A: No, modules must have unique names to identify them.
@@ -756,17 +794,26 @@ A: Yes, do take note that if you close the main application, other windows will 
 [Back to Table of Contents](#table-of-contents)
 
 ## 5. Command Summary  
+<div markdown="block" class="alert alert-info">
+
+**Note:**
+* The respective `FORMAT` in the Description, Format column replaces the `FORMAT` in Action.
+* The sentences that are `code-formatted` in the Description, Format column are the `FORMAT` to be used.
+
+**Tips:**
+* The format for `BIRTHDAY` is `DD/MM/YYYY`. 
+* The format for `DATE-TIME` is `DD/MM/YYYY HHMM`.
+
+</div>
 
 Action | Description, Format 
 --------|------------------
-**BIRTHDAY** | `DD/MM/YYYY`
-**DATE-TIME** | `DD/MM/YYYY HHMM`
-**add**<br>`add DESCRIPTION` |  `Adds a person` <br> *`n/NAME b/BIRTHDAY [T/TAG]`* <br><br> `Adds a module` <br> *`m/MODULE`* <br><br>`Adds an assignment` <br> *`m/MODULE a/ASSIGNMENT by/DATE-TIME`* <br><br> `Adds an exam` <br> *`m/MODULE e/DATE-TIME`* <br><br> `Adds an event` <br> *`g/GENERALEVENT on/DATE-TIME`* <br><br>
-**edit**<br>`edit DESCRIPTION` | `Edits a person` <br> *`INDEX n/NEW NAME b/NEW BIRTHDAY T/NEW TAG`* <br><br> `Edits a module` <br> *`INDEX m/NEW MODULE TITLE`* <br><br> `Edits an assignment` <br>  *`m/MODULE a/INDEX d/NEW DESCRIPTION by/NEW DATE-TIME`* <br><br> `Edits an exam` <br> *`m/MODULE e/INDEX on/NEW DATE-TIME`* <br><br> `Edits an event` <br> *`INDEX g/NEW DESCRIPTION on/NEW DATE-TIME`* <br><br>
-**find**<br>`find DESCRIPTION` | `Find persons` <br> *`n/KEYWORD [MORE KEYWORDS]`* <br><br> `Find modules` <br> *`m/KEYWORD [MORE KEYWORDS]`* <br><br> `Find general events` <br> *`g/KEYWORD [MORE KEYWORDS]`* <br><br>
-**list** | `list all entries in RemindMe`
-**delete**<br>`delete DESCRIPTION` | `Delete a person` <br> *`INDEX`* <br><br> `Delete a module` <br> *`m/MODULE`* <br><br> `Delete an assignment` <br> *`m/MODULE a/INDEX`* <br><br> `Delete an exam` <br> *`m/MODULE e/INDEX`*<br><br> `Delete a general event` <br> *`g/INDEX`*<br><br>
-**Clear**<br>`clear DESCRIPTION` | `Clear RemindMe`<br> *`NO DESCRIPTION NEEDED`*<br><br> `Clear persons` <br> *`n/`* <br><br> `Clear module` <br> *`m/`* <br><br> `Clear general events` <br> *`g/`*
+**add**<br>`add FORMAT` |  Adds a person <br> *`n/NAME b/BIRTHDAY [T/TAG]`* <br><br> Adds a module <br> *`m/MODULE`* <br><br> Adds an assignment <br> *`m/MODULE a/ASSIGNMENT by/DATE-TIME`* <br><br> Adds an exam <br> *`m/MODULE e/DATE-TIME`* <br><br> Adds an event <br> *`g/GENERALEVENT on/DATE-TIME`* <br><br>
+**edit**<br>`edit DESCRIPTION` | Edits a person <br> *`INDEX n/NEW NAME [b/NEW BIRTHDAY] [T/NEW TAG]`* <br><br> Edits a module <br> *`INDEX m/NEW MODULE TITLE`* <br><br> Edits an assignment <br>  *`m/MODULE a/INDEX d/NEW DESCRIPTION by/NEW DATE-TIME`* <br><br> Edits an exam <br> *`m/MODULE e/INDEX on/NEW DATE-TIME`* <br><br> Edits an event <br> *`INDEX g/NEW DESCRIPTION on/NEW DATE-TIME`* <br><br>
+**find**<br>`find DESCRIPTION` | Find persons <br> *`n/KEYWORD [MORE KEYWORDS]`* <br><br> Find modules <br> *`m/KEYWORD [MORE KEYWORDS]`* <br><br> Find general events <br> *`g/KEYWORD [MORE KEYWORDS]`* <br><br>
+**list** | Lists all entries in RemindMe
+**delete**<br>`delete DESCRIPTION` | Delete a person <br> *`INDEX`* <br><br> Delete a module <br> *`m/MODULE`* <br><br> Delete an assignment <br> *`m/MODULE a/INDEX`* <br><br> Delete an exam <br> *`m/MODULE e/INDEX`*<br><br> Delete a general event <br> *`g/INDEX`*<br><br>
+**Clear**<br>`clear DESCRIPTION` | Clear RemindMe <br> *`NO DESCRIPTION NEEDED`*<br><br> Clear persons <br> *`n/`* <br><br> Clear module <br> *`m/`* <br><br> Clear general events <br> *`g/`*
 **See help page** | `help` 
 **View Calendar** | `calendar`/`C`
 **Exit program** | `exit`/`E` 
