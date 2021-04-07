@@ -29,7 +29,7 @@ public class SampleDataUtil {
         return new Customer[] {
             new Customer(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), new Remark("Starbucks coffee"), new Date("2021-01-04"),
-                getTagSet("liquid", "hot"), DONE),
+                getTagSet("liquid", "cold"), DONE),
             new Customer(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Remark("Dell laptop"),
                 new Date("2021-10-25"), getTagSet("fragile"), NOT_DONE),
@@ -41,7 +41,7 @@ public class SampleDataUtil {
                 new Date("2021-11-12"), getTagSet("bulky", "heavy"), NOT_DONE),
             new Customer(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"), new Remark("fried wings meal"),
-                new Date("2021-03-07"), getTagSet("urgent", "hot"), DONE),
+                new Date("2021-03-07"), getTagSet("urgent", "food", "hot"), DONE),
             new Customer(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), new Remark("iPhone 11 case"), new Date("2021-12-22"),
                 getTagSet(), NOT_DONE)
