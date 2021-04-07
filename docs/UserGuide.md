@@ -47,60 +47,61 @@ Within the workload pie chart, each module's colour may change as a command is e
 However, the colours will be arranged such that no two modules with the same colour will be next to each other.
 </div>
 
-1. Tasks are colour coded based on done status. 
+4. Tasks are colour coded based on done status. 
    1. Done tasks are coloured pink. 
    1. Tasks that are not done are classified into 4 different categories (colors):
-   1. Color | Time to deadline
-      --------|------------------
-      **Green** | More than 3 days
-      **Yellow** | Between 1 to 3 days
-      **Orange** | Less than 1 day      
-      **Purple** | Expired
+
+Color | Time to deadline 
+--------|------------------
+**Green** | More than 3 days
+**Yellow** | Between 1 to 3 days
+**Orange** | Less than 1 day      
+**Purple** | Expired
    
-1. The pie chart is used to show workload distribution.
+5. The pie chart is used to show workload distribution.
    1. The color of pie chart is randomly assigned.
    2. The workload of each module is counted using the tasks of such module inclunding those that are already done and those that are not finished yet.
     
 1. You can rate a task's expected workload using the following mapping:
    
-   Input Parameter | Workload Rating
-   --------|------------------
-   **w/1** | Low
-   **w/2** | Medium
-   **w/3** | High
-   E.g. for a low workload rating, key in `w/1`.
+Input Parameter | Workload Rating
+--------|------------------
+**w/1** | Low
+**w/2** | Medium
+**w/3** | High
+E.g. for a low workload rating, key in `w/1`.
    
-1. The following module codes are supported 
-   (Note that subject description may differ from actual module name):
+7. The following module codes are supported:
 
-    Module Code | Subject Description
-    --------|------------------
-    CS1101S | Programming Methodology 
-    CS1010S | Programming Methodology in Python
-    CS1231S | Discrete Structures
-    CS2030 | Programming Methodology II
-    CS2040S | Data Structures and Algorithms
-    CS2101 | Effective Communication for Computing Professionals
-    CS2103T | Software Engineering
-    CS2105 | Introduction to Computer Networks
-    CS2106 | Introduction to Operating Systems
-    CS3103 | Computer Networks Practice
-    CS3210 | Parallel Computing
-    CS3212 | Programming Languages
-    CS3217 | Software Engineering on Modern Application Platforms
-    CS3219 | Software Engineering Principles and Patterns
-    CS3220 | Computer Architecture
-    CS3223 | Database Systems Implementation
-    CS3225 | Combinatory Methods in Bioinformatics
-    CS3230 | Design and Analysis of Algorithm
-    CS3231 | Theory of Computation
-    CS3233 | Competitive Programming
-    CS3243 | Introduction to Artificial Intelligence
-    CS3244 | Machine Learning
-    IS1103 | Computing Ethics
-    ST2131 | Probability
-    If your module code does not appear in the above table, 
-    you may use a substitute module code based on the subject description.
+Module Code | Subject Description
+--------|------------------
+CS1101S | Programming Methodology 
+CS1010S | Programming Methodology in Python
+CS1231S | Discrete Structures
+CS2030 | Programming Methodology II
+CS2040S | Data Structures and Algorithms
+CS2101 | Effective Communication for Computing Professionals
+CS2103T | Software Engineering
+CS2105 | Introduction to Computer Networks
+CS2106 | Introduction to Operating Systems
+CS3103 | Computer Networks Practice
+CS3210 | Parallel Computing
+CS3212 | Programming Languages
+CS3217 | Software Engineering on Modern Application Platforms
+CS3219 | Software Engineering Principles and Patterns
+CS3220 | Computer Architecture
+CS3223 | Database Systems Implementation
+CS3225 | Combinatory Methods in Bioinformatics
+CS3230 | Design and Analysis of Algorithm
+CS3231 | Theory of Computation
+CS3233 | Competitive Programming
+CS3243 | Introduction to Artificial Intelligence
+CS3244 | Machine Learning
+IS1103 | Computing Ethics
+ST2131 | Probability
+    
+If your module code does not appear in the above table, 
+you may use a substitute module code based on the subject description.
   
 <div style="page-break-after: always;"></div>
 
