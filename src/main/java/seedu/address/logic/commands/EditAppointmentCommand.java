@@ -8,8 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.appointment.Date.MESSAGE_DATE_OVER;
 import static seedu.address.model.appointment.Time.MESSAGE_TIME_OVER;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
@@ -75,21 +73,21 @@ public class EditAppointmentCommand extends Command {
         if (editAppointmentDescriptor.getDate().isPresent() && editAppointmentDescriptor.getTime().isPresent()) {
             Date editedDate = editAppointmentDescriptor.getDate().get();
             Time editedTime = editAppointmentDescriptor.getTime().get();
-            if (isAppointmentDateOver(editedDate)) {
+            if (editedDate.isOver()) {
                 throw new CommandException((MESSAGE_DATE_OVER));
-            } else if (isAppointmentToday(editedDate) && isAppointmentTimeOver(editedTime)) {
+            } else if (editedDate.isToday() && editedTime.isOver()) {
                 throw new CommandException(MESSAGE_TIME_OVER);
             }
         } else if (editAppointmentDescriptor.getDate().isPresent()) {
             Date editedDate = editAppointmentDescriptor.getDate().get();
-            if (isAppointmentDateOver(editedDate)) {
+            if (editedDate.isOver()) {
                 throw new CommandException((MESSAGE_DATE_OVER));
-            } else if (isAppointmentToday(editedDate) && isAppointmentTimeOver(originalTime)) {
+            } else if (editedDate.isToday() && originalTime.isOver()) {
                 throw new CommandException(MESSAGE_TIME_OVER);
             }
         } else if (editAppointmentDescriptor.getTime().isPresent()) {
             Time editedTime = editAppointmentDescriptor.getTime().get();
-            if (isAppointmentToday(originalDate) && isAppointmentTimeOver(editedTime)) {
+            if (originalDate.isToday() && editedTime.isOver()) {
                 throw new CommandException(MESSAGE_TIME_OVER);
             }
         }
@@ -102,18 +100,6 @@ public class EditAppointmentCommand extends Command {
 
         model.setAppointment(appointmentToEdit, editedAppointment);
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedAppointment));
-    }
-
-    private static boolean isAppointmentDateOver(Date date) {
-        return date.compareTo(new Date(LocalDate.now())) < 0;
-    }
-
-    private static boolean isAppointmentToday(Date date) {
-        return date.compareTo(new Date(LocalDate.now())) == 0;
-    }
-
-    private static boolean isAppointmentTimeOver(Time time) {
-        return time.compareTo(new Time(LocalTime.now())) < 0;
     }
 
     /**

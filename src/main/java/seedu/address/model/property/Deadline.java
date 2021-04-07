@@ -44,6 +44,10 @@ public class Deadline implements Comparable<Deadline> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean isOver() {
+        return deadline.compareTo(LocalDate.now()) < 0;
+    }
+
     @Override
     public String toString() {
         return deadline.format(DateTimeFormat.OUTPUT_DATE_FORMAT);

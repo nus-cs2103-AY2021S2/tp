@@ -45,6 +45,10 @@ public class Time implements Comparable<Time> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean isOver() {
+        return time.compareTo(LocalTime.now()) <= 0;
+    }
+
     @Override
     public String toString() {
         return time.format(DateTimeFormat.OUTPUT_TIME_FORMAT);

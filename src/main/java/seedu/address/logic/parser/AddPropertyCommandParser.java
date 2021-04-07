@@ -12,9 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
-import static seedu.address.model.property.Deadline.MESSAGE_DEADLINE_OVER;
 
-import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -60,11 +58,6 @@ public class AddPropertyCommandParser implements Parser<AddPropertyCommand> {
         Address address = ParserUtil.parsePropertyAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         PostalCode postal = ParserUtil.parsePropertyPostal(argMultimap.getValue(PREFIX_POSTAL).get());
         Deadline deadline = ParserUtil.parsePropertyDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-
-        if (isDeadlineOver(deadline)) {
-            throw new ParseException(MESSAGE_DEADLINE_OVER);
-        }
-
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getValue(PREFIX_TAGS).orElse(null));
         Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).orElse(null));
 
@@ -101,7 +94,4 @@ public class AddPropertyCommandParser implements Parser<AddPropertyCommand> {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
-    private static boolean isDeadlineOver(Deadline deadline) {
-        return deadline.compareTo(new Deadline(LocalDate.now())) < 0;
-    }
 }

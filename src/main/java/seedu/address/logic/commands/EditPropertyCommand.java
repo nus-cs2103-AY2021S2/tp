@@ -15,7 +15,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 import static seedu.address.model.property.Deadline.MESSAGE_DEADLINE_OVER;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
@@ -100,7 +99,7 @@ public class EditPropertyCommand extends Command {
 
         if (editPropertyDescriptor.getDeadline().isPresent()) {
             Deadline deadline = editPropertyDescriptor.getDeadline().get();
-            if (isPropertyDeadlineOver(deadline)) {
+            if (deadline.isOver()) {
                 throw new CommandException(MESSAGE_DEADLINE_OVER);
             }
         }
@@ -115,10 +114,6 @@ public class EditPropertyCommand extends Command {
         model.setProperty(index.getZeroBased(), editedProperty);
         model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedProperty));
-    }
-
-    private static boolean isPropertyDeadlineOver(Deadline deadline) {
-        return deadline.compareTo(new Deadline(LocalDate.now())) < 0;
     }
 
     /**

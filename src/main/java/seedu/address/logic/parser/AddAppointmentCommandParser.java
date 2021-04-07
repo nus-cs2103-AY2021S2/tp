@@ -5,11 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
-import static seedu.address.model.appointment.Date.MESSAGE_DATE_OVER;
-import static seedu.address.model.appointment.Time.MESSAGE_TIME_OVER;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
@@ -46,13 +42,6 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         Date date = ParserUtil.parseAppointmentDate(argMultimap.getValue(PREFIX_DATE).get());
         Time time = ParserUtil.parseAppointmentTime(argMultimap.getValue(PREFIX_TIME).get());
 
-        if (isAppointmentDateOver(date)) {
-            throw new ParseException(MESSAGE_DATE_OVER);
-        }
-        if (isAppointmentToday(date) && isAppointmentTimeOver(time)) {
-            throw new ParseException(MESSAGE_TIME_OVER);
-        }
-
         Appointment appointment = new Appointment(name, remark, date, time);
 
         return new AddAppointmentCommand(appointment);
@@ -66,15 +55,4 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
-    private static boolean isAppointmentDateOver(Date date) {
-        return date.compareTo(new Date(LocalDate.now())) < 0;
-    }
-
-    private static boolean isAppointmentToday(Date date) {
-        return date.compareTo(new Date(LocalDate.now())) == 0;
-    }
-
-    private static boolean isAppointmentTimeOver(Time time) {
-        return time.compareTo(new Time(LocalTime.now())) < 0;
-    }
 }

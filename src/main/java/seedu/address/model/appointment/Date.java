@@ -44,6 +44,14 @@ public class Date implements Comparable<Date> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean isOver() {
+        return date.compareTo(LocalDate.now()) < 0;
+    }
+
+    public boolean isToday() {
+        return date.compareTo(LocalDate.now()) == 0;
+    }
+
     @Override
     public String toString() {
         return date.format(DateTimeFormat.OUTPUT_DATE_FORMAT);

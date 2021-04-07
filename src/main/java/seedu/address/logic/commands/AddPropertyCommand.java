@@ -12,9 +12,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_POSTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
+import static seedu.address.model.property.Deadline.MESSAGE_DEADLINE_OVER;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.property.Deadline;
 import seedu.address.model.property.Property;
 
 /**
@@ -70,6 +72,12 @@ public class AddPropertyCommand extends Command {
 
         if (model.hasProperty(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
+        }
+
+        Deadline deadline = toAdd.getDeadline();
+
+        if (deadline.isOver()) {
+            throw new CommandException(MESSAGE_DEADLINE_OVER);
         }
 
         model.addProperty(toAdd);
