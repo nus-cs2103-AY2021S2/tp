@@ -1,0 +1,85 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+
+box UI UI_COLOR_T1
+participant ":CommandBox" as CommandBox UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MeetingBookParser" as MeetingBookParser LOGIC_COLOR
+participant ":FindMeetingCommandParser" as FindMeetingCommandParser LOGIC_COLOR
+participant "command:FindMeetingCommand" as FindMeetingCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+user -> CommandBox: enters "findmeet complete"
+activate CommandBox
+
+CommandBox-> LogicManager : executeCommand(cmdTxt)
+activate LogicManager
+
+LogicManager -> MeetingBookParser : parseCommand(commandText)
+activate MeetingBookParser
+
+create FindMeetingCommandParser
+MeetingBookParser -> FindMeetingCommandParser
+activate FindMeetingCommandParser
+
+FindMeetingCommandParser --> MeetingBookParser
+deactivate FindMeetingCommandParser
+
+MeetingBookParser -> FindMeetingCommandParser : parse(args)
+note bottom: The parser will convert the \ncommandText into an \nargumentMap, args. The \nparsing process is omitted \nfor brevity.
+note right: Parse(args) creates a MeetingContainsKeywordsPredicate \nnamed predicate using the keywords in args.\n This is omitted for brevity.
+activate FindMeetingCommandParser
+
+create FindMeetingCommand
+FindMeetingCommandParser -> FindMeetingCommand
+activate FindMeetingCommand
+
+FindMeetingCommand --> FindMeetingCommandParser : command
+deactivate FindMeetingCommand
+
+FindMeetingCommandParser --> MeetingBookParser : command
+deactivate FindMeetingCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindMeetingCommandParser -[hidden]-> MeetingBookParser
+destroy FindMeetingCommandParser
+
+MeetingBookParser --> LogicManager : command
+deactivate MeetingBookParser
+
+LogicManager -> FindMeetingCommand : execute(model)
+activate FindMeetingCommand
+
+FindMeetingCommand -> Model: updateFilteredMeetingList(predicate)
+activate Model
+Model --> FindMeetingCommand
+deactivate Model
+note left: How the filteredMeetingList result in\nan change on UI display is omitted for brevity.
+
+create CommandResult
+FindMeetingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindMeetingCommand: result
+deactivate CommandResult
+
+FindMeetingCommand --> LogicManager : result
+deactivate FindMeetingCommand
+FindMeetingCommand -[hidden]-> MeetingBookParser
+destroy FindMeetingCommand
+
+LogicManager --> CommandBox: result
+deactivate LogicManager
+
+CommandBox --> user: displays result
+deactivate CommandBox
+@enduml

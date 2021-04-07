@@ -78,6 +78,8 @@ deactivate CommandResult
 
 AddMeetingCommand --> LogicManager : result
 deactivate AddMeetingCommand
+AddMeetingCommand -[hidden]-> MeetingBookParser
+destroy AddMeetingCommand
 
 LogicManager --> CommandBox: result
 deactivate LogicManager

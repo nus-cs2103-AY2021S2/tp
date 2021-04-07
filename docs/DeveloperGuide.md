@@ -258,7 +258,7 @@ method to initiate the search and filtering of the displayed list in the UI.
 The diagram below details how the user's command to find meetings propagates through the system to eventually displays 
 the matching meetings to the user.
 
-DIAGRAM BELOW
+![FindMeetingCommand sequence diagram](images/FindMeetingSequenceDiagram.png)
 
 ### Customisation Features
 
