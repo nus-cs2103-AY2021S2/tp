@@ -65,7 +65,8 @@ public class EditCommand extends Command {
             + PREFIX_DATA + " DATA "
             + "[" + PREFIX_HEADER + " HEADER] "
             + "[" + PREFIX_TAG + " TAG]\n"
-            + "Only INDEX is compulsory, all other parameters are optional, but least one endpoint parameter must be provided.\n\n"
+            + "Only INDEX is compulsory, all other parameters are optional, but least "
+            + "one endpoint parameter must be provided.\n\n"
             + "Examples: \n"
             + MESSAGE_API_EXAMPLE_1
             + MESSAGE_API_EXAMPLE_2
