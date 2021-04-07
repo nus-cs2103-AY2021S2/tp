@@ -10,8 +10,8 @@ import java.util.Locale;
  */
 public class Subject implements Comparable<Subject> {
     public static final String MESSAGE_CONSTRAINTS = "Subject names should be an abbreviation from the list "
-            + "[bio, chem, cn, econ, eng, geo, hist, math, phys], which respectively means "
-            + "[biology, chemistry, chinese, economics, english, geography, history, mathematics, physics]";
+            + "[bio, chem, cn, econ, eng, geo, hist, math, phys, sci], which respectively means "
+            + "[biology, chemistry, chinese, economics, english, geography, history, mathematics, physics, science]";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String subjectName;
