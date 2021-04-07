@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.Schedule;
@@ -16,6 +17,9 @@ import seedu.address.model.task.Task;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Entry> PREDICATE_SHOW_ALL_ENTRIES = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
@@ -63,6 +67,42 @@ public interface Model {
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
+
+    // ====== Contact ======
+
+    /**
+     * Returns true if a contact with the same identity as {@code contact} exists in Teaching Assistant.
+     */
+    boolean hasContact(Contact contact);
+
+    /**
+     * Deletes the given contact.
+     * The contact must exist in Teaching Assistant.
+     */
+    void deleteContact(Contact target);
+
+    /**
+     * Adds the given contact.
+     * {@code contact} must not already exist in Teaching Assistant.
+     */
+    void addContact(Contact contact);
+
+    /**
+     * Replaces the given contact {@code target} with {@code editedContact}.
+     * {@code target} must exist in Teaching Assistant.
+     * The contact identity of {@code editedContact} must not be the same as another existing
+     * contact in Teaching Assistant.
+     */
+    void setContact(Contact target, Contact editedContact);
+
+    /** Returns an unmodifiable view of the filtered contact list */
+    ObservableList<Contact> getFilteredContactList();
+
+    /**
+     * Updates the filter of the filtered contact list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredContactList(Predicate<Contact> predicate);
 
     // ====== Person ======
 
@@ -124,6 +164,16 @@ public interface Model {
      * {@code editedEntry} must not overlap with existing entries in the list.
      */
     void setEntry(Entry target, Entry editedEntry);
+
+    /**
+     * Returns true if the given entry has dates overlapping with other entries in the list.
+     */
+    boolean isOverlappingEntry(Entry toAdd);
+
+    /**
+     * Removes all entries that are overdue.
+     */
+    void clearOverdueEntries();
 
     /** Returns an unmodifiable view of the filtered entry list. */
     ObservableList<Entry> getFilteredEntryList();
@@ -187,4 +237,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
 }

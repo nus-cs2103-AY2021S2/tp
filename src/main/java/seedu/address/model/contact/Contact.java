@@ -10,15 +10,15 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Contact in the address book.
+ * Represents a Contact in Teaching Assistant.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Contact {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final ContactName name;
+    private final ContactPhone phone;
+    private final ContactEmail email;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -26,7 +26,7 @@ public class Contact {
     /**
      * Every field must be present and not null.
      */
-    public Contact(Name name, Phone phone, Email email, Set<Tag> tags) {
+    public Contact(ContactName name, ContactPhone phone, ContactEmail email, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
@@ -34,15 +34,15 @@ public class Contact {
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
+    public ContactName getName() {
         return name;
     }
 
-    public Phone getPhone() {
+    public ContactPhone getPhone() {
         return phone;
     }
 
-    public Email getEmail() {
+    public ContactEmail getEmail() {
         return email;
     }
 
@@ -55,8 +55,7 @@ public class Contact {
     }
 
     /**
-     * Returns true if both contacts have the same name.
-     * This defines a weaker notion of equality between two contacts.
+     * Returns true if both contacts have the same identity.
      */
     public boolean isSameContact(Contact otherContact) {
         return equals(otherContact);
@@ -79,8 +78,7 @@ public class Contact {
         Contact otherContact = (Contact) other;
         return otherContact.getName().equals(getName())
                 && otherContact.getPhone().equals(getPhone())
-                && otherContact.getEmail().equals(getEmail())
-                && otherContact.getTags().equals(getTags());
+                && otherContact.getEmail().equals(getEmail());
     }
 
     @Override

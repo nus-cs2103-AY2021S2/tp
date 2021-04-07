@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.entry.Entry;
 
 /**
- * Panel containing the list of schedules.
+ * Panel containing the list of entries.
  */
 public class EntryListPanel extends UiPart<Region> {
     private static final String FXML = "EntryListPanel.fxml";
@@ -21,7 +21,7 @@ public class EntryListPanel extends UiPart<Region> {
     private ListView<Entry> entryListView;
 
     /**
-     * Creates a {@code ScheduleListPanel} with the given {@code ObservableList}.
+     * Creates a {@code EntryListPanel} with the given {@code ObservableList}.
      */
     public EntryListPanel(ObservableList<Entry> entryList) {
         super(FXML);
@@ -30,7 +30,7 @@ public class EntryListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Schedule} using a {@code ScheduleCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Entry} using a {@code EntryCard}.
      */
     class EntryListViewCell extends ListCell<Entry> {
         @Override

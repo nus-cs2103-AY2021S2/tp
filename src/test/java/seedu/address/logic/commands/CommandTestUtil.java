@@ -17,6 +17,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.EntryNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -36,6 +38,29 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
+    public static final String VALID_ENTRY_NAME_EXAMS = "Exams";
+    public static final String VALID_ENTRY_NAME_ASSIGNMENTS = "Assignment 3";
+    public static final String VALID_ENTRY_NAME_CONSULTATION = "Consultation";
+    public static final String VALID_START_DATE_EXAMS = "2021-04-01 17:00";
+    public static final String VALID_END_DATE_EXAMS = "2021-04-01 19:00";
+    public static final String VALID_START_DATE_ASSIGNMENT = "2021-04-03 19:00";
+    public static final String VALID_END_DATE_ASSIGNMENT = "2021-04-03 19:00";
+    public static final String VALID_START_DATE_CONSULTATION = "2021-04-05 10:00";
+    public static final String VALID_END_DATE_CONSULTATION = "2021-04-05 13:00";
+    public static final String VALID_TAG_CS2030T = "CS2030T";
+    public static final String VALID_TAG_CS2100 = "CS2100";
+    public static final String VALID_TAG_ALEX = "ALEX";
+    public static final String VALID_TAG_BEN = "BEN";
+    /*
+    public static final Name VALID_NAME_OBJECT_ALICE = new Name("Alice Pauline");
+    public static final Name VALID_NAME_OBJECT_GEORGE = new Name("George Best");
+    public static final Name VALID_NAME_OBJECT_BENSON = new Name("Benson Meier");
+    public static final Name BLANK_NAME = new Name(" ");
+
+    public static final Name INVALID_NAME_OBJECT_JOHN = new Name("John Doe");
+    public static final Name VALID_NAME_OBJECT_AMY = new Name("Amy Bee");
+     */
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -125,4 +150,17 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the entry at the given {@code targetIndex} in the
+     * {@code model}'s list.
+     */
+    public static void showEntryAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEntryList().size());
+
+        Entry entry = model.getFilteredEntryList().get(targetIndex.getZeroBased());
+        final String[] splitEntryName = entry.getEntryName().name.split("\\s+");
+        model.updateFilteredEntryList(new EntryNameContainsKeywordsPredicate(Arrays.asList(splitEntryName[0])));
+
+        assertEquals(1, model.getFilteredEntryList().size());
+    }
 }

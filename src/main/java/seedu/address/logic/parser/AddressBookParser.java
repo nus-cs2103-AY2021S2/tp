@@ -11,12 +11,14 @@ import seedu.address.logic.commands.AddEntryCommand;
 import seedu.address.logic.commands.AddScheduleCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearOverdueEntryCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEntryCommand;
 import seedu.address.logic.commands.DeleteScheduleCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditEntryCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FilterEntryCommand;
@@ -27,6 +29,7 @@ import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.FreeCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListContactCommand;
 import seedu.address.logic.commands.ListEntryCommand;
 import seedu.address.logic.commands.ListScheduleCommand;
 import seedu.address.logic.commands.ListTaskCommand;
@@ -73,6 +76,9 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
+        case EditEntryCommand.COMMAND_WORD:
+            return new EditEntryCommandParser().parse(arguments);
+
         case DeleteEntryCommand.COMMAND_WORD:
             return new DeleteEntryCommandParser().parse(arguments);
 
@@ -87,6 +93,9 @@ public class AddressBookParser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
+
+        case ClearOverdueEntryCommand.COMMAND_WORD:
+            return new ClearOverdueEntryCommand();
 
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
@@ -108,6 +117,9 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListContactCommand.COMMAND_WORD:
+            return new ListContactCommand();
 
         case ListEntryCommand.COMMAND_WORD:
             return new ListEntryCommandParser().parse(arguments);

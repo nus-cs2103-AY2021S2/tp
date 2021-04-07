@@ -35,6 +35,14 @@ public class Entry {
         return entryName;
     }
 
+    public EntryDate getOriginalStartDate() {
+        return startDate;
+    }
+
+    public EntryDate getOriginalEndDate() {
+        return endDate;
+    }
+
     public LocalDateTime getStartDate() {
         return startDate.getDate();
     }
@@ -71,10 +79,17 @@ public class Entry {
         LocalDateTime secondStart = otherEntry.getStartDate();
         LocalDateTime secondEnd = otherEntry.getEndDate();
 
-        return (firstStart.isBefore(secondStart) && secondStart.isBefore(firstEnd))
-                || (secondStart.isBefore(firstStart) && firstStart.isBefore(secondEnd));
+
+        return (firstStart.isBefore(secondEnd) && secondStart.isBefore(firstEnd));
     }
 
+    /**
+     * Returns true if the end date is after current date.
+     */
+    public boolean isOverdue() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        return currentDateTime.isAfter(getEndDate());
+    }
     /**
      * Returns true if start date is different from end date.
      */
@@ -102,9 +117,9 @@ public class Entry {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getEntryName())
-                .append(haveDifferentDates() ? new StringBuilder("; Start Date: ").append(getStartDate()) : "")
+                .append(haveDifferentDates() ? new StringBuilder("; Start Date: ").append(startTimestamp()) : "")
                 .append("; End Date: ")
-                .append(getEndDate());
+                .append(endTimestamp());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -113,4 +128,5 @@ public class Entry {
         }
         return builder.toString();
     }
+
 }

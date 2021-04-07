@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.UniqueContactList;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.NonOverlappingEntryList;
 import seedu.address.model.person.Person;
@@ -20,6 +22,7 @@ import seedu.address.model.task.UniqueTaskList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
+    private final UniqueContactList contacts;
     private final NonOverlappingEntryList entries;
     private final UniquePersonList persons;
     private final UniqueScheduleList schedules;
@@ -36,6 +39,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         entries = new NonOverlappingEntryList();
         tasks = new UniqueTaskList();
         persons = new UniquePersonList();
+        contacts = new UniqueContactList();
         schedules = new UniqueScheduleList();
     }
 
@@ -50,6 +54,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// list overwrite operations
+
+    /**
+     * Replaces the contents of the contact list with {@code contacts}.
+     * {@code contacts} must not contain duplicate contacts.
+     */
+    public void setContacts(List<Contact> contacts) {
+        this.contacts.setContacts(contacts);
+    }
 
     /**
      * Replaces the contents of the person list with {@code persons}.
@@ -88,9 +100,49 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
+        setContacts(newData.getContactList());
         setPersons(newData.getPersonList());
         setTasks(newData.getTaskList());
         setSchedules(newData.getScheduleList());
+        setEntries(newData.getEntryList());
+    }
+
+    //// contact-level operations
+
+    /**
+     * Returns true if a contact with the same identity as {@code contact} exists in Teaching Assistant.
+     */
+    public boolean hasContact(Contact contact) {
+        requireNonNull(contact);
+        return contacts.contains(contact);
+    }
+
+    /**
+     * Adds a contact to Teaching Assistant.
+     * The contact must not already exist in Teaching Assistant.
+     */
+    public void addContact(Contact c) {
+        contacts.add(c);
+    }
+
+    /**
+     * Replaces the given contact {@code target} in the list with {@code editedContact}.
+     * {@code target} must exist in Teaching Assistant.
+     * The contact identity of {@code editedContact} must not be the same as another existing
+     * contact in Teaching Assistant.
+     */
+    public void setContact(Contact target, Contact editedContact) {
+        requireNonNull(editedContact);
+
+        contacts.setContact(target, editedContact);
+    }
+
+    /**
+     * Removes {@code key} from this {@code Teaching Assistant}.
+     * {@code key} must exist in Teaching Assistant.
+     */
+    public void removeContact(Contact key) {
+        contacts.remove(key);
     }
 
     //// person-level operations
@@ -167,6 +219,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         entries.setEntry(target, editedEntry);
     }
 
+    /**
+     * returns true if the give entry overlaps with existing entries in the list.
+     */
+    public boolean isOverlappingEntry(Entry entry) {
+        requireNonNull(entry);
+        return entries.overlapsWith(entry);
+    }
+
+    public void clearOverdueEntries() {
+        entries.clearOverdueEntries();
+    }
     //// schedule methods
 
     /**
@@ -225,6 +288,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
+    }
+
+    @Override
+    public ObservableList<Contact> getContactList() {
+        return contacts.asUnmodifiableObservableList();
     }
 
     @Override
