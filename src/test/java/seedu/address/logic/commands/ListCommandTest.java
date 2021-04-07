@@ -10,8 +10,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalSessionIds.SESSION_ID_FIRST_CLASS;
-import static seedu.address.testutil.TypicalSessionIds.SESSION_ID_SECOND_CLASS;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
