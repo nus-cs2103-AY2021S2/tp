@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.model.person.predicate.NameSchoolAndSubjectContainsKeywordsPredicate;
+import seedu.address.model.subject.Subject;
 
 public class SearchCommandParserTest {
 
@@ -21,16 +22,26 @@ public class SearchCommandParserTest {
     }
 
     @Test
+    public void parse_invalidSubject_throwsParseException() {
+        //first subject name is invalid
+        assertParseFailure(parser, " n/Alice Bob s/simei jurong t/abc", Subject.MESSAGE_CONSTRAINTS);
+
+        //second subject name is invalid
+        assertParseFailure(parser, " n/Alice Bob s/simei jurong t/bio abc", Subject.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
     public void parse_validArgs_returnsSearchCommand() {
         // no leading and trailing whitespaces
         SearchCommand expectedSearchCommand =
                 new SearchCommand(new NameSchoolAndSubjectContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"),
-                        Arrays.asList("simei", "jurong"), Arrays.asList("abc", "def")));
-        assertParseSuccess(parser, " n/Alice Bob s/simei jurong t/abc def", expectedSearchCommand);
+                        Arrays.asList("simei", "jurong"), Arrays.asList(new Subject("bio"),
+                        new Subject("math"))));
+        assertParseSuccess(parser, " n/Alice Bob s/simei jurong t/bio math", expectedSearchCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n n/Alice \n \t Bob  \t s/simei \n jurong"
-                + " t/abc \t def   \t", expectedSearchCommand);
+                + " t/bio \t math   \t", expectedSearchCommand);
     }
 
 }

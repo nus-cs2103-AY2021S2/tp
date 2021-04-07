@@ -3,8 +3,7 @@ layout: page
 title: User Guide
 ---
 
-TutorsPet is a **desktop app designed for private tutors in Singapore to manage students’ information, optimized for use via a Command Line Interface** 
-(CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of lesson schedules.
+TutorsPet is a **desktop app designed for private tutors in Singapore to manage students’ information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of both lesson schedules and important dates.
 
 * Table of Contents
 {:toc}
@@ -128,14 +127,16 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 
 * `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional.
 
-* Levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
+* Education levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
   `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `graduated`.
-  They cover the education levels in Primary School, Secondary School and Junior College. For more details, see the [Field Format Summary](#field-format-summary) below.
+  They cover the education levels in Primary School, Secondary School and Junior College, when students are more likely to need private tution. 
+  For more details, see the [Field Format Summary](#field-format-summary) below.
 
 
 * Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
 
-  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
+  subjects which students are more likely to need private tuition.
   For more details, see the [Field Format Summary](#field-format-summary) below.
 
 * A student’s contact can have any number of subjects (including 0). 
@@ -179,16 +180,17 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 * Edits the student at the specified `INDEX`.
   
 * The index refers to the index number shown in the displayed student list.
-  
-* The index **must be a positive integer** 1, 2, 3, …​
-  
+
+* The index **must be a positive integer** ranging from 1 to 2147483647.
+
 * At least one of the optional fields must be provided.
   
 * Existing values will be updated to the input values.
 
-* Levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
+* Education levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
   `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `graduated`.
-  They cover the education levels in Primary School, Secondary School and Junior College. For more details, see the [Field Format Summary](#field-format-summary) below.
+  They cover the education levels in Primary School, Secondary School and Junior College, when students are more likely to need private tution. 
+  For more details, see the [Field Format Summary](#field-format-summary) below.
 
 * When editing subjects or lessons, the existing subjects or lessons of the student will be removed i.e adding of subjects or lessons are not cumulative.
   
@@ -197,8 +199,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 * You can remove all the student’s lessons by typing `le/` without specifying any lesson details after it.
   
 * Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
-  
-  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
+
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
+  subjects which students are more likely to need private tuition.
   For more details, see the [Field Format Summary](#field-format-summary) below.
 
 </div>
@@ -244,10 +247,12 @@ Prefix | Searching Criteria
 * Contacts matching at least one keyword will be returned. 
   
   E.g. `n/Alice Tan` will return contacts with names `Alice Ng` and `Bob Tan`.
-  
+
 * Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
-  
-    > They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
+
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
+  subjects which students are more likely to need private tuition.
+  For more details, see the [Field Format Summary](#field-format-summary) below.
 
 </div>
 
@@ -311,9 +316,9 @@ Once `ex/` prefix is used, the index field cannot be left blank.
   
 * The index refers to the index number shown in the displayed student list. Indexes are used to 
   indicate students who are to be excluded from the advancement.
-  
-* The index **must be a positive integer** 1, 2, 3, …​
-  
+
+* The index **must be a positive integer** ranging from 1 to 2147483647.
+
 * Multiple indexes can be taken in, including no indexes. Indexes must be separated by spaces.
 
 </div>
@@ -343,9 +348,9 @@ Format: `leveldown ex/[INDEX]...`
   
 * The index refers to the index number shown in the displayed student list. Indexes are used to
   indicate students who are to be excluded from the demotion.
-  
-* The index **must be a positive integer** 1, 2, 3, …​
-  
+
+* The index **must be a positive integer** ranging from 1 to 2147483647.
+
 * Multiple indexes can be taken in, including no indexes. Indexes must be separated by spaces.
 
 </div>
@@ -372,7 +377,7 @@ Format: `detail INDEX`
 
 * The index refers to the index number shown in the displayed student list.
 
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** ranging from 1 to 2147483647.
 
 </div>
 
@@ -394,7 +399,7 @@ Format: `delete INDEX`
   
 * The index refers to the index number shown in the displayed student list.
   
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** ranging from 1 to 2147483647. 
 
 </div>
 
@@ -438,9 +443,8 @@ Format: `delete-date INDEX`
 * Deletes the important date at the specified `INDEX`.
   
 * The index refers to the index number shown in the displayed important dates list.
-  
-* The index **must be a positive integer** 1, 2, 3, …​
 
+* The index **must be a positive integer** ranging from 1 to 2147483647.
 </div>
 
 Examples:

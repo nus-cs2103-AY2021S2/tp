@@ -30,8 +30,7 @@ public class ParserUtil {
 
     // public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_INDEX = "Invalid index! "
-            + "Index must be a positive integer and less than 2147483648.\n%1$s";
-    public static final String INPUT_FORMAT = "yyyy-MM-dd HHmm";
+            + "Index is not a non-zero unsigned integer that is less than 2147483648.\n%1$s";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be

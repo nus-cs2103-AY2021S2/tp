@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Person;
+import seedu.address.model.subject.Subject;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
@@ -13,7 +14,7 @@ import seedu.address.model.person.Person;
 public class NameSchoolAndSubjectContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> nameKeywords;
     private final List<String> schoolKeywords;
-    private final List<String> subjectKeywords;
+    private final List<Subject> subjectKeywords;
 
     /**
      * Constructor of NameAndSchoolContainsKeywordsPredicate
@@ -23,7 +24,7 @@ public class NameSchoolAndSubjectContainsKeywordsPredicate implements Predicate<
      * @param subjectKeywords List of keywords to be matched with subjects
      */
     public NameSchoolAndSubjectContainsKeywordsPredicate(List<String> nameKeywords,
-                                                         List<String> schoolKeywords, List<String> subjectKeywords) {
+                                                         List<String> schoolKeywords, List<Subject> subjectKeywords) {
         this.nameKeywords = nameKeywords;
         this.schoolKeywords = schoolKeywords;
         this.subjectKeywords = subjectKeywords;
@@ -71,7 +72,7 @@ public class NameSchoolAndSubjectContainsKeywordsPredicate implements Predicate<
         return subjectKeywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                         person.getSubjects().stream().map(subject -> subject.subjectName)
-                                .collect(Collectors.joining(" ")), keyword));
+                                .collect(Collectors.joining(" ")), keyword.subjectName));
     }
 
     @Override

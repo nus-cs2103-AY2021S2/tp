@@ -32,6 +32,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.predicate.NameSchoolAndSubjectContainsKeywordsPredicate;
+import seedu.address.model.subject.Subject;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code SearchCommand}.
@@ -49,7 +50,7 @@ public class SearchCommandTest {
                         null, null);
         NameSchoolAndSubjectContainsKeywordsPredicate secondPredicate =
                 new NameSchoolAndSubjectContainsKeywordsPredicate(Collections.singletonList("second"),
-                        Collections.singletonList("Jurong"), Collections.singletonList("B"));
+                        Collections.singletonList("Jurong"), Collections.singletonList(new Subject("bio")));
 
         SearchCommand searchFirstCommand = new SearchCommand(firstPredicate);
         SearchCommand searchSecondCommand = new SearchCommand(secondPredicate);
@@ -132,6 +133,7 @@ public class SearchCommandTest {
         String[] nameKeywords = null;
         String[] schoolKeywords = null;
         String[] subjectKeywords = null;
+        Subject[] subjects = null;
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             nameKeywords = extractKeywords(argMultimap, PREFIX_NAME);
@@ -141,13 +143,20 @@ public class SearchCommandTest {
         }
         if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
             subjectKeywords = extractKeywords(argMultimap, PREFIX_SUBJECT);
+            subjects = new Subject[subjectKeywords.length];
+            int i = 0;
+            //subject names here are assumed be in correct format.
+            for (String name: subjectKeywords) {
+                subjects[i] = new Subject(name);
+                i++;
+            }
         }
         List<String> nameKeywordsList = nameKeywords == null ? null : Arrays.asList(nameKeywords);
         List<String> schoolKeywordsList = schoolKeywords == null ? null : Arrays.asList(schoolKeywords);
-        List<String> subjectKeywordsList = subjectKeywords == null ? null : Arrays.asList(subjectKeywords);
+        List<Subject> subjectsList = subjectKeywords == null ? null : Arrays.asList(subjects);
 
         return new NameSchoolAndSubjectContainsKeywordsPredicate(
-                nameKeywordsList, schoolKeywordsList, subjectKeywordsList);
+                nameKeywordsList, schoolKeywordsList, subjectsList);
     }
 
     /**

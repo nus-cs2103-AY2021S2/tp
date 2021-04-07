@@ -25,6 +25,7 @@ import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicate.NameSchoolAndSubjectContainsKeywordsPredicate;
+import seedu.address.model.subject.Subject;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -72,13 +73,15 @@ public class AddressBookParserTest {
     public void parseCommand_search() throws Exception {
         List<String> nameKeywords = Arrays.asList("alice", "bernice", "charlie");
         List<String> schoolKeywords = Arrays.asList("woodlands", "clementi", "bedok");
-        List<String> tagKeywords = Arrays.asList("abc", "cde", "def");
+        List<String> subjectKeywords = Arrays.asList("bio", "math", "sci");
+        List<Subject> subjects = Arrays.asList(new Subject("bio"),
+                new Subject("math"), new Subject("sci"));
         SearchCommand command = (SearchCommand) parser.parseCommand(
                 SearchCommand.COMMAND_WORD + " n/" + nameKeywords.stream().collect(Collectors.joining(" "))
                         + " s/" + schoolKeywords.stream().collect(Collectors.joining(" "))
-                        + " t/" + tagKeywords.stream().collect(Collectors.joining(" ")));
+                        + " t/" + subjectKeywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new SearchCommand(
-                new NameSchoolAndSubjectContainsKeywordsPredicate(nameKeywords, schoolKeywords, tagKeywords)), command);
+                new NameSchoolAndSubjectContainsKeywordsPredicate(nameKeywords, schoolKeywords, subjects)), command);
     }
 
     @Test
