@@ -50,7 +50,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/zenlyj.png" width="200px">
 
 [[github](https://github.com/zenlyj)]
-[[portfolio](team/zenlee.md)]
+[[portfolio](team/zenlyj.md)]
 
 * Role: Developer
 
