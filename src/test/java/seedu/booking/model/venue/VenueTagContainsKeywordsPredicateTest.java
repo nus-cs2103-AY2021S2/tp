@@ -1,5 +1,6 @@
 package seedu.booking.model.venue;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -35,6 +36,13 @@ class VenueTagContainsKeywordsPredicateTest {
 
         // different venue tags -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
+    }
+
+    @Test
+    public void getTagName_returnsCorrectTagName_sameTagName() {
+        // Same keyword
+        VenueTagContainsKeywordsPredicate predicate = new VenueTagContainsKeywordsPredicate("student");
+        assertEquals(predicate.getTagName(), "student");
     }
 
     @Test

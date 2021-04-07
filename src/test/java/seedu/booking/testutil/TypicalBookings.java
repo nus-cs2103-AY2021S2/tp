@@ -69,6 +69,13 @@ public class TypicalBookings {
             new HashSet<>()
     );
 
+    public static final Booking BOOKING5 = new Booking(ALICE.getEmail(), VENUE1.getVenueName(),
+            new Description("description"),
+            new StartTime(LocalDateTime.of(2021, 03, 01, 13, 00)),
+            new EndTime(LocalDateTime.of(2021, 03, 01, 14, 00)),
+            new HashSet<>()
+    );
+
     public static final Booking BOOKING_HOON = new Booking(ALICE.getEmail(), VENUE1.getVenueName(),
             new Description("description"),
             new StartTime(LocalDateTime.of(2022, 03, 01, 14, 30)),
