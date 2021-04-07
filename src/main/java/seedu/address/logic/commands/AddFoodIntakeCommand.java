@@ -49,7 +49,7 @@ public class AddFoodIntakeCommand extends Command {
         int index = model.getUniqueFoodList().getFoodItemIndex(this.tempFoodDescriptor.getName().get());
         boolean skipEditCheck = false;
 
-        //Food does not exist in Unique Food List, hence add the food item in.
+        //Food does not exist in Unique Food List, add to Unique Food List
         if (index == -1) {
             Food newFood = createNewFood(this.tempFoodDescriptor);
             model.addFoodItem(newFood);
@@ -62,15 +62,21 @@ public class AddFoodIntakeCommand extends Command {
         if (!skipEditCheck && (this.tempFoodDescriptor.getCarbos().isPresent()
                 || this.tempFoodDescriptor.getFats().isPresent()
                 || this.tempFoodDescriptor.getProteins().isPresent())) {
-            Food edittedFood = editCurrentFood(food, tempFoodDescriptor);
-            model.getUniqueFoodList().getFoodList().set(index, edittedFood);
-            model.addFoodIntake(this.date, edittedFood);
-            return new CommandResult(MESSAGE_SUCCESS_FOOD_UPDATE + edittedFood + ".\n"
-                    + MESSAGE_SUCCESS + edittedFood + ") into food intake list.");
+
+            Food editedFood = editCurrentFood(food, tempFoodDescriptor);
+            model.getUniqueFoodList().getFoodList().set(index, editedFood);
+
+            Food addedFood = model.addFoodIntake(this.date, editedFood);
+            String updateFoodIntakeList = model.getFoodIntakeList().getFoodIntakeListByDate(date);
+
+            return new CommandResult( MESSAGE_SUCCESS_FOODINTAKE_ADD + ": \n"
+                    + addedFood + "\n\n" + MESSAGE_SUCCESS_FOOD_UPDATE + "\n\n" + updateFoodIntakeList);
         }
 
-        model.addFoodIntake(this.date, food);
-        return new CommandResult(MESSAGE_SUCCESS + food + ") into food intake list.");
+        Food addedFood = model.addFoodIntake(this.date, food);
+        String updateFoodIntakeList = model.getFoodIntakeList().getFoodIntakeListByDate(date);
+
+        return new CommandResult(MESSAGE_SUCCESS_FOODINTAKE_ADD + ": \n" + addedFood + "\n\n" + updateFoodIntakeList);
     }
 
     /**
