@@ -8,7 +8,6 @@ import static seedu.plan.logic.parser.CliSyntax.PREFIX_SEM_NUMBER;
 
 import seedu.plan.commons.core.index.Index;
 import seedu.plan.logic.commands.AddModuleCommand;
-import seedu.plan.logic.commands.AddSemesterCommand;
 import seedu.plan.logic.parser.exceptions.ParseException;
 
 import java.util.stream.Stream;
