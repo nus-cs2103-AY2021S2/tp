@@ -2,15 +2,12 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Alias;
 import seedu.address.commons.core.AliasMapping;
-import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueList;
 import seedu.address.model.resident.Name;
@@ -34,9 +31,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final IssueList issues;
     private final AliasMapping aliasMapping;
 
-    private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "sunrez.json");
-    private Path commandHistoryFilePath = Paths.get("data", "commandhistory.txt");
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -400,6 +394,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, aliasMapping, commandHistoryFilePath);
+        return Objects.hash(residents, rooms, residentRooms, issues, aliasMapping);
     }
 }
