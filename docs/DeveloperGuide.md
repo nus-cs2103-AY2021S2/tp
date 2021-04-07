@@ -130,117 +130,38 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
-
 This section describes some noteworthy details on how certain features are implemented.
-### Resident-Room allocation feature 
 
-The allocation feature is facilitated by `ResidentRoom` which is a pair value of 
-valid `[Resident, Room]` that represents an existing resident allocated to a room. 
-It should be able to support the following operations:
-* `ResidentRoomList#getRoom()` - Returns the room assignment for a given resident.
-* `ResidentRoomList#getResident()` - Returns the resident allocated for a given room.
+### Resident Features
 
-A `ResidentRoomList` is a supplementary class that tracks all the `ResidentRoom` assignments. It should support
-the following operations. 
-* `ResidentRoomList#allocate()` - Adds a `ResidentRoom` new allocation.
-* `ResidentRoomList#deallocate()` - Removes an existing `ResidentRoom` allocation.
-* `ResidentRoomList#isAllocated()` - Checks if an allocation exists given the resident and room.
-* `ResidentRoomList#isRoomOccupied()` - Checks if a room is occupied. 
-* `ResidentRoomList#isResidentOccupied()` - Checks if a resident is allocated a room.
+The Resident family of features consist of the following features: Add Resident, Edit Resident, List Resident, Find Resident and Delete Resident.
 
-There are two Resident-Room user allocation and deallocation commands, `alloc` and `dealloc` respectively.  
+#### The Resident Class
+The Resident class consists of 5 fields, each of which contain their own methods to verify their respective input. 
+This allows for a low degree of coupling, and individual fields can change their input verification rules without affecting the other classes. 
+Similarly, the Resident class can expand to contain more fields without affecting existing fields too.
 
-The `alloc` command will do the following:
+Examples of verification functions in each of the fields include `Resident#isValidName()` etc.
 
-Example: `alloc n/John Tan r/03-100`
-* Check that `John Tan` exists.
-* Check that `03-100` exists.
-* Check that `John Tan` has not already been allocated to `03-100`.  
-* Check that no other room is allocated to `John Tan`.  
-* Check that room `03-100` is not occupied by anyone. 
+![The Resident Class](images/resident/ResidentClass.png)
 
-    **If all the above is true,**
-* Set the `ROOM` of `John Tan` to be `03-100`.
-* Set the `OCCUPATION_STATUS` of a room to `Y`.
+The `Resident` objects are stored in a `UniqueResidentList` which is held by `AddressBook`.
 
-  ![Activity Diagram of Allocation](images/residentroom/ResidentRoomAllocationDiagram.png)
+#### Add Resident
+This section will detail the implementation of the Add Resident feature via the `radd` command,
 
-The `dealloc` command will do the following:
+##### Overview of Insertion Process
+The AddResidentCommand is triggered through the use of `radd` followed by valid parameters such as name, phone, etc. 
+The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, a Resident object is constructed and added to the model and saved to the backing store. Upon successful insertion, a feedback message is displayed to the user.
 
-Example: `dealloc n/John Tan r/03-100`
-* Check that `John Tan` exists.
-* Check that `03-100` exists.
-* Check that `John Tan` has been allocated to `03-100`.
+This process is summarised in the diagram below
+![Adding a Resident](images/resident/AddResidentCommandActivityDiagram.png)
 
-    **If all the above is true,**
-* Set the `ROOM` of `John Tan` to be `Room unallocated`.
-* Set the `OCCUPATION_STATUS` of a room to `N`.
+##### Detailed execution pathway
+The diagram below details how the user's command to add a resident propagates through the system to eventually add a resident.
 
-The following implementation alternatives were considered: 
-* **Alternative 1 (current choice):** Resident-Room solely keeps track of resident and room allocation
-  performed through `alloc` and `dealloc` commands. Any allocated resident and occupied rooms 
-  cannot be edited.
-  * Pros: 
-    * Simpler to implement.
-    * Better testability for synchronicity between fields.
-  * Cons: 
-    * Less user control.  
-* **Alternative 2:** Resident-Room allocation is modelled as a Parent-Child where the parent is the 
-  `Room` and the child is the `Resident`.
-  *Pros:
-    * Simpler to implement.
-  * Cons:
-    * Lack of 2-way updates. Room number of the `Resident` cannot be updated and viewed. 
-      The problem is reversed if the parent-child roles are swapped where the occupancy 
-      of `Room` cannot be updated and viewed.
-* **Alternative 3:** Resident-Room interface as a lookup. `Room` and `Resident` would look up the 
-`residentRoom` class every time to get its `OCCUPANCY STATUS` and `ROOM NUMBER`.
-  * Pros: 
-    * User has more control and flexibility. 
-  * Cons: 
-    * Creates cascading effect with a lot of dependencies between regular commands
-    such as `redit`, `rdel`, `oedit`, `odel`.
+![Adding a Resident](images/resident/AddResidentCommandSeqDiagram.png)
 
-
-### Alias feature
-The `Alias` feature allows users to define a shortcut for a longer command that is often used. The longer command can then be executed by entering the alias instead of the full or partial command.
-
-#### Implementation 
-User-defined `Alias` is stored in `AliasMapping` within `UserPrefs`. `AliasMapping` internally uses `HashMap<String, Alias>` to store the mapping between the name of an `Alias` object and itself. With `AliasMapping` included in `UserPrefs`, `UserPrefs` supports the following methods:
-
-* `UserPrefs#getAliasMapping()` — Returns the current `AliasMapping`.
-
-* `UserPrefs#setAliasMapping(AliasMapping aliasMappings)` — Sets the current mapping to the specified mapping.
-
-* `UserPrefs#addAlias(Alias alias)` — Adds a user-defined `Alias` to the current mapping.
-
-* `UserPrefs#getAlias(String aliasName)` — Returns an `Alias` based on alias name.
-
-* `UserPrefs#containsAlias(String aliasName)` — Checks if the current mapping contains an `Alias` based on alias name.
-
-* `UserPrefs#isReservedKeyword(String aliasName)` — Checks if the alias name is a reserved keyword. This prevents users from using existing commands as alias name.
-
-* `UserPrefs#isRecursiveKeyword(String commandWord)` — Checks if the command word is a recursive keyword. This prevents users from chaining aliases.
-
-#### Alias creation
-User can create a new `Alias` via the `AliasCommand`. The sequence diagram below describes how an `Alias` is created.
-
-![AliasCreationSequenceDiagram](images/alias/AliasCreationSequenceDiagram.png)
-
-#### Alias execution
-
-When a user executes a new command, `AddressBookParser` will follow these steps:
-
-1. If the input begins with an existing command word, parse it as one of those pre-defined command.
-    1. If all parameters are valid, return the corresponding `Command` object.
-    1. Else show error to the user.
-1. Else if the input begins with a mapped `Alias`, replace the alias with the mapped `Command`.
-    1. Parse the mapped `Command` as per normal.
-1. Else show error to the user.
-
-The following diagram illustrates the flow:
-
-![AliasExecutionActivityDiagram](images/alias/AliasExecutionActivityDiagram.png)
 
 ### Room Features
 
@@ -290,6 +211,72 @@ The diagram below details how the user's command to add a room propagates throug
 
 ![Adding a Room](images/room/AddRoomCommandSeqDiagram.png)
 
+### Resident-Room allocation feature
+
+The allocation feature is facilitated by `ResidentRoom` which is a pair value of
+valid `[Resident, Room]` that represents an existing resident allocated to a room.
+It should be able to support the following operations:
+* `ResidentRoom#getName()` - Returns the resident allocated for a given ResidentRoom.
+* `ResidentRoom#getRoomNumber()` - Returns the room assignment for a given ResidentRoom.
+
+A `ResidentRoomList` is a supplementary class that tracks all the `ResidentRoom` assignments. It should support
+the following operations.
+* `ResidentRoomList#add()` - Adds a `ResidentRoom` new allocation.
+* `ResidentRoomList#remove()` - Removes an existing `ResidentRoom` allocation.
+* `ResidentRoomList#contains()` - Checks if an allocation exists given the resident and room.
+
+There are two Resident-Room user allocation and deallocation commands, `alloc` and `dealloc` respectively.
+
+The `alloc` command will do the following:
+
+Example: `alloc ri/1 oi/2`
+* Check that the 1st resident exists.
+* Check that the 2nd room exists exists.
+* Check that the 1st resident has not already been allocated to the 2nd room.
+* Check that no other room is allocated to the 2nd resident.
+* Check that room the 2nd room is not occupied by any resident.
+
+  **If all the above is true,**
+* Set the `ROOM` of the resident to be the room number of the room.
+* Set the `OCCUPATION_STATUS` of the room to `Y`.
+
+  ![Activity Diagram of Allocation](images/residentroom/ResidentRoomAllocationActivityDiagram.png)
+
+The `dealloc` command will do the following:
+
+Example: `dealloc 1`
+* Check that the first resident exists.
+* Check that the first resident has been allocated to a room.
+
+  **If all the above is true,**
+* Set the `ROOM` of  the resident to be `Room unallocated`.
+* Set the `OCCUPATION_STATUS` of the room to `N`.
+
+#### Alternatives considered
+* **Alternative 1 (current choice):** Resident-Room solely keeps track of resident and room allocation
+  performed through `alloc` and `dealloc` commands. Any allocated resident and occupied rooms
+  cannot be edited.
+    * Pros:
+        * Simpler to implement.
+        * Better testability for synchronicity between fields.
+    * Cons:
+        * Less user control.
+* **Alternative 2:** Resident-Room allocation is modelled as a Parent-Child where the parent is the
+  `Room` and the child is the `Resident`.
+    * Pros:
+        * Simpler to implement.
+    * Cons:
+        * Lack of 2-way updates. Room number of the `Resident` cannot be updated and viewed.
+          The problem is reversed if the parent-child roles are swapped where the occupancy
+          of `Room` cannot be updated and viewed.
+* **Alternative 3:** Resident-Room interface as a lookup. `Room` and `Resident` would look up the
+  `residentRoom` class every time to get its `OCCUPANCY STATUS` and `ROOM NUMBER`.
+    * Pros:
+        * User has more control and flexibility.
+    * Cons:
+        * Creates cascading effect with a lot of dependencies between regular commands
+          such as `redit`, `rdel`, `oedit`, `odel`.
+
 ### Issue Features
 
 The Issue family of features consist of the following features: Add Issue, Edit Issue, List Issue, Find Issue, Delete Issue and Close Issue.
@@ -325,6 +312,47 @@ The inheritance from `Command` allows `Logic` to deal with and manipulate polymo
 The diagram below details how the user's command to add an issue propagates through the system to eventually add an issue.
 
 ![Adding an Issue](images/issue/AddIssueCommandSeqDiagram.png)
+
+
+### Alias feature
+The `Alias` feature allows users to define a shortcut for a longer command that is often used. The longer command can then be executed by entering the alias instead of the full or partial command.
+
+#### Implementation
+User-defined `Alias` is stored in `AliasMapping` within `UserPrefs`. `AliasMapping` internally uses `HashMap<String, Alias>` to store the mapping between the name of an `Alias` object and itself. With `AliasMapping` included in `UserPrefs`, `UserPrefs` supports the following methods:
+
+* `UserPrefs#getAliasMapping()` — Returns the current `AliasMapping`.
+
+* `UserPrefs#setAliasMapping(AliasMapping aliasMappings)` — Sets the current mapping to the specified mapping.
+
+* `UserPrefs#addAlias(Alias alias)` — Adds a user-defined `Alias` to the current mapping.
+
+* `UserPrefs#getAlias(String aliasName)` — Returns an `Alias` based on alias name.
+
+* `UserPrefs#containsAlias(String aliasName)` — Checks if the current mapping contains an `Alias` based on alias name.
+
+* `UserPrefs#isReservedKeyword(String aliasName)` — Checks if the alias name is a reserved keyword. This prevents users from using existing commands as alias name.
+
+* `UserPrefs#isRecursiveKeyword(String commandWord)` — Checks if the command word is a recursive keyword. This prevents users from chaining aliases.
+
+#### Alias creation
+User can create a new `Alias` via the `AliasCommand`. The sequence diagram below describes how an `Alias` is created.
+
+![AliasCreationSequenceDiagram](images/alias/AliasCreationSequenceDiagram.png)
+
+#### Alias execution
+
+When a user executes a new command, `AddressBookParser` will follow these steps:
+
+1. If the input begins with an existing command word, parse it as one of those pre-defined command.
+    1. If all parameters are valid, return the corresponding `Command` object.
+    1. Else show error to the user.
+1. Else if the input begins with a mapped `Alias`, replace the alias with the mapped `Command`.
+    1. Parse the mapped `Command` as per normal.
+1. Else show error to the user.
+
+The following diagram illustrates the flow:
+
+![AliasExecutionActivityDiagram](images/alias/AliasExecutionActivityDiagram.png)
 
 ### Command History Feature
 The command history feature has a few sub-features:
