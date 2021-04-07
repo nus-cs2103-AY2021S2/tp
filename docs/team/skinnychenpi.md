@@ -20,7 +20,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub team repo.
 
 * **Enhancements to existing features**:
     * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
