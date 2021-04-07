@@ -12,6 +12,7 @@ import java.util.List;
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.predicate.NameSchoolAndSubjectContainsKeywordsPredicate;
+import seedu.address.model.subject.Subject;
 
 /**
  * Parses input arguments and creates a new SearchCommand object
@@ -35,7 +36,8 @@ public class SearchCommandParser implements Parser<SearchCommand> {
 
         String[] nameKeywords = null;
         String[] schoolKeywords = null;
-        String[] tagKeywords = null;
+        String[] subjectKeywords = null;
+        Subject[] subjects = null;
 
         if (!argMultimap.getValue(PREFIX_NAME).isPresent()
                 && !argMultimap.getValue(PREFIX_SCHOOL).isPresent()
@@ -50,14 +52,21 @@ public class SearchCommandParser implements Parser<SearchCommand> {
             schoolKeywords = extractKeywordsAsArray(argMultimap, PREFIX_SCHOOL);
         }
         if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
-            tagKeywords = extractKeywordsAsArray(argMultimap, PREFIX_SUBJECT);
+            subjectKeywords = extractKeywordsAsArray(argMultimap, PREFIX_SUBJECT);
+            subjects = new Subject[subjectKeywords.length];
+            int i = 0;
+            for (String name: subjectKeywords) {
+                subjects[i] = ParserUtil.parseSubject(name);
+                i++;
+            }
         }
+
         List<String> nameKeywordsList = nameKeywords == null ? null : Arrays.asList(nameKeywords);
         List<String> schoolKeywordsList = schoolKeywords == null ? null : Arrays.asList(schoolKeywords);
-        List<String> tagKeywordsList = tagKeywords == null ? null : Arrays.asList(tagKeywords);
+        List<Subject> subjectsList = subjectKeywords == null ? null : Arrays.asList(subjects);
 
         return new SearchCommand(new NameSchoolAndSubjectContainsKeywordsPredicate(
-                nameKeywordsList, schoolKeywordsList, tagKeywordsList));
+                nameKeywordsList, schoolKeywordsList, subjectsList));
     }
 
     /**

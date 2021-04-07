@@ -17,7 +17,11 @@ public class DetailCommand extends Command {
 
     public static final String COMMAND_WORD = "detail";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display the details of the student identified ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+        + ": Display the details of the student identified\n"
+        + "Parameters: INDEX (must be a positive integer and lesser than 2147483648)\n"
+        + "Example: " + COMMAND_WORD + " 1";
+
     public static final String MESSAGE_DISPLAY_PERSON_SUCCESS = "Displayed Student: %1$s";
 
 
