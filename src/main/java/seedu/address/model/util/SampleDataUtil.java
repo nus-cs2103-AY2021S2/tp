@@ -34,23 +34,23 @@ public class SampleDataUtil {
     public static Resident[] getSampleResidents() {
         return new Resident[] {
             new Resident(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Year("1"),
-                new Room(UNALLOCATED_REGEX)),
+                    new Year("1"),
+                    new Room(UNALLOCATED_REGEX)),
             new Resident(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Year("2"),
-                new Room(UNALLOCATED_REGEX)),
+                    new Year("2"),
+                    new Room(UNALLOCATED_REGEX)),
             new Resident(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Year("3"),
-                new Room(UNALLOCATED_REGEX)),
+                    new Year("3"),
+                    new Room(UNALLOCATED_REGEX)),
             new Resident(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Year("4"),
-                new Room(UNALLOCATED_REGEX)),
+                    new Year("4"),
+                    new Room(UNALLOCATED_REGEX)),
             new Resident(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Year("4"),
-                new Room(UNALLOCATED_REGEX)),
+                    new Year("4"),
+                    new Room(UNALLOCATED_REGEX)),
             new Resident(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Year("5"),
-                new Room(UNALLOCATED_REGEX))
+                    new Year("5"),
+                    new Room(UNALLOCATED_REGEX))
         };
     }
 
@@ -86,7 +86,7 @@ public class SampleDataUtil {
     public static Issue[] getSampleIssues() {
         return new Issue[] {
             new Issue(new seedu.address.model.issue.RoomNumber("01-234"), new Description("Broken light"),
-                    new Timestamp("2020/11/12 12:12AM"), new Status(IssueStatus.Closed),
+                    new Timestamp("2020/1/1 12:00PM"), new Status(IssueStatus.Closed),
                     new Category("Fixtures"), new HashSet<>()),
             new Issue(new seedu.address.model.issue.RoomNumber("01-234"), new Description("Cupboard door missing"),
                     new Timestamp("2021/01/31 4:12PM"), new Status(IssueStatus.Pending),

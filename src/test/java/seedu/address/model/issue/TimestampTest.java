@@ -37,12 +37,11 @@ public class TimestampTest {
         assertFalse(Timestamp.isValidTimestamp("2021/12/32 0:000pm")); // invalid minute
 
         // valid timestamps
-        assertTrue(Timestamp.isValidTimestamp("2021/12/31 0:00am")); // midnight
-        assertTrue(Timestamp.isValidTimestamp("2021/12/31 0:00AM")); // AM capitalized
-        assertTrue(Timestamp.isValidTimestamp("2021/12/31 0:00Am")); // partially capitalized
-        assertTrue(Timestamp.isValidTimestamp("2021/12/31 0:00aM")); // partially capitalized
-        assertTrue(Timestamp.isValidTimestamp("2021/12/31 00:00am")); // double 00 in hour
+        assertTrue(Timestamp.isValidTimestamp("2021/12/31 12:00am")); // midnight
+        assertTrue(Timestamp.isValidTimestamp("2021/12/31 12:00AM")); // AM capitalized
+        assertTrue(Timestamp.isValidTimestamp("2021/12/31 12:00Am")); // partially capitalized
+        assertTrue(Timestamp.isValidTimestamp("2021/12/31 12:00aM")); // partially capitalized
         assertTrue(Timestamp.isValidTimestamp("2021/12/31 11:59pm")); // 11:59 pm
-        assertTrue(Timestamp.isValidTimestamp("0001/1/1 0:00am")); // earliest datetime
+        assertTrue(Timestamp.isValidTimestamp("0001/1/1 12:00am")); // earliest datetime
     }
 }
