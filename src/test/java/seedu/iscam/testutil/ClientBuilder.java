@@ -29,7 +29,7 @@ public class ClientBuilder {
     private Phone phone;
     private Email email;
     private Location location;
-    private InsurancePlan insurancePlan;
+    private Set<InsurancePlan> insurancePlans;
     private Set<Tag> tags;
     private Image imageRef;
 
@@ -41,7 +41,7 @@ public class ClientBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         location = new Location(DEFAULT_LOCATION);
-        insurancePlan = new InsurancePlan(DEFAULT_PLAN);
+        insurancePlans = new HashSet<>();
         tags = new HashSet<>();
         imageRef = new Image(DEFAULT_IMAGE);
     }
@@ -54,7 +54,7 @@ public class ClientBuilder {
         phone = clientToCopy.getPhone();
         email = clientToCopy.getEmail();
         location = clientToCopy.getLocation();
-        insurancePlan = clientToCopy.getPlan();
+        insurancePlans = clientToCopy.getPlans();
         tags = new HashSet<>(clientToCopy.getTags());
         imageRef = clientToCopy.getImageRes();
     }
@@ -102,8 +102,8 @@ public class ClientBuilder {
     /**
      * Sets the {@code InsurancePlan} of the {@code Client} that we are building.
      */
-    public ClientBuilder withPlan(String plan) {
-        this.insurancePlan = new InsurancePlan(plan);
+    public ClientBuilder withPlan(String ... plans) {
+        this.insurancePlans = SampleDataUtil.getPlanSet();
         return this;
     }
 
@@ -116,7 +116,7 @@ public class ClientBuilder {
     }
 
     public Client build() {
-        return new Client(name, phone, email, location, insurancePlan, tags, imageRef);
+        return new Client(name, phone, email, location, insurancePlans, tags, imageRef);
     }
 
 }

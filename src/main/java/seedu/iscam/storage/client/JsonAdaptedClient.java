@@ -67,7 +67,7 @@ class JsonAdaptedClient {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        plans.addAll(source.getPlan().stream()
+        plans.addAll(source.getPlans().stream()
                 .map(JsonAdaptedClientPlan::new)
                 .collect(Collectors.toList()));
         location = source.getLocation().value;

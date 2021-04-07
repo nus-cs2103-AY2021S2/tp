@@ -37,7 +37,7 @@ public class EditClientDescriptorBuilder {
         descriptor.setName(client.getName());
         descriptor.setPhone(client.getPhone());
         descriptor.setEmail(client.getEmail());
-        descriptor.setPlan(client.getPlan());
+        descriptor.setPlans(client.getPlans());
         descriptor.setLocation(client.getLocation());
         descriptor.setTags(client.getTags());
         descriptor.setImageRes(client.getImageRes());
@@ -78,8 +78,9 @@ public class EditClientDescriptorBuilder {
     /**
      * Sets the {@code InsurancePlan} of the {@code EditClientDescriptor} that we are building.
      */
-    public EditClientDescriptorBuilder withPlan(String plan) {
-        descriptor.setPlan(new InsurancePlan(plan));
+    public EditClientDescriptorBuilder withPlan(String... plans) {
+        Set<InsurancePlan> planSet = Stream.of(plans).map(InsurancePlan::new).collect(Collectors.toSet());
+        descriptor.setPlans(planSet);
         return this;
     }
 

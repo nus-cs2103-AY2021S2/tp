@@ -87,7 +87,7 @@ public class ClientDetailFragment extends UiPart<Region> {
         clientMeetingListView.setItems(
                 meetingList.filtered(meeting -> meeting.getClientName().equals(client.getName())));
         clientMeetingListView.setCellFactory(listview -> new MeetingListPanel.MeetingListViewCell());
-        ObservableList<InsurancePlan> observablePlanList = FXCollections.observableArrayList(client.getPlan());
+        ObservableList<InsurancePlan> observablePlanList = FXCollections.observableArrayList(client.getPlans());
         plansListView.setItems(observablePlanList);
         plansListView.setCellFactory(listview -> new PlanListPanel.PlanListViewCell());
     }

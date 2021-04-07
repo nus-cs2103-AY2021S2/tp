@@ -69,7 +69,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editClientDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
         }
 
-        parsePlansForEdit(argMultimap.getAllValues(PREFIX_PLAN)).ifPresent(editClientDescriptor::setPlan);
+        parsePlansForEdit(argMultimap.getAllValues(PREFIX_PLAN)).ifPresent(editClientDescriptor::setPlans);
 
         if (argMultimap.getValue(PREFIX_IMAGE).isPresent()) {
             editClientDescriptor.setImageRes(ParserUtil.parseImageRes(argMultimap.getValue(PREFIX_IMAGE).get()));

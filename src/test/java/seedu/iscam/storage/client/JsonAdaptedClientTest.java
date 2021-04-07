@@ -31,7 +31,7 @@ public class JsonAdaptedClientTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_LOCATION = BENSON.getLocation().toString();
-    private static final List<JsonAdaptedClientPlan> VALID_PLAN = BENSON.getPlan().stream()
+    private static final List<JsonAdaptedClientPlan> VALID_PLAN = BENSON.getPlans().stream()
             .map(JsonAdaptedClientPlan::new)
             .collect(Collectors.toList());
     private static final List<JsonAdaptedClientTag> VALID_TAGS = BENSON.getTags().stream()

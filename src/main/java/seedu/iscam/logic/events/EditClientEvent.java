@@ -57,10 +57,10 @@ public class EditClientEvent implements Event {
         result.setEmail(originalClient.getEmail());
         result.setLocation(originalClient.getLocation());
 
-        if (originalClient.getPlan() != null) {
-            result.setPlan(originalClient.getPlan());
+        if (originalClient.getPlans() != null) {
+            result.setPlans(originalClient.getPlans());
         } else {
-            result.setPlan(null);
+            result.setPlans(null);
         }
 
         if (originalClient.getImageRes() != null) {

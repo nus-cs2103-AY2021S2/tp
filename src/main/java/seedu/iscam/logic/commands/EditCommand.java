@@ -92,7 +92,7 @@ public class EditCommand extends UndoableCommand {
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Location updatedLocation = editClientDescriptor.getLocation().orElse(clientToEdit.getLocation());
-        Set<InsurancePlan> updatedPlans = editClientDescriptor.getPlan().orElse(clientToEdit.getPlan());
+        Set<InsurancePlan> updatedPlans = editClientDescriptor.getPLans().orElse(clientToEdit.getPlans());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
         Image updatedImageRes = editClientDescriptor.getImageRes().orElse(clientToEdit.getImageRes());
         return new Client(updatedName, updatedPhone, updatedEmail, updatedLocation, updatedPlans, updatedTags,
@@ -177,7 +177,7 @@ public class EditCommand extends UndoableCommand {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setPlan(toCopy.plan);
+            setPlans(toCopy.plan);
             setLocation(toCopy.location);
             setTags(toCopy.tags);
             setImageRes(toCopy.imageRes);
@@ -222,11 +222,11 @@ public class EditCommand extends UndoableCommand {
             this.location = location;
         }
 
-        public Optional<Set<InsurancePlan>> getPlan() {
+        public Optional<Set<InsurancePlan>> getPLans() {
             return Optional.ofNullable(plan);
         }
 
-        public void setPlan(Set<InsurancePlan> plan) {
+        public void setPlans(Set<InsurancePlan> plan) {
             this.plan = (plan != null) ? new HashSet<>(plan) : null;
         }
 
@@ -273,7 +273,7 @@ public class EditCommand extends UndoableCommand {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getPlan().equals(e.getPlan())
+                    && getPLans().equals(e.getPLans())
                     && getLocation().equals(e.getLocation())
                     && getTags().equals(e.getTags())
                     && getImageRes().equals(e.getImageRes());
