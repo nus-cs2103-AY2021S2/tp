@@ -30,4 +30,10 @@ public class DoneCommandParserTest {
         assertParseFailure(parser, "a", ParserUtil.MESSAGE_INVALID_IDENTIFIER + "\n\n"
                 + String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_noArgs_throwsDoneException(){
+        assertParseFailure(parser, "", ParserUtil.MESSAGE_INVALID_IDENTIFIER + "\n\n"
+                + String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE));
+    }
 }
