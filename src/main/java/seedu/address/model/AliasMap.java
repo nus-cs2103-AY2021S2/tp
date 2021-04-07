@@ -25,6 +25,8 @@ import seedu.address.logic.commands.ViewCommand;
  * Contains all mapping for command and alias.
  */
 public class AliasMap {
+
+    public static final String ALPHANUMERICAL_REGEX = "\\p{Alnum}+";
     private static final String[] commandsWord = {
         AddCommand.COMMAND_WORD,
         AliasCommand.COMMAND_WORD,
@@ -125,6 +127,9 @@ public class AliasMap {
                 return true;
             }
             if (Arrays.asList(commandsWord).contains(entry.getValue())) {
+                return true;
+            }
+            if (!entry.getValue().matches(ALPHANUMERICAL_REGEX)) {
                 return true;
             }
         }
