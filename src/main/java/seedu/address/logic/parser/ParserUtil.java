@@ -12,6 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Title;
@@ -114,6 +115,24 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String date} into a {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDateTime parseEventDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDeadline = date.trim();
+        try {
+            LocalDateTime eventDate = LocalDateTime.parse(trimmedDeadline,
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+            return eventDate;
+        } catch (DateTimeParseException e) {
+            throw new ParseException(GeneralEvent.DATE_CONSTRAINT);
+        }
+    }
+
+    /**
      * Parses a {@code String examDateInput} into {@code LocalDateTime}.
      * Leading and trailing whitespaces will be trimmed.
      * returns null if the {@code examDateIput} is of an invalid format.
@@ -153,7 +172,12 @@ public class ParserUtil {
     public static Title parseTitle(String titleInput) throws ParseException {
         requireNonNull(titleInput);
         String trimmedTitle = titleInput.trim();
-
-        return new Title(trimmedTitle);
+        Title title;
+        try {
+            title = new Title(trimmedTitle);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+        }
+        return title;
     }
 }
