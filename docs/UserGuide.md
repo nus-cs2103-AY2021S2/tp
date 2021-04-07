@@ -3,13 +3,13 @@ layout: page
 title: User Guide
 ---
 
-TutorsPet is a **desktop app designed for private tutors to manage students’ information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of both lesson schedules and important dates.
+TutorsPet is a **desktop app designed for private tutors in Singapore to manage students’ information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of both lesson schedules and important dates.
 
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
 ## About
-This document can be thought of as a manual and a reference guide for TutorPets. It will guide you on how to use TutorPets and will provide complete information on each available command.
+This document can be thought of as a manual, and a reference guide for TutorPets. It will guide you on how to use TutorPets and will provide complete information on each available command.
 Furthermore, the guide gives information on the User Interface (UI) and the other useful features of TutorPets. Each section of the guide can be read independently.
 You can view the full list of content using the Table of Contents above. You can also use your document viewer’s Find function to quickly navigate to the content you want to know more about.
 
@@ -127,14 +127,16 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 
 * `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional.
 
-* Levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
+* Education levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
   `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `graduated`.
-  They cover the education levels in Primary School, Secondary School and Junior College. For more details, see the [Field Format Summary](#field-format-summary) below.
+  They cover the education levels in Primary School, Secondary School and Junior College, when students are more likely to need private tution. 
+  For more details, see the [Field Format Summary](#field-format-summary) below.
 
 
 * Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
 
-  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
+  subjects which students are more likely to need private tuition.
   For more details, see the [Field Format Summary](#field-format-summary) below.
 
 * A student’s contact can have any number of subjects (including 0). 
@@ -161,7 +163,7 @@ Examples:
 
 ### Listing all contacts : `list`
 
-Shows a list of all student contacts in TutorsPet. Each student's name, phone number, subjects and lessons are displayed. 
+Shows a list of all student contacts in TutorsPet. Each student's name, phone number, subjects and lessons are displayed.
 
 Format: `list`
 
@@ -185,9 +187,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
   
 * Existing values will be updated to the input values.
 
-* Levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
+* Education levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
   `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `graduated`.
-  They cover the education levels in Primary School, Secondary School and Junior College. For more details, see the [Field Format Summary](#field-format-summary) below.
+  They cover the education levels in Primary School, Secondary School and Junior College, when students are more likely to need private tution. 
+  For more details, see the [Field Format Summary](#field-format-summary) below.
 
 * When editing subjects or lessons, the existing subjects or lessons of the student will be removed i.e adding of subjects or lessons are not cumulative.
   
@@ -196,8 +199,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 * You can remove all the student’s lessons by typing `le/` without specifying any lesson details after it.
   
 * Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
-  
-  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
+
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
+  subjects which students are more likely to need private tuition.
   For more details, see the [Field Format Summary](#field-format-summary) below.
 
 </div>
@@ -243,10 +247,12 @@ Prefix | Searching Criteria
 * Contacts matching at least one keyword will be returned. 
   
   E.g. `n/Alice Tan` will return contacts with names `Alice Ng` and `Bob Tan`.
-  
+
 * Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
-  
-    > They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
+
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
+  subjects which students are more likely to need private tuition.
+  For more details, see the [Field Format Summary](#field-format-summary) below.
 
 </div>
 
@@ -291,8 +297,10 @@ Examples:
 
 ### Advancing all students: `levelup`
 
-Advances the education level of all the student contacts by one grade , unless the student is excluded.
-This feature can be used at the start of the school year.
+Advances the education level of all the student contacts by one grade by default, unless the student is excluded.
+This feature can be used to do a mass update all the student's levels at the start of the school year.
+
+If only some students' levels need to be changed, [edit](#editing-a-contact-:-edit) can be used instead.
 
 Format: `levelup ex/[INDEX]...`
 
@@ -303,7 +311,8 @@ Format: `levelup ex/[INDEX]...`
 * Students who are `jc1` will advance to `graduated` when `levelup` is applied. Students will not 
   advance any further if they are `graduated`.
   
-* If no index is provided, all students will advance by one education level (unless they have `graduated`).
+* If the `ex/` prefix is not used, all students will advance by one education level (unless they have `graduated`).
+Once `ex/` prefix is used, the index field cannot be left blank.
   
 * The index refers to the index number shown in the displayed student list. Indexes are used to 
   indicate students who are to be excluded from the advancement.
@@ -321,8 +330,10 @@ Examples:
 
 ### Demoting all students: `leveldown`
 
-Demotes the education level of all the student contacts by one grade, unless the student is excluded.
-This feature can be used to undo `levelup` or indicate retainees.
+Demotes the education level of all the student contacts by one grade by default, unless the student is excluded.
+This feature can be used to do a mass undo of `levelup` or indicate retainees. 
+
+If only some students' levels need to be changed, [edit](#editing-a-contact-:-edit) can be used instead.
 
 Format: `leveldown ex/[INDEX]...`
 
@@ -331,8 +342,9 @@ Format: `leveldown ex/[INDEX]...`
 :bulb:**Tips:** <br>
 
 * Students who are `pri1` will not demote any further.
-  
-* If no index is provided, all students will be demoted by one education level (unless they are `pri1`).
+
+* If the `ex/` prefix is not used, all students will advance by one education level (unless they have `graduated`).
+  Once `ex/` prefix is used, the index field cannot be left blank.
   
 * The index refers to the index number shown in the displayed student list. Indexes are used to
   indicate students who are to be excluded from the demotion.
