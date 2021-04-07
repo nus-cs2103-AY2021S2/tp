@@ -251,8 +251,10 @@ Note:
 - The ID must be a positive integer 1, 2, 3 etc.
 - Only include the variables that need to be edited after the integer
 
+<div markdown="block" class="alert alert-info">
 :heavy_exclamation_mark: Take note that editing tags for an entity will automatically override **all** its current tags! <br>
 :bulb: Reminder, tags are able to only take in one alphanumeric string! 
+</div>
 
 Examples:
 
