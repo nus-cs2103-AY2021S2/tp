@@ -1,0 +1,13 @@
+@startuml
+start
+:User enters command to add a meeting;
+
+:Parse the command string;
+
+:Construct predicate to match meetings with;
+
+
+
+stop
+'    stop
+@enduml
