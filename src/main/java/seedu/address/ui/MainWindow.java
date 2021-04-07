@@ -146,7 +146,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.setVisible(false);
         personListPanelPlaceholder.toFront();
         personListPanelPlaceholder.getChildren().clear();
-        sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
+        sessionListPanel = new SessionListPanel(logic.getUnfilteredSessionList());
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
         viewIndividualPlaceholder.getItems().add(sessionListPanelPlaceholder);
 

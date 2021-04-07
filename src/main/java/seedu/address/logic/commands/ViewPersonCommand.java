@@ -43,6 +43,7 @@ public class ViewPersonCommand extends Command {
             SessionStudentPredicate sessionStudentPredicate = new SessionStudentPredicate(sessionList);
             model.updateFilteredPersonList(predicate);
             model.updateFilteredSessionList(sessionStudentPredicate);
+            model.updateFilteredPersonList(predicate);
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
