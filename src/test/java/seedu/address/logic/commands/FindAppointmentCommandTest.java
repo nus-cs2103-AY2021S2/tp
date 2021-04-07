@@ -157,7 +157,7 @@ public class FindAppointmentCommandTest {
     @Test
     public void dateNoneTest() throws ParseException {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 0);
-        AppointmentDatePredicate predicate = new AppointmentDatePredicate(parseAppointmentDate("25-1-2040"));
+        AppointmentDatePredicate predicate = new AppointmentDatePredicate(parseAppointmentDate("25-01-2040"));
         FindAppointmentCommand command = new FindAppointmentCommand(
                 new AppointmentPredicateList(Collections.singletonList(predicate)));
         expectedModel.updateFilteredAppointmentList(predicate);

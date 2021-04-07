@@ -8,11 +8,17 @@ import seedu.address.model.util.DateTimeFormat;
 
 /**
  * Represents an Appointment's meeting date.
- * Guarantees: immutable.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}.
  */
 public class Date implements Comparable<Date> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Meeting dates should be valid dates specified in the format DD-MM-YY.";
+            "Meeting dates should be valid dates specified strictly in the format DD-MM-YYYY.\n"
+            + "E.g. 01-01-2021";
+
+    public static final String MESSAGE_INVALID_DATE = "Invalid date entered.\n"
+            + "Please ensure that the appointment date entered is valid";
+
+    private static final String VALIDATION_REGEX = "\\d{2}-\\d{2}-\\d{4}";
 
     public final LocalDate date;
 
@@ -24,6 +30,16 @@ public class Date implements Comparable<Date> {
     public Date(LocalDate date) {
         requireNonNull(date);
         this.date = date;
+    }
+
+    /**
+     * Returns true if a given string is a valid date.
+     *
+     * @param test The string to test.
+     * @return True if the given string is a valid date, otherwise false.
+     */
+    public static boolean isValidDate(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

@@ -26,8 +26,8 @@ public class AddAppointmentCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Meet Jacob for dinner "
             + PREFIX_REMARK + "At Lot One's food court "
-            + PREFIX_DATE + "19-4-2021 "
-            + PREFIX_TIME + "1930 ";
+            + PREFIX_DATE + "19-04-2021 "
+            + PREFIX_TIME + "1930";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the app";

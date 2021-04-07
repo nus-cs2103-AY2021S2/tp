@@ -35,7 +35,7 @@ public class EditAppointmentCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Meet Alex "
             + PREFIX_REMARK + "at M hotel "
-            + PREFIX_DATE + "17-2-2021 "
+            + PREFIX_DATE + "17-02-2021 "
             + PREFIX_TIME + "1500";
 
     public static final String MESSAGE_SUCCESS = "Edited appointment: %1$s";
