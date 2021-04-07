@@ -38,24 +38,23 @@ public class AddAssignmentCommandParser extends AddCommandParser implements Pars
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAssignmentCommand.MESSAGE_USAGE));
         }
 
-        try {
-            Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE)
-                    .orElseThrow(() -> new ParseException("")));
-            Module module = new Module(title);
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE)
+                .filter(Title::isValidTitle)
+                .orElseThrow(() -> new ParseException(
+                        String.format(Title.MESSAGE_CONSTRAINTS, "Modules"))));
+        Module module = new Module(title);
 
-            Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_ASSIGNMENT)
-                    .orElseThrow(() -> new ParseException("")));
-            LocalDateTime deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE)
-                    .orElseThrow(() -> new ParseException("")));
-            Tag tag = new Tag(title.modTitle.replaceAll(" ", ""));
-            Assignment assignment = new Assignment(description, deadline, tag);
+        Description description = ParserUtil.parseDescription(argMultimap
+                .getValue(PREFIX_ASSIGNMENT)
+                .filter(Description::isValidDescription)
+                .orElseThrow(() -> new ParseException(Assignment.DESCRIPTION_CONSTRAINTS)));
+        LocalDateTime deadline = argMultimap.getValue(PREFIX_DEADLINE)
+                .map(ParserUtil::parseDeadline)
+                .orElseThrow(() -> new ParseException(Assignment.DATE_CONSTRAINTS));
+        Tag tag = new Tag(title.modTitle.replaceAll(" ", ""));
+        Assignment assignment = new Assignment(description, deadline, tag);
 
-            return new AddAssignmentCommand(module, assignment);
-        } catch (ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    e.getMessage() + "\n" + AddAssignmentCommand.MESSAGE_USAGE));
-        }
+        return new AddAssignmentCommand(module, assignment);
     }
-
 }
 
