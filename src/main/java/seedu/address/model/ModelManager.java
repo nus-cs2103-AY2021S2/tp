@@ -107,7 +107,7 @@ public class ModelManager implements Model {
 
         this.meetingBook = new MeetingBook(meetingBook);
         this.sortedBeforeFilterMeetings = new SortedList<>(this.meetingBook.getMeetingList());
-        this.filteredMeetings = new FilteredList<Meeting>(sortedBeforeFilterMeetings);
+        this.filteredMeetings = new FilteredList<>(sortedBeforeFilterMeetings);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);

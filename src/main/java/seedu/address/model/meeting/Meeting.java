@@ -143,6 +143,39 @@ public class Meeting implements Schedulable {
         }
     }
 
+    //=============== Some useful predicates ==========
+
+    public boolean containsName(MeetingName name) {
+        return meetingName.toString().contains(name.toString());
+    }
+
+    public boolean containsDescription(Description desc) {
+        return description.toString().contains(desc.toString());
+    }
+
+    public boolean containsPerson(Person person) {
+        Set<Person> allPersons = getConnectionToPerson();
+        return allPersons.contains(person);
+    }
+
+    public boolean containsGroup(Group group) {
+        return groups.contains(group);
+    }
+
+    public boolean containsTime(DateTime time) {
+        boolean afterOrAtStart = time.compareTo(start) >= 0;
+        boolean beforeOrAtEnd = time.compareTo(terminate) <= 0;
+        return afterOrAtStart && beforeOrAtEnd;
+    }
+
+    public boolean hasPriority(Priority prio) {
+        return priority.equals(prio);
+    }
+
+
+
+
+
     /**
      * Returns true if both meetings have the same identity and data fields.
      * This defines a stronger notion of equality between two meetings.
