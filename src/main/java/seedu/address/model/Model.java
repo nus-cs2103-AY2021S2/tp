@@ -264,6 +264,11 @@ public interface Model {
     void addResidentRoom(ResidentRoom residentRoom);
 
     /**
+     * Returns an unmodifiable view of the filtered residentRoom list
+     */
+    ObservableList<ResidentRoom> getFilteredResidentRoomList();
+
+    /**
      * Updates the filter of the filtered resident list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.

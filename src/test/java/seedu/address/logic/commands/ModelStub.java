@@ -223,6 +223,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ObservableList<ResidentRoom> getFilteredResidentRoomList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void updateFilteredResidentRoomList(Predicate<ResidentRoom> predicate) {
         throw new AssertionError("This method should not be called.");
     }

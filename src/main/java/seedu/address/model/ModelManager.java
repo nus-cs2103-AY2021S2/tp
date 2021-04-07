@@ -285,6 +285,14 @@ public class ModelManager implements Model {
 
 
     // =========== Filtered ResidentRoom List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code ResidentRoom} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<ResidentRoom> getFilteredResidentRoomList() {
+        return filteredResidentRooms;
+    }
 
     @Override
     public void updateFilteredResidentRoomList(Predicate<ResidentRoom> predicate) {
