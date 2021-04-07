@@ -94,7 +94,8 @@ public class EditCustomerCommand extends EditCommand {
      * edited with {@code editCustomerDescriptor}.
      */
     private static Customer createEditedCustomer(Customer customerToEdit,
-                                                 EditCustomerDescriptor editCustomerDescriptor) {
+                                                 EditCustomerDescriptor editCustomerDescriptor)
+        throws CommandException {
         assert customerToEdit != null;
 
         Name updatedName = editCustomerDescriptor.getName().orElse(customerToEdit.getName());

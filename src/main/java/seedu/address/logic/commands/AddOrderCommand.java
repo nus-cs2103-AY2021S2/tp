@@ -63,9 +63,15 @@ public class AddOrderCommand extends AddCommand {
         }
 
         Customer customer = model.getCustomerWithPhone(customerPhone);
-        Order toAdd = new Order(toAddCheeseType, toAddQuantity, toAddOrderDate, null, customer.getId());
+        Order toAdd;
 
-        model.addOrder(toAdd);
+        try {
+            toAdd = new Order(toAddCheeseType, toAddQuantity, toAddOrderDate, null, customer.getId());
+            model.addOrder(toAdd);
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(e.getMessage());
+        }
+
         model.setPanelToOrderList();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

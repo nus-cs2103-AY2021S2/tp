@@ -77,6 +77,10 @@ public abstract class AbstractDate {
         return this.value.isAfter(otherDate.value);
     }
 
+    public boolean isAfterOrEquals(AbstractDate otherDate) {
+        return !this.value.isBefore(otherDate.value);
+    }
+
     @Override
     public String toString() {
         return value.format(TO_STRING_FORMATTER);

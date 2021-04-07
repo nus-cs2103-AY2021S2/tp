@@ -11,7 +11,6 @@ import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.cheese.ExpiryDate;
 import seedu.address.model.cheese.ManufactureDate;
-import seedu.address.model.cheese.MaturityDate;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.CustomerId;
@@ -51,15 +50,15 @@ public class SampleDataUtil {
 
     public static final Cheese[] SAMPLE_CHEESES = new Cheese[]{
         new Cheese(CheeseType.getCheeseType("Brie"), new ManufactureDate("2021-03-10"),
-            new MaturityDate("2021-04-10"), new ExpiryDate("2022-04-10")),
+            new ExpiryDate("2022-04-10")),
         new Cheese(CheeseType.getCheeseType("Gouda"), new ManufactureDate("2021-03-10"),
-            new MaturityDate("2021-05-10"), new ExpiryDate("2022-05-10")),
+            new ExpiryDate("2022-05-10")),
         new Cheese(CheeseType.getCheeseType("Parmesan"), new ManufactureDate("2021-03-10"),
-            new MaturityDate("2021-04-10"), new ExpiryDate("2022-04-10")),
+            new ExpiryDate("2022-04-10")),
         new Cheese(CheeseType.getCheeseType("Feta"), new ManufactureDate("2020-03-10"),
-            new MaturityDate("2021-03-05"), new ExpiryDate("2025-04-10"), CheeseId.getNextId(), true),
+            new ExpiryDate("2025-04-10"), CheeseId.getNextId(), true),
         new Cheese(CheeseType.getCheeseType("Feta"), new ManufactureDate("2020-03-10"),
-            new MaturityDate("2021-03-05"), new ExpiryDate("2025-04-10"), CheeseId.getNextId(), true),
+            new ExpiryDate("2025-04-10"), CheeseId.getNextId(), true),
     };
 
     public static final Order[] SAMPLE_ORDERS = new Order[] {

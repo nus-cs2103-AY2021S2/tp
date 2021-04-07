@@ -15,7 +15,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.cheese.ExpiryDate;
 import seedu.address.model.cheese.ManufactureDate;
-import seedu.address.model.cheese.MaturityDate;
 import seedu.address.model.cheese.predicates.CheeseAssignmentStatusPredicate;
 import seedu.address.model.cheese.predicates.CheeseCheeseTypePredicate;
 import seedu.address.model.customer.Address;
@@ -224,21 +223,6 @@ public class ParserUtil {
             throw new ParseException(ManufactureDate.MESSAGE_CONSTRAINTS);
         }
         return new ManufactureDate(trimmedDate);
-    }
-
-    /**
-     * Parses a {@code String date} into a {@code MaturityDate}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code date} is invalid.
-     */
-    public static MaturityDate parseMaturityDate(String date) throws ParseException {
-        requireNonNull(date);
-        String trimmedDate = date.trim();
-        if (!MaturityDate.isValidDate(trimmedDate)) {
-            throw new ParseException(MaturityDate.MESSAGE_CONSTRAINTS);
-        }
-        return new MaturityDate(trimmedDate);
     }
 
     /**

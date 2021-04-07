@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,9 @@ import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.CustomerId;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.customer.UniqueCustomerList;
+import seedu.address.model.order.CompletedDate;
 import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderDate;
 import seedu.address.model.order.OrderId;
 import seedu.address.model.order.Quantity;
 import seedu.address.model.order.UniqueOrderList;
@@ -296,6 +299,8 @@ public class AddressBook implements ReadOnlyAddressBook {
             CheeseType expectedCheeseType = order.getCheeseType();
             Set<CheeseId> cheeseIds = order.getCheeses();
             OrderId orderId = order.getOrderId();
+            OrderDate orderDate = order.getOrderDate();
+            Optional<CompletedDate> completedDate = order.getCompletedDate();
 
             checkArgument(customerIdSet.contains(customerId),
                 String.format(Messages.MESSAGE_INVALID_ORDER_CUSTOMER_ID, orderId.value));
@@ -310,14 +315,31 @@ public class AddressBook implements ReadOnlyAddressBook {
                         String.format(Messages.MESSAGE_INVALID_CHEESE_MULTIPLE_ORDER, orderId.value, cheeseId.value));
                     orderCheeseIdSet.add(cheeseId);
 
+                    Cheese currentCheese = cheeseIdMap.get(cheeseId);
+
                     // Cheese should have been marked assigned
-                    checkArgument(cheeseIdMap.get(cheeseId).isCheeseAssigned(),
+                    checkArgument(currentCheese.isCheeseAssigned(),
                         String.format(Messages.MESSAGE_INVALID_CHEESE_NOT_ASSIGNED, orderId.value, cheeseId.value));
 
                     // Cheese should match the order by type
-                    checkArgument(cheeseIdMap.get(cheeseId).getCheeseType().equals(expectedCheeseType),
+                    checkArgument(currentCheese.getCheeseType().equals(expectedCheeseType),
                         String.format(Messages.MESSAGE_INVALID_ORDER_CHEESE_CHEESE_TYPE,
                             orderId.value, cheeseId.value));
+
+                    if (completedDate.isPresent()) {
+                        // Cheese's manufacture date must be after the order's completed date
+                        checkArgument(completedDate.get().isAfterOrEquals(currentCheese.getManufactureDate()),
+                            String.format(Messages.MESSAGE_INVALID_MANUFACTURE_DATE_COMPLETED_DATE,
+                                orderId.value, cheeseId.value));
+
+                        // Cheese's expiry date must be after the order's completed date
+                        if (currentCheese.getExpiryDate().isPresent()) {
+                            checkArgument(currentCheese.getExpiryDate().get().isAfterOrEquals(completedDate.get()),
+                                String.format(Messages.MESSAGE_INVALID_EXPIRY_DATE_COMPLETED_DATE,
+                                    orderId.value, cheeseId.value));
+                        }
+                    }
+
                 }
             }
         }

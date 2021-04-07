@@ -17,7 +17,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.cheese.ExpiryDate;
 import seedu.address.model.cheese.ManufactureDate;
-import seedu.address.model.cheese.MaturityDate;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
@@ -36,7 +35,6 @@ public class ParserUtilTest {
     private static final String INVALID_QUANTITY = "-1";
     private static final String INVALID_ORDER_DATE = "03-20-2020";
     private static final String INVALID_MANUFACTURE_DATE = "2020/02/12";
-    private static final String INVALID_MATURITY_DATE = "02-12-2020";
     private static final String INVALID_EXPIRY_DATE = "2020-30-12";
     private static final String INVALID_INTEGER = "-4";
 
@@ -50,7 +48,6 @@ public class ParserUtilTest {
     private static final String VALID_QUANTITY = "8";
     private static final String VALID_ORDER_DATE = "2020-02-12";
     private static final String VALID_MANUFACTURE_DATE = "2021-12-30";
-    private static final String VALID_MATURITY_DATE = "2021-05-30";
     private static final String VALID_EXPIRY_DATE = "2021-08-31";
     private static final String VALID_INTEGER = "3";
 
@@ -328,29 +325,6 @@ public class ParserUtilTest {
         String manufactureDateWithWhitespace = WHITESPACE + VALID_MANUFACTURE_DATE + WHITESPACE;
         ManufactureDate expectedManufactureDate = new ManufactureDate(VALID_MANUFACTURE_DATE);
         assertEquals(expectedManufactureDate, ParserUtil.parseManufactureDate(manufactureDateWithWhitespace));
-    }
-
-    @Test
-    public void parseMaturityDate_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseMaturityDate(null));
-    }
-
-    @Test
-    public void parseMaturityDate_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseMaturityDate(INVALID_MATURITY_DATE));
-    }
-
-    @Test
-    public void parseMaturityDate_validValueWithoutWhitespace_returnsMaturityDate() throws Exception {
-        MaturityDate expectedMaturityDate = new MaturityDate(VALID_MATURITY_DATE);
-        assertEquals(expectedMaturityDate, ParserUtil.parseMaturityDate(VALID_MATURITY_DATE));
-    }
-
-    @Test
-    public void parseMaturityDate_validValueWithWhitespace_returnsTrimmedMaturityDate() throws Exception {
-        String maturityDateWithWhitespace = WHITESPACE + VALID_MATURITY_DATE + WHITESPACE;
-        MaturityDate expectedMaturityDate = new MaturityDate(VALID_MATURITY_DATE);
-        assertEquals(expectedMaturityDate, ParserUtil.parseMaturityDate(maturityDateWithWhitespace));
     }
 
     @Test

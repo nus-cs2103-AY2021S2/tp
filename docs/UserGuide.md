@@ -64,7 +64,7 @@ Example: `addorder t/Parmesan q/2 p/65555555`
 
 Adds a cheese to CHIM.
 
-Format: `addcheese t/CHEESE_TYPE q/QUANTITY [d/MANUFACTURE_DATE] [m/MATURITY_DATE] [d/EXPIRY_DATE]`
+Format: `addcheese t/CHEESE_TYPE q/QUANTITY [d/MANUFACTURE_DATE] [d/EXPIRY_DATE]`
 * The specified `QUANTITY` must be a positive integer.
 
 Example: `addcheese t/Parmesan q/2`
@@ -91,7 +91,7 @@ Example: `editorder 2 t/Parmesan q/2 p/65555555`
 
 Edits an existing unassigned cheese in CHIM.
 
-Format: `editcheese INDEX [t/CHEESE_TYPE] [d/MANUFACTURE_DATE] [m/MATURITY_DATE] [d/EXPIRY_DATE]`
+Format: `editcheese INDEX [t/CHEESE_TYPE] [d/MANUFACTURE_DATE] [d/EXPIRY_DATE]`
 * The specified `INDEX` must be a positive integer.
 
 Example: `editcheese 1 t/Parmesan d/2021-03-12`
