@@ -501,13 +501,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student taking a module                    | add module                     | keep track of the module exams, assignments |
 | `* * *`  | student having assignments                 | add assignments to module      | keep track of the assignment deadline |
 | `* * *`  | student having exams                       | add exams to module            | keep track of the exam start time |
-| `* * *`  | user with friends                          | to track of their birthdays    | wish them happy birthday promptly |
+| `* * *`  | user with friends                          | add person and their birthday  | keep track of birthday and wish them happy birthday promptly |
 | `* * *`  | user                                       | add general events             | keep track of events happening outside school curriculum |
 | `* * *`  | user                                       | edit a module                  | adjust module name if module name changes |
 | `* * *`  | user                                       | edit a assignment              | can adjust schedule when there is a change of plan |
 | `* * *`  | user                                       | edit a exam                    | can adjust schedule when there is a change of plan |
-| `* * *`  | user                                       | edit a birthday                | fine tune person name and birthday according |
+| `* * *`  | user                                       | edit a person and birthday     | fine tune person name and birthday according |
 | `* * *`  | user                                       | edit a general event           | adjust schedule when there is a change of plan |
+| `* * *`  | user                                       | delete a module                | |
+| `* * *`  | user                                       | delete a assignment            | |
+| `* * *`  | user                                       | delete a exam                  | |
+| `* * *`  | user                                       | delete a person and birthday   | |
+| `* * *`  | user                                       | delete a general event         | |
+| `* * `   | user                                       | find a module                  | quickly locate details for module |
+| `* * `   | user                                       | find a person                  | quickly locate details for person |
+| `* * `   | user                                       | find a general event           | quickly locate details for event |
 | `* *`    | user                                       | view events in a calendar view    | to have a better sense of the upcoming events                |
 | `* *`    | forgetful student                          | be reminded about upcoming events | respond to upcoming events accordingly   
 
@@ -603,7 +611,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. System display duplicate exam error message.
     <br> Use case ends.
 
-## Use Case: `UC06` - add birthday
+## Use Case: `UC06` - add person and birthday
 
 **MSS:**
 
@@ -679,21 +687,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System display formatting error message.
         <br> Use case ends.      
     
-### Use Case: `UC11` - edit exam
-
-**MSS:**
-
-1. User enters command to edit an exam for a module.
-2. System edits exam and displays edited exam info.
-<br> Use case ends.
-   
-**Extensions:**
-
-* 1a. System detects formatting error in command.
-    * 1a1. System display formatting error message.
-        <br> Use case ends. 
-        
-### Use Case: `UC12` - edit birthday
+### Use Case: `UC11` - edit person and birthday
 
 **MSS:**
 
@@ -707,7 +701,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System display formatting error message.
         <br> Use case ends.     
 
-### Use Case: `UC13` - edit general event
+### Use Case: `UC12` - edit general event
 
 **MSS:**
 
@@ -720,20 +714,118 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends. 
-        
-### Use Case: `UC02` - delete assignment
+
+### Use Case: `UC13` - delete module
 
 **MSS:**
 
-1. User enters number to delete a assignment.
-2. System deletes assignment and displays assignments info.
-   <br> Use case ends.
+1. User enters command to delete a module.
+2. System deletes module and displays deleted module info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+
+### Use Case: `UC14` - delete assignment
+
+**MSS:**
+
+1. User enters command to delete an assignment for a module.
+2. System deletes assignment and displays deleted assignment info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends. 
+        
+### Use Case: `UC15` - delete exam
+
+**MSS:**
+
+1. User enters command to delete an exam for a module.
+2. System deletes exam and displays deleted exam info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.      
+    
+### Use Case: `UC16` - delete person
+
+**MSS:**
+
+1. User enters command to delete a person.
+2. System deletes person and displays deleted person info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.     
+
+### Use Case: `UC17` - delete general event
+
+**MSS:**
+
+1. User enters command to delete a general event.
+2. System deletes general event and displays deleted event info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends. 
+
+### Use Case: `UC18` - find module
+
+**MSS:**
+
+1. User enters command to find a module with keyword.
+2. System display modules found by the keyword.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+ 
+### Use Case: `UC19` - find person
+
+**MSS:**
+
+1. User enters command to find a person with keyword.
+2. System display person found by the keyword.
+<br> Use case ends.
 
 **Extensions:**
 
-* 1a. System detects an error in number in entered data (out of range).
-    * 1a1. System display error message.
-      <br> Use case ends.
+* 1a. System detects formatting error in command.
+ * 1a1. System display formatting error message.
+     <br> Use case ends.
+ 
+### Use Case: `UC20` - find general event
+
+**MSS:**
+
+1. User enters command to find a general event with keyword.
+2. System display general event found by the keyword.
+<br> Use case ends.
+ 
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+  * 1a1. System display formatting error message.
+      <br> Use case ends.    
 
 ### Use Case: `UC03` - view assignments
 
