@@ -133,6 +133,8 @@ Format: `list`
 **:bulb: Tips:** <br>
 * Displays the list of all garments in chronological ordering, to easily find the garments that have not been worn 
   in a long time.
+  
+</div>
 <br><br>
 
 ### Deleting a singular Garment in the Wardrobe: `delete`  
