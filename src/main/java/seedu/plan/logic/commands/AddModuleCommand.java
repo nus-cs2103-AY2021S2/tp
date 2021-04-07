@@ -19,7 +19,7 @@ public class AddModuleCommand extends Command {
             + "Parameters: "
             + PREFIX_PLAN_NUMBER + "PLAN NUMBER "
             + PREFIX_SEM_NUMBER + "SEM NUMBER "
-            + PREFIX_MODULE_CODE + "MODULE CODE"
+            + PREFIX_MODULE_CODE + "MODULE CODE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PLAN_NUMBER + "1 "
             + PREFIX_SEM_NUMBER + "2 "
