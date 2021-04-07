@@ -41,7 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private Panel orderPanel;
     private Panel helpPanel;
-    private OrderItemListTable orderItemTable;
+    private Panel orderItemPanel;
     private Button helpPanelToMain;
     private CommandBox commandBox;
     private Node models;
@@ -75,6 +75,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Set dependencies
         this.primaryStage = primaryStage;
+        primaryStage.setMaximized(true);
         this.logic = logic;
 
         // Configure the UI
@@ -140,10 +141,8 @@ public class MainWindow extends UiPart<Stage> {
         orderPanel = new OrderListPanel(logic.getFilteredOrderList());
         listPanelPlaceholder.getChildren().add(orderPanel.getRoot());
 
-        // add wherever you're getting the orderItem filteredOrderList here
-        orderItemTable = new OrderItemListTable(logic.getFilteredOrderItemsList());
-        orderItemTablePlaceholder.getChildren().add(orderItemTable.getRoot());
-
+        orderItemPanel = new OrderItemPanel(logic.getFilteredOrderItemsList());
+        orderItemTablePlaceholder.getChildren().add(orderItemPanel.getRoot());
     }
 
     void updateDeliveryStatuses() throws ParseException, CommandException {
