@@ -83,6 +83,12 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final String EMPTY_COMMAND = "";
+    public static final String DUMMY_COMMAND = "abc";
+    public static final String EMPTY_LIST = "[]";
+    public static final String EDIT_WORD = "edit";
+    public static final String DELETE_WORD = "delete";
+    public static final String ADD_WORD = "add";
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

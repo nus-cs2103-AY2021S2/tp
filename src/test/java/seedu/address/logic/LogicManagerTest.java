@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ADD_WORD;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.MODE_OF_CONTACT_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -56,7 +58,7 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
-        state.addState(new AddressBook(model.getAddressBook()));
+        state.addState(new AddressBook(model.getAddressBook()), EMPTY_COMMAND);
 
         logic = new LogicManager(model, storage, state);
     }
@@ -104,17 +106,23 @@ public class LogicManagerTest {
         AddressBook addressBook = getTypicalAddressBook();
         ModelManager model = new ModelManager(addressBook, new UserPrefs());
         State state = new State();
-        state.addState(addressBook);
+        state.addState(addressBook, ADD_WORD);
         Logic logic = new LogicManager(model, storage, state);
 
-        logic.execute("delete 1");
-        assertEquals(model.getAddressBook(), state.getCurrentState());
+        String command1 = "delete 1";
+        logic.execute(command1);
+        assertEquals(model.getAddressBook(), state.getCurrentAddressBook());
+        assertEquals(command1, state.getCurrentCommand());
 
-        logic.execute("edit 1 n/haha");
-        assertEquals(model.getAddressBook(), state.getCurrentState());
+        String command2 = "edit 1 n/haha";
+        logic.execute(command2);
+        assertEquals(model.getAddressBook(), state.getCurrentAddressBook());
+        assertEquals(command2, state.getCurrentCommand());
 
-        logic.execute("sort ascending");
-        assertEquals(model.getAddressBook(), state.getCurrentState());
+        String command3 = "sort ascending";
+        logic.execute(command3);
+        assertEquals(model.getAddressBook(), state.getCurrentAddressBook());
+        assertEquals(command3, state.getCurrentCommand());
     }
 
     @Test
@@ -122,14 +130,18 @@ public class LogicManagerTest {
         AddressBook addressBook = getTypicalAddressBook();
         ModelManager model = new ModelManager(addressBook, new UserPrefs());
         State state = new State();
-        state.addState(addressBook);
+        state.addState(addressBook, EMPTY_COMMAND);
         Logic logic = new LogicManager(model, storage, state);
 
-        logic.execute("find n/alex");
-        CommandTestUtil.assertCommandFailure(new UndoCommand(state), model, UndoCommand.MESSAGE_NOTHING_TO_UNDO);
+        String findCommand = "find n/alex";
+        logic.execute(findCommand);
+        CommandTestUtil.assertCommandFailure(new UndoCommand(state), model,
+                UndoCommand.MESSAGE_NOTHING_TO_UNDO);
 
-        logic.execute("list");
-        CommandTestUtil.assertCommandFailure(new UndoCommand(state), model, UndoCommand.MESSAGE_NOTHING_TO_UNDO);
+        String listCommand = "list";
+        logic.execute(listCommand);
+        CommandTestUtil.assertCommandFailure(new UndoCommand(state), model,
+                UndoCommand.MESSAGE_NOTHING_TO_UNDO);
     }
 
     @Test

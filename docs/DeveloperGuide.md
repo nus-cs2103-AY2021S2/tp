@@ -194,14 +194,14 @@ The following sequence diagram illustrates how the sort operation works:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
 ### Find persons by tag and address feature
-This feature is built on the current `find` command, which is used to be limited to only finding persons by names. With this change, the format of the `find` command is now modified to `find n/[NAME] t/[TAG] a/[ADDRESS]`.
+This feature is built on the current `find` command, which is used to be limited to only finding persons by names. With this change, the format of the `find` command is now modified to `find n/[NAME] t/[TAG] a/[ADDRESS] p/[PHONE] e/[EMAIL] b/[IS_BLACKLISTED] m/[MODE_OF_CONTACT]`.
 This command returns the persons with attributes that matches at least one of the attributes of interest (See User Guide for more details).
 Note that users are only required to provide at least one of the parameters to use this command. In other words, commands such as `find n/Alex` and `find t/autistic` are valid commands.
 
-To facilitate the implementation of this feature, three new predicate classes are introduced, namely `PersonTagContainsKeywordsPredicate`, `AddressContainsKeywordsPredicate` and `ReturnTruePredicate`. The former class is to check whether any of the `tag`s contain the keywords. The latter predicate always returns `true`. 
+To facilitate the implementation of this feature, several new predicate classes are introduced, for instance, `PersonTagContainsKeywordsPredicate` `AddressContainsKeywordsPredicate`, `ReturnTruePredicate` etc. Of course, As the name suggests, `ReturnTruePredicate` always returns `true`. 
 
-The introduction of `ReturnTruePredicate` may seem pointless, but it is of great use. The key here is to realize that if X is a boolean variable, then X `and` `true` simplifies to X. If all keywords are given, the `FindCommand` class will receive `NameContainsKeywordsPredicate`, `PersonTagContainsKeywordsPredicate` and `AddressContainsKeywordsPredicate`. If, say, only `name` keywords are given, then two `ReturnTruePredicate`s will be supplied to `FindCommand` instead.
-As such, the filter will now solely depend on `NameContainsKeywordsPredicate` since the second predicate always returns true.
+The introduction of `ReturnTruePredicate` may seem pointless, but it is of great use. The key here is to realize that if X is a boolean variable, then X `and` `true` simplifies to X. If all keywords are given, the `FindCommand` class will receive all the predicates. If, say, only `name` keywords are given, then rest of the predicates will be replaced with `ReturnTruePredicate`s. As such, the filter will now solely depend on `NameContainsKeywordsPredicate` since the other predicates always returns 
+true.
 
 The following sequence diagram shows how the `find` command works:
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
@@ -213,7 +213,7 @@ The following activity diagram shows what happens when `find` command is execute
 
 ##### Aspect: Command design
 
-* **Alternative 1 (current choice):** `find` command alone supports finding by names and tags.
+* **Alternative 1 (current choice):** `find` command alone supports finding by the different fields.
     * Pros: More intuitive to use since most commands have similar format. Makes further extensions easier as developers only need to define a new predicate class.
     * Cons: Can make debugging harder since further extensions are centralized into one class.
 
@@ -244,16 +244,17 @@ The following sequence diagram shows how the add command works:
 
 #### Implementation
 
-The undo mechanism is facilitated by `State`. It contains an undo history, stored internally as an `addressBookStates`. Additionally, it implements the following operations:
+The undo mechanism is facilitated by `State` class. It contains a list of `AddressBookCommandPair`s, which are made up of the state of `AddressBook` and the command executed.
+They are stored internally as `addressBookStates`. Additionally, it implements the following operations:
 
-* `State#addState()` — Saves the current contact list state in its history.
-* `State#deleteState()` — Deletes the current contact list state. The undo operation is done by calling this method.
+* `State#addState()` — Saves a new `AddressBookCommandPair` in its history.
+* `State#deleteState()` — Deletes the last `AddressBookCommandPair` in the list. The undo operation is done by calling this method.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `State` will be initialized with the initial contact list state.
+Step 1. The user launches the application for the first time. The `State` will be initialized with the initial `AddressBookCommandPair`. Since no command is executed, the command stored in the pair will be an empty string.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![UndoRedoState0|](images/UndoRedoState0.png)
 
 Step 2. The user executes `delete 5` command to delete the 5th person in the contact list. After execution, `State#addState()` is called, causing the modified state of the contact list after the `delete 5` command executes to be saved in the `addressBookStates`.
 
@@ -268,7 +269,7 @@ Examples of commands that do not modify the list include <code>find</code>, <cod
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will first call `State#deletePreviousState()` to delete `ab2` and then call `model#setAddressBook` to set the contact list to be the same state as `ab1`.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will first call `State#deletePreviousState()` to delete `pair2` and then call `model#setAddressBook` to set the contact list to be the same `AddressBook` as in `pair1`.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -276,7 +277,7 @@ Step 4. The user now decides that adding the person was a mistake, and decides t
 , causing the command to return an error to the user rather than attempting to perform the undo.
 
 </div>
-
+ 
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
