@@ -2,8 +2,6 @@ package seedu.address.logic.commands.deletecommand;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.List;
 
@@ -21,13 +19,6 @@ import seedu.address.model.module.Title;
  * Deletes a person identified using it's displayed index from the remindMe.
  */
 public class DeleteExamCommand extends DeleteCommand {
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the exam identified by the index in ExamList of the module\n"
-            + "Parameters: Index\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103T "
-            + PREFIX_EXAM + "1";
 
     public static final String MESSAGE_DELETE_EXAM_SUCCESS = "Deleted Exam: %1$s";
 
