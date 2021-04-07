@@ -294,6 +294,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | Meticulous user| Add note to tutor                        | Remind myself of some additional details of the tutor           |
 | `* *`   | User | Delete note from tutor                             | Remove note from tutor that are no longer relevant              |
 | `* *`   | User | List tutors with note                              | Keep track which tutor has note added                           |
+| `* *`   | Tech-savvy User | Add grade records to a digital GradeBook | Keep track of grades I obtained for future study plan          |
+| `* *`   | Careless user   | Edit grade record details               | Correct or update the details of my academic records            |
+| `* *`   | User  | Delete outdated grade records                     | Remove past grades when they are not needed                     |
+| `* *`   | User  | List all grades                                   | See all existing academic records in my GradeBook               |
 
 *{More to be added}*
 
