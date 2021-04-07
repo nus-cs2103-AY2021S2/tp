@@ -306,7 +306,7 @@ Examples:
 
 ### Locating appointments by fields : `find-appt`
 
-Format: `find-appt [pt/PATIENT NAME KEYWORDS] [dr/DOCTOR NAME KEYWORDS] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS KEYWORDS] [t/TAG KEYWORDS]`
+Format: `find-appt [pt/PATIENT NAME KEYWORDS] [dr/DOCTOR NAME KEYWORDS] [at/TIMESLOT START] [t/TAG KEYWORDS]`
 
 * At least one of the optional fields must be provided.<br>
 
