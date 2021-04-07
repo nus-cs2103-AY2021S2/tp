@@ -205,7 +205,7 @@ Format: `delete INDEX [INDEX INDEX...]`
 
 ### 3.3.1 Selecting passengers to arrange a carpool: `pool`
 
-Selects passengers from the current view in the GME terminal to arrange a carpool.
+Selects passengers from the current view in the bottom left pane of the GME terminal to arrange a carpool. 
 
 Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX d/DAY t/TIME [c/INDEX c/INDEX...] [tag/TAG]`
 
@@ -213,6 +213,7 @@ Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX d/DAY t/TIME [c/INDEX c/INDEX
 
 **:information_source: Notes about the pool command:**<br>
 
+* Here, c/ stands for commuter, i.e. someone to be pooled with a driver.
 * GME will not allow you to `delete` a passenger that is assigned to a Pool.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
