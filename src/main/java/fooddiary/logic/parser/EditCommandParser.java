@@ -1,6 +1,5 @@
 package fooddiary.logic.parser;
 
-import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_NAME;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_PRICE;
@@ -16,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import fooddiary.commons.core.Messages;
 import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.EditCommand;
 import fooddiary.logic.commands.EditCommand.EditEntryDescriptor;
@@ -45,8 +45,11 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (IndexOutOfBoundsException e) {
+            throw new ParseException(e.getMessage());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditEntryDescriptor editEntryDescriptor = new EditEntryDescriptor();
@@ -67,10 +70,6 @@ public class EditCommandParser implements Parser<EditCommand> {
                 .ifPresent(editEntryDescriptor::setTagCategories);
         parseTagSchoolsForEdit(argMultimap.getAllValues(PREFIX_TAG_SCHOOL))
                 .ifPresent(editEntryDescriptor::setTagSchools);
-
-        if (!editEntryDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
 
         return new EditCommand(index, editEntryDescriptor);
     }

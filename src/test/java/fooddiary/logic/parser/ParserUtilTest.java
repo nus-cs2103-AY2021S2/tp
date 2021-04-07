@@ -1,6 +1,5 @@
 package fooddiary.logic.parser;
 
-import static fooddiary.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static fooddiary.testutil.Assert.assertThrows;
 import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,6 +12,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import fooddiary.commons.core.Messages;
 import fooddiary.logic.parser.exceptions.ParseException;
 import fooddiary.model.entry.Address;
 import fooddiary.model.entry.Name;
@@ -45,8 +45,8 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+    public void parseIndex_outOfRangeInput_throwsIndexOutOfBoundsException() {
+        assertThrows(IndexOutOfBoundsException.class, Messages.MESSAGE_INVALID_ENTRY_INDEX_OUT_OF_BOUNDS, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 

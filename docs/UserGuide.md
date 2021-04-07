@@ -194,6 +194,8 @@ Note:
  as legitimate.
 - Multiple entries can exist with the same name but different locations, and vice versa.
 - A FoodDiary entry can have any number of categories or schools.
+- Food Diary can contain up to 1,000,000 entries, beyond which it will not be possible to
+add more entries until one or more existing entries have been deleted.
 
 Example:
 
@@ -243,7 +245,7 @@ Example:
 
     delete 1
 
-### Find FoodDiary entries generally: `find`
+### Find FoodDiary entries by keywords: `find`
 
 Finds FoodDiary entries whose names, ratings, price, address, categories and schools match any of the provided keywords.
 
@@ -261,12 +263,17 @@ KEYWORD(s) of any number and sequence:
 7. To search by schools: `[SCHOOL LOCATION] ...`
 
 Note:
-- More than one keyword per field can be accepted as a parameter.
-- Different fields can also be simultaneously accepted as parameters.
+- More than one keyword per entry field can be accepted as a parameter.
+- Different entry fields can also be simultaneously accepted as parameters.
+- Keywords need to match a full word from the entry fields to return the corresponding entry as a result
+  (Example: Keyword 'Clem' will not match with 'Clementi' but keyword Techno will match with 'Techno Edge')
 - Rating should be an integer between 0 and 5. Note the syntax.
 - For the price field, a price range can also be accepted as a parameter, and any
- FoodDiary entry that contains at least one of the prices within the specified range
- will be returned as a search result. Note the syntax.
+  FoodDiary entry that contains at least one of the prices within the specified range
+  will be returned as a search result. Note the syntax.
+- When finding by price, the entries are assumed to contain every single price within its own price range.
+  (Example: An entry with price field '$4-8' is assumed to contain '$4', '$5', '$6', '$7' and '$8'
+  even if the only prices added previously to this entry were '$4' and '$8')
 - Note the syntax, especially for `rating` and `price` parameters.
 
 Example:
@@ -276,7 +283,7 @@ Example:
     find fastfood indian $6
     find clementi 5/5 $8-15 western
 
-### Find specific FoodDiary entries: `findall`
+### Find specific FoodDiary entries by keywords: `findall`
 
 Finds FoodDiary entries whose names, ratings, price, address, categories and schools matches all of the provided keywords.
 
@@ -294,10 +301,15 @@ KEYWORD(s) of any number and sequence:
 7. To search by schools: `[SCHOOL LOCATION] ...`
 
 Note:
-- More than one keyword per field can be accepted as parameters.
-- Different fields can also be simultaneously accepted as parameters.
+- More than one keyword per entry field can be accepted as parameters.
+- Different entry fields can also be simultaneously accepted as parameters.
+- Keywords need to match a full word from the entry fields to return the corresponding entry as a result
+  (Example: Keyword 'Clem' will not match with 'Clementi' but keyword Techno will match with 'Techno Edge')
 - For the price field, a price range can also be accepted as a parameter, and any FoodDiary entry that contains at least
- one of the prices within the specified range will be returned as a search result.
+  one of the prices within the specified range will be returned as a search result.
+- When finding by price, the entries are assumed to contain every single price within its own price range.
+  (Example: An entry with price field '$4-8' is assumed to contain '$4', '$5', '$6', '$7' and '$8'
+  even if the only prices added previously to this entry were '$4' and '$8')
 - **Unlike the find feature, the findall feature only returns search results of FoodDiary entries that contain all of
  the provided keywords.**
 - Note the syntax, especially for `rating` and `price` parameters.

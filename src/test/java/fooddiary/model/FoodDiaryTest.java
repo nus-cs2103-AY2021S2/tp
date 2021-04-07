@@ -4,7 +4,7 @@ import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_A;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_CATEGORY_WESTERN;
 import static fooddiary.testutil.Assert.assertThrows;
 import static fooddiary.testutil.TypicalEntries.ENTRY_A;
-import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiaryWithMultipleEntries;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -39,7 +39,7 @@ public class FoodDiaryTest {
 
     @Test
     public void resetData_withValidReadOnlyFoodDiary_replacesData() {
-        FoodDiary newData = getTypicalFoodDiary();
+        FoodDiary newData = getTypicalFoodDiaryWithMultipleEntries();
         foodDiary.resetData(newData);
         assertEquals(newData, foodDiary);
     }
