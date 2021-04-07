@@ -120,7 +120,7 @@ Format: `delete MATRICULATION NUMBER`
   
 
 Examples:
-* `delete A7654321J` deletes Betsy Crowe from the records.
+* `delete A7654321J` deletes Betsy Crowe from the records. If Betsy Crowe has an appointment, her appointment will be deleted as well.
 
 ### Filtering all student records: `filter`
 
