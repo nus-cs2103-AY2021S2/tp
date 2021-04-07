@@ -29,6 +29,7 @@ public class Messages {
     public static final String MESSAGE_FILE_TOO_BIG = "File \"%1$s\" is too big. Reduce file size to below %2$s bytes";
     public static final String MESSAGE_INVALID_FILE_EXTENSION = "File \"%1$s\" does not have the required extension. "
         + "Accepted file extensions: \"%2$s\"";
+    public static final String MESSAGE_INVALID_FILE_SIGNATURE = "File \"%1$s\" is not a valid \"%2$s\" file";
 
     // Special Dates
     public static final String MESSAGE_NO_DATES = "%1$s has no special dates to delete.";

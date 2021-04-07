@@ -42,7 +42,6 @@ public class PersonDetailsCard extends UiPart<Region> {
      * Creates a {@code PersonDetailsCard} with the given {@code Person}.
      */
     public PersonDetailsCard(Person person) {
-
         super(FXML);
         this.person = person;
         name.setText(person.getName().fullName);
