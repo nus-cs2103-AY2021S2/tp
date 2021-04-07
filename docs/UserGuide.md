@@ -313,7 +313,7 @@ Examples:
 ![UiClearAfterUndoAfterRedo](./images/UiClearAfterUndoAfterRedo.png) <br>
 
 ### Sorting all flashcards: `sort`
-Sorts all flashcards according to a given option.
+Sorts all flashcards in display according to a given option.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Note:** You can only sort by `priority` or `question`.
