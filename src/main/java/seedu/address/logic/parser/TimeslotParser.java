@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static java.lang.Exception.*;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 
@@ -94,20 +93,6 @@ public class TimeslotParser {
                     : MESSAGE_INVALID_DATE_TIME_FORMAT;
             throw new ParseException(messageUsage);
         }
-    }
-
-    public static Date parseStandardDate(String userInput) throws ParseException {
-        String formattedInput = userInput.trim();
-        for (StandardDateFormat standardDateFormat : StandardDateFormat.values()) {
-            try {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(standardDateFormat.getDatePattern());
-                simpleDateFormat.setLenient(false);
-                return simpleDateFormat.parse(formattedInput);
-            } catch (java.text.ParseException e) {
-                continue;
-            }
-        }
-        throw new ParseException(MESSAGE_INVALID_DATE_TIME_FORMAT);
     }
 
     /**
@@ -235,6 +220,25 @@ public class TimeslotParser {
         } catch (DateTimeParseException e) {
             throw new ParseException(MESSAGE_INVALID_DURATION_FORMAT);
         }
+    }
+
+    /**
+     * Parses a {@code String userInput} into a {@code Date}.
+     *
+     * @throws ParseException if the given {@code Date} does not conform to the expected date time format.
+     */
+    public static Date parseStandardDate(String userInput) throws ParseException {
+        String formattedInput = userInput.trim();
+        for (StandardDateFormat standardDateFormat : StandardDateFormat.values()) {
+            try {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(standardDateFormat.getDatePattern());
+                simpleDateFormat.setLenient(false);
+                return simpleDateFormat.parse(formattedInput);
+            } catch (java.text.ParseException e) {
+                continue;
+            }
+        }
+        throw new ParseException(MESSAGE_INVALID_DATE_TIME_FORMAT);
     }
 
     /**
