@@ -6,13 +6,13 @@ title: User Guide
 **PlanIT** is a task managing application made specially for NUS computing students like you, from computing students
 like us. Forgot to submit your lab worksheet, or too many assignments and you don't know where to get started? PlanIT
 gives you the confidence that your busy schedule is organized and accounted for. Quickly and efficiently make and edit
-various tasks, mark deadlines, take note of remaining tasks, and more.
+various tasks, mark dates, take note of remaining tasks, and more.
 
 PlanIt also includes a calendar and a countdown feature to better manage your deadlines. It is even optimised for all of
 you who prefer typing, so that bookkeeping can be done faster. Now you can make progress on the things that are
 more important to you.
 
-Objective:
+#### Objective:
 PlanIT's objective is to improve productivity for students with features and tools to help
 students manage their workload. These features significantly reduces the trouble of having to keep track of tasks,
 especially those that are essential yet repetitive. Features such as recurring schedule and date allows students to
@@ -179,7 +179,7 @@ Format: `help`
 
 ### Making a task: `mk`
 
-Makes a task to the planner. <br>
+Adds a task to the planner. <br>
 Task with the same title cannot be added to the planner
 so that you will not have to worry about adding duplicate task by accident.
 
@@ -191,9 +191,9 @@ Format: `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION]
   should be expressed as `01/12/2021`, not 1/12/2021. Furthermore, Date should be
   a day that is after the current day.
 * Duration should be numeric, contain 2 timings, and should be in 24 hours format with a colon, like `22:30-22:45`.
-  Duration can only exists when there is date or recurring schedule. 
+  Duration can only exist when there is date or recurring schedule. 
 * Description can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>.
-* Recurring schedule (can be optional) should have 3 conditions which consist of:
+* Recurring schedule should have 3 conditions which consist of:
     * An end date when the task stops recurring.
     * A day of the week that the task recurs on.
     * Frequency of the recurring task.
@@ -209,7 +209,7 @@ Examples:
 * `mk n/do project r/[29/06/2021][thu][Biweekly]` <br>Makes a task titled 'do project' and will 
   generate recurring dates that is on thursday, biweekly until 29th Jun 2021.
 
-Example of making task with multiple lines of description:
+Example of making a task with multiple lines of description:
 ```
 mk n/take a break d/
 - do 1
@@ -219,8 +219,8 @@ mk n/take a break d/
 ### Editing a task : `edit`
 
 Edits an existing task in the planner
-so that you can have the flexibility to make changes to a certain task
-if there is an input error when adding the task to the planner or there is a change in task requirements.
+so that you can have the flexibility in making changes to a certain task
+if there is a change in your task or schedule.
 
 Format: `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION]
 [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`
@@ -438,14 +438,13 @@ Format: `stat`
 
 ### View tasks on a date : `view`
 
-Displays the tasks happening on a particular date, including those recurring tasks
+Displays the tasks happening on a particular date, including recurring tasks,
 and brings the calendar to the date specified
-so that you can schedule new activities during the free time on the same day.
+so that you may find free time on the day to schedule new activities.
 
 Format: `view DATE`
 
 * Date should be in the format of dd/mm/yyyy like 12/12/2021.
-* The specified date can only be future dates, after the current date.
 
 Examples:
 * `view 03/07/2021`<br>Lists all tasks with dates or recurring dates on 03/07/2021, and brings the calendar to July
@@ -513,7 +512,9 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete Task** | `rmt INDEX`<br> e.g., `rmt 3`
 **Delete Field** | `rmf INDEX FIELD`<br> e.g., `rmf 1 d/`
-**Edit** | `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Leemax`
+
+**Edit** | `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 1 set/10/10/2021 d/Remember to update User Guide`
+
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find CS2103 team project` <br><br>`find [t/TAG] `<br>  e.g., `find t/CS2103` <br><br> `find [d/DESCRIPTION] ` <br> e.g., `find d/CS2103 milestone postmortem`
 **Countdown** | `count INDEX` <br> e.g., `count 2`
 **Statistics** | `stat`

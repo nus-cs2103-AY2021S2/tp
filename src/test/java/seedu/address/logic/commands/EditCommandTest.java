@@ -82,8 +82,10 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new Planner(model.getPlanner()), new UserPrefs());
+        Planner typicalPlanner = new Planner(model.getPlanner());
+        Model expectedModel = new ModelManager(typicalPlanner, new UserPrefs());
         expectedModel.setTask(editedTask, editedTask);
+        expectedModel.setTags(editedTask.getTags(), editedTask.getTags());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

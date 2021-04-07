@@ -11,7 +11,6 @@ import seedu.address.model.task.attributes.Date;
  * date and recurring schedule.
  */
 public class TaskOnDatePredicate implements Predicate<Task> {
-    private final String dateString;
     private final TaskDateOnDatePredicate taskDateOnDatePredicate;
     private final TaskScheduledOnDatePredicate taskScheduledOnDatePredicate;
 
@@ -23,9 +22,8 @@ public class TaskOnDatePredicate implements Predicate<Task> {
      * @param date Date with date to test tasks' date and schedule with.
      */
     public TaskOnDatePredicate(Date date) {
-        this.dateString = date.toString();
         this.taskDateOnDatePredicate = new TaskDateOnDatePredicate(date);
-        this.taskScheduledOnDatePredicate = new TaskScheduledOnDatePredicate(dateString);
+        this.taskScheduledOnDatePredicate = new TaskScheduledOnDatePredicate(date.toString());
     }
 
     @Override

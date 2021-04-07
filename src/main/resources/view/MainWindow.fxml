@@ -11,10 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Slider?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="PlanIT" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="PlanIT" minWidth="900" minHeight="500" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -34,7 +33,7 @@
           </Menu>
         </MenuBar>
 
-        <HBox VBox.vgrow="ALWAYS">
+        <HBox VBox.vgrow="ALWAYS" minWidth="800">
           <VBox VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
             <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border"
                        prefHeight="150">
@@ -43,32 +42,31 @@
               </padding>
             </StackPane>
 
-            <HBox prefHeight="600" prefWidth="450" VBox.vgrow="ALWAYS">
-              <VBox fx:id="calendarPanel" styleClass="pane-with-border" HBox.hgrow="ALWAYS" prefWidth="500">
+            <HBox prefHeight="600" VBox.vgrow="ALWAYS">
+              <VBox fx:id="calendarPanel" styleClass="pane-with-border" HBox.hgrow="ALWAYS" prefWidth="350"
+                    minWidth="330">
                 <padding>
                   <Insets top="10" right="10" bottom="10" left="10"/>
                 </padding>
                 <StackPane fx:id="calendarPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
               </VBox>
 
-              <VBox VBox.vgrow="ALWAYS">
+              <VBox VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
                 <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" HBox.hgrow="ALWAYS"
-                           VBox.vgrow="ALWAYS" prefWidth="480">
+                           VBox.vgrow="ALWAYS" prefWidth="350" minWidth="200">
                   <padding>
                     <Insets top="5" right="10" bottom="5" left="10"/>
                   </padding>
                 </StackPane>
                 <HBox fx:id="tagListPanel">
-                  <Label text="Tags: " prefWidth="50" prefHeight="50" styleClass="tag-title"/>
-                  <StackPane fx:id="tagListPanelPlaceholder" prefHeight="50" HBox.hgrow="ALWAYS">
-                    <Slider blockIncrement="1" prefWidth="0.1" minWidth="0.1" maxWidth="0.1" maxHeight="1"/>
-                  </StackPane>
+                  <Label text="Tags: " prefWidth="50" minWidth="50" prefHeight="60" styleClass="tag-title"/>
+                  <StackPane fx:id="tagListPanelPlaceholder" prefHeight="60" HBox.hgrow="ALWAYS" />
                 </HBox>
               </VBox>
             </HBox>
           </VBox>
 
-          <VBox fx:id="taskListPanel" styleClass="pane-with-border" HBox.hgrow="ALWAYS" prefWidth="500">
+          <VBox fx:id="taskListPanel" styleClass="pane-with-border" HBox.hgrow="ALWAYS" prefWidth="450" minWidth="300">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
