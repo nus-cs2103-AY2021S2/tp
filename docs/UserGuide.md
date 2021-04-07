@@ -49,27 +49,124 @@ As listed below are the attributes to be specified for Tasks and Events. All par
 
 ### Common to both Task and Event
 
-| Attribute | Identifier | Restriction(s) |
-| --------- | ---------- | ---------------------------------  |
-| `Name`    | `n/`       | <ul><li>Maximum 50 characters in length</li></ul> |
-| `Category`| `c/`       | <ul><li>Maximum 20 characters in length each</li> <li>None, single or multiple Categories can be assigned to a single element </li> <li>No spaces are allowed</li></ul>            |
-| `Tag`     | `t/`       | <ul><li>Maximum 20 characters in length each</li> <li>None, single or multiple Tags can be assigned to a single element </li> <li>No spaces are allowed</li></ul>   |
+<table>
+    <tr>
+        <th>Attribute</th>
+        <th>Identifier</th>
+        <th>Restriction(s)</th>
+    </tr>
+    <tr>
+        <td><code>Name</code></td>
+        <td><code>n/</code></td>
+        <td>
+            <ul>
+                <li>Maximum 50 characters in length</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><code>Category</code></td>
+        <td><code>c/</code></td>
+        <td>
+            <ul>
+                <li>Maximum 20 characters in length each</li>
+                <li>None, single or multiple Categories can be assigned to a single element</li>
+                <li>No spaces are allowed</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><code>Tag</code></td>
+        <td><code>t/</code></td>
+        <td>
+            <ul>
+                <li>Maximum 20 characters in length each</li>
+                <li>None, single or multiple Tags can be assigned to a single element</li>
+                <li>No spaces are allowed</li>
+            </ul>
+        </td>
+    </tr>
+</table>
 
 ### Task-Specific
 
-| Attribute | Identifier | Restriction(s) |
-| --------- | ---------- | ---------------------------------  |
-| `Deadline`    | `d/`       | <ul><li>Follows the format YYYY-MM-DD</li> <li>Must be a date later than the date of creation</li></ul> |
-| `Priority`    | `p/`       | <ul><li>Single digit integer ranging from 0 to 9 inclusive</li><li>0 is highest in priority, while 9 is lowest</li></ul> |
+<table>
+    <tr>
+        <th>Attribute</th>
+        <th>Identifier</th>
+        <th>Restriction(s)</th>
+    </tr>
+    <tr>
+        <td><code>Deadline</code></td>
+        <td><code>d/</code></td>
+        <td>
+            <ul>
+                <li>Follows the format YYYY-MM-DD</li>
+                <li>Must be a date later than the date of creation</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><code>Priority</code></td>
+        <td><code>p/</code></td>
+        <td>
+            <ul>
+                <li>Single digit integer ranging from 0 to 9 inclusive</li>
+                <li>0 is highest in priority, while 9 is lowest</li>
+            </ul>
+        </td>
+    </tr>
+</table>
 
 ### Event-Specific
 
-| Attribute   | Identifier | Restriction(s) |
-| ----------- | ---------- | ---------------------------------  |
-| `Start Date`| `sd/`      | <ul><li>Follows the format YYYY-MM-DD</li><li>Date earlier than date of creation allowed (for ongoing events)</li></ul> |
-| `End Date`  | `ed/`      | <ul><li>Follows the format YYYY-MM-DD</li><li>Must be a date later than the date of creation</li><li>Must be a date after start date</li></ul>   |
-| `Start Time`| `st/`      | <ul><li>Follows the format of hh:mm, in a 24-hour format</li></ul>            |
-| `End Time`  | `et/`      | <ul><li>Follows the format of hh:mm, in a 24-hour format</li><li>If start date is the same as end date, end time must be a time after start time</li></ul> |
+<table>
+    <tr>
+        <th>Attribute</th>
+        <th>Identifier</th>
+        <th>Restriction(s)</th>
+    </tr>
+    <tr>
+        <td><code>Start Date</code></td>
+        <td><code>sd/</code></td>
+        <td>
+            <ul>
+                <li>Follows the format YYYY-MM-DD</li>
+                <li>Date earlier than date of creation allowed (for ongoing events)</li>
+            </ul>              
+        </td>
+    </tr>
+    <tr>
+        <td><code>End Date</code></td>
+        <td><code>ed/</code></td>
+        <td>
+            <ul>
+                <li>Follows the format YYYY-MM-DD</li>
+                <li>Must be a date later than the date of creation</li>
+                <li>Must be a date after start date</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><code>Start Time</code></td>
+        <td><code>st/</code></td>
+        <td>
+            <ul>
+                <li>Follows the format of hh:mm, in a 24-hour format</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><code>End Time</code></td>
+        <td><code>et/</code></td>
+        <td>
+            <ul>
+                <li>Follows the format of hh:mm, in a 24-hour format</li>
+                <li>If start date is the same as end date, end time must be a time after start time</li>
+            </ul> 
+        </td>
+    </tr>
+</table>
 
 --------------------------------------------------------------------------------------------------------------------
 
