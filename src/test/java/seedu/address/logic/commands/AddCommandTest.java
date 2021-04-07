@@ -186,6 +186,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean isReview(String input) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean isAlias(String input) {
             throw new AssertionError("This method should not be called.");
         }
