@@ -107,16 +107,7 @@ public class EditMeetingCommand extends Command {
         Set<Person> existedPersonsConnection = meetingToEdit.getConnectionToPerson();
         model.deleteAllPersonMeetingConnectionByMeeting(meetingToEdit);
         // If the user does not try to modify the persons related, then preserve the old connection.
-        if (getConnectionToPerson().isEmpty() && editMeetingDescriptor.getGroups().isEmpty()) {
-            addConnectionsToPersons(editedMeeting, model, existedPersonsConnection);
-        } else if (getConnectionToPerson().isEmpty() && !editMeetingDescriptor.getGroups().isEmpty()) {
-            Set<Person> oldMeetingPersonsInGroup = new HashSet<>();
-            for (Group group : meetingToEdit.getGroups()) {
-                Set<Person> oldPersonsInGroup = model.findPersonsInGroup(group);
-                oldMeetingPersonsInGroup.addAll(oldPersonsInGroup);
-            }
-            // Extract the persons in the old groups and remove them, preserve persons doesn't belong to any groups.
-            existedPersonsConnection.removeAll(oldMeetingPersonsInGroup);
+        if (getConnectionToPerson().isEmpty()) {
             addConnectionsToPersons(editedMeeting, model, existedPersonsConnection);
         } else {
             addConnectionsToPersons(editedMeeting, model, new HashSet<Person>());
@@ -168,15 +159,7 @@ public class EditMeetingCommand extends Command {
         personsConnection.addAll(existedPersonsConnection);
         toAdd.setPersonMeetingConnection(model.getPersonMeetingConnection());
 
-        if (!toAdd.getGroups().isEmpty()) {
-            for (Group group : toAdd.getGroups()) {
-                Set<Person> personsInGroup = model.findPersonsInGroup(group);
-                // Get the union set.
-                personsConnection.addAll(personsInGroup);
-            }
-        }
-
-        if (getConnectionToPerson().size() != 0) {
+        if (!getConnectionToPerson().isEmpty()) {
             List<Person> lastShownList = model.getFilteredPersonList();
             // Check whether the index is out of bounds
             for (Index index : getConnectionToPerson()) {

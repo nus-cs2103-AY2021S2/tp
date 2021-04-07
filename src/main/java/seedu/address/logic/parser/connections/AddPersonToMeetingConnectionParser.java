@@ -7,12 +7,10 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.group.Group;
 
 import java.util.Set;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
 
 /**
@@ -26,7 +24,7 @@ public class AddPersonToMeetingConnectionParser implements Parser<AddPersonToMee
      */
     public AddPersonToMeetingConnectionCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PERSON_CONNECTION, PREFIX_GROUP);
+                ArgumentTokenizer.tokenize(args, PREFIX_PERSON_CONNECTION);
 
         Index index;
 
@@ -37,11 +35,9 @@ public class AddPersonToMeetingConnectionParser implements Parser<AddPersonToMee
                     AddPersonToMeetingConnectionCommand.MESSAGE_USAGE), pe);
         }
 
-        Set<Group> groupSet = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_GROUP));
-
         Set<Index> personConnectionSet = ParserUtil
                 .parsePersonsConnection(argMultimap.getAllValues(PREFIX_PERSON_CONNECTION));
 
-        return new AddPersonToMeetingConnectionCommand(index, personConnectionSet, groupSet);
+        return new AddPersonToMeetingConnectionCommand(index, personConnectionSet);
     }
 }

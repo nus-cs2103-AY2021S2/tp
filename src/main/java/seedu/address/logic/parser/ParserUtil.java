@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
 import seedu.address.model.meeting.DateTime;
@@ -118,6 +119,10 @@ public class ParserUtil {
         return new MeetingName(trimmedName);
     }
 
+    public static Set<MeetingName> parseMeetingNames(Collection<String> names) throws ParseException {
+        return parseMany(ParserUtil::parseMeetingName, names);
+    }
+
     /**
      * Parses a {@code String datetime} into a {@code DateTime}.
      * Leading and trailing whitespaces will be trimmed.
@@ -133,6 +138,12 @@ public class ParserUtil {
         return new DateTime(trimmedDatetime);
     }
 
+    public static Set<DateTime> parseMeetingDateTimes(Collection<String> datetimes) throws ParseException {
+        return parseMany(ParserUtil::parseMeetingDateTime, datetimes);
+    }
+
+
+
     /**
      * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
@@ -143,6 +154,7 @@ public class ParserUtil {
         String trimmedDescription = description.trim();
         return new Description(trimmedDescription);
     }
+
 
     /**
      * Parses a {@code String priority} into a {@code DateTime}.
@@ -158,6 +170,7 @@ public class ParserUtil {
         }
         return new Priority(trimmedPriority);
     }
+
 
     /**
      * Parses a {@code String group} into a {@code group}.
@@ -209,6 +222,23 @@ public class ParserUtil {
         requireNonNull(content);
         String trimmedContent = content.trim();
         return new Content(trimmedContent);
+    }
+
+
+    // =========================== Interface for Parsing Many Strings ==============================
+
+    public interface smallParseUtil<T> {
+        T parseOne(String input) throws ParseException;
+    }
+
+
+    public static <T> Set<T> parseMany(smallParseUtil<T> parseUtil, Collection<String> strings) throws ParseException {
+        requireNonNull(strings);
+        final Set<T> newSet = new HashSet<>();
+        for (String string : strings) {
+            newSet.add(parseUtil.parseOne(string));
+        }
+        return newSet;
     }
 
 }

@@ -6,7 +6,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.group.Group;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
@@ -98,14 +97,6 @@ public class AddMeetingCommand extends Command {
         // Use set to ensure unique element.
         HashSet<Person> personsConnection = new HashSet<>();
         toAdd.setPersonMeetingConnection(model.getPersonMeetingConnection());
-
-        if (!toAdd.getGroups().isEmpty()) {
-            for (Group group : toAdd.getGroups()) {
-                Set<Person> personsInGroup = model.findPersonsInGroup(group);
-                // Get the union set.
-                personsConnection.addAll(personsInGroup);
-            }
-        }
 
         if (getConnectionToPerson().size() != 0) {
             List<Person> lastShownList = model.getFilteredPersonList();

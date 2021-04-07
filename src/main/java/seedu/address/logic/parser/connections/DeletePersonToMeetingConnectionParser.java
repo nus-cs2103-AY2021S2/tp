@@ -1,19 +1,16 @@
 package seedu.address.logic.parser.connections;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.connections.AddPersonToMeetingConnectionCommand;
 import seedu.address.logic.commands.connections.DeletePersonToMeetingConnectionCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.group.Group;
 
 import java.util.Set;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
 
 public class DeletePersonToMeetingConnectionParser implements Parser<DeletePersonToMeetingConnectionCommand> {
@@ -24,7 +21,7 @@ public class DeletePersonToMeetingConnectionParser implements Parser<DeletePerso
      */
     public DeletePersonToMeetingConnectionCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PERSON_CONNECTION, PREFIX_GROUP);
+                ArgumentTokenizer.tokenize(args, PREFIX_PERSON_CONNECTION);
 
         Index index;
 
@@ -35,11 +32,9 @@ public class DeletePersonToMeetingConnectionParser implements Parser<DeletePerso
                     DeletePersonToMeetingConnectionCommand.MESSAGE_USAGE), pe);
         }
 
-        Set<Group> groupSet = ParserUtil.parseGroups(argMultimap.getAllValues(PREFIX_GROUP));
-
         Set<Index> personConnectionSet = ParserUtil
                 .parsePersonsConnection(argMultimap.getAllValues(PREFIX_PERSON_CONNECTION));
 
-        return new DeletePersonToMeetingConnectionCommand(index, personConnectionSet, groupSet);
+        return new DeletePersonToMeetingConnectionCommand(index, personConnectionSet);
     }
 }

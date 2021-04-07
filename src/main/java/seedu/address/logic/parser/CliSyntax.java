@@ -25,5 +25,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_PRIORITY = new Prefix("pr/");
     public static final Prefix PREFIX_PERSON_CONNECTION = new Prefix("p/");
 
+    /* Prefix for meeting search */
+    public static final Prefix PREFIX_TIME = new Prefix("time/");
+
+
 
 }

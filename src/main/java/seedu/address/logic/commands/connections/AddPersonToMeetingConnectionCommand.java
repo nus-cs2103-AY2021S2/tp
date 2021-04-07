@@ -26,31 +26,24 @@ public class AddPersonToMeetingConnectionCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds persons by index or by groups to a meeting. "
             + "Parameters: "
             + "INDEX of the meeting (must be a positive integer) "
-            + "[" + PREFIX_GROUP + "GROUP]..."
             + "[" + PREFIX_PERSON_CONNECTION + "INDEX OF PERSON RELATED]...\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 "
-            + PREFIX_GROUP + "lectures "
-            + PREFIX_GROUP + "SoC "
             + PREFIX_PERSON_CONNECTION + "1 "
             + PREFIX_PERSON_CONNECTION + "2";
 
     private static String MESSAGE_SUCCESS = "Successfully add persons related to the meeting! "
             + "The possible duplication of persons related is automatically removed.";
-    private static String MESSAGE_GROUP_NOT_EXIST = "The group doesn't exist!";
     private final Index meetingIndex;
-    private final Set<Group> groupsToAdd = new HashSet<>();
     private final Set<Index> personsIndexToAdd = new HashSet<>();
     /**
      * @param index of the meeting in the filtered meeting list to edit
      * @param personsIndexToAdd the set of index of persons the users want to add.
-     * @param groupsToAdd the set of index of groups the users want to add.
      */
-    public AddPersonToMeetingConnectionCommand(Index index, Set<Index> personsIndexToAdd, Set<Group> groupsToAdd) {
+    public AddPersonToMeetingConnectionCommand(Index index, Set<Index> personsIndexToAdd) {
         requireNonNull(index);
         meetingIndex = index;
         this.personsIndexToAdd.addAll(personsIndexToAdd);
-        this.groupsToAdd.addAll(groupsToAdd);
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -79,19 +72,6 @@ public class AddPersonToMeetingConnectionCommand extends Command {
         HashSet<Person> personsConnection = new HashSet<>();
         personsConnection.addAll(existedPersonsConnection);
         toAdd.setPersonMeetingConnection(model.getPersonMeetingConnection());
-        if (!groupsToAdd.isEmpty()) {
-            for (Group group : groupsToAdd) {
-                if (model.findPersonsInGroup(group).isEmpty()) {
-                    throw new CommandException(MESSAGE_GROUP_NOT_EXIST);
-                }
-            }
-            toAdd.addGroups(groupsToAdd);
-            for (Group group : groupsToAdd) {
-                Set<Person> personsInGroup = model.findPersonsInGroup(group);
-                // Get the union set.
-                personsConnection.addAll(personsInGroup);
-            }
-        }
 
         if (personsIndexToAdd.size() != 0) {
             List<Person> lastShownList = model.getFilteredPersonList();

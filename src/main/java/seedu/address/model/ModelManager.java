@@ -1,19 +1,5 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.nio.file.Path;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -36,6 +22,19 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.ReadOnlyReminderBook;
 import seedu.address.model.reminder.ReminderBook;
 import seedu.address.model.schedule.TimetablePrefs;
+
+import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -108,7 +107,7 @@ public class ModelManager implements Model {
 
         this.meetingBook = new MeetingBook(meetingBook);
         this.sortedBeforeFilterMeetings = new SortedList<>(this.meetingBook.getMeetingList());
-        this.filteredMeetings = new FilteredList<Meeting>(sortedBeforeFilterMeetings);
+        this.filteredMeetings = new FilteredList<>(sortedBeforeFilterMeetings);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -378,6 +377,7 @@ public class ModelManager implements Model {
      * Returns a Observable meeting list object with the person as the key.
      * Empty list will be returned if there is no value found in the hashMap.
      */
+    @Override
     public ObservableList<Meeting> getFilteredMeetingListByPersonConnection(Person person) {
         UniqueMeetingList meetings = connection.getMeetingsByPerson(person);
         assert meetings != null;
@@ -391,6 +391,24 @@ public class ModelManager implements Model {
         UniquePersonList persons = connection.getPersonsByMeeting(meeting);
         assert persons != null;
         return persons.asUnmodifiableObservableList();
+    }
+    /**
+     * Returns a Unique meeting list object with the person as the key.
+     * Empty list will be returned if there is no value found in the hashMap.
+     */
+    @Override
+    public UniqueMeetingList getUniqueMeetingListByPersonConnection(Person person) {
+        UniqueMeetingList meetings = connection.getMeetingsByPerson(person);
+        return meetings;
+    }
+    /**
+     * Returns a Unique person list object with the meeting as the key.
+     * Empty list will be returned if there is no value found in the hashMap.
+     */
+    @Override
+    public UniquePersonList getUniquePersonListByMeetingConnection(Meeting meeting) {
+        UniquePersonList persons = connection.getPersonsByMeeting(meeting);
+        return persons;
     }
 
     @Override

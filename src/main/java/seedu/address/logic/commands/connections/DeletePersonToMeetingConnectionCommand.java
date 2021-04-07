@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
@@ -26,31 +25,24 @@ public class DeletePersonToMeetingConnectionCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes persons by index or by groups from a meeting. "
             + "Parameters: "
             + "INDEX of the meeting (must be a positive integer) "
-            + "[" + PREFIX_GROUP + "GROUP]..."
             + "[" + PREFIX_PERSON_CONNECTION + "INDEX OF PERSON RELATED]...\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 "
-            + PREFIX_GROUP + "lectures "
-            + PREFIX_GROUP + "SoC "
             + PREFIX_PERSON_CONNECTION + "1 "
             + PREFIX_PERSON_CONNECTION + "2";
 
     private static String MESSAGE_SUCCESS = "Successfully delete persons related to the meeting! ";
-    private static String MESSAGE_GROUP_NOT_EXIST = "The group related to this meeting doesn't exist!";
     private static String MESSAGE_PERSON_NOT_EXIST = "The person related to this meeting doesn't exist!";
     private final Index meetingIndex;
-    private final Set<Group> groupsToDelete = new HashSet<>();
     private final Set<Index> personsIndexToDelete = new HashSet<>();
     /**
      * @param index of the meeting in the filtered meeting list to edit
      * @param personsIndexToAdd the set of index of persons the users want to delete.
-     * @param groupsToAdd the set of index of groups the users want to delete.
      */
-    public DeletePersonToMeetingConnectionCommand(Index index, Set<Index> personsIndexToAdd, Set<Group> groupsToAdd) {
+    public DeletePersonToMeetingConnectionCommand(Index index, Set<Index> personsIndexToAdd) {
         requireNonNull(index);
         meetingIndex = index;
         this.personsIndexToDelete.addAll(personsIndexToAdd);
-        this.groupsToDelete.addAll(groupsToAdd);
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -75,19 +67,6 @@ public class DeletePersonToMeetingConnectionCommand extends Command {
         Set<Person> prevPersonsConnection = toDelete.getConnectionToPerson();
         toAdd.setPersonMeetingConnection(model.getPersonMeetingConnection());
         Set<Person> totalPersonsToRemove = new HashSet<>();
-        if (!groupsToDelete.isEmpty()) {
-            for (Group group : groupsToDelete) {
-                if (!toDelete.getGroups().contains(group)) {
-                    throw new CommandException(MESSAGE_GROUP_NOT_EXIST);
-                }
-            }
-            toAdd.deleteGroups(groupsToDelete);
-            for (Group group : groupsToDelete) {
-                Set<Person> personsInGroup = model.findPersonsInGroup(group);
-                // Get the union set.
-                totalPersonsToRemove.addAll(personsInGroup);
-            }
-        }
 
         if (personsIndexToDelete.size() != 0) {
             List<Person> lastShownList = model.getFilteredPersonList();

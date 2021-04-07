@@ -1,32 +1,23 @@
 package seedu.address.logic.commands.persons;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.meetings.EditMeetingCommand;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonName;
-import seedu.address.model.person.Phone;
+import seedu.address.model.meeting.*;
+import seedu.address.model.person.*;
+
+import java.util.*;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -83,6 +74,11 @@ public class EditPersonCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        if (!model.getFilteredMeetingListByPersonConnection(personToEdit).isEmpty()) {
+            updatePersonMeetingConnection(personToEdit, editedPerson, model);
+            model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+        }
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
@@ -102,6 +98,66 @@ public class EditPersonCommand extends Command {
         Set<Group> updatedGroups = editPersonDescriptor.getGroups().orElse(personToEdit.getGroups());
 
         return new Person(updatedPersonName, updatedPhone, updatedEmail, updatedAddress, updatedGroups);
+    }
+
+    private void updatePersonMeetingConnection(Person personToEdit, Person editedPerson, Model model) {
+        UniqueMeetingList toEditPersonRelatedMeetings = model.getUniqueMeetingListByPersonConnection(personToEdit);
+        Set<Meeting> toEditPersonRelatedMeetingsSet = new HashSet<>();
+        // Do a deep copy
+        for (Meeting meeting : toEditPersonRelatedMeetings) {
+            toEditPersonRelatedMeetingsSet.add(meeting);
+        }
+        // Start to edit connection(i.e. reconstruct connection)
+        for (Meeting meetingToEdit : toEditPersonRelatedMeetingsSet) {
+            Meeting meetingEdited = createEditedMeeting(meetingToEdit, new EditMeetingCommand.EditMeetingDescriptor());
+            editConnectionsToPersons(meetingToEdit, meetingEdited, model, personToEdit, editedPerson);
+            model.updateMeeting(meetingToEdit, meetingEdited);
+        }
+        model.deleteAllPersonMeetingConnectionByPerson(personToEdit);
+    }
+
+    private void editConnectionsToPersons(Meeting toDelete, Meeting toAdd, Model model, Person personToDelete, Person personToAdd) {
+        Set<Person> prevPersonsConnection = toDelete.getConnectionToPerson();
+        toAdd.setPersonMeetingConnection(model.getPersonMeetingConnection());
+
+        prevPersonsConnection.remove(personToDelete);
+        prevPersonsConnection.add(personToAdd);
+        Set<Person> updatedPersonsConnection = prevPersonsConnection;
+
+        model.deleteAllPersonMeetingConnectionByMeeting(toDelete);
+
+        for (Person allPersonToAddConnection : updatedPersonsConnection) {
+            model.addPersonMeetingConnection(allPersonToAddConnection, toAdd);
+        }
+    }
+    /**
+     * Creates and returns a {@code Meeting} with the details of {@code meetingToEdit}
+     * edited with {@code editMeetingDescriptor}.
+     */
+    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor) {
+        assert meetingToEdit != null;
+
+        MeetingName updatedMeetingName = editMeetingDescriptor
+                .getName()
+                .orElse(meetingToEdit.getName());
+        DateTime updatedStart = editMeetingDescriptor
+                .getStart()
+                .orElse(meetingToEdit.getStart());
+        DateTime updatedTerminate = editMeetingDescriptor
+                .getTerminate()
+                .orElse(meetingToEdit.getTerminate());
+        Priority updatedPriority = editMeetingDescriptor
+                .getPriority()
+                .orElse(meetingToEdit.getPriority());
+        Description updatedDescription = editMeetingDescriptor
+                .getDescription()
+                .orElse(meetingToEdit.getDescription());
+        Set<Group> updatedGroups = editMeetingDescriptor
+                .getGroups()
+                .orElse(meetingToEdit.getGroups());
+
+        return new Meeting(updatedMeetingName, updatedStart,
+                updatedTerminate, updatedPriority, updatedDescription, updatedGroups);
     }
 
     @Override
