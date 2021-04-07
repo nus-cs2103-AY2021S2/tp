@@ -5,7 +5,7 @@ import javafx.scene.control.Labeled;
 
 /**
  * Provides a handle for {@code TodayPanel} containing the list of {@code EventCard} and
- * {@code CompletableDeadlineCard}.
+ * {@code DeadlineCard}.
  */
 public class TodayPanelHandle extends NodeHandle<Node> {
     public static final String DATE_ID = "#date";

@@ -8,9 +8,9 @@ import static seedu.address.commons.util.TimeUtil.decodeTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import guitests.guihandles.CompletableDeadlineCardHandle;
 import guitests.guihandles.ContactCardHandle;
 import guitests.guihandles.ContactListPanelHandle;
+import guitests.guihandles.DeadlineCardHandle;
 import guitests.guihandles.EventCardHandle;
 import guitests.guihandles.ProjectCardHandle;
 import guitests.guihandles.ResultDisplayHandle;
@@ -20,7 +20,7 @@ import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.repeatable.Event;
-import seedu.address.ui.CompletableDeadlineCard;
+import seedu.address.ui.DeadlineCard;
 import seedu.address.ui.TodoCard;
 
 /**
@@ -58,11 +58,11 @@ public class GuiTestAssert {
      * Asserts that {@code actualCard} displays the details of {@code expectedCompletableDeadline}.
      */
     public static void assertCardDisplaysCompletableDeadline(
-            CompletableDeadline expectedDeadline, CompletableDeadlineCardHandle actualCard) {
+            CompletableDeadline expectedDeadline, DeadlineCardHandle actualCard) {
         assertEquals(expectedDeadline.getDescription(), actualCard.getDescription());
         assertEquals(decodeDate(expectedDeadline.getBy()), actualCard.getDate());
         assertEquals(decodeDateIntoDay(expectedDeadline.getBy()), actualCard.getDay());
-        String expectedCompletedText = CompletableDeadlineCard
+        String expectedCompletedText = DeadlineCard
                 .getTextToDisplay(expectedDeadline.getIsDone());
         assertEquals(expectedCompletedText, actualCard.getCompleted());
     }

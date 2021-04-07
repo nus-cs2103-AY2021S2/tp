@@ -3,7 +3,7 @@ package guitests.guihandles;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import seedu.address.model.task.CompletableTodo;
-import seedu.address.ui.CompletableDeadlineCard;
+import seedu.address.ui.DeadlineCard;
 
 /**
  * Provides a handle to a {@code TodoCard}.
@@ -46,6 +46,6 @@ public class TodoCardHandle extends NodeHandle<Node> {
      */
     public boolean equals(CompletableTodo todo) {
         return getDescription().equals(todo.getDescription())
-                && getCompleted().equals(CompletableDeadlineCard.getTextToDisplay(todo.getIsDone()));
+                && getCompleted().equals(DeadlineCard.getTextToDisplay(todo.getIsDone()));
     }
 }
