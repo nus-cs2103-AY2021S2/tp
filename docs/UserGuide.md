@@ -96,7 +96,7 @@ Clears all entries from the patient records. <br>
 Format: `clear-patient`
 
 * Entries in the patient records can only be cleared if there are no existing appointments in the appointment schedule. <br>
-* Otherwise, `clear-appt` have to called first. <br>
+* Otherwise, `clear-appt` will have to be called first. <br>
 * The above-mentioned requirements are similarly applicable to [`clear-doctor`](#clearing-all-entries-in-doctor-records-clear-doctor)
 
 ### Deleting a patient : `delete-patient`
