@@ -27,6 +27,7 @@ public class GroupListPanel extends UiPart<Region> {
      */
     public GroupListPanel(ObservableMap<Name, Group> groupMap) {
         super(FXML);
+        
         //Prevent mouse selection
         groupListView.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
             @Override
