@@ -402,7 +402,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | see a list of all the students profile and sessions|                                                             |
 | `* * *`  | user                                       | get all the emails of the parent of my students'  | email them reminders for payment                             |
 | `* * *`  | user                                       | calculate the monthly fees of a particular student| use the information when collecting monthly fees             |
-| `* * *`  | user                                       | get the monthly fees that I would have received for the past 3 months    | manage my financials better           |
+| `* * *`  | user                                       | get the monthly fees that I would have received for the past 3 months    | manage my finance better              |
 | `* *`    | new user                                   | get a list of commands of the application         | know at a glance what are the features of the application    |
 | `* *`    | potential user                             | see the app populated with sample data on the first run  | try using the features easily                         |
 | `* *`    | new user                                   | purge all current data                            | get rid of sample/current data I used for exploring the app  |
@@ -459,7 +459,7 @@ MSS:
 
 Extensions:
 
-* 2a. TutorBuddy detects and error in the input.
+* 2a. TutorBuddy detects an error in the input.
     * 2a1. TutorBuddy displays an error message to the user.
 
   Use case ends.
@@ -477,7 +477,7 @@ MSS:
 
 Extensions:
 
-* 2a. TutorBuddy detects and error in the input.
+* 2a. TutorBuddy detects an error in the input.
     * 2a1. TutorBuddy displays an error message to the user.
     
   Use case ends.
@@ -537,7 +537,7 @@ MSS:
 
 Extensions:
 
-* 2a. TutorBuddy detects and error in the input.
+* 2a. TutorBuddy detects an error in the input.
     * 2a1. TutorBuddy displays an error message to the user.
 
   Use case ends.
