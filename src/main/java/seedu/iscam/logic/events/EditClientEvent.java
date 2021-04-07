@@ -19,9 +19,10 @@ public class EditClientEvent implements Event {
     /**
      * Creates an EditClientEvent wrapper that wraps around an EditCommand editing the client
      * at the specified {@code Index}
-     * @param index index of client to be edited
+     *
+     * @param index    index of client to be edited
      * @param editInfo information that client should have after being edited
-     * @param model model of app that client is to be deleted from
+     * @param model    model of app that client is to be deleted from
      */
     public EditClientEvent(Index index, EditCommand.EditClientDescriptor editInfo, Model model) {
         this.index = index;
@@ -39,6 +40,7 @@ public class EditClientEvent implements Event {
 
     /**
      * A method to construct an EditClientDescriptor based on the current Client to edit in the model.
+     *
      * @param model Current model in the application.
      * @return the EditClientDescriptor containing information of the original Client to be edited.
      */
@@ -46,7 +48,7 @@ public class EditClientEvent implements Event {
         EditCommand.EditClientDescriptor result = new EditCommand.EditClientDescriptor();
 
         List<Client> lastShownList = model.getFilteredClientList();
-        assert(index.getZeroBased() < lastShownList.size());
+        assert (index.getZeroBased() < lastShownList.size());
 
         Client originalClient = lastShownList.get(index.getZeroBased());
 

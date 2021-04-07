@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.control.ListView?>
-
-<VBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" alignment="CENTER">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8"
+      alignment="CENTER">
     <Label fx:id="tooltip" text="Use 'show' command to display a client here" styleClass="details_large_label"
            wrapText="true" minHeight="100" textAlignment="CENTER"/>
     <HBox fx:id="clientSummaryBox" alignment="TOP_LEFT" minHeight="160" VBox.vgrow="NEVER">
         <VBox alignment="CENTER" maxWidth="120">
-            <ImageView fx:id="profileImage" fitHeight="120" preserveRatio="true" />
-            <Label fx:id="profileImageRef" styleClass="details_small_label" textAlignment="CENTER" />
+            <ImageView fx:id="profileImage" fitHeight="120" preserveRatio="true"/>
+            <Label fx:id="profileImageRef" styleClass="details_small_label" textAlignment="CENTER"/>
         </VBox>
-        <VBox alignment="CENTER_LEFT" >
+        <VBox alignment="CENTER_LEFT">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
             <Label fx:id="name" text="Use 'show' command to display a client here" styleClass="details_large_label"
-                    wrapText="true" />
+                   wrapText="true"/>
             <FlowPane fx:id="tags"/>
-            <Label fx:id="phone" styleClass="details_small_label" />
-            <Label fx:id="clientLocation" styleClass="details_small_label" />
-            <Label fx:id="email" styleClass="details_small_label" />
-            <Label fx:id="remark" styleClass="details_small_label" />
+            <Label fx:id="phone" styleClass="details_small_label"/>
+            <Label fx:id="clientLocation" styleClass="details_small_label"/>
+            <Label fx:id="email" styleClass="details_small_label"/>
+            <Label fx:id="remark" styleClass="details_small_label"/>
         </VBox>
     </HBox>
     <HBox fx:id="clientMeetingsAndPlansBox" alignment="TOP_LEFT" VBox.vgrow="SOMETIMES" spacing="10">

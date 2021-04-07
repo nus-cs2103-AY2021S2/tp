@@ -1,7 +1,6 @@
 package seedu.iscam.ui;
 
 import java.util.logging.Logger;
-
 import javax.swing.plaf.synth.Region;
 
 import javafx.collections.ObservableList;

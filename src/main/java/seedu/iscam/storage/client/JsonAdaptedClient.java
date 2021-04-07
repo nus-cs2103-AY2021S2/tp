@@ -39,10 +39,10 @@ class JsonAdaptedClient {
      */
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("location") String location,
-            @JsonProperty("plan") List<JsonAdaptedClientPlan> plans,
-            @JsonProperty("tagged") List<JsonAdaptedClientTag> tagged,
-            @JsonProperty("image") String imageRes) {
+                             @JsonProperty("email") String email, @JsonProperty("location") String location,
+                             @JsonProperty("plan") List<JsonAdaptedClientPlan> plans,
+                             @JsonProperty("tagged") List<JsonAdaptedClientTag> tagged,
+                             @JsonProperty("image") String imageRes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -85,7 +85,7 @@ class JsonAdaptedClient {
     public Client toModelType() throws IllegalValueException {
         final List<InsurancePlan> clientPlans = new ArrayList<>();
         final List<Tag> clientTags = new ArrayList<>();
-        for(JsonAdaptedClientPlan plan : plans) {
+        for (JsonAdaptedClientPlan plan : plans) {
             clientPlans.add(plan.toModelType());
         }
         for (JsonAdaptedClientTag tag : tagged) {

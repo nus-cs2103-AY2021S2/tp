@@ -10,7 +10,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -19,7 +18,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.InsurancePlan;
@@ -63,6 +61,7 @@ public class ClientDetailFragment extends UiPart<Region> {
 
     /**
      * Creates a ClientDetailFragment that observes the given ObservableClient
+     *
      * @param observableClient ObservableClient to monitor
      */
     public ClientDetailFragment(ObservableClient observableClient, ObservableList<Meeting> meetingList) {

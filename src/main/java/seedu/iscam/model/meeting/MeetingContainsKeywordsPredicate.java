@@ -42,12 +42,12 @@ public class MeetingContainsKeywordsPredicate implements Predicate<Meeting> {
         } else {
             return keywords.stream()
                     .allMatch(keyword -> StringUtil.containsIgnoreCase(meeting.getClientName().toString(), keyword)
-                        || StringUtil.containsIgnoreCase(meeting.getDateTime().toString(), keyword)
-                        || meeting.getDateTime().getDayOfWeek().equals(keyword.toLowerCase())
-                        || meeting.getDateTime().getDayOfWeekFull().equals(keyword.toLowerCase())
-                        || StringUtil.containsIgnoreCase(meeting.getLocation().toString(), keyword)
-                        || StringUtil.containsIgnoreCase(meeting.getDescription().toString(), keyword)
-                        || meeting.getTags().stream()
+                            || StringUtil.containsIgnoreCase(meeting.getDateTime().toString(), keyword)
+                            || meeting.getDateTime().getDayOfWeek().equals(keyword.toLowerCase())
+                            || meeting.getDateTime().getDayOfWeekFull().equals(keyword.toLowerCase())
+                            || StringUtil.containsIgnoreCase(meeting.getLocation().toString(), keyword)
+                            || StringUtil.containsIgnoreCase(meeting.getDescription().toString(), keyword)
+                            || meeting.getTags().stream()
                             .anyMatch(tag -> StringUtil.containsIgnoreCase(tag.toString(), keyword)));
         }
     }

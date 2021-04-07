@@ -13,6 +13,7 @@ public class CommandHistory {
 
     /**
      * Checks if undo event stack is empty.
+     *
      * @return true if empty, else false.
      */
     public static boolean isEmptyUndoStack() {
@@ -21,6 +22,7 @@ public class CommandHistory {
 
     /**
      * Checks if redo event stack is empty.
+     *
      * @return true if empty, else false.
      */
     public static boolean isEmptyRedoStack() {
@@ -29,6 +31,7 @@ public class CommandHistory {
 
     /**
      * Adds new undoable event to the undo event stack.
+     *
      * @param undoableEvent Undoable event to be added.
      */
     public static void addToUndoStack(Event undoableEvent) {
@@ -37,6 +40,7 @@ public class CommandHistory {
 
     /**
      * Adds new redoable event to the redo event stack.
+     *
      * @param redoableEvent Redoable event to be added.
      */
     public static void addToRedoStack(Event redoableEvent) {
@@ -49,6 +53,7 @@ public class CommandHistory {
 
     /**
      * Retrieves the latest undoable event in the stack.
+     *
      * @return Latest undo event.
      */
     public static Event getUndoEvent() {
@@ -57,6 +62,7 @@ public class CommandHistory {
 
     /**
      * Retrieves the latest redoable event in the stack.
+     *
      * @return latest redo event.
      */
     public static Event getRedoEvent() {

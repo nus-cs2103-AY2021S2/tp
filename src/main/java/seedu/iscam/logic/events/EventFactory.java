@@ -17,8 +17,9 @@ public class EventFactory {
 
     /**
      * A static method to parse the command and generate the corresponding event.
+     *
      * @param command Command to be parsed.
-     * @param model Current model of the application.
+     * @param model   Current model of the application.
      * @return Corresponding event for the command parsed.
      * @throws EventException
      */
