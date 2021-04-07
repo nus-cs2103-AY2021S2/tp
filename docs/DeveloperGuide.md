@@ -238,7 +238,7 @@ The following sequence diagram summarizes what happens when a user executes the 
 ![EmailCommandSequenceDiagram.png](images/sam/EmailCommandSequenceDiagram.png)
 
 ### Add Session Feature
-The session feature is facilitated by the `Session` class which stores specific details of
+Sessions in TutorBuddy is facilitated by the `Session` class which stores specific details of
 a tuition session with one student. Each session is composed within a `Student`,
 and a `Student` can have multiple `Session`s.
 
@@ -252,7 +252,7 @@ The creation of a session is facilitated by `AddSessionCommand` and it extends `
 before adding the session.
 
 The following sequence diagram shows the interactions between the Model and Logic components during the execution of
-an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`:
+an `AddSessionCommand` with user input `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`:
 
 ![AddSessionSequenceDiagram](images/junwei/AddSessionSequenceDiagram.png)
 
