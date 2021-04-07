@@ -31,7 +31,7 @@ public class InventoryEditCommandParser {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    CustomerEditCommand.MESSAGE_USAGE), pe);
+                    InventoryEditCommand.MESSAGE_USAGE), pe);
         }
 
         InventoryEditCommand.EditIngredientDescriptor editIngredientDescriptor =
