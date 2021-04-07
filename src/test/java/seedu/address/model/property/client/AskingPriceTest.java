@@ -15,7 +15,7 @@ public class AskingPriceTest {
 
     @Test
     public void constructor_invalidAskingPrice_throwsIllegalArgumentException() {
-        String invalidAskingPrice = "";
+        Long invalidAskingPrice = Long.parseLong("-1");
         assertThrows(IllegalArgumentException.class, () -> new AskingPrice(invalidAskingPrice));
     }
 

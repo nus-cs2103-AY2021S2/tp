@@ -6,6 +6,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 /**
  * Represents a client's asking price for a property.
  * Guarantees: immutable; is valid as declared in {@link #isValidAskingPrice(String)}.
@@ -14,10 +16,14 @@ public class AskingPrice implements Comparable<AskingPrice> {
     public static final String MESSAGE_CONSTRAINTS = "Note the following conditions for specifying an asking price:\n"
             + "1. The dollar sign is optional.\n"
             + "2. There should not be any leading zeros in the number specified.\n"
-            + "3. Either do not use commas at all or be consistent in the usage of commas throughout, "
+            + "3. The asking price should not be negative.\n"
+            + "4. Either do not use commas at all or be consistent in the usage of commas throughout, "
             + "where each comma should separate every three digits from the back.\n"
-            + "   E.g.\n"
-            + "   $1000000 or $1,000,000 are valid but $1000,000 or $100,00,00 are not valid.";
+            + "E.g.\n"
+            + "$1000000 or $1,000,000 are valid but $1000,000 or $100,00,00 are not valid.";
+    public static final String PRICE_CONSTRAINT =
+            "Please do not enter a price larger than $9,223,372,036,854,775,807";
+
     /*
      * Dollar sign is optional.
      * No leading zeros.
@@ -39,10 +45,10 @@ public class AskingPrice implements Comparable<AskingPrice> {
      *
      * @param askingPrice A valid asking price.
      */
-    public AskingPrice(String askingPrice) {
+    public AskingPrice(Long askingPrice) {
         requireNonNull(askingPrice);
-        checkArgument(isValidAskingPrice(askingPrice), MESSAGE_CONSTRAINTS);
-        this.askingPrice = parse(askingPrice);
+        checkArgument(askingPrice >= 0, MESSAGE_CONSTRAINTS);
+        this.askingPrice = askingPrice;
     }
 
     /**
@@ -62,12 +68,16 @@ public class AskingPrice implements Comparable<AskingPrice> {
      * @return an integer representing the value of the price.
      * @see #isValidAskingPrice
      */
-    public static Long parse(String askingPriceString) {
+    public static Long parse(String askingPriceString) throws ParseException {
         final Matcher matcher = PRICE_FORMAT.matcher(askingPriceString);
         checkArgument(matcher.matches(), MESSAGE_CONSTRAINTS);
         String amount = matcher.group("amount");
         String amountWithoutCommas = amount.replace(",", "");
-        return Long.parseLong(amountWithoutCommas);
+        try {
+            return Long.parseLong(amountWithoutCommas);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(PRICE_CONSTRAINT);
+        }
     }
 
     @Override

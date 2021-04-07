@@ -15,9 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.property.Address;
 import seedu.address.model.property.Deadline;
-import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyAddressPredicate;
 import seedu.address.model.property.PropertyClientContactPredicate;
@@ -32,7 +30,6 @@ import seedu.address.model.property.PropertyRemarksPredicate;
 import seedu.address.model.property.PropertyTagsPredicate;
 import seedu.address.model.property.PropertyTypePredicate;
 import seedu.address.model.property.client.Contact;
-import seedu.address.model.property.client.Email;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 
@@ -65,7 +62,7 @@ public class FindPropertyCommandParserTest {
     }
 
     @Test
-    public void parseValidPriceTest() {
+    public void parseValidPriceTest() throws ParseException {
         List<Predicate<Property>> predicates = new ArrayList<>();
 
         // price less
@@ -135,7 +132,7 @@ public class FindPropertyCommandParserTest {
     public void validPostalCodeTest() {
         List<Predicate<Property>> predicates = new ArrayList<>();
 
-        predicates.add(new PropertyPostalCodePredicate(new PostalCode("123456")));
+        predicates.add(new PropertyPostalCodePredicate("123456"));
 
         FindPropertyCommand expected =
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
@@ -143,27 +140,12 @@ public class FindPropertyCommandParserTest {
         assertParseSuccess(parser, " p/123456", expected);
     }
 
-    @Test
-    public void invalidPostalCodeTest() {
-        String expected = "Wrong postal code format! \n"
-                + PostalCode.MESSAGE_CONSTRAINTS
-                + "\n"
-                + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " p/aff", expected);
-    }
-
-    @Test
-    public void multiplePostalCodeTest() {
-        String expected = "Too many postal codes! Please only use 1 postal code. \n"
-                + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " p/123124 p/124345", expected);
-    }
 
     @Test
     public void validAddressTest() {
         List<Predicate<Property>> predicates = new ArrayList<>();
 
-        predicates.add(new PropertyAddressPredicate(new Address("BLK 123 Kent Ridge Ave 1")));
+        predicates.add(new PropertyAddressPredicate("BLK 123 Kent Ridge Ave 1"));
 
         FindPropertyCommand expected =
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
@@ -171,21 +153,6 @@ public class FindPropertyCommandParserTest {
         assertParseSuccess(parser, " a/BLK 123 Kent Ridge Ave 1", expected);
     }
 
-    @Test
-    public void invalidAddressTest() {
-        String expected = "Wrong address format! \n"
-                + Address.MESSAGE_CONSTRAINTS
-                + "\n"
-                + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " a/ ", expected);
-    }
-
-    @Test
-    public void multipleAddressTest() {
-        String expected = "Too many addresses! Please only use 1 address. \n"
-                + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " a/address 1 a/address 2 a/3rd one ", expected);
-    }
 
     @Test
     public void validRemarksTest() {
@@ -227,13 +194,6 @@ public class FindPropertyCommandParserTest {
                 + "\n"
                 + FindPropertyCommand.MESSAGE_USAGE;
         assertParseFailure(parser, " d/not deadline ", expected);
-    }
-
-    @Test
-    public void multipleDeadlineTest() {
-        String expected = "Too many deadlines! Please only use 1 deadline. \n"
-                + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " d/12-09-2021 d/1-1-29", expected);
     }
 
     @Test
@@ -283,12 +243,6 @@ public class FindPropertyCommandParserTest {
         assertParseFailure(parser, " cc/ ", expected);
     }
 
-    @Test
-    public void multipleClientContactTest() {
-        String expected = "Too many client contacts! Please only use 1 contact. \n"
-                + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " cc/12345678 cc/45678901", expected);
-    }
 
     @Test
     public void validClientEmailTest() {
@@ -300,15 +254,6 @@ public class FindPropertyCommandParserTest {
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
 
         assertParseSuccess(parser, " ce/example@gmail.com", expected);
-    }
-
-    @Test
-    public void invalidClientEmailTest() {
-        String expected = "Wrong client email format! \n"
-                + Email.MESSAGE_CONSTRAINTS
-                + "\n"
-                + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " ce/ ", expected);
     }
 
     @Test

@@ -56,7 +56,7 @@ This user guide uses various formatting styles to facilitate reading and to comm
 1. Let's try out your first command by adding a new property! Type <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021` into the command box and press <kbd>Enter</kbd> to execute it. After that, scroll down to the bottom of the property list to see your newly added property.
 1. Want to view the properties in order of their asking price? Type the command <br>`sort property o/desc k/price` and press <kbd>Enter</kbd>. The property list will now be in descending order based on price, with the property having the highest asking price at the top.
 1. Now let's try adding a new appointment. Type <br>`add appointment n/Meet Jacob for dinner r/At Lot One's food court d/19-4-2021 t/1930` and hit the <kbd>Enter</kbd> button. Scroll down to the bottom of the appointment list to see your newly added appointment.
-1. Forgot when you are supposed to meet Simon again? Let's try finding out! Type <br>`find appointment simon` and press <kbd>Enter</kbd>. There it is! Your appointment with Simon is on Sep 20, 2021.
+1. Forgot when you are supposed to meet Simon again? Let's try finding out! Type <br>`find appointment n/simon` and press <kbd>Enter</kbd>. There it is! Your appointment with Simon is on Sep 20, 2021.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
  Some other example commands you can try:
@@ -277,7 +277,7 @@ Description:
 * The `SORTING_KEY` can take values of `name`, `price`, `postalcode`, `address`, or `deadline`, and it should not be any other values.
 
 Examples:
-*  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
+*  `sort property o/asc k/name` Sorts `property` by `name` in ascending order.
 
 #### 3.7.2 Sorting appointments: `sort appointment`
 
@@ -299,13 +299,13 @@ Examples:
 
 #### 3.8.1 Undoing : `undo`
 
-Undoes the last add, delete or edit commands in the command history.
+Undoes the last add, delete, edit or clear commands in the command history.
 
 Format:
 * `undo`
 
 Description:
-* Undoes the last add, delete or edit commands in the command history.
+* Undoes the last add, delete, edit, or clear commands in the command history.
 
 Examples:
 *  `undo` after command `delete appointment 1` adds the deleted appointment back to the app.

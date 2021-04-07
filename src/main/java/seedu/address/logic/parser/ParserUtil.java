@@ -256,7 +256,8 @@ public class ParserUtil {
         if (!AskingPrice.isValidAskingPrice(trimmedAskingPrice)) {
             throw new ParseException(AskingPrice.MESSAGE_CONSTRAINTS);
         }
-        return new AskingPrice(trimmedAskingPrice);
+        Long price = AskingPrice.parse(trimmedAskingPrice);
+        return new AskingPrice(price);
     }
 
     // =====  Parser methods for appointment attributes ==========================================================

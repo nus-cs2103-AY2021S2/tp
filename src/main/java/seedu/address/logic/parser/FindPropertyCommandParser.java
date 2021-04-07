@@ -14,15 +14,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_PRICE_MORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
-import static seedu.address.logic.parser.ParserUtil.parsePropertyAddress;
 import static seedu.address.logic.parser.ParserUtil.parsePropertyDeadline;
-import static seedu.address.logic.parser.ParserUtil.parsePropertyPostal;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.logic.commands.FindClientCommand;
 import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.property.Property;
@@ -67,60 +66,61 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
         List<Predicate<Property>> predicates = new ArrayList<>();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            List<Predicate<Property>> nameList = new ArrayList<>();
             argMultimap.getAllValues(PREFIX_NAME)
                        .forEach(s -> {
-                           predicates.add(new PropertyNamePredicate(Arrays.asList(s.split("\\s+"))));
+                           nameList.add(new PropertyNamePredicate(Arrays.asList(s.split("\\s+"))));
                        });
+            predicates.add(new PropertyPredicateList(nameList).combineDisjunction());
         }
 
         if (argMultimap.getValue(PREFIX_PROPERTY_PRICE_MORE).isPresent()) {
-            argMultimap.getAllValues(PREFIX_PROPERTY_PRICE_MORE)
-                       .forEach(x -> predicates.add(new PropertyPricePredicate(x, false)));
+            for (String argument: argMultimap.getAllValues(PREFIX_PROPERTY_PRICE_MORE)) {
+                predicates.add(new PropertyPricePredicate(argument, false));
+            }
         }
 
         if (argMultimap.getValue(PREFIX_PROPERTY_PRICE_LESS).isPresent()) {
-            argMultimap.getAllValues(PREFIX_PROPERTY_PRICE_LESS)
-                    .forEach(x -> predicates.add(new PropertyPricePredicate(x, true)));
+            for (String argument: argMultimap.getAllValues(PREFIX_PROPERTY_PRICE_LESS)) {
+                predicates.add(new PropertyPricePredicate(argument, true));
+            }
         }
 
         if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
-            argMultimap.getAllValues(PREFIX_TYPE)
-                    .forEach(x -> predicates.add(new PropertyTypePredicate(x)));
+            List<Predicate<Property>> typeList = new ArrayList<>();
+            try {
+                argMultimap.getAllValues(PREFIX_TYPE)
+                        .forEach(x -> typeList.add(new PropertyTypePredicate(x)));
+            } catch (IllegalArgumentException e) {
+                throw new ParseException(e.getMessage() + "\n" + FindClientCommand.MESSAGE_USAGE);
+            }
+            predicates.add(new PropertyPredicateList(typeList).combineDisjunction());
         }
 
         if (argMultimap.getValue(PREFIX_POSTAL).isPresent()) {
             List<String> postalCodes = argMultimap.getAllValues(PREFIX_POSTAL);
-            if (postalCodes.size() > 1) {
-                throw new ParseException("Too many postal codes! Please only use 1 postal code. \n"
-                        + FindPropertyCommand.MESSAGE_USAGE);
-            }
+            List<Predicate<Property>> postalList = new ArrayList<>();
             for (String p : postalCodes) {
-                try {
-                    predicates.add(new PropertyPostalCodePredicate(parsePropertyPostal(p)));
-                } catch (ParseException e) {
-                    throw new ParseException("Wrong postal code format! \n"
-                            + e.getMessage()
-                            + "\n"
-                            + FindPropertyCommand.MESSAGE_USAGE);
-                }
+                postalList.add(new PropertyPostalCodePredicate(p));
             }
+            predicates.add(new PropertyPredicateList(postalList).combineDisjunction());
         }
 
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             List<String> addresses = argMultimap.getAllValues(PREFIX_ADDRESS);
-            if (addresses.size() > 1) {
-                throw new ParseException("Too many addresses! Please only use 1 address. \n"
-                        + FindPropertyCommand.MESSAGE_USAGE);
-            } else {
-                try {
-                    predicates.add(new PropertyAddressPredicate(parsePropertyAddress(addresses.get(0))));
-                } catch (ParseException e) {
-                    throw new ParseException("Wrong address format! \n"
-                            + e.getMessage()
-                            + "\n"
-                            + FindPropertyCommand.MESSAGE_USAGE);
+            List<Predicate<Property>> addressList = new ArrayList<>();
+            try {
+                for (String a : addresses) {
+                    addressList.add(new PropertyAddressPredicate(a));
                 }
+            } catch (IllegalArgumentException e) {
+                throw new ParseException(
+                        "a/ used but no addresses found! \n"
+                        + e.getMessage()
+                        + "\n"
+                        + FindPropertyCommand.MESSAGE_USAGE);
             }
+            predicates.add(new PropertyPredicateList(addressList).combineDisjunction());
         }
 
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
@@ -139,13 +139,10 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
 
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             List<String> deadlines = argMultimap.getAllValues(PREFIX_DEADLINE);
-            if (deadlines.size() > 1) {
-                throw new ParseException("Too many deadlines! Please only use 1 deadline. \n"
-                        + FindPropertyCommand.MESSAGE_USAGE);
-            }
+            List<Predicate<Property>> dateList = new ArrayList<>();
             for (String s : deadlines) {
                 try {
-                    predicates.add(new PropertyDeadlinePredicate(parsePropertyDeadline(s)));
+                    dateList.add(new PropertyDeadlinePredicate(parsePropertyDeadline(s)));
                 } catch (ParseException e) {
                     throw new ParseException("Wrong deadline format! \n"
                             + e.getMessage()
@@ -153,56 +150,61 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
                             + FindPropertyCommand.MESSAGE_USAGE);
                 }
             }
+            predicates.add(new PropertyPredicateList(dateList).combineDisjunction());
         }
 
         if (argMultimap.getValue(PREFIX_TAGS).isPresent()) {
             List<String> tags = argMultimap.getAllValues(PREFIX_TAGS);
+            List<Predicate<Property>> tagList = new ArrayList<>();
             try {
-                tags.forEach(s -> predicates.add(new PropertyTagsPredicate(s)));
+                tags.forEach(s -> tagList.add(new PropertyTagsPredicate(s)));
             } catch (IllegalArgumentException e) {
                 throw new ParseException("Wrong tag format! \n"
                         + e.getMessage()
                         + "\n"
                         + FindPropertyCommand.MESSAGE_USAGE);
             }
+            predicates.add(new PropertyPredicateList(tagList).combineDisjunction());
         }
 
         if (argMultimap.getValue(PREFIX_CLIENT_CONTACT).isPresent()) {
             List<String> contacts = argMultimap.getAllValues(PREFIX_CLIENT_CONTACT);
-            if (contacts.size() > 1) {
-                throw new ParseException("Too many client contacts! Please only use 1 contact. \n"
-                        + FindPropertyCommand.MESSAGE_USAGE);
-            }
+            List<Predicate<Property>> contactList = new ArrayList<>();
             try {
-                contacts.forEach(s -> predicates.add(new PropertyClientContactPredicate(s)));
+                contacts.forEach(s -> contactList.add(new PropertyClientContactPredicate(s)));
             } catch (IllegalArgumentException e) {
                 throw new ParseException("Wrong client contact format! \n"
                         + e.getMessage()
                         + "\n"
                         + FindPropertyCommand.MESSAGE_USAGE);
             }
+            predicates.add(new PropertyPredicateList(contactList).combineDisjunction());
         }
 
         if (argMultimap.getValue(PREFIX_CLIENT_EMAIL).isPresent()) {
             List<String> emails = argMultimap.getAllValues(PREFIX_CLIENT_EMAIL);
+            List<Predicate<Property>> emailList = new ArrayList<>();
             if (emails.size() > 1) {
                 throw new ParseException("Too many client emails! Please only use 1 client email. \n"
                         + FindPropertyCommand.MESSAGE_USAGE);
             }
             try {
-                emails.forEach(s -> predicates.add(new PropertyClientEmailPredicate(s)));
-            } catch (IllegalArgumentException e) {
+                emails.forEach(s -> emailList.add(new PropertyClientEmailPredicate(s)));
+            } catch (NullPointerException e) {
                 throw new ParseException("Wrong client email format! \n"
                         + e.getMessage()
                         + "\n"
                         + FindPropertyCommand.MESSAGE_USAGE);
             }
+            predicates.add(new PropertyPredicateList(emailList).combineDisjunction());
         }
 
         if (argMultimap.getValue(PREFIX_CLIENT_NAME).isPresent()) {
+            List<Predicate<Property>> clientList = new ArrayList<>();
             List<String> names = argMultimap.getAllValues(PREFIX_CLIENT_NAME);
             names.forEach(name ->
-                predicates.add(new PropertyClientNamePredicate(Arrays.asList(name.split("\\s+")))));
+                clientList.add(new PropertyClientNamePredicate(Arrays.asList(name.split("\\s+")))));
+            predicates.add(new PropertyPredicateList(clientList).combineDisjunction());
         }
 
         return new FindPropertyCommand(new PropertyPredicateList(predicates));
