@@ -16,9 +16,8 @@ import seedu.address.model.tag.Tag;
  */
 class JsonAdaptedTag {
 
-    private final String tagName;
-
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedTag.class);
+    private final String tagName;
 
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.

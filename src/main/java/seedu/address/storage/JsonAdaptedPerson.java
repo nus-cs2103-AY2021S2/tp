@@ -189,7 +189,8 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         if (name == null) {
-            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Name.class.getSimpleName()));
         }
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
@@ -198,7 +199,8 @@ class JsonAdaptedPerson {
         final Name modelName = new Name(trimmedName);
 
         if (phone == null) {
-            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Phone.class.getSimpleName()));
         }
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
@@ -207,7 +209,8 @@ class JsonAdaptedPerson {
         final Phone modelPhone = new Phone(trimmedPhone);
 
         if (email == null) {
-            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Email.class.getSimpleName()));
         }
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
@@ -226,7 +229,8 @@ class JsonAdaptedPerson {
         final Birthday modelBirthday = new Birthday(trimmedBirthday);
 
         if (goal == null) {
-            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Goal.class.getSimpleName()));
+            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Goal.class.getSimpleName()));
         }
         String trimmedGoal = goal.trim();
         if (!Goal.isValidGoal(trimmedGoal)) {
@@ -235,7 +239,8 @@ class JsonAdaptedPerson {
         final Goal modelGoal = new Goal(Goal.parseFrequency(trimmedGoal.toLowerCase(Locale.ROOT)));
 
         if (address == null) {
-            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Address.class.getSimpleName()));
         }
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
@@ -249,7 +254,8 @@ class JsonAdaptedPerson {
         }
 
         if (debt == null) {
-            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Debt.class.getSimpleName()));
+            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Debt.class.getSimpleName()));
         }
         String trimmedDebt = debt.trim();
         if (!Debt.isValidDebt(trimmedDebt)) {
@@ -275,7 +281,7 @@ class JsonAdaptedPerson {
                 + ", debt='" + debt + '\''
                 + ", goal='" + goal + '\''
                 + ", address='" + address + '\''
-                + ", picture=" + picture.toString()
+                + ", picture=" + (picture != null ? picture.toString() : null)
                 + ", tagged=" + tagged.toString()
                 + ", dates=" + dates.toString()
                 + ", meetings=" + meetings.toString()

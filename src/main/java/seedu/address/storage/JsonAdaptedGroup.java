@@ -35,7 +35,7 @@ public class JsonAdaptedGroup {
      */
     @JsonCreator
     public JsonAdaptedGroup(@JsonProperty("name") String groupName,
-            @JsonProperty("persons")List<String> personNames) {
+            @JsonProperty("persons") List<String> personNames) {
         this.groupName = groupName;
 
         if (personNames != null) {
@@ -61,7 +61,8 @@ public class JsonAdaptedGroup {
 
     private Name deserializeName(String name) throws IllegalValueException {
         if (name == null) {
-            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Name.class.getSimpleName()));
         }
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
@@ -74,6 +75,7 @@ public class JsonAdaptedGroup {
     /**
      * Converts this Jackson-friendly adapted group object into the model's {@code Group} object.
      * Requires list of person to construct group list.
+     *
      * @param personList actual personList serialised from json file.
      * @throws IllegalValueException if there were any data constraints violated in the adapted group.
      */

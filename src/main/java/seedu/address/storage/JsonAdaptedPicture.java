@@ -17,9 +17,8 @@ import seedu.address.model.person.Picture;
  */
 public class JsonAdaptedPicture {
 
-    private final Path filePath;
-
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedPicture.class);
+    private final Path filePath;
 
     /**
      * Constructs a {@code JsonAdaptedPicture} with the given args.

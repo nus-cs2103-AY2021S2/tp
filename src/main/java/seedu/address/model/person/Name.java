@@ -3,9 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.Arrays;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 /**
  * Represents a Person's name in the address book.
