@@ -19,7 +19,9 @@ public class AliasCommand extends Command {
             + "Parameters: a/ALIAS cmd/COMMAND\n"
             + "Example: " + COMMAND_WORD + " a/rl cmd/rlist";
 
-    public static final String MESSAGE_SUCCESS = "Alias created: %1$s";
+    public static final String MESSAGE_SUCCESS_NEW = "Alias created: %1$s";
+
+    public static final String MESSAGE_SUCCESS_UPDATED = "Alias updated: %1$s";
 
     public static final String MESSAGE_RESERVED_KEYWORD =
             "%1$s is a reserved keyword and cannot be used as an alias";
@@ -58,6 +60,7 @@ public class AliasCommand extends Command {
         if (model.getAliasMapping().isReservedKeyword(aliasName)) {
             throw new CommandException(String.format(MESSAGE_RESERVED_KEYWORD, aliasName));
         }
+        boolean isExisting = model.getAliasMapping().containsAlias(aliasName);
 
         // if the command word is recursive keyword
         String commandWord = alias.getCommand().stripLeading().split("\\s+")[0];
@@ -70,7 +73,10 @@ public class AliasCommand extends Command {
         // update model
         model.addAlias(alias);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, alias.getAliasName()));
+        if (isExisting) {
+            return new CommandResult(String.format(MESSAGE_SUCCESS_UPDATED, alias.getAliasName()));
+        }
+        return new CommandResult(String.format(MESSAGE_SUCCESS_NEW, alias.getAliasName()));
     }
 
     @Override

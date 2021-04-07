@@ -53,8 +53,7 @@ Commands in this user guide follow this format:
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `ilist`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-
+  
 ### Command Parsing
 
 #### Repeated parameters
@@ -103,121 +102,24 @@ This will create the presence of 2 phone number parameters. In such a case, the 
 
 Many SunRez commands use various parameters. Their formats, constraints and rationale are provided in this subsection.
 
-#### `ALIAS_NAME`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
-#### `CATEGORY`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
-#### `COMMAND`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
-#### `COUNT`
-The number of items wanted (from some collection).
-* Must be a positive integer: 1, 2, 3, ...
-* Must be at most the size of the collection of items (this number depends on the relevant collection).
-
-
-#### `DESCRIPTION`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
-#### `EMAIL`
-The email of a resident.
-* Format: local-part@domain.
-* Local-part should only contain alphanumeric characters, and these
-  special characters, excluding the parenthesis (!#$%&'*+/=?`{|}~^.-). 
-* Must contain @. 
-* Domain must be at least 2 characters long, start and end with alphanumeric characters,
-  and consist of alphanumeric characters, a period or a hyphen for the characters in between, 
-  if any.
-* e.g. e0123456@u.nus.edu
-
-
-#### `INDEX`
-The index number shown in the displayed list.
-* Must be a positive integer: 1, 2, 3, ...
-
-
-#### `KEYWORD`
-A keyword used in the various find commands.
-* Format: Single word consisting of any character except spaces.
-* For best usage: Use English characters only.
-
-
-#### `NAME`
-The identifier of a resident.
-* Accepts only alphanumeric characters and spaces.
-* Must not be blank.
-* Must be unique.
-* For best usage, use English characters only.
-
-
-#### `PHONE_NUMBER`
-The phone number of a resident.
-* Must contain only numbers.
-* Must be at least 3 digits long.
-
-
-#### `ROOM_NUMBER`
-Room number for a room.
-* Format: `XY-ABC`, where XY can be any pair of digits except 00, and ABC can be any 3 digits.
-    * Valid examples: 01-000, 11-100, 12-345.
-    * Invalid examples: 00-000, 00-100.
-* Room numbers are unique within SunRez.
-* We disallow floor numbers being 00. However, unit numbers can be 000.
-
-
-#### `ROOM_TYPE`
-Room type of a room.
-* Must be one of the following strings: `corridor_ac`, `corridor_non_ac`, `suite_ac`, `suite_non_ac`.
-* Strings are not case-sensitive.
-
-
-#### `STATUS`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
-#### `TAG`
-The tag associated with a room or issue.
-* Tags must be non-blank and alphanumeric (spaces are not allowed).
-* Tags are limited to 25 characters.
-* Tags are case-sensitive: e.g. `SHN`,`shn` and `Shn` are each considered separate tags.
-* Insertion order of tags does not guarantee display order in any part of the user interface.
-* Duplicate tags will be accepted as input, but only one instance will be recorded.
-* For the best experience, we recommend keeping tags short and having fewer than 20 of them per entry. There is no 
-  theoretical limit to the number of tags an entry can have, but SunRez may slow down or run into unexpected problems 
-  for a huge number of tags.
-
-
-#### `TIMESTAMP`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
-#### `YEAR`
-The year of study of a resident.
-* Must be a single digit numeric character from 1 to 5 inclusive.
+| Parameter | Prefix | Applicable to | Description |
+|---|---|---|---|
+| <a id="alias_name"></a> `ALIAS_NAME` | `a/` | `alias` `unalias` | The name of an alias.{::nomarkdown}<ul><li> Must be alphanumeric. </li><li> Must not be empty. </li><li> Must not be a reserved keyword i.e. names of other system commands. </li></ul>{:/} |
+| <a id="category"></a> `CATEGORY` | `c/` | `iadd` `iedit`| DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
+| <a id="command"></a> `COMMAND` | `cmd/`| `alias` | The command that an alias is short for.{::nomarkdown}  <ul><li> Must not be empty. </li><li> Must not be recursive i.e. contains another alias name. </li></ul>{:/} |
+| <a id="count"></a> `COUNT` | - | `history` | The number of items wanted (from some collection).{::nomarkdown} <ul><li> Must be a positive integer: 1, 2, 3, ... </li><li> Must be at most the size of the collection of items (this number depends on the relevant collection). </li></ul>{:/} |
+| <a id="description"></a> `DESCRIPTION` | `d/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
+| <a id="email"></a> `EMAIL` | `e/` | `radd` `redit` | The email of a resident.{::nomarkdown} <ul><li> Format: local-part@domain. </li><li> Local-part should only contain alphanumeric characters, and these special characters, excluding the parenthesis (!#$%&'*+/=?&#96;{&#124;}~^.-). </li><li> Must contain @. </li><li> Domain must be at least 2 characters long, start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any. </li><li> e.g. e0123456@u.nus.edu </li></ul>{:/} |
+| <a id="index"></a> `INDEX` | - | `redit` `rdel` `oedit` `odel` `iedit` `iclo` `idel` `alloc` `dealloc`| The index number shown in the displayed list.{::nomarkdown} <ul><li> Must be a positive integer: 1, 2, 3, ... </li></ul>{:/} |
+| <a id="keyword"></a> `KEYWORD` | - | `rfind` `ofind` `ifind` | A keyword used in the various find commands.{::nomarkdown} <ul><li> Format: Single word consisting of any character except spaces. </li><li> For best usage: Use English characters only. </li></ul>{:/} |
+| <a id="name"></a> `NAME` | `n/` | `radd` `redit` | The identifier of a resident.{::nomarkdown} <ul><li> Accepts only alphabetic characters and spaces. </li><li> Must not be blank. </li><li> Must be unique. </li></ul>{:/} |
+| <a id="phone_number"></a> `PHONE_NUMBER` | `p/` | `radd` `redit` | The phone number of a resident.{::nomarkdown} <ul><li> Must contain only numbers. </li><li> Must be at least 3 digits long. </li></ul>{:/} |
+| <a id="room_number"></a> `ROOM_NUMBER` | `r/` | `oadd` `oedit` `iadd` `iedit` | Room number for a room.{::nomarkdown} <ul><li> Format: <code>XY-ABC</code>, where XY can be any pair of digits except 00, and ABC can be any 3 digits. <ul><li> Valid examples: 01-000, 11-100, 12-345. </li><li> Invalid examples: 00-000, 00-100. </li></ul> </li><li> Room numbers are unique within SunRez. </li><li> We disallow floor numbers being 00. However, unit numbers can be 000. </li></ul>{:/} |
+| <a id="room_type"></a> `ROOM_TYPE` | `t/` | `oadd` `oedit` | Room type of a room.{::nomarkdown} <ul><li> Must be one of the following strings: <code>corridor_ac</code>, <code>corridor_non_ac</code>, <code>suite_ac</code>, <code>suite_non_ac</code>. </li><li> Strings are not case-sensitive. </li></ul>{:/} |
+| <a id="status"></a> `STATUS` | `s/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
+| <a id="tag"></a> `TAG` | `g/` | `oadd` `oedit` `iadd` `iedit` | The tag associated with a room or issue.{::nomarkdown} <ul><li> Tags must be non-blank and alphanumeric (spaces are not allowed). </li><li> Tags are limited to 25 characters. </li><li> Tags are case-sensitive: e.g. <code>SHN</code>,<code>shn</code> and <code>Shn</code> are each considered separate tags. </li><li> Insertion order of tags does not guarantee display order in any part of the user interface. </li><li> Duplicate tags will be accepted as input, but only one instance will be recorded. </li><li> For the best experience, we recommend keeping tags short and having fewer than 20 of them per entry. There is no theoretical limit to the number of tags an entry can have, but SunRez may slow down or run into unexpected problems for a huge number of tags. </li></ul>{:/} |
+| <a id="timestamp"></a> `TIMESTAMP` | `t/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
+| <a id="year"></a> `YEAR` | `y/` | `radd` `redit` | The year of study of a resident.{::nomarkdown} <ul><li> Must be a single digit numeric character from 1 to 5 inclusive. </li></ul>{:/} |
 
 ## Quick start
 
@@ -617,6 +519,10 @@ Format: `alias a/ALIAS_NAME cmd/COMMAND`
 * Parameters must be in this exact order.
 * Any parameters after `cmd/` will be parsed as part of the command.
 
+Parameters:
+* [`ALIAS_NAME`](#alias_name) The name of the alias to be added.
+* [`COMMAND`](#command) The command that the alias is short for.
+
 Examples:
 * `alias a/ol cmd/olist` Adds the `ol` alias which is a shortcut for `olist` command.
 * `alias a/fNemo cmd/rfind Nemo` Adds the `fNemo` alias which is a shortcut for `rfind Nemo` command.
@@ -627,12 +533,15 @@ Deletes a previously defined alias.
 
 Format: `unalias a/ALIAS_NAME`
 
+Parameters:
+* [`ALIAS_NAME`](#alias_name) The name of the alias to be deleted.
+
 Example:
 * `unalias a/findBob` Deletes the `findBob` alias, provided that the alias was previously added.
 
 #### List all aliases : `aliases`
 
-Shows a list of current aliases in the system sorted by their time of creation.
+Shows a list of current aliases in the system sorted by names in alphabetical order.
 
 Format: `aliases`
 
