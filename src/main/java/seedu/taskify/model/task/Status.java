@@ -10,7 +10,7 @@ import seedu.taskify.logic.parser.exceptions.ParseException;
  */
 public class Status {
 
-    public static final String MESSAGE_CONSTRAINTS = "Status should be 'uncompleted', 'completed' or 'expired'";
+    public static final String MESSAGE_CONSTRAINTS = "Status should be 'uncompleted' or 'completed'";
     public static final String INVALID_STATUS_STRING = "Invalid status!";
 
     private static final String EXPIRED_STRING = "Expired";
@@ -62,8 +62,7 @@ public class Status {
      * Returns true if a given String is a valid status.
      */
     public static boolean isValidStatus(String statusString) {
-        return (statusString.equals(UNCOMPLETED_VALID_INPUT)) || (statusString.equals(EXPIRED_VALID_INPUT))
-                || (statusString.equals(COMPLETED_VALID_INPUT));
+        return (statusString.equals(UNCOMPLETED_VALID_INPUT)) || (statusString.equals(COMPLETED_VALID_INPUT));
     }
 
     /**
