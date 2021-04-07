@@ -288,7 +288,7 @@ Examples:
 
 ### Advancing all students: `levelup`
 
-Advances the education level of all the student contacts by one level, unless the student is excluded.
+Advances the education level of all the student contacts by one grade , unless the student is excluded.
 This feature can be used at the start of the school year.
 
 Format: `levelup ex/[INDEX]...`
@@ -300,7 +300,7 @@ Format: `levelup ex/[INDEX]...`
 * Students who are `jc1` will advance to `graduated` when `levelup` is applied. Students will not 
   advance any further if they are `graduated`.
   
-* If no index is provided, all students will advance by one level (unless they have `graduated`).
+* If no index is provided, all students will advance by one education level (unless they have `graduated`).
   
 * The index refers to the index number shown in the displayed student list. Indexes are used to 
   indicate students who are to be excluded from the advancement.
@@ -318,7 +318,7 @@ Examples:
 
 ### Demoting all students: `leveldown`
 
-Demotes the education level of all the student contacts by one level, unless the student is excluded.
+Demotes the education level of all the student contacts by one grade, unless the student is excluded.
 This feature can be used to undo `levelup` or indicate retainees.
 
 Format: `leveldown ex/[INDEX]...`
@@ -329,7 +329,7 @@ Format: `leveldown ex/[INDEX]...`
 
 * Students who are `pri1` will not demote any further.
   
-* If no index is provided, all students will demote by one level (unless they are `pri1`).
+* If no index is provided, all students will be demoted by one education level (unless they are `pri1`).
   
 * The index refers to the index number shown in the displayed student list. Indexes are used to
   indicate students who are to be excluded from the demotion.
