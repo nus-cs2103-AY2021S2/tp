@@ -270,13 +270,17 @@ GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanc
 
 Action | Format, Examples
 --------|------------------
+**help** | `help`
 **add** | `add n/NAME p/PHONE a/ADDRESS d/DAY t/TIME [tag/TAG]` <br> e.g., `add n/Jenny Talia p/91234567 a/Yishun Avenue 4 d/FRIDAY t/1800 tag/female`
-**list** | `list`
+**list** | `list` 
 **edit** | `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]` <br> e.g., `edit 8 a/Changi Airport d/SATURDAY`
 **delete** | `delete INDEX`<br> e.g.,`delete 3`
 **pool** | `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`<br> e.g., `drive n/Ben p/91234567 c/2 c/3 c/4`
 **unpool** | `unpool INDEX`<br> e.g, `unpool 3`
 **find** | `find a/ADDRESS` or `find n/NAME` or `find p/PHONE NUMBER` or `find tag/TAG` <br> e.g., `find tag/female`
+**findPool** | `findPool n/PASSENGER_NAME` <br> eg., `findpool n/Alex`
+**clear** | `clear`
+**exit** | `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
