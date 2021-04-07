@@ -253,7 +253,7 @@ Step 3. `Model#updateFilteredEndpointList` will be called and model will be upda
 The following activity diagram summarizes what happens when a user executes a find command:
 
 <p align="center">
-  <img src="images/FindActivityDiagram.png" alt="FindActivityDiagram" />
+  <img src="images/FindActivityDiagram.png" alt="FindActivityDiagram" width="450px" />
 </p>
 
 ### Send/run command feature
@@ -291,7 +291,7 @@ The `run` command deploys a similar trick but for an endpoint specified directly
 
 The following activity diagram summarizes what happens when a user executes a run command:
 <p align="center">
-  <img alt="RunActivityDiagram" src="images/RunActivityDiagram.png"/>
+  <img alt="RunActivityDiagram" src="images/RunActivityDiagram.png" width="300px"/>
 </p>
 #### Design consideration:
 
@@ -345,7 +345,10 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 The following activity diagram summarizes what happens when a user executes a `send` command for an endpoint with a `GET` request:
 <br/>
-![RequestActivityDiagram](images/RequestActivityDiagram.png)
+<p align="center">
+  <img alt="RequestActivityDiagram" url="images/RequestActivityDiagram.png"/>
+</p>
+
 #### Design consideration:
 
 ##### Aspect: How request executes
