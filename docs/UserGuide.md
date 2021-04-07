@@ -40,28 +40,72 @@ Commands in this user guide follow this format:
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `ilist`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-### Glossary of parameters
+### Command parsing
+
+#### Repeated parameters
+All commands in SunRez default to taking the latest occurrence of a duplicate parameter **except [tags](#tag)**. 
+For example, if you key in this command:
+
+`radd n/John Doe n/Timmy Tan p/91234567 e/e0123456@u.nus.edu y/3`
+
+The resident's name will take the **later** occurrence of name and create a resident named "Timmy Tan".
+
+On the other hand, **all** [tags](#tag) specified will be taken. 
+
+For instance, `radd n/John Doe n/Timmy Tan p/91234567 e/e0123456@u.nus.edu y/3 g/tag_one g/tag_two g/tag_three` will create a resident with tags `tag_one`, `tag_two` and `tag_three`.
+
+
+#### Interpreting parameter values
+Commands in SunRez have a pre-set parameter list they accept. The value for the parameter will be all characters 
+until the next occurrence of a parameter prefix for the command.
+For example, if you key in this command:
+
+`radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3`
+
+The resident's name will be all characters that follows `n/` until just before the start of `p/`, including the space. Most commands, however, trim leading and trailing spaces.
+
+Let us break this down further and assume `radd` only takes in 2 parameters for the purposes of explanation. 
+We can break the command down as follows:
+
+`radd n/[NAME_STRING] p/[PHONE_NUM_STRING]`
+
+A user can enter a `NAME_STRING` that consists of anything, including text that contains prefix-like strings such as `s/`. 
+For example, a user could enter `John s/o Tom`. 
+However, as `s/` is not a valid prefix for the `radd` command, the command parser will treat `John s/o Tom` as the value for the name parameter. 
+
+
+The validation for the `Name` parameter will process `John s/o Tom` and may reject it based on the stated validation rules.
+However, a known limitation of this approach is that parameter values containing valid parameter prefixes will cause issues. 
+
+Let us take a look at another example:
+
+If `NAME_STRING` = `John p/ Tom`, the command keyed in could look like `radd p/[VALID_PHONE_NUM] n/John p/ Tom` (Remember that prefix order does not matter.) 
+
+This will create the presence of 2 phone number parameters. In such a case, the latter value will be taken. As `Tom` is not a valid phone number, it will be rejected.
+
+
+### Command Parameters
 
 Many SunRez commands use various parameters. Their formats, constraints and rationale are provided in this subsection.
 
 | Parameter | Prefix | Applicable to | Description |
 |---|---|---|---|
-| `ALIAS_NAME` | `a/` | `alias` `unalias` | The name of an alias. <ul><li> Must be alphanumeric. </li><li> Must not be a reserved keyword i.e. names of other system commands. </li></ul> |
-| `CATEGORY` | `c/` | `iadd` `iedit`| DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
-| `COMMAND` | `cmd/`| `alias` | The command that an alias is short for.  <ul><li> Must not be empty. </li></ul> |
-| `COUNT` | - | `history` | The number of items wanted (from some collection). <ul><li> Must be a positive integer: 1, 2, 3, ... </li><li> Must be at most the size of the collection of items (this number depends on the relevant collection). </li></ul> |
-| `DESCRIPTION` | `d/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
-| `EMAIL` | `e/` | `radd` `redit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
-| `INDEX` | `-` | `redit` `rdel` `oedit` `odel` `iedit` `iclo` `idel` `alloc` `dealloc`| DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
-| `KEYWORD` | `-` | `rfind` `ofind` `ifind` | A keyword used in the various find commands. <ul><li> Format: Single word consisting of any character except spaces. </li><li> For best usage: Use English characters only. </li></ul> |
-| `NAME` | `n/` | `radd` `redit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
-| `PHONE_NUMBER` | `p/` | `radd` `redit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
-| `ROOM_NUMBER` | `r/` | `oadd` `oedit` `iadd` `iedit` | Room number for a room. <ul><li> Format: `XY-ABC`, where XY can be any pair of digits except 00, and ABC can be any 3 digits. <ul><li> Valid examples: 01-000, 11-100, 12-345. </li><li> Invalid examples: 00-000, 00-100. </li></ul> </li><li> Room numbers are unique within SunRez. </li><li> We disallow floor numbers being 00. However, unit numbers can be 000. </li></ul> |
-| `ROOM_TYPE` | `t/` | `oadd` `oedit` | Room type of a room. <ul><li> Must be one of the following strings: `corridor_ac`, `corridor_non_ac`, `suite_ac`, `suite_non_ac`. </li><li> Strings are not case-sensitive. </li></ul> |
-| `STATUS` | `s/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
-| `TAG` | `g/` | `oadd` `oedit` `iadd` `iedit` | The tag associated with a room or issue. <ul><li> Tags must be non-blank and alphanumeric (spaces are not allowed). </li><li> Tags are limited to 25 characters. </li><li> Tags are case-sensitive: e.g. `SHN`,`shn` and `Shn` are each considered separate tags. </li><li> Insertion order of tags does not guarantee display order in any part of the user interface. </li><li> Duplicate tags will be accepted as input, but only one instance will be recorded. </li><li> For the best experience, we recommend keeping tags short and having fewer than 20 of them per entry. There is no theoretical limit to the number of tags an entry can have, but SunRez may slow down or run into unexpected problems for a huge number of tags. </li></ul> |
-| `TIMESTAMP` | `t/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
-| `YEAR` | `y/` | `radd` `redit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
+| <a id="alias_name"></a> `ALIAS_NAME` | `a/` | `alias` `unalias` | The name of an alias. <ul><li> Must be alphanumeric. </li><li> Must not be empty. </li><li> Must not be a reserved keyword i.e. names of other system commands. </li></ul> |
+| <a id="category"></a> `CATEGORY` | `c/` | `iadd` `iedit`| DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
+| <a id="command"></a> `COMMAND` | `cmd/`| `alias` | The command that an alias is short for.  <ul><li> Must not be empty. </li><li> Must not be recursive i.e. contains another alias name. </li></ul> |
+| <a id="count"></a> `COUNT` | - | `history` | The number of items wanted (from some collection). <ul><li> Must be a positive integer: 1, 2, 3, ... </li><li> Must be at most the size of the collection of items (this number depends on the relevant collection). </li></ul> |
+| <a id="description"></a> `DESCRIPTION` | `d/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
+| <a id="email"></a> `EMAIL` | `e/` | `radd` `redit` | The email of a resident. <ul><li> Format: local-part@domain. </li><li> Local-part should only contain alphanumeric characters, and these special characters, excluding the parenthesis (!#$%&'*+/=?`{|}~^.-). </li><li> Must contain @. </li><li> Domain must be at least 2 characters long, start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any. </li><li> e.g. e0123456@u.nus.edu </li></ul> |
+| <a id="index"></a> `INDEX` | `-` | `redit` `rdel` `oedit` `odel` `iedit` `iclo` `idel` `alloc` `dealloc`| The index number shown in the displayed list. <ul><li> Must be a positive integer: 1, 2, 3, ... </li></ul> |
+| <a id="keyword"></a> `KEYWORD` | `-` | `rfind` `ofind` `ifind` | A keyword used in the various find commands. <ul><li> Format: Single word consisting of any character except spaces. </li><li> For best usage: Use English characters only. </li></ul> |
+| <a id="name"></a> `NAME` | `n/` | `radd` `redit` | The identifier of a resident. <ul><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be blank. </li><li> Must be unique. </li><li> For best usage, use English characters only. </li></ul> |
+| <a id="phone_number"></a> `PHONE_NUMBER` | `p/` | `radd` `redit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
+| <a id="room_number"></a> `ROOM_NUMBER` | `r/` | `oadd` `oedit` `iadd` `iedit` | Room number for a room. <ul><li> Format: `XY-ABC`, where XY can be any pair of digits except 00, and ABC can be any 3 digits. <ul><li> Valid examples: 01-000, 11-100, 12-345. </li><li> Invalid examples: 00-000, 00-100. </li></ul> </li><li> Room numbers are unique within SunRez. </li><li> We disallow floor numbers being 00. However, unit numbers can be 000. </li></ul> |
+| <a id="room_type"></a> `ROOM_TYPE` | `t/` | `oadd` `oedit` | Room type of a room. <ul><li> Must be one of the following strings: `corridor_ac`, `corridor_non_ac`, `suite_ac`, `suite_non_ac`. </li><li> Strings are not case-sensitive. </li></ul> |
+| <a id="status"></a> `STATUS` | `s/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
+| <a id="tag"></a> `TAG` | `g/` | `oadd` `oedit` `iadd` `iedit` | The tag associated with a room or issue. <ul><li> Tags must be non-blank and alphanumeric (spaces are not allowed). </li><li> Tags are limited to 25 characters. </li><li> Tags are case-sensitive: e.g. `SHN`,`shn` and `Shn` are each considered separate tags. </li><li> Insertion order of tags does not guarantee display order in any part of the user interface. </li><li> Duplicate tags will be accepted as input, but only one instance will be recorded. </li><li> For the best experience, we recommend keeping tags short and having fewer than 20 of them per entry. There is no theoretical limit to the number of tags an entry can have, but SunRez may slow down or run into unexpected problems for a huge number of tags. </li></ul> |
+| <a id="timestamp"></a> `TIMESTAMP` | `t/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
+| <a id="year"></a> `YEAR` | `y/` | `radd` `redit` | The year of study of a resident. <ul><li> Must be a single digit numeric character from 1 to 5 inclusive. </li></ul> |
 
 ## Quick start
 
@@ -100,7 +144,12 @@ This section contains the details on SunRez commands and features.
 Adds a resident to the housing management system.
 
 Format: `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR`
-* `NAME` is the unique identifier of a resident.
+
+Parameters:
+* [NAME](#name) The name of the resident.
+* [PHONE_NUMBER](#phone_number) The phone number of the resident.
+* [EMAIL](#email) The email of the resident.
+* [YEAR](#year) The year of the resident.
 
 Examples:
 * `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3` Adds a resident named `John Doe` with phone number `91234567`, email `e0123456@u.nus.edu`, and as a 3rd year student, without any room allocated.
@@ -126,22 +175,29 @@ Format: `rfind KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `rfind john` returns `john` and `John Doe`.
-* `rfind alex david` returns `Alex Yeoh`, `Alexander Graham`, and `David Li`.
+* `rfind alex david` returns `Alex Yeoh`, and `David Li`.
 
 
 #### Edit a resident record : `redit`
 
 Edits the existing resident record at a specified index.
 
-Format: `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]`
-* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer: 1, 2, 3, …**.
+Format: `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * `redit` will be blocked if the resident has an active room allocation. Run `dealloc` before making further edits.
-e.g. `dealloc n/John Tan r/03-100`.
+  See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
+
+Parameters:
+* [INDEX](#index) The index of the displayed resident.
+* [NAME](#name) The name of the resident.
+* [PHONE_NUMBER](#phone_number) The phone number of the resident.
+* [EMAIL](#email) The email of the resident.
+* [YEAR](#year) The year of the resident.
 
 Example:
 * `redit 1 p/91234567 e/e0123456@u.nus.edu` Edits the phone number and email address of the 1st resident to be `91234567` and `e0123456@u.nus.edu` respectively.
+  
 
 
 #### Delete a resident : `rdel`
@@ -149,9 +205,11 @@ Example:
 Deletes the resident record at a specified index.
 
 Format: `rdel INDEX`
-* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
-*  A resident allocated to a room cannot be deleted until it is first deallocated. Run `dealloc` commmand before deletion.
-e.g. `dealloc n/John Tan r/03-100`.
+*  A resident allocated to a room cannot be deleted until it is first deallocated. Run `dealloc` commmand before deletion. 
+   See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
+
+Parameters: 
+* [INDEX](#index) The index of the displayed resident.
 
 Example:
 * `rdel 1` deletes the 1st resident in the resident list.
@@ -177,7 +235,7 @@ Format: `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]`
 * Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info. 
   
 Parameters:
-* [ROOM_NUMBER](#room_nu) The room number of the room to add.
+* [ROOM_NUMBER](#room_number) The room number of the room to add.
 * [ROOM_TYPE](#room_type) The type of the room being added.
 * [TAG](#tag) Optional tags that may be specified to assist in management of the room.
 
@@ -224,8 +282,7 @@ Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
 * Existing values will be updated to the input values.
 * `oedit` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before making further edits.
 * The occupancy status is not controllable through the `oedit` command.
-* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.   
-
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
 
 Parameters:
 * [INDEX](#index) The index of the room to edit.
@@ -244,6 +301,7 @@ Deletes the room at a specified index.
 Format: `odel INDEX`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
 * `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room.
+  See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
 
 Parameters:
 * [INDEX](#index) The index of the room to delete.
@@ -259,24 +317,30 @@ Shows a list of all unallocated residents in the system sorted by alphabetical o
 
 Format: `rulist`
 
-#### Allocate resident to room: `alloc`
+#### Allocate resident to room : `alloc`
 Allocates an existing resident to an existing room.
 
-Format: `alloc n/NAME r/ROOM_NUMBER`
-* `NAME` and `ROOM_NUMBER` must already exist.
-* Exact match for `NAME` is required.
-* `NAME` is case-sensitive.
+Format: `alloc ri/RESIDENT_INDEX oi/ROOM_INDEX`
 * Both fields must be provided.
 
-Example:
-* `alloc r/John Tan n/03-100` Allocates resident named John Tan to room 03-100.
+Parameters:
+* [RESIDENT_INDEX](#index) The index of the displayed resident.
+* [ROOM_INDEX](#index) The index of the displayed room.
 
-#### Deallocate resident from room: `dealloc`
+Note that RESIDENT_INDEX and ROOM_INDEX both conform to [INDEX](#index). 
+
+Example:
+* `alloc ri/1 oi/2` Allocates the 1st resident in the resident list to the 2nd room in the room list.
+
+#### Deallocate resident from room : `dealloc`
 Deallocates an existing resident from an existing room.
 
 Format: `dealloc INDEX`
-* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
 * The resident at the `INDEX` must already be allocated.
+
+Parameters:
+* [INDEX](#index) The index of the displayed resident.
+
 
 Example:
 * `dealloc 1` Deallocates the 1st resident in the resident list from its allocated room.
@@ -441,6 +505,10 @@ Format: `alias a/ALIAS_NAME cmd/COMMAND`
 * Parameters must be in this exact order.
 * Any parameters after `cmd/` will be parsed as part of the command.
 
+Parameters:
+* [`ALIAS_NAME`](#alias_name) The name of the alias to be added.
+* [`COMMAND`](#command) The command that the alias is short for.
+
 Examples:
 * `alias a/ol cmd/olist` Adds the `ol` alias which is a shortcut for `olist` command.
 * `alias a/fNemo cmd/rfind Nemo` Adds the `fNemo` alias which is a shortcut for `rfind Nemo` command.
@@ -450,6 +518,9 @@ Examples:
 Deletes a previously defined alias.
 
 Format: `unalias a/ALIAS_NAME`
+
+Parameters:
+* [`ALIAS_NAME`](#alias_name) The name of the alias to be deleted.
 
 Example:
 * `unalias a/findBob` Deletes the `findBob` alias, provided that the alias was previously added.
@@ -540,15 +611,15 @@ Action | Format, Examples
 **List all residents** | `rlist`
 **List all unallocated residents** | `rulist`
 **Find residents** | `rfind KEYWORD [MORE_KEYWORDS]` <br> e.g. `rfind bob bobby`
-**Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
+**Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
 **Delete a resident** |  `rdel INDEX` <br> e.g. `rdel 1`
 **Add a room** |  `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]` <br> e.g. `oadd r/17-101 t/corridor_ac g/SHN`
 **List all rooms** |  `olist`
 **Find rooms** |  `ofind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ofind 10- 15-`
 **Edit a room record** |  `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]` <br> e.g. `oedit 1 g/SHN`
 **Delete a room** | `odel INDEX` <br> e.g. `odel 1`
-**Allocate a Resident to Room** | `alloc n/NAME r/ROOM_NUMBER` <br> e.g. `alloc n/John Tan r/03-100`
-**Deallocate a Resident from Room** | `dealloc n/NAME r/ROOM_NUMBER` <br> e.g. `dealloc n/John Tan r/03-100`
+**Allocate a Resident to Room** | `alloc ri/RESIDENT_INDEX oi/ROOM_INDEX` <br> e.g. `alloc ri/1 oi/2`
+**Deallocate a Resident from Room** | `dealloc INDEX` <br> e.g. `dealloc 1`
 **Add an open issue** | `iadd r/ROOM_NUMBER d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture g/HIGH`
 **List all issues** | `ilist`
 **Find issues** | `ifind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ifind wardrobe table`
