@@ -127,7 +127,9 @@ This section discusses the main semantics and purpose of the design of The Food 
 * Refer to the `help` feature below for more information.
 
 ### View & Revise Window
+
 * These windows are described in detail in the `view` and `revise` features below respectively.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
