@@ -151,7 +151,7 @@ Example: `help`
 <a name="addMember"></a>
 ### 1. Add Member: `addMember`
 
-With new members joining the club, you can add a new member along with his/ her contact number to the contact list.
+With new members joining the club, you can add a new member along with his/her contact number to the contact list.
 
 Format: `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]`
 
