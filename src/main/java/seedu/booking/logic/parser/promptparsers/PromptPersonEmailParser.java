@@ -19,7 +19,8 @@ public class PromptPersonEmailParser implements Parser<PromptPersonEmailCommand>
         Email email;
 
         if (!Email.isValidEmail(args.trim())) {
-            throw new ParseException(MESSAGE_INVALID_EMAIL_FORMAT + PROMPT_MESSAGE_TRY_AGAIN);
+            throw new ParseException(MESSAGE_INVALID_EMAIL_FORMAT
+                    + Email.MESSAGE_CONSTRAINTS + PROMPT_MESSAGE_TRY_AGAIN);
         }
 
         email = ParserUtil.parseEmail(args);

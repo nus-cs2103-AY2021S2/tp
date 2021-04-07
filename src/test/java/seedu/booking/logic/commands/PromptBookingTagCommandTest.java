@@ -2,6 +2,7 @@ package seedu.booking.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 import static seedu.booking.commons.core.Messages.PROMPT_START_MESSAGE;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_START;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_TAG;
@@ -33,7 +34,7 @@ public class PromptBookingTagCommandTest {
     @Test
     void execute() {
         PromptBookingTagsCommand command = new PromptBookingTagsCommand(new HashSet<>());
-        CommandResult expectedResult = new CommandResult(PROMPT_START_MESSAGE);
+        CommandResult expectedResult = new CommandResult(PROMPT_START_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
         CommandResult result;
         try {
             result = command.execute(model);

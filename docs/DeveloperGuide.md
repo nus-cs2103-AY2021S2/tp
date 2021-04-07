@@ -623,43 +623,50 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
       
 ### Adding a person
-1. Adding a person to the booking system
+1. A multi-step command to add a person to the booking system
     1. Prerequisites: list all persons using the `list_person` command. A person with the same email address and/or phone number cannot already exist. If it is present as a record in the system, delete it.
 
-    2. Test case: `add n/John Doe e/johnd@example.com `<br>
+    2. Test case: `add_person n/John Doe` followed by `johnd@example.com `<br>
        Expected: There should be an error stating that the booking command is invalid. This is due to a missing phone number.
 
-    3. Test case: `add n/John Doe p/98765432`<br>
-       Expected: There should be an error stating that the booking command is invalid. This is due to a missing email.
+    3. Test case: `add_person n/John Doe` followed by `johnd@`<br>
+       Expected: There should be an error stating that the booking command is invalid. This is due to the wrong format of the email, and a missing phone number.
 
-    4. Test case: `add n/John Doe p/98765432 e/johnd@example.com `<br>
-       Expected: A new person by the name John Doe, with phone number 98765432 and email address johnd@example.com is added into the booking system.
+    4. Test case: `add_person n/John Doe` followed by `johnd@example.com` followed by `98765432` <br>
+       Expected: A new person by the name John Doe, with email address johnd@example.com and phone number 98765432 is added into the booking system.
+
+    5. Test case: `add_person n/John Doe` followed by `johnd@example.com` followed by `98765432` followed by `student`<br>
+      Expected: A new person by the name John Doe, with email address johnd@example.com, phone number 98765432 and tag student is added into the booking system.
+
 
 ### Adding a venue
-1. Adding a venue to the booking system
+1. A multi-step command to add a venue to the booking system
     1. Prerequisites: list all venues using the `list_venue` command. A venue by the same name cannot already exist. If it is present as a record in the system, delete it.
 
     2. Test case: `add_venue v/Victoria Hall`<br>
-    Expected: Victoria Hall should appear in the list of venues. The default capacity should be set to 10 as it was unspecified in the command, and there should be no description.
+    Expected: Victoria Hall should appear in the list of venues. The default capacity should be set to 10 as it was unspecified in the command, and there should be no description or tag.
 
-    3. Test case: `add_venue v/Victoria Hall max/50`<br>
-    Expected: Victoria Hall should appear in the list of venues with a capacity indicated to be 50. No description should be present.
+    3. Test case: `add_venue v/Victoria Hall` followed by `50`<br>
+    Expected: Victoria Hall should appear in the list of venues with a capacity indicated to be 50. No description or tag should be present.
 
-    4. Test case: `add_venue v/Victoria Hall d/Popular concert hall`<br>
-    Expected: Victoria Hall should appear in the list of venues with a description "Popular concert hall". Capacity should be set to a default of 10.
+    4. Test case: `add_venue v/Victoria Hall` followed by `50` followed by `Popular concert hall`<br>
+    Expected: Victoria Hall should appear in the list of venues with a capacity indicated to be 50, and a description "Popular concert hall". There should be no tag.
+
+    5. Test case: `add_venue v/Victoria Hall` followed by `50` followed by `Popular concert hall` followed by `indoors`<br>
+    Expected: Victoria Hall should appear in the list of venues with a capacity indicated to be 50, a description "Popular concert hall", and a tag "indoors".
        
 ### Adding a booking
-1. Adding a booking for Victoria Hall
-    1. Prerequisites: a venue by the same name already exists and a venue by the name of Hall does not exist. If it is not present as a record in the system, create one. Similarly for the email of a person booking, create one if not present
+1. A multi-step command to add a booking for Victoria Hall
+    1. Prerequisites: a venue by the same name already exists, and a venue by the name of Hall does not exist. If it is not present as a record in the system, create one. Similarly, for the email of a person booking, create one if not present
 
-    2. Test case: `create_booking b/example@gmail.com v/Hall d/For FYP Meeting. bs/2012-01-31 22:59:59 be/2012-01-31 23:59:59`<br>
+    2. Test case: `add_booking` followed by `example@gmail.com` followed by `Hall` followed by `For FYP Meeting` followed by `2012-01-31 22:59` followed by `2012-01-31 23:59` followed by `meeting`<br>
     Expected: There should be an error stating that the venue does not exist in the system
 
-    3. Test case: `create_booking v/Victoria Hall d/For FYP Meeting. bs/2012-01-31 22:59:59 be/2012-01-31 23:59:59`<br>
-    Expected: There should be an error stating that the the booking command is invalid. This is due to a missing email.
+    3. Test case: `add_booking` followed by `example@gmail.com` followed by `Victoria Hall` followed by `For FYP Meeting` followed by `2012-02-01 22:59` followed by `2012-01-31 23:59` followed by `meeting`<br>
+    Expected: There should be an error stating that the starting time of a booking should not be later than its ending time.
 
-    4. Test case: `create_booking b/example@gmail.com v/Hall d/For FYP Meeting. bs/2012-01-31 22:59:59 be/2012-01-31 23:59:59`<br>
-    Expected: A booking for Victoria Hall should appear in the list of bookings with a description "For FYP Meeting." with a date range from 31st Jan 2012, 22:59:59 to 23:59:59.
+    4. Test case: `add_booking` followed by `example@gmail.com` followed by `Victoria Hall` followed by `For FYP Meeting` followed by `2012-01-31 22:59` followed by `2012-01-31 23:59` followed by `meeting`<br>
+    Expected: A booking for Victoria Hall should appear in the list of bookings with a description "For FYP Meeting.", a date range from 31st Jan 2012, 22:59 to 23:59 and a tag "meeting".
 
 ### Deleting a person
 
