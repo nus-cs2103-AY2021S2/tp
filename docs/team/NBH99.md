@@ -33,9 +33,9 @@ Given below are my contributions to the project.
     * User Guide:
         * Added documentation for the features `sort` and `meet`: [\#41](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/41), [\#74](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/74)
     * Developer Guide:
-        * Added implementation details of the `sort` and `meet` features:
+        * Added implementation details of the `sort` and `meet` features: [\#177](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/177)
         * Added user stories and use cases: [\#21](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/21), [\#84](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/84)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#24](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/24), [\#40](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/40), [\#42](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/42), [\#43](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/43), [\#98](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/98), [\#101](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/101)
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
+    * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/NBH99/ped/issues))

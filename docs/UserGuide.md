@@ -503,12 +503,11 @@ If a parameter is expected only once in the command, but you specified it multip
 **Format**: `sort -IDENTIFIER -DIRECTION`
 
 * Sorts the list of clients according to the specified `IDENTIFIER` and `DIRECTION`.
-* Only names of the clients and number of insurance policies can be sorted.
 * The specified `IDENTIFIER` can be `-n` to sort by name alphabetically or `-i` to sort by number of insurance policies, but not both.
 * The specified `DIRECTION` can be `-asc` for ascending order or `-des` for descending order, but not both.
 
 **Examples**:
-* Sort the current list of clients by number of insurance policies in **descending** order.
+* Sort the current list of clients by name in **descending** number of insurance policies.
     * `sort -i -des`
 
 * Sort the current list of clients by name in **descending** alphabetical order.
@@ -534,11 +533,8 @@ If a parameter is expected only once in the command, but you specified it multip
 * `DATE` must be in the `DD:MM:YYYY` format.
 * `START` and `END` must be in the `HH:MM` format.
 * `END` must be after `START` on the same `DATE`.
-* `END` of one meeting cannot be the same as `START` of another meeting on the same `DATE`.
-* Past meeting is allowed to be added for archive purposes.
 * `PLACE` cannot be empty.
 * There is a check for clashes between meetings when adding a new meeting.
-* Meetings can be modified with the `edit` command, but there will be no check for clashes.
 
 **Examples**:
 * Add a meeting and there are no clashes.
@@ -552,7 +548,7 @@ If a parameter is expected only once in the command, but you specified it multip
       ![meet-clash](images/meet-clash.png)
 
 * Delete a meeting.
-    * `meet 5 -delete 25.05.2021 12:00 13:00 KENT RIDGE MRT`
+    * `meet 1 -delete 20.05.2021 15:00 16:00 MRT`
 
 * Clear all meetings.
     * `meet 2 -clear`
