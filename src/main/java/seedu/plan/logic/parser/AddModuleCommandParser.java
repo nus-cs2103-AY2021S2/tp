@@ -6,11 +6,11 @@ import static seedu.plan.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.plan.logic.parser.CliSyntax.PREFIX_PLAN_NUMBER;
 import static seedu.plan.logic.parser.CliSyntax.PREFIX_SEM_NUMBER;
 
+import java.util.stream.Stream;
+
 import seedu.plan.commons.core.index.Index;
 import seedu.plan.logic.commands.AddModuleCommand;
 import seedu.plan.logic.parser.exceptions.ParseException;
-
-import java.util.stream.Stream;
 
 public class AddModuleCommandParser implements Parser<AddModuleCommand> {
 
