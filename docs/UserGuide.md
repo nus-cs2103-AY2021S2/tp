@@ -3,13 +3,14 @@ layout: page
 title: User Guide
 ---
 
-TutorsPet is a **desktop app designed for private tutors to manage students’ information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of lesson schedules.
+TutorsPet is a **desktop app designed for private tutors in Singapore to manage students’ information, optimized for use via a Command Line Interface** 
+(CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of lesson schedules.
 
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
 ## About
-This document can be thought of as a manual and a reference guide for TutorPets. It will guide you on how to use TutorPets and will provide complete information on each available command.
+This document can be thought of as a manual, and a reference guide for TutorPets. It will guide you on how to use TutorPets and will provide complete information on each available command.
 Furthermore, the guide gives information on the User Interface (UI) and the other useful features of TutorPets. Each section of the guide can be read independently.
 You can view the full list of content using the Table of Contents above. You can also use your document viewer’s Find function to quickly navigate to the content you want to know more about.
 
@@ -291,8 +292,10 @@ Examples:
 
 ### Advancing all students: `levelup`
 
-Advances the education level of all the student contacts by one grade , unless the student is excluded.
-This feature can be used at the start of the school year.
+Advances the education level of all the student contacts by one grade by default, unless the student is excluded.
+This feature can be used to do a mass update all the student's levels at the start of the school year.
+
+If only some students' levels need to be changed, [edit](#editing-a-contact-:-edit) can be used instead.
 
 Format: `levelup ex/[INDEX]...`
 
@@ -303,7 +306,8 @@ Format: `levelup ex/[INDEX]...`
 * Students who are `jc1` will advance to `graduated` when `levelup` is applied. Students will not 
   advance any further if they are `graduated`.
   
-* If no index is provided, all students will advance by one education level (unless they have `graduated`).
+* If the `ex/` prefix is not used, all students will advance by one education level (unless they have `graduated`).
+Once `ex/` prefix is used, the index field cannot be left blank.
   
 * The index refers to the index number shown in the displayed student list. Indexes are used to 
   indicate students who are to be excluded from the advancement.
@@ -321,8 +325,10 @@ Examples:
 
 ### Demoting all students: `leveldown`
 
-Demotes the education level of all the student contacts by one grade, unless the student is excluded.
-This feature can be used to undo `levelup` or indicate retainees.
+Demotes the education level of all the student contacts by one grade by default, unless the student is excluded.
+This feature can be used to do a mass undo of `levelup` or indicate retainees. 
+
+If only some students' levels need to be changed, [edit](#editing-a-contact-:-edit) can be used instead.
 
 Format: `leveldown ex/[INDEX]...`
 
@@ -331,8 +337,9 @@ Format: `leveldown ex/[INDEX]...`
 :bulb:**Tips:** <br>
 
 * Students who are `pri1` will not demote any further.
-  
-* If no index is provided, all students will be demoted by one education level (unless they are `pri1`).
+
+* If the `ex/` prefix is not used, all students will advance by one education level (unless they have `graduated`).
+  Once `ex/` prefix is used, the index field cannot be left blank.
   
 * The index refers to the index number shown in the displayed student list. Indexes are used to
   indicate students who are to be excluded from the demotion.

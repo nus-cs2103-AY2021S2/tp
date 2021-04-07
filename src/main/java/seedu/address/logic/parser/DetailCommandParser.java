@@ -22,7 +22,8 @@ public class DetailCommandParser implements Parser<DetailCommand> {
             return new DetailCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DetailCommand.MESSAGE_USAGE), pe);
+                    // String.format(MESSAGE_INVALID_COMMAND_FORMAT, DetailCommand.MESSAGE_USAGE), pe);
+                    String.format(pe.getMessage(), DetailCommand.MESSAGE_USAGE), pe);
         }
     }
 

@@ -44,7 +44,8 @@ public class LevelUpCommandParser {
                 index = ParserUtil.parseIndex(indexStrings.get(i));
             } catch (ParseException pe) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, LevelUpCommand.MESSAGE_USAGE), pe);
+                        // String.format(MESSAGE_INVALID_COMMAND_FORMAT, LevelUpCommand.MESSAGE_USAGE), pe);
+                        String.format(pe.getMessage(), LevelUpCommand.MESSAGE_USAGE), pe);
             }
             indices.add(index);
         }

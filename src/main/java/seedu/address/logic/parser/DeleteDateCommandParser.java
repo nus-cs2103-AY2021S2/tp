@@ -22,7 +22,8 @@ public class DeleteDateCommandParser {
             return new DeleteDateCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteDateCommand.MESSAGE_USAGE), pe);
+                // String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteDateCommand.MESSAGE_USAGE), pe);
+                String.format(pe.getMessage(), DeleteDateCommand.MESSAGE_USAGE), pe);
         }
     }
 }

@@ -28,6 +28,7 @@ import seedu.address.model.subject.Subject;
  */
 public class ParserUtil {
 
+    // public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String INPUT_FORMAT = "yyyy-MM-dd HHmm";
 

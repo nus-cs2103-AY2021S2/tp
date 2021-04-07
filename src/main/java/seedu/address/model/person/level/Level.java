@@ -89,12 +89,12 @@ public class Level implements Comparable<Level> {
     public void levelUp() {
         int nextIndex;
         String nextLevel;
-        if (levelIndex != 12) {
+        if (levelIndex < LEVEL_LIST.size() - 1) {
             nextIndex = levelIndex + 1;
             nextLevel = LEVEL_LIST.get(nextIndex);
         } else {
             // Student graduated
-            nextIndex = 12;
+            nextIndex = 13;
             nextLevel = LEVEL_LIST.get(nextIndex);
         }
         this.level = nextLevel;
