@@ -510,6 +510,13 @@ Education level         | `lv/`  | N        | Fixed format: <br>Primary School: 
 Subject                 | `t/`   | N        | Can have any number of inputs (including 0)<br><br>Fixed format: <br> Languages: `cn`, `eng`<br>Mathematics & Sciences: `math`, `bio`, `chem`, `phys`, `sci`<br>Humanities: `econ`, `geo`, `hist`<br><br>Represents subjects Chinese, English, Mathematics, Biology, Chemistry, Physics, Science Economics, Geography and History in order of the above listing.
 Lesson                  | `le/`  | N        | Can have any number of inputs (including 0)<br><br>Consist of lesson day and lesson time:<br>Lesson day: `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`<br>Lesson time: In **HHmm** format e.g. **1300**
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+TutorsPet does not corroborate the school, education level, subject and lesson fields of the student contacts
+input in the app. Users will have to ensure the information they enter for these fields match up accordingly,
+e.g. A student contact in ABC Primary School will probably not be in sec3, or take subjects
+like chem and bio.
+
+</div>
 
 ## Command summary
 
