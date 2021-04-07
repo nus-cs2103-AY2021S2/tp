@@ -52,11 +52,14 @@ public class MeetingCard extends UiPart<Region> {
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
         meetingName.setText(meeting.getClientName().fullName);
+        meetingName.setWrapText(true);
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm:ss");
         String dateTimeString = dateTimeFormatter.format(meeting.getDateTime().get());
         dateTime.setText(dateTimeString.substring(0, dateTimeString.length() - 3));
         meetingLocation.setText(meeting.getLocation().value);
+        meetingLocation.setWrapText(true);
         description.setText(meeting.getDescription().value);
+        description.setWrapText(true);
         if (meeting.getStatus().isComplete()) {
             status.setText("Completed");
         } else {

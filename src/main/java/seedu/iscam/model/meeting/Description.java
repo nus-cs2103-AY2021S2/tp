@@ -8,7 +8,8 @@ import static seedu.iscam.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
 public class Description {
-    public static final String MESSAGE_CONSTRAINTS = "Description should be under 1000 characters.\n";
+    public static final String MESSAGE_CONSTRAINTS = "Description should have at least 1 character and at most "
+            + "1000 characters.\n";
     private static final int CHAR_LIMIT = 1000;
 
     public final String value;

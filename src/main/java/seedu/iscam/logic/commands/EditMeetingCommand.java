@@ -7,8 +7,6 @@ import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_ON;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.iscam.model.meeting.CompletionStatus.ARGUMENT_COMPLETE;
-import static seedu.iscam.model.meeting.CompletionStatus.ARGUMENT_INCOMPLETE;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -44,13 +42,13 @@ public class EditMeetingCommand extends Command {
             + "[" + PREFIX_LOCATION + "LOCATION] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG(s)] "
-            + "[" + PREFIX_STATUS + "STATUS (" + ARGUMENT_COMPLETE + "/" + ARGUMENT_INCOMPLETE + ")]\n"
+            + "[" + PREFIX_STATUS + "COMPLETION_STATUS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_LOCATION + "Macdonald, Bedok "
             + PREFIX_DESCRIPTION + "Client's family will be coming along";
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_MEETING = "No changes found in any field.";
+    public static final String MESSAGE_NO_CHANGES = "No changes found in any field.";
     public static final String MESSAGE_CONFLICT = "There is another meeting with the same date and time, consider "
             + "changing to another time.";
     public static final String MESSAGE_NOT_ALLOWED = "This meeting was already completed, no modification can be made "
@@ -110,7 +108,7 @@ public class EditMeetingCommand extends Command {
         }
 
         if (meeting.equals(editedMeeting)) {
-            throw new CommandException(MESSAGE_DUPLICATE_MEETING);
+            throw new CommandException(MESSAGE_NO_CHANGES);
         }
 
         if (model.hasConflictingMeetingWith(editedMeeting, meeting)) {

@@ -18,9 +18,9 @@ import seedu.iscam.model.commons.Tag;
 public class Client {
 
     // Identity fields
-    private Name name;
-    private Phone phone;
-    private Email email;
+    private final Name name;
+    private final Phone phone;
+    private final Email email;
 
     // Data fields
     private Set<InsurancePlan> insurancePlans = new HashSet<>();

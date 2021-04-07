@@ -81,7 +81,10 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
-            throw new ParseFormatException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseFormatException(Name.MESSAGE_TYPE_CONSTRAINTS);
+        }
+        if (!Name.isValidLength(trimmedName)) {
+            throw new ParseFormatException(Name.MESSAGE_LENGTH_CONSTRAINTS);
         }
         return new Name(trimmedName);
     }
@@ -95,8 +98,14 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseFormatException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Phone.isValidPhoneLength(trimmedPhone)) {
+            throw new ParseFormatException(Phone.MESSAGE_LENGTH_CONSTRAINTS);
+        }
+        if (!Phone.isValidNumbersOnly(trimmedPhone)) {
+            throw new ParseFormatException(Phone.MESSAGE_INPUT_CONSTRAINTS);
+        }
+        if (!Phone.isValidPhoneNumber(trimmedPhone)) {
+            throw new ParseFormatException(Phone.MESSAGE_STARTING_DIGIT_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
     }
@@ -113,6 +122,9 @@ public class ParserUtil {
         if (!Location.isValidLocation(trimmedLocation)) {
             throw new ParseFormatException(Location.MESSAGE_CONSTRAINTS);
         }
+        if (!Location.isValidLength(trimmedLocation)) {
+            throw new ParseFormatException(Location.MESSAGE_LENGTH_CONSTRAINTS);
+        }
         return new Location(trimmedLocation);
     }
 
@@ -128,6 +140,9 @@ public class ParserUtil {
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseFormatException(Email.MESSAGE_CONSTRAINTS);
         }
+        if (!Email.isValidLength(trimmedEmail)) {
+            throw new ParseFormatException(Email.MESSAGE_LENGTH_CONSTRAINTS);
+        }
         return new Email(trimmedEmail);
     }
 
@@ -142,6 +157,9 @@ public class ParserUtil {
         String trimmedPlan = plan.trim();
         if (!InsurancePlan.isValidPlan(trimmedPlan)) {
             throw new ParseFormatException(InsurancePlan.MESSAGE_CONSTRAINTS);
+        }
+        if (!InsurancePlan.isValidLength(trimmedPlan)) {
+            throw new ParseFormatException(InsurancePlan.MESSAGE_LENGTH_CONSTRAINTS);
         }
         return new InsurancePlan(trimmedPlan);
     }
@@ -169,6 +187,9 @@ public class ParserUtil {
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseFormatException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        if (!Tag.isValidLength(trimmedTag)) {
+            throw new ParseFormatException(Tag.MESSAGE_LENGTH_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
     }
