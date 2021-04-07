@@ -316,7 +316,6 @@
 
 #cardPane {
     -fx-background-color: transparent;
-    -fx-padding: 2 0 2 0;
 }
 
 #commandTypeLabel {
@@ -348,6 +347,12 @@
     -fx-border-width: 0;
 }
 
+#taskListPanel {
+    -fx-background-color: #e8eff2;
+    -fx-background-radius: 15 15 15 15;
+    -fx-border-width: 0;
+}
+
 #featuresPanelPlaceholder{
     -fx-background-color: #e8eff2;
     -fx-background-radius: 20;
@@ -375,7 +380,7 @@
 #tags .label {
     -fx-text-fill: white;
     -fx-background-color: #536dfe;
-    -fx-padding: 1 3 1 3;
+    -fx-padding: 3 3 3 3;
     -fx-border-radius: 15;
     -fx-background-radius: 15;
     -fx-font-size: 11;
