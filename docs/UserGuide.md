@@ -19,7 +19,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Deleting a task: [`delete_task`](#deleting-a-task-delete_task)
 * Editing a task: [`edit_task`](#editing-a-task-edit_task)
 * Listing all tasks: [`list_task`](#listing-all-tasks-list_task)
-* Marking one or more tasks as done : [`done_task`](#marking-a-task-as-done-done_task)
+* Marking one or more tasks as done : [`done_task`](#marking-one-or-more-tasks-as-done-done_task)
 * Marking a task as uncompleted : [`undone_task`](#marking-a-task-as-uncompleted-undone_task)
 * Getting today's tasks: [`today_task`](#listing-all-tasks-today-today_task)
 * Finding tasks: [`find_task`](#finding-all-matching-tasks-find_task)
@@ -32,7 +32,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 ### Event-Specific Commands
 * Adding an event: [`add_event`](#adding-an-event-add_event)
 * Deleting an event: [`delete_event`](#deleting-an-event-delete_event)
-* Editing a task: [`edit_event`](#editing-a-event-edit_event)
+* Editing an event: [`edit_event`](#editing-an-event-edit_event)
 * Listing all events: [`list_event`](#listing-all-events-list_event)
 * Getting today's events: [`today_event`](#listing-all-events-today-today_event)
 * Finding events: [`find_event`](#finding-all-matching-events-find_event)
