@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_UI_PROJECT_NOT_DISPLAYED;
 import static seedu.address.commons.core.Messages.MESSAGE_WELCOME;
 import static seedu.address.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
 
 import java.time.LocalDate;
 import java.util.logging.Logger;
@@ -242,6 +243,13 @@ public class MainWindow extends UiPart<Stage> {
         infoDisplayPlaceholder.getChildren().clear();
         infoDisplayPlaceholder.getChildren().add(contactListPanel.getRoot());
         sidePanel.clearSelection();
+    }
+
+    /**
+     * Resets the contact list to show all contacts.
+     */
+    public void resetContactsList() {
+        logic.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
     }
 
     /**

@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -43,6 +44,13 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of projects */
     ObservableList<Project> getFilteredProjectsList();
+
+    /**
+     * Updates the filtered contact list with the new {@code Predicate<Contact>}.
+     *
+     * @param predicate The {@code Predicate<Contact>} to update the filtered contact list with.
+     */
+    void updateFilteredContactList(Predicate<Contact> predicate);
 
     /**
      * Returns the user prefs' GUI settings.
