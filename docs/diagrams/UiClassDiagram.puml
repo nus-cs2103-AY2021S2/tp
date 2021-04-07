@@ -2,6 +2,7 @@
 !include style.puml
 skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
+skinparam defaultFontSize 30
 skinparam classBackgroundColor UI_COLOR
 
 package UI <<Rectangle>>{
@@ -9,10 +10,19 @@ Interface Ui <<Interface>>
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
-Class HelpWindow
+Class SidePanel
+Class TodayPanel
+Class ProjectDisplayPanel
+Class HelpPanel
 Class ResultDisplay
 Class ContactListPanel
 Class ContactCard
+Class ProjectCard
+Class EventCard
+Class DeadlineCard
+Class TodoCard
+Class TodayDeadlineCard
+Class TodayEventCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -26,35 +36,65 @@ Class HiddenLogic #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Ui
+HiddenOutside ...> Ui
 
-UiManager .left.|> Ui
+UI -[hidden]up- HiddenOutside
+
+UiManager .up.|> Ui
 UiManager -down-> MainWindow
-MainWindow --> HelpWindow
-MainWindow *-down-> CommandBox
-MainWindow *-down-> ResultDisplay
+
+MainWindow *-left> HelpPanel
+MainWindow *-left> CommandBox
+MainWindow *-left> ResultDisplay
+MainWindow *-left> StatusBarFooter
+MainWindow *-down> SidePanel
+MainWindow *-down> TodayPanel
+MainWindow *-right> ProjectDisplayPanel
 MainWindow *-down-> ContactListPanel
-MainWindow *-down-> StatusBarFooter
 
-ContactListPanel -down-> ContactCard
+ResultDisplay ---|> UiPart
+CommandBox ---|> UiPart
+ContactListPanel ---|> UiPart
+ContactCard ---|> UiPart
+SidePanel ---|> UiPart
+ProjectCard ---|> UiPart
+TodayPanel ---|> UiPart
+ProjectDisplayPanel ---|> UiPart
+StatusBarFooter ---|> UiPart
+TodayEventCard ---|> UiPart
+TodayDeadlineCard ---|> UiPart
+EventCard ---|> UiPart
+DeadlineCard ---|> UiPart
+TodoCard ---|> UiPart
+HelpPanel ---|> UiPart
 
-MainWindow -left-|> UiPart
+ContactListPanel ---> ContactCard
+SidePanel ---> ProjectCard
+ProjectDisplayPanel ---> EventCard
+ProjectDisplayPanel ---> DeadlineCard
+ProjectDisplayPanel ---> TodoCard
+TodayPanel ---> TodayDeadlineCard
+TodayPanel ---> TodayEventCard
 
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-ContactListPanel --|> UiPart
-ContactCard --|> UiPart
-StatusBarFooter --|> UiPart
-HelpWindow -down-|> UiPart
+ContactCard .down.> Model
+ProjectCard .down.> Model
+EventCard .down.> Model
+DeadlineCard .down.> Model
+TodoCard .down.> Model
+TodayDeadlineCard .down.> Model
+TodayEventCard .down.> Model
 
-ContactCard ..> Model
-UiManager -right-> Logic
-MainWindow -left-> Logic
+MainWindow ---|> UiPart
 
-ContactListPanel -[hidden]left- HelpWindow
-HelpWindow -[hidden]left- CommandBox
-CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
+UiManager -up-> Logic
+MainWindow -up-> Logic
 
-MainWindow -[hidden]-|> UiPart
+HelpPanel -[hidden]up- StatusBarFooter
+StatusBarFooter -[hidden]up- ResultDisplay
+ResultDisplay -[hidden]up- CommandBox
+HiddenOutside -[hidden]up- UiManager
+HiddenOutside -[hidden]left- Logic
+UiPart -[hidden]down- Model
+Ui -[hidden]up-- Logic
+
 @enduml
