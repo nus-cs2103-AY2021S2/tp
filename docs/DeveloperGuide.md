@@ -252,9 +252,7 @@ Example: `dealloc 1`
 * Set the `ROOM` of  the resident to be `Room unallocated`.
 * Set the `OCCUPATION_STATUS` of the room to `N`.
 
-![Sequence Diagram of Deallocation](images/residentroom/ResidentRoomDeallocationSeqDiagram.png)
-
-The following implementation alternatives were considered:
+#### Alternatives considered
 * **Alternative 1 (current choice):** Resident-Room solely keeps track of resident and room allocation
   performed through `alloc` and `dealloc` commands. Any allocated resident and occupied rooms
   cannot be edited.
