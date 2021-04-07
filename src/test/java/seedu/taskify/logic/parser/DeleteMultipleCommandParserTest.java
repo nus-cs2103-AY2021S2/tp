@@ -14,8 +14,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import seedu.taskify.logic.commands.DeleteMultipleCommand;
-import seedu.taskify.model.task.Status;
-import seedu.taskify.model.task.StatusType;
+//import seedu.taskify.model.task.Status;
+//import seedu.taskify.model.task.StatusType;
 
 public class DeleteMultipleCommandParserTest {
 

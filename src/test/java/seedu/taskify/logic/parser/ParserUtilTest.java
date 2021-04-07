@@ -24,8 +24,8 @@ import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
-import seedu.taskify.model.task.Status;
-import seedu.taskify.model.task.StatusType;
+//import seedu.taskify.model.task.Status;
+//import seedu.taskify.model.task.StatusType;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
