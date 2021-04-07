@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.schedulecommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_CLASH_EDIT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
 import static seedu.address.commons.core.Messages.MESSAGE_TIME_FROM_GREATER_THAN;
 import static seedu.address.commons.core.Messages.MESSAGE_UNABLE_TO_EDIT_PAST_SCHEDULE;
@@ -52,6 +53,9 @@ public class EditScheduleCommand extends Command {
     public static final String MESSAGE_EDIT_SCHEDULE_SUCCESS = "Edited Schedule: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_SCHEDULE = "This schedule already exists.";
+    public static final String MESSAGE_CLASH_SCHEDULE = "The schedule you are trying "
+            + "to change clashes with the timeslot of an existing appointment or schedule. Please "
+            + "ensure timeslots to not clash.";
 
     private final Index index;
     private final EditScheduleDescriptor editScheduleDescriptor;
@@ -165,6 +169,10 @@ public class EditScheduleCommand extends Command {
 
         if (!scheduleToEdit.equals(editedSchedule) && model.hasSchedule(editedSchedule)) {
             throw new CommandException(MESSAGE_DUPLICATE_SCHEDULE);
+        }
+
+        if (model.hasClashingDateTime(editedSchedule, scheduleToEdit)) {
+            throw new CommandException(MESSAGE_DATE_CLASH_EDIT);
         }
 
         model.setSchedule(scheduleToEdit, editedSchedule);

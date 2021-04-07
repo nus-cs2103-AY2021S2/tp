@@ -38,7 +38,9 @@ public class AddScheduleCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New schedule added: %1$s";
     public static final String MESSAGE_DUPLICATE_SCHEDULE = "This schedule already exists in the list";
-    public static final String MESSAGE_CLASH_SCHEDULE = "This schedule clashes with your existing events!";
+    public static final String MESSAGE_CLASH_SCHEDULE = "The schedule you are trying "
+            + "to change clashes with the timeslot of an existing appointment or schedule. Please "
+            + "ensure timeslots to not clash.";
 
     private final Schedule toAdd;
 
