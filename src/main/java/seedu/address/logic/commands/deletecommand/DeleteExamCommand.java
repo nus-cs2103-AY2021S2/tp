@@ -22,13 +22,6 @@ import seedu.address.model.module.Title;
  */
 public class DeleteExamCommand extends DeleteCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the exam identified by the index in ExamList of the module\n"
-            + "Parameters: Index\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103T "
-            + PREFIX_EXAM + "1";
-
     public static final String MESSAGE_DELETE_EXAM_SUCCESS = "Deleted Exam: %1$s";
 
     private final Title moduleTitle;

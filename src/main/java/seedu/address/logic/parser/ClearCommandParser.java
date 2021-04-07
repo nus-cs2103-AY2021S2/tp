@@ -74,8 +74,7 @@ public class ClearCommandParser {
     private boolean clearRemindCondition(ArgumentMultimap argumentMultimap) {
         return !arePrefixesPresent(argumentMultimap, PREFIX_MODULE)
                 && !arePrefixesPresent(argumentMultimap, PREFIX_NAME)
-                && !arePrefixesPresent(argumentMultimap, PREFIX_GENERAL_EVENT)
-                && argumentMultimap.getPreamble().isEmpty();
+                && !arePrefixesPresent(argumentMultimap, PREFIX_GENERAL_EVENT);
     }
 
     protected static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap,

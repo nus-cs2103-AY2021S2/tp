@@ -17,12 +17,6 @@ import seedu.address.model.module.Title;
  */
 public class DeleteModuleCommand extends DeleteCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the module identified by the title used list of modules\n"
-            + "Parameters: Module Title\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + " CS2103T";
-
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
 
     private final Title moduleTitle;

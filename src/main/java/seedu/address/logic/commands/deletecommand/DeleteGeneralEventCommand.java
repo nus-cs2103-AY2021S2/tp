@@ -17,12 +17,6 @@ import seedu.address.model.event.GeneralEvent;
  */
 public class DeleteGeneralEventCommand extends DeleteCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the event identified by the index number used in the displayed general event list.\n"
-            + "Parameters: INDEX\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_GENERAL_EVENT + "1";
-
     public static final String MESSAGE_GENERAL_EVENT_SUCCESS = "Deleted General Event: %1$s";
 
     private final Index targetIndex;

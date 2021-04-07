@@ -22,13 +22,6 @@ import seedu.address.model.module.Title;
  */
 public class DeleteAssignmentCommand extends DeleteCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the assignment identified by the index in Assignment list of the module\n"
-            + "Parameters: Index\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103T "
-            + PREFIX_ASSIGNMENT + "1";
-
     public static final String MESSAGE_DELETE_ASSIGNMENT_SUCCESS = "Deleted Assignment: %1$s";
 
     private final Title moduleTitle;
