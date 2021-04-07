@@ -74,37 +74,38 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a tutor: `add_person`
+### Adding a person: `add_person`
 
-Adds a tutor to the address book.
+User can add either a student, or a tutor
+
+####Adding a Tutor to EZManage
 
 Format: `add_person pt/tutor n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A Tutor can have any number of tags (including 0)
 </div>
 
 Examples:
 * `add_person pt/tutor n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add_person pt/tutor n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
+* `add_person pt/tutor n/Betsy Crowe e/betsycrowe@example.com a/Prim Street p/1234567 tag/chemistry`
 
-### Adding a student: `add_person`
 
-Adds a student to the address book.
+####Adding a Student to EZManage
 
 Format: `add_person pt/student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A Student can have any number of tags (including 0)
 </div>
 
 Examples:
 * `add_person pt/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add_person pt/student n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
+* `add_person pt/student n/Betsy Crowe e/betsycrowe@example.com a/Prim Street p/1234567 tag/dedicated`
 
 ### Adding a session: `add_session`
 
-Adds a session to the address book.
+Adds a session to EZManage.
 
 Format: `add_session d/DAY t/TIMESLOT s/SUBJECT [tag/TAG] …
 `
