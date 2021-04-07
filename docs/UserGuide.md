@@ -124,7 +124,7 @@ d | Day in the calendar month, ranging from 0 - 31, without leading zeroes
 MMM | 3-letter textual representation of a month in the calendar year, ranging from Jan - Dec, case sensitive
 yyyy | Numerical 4-digit representation of a year in the calendar, e.g. 2021
 
-Some example year inputs: `3 Jan 2021`, `21 Feb 2021`, `30 Mar 2021`
+Some example date inputs: `3 Jan 2021`, `21 Feb 2021`, `30 Mar 2021`
 
 ---
 
