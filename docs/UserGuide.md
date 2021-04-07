@@ -17,7 +17,23 @@ faster than traditional GUI apps.
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer. This check can be done with the command:
+
+> java --version
+
+2. Download the latest release from the [GitHub repository](https://github.com/AY2021S2-CS2103-W16-2/tp/releases).
+
+3. Navigate to the folder that contains the downloaded .jar file and run the application. For example,
+
+> ### Unix
+> cd ~/Downloads
+>
+> java -jar chim.jar
+
+> ### Windows
+> cd C:\Downloads
+>
+> java -jar chim.jar
 
 --------------------------------------------------------------------------------------------------------------------
 
