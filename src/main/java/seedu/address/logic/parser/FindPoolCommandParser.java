@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.TripCommand;
+import seedu.address.logic.commands.FindPoolCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.pool.Pool;
 import seedu.address.model.pool.PooledPassengerContainsKeywordsPredicate;
@@ -17,20 +17,20 @@ import seedu.address.model.pool.PooledPassengerContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindCommand object
  */
-public class TripCommandParser implements Parser<TripCommand> {
+public class FindPoolCommandParser implements Parser<FindPoolCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand.
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format.
      */
-    public TripCommand parse(String args) throws ParseException {
+    public FindPoolCommand parse(String args) throws ParseException {
         // todo allow more parameters to be taken in, use DriverNameContainsKeywordsPredicate
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME);
 
         if (!arePrefixesValid(argMultimap, PREFIX_NAME)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TripCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPoolCommand.MESSAGE_USAGE));
         }
 
         List<Prefix> presentPrefixes =
@@ -40,7 +40,7 @@ public class TripCommandParser implements Parser<TripCommand> {
         Prefix specifiedPrefix = presentPrefixes.get(0);
         List<String> keywords = parseValue(argMultimap, specifiedPrefix);
 
-        return new TripCommand(parsePredicate(specifiedPrefix, keywords));
+        return new FindPoolCommand(parsePredicate(specifiedPrefix, keywords));
     }
 
     /**
@@ -85,7 +85,7 @@ public class TripCommandParser implements Parser<TripCommand> {
         if (PREFIX_NAME.equals(prefix)) {
             return new PooledPassengerContainsKeywordsPredicate(arguments);
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TripCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPoolCommand.MESSAGE_USAGE));
         }
     }
 }
