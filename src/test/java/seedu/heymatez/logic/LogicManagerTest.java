@@ -1,6 +1,7 @@
 package seedu.heymatez.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_PERSON_LIST;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.heymatez.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.heymatez.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -57,7 +58,7 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ViewMembersCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ViewMembersCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(listCommand, MESSAGE_EMPTY_PERSON_LIST, model);
     }
 
     @Test

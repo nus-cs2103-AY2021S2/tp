@@ -1,8 +1,8 @@
 package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.heymatez.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_PERSON_LIST;
+import static seedu.heymatez.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.heymatez.logic.commands.exceptions.CommandException;
 import seedu.heymatez.model.Model;
