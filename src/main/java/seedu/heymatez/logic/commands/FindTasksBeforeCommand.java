@@ -18,6 +18,8 @@ public class FindTasksBeforeCommand extends Command {
             + "Parameters: DEADLINE \n"
             + "Example: " + COMMAND_WORD + " 2021-03-26";
 
+    public static final String MESSAGE_LIST_IS_EMPTY = "There are no tasks found!";
+
     private final DeadlineBeforeDatePredicate predicate;
 
     public FindTasksBeforeCommand(DeadlineBeforeDatePredicate predicate) {
@@ -27,6 +29,9 @@ public class FindTasksBeforeCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        if (model.isTaskListEmpty()) {
+            return new CommandResult(MESSAGE_LIST_IS_EMPTY);
+        }
         model.updateFilteredTaskList(predicate);
         return new CommandResult(
                 String.format(MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));

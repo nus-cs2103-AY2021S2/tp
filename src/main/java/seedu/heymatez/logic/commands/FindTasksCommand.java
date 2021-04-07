@@ -18,6 +18,8 @@ public class FindTasksCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " plan meeting proposal";
 
+    public static final String MESSAGE_LIST_IS_EMPTY = "There are no tasks found!";
+
     private final TaskContainsKeywordPredicate predicate;
 
     public FindTasksCommand(TaskContainsKeywordPredicate predicate) {
@@ -27,6 +29,9 @@ public class FindTasksCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        if (model.isTaskListEmpty()) {
+            return new CommandResult(MESSAGE_LIST_IS_EMPTY);
+        }
         model.updateFilteredTaskList(predicate);
         return new CommandResult(
                 String.format(MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));

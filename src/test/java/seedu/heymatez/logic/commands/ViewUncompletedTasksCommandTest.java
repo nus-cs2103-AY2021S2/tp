@@ -64,13 +64,4 @@ public class ViewUncompletedTasksCommandTest {
                 myExpectedModel);
     }
 
-
-    /**
-     * Updates {@code model}'s filtered list to show no task.
-     */
-    private void showNoTask(Model model) {
-        model.updateFilteredTaskList(p -> false);
-
-        assertTrue(model.getFilteredTaskList().isEmpty());
-    }
 }
