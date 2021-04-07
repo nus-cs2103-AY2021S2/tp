@@ -973,3 +973,73 @@ starting point for testers to work on; testers are expected to do more *explorat
        Expected: `UP` fills the command box with the next oldest command and `DOWN` fills the command box with the next
        most recent command. When the oldest command is reached, it should remain in the command box even if `UP` is
        pressed again.
+
+### Undo/Redo
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: _Undoable_ command:**<br>
+An undoable command is one which modifies the data of SunRez.
+
+e.g. `radd`, `redit`, `idel`, `clear`, etc.
+
+**:information_source: Shortcuts to undo:**<br>
+1. **GUI:** Select `Edit` -> `Undo` in the menu at the top of SunRez.
+2. **Keyboard:** Press `CTRL+Z` (Windows, Linux) or `CMD+Z` (Mac).
+
+These behave as if you entered `undo` in the command box and hit `ENTER`; an `undo` command will be registered in
+command history.
+
+**:information_source: Shortcuts to redo:**<br>
+1. **GUI:** Select `Edit` -> `Redo` in the menu at the top of SunRez.
+2. **Keyboard:** Press `CTRL+SHIFT+Z` (Windows, Linux) or `CMD+SHIFT+Z` (Mac).
+
+These behave as if you entered `redo` in the command box and hit `ENTER`; a `redo` command will be registered in
+command history.
+</div>
+
+1. Undoing an undoable command
+
+    1. Prerequisites: There are at least 2 residents visible in the resident list.
+
+    2. Test case: `rdel 1` then `undo` <br>
+       Expected: The deleted resident is restored.
+
+    3. Test case: `rdel 1` twice, then `undo` twice <br>
+       Expected: The two deleted residents are restored in the reverse order of their deletion.
+
+    4. Other tests to try: Chain more undoable commands and `undo` operations in various orders.
+       Expected: Undo undoes the commands from most recent to least recent.
+
+2. Undoing a non-undoable command
+
+    1. Prerequisites: No undoable commands have been executed prior. The easiest way to set this up is to close
+       and re-open SunRez. Also, there is at least 1 resident visible in the resident list.
+
+    2. Test case: `rlist` then `undo` <br>
+       Expected: An error message is shown, indicating that there are no undoable commands to undo.
+
+    3. Test case: `rdel 1` then `rlist` then `undo` <br>
+       Expected: The resident deleted by `rdel 1` is restored. Undo is effectively ignoring `rlist`.
+
+    4. Other tests to try: Perform several non-undoable commands interspersed with undoable commands. Then try
+       performing some `undo` operations. <br>
+       Expected: The undoable commands are undone from most recent to least recent, and the non-undoable commands
+       are ignored by `undo`.
+
+3. Redoing an undo
+
+    1. Prerequisites: There are at least 2 residents visible in the resident list.
+
+    2. Test case: `rdel 1` then `undo` then `redo` <br>
+       Expected: The deleted resident is restored by `undo` then re-deleted by `redo`.
+
+    3. Test case: `rdel 1` twice, then `undo` twice, then `redo` twice <br>
+       Expected: The residents restored by the `undo` operations are re-deleted in the same order that they were
+       deleted in.
+
+    4. Test case: `rdel 1` then `undo` then `rdel 1` then `redo` <br>
+       Expected: An error message is shown, indicating that redo cannot be performed.
+
+    5. Other tests to try: Perform several undoable commands, `undo` operations and `redo` operations.
+       Expected: The `redo` operations undo the `undo` operations in reverse order.
