@@ -538,7 +538,7 @@ Format: `timetable [DATE]`
 ### Budget Tracker
 This feature allows tutees to track and manage his/her budget allocated to tuitions. 
 
-![Budget Ui](images/ug-images/Budget.png)
+![Budget Ui](images/ug-images/Budget_2.PNG)
 
 **Attributes / Parameters**:
 * Budget Amount

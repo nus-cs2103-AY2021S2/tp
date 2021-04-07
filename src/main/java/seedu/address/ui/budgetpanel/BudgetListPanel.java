@@ -27,7 +27,8 @@ public class BudgetListPanel extends UiPart<Region> {
         budgetListView.setCellFactory(listview -> new BudgetListViewCell());
 
         /* If empty, shows a placeholder with budget $0 */
-        budgetListView.setMaxHeight(30);
+        budgetListView.setMinHeight(60);
+        budgetListView.setMaxHeight(100);
         BudgetCard budgetCard = new BudgetCard(new Budget("0"));
         budgetCard.getRoot().setStyle("-fx-background-color: #515658;");
         budgetListView.setPlaceholder(budgetCard.getRoot());
