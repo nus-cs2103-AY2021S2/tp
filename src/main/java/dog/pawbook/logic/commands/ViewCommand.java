@@ -31,6 +31,8 @@ public class ViewCommand extends Command {
             + "Parameters: [ID]...\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    public static final String MESSAGE_SUCCESS_FORMAT = "Viewing!";
+
     private final int targetEntityId;
 
     /**

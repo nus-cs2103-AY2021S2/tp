@@ -28,6 +28,12 @@ public class Messages {
     public static final String MESSAGE_INVALID_DOG_ID = String.format(MESSAGE_INVALID_ID_FORMAT, "dog");
     public static final String MESSAGE_INVALID_PROGRAM_ID = String.format(MESSAGE_INVALID_ID_FORMAT, "program");
 
+    public static final String MESSAGE_INVALID_ID_MULTIPLE_FORMAT = "One or more of the %s ID(s) provided are invalid!";
+    public static final String MESSAGE_INVALID_DOG_ID_MULTIPLE_FORMAT = String.format(
+            MESSAGE_INVALID_ID_MULTIPLE_FORMAT, "dog");
+    public static final String MESSAGE_INVALID_PROGRAM_ID_MULTIPLE_FORMAT = String.format(
+            MESSAGE_INVALID_ID_MULTIPLE_FORMAT, "program");
+
     public static final String MESSAGE_ID_MISMATCH_FORMAT = "The ID provided does not belong to a %s.";
 
     public static final String MESSAGE_ENTITIES_LISTED_OVERVIEW_FOR_ONE = "1 entity listed!";

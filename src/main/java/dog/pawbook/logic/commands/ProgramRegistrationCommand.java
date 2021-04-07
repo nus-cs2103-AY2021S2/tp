@@ -1,5 +1,9 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_DOG_ID;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_DOG_ID_MULTIPLE_FORMAT;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_PROGRAM_ID;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_PROGRAM_ID_MULTIPLE_FORMAT;
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 import static dog.pawbook.model.Model.COMPARATOR_ID_ASCENDING_ORDER;
 import static java.util.Objects.requireNonNull;
@@ -15,6 +19,10 @@ import dog.pawbook.model.managedentity.IdMatchPredicate;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.program.Program;
 
+//@@author wei-yutong
+/**
+ * An abstract base class for Enrol and Drop commands.
+ */
 public abstract class ProgramRegistrationCommand extends Command {
     private final Set<Integer> dogIdSet;
     private final Set<Integer> programIdSet;
@@ -40,13 +48,21 @@ public abstract class ProgramRegistrationCommand extends Command {
         boolean dogIdsValid = dogIdSet.stream()
                 .allMatch(id -> model.hasEntity(id) && model.getEntity(id) instanceof Dog);
         if (!dogIdsValid) {
-            throw new CommandException("One or more of the dog ID(s) provided are invalid!");
+            if (dogIdSet.size() == 1) {
+                throw new CommandException(MESSAGE_INVALID_DOG_ID);
+            } else {
+                throw new CommandException(MESSAGE_INVALID_DOG_ID_MULTIPLE_FORMAT);
+            }
         }
 
         boolean programIdsValid = programIdSet.stream()
                 .allMatch(id -> model.hasEntity(id) && model.getEntity(id) instanceof Program);
         if (!programIdsValid) {
-            throw new CommandException("One or more of the program ID(s) provided are invalid!");
+            if (programIdSet.size() == 1) {
+                throw new CommandException(MESSAGE_INVALID_PROGRAM_ID);
+            } else {
+                throw new CommandException(MESSAGE_INVALID_PROGRAM_ID_MULTIPLE_FORMAT);
+            }
         }
     }
 
@@ -74,7 +90,15 @@ public abstract class ProgramRegistrationCommand extends Command {
 
         checkIdValidity(model);
         if (!dogEnrollmentValid(model)) {
-            throw new CommandException(getFailureMessage());
+            if (dogIdSet.size() == 1) {
+                if (programIdSet.size() == 1) {
+                    throw new CommandException(getFailureMessage());
+                } else {
+                    throw new CommandException(getFailureMessageMultiplePrograms());
+                }
+            } else if (programIdSet.size() == 1) {
+                throw new CommandException(getFailureMessageMultipleDogs());
+            }
         }
 
         // The parser should have ensured that only either dog or program is specified multiple times.
@@ -108,5 +132,9 @@ public abstract class ProgramRegistrationCommand extends Command {
      * enrolled dogs.
      */
     protected abstract String getFailureMessage();
+
+    protected abstract String getFailureMessageMultipleDogs();
+
+    protected abstract String getFailureMessageMultiplePrograms();
 }
 
