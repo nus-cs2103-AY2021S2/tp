@@ -5,16 +5,10 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.common.Category;
-import seedu.address.model.common.Date;
-import seedu.address.model.common.Name;
-import seedu.address.model.common.Tag;
-import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 
 
@@ -36,7 +30,7 @@ public class DoneTaskCommand extends Command {
     public static final String MESSAGE_DONE_TASK_SUCCESS = "Completed %1$d Task(s)";
     public static final String MESSAGE_TASK_ALREADY_COMPLETE =
             "Task(s) with the following given index(es) have already been marked as complete: ";
-    public static final String MESSAGE_INDEX_OUTOFRANGE = "The following given index(es) are out of range: ";
+    public static final String MESSAGE_INDEX_OUTOFRANGE = "The following given index(es) is/are invalid: ";
 
     private final List<Index> targetIndexes;
     private List<Index> outOfRangeTargetIndexes = new ArrayList<>();
@@ -143,28 +137,8 @@ public class DoneTaskCommand extends Command {
         assert taskToComplete != null;
         assert !taskToComplete.isComplete();
 
-        Task completedTask = copyTask(taskToComplete);
+        Task completedTask = taskToComplete.getCopy();
         completedTask.markTaskAsDone();
-        return completedTask;
-    }
-
-    /**
-     * Copies the task given and returns a new task with the same details as the given task.
-     *
-     * @param taskToCopy task to be copied, here is the task to be completed.
-     * @return a copied task.
-     */
-    private Task copyTask(Task taskToCopy) {
-        Name taskName = taskToCopy.getName();
-        Date deadline = taskToCopy.getDeadline();
-        Priority priority = taskToCopy.getPriority();
-        Set<Category> categories = taskToCopy.getCategories();
-        Set<Tag> tags = taskToCopy.getTags();
-
-        Task completedTask = new Task(taskName, deadline, priority, categories, tags);
-        if (taskToCopy.isPinned()) {
-            completedTask.pin();
-        }
         return completedTask;
     }
 
