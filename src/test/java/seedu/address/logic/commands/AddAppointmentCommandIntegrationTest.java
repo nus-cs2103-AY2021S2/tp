@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalContacts.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -43,7 +44,7 @@ public class AddAppointmentCommandIntegrationTest {
     public void execute_duplicateAppointment_throwsCommandException() {
         Appointment appointmentInList = model.getAppointmentBook().getAppointmentList().get(0);
         assertCommandFailure(new AddAppointmentCommand(appointmentInList), model,
-                AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT);
+                Messages.MESSAGE_DUPLICATE_APPOINTMENT);
     }
 
 }
