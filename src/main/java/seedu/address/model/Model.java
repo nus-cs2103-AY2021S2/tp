@@ -1,6 +1,19 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.connection.PersonMeetingConnection;
+import seedu.address.model.group.Group;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.meeting.UniqueMeetingList;
+import seedu.address.model.note.Note;
+import seedu.address.model.note.ReadOnlyNoteBook;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.ReadOnlyAddressBook;
+import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.reminder.ReadOnlyReminderBook;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -10,19 +23,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
-
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.connection.PersonMeetingConnection;
-import seedu.address.model.group.Group;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.ReadOnlyMeetingBook;
-import seedu.address.model.note.Note;
-import seedu.address.model.note.ReadOnlyNoteBook;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.ReadOnlyAddressBook;
-import seedu.address.model.reminder.ReadOnlyReminderBook;
 
 /**
  * The API of the Model component.
@@ -227,6 +227,16 @@ public interface Model {
      * Empty list will be returned if there is no value found in the hashMap.
      */
     ObservableList<Person> getFilteredPersonListByMeetingConnection(Meeting meeting);
+    /**
+     * Returns a Unique meeting list object with the person as the key.
+     * Empty list will be returned if there is no value found in the hashMap.
+     */
+    UniqueMeetingList getUniqueMeetingListByPersonConnection(Person person);
+    /**
+     * Returns a Unique person list object with the meeting as the key.
+     * Empty list will be returned if there is no value found in the hashMap.
+     */
+    UniquePersonList getUniquePersonListByMeetingConnection(Meeting meeting);
 
     // ======================= Note part of the note Model interface ============================ //
 
