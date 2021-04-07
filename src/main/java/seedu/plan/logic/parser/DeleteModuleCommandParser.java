@@ -18,27 +18,21 @@ public class DeleteModuleCommandParser implements Parser<DeleteModuleCommand> {
      * @throws ParseException if the format is wrong
      */
     public DeleteModuleCommand parse(String args) throws ParseException {
-        try {
-            ArgumentMultimap argumentMultimap =
-                    ArgumentTokenizer.tokenize(args,
-                            CliSyntax.PREFIX_PLAN_NUMBER,
-                            CliSyntax.PREFIX_SEM_NUMBER,
-                            CliSyntax.PREFIX_MODULE_CODE);
-            if (!arePrefixesPresent(argumentMultimap, CliSyntax.PREFIX_PLAN_NUMBER,
-                    CliSyntax.PREFIX_SEM_NUMBER, CliSyntax.PREFIX_MODULE_CODE)
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args,
+                CliSyntax.PREFIX_PLAN_NUMBER,
+                CliSyntax.PREFIX_SEM_NUMBER,
+                CliSyntax.PREFIX_MODULE_CODE);
+        if (!arePrefixesPresent(argumentMultimap, CliSyntax.PREFIX_PLAN_NUMBER,
+                CliSyntax.PREFIX_SEM_NUMBER, CliSyntax.PREFIX_MODULE_CODE)
                 || !argumentMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                        DeleteModuleCommand.MESSAGE_USAGE));
-            }
-            Index planIndex = ParserUtil.parseIndex(argumentMultimap.getValue(CliSyntax.PREFIX_PLAN_NUMBER).get());
-            Index semIndex = ParserUtil.parseIndex(argumentMultimap.getValue(CliSyntax.PREFIX_SEM_NUMBER).get());
-            String moduleCode = argumentMultimap.getValue(CliSyntax.PREFIX_MODULE_CODE).get();
-            String upperCaseModuleCode = moduleCode.toUpperCase();
-            return new DeleteModuleCommand(planIndex, semIndex, upperCaseModuleCode);
-        } catch (ParseException e) {
-            throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteSemesterCommand.MESSAGE_USAGE), e);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteModuleCommand.MESSAGE_USAGE));
         }
+        Index planIndex = ParserUtil.parseIndex(argumentMultimap.getValue(CliSyntax.PREFIX_PLAN_NUMBER).get());
+        Index semIndex = ParserUtil.parseIndex(argumentMultimap.getValue(CliSyntax.PREFIX_SEM_NUMBER).get());
+        String moduleCode = argumentMultimap.getValue(CliSyntax.PREFIX_MODULE_CODE).get();
+        String upperCaseModuleCode = moduleCode.toUpperCase();
+        return new DeleteModuleCommand(planIndex, semIndex, upperCaseModuleCode);
     }
 
     /**
