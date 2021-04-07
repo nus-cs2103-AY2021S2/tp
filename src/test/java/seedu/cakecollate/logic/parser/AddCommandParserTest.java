@@ -191,10 +191,10 @@ public class AddCommandParserTest {
                         + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
                 Email.MESSAGE_CONSTRAINTS);
 
-        // invalid cakecollate
+        // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                         + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
-                Address.MESSAGE_CONSTRAINTS);
+                Address.MESSAGE_EMPTY);
 
         // invalid order description
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
