@@ -71,6 +71,10 @@ public class Order implements Item, Aggregator<Dish> {
         return dishesBuilder.toString();
     }
 
+    public void updateCustomer(Person editedPerson) {
+        this.customer = editedPerson;
+    }
+
     public double getTotalPrice() {
         double totalPrice = 0.0;
 
