@@ -35,7 +35,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
         * [Showing previous flashcard](#showing-previous-flashcard--p): `p`
         * [Showing answer](#showing-answer--a): `a`
         * [Hiding answer](#hiding-answer--h): `h`
-        * [Reviewing a flashcard as correct](#reviewing-a-flashcard-as-correct--t): `t`
+        * [Reviewing a flashcard as correct](#reviewing-a-flashcard-as-correct-t): `t`
         * [Reviewing a flashcard as wrong](#reviewing-a-flashcard-as-wrong--f): `f` 
         * [Quitting review mode](#quitting-review-mode--q): `q`
 * [FAQ](#faq)
@@ -114,6 +114,10 @@ Review mode | This is where you can review all your flashcards. You can enter th
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. <br>
   e.g. If you specify `c/Geography c/History`, only `c/History` will be taken.
+  
+* For commands that accepts `INDEX` parameter (e.g. `edit`, `view`, `delete`, and `stats`):
+    * The index refers to the index number shown in the displayed flashcard list.
+    * The index **must be a positive integer** 1, 2, 3, …​ but not above 2147483647.
 
 </div>
 <div style="page-break-after: always;"></div>
@@ -147,11 +151,9 @@ Examples:
 
 Edits an existing flashcard in the flashcard list.
 
-Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY] [p/NEW PRIORITY] [t/TAG]`
+Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY] [p/NEW PRIORITY] [t/TAG]...`
 
 * Edits the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
 * At least 1 updated card field must be provided for modification.
 * If the tag field is specified in the command, all existing tag(s) will be removed and replaced by the new tag(s).
 * New tag(s) should be alphanumeric, and there should not be any spacing between characters.
@@ -176,8 +178,6 @@ Deletes the specified flashcard from the flashcard list. <br>
 Format: `delete INDEX`
 
 * Deletes the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
@@ -196,8 +196,6 @@ Views a specific flashcard from the flashcard list. <br>
 Format: `view INDEX`
 
 * Views the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …​
 <div style="page-break-after: always;"></div>
 
 Examples:
@@ -206,7 +204,7 @@ Examples:
 
 ### Finding flashcards : `find`
 
-Finds flashcards containing any of the given keywords.
+Finds flashcards containing any of the given keywords in FlashBack.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -234,7 +232,7 @@ Examples:
 
 ### Filtering flashcards: `filter`
 
-Filter flashcards based on specified field input.
+Filter flashcards based on specified field input in FlashBack.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -518,7 +516,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAGS]...` <br> e.g. `add q/ What is the Einstein’s Equation? a/e=mc^2 c/Physics p/High t/ModernPhysics`
 **Delete** | `delete INDEX` <br> e.g. `delete 1`
-**Edit** | `edit INDEX` <br> e.g. `edit 3 a/NEW ANSWER p/NEW PRIORITY`
+**Edit** | `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY] [p/NEW PRIORITY] [t/TAG]...` <br> e.g. `edit 1 a/sampleanswer p/Low`
 **View** | `view INDEX` <br> e.g. `view 2`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find equation`
 **Filter** | `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`<br> e.g. `filter q/einstein c/phy p/high t/modern` <br> or `filter p/low t/formula`
