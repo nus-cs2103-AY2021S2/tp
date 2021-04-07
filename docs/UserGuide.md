@@ -37,7 +37,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 # 2. Quick start <a name = "quickstart"></a>
 
-1. Ensure you have java 11 or above installed in your computer
+1. Ensure you have Java 11 or above installed in your computer
 2. Download the latest `GreenMileageEfforts.jar` from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases)
 3. Copy the file to the folder you want to use as the *home* folder for your **GreenMileageEfforts**.
 4. Double click the file to start the app.
@@ -114,10 +114,14 @@ GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanc
 
 Adds a new passenger in the GME terminal.
 
-Format: `add n/NAME p/PHONE a/ADDRESS d/DAY t/TIME [tag/TAG]`
+Format: `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [tag/TAG]`
 
-* Day is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
-* Time is required to be in the 24-hour format. e.g. `0530` or `2359` 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the pool command:**<br>
+* [TripDay](#6-glossary) is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
+* [TripTime](#6-glossary) is required to be in the 24-hour format. e.g. `0530` or `2359` 
+</div>
 
 **Examples:**
 * `add n/Ben Dover p/91234567 a/Geylang d/FRIDAY t/1800`
@@ -182,7 +186,7 @@ Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p
 
 Deletes the specific passenger from the GME terminal.
 
-Format: `delete INDEX [INDEX INDEX...]`
+Format: `delete INDEX [INDEX ...]`
 
 <div markdown="block" class="alert alert-info">
 
@@ -207,12 +211,14 @@ Format: `delete INDEX [INDEX INDEX...]`
 
 Selects passengers from the current view in the bottom left pane of the GME terminal to arrange a carpool. 
 
-Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX d/DAY t/TIME [c/INDEX c/INDEX...] [tag/TAG]`
+Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX d/TRIPDAY t/TRIPTIME [c/INDEX c/INDEX...] [tag/TAG]`
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the pool command:**<br>
 
+* [TripDay](#6-glossary) is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
+* [TripTime](#6-glossary) is required to be in the 24-hour format. e.g. `0530` or `2359`
 * Here, c/ stands for commuter, i.e. someone to be pooled with a driver.
 * GME will not allow you to `delete` a passenger that is assigned to a Pool.
 * The index refers to the index number shown in the displayed person list.
@@ -296,4 +302,6 @@ Term used | Meaning
 --------|------------------
 Pool | A group of employees carpooling together. Consists of one driver and at least one passenger.
 Passenger | An employee carpooling with at least one driver.
+TripDay | Day of intended carpooling trip 
+TripTime | Time of intended carpooling trip 
 Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
