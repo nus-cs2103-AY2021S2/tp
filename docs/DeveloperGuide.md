@@ -511,7 +511,10 @@ The sequence diagram for `DeleteEventCommand` can be found below.
 **Implementation of EditEventCommand**  
 The following is a detailed explanation on how EditEventCommand is implemented.
 
-**Step 1**: User executes `Edit_event Index` command to Edit the event at the given index.
+The `edit_event` feature was implemented with a static class `EditEventDescriptor` introduced.
+<img src="images/EditEventCommandClassDiagram.png" width="450" />
+
+**Step 1**: User executes `edit_event Index` command to Edit the event at the given index.
 An `EditEventParser` object is created, and the `EditEventParser#parse(String args)` method is called.
 The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
 An `EditEventDescriptor` object is created, and it contains all the field an Event needed. 
@@ -531,7 +534,8 @@ The sequence diagram for `EditEventCommand` can be found below.
 
 ![Sequence Diagram of EditEvent Command](images/EditEventCommandSequenceDiagram.png)
 
-The following activity diagram summarises what happens when a user executes a SaveCommand:
+The following activity diagram summarises what happens when a user executes a EditEventCommand:
+(For brevity, "Show error" actions are omitted.)
 
 <img src="images/EditEventCommandActivityDiagram.png" width="450" />
 
