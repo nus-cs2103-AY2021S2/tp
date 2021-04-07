@@ -12,7 +12,8 @@ import java.util.Locale;
 
 public abstract class AbstractDate {
     public static final String MESSAGE_CONSTRAINTS =
-        "Dates should be given in the following formats (dd/MM/yyyy or yyyy-MM-dd or MMM d yyyy)";
+        "Dates should be given in the following formats (dd/MM/yyyy or yyyy-MM-dd or MMM d yyyy)\n"
+            + "e.g. 31/03/2021 or 2021-03-31 or Mar 31 2021 where Mar is case-sensitive.";
 
     public static final DateTimeFormatter INPUT_DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
         .appendPattern("[d/M/yyyy HH:mm]")
