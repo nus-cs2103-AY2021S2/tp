@@ -43,7 +43,9 @@ public class AliasMap {
         SortCommand.COMMAND_WORD,
         StatsCommand.COMMAND_WORD,
         UndoCommand.COMMAND_WORD,
-        ViewCommand.COMMAND_WORD,
+        ViewCommand.COMMAND_WORD
+    };
+    private static final String[] reviewWords = {
         "n",
         "p",
         "a",
@@ -126,6 +128,13 @@ public class AliasMap {
     }
 
     /**
+     * Returns true if input is a review command
+     */
+    public boolean isReview(String input) {
+        return Arrays.stream(reviewWords).anyMatch(c -> c.equals(input));
+    }
+
+    /**
      * Returns true if aliasMap is corrupted
      */
     public boolean isCorrupted() {
@@ -134,6 +143,9 @@ public class AliasMap {
                 return true;
             }
             if (Arrays.asList(commandsWord).contains(entry.getValue())) {
+                return true;
+            }
+            if (Arrays.asList(reviewWords).contains(entry.getValue())) {
                 return true;
             }
             if (!entry.getValue().matches(ALPHANUMERICAL_REGEX)) {

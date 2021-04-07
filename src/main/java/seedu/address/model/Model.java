@@ -141,4 +141,9 @@ public interface Model {
      * Checks if input is a command
      */
     boolean isCommand(String input);
+
+    /**
+     * Checks if input is a review command
+     */
+    boolean isReview(String input);
 }
