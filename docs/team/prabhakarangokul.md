@@ -38,4 +38,4 @@
     - Helped user with issues opening jar file due to java version [#158](https://github.com/nus-cs2103-AY2021S2/forum/issues/158)
     - Helped user who was failing some test cases when following the AB3 tutorial [#160](https://github.com/nus-cs2103-AY2021S2/forum/issues/160)
     - Shared my recommendations for handling large text in sequence diagrams [#258](https://github.com/nus-cs2103-AY2021S2/forum/issues/258)
-  
+
