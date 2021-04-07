@@ -34,7 +34,7 @@ public class RecurCommand extends Command {
     public static final String MESSAGE_DUPLICATE_RECURRENCE = "This task is already recurring %1$s";
     public static final String MESSAGE_REMOVE_RECURRENCE_SUCCESS = "Recurrence for this task has been removed.";
     public static final String MESSAGE_REMOVE_RECURRENCE_UNSUCCESSFUL = "Recurrence was not removed because this"
-            + " task did not have any existing recurrence.";
+            + " task does not have any existing recurrence.";
 
     private final Index index;
     private OptionalField<Recurrence> recurrence;
