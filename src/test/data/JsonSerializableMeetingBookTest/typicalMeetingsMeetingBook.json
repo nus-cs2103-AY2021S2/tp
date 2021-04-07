@@ -1,0 +1,60 @@
+{
+  "_comment": "MeetingBook save file which contains the same Meeting values as in TypicalMeetings#getTypicalMeetingBook()",
+  "meetings" : [ {
+    "dateTime" : "24-03-2025 15:30",
+    "location" : "Starbucks, Jurong West",
+    "description" : "Discuss lifetime policy.",
+    "tags" : [ "friends" ],
+    "status" : "incomplete",
+    "clientName" : "Alice Pauline"
+  }, {
+    "dateTime" : "29-03-2025 20:00",
+    "location" : "Starbucks, Jurong West",
+    "description" : "Finalize lifetime policy.",
+    "tags" : [ "friends" ],
+    "status" : "incomplete",
+    "clientName" : "Alice Pauline"
+  }, {
+    "dateTime" : "30-03-2025 15:30",
+    "location" : "Kopitiam, Clementi Central",
+    "description" : "Brief introduction of company's policy.",
+    "tags" : [ "friends" ],
+    "status" : "incomplete",
+    "clientName" : "Benson Meier"
+  }, {
+    "dateTime" : "21-01-2021 10:00",
+    "location" : "Dio Cafe, Central",
+    "description" : "Explain workflow of policyholder and underwrite.",
+    "tags" : [ ],
+    "status" : "complete",
+    "clientName" : "Carl Kurz"
+  }, {
+    "dateTime" : "09-05-2025 14:15",
+    "location" : "Macdonald, Bedok North",
+    "description" : "Recommend policies for his family.",
+    "tags" : [ ],
+    "status" : "incomplete",
+    "clientName" : "Daniel Meier"
+  }, {
+    "dateTime" : "10-05-2025 17:30",
+    "location" : "Macdonald, Serangoon",
+    "description" : "Extension of policy.",
+    "tags" : [ ],
+    "status" : "incomplete",
+    "clientName" : "Elle Meyer"
+  }, {
+    "dateTime" : "03-10-2025 16:30",
+    "location" : "Doot Cafe, One North",
+    "description" : "Discuss additional policies.",
+    "tags" : [ ],
+    "status" : "incomplete",
+    "clientName" : "Fiona Kunz"
+  }, {
+    "dateTime" : "05-01-2021 16:30",
+    "location" : "Doot Cafe, One North",
+    "description" : "Introducing policies.",
+    "tags" : [ ],
+    "status" : "complete",
+    "clientName" : "Fiona Kunz"
+  } ]
+}

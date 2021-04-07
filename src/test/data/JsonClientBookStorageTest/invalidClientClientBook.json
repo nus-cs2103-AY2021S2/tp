@@ -1,7 +1,7 @@
 {
   "clients": [ {
     "name": "Client with invalid name field: Ha!ns Mu@ster",
-    "phone": "9482424",
+    "phone": "94824242",
     "email": "hans@example.com",
     "location": "4th street"
   } ]

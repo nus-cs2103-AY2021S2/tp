@@ -15,6 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
@@ -52,6 +53,12 @@ public class ClientDetailFragment extends UiPart<Region> {
     private VBox insurancePlanBox;
     @FXML
     private Label insurancePlanName;
+    @FXML
+    private Label tooltip;
+    @FXML
+    private HBox clientSummaryBox;
+    @FXML
+    private HBox clientMeetingsAndPlansBox;
 
     /**
      * Creates a ClientDetailFragment that observes the given ObservableClient
@@ -61,8 +68,7 @@ public class ClientDetailFragment extends UiPart<Region> {
         super(FXML);
         observableClient.addListener(new ClientListener());
         this.meetingList = meetingList;
-        profileImage.setPreserveRatio(true);
-        insurancePlanBox.setVisible(false);
+        setTooltipMode();
     }
 
     public void setClientDetails(Client client) {
@@ -81,9 +87,21 @@ public class ClientDetailFragment extends UiPart<Region> {
         clientMeetingListView.setItems(
                 meetingList.filtered(meeting -> meeting.getClientName().equals(client.getName())));
         clientMeetingListView.setCellFactory(listview -> new MeetingListPanel.MeetingListViewCell());
-
-        insurancePlanBox.setVisible(true);
         insurancePlanName.setText(client.getPlan().planName);
+    }
+
+    private void setTooltipMode() {
+        tooltip.setManaged(true);
+        tooltip.setVisible(true);
+        clientSummaryBox.setVisible(false);
+        clientMeetingsAndPlansBox.setVisible(false);
+    }
+
+    private void setClientDetailMode() {
+        tooltip.setManaged(false);
+        tooltip.setVisible(false);
+        clientSummaryBox.setVisible(true);
+        clientMeetingsAndPlansBox.setVisible(true);
     }
 
     // TODO: Migrate image access to the model and storage and not hardcode the "data" path
@@ -120,6 +138,9 @@ public class ClientDetailFragment extends UiPart<Region> {
         public void changed(ObservableValue<? extends Client> observable, Client oldValue, Client newValue) {
             if (observable.getValue() != null) {
                 setClientDetails(observable.getValue());
+                setClientDetailMode();
+            } else {
+                setTooltipMode();
             }
         }
     }
