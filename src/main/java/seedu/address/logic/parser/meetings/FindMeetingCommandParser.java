@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.meetings;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
 
@@ -9,19 +10,23 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.meetings.FindMeetingCommand;
+import seedu.address.logic.commands.persons.AddPersonCommand;
 import seedu.address.logic.commands.persons.SortPersonCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Description;
@@ -31,6 +36,10 @@ import seedu.address.model.meeting.Priority;
 
 
 public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
+
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
 
 
     /**
@@ -46,15 +55,24 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
                         PREFIX_NAME, PREFIX_TIME, PREFIX_DESCRIPTION,
                         PREFIX_PRIORITY);
 
+        if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_CONNECTION,
+                PREFIX_NAME, PREFIX_TIME, PREFIX_DESCRIPTION,
+                PREFIX_PRIORITY)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(FindMeetingCommand.MESSAGE_USAGE);
+        }
+
         List<String> personIndexes = argMultimap.getAllValues(PREFIX_PERSON_CONNECTION);
         List<String> meetingTimes = argMultimap.getAllValues(PREFIX_TIME);
-
-
         Optional<String> meetingName = argMultimap.getValue(PREFIX_NAME);
         Optional<String> meetingDescription = argMultimap.getValue(PREFIX_DESCRIPTION);
         Optional<String> meetingPriority = argMultimap.getValue(PREFIX_PRIORITY);
 
         try {
+
+//            checkSomeNotNull(personIndexes,meetingTimes,meetingName,meetingDescription,
+//                    meetingPriority);
+
             Set<Index> personsIndexesToSearch = getPersonsSet(personIndexes);
 
             Predicate<Meeting> predicateHasTimes = handleTimes(meetingTimes);
@@ -126,6 +144,16 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
         Predicate<Meeting> pred = meeting -> meeting.hasPriority(parsedPrio);
         return pred;
     }
+
+
+    private void checkSomeNotNull(List list1, List list2, Optional ... optionals) throws ParseException {
+        if (Arrays.stream(optionals).allMatch(o -> o.isEmpty()) && list1.isEmpty()
+                && list2.isEmpty()) {
+            throw new ParseException(FindMeetingCommand.MESSAGE_USAGE);
+        }
+    }
+
+
 
 
 

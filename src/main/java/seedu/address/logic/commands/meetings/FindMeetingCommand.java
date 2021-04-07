@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
@@ -58,12 +59,14 @@ public class FindMeetingCommand extends Command {
 
     private Predicate<Meeting> makeContainsPeoplePredicate(Set<Index> people, Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
-        Stream<Integer> zeroBasedIndexes = people.stream().map(personIndex -> personIndex.getZeroBased());
 
-        if (zeroBasedIndexes.anyMatch(integer -> integer >=  lastShownList.size())) {
+        Supplier<Stream<Integer>> zeroBasedIndexStreamSupplier = () -> people.stream().map(index -> index.getZeroBased());
+
+        if (zeroBasedIndexStreamSupplier.get().anyMatch(integer -> integer >=  lastShownList.size())) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSONS_DISPLAYED_INDEX);
         }
-        Predicate<Meeting> personPred = meeting -> zeroBasedIndexes.allMatch(index ->
+
+        Predicate<Meeting> personPred = meeting -> zeroBasedIndexStreamSupplier.get().allMatch(index ->
                 meeting.containsPerson(lastShownList.get(index))
         );
         return personPred;

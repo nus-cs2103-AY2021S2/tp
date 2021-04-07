@@ -117,6 +117,9 @@ public class MeetBuddyParser {
         case ShowMeetingCommand.COMMAND_WORD:
             return new ShowMeetingCommandParser().parse(arguments);
 
+        case FindMeetingCommand.COMMAND_WORD:
+            return new FindMeetingCommandParser().parse(arguments);
+
         //======================= Note =====================================
         case AddNoteCommand.COMMAND_WORD:
             return new AddNoteCommandParser().parse(arguments);
