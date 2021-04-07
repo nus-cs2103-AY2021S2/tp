@@ -65,7 +65,8 @@ RemindMe visualises the tasks of our users using a combination of a list and a c
 the best way that works for you!
 
 We also use a Command-Line Interface, so that all the fast-fingered SOC students can use RemindMe quickly and
-comfortably.
+comfortably. For those of you who prefer to use a mouse, we have also integrated GUI into our interface! We hope that 
+having this flexibility will allow you to use RemindMe in the way you are most comfortable with! 
 
 Start scheduling a better work life with RemindMe [here](#2-quick-start)!
 
