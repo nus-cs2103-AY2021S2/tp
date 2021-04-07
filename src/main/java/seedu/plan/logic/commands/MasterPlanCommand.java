@@ -1,6 +1,7 @@
 package seedu.plan.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.plan.logic.parser.CliSyntax.PREFIX_PLAN_NUMBER;
 
 import java.util.List;
 
@@ -18,8 +19,10 @@ public class MasterPlanCommand extends Command {
 
     public static final String COMMAND_WORD = "master";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "p/PLAN_NUMBER\n: "
-            + "Marks the supplied plan as the master one.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Marks the supplied plan as the master one. "
+            + "Parameters: "
+            + PREFIX_PLAN_NUMBER + "PLAN_NUMBER";
 
     public static final String MESSAGE_SUCCESS = "Successfully marked plan as master: %1$d";
 
