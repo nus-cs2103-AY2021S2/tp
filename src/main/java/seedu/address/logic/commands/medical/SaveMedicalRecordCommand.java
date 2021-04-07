@@ -33,7 +33,8 @@ public class SaveMedicalRecordCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_MAIN_PATIENTS);
         this.patient.addMedicalRecord(mrec);
         model.setPerson(this.patient, this.patient);
+        model.selectPatient(this.patient);
         return new CommandResult(String.format(MESSAGE_SUCCESS, this.patient.getName(), mrec.getDateDisplay()),
-                false, false, patient, null, null, false);
+                false, false, patient, null, null, null, false);
     }
 }

@@ -12,7 +12,7 @@ public class DateFormat {
             .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
             .toFormatter();
     public static final DateTimeFormatter DATE_FORMAT_DISPLAY =
-            new DateTimeFormatterBuilder().appendPattern("EEE, dd MMM, HH:mm")
+            new DateTimeFormatterBuilder().appendPattern("EEE, dd MMM, YYYY, HH:mm")
             .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
             .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)

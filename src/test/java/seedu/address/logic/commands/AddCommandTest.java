@@ -76,7 +76,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all of the methods failing except selectPatient().
      */
     private class ModelStub implements Model {
         @Override
@@ -166,7 +166,6 @@ public class AddCommandTest {
 
         @Override
         public void selectPatient(Patient patient) {
-            throw new AssertionError("This method should not be called.");
         }
 
         @Override

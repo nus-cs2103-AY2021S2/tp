@@ -97,7 +97,7 @@ public class EditCommand extends Command {
         model.setPerson(patientToEdit, editedPatient);
         model.updateFilteredPersonList(PREDICATE_SHOW_MAIN_PATIENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPatient),
-                false, false, editedPatient, null, null, false);
+                false, false, editedPatient, null, null, null, false);
     }
 
     /**
@@ -116,7 +116,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(patientToEdit.getTags());
 
         Patient updatedPatient = new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedHeight, updatedWeight, updatedTags);
+                updatedHeight, updatedWeight, updatedTags, patientToEdit.getRecords(), patientToEdit.getAppointments());
         updatedPatient.setArchived(editPersonDescriptor.isArchived());
         return updatedPatient;
     }

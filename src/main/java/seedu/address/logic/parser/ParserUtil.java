@@ -26,7 +26,9 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_DATE_NUMBER = "Date should contain only valid integers.";
+    public static final String MESSAGE_INVALID_DATE_NUMBER = "Date should contain only valid integers."
+            + " Make sure that the day is between 1 and 31 inclusive, and month is between 1 to 12 inclusive. Note that"
+            + " some months have fewer days.\nMake sure that the time is between 0000 and 2359 inclusive.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
