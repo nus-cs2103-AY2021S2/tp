@@ -1,12 +1,18 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.date.ImportantDate;
+import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 
@@ -127,11 +133,16 @@ public interface Model {
     /** Returns an unmodifiable view of the transformed person list */
     ObservableList<Person> getTransformedPersonList();
 
+    /** Transforms the transformed person list according to the {@code function} supplied. */
+    void updateTransformedPersonList(Function<Person, Person> function);
+
     /** Filters the transformed person list by the given {@code predicate} then sorts the
      * transformed person list by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
     void filterThenSortPersonList(Predicate<Person> predicate, Comparator<Person> comparator);
+
+    void filterIndicesThenTransformPersonList(List<Index> indices, Function<Person, Person> function);
 
     void setDatesBook(ReadOnlyDatesBook datesBook);
 
@@ -160,6 +171,8 @@ public interface Model {
      */
     void setLessonBook(ReadOnlyLessonBook lessonBook);
 
+    void setTransformedDayList();
+
     /** Returns the LessonBook */
     ReadOnlyLessonBook getLessonBook();
 
@@ -182,6 +195,8 @@ public interface Model {
      */
     void addLesson(Lesson lesson);
 
+    void updateLessonDayList(ArrayList<Day> lessonDays);
+
     /**
      * Adds the given person to his/her lessons.
      * {@code person} must not already exist in the lesson.
@@ -200,7 +215,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredLessonList(Predicate<Lesson> predicate);
-
     /** Returns an unmodifiable view of the sorted lesson list */
     ObservableList<Lesson> getSortedLessonList();
 
@@ -218,4 +232,16 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void filterThenSortLessonList(Predicate<Lesson> predicate, Comparator<Lesson> comparator);
+
+    void updateFilteredDailyLessonList(FilteredList<Lesson> lessons, Predicate<Lesson> predicate,
+                                       ObservableList<Lesson> transformedList);
+
+    ObservableList<Lesson> getMondayLesson();
+    ObservableList<Lesson> getTuesdayLesson();
+    ObservableList<Lesson> getWednesdayLesson();
+    ObservableList<Lesson> getThursdayLesson();
+    ObservableList<Lesson> getFridayLesson();
+    ObservableList<Lesson> getSaturdayLesson();
+    ObservableList<Lesson> getSundayLesson();
+
 }

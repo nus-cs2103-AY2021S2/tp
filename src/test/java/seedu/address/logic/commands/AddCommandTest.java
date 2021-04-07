@@ -10,12 +10,16 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -24,6 +28,7 @@ import seedu.address.model.ReadOnlyDatesBook;
 import seedu.address.model.ReadOnlyLessonBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.date.ImportantDate;
+import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -210,6 +215,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateTransformedPersonList(Function<Person, Person> function) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void filterIndicesThenTransformPersonList(List<Index> index, Function<Person, Person> function) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setDatesBook(ReadOnlyDatesBook datesBook) {
             throw new AssertionError("This method should not be called.");
         }
@@ -270,6 +285,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setTransformedDayList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyLessonBook getLessonBook() {
             throw new AssertionError("This method should not be called.");
         }
@@ -291,6 +311,11 @@ public class AddCommandTest {
 
         @Override
         public void addLesson(Lesson lesson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateLessonDayList(ArrayList<Day> lessonDays) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -336,6 +361,47 @@ public class AddCommandTest {
 
         @Override
         public void filterThenSortLessonList(Predicate<Lesson> predicate, Comparator<Lesson> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredDailyLessonList(FilteredList<Lesson> lessons,
+                Predicate<Lesson> predicate, ObservableList<Lesson> transformedList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lesson> getMondayLesson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lesson> getTuesdayLesson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lesson> getWednesdayLesson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lesson> getThursdayLesson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lesson> getFridayLesson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lesson> getSaturdayLesson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lesson> getSundayLesson() {
             throw new AssertionError("This method should not be called.");
         }
     }

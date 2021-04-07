@@ -30,14 +30,18 @@ public class Time implements Comparable<Time> {
     @Override
     public int compareTo(Time other) {
         int thisTime = Integer.parseInt(timeOfTuition);
-        int otherTime = Integer.parseInt(timeOfTuition);
+        int otherTime = Integer.parseInt(other.timeOfTuition);
+
+        int result;
+
         if (thisTime < otherTime) {
-            return -1;
+            result = -1;
         } else if (thisTime > otherTime) {
-            return 1;
+            result = 1;
         } else {
-            return 0;
+            result = 0;
         }
+        return result;
     }
 
     @Override

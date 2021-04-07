@@ -18,7 +18,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.School;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.level.Level;
+import seedu.address.model.subject.Subject;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -34,7 +35,8 @@ class JsonAdaptedPerson {
     private final String address;
     private final String guardianName;
     private final String guardianPhone;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String level;
+    private final List<JsonAdaptedSubject> subjects = new ArrayList<>();
     private final List<JsonAdaptedLesson> lessons = new ArrayList<>();
 
     /**
@@ -46,7 +48,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("address") String address,
                              @JsonProperty("guardianName") String guardianName,
                              @JsonProperty("guardianPhone") String guardianPhone,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("level") String level,
+                             @JsonProperty("subjects") List<JsonAdaptedSubject> subjects,
                              @JsonProperty("lessons") List<JsonAdaptedLesson> lessons) {
         this.name = name;
         this.phone = phone;
@@ -55,8 +58,9 @@ class JsonAdaptedPerson {
         this.address = address;
         this.guardianName = guardianName;
         this.guardianPhone = guardianPhone;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        this.level = level;
+        if (subjects != null) {
+            this.subjects.addAll(subjects);
         }
         if (lessons != null) {
             this.lessons.addAll(lessons);
@@ -94,8 +98,13 @@ class JsonAdaptedPerson {
         } else {
             guardianPhone = "";
         }
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        if (source.getLevel().isPresent()) {
+            level = source.getLevel().get().getLevel();
+        } else {
+            level = "";
+        }
+        subjects.addAll(source.getSubjects().stream()
+                .map(JsonAdaptedSubject::new)
                 .collect(Collectors.toList()));
         lessons.addAll(source.getLessons().stream()
                 .map(JsonAdaptedLesson::new)
@@ -108,9 +117,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+        final List<Subject> personSubjects = new ArrayList<>();
+        for (JsonAdaptedSubject tag : subjects) {
+            personSubjects.add(tag.toModelType());
         }
         final List<Lesson> personLessons = new ArrayList<>();
         for (JsonAdaptedLesson lesson: lessons) {
@@ -175,11 +184,19 @@ class JsonAdaptedPerson {
         }
         final Optional<Phone> modelGuardianPhone = guardianPhone.equals("") ? Optional.empty()
                 : Optional.of(new Phone(guardianPhone));
+        if (level == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Level.class.getSimpleName()));
+        }
+        if (!level.equals("") && !Level.isValidLevel(level)) {
+            throw new IllegalValueException(Level.MESSAGE_CONSTRAINTS);
+        }
+        final Optional<Level> modelLevel = level.equals("") ? Optional.empty()
+                : Optional.of(new Level(level));
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Subject> modelSubjects = new HashSet<>(personSubjects);
         final Set<Lesson> modelLessons = new HashSet<>(personLessons);
         return new Person(modelName, modelPhone, modelSchool, modelEmail, modelAddress, modelGuardianName,
-                modelGuardianPhone, modelTags, modelLessons);
+                modelGuardianPhone, modelLevel, modelSubjects, modelLessons);
     }
 
 }

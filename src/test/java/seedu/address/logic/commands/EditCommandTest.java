@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_GUARDIAN_PHONE_
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SEC3;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_CHEM;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -52,9 +52,11 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 new DatesBook(model.getDatesBook()), new LessonBook(model.getLessonBook()));
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-        expectedModel.removePersonFromLesson(model.getFilteredPersonList().get(0));
+        expectedModel.setPerson(model.getTransformedPersonList().get(0), editedPerson);
+
+        expectedModel.removePersonFromLesson(model.getTransformedPersonList().get(0));
         expectedModel.addPersonToLesson(editedPerson);
+
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
@@ -65,10 +67,10 @@ public class EditCommandTest {
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_SEC3).build();
+                .withSubjects(VALID_SUBJECT_CHEM).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_SEC3).build();
+                .withPhone(VALID_PHONE_BOB).withSubjects(VALID_SUBJECT_CHEM).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);

@@ -29,9 +29,19 @@ public interface Logic {
 
     boolean isProceed(String commandText) throws ParseException;
 
+    void setSavedState(boolean isSavedState);
+
     ObservableList<Lesson> getSortedLessonsForDay(String keyword);
 
     ObservableList<String> getLessonsForDayInString(String keyword);
+
+    ObservableList<Lesson> getMondayLesson();
+    ObservableList<Lesson> getTuesdayLesson();
+    ObservableList<Lesson> getWednesdayLesson();
+    ObservableList<Lesson> getThursdayLesson();
+    ObservableList<Lesson> getFridayLesson();
+    ObservableList<Lesson> getSaturdayLesson();
+    ObservableList<Lesson> getSundayLesson();
 
     /**
      * Returns the AddressBook.
@@ -75,6 +85,7 @@ public interface Logic {
     ObservableList<ImportantDate> getFilteredImportantDatesList();
 
     ObservableList<ImportantDate> getSortedImportantDatesList();
+    ObservableList<Lesson> getSpecificLessonList(Person selectedPerson);
 
     public ObservableList<ImportantDate> getTransformedImportantDatesList();
 
@@ -90,4 +101,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+
 }

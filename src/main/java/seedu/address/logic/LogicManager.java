@@ -20,6 +20,7 @@ import seedu.address.model.date.ImportantDate;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicate.LessonDayPredicate;
+import seedu.address.model.person.predicate.LessonPersonPredicate;
 import seedu.address.storage.Storage;
 
 /**
@@ -76,11 +77,49 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public void setSavedState(boolean isSavedState) {
+        model.setSavedState(isSavedState);
+    }
+
+    @Override
     public ObservableList<Lesson> getSortedLessonsForDay(String keyword) {
         this.model.filterThenSortLessonList(new LessonDayPredicate(keyword), Lesson::compareTo);
         return getTransformedLessonList();
-        //this.model.filterLesson(new LessonDayPredicate(keyword));
-        //return getFilteredLessonList();
+    }
+
+    @Override
+    public ObservableList<Lesson> getMondayLesson() {
+        return model.getMondayLesson();
+    }
+
+    @Override
+    public ObservableList<Lesson> getTuesdayLesson() {
+        return model.getTuesdayLesson();
+    }
+
+    @Override
+    public ObservableList<Lesson> getWednesdayLesson() {
+        return model.getWednesdayLesson();
+    }
+
+    @Override
+    public ObservableList<Lesson> getThursdayLesson() {
+        return model.getThursdayLesson();
+    }
+
+    @Override
+    public ObservableList<Lesson> getFridayLesson() {
+        return model.getFridayLesson();
+    }
+
+    @Override
+    public ObservableList<Lesson> getSaturdayLesson() {
+        return model.getSaturdayLesson();
+    }
+
+    @Override
+    public ObservableList<Lesson> getSundayLesson() {
+        return model.getSundayLesson();
     }
 
     @Override
@@ -88,9 +127,15 @@ public class LogicManager implements Logic {
         ObservableList<Lesson> lessons = getSortedLessonsForDay(keyword);
         ObservableList<String> lessonsForDayInString = FXCollections.observableArrayList();
         for (Lesson l : lessons) {
-            lessonsForDayInString.add(l.getTimeInString() + " " + l.getPersonInString());
+            lessonsForDayInString.add(l.getTimeInString() + ": " + l.getPersonInString());
         }
         return lessonsForDayInString;
+    }
+
+    @Override
+    public ObservableList<Lesson> getSpecificLessonList(Person person) {
+        model.filterThenSortLessonList(new LessonPersonPredicate(person), Lesson::compareTo);
+        return model.getTransformedLessonList();
     }
 
     @Override

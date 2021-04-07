@@ -10,23 +10,23 @@ import seedu.address.model.person.Person;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class NameSchoolAndTagContainsKeywordsPredicate implements Predicate<Person> {
+public class NameSchoolAndSubjectContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> nameKeywords;
     private final List<String> schoolKeywords;
-    private final List<String> tagKeywords;
+    private final List<String> subjectKeywords;
 
     /**
      * Constructor of NameAndSchoolContainsKeywordsPredicate
      *
      * @param nameKeywords List of keywords to be matched with the names
      * @param schoolKeywords List of keywords to be matched the school
-     * @param tagKeywords List of keywords to be matched with tags
+     * @param subjectKeywords List of keywords to be matched with subjects
      */
-    public NameSchoolAndTagContainsKeywordsPredicate(List<String> nameKeywords,
-                                                     List<String> schoolKeywords, List<String> tagKeywords) {
+    public NameSchoolAndSubjectContainsKeywordsPredicate(List<String> nameKeywords,
+                                                         List<String> schoolKeywords, List<String> subjectKeywords) {
         this.nameKeywords = nameKeywords;
         this.schoolKeywords = schoolKeywords;
-        this.tagKeywords = tagKeywords;
+        this.subjectKeywords = subjectKeywords;
     }
 
     /**
@@ -60,17 +60,17 @@ public class NameSchoolAndTagContainsKeywordsPredicate implements Predicate<Pers
     }
 
     /**
-     * Evaluates if the keyword matches the person's tags
+     * Evaluates if the keyword matches the person's subjects
      * @param person The person to be compared to
      * @return A boolean value representing the evaluation results
      */
-    public boolean testByTag(Person person) {
+    public boolean testBySubject(Person person) {
         if (person == null) {
             return false;
         }
-        return tagKeywords.stream()
+        return subjectKeywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                        person.getTags().stream().map(tag -> tag.tagName)
+                        person.getSubjects().stream().map(subject -> subject.subjectName)
                                 .collect(Collectors.joining(" ")), keyword));
     }
 
@@ -78,19 +78,19 @@ public class NameSchoolAndTagContainsKeywordsPredicate implements Predicate<Pers
     public boolean test(Person person) {
         boolean isNamePresent = testByName(this.nameKeywords != null ? person : null);
         boolean isSchoolPresent = testBySchool(this.schoolKeywords != null ? person : null);
-        boolean isTagPresent = testByTag(this.tagKeywords != null ? person : null);
-        return isNamePresent || isSchoolPresent || isTagPresent;
+        boolean isSubjectPresent = testBySubject(this.subjectKeywords != null ? person : null);
+        return isNamePresent || isSchoolPresent || isSubjectPresent;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameSchoolAndTagContainsKeywordsPredicate // instanceof handles nulls
-                && nameKeywords.equals(((NameSchoolAndTagContainsKeywordsPredicate) other).nameKeywords)
-                && schoolKeywords.equals(((NameSchoolAndTagContainsKeywordsPredicate) other)
+                || (other instanceof NameSchoolAndSubjectContainsKeywordsPredicate // instanceof handles nulls
+                && nameKeywords.equals(((NameSchoolAndSubjectContainsKeywordsPredicate) other).nameKeywords)
+                && schoolKeywords.equals(((NameSchoolAndSubjectContainsKeywordsPredicate) other)
                 .schoolKeywords)
-                && tagKeywords.equals(((NameSchoolAndTagContainsKeywordsPredicate) other)
-                .tagKeywords)); // state check
+                && subjectKeywords.equals(((NameSchoolAndSubjectContainsKeywordsPredicate) other)
+                .subjectKeywords)); // state check
     }
 
 }

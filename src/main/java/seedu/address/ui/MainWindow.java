@@ -191,10 +191,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    public void handleSavedCommand(String commandText) {
-
-    }
-
     void show() {
         primaryStage.show();
     }
@@ -228,6 +224,8 @@ public class MainWindow extends UiPart<Stage> {
                 if (logic.isProceed(commandText)) {
                     commandText = commandBox.getPreviousUserInput();
                 } else {
+                    commandBox.setWaitForNextInput(false);
+                    logic.setSavedState(false);
                     throw new CommandException(MESSAGE_DO_NOT_PROCEED_COMMAND);
                 }
                 commandBox.setWaitForNextInput(false);
@@ -237,6 +235,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             if (logic.getSelectedPerson() != null) {
                 personDetails.setPerson(logic.getSelectedPerson());
+                personDetails.setLessonList(logic.getSpecificLessonList(logic.getSelectedPerson()));
             }
 
             if (commandResult.isShowHelp()) {

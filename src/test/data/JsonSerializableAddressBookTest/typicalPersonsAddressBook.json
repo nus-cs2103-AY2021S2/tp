@@ -8,8 +8,9 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "guardianName" : "Amanda Pauline",
     "guardianPhone" : "94351254",
-    "tagged" : [ "sec1" ],
-    "lessons" : [ "Sunday 1000"]
+    "level" : "sec1",
+    "subjects" : [ "phys" ],
+    "lessons" : [ "sunday 1000"]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -18,8 +19,10 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "guardianName" : "Jay Maier",
     "guardianPhone" : "98765433",
-    "tagged" : [ "sec2", "math" ],
-    "lessons" : [ "Monday 1800" ]
+    "level" : "sec3",
+    "subjects" : [ "chinese", "math" ],
+    "subjects" : [ "cn", "math" ],
+    "lessons" : [ "monday 1800" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -28,8 +31,9 @@
     "address" : "wall street",
     "guardianName" : "Louis Kurz",
     "guardianPhone" : "95352564",
-    "tagged" : [ ],
-    "lessons" : [ "Friday 1000" ]
+    "level" : "pri3",
+    "subjects" : [ ],
+    "lessons" : [ "friday 1000" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -38,7 +42,9 @@
     "address" : "10th street",
     "guardianName" : "Jay Maier",
     "guardianPhone" : "98765433",
-    "tagged" : [ "sec3" ]
+    "level" : "sec1",
+    "subjects" : [ "cn" ],
+    "lessons" : [ ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -47,7 +53,9 @@
     "address" : "michegan ave",
     "guardianName" : "John Meyer",
     "guardianPhone" : "9482225",
-    "tagged" : [ ]
+    "level" : "sec1",
+    "subjects" : [ ],
+    "lessons" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -56,7 +64,9 @@
     "address" : "little tokyo",
     "guardianName" : "Fay Kunz",
     "guardianPhone" : "9482425",
-    "tagged" : [ ]
+    "level" : "sec1",
+    "subjects" : [ ],
+    "lessons" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -65,6 +75,8 @@
     "address" : "4th street",
     "guardianName" : "Barbara Best",
     "guardianPhone" : "9482444",
-    "tagged" : [ ]
+    "level" : "sec1",
+    "subjects" : [ ],
+    "lessons" : [ ]
   } ]
 }

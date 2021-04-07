@@ -2,11 +2,10 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -18,21 +17,28 @@ public class ScheduleWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(ScheduleWindow.class);
     private static final String FXML = "ScheduleWindow.fxml";
     private Logic logic;
+    private LessonListPanel sundayLessonListPanel;
+    private LessonListPanel mondayLessonListPanel;
+    private LessonListPanel tuesdayLessonListPanel;
+    private LessonListPanel wednesdayLessonListPanel;
+    private LessonListPanel thursdayLessonListPanel;
+    private LessonListPanel fridayLessonListPanel;
+    private LessonListPanel saturdayLessonListPanel;
 
     @FXML
-    private ListView<String> sunList;
+    private StackPane sundayListPanelPlaceholder;
     @FXML
-    private ListView<String> monList;
+    private StackPane mondayListPanelPlaceholder;
     @FXML
-    private ListView<String> tuesList;
+    private StackPane tuesdayListPanelPlaceholder;
     @FXML
-    private ListView<String> wedList;
+    private StackPane wednesdayListPanelPlaceholder;
     @FXML
-    private ListView<String> thursList;
+    private StackPane thursdayListPanelPlaceholder;
     @FXML
-    private ListView<String> friList;
+    private StackPane fridayListPanelPlaceholder;
     @FXML
-    private ListView<String> satList;
+    private StackPane saturdayListPanelPlaceholder;
     @FXML
     private GridPane gridPane;
     @FXML
@@ -46,8 +52,6 @@ public class ScheduleWindow extends UiPart<Stage> {
     public ScheduleWindow(Stage root, Logic logic) {
         super(FXML, root);
         this.logic = logic;
-        //ListView<String> sunList = new ListView<String>(names);
-        //scheduleList.getChildren().add(sunList);
     }
 
     /**
@@ -78,6 +82,7 @@ public class ScheduleWindow extends UiPart<Stage> {
     public void show() {
         logger.fine("Showing schedule window.");
 
+        /*
         ObservableList<String> monLessons = logic.getLessonsForDayInString("monday");
         ObservableList<String> tuesLessons = logic.getLessonsForDayInString("tuesday");
         ObservableList<String> wedLessons = logic.getLessonsForDayInString("wednesday");
@@ -93,6 +98,29 @@ public class ScheduleWindow extends UiPart<Stage> {
         thursList.setItems(thursLessons);
         friList.setItems(friLessons);
         satList.setItems(satLessons);
+         */
+
+        sundayLessonListPanel = new LessonListPanel(logic.getSundayLesson());
+        sundayListPanelPlaceholder.getChildren().add(sundayLessonListPanel.getRoot());
+
+        mondayLessonListPanel = new LessonListPanel(logic.getMondayLesson());
+        mondayListPanelPlaceholder.getChildren().add(mondayLessonListPanel.getRoot());
+
+        tuesdayLessonListPanel = new LessonListPanel(logic.getTuesdayLesson());
+        tuesdayListPanelPlaceholder.getChildren().add(tuesdayLessonListPanel.getRoot());
+
+        wednesdayLessonListPanel = new LessonListPanel(logic.getWednesdayLesson());
+        wednesdayListPanelPlaceholder.getChildren().add(wednesdayLessonListPanel.getRoot());
+
+        thursdayLessonListPanel = new LessonListPanel(logic.getThursdayLesson());
+        thursdayListPanelPlaceholder.getChildren().add(thursdayLessonListPanel.getRoot());
+
+        fridayLessonListPanel = new LessonListPanel(logic.getFridayLesson());
+        fridayListPanelPlaceholder.getChildren().add(fridayLessonListPanel.getRoot());
+
+        saturdayLessonListPanel = new LessonListPanel(logic.getSaturdayLesson());
+        saturdayListPanelPlaceholder.getChildren().add(saturdayLessonListPanel.getRoot());
+
 
         getRoot().show();
         getRoot().centerOnScreen();

@@ -7,10 +7,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -22,7 +23,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.subject.Subject;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -38,7 +39,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_SCHOOL, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_GUARDIAN_NAME, PREFIX_GUARDIAN_PHONE, PREFIX_TAG, PREFIX_LESSON);
+                        PREFIX_ADDRESS, PREFIX_GUARDIAN_NAME, PREFIX_GUARDIAN_PHONE, PREFIX_LEVEL,
+                        PREFIX_SUBJECT, PREFIX_LESSON);
 
         Index index;
 
@@ -72,7 +74,11 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setGuardianPhone(ParserUtil.parseGuardianPhone(argMultimap
                     .getValue(PREFIX_GUARDIAN_PHONE).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+        if (argMultimap.getValue(PREFIX_LEVEL).isPresent()) {
+            editPersonDescriptor.setLevel(ParserUtil.parseLevel(argMultimap
+                    .getValue(PREFIX_LEVEL).get()));
+        }
+        parseSubjectsForEdit(argMultimap.getAllValues(PREFIX_SUBJECT)).ifPresent(editPersonDescriptor::setSubjects);
         parseLessonsForEdit(argMultimap.getAllValues(PREFIX_LESSON)).ifPresent(editPersonDescriptor::setLessons);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
@@ -83,18 +89,19 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code Collection<String> subjects} into a {@code Set<Tag>} if {@code subjects} is non-empty.
+     * If {@code subjects} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero subjects.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<Subject>> parseSubjectsForEdit(Collection<String> subjects) throws ParseException {
+        assert subjects != null;
 
-        if (tags.isEmpty()) {
+        if (subjects.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        Collection<String> subjectSet = subjects.size() == 1 && subjects.contains("")
+                ? Collections.emptySet() : subjects;
+        return Optional.of(ParserUtil.parseSubjects(subjectSet));
     }
 
     private Optional<Set<Lesson>> parseLessonsForEdit(Collection<String> lessons) throws ParseException {

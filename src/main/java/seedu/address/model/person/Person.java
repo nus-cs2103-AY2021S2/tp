@@ -2,14 +2,18 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.level.Level;
+import seedu.address.model.subject.Subject;
 
 /**
  * Represents a Person in the address book.
@@ -27,7 +31,8 @@ public class Person {
     private final Optional<Name> guardianName;
     private final Optional<Phone> guardianPhone;
     private final Optional<Address> address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Optional<Level> level;
+    private final Set<Subject> subjects = new HashSet<>();
     private final Set<Lesson> lessons = new HashSet<>();
 
 
@@ -35,9 +40,10 @@ public class Person {
      * Student's name and phone number must be present.
      */
     public Person(Name name, Phone phone, Optional<School> school, Optional<Email> email, Optional<Address> address,
-                  Optional<Name> guardianName, Optional<Phone> guardianPhone, Set<Tag> tags, Set<Lesson> lessons) {
+                  Optional<Name> guardianName, Optional<Phone> guardianPhone, Optional<Level> level,
+                  Set<Subject> subjects, Set<Lesson> lessons) {
         requireAllNonNull(name, phone, school, email, address, guardianName,
-                guardianPhone, tags, lessons);
+                guardianPhone, level, subjects, lessons);
         this.name = name;
         this.phone = phone;
         this.school = school;
@@ -45,7 +51,8 @@ public class Person {
         this.address = address;
         this.guardianName = guardianName;
         this.guardianPhone = guardianPhone;
-        this.tags.addAll(tags);
+        this.level = level;
+        this.subjects.addAll(subjects);
         this.lessons.addAll(lessons);
     }
 
@@ -77,16 +84,31 @@ public class Person {
         return guardianPhone;
     }
 
+    public Optional<Level> getLevel() {
+        return level;
+    }
+
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable subject set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Subject> getSubjects() {
+        return Collections.unmodifiableSet(subjects);
     }
 
     public Set<Lesson> getLessons() {
         return Collections.unmodifiableSet(lessons);
+    }
+
+    public ArrayList<Day> getLessonsDays() {
+        ArrayList<Day> days = new ArrayList<>();
+        if (!lessons.isEmpty()) {
+            Iterator<Lesson> lesson = lessons.iterator();
+            while (lesson.hasNext()) {
+                days.add(lesson.next().getDay());
+            }
+        }
+        return days;
     }
 
     /**
@@ -124,14 +146,14 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getGuardianName().equals(getGuardianName())
                 && otherPerson.getGuardianPhone().equals(getGuardianPhone())
-                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getSubjects().equals(getSubjects())
                 && otherPerson.getLessons().equals(getLessons());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, school, email, address, guardianName, guardianPhone, tags, lessons);
+        return Objects.hash(name, phone, school, email, address, guardianName, guardianPhone, subjects, lessons);
     }
 
     @Override
@@ -172,10 +194,16 @@ public class Person {
                     .append(guardianPhone.get());
         }
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        Optional<Level> level = getLevel();
+        if (level.isPresent()) {
+            builder.append("; Level: ")
+                    .append(level.get());
+        }
+
+        Set<Subject> subjects = getSubjects();
+        if (!subjects.isEmpty()) {
+            builder.append("; Subjects: ");
+            subjects.forEach(builder::append);
         }
 
         Set<Lesson> lessonDetailsSet = getLessons();

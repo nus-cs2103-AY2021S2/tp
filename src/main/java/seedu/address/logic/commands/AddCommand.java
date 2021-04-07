@@ -6,10 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -28,12 +29,13 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE \n"
             + "Optional Details: "
-            + PREFIX_SCHOOL + "SCHOOL "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_GUARDIAN_NAME + "GUARDIAN_NAME "
-            + PREFIX_GUARDIAN_PHONE + "GUARDIAN_PHONE "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_SCHOOL + "SCHOOL] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_GUARDIAN_NAME + "GUARDIAN_NAME] "
+            + "[" + PREFIX_GUARDIAN_PHONE + "GUARDIAN_PHONE] "
+            + "[" + PREFIX_LEVEL + "LEVEL] "
+            + "[" + PREFIX_SUBJECT + "SUBJECT]...\n"
             + "[" + PREFIX_LESSON + "LESSON]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -43,8 +45,9 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_GUARDIAN_NAME + "Helen Doe "
             + PREFIX_GUARDIAN_PHONE + "98765431 "
-            + PREFIX_TAG + "math "
-            + PREFIX_TAG + "sec3 "
+            + PREFIX_LEVEL + "sec3 "
+            + PREFIX_SUBJECT + "math "
+            + PREFIX_SUBJECT + "chem "
             + PREFIX_LESSON + "monday 1300";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
@@ -65,12 +68,10 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.hasPerson(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
         if (!model.isSavedState()) {
-
-            if (model.hasPerson(toAdd)) {
-                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-            }
-
             for (Lesson lesson : toAdd.getLessons()) {
                 if (model.hasLesson(lesson)) {
                     model.setSavedState(true);

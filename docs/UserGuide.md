@@ -7,6 +7,35 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
 
 * Table of Contents
 {:toc}
+--------------------------------------------------------------------------------------------------------------------
+## About
+This document can be thought of as a manual and a reference guide for TutorPets. It will guide you on how to use TutorPets and will provide complete information on each available command.
+Furthermore, the guide gives information on the User Interface (UI) and the other useful features of TutorPets. Each section of the guide can be read independently.
+You can view the full list of content using the Table of Contents above. You can also use your document viewer’s Find function to quickly navigate to the content you want to know more about.
+
+It is generally advised for new users to at least read through the [Quick Start](#quick-start) section to familiarise themselves with TutorPets.
+
+Note the following symbols and formatting used in this document:
+
+`list` <br>
+The grey highlight, also called a mark-up, indicates that the text in it can be typed into the command line and executed by the application.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**<br>
+
+* This block is used for detailing information about formatting, handling exceptional cases or special keywords used in the corresponding section.
+</div>
+
+<div markdown="block" class="alert alert-primary">
+:bulb: **Tips:**
+
+* This block is used to provide you extra details about the feature that will enable you to use it more effectively.
+</div>
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:** This block is used to point out any dangerous actions that may result in the loss of data or the app crashing.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -18,7 +47,9 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
 
 1. Copy the file to the folder you want to use as the _home folder_ for your TutorsPet.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. If that does not work, open command prompt and type in 
+   `java -jar /path/to/jar/file`, replacing the path with the absolute or relative file paths.
+   The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -28,11 +59,12 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
      
    * **`schedule`** : Opens a window that shows the weekly schedule.
 
-   * **`add`**`n/Alice Tan p/98765432 s/Abc Secondary School e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789` : Adds a student's contact named `Alice Tan` to TutorsPet.
+   * **`add`**`n/Alice Tan p/98765432 s/Abc Secondary School e/alicet@example.com a/John street, block 123, #01-01 
+     gn/Mary Tan gp/23456789` : Adds a student's contact named `Alice Tan` to TutorsPet.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all contacts and important dates.
 
    * **`exit`** : Exits the app.
 
@@ -50,11 +82,11 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/sec3` or as `n/John Doe`.
+  e.g `n/NAME [t/SUBJECT]` can be used as `n/John Doe t/econ` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/sec1`, `t/physics t/maths` etc.
-
+  e.g. `[t/SUBJECT]…​` can be used as ` ` (i.e. 0 times), `t/chem`, `t/phys t/math` etc.
+  
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -86,28 +118,50 @@ Format: `schedule`
 
 Adds a student’s contact to TutorsPet.
 
-Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG]…​ [l/LESSON]…​`
+Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]…​ [le/LESSON]…​`
 
-<div markdown="span" class="alert alert-primary">
 
-:bulb:**Tip:**<br>
+<div markdown="block" class="alert alert-primary">
 
-* `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE [t/TAG]…​ [l/LESSON]…​` are optional.
-  
-* A student’s contact can have any number of tags (including 0)
+:bulb:**Tips:** <br>
+
+* `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional.
+
+* Levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
+  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `graduated`.
+  They cover the education levels in Primary School, Secondary School and Junior College. For more details, see the [Field Format Summary](#field-format-summary) below.
+
+
+* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
+
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
+  For more details, see the [Field Format Summary](#field-format-summary) below.
+
+* A student’s contact can have any number of subjects (including 0). 
   
 * A student’s contact can have any number of lessons (including 0)
 
+* Lessons should only consist of the lesson day and time e.g. `Monday 1300`
+  
+* Lesson day must take on one of the values: **Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday**.
+
+* Lesson time must be in **HHmm** format e.g. **1300**
+
+</div>
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:** If TutorPets detects a conflicting lesson being added, a confirmation message will be shown. You
+will need to type in either y/n for confirmation to add conflicted schedule.
 </div>
 
 Examples:
 * `add n/John Doe p/98612341`
 * `add n/Alice Tan p/98765432 s/Abc Secondary School e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789`
-* `add n/Bob Lee t/sec3 p/87654321 s/Def Secondary School e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/maths l/monday 1300`
+* `add n/Bob Lee p/87654321 s/Def Secondary School e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/math le/monday 1300`
 
 ### Listing all contacts : `list`
 
-Shows a list of all student contacts in TutorsPet. Each student's name, phone number, tags and lessons are displayed. 
+Shows a list of all student contacts in TutorsPet. Each student's name, phone number, subjects and lessons are displayed. 
 
 Format: `list`
 
@@ -115,93 +169,185 @@ Format: `list`
 
 Edits an existing student in TutorsPet.
 
-Format: `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG] [l/LESSON]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [le/LESSON]…​`
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb:**Tips:** <br>
 
 * Edits the student at the specified `INDEX`.
+  
 * The index refers to the index number shown in the displayed student list.
+  
 * The index **must be a positive integer** 1, 2, 3, …​
+  
 * At least one of the optional fields must be provided.
+  
 * Existing values will be updated to the input values.
-* When editing tags or lessons, the existing tags or lessons of the student will be removed i.e adding of tags or lessons are not cumulative.
-* You can remove all the student’s tags by typing `t/` without
-    specifying any tags after it.
+
+* Levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
+  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `graduated`.
+  They cover the education levels in Primary School, Secondary School and Junior College. For more details, see the [Field Format Summary](#field-format-summary) below.
+
+* When editing subjects or lessons, the existing subjects or lessons of the student will be removed i.e adding of subjects or lessons are not cumulative.
+  
+* You can remove all the student’s subjects by typing `t/` without specifying any subject names after it.
+  
+* You can remove all the student’s lessons by typing `le/` without specifying any lesson details after it.
+  
+* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
+  
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
+  For more details, see the [Field Format Summary](#field-format-summary) below.
+
+</div>
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:** Edited information can be displayed on the Contact details panel by retyping
+`detail INDEX` command.
+</div>
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
-*  `edit 1 l/monday 1300 l/tuesday 1400` Edits the 1st student's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing subjects.
+*  `edit 1 le/monday 1300 le/tuesday 1400` Edits the 1st student's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
 
 ### Searching for a contact: `search`
 
 Searches for a student’s contact whose details contain any of the given keywords.
 
-Format: `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`
+Format: `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS]`
+
+Prefix | Searching Criteria
+------ | -----------------
+`n/`   | Name
+`s/`   | School
+`t/`   | Subject
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb:**Tips:** <br>
 
 * At least one prefix must be used.
+  
 * Any number of prefixes can be used concurrently.
-* The search is case-insensitive. E.g. `TAN` will match `Tan` .
-* The order of the keywords does not matter. E.g. `Tan Alice` will match `Alice Tan`.
-* Name, school and tags can be searched according to the prefix.
-* Only full words will be matched e.g. `Ta` will not match `Tan`
+  
+* The search is case-insensitive. E.g. `TAN` will match `Tan`.
+  
+* The order of the keywords does not matter. E.g. `n/Tan Alice` will match `Alice Tan`.
+  
+* Name, school and subjects can be searched according to the prefix.
+  
+* Only full words will be matched e.g. `Ta` will not match `Tan`.
+  
 * Contacts matching at least one keyword will be returned. 
-  E.g. `Alice Tan` will return `Alice Ng` and `Bob Tan`.
+  
+  E.g. `n/Alice Tan` will return contacts with names `Alice Ng` and `Bob Tan`.
+  
+* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
+  
+    > They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
+
+</div>
 
 Examples:
-* `search n/eliza s/woodlands t/math` returns student whose name is `Eliza`, students who are studying in `woodlands primary school`, and students with the `math` tag
-* `search n/Patrick Lim` returns `patrick lim` and `Lim Zi Ying`
+* `search n/eliza s/woodlands t/math` returns student whose name is `Eliza`, students who are studying in `woodlands primary school`, and students with `math` subject
+* `search n/Patrick Lim` returns students whose names are `patrick lim` and `Lim Zi Ying`
 * `search s/woodlands` returns students studying in `woodlands primary school` and `woodlands secondary school`
 * `search s/raffles hwa` returns students studying in `Raffles Institution` and `Hwa chong institution`
+* `search t/CHEM`, `search t/chem`, and `search t/Chem` will all return students with the subject `chem`
 
 
-### Searching for a contact by name: `search n/...`
-Searches for a student’s contact whose contact name contains any of the given keywords.
+### Sorting contacts: `sort`
+Sorts the student contacts list by name, school, subjects or lessons.
 
-Format: `search n/KEYWORD [MORE_KEYWORDS]`
+Format: `sort PREFIX`
+  
+Prefix | Sorting Criteria 
+------ | -----------------
+`n/`   | Name             
+`s/`   | School           
+`t/`   | Subject          
+`le/`  | Lesson           
 
-* The search is case-insensitive. <br/>
-  E.g. `TAN` will match `Tan`
-* The order of the keywords does not matter. <br/>
-  E.g. `Tan Alice` will match `Alice Tan`
-* Only the name is searched.
-* Only full words will be matched. <br/>
-  E.g. `Ta` will not match `Tan`
-* Contacts matching at least one keyword will be returned. <br/>
-  E.g. `Alice Tan` will return `Alice Ng` and `Bob Tan`
+<div markdown="block" class="alert alert-primary">
 
-Examples:
-* `search n/eliza` returns `Eliza` and `Eliza Ng`
-* `search n/Patrick Lim` returns `patrick lim` and `Lim Zi Ying`
+:bulb:**Tips:** <br>
 
-### Searching for a contact by school: `search s/...`
-Searches for a student's contact from a specific school using keywords
+* There are four sorting criteria available, represented by the prefixes `n/`, `s/`, `t/`, and 
+  `le/`. They represent sorting by name, school, subjects or lessons respectively.
+  
+* If multiple sorting prefixes are listed out, the list will be sorted by the **first** prefix listed.
+  
+* Any extra words typed will be ignored.
 
-Format: `search s/KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. <br/>
-  e.g `RAFFLES JUNIOR COLLEGE` will match students studying in `Raffles junior college`
-* The order of the keywords does not matter.<br/>
-  e.g. `Chong Hwa` will match students studying in `Hwa Chong Institution`
-* Only the stated keyword is searched.
-* Only full words will be matched e.g. `Raffle` will not match `Raffles`
-* The contact matching at least one keyword will be returned (i.e. OR search). <br/>
-  e.g. `Raffles Hwa` will return students studying in `Raffles Junior College`or `Hwa Chong Institution`
+</div>
 
 Examples:
-* `search s/woodlands` returns students studying in `woodlands primary school` and `woodlands secondary school`
-* `search s/raffles hwa` returns students studying in `Raffles Institution` and `Hwa chong institution`
+* `sort le/` sorts students based on the chronological order of their respective earliest lesson 
+  of the week.
+* `sort n/ s/` sorts students by the alphabetical orders of their names.
+* `sort t/` sorts students by subjects alphabetically in the order of `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, ignoring the extra words.
 
-### Searching for a contact by tag: `search t/...`
-Searches for a student's contact with a specific tag using keywords
+### Advancing all students: `levelup`
 
-Format: `search t/KEYWORD [MORE_KEYWORDS]`
+Advances the education level of all the student contacts by one grade , unless the student is excluded.
+This feature can be used at the start of the school year.
 
-* The search is case-insensitive. <br/>
-  e.g `MATH` will match students with tag `math`
-* Only the stated keyword is searched.
-* Only full words will be matched e.g. `Math` will not match `Maths`
+Format: `levelup ex/[INDEX]...`
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb:**Tips:** <br>
+
+* Students who are `jc1` will advance to `graduated` when `levelup` is applied. Students will not 
+  advance any further if they are `graduated`.
+  
+* If no index is provided, all students will advance by one education level (unless they have `graduated`).
+  
+* The index refers to the index number shown in the displayed student list. Indexes are used to 
+  indicate students who are to be excluded from the advancement.
+  
+* The index **must be a positive integer** 1, 2, 3, …​
+  
+* Multiple indexes can be taken in, including no indexes. Indexes must be separated by spaces.
+
+</div>
 
 Examples:
-* `search t/science` returns students with the tag `SCIENCE` and `science`
+* `levelup` advances all students except `graduated` students by one level.
+* `levelup ex/3 4` advances all students by one level, excluding the 3rd and 4th student
+  in the list, as well as any students who have `graduated`.
+
+### Demoting all students: `leveldown`
+
+Demotes the education level of all the student contacts by one grade, unless the student is excluded.
+This feature can be used to undo `levelup` or indicate retainees.
+
+Format: `leveldown ex/[INDEX]...`
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb:**Tips:** <br>
+
+* Students who are `pri1` will not demote any further.
+  
+* If no index is provided, all students will be demoted by one education level (unless they are `pri1`).
+  
+* The index refers to the index number shown in the displayed student list. Indexes are used to
+  indicate students who are to be excluded from the demotion.
+  
+* The index **must be a positive integer** 1, 2, 3, …​
+  
+* Multiple indexes can be taken in, including no indexes. Indexes must be separated by spaces.
+
+</div>
+
+Examples:
+* `leveldown` demotes all students except `pri1` students by one level.
+* `levelup ex/2 5` demotes all students by one level, excluding the 3rd and 4th student
+  in the list, as well as any students who are `pri1`.
+
 
 ### Viewing a contact details: `detail`
 
@@ -211,9 +357,17 @@ be displayed.
 
 Format: `detail INDEX`
 
+<div markdown="block" class="alert alert-primary">
+
+:bulb:**Tips:** <br>
+
 * Views the contact at the specified `INDEX`.
+
 * The index refers to the index number shown in the displayed student list.
+
 * The index **must be a positive integer** 1, 2, 3, …​
+
+</div>
 
 Examples:
 * `list` followed by `detail 2` views the details of the 2nd student in TutorsPet.
@@ -221,13 +375,21 @@ Examples:
 
 ### Deleting a contact : `delete`
 
-Permanently deletes the specified student's contact from the address book.
+Permanently deletes the specified student's contact from TutorsPet.
 
 Format: `delete INDEX`
 
+<div markdown="block" class="alert alert-primary">
+
+:bulb:**Tips:** <br>
+
 * Deletes the contact at the specified `INDEX`.
+  
 * The index refers to the index number shown in the displayed student list.
+  
 * The index **must be a positive integer** 1, 2, 3, …​
+
+</div>
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in TutorsPet.
@@ -239,8 +401,13 @@ Adds an important date to TutorsPet.
 
 Format: `add-date d/DESCRIPTION dt/DETAILS`
 
+<div markdown="block" class="alert alert-primary">
+
+:bulb:**Tips:** <br>
+
 * `DETAILS` must be in the **yyyy-mm-dd HHmm format** e.g. `2021-11-03 0800`
 
+</div>
 
 Examples:
 * `add-date d/math exam dt/2021-11-03 0800`
@@ -257,9 +424,17 @@ Permanently deletes the specified important date from TutorsPet.
 
 Format: `delete-date INDEX`
 
+<div markdown="block" class="alert alert-primary">
+
+:bulb:**Tips:** <br>
+
 * Deletes the important date at the specified `INDEX`.
+  
 * The index refers to the index number shown in the displayed important dates list.
+  
 * The index **must be a positive integer** 1, 2, 3, …​
+
+</div>
 
 Examples:
 * `list-date` followed by `delete-date 2` deletes the 2nd important date in TutorsPet.
@@ -282,17 +457,24 @@ TutorsPet data are saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-TutorsPet data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+TutorsPet data are saved into three different JSON files: <br>
+1. `[JAR file location]/data/addressbook.json` for storing contact details. 
+2. `[JAR file location]/data/datesbook.json` for storing important exam dates.
+3. `[JAR file location]/data/lessonbook.json`for storing student lesson dates.
+
+Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TutorsPet will discard all data and start with an empty data file at the next run.
+
 </div>
 
-##Coming soon
+## Coming soon
 
-### Tag a student with one or more specific subjects`[coming in v1.4]`
+### Add a subject to teach`[coming in v2.0]`
 
-_In v1.3, any texts can be parsed through tags, while in v1.4, we will specialise tags to the subjects a student is learning._
+_Format: `add-subject SUBJECT_NAME` <br> Currently, there is a fixed list of subjects that is available to teach and can be tagged in TutorsPet, 
+while in v2.0, more personalised subjects can be added in._
 
 ### Undo/Redo `[coming in v2.0]`
 
@@ -302,6 +484,9 @@ _Details coming soon ..._
 
 _Details coming soon ..._
 
+### Add profile picture for each contact`[coming in v2.0]`
+_Format: `add-profile INDEX FILE_PATH` <br> Add a profile picture to the contact of the specified index
+by providing the file path to the picture._
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -311,16 +496,41 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Field Format Summary
+
+Student Contact Field   | Prefix | Optional?| Notes
+------------------------| -------|--------- |------------------------------------
+Name                    | `n/`   | Y        | Contains alphanumeric characters and spaces only
+Phone number            | `p/`   | Y        | Contains numbers only; at least 3 digits long
+Email                   | `e/`   | N        | Should be in the format of **local-part@domain** e.g. **alexyeoh@gmail.com**
+Address                 | `a/`   | N        | Any format
+Guardian's name         | `gn/`  | N        | Contains alphanumeric characters and spaces only
+Guardian's phone number | `gp/`  | N        | Contains numbers only; at least 3 digits long
+Education level         | `lv/`  | N        | Fixed format: <br>Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6` <br>Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`<br>Junior College: `jc1`, `jc2`<br>Post Junior College: `graduated`
+Subject                 | `t/`   | N        | Can have any number of inputs (including 0)<br><br>Fixed format: <br> Languages: `cn`, `eng`<br>Mathematics & Sciences: `math`, `bio`, `chem`, `phys`, `sci`<br>Humanities: `econ`, `geo`, `hist`<br><br>Represents subjects Chinese, English, Mathematics, Biology, Chemistry, Physics, Science Economics, Geography and History in order of the above listing.
+Lesson                  | `le/`  | N        | Can have any number of inputs (including 0)<br><br>Consist of lesson day and lesson time:<br>Lesson day: `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`<br>Lesson time: In **HHmm** format e.g. **1300**
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+TutorsPet does not corroborate the school, education level, subject and lesson fields of the student contacts
+input in the app. Users will have to ensure the information they enter for these fields match up accordingly,
+e.g. A student contact in ABC Primary School will probably not be in sec3, or take subjects
+like chem and bio.
+
+</div>
+
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG]…​ [l/LESSON]…​` <br> e.g., `add n/Bob Lee p/87654321 s/Def Secondary School a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/sec3`
+**Add** | `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [le/LESSON]…​` <br> e.g., `add n/Bob Lee p/87654321 s/Def Secondary School a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/geo`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG]…​ [l/LESSON]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Search** | `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`<br> e.g., `search n/James Jake s/woodlands t/science`
+**Edit** | `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [le/LESSON]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Search** | `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`<br> e.g., `search n/James Jake s/woodlands t/eng`
 **Schedule** | `schedule`
+**Sort** | `sort PREFIX` <br> e.g., `sort [n/]`, `sort [s/]`
+**Level Up** | `levelup [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/2 4`
+**Level Down** | `leveldown [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/1 2`
 **Detail** | `detail INDEX` <br> e.g., `detail 1`
 **List** | `list`
 **Add dates** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
