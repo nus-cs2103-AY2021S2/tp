@@ -41,7 +41,7 @@ public class ClearAssigneesCommandTest {
 
         ClearAssigneesCommand clearAssigneesCommand = new ClearAssigneesCommand(INDEX_FIRST_TASK);
 
-        String expectedMessage = String.format(clearAssigneesCommand.MESSAGE_CLEARED_ASSIGNEES_SUCCESS,
+        String expectedMessage = String.format(clearAssigneesCommand.MESSAGE_ASSIGNEES_SET_IS_EMPTY,
                 clearedTask);
 
         ModelManager expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
@@ -83,7 +83,7 @@ public class ClearAssigneesCommandTest {
 
         ClearAssigneesCommand clearAssigneesCommand = new ClearAssigneesCommand(INDEX_FIRST_TASK);
 
-        String expectedMessage = String.format(ClearAssigneesCommand.MESSAGE_CLEARED_ASSIGNEES_SUCCESS,
+        String expectedMessage = String.format(ClearAssigneesCommand.MESSAGE_ASSIGNEES_SET_IS_EMPTY,
                 clearedTask);
 
         Model expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());

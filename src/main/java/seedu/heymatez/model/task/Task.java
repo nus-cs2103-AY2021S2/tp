@@ -104,6 +104,12 @@ public class Task {
         return assignees.contains(assignee);
     }
 
+    /**
+     * Returns true if the set of assignees to this task is not empty.
+     * Returns false if the set of assignees to this task is empty.
+     *
+     * @return a boolean value.
+     */
     public boolean hasAnyAssignees() {
         if (assignees.isEmpty()) {
             return false;
