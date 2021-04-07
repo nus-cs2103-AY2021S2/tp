@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Slider?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="PlanIT" minWidth="900" minHeight="500" onCloseRequest="#handleExit">
@@ -61,9 +60,7 @@
                 </StackPane>
                 <HBox fx:id="tagListPanel">
                   <Label text="Tags: " prefWidth="50" minWidth="50" prefHeight="60" styleClass="tag-title"/>
-                  <StackPane fx:id="tagListPanelPlaceholder" prefHeight="60" HBox.hgrow="ALWAYS">
-                    <Slider blockIncrement="1" prefWidth="0.1" minWidth="0.1" maxWidth="0.1" maxHeight="1"/>
-                  </StackPane>
+                  <StackPane fx:id="tagListPanelPlaceholder" prefHeight="60" HBox.hgrow="ALWAYS" />
                 </HBox>
               </VBox>
             </HBox>

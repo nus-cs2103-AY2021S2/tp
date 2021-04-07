@@ -101,7 +101,13 @@ public class TaskCardDetails extends UiPart<Region> {
     private void setTagsIfPresent(Task task) {
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tagLabel = new Label(tag.tagName);
+                    tagLabel.setMaxWidth(250);
+                    tagLabel.setWrapText(true);
+
+                    tags.getChildren().add(tagLabel);
+                });
     }
 
     /**
