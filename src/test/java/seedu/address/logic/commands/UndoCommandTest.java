@@ -2,6 +2,10 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.index.Index.fromZeroBased;
+import static seedu.address.logic.commands.CommandTestUtil.ADD_WORD;
+import static seedu.address.logic.commands.CommandTestUtil.DELETE_WORD;
+import static seedu.address.logic.commands.CommandTestUtil.EDIT_WORD;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -29,7 +33,7 @@ public class UndoCommandTest {
     @BeforeEach
     public void setUp() {
         state = new State();
-        state.addState(addressBook);
+        state.addState(addressBook, EMPTY_COMMAND);
     }
 
     @Test
@@ -40,27 +44,37 @@ public class UndoCommandTest {
     @Test
     public void execute_atLeastTwoStates_success() {
         try {
+            // execute edit command
             Person editedPerson = new PersonBuilder().build();
             EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
             EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
             editCommand.execute(model);
-            state.addState(new AddressBook(model.getAddressBook()));
+            state.addState(new AddressBook(model.getAddressBook()), EDIT_WORD);
 
+            // undo the edit command
             Model expectedModel1 = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-            assertCommandSuccess(new UndoCommand(state), model, UndoCommand.MESSAGE_SUCCESS, expectedModel1);
-            assertEquals(getTypicalAddressBook(), state.getCurrentState());
+            assertCommandSuccess(new UndoCommand(state), model,
+                    String.format(UndoCommand.MESSAGE_SUCCESS, EDIT_WORD), expectedModel1);
+            assertEquals(getTypicalAddressBook(), state.getCurrentAddressBook());
+            assertEquals(EMPTY_COMMAND, state.getCurrentCommand());
 
+            // execute delete command
             DeleteCommand deleteCommand = new DeleteCommand(fromZeroBased(0));
             deleteCommand.execute(model);
             ReadOnlyAddressBook afterDelete = new AddressBook(model.getAddressBook());
-            state.addState(afterDelete);
+            state.addState(afterDelete, DELETE_WORD);
             Model expectedModel2 = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
+            // execute add command
             AddCommand addCommand = new AddCommand(new PersonBuilder().build());
             addCommand.execute(model);
-            state.addState(new AddressBook(model.getAddressBook()));
-            assertCommandSuccess(new UndoCommand(state), model, UndoCommand.MESSAGE_SUCCESS, expectedModel2);
-            assertEquals(afterDelete, state.getCurrentState());
+            state.addState(new AddressBook(model.getAddressBook()), ADD_WORD);
+
+            // undo add command
+            assertCommandSuccess(new UndoCommand(state), model,
+                    String.format(UndoCommand.MESSAGE_SUCCESS, ADD_WORD), expectedModel2);
+            assertEquals(afterDelete, state.getCurrentAddressBook());
+            assertEquals(DELETE_WORD, state.getCurrentCommand());
 
         } catch (CommandException e) {
             throw new AssertionError("Command execution should not fail.");

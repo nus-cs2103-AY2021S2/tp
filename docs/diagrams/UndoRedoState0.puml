@@ -1,17 +1,33 @@
 @startuml
-!include style.puml
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
 title Initial state
 
-package States {
-    class State1 as "__ab0:AddressBook__"
-    class State2 as "__ab1:AddressBook__"
-    class State3 as "__ab2:AddressBook__"
+package States <<rectangle>>  {
+
+    object "__pair2:AddressBookCommandPair__" as State3
+    State3 : currentCommand = "delete 5"
+
+    object "__ab2:AddressBook__" as ab2
+
+    object "__pair1:AddressBookCommandPair__" as State2
+    State2 : currentCommand = "delete 5"
+
+    object "__ab1:AddressBook__" as ab1
+
+    object "__pair0:AddressBookCommandPair__" as State1
+    State1 : currentCommand = ""
+
+    object "__ab0:AddressBook__" as ab0
 }
-State1 -[hidden]right-> State2
-State2 -[hidden]right-> State3
+
+State3 -- ab2
+State2 -- ab1
+State1 -- ab0
+
+hide ab1
+hide ab2
 hide State2
 hide State3
 

@@ -24,8 +24,11 @@ public class MassBlacklistCommand extends Command {
             + " b/BLACKLIST_OR_UNBLACKLIST\n"
             + "Example: " + COMMAND_WORD + " 5-21 b/blacklist";
 
-    public static final String MESSAGE_MASS_BLACKLIST_PERSON_SUCCESS = "Successfully %1$s "
-            + "all contacts within the index range %2$d-%3$d";
+    public static final String MESSAGE_MASS_BLACKLIST_SUCCESS = "Successfully blacklisted "
+            + "all contacts within the index range %1$d-%2$d";
+
+    public static final String MESSAGE_MASS_UNBLACKLIST_SUCCESS = "Successfully unblacklisted "
+            + "all contacts within the index range %1$d-%2$d";
 
     private final Index startIndex;
     private final Index endIndex;
@@ -57,23 +60,15 @@ public class MassBlacklistCommand extends Command {
         if (endIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_END_INDEX);
         }
-        int range = endIndex.getZeroBased() - startIndex.getZeroBased();
-        assert range > 0; // Start index must be strictly smaller than end index
-        for (int i = 0; i <= range; i++) {
-            Person personToToggleBlacklist = lastShownList.get(startIndex.getZeroBased() + i);
-            if (toBlacklist) {
-                model.blacklistPerson(personToToggleBlacklist);
-            } else {
-                model.unblacklistPerson(personToToggleBlacklist);
-            }
-        }
         String outputMessage;
         if (toBlacklist) {
-            outputMessage = String.format(MESSAGE_MASS_BLACKLIST_PERSON_SUCCESS,
-                    "blacklisted", startIndex.getOneBased(), endIndex.getOneBased());
+            model.massBlacklist(startIndex.getOneBased(), endIndex.getOneBased());
+            outputMessage = String.format(MESSAGE_MASS_BLACKLIST_SUCCESS,
+                    startIndex.getOneBased(), endIndex.getOneBased());
         } else {
-            outputMessage = String.format(MESSAGE_MASS_BLACKLIST_PERSON_SUCCESS,
-                    "unblacklisted", startIndex.getOneBased(), endIndex.getOneBased());
+            model.massUnblacklist(startIndex.getOneBased(), endIndex.getOneBased());
+            outputMessage = String.format(MESSAGE_MASS_UNBLACKLIST_SUCCESS,
+                    startIndex.getOneBased(), endIndex.getOneBased());
         }
         return new CommandResult(outputMessage);
     }
@@ -84,8 +79,11 @@ public class MassBlacklistCommand extends Command {
             return true; // short circuit if same object
         }
         if (other instanceof MassBlacklistCommand) {
-            return startIndex.equals(((MassBlacklistCommand) other).startIndex)
-                    && endIndex.equals(((MassBlacklistCommand) other).endIndex);
+            MassBlacklistCommand otherBlacklistCommand = (MassBlacklistCommand) other;
+            boolean sameStartIndex = startIndex.equals(otherBlacklistCommand.startIndex);
+            boolean sameEndIndex = endIndex.equals(otherBlacklistCommand.endIndex);
+            boolean sameKeyword = toBlacklist == otherBlacklistCommand.toBlacklist;
+            return sameStartIndex && sameEndIndex && sameKeyword;
         }
         return false;
     }

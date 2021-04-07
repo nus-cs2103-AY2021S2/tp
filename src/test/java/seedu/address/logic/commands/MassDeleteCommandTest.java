@@ -58,17 +58,14 @@ public class MassDeleteCommandTest {
 
     @Test
     public void equals() {
-        MassDeleteCommand firstMassDeleteCommand = new MassDeleteCommand(INDEX_FIRST_PERSON,
-                INDEX_NINTH_PERSON);
-        MassDeleteCommand secondMassDeleteCommand = new MassDeleteCommand(INDEX_SECOND_PERSON,
-                INDEX_SEVENTH_PERSON);
+        MassDeleteCommand firstMassDeleteCommand = new MassDeleteCommand(INDEX_FIRST_PERSON, INDEX_NINTH_PERSON);
+        MassDeleteCommand secondMassDeleteCommand = new MassDeleteCommand(INDEX_SECOND_PERSON, INDEX_SEVENTH_PERSON);
 
         // same object -> return true
         assertTrue(firstMassDeleteCommand.equals(firstMassDeleteCommand));
 
         // same values -> return true
-        MassDeleteCommand firstMassDeleteCommandCopy = new MassDeleteCommand(INDEX_FIRST_PERSON,
-                INDEX_NINTH_PERSON);
+        MassDeleteCommand firstMassDeleteCommandCopy = new MassDeleteCommand(INDEX_FIRST_PERSON, INDEX_NINTH_PERSON);
         assertTrue(firstMassDeleteCommand.equals(firstMassDeleteCommandCopy));
 
         // different types -> return false
@@ -77,7 +74,7 @@ public class MassDeleteCommandTest {
         // null -> return false
         assertFalse(firstMassDeleteCommand.equals(null));
 
-        // different range -> return false
+        // different index range -> return false
         assertFalse(firstMassDeleteCommand.equals(secondMassDeleteCommand));
     }
 }

@@ -149,12 +149,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void blacklistPerson(Person target) {
+        public void massBlacklist(int startIndex, int endIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void unblacklistPerson(Person target) {
+        public void massUnblacklist(int startIndex, int endIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
