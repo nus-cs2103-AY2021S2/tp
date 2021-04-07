@@ -93,7 +93,7 @@ There are three main areas in TutorBuddy:
    display box, which is located directly above the command box. This area is always present in all tabs.
     * Type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
 
-  Here are some example commands you can try:
+  Using the **sample data** provided, here are some example commands you can try:
   * **`list`** : Lists all students and sessions.
   * **`add_student`** `n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother` : Adds a student named `John Doe`
     to TutorBuddy.
@@ -172,7 +172,7 @@ This section details the format of the commands available in TutorBuddy. We will
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/98765432 p/99999999`, only `p/99999999` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `emails`, `help`, `exit`, `clear` and `list`) will be ignored.<br>
+* Extra parameters for commands that do not take in parameters (such as `emails`, `help`, `exit`, `clear` and `list`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Indexes **must be positive whole numbers** 1, 2, 3, …
@@ -246,7 +246,7 @@ Example:
 
 ##### Locating student by name: `find_student`
 
-Find student(s) whose names contain any of the given keywords.
+Filters the list to only include students, and their respective session whose student name contain any of the given keywords.
 
 Format: `find_student KEYWORD [MORE_KEYWORDS]`
 * The search will be case-insensitive. e.g. searching `john` will match `JOHN`
@@ -301,7 +301,8 @@ Examples:
 * `delete_student 2` deletes the 2nd student based on the current list of students
 
 ##### Listing students' emails based on current list: `emails`
-Displays concatenated string of students' emails based on current list, separated by `;`. Useful for sending mass emails to students.
+As a user, you might want to quickly get all the email address of your students and send them a mass email.
+This feature displays a concatenated string of students' emails based on current list, separated by `;` which can be copied to their respective email client (E.g. gmail) for mass sending of emails to students.
 
 Format: `emails`
 
@@ -345,7 +346,7 @@ Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
 TutorBuddy takes care of overlapping session for you by giving a gentle prompt, so you don't have to worry about it.
 </div>
-<br>
+
 <div markdown="block" class="alert alert-info">
 :information_source: Note that the [Time given in <code>DATE</code> + <code>DURATION</code>] should not exceed 23:59H of the same day. 
 This is done as we do not except tutors to teach lessons beyond the day itself.
@@ -381,6 +382,10 @@ Format: `delete_session n/STUDENT_NAME i/SESSION_INDEX`
 * Deletes the tuition session at the specified `SESSION_INDEX`
 * The index must be a positive integer 1, 2, 3, …​
 
+<div markdown="block" class="alert alert-info">
+:information_source: Note that deleting a student automatically deletes all sessions associated with the student as well.
+</div>
+
 Example:
 * `delete_session n/John Lee i/1` deletes John Lee's **first** session
 
@@ -405,9 +410,9 @@ before and after 2021-03-31 18:00
 
 #### 4.2.5 Fees
 
-##### Getting monthly fee for a particular student: `fee`
+##### Calculating monthly fee for a particular student: `fee`
 
-Gets the monthly fee for a particular student for a particular month and year.
+Calculates and retrieves the monthly fee for a particular student for a particular month and year.
 
 Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 
