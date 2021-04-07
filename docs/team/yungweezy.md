@@ -19,7 +19,7 @@ Given below is a summary of my contributions to the development of TutorBuddy.
     - **What it does**: This feature helps to validate the specified session date in the `add_session` and `add_rec_session` command.
     - **Justification**: This feature provides an important check that informs the tutor if he/she already has a session that falls within the specified date.
       This prevents the tutor from scheduling two students on the same date and time, reducing the possibilities of awkward session cancellation/postponement.
-    - **Rationale**: The intricacies of this feature was very much underestimated. Everytime `add_session` and `add_rec_session` is called, the check will take place.
+    - **Highlights**: The intricacies of this feature was very much underestimated. Everytime `add_session` and `add_rec_session` is called, the check will take place.
       We will use the specified date and time to check with all existing session to see if they fall within an existing session. Comparisons between two normal sessions and 
       a normal session with a recurring session is simple; however, comparing a recurring session with another recurring session is complicated. For comparisons between
       recurring sessions, TutorBuddy runs a walk-through from the earlier recurring session, and compares with all the subsequent dates of both recurring session.
