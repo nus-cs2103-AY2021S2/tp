@@ -31,12 +31,11 @@ public class RecurringSchedule implements Attribute {
     public static final String WEEKFREQUENCY_REGEX = "\\[(weekly|biweekly)]";
     public static final String VALIDATION_REGEX = DATE_REGEX + DAYSOFWEEK_REGEX + WEEKFREQUENCY_REGEX;
 
-    public static final String MESSAGE_CONSTRAINTS = "Recurring Schedule conditions should consists of:"
-            + "\n\n1) Ending Date should be ahead of current date"
-            + "\n\n2) Days of week which are alphabet letters that are case-insensitive represented in these options\n "
-            + "=====> (mon, tue, wed, thu, fri, sat, sun)"
-            + "\n\n3) Frequency of week that are also case-insensitive represented in these options\n"
-            + "=====> (weekly, biweekly) "
+    public static final String MESSAGE_CONSTRAINTS = "Recurring Schedule should be in this format:"
+            + "\n\n1) Ending Date in dd-mm-yyyy format (requires leading zero for day, month) "
+            + "should be ahead of current date"
+            + "\n\n2) Days of week (case-insensitive) : mon, tue, wed, thu, fri, sat, sun"
+            + "\n\n3) Frequency of week (case-insensitive) : weekly, biweekly"
             + "\n\n and without blank space arguments but can be empty if nothing is entered :-)"
             + "\n\nHere is an example: [23/10/2021][Mon][weekly]";
 
@@ -46,7 +45,7 @@ public class RecurringSchedule implements Attribute {
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     // Index 0 is placed as empty string so when days of week is retrieved, no additional increment is required
-    public static final List<String> DAYSOFWEEKS = Arrays.asList("", "mon", "tue", "wed", "thu", "fri", "sat", "sun");
+    public static final List<String> WEEK_DAYS = Arrays.asList("", "mon", "tue", "wed", "thu", "fri", "sat", "sun");
 
     public final String value;
     public final String output;
@@ -91,7 +90,6 @@ public class RecurringSchedule implements Attribute {
         Pattern pattern = Pattern.compile(VALIDATION_REGEX, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(test);
         boolean isValidRecurringSchedule = matcher.matches();
-
         return isValidRecurringSchedule || test.equals("");
     }
 
@@ -102,7 +100,8 @@ public class RecurringSchedule implements Attribute {
      * @return String format output of recurring schedule detail in user-centric form
      */
     private String formatRecurringSchedule() {
-        String outputRecurringScheduleDetail = " every " + dayOfWeek + " " + weekFreq + " until " + endDate.get();
+        String outputDate = FORMATTER.format(endDate.get());
+        String outputRecurringScheduleDetail = " every " + dayOfWeek + " " + weekFreq + " until " + outputDate;
         return outputRecurringScheduleDetail;
     }
 
@@ -145,7 +144,7 @@ public class RecurringSchedule implements Attribute {
      */
     private List<String> findWeekDates(int numWeeks) {
         List<String> weekDates = new ArrayList<>();
-        int dayOfWeekInNum = DAYSOFWEEKS.indexOf(dayOfWeek);
+        int dayOfWeekInNum = WEEK_DAYS.indexOf(dayOfWeek);
         LocalDate nextDate = currentDate;
 
         for (int i = 0; i < numWeeks; i++) {
@@ -188,13 +187,17 @@ public class RecurringSchedule implements Attribute {
         dayOfWeek = recurringScheduleData[2].toLowerCase();
         weekFreq = recurringScheduleData[3].toLowerCase();
 
-        String recurringScheduleDetail = formatRecurringSchedule();
-        int numWeeks = calculateNumWeeksBetweenDates();
-        weekDates = findWeekDates(numWeeks);
+        if (endDate.get().isBefore(currentDate)) { // Handle case where recurring schedule has passed in PlanIT
+            return "";
+        } else {
+            String recurringScheduleDetail = formatRecurringSchedule();
+            int numWeeks = calculateNumWeeksBetweenDates();
+            weekDates = findWeekDates(numWeeks);
 
-        String recurringScheduleOutput = recurringScheduleDetail + "\n\nHere are the Recurring Sessions:\n"
-                + String.join("\n", weekDates);
-        return recurringScheduleOutput;
+            String recurringScheduleOutput = recurringScheduleDetail + "\n\nHere are the Recurring Sessions:\n"
+                    + String.join("\n", weekDates);
+            return recurringScheduleOutput;
+        }
     }
 
     /**

@@ -40,12 +40,17 @@ public class AttributeManager {
     /**
      * Checks if the Recurring schedule end date given by the user has expired.
      *
-     * @return true if the end date is before the current system date.
+     * @return Boolean indicating if the end date is before the current system date.
      */
     public boolean hasExpired() {
         return recurringSchedule.isExpired();
     }
 
+    /**
+     * Checks if the Recurring schedule end date is valid considering leap years and months of 30, 31 as well
+     *
+     * @return Boolean if the end date in Recurring Schedule is valid
+     */
     public boolean hasInvalidDateRange() {
         return recurringSchedule.isInvalidDateRange();
     }
