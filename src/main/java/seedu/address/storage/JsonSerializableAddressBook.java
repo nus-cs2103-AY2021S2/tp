@@ -57,6 +57,10 @@ class JsonSerializableAddressBook {
         AddressBook addressBook = new AddressBook();
 
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
+            if (jsonAdaptedPerson == null) {
+                continue;
+            }
+
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATES_IN_PERSONS);
@@ -65,6 +69,10 @@ class JsonSerializableAddressBook {
         }
 
         for (JsonAdaptedGroup jsonAdaptedGroup : groups) {
+            if (jsonAdaptedGroup == null) {
+                continue;
+            }
+
             Group group = jsonAdaptedGroup.toModelType(addressBook.getPersonList());
             if (addressBook.hasGroup(group)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATES_IN_GROUPS);

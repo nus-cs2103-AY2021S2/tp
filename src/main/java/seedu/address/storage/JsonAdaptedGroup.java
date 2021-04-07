@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -32,7 +33,7 @@ public class JsonAdaptedGroup {
         this.groupName = groupName;
 
         if (personNames != null) {
-            personNames.addAll(personNames);
+            this.personNames.addAll(personNames);
         }
     }
 
@@ -46,6 +47,18 @@ public class JsonAdaptedGroup {
                 .collect(Collectors.toList()));
     }
 
+    private Name deserializeName(String name) throws IllegalValueException {
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Name(trimmedName);
+    }
+
     /**
      * Converts this Jackson-friendly adapted group object into the model's {@code Group} object.
      * Requires list of person to construct group list.
@@ -53,27 +66,19 @@ public class JsonAdaptedGroup {
      * @throws IllegalValueException if there were any data constraints violated in the adapted group.
      */
     public Group toModelType(List<Person> personList) throws IllegalValueException {
-        if (groupName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(groupName)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(groupName);
+        final Name modelName = deserializeName(groupName);
 
         final Set<Name> modelPersonNameSet = new HashSet<>();
         for (String personName : personNames) {
-            if (!Name.isValidName(personName)) {
-                throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-            }
-            Person person;
-            person = personList.stream().filter(x->x.getName()
-                    .toString().equals(personName))
-                    .findFirst().get();
-            if (person == null) {
+            final Name modelPersonName = deserializeName(personName);
+
+            Optional<Person> optionalPerson;
+            // Go through Name#equals method to ignore case
+            optionalPerson = personList.stream().filter(x -> x.getName().equals(modelPersonName)).findFirst();
+            if (optionalPerson.isEmpty()) {
                 throw new IllegalValueException(MESSAGE_INVALID_PERSON);
             }
-            modelPersonNameSet.add(person.getName());
+            modelPersonNameSet.add(optionalPerson.get().getName());
         }
         return new Group(modelName, modelPersonNameSet);
     }
