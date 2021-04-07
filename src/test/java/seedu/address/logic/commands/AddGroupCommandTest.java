@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.model.group.GroupHashMap.DEFAULT_GROUP_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TestDataUtil.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -45,7 +46,6 @@ public class AddGroupCommandTest {
 
         String expectedMessage = String.format(
                 AddGroupCommand.MESSAGE_ADD_GROUP_SUCCESS,
-                group.toUi(),
                 group.getName());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
@@ -65,5 +65,16 @@ public class AddGroupCommandTest {
         AddGroupCommand addGroupCommand = new AddGroupCommand(indexes, group.getName());
 
         assertCommandFailure(addGroupCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_defaultGroup_throwsCommandException() {
+        List<Index> indexes = new ArrayList<>();
+        indexes.add(INDEX_FIRST_PERSON);
+
+        AddGroupCommand addGroupCommand = new AddGroupCommand(indexes, DEFAULT_GROUP_NAME);
+
+        assertCommandFailure(addGroupCommand, model, String.format(AddGroupCommand.MESSAGE_ADD_DEFAULT_GROUP_ERROR,
+                DEFAULT_GROUP_NAME));
     }
 }

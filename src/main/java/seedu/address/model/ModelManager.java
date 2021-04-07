@@ -137,7 +137,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasGroup(Group group) {
         requireNonNull(group);
-        return addressBook.hasGroup(group);
+        return addressBook.hasGroupName(group.getName());
     }
 
     @Override

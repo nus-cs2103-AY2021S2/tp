@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.group.GroupHashMap.DEFAULT_GROUP_NAME;
 
 import java.util.Optional;
 
@@ -36,6 +37,8 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (this.name.isEmpty()) {
+            Group defaultGroup = model.getGroupMap().get(DEFAULT_GROUP_NAME);
+            model.setGroup(defaultGroup.getName(), defaultGroup);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(MESSAGE_SUCCESS_DEFAULT);
         } else {

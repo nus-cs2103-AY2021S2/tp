@@ -67,7 +67,7 @@ public class JsonAdaptedGroup {
                 throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
             }
             Person person;
-            person = personList.stream().filter(x->x.getName()
+            person = personList.stream().filter(x -> x.getName()
                     .toString().equals(personName))
                     .findFirst().get();
             if (person == null) {

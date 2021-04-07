@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_GROUP;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.model.group.GroupHashMap.DEFAULT_GROUP_NAME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -19,6 +20,7 @@ public class DeleteGroupCommand extends Command {
             + PREFIX_NAME + "Close Friends";
 
     public static final String MESSAGE_DELETE_GROUP_SUCCESS = "Deleted group %1$s";
+    public static final String MESSAGE_DELETE_DEFAULT_GROUP_ERROR = "Unable to delete the Default Group, %1$s.";
 
     private final Name groupName;
 
@@ -38,7 +40,9 @@ public class DeleteGroupCommand extends Command {
         if (!model.hasGroup(group)) {
             throw new CommandException(MESSAGE_UNKNOWN_GROUP);
         }
-
+        if (group.getName().equals(DEFAULT_GROUP_NAME)) {
+            throw new CommandException(String.format(MESSAGE_DELETE_DEFAULT_GROUP_ERROR, DEFAULT_GROUP_NAME));
+        }
         model.deleteGroup(group);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
