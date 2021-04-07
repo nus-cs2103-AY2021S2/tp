@@ -26,11 +26,11 @@ EzManage is a **desktop app for managing students, tutors and classes, optimized
 
    * **`list persons`** : Lists all students and tutors.
 
-   * **`add_person`**`tp/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student named `John Doe` to the Contact List.
+   * **`add_person`**`pt/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student named `John Doe` to the Contact List.
 
    * **`delete_person`**`t/3` : Deletes the tutor with the ID `t/3` from the Contact list.
      
-   * **`assign`** : `assign s/3 t/2 c/1` Assigns student(s) or tutor to a specific class.
+   * **`assign`** : `s/3 t/2 c/1` Assigns student(s) or tutor to a specific class.
 
    * **`clear`** : Deletes all contacts.
 
