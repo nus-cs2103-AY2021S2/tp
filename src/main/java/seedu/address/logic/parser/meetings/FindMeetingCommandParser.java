@@ -1,6 +1,5 @@
 package seedu.address.logic.parser.meetings;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
@@ -11,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -21,8 +19,6 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.meetings.FindMeetingCommand;
-import seedu.address.logic.commands.persons.AddPersonCommand;
-import seedu.address.logic.commands.persons.SortPersonCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -122,7 +118,7 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
         }
         Set<DateTime> parsedTimes = ParserUtil.parseMeetingDateTimes(times);
         Predicate<Meeting> timePred = meeting -> parsedTimes.stream().allMatch(time ->
-                meeting.hasTime(time));
+                meeting.containsTime(time));
         return timePred;
     }
 

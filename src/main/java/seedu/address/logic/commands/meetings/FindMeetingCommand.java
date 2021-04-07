@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -22,7 +21,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 public class FindMeetingCommand extends Command {
@@ -38,7 +36,7 @@ public class FindMeetingCommand extends Command {
             + PREFIX_PRIORITY + "PRIORITY "
             + "[" + PREFIX_GROUP + "GROUP]..."
             + "[" + PREFIX_PERSON_CONNECTION + "INDEX OF PERSON RELATED]...\n"
-            + "Example: " + COMMAND_WORD
+            + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103 Lecture "
             + PREFIX_TIME + "2021-03-12 14:00 "
             + PREFIX_DESCRIPTION + "Week 7 "
@@ -71,7 +69,7 @@ public class FindMeetingCommand extends Command {
         requireNonNull(model);
         Predicate<Meeting> containsPeoplePredicate = makeContainsPeoplePredicate(persons, model);
         Predicate<Meeting> finalPredicate = combinedPredicate.and(containsPeoplePredicate);
-        model.updateFilteredMeetingList(containsPeoplePredicate);
+        model.updateFilteredMeetingList(finalPredicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW, model.getFilteredMeetingList().size()));
     }
