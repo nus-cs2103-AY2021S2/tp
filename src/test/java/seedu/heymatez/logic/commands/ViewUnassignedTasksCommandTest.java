@@ -57,7 +57,7 @@ public class ViewUnassignedTasksCommandTest {
                 .withAssignees("Rachel").build();
         HeyMatez hm = new HeyMatez();
         hm.addTask(homework);
-        Model newModel =  new ModelManager(hm, new UserPrefs());
+        Model newModel = new ModelManager(hm, new UserPrefs());
         assertViewCommandFailure(new ViewUnassignedTasksCommand(), newModel,
                 ViewUnassignedTasksCommand.MESSAGE_NO_UNASSIGNED_TASKS);
     }

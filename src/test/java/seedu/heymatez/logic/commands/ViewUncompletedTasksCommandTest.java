@@ -57,7 +57,7 @@ public class ViewUncompletedTasksCommandTest {
                 .withDeadline("2021-02-04").withTaskStatus("completed").withPriority("unassigned").build();
         HeyMatez hm = new HeyMatez();
         hm.addTask(homework);
-        Model newModel =  new ModelManager(hm, new UserPrefs());
+        Model newModel = new ModelManager(hm, new UserPrefs());
         assertViewCommandFailure(new ViewUncompletedTasksCommand(), newModel,
                 ViewUncompletedTasksCommand.MESSAGE_NO_UNCOMPLETED_TASKS);
     }
