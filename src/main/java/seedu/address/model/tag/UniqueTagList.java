@@ -151,7 +151,7 @@ public class UniqueTagList implements Iterable<Tag> {
 
         internalList.setAll(tags);
 
-        logger.info("Tag Count: " + mapOfTagCount);
+        //logger.info("Tag Count: " + mapOfTagCount);
     }
 
     /**
