@@ -395,11 +395,11 @@
     -fx-font-size: 11;
 }
 
-.notDone{
+.expired{
   -fx-background-color: #fc4503;
 }
 
-.inProgress{
+.uncompleted{
   -fx-background-color: #ebcf34;
 }
 
