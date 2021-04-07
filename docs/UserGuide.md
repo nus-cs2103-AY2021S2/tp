@@ -407,7 +407,8 @@ Must be any of:
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 
-* Inputs with the `next` keywords **without a user-specified time** will reflect the current time when the command is entered. For example, `add-appt pt/1 dr/1 at/next monday` when entered on *07/04/2021 12:00* will result in an appointment added on *12/04/2021 12:00*.<br>
+* Inputs with the `next` keywords **without a user-specified time** will reflect the current time when the command is entered. For example, `add-appt pt/1 dr/1 at/next monday` when entered on *07/04/2021 12:00* will result in an appointment added on *12/04/2021 12:00*.
+* `next DAY` inputs must be spelt correctly and fully. Inputs such as`at/next MONDAYXX` or `at/next MON` is restricted. <br>
 
 </div><br>
 

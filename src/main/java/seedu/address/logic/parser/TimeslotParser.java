@@ -25,6 +25,7 @@ import seedu.address.model.appointment.exceptions.NegativeOrZeroDurationExceptio
 public class TimeslotParser {
     public static final String MESSAGE_INVALID_DATE_TIME_FORMAT = "Invalid Date Time Format!\n"
             + "Input format for date time parameters must be any of:\n"
+            + "at/[DATE] [TIME]\n"
             + "==== Date ====\n"
             + "> DD-MM-YYYY\n"
             + "> DD-MM-YY\n"
@@ -38,15 +39,13 @@ public class TimeslotParser {
             + "> hh:mmam/pm\n"
             + "Example:\n" + PREFIX_TIMESLOT_START
             + "12/12/21 01:15pm or 12-12-21 13:15";
-    public static final String MESSAGE_INVALID_NEXT_DATE_TIME_FORMAT = "Invalid Date Time Format with Next keyword!\n"
+    public static final String MESSAGE_INVALID_NEXT_DATE_TIME_FORMAT = "Invalid Date Time Format with next keyword!\n"
+            + "Abbreviations for Days are not allowed.\n"
             + "Input format for next date time parameters must be:\n"
-            + "next [DAY] [TIME] or next [DAY]\n"
+            + "at/next [DAY] [TIME] or next [DAY]\n"
             + "Example:\n" + PREFIX_TIMESLOT_START
-            + "next Wednesday 12:12pm or next Wednesday\n"
-            + "Input format for time parameters must be: "
-            + "hh:mm (In 24-Hour format) or hh:mmam/pm\n"
-            + "Example:\n"
-            + "15:12 or 03:12pm";
+            + "next Wednesday 12:12pm or next Wednesday";
+
     public static final String MESSAGE_INVALID_PAST_DATE_TIME_FORMAT = "Invalid date and time!\n"
             + "This timeslot has already occurred in the past."
             + "Please input future dates and times that that have yet to occur as of now.";
