@@ -8,8 +8,6 @@ import static seedu.smartlib.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.smartlib.logic.commands.CommandResult;
-
 public class BarcodeTest {
 
     @Test
