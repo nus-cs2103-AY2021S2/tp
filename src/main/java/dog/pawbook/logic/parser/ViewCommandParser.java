@@ -24,6 +24,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
+        // Check if integer is valid
         int id = ParserUtil.parseId(trimmedArgs);
 
         if (id < 1) {

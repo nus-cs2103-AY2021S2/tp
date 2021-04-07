@@ -4,8 +4,13 @@ import java.util.Collection;
 import java.util.Comparator;
 
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.dog.Dog;
+import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.program.Program;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -17,6 +22,9 @@ import javafx.scene.layout.VBox;
 public class EntityCard extends UiPart<Region> {
 
     private static final String FXML = "EntityListCard.fxml";
+    private static final Image dogImage = new Image("images/dog.png", 70, 70, true, true);
+    private static final Image ownerImage = new Image("images/owner.png", 70, 70, true, true);
+    private static final Image programImage = new Image("images/program.png", 70, 70, true, true);
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -38,6 +46,10 @@ public class EntityCard extends UiPart<Region> {
     private Label id;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label staticId;
+    @FXML
+    private ImageView imageView;
 
     /**
      * Creates a {@code EntityCard} with the given {@code Entity} and index to display.
@@ -45,6 +57,17 @@ public class EntityCard extends UiPart<Region> {
     public EntityCard(Entity entity, int displayedId) {
         super(FXML);
         this.entity = entity;
+
+        if (entity instanceof Dog) {
+            this.imageView.setImage(dogImage);
+        } else if (entity instanceof Owner) {
+            this.imageView.setImage(ownerImage);
+        } else if (entity instanceof Program) {
+            this.imageView.setImage(programImage);
+        }
+
+        assert (imageView.getImage() != null);
+
         id.setText(displayedId + ": ");
         name.setText(entity.getName().fullName);
 
