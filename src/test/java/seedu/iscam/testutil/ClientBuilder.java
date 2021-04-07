@@ -103,7 +103,7 @@ public class ClientBuilder {
      * Sets the {@code InsurancePlan} of the {@code Client} that we are building.
      */
     public ClientBuilder withPlan(String ... plans) {
-        this.insurancePlans = SampleDataUtil.getPlanSet();
+        this.insurancePlans = SampleDataUtil.getPlanSet(plans);
         return this;
     }
 

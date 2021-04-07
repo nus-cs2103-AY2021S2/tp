@@ -92,7 +92,7 @@ public class EditCommand extends UndoableCommand {
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Location updatedLocation = editClientDescriptor.getLocation().orElse(clientToEdit.getLocation());
-        Set<InsurancePlan> updatedPlans = editClientDescriptor.getPLans().orElse(clientToEdit.getPlans());
+        Set<InsurancePlan> updatedPlans = editClientDescriptor.getPlans().orElse(clientToEdit.getPlans());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
         Image updatedImageRes = editClientDescriptor.getImageRes().orElse(clientToEdit.getImageRes());
         return new Client(updatedName, updatedPhone, updatedEmail, updatedLocation, updatedPlans, updatedTags,
@@ -222,7 +222,7 @@ public class EditCommand extends UndoableCommand {
             this.location = location;
         }
 
-        public Optional<Set<InsurancePlan>> getPLans() {
+        public Optional<Set<InsurancePlan>> getPlans() {
             return Optional.ofNullable(plan);
         }
 
@@ -273,7 +273,7 @@ public class EditCommand extends UndoableCommand {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getPLans().equals(e.getPLans())
+                    && getPlans().equals(e.getPlans())
                     && getLocation().equals(e.getLocation())
                     && getTags().equals(e.getTags())
                     && getImageRes().equals(e.getImageRes());

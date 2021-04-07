@@ -13,6 +13,7 @@ import java.util.Set;
 import seedu.iscam.logic.commands.AddCommand;
 import seedu.iscam.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.commons.Tag;
 
 /**
@@ -57,14 +58,15 @@ public class ClientUtil {
         descriptor.getLocation().ifPresent(location -> sb.append(PREFIX_LOCATION).append(location.value).append(" "));
         descriptor.getImageRes().ifPresent(image ->
                 sb.append(PREFIX_IMAGE).append(image.value).append(" "));
-        if (descriptor.getPLans().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+        if (descriptor.getPlans().isPresent()) {
+            Set<InsurancePlan> plans = descriptor.getPlans().get();
+            if (plans.isEmpty()) {
+                sb.append(PREFIX_PLAN);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                plans.forEach(s -> sb.append(PREFIX_PLAN).append(s.planName).append(" "));
             }
         }
+        sb.append(" ");
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
