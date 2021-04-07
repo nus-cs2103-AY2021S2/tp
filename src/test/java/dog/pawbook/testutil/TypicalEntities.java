@@ -31,7 +31,6 @@ import dog.pawbook.model.Database;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
-import dog.pawbook.model.managedentity.program.Program;
 
 /**
  * A utility class containing a list of {@code Owner} objects to be used in tests.
@@ -73,11 +72,6 @@ public class TypicalEntities {
             .withDateOfBirth("21-08-2018").withBreed("Australian Shepherd").withOwnerID(11).build();
     public static final Dog GENIE = new DogBuilder().withName("Genie").withSex("male")
             .withDateOfBirth("29-05-2020").withBreed("Husky").withOwnerID(13).build();
-
-    // Programs
-    public static final Program PROGRAM1 = new ProgramBuilder().withName("Basic Obedience Training")
-            .withDogs(1).withSessions("02-02-2020 18:00").withTags("puppies").build();
-
     // Manually added owners
     public static final Owner HOON = new OwnerBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").build();
