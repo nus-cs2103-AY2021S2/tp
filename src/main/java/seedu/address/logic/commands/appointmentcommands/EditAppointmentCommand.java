@@ -92,8 +92,7 @@ public class EditAppointmentCommand extends Command {
                 editedAppointment.getSubject())) {
             throw new CommandException(String.format(MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT,
                     editedAppointment.getSubject()));
-        } else if (model.doesAppointmentClash(editedAppointment.getName(),
-                editedAppointment.getTimeFrom(), editedAppointment.getTimeTo())) {
+        } else if (model.hasClashingDateTime(editedAppointment, appointmentToEdit)) {
             throw new CommandException(MESSAGE_DATE_CLASH_EDIT);
         }
 

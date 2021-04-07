@@ -72,14 +72,11 @@ public class AddAppointmentCommand extends Command {
         } else if (!model.doesTutorTeachSubject(toAdd.getName(), toAdd.getSubject())) {
             throw new CommandException(String.format(MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT,
                     toAdd.getSubject()));
-        } else if (model.doesAppointmentClash(toAdd.getName(), toAdd.getTimeFrom(),
-                toAdd.getTimeTo())) {
+        } else if (model.hasClashingDateTime(toAdd)) {
             throw new CommandException(MESSAGE_DATE_CLASH_ADD);
         } else {
             model.addAppointment(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.APPOINTMENT);
         }
-
     }
-
 }
