@@ -56,6 +56,7 @@ public class TimeslotParser {
             + "150M   - returns a duration of 150 minutes";
     private static final String PREFIX_DURATION_PARSE_SEQUENCE = "PT";
     private static final String REMOVE_WHITESPACE_REGEX = "\\s+";
+    private static boolean isInvalidTime = false;
 
     /**
      * Parses a {@code String userInput} into a {@code LocalDateTime}.
@@ -103,33 +104,31 @@ public class TimeslotParser {
      * conform to the expected time format.
      */
     public static LocalDateTime parseNextDateTime(String userInput) throws ParseException {
-        boolean isInvalidTime = false;
         final Pattern nextDateTimeFormat = Pattern.compile("(?<nextKeyword>\\w+)\\s(?<nextTimePeriod>\\w+)"
                         + "\\s(?<timeInput>.*)", Pattern.CASE_INSENSITIVE);
         final Matcher nextDateTimeMatcher = nextDateTimeFormat.matcher(userInput);
 
+        //for inputs with no user-specified time
+        final Pattern nextDateFormat = Pattern.compile("(?<nextKeyword>\\w+)\\s(?<nextDatePeriod>\\w+)",
+                Pattern.CASE_INSENSITIVE);
+        final Matcher nextDateMatcher = nextDateFormat.matcher(userInput);
+
         try {
-            LocalDateTime currentDateTime = LocalDateTime.now().withSecond(0).withNano(0);
             LocalDateTime parsedDate = null;
 
             if (nextDateTimeMatcher.matches()) {
                 final String nextTimePeriod = nextDateTimeMatcher.group("nextTimePeriod");
                 final String timeInput = nextDateTimeMatcher.group("timeInput").trim();
 
-                if (Arrays.stream(Day.values()).anyMatch(e -> e.name().equals(nextTimePeriod))) {
-                    parsedDate = currentDateTime.with(TemporalAdjusters.next(DayOfWeek.valueOf(nextTimePeriod)));
-                } else if (nextTimePeriod.contains("MONTH")) {
-                    parsedDate = currentDateTime.plusMonths(1);
-                } else if (nextTimePeriod.contains("YEAR")) {
-                    parsedDate = currentDateTime.plusYears(1);
-                } else {
-                    isInvalidTime = true;
-                }
+                parsedDate = parseNextDate(nextTimePeriod);
 
-                int[] hoursMinutesArray = parseTime(timeInput);
+                int[] hoursMinutesArray = parseNextTime(timeInput);
                 parsedDate = parsedDate.withHour(hoursMinutesArray[0]);
                 parsedDate = parsedDate.withMinute(hoursMinutesArray[1]);
-                parsedDate = parsedDate.withSecond(0).withNano(0);
+
+            } else if (nextDateMatcher.matches()) {
+                final String nextDatePeriod = nextDateMatcher.group("nextDatePeriod");
+                parsedDate = parseNextDate(nextDatePeriod);
 
             } else {
                 throw new ParseException(MESSAGE_INVALID_DATE_TIME_FORMAT);
@@ -140,8 +139,24 @@ public class TimeslotParser {
         } catch (DateTimeParseException e) {
             String messageUsage = isInvalidTime ? MESSAGE_INVALID_TIME_FORMAT
                     : MESSAGE_INVALID_NEXT_DATE_TIME_FORMAT;
-            throw new ParseException(messageUsage);
+            throw new ParseException(MESSAGE_INVALID_NEXT_DATE_TIME_FORMAT);
         }
+    }
+
+    public static LocalDateTime parseNextDate(String nextTimePeriod) {
+        LocalDateTime currentDateTime = LocalDateTime.now().withSecond(0).withNano(0);
+        LocalDateTime parsedDate = null;
+
+        if (Arrays.stream(Day.values()).anyMatch(e -> e.name().equals(nextTimePeriod))) {
+            parsedDate = currentDateTime.with(TemporalAdjusters.next(DayOfWeek.valueOf(nextTimePeriod)));
+        } else if (nextTimePeriod.contains("MONTH")) {
+            parsedDate = currentDateTime.plusMonths(1);
+        } else if (nextTimePeriod.contains("YEAR")) {
+            parsedDate = currentDateTime.plusYears(1);
+        } else {
+            isInvalidTime = true;
+        }
+        return parsedDate;
     }
 
     /**
@@ -152,7 +167,7 @@ public class TimeslotParser {
      * @throws NullPointerException if the {@code timeInput} does not
      * conform to the expected time format.
      */
-    public static int[] parseTime(String timeInput) {
+    public static int[] parseNextTime(String timeInput) {
 
         String revisedTimeInput = (timeInput.contains("PM") || timeInput.contains("AM"))
                 ? removeMeridian(timeInput)
