@@ -72,10 +72,7 @@ commands may receive.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* `d/DELIVERY_DATE` should specify a `DELIVERY_DATE` that is valid and is a future date.
-  i.e. `DELIVERY_DATE` can be the date today or a date after today.
-
+  
 * `INDEXES` refer to the list number of orders on the left of the GUI while `ORDER_ITEM_INDEXES` refers to the list number of order items on the right of the GUI <!-- [comment]: <> (can add a link to the gui screenshot and annotate which index refers to what) -->
 
 * Items that are `INDEXES` or `ORDER_ITEM_INDEXES` take in whole number parameters separated by spaces. 
@@ -87,13 +84,89 @@ commands may receive.
 </div>
 
 #### **2.2.3 Types of User Input**
-To expand.
-
+In this section, you will learn about the commonly used User Inputs as well as the prefixes that precede them. These will be helpful when you are trying to specify the fields for certain commands.
+<br><br>
 ##### `NAME`
-* The name of the customer who has placed the order.
-* The name of the customer must not be empty, it can take in numbers, letters or a mix of both.
+The name of the customer who has placed the order.<br>
+Prefix: `n/`
+* It can contain alphabetical characters, numbers and spaces.<br>
+  E.g. `Alex Yeoh`, `Johnathan9`, `Charlotte the 5th`
+* It cannot be longer than 80 characters.
+* It cannot be empty.
+<br><br>
+##### `PHONE_NUMBER`
+The phone number of the customer who has placed the order.<br>
+Prefix: `p/`
+* It can only contain numbers.
+* It should be at least 3 digits long.
+* It cannot be longer than 20 digits.
+<br><br>
+##### `EMAIL`
+The email of the customer who has placed the order.<br>
+Prefix: `e/`
+* Emails should be of the format `local-part@domain`.
+* `local-part` can contain alphabetical or numerical characters and these special characters: ``!#$%&'*+/=?`{|}~^.-``.<br>
+  E.g. `alice#3in?wonderland!`
+* `domain` should
+  * be at least 2 characters long
+  * start and end with alphabetical or numerical characters
+  * contain alphabetical or numerical characters, a period `.` or a hyphen `-` for the characters in between, if any.<br>
+  E.g. `sample-domain.com`
+<br><br>
+##### `ADDRESS`
+The address of the customer who has placed the order.<br>
+Prefix: `a/`
+* It can contain any characters.
+* It cannot be empty.
+<br><br>
+##### `DELIVERY_DATE`
+The delivery date for the order.<br>
+Prefix: `d/`
+* It should be a valid calendar date.
+* It should be any of the format:
+  * `dd/MM/yyyy` E.g. `01/12/2021`
+  * `dd-MM-yyyy` E.g. `31-12-2021`
+  * `dd.MM.yyyy` E.g. `01.12.2021`
+  * `dd MMM yyyy` E.g. `31 Dec 2021`
+* When adding or editing an order using the commands, the `DELIVERY_DATE` should be a future date.<br>
+  I.e. the date today or a date after today.
+* `DELIVERY_DATE` can be stored as a date in the past in the application. Orders with a `DELIVERY_DATE` before today's date will not be deleted.<br>
+  I.e. a few days after you entered an order with a valid `DELIVERY_DATE`, it might become a date before today.<br>
+:information_source: You do not have to worry about losing track of overdue orders.<br>
 
-:information_source: _Fun Fact: Elon Musk, the world richest man has a son named X Æ A-12._
+**:exclamation: For advanced users:** You will be able to enter a past delivery date into the save file `cakecollate.json`. As such, you are recommended to add/edit a delivery date through the application itself.
+<br><br>
+##### `ORDER_DESCRIPTION`
+The order description for the order.<br>
+Prefix: `o/`
+* It can contain any characters.
+* It cannot be empty.<br>
+  E.g. `Durian Cake`
+<br><br>
+##### `ORDER_ITEM_INDEXES`
+The order item index of the order item table for the order.<br>
+Prefix: `oi/`
+* This refers to indexes of the order item table in the [order item box](#221-sections-of-the-ui).
+* This can be used with or as a replacement for `ORDER_DESCRIPTION`, given the order item in the table matches the order description you want to add/edit.
+<br><br>
+##### `TAG`
+The tags you can add to an order.<br>
+Prefix: `t/`
+* It can contain alphabetical or numerical characters.
+* It cannot be longer than 30 characters.
+* There is no specific usage for `TAG`.
+  * Use it as a tag for the customer. E.g. `friend`, `fussy`, `important`
+  * Use it as a tag for the order. E.g. `urgent`, `complicated`
+  * Etc...
+<br><br>
+##### `REQUEST`
+The request or notes you can add to an order.<br>
+Prefix: `r/`
+* It can contain any characters.
+* It can be empty.
+  * An empty request is used to clear/reset the `REQUEST` field of the order.
+
+:information_source: `Request` and its prefix `r/` will only be processed in the [Request Command](#adding-a-special-request-to-an-order-request) and [Find Command](#locating-orders-find).
 
 ## **3. Quick start**
 
@@ -287,7 +360,7 @@ Format: `clear`
 
 #### **4.1.2** ***Order Functionalities*** 
 
-##### Locating orders by name: `find`
+##### Locating orders: `find`
 
 Find orders whose specified field contain any of the given keywords.
 
