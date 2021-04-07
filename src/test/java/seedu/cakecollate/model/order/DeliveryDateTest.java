@@ -59,6 +59,7 @@ public class DeliveryDateTest {
         assertTrue(DeliveryDate.isValidFormat("02-02-2022"));
         assertTrue(DeliveryDate.isValidFormat("02.02.2022"));
         assertTrue(DeliveryDate.isValidFormat("02 Feb 2022"));
+        assertTrue(DeliveryDate.isValidFormat("29/02/2024"));
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("[dd/MM/yyyy]");
         // 3 working days from current date
         assertTrue(DeliveryDate.isValidFormat(dateFormat.format(LocalDate.now().plusDays(3L))));
