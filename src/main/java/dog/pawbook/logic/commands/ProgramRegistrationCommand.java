@@ -19,6 +19,10 @@ import dog.pawbook.model.managedentity.IdMatchPredicate;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.program.Program;
 
+//@@author wei-yutong
+/**
+ * An abstract base class for Enrol and Drop commands.
+ */
 public abstract class ProgramRegistrationCommand extends Command {
     private final Set<Integer> dogIdSet;
     private final Set<Integer> programIdSet;

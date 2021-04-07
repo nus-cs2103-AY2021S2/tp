@@ -5,6 +5,7 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PROGRAMID;
 
 import java.util.Set;
 
+//@@author shaelynl
 public class DropCommand extends ProgramRegistrationCommand {
     public static final String COMMAND_WORD = "drop";
 
