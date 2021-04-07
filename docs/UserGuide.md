@@ -116,6 +116,8 @@ A session can have any number of tags (including 0)
 * A new session will have a unique session ID assigned after creation. 
 * DAY should match the format of a valid day in the week.
 * TIMESLOT should be in the format `HH:MM to HH:MM` and the end time should only be after the start time.
+* DAY and SUBJECT will be capitalised when displayed but do not have to be capitalised in the input
+* Note that while persons added to EZManage must be unique, there can be duplicates of sessions to accomidate multiple sessions of the same subject occurring at once
 
 Examples:
 * `add_session d/Saturday ts/13:00 to 15:00 s/Math tag/Hard`
@@ -317,7 +319,7 @@ Assigns a student or multiple student and/or a tutor to a specific class
 
 A class must always be provided, either student or tutor can be optional.
 
-### Unassigning people from a session : `assign`
+### Unassigning people from a session : `unassign`
 
 Unassigns the specified people from a session.
 

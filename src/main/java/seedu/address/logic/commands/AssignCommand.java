@@ -33,7 +33,7 @@ public class AssignCommand extends Command {
             + PREFIX_TUTOR_ID + "2 "
             + PREFIX_CLASS_ID + "1 ";
 
-    public static final String MESSAGE_SUCCESS = "New assignment added: %1$s";
+    public static final String MESSAGE_SUCCESS = "Assign: %1$s";
     public static final String MESSAGE_TIMESLOT_CLASH = "Timeslot clash! Cannot assign: %1$s to %2$s";
     public static final String MESSAGE_ALREADY_ASSIGNED = "%1$s is already assigned to %2$s";
     public static final String MESSAGE_SESSION_HAS_TUTOR = "Cannot assign! %1$s already has tutor %2$s";
