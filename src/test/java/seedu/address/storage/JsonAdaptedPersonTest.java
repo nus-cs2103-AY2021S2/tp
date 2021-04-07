@@ -175,13 +175,13 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidMeeting_throwsIllegalArgumentException() {
+    public void toModelType_invalidMeeting_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_GENDER,
                         VALID_BIRTHDATE, VALID_TAGS, INVALID_MEETING, VALID_PLANS, VALID_NOTES);
-        assertThrows(IllegalArgumentException.class, person::toModelType);
+        assertThrows(IllegalValueException.class, person::toModelType);
     }
 
     @Test

@@ -126,7 +126,7 @@ Action                            | Format
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 
-* If a input is expected only once in the command but you specified it multiple times, only the last occurrence of the 
+* If an input is expected only once in the command, but you specified it multiple times, only the last occurrence of the 
   input will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
@@ -307,16 +307,19 @@ New schedule commands overwrite the original meeting scheduled with a client.
 
 Format: `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 
+* You can have the `@` symbol within the description as the system uses the last appearing `@` to find the meeting datetime.
 * Adds your client at the specified `INDEX`, and the `DATE_TIME` of the meeting, to the schedule list.
 * The `INDEX` refers to the index number shown in the displayed client list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * `DATE_TIME` refers to the date and time of the scheduled meeting
 * `DATE_TIME` should be inputted in the specific datetime format `yyyy-mm-dd HH:MM`
+* Blank spaces typed in front of and behind the `@` will be ignored by the system in order to increase typo leniency.
 
 Example:
 
-* `schedule 2 m/Insurance Plan @ 2020-02-28 14:30` schedules a Insurance Plan meeting with your client indexed 2 in the
+* `schedule 2 m/Insurance Plan @ 2020-02-28 14:30` schedules an Insurance Plan meeting with your client indexed 2 in the
   displayed list on 28th October 2020 2:30 pm.
+* `schedule 2 m/Insurance Plan@2020-02-28 14:30` will do the same as the previous command.
 
 #### Removing a meeting : `unschedule`
 
@@ -327,7 +330,7 @@ Removing meetings comes in three flavors:
 * `unschedule expired` removes all expired meetings in the meeting list.
 
 
-Format: `unschedule CHOICE`
+Format: `unschedule INDEX` or `unschedule all` or `unschedule expired`
 
 * The `INDEX` refers to the index number shown in the displayed meeting list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
@@ -423,10 +426,16 @@ Link.me data is saved in the hard disk automatically after any command that modi
 
 #### Editing the data file
 
-Link.me data is saved as a JSON file `[JAR file location]/data/linkme.json`. Advanced users are welcome to update data directly by editing that data file.
+Link.me data is saved as a JSON file `[JAR file location]/data/linkme.json`. 
+We generally discourage editing the JSON file directly. 
+<!---We have locked the JSON as a precaution, but users are still able to unlock the file and forcibly edit the file.--->
+The Link.me team does not take any responsibility in data loss or startup failures following invalid inputs.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file make its format invalid, Link.me will discard all data and start with an empty data file at the next run.
+If your changes to the data file make its format invalid, 
+Link.me will try to discard all data and start with an empty data file at the next run,
+but if the damage is too excessive, Link.me may be unable to start up. 
+In the case that this happens, please manually discard the data file to start the app.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------

@@ -101,7 +101,8 @@ class ScheduleCommandTest {
 
         ScheduleCommand scheduleCommandSecond = new ScheduleCommand(INDEX_SECOND_PERSON, MEETING_CLASH_PRANK);
         String expectedMessageSecond =
-                String.format(ScheduleCommand.MESSAGE_SCHEDULE_CONFLICT_FAILURE, VALID_MEETING_PRANK);
+                String.format(ScheduleCommand.MESSAGE_SCHEDULE_CONFLICT_FAILURE,
+                        VALID_MEETING_PRANK, editedPerson.getName().fullName);
         assertCommandFailure(scheduleCommandSecond, model, expectedMessageSecond);
     }
 

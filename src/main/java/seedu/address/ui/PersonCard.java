@@ -56,11 +56,17 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
+        id.setWrapText(true);
         name.setText(person.getName().fullName);
+        name.setWrapText(true);
         phone.setText(person.getPhone().value);
+        phone.setWrapText(true);
         address.setText(person.getAddress().value);
+        address.setWrapText(true);
         email.setText(person.getEmail().value);
+        email.setWrapText(true);
         gender.setText(person.getGender().value);
+        gender.setWrapText(true);
         if (person.getNumNotes() == 0) {
             numNotes.setText("\u25B6 You have no notes");
         } else {
@@ -71,8 +77,22 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        tags.getChildren().forEach(child -> {
+            if (child instanceof Label) {
+                Label label = (Label) child;
+                label.setWrapText(true);
+                label.setMaxWidth(300);
+            }
+        });
         person.getPlanStringsList()
                 .forEach(plan -> plans.getChildren().add(new Label(plan)));
+        plans.getChildren().forEach(child -> {
+            if (child instanceof Label) {
+                Label label = (Label) child;
+                label.setWrapText(true);
+                label.setMaxWidth(200);
+            }
+        });
     }
 
     @Override

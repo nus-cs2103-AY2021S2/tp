@@ -164,8 +164,11 @@ class JsonAdaptedPerson {
         final Birthdate modelBirthdate = new Birthdate(birthdate);
 
         final Optional<Meeting> modelMeeting;
+
         if (meeting == null) {
             modelMeeting = Optional.empty();
+        } else if (!Meeting.isValidMeeting(meeting)) {
+            throw new IllegalValueException(Meeting.MESSAGE_CONSTRAINTS);
         } else {
             modelMeeting = Optional.of(meeting).map(Meeting::new);
         }

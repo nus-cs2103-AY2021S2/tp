@@ -42,6 +42,9 @@ class JsonAdaptedPlan {
         if (!InsurancePlan.isValidPlan(planString)) {
             throw new IllegalValueException(InsurancePlan.MESSAGE_CONSTRAINTS);
         }
+        if (!InsurancePlan.isValidAmount(planString.split(" \\$", 2)[1].trim())) {
+            throw new IllegalValueException(InsurancePlan.PREMIUM_CONSTRAINTS);
+        }
         return new InsurancePlan(planString);
     }
 

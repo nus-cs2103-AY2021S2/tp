@@ -26,8 +26,8 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
             </HBox>
-            <HBox>
-                <VBox HBox.hgrow="ALWAYS" prefWidth="300">
+            <GridPane>
+                <VBox GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" minWidth="300" prefWidth="300" >
                     <FlowPane fx:id="tags"/>
                     <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
                     <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
@@ -36,10 +36,10 @@
                     <Label fx:id="birthdate" styleClass="cell_small_label" text="\$birthdate"/>
                     <Label fx:id="numNotes" styleClass="cell_small_label" text="\$numNotes"/>
                 </VBox>
-                <VBox HBox.hgrow="NEVER" prefWidth="150">
+                <VBox GridPane.columnIndex="1" GridPane.hgrow="NEVER" minWidth="200" prefWidth="200" maxWidth="200">
                     <FlowPane fx:id="plans"/>
                 </VBox>
-            </HBox>
+            </GridPane>
         </VBox>
     </GridPane>
 </HBox>

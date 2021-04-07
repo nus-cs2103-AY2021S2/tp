@@ -104,7 +104,7 @@ public class ModelManagerTest {
         Person editedAlice = new PersonBuilder(ALICE).withMeeting(MEETING_DESC_PRANK).build();
         Person editedBob = new PersonBuilder(BOB).withMeeting(MEETING_DESC_CLASH_PRANK).build();
         modelManager.addPerson(editedAlice);
-        assertEquals(modelManager.clash(editedBob), editedAlice.getMeeting());
+        assertEquals(modelManager.clash(editedBob), Optional.of(editedAlice));
         assertEquals(modelManager.clash(ALICE), Optional.empty());
         assertEquals(modelManager.clash(BOB), Optional.empty());
 
