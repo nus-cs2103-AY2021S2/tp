@@ -35,7 +35,7 @@ public class TagCommand extends Command {
 
     public static final String MESSAGE_TAG_TASK_SUCCESS = "Tagged Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to tag must be provided.";
-    public static final String MESSAGE_DUPLICATE_TASK = "This tag already exists.";
+    public static final String MESSAGE_DUPLICATE_TASK = "No new tag(s) added.";
 
     private final Index index;
     private Set<Tag> tags;

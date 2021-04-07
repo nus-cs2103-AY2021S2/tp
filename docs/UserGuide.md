@@ -23,7 +23,9 @@ on ModuleBook3.5.
 
 1. Once the jar file is ready, simply double-click the file in the download section.
 
-1. Refer to the [Commands](#commands) below for details of each command.
+1. Go through the entire list of [Commands](#commands) in the given order.
+
+1. Once you are familiar with the app, you may use the table of contents to jump to a command that you may be unsure of.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -45,60 +47,61 @@ Within the workload pie chart, each module's colour may change as a command is e
 However, the colours will be arranged such that no two modules with the same colour will be next to each other.
 </div>
 
-1. Tasks are colour coded based on done status. 
+4. Tasks are colour coded based on done status. 
    1. Done tasks are coloured pink. 
    1. Tasks that are not done are classified into 4 different categories (colors):
-   1. Color | Time to deadline
-      --------|------------------
-      **Green** | More than 3 days
-      **Yellow** | Between 1 to 3 days
-      **Orange** | Less than 1 day      
-      **Purple** | Expired
+
+Color | Time to deadline 
+--------|------------------
+**Green** | More than 3 days
+**Yellow** | Between 1 to 3 days
+**Orange** | Less than 1 day      
+**Purple** | Expired
    
-1. The pie chart is used to show workload distribution.
+5. The pie chart is used to show workload distribution.
    1. The color of pie chart is randomly assigned.
    2. The workload of each module is counted using the tasks of such module inclunding those that are already done and those that are not finished yet.
     
 1. You can rate a task's expected workload using the following mapping:
    
-   Input Parameter | Workload Rating
-   --------|------------------
-   **w/1** | Low
-   **w/2** | Medium
-   **w/3** | High
-   E.g. for a low workload rating, key in `w/1`.
+Input Parameter | Workload Rating
+--------|------------------
+**w/1** | Low
+**w/2** | Medium
+**w/3** | High
+E.g. for a low workload rating, key in `w/1`.
    
-1. The following module codes are supported 
-   (Note that subject description may differ from actual module name):
+7. The following module codes are supported:
 
-    Module Code | Subject Description
-    --------|------------------
-    CS1101S | Programming Methodology 
-    CS1010S | Programming Methodology in Python
-    CS1231S | Discrete Structures
-    CS2030 | Programming Methodology II
-    CS2040S | Data Structures and Algorithms
-    CS2101 | Effective Communication for Computing Professionals
-    CS2103T | Software Engineering
-    CS2105 | Introduction to Computer Networks
-    CS2106 | Introduction to Operating Systems
-    CS3103 | Computer Networks Practice
-    CS3210 | Parallel Computing
-    CS3212 | Programming Languages
-    CS3217 | Software Engineering on Modern Application Platforms
-    CS3219 | Software Engineering Principles and Patterns
-    CS3220 | Computer Architecture
-    CS3223 | Database Systems Implementation
-    CS3225 | Combinatory Methods in Bioinformatics
-    CS3230 | Design and Analysis of Algorithm
-    CS3231 | Theory of Computation
-    CS3233 | Competitive Programming
-    CS3243 | Introduction to Artificial Intelligence
-    CS3244 | Machine Learning
-    IS1103 | Computing Ethics
-    ST2131 | Probability
-    If your module code does not appear in the above table, 
-    you may use a substitute module code based on the subject description.
+Module Code | Subject Description
+--------|------------------
+CS1101S | Programming Methodology 
+CS1010S | Programming Methodology in Python
+CS1231S | Discrete Structures
+CS2030 | Programming Methodology II
+CS2040S | Data Structures and Algorithms
+CS2101 | Effective Communication for Computing Professionals
+CS2103T | Software Engineering
+CS2105 | Introduction to Computer Networks
+CS2106 | Introduction to Operating Systems
+CS3103 | Computer Networks Practice
+CS3210 | Parallel Computing
+CS3212 | Programming Languages
+CS3217 | Software Engineering on Modern Application Platforms
+CS3219 | Software Engineering Principles and Patterns
+CS3220 | Computer Architecture
+CS3223 | Database Systems Implementation
+CS3225 | Combinatory Methods in Bioinformatics
+CS3230 | Design and Analysis of Algorithm
+CS3231 | Theory of Computation
+CS3233 | Competitive Programming
+CS3243 | Introduction to Artificial Intelligence
+CS3244 | Machine Learning
+IS1103 | Computing Ethics
+ST2131 | Probability
+    
+If your module code does not appear in the above table, 
+you may use a substitute module code based on the subject description.
   
 <div style="page-break-after: always;"></div>
 
@@ -140,41 +143,6 @@ However, the colours will be arranged such that no two modules with the same col
 
 </div>
 
-### Command list
-
-   * **`list`** : List out tasks
-
-   * **`add`** : Add a task
-
-   * **`clear`** : Delete all tasks
-
-   * **`delete`** : Delete a task
-
-   * **`done`** : Mark a task as done
-
-   * **`notdone`** : Mark a task as not done
-
-   * **`tag`** : Add a tag to a task
-
-   * **`find`** : Search for tasks with name
-
-   * **`findTag`** : Search for tasks with tag
-     
-   * **`deleteTag`** : Delete a tag of a task
-
-   * **`mod`** : Search for tasks of a specific module
-
-   * **`edit`** : Edit task
-
-   * **`sort`** : Sort tasks
-   
-   * **`recur`** : Recur tasks
-   
-   * **`refresh`** : Refresh all showing tasks
-
-   * **`exit`** : Close the app
-
-
 ### Parameter Prefixes
 Below is a table of prefixes mapped to the respective parameters:<br>
 
@@ -209,17 +177,45 @@ t/ | TAG |
    the app will give an error message due to the tag being empty.
    E.g. for `tag 1 t/quiz t/QUIZ, t/Quiz`, only `t/quiz` is accepted and the actual tag will be spelt as `quiz`.
 
+### Command list
+
+All commands are ordered in a sequential manner. Do give them a try!
+
+* **`list`** : List out tasks
+
+* **`add`** : Add a task
+
+* **`clear`** : Delete all tasks
+
+* **`delete`** : Delete a task
+
+* **`done`** : Mark a task as done
+
+* **`notdone`** : Mark a task as not done
+
+* **`tag`** : Add a tag to a task
+
+* **`find`** : Search for tasks with name
+
+* **`findTag`** : Search for tasks with tag
+
+* **`deleteTag`** : Delete a tag of a task
+
+* **`mod`** : Search for tasks of a specific module
+
+* **`edit`** : Edit task
+
+* **`sort`** : Sort tasks
+
+* **`recur`** : Recur tasks
+
+* **`refresh`** : Refresh all showing tasks
+
+* **`exit`** : Close the app
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-
-### List out tasks : `list`
-
-Shows a list of all tasks you have added.
-
-Format: `list`
-
-![add message](images/listCommand.png)
 
 ### Add a task: `add`
 
@@ -241,31 +237,6 @@ Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORK
 Examples:
 * `add n/v1.2 TP m/CS2103T d/implement basic features b/2021-03-13 23:59 w/3 t/urgent`
 * `add n/practice sets m/CS3230 d/practice master's theorem a/2021-03-14 00:00 b/2021-03-15 00:00 w/1 r/weekly`
-
-
-### Delete a task : `delete`
-
-Deletes the specified task from the module book.
-
-Application: Used to remove tasks when tracking them is no longer necessary.
-
-Format: `delete INDEX`
-
-* Deletes the task at the specified `INDEX`.
-* The index refers to the index number shown in the displayed task list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd task in the ModuleBook3.5.
-* `find CS2103T` followed by `delete 1` deletes the 1st task in the results of the `find` command.
-
-### Delete all tasks: `clear`
-
-Deletes all tasks from the module book.
-
-Application: Used to clear out module book after a school term ends.
-
-Format: `clear`
 
 ### Mark a task as done : `done`
 
@@ -333,6 +304,16 @@ Format: `find KEYWORD`
 
 Examples:
 * `find revise`
+
+### List out tasks : `list`
+
+Shows a list of all tasks you have added.
+
+Application: Used to display all tasks if you previously entered a command meant to show only certain tasks like `find`.
+
+Format: `list`
+
+![add message](images/listCommand.png)
 
 
 ### Search tasks with tag: `findTag`
@@ -457,9 +438,33 @@ Examples:
 
 Refreshes the current list that is showing, updates the deadline if necessary.
 
+Application: Used to update deadlines based on recurrences. Also done automatically.
+
 Format: `refresh`
 
-<div style="page-break-after: always;"></div>
+### Delete a task : `delete`
+
+Deletes the specified task from the module book.
+
+Application: Used to remove tasks when tracking them is no longer necessary.
+
+Format: `delete INDEX`
+
+* Deletes the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd task in the ModuleBook3.5.
+* `find CS2103T` followed by `delete 1` deletes the 1st task in the results of the `find` command.
+
+### Delete all tasks: `clear`
+
+Deletes all tasks from the module book.
+
+Application: Used to clear out module book after a school term ends.
+
+Format: `clear`
 
 ### Close app: `exit`
 
@@ -468,6 +473,8 @@ Closes the app.
 Application: Used to exit the app. You may also click the close button or the `Exit` button under `File` in the toolbar.
 
 Format: `exit`
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
