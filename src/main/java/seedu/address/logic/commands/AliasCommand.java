@@ -20,11 +20,13 @@ public class AliasCommand extends Command {
             + PREFIX_ALIAS_NAME + "ALIAS\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ALIAS_COMMAND + "add "
-            + PREFIX_ALIAS_NAME + "a";
+            + PREFIX_ALIAS_NAME + "ad";
     public static final String MESSAGE_SUCCESS = "New alias added for \"%1$s\" command:\n%2$s";
     public static final String MESSAGE_DUPLICATE_ALIAS = "This alias \"%1$s\" already exists in FlashBack.";
     public static final String MESSAGE_ALIAS_IS_COMMAND = "The alias \"%1$s\" should not be a command in FlashBack.";
     public static final String MESSAGE_INVALID_COMMAND = "The command \"%1$s\" does not exist in FlashBack.";
+    public static final String MESSAGE_COMMAND_IS_REVIEW =
+            "The command \"%1$s\" should not be a command in review mode.";
 
     private final String command;
     private final String alias;
@@ -47,6 +49,10 @@ public class AliasCommand extends Command {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_ALIAS, alias));
         } else if (model.isCommand(alias)) {
             throw new CommandException(String.format(MESSAGE_ALIAS_IS_COMMAND, alias));
+        } else if (model.isReview(alias)) {
+            throw new CommandException(String.format(MESSAGE_ALIAS_IS_COMMAND, alias));
+        } else if (model.isReview(command)) {
+            throw new CommandException(String.format(MESSAGE_COMMAND_IS_REVIEW, command));
         } else if (!model.isCommand(command)) {
             throw new CommandException(String.format(MESSAGE_INVALID_COMMAND, command));
         }

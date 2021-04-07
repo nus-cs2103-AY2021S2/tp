@@ -25,6 +25,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_KEYWORDS = "Keywords you wish to filter by should not be empty.";
+    public static final String MESSAGE_INVALID_ALIAS = "Alias cannot be blank and must be alphanumerical.";
+    public static final String ALPHANUMERICAL_REGEX = "\\p{Alnum}+";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -173,5 +175,16 @@ public class ParserUtil {
             throw new ParseException(SortOptions.MESSAGE_INVALID_SORT_OPTIONS);
         }
         return SortOptions.getOption(sortOption);
+    }
+
+    /**
+     * Parses {@code String alias} into a {@code String}.
+     */
+    public static String parseAlias(String alias) throws ParseException {
+        requireNonNull(alias);
+        if (!alias.matches(ALPHANUMERICAL_REGEX)) {
+            throw new ParseException(MESSAGE_INVALID_ALIAS);
+        }
+        return alias;
     }
 }
