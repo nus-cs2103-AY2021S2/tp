@@ -268,7 +268,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | admin in charge of facilities              | add bookings                   |                                                                        |
 | `* * *`  | admin in charge of facilities              | edit bookings                  | change booking details when the person decides to amend the booking.    |
 | `* * *`  | admin in charge of facilities              | delete bookings                | remove bookings that have been cancelled by the person.                                                                       |
-| `* * *`  | admin in charge of facilities              | view bookings                  | check the bookings that have been made.   
+| `* * *`  | admin in charge of facilities              | view bookings                  | check the bookings that have been made.
 | `* * *`  | admin in charge of facilities              | find a booking by searching the booking's id| quickly get details of that booking.                                                                        ||
 | `* * *`  | admin in charge of facilities              | add persons                    | make bookings for that person.                                                                       |
 | `* * *`  | admin in charge of facilities              | edit persons                   | reflect the most up to date details of the person.                       |
@@ -471,7 +471,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to edit information about a specific venue.
 2.  BookCoin To The Moon updates the venue information and saves it to the booking system.
-    
+
     Use case ends.
 
 **Extensions**
@@ -621,7 +621,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-      
+
 ### Adding a person
 1. Adding a person to the booking system
     1. Prerequisites: list all persons using the `list_person` command. A person with the same email address and/or phone number cannot already exist. If it is present as a record in the system, delete it.
@@ -670,8 +670,8 @@ testers are expected to do more *exploratory* testing.
       Person with email nonexistent@gmail.com is not in the list.
 
    1. Test case: `delete_person e/johndoe@gmail.com`<br>
-      Expected: Person with email johndoe@gmail.com is deleted from the list. 
-      Details of the deleted contact shown in the status message. 
+      Expected: Person with email johndoe@gmail.com is deleted from the list.
+      Details of the deleted contact shown in the status message.
 
    1. Test case: `delete_person e/nonexistent@gmail.com`<br>
       Expected: No person is deleted. 

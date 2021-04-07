@@ -11,7 +11,7 @@
   <br>
 Our targeted users are administrative personnels of schools or organisations who need to manage bookings and usage of a large number of facilities. They have to ensure that bookings and usages of facilities abide by restrictions in addition to checking that the bookings are valid.
   <br>
-  
+
 ## More Details
 
 For the detailed documentation of this project, see the **[BookCoin To The Moon Product Website](https://ay2021s2-cs2103-w17-3.github.io/tp/)**.
