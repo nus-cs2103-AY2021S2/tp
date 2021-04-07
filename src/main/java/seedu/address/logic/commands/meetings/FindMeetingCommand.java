@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -15,6 +16,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 
 public class FindMeetingCommand extends Command {
 
@@ -46,8 +48,26 @@ public class FindMeetingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredMeetingList(combinedPredicate);
+        Predicate<Meeting> containsPeoplePredicate = makeContainsPeoplePredicate(persons, model);
+        Predicate<Meeting> finalPredicate = combinedPredicate.and(containsPeoplePredicate);
+        model.updateFilteredMeetingList(finalPredicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW, model.getFilteredMeetingList().size()));
     }
+
+
+    private Predicate<Meeting> makeContainsPeoplePredicate(Set<Index> people, Model model) throws CommandException {
+        List<Person> lastShownList = model.getFilteredPersonList();
+        Stream<Integer> zeroBasedIndexes = people.stream().map(personIndex -> personIndex.getZeroBased());
+
+        if (zeroBasedIndexes.anyMatch(integer -> integer >=  lastShownList.size())) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSONS_DISPLAYED_INDEX);
+        }
+        Predicate<Meeting> personPred = meeting -> zeroBasedIndexes.allMatch(index ->
+                meeting.containsPerson(lastShownList.get(index))
+        );
+        return personPred;
+    }
+
+
 }
