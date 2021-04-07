@@ -30,8 +30,6 @@ public class FindCommandParser {
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_NAME, PREFIX_EXAM,
                 PREFIX_ASSIGNMENT, PREFIX_GENERAL_EVENT);
 
-        //todo searching based on assignment and exam.
-        // todo can we incorporate a switch stt?
         if (findModuleCondition(argumentMultimap)) {
             command = new FindModuleCommandParser().parse(args);
         } else if (findPersonCondition(argumentMultimap)) {
@@ -51,20 +49,6 @@ public class FindCommandParser {
                 && argumentMultimap.getPreamble().isEmpty()
                 && !arePrefixesPresent(argumentMultimap, PREFIX_ASSIGNMENT)
                 && !arePrefixesPresent(argumentMultimap, PREFIX_EXAM);
-    }
-
-    private boolean findAssignmentCondition(ArgumentMultimap argumentMultimap) {
-        return arePrefixesPresent(argumentMultimap, PREFIX_MODULE)
-                && arePrefixesPresent(argumentMultimap, PREFIX_ASSIGNMENT)
-                && argumentMultimap.getPreamble().isEmpty()
-                && !arePrefixesPresent(argumentMultimap, PREFIX_EXAM);
-    }
-
-    private boolean findExamCondition(ArgumentMultimap argumentMultimap) {
-        return arePrefixesPresent(argumentMultimap, PREFIX_MODULE)
-                && arePrefixesPresent(argumentMultimap, PREFIX_EXAM)
-                && argumentMultimap.getPreamble().isEmpty()
-                && !arePrefixesPresent(argumentMultimap, PREFIX_ASSIGNMENT);
     }
 
     private boolean findEventCondition(ArgumentMultimap argumentMultimap) {

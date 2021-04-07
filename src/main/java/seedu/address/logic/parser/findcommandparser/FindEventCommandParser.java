@@ -8,10 +8,11 @@ import java.util.Arrays;
 import seedu.address.logic.commands.findcommand.FindEventCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.DescriptionContainsKeywordsPredicate;
 
-public class FindEventCommandParser extends FindCommandParser {
+public class FindEventCommandParser extends FindCommandParser implements Parser<FindEventCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindEventCommand and

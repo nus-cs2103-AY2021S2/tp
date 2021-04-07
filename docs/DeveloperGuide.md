@@ -482,29 +482,48 @@ as a pop-up window for you.
 
 **Target user profile**:
 
-* has a need to manage exams or events deadlines
+* has a need to manage exams, assignments and events deadlines
 * prefer desktop apps over other types
 * tend to forget upcoming events/exams
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using CLI and GUI apps
 
-**Value proposition**: manage deadlines and events faster than a typical mouse/GUI driven app
+**Value proposition**: Manage deadlines and events in list and calendar view format to remind forgetful users.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see instructions help page     | refer to help page when I forget how to use the App                 |
-| `* * *`  | student taking numerous modules            | add events/exams/assignments deadlines              |                                                                        |
-| `* * *`  | user                                       | delete a deadline               | view the ones that matter                                  |
-| `* * *`  | user                                       | edit a deadline          | can adjust schedule when there is a change of plan |
-| `* *`    | user                                       | view events in a calendar view   | to have a better sense of the upcoming events                |
-| `* *`      | forgetful student | get reminded about the most urgent events/assignments/exams          | finish the deadlines on time   
-| `* `    | student                                    | distinguish among modules,exams and assignments | |
-| `* `    | student                                     | view which friend of mine is enrolled in the same module/event | seek help from them |
+| `* * *`  | new user                                   | see instructions help page     | refer to help page when I forget how to use the App |
+| `* * *`  | user                                       | exit the App                   | |
+| `* * *`  | student taking a module                    | add module                     | keep track of the module exams, assignments |
+| `* * *`  | student having assignments                 | add assignments to module      | keep track of the assignment deadline |
+| `* * *`  | student having exams                       | add exams to module            | keep track of the exam start time |
+| `* * *`  | user with friends                          | add person and their birthday  | keep track of birthday and wish them happy birthday promptly |
+| `* * *`  | user                                       | add general events             | keep track of events happening outside school curriculum |
+| `* * *`  | student                                    | edit a module                  | adjust module name if module name changes |
+| `* * *`  | student                                    | edit a assignment              | can adjust schedule when there is a change of plan |
+| `* * *`  | student                                    | edit a exam                    | can adjust schedule when there is a change of plan |
+| `* * *`  | user                                       | edit a person and birthday     | fine tune person name and birthday according |
+| `* * *`  | user                                       | edit a general event           | adjust schedule when there is a change of plan |
+| `* * *`  | student                                    | delete a module                | |
+| `* * *`  | student                                    | delete a assignment            | |
+| `* * *`  | student                                    | delete a exam                  | |
+| `* * *`  | user                                       | delete a person and birthday   | |
+| `* * *`  | user                                       | delete a general event         | |
+| `* * `   | student                                    | find a module                  | quickly locate details for module |
+| `* * `   | user                                       | find a person                  | quickly locate details for person |
+| `* * `   | user                                       | find a general event           | quickly locate details for event |
+| `* * `   | user                                       | see all entries after finding command | |
+| `* * `   | student                                    | mark my assignments as done    | identify if assignments are done or not |
+| `* * `   | user                                       | clear App                      | quickly delete all details in App |
+| `* * `   | student                                    | clear modules                  | quickly delete all details for modules |
+| `* * `   | user                                       | clear contacts                 | quickly delete all details for person |
+| `* * `   | user                                       | clear general events           | quickly delete all details for events |
+| `* *`    | user                                       | view events in a calendar view | to have a better sense of the upcoming events |
+| `* *`    | forgetful student                          | be reminded about upcoming events | respond to upcoming events accordingly |  
 
 *{More to be added}*
 
@@ -512,78 +531,393 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `RemindMe` and the **Actor** is the `user`, unless specified otherwise)
 
-
-### Use Case: `UC01` - add assignment
+### Use Case: `UC01` - view help
 
 **MSS:**
 
-1. User enters the details of assignment.
+1. User enters the command to view help.
+2. System shows help and url to copy to user guide webpage for more in depth help.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in formatting of command.
+    * 1a1. System display error message.
+      <br> Use case ends.
+      
+### Use Case: `UC02` - exit
+
+**MSS:**
+
+1. User enters the command to exit system.
+2. System exits by closing all relevant GUI.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in formatting of command.
+    * 1a1. System display error message.
+      <br> Use case ends.
+      
+### Use Case: `UC03` - add module
+
+**MSS:**
+
+1. User enters command to add a module.
+2. System adds module and displays module info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+* 1b. System detects that module is present in system.
+    * 1b1. System display duplicate module error message.
+    <br> Use case ends.      
+
+
+### Use Case: `UC04` - add assignment
+
+**MSS:**
+
+1. User enters command to add an assignment for a module.
 2. System adds assignment and displays assignments info.
 <br> Use case ends.
    
 **Extensions:**
 
-* 1a. System detects an error in format in entered data.
-    * 1a1. System display error message.
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+* 1b. System detects that module for assignment is not present in the system.
+    * 1b1. System display module missing error message.
+    <br> Use case ends.
+* 1c. System detects that assignment is present in the module.
+    * 1c1. System display duplicate assignment error message.
+    <br> Use case ends.
+    
+### Use Case: `UC05` - add exam
+
+**MSS:**
+
+1. User enters command to add an exam for a module.
+2. System adds exam and displays exam info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+* 1b. System detects that module for exam is not present in the system.
+    * 1b1. System display module missing error message.
+    <br> Use case ends.
+* 1c. System detects that exam is present in the module.
+    * 1c1. System display duplicate exam error message.
     <br> Use case ends.
 
-### Use Case: `UC02` - delete assignment
+## Use Case: `UC06` - add person and birthday
 
 **MSS:**
 
-1. User enters number to delete a assignment.
-2. System deletes assignment and displays assignments info.
-   <br> Use case ends.
-
+1. User enters command to add a person and his/her birthday.
+2. System adds person with his/her birthday and displays person info.
+<br> Use case ends.
+   
 **Extensions:**
 
-* 1a. System detects an error in number in entered data (out of range).
-    * 1a1. System display error message.
-      <br> Use case ends.
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+* 1b. System detects that person is present in system.
+    * 1b1. System display duplicate person error message.
+    <br> Use case ends.      
 
-### Use Case: `UC03` - view assignments
+### Use Case: `UC07` - add general events
 
 **MSS:**
 
-1. User enters the command to view assignments.
-2. System shows list of assignments.
-   <br> Use case ends.
-
+1. User enters command to add a general event.
+2. System adds general event and displays general event info.
+<br> Use case ends.
+   
 **Extensions:**
 
-* 1a. System detects an error in formatting of command.
-    * 1a1. System display error message.
-      <br> Use case ends.
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+* 1b. System detects that general event is present in system.
+    * 1b1. System display duplicate event error message.
+    <br> Use case ends. 
 
-### Use Case: `UC04` - view events
+### Use Case: `UC08` - edit module
 
 **MSS:**
 
-1. User enters the command to view events.
-2. System shows list of events.
-   <br> Use case ends.
-
+1. User enters command to edit a module.
+2. System edits module and displays edited module info.
+<br> Use case ends.
+   
 **Extensions:**
 
-* 1a. System detects an error in formatting of command.
-    * 1a1. System display error message.
-      <br> Use case ends.
-
-### Use Case: `UC05` - view help
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+ 
+### Use Case: `UC09` - edit assignment
 
 **MSS:**
 
-1. User enters the command to view help.
-2. System shows help and url for more in depth help.
-   <br> Use case ends.
+1. User enters command to edit an assignment for a module.
+2. System edits assignment and displays edited assignment info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends. 
+        
+### Use Case: `UC10` - edit exam
+
+**MSS:**
+
+1. User enters command to edit an exam for a module.
+2. System edits exam and displays edited exam info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.      
+    
+### Use Case: `UC11` - edit person and birthday
+
+**MSS:**
+
+1. User enters command to edit the birthday of a person.
+2. System edits birthday and displays edited birthday info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.     
+
+### Use Case: `UC12` - edit general event
+
+**MSS:**
+
+1. User enters command to edit a general event.
+2. System edits general event and displays edited event info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends. 
+
+### Use Case: `UC13` - delete module
+
+**MSS:**
+
+1. User enters command to delete a module.
+2. System deletes module and displays deleted module info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+
+### Use Case: `UC14` - delete assignment
+
+**MSS:**
+
+1. User enters command to delete an assignment for a module.
+2. System deletes assignment and displays deleted assignment info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends. 
+        
+### Use Case: `UC15` - delete exam
+
+**MSS:**
+
+1. User enters command to delete an exam for a module.
+2. System deletes exam and displays deleted exam info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.      
+    
+### Use Case: `UC16` - delete person
+
+**MSS:**
+
+1. User enters command to delete a person.
+2. System deletes person and displays deleted person info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.     
+
+### Use Case: `UC17` - delete general event
+
+**MSS:**
+
+1. User enters command to delete a general event.
+2. System deletes general event and displays deleted event info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends. 
+
+### Use Case: `UC18` - find module
+
+**MSS:**
+
+1. User enters command to find a module with keyword.
+2. System display modules found by the keyword.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+ 
+### Use Case: `UC19` - find person
+
+**MSS:**
+
+1. User enters command to find a person with keyword.
+2. System display person found by the keyword.
+<br> Use case ends.
 
 **Extensions:**
 
-* 1a. System detects an error in formatting of command.
-    * 1a1. System display error message.
+* 1a. System detects formatting error in command.
+ * 1a1. System display formatting error message.
+     <br> Use case ends.
+ 
+### Use Case: `UC20` - find general event
+
+**MSS:**
+
+1. User enters command to find a general event with keyword.
+2. System display general event found by the keyword.
+<br> Use case ends.
+ 
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+  * 1a1. System display formatting error message.
+      <br> Use case ends.    
+
+### Use Case: `UC21` - list
+
+**MSS:**
+
+1. User enters list command.
+2. System display full list for module, person and events.
+<br> Use case ends.
+ 
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+  * 1a1. System display formatting error message.
+      <br> Use case ends.    
+
+### Use Case: `UC22` - mark assignment as done
+
+**MSS:**
+
+1. User enters command to mark an existing assignment as done.
+2. System marks assignment as done and displays assignment info.
+<br> Use case ends.
+ 
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+  * 1a1. System display formatting error message.
       <br> Use case ends.
 
-### Use Case: `UC06` - view calendar
+### Use Case: `UC23` - clear App
+
+**MSS:**
+
+1. User enters command to clear App.
+2. System clears the App.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+
+### Use Case: `UC24` - clear modules
+
+**MSS:**
+
+1. User enters command to clear modules.
+2. System clear modules and displays empty module list.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+ 
+### Use Case: `UC25` - clear contacts
+
+**MSS:**
+
+1. User enters command to clear contacts (person).
+2. System clear contacts and displays empty person list.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+
+### Use Case: `UC26` - clear events
+
+**MSS:**
+
+1. User enters command to clear general events.
+2. System clear general events and displays empty event list.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+
+### Use Case: `UC27` - view calendar
 
 **MSS:**
 
@@ -596,34 +930,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects an error in formatting of command.
     * 1a1. System display error message.
       <br> Use case ends.
-
-### Use Case: `UC07` - save data
-
-**MSS:**
-
-1. User enters the command to sava data.
-2. System saves data and show saved message.
-   <br> Use case ends.
-
-**Extensions:**
-
-* 1a. System detects an error in formatting of command.
-    * 1a1. System display error message.
-      <br> Use case ends.
-
-### Use Case: `UC08` - edit data
+ 
+### Use Case: `UC28` - reminder
 
 **MSS:**
 
-1. User enters the command to edit data.
-2. System edit data and show edited message.
+1. User starts the system.
+2. System shows upcoming events as a reminder.
    <br> Use case ends.
-
-**Extensions:**
-
-* 1a. System detects an error in formatting of command.
-    * 1a1. System display error message.
-      <br> Use case ends.
       
 *{More to be added}*
 
@@ -640,10 +954,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Module**: A school module consists of module ID and module name. 
-* **Examination**: Consists of a start time, end time and date which it occurs on and the relevant module.
-* **Event**: Consists of a start time, end time, and the date which it occurs on.
-* **Assignment**: Consists of a deadlines and the relevant module.
+* **Module**: A school module consisting of module name/module id. 
+* **Examination**: Consists of a start time and date which it occurs on under a relevant module.
+* **Event**: Consists of a start time and date which it occurs on.
+* **Assignment**: Consists of a deadline under a relevant module.
+* **GUI**: Graphic User Interface, the visible interface the user sees for the application.
 
 --------------------------------------------------------------------------------------------------------------------
 

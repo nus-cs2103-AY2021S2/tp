@@ -1,6 +1,5 @@
 package seedu.address.logic.parser.editcommandparser;
 
-import static java.util.Objects.isNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
@@ -38,17 +37,19 @@ public class EditExamCommandParser extends EditCommandParser implements Parser<E
                     EditExamCommand.MESSAGE_USAGE));
         }
 
-        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE).get());
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE)
+                .filter(Title::isValidTitle)
+                .orElseThrow(() -> new ParseException(
+                        String.format(Title.MESSAGE_CONSTRAINTS, "Modules")
+                )));
         Module module = new Module(title);
 
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_EXAM).get());
         int intIndex = index.getOneBased();
 
-        LocalDateTime edit = ParserUtil.parseExamDate(argMultimap.getValue(PREFIX_DATE).get());
-
-        if (isNull(edit)) {
-            throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
-        }
+        LocalDateTime edit = argMultimap.getValue(PREFIX_DATE)
+                .map(ParserUtil::parseExamDate)
+                .orElseThrow(() -> new ParseException(Exam.MESSAGE_CONSTRAINTS));
 
         return new EditExamCommand(module, intIndex, edit);
     }

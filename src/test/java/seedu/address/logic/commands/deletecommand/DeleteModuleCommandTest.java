@@ -24,7 +24,7 @@ import seedu.address.model.module.Title;
  */
 public class DeleteModuleCommandTest {
 
-    private Model model = new ModelManager(getTypicalRemindMe(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalRemindMe(), new UserPrefs());
 
     @Test
     public void execute_validModuleTitle_success() {
