@@ -21,7 +21,7 @@ has to offer. Read on to learn how to use them to digitise your wardrobe and use
 
 * [Quickstart](#quickstart)
 * [Features](#features)
-    + [Viewing Help: `help`](#viewing-help:-`help`)
+    + [Viewing Help: `help`](#viewing-help---help-)
     + [Adding a Garment to the Wardrobe: `add`](#adding-a-garment-to-the-wardrobe---add-)
     + [Listing all Garments in the Wardrobe: `list`](#listing-all-garments-in-the-wardrobe---list-)
     + [Deleting a singular Garment in the Wardrobe: `delete`](#deleting-a-singular-garment-in-the-wardrobe---delete-)
