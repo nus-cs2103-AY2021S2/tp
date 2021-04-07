@@ -26,6 +26,7 @@ import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TutorBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.event.EventTracker;
 import seedu.address.model.reminder.ReadOnlyReminderTracker;
 import seedu.address.model.reminder.ReminderTracker;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
@@ -211,6 +212,15 @@ public class MainApp extends Application {
             initialReminders = new ReminderTracker();
         }
 
+        EventTracker eventTracker = new EventTracker(initialAppointments, initialSchedules);
+        if (eventTracker.hasClashingDateTime()) {
+            logger.warning("AppointmentBook: Conflicting TIME_FROM and TIME_TO detected. "
+                    + "Will be starting with an empty AppointmentBook");
+            logger.warning("ScheduleTracker: Conflicting TIME_FROM and TIME_TO detected. "
+                    + "Will be starting with an empty ScheduleTracker");
+            initialAppointments = new AppointmentBook();
+            initialSchedules = new ScheduleTracker();
+        }
         return new ModelManager(initialData, userPrefs, initialAppointments,
                 budgetBook, initialGrades, initialSchedules, initialReminders);
     }

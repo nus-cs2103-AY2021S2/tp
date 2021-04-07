@@ -1,10 +1,10 @@
 package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DATE_CLASH_EDIT;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_APPOINTMENT;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNABLE_TO_EDIT_PAST_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -19,6 +19,7 @@ import java.util.Optional;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.commons.util.DateTimeValidationUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -72,37 +73,6 @@ public class EditAppointmentCommand extends Command {
         this.editAppointmentDescriptor = editAppointmentDescriptor;
     }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Appointment> lastShownList = model.getFilteredAppointmentList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
-        }
-
-        Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
-        Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
-
-        if (appointmentToEdit.equals(editedAppointment) || model.hasAppointment(editedAppointment)) {
-            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
-        } else if (!model.hasTutorByName(editedAppointment.getName())) {
-            throw new CommandException(MESSAGE_TUTOR_DOES_NOT_EXIST);
-        } else if (!model.doesTutorTeachSubject(editedAppointment.getName(),
-                editedAppointment.getSubject())) {
-            throw new CommandException(String.format(MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT,
-                    editedAppointment.getSubject()));
-        } else if (model.doesAppointmentClash(editedAppointment.getName(),
-                editedAppointment.getTimeFrom(), editedAppointment.getTimeTo())) {
-            throw new CommandException(MESSAGE_DATE_CLASH_EDIT);
-        }
-
-        model.setAppointment(appointmentToEdit, editedAppointment);
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT);
-        return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment),
-                TabName.APPOINTMENT);
-    }
-
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
@@ -124,6 +94,44 @@ public class EditAppointmentCommand extends Command {
 
         return new Appointment(updatedName, updatedSubjectName, updatedTimeFrom,
                 updatedTimeTo, updatedAddress);
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        List<Appointment> lastShownList = model.getFilteredAppointmentList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
+        }
+
+        Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
+        if (appointmentToEdit.getTimeFrom().isBeforeNow() && appointmentToEdit.getTimeTo().isBeforeNow()) {
+            throw new CommandException(MESSAGE_UNABLE_TO_EDIT_PAST_APPOINTMENT);
+        }
+
+        Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
+
+        if (appointmentToEdit.equals(editedAppointment) || model.hasAppointment(editedAppointment)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        }
+
+        if (!model.hasTutorByName(editedAppointment.getName())) {
+            throw new CommandException(MESSAGE_TUTOR_DOES_NOT_EXIST);
+        }
+
+        if (!model.doesTutorTeachSubject(editedAppointment.getName(),
+                editedAppointment.getSubject())) {
+            throw new CommandException(String.format(MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT,
+                    editedAppointment.getSubject()));
+        }
+
+        DateTimeValidationUtil.validateDateTime(model, editedAppointment, appointmentToEdit);
+
+        model.setAppointment(appointmentToEdit, editedAppointment);
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT);
+        return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment),
+                TabName.APPOINTMENT);
     }
 
     @Override
@@ -155,7 +163,8 @@ public class EditAppointmentCommand extends Command {
         private AppointmentDateTime timeTo;
         private Address address;
 
-        public EditAppointmentDescriptor() {}
+        public EditAppointmentDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -175,44 +184,44 @@ public class EditAppointmentCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, subjectName, timeFrom, address);
         }
 
-        public void setName(Name name) {
-            this.name = name;
-        }
-
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setSubjectName(SubjectName subjectName) {
-            this.subjectName = subjectName;
+        public void setName(Name name) {
+            this.name = name;
         }
 
         public Optional<SubjectName> getSubjectName() {
             return Optional.ofNullable(subjectName);
         }
 
-        public void setTimeFrom(AppointmentDateTime timeFrom) {
-            this.timeFrom = timeFrom;
+        public void setSubjectName(SubjectName subjectName) {
+            this.subjectName = subjectName;
         }
 
         public Optional<AppointmentDateTime> getTimeFrom() {
             return Optional.ofNullable(this.timeFrom);
         }
 
-        public void setTimeTo(AppointmentDateTime timeTo) {
-            this.timeTo = timeTo;
+        public void setTimeFrom(AppointmentDateTime timeFrom) {
+            this.timeFrom = timeFrom;
         }
 
         public Optional<AppointmentDateTime> getTimeTo() {
             return Optional.ofNullable(this.timeTo);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setTimeTo(AppointmentDateTime timeTo) {
+            this.timeTo = timeTo;
         }
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setAddress(Address address) {
+            this.address = address;
         }
 
         @Override

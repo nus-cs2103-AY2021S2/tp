@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DATE_CLASH_ADD;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_APPOINTMENT;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT;
@@ -12,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
 
+import seedu.address.commons.util.DateTimeValidationUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -47,6 +47,7 @@ public class AddAppointmentCommand extends Command {
 
     /**
      * Primary constructor to accept an appointment and add it to appointment list.
+     *
      * @param appointment Appointment to add
      */
     public AddAppointmentCommand(Appointment appointment) {
@@ -54,9 +55,9 @@ public class AddAppointmentCommand extends Command {
         toAdd = appointment;
     }
 
-
     /**
      * Main execute method that creates adds a new appointment to the appointment list
+     *
      * @param model {@code Model} which the command should operate on.
      * @return CommandResult indicating success or failure of add operation
      * @throws CommandException
@@ -67,19 +68,20 @@ public class AddAppointmentCommand extends Command {
 
         if (model.hasAppointment(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
-        } else if (!model.hasTutorByName(toAdd.getName())) {
-            throw new CommandException(MESSAGE_TUTOR_DOES_NOT_EXIST);
-        } else if (!model.doesTutorTeachSubject(toAdd.getName(), toAdd.getSubject())) {
-            throw new CommandException(String.format(MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT,
-                    toAdd.getSubject()));
-        } else if (model.doesAppointmentClash(toAdd.getName(), toAdd.getTimeFrom(),
-                toAdd.getTimeTo())) {
-            throw new CommandException(MESSAGE_DATE_CLASH_ADD);
-        } else {
-            model.addAppointment(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.APPOINTMENT);
         }
 
-    }
+        if (!model.hasTutorByName(toAdd.getName())) {
+            throw new CommandException(MESSAGE_TUTOR_DOES_NOT_EXIST);
+        }
 
+        if (!model.doesTutorTeachSubject(toAdd.getName(), toAdd.getSubject())) {
+            throw new CommandException(String.format(MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT,
+                    toAdd.getSubject()));
+        }
+
+        DateTimeValidationUtil.validateDateTime(model, toAdd);
+
+        model.addAppointment(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.APPOINTMENT);
+    }
 }

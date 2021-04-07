@@ -308,16 +308,29 @@ This feature allows tutees to manage and track their tuition appointments.
 * Time To
 * Location
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
+* The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
+* `TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
+* The earliest possible `TIME_FROM` is 06:00 AM and latest possible `TIME_TO` is 11:00 PM.
+* The shortest possible appointment is **1 hour**, and the longest possible appointment is **8 hours**.
+* The appointment timeslot must be in blocks of **30 minutes** or **1 hour**, i.e., 10:00 AM to 11:00 AM and 12:30 PM to 2:00 PM.
+* No appointments can clash or overlap with existing appointments or schedules, i.e., same day, 10:00am - 11:00am and 10:30am - 12:00pm.
+
+</div>
+
+
 #### Add a new appointment: `add_appointment`
 
 Adds an appointment with a specific tutor to the timetable.<br>
 
 Format: `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION`
 
-* The date format `YYYY-MM-DD` must be strictly followed. e.g. `2021-03-01`and `2021-04-20`.
-* The time format `HH:MM AM/PM` must be strictly followed. e.g. `9:01 AM` and `10:30 PM`.
-* Tutors cannot be double booked. Please ensure that timeslots of each tutor do not 
-  clash, i.e., same day, 10:00am - 11:00am and 10:30am - 12:00pm.
+* The new appointment `DATE`, `TIME_FROM` and `TIME_TO` must be in the future.
+* Refer to [Appointment Tracker Section](#appointment-tracker) for other date related constraints.
 
 Examples:<br>
 * `add_appointment n/David Li s/Mathematics d/2021-03-01 fr/10:00 AM to/12:00 PM l/Bedok`
@@ -344,9 +357,9 @@ Mar 27 2021
 Location: Hougang
 ```
 
-#### View tuition appointment details: `view_appointment`
+#### View tuition appointments: `view_appointment`
 
-View details of a tuition appointment via date.
+View details of a tuition appointment on a particular date.
 
 Format:
 `view_appointment DATE`
@@ -401,20 +414,19 @@ Deleted Appointment: Appointment with Tutor (Alex Poon) from
 Mar 10 2021 05:00PM to Mar 10 2021 07:00PM
 ```
 
-#### Editing an appointment: `edit_appointment`
+#### Editing a tuition appointment: `edit_appointment`
 
 Edits an appointment with a specific index. Only the attributes present are changed in the appointment.
-If any one of the following three fields (DATE, TIME_FROM, TIME_TO), then all three 
-must also be present.
 
 Format: `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] 
 [to/TIME_TO] [l/LOCATION]`
 
-* The date format `YYYY-MM-DD` must be strictly followed. e.g. `2021-03-01`and `2021-04-20`.
-* The time format `HH:MM AM/PM` must be strictly followed. e.g. `9:01 AM` and `10:30 PM`.
-* Tutors cannot be double booked. Please ensure that timeslots of each tutor do not
-  clash, i.e., same day, 10:00am - 11:00am and 10:30am - 12:00pm.
-  
+* Past appointments cannot be edited. Please add a new appointment if there's a need to.
+* If any one of the following fields (`DATE`, `TIME_FROM`, `TIME_TO`) are edited, then all three
+  fields are required to be present together.
+* The modified `DATE`, `TIME_FROM` and `TIME_TO` must be in the future.
+* Refer to [Appointment Tracker Section](#appointment-tracker) for other date related constraints.
+ 
 Examples: `edit_appointment 1 s/English l/Clementi`
 
 ### Schedule Tracker
@@ -429,16 +441,28 @@ This feature allows tutees to track and manage their tuition-related schedules, 
 * Time To
 * Description
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
+* The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
+* `TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
+* The earliest possible `TIME_FROM` is 06:00 AM and latest possible `TIME_TO` is 11:00 PM.
+* The shortest possible schedule is **1 hour**, and the longest possible schedule is **8 hours**.
+* The schedule timeslot must be in blocks of **30 minutes** or **1 hour**, i.e., 10:00 AM to 11:00 AM and 12:30 PM to 2:00 PM.
+* No schedules can clash or overlap with existing appointments or schedules, i.e., same day, 10:00am - 11:00am and 10:30am - 12:00pm.
+
+</div>
+
 #### Adding a schedule : `add_schedule`
 
 Adds a schedule that is related to tuition.<br>
 
 Format: `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION`
 
-* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
-* The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
-* `DATE` and `TIME_FROM` must be in the future.
-* `TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
+* The new appointment `DATE`, `TIME_FROM` and `TIME_TO` must be in the future.
+* Refer to [Schedule Tracker Section](#schedule-tracker) for other date related constraints.
 
 Examples:<br>
 * `add_schedule t/Science Tuition Homework d/2021-3-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6`
@@ -464,7 +488,7 @@ Calculus Topic
 
 #### View schedule details: `view_schedule`
 
-View details of a schedule via date.
+View details of a schedule on a particular date.
 
 Format:
 `view_schedule DATE`
@@ -510,15 +534,16 @@ Edits a schedule with a specific index. Only the attributes present are changed 
 
 Format: `edit_schedule INDEX [t/TITLE] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [ds/DESCRIPTION]`
 
-* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
-* The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
-* The edited `DATE` and `TIME_FROM` must be in the future.
-* `TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
+* Past schedules cannot be edited. Please add a new schedule if there's a need to.
+* If any one of the following fields (`DATE`, `TIME_FROM`, `TIME_TO`) are edited, then all three
+  fields are required to be present together.
+* The modified `DATE`, `TIME_FROM` and `TIME_TO` must be in the future.
+* Refer to [Schedule Tracker Section](#schedule-tracker) for other date related constraints.
 
 Examples: `edit_schedule 1 t/Science Tuition Homework`
 
 ### Event Tracker
-Events represent a timetable, which comprises of both `Appointment` and `Schedule`.
+Events represent a timetable, which comprises both `Appointment` and `Schedule`.
 This feature allows tutee to track and view their timetable easily.
 
 ![Timetable Ui](images/ug-images/Timetable.png)
@@ -533,6 +558,7 @@ Format: `timetable [DATE]`
 
 * The date is an optional parameter. If there is no date entered, it will display the timetable of the current week. Otherwise, by typing `2021-3-28`, it will show the week's timetable that contains 28 March 2021.
 * The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1` or `2021-03-01`.
+* Only one timetable can be opened at a time.
 
 ### Budget Tracker
 This feature allows tutees to track and manage his/her budget allocated to tuitions.
@@ -611,7 +637,7 @@ Total Cost of Appointments: 100.
 ```
 
 ### Grade Book
-This features allows tutees to track and manage their grades obtained in a particular subjects.
+This feature allows tutees to track and manage their grades obtained in particular subjects.
 
 ![Gradebook Ui](images/ug-images/Grades.png)
 
@@ -698,12 +724,22 @@ This feature allows tutees to track and manage reminders daily. This is exceptio
 * Description
 * Reminder Date
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
+
+</div>
+
 #### Adding a reminder : `add_reminder`
 
 Adds a reminder with description and reminder date specified by the user.<br>
 
 Format: `add_reminder ds/DESCRIPTION d/REMINDER_DATE`
-* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
+
+* The new reminder's `DATE` must be in the future.
+* Refer to [Reminder Tracker Section](#reminder-tracker) for other date related constraints.
 
 Examples:<br>
 * `add_reminder ds/Science Tuition Payment Due d/2021-4-2`
@@ -747,7 +783,10 @@ Date: Apr 21 2021
 Edits a reminder with a specific index. Only the attributes present are changed in the reminder.
 
 Format: `edit_reminder INDEX [ds/DESCRIPTION] [d/REMINDER_DATE]`
-* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
+
+* Past reminders cannot be edited. Please add a new reminder if there's a need to do so.
+* The modified `DATE` must be in the future.
+* Refer to [Reminder Tracker Section](#reminder-tracker) for other date related constraints.
 
 Examples: `edit_reminder 1 ds/Science Tuition Payment Due`
 
@@ -900,4 +939,3 @@ Action | Format | Examples
 **Add an Appointment Filter** | `add_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` | `add_appointment_filter to/>2021-03-25 10:00 AM`
 **Delete an Appointment Filter** | `delete_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` | `delete_appointment_filter to/>2021-03-25 10:00 AM`
 **Exit App** | `exit` | `exit`
-
