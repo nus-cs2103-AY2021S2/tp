@@ -47,6 +47,7 @@ public class DeleteCommandParser implements CommandParser {
         return command;
     }
 
+
     /**
      * returns true when arguments match input for deleteModule command
      */
@@ -54,7 +55,8 @@ public class DeleteCommandParser implements CommandParser {
         return arePrefixesPresent(argMultimap, PREFIX_MODULE)
                 && argMultimap.getPreamble().isEmpty()
                 && !arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT)
-                && !arePrefixesPresent(argMultimap, PREFIX_EXAM);
+                && !arePrefixesPresent(argMultimap, PREFIX_EXAM)
+                && !arePrefixesPresent(argMultimap, PREFIX_GENERAL_EVENT);
     }
 
     /**
@@ -64,7 +66,9 @@ public class DeleteCommandParser implements CommandParser {
         return arePrefixesPresent(argMultimap, PREFIX_MODULE)
                 && argMultimap.getPreamble().isEmpty()
                 && arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT)
-                && !arePrefixesPresent(argMultimap, PREFIX_EXAM);
+                && !arePrefixesPresent(argMultimap, PREFIX_EXAM)
+                && !arePrefixesPresent(argMultimap, PREFIX_GENERAL_EVENT);
+
     }
 
     /**
@@ -74,14 +78,20 @@ public class DeleteCommandParser implements CommandParser {
         return arePrefixesPresent(argMultimap, PREFIX_MODULE)
                 && argMultimap.getPreamble().isEmpty()
                 && !arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT)
-                && arePrefixesPresent(argMultimap, PREFIX_EXAM);
+                && arePrefixesPresent(argMultimap, PREFIX_EXAM)
+                && !arePrefixesPresent(argMultimap, PREFIX_GENERAL_EVENT);
+
     }
 
     /**
      * returns true when arguments match input for deletePerson command
      */
     public boolean deletePersonCondition(ArgumentMultimap argMultimap) {
-        return !arePrefixesPresent(argMultimap, PREFIX_NAME);
+        return !arePrefixesPresent(argMultimap, PREFIX_NAME)
+                && !arePrefixesPresent(argMultimap, PREFIX_GENERAL_EVENT)
+                && !arePrefixesPresent(argMultimap, PREFIX_MODULE)
+                && !arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT)
+                && !arePrefixesPresent(argMultimap, PREFIX_EXAM);
     }
 
     /**
@@ -89,6 +99,9 @@ public class DeleteCommandParser implements CommandParser {
      */
     public boolean deleteGeneralEventCondition(ArgumentMultimap argMultimap) {
         return arePrefixesPresent(argMultimap, PREFIX_GENERAL_EVENT)
+                && !arePrefixesPresent(argMultimap, PREFIX_MODULE)
+                && !arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT)
+                && !arePrefixesPresent(argMultimap, PREFIX_EXAM)
                 && argMultimap.getPreamble().isEmpty();
     }
 

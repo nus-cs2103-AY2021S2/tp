@@ -25,7 +25,7 @@ public class DeleteExamCommandParser extends DeleteCommandParser implements Pars
                 .orElseThrow(() -> new ParseException(
                         String.format(Title.MESSAGE_CONSTRAINTS, "Modules'")
                 )));
-        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_EXAM).get());
+        Index index = ParserUtil.parseExamIndex(argMultimap.getValue(PREFIX_EXAM).get());
         return new DeleteExamCommand(title, index);
     }
 }

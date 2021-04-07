@@ -17,6 +17,7 @@ import seedu.address.model.module.Title;
 public class DeleteModuleCommand extends DeleteCommand {
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
+    public static final String MESSAGE_EMPTY_MODULELIST = "Module list is empty";
 
     private final Title moduleTitle;
 
@@ -28,7 +29,9 @@ public class DeleteModuleCommand extends DeleteCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Module> lastShownList = model.getFilteredModuleList();
-
+        if (lastShownList.size() == 0) {
+            throw new CommandException(MESSAGE_EMPTY_MODULELIST);
+        }
         //check for Title
         Module moduleToCheck = new Module(moduleTitle);
         if (!listContainsModule(lastShownList, moduleToCheck)) {
