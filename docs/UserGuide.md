@@ -535,9 +535,9 @@ Format: `timetable [DATE]`
 * The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1` or `2021-03-01`.
 
 ### Budget Tracker
-This feature allows tutees to track and manage his/her budget allocated to tuitions. 
+This feature allows tutees to track and manage his/her budget allocated to tuitions.
 
-![Budget Ui](images/ug-images/Budget.png)
+![Budget Ui](images/ug-images/Budget_2.PNG)
 
 **Attributes / Parameters**:
 * Budget Amount
@@ -546,6 +546,8 @@ This feature allows tutees to track and manage his/her budget allocated to tuiti
 
 Adds a budget with an amount specified by user. Stores budget in user system.
 Budget must not already exist in user system, otherwise use edit_budget instead.
+
+* If no budget is present, the default budget value is 0.
 
 Format: `add_budget b/BUDGET`
 
@@ -602,6 +604,7 @@ Example Output:
 ```
 1) Budget does not already exist. Please ensure there is a budget. You can use the 
 add_budget function to add a budget.
+
 2) Here is your budget.
 Budget: 600
 Total Cost of Appointments: 100.
