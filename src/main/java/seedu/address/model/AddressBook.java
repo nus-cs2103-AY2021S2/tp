@@ -266,7 +266,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Checks if any issues have the given room associated with it
      *
      * @param target Room to check if it has issues associated with it.
-     * @return True if there are issues with the given room associated with it
+     * @return True if there are issues with the given room associated with it.
      */
     public boolean issuesContainRoom(Room target) {
         return issues.containsRoom(target);
