@@ -31,9 +31,9 @@ public class ModuleCodeTest {
         assertFalse(ModuleCode.isValidModuleCode("peter*")); // contains non-alphanumeric characters
         assertFalse(ModuleCode.isValidModuleCode("CT1211")); // Invalid format
 
-        // valid name
-        assertTrue(ModuleCode.isValidModuleCode("CS9999")); // 9999 is the highest code number accepted
-        assertTrue(ModuleCode.isValidModuleCode("CS0000")); // 0000 is the highest code number accepted
+        // EP: CS1000-CS6999 valid name
+        assertTrue(ModuleCode.isValidModuleCode("CS6999")); // 6999 is the highest code number accepted
+        assertTrue(ModuleCode.isValidModuleCode("CS1000")); // 1000 is the highest code number accepted
         assertTrue(ModuleCode.isValidModuleCode("CS2103")); // typical value
 
     }

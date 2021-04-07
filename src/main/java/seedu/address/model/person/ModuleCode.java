@@ -16,7 +16,7 @@ public class ModuleCode implements Comparable<ModuleCode> {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[C][S]\\d{4}";
+    public static final String VALIDATION_REGEX = "[C][S][1-6]\\d{3}";
 
     public final String moduleCode;
 
