@@ -71,7 +71,7 @@ This section gives an overview of BookCoin’s layout so that you can get starte
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
-  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`. 
+  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 </div>
 
@@ -118,7 +118,7 @@ Format: `exit`
 
 **:information_source: More information about multi-step commands:**<br>
 
-* Some commands require multiple input information which can be very tedious to type in one go. 
+* Some commands require multiple input information which can be very tedious to type in one go.
 Multi-step commands therefore allow such commands to be used with greater ease by users as the system will prompt them to input items one at a time. To skip input for optional fields, you can just press the <kbd>Enter</kbd> key without typing anything when prompted to enter an optional field.
 * The multi-step commands currently supported in v1.4 are `add_person`, `add_venue` and `add_booking`.
 * The commands listed in this section are specific to multi-step commands and are only applicable when the user is in the middle of a multi-step command.

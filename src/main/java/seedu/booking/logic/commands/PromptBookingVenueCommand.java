@@ -1,7 +1,9 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.booking.commons.core.Messages.*;
+import static seedu.booking.commons.core.Messages.MESSAGE_NON_EXISTENT_VENUE_NAME;
+import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
+import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_TRY_AGAIN;
 
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;

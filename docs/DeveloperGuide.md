@@ -268,7 +268,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | admin in charge of facilities              | add bookings                   |                                                                        |
 | `* * *`  | admin in charge of facilities              | edit bookings                  | change booking details when the person decides to amend the booking.    |
 | `* * *`  | admin in charge of facilities              | delete bookings                | remove bookings that have been cancelled by the person.                                                                       |
-| `* * *`  | admin in charge of facilities              | view bookings                  | check the bookings that have been made.   
+| `* * *`  | admin in charge of facilities              | view bookings                  | check the bookings that have been made.
 | `* * *`  | admin in charge of facilities              | find a booking by searching the booking's id| quickly get details of that booking.                                                                        ||
 | `* * *`  | admin in charge of facilities              | add persons                    | make bookings for that person.                                                                       |
 | `* * *`  | admin in charge of facilities              | edit persons                   | reflect the most up to date details of the person.                       |
@@ -471,7 +471,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to edit information about a specific venue.
 2.  BookCoin To The Moon updates the venue information and saves it to the booking system.
-    
+
     Use case ends.
 
 **Extensions**
@@ -621,7 +621,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-      
+
 ### Adding a person
 1. A multi-step command to add a person to the booking system
     1. Prerequisites: list all persons using the `list_person` command. A person with the same email address and/or phone number cannot already exist. If it is present as a record in the system, delete it.
@@ -659,14 +659,14 @@ testers are expected to do more *exploratory* testing.
 1. A multi-step command to add a booking for Victoria Hall
     1. Prerequisites: a venue by the same name already exists, and a venue by the name of Hall does not exist. If it is not present as a record in the system, create one. Similarly, for the email of a person booking, create one if not present
 
-    2. Test case: `add_booking b/example@gmail.com` v/Hall d/For FYP Meeting. bs/2012-01-31 22:59:59 be/2012-01-31 23:59:59`<br>
+    2. Test case: `add_booking` followed by `example@gmail.com` followed by `Hall` followed by `For FYP Meeting` followed by `2012-01-31 22:59` followed by `2012-01-31 23:59` followed by `meeting`<br>
     Expected: There should be an error stating that the venue does not exist in the system
 
-    3. Test case: `add_booking v/Victoria Hall d/For FYP Meeting. bs/2012-01-31 22:59:59 be/2012-01-31 23:59:59`<br>
-    Expected: There should be an error stating that the the booking command is invalid. This is due to a missing email.
+    3. Test case: `add_booking` followed by `example@gmail.com` followed by `Victoria Hall` followed by `For FYP Meeting` followed by `2012-02-01 22:59` followed by `2012-01-31 23:59` followed by `meeting`<br>
+    Expected: There should be an error stating that the starting time of a booking should not be later than its ending time.
 
-    4. Test case: `add_booking b/example@gmail.com v/Hall d/For FYP Meeting. bs/2012-01-31 22:59:59 be/2012-01-31 23:59:59`<br>
-    Expected: A booking for Victoria Hall should appear in the list of bookings with a description "For FYP Meeting." with a date range from 31st Jan 2012, 22:59:59 to 23:59:59.
+    4. Test case: `add_booking` followed by `example@gmail.com` followed by `Victoria Hall` followed by `For FYP Meeting` followed by `2012-01-31 22:59` followed by `2012-01-31 23:59` followed by `meeting`<br>
+    Expected: A booking for Victoria Hall should appear in the list of bookings with a description "For FYP Meeting.", a date range from 31st Jan 2012, 22:59 to 23:59 and a tag "meeting".
 
 ### Deleting a person
 
@@ -677,8 +677,8 @@ testers are expected to do more *exploratory* testing.
       Person with email nonexistent@gmail.com is not in the list.
 
    1. Test case: `delete_person e/johndoe@gmail.com`<br>
-      Expected: Person with email johndoe@gmail.com is deleted from the list. 
-      Details of the deleted contact shown in the status message. 
+      Expected: Person with email johndoe@gmail.com is deleted from the list.
+      Details of the deleted contact shown in the status message.
 
    1. Test case: `delete_person e/nonexistent@gmail.com`<br>
       Expected: No person is deleted. 

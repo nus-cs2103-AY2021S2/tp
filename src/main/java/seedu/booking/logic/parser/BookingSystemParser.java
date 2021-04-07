@@ -33,6 +33,7 @@ import seedu.booking.logic.commands.states.AddVenueCommandState;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.logic.parser.promptparsers.PromptBookingDescParser;
 import seedu.booking.logic.parser.promptparsers.PromptBookingEndParser;
+import seedu.booking.logic.parser.promptparsers.PromptBookingPersonEmailParser;
 import seedu.booking.logic.parser.promptparsers.PromptBookingStartParser;
 import seedu.booking.logic.parser.promptparsers.PromptBookingTagsParser;
 import seedu.booking.logic.parser.promptparsers.PromptBookingVenueNameParser;
@@ -129,7 +130,7 @@ public class BookingSystemParser {
         switch (commandWord) {
 
         case PromptAddBookingCommand.COMMAND_WORD:
-            return new PromptAddBookingCommand();
+            return new PromptBookingPersonEmailParser().parse(arguments);
 
         case PromptAddVenueCommand.COMMAND_WORD:
             return new PromptVenueNameParser().parse(arguments);
