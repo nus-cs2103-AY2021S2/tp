@@ -10,11 +10,11 @@ import java.util.stream.Stream;
 public class VaccinationStatus {
 
     public enum VaccinationStatusAbbreviation {
-        VACCINATED, NOT_VACCINATED
+        VACCINATED, UNVACCINATED
     }
 
     public static final String MESSAGE_CONSTRAINTS = "Vaccination status should only be of the format 'vaccinated' "
-            + "or 'not vaccinated' ";
+            + "or 'unvaccinated' ";
 
     public final VaccinationStatusAbbreviation status; // enum for Vaccination status
     public final String textUI; // string to display on the GUI
@@ -31,7 +31,7 @@ public class VaccinationStatus {
             status = VaccinationStatusAbbreviation.VACCINATED;
             textUI = vaccinationStatus;
         } else {
-            status = VaccinationStatusAbbreviation.NOT_VACCINATED;
+            status = VaccinationStatusAbbreviation.UNVACCINATED;
             textUI = vaccinationStatus;
         }
     }
@@ -43,10 +43,9 @@ public class VaccinationStatus {
      * @return true if test is a valid statis, false otherwise.
      */
     public static boolean isValidStatus(String test) {
-        test = test.replaceAll(" ", "_").toUpperCase();
-        System.out.println(test);
+        test = test.toUpperCase();
         try {
-            boolean result = VaccinationStatusAbbreviation.valueOf(test) == VaccinationStatusAbbreviation.NOT_VACCINATED
+            boolean result = VaccinationStatusAbbreviation.valueOf(test) == VaccinationStatusAbbreviation.UNVACCINATED
                     || VaccinationStatusAbbreviation.valueOf(test) == VaccinationStatusAbbreviation.VACCINATED;
             return result;
         } catch (IllegalArgumentException e) {

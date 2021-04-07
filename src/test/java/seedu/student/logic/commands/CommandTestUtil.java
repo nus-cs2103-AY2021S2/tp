@@ -45,7 +45,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_STATUS_AMY = "vaccinated";
-    public static final String VALID_STATUS_BOB = "not vaccinated";
+    public static final String VALID_STATUS_BOB = "unvaccinated";
     public static final String VALID_DETAILS_AMY = "none";
     public static final String VALID_DETAILS_BOB = "peanut allergy";
     public static final String VALID_RESIDENCE_AMY = "RC4";

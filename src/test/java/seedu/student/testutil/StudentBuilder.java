@@ -22,7 +22,7 @@ public class StudentBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_VAC_STATUS = "not vaccinated";
+    public static final String DEFAULT_VAC_STATUS = "unvaccinated";
     public static final String DEFAULT_MED_DETAILS = "none";
     public static final String DEFAULT_SCHOOL_RESIDENCE = "RVRC";
 
