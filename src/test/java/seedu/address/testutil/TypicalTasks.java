@@ -25,30 +25,30 @@ import seedu.address.model.task.Task;
 public class TypicalTasks {
 
     public static final Task ASSIGNMENT = new TaskBuilder().withName("CS2105 Assignment")
-            .withDeadline("2020-01-01").withCategories("SchoolWork").withPriority("1")
+            .withDeadline("2022-01-01").withCategories("SchoolWork").withPriority("1")
             .build();
     public static final Task LAB = new TaskBuilder().withName("CS2106 Lab")
-            .withDeadline("2020-01-02").withCategories("SchoolWork").withPriority("3")
+            .withDeadline("2022-01-02").withCategories("SchoolWork").withPriority("3")
             .build();
     public static final Task BREAKFAST = new TaskBuilder().withName("Toast Bread")
-            .withDeadline("2020-03-01").withCategories("Life").withPriority("7")
+            .withDeadline("2022-03-01").withCategories("Life").withPriority("7")
             .build();
     public static final Task SHOPPING = new TaskBuilder().withName("Buy Clothes")
-            .withDeadline("2020-03-02").withCategories("Life").withPriority("8")
+            .withDeadline("2022-03-02").withCategories("Life").withPriority("8")
             .build();
     public static final Task REVISION = new TaskBuilder().withName("Revise CS2103")
-            .withDeadline("2020-04-02").withCategories("Exam").withPriority("2")
+            .withDeadline("2022-04-02").withCategories("Exam").withPriority("2")
             .build();
     public static final Task EXERCISE = new TaskBuilder().withName("Run 10km")
-            .withDeadline("2020-02-02").withCategories("Exercise").withPriority("5")
+            .withDeadline("2022-02-02").withCategories("Exercise").withPriority("5")
             .build();
 
     // Manually added
     public static final Task GAME = new TaskBuilder().withName("Play Mario Kart")
-            .withDeadline("2020-05-02").withCategories("Leisure").withPriority("8")
+            .withDeadline("2022-05-02").withCategories("Leisure").withPriority("8")
             .build();
     public static final Task LECTURE = new TaskBuilder().withName("Watch CS2103 Lecture")
-            .withDeadline("2020-04-02").withCategories("SchoolWork").withPriority("2")
+            .withDeadline("2022-04-02").withCategories("SchoolWork").withPriority("2")
             .build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}

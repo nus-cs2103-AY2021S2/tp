@@ -16,7 +16,7 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class TaskBuilder {
     public static final String DEFAULT_NAME = "Do this do that";
-    public static final String DEFAULT_DATE = "2020-01-01";
+    public static final String DEFAULT_DATE = "2022-01-01";
     public static final String DEFAULT_PRIORITY = "5";
 
     private Name name;
