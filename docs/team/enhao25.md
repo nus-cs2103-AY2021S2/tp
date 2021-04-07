@@ -13,7 +13,7 @@ Given below is a summary of my contributions to the TutorBuddy Application.
 ### Major Enhancement:
 * Getting the current month and previous 2 months monthly fees.
   * **What it does:** This feature calculates the current month, and the previous 2 months expected monthly fee based on existing sessions and recurring sessions. We then display the results on the UI accordingly.
-  * **Rationale:** Independent tutors might want to keep track of their earnings. However, as different lesson could be priced differently,
+  * **Justification:** Independent tutors might want to keep track of their earnings. However, as different lesson could be priced differently,
     we wanted to implement a feature that helps user calculate their expected total current month salary and their previous 2 months
     monthly salary.
   * **Highlights:** Calculation are performed in a separate FeeUtil folders that performs the calculation. Runs a loop for each month to perform and
@@ -25,7 +25,7 @@ Given below is a summary of my contributions to the TutorBuddy Application.
     [PR #145](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/145).
 * Feature to get a particular student's monthly fee.
     * **What it does:** Fee command to calculate the monthly fee of a particular student in a specific month and year and return the value to the user.
-    * **Rationale:** When independent tutor collects their monthly fee from the students, it might be difficult for them to keep track of how much would they receive
+    * **Justification:** When independent tutor collects their monthly fee from the students, it might be difficult for them to keep track of how much would they receive
       when their lessons are charge on a per session basis. Hence, we wanted to create a feature that collects how much would a student have to
       pay in a particular month and year, so TutorBuddy can help the tutor calculate the fee for them instead.
     * **Highlights:** This feature makes use of the methods in FeeUtil to calculate the fees for a particular student. As this is a command based query, I would have to first
