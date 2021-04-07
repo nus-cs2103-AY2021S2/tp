@@ -25,8 +25,8 @@ public class FindReaderCommand extends Command {
             + "To find reader(s) with matching tags, use \"findreader " + PREFIX_TAG + "TAG [MORE_TAGS]\".\n"
             + "Note that the current version of our app does not support the searching of "
             + "readers with names and tags within the same command.\n"
-            + "Example 1: " + COMMAND_WORD + " John Doe\n"
-            + "Example 2: " + COMMAND_WORD + " " +  PREFIX_TAG + "vip";
+            + "Example (search by names): " + COMMAND_WORD + " John Doe\n"
+            + "Example (search by tags): " + COMMAND_WORD + " " + PREFIX_TAG + "vip";
 
     private final Predicate<Reader> predicate;
 
