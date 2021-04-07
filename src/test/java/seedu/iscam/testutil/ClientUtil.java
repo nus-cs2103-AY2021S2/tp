@@ -38,7 +38,7 @@ public class ClientUtil {
         sb.append(PREFIX_EMAIL + client.getEmail().value + " ");
         sb.append(PREFIX_LOCATION + client.getLocation().value + " ");
         client.getPlans().stream().forEach(
-                s -> sb.append(PREFIX_PLAN + s.planName + " ")
+            s -> sb.append(PREFIX_PLAN + s.planName + " ")
         );
         client.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")

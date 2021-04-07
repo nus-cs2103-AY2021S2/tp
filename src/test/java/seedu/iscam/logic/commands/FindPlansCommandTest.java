@@ -71,7 +71,6 @@ public class FindPlansCommandTest {
         PlanContainsKeywordsPredicate predicate = preparePlanPredicate("Life Protect MediShield");
         FindPlansCommand command = new FindPlansCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
-        String foo = command.execute(model).getFeedbackToUser();
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
 
         // Returns true if CARL, ELLE, FIONA are displayed

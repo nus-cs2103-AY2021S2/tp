@@ -17,9 +17,8 @@ public class PlanContainsKeywordsPredicate implements Predicate<Client> {
 
     @Override
     public boolean test(Client client) {
-        return keywords.stream().anyMatch(
-                keyword -> client.getPlans().stream()
-                        .anyMatch(plan -> StringUtil.containsIgnoreCase(plan.planName, keyword))
+        return keywords.stream().anyMatch(keyword -> client.getPlans().stream()
+                .anyMatch(plan -> StringUtil.containsIgnoreCase(plan.planName, keyword))
         );
     }
 
