@@ -10,6 +10,8 @@ import seedu.address.model.Model;
  */
 public class MenuListAvailableCommand extends MenuListCommand {
 
+    public static final String MESSAGE_SUCCESS = "Listed all available dishes";
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
