@@ -79,12 +79,14 @@ public class ParserUtilTest {
                 ) -> parseMultipleIndex(onlyOneIndexAndValid));
     }
 
+    /*
     @Test
     public void parseInputToStatus_validArgs_returnsCorrectStatus() throws ParseException {
         assertEquals(new Status(StatusType.UNCOMPLETED), parseInputToStatus(" uncompleted -all"));
         assertEquals(new Status(StatusType.COMPLETED), parseInputToStatus(" completed -all"));
         assertEquals(new Status(StatusType.EXPIRED), parseInputToStatus(" expired  -all"));
     }
+     */
 
 
     // test for more rogue inputs in v1.4 like "... --all"

@@ -43,11 +43,14 @@ public class DeleteMultipleCommandUtilTest {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX_RANGE, () -> hasMultipleValidIndex("3-3"));
     }
 
+    /*
     @ParameterizedTest
     @ValueSource(strings = {"uncompleted -all", "completed -all ", " expired -all "})
     public void isDeletingTasksByStatus_validArgs_returnsTrue(String input) throws ParseException {
         assertTrue(isDeletingTasksByStatus(input));
     }
+
+     */
 
     @ParameterizedTest
     @ValueSource(strings = {" 1 2 3", " 1-3 "})
