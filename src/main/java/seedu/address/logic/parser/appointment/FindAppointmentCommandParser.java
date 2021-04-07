@@ -6,17 +6,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.appointment.FindAppointmentCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 
@@ -61,7 +60,10 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         }
 
         if (argMultimap.getValue(PREFIX_TIMESLOT_START).isPresent()) {
-            Collections.addAll(timeStartKeywords, listKeywords(argMultimap, PREFIX_TIMESLOT_START));
+            LocalDateTime dateTimeInput = TimeslotParser.parseDateTime(
+                    argMultimap.getValue(PREFIX_TIMESLOT_START).get());
+            String[] standardDateTimeInput = dateTimeInput.toString().split("T");
+            Collections.addAll(timeStartKeywords, standardDateTimeInput);
         }
 
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
