@@ -432,9 +432,13 @@ Parameters: none
 
 Q: How do I transfer my data to another Computer?
 
-A: Install the FoodDiary app in the other computer and overwrite the empty data file it creates with the file that
-contains the data of your previous AddressBook home folder.
+A: Download the latest version of The Food Diary app in the other computer,
+and overwrite the empty data file it creates with the file that
+contains the data of your previous Food Diary home folder. The image below shows the file directory to get the 
+`foodDiary.json` file, and where you should add it to if you would like the app to
+read from the new data. 
 
+![Food Diary Json File Directory](images/FoodDiaryJsonFileDirectory.png)
 
 -------------------------------------------------------------------------------------
 
