@@ -1,7 +1,8 @@
 ---
-Chanell Ng's Project Portfolio Page
-
+layout: page
+title: Chanell Ng 's Project Portfolio Page
 ---
+
 
 ## Project: EZManage
 
