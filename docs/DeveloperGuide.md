@@ -253,7 +253,7 @@ Step 3. `Model#updateFilteredEndpointList` will be called and model will be upda
 The following activity diagram summarizes what happens when a user executes a find command:
 
 <p align="center">
-  <img src="images/FindActivityDiagram.png" ><!--alt="FindActivityDiagram" -->
+  <img src="images/FindActivityDiagram.png" alt="FindActivityDiagram" />
 </p>
 
 ### Send/run command feature
@@ -290,7 +290,9 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 The `run` command deploys a similar trick but for an endpoint specified directly within the command arguments.
 
 The following activity diagram summarizes what happens when a user executes a run command:
-<p align="center">![RunActivityDiagram](images/RunActivityDiagram.png)</p>
+<p align="center">
+  <img alt="RunActivityDiagram" src="images/RunActivityDiagram.png"/>
+</p>
 #### Design consideration:
 
 ##### Aspect: How send & run executes
@@ -374,8 +376,6 @@ Step 2. The `toggle` command returns a `CommandResult` that triggers the `update
 
 The following sequence diagram shows how the toggle command works for the above example: 
 ![ToggleSequenceDiagram](images/ToggleSequenceDiagram.png)
-
-### TODO MORE IMPLEMENTATION
 
 ---
 ## **Documentation, logging, testing, configuration, dev-ops**
