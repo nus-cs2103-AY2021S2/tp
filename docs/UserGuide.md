@@ -109,7 +109,7 @@ Edits the given fields of an existing residence (excludes bookings, see `editb` 
 Format: `edit RESIDENCE_INDEX [n/RESIDENCE_NAME] [a/ADDRESS] [c/VALID_CLEAN_STATUS] [t/TAG]`
 
 * Edits the residence at the specified `RESIDENCE_INDEX`.
-* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residence list(i.e. **NOT** zero-indexed, items starts at index 1).
+* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residence list(i.e. **NOT** zero-indexed, items start at index 1).
 * The `RESIDENCE_INDEX` **must be a positive integer** 1, 2, 3, …​
 * At least one field must be provided.
 * If this command is used to edit tags, all tags for this residence need to be specified.
@@ -143,7 +143,7 @@ Deletes the specified residence from the list of residences shown.
 Format: `delete RESIDENCE_INDEX`
 
 * Deletes the residence at the specified `RESIDENCE_INDEX`.
-* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed, items starts at index 1).
+* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed, items start at index 1).
 * The `RESIDENCE_INDEX` must be a **positive integer** 1, 2, 3, …​
 
 Examples:
@@ -156,7 +156,7 @@ Update Clean status of multiple residences at once.
 Format: `status clean RESIDENCE_INDEX1 RESIDENCE_INDEX2..` or `status unclean RESIDENCE_INDEX1 RESIDENCE_INDEX2..`
 
 * Updates the clean status of the residences' with the specified `RESIDENCE_INDEX`.
-* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed, items starts at index 1).
+* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed, items start at index 1).
 * The `RESIDENCE_INDEX` must be a **positive integer** 1, 2, 3, …​
 * More than 1 residence indexes can be specified.
 * After updating, the residence list will sort automatically to show Unclean residences before the clean residences.
@@ -199,7 +199,7 @@ Deletes the specified booking from the specified residence.
 Format: `deleteb r/RESIDENCE_INDEX b/BOOKING_INDEX`
 
 * Deletes the booking at the specified `BOOKING_INDEX` from the residence at the specified `RESIDENCE_INDEX`
-* `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed, items starts at index 1).
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed, items start at index 1).
 * `RESIDENCE_INDEX` and `BOOKING_INDEX` must be **positive integer** 1, 2, 3, …​
 
 Examples:
@@ -211,7 +211,7 @@ Edits the specified booking from the specified residence.
 
 Format: `editb r/RESIDENCE_INDEX b/BOOKING_INDEX [n/TENANT_NAME] [p/PHONE] [s/START_DATE] [e/END_DATE]` 
 
-* `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed, items starts at index 1).
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed, items start at index 1).
 * `RESIDENCE_INDEX` and `BOOKING_INDEX` must be **positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * It is invalid to edit the `START_DATE` to be later than the `END_DATE`. Likewise, it is invalid to update the `END_DATE`
