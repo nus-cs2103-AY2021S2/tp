@@ -131,11 +131,15 @@ public class Issue implements Comparable<Issue> {
 
     @Override
     public int compareTo(Issue other) {
-        return status.equals(other.status)
-                ? timestamp.compareTo(other.timestamp)
-                : status.value.equals(IssueStatus.Pending)
-                        ? -1
-                        : 1;
+        if (status.equals(other.status)) {
+            return timestamp.compareTo(other.timestamp);
+        }
+
+        if (status.value.equals(IssueStatus.Pending)) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
 
 }
