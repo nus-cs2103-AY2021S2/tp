@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TIME_MINUTES;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -352,6 +353,11 @@ public class ParserUtil {
         if (!AppointmentDateTime.isValidDateTime(trimmedDateTime)) {
             throw new ParseException(AppointmentDateTime.MESSAGE_CONSTRAINTS);
         }
+
+        AppointmentDateTime dateTimeObj = new AppointmentDateTime(trimmedDateTime);
+        if (!dateTimeObj.isValidMinutes()) {
+            throw new ParseException(MESSAGE_INVALID_TIME_MINUTES);
+        }
         return new AppointmentDateTime(trimmedDateTime);
     }
 
@@ -445,6 +451,12 @@ public class ParserUtil {
         } catch (DateTimeParseException e) {
             throw new ParseException(MESSAGE_INVALID_TIME);
         }
+
+        int minutes = timeObject.getMinute();
+        if (minutes != 0 && minutes != 30) {
+            throw new ParseException(MESSAGE_INVALID_TIME_MINUTES);
+        }
+
         return timeObject;
     }
 

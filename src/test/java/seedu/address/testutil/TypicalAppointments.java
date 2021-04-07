@@ -14,11 +14,11 @@ public class TypicalAppointments {
 
     public static final Appointment MATHS_APPOINTMENT = new AppointmentBuilder()
             .withName("Alice Tan")
-            .withSubject("Mathematics").withTimeFrom("2021-03-24 10:00AM").withTimeTo("2021-03-24 12:00PM")
+            .withSubject("Mathematics").withTimeFrom("2021-05-24 10:00AM").withTimeTo("2021-05-24 12:00PM")
             .withAddress("Jurong West").build();
     public static final Appointment SCIENCE_APPOINTMENT = new AppointmentBuilder()
             .withName("John Doe")
-            .withSubject("Science").withTimeFrom("2021-03-27 12:00PM").withTimeTo("2021-03-27 2:00PM")
+            .withSubject("Science").withTimeFrom("2021-05-27 12:00PM").withTimeTo("2021-05-27 2:00PM")
             .withAddress("Clementi").build();
 
     private TypicalAppointments() {

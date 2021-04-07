@@ -19,7 +19,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
 import seedu.address.model.budget.Budget;
-import seedu.address.model.event.DateRangePredicate;
+import seedu.address.model.event.DateTimeClashPredicate;
 import seedu.address.model.event.Event;
 import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.TutorFilter;
@@ -533,143 +533,201 @@ public class ModelManager implements Model {
         return this.appointmentFilter.asUnmodifiableObservableList();
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return tutorBook.equals(other.tutorBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredTutors.equals(other.filteredTutors)
-                && tutorFilter.equals(other.tutorFilter)
-                && filteredAppointment.equals(other.filteredAppointment)
-                && appointmentBook.equals(other.appointmentBook)
-                && gradeBook.equals(other.gradeBook)
-                && filteredGrades.equals(other.filteredGrades)
-                && budgetBook.equals(other.budgetBook)
-                && filteredSchedules.equals(other.filteredSchedules)
-                && scheduleTracker.equals(other.scheduleTracker)
-                && filteredReminders.equals(other.filteredReminders)
-                && reminderTracker.equals(other.reminderTracker);
-    }
-
     /* Schedule Methods */
+    /**
+     * Returns the ScheduleTracker.
+     */
     @Override
     public ReadOnlyScheduleTracker getScheduleTracker() {
         return scheduleTracker;
     }
 
+    /**
+     * Replaces schedule tracker data with the data in {@code scheduleTracker}.
+     */
     @Override
     public void setScheduleTracker(ReadOnlyScheduleTracker scheduleTracker) {
         this.scheduleTracker.resetData(scheduleTracker);
     }
 
+    /**
+     * Returns an unmodifiable view of the filtered schedule list.
+     */
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
         return filteredSchedules;
     }
 
+    /**
+     * Updates the filter of the filtered schedule list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
         requireNonNull(predicate);
         filteredSchedules.setPredicate(predicate);
     }
 
+    /**
+     * Checks if Schedule exists in schedule list.
+     *
+     * @param schedule Schedule to check
+     * @return True if schedule is already in schedule list
+     */
     @Override
     public boolean hasSchedule(Schedule schedule) {
         return scheduleTracker.hasSchedule(schedule);
     }
 
+    /**
+     * @param schedule Schedule to add (schedule must not already exist)
+     */
     @Override
     public void addSchedule(Schedule schedule) {
         scheduleTracker.addSchedule(schedule);
     }
 
+    /**
+     * Removes schedule from schedule list.
+     *
+     * @param schedule Schedule to be removed must be present
+     */
     @Override
     public void deleteSchedule(Schedule schedule) {
         scheduleTracker.removeSchedule(schedule);
     }
 
+    /**
+     * Replaces the given schedule {@code target} with {@code editedSchedule}.
+     * {@code target} must exist in the schedule tracker.
+     * The {@code editedSchedule} must not be the same as another existing schedule in the schedule tracker.
+     */
     @Override
     public void setSchedule(Schedule target, Schedule editedSchedule) {
         scheduleTracker.setSchedule(target, editedSchedule);
     }
 
+    /**
+     * Checks if Appointment or Schedule have clashing date time in the event list.
+     *
+     * @param event Event to check
+     * @return True if the new Appointment or Schedule have clashes in event list
+     */
     @Override
     public boolean hasClashingDateTime(Event event) {
         requireNonNull(event);
-        return filteredEvents.stream().anyMatch(new DateRangePredicate(event));
+        return filteredEvents.stream().anyMatch(new DateTimeClashPredicate(event));
     }
 
     /**
-     * Sets schedule tracker file path.
+     * Checks if Appointment or Schedule have clashing date time in the event list.
      *
-     * @param scheduleTrackerFilePath To be supplied by user
+     * @param editedEvent   Event to check
+     * @param preEditEvent  Event before edit
+     * @return True if the new Appointment or Schedule have clashes in event list
      */
-    public void setScheduleTrackerFilePath(Path scheduleTrackerFilePath) {
-        requireNonNull(scheduleTrackerFilePath);
-        userPrefs.setScheduleTrackerFilePath(scheduleTrackerFilePath);
+    @Override
+    public boolean hasClashingDateTime(Event editedEvent, Event preEditEvent) {
+        requireNonNull(editedEvent);
+        requireNonNull(preEditEvent);
+        return filteredEvents.stream().anyMatch(new DateTimeClashPredicate(editedEvent, preEditEvent));
     }
 
+    /**
+     * Returns the ReminderTracker
+     */
     @Override
     public ReadOnlyReminderTracker getReminderTracker() {
         return reminderTracker;
     }
 
+    /**
+     * Replaces reminder tracker data with the data in {@code reminderTracker}.
+     */
     @Override
     public void setReminderTracker(ReadOnlyReminderTracker reminderTracker) {
         this.reminderTracker.resetData(reminderTracker);
     }
 
+    /**
+     * Returns an unmodifiable view of the filtered reminder list
+     */
     @Override
     public ObservableList<Reminder> getFilteredReminderList() {
         return filteredReminders;
     }
 
+    /**
+     * Updates the filter of the filtered reminder list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     @Override
     public void updateFilteredReminderList(Predicate<Reminder> predicate) {
         requireNonNull(predicate);
         filteredReminders.setPredicate(predicate);
     }
 
+    /**
+     * Checks if Reminder exists in reminder list.
+     *
+     * @param reminder Reminder to check
+     * @return True if reminder is already in reminder list
+     */
     @Override
     public boolean hasReminder(Reminder reminder) {
         return reminderTracker.hasReminder(reminder);
     }
 
+    /**
+     * @param reminder Reminder to add (reminder must not already exist)
+     */
     @Override
     public void addReminder(Reminder reminder) {
         reminderTracker.addReminder(reminder);
     }
 
+    /**
+     * Removes reminder from reminder list.
+     *
+     * @param reminder Reminder to be removed must be present
+     */
     @Override
     public void deleteReminder(Reminder reminder) {
         reminderTracker.removeReminder(reminder);
     }
 
+    /**
+     * Replaces the given reminder {@code target} with {@code editedReminder}.
+     * {@code target} must exist in the reminder tracker.
+     * The {@code editedReminder} must not be the same as another existing reminder in the reminder tracker.
+     */
     @Override
     public void setReminder(Reminder target, Reminder editedReminder) {
         reminderTracker.setReminder(target, editedReminder);
     }
 
+    /**
+     * Returns an unmodifiable view of the filtered event list.
+     */
     @Override
     public ObservableList<Event> getFilteredEventList() {
         return filteredEvents;
     }
 
+    /**
+     * Sets the query date for Timetable Window.
+     */
+    @Override
     public void setTimeTableDate(LocalDate date) {
         timeTableDateMap.put(0, date);
     }
 
+    /**
+     * Returns the query date for Timetable Window.
+     */
+    @Override
     public LocalDate getTimeTableDate() {
         return timeTableDateMap.get(0);
     }
@@ -701,5 +759,34 @@ public class ModelManager implements Model {
             });
         }
         return eventList;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+        return tutorBook.equals(other.tutorBook)
+                && userPrefs.equals(other.userPrefs)
+                && filteredTutors.equals(other.filteredTutors)
+                && tutorFilter.equals(other.tutorFilter)
+                && filteredAppointment.equals(other.filteredAppointment)
+                && appointmentBook.equals(other.appointmentBook)
+                && gradeBook.equals(other.gradeBook)
+                && filteredGrades.equals(other.filteredGrades)
+                && budgetBook.equals(other.budgetBook)
+                && filteredSchedules.equals(other.filteredSchedules)
+                && scheduleTracker.equals(other.scheduleTracker)
+                && filteredReminders.equals(other.filteredReminders)
+                && reminderTracker.equals(other.reminderTracker);
     }
 }

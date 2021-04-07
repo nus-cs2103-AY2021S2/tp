@@ -367,17 +367,17 @@ public interface Model {
     ObservableList<String> getAppointmentFilterStringList();
 
     /**
-     * Returns the TutorBook
+     * Returns the ScheduleTracker.
      */
     ReadOnlyScheduleTracker getScheduleTracker();
 
     /**
-     * Replaces tutor book data with the data in {@code scheduleTracker}.
+     * Replaces schedule tracker data with the data in {@code scheduleTracker}.
      */
     void setScheduleTracker(ReadOnlyScheduleTracker scheduleTracker);
 
     /**
-     * Returns an unmodifiable view of the filtered schedule list
+     * Returns an unmodifiable view of the filtered schedule list.
      */
     ObservableList<Schedule> getFilteredScheduleList();
 
@@ -416,12 +416,21 @@ public interface Model {
     void setSchedule(Schedule target, Schedule editedSchedule);
 
     /**
-     * Checks if Appointment or Schedule have clashing date time in event list.
+     * Checks if Appointment or Schedule have clashing date time in the event list.
      *
      * @param event Event to check
      * @return True if the new Appointment or Schedule have clashes in event list
      */
     boolean hasClashingDateTime(Event event);
+
+    /**
+     * Checks if Appointment or Schedule have clashing date time in the event list.
+     *
+     * @param editedEvent   Event to check
+     * @param preEditEvent  Event before edit
+     * @return True if the new Appointment or Schedule have clashes in event list
+     */
+    boolean hasClashingDateTime(Event editedEvent, Event preEditEvent);
 
     /**
      * Returns the ReminderTracker
@@ -459,25 +468,31 @@ public interface Model {
     void addReminder(Reminder reminder);
 
     /**
-     * Removes schedule from schedule list.
+     * Removes reminder from reminder list.
      *
-     * @param reminder Schedule to be removed must be present
+     * @param reminder Reminder to be removed must be present
      */
     void deleteReminder(Reminder reminder);
 
     /**
-     * Replaces the given schedule {@code target} with {@code editedReminder}.
-     * {@code target} must exist in the schedule tracker.
+     * Replaces the given reminder {@code target} with {@code editedReminder}.
+     * {@code target} must exist in the reminder tracker.
      * The {@code editedReminder} must not be the same as another existing reminder in the reminder tracker.
      */
     void setReminder(Reminder target, Reminder editedReminder);
 
     /**
-     * Returns an unmodifiable view of the filtered appointment list
+     * Returns an unmodifiable view of the filtered event list.
      */
     ObservableList<Event> getFilteredEventList();
 
+    /**
+     * Sets the query date for Timetable Window.
+     */
     void setTimeTableDate(LocalDate date);
 
+    /**
+     * Returns the query date for Timetable Window.
+     */
     LocalDate getTimeTableDate();
 }
