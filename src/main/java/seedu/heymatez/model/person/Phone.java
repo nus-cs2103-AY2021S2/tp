@@ -9,8 +9,9 @@ import seedu.heymatez.commons.util.AppUtil;
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {
-    public static final String MESSAGE_CONSTRAINTS = "Phone numbers should only contain numbers, and it should "
-            + "be at least 3 digits long";
+    public static final String MESSAGE_CONSTRAINTS = "Phone numbers should only contain positive numbers, and it should"
+            + " be at least 3 digits long with a maximum length of 15 digits";
+
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 
@@ -26,10 +27,17 @@ public class Phone {
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid phone number with 3 digits.
      */
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid phone number with a maximum of 15 digits.
+     */
+    public static boolean isValidLength(String test) {
+        return test.length() <= 15;
     }
 
     @Override
