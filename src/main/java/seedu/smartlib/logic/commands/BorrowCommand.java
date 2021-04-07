@@ -8,7 +8,6 @@ import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.SmartLib;
-import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.record.IncompleteRecord;
 import seedu.smartlib.model.record.Record;
