@@ -10,7 +10,7 @@ import seedu.plan.commons.util.AppUtil;
  */
 public class Description {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Description can take any values, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
