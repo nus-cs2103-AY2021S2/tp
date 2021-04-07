@@ -1,7 +1,6 @@
 package seedu.plan.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.plan.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.plan.logic.parser.CliSyntax.PREFIX_PLAN_NUMBER;
 
 import java.util.List;
