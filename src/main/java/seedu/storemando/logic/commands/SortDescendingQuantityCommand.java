@@ -22,7 +22,7 @@ public class SortDescendingQuantityCommand extends SortCommand {
         Comparator<Item> comparator = new ItemComparatorByDecreasingQuantity();
         model.updateSortedItemList(comparator);
         model.setItems(model.getSortedItemList());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS_QUANTITY_DESC);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class SortExpiryDateCommand extends SortCommand {
         ItemComparatorByExpiryDate comparator = new ItemComparatorByExpiryDate();
         model.updateSortedItemList(comparator);
         model.setItems(model.getSortedItemList());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS_EXPIRYDATE_ASC);
     }
 
     @Override

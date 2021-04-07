@@ -21,7 +21,7 @@ public class SortAscendingQuantityCommand extends SortCommand {
         Comparator<Item> comparator = new ItemComparatorByIncreasingQuantity();
         model.updateSortedItemList(comparator);
         model.setItems(model.getSortedItemList());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS_QUANTITY_ASC);
     }
 
     @Override
