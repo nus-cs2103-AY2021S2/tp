@@ -17,6 +17,6 @@ public class ListGradeCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredGradeList(PREDICATE_SHOW_ALL_GRADE);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, TabName.GRADE);
     }
 }

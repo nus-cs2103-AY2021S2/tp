@@ -72,7 +72,7 @@ public class EditGradeCommand extends Command {
 
         model.setGrade(gradeToEdit, editedGrade);
         model.updateFilteredGradeList(PREDICATE_SHOW_ALL_GRADE);
-        return new CommandResult(String.format(MESSAGE_EDIT_GRADE_SUCCESS, editedGrade));
+        return new CommandResult(String.format(MESSAGE_EDIT_GRADE_SUCCESS, editedGrade), TabName.GRADE);
     }
 
     /**

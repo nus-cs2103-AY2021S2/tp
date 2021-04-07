@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.Command.TabName;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Represents the result of a command execution.
@@ -20,6 +22,9 @@ public class CommandResult {
     /** Timetable shown to the user. */
     private final boolean showTimetable;
 
+    /** To allow toggling of tabs via commands */
+    private final Optional<TabName> tabName;
+
     /**
      * Default Constructor: Constructs a {@code CommandResult} with the specified fields.
      */
@@ -29,17 +34,29 @@ public class CommandResult {
         this.showHelp = showHelp;
         this.exit = exit;
         this.showTimetable = false;
+        this.tabName = Optional.empty();
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} to allows specifying of {@code showTimetable}.
      */
-
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showTimetable) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showTimetable = showTimetable;
+        this.tabName = Optional.empty();
+    }
+
+    /**
+     * Constructs a {@code CommandResult} to allows specifying of {@code showTimetable}.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, TabName tabName) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.showTimetable = false;
+        this.tabName = Optional.of(tabName);
     }
 
     /**
@@ -47,7 +64,15 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code tabName},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, TabName tabName) {
+        this(feedbackToUser, false, false, tabName);
     }
 
     public String getFeedbackToUser() {
@@ -64,6 +89,10 @@ public class CommandResult {
 
     public boolean isShowTimetable() {
         return showTimetable;
+    }
+
+    public Optional<TabName> getTabName() {
+        return tabName;
     }
 
     @Override

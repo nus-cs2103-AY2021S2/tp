@@ -77,7 +77,7 @@ public class AddAppointmentCommand extends Command {
             throw new CommandException(MESSAGE_DATE_CLASH_ADD);
         } else {
             model.addAppointment(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.APPOINTMENT);
         }
 
     }

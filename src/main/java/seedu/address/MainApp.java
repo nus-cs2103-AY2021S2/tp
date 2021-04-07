@@ -76,7 +76,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing TutorBook ]===========================");
+        logger.info("=============================[ Initializing Tutor Tracker ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -108,9 +108,12 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s tutor book and {@code userPrefs}. <br>
-     * The data from the sample tutor book will be used instead if {@code storage}'s tutor book is not found,
-     * or an empty tutor book will be used instead if errors occur when reading {@code storage}'s tutor book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s tutor book, appointment book, grade book,
+     * schedule tracker, reminder tracker and {@code userPrefs}. <br>
+     * The data from the sample tutor book, appointment book, grade book, schedule tracker and reminder tracker will be
+     * used instead if {@code storage}'s respective books/trackers are not found,
+     * or an empty respective books/trackers will be used instead if errors occur when reading {@code storage}'s tutor
+     * book, appointment book, grade book, schedule tracker and reminder tracker.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyTutorBook> tutorBookOptional;
@@ -132,10 +135,12 @@ public class MainApp extends Application {
             }
             initialData = tutorBookOptional.orElseGet(SampleDataUtil::getSampleTutorBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty TutorBook");
+            logger.warning("TutorBook: Data file not in the correct format. "
+                    + "Will be starting with an empty TutorBook");
             initialData = new TutorBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty TutorBook");
+            logger.warning("TutorBook: Problem while reading from the file. "
+                    + "Will be starting with an empty TutorBook");
             initialData = new TutorBook();
         }
 
@@ -147,8 +152,12 @@ public class MainApp extends Application {
             initialAppointments =
                     appointmentBookOptional.orElseGet(SampleDataUtil::getSampleAppointmentBook);
         } catch (DataConversionException e) {
+            logger.warning("AppointmentBook: Data file not in the correct format. "
+                    + "Will be starting with an empty AppointmentBook");
             initialAppointments = new AppointmentBook();
         } catch (IOException e) {
+            logger.warning("AppointmentBook: Problem while reading from the file. "
+                    + "Will be starting with an empty AppointmentBook");
             initialAppointments = new AppointmentBook();
         }
 
@@ -159,11 +168,14 @@ public class MainApp extends Application {
             if (!gradeBookOptional.isPresent()) {
                 logger.info(GRADE_BOOK_NOT_FOUND);
             }
-            initialGrades =
-                    gradeBookOptional.orElseGet(SampleDataUtil::getSampleGradeBook);
+            initialGrades = gradeBookOptional.orElseGet(SampleDataUtil::getSampleGradeBook);
         } catch (DataConversionException e) {
+            logger.warning("GradeBook: Data file not in the correct format. "
+                    + "Will be starting with an empty GradeBook");
             initialGrades = new GradeBook();
         } catch (IOException e) {
+            logger.warning("GradeBook: Problem while reading from the file. "
+                    + "Will be starting with an empty GradeBook");
             initialGrades = new GradeBook();
         }
 
@@ -173,7 +185,13 @@ public class MainApp extends Application {
                 logger.info(SCHEDULE_TRACKER_NOT_FOUND);
             }
             initialSchedules = scheduleTrackerOptional.orElseGet(SampleDataUtil::getSampleScheduleTracker);
-        } catch (DataConversionException | IOException e) {
+        } catch (DataConversionException e) {
+            logger.warning("ScheduleTracker: Data file not in the correct format. "
+                    + "Will be starting with an empty ScheduleTracker");
+            initialSchedules = new ScheduleTracker();
+        } catch (IOException e) {
+            logger.warning("ScheduleTracker: Problem while reading from the file. "
+                    + "Will be starting with an empty ScheduleTracker");
             initialSchedules = new ScheduleTracker();
         }
 
@@ -183,7 +201,13 @@ public class MainApp extends Application {
                 logger.info(REMINDER_TRACKER_NOT_FOUND);
             }
             initialReminders = reminderTrackerOptional.orElseGet(SampleDataUtil::getSampleReminderTracker);
-        } catch (DataConversionException | IOException e) {
+        } catch (DataConversionException e) {
+            logger.warning("ReminderTracker: Data file not in the correct format. "
+                    + "Will be starting with an empty ReminderTracker");
+            initialReminders = new ReminderTracker();
+        } catch (IOException e) {
+            logger.warning("ReminderTracker: Problem while reading from the file. "
+                    + "Will be starting with an empty ReminderTracker");
             initialReminders = new ReminderTracker();
         }
 
@@ -265,13 +289,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting TutorBook " + MainApp.VERSION);
+        logger.info("Starting Tutor Tracker " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Tutor Book ] =============================");
+        logger.info("============================ [ Stopping Tutor Tracker ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

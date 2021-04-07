@@ -39,7 +39,7 @@ public class ViewBudgetCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         if (model.hasBudget()) {
             Budget budget = model.getBudgetBook().getBudget();
-            return new CommandResult(String.format(MESSAGE_SUCCESS, budget));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, budget), TabName.BUDGET);
         } else {
             return new CommandResult(MESSAGE_MISSING_BUDGET);
         }

@@ -93,7 +93,7 @@ public class EditReminderCommand extends Command {
 
         model.setReminder(reminderToEdit, editedReminder);
         model.updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDER);
-        return new CommandResult(String.format(MESSAGE_EDIT_REMINDER_SUCCESS, editedReminder));
+        return new CommandResult(String.format(MESSAGE_EDIT_REMINDER_SUCCESS, editedReminder), TabName.REMINDER);
     }
 
     @Override

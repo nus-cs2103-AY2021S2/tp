@@ -43,7 +43,7 @@ public class DeleteBudgetCommand extends Command {
         if (model.hasBudget()) {
             int budgetValue = model.getBudgetBook().getBudget().getValue();
             model.deleteBudget();
-            return new CommandResult(String.format(MESSAGE_SUCCESS, budgetValue));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, budgetValue), TabName.BUDGET);
         } else {
             return new CommandResult(MESSAGE_MISSING_BUDGET);
         }

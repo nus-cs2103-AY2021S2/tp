@@ -49,7 +49,7 @@ public class EditBudgetCommand extends Command {
 
         if (model.hasBudget(toEdit)) {
             model.editBudget(toEdit);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toEdit.getValue()));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toEdit.getValue()), TabName.BUDGET);
         } else {
             return new CommandResult(MESSAGE_MISSING_BUDGET);
         }
