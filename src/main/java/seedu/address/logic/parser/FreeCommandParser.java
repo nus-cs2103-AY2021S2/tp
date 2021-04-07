@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 
@@ -14,7 +15,7 @@ import seedu.address.model.entry.ListOccupyingEntryPredicate;
 /**
  * Parses input arguments and creates a new FreeCommand object
  */
-public class FreeCommandParser {
+public class FreeCommandParser implements Parser<FreeCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FreeCommand
@@ -32,6 +33,10 @@ public class FreeCommandParser {
 
         EntryDate startDateTime = ParserUtil.parseEntryDate(argMultimap.getValue(PREFIX_START_DATE).get());
         EntryDate endDateTime = ParserUtil.parseEntryDate(argMultimap.getValue(PREFIX_END_DATE).get());
+
+        if (startDateTime.isAfter(endDateTime)) {
+            throw new ParseException(MESSAGE_INVALID_DATE_RANGE);
+        }
 
         return new FreeCommand(new ListOccupyingEntryPredicate(startDateTime, endDateTime));
     }
