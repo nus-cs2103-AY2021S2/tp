@@ -134,10 +134,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ### List Student Feature
-
-#### Implementation
 The list student feature displays a list of existing students in the TutorBuddy application.
 
+#### Implementation
 This feature is facilitated by `ListStudentCommand` which extends `Command`.
 The method `ListStudentCommand#execute` updates the filtered student list by calling the method
 `Model#updateFilteredStudentList` exposed in the `Model` interface.
@@ -159,10 +158,9 @@ The following activity diagram summarizes what happens when a user executes the 
 ![ListStudentActivityDiagram](images/choonwei/ListStudentActivityDiagram.png)
 
 ### Add Student Feature
-
-#### Implementation
 The add student feature allows user to add a student to the TutorBuddy Application.
 
+#### Implementation
 This feature makes use of `AddStudentCommandParser` and `AddStudentCommand` to create a new `Student` object. The operation can be accessed in the Model interface through `Model#addStudent()`.
 
 Given below is an example of how the add student mechanism runs:
@@ -182,6 +180,37 @@ The following activity diagram summarizes what happens when a user executes the 
 
 The following sequence diagram summarizes what happens when a user executes the `add_student` command:
 ![AddStudentSequenceDiagram](images/enhao/AddStudentSequenceDiagram.png)
+
+### Delete Student Feature
+The delete student feature allows user to delete a student from the TutorBuddy Application.
+
+#### Implementation
+The delete student feature is implemented similarly to the add student feature. However, it makes use of the
+`DeleteStudentCommandParser` and `DeleteStudentCommand` instead to delete the student from the student list. 
+The command word to use is `delete_student`. In step 4, it only validates the information and do not create a new 
+`student` object. In step 7 and 8, instead of adding the student to the `AddressBook` and
+`filteredStudents`, we remove the student instead.
+
+### Edit Student Feature
+The edit student feature allows user to edit a student profile from the TutorBuddy Application.
+
+#### Implementation
+The edit student feature is implemented similarly to the add student feature. However, it makes use of the
+`EditStudentCommandParser` and `EditStudentCommand` instead to edit the student from the student list.
+The command word to use is `edit_student`. In step 4, it only validates the information, determine the fields to be edited, 
+but it does not create a new `student` object. In step 7 and 8, instead of adding the student to the `AddressBook` and
+`filteredStudents`, we update the student list instead.
+
+### Find Student Feature
+The find student feature allows user to specific keywords in relation to the student's name in the application.
+TutorBuddy will then filter the student list based on given keyword.
+
+#### Implementation
+The find student feature is implemented similarly to the add student feature. However, it makes use of the
+`FindStudentCommandParser` and `FindStudentCommand` instead to edit the student from the student list.
+The command word to use is `find_student`. In step 4, it only validates the information, determine the keywords,
+but it does not create a new `student` object. In step 7 and 8, instead of adding the student to the `AddressBook` and
+`filteredStudents`, we only update the `filteredStudents` list instead based on the given keywords.
 
 ### List Students' Email Feature
 The list students' email feature allows the end-user to retrieve a list of students' emails, which are concatenated with
@@ -274,7 +303,7 @@ This section explains the implementation of the `fee` command and highlights the
 The creation of a session is facilitated by `GetMonthlyFeeCommand` and it extends `Command`. The method,
 `GetMonthlyFeeCommand#execute()`, performs a validity check on student name input to ensure that the student name exists in the application.
 
-The following sequence diagram shows the interactions between the Model and Logic components during the execution of
+The following sequence diagram shows the interactions between the Model, Logic and FeeUtil components during the execution of
 an `GetMonthlyFeeCommand` with user input `fee n/STUDENT_NAME m/MONTH y/YEAR`:
 
 ![GetMonthlyFeeSequenceDiagram](images/enhao/GetMonthlyFeeSequenceDiagram.png)
