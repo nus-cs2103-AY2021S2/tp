@@ -119,11 +119,13 @@ public interface Model {
     //=========== FoodIntakeList Accessors ==============================================================
 
     /**
-     * Adds the food consumed on the day to the food intake list.
+     * Adds the Food consumed on the specified day to the food intake list.
      * @param date date of intake
      * @param food food object
+     *
+     * @return Food that was successfully added to FoodIntakeList
      */
-    void addFoodIntake(LocalDate date, Food food);
+    Food addFoodIntake(LocalDate date, Food food);
 
     /**
      * Updates the FoodIntake object in the FoodIntakeList
