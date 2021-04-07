@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.schedulecommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DATE_CLASH_EDIT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
 import static seedu.address.commons.core.Messages.MESSAGE_TIME_FROM_GREATER_THAN;
 import static seedu.address.commons.core.Messages.MESSAGE_UNABLE_TO_EDIT_PAST_SCHEDULE;
@@ -78,64 +77,9 @@ public class EditScheduleCommand extends Command {
                                                  EditScheduleDescriptor editScheduleDescriptor) {
         assert scheduleToEdit != null;
 
-        Title updatedTitle =
-                editScheduleDescriptor.getTitle().orElse(scheduleToEdit.getTitle());
-
-        AppointmentDateTime updatedTimeFrom = null;
-        AppointmentDateTime updatedTimeTo = null;
-
-        Optional<AppointmentDateTime> optionalUpdatedTimeFrom = editScheduleDescriptor.getTimeFrom();
-        Optional<AppointmentDateTime> optionalUpdatedTimeTo = editScheduleDescriptor.getTimeTo();
-
-        /* If all three date, timeFrom and timeTo are edited  */
-        if (optionalUpdatedTimeFrom.isPresent() && optionalUpdatedTimeTo.isPresent()) {
-            updatedTimeFrom = optionalUpdatedTimeFrom.get();
-            updatedTimeTo = optionalUpdatedTimeTo.get();
-        }
-
-        /* If date and timeFrom are edited */
-        if (optionalUpdatedTimeFrom.isPresent() && optionalUpdatedTimeTo.isEmpty()) {
-            updatedTimeFrom = optionalUpdatedTimeFrom.get();
-            LocalDate newDate = updatedTimeFrom.toDate();
-            updatedTimeTo = new AppointmentDateTime(newDate, scheduleToEdit.getTimeTo().toTime());
-        }
-
-        /* If date and timeTo are edited */
-        if (optionalUpdatedTimeTo.isPresent() && optionalUpdatedTimeFrom.isEmpty()) {
-            updatedTimeTo = optionalUpdatedTimeTo.get();
-            LocalDate newDate = updatedTimeTo.toDate();
-            updatedTimeFrom = new AppointmentDateTime(newDate, scheduleToEdit.getTimeFrom().toTime());
-        }
-
-        /* If only date is edited */
-        if (editScheduleDescriptor.getDateOnly().isPresent()) {
-            LocalDate newDate = editScheduleDescriptor.getDateOnly().get();
-            updatedTimeFrom = new AppointmentDateTime(newDate, scheduleToEdit.getTimeFrom().toTime());
-            updatedTimeTo = new AppointmentDateTime(newDate, scheduleToEdit.getTimeTo().toTime());
-        }
-
-        /* If only timeFrom is edited */
-        if (editScheduleDescriptor.getTimeFromOnly().isPresent()) {
-            updatedTimeFrom = new AppointmentDateTime(scheduleToEdit.getTimeFrom().toDate(),
-                    editScheduleDescriptor.getTimeFromOnly().get());
-        }
-
-        /* If only timeTo is edited */
-        if (editScheduleDescriptor.getTimeToOnly().isPresent()) {
-            updatedTimeTo = new AppointmentDateTime(scheduleToEdit.getTimeFrom().toDate(),
-                    editScheduleDescriptor.getTimeToOnly().get());
-        }
-
-        /* If date and timeFrom is not edited */
-        if (updatedTimeFrom == null) {
-            updatedTimeFrom = scheduleToEdit.getTimeFrom();
-        }
-
-        /* If date and timeTo is not edited */
-        if (updatedTimeTo == null) {
-            updatedTimeTo = scheduleToEdit.getTimeTo();
-        }
-
+        Title updatedTitle = editScheduleDescriptor.getTitle().orElse(scheduleToEdit.getTitle());
+        AppointmentDateTime updatedTimeFrom = editScheduleDescriptor.getTimeFrom().orElse(scheduleToEdit.getTimeFrom());
+        AppointmentDateTime updatedTimeTo = editScheduleDescriptor.getTimeTo().orElse(scheduleToEdit.getTimeTo());
         Description updatedDescription =
                 editScheduleDescriptor.getDescription().orElse(scheduleToEdit.getDescription());
 
@@ -172,7 +116,7 @@ public class EditScheduleCommand extends Command {
         }
 
         if (model.hasClashingDateTime(editedSchedule, scheduleToEdit)) {
-            throw new CommandException(MESSAGE_DATE_CLASH_EDIT);
+            throw new CommandException(MESSAGE_CLASH_SCHEDULE);
         }
 
         model.setSchedule(scheduleToEdit, editedSchedule);

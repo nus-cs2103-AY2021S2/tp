@@ -2,6 +2,8 @@ package seedu.address.logic.parser.scheduleparser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_DATE_FIELD;
+import static seedu.address.commons.core.Messages.MESSAGE_TIME_FROM_GREATER_THAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
@@ -16,6 +18,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.AppointmentDateTime;
 
 /**
  * Parses input arguments and creates a new EditScheduleCommand object
@@ -46,28 +49,29 @@ public class EditScheduleCommandParser implements Parser<EditScheduleCommand> {
             editScheduleDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }
 
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()
+                || argMultimap.getValue(PREFIX_TIME_FROM).isPresent()
+                || argMultimap.getValue(PREFIX_TIME_TO).isPresent()) {
+            if (!ArgumentTokenizer.arePrefixesPresent(argMultimap, PREFIX_DATE,
+                    PREFIX_TIME_FROM, PREFIX_TIME_TO)) {
+                throw new ParseException(MESSAGE_MISSING_DATE_FIELD);
+            }
+        }
+
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             String dateString = argMultimap.getValue(PREFIX_DATE).get();
-            if (argMultimap.getValue(PREFIX_TIME_FROM).isPresent()) {
-                String timeFromString = argMultimap.getValue(PREFIX_TIME_FROM).get();
-                editScheduleDescriptor.setTimeFrom(ParserUtil.parseDateTime(dateString + " " + timeFromString));
-            }
-            if (argMultimap.getValue(PREFIX_TIME_TO).isPresent()) {
-                String timeToString = argMultimap.getValue(PREFIX_TIME_TO).get();
-                editScheduleDescriptor.setTimeTo(ParserUtil.parseDateTime(dateString + " " + timeToString));
-            }
+            String timeFromString = argMultimap.getValue(PREFIX_TIME_FROM).get();
+            String dateTimeFromString = dateString + " " + timeFromString;
 
-            if (argMultimap.getValue(PREFIX_TIME_FROM).isEmpty() && argMultimap.getValue(PREFIX_TIME_TO).isEmpty()) {
-                editScheduleDescriptor.setDateOnly(ParserUtil.parseLocalDate(dateString));
-            }
-        } else {
-            if (argMultimap.getValue(PREFIX_TIME_FROM).isPresent()) {
-                String timeFromString = argMultimap.getValue(PREFIX_TIME_FROM).get();
-                editScheduleDescriptor.setTimeFromOnly(ParserUtil.parseLocalTime(timeFromString));
-            }
-            if (argMultimap.getValue(PREFIX_TIME_TO).isPresent()) {
-                String timeToString = argMultimap.getValue(PREFIX_TIME_TO).get();
-                editScheduleDescriptor.setTimeToOnly(ParserUtil.parseLocalTime(timeToString));
+
+            String timeToString = argMultimap.getValue(PREFIX_TIME_TO).get();
+            String dateTimeToString = dateString + " " + timeToString;
+            AppointmentDateTime timeFromAdt =
+                    new AppointmentDateTime(dateTimeFromString);
+            AppointmentDateTime timeToAdt = new AppointmentDateTime(dateTimeToString);
+
+            if (!timeFromAdt.isTimeFromValid(timeToAdt)) {
+                throw new ParseException(MESSAGE_TIME_FROM_GREATER_THAN);
             }
         }
 
