@@ -133,6 +133,8 @@ Format: `list`
 **:bulb: Tips:** <br>
 * Displays the list of all garments in chronological ordering, to easily find the garments that have not been worn 
   in a long time.
+  
+</div>
 <br><br>
 
 ### Deleting a singular Garment in the Wardrobe: `delete`  
@@ -225,7 +227,7 @@ Examples:
 Returns all the articles of clothing that match the colour and dress code
   of the garment at index 1 in the list of garments on display, but do not match
   its type.
-* `match 1 2`  [using 2 indices to find their matching garments is to be implemented]<br> 
+* `match 1 2`  **[using 2 indices to find their matching garments is to be implemented]**<br> 
 Returns all the articles of clothing that match the colours and dress code of
   the garments at indices 1 and 2 in the list of garments on display, but
   do not match their types.
