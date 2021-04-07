@@ -63,7 +63,6 @@ public class CommandTestUtil {
     public static final int VALID_OWNERID_17 = 17;
     public static final String VALID_TAG_FRIENDLY = "friendly";
     public static final String VALID_TAG_QUIET = "quiet";
-
     public static final String VALID_ENTITY_ID = "1";
 
     public static final String NAME_DESC_ASHER = " " + PREFIX_NAME + VALID_NAME_ASHER;
@@ -99,6 +98,10 @@ public class CommandTestUtil {
     public static final String INVALID_EMPTY_STRING = "";
     public static final String INVALID_NEGATIVE_ID_STRING = "-1";
     public static final String INVALID_UNKNOWN_ID_STRING = "dummy";
+    public static final String INVALID_OUT_OF_BOUNDS_ID_STRING = String.valueOf(Integer.MAX_VALUE);
+    public static final int INVALID_OUT_OF_BOUNDS_ID_INTEGER = Integer.MAX_VALUE;
+
+
 
     static {
         DESC_AMY = new EditOwnerDescriptorBuilder().withName(VALID_NAME_AMY)

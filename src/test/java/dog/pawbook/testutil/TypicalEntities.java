@@ -107,13 +107,13 @@ public class TypicalEntities {
      */
     public static Database getTypicalDatabase() {
         Database db = new Database();
-        for (Entity entity : getTypicalOwnersWIthDog()) {
+        for (Entity entity : getTypicalOwnersWithDog()) {
             db.addEntity(entity);
         }
         return db;
     }
 
-    public static List<Entity> getTypicalOwnersWIthDog() {
+    public static List<Entity> getTypicalOwnersWithDog() {
         return new ArrayList<>(Arrays.asList(ALICE, APPLE,
                 BENSON, BUBBLES,
                 CARL, CARSON,
