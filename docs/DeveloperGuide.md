@@ -3,7 +3,7 @@ layout: page
 title: imPoster Developer Guide
 nav-text: Developer Guide
 ---
-Remember to revert README!
+<!--Remember to revert README! -->
 <p align="center">
   <img width="300px" src="images/imPosterDevGuide.png" >
 </p>
@@ -36,11 +36,11 @@ Readers are also advised to download our [latest releases](https://imposter-dev.
 * to-do brief description and some navigation tips about the developer guide as to what was similarly done in the user guide.
 ## **Navigating this Developer Guide**
 
-Before diving into the rest of the contents in our developer guide, the following are some important syntax to take note of to facilitate your reading:
+Before diving into the rest of the contents in our developer guide, the following are a few important syntaxes to take note of to facilitate your reading:
 
 | Syntax              | Description                                    |
 | ------------------- | ---------------------------------------------- |
-|`Markdown`           | Denotes distinct classes in explanations       |
+|`Markdown`           | Denotes distinct classes, their methods or examples|
 |<div markdown="span" class="alert alert-info">:information_source: Note | Important things to take note of |
 |<kbd>Keyboard</kbd>  | Keyboard actions                               |
 
@@ -390,6 +390,10 @@ Step 2. The `toggle` command returns a `CommandResult` that triggers the `update
 
 The following sequence diagram shows how the toggle command works for the above example: 
 ![ToggleSequenceDiagram](images/ToggleSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ToggleCommand`, `ToggleCommandParser` and `CommandResult` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ---
 ## **Documentation, logging, testing, configuration, dev-ops**
