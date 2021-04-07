@@ -42,14 +42,24 @@ public class Unassignment {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("StudentId: ")
-                .append(getStudentIds())
-                .append("; TutorId: ")
-                .append(getTutorId())
-                .append("; SessionId: ")
+
+        if (!getStudentIds().isEmpty()) {
+            String students = getStudentIds().toString();
+            String formattedStudents = students.substring(1, students.length() - 1);
+            builder.append("Students: ")
+                    .append(formattedStudents)
+                    .append("; ");
+        }
+
+        if (getTutorId() != null) {
+            builder.append("Tutor: ")
+                    .append(getTutorId())
+                    .append("; ");
+        }
+
+        builder.append("Session: ")
                 .append(getSessionId())
                 .append(";");
         return builder.toString();
     }
-
 }
