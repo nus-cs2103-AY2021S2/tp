@@ -10,6 +10,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="SunRez" minWidth="1000" minHeight="500" onCloseRequest="#handleExit">
@@ -56,6 +57,7 @@
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10" />
               </padding>
+              <Label styleClass="label-bright">Residents</Label>
               <StackPane fx:id="residentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
 
@@ -63,6 +65,7 @@
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10" />
               </padding>
+              <Label styleClass="label-bright">Rooms</Label>
               <StackPane fx:id="roomListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
 
@@ -70,6 +73,7 @@
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10" />
               </padding>
+              <Label styleClass="label-bright">Issues</Label>
               <StackPane fx:id="issueListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
           </SplitPane>

@@ -18,6 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Alias;
+import seedu.address.commons.core.AliasMapping;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Resident;
@@ -153,6 +155,31 @@ public class AddressBookTest {
         @Override
         public ObservableList<ResidentRoom> getResidentRoomList() {
             return residentRooms;
+        }
+
+        @Override
+        public boolean isRecursiveKeyword(String commandWord) {
+            return false;
+        }
+
+        @Override
+        public boolean isReservedKeyword(String aliasName) {
+            return false;
+        }
+
+        @Override
+        public AliasMapping getAliasMapping() {
+            return new AliasMapping();
+        }
+
+        @Override
+        public Alias getAlias(String aliasName) {
+            return new Alias();
+        }
+
+        @Override
+        public boolean containsAlias(String aliasName) {
+            return false;
         }
     }
 
