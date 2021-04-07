@@ -99,6 +99,23 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String name} to conform with a FoodIntake Food name.
+     * Allows the '#' character that takes into account for duplicate names.
+     * Called only during FoodIntake Update and delete.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static String parseFoodIntakeName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!trimmedName.matches(Food.VALIDATION_CHAR_REGEX_IMPORT)
+                || trimmedName.length() == 0) {
+            throw new ParseException(Food.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedName;
+    }
+
+    /**
      * Parses a {@code String ageString} into an Integer.
      * Leading and trailing whitespaces will be trimmed.
      *
