@@ -22,7 +22,7 @@ public class AddPlanCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Software Engineering Route "
             + PREFIX_TAG + "fun "
-            + PREFIX_TAG + "good prospects";
+            + PREFIX_TAG + "interesting";
 
     public static final String MESSAGE_SUCCESS = "New plan added: Plan %1$s";
     public static final String MESSAGE_DUPLICATE_PLAN = "This plan already exists";
