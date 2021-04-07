@@ -1,6 +1,7 @@
 package seedu.heymatez.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -134,4 +135,9 @@ public interface Model {
     void updateFilteredTaskList(Predicate<Task> predicate);
 
     boolean checkAssignees(Task task);
+
+    /**
+     * Returns true if the filtered person list is empty.
+     */
+    boolean isPersonListEmpty();
 }

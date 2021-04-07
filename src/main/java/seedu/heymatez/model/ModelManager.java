@@ -3,6 +3,7 @@ package seedu.heymatez.model;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -169,6 +170,11 @@ public class ModelManager implements Model {
 
         heyMatez.editAssignee(target.getName(), editedPerson.getName());
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public boolean isPersonListEmpty() {
+        return filteredPersons.isEmpty();
     }
 
     //=========== Filtered Person List Accessors =============================================================

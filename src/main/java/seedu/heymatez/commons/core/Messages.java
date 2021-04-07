@@ -12,6 +12,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_EMAIL = "The member email provided is invalid! \n";
     public static final String MESSAGE_INVALID_PERSON_ROLE = "The member role provided is invalid! \n";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d members listed!";
+    public static final String MESSAGE_EMPTY_PERSON_LIST = "No members found!";
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The task index provided is invalid! \n";
     public static final String MESSAGE_INVALID_TASK_DESCRIPTION = "The task description provided is invalid! \n";
     public static final String MESSAGE_INVALID_TASK_TITLE = "The task title provided is invalid! \n";

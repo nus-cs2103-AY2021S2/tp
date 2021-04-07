@@ -3,6 +3,7 @@ package seedu.heymatez.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 
+import seedu.heymatez.logic.commands.exceptions.CommandException;
 import seedu.heymatez.model.Model;
 import seedu.heymatez.model.task.TaskContainsKeywordPredicate;
 
@@ -25,9 +26,10 @@ public class FindTasksCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredTaskList(predicate);
+
         return new CommandResult(
                 String.format(MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }

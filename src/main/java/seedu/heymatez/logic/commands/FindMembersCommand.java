@@ -2,8 +2,11 @@ package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_PERSON_LIST;
 
+import seedu.heymatez.logic.commands.exceptions.CommandException;
 import seedu.heymatez.model.Model;
+import static seedu.heymatez.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.heymatez.model.person.DetailsContainsKeywordsPredicate;
 
 /**
@@ -26,9 +29,14 @@ public class FindMembersCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
+
+        if (model.isPersonListEmpty()) {
+            return new CommandResult(MESSAGE_EMPTY_PERSON_LIST);
+        }
+
         return new CommandResult(
                 String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
