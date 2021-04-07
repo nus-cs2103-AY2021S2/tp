@@ -23,8 +23,8 @@ Given below are my contributions to the project.
   * Highlights: The feature requires re-designed the 'Module' feature in the ModuleBook 3.5 to monitor the variation of the workload. 
 
 * **New Feature**: Added the ability to visualize the workload distribution among modules.
-  * What it does: uses pie chart to directly shows the workload distribution.
-  * Justification: This is another key feature of ModuleBook 3.5 which distinguishes it from other task managment application, as the CS student is able to know how much time he has allocated to each module so that it's easier to manage the tasks.
+  * What it does: uses pie chart to directly show the workload distribution.
+  * Justification: This is another key feature of ModuleBook 3.5 which distinguishes it from other task managment application, as the CS student the workload of different module which makes it easier to manage the tasks.
   * Highlights: The feature requires strong javaFX skills, modifying and decoupling all the components apart from storage.
 
 * **Project management**:
