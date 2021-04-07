@@ -71,7 +71,8 @@ public class AddGroupCommand extends Command {
         } else {
             model.setGroup(groupName, group);
         }
-        model.updateFilteredPersonList(p -> group.getPersonNames().contains(p.getName()));
+
+        model.updateFilteredPersonList();
         return new CommandResult(String.format(
                 MESSAGE_ADD_GROUP_SUCCESS,
                 group.toUi(),
