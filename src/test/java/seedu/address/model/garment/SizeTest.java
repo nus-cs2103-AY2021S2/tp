@@ -21,9 +21,6 @@ public class SizeTest {
 
     @Test
     public void isValidSize() {
-        // null size
-        assertThrows(NullPointerException.class, () -> Size.isValidSize(null));
-
         // invalid sizes
         assertFalse(Size.isValidSize("")); // empty string
         assertFalse(Size.isValidSize(" ")); // spaces only
