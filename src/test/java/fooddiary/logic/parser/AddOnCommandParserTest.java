@@ -1,6 +1,7 @@
 package fooddiary.logic.parser;
 
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static fooddiary.commons.core.Messages.MESSAGE_INVALID_ENTRY_INDEX_OUT_OF_BOUNDS;
 import static fooddiary.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
@@ -22,9 +23,6 @@ public class AddOnCommandParserTest {
         // no index specified
         assertParseFailure(parser, CommandTestUtil.VALID_NAME_A, MESSAGE_INVALID_FORMAT);
 
-        // no field specified
-        assertParseFailure(parser, "1", AddOnCommand.MESSAGE_NOT_ADDED_ON);
-
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
@@ -32,10 +30,16 @@ public class AddOnCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + CommandTestUtil.REVIEW_DESC_A, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + CommandTestUtil.REVIEW_DESC_A,
+                MESSAGE_INVALID_ENTRY_INDEX_OUT_OF_BOUNDS);
 
         // zero index
-        assertParseFailure(parser, "0" + CommandTestUtil.REVIEW_DESC_A, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + CommandTestUtil.REVIEW_DESC_A,
+                MESSAGE_INVALID_ENTRY_INDEX_OUT_OF_BOUNDS);
+
+        // too high index (above maximum limit for number of entries)
+        assertParseFailure(parser, "1000001" + CommandTestUtil.REVIEW_DESC_A,
+                MESSAGE_INVALID_ENTRY_INDEX_OUT_OF_BOUNDS);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);

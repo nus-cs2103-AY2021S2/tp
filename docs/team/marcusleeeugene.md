@@ -25,16 +25,16 @@ Given below are my contributions to the project.
 * **Project management**:
     * Managed releases `v1.2.1`, `v1.3.0` and `v1.4.0` (3 releases) on GitHub
     * Tracked team's tasks using project board and setting deadlines
-    
+
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `view` and `revise` 
+        * Added documentation for the features `view` and `revise`
     * Developer Guide:
         * Added implementation details of the `view` feature.
         * Added component details for the Model architecture
         * Added command details and user stories for the features `view`, `clear`, `revise`
-    
+
 
 * **Contributions to team-based tasks**:
     * Set up Github team repo
@@ -55,5 +55,3 @@ Given below are my contributions to the project.
     * Shared approach to using enums for individual project [#14](https://github.com/nus-cs2103-AY2021S2/forum/issues/14)
     * Helped user who faced difficulties in opening jar file due to java version [#158](https://github.com/nus-cs2103-AY2021S2/forum/issues/158)
 
-    
-    

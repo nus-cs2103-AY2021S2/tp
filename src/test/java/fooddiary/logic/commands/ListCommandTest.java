@@ -1,7 +1,7 @@
 package fooddiary.logic.commands;
 
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiaryWithMultipleEntries;
 import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +21,7 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
+        model = new ModelManager(getTypicalFoodDiaryWithMultipleEntries(), new UserPrefs());
         expectedModel = new ModelManager(model.getFoodDiary(), new UserPrefs());
     }
 

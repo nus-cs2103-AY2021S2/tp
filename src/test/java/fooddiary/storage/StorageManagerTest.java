@@ -1,6 +1,6 @@
 package fooddiary.storage;
 
-import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiaryWithMultipleEntries;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -54,7 +54,7 @@ public class StorageManagerTest {
          * {@link JsonFoodDiaryStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonFoodDiaryStorageTest} class.
          */
-        FoodDiary original = getTypicalFoodDiary();
+        FoodDiary original = getTypicalFoodDiaryWithMultipleEntries();
         storageManager.saveFoodDiary(original);
         ReadOnlyFoodDiary retrieved = storageManager.readFoodDiary().get();
         assertEquals(original, new FoodDiary(retrieved));

@@ -1,9 +1,11 @@
 package fooddiary.logic.parser;
 
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static fooddiary.commons.core.Messages.MESSAGE_INVALID_ENTRY_INDEX_OUT_OF_BOUNDS;
 import static fooddiary.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static fooddiary.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static fooddiary.testutil.TypicalIndexes.INDEX_MILLIONTH_ENTRY;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,10 +25,15 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
         assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_ENTRY));
+        assertParseSuccess(parser, "1000000", new DeleteCommand(INDEX_MILLIONTH_ENTRY));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "-1", MESSAGE_INVALID_ENTRY_INDEX_OUT_OF_BOUNDS);
+        assertParseFailure(parser, "0", MESSAGE_INVALID_ENTRY_INDEX_OUT_OF_BOUNDS);
+        assertParseFailure(parser, "1000001", MESSAGE_INVALID_ENTRY_INDEX_OUT_OF_BOUNDS);
     }
 }

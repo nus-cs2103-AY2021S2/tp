@@ -1,9 +1,12 @@
 package fooddiary.logic.commands;
 
+import static fooddiary.logic.commands.CommandTestUtil.assertCommandFailure;
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiaryWithMultipleEntries;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiaryWithSingleEntry;
 import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
+import static fooddiary.testutil.TypicalIndexes.INDEX_THIRD_ENTRY;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -25,7 +28,8 @@ import fooddiary.testutil.EntryBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
+    private Model modelMultipleEntries = new ModelManager(getTypicalFoodDiaryWithMultipleEntries(), new UserPrefs());
+    private Model modelSingleEntry = new ModelManager(getTypicalFoodDiaryWithSingleEntry(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -35,16 +39,16 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry);
 
-        Model expectedModel = new ModelManager(new FoodDiary(model.getFoodDiary()), new UserPrefs());
-        expectedModel.setEntry(model.getFilteredEntryList().get(0), editedEntry);
+        Model expectedModel = new ModelManager(new FoodDiary(modelMultipleEntries.getFoodDiary()), new UserPrefs());
+        expectedModel.setEntry(modelMultipleEntries.getFilteredEntryList().get(0), editedEntry);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, modelMultipleEntries, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastEntry = Index.fromOneBased(model.getFilteredEntryList().size());
-        Entry lastEntry = model.getFilteredEntryList().get(indexLastEntry.getZeroBased());
+        Index indexLastEntry = Index.fromOneBased(modelMultipleEntries.getFilteredEntryList().size());
+        Entry lastEntry = modelMultipleEntries.getFilteredEntryList().get(indexLastEntry.getZeroBased());
 
         EntryBuilder entryInList = new EntryBuilder(lastEntry);
         Entry editedEntry = entryInList.withName(CommandTestUtil.VALID_NAME_B)
@@ -59,70 +63,74 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry);
 
-        Model expectedModel = new ModelManager(new FoodDiary(model.getFoodDiary()), new UserPrefs());
+        Model expectedModel = new ModelManager(new FoodDiary(modelMultipleEntries.getFoodDiary()), new UserPrefs());
         expectedModel.setEntry(lastEntry, editedEntry);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_ENTRY, new EditEntryDescriptor());
-        Entry editedEntry = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry);
-
-        Model expectedModel = new ModelManager(new FoodDiary(model.getFoodDiary()), new UserPrefs());
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, modelMultipleEntries, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_filteredList_success() {
-        CommandTestUtil.showEntryAtIndex(model, INDEX_FIRST_ENTRY);
+        CommandTestUtil.showEntryAtIndex(modelMultipleEntries, INDEX_FIRST_ENTRY);
 
-        Entry entryInFilteredList = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
+        Entry entryInFilteredList = modelMultipleEntries.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
         Entry editedEntry = new EntryBuilder(entryInFilteredList).withName(CommandTestUtil.VALID_NAME_B).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ENTRY,
                 new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_B).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry);
 
-        Model expectedModel = new ModelManager(new FoodDiary(model.getFoodDiary()), new UserPrefs());
-        expectedModel.setEntry(model.getFilteredEntryList().get(0), editedEntry);
+        Model expectedModel = new ModelManager(new FoodDiary(modelMultipleEntries.getFoodDiary()), new UserPrefs());
+        expectedModel.setEntry(modelMultipleEntries.getFilteredEntryList().get(0), editedEntry);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, modelMultipleEntries, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_noFieldSpecifiedUnfilteredList_failure() {
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ENTRY, new EditEntryDescriptor());
+        Entry editedEntry = modelMultipleEntries.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
+
+        //assertCommandSuccess(editCommand, modelMultipleEntries, expectedMessage, expectedModel);
+        assertCommandFailure(editCommand, modelMultipleEntries, EditCommand.MESSAGE_NOT_EDITED);
     }
 
     @Test
     public void execute_duplicateEntryUnfilteredList_failure() {
-        Entry firstEntry = model.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
+        Entry firstEntry = modelMultipleEntries.getFilteredEntryList().get(INDEX_FIRST_ENTRY.getZeroBased());
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(firstEntry).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_ENTRY, descriptor);
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ENTRY);
+        assertCommandFailure(editCommand, modelMultipleEntries, EditCommand.MESSAGE_DUPLICATE_ENTRY);
     }
 
     @Test
     public void execute_duplicateEntryFilteredList_failure() {
-        CommandTestUtil.showEntryAtIndex(model, INDEX_FIRST_ENTRY);
+        CommandTestUtil.showEntryAtIndex(modelMultipleEntries, INDEX_FIRST_ENTRY);
 
         // edit entry in filtered list into a duplicate in food diary
-        Entry entryInList = model.getFoodDiary().getEntryList().get(INDEX_SECOND_ENTRY.getZeroBased());
+        Entry entryInList = modelMultipleEntries.getFoodDiary().getEntryList().get(INDEX_SECOND_ENTRY.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ENTRY,
                 new EditEntryDescriptorBuilder(entryInList).build());
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ENTRY);
+        assertCommandFailure(editCommand, modelMultipleEntries, EditCommand.MESSAGE_DUPLICATE_ENTRY);
     }
 
     @Test
     public void execute_invalidEntryIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEntryList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(modelMultipleEntries.getFilteredEntryList().size() + 1);
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder()
                 .withName(CommandTestUtil.VALID_NAME_B).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+        //Check when model has multiple entries (to check for plural message)
+        assertCommandFailure(editCommand, modelMultipleEntries, String.format(
+                Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL,
+                modelMultipleEntries.getFilteredEntryList().size()));
+
+        //Check when model has single entry (to check for single message)
+        assertCommandFailure(editCommand, modelSingleEntry,
+                Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_SINGULAR);
     }
 
     /**
@@ -131,15 +139,20 @@ public class EditCommandTest {
      */
     @Test
     public void execute_invalidEntryIndexFilteredList_failure() {
-        CommandTestUtil.showEntryAtIndex(model, INDEX_FIRST_ENTRY);
-        Index outOfBoundIndex = INDEX_SECOND_ENTRY;
+        CommandTestUtil.showEntriesAtIndexes(modelMultipleEntries, INDEX_FIRST_ENTRY, INDEX_SECOND_ENTRY);
+        Index outOfBoundIndex = INDEX_THIRD_ENTRY;
         // ensures that outOfBoundIndex is still in bounds of food diary list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getFoodDiary().getEntryList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < modelMultipleEntries.getFoodDiary().getEntryList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_B).build());
 
-        CommandTestUtil.assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, modelMultipleEntries, String.format(
+                Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL,
+                modelMultipleEntries.getFilteredEntryList().size()));
+
+        assertCommandFailure(editCommand, modelSingleEntry,
+                Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_SINGULAR);
     }
 
     @Test

@@ -8,11 +8,12 @@ import fooddiary.model.Model;
 import fooddiary.model.entry.Entry;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the food diary.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
+    public static final int MAX_NO_OF_ENTRIES_ALLOWED = 1000000;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new entry to the food diary. "
             + "Parameters: "
@@ -35,6 +36,8 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the food diary";
+    public static final String MESSAGE_ENTRY_LIMIT_REACHED = "Food Diary has reached the maximum limit of "
+            + MAX_NO_OF_ENTRIES_ALLOWED + ". Remove some existing entries to make space for more entries";
 
     private final Entry toAdd;
 
@@ -52,6 +55,10 @@ public class AddCommand extends Command {
 
         if (model.hasEntry(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
+        }
+
+        if (model.getFoodDiary().getEntryList().size() >= MAX_NO_OF_ENTRIES_ALLOWED) {
+            throw new CommandException(MESSAGE_ENTRY_LIMIT_REACHED);
         }
 
         model.addEntry(toAdd);
