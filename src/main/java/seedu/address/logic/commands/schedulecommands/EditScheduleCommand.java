@@ -155,11 +155,11 @@ public class EditScheduleCommand extends Command {
         Schedule scheduleToEdit = lastShownList.get(index.getZeroBased());
         Schedule editedSchedule = createEditedSchedule(scheduleToEdit, editScheduleDescriptor);
 
-        if (scheduleToEdit.getTimeFrom().isBeforeNow()) {
+        if (scheduleToEdit.getTimeFrom().isBeforeNow() && scheduleToEdit.getTimeTo().isBeforeNow()) {
             throw new CommandException(MESSAGE_UNABLE_TO_EDIT_PAST_SCHEDULE);
         }
 
-        if (editedSchedule.getTimeFrom().isBeforeNow()) {
+        if (editedSchedule.getTimeFrom().isBeforeNow() && editedSchedule.getTimeTo().isBeforeNow()) {
             throw new CommandException(MESSAGE_INVALID_DATE);
         }
 

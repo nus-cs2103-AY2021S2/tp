@@ -3,8 +3,10 @@ package seedu.address.logic.commands.appointmentcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DATE_CLASH_EDIT;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_APPOINTMENT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNABLE_TO_EDIT_PAST_APPOINTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -72,6 +74,29 @@ public class EditAppointmentCommand extends Command {
         this.editAppointmentDescriptor = editAppointmentDescriptor;
     }
 
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editPersonDescriptor}.
+     */
+    private static Appointment createEditedAppointment(
+            Appointment appointmentToEdit,
+            EditAppointmentDescriptor editAppointmentDescriptor) {
+        assert appointmentToEdit != null;
+
+        Name updatedName =
+                editAppointmentDescriptor.getName().orElse(appointmentToEdit.getName());
+        SubjectName updatedSubjectName = editAppointmentDescriptor.getSubjectName()
+                .orElse(appointmentToEdit.getSubject());
+        AppointmentDateTime updatedTimeFrom =
+                editAppointmentDescriptor.getTimeFrom().orElse(appointmentToEdit.getTimeFrom());
+        AppointmentDateTime updatedTimeTo =
+                editAppointmentDescriptor.getTimeTo().orElse(appointmentToEdit.getTimeTo());
+        Address updatedAddress = editAppointmentDescriptor.getAddress().orElse(appointmentToEdit.getLocation());
+
+        return new Appointment(updatedName, updatedSubjectName, updatedTimeFrom,
+                updatedTimeTo, updatedAddress);
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -83,6 +108,14 @@ public class EditAppointmentCommand extends Command {
 
         Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
+
+        if (appointmentToEdit.getTimeFrom().isBeforeNow() && appointmentToEdit.getTimeTo().isBeforeNow()) {
+            throw new CommandException(MESSAGE_UNABLE_TO_EDIT_PAST_APPOINTMENT);
+        }
+
+        if (editedAppointment.getTimeFrom().isBeforeNow() && editedAppointment.getTimeTo().isBeforeNow()) {
+            throw new CommandException(MESSAGE_INVALID_DATE);
+        }
 
         if (appointmentToEdit.equals(editedAppointment) || model.hasAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
@@ -106,29 +139,6 @@ public class EditAppointmentCommand extends Command {
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT);
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment),
                 TabName.APPOINTMENT);
-    }
-
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
-     */
-    private static Appointment createEditedAppointment(
-            Appointment appointmentToEdit,
-            EditAppointmentDescriptor editAppointmentDescriptor) {
-        assert appointmentToEdit != null;
-
-        Name updatedName =
-                editAppointmentDescriptor.getName().orElse(appointmentToEdit.getName());
-        SubjectName updatedSubjectName = editAppointmentDescriptor.getSubjectName()
-                .orElse(appointmentToEdit.getSubject());
-        AppointmentDateTime updatedTimeFrom =
-                editAppointmentDescriptor.getTimeFrom().orElse(appointmentToEdit.getTimeFrom());
-        AppointmentDateTime updatedTimeTo =
-                editAppointmentDescriptor.getTimeTo().orElse(appointmentToEdit.getTimeTo());
-        Address updatedAddress = editAppointmentDescriptor.getAddress().orElse(appointmentToEdit.getLocation());
-
-        return new Appointment(updatedName, updatedSubjectName, updatedTimeFrom,
-                updatedTimeTo, updatedAddress);
     }
 
     @Override
@@ -160,7 +170,8 @@ public class EditAppointmentCommand extends Command {
         private AppointmentDateTime timeTo;
         private Address address;
 
-        public EditAppointmentDescriptor() {}
+        public EditAppointmentDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -180,44 +191,44 @@ public class EditAppointmentCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, subjectName, timeFrom, address);
         }
 
-        public void setName(Name name) {
-            this.name = name;
-        }
-
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
 
-        public void setSubjectName(SubjectName subjectName) {
-            this.subjectName = subjectName;
+        public void setName(Name name) {
+            this.name = name;
         }
 
         public Optional<SubjectName> getSubjectName() {
             return Optional.ofNullable(subjectName);
         }
 
-        public void setTimeFrom(AppointmentDateTime timeFrom) {
-            this.timeFrom = timeFrom;
+        public void setSubjectName(SubjectName subjectName) {
+            this.subjectName = subjectName;
         }
 
         public Optional<AppointmentDateTime> getTimeFrom() {
             return Optional.ofNullable(this.timeFrom);
         }
 
-        public void setTimeTo(AppointmentDateTime timeTo) {
-            this.timeTo = timeTo;
+        public void setTimeFrom(AppointmentDateTime timeFrom) {
+            this.timeFrom = timeFrom;
         }
 
         public Optional<AppointmentDateTime> getTimeTo() {
             return Optional.ofNullable(this.timeTo);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setTimeTo(AppointmentDateTime timeTo) {
+            this.timeTo = timeTo;
         }
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setAddress(Address address) {
+            this.address = address;
         }
 
         @Override

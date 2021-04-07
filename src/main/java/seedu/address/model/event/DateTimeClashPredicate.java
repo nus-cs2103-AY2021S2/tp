@@ -9,19 +9,25 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
- * Tests that an {@code Event}'s {@code dateTime} range filtering.
+ * Tests whether the new {@code Event}'s {@code dateTime} range filtering.
  * This primarily to detect date and time clashes between new and old Appointment and Schedule.
  */
 public class DateTimeClashPredicate implements Predicate<Event> {
     private final Event toCheck;
     private final Optional<Event> preEditEvent;
 
+    /**
+     * Primary Constructor to constructs {@code DateTimeClashPredicate}
+     */
     public DateTimeClashPredicate(Event toCheck) {
         requireNonNull(toCheck);
         this.toCheck = toCheck;
         this.preEditEvent = Optional.empty();
     }
 
+    /**
+     * Alternative Constructor that accept a pre-edited {@code Event} for checking purpose.
+     */
     public DateTimeClashPredicate(Event toCheck, Event preEditEvent) {
         requireAllNonNull(toCheck, preEditEvent);
         this.toCheck = toCheck;
