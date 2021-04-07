@@ -262,7 +262,7 @@ Examples:
   ![result for `filter q/charles recursion`](images/filterCharlesRecursionResult.png) <br><br>
 * `filter p/mid q/formula` will return cards with `formula` contained in its question and `mid` priority.<br><br>
   ![result for `filter p/mid q/formula`](images/filterMidFormulaResult.png) <br>
-  <div style="page-break-after: always;"></div>
+  <div style="page-break-after: always;"></div><br>
 
 * `filter c/com t/ran` will return cards with `com` contained in its category and `ran`contained in any of its tags.<br><br>
   ![result for `filter c/com t/ran`](images/filterComRanResult.png) <br>
