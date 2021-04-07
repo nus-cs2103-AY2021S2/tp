@@ -73,7 +73,7 @@ This section discusses the main semantics and purpose of the design of The Food 
 ### List of Entries
 * This component features a list of entries currently stored in The Food Diary.
 
-* A list of entries is autopopulated on start up, or when there is no existing data. To start afresh, use the `clear`
+* A list of entries is auto-populated on start up, or when there is no existing data. To start afresh, use the `clear`
  function as stated below.
 
 * Each entry displayed contains 5 compulsory fields, and 2 optional fields:
@@ -128,6 +128,7 @@ This section discusses the main semantics and purpose of the design of The Food 
 
 ### View & Revise Window
 * These windows are described in detail in the `view` and `revise` features below respectively.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -199,8 +200,8 @@ add more entries until one or more existing entries have been deleted.
 
 Example:
 
-    add  n/Al Amaan Restaurant ra/5 p/8 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian s/FOE
-    add  n/7 Eleven ra/3 p/4 re/Mac and cheese there is amazing a/NUS c/Halal s/YIH s/SOC
+    add n/Al Amaan Restaurant ra/5 p/8 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian s/FOE
+    add n/7 Eleven ra/3 p/4 re/Mac and cheese there is amazing a/NUS c/Halal s/YIH s/SOC
 
 ### Addon a review or a price to a FoodDiary entry: `addon`
 Adds-on additional review and/or a price to a FoodDiary entry of the Food Diary quickly.
@@ -327,7 +328,7 @@ Format: `view <INDEX>`
 
 Parameter:
 
-1. The Index of The Food Diary entry: `<INDEX>`
+1. The index of The Food Diary entry: `<INDEX>`
 
 Example:
 
@@ -372,7 +373,7 @@ Format: `revise <INDEX>`
 
 Parameter:
 
-1. The Index of FoodDiary entry: `<INDEX>`
+1. The index of FoodDiary entry: `<INDEX>`
 
 Available Shortcut keys for fast typists:
 - `TAB` key to iterate through fields.
@@ -387,7 +388,7 @@ Note:
 
 Expected behaviour: Revise window will close, showing successful edit of entry in Main Window's command box.
 
-Unexpected behaviour: Revise window will close, showing error message in Main Window's command box.
+Unexpected behaviour: Revise window will close, showing an error message in Main Window's command box.
 
 Example:
 
@@ -400,7 +401,7 @@ Example:
 Edits the details of the FoodDiary entry specified. Existing values will be overwritten by the new values.
 Mainly used if previous entry values do not matter in new edit.
 
-Format: `edit <INDEX> <KEYWORD> ...``
+Format: `edit <INDEX> <KEYWORD> ...`
 
 Parameters:
 
@@ -467,7 +468,7 @@ Action | Format, Examples
 **Help**    | `help` <br> e.g. `help`
 **View**    | `view <INDEX>` <br> e.g. `view 1`
 **Revise**  | `revise <INDEX>` <br> e.g. `revise 1`
-**Edit**    | `edit <INDEX> <KEYWORD> ...` <br> e.g `edit 1 ra/5 p/7 re/I like this food a lot! a/Science c/Indian c/Halal s/Ventus`
+**Edit**    | `edit <INDEX> <KEYWORD> ...` <br> e.g. `edit 1 ra/5 p/7 re/I like this food a lot! a/Science c/Indian c/Halal s/Ventus`
 **Clear**   | `clear` <br> e.g. `clear`
 **Exit**    | `exit` <br> e.g. `exit`
 
