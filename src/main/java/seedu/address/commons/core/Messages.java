@@ -38,4 +38,7 @@ public class Messages {
 
     // Tabs
     public static final String MESSAGE_INVALID_TAB = "To view this tab, use the following command instead: \n%1$s";
+
+    // Json data files
+    public static final String MESSAGE_DESERIALIZE_ERROR_DUMP_DATA = "Error deserializing %1$s. Dumping %1$s json data";
 }

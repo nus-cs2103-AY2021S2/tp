@@ -1,10 +1,14 @@
 package seedu.address.storage;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DESERIALIZE_ERROR_DUMP_DATA;
+
 import java.nio.file.Path;
+import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Picture;
 
@@ -14,6 +18,8 @@ import seedu.address.model.person.Picture;
 public class JsonAdaptedPicture {
 
     private final Path filePath;
+
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedPicture.class);
 
     /**
      * Constructs a {@code JsonAdaptedPicture} with the given args.
@@ -30,14 +36,27 @@ public class JsonAdaptedPicture {
         filePath = source.getFilePath();
     }
 
+    private IllegalValueException internalIllegalValueException(String message) {
+        logger.warning(String.format(MESSAGE_DESERIALIZE_ERROR_DUMP_DATA, "Picture}"));
+        logger.warning(this.toString());
+        return new IllegalValueException(message);
+    }
+
     /**
      * Converts this Jackson-friendly adapted picture object into the model's {@code Picture} object.
      */
     public Picture toModelType() throws IllegalValueException {
         if (!Picture.isValidFilePath(filePath)) {
-            throw new IllegalValueException(this.filePath + " " + Picture.MESSAGE_CONSTRAINTS);
+            throw internalIllegalValueException(this.filePath + " " + Picture.MESSAGE_CONSTRAINTS);
         }
 
         return new Picture(filePath);
+    }
+
+    @Override
+    public String toString() {
+        return "JsonAdaptedPicture{"
+                + "filePath=" + filePath
+                + "}";
     }
 }

@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import static seedu.address.commons.core.Messages.MESSAGE_DATE_BEFORE_BIRTHDAY;
+import static seedu.address.commons.core.Messages.MESSAGE_DESERIALIZE_ERROR_DUMP_DATA;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,11 +10,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.model.person.Address;
@@ -36,7 +39,7 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
-
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedPerson.class);
     private final String name;
     private final String phone;
     private final String email;
@@ -104,6 +107,12 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
     }
 
+    private IllegalValueException internalIllegalValueException(String message) {
+        logger.warning(String.format(MESSAGE_DESERIALIZE_ERROR_DUMP_DATA, "Person"));
+        logger.warning(this.toString());
+        return new IllegalValueException(message);
+    }
+
     private String errorMsgForEventBeforeBirthday(Name name, Event event, String eventType) {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("Error deserializing %s. ", name))
@@ -140,7 +149,7 @@ class JsonAdaptedPerson {
             LocalDate dateToCheck = dateModel.getDate();
 
             if (dateToCheck.isBefore(modelBirthday.getDate())) {
-                throw new IllegalValueException(
+                throw internalIllegalValueException(
                         errorMsgForEventBeforeBirthday(modelName, dateModel, "Special Date"));
             }
 
@@ -163,7 +172,7 @@ class JsonAdaptedPerson {
             LocalDate dateToCheck = modelMeeting.getDate();
 
             if (dateToCheck.isBefore(modelBirthday.getDate())) {
-                throw new IllegalValueException(
+                throw internalIllegalValueException(
                         errorMsgForEventBeforeBirthday(modelName, modelMeeting, "Meeting"));
             }
 
@@ -180,57 +189,57 @@ class JsonAdaptedPerson {
      */
     public Person toModelType() throws IllegalValueException {
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw internalIllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(trimmedName);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+            throw internalIllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Phone modelPhone = new Phone(trimmedPhone);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+            throw internalIllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(trimmedEmail);
 
         if (birthday == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Birthday.class.getSimpleName()));
         }
         String trimmedBirthday = birthday.trim();
         if (!Birthday.isValidBirthday(trimmedBirthday)) {
-            throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
+            throw internalIllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
         }
         final Birthday modelBirthday = new Birthday(trimmedBirthday);
 
         if (goal == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Goal.class.getSimpleName()));
+            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Goal.class.getSimpleName()));
         }
         String trimmedGoal = goal.trim();
         if (!Goal.isValidGoal(trimmedGoal)) {
-            throw new IllegalValueException(Goal.MESSAGE_CONSTRAINTS);
+            throw internalIllegalValueException(Goal.MESSAGE_CONSTRAINTS);
         }
         final Goal modelGoal = new Goal(Goal.parseFrequency(trimmedGoal.toLowerCase(Locale.ROOT)));
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
         String trimmedAddress = address.trim();
         if (!Address.isValidAddress(trimmedAddress)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw internalIllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(trimmedAddress);
 
@@ -240,11 +249,11 @@ class JsonAdaptedPerson {
         }
 
         if (debt == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Debt.class.getSimpleName()));
+            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Debt.class.getSimpleName()));
         }
         String trimmedDebt = debt.trim();
         if (!Debt.isValidDebt(trimmedDebt)) {
-            throw new IllegalValueException(Debt.MESSAGE_CONSTRAINTS);
+            throw internalIllegalValueException(Debt.MESSAGE_CONSTRAINTS);
         }
         final Debt modelDebt = new Debt(trimmedDebt);
 
@@ -255,4 +264,23 @@ class JsonAdaptedPerson {
         return new Person(modelName, modelPhone, modelEmail, modelBirthday, modelGoal, modelAddress, modelPicture,
                 modelDebt, modelTags, modelDates, modelMeetings);
     }
+
+    @Override
+    public String toString() {
+        return "JsonAdaptedPerson{"
+                + "name='" + name + '\''
+                + ", phone='" + phone + '\''
+                + ", email='" + email + '\''
+                + ", birthday='" + birthday + '\''
+                + ", debt='" + debt + '\''
+                + ", goal='" + goal + '\''
+                + ", address='" + address + '\''
+                + ", picture=" + picture.toString()
+                + ", tagged=" + tagged.toString()
+                + ", dates=" + dates.toString()
+                + ", meetings=" + meetings.toString()
+                + "}";
+    }
+
+
 }
