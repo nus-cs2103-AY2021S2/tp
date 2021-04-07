@@ -25,7 +25,8 @@ public class AliasCommand extends Command {
     public static final String MESSAGE_DUPLICATE_ALIAS = "This alias \"%1$s\" already exists in FlashBack.";
     public static final String MESSAGE_ALIAS_IS_COMMAND = "The alias \"%1$s\" should not be a command in FlashBack.";
     public static final String MESSAGE_INVALID_COMMAND = "The command \"%1$s\" does not exist in FlashBack.";
-    public static final String MESSAGE_COMMAND_IS_REVIEW = "The command \"%1$s\" should not be a command in review mode.";
+    public static final String MESSAGE_COMMAND_IS_REVIEW =
+            "The command \"%1$s\" should not be a command in review mode.";
 
     private final String command;
     private final String alias;
