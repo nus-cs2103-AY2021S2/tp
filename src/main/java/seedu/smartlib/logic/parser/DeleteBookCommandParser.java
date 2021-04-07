@@ -1,6 +1,6 @@
 package seedu.smartlib.logic.parser;
 
-import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX;
 
 import seedu.smartlib.commons.core.index.Index;
 import seedu.smartlib.logic.commands.DeleteBookCommand;
@@ -24,8 +24,7 @@ public class DeleteBookCommandParser implements Parser<DeleteBookCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteBookCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteBookCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
         }
     }
 
