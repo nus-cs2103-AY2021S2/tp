@@ -88,7 +88,7 @@ public class RemindCommandTest {
         expectedModel.updateFilteredOrderList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(
-                Arrays.asList(ALICE, BENSON, CARL, DANIEL, FIONA, GEORGE, ELLE ),
+                Arrays.asList(ALICE, BENSON, CARL, DANIEL, FIONA, GEORGE, ELLE),
                 model.getFilteredOrderList());
     }
 
