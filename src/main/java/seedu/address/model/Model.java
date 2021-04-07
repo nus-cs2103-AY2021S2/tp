@@ -219,7 +219,7 @@ public interface Model {
      *
      * @param indexToRemove
      */
-    void removeAppointmentIndex(int indexToRemove);
+    Appointment removeAppointmentIndex(int indexToRemove);
 
     /**
      * Checks if {@code AppointmentDateTime} exists in the appointment list.
@@ -234,6 +234,13 @@ public interface Model {
      * @return True if appointment contains tutor.
      */
     boolean hasAppointmentContainingTutor(Name name);
+
+    /**
+     * @param name Name of tutor to match.
+     * @return True is new appointment to be added clashes.
+     */
+    boolean doesAppointmentClash(Name name, AppointmentDateTime timeFrom,
+                                 AppointmentDateTime timeTo);
 
     /**
      * @return Budget Book
@@ -268,6 +275,10 @@ public interface Model {
      */
     void deleteBudget();
 
+    /**
+     * @return Unmodifiable view of the budget list.
+     */
+    ObservableList<Budget> getBudgetList();
 
     /**
      * Returns true if a grade with the same identity as {@code grade} exists in the

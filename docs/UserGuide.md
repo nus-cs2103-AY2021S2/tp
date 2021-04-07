@@ -134,7 +134,8 @@ Maths
 
 #### Delete a tutor: `delete_tutor`
 
-Delete a tutor by index.
+Delete a tutor by index. If a tutor has an existing appointment in the user system
+then tutor cannot be deleted.
 
 Format: `delete_tutor INDEX`
 
@@ -316,6 +317,8 @@ Format: `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCAT
 
 * The date format `YYYY-MM-DD` must be strictly followed. e.g. `2021-03-01`and `2021-04-20`.
 * The time format `HH:MM AM/PM` must be strictly followed. e.g. `9:01 AM` and `10:30 PM`.
+* Tutors cannot be double booked. Please ensure that timeslots of each tutor do not 
+  clash, i.e., same day, 10:00am - 11:00am and 10:30am - 12:00pm.
 
 Examples:<br>
 * `add_appointment n/David Li s/Mathematics d/2021-03-01 fr/10:00 AM to/12:00 PM l/Bedok`
@@ -390,18 +393,13 @@ Deletes the specific appointment at the specified INDEX.
 The index refers to the index number shown in the displayed person list.
 The index must be a positive integer e.g. `1, 2, 3, …​`
 
-Referencing to the example output from `list_appointments`,
-
 Example:
 `delete_appointment 1`
 
 Example Output:
 ```
-1. Science
-Tutor: Bernice Yu
-Mar 27 2021
-03:00 PM - 05:00 PM
-Location: Hougang
+Deleted Appointment: Appointment with Tutor (Alex Poon) from 
+Mar 10 2021 05:00PM to Mar 10 2021 07:00PM
 ```
 
 #### Editing an appointment: `edit_appointment`
@@ -415,7 +413,9 @@ Format: `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM
 
 * The date format `YYYY-MM-DD` must be strictly followed. e.g. `2021-03-01`and `2021-04-20`.
 * The time format `HH:MM AM/PM` must be strictly followed. e.g. `9:01 AM` and `10:30 PM`.
-
+* Tutors cannot be double booked. Please ensure that timeslots of each tutor do not
+  clash, i.e., same day, 10:00am - 11:00am and 10:30am - 12:00pm.
+  
 Examples: `edit_appointment 1 s/English l/Clementi`
 
 ### Schedule Tracker

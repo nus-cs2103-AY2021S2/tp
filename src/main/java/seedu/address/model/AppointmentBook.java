@@ -3,9 +3,11 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.AppointmentList;
 import seedu.address.model.tutor.Name;
 
@@ -83,6 +85,45 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
 
 
     /**
+     * @param name Name of tutor to match.
+     * @param timeFrom Time from of new appointment to be added
+     * @param timeTo Time to of new appointment to be added
+     * @return True if appointment cannot be added
+     */
+    public boolean doesAppointmentClash(Name name, AppointmentDateTime timeFrom,
+                                        AppointmentDateTime timeTo) {
+
+        List<Appointment> existingAppointments = findAllAppointmentsOfTutor(name);
+
+        for (Appointment appointment : existingAppointments) {
+            if (timeFrom.isTimeAfter(appointment.getTimeTo())
+                    || timeTo.isTimeBefore(appointment.getTimeFrom())) {
+
+            } else if (timeFrom.isTimeBefore(appointment.getTimeTo())) {
+                if (!timeTo.isTimeBefore(appointment.getTimeFrom())) {
+                    return true;
+                }
+
+            } else if (timeTo.isTimeAfter(appointment.getTimeFrom())) {
+                if (!timeFrom.isTimeAfter(appointment.getTimeTo())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param name Name of tutor to match.
+     * @return A list of appointments booked with tutor
+     */
+    public List<Appointment> findAllAppointmentsOfTutor(Name name) {
+        return this.appointments.asUnmodifiableObservableList().stream().filter(
+            appointment -> appointment.getName().equals(name)).collect(Collectors.toList());
+    }
+
+
+    /**
      * Adds a person to the appointment book.
      * The person must not already exist in the appointment book.
      */
@@ -114,8 +155,11 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
      * Removes {@code key} from this {@code AppointmentBook}.
      * {@code key} must exist in the appointment book.
      */
-    public void removeAppointment(int key) {
+    public Appointment removeAppointment(int key) {
+        Appointment removedAppointment =
+                appointments.getInternalUnmodifiableList().get(key);
         appointments.remove(key);
+        return removedAppointment;
     }
     //// util methods
 

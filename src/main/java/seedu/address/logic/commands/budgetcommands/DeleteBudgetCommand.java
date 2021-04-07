@@ -12,7 +12,7 @@ public class DeleteBudgetCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_budget";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "Deletes the current "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " :Deletes the current "
             + "budget stored in the user system. "
             + "Example: delete_budget ";
 
@@ -43,7 +43,7 @@ public class DeleteBudgetCommand extends Command {
         if (model.hasBudget()) {
             int budgetValue = model.getBudgetBook().getBudget().getValue();
             model.deleteBudget();
-            return new CommandResult(String.format(MESSAGE_SUCCESS, budgetValue));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, budgetValue), TabName.BUDGET);
         } else {
             return new CommandResult(MESSAGE_MISSING_BUDGET);
         }

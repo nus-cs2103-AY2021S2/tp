@@ -26,8 +26,8 @@ public class Messages {
             + " because at least one existing appointment has been booked with the"
             + " tutor in question. Please ensure that tutor to be deleted does not"
             + " have any existing appointments.";
-    public static final String MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT = "Tutor in the "
-            + "appointment to be added does not teach this subject. Please ensure "
+    public static final String MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT = "Tutor of the "
+            + "appointment in question does not teach this subject. Please ensure "
             + "that tutor teaches this subject: %s";
     public static final String MESSAGE_TIME_FROM_GREATER_THAN = "TIME_FROM must be before TIME_TO. "
             + "Please check your input for TIME_FROM and TIME_TO again.";
@@ -41,4 +41,10 @@ public class Messages {
             + "Please add a new reminder instead.";
     public static final String MESSAGE_INVALID_TIME_MINUTES = "TIME_FROM and TIME_TO must be in "
             + "blocks of 30 or 60 minutes. Please check your input again.";
+    public static final String MESSAGE_DATE_CLASH_ADD = "The appointment you are trying "
+            + "to book clashes with the timeslot of an existing appointment. Please "
+            + "ensure timeslots to not clash.";
+    public static final String MESSAGE_DATE_CLASH_EDIT = "The appointment you are "
+            + "trying to change to clashes with the timeslot of an existing "
+            + "appointment. Please ensure timeslots do not clash.";
 }

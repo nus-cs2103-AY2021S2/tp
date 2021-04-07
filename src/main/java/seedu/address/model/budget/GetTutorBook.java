@@ -12,7 +12,7 @@ import seedu.address.storage.JsonTutorBookStorage;
  * Class to help retrieve the address book without having to inititalize with
  * StorageManager.
  */
-public class GetAddressBook {
+public class GetTutorBook {
 
     private ReadOnlyTutorBook addressBook;
 
@@ -20,7 +20,7 @@ public class GetAddressBook {
      * Primary constructor.
      * @param relativeFilePath File path in string of the addressbook.json file
      */
-    public GetAddressBook(String relativeFilePath) {
+    public GetTutorBook(String relativeFilePath) {
         try {
             Path path = Path.of(relativeFilePath);
             JsonTutorBookStorage jsonAddressBookStorage =

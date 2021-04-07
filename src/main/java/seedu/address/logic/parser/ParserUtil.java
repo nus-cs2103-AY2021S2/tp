@@ -70,10 +70,27 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
+        String properName = convertToTitleCase(trimmedName);
+        if (!Name.isValidName(properName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Name(properName);
+    }
+
+    /**
+     * @param name Name in String.
+     * @return A name in Title Case.
+     */
+    private static String convertToTitleCase(String name) {
+        String[] splitName = name.split("\\s+");
+        StringBuilder res = new StringBuilder();
+        for (String word : splitName) {
+            String tempString = word.toLowerCase();
+            String resString =
+                    tempString.substring(0, 1).toUpperCase() + tempString.substring(1);
+            res.append(resString).append(" ");
+        }
+        return res.toString().trim();
     }
 
     /**

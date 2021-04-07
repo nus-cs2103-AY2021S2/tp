@@ -13,9 +13,10 @@ public abstract class Command {
      */
     public enum TabName {
         APPOINTMENT,
+        BUDGET,
         GRADE,
         REMINDER,
-        SCHEDULE
+        SCHEDULE,
     }
 
     /**
