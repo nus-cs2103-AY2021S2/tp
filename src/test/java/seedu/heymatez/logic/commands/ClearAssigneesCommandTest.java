@@ -2,7 +2,6 @@ package seedu.heymatez.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.heymatez.logic.commands.ClearAssigneesCommand.MESSAGE_LIST_IS_EMPTY;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.heymatez.logic.commands.CommandTestUtil.showTaskAtIndex;
@@ -118,7 +117,8 @@ public class ClearAssigneesCommandTest {
 
         ModelManager expectedModel = new ModelManager(new HeyMatez(), new UserPrefs());
 
-        assertCommandSuccess(clearAssigneesCommand, myModel, ClearAssigneesCommand.MESSAGE_LIST_IS_EMPTY, expectedModel);
+        assertCommandSuccess(clearAssigneesCommand, myModel,
+                ClearAssigneesCommand.MESSAGE_LIST_IS_EMPTY, expectedModel);
     }
     /**
      * Updates {@code model}'s filtered list to show no one.

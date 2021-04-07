@@ -71,18 +71,18 @@ public class DoneTaskCommandTest {
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
     }
 
-//    @Test
-//    public void execute_emptyFilteredList_success() {
-//        ModelManager myModel = new ModelManager(new HeyMatez(), new UserPrefs());
-//
-//        Index givenIndex = INDEX_SECOND_TASK;
-//
-//        DoneTaskCommand doneTaskCommand = new DoneTaskCommand(givenIndex);
-//
-//        ModelManager expectedModel = new ModelManager(new HeyMatez(), new UserPrefs());
-//
-//        assertCommandSuccess(doneTaskCommand, myModel, DoneTaskCommand.MESSAGE_LIST_IS_EMPTY, expectedModel);
-//    }
+    @Test
+    public void execute_emptyFilteredList_success() {
+        ModelManager myModel = new ModelManager(new HeyMatez(), new UserPrefs());
+
+        Index givenIndex = INDEX_SECOND_TASK;
+
+        DoneTaskCommand doneTaskCommand = new DoneTaskCommand(givenIndex);
+
+        ModelManager expectedModel = new ModelManager(new HeyMatez(), new UserPrefs());
+
+        assertCommandSuccess(doneTaskCommand, myModel, DoneTaskCommand.MESSAGE_LIST_IS_EMPTY, expectedModel);
+    }
 
     @Test
     public void task_already_markedCompleted() {
