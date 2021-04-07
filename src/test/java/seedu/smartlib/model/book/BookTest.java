@@ -14,7 +14,6 @@ import static seedu.smartlib.testutil.TypicalModels.MAZE;
 import static seedu.smartlib.testutil.TypicalModels.PROMISE_LAND;
 import static seedu.smartlib.testutil.TypicalModels.SECRET;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
