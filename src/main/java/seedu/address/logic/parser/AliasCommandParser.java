@@ -32,7 +32,7 @@ public class AliasCommandParser implements Parser<AliasCommand> {
         }
 
         String command = argMultimap.getValue(PREFIX_ALIAS_COMMAND).get();
-        String alias = argMultimap.getValue(PREFIX_ALIAS_NAME).get();
+        String alias = ParserUtil.parseAlias(argMultimap.getValue(PREFIX_ALIAS_NAME).get());
 
         return new AliasCommand(command, alias);
     }
