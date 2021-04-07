@@ -1,6 +1,6 @@
 package dog.pawbook.logic.commands;
 
-import static dog.pawbook.model.Model.PREDICATE_SHOW_ALL_ENTITIES;
+import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.function.Predicate;
@@ -26,17 +26,11 @@ public class ListCommand extends Command {
     private final Predicate<Pair<Integer, Entity>> predicate;
 
     /**
-     * Construct a list command that lists all entities.
-     */
-    public ListCommand() {
-        entityName = Entity.class.getSimpleName().toLowerCase();
-        predicate = PREDICATE_SHOW_ALL_ENTITIES;
-    }
-
-    /**
      * Construct a list command that lists a specified entity only.
      */
     public ListCommand(Predicate<Pair<Integer, Entity>> predicate, String entityType) {
+        requireAllNonNull(predicate, entityType);
+
         entityName = entityType;
         this.predicate = predicate;
     }

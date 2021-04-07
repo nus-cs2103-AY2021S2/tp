@@ -2,6 +2,7 @@ package dog.pawbook.logic.parser;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static dog.pawbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static dog.pawbook.commons.core.Messages.MESSAGE_UNKNOWN_ENTITY;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalId.ID_ONE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -97,7 +98,7 @@ public class PawbookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_ENTITY, () -> parser.parseCommand(ListCommand.COMMAND_WORD));
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Owner.ENTITY_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Dog.ENTITY_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Program.ENTITY_WORD) instanceof ListCommand);
