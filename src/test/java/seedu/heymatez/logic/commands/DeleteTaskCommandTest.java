@@ -76,6 +76,17 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
+    public void execute_emptyFilteredList_throwsCommandException() {
+        showNoTask(model);
+
+        Index givenIndex = INDEX_SECOND_TASK;
+
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(givenIndex);
+
+        assertCommandFailure(deleteTaskCommand, model, DeleteTaskCommand.MESSAGE_LIST_IS_EMPTY);
+    }
+
+    @Test
     public void equals() {
         DeleteTaskCommand deleteFirstCommand = new DeleteTaskCommand(INDEX_FIRST_TASK);
         DeleteTaskCommand deleteSecondCommand = new DeleteTaskCommand(INDEX_SECOND_TASK);

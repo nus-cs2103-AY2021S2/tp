@@ -30,7 +30,11 @@ public class UndoTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_UNDO_TASK_SUCCESS = "Task: marked as uncompleted!";
+
     public static final String MESSAGE_TASK_ALREADY_MARKED_UNCOMPLETED = "Task is already marked as uncompleted!";
+
+    public static final String MESSAGE_LIST_IS_EMPTY = "The task index specified is invalid as there "
+            + "are no displayed tasks in view!";
 
     private final Index index;
 
@@ -47,6 +51,10 @@ public class UndoTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
+
+        if (lastShownList.isEmpty()) {
+            throw new CommandException(MESSAGE_LIST_IS_EMPTY);
+        }
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);

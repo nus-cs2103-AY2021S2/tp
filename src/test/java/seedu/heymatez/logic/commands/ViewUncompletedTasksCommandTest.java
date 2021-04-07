@@ -48,7 +48,7 @@ public class ViewUncompletedTasksCommandTest {
     public void execute_emptyFilteredList_showsNoTask() {
         HeyMatez hm = new HeyMatez();
         assertViewCommandFailure(new ViewUncompletedTasksCommand(), new ModelManager(hm, new UserPrefs()),
-                ViewUncompletedTasksCommand.MESSAGE_NO_UNCOMPLETED_TASKS);
+                ViewUncompletedTasksCommand.MESSAGE_EMPTY_TASK_LIST);
     }
 
     @Test

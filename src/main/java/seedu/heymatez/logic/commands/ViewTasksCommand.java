@@ -15,7 +15,8 @@ public class ViewTasksCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all Tasks!";
 
-    public static final String MESSAGE_EMPTY_TASK_LIST = "Task list is empty. There are no tasks to be shown!";
+    public static final String MESSAGE_EMPTY_TASK_LIST = "Tasks' list is empty, there are no tasks to be displayed! \n"
+            + "Consider adding tasks to the list before using the 'viewTasks' command.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

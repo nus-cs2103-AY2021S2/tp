@@ -95,7 +95,7 @@ public class ClearAssigneesCommandTest {
     }
 
     @Test
-    public void execute_emptyFilteredList_throwsCommandException() {
+    public void execute_invalidIndexFilteredList_throwsCommandException() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Index outOfBoundIndex = INDEX_SECOND_TASK;
@@ -108,7 +108,7 @@ public class ClearAssigneesCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_emptyFilteredList_throwsCommandException() {
         showNoTask(model);
 
         Index givenIndex = INDEX_SECOND_TASK;

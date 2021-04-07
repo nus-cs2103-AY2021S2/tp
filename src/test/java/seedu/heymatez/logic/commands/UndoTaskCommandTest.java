@@ -72,6 +72,17 @@ public class UndoTaskCommandTest {
     }
 
     @Test
+    public void execute_emptyFilteredList_throwsCommandException() {
+        showNoTask(model);
+
+        Index givenIndex = INDEX_SECOND_TASK;
+
+        UndoTaskCommand undoTaskCommand = new UndoTaskCommand(givenIndex);
+
+        assertCommandFailure(undoTaskCommand, model, UndoTaskCommand.MESSAGE_LIST_IS_EMPTY);
+    }
+
+    @Test
     public void task_already_markedUncompleted() {
         UndoTaskCommand undoTaskCommand = new UndoTaskCommand(INDEX_FIRST_TASK);
 

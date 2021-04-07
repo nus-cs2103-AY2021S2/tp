@@ -47,7 +47,7 @@ public class ViewUnassignedTasksCommandTest {
     public void execute_emptyFilteredList_showsNoTask() {
         HeyMatez hm = new HeyMatez();
         assertViewCommandFailure(new ViewUnassignedTasksCommand(), new ModelManager(hm, new UserPrefs()),
-                ViewUnassignedTasksCommand.MESSAGE_NO_UNASSIGNED_TASKS);
+                ViewUnassignedTasksCommand.MESSAGE_EMPTY_TASK_LIST);
     }
 
     @Test

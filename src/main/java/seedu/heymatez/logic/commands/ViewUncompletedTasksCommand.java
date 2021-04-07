@@ -15,13 +15,17 @@ public class ViewUncompletedTasksCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all Uncompleted Tasks";
 
-    public static final String MESSAGE_NO_UNCOMPLETED_TASKS = "There are no uncompleted tasks!";
+    public static final String MESSAGE_NO_UNCOMPLETED_TASKS = "There are no uncompleted tasks at the moment!";
 
-
+    public static final String MESSAGE_EMPTY_TASK_LIST = "Tasks' list is empty, there are no tasks to be displayed! \n"
+            + "Consider adding tasks to the list before using the 'viewUncompletedTasks' command.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.getFilteredTaskList().isEmpty()) {
+            throw new CommandException(MESSAGE_EMPTY_TASK_LIST);
+        }
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_UNCOMPLETED_TASKS);
         if (model.getFilteredTaskList().isEmpty()) {
             throw new CommandException(MESSAGE_NO_UNCOMPLETED_TASKS);

@@ -24,6 +24,9 @@ public class DeleteTaskCommand extends Command {
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
+    public static final String MESSAGE_LIST_IS_EMPTY = "The task index specified is invalid as there "
+            + "are no displayed tasks in view!";
+
     private final Index targetIndex;
 
     public DeleteTaskCommand(Index targetIndex) {
@@ -34,6 +37,10 @@ public class DeleteTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
+
+        if (lastShownList.isEmpty()) {
+            throw new CommandException(MESSAGE_LIST_IS_EMPTY);
+        }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);

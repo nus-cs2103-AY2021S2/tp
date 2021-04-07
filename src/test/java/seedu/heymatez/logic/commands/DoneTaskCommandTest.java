@@ -71,6 +71,17 @@ public class DoneTaskCommandTest {
     }
 
     @Test
+    public void execute_emptyFilteredList_throwsCommandException() {
+        showNoTask(model);
+
+        Index givenIndex = INDEX_SECOND_TASK;
+
+        DoneTaskCommand doneTaskCommand = new DoneTaskCommand(givenIndex);
+
+        assertCommandFailure(doneTaskCommand, model, DoneTaskCommand.MESSAGE_LIST_IS_EMPTY);
+    }
+
+    @Test
     public void task_already_markedCompleted() {
         DoneTaskCommand doneCommand = new DoneTaskCommand(INDEX_THIRD_TASK);
 
