@@ -68,10 +68,14 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
             for (int i = 0; i <= standardDateTimeInput.length - 1; i++) {
-                String s = standardDateTimeInput[i];
+                String s = standardDateTimeInput[i].toUpperCase().trim();
                 if (s.contains("/") || s.contains("-")) {
                     standardDateTimeInput[i] = format.format(TimeslotParser.parseStandardDate(s));
                 }
+                if (s.contains("AM") || s.contains("PM")) {
+                    standardDateTimeInput[i] = TimeslotParser.parseStandardTime(s);
+                }
+
             }
             Collections.addAll(timeStartKeywords, standardDateTimeInput);
         }

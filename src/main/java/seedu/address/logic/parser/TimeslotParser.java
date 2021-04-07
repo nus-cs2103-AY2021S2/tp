@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -15,6 +16,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Timeslot;
@@ -228,17 +231,32 @@ public class TimeslotParser {
      * @throws ParseException if the given {@code Date} does not conform to the expected date time format.
      */
     public static Date parseStandardDate(String userInput) throws ParseException {
-        String formattedInput = userInput.trim();
         for (StandardDateFormat standardDateFormat : StandardDateFormat.values()) {
             try {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(standardDateFormat.getDatePattern());
                 simpleDateFormat.setLenient(false);
-                return simpleDateFormat.parse(formattedInput);
+                return simpleDateFormat.parse(userInput);
             } catch (java.text.ParseException e) {
                 continue;
             }
         }
         throw new ParseException(MESSAGE_INVALID_DATE_TIME_FORMAT);
+    }
+
+    /**
+     * Parses a {@code String userInput} in 12-Hour clock format into a {@code String} in 24-Hour clock format.
+     *
+     * @throws ParseException if the given {@code String} does not conform to the expected time format.
+     */
+    public static String parseStandardTime(String userInput) throws ParseException {
+        try {
+            SimpleDateFormat meridianFormat = new SimpleDateFormat("hh:mma");
+            SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm");
+            return hourFormat.format(meridianFormat.parse(userInput));
+
+        } catch (java.text.ParseException e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_TIME_FORMAT);
+        }
     }
 
     /**
