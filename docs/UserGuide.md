@@ -392,7 +392,7 @@ Examples:
 **:information_source: Notes about the reminder command:**
 
 * `NUMBER` refers to the number of days/weeks 
-* `NUMBER` must be **an integer between -366 and 366.** i.e. -365, -3, 0, 3, 365
+* `NUMBER` must be **an integer from -365 to 365.** i.e. -365, -3, 0, 3, 365
 * `TIME_UNIT` is either `days` or `weeks`.
 * `day` or `week` will only be accepted when `NUMBER` is either **-1, 0 or 1**
 * Items without expiry date will not be shown.
