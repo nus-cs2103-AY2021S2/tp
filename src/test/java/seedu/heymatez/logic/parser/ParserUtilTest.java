@@ -76,10 +76,10 @@ public class ParserUtilTest {
             -> ParserUtil.parseIndex(" +3 "));
 
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-                -> ParserUtil.parseIndex("+2"));
+            -> ParserUtil.parseIndex("+2"));
 
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-                -> ParserUtil.parseIndex(" + 8 "));
+            -> ParserUtil.parseIndex(" + 8 "));
     }
 
     @Test
