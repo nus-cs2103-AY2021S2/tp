@@ -43,9 +43,7 @@ public class GarmentCard extends UiPart<Region> {
     @FXML
     private FlowPane descriptions;
     @FXML
-    private Label sampleColour;
-    @FXML
-    private Label type;
+    private Label sampleImage;
 
     /**
      * Creates a {@code GarmentCode} with the given {@code Garment} and index to display.
@@ -66,10 +64,10 @@ public class GarmentCard extends UiPart<Region> {
                         .add(new Label("<" + description.descriptionName + ">")));
 
         Image image = new Image(sample);
-        ImageView colourView = new ImageView(image);
-        colourView.setFitHeight(80);
-        colourView.setPreserveRatio(true);
-        sampleColour.setGraphic(colourView);
+        ImageView sampleView = new ImageView(image);
+        sampleView.setFitHeight(80);
+        sampleView.setPreserveRatio(true);
+        sampleImage.setGraphic(sampleView);
     }
 
     @Override

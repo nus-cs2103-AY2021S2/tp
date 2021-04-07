@@ -179,7 +179,7 @@ public class Colour {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
         requireNonNull(colour);
-        this.colour = colour;
+        this.colour = colour.toLowerCase();
     }
 
     /**
