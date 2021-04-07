@@ -181,6 +181,7 @@ Examples:
    Command: `add program n/Obedience Training s/02-02-2020 18:00 t/puppies`
    
 :bulb: The order of the prefixes do not matter, feel free to add your information in any order that is convenient for you! 
+:heavy
 
 ![Add Command](images/AddCommandScreenshot1.png) ![Add Command Result](images/AddCommandScreenshot2.png)
 
