@@ -397,6 +397,10 @@ Delete a food intake record from the application.
 
 **Example:** `food_intake_delete d/31 Mar 2021 n/tomato`
 
+<div class="alert alert-warning">
+  ⚠️ <strong>Warning</strong> After deletion of a food intake, if there are multiple food intake with the same name, their duplicate count will be reordered.
+</div>
+
 **Expected output:**
 
 <p align="center">
