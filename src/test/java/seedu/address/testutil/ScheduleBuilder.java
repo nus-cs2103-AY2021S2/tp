@@ -12,8 +12,8 @@ public class ScheduleBuilder {
 
     public static final String DEFAULT_TITLE = "Maths Tuition Homework";
     public static final String DEFAULT_DESCRIPTION = "Chapter 5 to 6";
-    public static final String DEFAULT_TIMEFROM = "2020-02-24 12:00PM";
-    public static final String DEFAULT_TIMETO = "2020-02-24 12:30PM";
+    public static final String DEFAULT_TIMEFROM = "2020-05-24 12:00PM";
+    public static final String DEFAULT_TIMETO = "2020-05-24 12:30PM";
 
     private Title title;
     private Description description;

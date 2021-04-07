@@ -36,7 +36,6 @@ public class ViewAppointmentCommandTest {
 
         String expectedMessage = String.format(ViewAppointmentCommand.MESSAGE_VIEW_APPOINTMENT_SUCCESS,
                 appointmentToView.getTimeFrom().toDateString());
-        System.out.println(expectedMessage);
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 

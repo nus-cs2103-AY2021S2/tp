@@ -64,15 +64,11 @@ public class AddScheduleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        DateTimeValidationUtil.validateDateTime(model, toAdd);
-
         if (model.hasSchedule(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SCHEDULE);
         }
 
-        if (model.hasClashingDateTime(toAdd)) {
-            throw new CommandException(MESSAGE_CLASH_SCHEDULE);
-        }
+        DateTimeValidationUtil.validateDateTime(model, toAdd);
 
         model.addSchedule(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.SCHEDULE);

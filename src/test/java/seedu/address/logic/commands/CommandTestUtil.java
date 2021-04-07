@@ -32,6 +32,8 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.schedule.Schedule;
+import seedu.address.model.schedule.ScheduleDateViewPredicate;
 import seedu.address.model.tutor.NameContainsKeywordsPredicate;
 import seedu.address.model.tutor.Tutor;
 import seedu.address.testutil.EditGradeDescriptorBuilder;
@@ -239,6 +241,20 @@ public class CommandTestUtil {
     }
 
     /**
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showScheduleAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredScheduleList().size());
+
+        Schedule schedule = model.getFilteredScheduleList().get(targetIndex.getZeroBased());
+        final AppointmentDateTime date = schedule.getTimeFrom();
+
+        model.updateFilteredScheduleList(new ScheduleDateViewPredicate(date));
+        assertEquals(1, model.getFilteredScheduleList().size());
+    }
+
+    /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetDateTime} in the
      * {@code model}'s appointment book.
      */
@@ -248,5 +264,15 @@ public class CommandTestUtil {
         DateViewPredicate predicate = new DateViewPredicate(targetDateTime);
         model.updateFilteredAppointmentList(predicate);
         assertEquals(1, model.getFilteredAppointmentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetDateTime} in the
+     * {@code model}'s schedule tracker.
+     */
+    public static void showScheduleAtDate(Model model, AppointmentDateTime targetDateTime) {
+        ScheduleDateViewPredicate predicate = new ScheduleDateViewPredicate(targetDateTime);
+        model.updateFilteredScheduleList(predicate);
+        assertEquals(1, model.getFilteredScheduleList().size());
     }
 }

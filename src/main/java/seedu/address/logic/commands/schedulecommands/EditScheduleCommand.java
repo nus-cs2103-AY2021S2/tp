@@ -98,7 +98,7 @@ public class EditScheduleCommand extends Command {
 
         Schedule editedSchedule = createEditedSchedule(scheduleToEdit, editScheduleDescriptor);
 
-        if (!scheduleToEdit.equals(editedSchedule) && model.hasSchedule(editedSchedule)) {
+        if (scheduleToEdit.equals(editedSchedule) || model.hasSchedule(editedSchedule)) {
             throw new CommandException(MESSAGE_DUPLICATE_SCHEDULE);
         }
 
