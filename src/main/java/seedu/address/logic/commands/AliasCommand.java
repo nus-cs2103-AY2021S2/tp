@@ -49,6 +49,8 @@ public class AliasCommand extends Command {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_ALIAS, alias));
         } else if (model.isCommand(alias)) {
             throw new CommandException(String.format(MESSAGE_ALIAS_IS_COMMAND, alias));
+        } else if (model.isReview(alias)) {
+            throw new CommandException(String.format(MESSAGE_ALIAS_IS_COMMAND, alias));
         } else if (model.isReview(command)) {
             throw new CommandException(String.format(MESSAGE_COMMAND_IS_REVIEW, command));
         } else if (!model.isCommand(command)) {
