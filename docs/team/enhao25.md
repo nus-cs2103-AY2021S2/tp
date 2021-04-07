@@ -11,7 +11,7 @@ TutorBuddy is a desktop application made for freelance tutors who give one-to-on
 Given below is a summary of my contributions to the TutorBuddy Application.
 
 ### Major Enhancement:
-* Getting the current month and previous 2 months monthly fees. 
+* Getting the current month and previous 2 months monthly fees.
   * **What it does:** This feature calculates the current month, and the previous 2 months expected monthly fee based on existing sessions and recurring sessions. We then display the results on the UI accordingly.
   * **Rationale:** Independent tutors might want to keep track of their earnings. However, as different lesson could be priced differently,
     we wanted to implement a feature that helps user calculate their expected total current month salary and their previous 2 months

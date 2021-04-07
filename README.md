@@ -5,7 +5,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-### TutorBuddy 
+### TutorBuddy
 is an application made for independent tutors as a management tool to cut down on admin overheads, by graphically managing their student’s information with a Graphical User Interface (GUI). It allows for faster and more effective student management.
 * Find out more about the members working on the project **[here](docs/AboutUs.md)**.
 * This project is built upon AddressBook-Level3 project created by the **[SE-EDU initiative](https://se-education.org)**<br>
