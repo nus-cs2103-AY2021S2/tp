@@ -33,7 +33,7 @@ public class EditExamCommandParserTest {
         // no module specified
         String userInput1 = " " + PREFIX_MODULE + " " + PREFIX_EXAM.getPrefix()
                             + "1 " + PREFIX_DATE + VALID_EXAM_DATETIME_1;
-        assertParseFailure(parser, userInput1, Title.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, userInput1, String.format(Title.MESSAGE_CONSTRAINTS, "Modules"));
 
         // no exam specified
         String userInput2 = " " + PREFIX_MODULE + VALID_TITLE_CS2101 + " " + PREFIX_EXAM.getPrefix() + " "
@@ -52,14 +52,14 @@ public class EditExamCommandParserTest {
 
         // all fields empty
         String userInput5 = " " + PREFIX_MODULE.getPrefix() + " " + PREFIX_EXAM + " " + PREFIX_DATE;
-        assertParseFailure(parser, userInput5, Title.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, userInput5, String.format(Title.MESSAGE_CONSTRAINTS, "Modules"));
     }
 
     @Test
     public void parse_invalidValue_failure() {
         String userInput1 = " " + PREFIX_MODULE.getPrefix() + INVALID_TITLE + " " + PREFIX_EXAM + "1 "
                             + PREFIX_DATE + VALID_EXAM_DATETIME_1;
-        assertParseFailure(parser, userInput1, Title.MESSAGE_CONSTRAINTS); // invaid title
+        assertParseFailure(parser, userInput1, String.format(Title.MESSAGE_CONSTRAINTS, "Modules")); // invaid title
 
         String userInput2 = " " + PREFIX_MODULE.getPrefix() + VALID_TITLE_CS2101 + " " + PREFIX_EXAM + "0 "
                 + PREFIX_DATE + VALID_EXAM_DATETIME_1;
