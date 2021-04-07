@@ -686,7 +686,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SOChedule` and the **Actor** is the `User`, unless specified otherwise)
 
-**Use case: UC01 - Add a task**
+**Use case: UC01 - Adding a task**
 
 **MSS**
 
@@ -711,17 +711,7 @@ Use case ends.
       is invalid, or not following the `YYYY-MM-DD` format.
       Use case ends.
 
-**Use case: UC02 - List tasks**
-
-**MSS**
-
-1. User wishes to add a new task.
-2. User enters the corresponding command.
-3. SOChedule displays all tasks.
-<br><br>
-Use case ends.
-
-**Use case: UC03 - Delete a task**
+**Use case: UC02 - Deleting a task**
 
 **MSS**
 
@@ -730,8 +720,8 @@ Use case ends.
 3. User chooses to delete a task.
 4. User enters the index of the task to be deleted.
 5. SOChedule displays a success message for deleting the task.
-<br><br>
-Use case ends.
+   <br><br>
+   Use case ends.
 
 **Extensions**
 
@@ -746,6 +736,20 @@ Use case ends.
     * 3a1. SOChedule shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: UC03 - Editing a task**
+
+`<pending>`
+
+**Use case: UC04 - List tasks**
+
+**MSS**
+
+1. User wishes to add a new task.
+2. User enters the corresponding command.
+3. SOChedule displays all tasks.
+<br><br>
+Use case ends.
 
 **Use case: UC04 - Mark a task as completed**
 
@@ -772,7 +776,39 @@ Use case ends.
 
       Use case resumes at step 2.
 
-**Use case: UC05 - Add an event**
+**Use case: UC05 - Marking tasks complete**
+
+`<pending>`
+
+**Use case: UC06 - Undoing a task completion**
+
+`<pending>`
+
+**Use case: UC07 - Getting tasks today**
+
+`<pending>`
+
+**Use case: UC08 - Sorting all tasks**
+
+`<pending>`
+
+**Use case: UC09 - Pinning a task**
+
+`<pending>`
+
+**Use case: UC10 - Unpinning a task**
+
+`<pending>`
+
+**Use case: UC11 - Clearing all completed tasks**
+
+`<pending>`
+
+**Use case: UC12 - Clearing all expired tasks**
+
+`<pending>`
+
+**Use case: UC13 - Add an event**
 
 **MSS**
 
@@ -796,22 +832,7 @@ Use case ends.
       is invalid, or not following the `YYYY-MM-DD` format.
       Use case ends.
 
-**Use case: UC06 - List events**
-
-**MSS**
-
-1. User requests to list all events in the SOChedule.
-1. SOChedule displays a list of all events added.
-<br><br>
-Use case ends.
-
-**Extensions**
-
-* 1a. No events have been added.
-    * 1a1. SOChedule displays an empty list.
-      Use case ends.
-
-**Use case: UC07 - Delete an event**
+**Use case: UC14 - Delete an event**
 
 **MSS**
 
@@ -836,7 +857,53 @@ Use case ends.
 
       Use case resumes at step 2.
 
-      
+**Use case: UC15 - Editing an event**
+
+`<pending>`
+
+**Use case: UC16 - List events**
+
+**MSS**
+
+1. User requests to list all events in the SOChedule.
+1. SOChedule displays a list of all events added.
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. No events have been added.
+    * 1a1. SOChedule displays an empty list.
+      Use case ends.
+
+**Use case: UC17 - Getting today's events**
+
+`<pending>`
+
+**Use case: UC18 - Find an event**
+
+`<pending>`
+
+**Use case: UC19 - Clearing expired events**
+
+`<pending>`
+
+**Use case: UC20 - Finding tasks and events before or on given date**
+
+`<pending>`
+
+**Use case: UC21 - Finding free time slots**
+
+`<pending>`
+
+**Use case: UC22 - Getting a summary of SOChedule**
+
+`<pending>`
+
+**Use case: UC23 - Clearing SOChedule**
+
+`<pending>`
+
 *{More to be added}*
 
 ### A4. Non-Functional Requirements
