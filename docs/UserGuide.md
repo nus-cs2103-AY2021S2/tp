@@ -617,7 +617,7 @@ Example:
 
 #### List all aliases : `aliases`
 
-Shows a list of current aliases in the system sorted by their time of creation.
+Shows a list of current aliases in the system sorted by names in alphabetical order.
 
 Format: `aliases`
 
