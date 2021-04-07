@@ -171,6 +171,9 @@ Adds a person to FriendDex.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`
 
+* FriendDex only allows unique friends to be added. This means that each friend should only have a single entry in FriendDex.
+* FriendDex determines uniqueness solely based on the person's names ignoring their letter case.
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can provide any number of tags (including 0)
 </div>
