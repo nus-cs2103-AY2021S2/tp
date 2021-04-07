@@ -158,6 +158,18 @@ public class Plan {
         return List.copyOf(semesters);
     }
 
+    /**
+     * Returns semester by sem number rather than index
+     * @return semester
+     */
+    public Semester getSemesterBySemNumber(int semnumber) {
+        for (Semester s : this.semesters) {
+            if (s.getSemNumber() == semnumber) {
+                return s;
+            }
+        }
+        return null;
+    }
 
     /**
      * Returns Semester matching semester number provided.

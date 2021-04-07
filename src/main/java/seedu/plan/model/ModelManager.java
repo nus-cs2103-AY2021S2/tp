@@ -338,7 +338,7 @@ public class ModelManager implements Model {
         CollectionUtil.requireAllNonNull(semNumber, module);
         try {
             Plan plan = modulePlanner.getPersonList().get(planNumber);
-            Semester semester = plan.getSemesters().get(semNumber);
+            Semester semester = plan.getSemesterBySemNumber(semNumber);
             List<Module> addedModules = semester.getModules();
             for (Module m : addedModules) {
                 if (m.getModuleCode().equals(module.getModuleCode())) {
@@ -355,7 +355,7 @@ public class ModelManager implements Model {
     public void addModule(int planNumber, int semNumber, Module module) {
         Plan originalPlan = modulePlanner.getPersonList().get(planNumber);
         Plan newPlan = originalPlan;
-        Semester semester = newPlan.getSemesters().get(semNumber);
+        Semester semester = newPlan.getSemesterBySemNumber(semNumber);
         semester.addModule(module);
         newPlan.addNumModules();
         modulePlanner.setPlan(originalPlan, newPlan);
