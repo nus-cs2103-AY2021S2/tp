@@ -29,8 +29,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final int PHONE_LENGTH = 20;
     public static final int TAG_LENGTH = 30;
-    public static final int ADDRESS_LENGTH = 255;
-    public static final int EMAIL_LENGTH = 255;
+
     public static final int INTEGER_LENGTH = 10;
     public static final int NAME_LENGTH = 80;
 
@@ -153,7 +152,6 @@ public class ParserUtil {
     public static OrderDescription parseOrderDescription(String orderDescription) throws ParseException {
         requireNonNull(orderDescription);
         String trimmedOrderDescription = orderDescription.trim();
-
         if (!OrderDescription.isValidOrderDescription(trimmedOrderDescription)) {
             throw new ParseException(OrderDescription.MESSAGE_CONSTRAINTS);
         }
@@ -213,6 +211,9 @@ public class ParserUtil {
     public static DeliveryDate parseDeliveryDate(String deliveryDate) throws ParseException {
         requireNonNull(deliveryDate);
         String trimmedDeliveryDate = deliveryDate.trim();
+        if (trimmedDeliveryDate.isEmpty()) {
+            throw new ParseException(DeliveryDate.MESSAGE_EMPTY);
+        }
         if (!DeliveryDate.isValidFormat(trimmedDeliveryDate)) {
             System.out.println("not valid format");
             throw new ParseException(DeliveryDate.MESSAGE_CONSTRAINTS_FORMAT);
