@@ -21,12 +21,12 @@ public class DoneCommandParserTest {
     private DoneCommandParser parser = new DoneCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsDoneCommand() {
         assertParseSuccess(parser, "1", new DoneCommand(IDENTIFIER_FIRST_PERSON));
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
+    public void parse_invalidArgs_throwsDoneException() {
         assertParseFailure(parser, "a", ParserUtil.MESSAGE_INVALID_IDENTIFIER + "\n\n"
                 + String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE));
     }
