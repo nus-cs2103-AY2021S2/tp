@@ -82,7 +82,9 @@ public class CommandTestUtil {
             " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_PROPERTY_POSTAL_DESC =
             " " + PREFIX_POSTAL + "12a"; // 'a' not allowed in postal codes
-    public static final String INVALID_PROPERTY_DEADLINE_DESC =
+    public static final String INVALID_PROPERTY_DEADLINE_IN_INVALID_FORMAT_DESC =
+            " " + PREFIX_DEADLINE + "30-4-2021"; // 1 digit in month part is not valid
+    public static final String INVALID_PROPERTY_DEADLINE_IN_VALID_FORMAT_DESC =
             " " + PREFIX_DEADLINE + "31-04-2021"; // 31st April not valid
     public static final String INVALID_PROPERTY_TAG_DESC =
             " " + PREFIX_TAGS + "4 bedrooms*"; // '*' not allowed in tags
@@ -118,9 +120,13 @@ public class CommandTestUtil {
             " " + PREFIX_NAME + "Meet Alex&"; // '&' not allowed in names
     public static final String INVALID_APPOINTMENT_REMARK_DESC =
             " " + PREFIX_REMARK; // empty string not allowed for remark
-    public static final String INVALID_APPOINTMENT_DATE_DESC =
+    public static final String INVALID_APPOINTMENT_DATE_IN_INVALID_FORMAT_DESC =
+            " " + PREFIX_DATE + "30-4-2021"; // 1 digit in month part is not valid
+    public static final String INVALID_APPOINTMENT_DATE_IN_VALID_FORMAT_DESC =
             " " + PREFIX_DATE + "31-04-2021"; // 31st April not valid
-    public static final String INVALID_APPOINTMENT_TIME_DESC =
+    public static final String INVALID_APPOINTMENT_TIME_IN_INVALID_FORMAT_DESC =
+            " " + PREFIX_TIME + "950"; // there must be 4 digits in a valid time
+    public static final String INVALID_APPOINTMENT_TIME_IN_VALID_FORMAT_DESC =
         " " + PREFIX_TIME + "1260"; // 60 is not valid for the minute component
 
     // For testing of SortAppointmentDescriptor and SortPropertyDescriptor

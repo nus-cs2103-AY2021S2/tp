@@ -27,6 +27,13 @@ public class UniquePropertyList implements Iterable<Property> {
     }
 
     /**
+     * Returns true if the list is empty.
+     */
+    public boolean isEmpty() {
+        return internalList.isEmpty();
+    }
+
+    /**
      * Adds a Property to the list.
      * The Property must not already exist in the list.
      */

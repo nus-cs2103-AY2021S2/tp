@@ -42,7 +42,7 @@ public class AddPropertyCommand extends Command {
             + PREFIX_TYPE + "Hdb "
             + PREFIX_ADDRESS + "Blk 150 Bishan Street 11 #02-101 "
             + PREFIX_POSTAL + "570150 "
-            + PREFIX_DEADLINE + "30-6-2021 "
+            + PREFIX_DEADLINE + "30-06-2021 "
             + PREFIX_REMARK + "Urgent to sell "
             + PREFIX_CLIENT_NAME + "George "
             + PREFIX_CLIENT_CONTACT + "91124788 "

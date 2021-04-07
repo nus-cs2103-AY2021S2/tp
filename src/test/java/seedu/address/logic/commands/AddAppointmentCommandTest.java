@@ -148,6 +148,11 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
+        public boolean hasProperty() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addProperty(Property property) {
             throw new AssertionError("This method should not be called.");
         }
@@ -214,6 +219,11 @@ public class AddAppointmentCommandTest {
 
         @Override
         public boolean hasAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAppointment() {
             throw new AssertionError("This method should not be called.");
         }
 
