@@ -20,13 +20,13 @@ public class FindCommand extends Command {
             + "all fields.\n"
             + "Parameters: [KEYWORD]\n"
             + "All parameters are optional, but least one parameter to edit must be provided.\n"
-            + "Example: " + COMMAND_WORD + " get github";
+            + "Example: " + COMMAND_WORD + " GET github";
 
     public static final String MESSAGE_USAGE_2 = COMMAND_WORD + " (precise search)" + ": Find endpoints containing the "
             + "search word/s based on the prefix.\n"
             + "Parameters: -x [METHOD] -u [URL] -d [DATA] -h [HEADER] -t [TAG]\n"
             + "All parameters are optional, but least one parameter to edit must be provided.\n"
-            + "Example: " + COMMAND_WORD + " -x get -u google";
+            + "Example: " + COMMAND_WORD + " -x GET -u google";
 
     public static final String MESSAGE_USAGE = MESSAGE_USAGE_1 + "\n\n" + MESSAGE_USAGE_2;
 

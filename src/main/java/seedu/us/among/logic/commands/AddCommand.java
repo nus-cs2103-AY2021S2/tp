@@ -20,7 +20,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_API_EXAMPLE_1 = "1. "
             + COMMAND_WORD + " "
-            + PREFIX_METHOD + " get "
+            + PREFIX_METHOD + " GET "
             + PREFIX_ADDRESS + " http://localhost:3000/ "
             + PREFIX_DATA + " {\"some\": \"data\"} "
             + PREFIX_HEADER + " \"key1: value1\" "
@@ -30,7 +30,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_API_EXAMPLE_2 = "2. "
             + COMMAND_WORD + " "
-            + PREFIX_METHOD + " get "
+            + PREFIX_METHOD + " GET "
             + PREFIX_ADDRESS + " https://api.data.gov.sg/v1/environment/air-temperature";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -69,7 +69,7 @@ public class AddCommand extends Command {
         }
 
         model.addEndpoint(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), toAdd, false);
     }
 
     @Override

@@ -36,7 +36,7 @@ import seedu.us.among.ui.UiManager;
  */
 public class ImPoster extends Application {
 
-    public static final Version VERSION = new Version(1, 3, 1, true);
+    public static final Version VERSION = new Version(1, 4, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(ImPoster.class);
 

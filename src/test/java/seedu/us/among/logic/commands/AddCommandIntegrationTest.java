@@ -1,7 +1,7 @@
 package seedu.us.among.logic.commands;
 
+import static seedu.us.among.logic.commands.CommandTestUtil.assertAddCommandSuccess;
 import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.us.among.testutil.TypicalEndpoints.getTypicalEndpointList;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,8 +33,8 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getEndpointList(), new UserPrefs());
         expectedModel.addEndpoint(validEndpoint);
 
-        assertCommandSuccess(new AddCommand(validEndpoint), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validEndpoint), expectedModel);
+        assertAddCommandSuccess(new AddCommand(validEndpoint), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validEndpoint), expectedModel, validEndpoint);
     }
 
     @Test

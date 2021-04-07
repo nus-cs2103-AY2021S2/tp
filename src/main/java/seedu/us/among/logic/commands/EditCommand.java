@@ -37,7 +37,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_API_EXAMPLE_1 = "1. "
             + COMMAND_WORD + " " + " 1 "
-            + PREFIX_METHOD + " get "
+            + PREFIX_METHOD + " GET "
             + PREFIX_ADDRESS + " http://localhost:3000/ "
             + PREFIX_DATA + " {\"some\": \"new data\"}\n";
 
@@ -47,14 +47,6 @@ public class EditCommand extends Command {
             + PREFIX_HEADER + " \"key2: newvalue2\" "
             + PREFIX_TAG + " search "
             + PREFIX_TAG + " important\n";
-
-    public static final String MESSAGE_API_EXAMPLE_3 = "3. "
-            + COMMAND_WORD + " " + " 1 "
-            + PREFIX_HEADER + " //remove all headers \n";
-
-    public static final String MESSAGE_API_EXAMPLE_4 = "4. "
-            + COMMAND_WORD + " " + " 1 "
-            + PREFIX_TAG + " //removes all tags \n";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of an existing API endpoint "
             + "identified using its displayed index from the API endpoint list. "
@@ -69,9 +61,7 @@ public class EditCommand extends Command {
             + "one endpoint parameter must be provided.\n\n"
             + "Examples: \n"
             + MESSAGE_API_EXAMPLE_1
-            + MESSAGE_API_EXAMPLE_2
-            + MESSAGE_API_EXAMPLE_3
-            + MESSAGE_API_EXAMPLE_4;
+            + MESSAGE_API_EXAMPLE_2;
 
     public static final String MESSAGE_EDIT_ENDPOINT_SUCCESS = "Edited endpoint:\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one parameter to edit must be provided.";
@@ -114,7 +104,7 @@ public class EditCommand extends Command {
 
         model.setEndpoint(endpointToEdit, editedEndpoint);
         model.updateFilteredEndpointList(model.getFilteredPredicate());
-        return new CommandResult(String.format(MESSAGE_EDIT_ENDPOINT_SUCCESS, editedEndpoint));
+        return new CommandResult(String.format(MESSAGE_EDIT_ENDPOINT_SUCCESS, editedEndpoint), editedEndpoint, false);
     }
 
     /**

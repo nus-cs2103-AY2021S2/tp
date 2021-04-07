@@ -13,7 +13,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_INDEX = "Either no index has been provided or "
             + "index provided is not a non-zero unsigned integer within the "
             + "allowed range.\n";
-    public static final String MESSAGE_ENDPOINTS_LISTED_OVERVIEW = "%1$d API endpoints listed!";
+    public static final String MESSAGE_ENDPOINTS_LISTED_OVERVIEW = "%1$d API endpoints listed!"
+            + " Use the List command to get back the full list!";
     public static final String MESSAGE_INVALID_JSON = "The request was not performed successfully. Check"
             + " that your data is added in the correct JSON format.";
     public static final String MESSAGE_CONNECTION_ERROR = "Connection could not be established. Possible sources of "
