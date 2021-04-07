@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Class Person {
+Class Contact {
 }
 
 Package Tag{
@@ -12,7 +12,7 @@ Class Tag
 Class ChildTag
 }
 
-Person *-right-> "*" Tag
+Contact *-right-> "*" Tag
 Tag <|-- ChildTag
 
 @enduml
