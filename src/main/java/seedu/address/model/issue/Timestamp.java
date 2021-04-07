@@ -20,7 +20,7 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class Timestamp implements Comparable<Timestamp> {
 
-    public static final String TIMESTAMP_PATTERN = "yyyy/M/d h:mma";
+    public static final String TIMESTAMP_PATTERN = "yyyy/MM/dd hh:mma";
 
     public static final DateTimeFormatter FORMATTER = new DateTimeFormatterBuilder().appendPattern(TIMESTAMP_PATTERN)
             .parseDefaulting(ChronoField.ERA, 1)
@@ -30,12 +30,12 @@ public class Timestamp implements Comparable<Timestamp> {
     public static final String MESSAGE_CONSTRAINTS = "Timestamps should be of valid date and time in the format "
             + TIMESTAMP_PATTERN + "\n\n"
             + "yyyy - 4 digit year (e.g. 2021)\n"
-            + "M - month in digits (e.g. 1, 01, 001, 12) (can be left padded with 0)\n"
-            + "d - day in digits (e.g. 1, 01, 001, 31) (can be left padded with 0)\n"
-            + "h - hour (1-12) (midnight is 12:00am)\n"
+            + "MM - 2 digits month (e.g. 01, 05, 12)\n"
+            + "dd - 2 digits day (e.g. 1, 01, 05, 31)\n"
+            + "hh - 2 digits hour (01-12) (midnight is 12:00am)\n"
             + "mm - minutes (0-59)\n"
             + "a - case-insensitive AM/PM\n"
-            + "Example: 2021/1/1 12:00am";
+            + "Example: 2021/01/01 12:00am";
 
     public static final String MESSAGE_INVALID_FUTURE = "Timestamps should not be in the future";
 

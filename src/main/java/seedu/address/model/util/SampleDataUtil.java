@@ -86,13 +86,13 @@ public class SampleDataUtil {
     public static Issue[] getSampleIssues() {
         return new Issue[] {
             new Issue(new seedu.address.model.issue.RoomNumber("01-234"), new Description("Broken light"),
-                    new Timestamp("2020/1/1 12:00PM"), new Status(IssueStatus.Closed),
+                    new Timestamp("2020/01/01 12:00PM"), new Status(IssueStatus.Closed),
                     new Category("Fixtures"), new HashSet<>()),
             new Issue(new seedu.address.model.issue.RoomNumber("01-234"), new Description("Cupboard door missing"),
-                    new Timestamp("2021/01/31 4:12PM"), new Status(IssueStatus.Pending),
+                    new Timestamp("2021/01/31 04:12PM"), new Status(IssueStatus.Pending),
                     new Category("Furniture"), new HashSet<>(Arrays.asList(new Tag("MEDIUM")))),
             new Issue(new seedu.address.model.issue.RoomNumber("03-325"), new Description("Leaking ceiling"),
-                    new Timestamp("2020/08/10 3:21PM"), new Status(IssueStatus.Closed),
+                    new Timestamp("2020/08/10 03:21PM"), new Status(IssueStatus.Closed),
                     new Category("Building Works"), new HashSet<>(Arrays.asList(new Tag("HIGH")))),
             new Issue(new seedu.address.model.issue.RoomNumber("05-672"), new Description("Lumpy mattress"),
                     new Timestamp("2020/11/12 12:11AM"), new Status(IssueStatus.Pending),
