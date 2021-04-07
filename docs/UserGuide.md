@@ -6,13 +6,13 @@ title: User Guide
 **PlanIT** is a task managing application made specially for NUS computing students like you, from computing students
 like us. Forgot to submit your lab worksheet, or too many assignments and you don't know where to get started? PlanIT
 gives you the confidence that your busy schedule is organized and accounted for. Quickly and efficiently make and edit
-various tasks, mark deadlines, take note of remaining tasks, and more.
+various tasks, mark dates, take note of remaining tasks, and more.
 
 PlanIt also includes a calendar and a countdown feature to better manage your deadlines. It is even optimised for all of
 you who prefer typing, so that bookkeeping can be done faster. Now you can make progress on the things that are
 more important to you.
 
-Objective:
+#### Objective:
 PlanIT's objective is to improve productivity for students with features and tools to help
 students manage their workload. These features significantly reduces the trouble of having to keep track of tasks,
 especially those that are essential yet repetitive. Features such as recurring schedule and date allows students to
@@ -77,7 +77,7 @@ Tasks can have the following attributes:
 | Title | `t/` | A short description or name for the task. Titles can only contain alphanumeric values. <br>:information_source:  Every task must have a title. |
 | Date | `set/` | A date to represent the deadline of a Task or to represent the day that the task will be carried out. <ul><li>Dates should be of the format dd/mm/yyyy e.g 02/06/2021</li></ul>|
 | Duration | `s/` | The start and end time of a task. You should specify start time and end time in the 24-hour clock format. <ul><li>Duration should be of the format hh:mm-hh:mm e.g 12:30-13:30 </li></ul>|
-| Recurring Schedule | `r/` | Represents a task that might repeat weekly or biweekly. <br> :bulb: You can use this to quickly add weekly tutorials or biweekly lab session for the entire semester. <ul><li>Recurring Schedule should be of the format [dd/mm/yyyy][DAY][FREQUENCY] e.g [23/10/2021][mon][weekly]</li> <li>DAY should be either: mon, tue, wed, thu, fri, sat, sun. Days are case-insensitive.</li> <li>FREQUENCY should be either: weekly or biweekly and is also case-insensitive.</li>|
+| Recurring Schedule | `r/` | Represents a task that might repeat weekly or biweekly. <br> :bulb: You can use this to quickly add weekly tutorials or biweekly lab session for the entire semester. <br><br>Recurring Schedule should be of the format [END DATE][DAY][FREQUENCY] e.g [23/10/2021][mon][weekly] <br><br>**Recurring dates that is of the upcoming day of week up till the [END DATE] will be generated for the task.** <br><br>**Note: Suppose today is 06/04/2021 which falls on a Tuesday, user enters [30/06/2021][tue][weekly] for the recurring schedule field. The date of 06/04/2021 will not be included in the recurring dates and only recurring dates from the following tuesday will be included up till 30th June 2021 on a weekly basis.** <br><br>**Note: Existing recurring dates that has passed the current system date will be removed automatically from the existing task upon application startup.** <ul><li>END DATE should be in the format dd/mm/yyyy, any number greater than 31 is invalid for the day and any number greater than 12 is invalid for the month.</li><li>DAY should be either: mon, tue, wed, thu, fri, sat, sun and is case-insensitive.</li> <li>FREQUENCY should be either: weekly or biweekly and is also case-insensitive.</li>|
 | Description | `d/` | A text description of the task. Your description should only contain alphanumeric values.|
 | Tag | `t/` | A label attached to a task for easy grouping and searching of tasks. Your tag should only contain alphanumeric values. <br> :bulb: You can use this to group tasks by modules e.g adding a `CS2103` tag to a task. |
 | Status | `s/` | Reflects the current status of your task. Status can only be either 'done' or 'not done'.<br>:information_source:   Your task's status will be set to 'not done' by default. |
@@ -140,7 +140,7 @@ Format: `help`
 
 ### Making a task: `mk`
 
-Makes a task to the planner. <br>
+Adds a task to the planner. <br>
 Task with the same title cannot be added to the planner
 so that you will not have to worry about adding duplicate task by accident.
 
@@ -152,9 +152,9 @@ Format: `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION]
   should be expressed as `01/12/2021`, not 1/12/2021. Furthermore, Date should be
   a day that is after the current day.
 * Duration should be numeric, contain 2 timings, and should be in 24 hours format with a colon, like `22:30-22:45`.
-  Duration can only exists when there is date or recurring schedule. 
+  Duration can only exist when there is date or recurring schedule. 
 * Description can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>.
-* Recurring schedule (can be optional) should have 3 conditions which consist of:
+* Recurring schedule should have 3 conditions which consist of:
     * An end date when the task stops recurring.
     * A day of the week that the task recurs on.
     * Frequency of the recurring task.
@@ -167,10 +167,10 @@ A task can have any number of tags (including 0)
 
 Examples:
 * `mk n/eat dinner`<br>Makes a task titled 'eat dinner'.
-* `mk n/do project r/[29/05/2021][thu][Biweekly]` <br>Makes a task titled 'do project' and will recur every
-  thursday, biweekly until 29th May 2021.
+* `mk n/do project r/[29/06/2021][thu][Biweekly]` <br>Makes a task titled 'do project' and will 
+  generate recurring dates that is on thursday, biweekly until 29th Jun 2021.
 
-Example of making task with multiple lines of description:
+Example of making a task with multiple lines of description:
 ```
 mk n/take a break d/
 - do 1
@@ -180,8 +180,8 @@ mk n/take a break d/
 ### Editing a task : `edit`
 
 Edits an existing task in the planner
-so that you can have the flexibility to make changes to a certain task
-if there is an input error when adding the task to the planner or there is a change in task requirements.
+so that you can have the flexibility in making changes to a certain task
+if there is a change in your task or schedule.
 
 Format: `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION]
 [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`
@@ -198,35 +198,11 @@ Examples:
 *  `edit 2 n/Buy textbook t/ set/` Edits the title of the 2nd task to be `Buy textbook` and clears all existing tags
    and the date.
 
-
-### Adding / Editing recurring schedule in a task : `mk n/TITLE r/RECURRING SCHEDULE` or `edit INDEX r/RECURRING SCHEDULE`
-
-Adds / Edits a recurring schedule to a new or existing task in the planner
-so that you can schedule the task in a weekly/biweekly basis
-on a particular day of week for the future all at once.
-<br>**Note: Existing recurring dates that has passed the current system date will be removed
-automatically from the existing task upon application startup.**
-
-Format: `mk n/TITLE r/[END DATE][DAY OF WEEK][WEEK FREQUENCY]` or `edit INDEX r/[END DATE][DAY OF WEEK][WEEK FREQUENCY]`
-
-* The `RECURRING SCHEDULE` is an **optional field** by default when adding a task so it can be excluded
-  and will be blank if it is just `r/` too.
-* Similarly, the recurring schedule can be set to blank in editing field for task by typing `r/` only.
-* All three fields `END DATE`, `DAY OF WEEK` and `WEEK FREQUENCY` must be present when there is input after `r/`.
-* You can add/edit recurring schedule with duration but not with a deadline date.
-* `END DATE` format is in `dd/mm/yyyy` and it cannot come before the current system date. <br>
-  **Any number greater than 31 is invalid for day and any number greater than 12 is invalid for month.**
-* `DAY OF WEEK` is **case-insensitive** and can be represented in the
-  form of the first 3 letters of the day from Monday to Sunday.
-* `WEEK FREQUENCY` is **case-insensitive** and can be **weekly or biweekly**.
-* Recurring dates up till the `END DATE` will be generated for the task.
-* An example of `RECURRING SCHEDULE`: `[23/10/2021][Mon][weekly]`
-
+   
 Examples:
 *  `mk n/CS2103 team meeting r/[31/05/2021][mon][weekly]` Adds the task with the title `CS2103 team meeting` to the
-   planner and generate recurring dates that is on `mon` `weekly` up to `31/05/2021`.
-*  `edit 1 r/[23/12/2021][mon][biweekly]` modifies the first task in the planner and generate recurring dates that
-   is on `mon` `biweekly` up to `23/12/2021`.
+   planner and generate upcoming recurring dates that is on `mon` `weekly` up to `31/05/2021`.
+
 
 ### Adding date to a task : `edit`
 
@@ -247,6 +223,8 @@ The index **must be a positive integer** 1, 2, 3, …​
 Examples:
 *  `edit 1 set/13/05/2021` Adds a date to the 1st task on the list which is to be `13 May 2021`.
 *  `edit 2 set/` Clears the existing date of 2nd task on the list.
+*  `edit 1 r/[23/12/2021][mon][biweekly]` modifies the first task in the planner and generate upcoming recurring dates 
+   that is on `mon` `biweekly` up to `23/12/2021`.
 
 ### Postpone a task's date : `snooze`
 
@@ -294,26 +272,38 @@ Format: `sort by a` or `sort by d`
 * If two tasks have the same dates, they will be ordered in equal priority.
 
 
-### Searching a task by title or description: `find` or `find d/`
+### Searching a task by title: `find`
 
 Find matching tasks based on the title keyword(s) provided 
 so that you can find matching tasks quickly when only certain words from the title of the task can be remembered.
 
-Find matching tasks based on the description keywords provided
-so that you can find matching tasks quickly when only certain words from the multi-line description can be remembered.
-
-Format: `find KEYWORD [MORE_KEYWORDS]` or `find d/KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is **case-insensitive**. e.g `project` will match `Project`
 * The order of the keywords does not matter. e.g. `CS2103 Project` will match `Project CS2103`
-* Only full keywords will be matched e.g. `proj` will not match `projects`
-* Tasks matching at least one keyword will be returned e.g. `find proj` will match `find projects`
-* No `t/` or `d/` should be in the search by title query
-* No `t/` should be in the search by description query
+* Only full keywords will be matched. e.g. `proj` will not match `projects`
+* No prefix (i.e.`t/`, `d/`)  should be in the search task by title query.
 
 Examples:
 * `find CS2103 team project` returns matching tasks with title of following words `CS2103`, `team`, `project`
+
+
+### Searching a task by description: `find d/`
+
+Find matching tasks based on the description keywords provided
+so that you can find matching tasks quickly when only certain words from the multi-line description can be remembered.
+
+Format: `find d/KEYWORD [MORE_KEYWORDS]`
+
+* The search is **case-insensitive**. e.g `project` will match `Project`
+* The order of the keywords does not matter. e.g. `CS2103 Project` will match `Project CS2103`
+* Only full keywords will be matched. e.g. `proj` will not match `projects`
+* Only a single `d/` description prefix should be allowed.
+* No `t/` tag prefix should be in the search task by description query.
+
+Examples:
 * `find d/write user guide` returns matching tasks with description of following words `user`, `guide`, `write`
+
 
 ### Searching a task by tag: `find t/`
 
@@ -325,8 +315,9 @@ Format: `find t/KEYWORD`
 * The search is **case-insensitive**. e.g `cs2103t` will match `CS2103T`
 * The keyword must be **single, alphanumeric and no spacing** allowed. e.g. `project CS2103` will not be allowed
   but `projectCS2103` will be acceptable.
-* Only full keyword will be matched e.g. `cs2103` will not match `cs2103t`
-* No `d/` should be in the search by tag query
+* Only full keyword will be matched. e.g. `cs2103` will not match `cs2103t`
+* No `d/` description prefix should be in the search by tag query.
+* Multiple `t/` tag prefixes are allowed in the search task by tag query.
 * Suppose a task with **multiple tags** of `cs2103` and `cs2105`, it will be returned as a matching task
   if the user inputs falls under the following cases:
   1. `t/cs2103` only
@@ -335,6 +326,10 @@ Format: `find t/KEYWORD`
 
 Examples:
 * `find t/CS2103` returns matching tasks with tag of `CS2103` or `cs2103`
+* Below is an illustration of searching matching tasks based on multiple tags:
+
+![Find Multiple Tags](images/FindMultipleTags.png)
+
 
 ### Removing a task : `rmt`
 
@@ -404,14 +399,13 @@ Format: `stat`
 
 ### View tasks on a date : `view`
 
-Displays the tasks happening on a particular date, including those recurring tasks
+Displays the tasks happening on a particular date, including recurring tasks,
 and brings the calendar to the date specified
-so that you can schedule new activities during the free time on the same day.
+so that you may find free time on the day to schedule new activities.
 
 Format: `view DATE`
 
 * Date should be in the format of dd/mm/yyyy like 12/12/2021.
-* The specified date can only be future dates, after the current date.
 
 Examples:
 * `view 03/07/2021`<br>Lists all tasks with dates or recurring dates on 03/07/2021, and brings the calendar to July
@@ -481,7 +475,9 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete Task** | `rmt INDEX`<br> e.g., `rmt 3`
 **Delete Field** | `rmf INDEX FIELD`<br> e.g., `rmf 1 d/`
-**Edit** | `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+
+**Edit** | `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 1 set/10/10/2021 d/Remember to update User Guide`
+
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find CS2103 team project` <br><br>`find [t/TAG] `<br>  e.g., `find t/CS2103` <br><br> `find [d/DESCRIPTION] ` <br> e.g., `find d/CS2103 milestone postmortem`
 **Countdown** | `count INDEX` <br> e.g., `count 2`
 **Statistics** | `stat`

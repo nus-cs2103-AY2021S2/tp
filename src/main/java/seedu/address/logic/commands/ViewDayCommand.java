@@ -18,8 +18,7 @@ import seedu.address.model.task.Task;
 public class ViewDayCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": View all tasks for the day. "
-            + "Date specified should be a future date after today.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": View all tasks for the day.\n"
             + "Parameters: DATE\n"
             + "Example: " + COMMAND_WORD + " 01/01/2022";
 
