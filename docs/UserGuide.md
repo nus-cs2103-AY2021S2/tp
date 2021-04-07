@@ -101,7 +101,9 @@ Then, include the file name under the i/ prefix when adding client. The image sh
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com l/01 Singapore Street, #23-45 ip/MediShield Life i/john_doe.png t/friends t/owesMoney`
-* `add n/Betsy Crowe e/betsycrowe@example.com l/Newgate Prison p/1234567 t/criminal i/criminal.jpeg`
+    > Output: `New client added: John Doe; Phone: 98765432; Email: johnd@example.com; Location: 01 Singapore Street, #23-45; Insurance Plan: MediShield Life; Tags: [owesMoney][friends]; Image: john_doe.png`
+* `add n/Betsy Crowe e/betsycrowe@example.com l/Newgate Prison p/12345678 t/criminal i/criminal.jpeg`
+    > Output: `New client added: Betsy Crowe; Phone: 12345678; Email: betsycrowe@example.com; Location: Newgate Prison; Tags: [criminal]; Image: criminal.jpeg`
 
 #### Listing all clients : `list`
 
@@ -117,8 +119,8 @@ Format: `show INDEX`
 
 * Shows the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `show 1` Shows the details (such as name, phone number, profile picture, insurance, etc) of the first Client on the right panel of the UI.
+Example:
+* `show 1` Shows the details (such as name, phone number, profile picture, insurance, etc) of the first Client on the right panel of the UI
 
 ![result for show command](images/show7.png)
 
@@ -136,11 +138,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOCATION] [ip/INSURANCE_PLAN
 * You can remove all the client’s tags by typing `t/` without
     specifying any tags after it.
 * You can also remove the client's existing insurance plan by typing `ip/` without specifying any insurance plan after it.
-* When specifying which image file to use, the file extension must be included in the IMAGE_FILE name.
+* When specifying which `IMAGE_FILE` to use, the file extension must be included in the `IMAGE_FILE` name.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email location of the 1st client to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/ ip/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags and remove insurance plan.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email location of the 1st client to be `91234567` and `johndoe@example.com` respectively
+*  `edit 2 n/Betsy Crower t/ ip/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags and remove insurance plan
 
 #### Locating clients by name: `find`
 
@@ -188,8 +190,8 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd client in iScam.
-* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd client in iScam
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command
 
 ### Meeting Management
 
@@ -215,8 +217,9 @@ Format: `addmeet c/CLIENT_NAME on/DATE_TIME l/LOCATION d/DESCRIPTION [t/TAG(s)]`
 * `DESCRIPTION` must have at least 1 character and at most 1000 characters.
 * There can only be 1 meeting happening at the date and time specified in `DATE_TIME`.
 
-Examples:
+Example:
 * `addmeet c/John Smith on/20-02-2022 15:00 l/Starbucks, Serangoon d/Discuss on insurance plans t/VIP`
+    > Output: `New meeting added: Client Name: John Smith; Date & Time: 20-02-2022 15:00; Location: Starbucks, Serangoon; Description: Discuss on insurance plans; Tags: [VIP]; Status: Not completed`
 
 #### Listing all meetings: `listmeet`
 
@@ -234,7 +237,7 @@ Edits an existing meeting in iScam.
 
 Format: `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/LOCATION] [d/DESCRIPTION] [t/TAG(s)] [s/COMPLETION_STATUS]`
 
-* `INDEX` refer to the meeting's index number shown in the displayed meeting list. The index **must be a positive
+* `INDEX` refers to the meeting's index number shown in the displayed meeting list. The index **must be a positive
   integer 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * If the field already has an existing value, it will be replaced by the input value.
@@ -246,8 +249,9 @@ Format: `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/LOCATION] [d/DESCRIPTI
 * If the meeting's status is already `complete`, no fields can be edited unless the status field is also being set to
   `incomplete`.
 
-Examples:
-* `editmeet 1 l/Macdonald, Simei d/Client's family will be coming along`
+Example:
+* `editmeet 1 l/Macdonald, Simei d/Client's family will be coming along` Output: (Insert Output here)
+
 
 #### Relocating a meeting: `relocate`
 
@@ -260,7 +264,7 @@ Format: `relocate INDEX l/LOCATION`
 * If the meeting specified by `INDEX` is already `complete`, this meeting cannot be relocated.
 * `LOCATION` cannot be blank and can have at most 100 characters.
 
-Examples:
+Example:
 * `relocate 1 l/KFC, Block 556 Bugis`
 
 #### Rescheduling a meeting: `reschedule`
@@ -275,7 +279,7 @@ Format: `reschedule INDEX on/DATE_TIME`
 * `DATE_TIME` **cannot be in the past** as of the moment when this command is called.
 * `DATE_TIME` **cannot be in conflict** with the date and time of any existing meeting.
 
-Examples:
+Example:
 * `reschedule 3 on/08-10-2021 20:00`
 
 #### Finding meetings by keywords: `findmeet`
@@ -293,16 +297,14 @@ Format: `findmeet KEYWORD [MORE_KEYWORDS]`
       (e.g. `10-02`, `10-02-2022`, `sat` or `saturday`) .
 * Meeting matching all keywords will be returned (i.e. `AND` search). e.g. `Johnson Smith` will not return
   `Sam Smith` and `Johnson Drake` but will return `Johnson Shawn Smith`.
-
-Examples:
-* `findmeet johnson 2020` can return a meeting with Johnson on 2020.
-* `findmeet complete` returns completed meetings.
-* `findmeet tue` and `findmeet tuesday` both returns meetings that take place on Tuesday.
-* `findmeet 05-2022` returns meetings that take place on May 2022.
-* `findmeet 01-05-2022 Sam` can return a meeting with Sam on 1 May 2022.
+* `findmeet johnson 2020` can return a meeting with Johnson on 2020
+* `findmeet complete` returns completed meetings
+* Both `findmeet tue` and `findmeet tuesday` returns meetings that take place on Tuesday
+* `findmeet 05-2022` returns meetings that take place on May 2022
+* `findmeet 01-05-2022 Sam` can return a meeting with Sam on 1 May 2022
   ![result for 'findmeet 05-2022 Sam'](images/findmeetResult.png)
 
-#### Completing a meeting `donemeet`
+#### Completing a meeting: `donemeet`
 Marks a specified existing meeting from iScam as completed.
 
 Format: `donemeet INDEX`
@@ -329,7 +331,7 @@ Format: `help`
 
 #### Clearing all entries : `clear`
 
-Clears all client and meeting entries from iScam.
+Clears all clients and meeting entries from iScam.
 
 Format: `clear`
 
@@ -343,7 +345,7 @@ Format: `exit`
 #### Adding images for clients
 
 Images for clients can be added by placing an image in the `/data` folder, with the
-`clientbook.json` and `meetingbook.json` files. Any image file used must be of file
+`clientbook.json` and `meetingbook.json` files. Any `IMAGE_FILE` used must be of file
 type `.jpg`, `.jpeg` or `.png`.
 
 ### Managing Data Files
