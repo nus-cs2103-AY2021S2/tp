@@ -102,6 +102,9 @@ public class CommandHistoryTest {
         // same object -> return true
         assertTrue(typicalHistory.equals(typicalHistory));
 
+        // different type -> return false
+        assertFalse(typicalHistory.equals("hi there"));
+
         // same entries -> return true
         assertTrue(typicalHistory.equals(copy));
 

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -191,7 +192,7 @@ public class ParserUtil {
         return new IsOccupied(trimmedRoomOccupancyStatus);
     }
 
-    //==========Issue Parsing Method========================================================
+    // ==========Issue Parsing Method========================================================
 
     /**
      * Parses a {@code String roomNumber} into a {@code RoomNumber}.
@@ -235,6 +236,11 @@ public class ParserUtil {
         if (!Timestamp.isValidTimestamp(trimmedTimestamp)) {
             throw new ParseException(Timestamp.MESSAGE_CONSTRAINTS);
         }
+
+        LocalDateTime datetime = LocalDateTime.parse(trimmedTimestamp.toUpperCase(), Timestamp.FORMATTER);
+        if (datetime.compareTo(LocalDateTime.now()) > 0) {
+            throw new ParseException(Timestamp.MESSAGE_INVALID_FUTURE);
+        }
         return new Timestamp(trimmedTimestamp);
     }
 
@@ -271,12 +277,13 @@ public class ParserUtil {
         return new Category(trimmedCategory);
     }
 
-    //==========Alias Parsing Method========================================================
+    // ==========Alias Parsing Method========================================================
 
     /**
      * Parses a {@code String aliasName} and {@code String command} into a {@code Alias}.
+     *
      * @param aliasName name of the alias
-     * @param command content of the command
+     * @param command   content of the command
      * @throws ParseException if the inputs are invalid
      */
     public static Alias parseAlias(String aliasName, String command) throws ParseException {

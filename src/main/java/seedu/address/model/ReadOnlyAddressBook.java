@@ -1,6 +1,8 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Alias;
+import seedu.address.commons.core.AliasMapping;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.residentroom.ResidentRoom;
@@ -34,4 +36,43 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Issue> getIssueList();
 
+    //=========== Alias =============================================================
+    /**
+     * Returns the current alias mapping.
+     *
+     * @return The mapping.
+     */
+    AliasMapping getAliasMapping();
+
+    /**
+     * Returns an Alias based on name.
+     *
+     * @param aliasName Name of the alias.
+     * @return The alias with the specified name.
+     */
+    Alias getAlias(String aliasName);
+
+    /**
+     * Checks if the current mapping contains an alias based on name.
+     *
+     * @param aliasName Name of the alias.
+     * @return Whether the mapping contains the alias.
+     */
+    boolean containsAlias(String aliasName);
+
+    /**
+     * Checks if the alias name is a reserved keyword.
+     *
+     * @param aliasName Name of the alias.
+     * @return Whether the name is reserved.
+     */
+    boolean isReservedKeyword(String aliasName);
+
+    /**
+     * Checks if the command word is recursive.
+     *
+     * @param commandWord The command word.
+     * @return Whether the command word is recursive.
+     */
+    boolean isRecursiveKeyword(String commandWord);
 }

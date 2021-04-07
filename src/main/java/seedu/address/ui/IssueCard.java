@@ -51,6 +51,7 @@ public class IssueCard extends UiPart<Region> {
         this.issue = issue;
         id.setText(displayedIndex + ". ");
         roomNumber.setText(issue.getRoomNumber().value);
+        description.setWrapText(true);
         description.setText(issue.getDescription().value);
         timestamp.setText(issue.getTimestamp().toString());
         status.setText(issue.getStatus().value.toString());

@@ -54,6 +54,7 @@ public class UniqueRoomList implements Iterable<Room> {
             throw new DuplicateRoomException();
         }
         internalList.add(toAdd);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -74,6 +75,7 @@ public class UniqueRoomList implements Iterable<Room> {
         }
 
         internalList.set(index, editedRoom);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -85,11 +87,13 @@ public class UniqueRoomList implements Iterable<Room> {
         if (!internalList.remove(toRemove)) {
             throw new RoomNotFoundException();
         }
+        FXCollections.sort(internalList);
     }
 
     public void setRooms(UniqueRoomList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -103,6 +107,7 @@ public class UniqueRoomList implements Iterable<Room> {
         }
 
         internalList.setAll(rooms);
+        FXCollections.sort(internalList);
     }
 
     /**

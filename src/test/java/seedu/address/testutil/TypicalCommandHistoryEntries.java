@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.commandhistory.ViewHistoryCommand;
 import seedu.address.model.commandhistory.CommandHistory;
 import seedu.address.model.commandhistory.CommandHistoryEntry;
 
@@ -15,9 +17,10 @@ public class TypicalCommandHistoryEntries {
 
     public static final int DEFAULT_MAX_RANDOM_ENTRY_LENGTH = 25;
 
-    public static final CommandHistoryEntry HELP = new CommandHistoryEntry("help");
-    public static final CommandHistoryEntry HISTORY_ALL = new CommandHistoryEntry("history");
-    public static final CommandHistoryEntry HISTORY_FIVE = new CommandHistoryEntry("history 5");
+    public static final CommandHistoryEntry HELP = new CommandHistoryEntry(HelpCommand.COMMAND_WORD);
+    public static final CommandHistoryEntry HISTORY_ALL = new CommandHistoryEntry(ViewHistoryCommand.COMMAND_WORD);
+    public static final CommandHistoryEntry HISTORY_FIVE =
+            new CommandHistoryEntry(ViewHistoryCommand.COMMAND_WORD + " 5");
 
     /**
      * Prevent instantiation.

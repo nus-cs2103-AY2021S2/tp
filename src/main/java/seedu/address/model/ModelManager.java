@@ -39,12 +39,13 @@ public class ModelManager implements Model {
     private final FilteredList<Room> filteredRooms;
     private final FilteredList<ResidentRoom> filteredResidentRooms;
     private final FilteredList<Issue> filteredIssues;
+    private final AliasMapping aliasMapping;
 
     /**
      * Initializes a ModelManager with the given addressBook, userPrefs and commandHistory.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-            ReadOnlyCommandHistory commandHistory) {
+        ReadOnlyCommandHistory commandHistory) {
         super();
         requireAllNonNull(addressBook, userPrefs, commandHistory);
 
@@ -58,6 +59,8 @@ public class ModelManager implements Model {
         filteredRooms = new FilteredList<>(this.statefulAddressBook.getRoomList());
         filteredResidentRooms = new FilteredList<>(this.statefulAddressBook.getResidentRoomList());
         filteredIssues = new FilteredList<>(this.statefulAddressBook.getIssueList());
+
+        this.aliasMapping = this.statefulAddressBook.getAliasMapping();
 
         this.commandHistory = new CommandHistory(commandHistory);
     }
@@ -282,6 +285,14 @@ public class ModelManager implements Model {
 
 
     // =========== Filtered ResidentRoom List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code ResidentRoom} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<ResidentRoom> getFilteredResidentRoomList() {
+        return filteredResidentRooms;
+    }
 
     @Override
     public void updateFilteredResidentRoomList(Predicate<ResidentRoom> predicate) {
@@ -333,6 +344,12 @@ public class ModelManager implements Model {
         setIssue(target, closedIssue);
     }
 
+    @Override
+    public boolean issuesContainRoom(Room target) {
+        return statefulAddressBook.issuesContainRoom(target);
+    }
+
+
     // =========== Filtered Issue List Accessors =============================================================
 
     /**
@@ -370,29 +387,30 @@ public class ModelManager implements Model {
                 && commandHistory.equals(other.commandHistory)
                 && filteredResidents.equals(other.filteredResidents)
                 && filteredRooms.equals(other.filteredRooms)
-                && filteredIssues.equals(other.filteredIssues);
+                && filteredIssues.equals(other.filteredIssues)
+                && aliasMapping.equals(other.aliasMapping);
     }
 
     // =========== Alias =============================================================
     @Override
     public AliasMapping getAliasMapping() {
-        return userPrefs.getAliasMapping();
+        return statefulAddressBook.getAliasMapping();
     }
 
     @Override
     public void setAliasMapping(AliasMapping aliasMapping) {
         requireNonNull(aliasMapping);
-        userPrefs.setAliasMapping(aliasMapping);
+        statefulAddressBook.setAliasMapping(aliasMapping);
     }
 
     @Override
     public void addAlias(Alias alias) {
-        userPrefs.addAlias(alias);
+        statefulAddressBook.addAlias(alias);
     }
 
     @Override
     public void deleteAlias(String aliasName) {
-        userPrefs.deleteAlias(aliasName);
+        statefulAddressBook.deleteAlias(aliasName);
     }
 
     // =========== Undo/Redo =============================================================
