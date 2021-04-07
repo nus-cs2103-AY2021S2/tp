@@ -2,9 +2,7 @@ package dog.pawbook.logic.commands;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ENTITY_ID;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_OUT_OF_BOUNDS_ID_INTEGER;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_OWNERID_15;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
-import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -32,11 +30,4 @@ public class ViewCommandTest {
     public void execute_invalidId_throwsException() {
         assertCommandFailure(new ViewCommand(INVALID_OUT_OF_BOUNDS_ID_INTEGER), model, MESSAGE_INVALID_ENTITY_ID);
     }
-
-    @Test
-    public void execute_validId_commandSuccess() {
-        assertCommandSuccess(new ViewCommand(VALID_OWNERID_15), model, String , expectedModel);
-    }
-
-
 }

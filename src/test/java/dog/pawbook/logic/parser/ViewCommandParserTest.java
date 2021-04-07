@@ -35,7 +35,7 @@ public class ViewCommandParserTest {
     public void parse_emptyArguments_parseException() {
         // Test that empty arguments ParseException is thrown
         assertParseFailure(parser, INVALID_EMPTY_STRING, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                ViewCommand.MESSAGE_USAGE) );
+                ViewCommand.MESSAGE_USAGE));
     }
 
     @Test
