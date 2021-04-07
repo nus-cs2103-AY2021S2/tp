@@ -263,7 +263,7 @@ Examples:
 * `request 1 r/More sugar, spice and everything nice.` Sets the special request of the 1st order to be `More sugar, spice and everything nice.`
 * `request 2 r/` Removes the 2nd order's current special request.
 
-##### Deleting an order : `delete`
+##### Deleting an order: `delete`
 
 Deletes the specified orders from the CakeCollate database.
 
@@ -280,7 +280,7 @@ Examples:
 
 ##### Updating Delivery Status of an order
 
-###### Setting the delivery status of an order as undelivered : `undelivered`
+###### Setting the delivery status of an order as undelivered: `undelivered`
 
 Sets the delivery status of the specified order/orders from the CakeCollate database as `undelivered`.
 
@@ -297,7 +297,7 @@ Examples:
 * `undelivered 2 3` sets the delivery status of the orders with ids 2 and 3 from the 
   CakeCollate database as `undelivered`.
 
-###### Setting the delivery status of an order as delivered : `delivered`
+###### Setting the delivery status of an order as delivered: `delivered`
 
 Sets the delivery status of the specified order/orders from the CakeCollate database as `delivered`.
 
@@ -313,7 +313,7 @@ Examples:
   CakeCollate database as `delivered`.
 * `delivered 2 3` sets the delivery status of the orders with ids 2 and 3 from the CakeCollate database as `delivered`.
 
-###### Setting the delivery status of an order as cancelled : `cancelled`
+###### Setting the delivery status of an order as cancelled: `cancelled`
 
 Sets the delivery status of the specified order/orders from the CakeCollate database as `cancelled`.
 
@@ -329,7 +329,7 @@ Examples:
   CakeCollate database as `cancelled`.
 * `cancelled 2 3` sets the delivery status of the orders with ids 2 and 3 from the CakeCollate database as `cancelled`.
 
-##### Editing an order : `edit`
+##### Editing an order: `edit`
 
 Edits an existing order in the CakeCollate database.
 
@@ -366,34 +366,34 @@ Find orders whose specified field contain any of the given keywords.
 
 Format: `find [n/KEYWORD_NAME]... [p/KEYWORD_PHONE]... [e/KEYWORD_EMAIL]... [a/KEYWORD_ADDRESS]... [o/KEYWORD_ORDER_DESCRIPTION]... [t/KEYWORD_TAG]... [d/KEYWORD_DELIVERY_DATE]... [s/KEYWORD_DELIVERY_STATUS]... [r/KEYWORD_REQUEST]... `
 
-* The search is case-insensitive. e.g `hans` will match `Hans`.
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
-* Fields are searched according to specified prefixes. e.g. `n/Hans` will only find orders with name that match `Hans`.
-* Sub-strings will be matched e.g. `Han` will match `Hans`.
-* If no prefixes are specified 
-* If no prefixes are specified, orders matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
-* If multiple keywords are specified for a certain prefix, orders matching at least one keyword for the speficied field will be returned. (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+* The search is case-insensitive. E.g. `hans` will match `Hans`.
+* The order of the keywords does not matter. E.g. `Hans Bo` will match `Bo Hans`.
+* Sub-strings will be matched. E.g. `Han` will match `Hans`.
+* Fields are searched according to specified prefixes. E.g. `n/Hans` will only find orders with name that match `Hans`.
+* If no prefixes are specified, orders matching at least one keyword will be returned (i.e. `OR` search). E.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+* If multiple keywords are specified for a certain prefix, orders matching at least one keyword for the specified field will be returned (i.e. `OR` search). E.g. `n/Hans Bo` will return orders with name `Hans Gruber`, `Bo Yang`.
 * If multiple prefixes are specified, each keyword specified for each field must match orders with corresponding fields. (i.e. `AND` search) e.g. `n/Hans o/Cake` will only match orders with name that matches `Hans` and order description that matches `Cake`.
 * `AND` searches will take priority.
 
 Examples:
 * `find n/John` will return all orders with name `john`, `John Doe` or `Johnathan`.
 * `find n/Alex Bob` will return all orders with name `Alex`, `alexander`, `Bob` or `bobby`.
-* `find n/Alex o/Chocolate` will return all orders with name `Alex` and order description `Chocolate`. <br>
-  ![result for 'find n/Alex o/Chocolate'](images/findAlexChocolate.PNG) <br>
-* `find alex bernice` will return all orders that matches `alex` or `bernice`, <br>
-  ![result for 'find alex bernice'](images/findAlexBernice.PNG) <br>
+* `find n/Alex o/Chocolate` will return all orders with name `Alex` and order description `Chocolate`.<br>
+  ![result for 'find n/Alex o/Chocolate'](images/findAlexChocolate.PNG)
+<br><br>
+* `find alex bernice` will return all orders that matches `alex` or `bernice`.<br>
+  ![result for 'find alex bernice'](images/findAlexBernice.PNG)
+<br><br>
 * `find n/Alex Charlotte o/Chocolate` will return all orders that matches (`Alex` or `Charlotte`) and `Chocolate`. <br>
   ![result for 'find n/Alex Charlotte o/Chocolate'](images/findAlexCharlotteChocolate.PNG) <br>
   
-##### List all existing orders : `list`
+##### List all existing orders: `list`
 
 Shows a list of all orders in the CakeCollate database.
 
 Format: `list`
 
-##### Receiving reminders for orders : `remind`
+##### Receiving reminders for orders: `remind`
 
 Displays a list of reminder for orders that are X days within the current date.
 
@@ -437,7 +437,7 @@ Examples:
 
 ### **4.3 Others**
 
-#### Viewing help : `help`
+#### Viewing help: `help`
 
 * Gives instructions on how to enter orders into the CLI.
 * Displays a message with a list of all available commands and their format.
@@ -446,7 +446,7 @@ Examples:
 
 Format: `help`
 
-#### Exiting the program : `exit`
+#### Exiting the program: `exit`
 
 Exits the program.
 
