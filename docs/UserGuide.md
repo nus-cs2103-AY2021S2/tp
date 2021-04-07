@@ -76,6 +76,7 @@ Adds a new residence to the list of residences, default for clean status is ‘c
 
 * Names can include `@` inside. e.g `pinnacle@duxton`
 * Names can include numbers. e.g `Block71`
+* Names must include at least one alphanumeric character.
 
 Format: ` add n/RESIDENCE_NAME a/ADDRESS [c/VALID_CLEAN_STATUS] [t/TAG]... `
 
