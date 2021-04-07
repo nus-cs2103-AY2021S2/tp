@@ -11,6 +11,7 @@ import seedu.student.model.Model;
 import seedu.student.model.ReadOnlyStudentBook;
 import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.Student;
+import seedu.student.model.student.exceptions.MatriculationNumberDoesNotExistException;
 
 /**
  * API of the Logic component
@@ -23,7 +24,8 @@ public interface Logic {
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException;
+    CommandResult execute(String commandText) throws CommandException,
+            ParseException, MatriculationNumberDoesNotExistException;
 
     /**
      * Returns the AddressBook.

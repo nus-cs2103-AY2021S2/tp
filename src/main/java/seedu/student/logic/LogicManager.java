@@ -16,6 +16,7 @@ import seedu.student.model.Model;
 import seedu.student.model.ReadOnlyStudentBook;
 import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.Student;
+import seedu.student.model.student.exceptions.MatriculationNumberDoesNotExistException;
 import seedu.student.storage.Storage;
 
 /**
@@ -39,7 +40,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException,
+            MatriculationNumberDoesNotExistException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
