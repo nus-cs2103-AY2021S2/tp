@@ -751,8 +751,9 @@ Use case ends.
 <br><br>
 Use case ends.
 
-**Use case: UC04 - Mark a task as completed**
 
+**Use case: UC05 - Marking tasks complete**
+*TO BE EDITED*
 **MSS**
 
 1. User requests to <u> list tasks (UC02)</u>.
@@ -760,8 +761,8 @@ Use case ends.
 3. User chooses to mark a task as completed.
 4. User enters the index of the task to be marked.
 5. SOChedule displays a success message for marking the task as completed.
-<br><br>
-Use case ends.
+   <br><br>
+   Use case ends.
 
 **Extensions**
 
@@ -776,10 +777,6 @@ Use case ends.
 
       Use case resumes at step 2.
 
-**Use case: UC05 - Marking tasks complete**
-
-`<pending>`
-
 **Use case: UC06 - Undoing a task completion**
 
 `<pending>`
@@ -790,15 +787,90 @@ Use case ends.
 
 **Use case: UC08 - Sorting all tasks**
 
-`<pending>`
+**MSS**
+
+1. User requests to <u> list tasks (UC02)</u>.
+2. SOChedule shows a list of tasks.
+3. User chooses to sort task.
+4. User enters the sort parameter.
+5. SOChedule sorts the task list, and displays a success message.
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. The task list is empty.
+
+  Use case ends.
+
+
+* 4a. The given sort argument is invalid.
+
+    * 4a1. SOChedule shows an error message indicating the invalidity of the sort argument.
+
+      Use case resumes at step 2.
 
 **Use case: UC09 - Pinning a task**
 
-`<pending>`
+**MSS**
+
+1. User requests to <u> list tasks (UC02)</u>.
+2. SOChedule shows a list of tasks.
+3. User chooses to pin a task.
+4. User enters the index of the task to be pinned.
+5. SOChedule pins the task, <u> sorts the task list (UC08)</u>, and displays a success message for pinning the task.
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. The task list is empty.
+
+  Use case ends.
+
+
+* 3a. The given index is invalid.
+
+    * 3a1. SOChedule shows an error message indicating the invalidity of the index.
+
+      Use case resumes at step 2.
+        
+* 3b. The task specified by index is already pinned
+
+    * 3b1. SOChedule shows an error message indicating that task is already pinned.
+
+      Use Case resumes at step 2.
 
 **Use case: UC10 - Unpinning a task**
 
-`<pending>`
+**MSS**
+
+1. User requests to <u> list tasks (UC02)</u>.
+2. SOChedule shows a list of tasks.
+3. User chooses to unpin a task.
+4. User enters the index of the task to be unpinned.
+5. SOChedule unpins the task, <u> sorts the task list (UC08)</u>, and displays a success message for unpinning the task.
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. The task list is empty.
+
+  Use case ends.
+
+
+* 3a. The given index is invalid (negative or out of range).
+
+    * 3a1. SOChedule shows an error message indicating the invalidity of the index.
+
+      Use case resumes at step 2.
+    
+* 3b. The task specified by index is not pinned
+
+    * 3b1. SOChedule shows an error message indicating that task is not pinned.
+    
+      Use Case resumes at step 2.
 
 **Use case: UC11 - Clearing all completed tasks**
 
