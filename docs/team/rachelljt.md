@@ -26,7 +26,8 @@ Given below are my contributions to the project.
     which greatly saves the time of the user. 
   * Highlights: The implementation was challenging as it required me to create another predicate to filter a list of 
     uncompleted tasks. Also, I had to take into account of the different error messages thrown in different situations.
-    Also, I had to update the testing to account for the different scenarios of usage.
+    Also, I had to do heavy testing to account for the different scenarios of usage which was quite challenging as the some of the commands
+    have to be changed. 
 
 * **New Feature**: Added the ability to view a list of unassigned tasks.
   * What it does: Allows the user to view a list of tasks that they have not assigned to any member. [\#162](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/162), [\#246](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/246)
@@ -34,7 +35,8 @@ Given below are my contributions to the project.
     which greatly saves the time of the user of searching for the list of unassigned tasks.
   * Highlights: The implementation was challenging as it required me to create another predicate to filter a list of
     unassigned tasks. Also, I had to take into account of the different error messages thrown in different situations.
-    Also, I had to update the testing to account for the different scenarios of usage.
+    Also, I had to do heavy testing to account for the different scenarios of usage which was quite challenging as the some of the commands
+    have to be changed.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=rachelljt&tabRepo=AY2021S2-CS2103T-W14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
