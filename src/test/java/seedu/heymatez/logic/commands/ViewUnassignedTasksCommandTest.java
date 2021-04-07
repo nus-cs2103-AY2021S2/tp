@@ -1,7 +1,5 @@
 package seedu.heymatez.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertViewCommandFailure;
 import static seedu.heymatez.logic.commands.CommandTestUtil.showTaskAtIndex;
@@ -54,11 +52,11 @@ public class ViewUnassignedTasksCommandTest {
 
     @Test
     public void executed_noUnassignedTaskFilteredList_showsNoTask() {
-        Task HOMEWORK = new TaskBuilder().withTitle("Homework").withDescription("do CS2103tp")
+        Task homework = new TaskBuilder().withTitle("Homework").withDescription("do CS2103tp")
                 .withDeadline("2021-02-04").withTaskStatus("completed").withPriority("unassigned")
                 .withAssignees("Rachel").build();
         HeyMatez hm = new HeyMatez();
-        hm.addTask(HOMEWORK);
+        hm.addTask(homework);
         Model newModel =  new ModelManager(hm, new UserPrefs());
         assertViewCommandFailure(new ViewUnassignedTasksCommand(), newModel,
                 ViewUnassignedTasksCommand.MESSAGE_NO_UNASSIGNED_TASKS);

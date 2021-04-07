@@ -1,6 +1,5 @@
 package seedu.heymatez.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertViewCommandFailure;
 import static seedu.heymatez.logic.commands.CommandTestUtil.showTaskAtIndex;

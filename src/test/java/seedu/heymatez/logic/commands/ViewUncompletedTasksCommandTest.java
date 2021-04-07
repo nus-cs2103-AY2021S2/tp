@@ -53,10 +53,10 @@ public class ViewUncompletedTasksCommandTest {
 
     @Test
     public void executed_noUncompletedTaskFilteredList_showsNoTask() {
-        Task HOMEWORK = new TaskBuilder().withTitle("Homework").withDescription("do CS2103tp")
+        Task homework = new TaskBuilder().withTitle("Homework").withDescription("do CS2103tp")
                 .withDeadline("2021-02-04").withTaskStatus("completed").withPriority("unassigned").build();
         HeyMatez hm = new HeyMatez();
-        hm.addTask(HOMEWORK);
+        hm.addTask(homework);
         Model newModel =  new ModelManager(hm, new UserPrefs());
         assertViewCommandFailure(new ViewUncompletedTasksCommand(), newModel,
                 ViewUncompletedTasksCommand.MESSAGE_NO_UNCOMPLETED_TASKS);
