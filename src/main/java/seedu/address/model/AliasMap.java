@@ -43,7 +43,14 @@ public class AliasMap {
         SortCommand.COMMAND_WORD,
         StatsCommand.COMMAND_WORD,
         UndoCommand.COMMAND_WORD,
-        ViewCommand.COMMAND_WORD
+        ViewCommand.COMMAND_WORD,
+        "n",
+        "p",
+        "a",
+        "h",
+        "t",
+        "f",
+        "q"
     };
 
     private HashMap<String, String> aliasMap;
