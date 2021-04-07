@@ -27,9 +27,9 @@ CoLAB (Collaboration Lab) is a **desktop app for university students to manage t
 
 With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools.
 
-We have designed a user-friendly User Interface (UI) that is intuitive to both first-time users and seasoned ones. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps.
+We have designed a user-friendly User Interface (UI) that is intuitive to both first-time users and seasoned ones. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a clean and inviting Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps.
 
-We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. Get your journey started with the [Quick Start section](#3-quick-start)!
+We look forward to seeing what you accomplish with CoLAB. Get your journey started with the [Quick Start section](#3-quick-start)!
 
 --------------------------------------------------------------------------------------------------------------------
 
