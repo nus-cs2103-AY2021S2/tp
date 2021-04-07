@@ -10,8 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ModuleCode implements Comparable<ModuleCode> {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Codes should begin with uppercase CS, have 4 digits, end optionally with a " +
-            "uppercase character, and it should not be blank";
+        "Codes should begin with uppercase CS, have 4 digits, end optionally with a "
+            + "uppercase character, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "[C][S][1-6]\\d{3}[A-Z]?";
 
