@@ -4,6 +4,7 @@ import static java.lang.Exception.*;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 
+import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,6 +33,8 @@ public class TimeslotParser {
             + "> DD-MM-YY\n"
             + "> DD/MM/YYYY\n"
             + "> DD/MM/YY\n"
+            + "> YYYY-MM-DD\n"
+            + "> YY-MM-DD\n"
             + "> next DAY\n"
             + "> next month\n"
             + "> next year\n"
@@ -45,7 +49,6 @@ public class TimeslotParser {
             + "at/next [DAY] [TIME] or next [DAY]\n"
             + "Example:\n" + PREFIX_TIMESLOT_START
             + "next Wednesday 12:12pm or next Wednesday";
-
     public static final String MESSAGE_INVALID_PAST_DATE_TIME_FORMAT = "Invalid date and time!\n"
             + "This timeslot has already occurred in the past."
             + "Please input future dates and times that that have yet to occur as of now.";
@@ -91,6 +94,20 @@ public class TimeslotParser {
                     : MESSAGE_INVALID_DATE_TIME_FORMAT;
             throw new ParseException(messageUsage);
         }
+    }
+
+    public static Date parseStandardDate(String userInput) throws ParseException {
+        String formattedInput = userInput.trim();
+        for (StandardDateFormat standardDateFormat : StandardDateFormat.values()) {
+            try {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(standardDateFormat.getDatePattern());
+                simpleDateFormat.setLenient(false);
+                return simpleDateFormat.parse(formattedInput);
+            } catch (java.text.ParseException e) {
+                continue;
+            }
+        }
+        throw new ParseException(MESSAGE_INVALID_DATE_TIME_FORMAT);
     }
 
     /**
@@ -280,11 +297,15 @@ enum DateTimeFormat {
     DD_DASH_MM_DASH_YY_MERIDIAN("dd-MM-yy hh:mma"),
     DD_DASH_MM_DASH_YYYY_HR("dd-MM-yyyy HH:mm"),
     DD_DASH_MM_DASH_YYYY_MERIDIAN("dd-MM-yyyy hh:mma"),
-    YYYY_DASH_MM_DASH_DD_HR("yyyy-MM-dd HH:mm");
+    YYYY_DASH_MM_DASH_DD_HR("yyyy-MM-dd HH:mm"),
+    YYYY_DASH_MM_DASH_DD_MERIDIAN("yyyy-MM-dd hh:mma"),
+    YY_DASH_MM_DASH_DD_HR("yy-MM-dd HH:mm"),
+    YY_DASH_MM_DASH_DD_MERIDIAN("yy-MM-dd hh:mma");
+
 
     private String dateTimePattern;
 
-    private DateTimeFormat(String dateTimePattern) {
+    DateTimeFormat(String dateTimePattern) {
         this.dateTimePattern = dateTimePattern;
     }
 
@@ -294,5 +315,24 @@ enum DateTimeFormat {
 
     public String getDateTimePattern() {
         return dateTimePattern;
+    }
+}
+
+enum StandardDateFormat {
+    DD_SLASH_MM_SLASH_YY("dd/MM/yy"),
+    DD_SLASH_MM_SLASH_YYYY("dd/MM/yyyy"),
+    DD_DASH_MM_DASH_YY("dd-MM-yy"),
+    DD_DASH_MM_DASH_YYYY("dd-MM-yyyy"),
+    YYYY_DASH_MM_DASH_DD("yyyy-MM-dd"),
+    YY_DASH_MM_DASH_DD("yy-MM-dd");
+
+    private String datePattern;
+
+    StandardDateFormat(String datePattern) {
+        this.datePattern = datePattern;
+    }
+
+    public String getDatePattern() {
+        return datePattern;
     }
 }

@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 
+import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,9 +62,16 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         }
 
         if (argMultimap.getValue(PREFIX_TIMESLOT_START).isPresent()) {
-            LocalDateTime dateTimeInput = TimeslotParser.parseDateTime(
-                    argMultimap.getValue(PREFIX_TIMESLOT_START).get());
-            String[] standardDateTimeInput = dateTimeInput.toString().split("T");
+            String[] standardDateTimeInput = listKeywords(argMultimap, PREFIX_TIMESLOT_START);
+            //align with dateTimeFormat in timeslot
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+            for (int i = 0; i <= standardDateTimeInput.length - 1; i++) {
+                String s = standardDateTimeInput[i];
+                if (s.contains("/") || s.contains("-")) {
+                    standardDateTimeInput[i] = format.format(TimeslotParser.parseStandardDate(s));
+                }
+            }
             Collections.addAll(timeStartKeywords, standardDateTimeInput);
         }
 
