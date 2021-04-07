@@ -46,6 +46,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
+
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("abc"));
+
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("a a a"));
     }
 
     @Test
@@ -64,12 +68,18 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseIndex_invalidInputWithSigns_throwsParseException() {
+    public void parseIndex_invalidIntegerWithPositiveSigns_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
             -> ParserUtil.parseIndex(" +1 "));
 
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
             -> ParserUtil.parseIndex(" +3 "));
+
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndex("+2"));
+
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+                -> ParserUtil.parseIndex(" + 8 "));
     }
 
     @Test
