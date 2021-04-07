@@ -148,10 +148,9 @@ A keyword used in the various find commands.
 
 #### `NAME`
 The identifier of a resident.
-* Accepts only alphanumeric characters and spaces.
+* Accepts only alphabetic characters and spaces.
 * Must not be blank.
 * Must be unique.
-* For best usage, use English characters only.
 
 
 #### `PHONE_NUMBER`
