@@ -116,6 +116,21 @@ public class AliasMap {
         return Arrays.stream(commandsWord).anyMatch(c -> c.equals(input));
     }
 
+    /**
+     * Returns true if aliasMap is corrupted
+     */
+    public boolean isCorrupted() {
+        for (Map.Entry<String, String> entry: aliasMap.entrySet()) {
+            if (!Arrays.asList(commandsWord).contains(entry.getKey())) {
+                return true;
+            }
+            if (Arrays.asList(commandsWord).contains(entry.getValue())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
