@@ -135,7 +135,7 @@ public class ModelManagerTest {
         GradeBook gradeBook = new GradeBook();
         SubjectName subjectName = new SubjectName("Mathematics");
         GradedItem gradedItem = new GradedItem("final exam");
-        GradeEnum grade = GradeEnum.valueOf("A");
+        GradeEnum grade = GradeEnum.valueOf("A1");
         Grade diffGrade = new Grade(subjectName, gradedItem, grade);
         GradeBook differentGradeBook = new GradeBook();
         differentGradeBook.addGrade(diffGrade);

@@ -134,8 +134,7 @@ Maths
 
 #### Delete a tutor: `delete_tutor`
 
-Delete a tutor by index. If a tutor has an existing appointment in the user system
-then tutor cannot be deleted.
+Delete a tutor by index. Deletion cannot occur if there is at least one existing appointment booked with the tutor in question.
 
 Format: `delete_tutor INDEX`
 
@@ -178,7 +177,7 @@ This feature allows tutees to track and manages notes that are tagged to a tutor
 
 ##### Add note to a tutor: `add_note`
 
-Shortcut for adding note to tutor at a particular index
+Shortcut for adding note to tutor at a particular index. One tutor can only have one note added.
 
 Format: `add_note INDEX NOTE`
 
@@ -239,7 +238,7 @@ Format: `delete_note INDEX NOTE`
 Example: `delete_note 1`
 
 ##### List tutors with note `list_note`
-Lists all the tutor with note. Will ignore all input after `list_mote`.
+Lists all the tutor with note. Will ignore all input after `list_note`.
 
 Format:`list_note`
 
@@ -562,9 +561,9 @@ Format: `timetable [DATE]`
 * Only one timetable can be opened at a time.
 
 ### Budget Tracker
-This feature allows tutees to track and manage his/her budget allocated to tuitions. 
+This feature allows tutees to track and manage his/her budget allocated to tuitions.
 
-![Budget Ui](images/ug-images/Budget.png)
+![Budget Ui](images/ug-images/Budget_2.PNG)
 
 **Attributes / Parameters**:
 * Budget Amount
@@ -573,6 +572,8 @@ This feature allows tutees to track and manage his/her budget allocated to tuiti
 
 Adds a budget with an amount specified by user. Stores budget in user system.
 Budget must not already exist in user system, otherwise use edit_budget instead.
+
+* If no budget is present, the default budget value is 0.
 
 Format: `add_budget b/BUDGET`
 
@@ -629,6 +630,7 @@ Example Output:
 ```
 1) Budget does not already exist. Please ensure there is a budget. You can use the 
 add_budget function to add a budget.
+
 2) Here is your budget.
 Budget: 600
 Total Cost of Appointments: 100.

@@ -102,13 +102,13 @@ public class SampleDataUtil {
         return new Grade[]{
             new Grade(new SubjectName("Science"),
                     new GradedItem("Lab 1"),
-                        GradeEnum.valueOf("A")),
+                        GradeEnum.valueOf("A1")),
             new Grade(new SubjectName("Mathematics"),
                     new GradedItem("Final"),
-                        GradeEnum.valueOf("B")),
+                        GradeEnum.valueOf("B3")),
             new Grade(new SubjectName("English"),
                     new GradedItem("Midterm"),
-                        GradeEnum.valueOf("C"))
+                        GradeEnum.valueOf("C5"))
         };
     }
 

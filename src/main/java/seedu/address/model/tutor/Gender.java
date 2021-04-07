@@ -11,8 +11,7 @@ import seedu.address.model.tag.Filterable;
 public class Gender implements Filterable {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Gender should only contain alphanumeric characters and spaces, should be female or male,"
-                    + "and it should not be blank";
+            "Genders should be male or female";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -36,8 +35,9 @@ public class Gender implements Filterable {
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidGender(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidGender(String s) {
+        String uppercaseString = s.toUpperCase();
+        return uppercaseString.equals("MALE") || uppercaseString.equals("FEMALE");
     }
 
 

@@ -14,8 +14,8 @@ Class UserPrefs
 Class ReadOnlyUserPrefs
 Class Appointment
 
-Package Person {
-Class Person
+Package Tutor {
+Class Tutor
 Class Address
 Class Email
 Class Name
@@ -79,16 +79,16 @@ Appointment *--> "1" DateTime
 Appointment *--> "1" Day
 Appointment *--> "1" Location
 
-TutorTracker *--> "*" Person
+TutorTracker *--> "*" Tutor
 TutorTracker *--> "*" Appointment
 TutorTracker *--> List
 
-Person *--> "1" Name
-Person *--> "1" Phone
-Person *--> "1" Email
-Person *--> "1" Address
-Person *--> "*" Tag
-Person --> "*" Subject
+Tutor *--> "1" Name
+Tutor  *--> "1" Phone
+Tutor  *--> "1" Email
+Tutor  *--> "1" Address
+Tutor  *--> "*" Tag
+Tutor  --> "*" Subject
 
 Subject *--> "*" SubjectName
 Subject *--> "*" HourlyRate

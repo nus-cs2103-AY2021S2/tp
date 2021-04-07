@@ -38,6 +38,8 @@ public class TutorCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label gender;
+    @FXML
     private Label phone;
     @FXML
     private Label address;
@@ -65,6 +67,7 @@ public class TutorCard extends UiPart<Region> {
             name.setText(tutor.getName().fullName);
         }
 
+        gender.setText(tutor.getGender().toString().toUpperCase());
         phone.setText(tutor.getPhone().value);
         address.setText(tutor.getAddress().value);
         email.setText(tutor.getEmail().value);
