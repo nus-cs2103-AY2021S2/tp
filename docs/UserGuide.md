@@ -246,7 +246,7 @@ Example:
 
 ##### Locating student by name: `find_student`
 
-Filters the list to only include students, and their respective session whose student name contain any of the given keywords.
+Filters the list to only include students, and their respective session whose student name contains any of the given keywords.
 
 Format: `find_student KEYWORD [MORE_KEYWORDS]`
 * The search will be case-insensitive. e.g. searching `john` will match `JOHN`
