@@ -46,6 +46,7 @@ perspective of the user's schedule and common commands that are enhanced for fas
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `mk`, `edit`, `view` and calendar controls.
+        * Repackaged the attributes of `Task` into a neater table.
     * Developer Guide:
         * Updated all class diagrams under "Design" to correspond to PlanIT.
         * Added implementation details of the tag list, and the `view` feature coupled with the calendar.
