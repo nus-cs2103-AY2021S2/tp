@@ -2,14 +2,14 @@
   "grades": [ {
     "subject" : "Mathematics",
     "gradedItem" : "Midterm Exam",
-    "grade" : "A"
+    "grade" : "A1"
   }, {
     "subject" : "Science",
     "gradedItem" : "Lab 1",
-    "grade" : "B"
+    "grade" : "B3"
   }, {
     "subject" : "English",
     "gradedItem" : "Final",
-    "grade" : "C"
+    "grade" : "C5"
   } ]
 }
