@@ -20,8 +20,8 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
-    public static final String MESSAGE_DUPLICATE_GROUP = "Groups list contains duplicate group(s).";
+    public static final String MESSAGE_DUPLICATES_IN_PERSONS = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATES_IN_GROUPS = "Groups list contains duplicate group(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedGroup> groups = new ArrayList<>();
@@ -59,7 +59,7 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATES_IN_PERSONS);
             }
             addressBook.addPerson(person);
         }
@@ -67,7 +67,7 @@ class JsonSerializableAddressBook {
         for (JsonAdaptedGroup jsonAdaptedGroup : groups) {
             Group group = jsonAdaptedGroup.toModelType(addressBook.getPersonList());
             if (addressBook.hasGroup(group)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_GROUP);
+                throw new IllegalValueException(MESSAGE_DUPLICATES_IN_GROUPS);
             }
             addressBook.addGroup(group);
         }
