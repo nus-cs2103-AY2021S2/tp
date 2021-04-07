@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-App-Ointment is a desktop app for for managing and scheduling patient appointments, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, App-Ointment can get your contact management tasks done faster than traditional GUI apps.
+App-Ointment is a desktop app for managing and scheduling patient appointments, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, App-Ointment can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -234,9 +234,9 @@ Format: `add-appt pt/PATIENT_INDEX dr/DOCTOR_INDEX at/TIMESLOT_START [to/TIMESLO
 
 * The `PATIENT_INDEX` and `DOCTOR_INDEX` must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
 
-* The `TIMESLOT_START` and `TIMESLOT_END` must be either in a recognisable datetime format or prefixed with keyword `NEXT` followed by a datetime unit (DAY, MONTH, YEAR) or weekday (MONDAY, TUESDAY …​)<br>
+* The `TIMESLOT_START` and `TIMESLOT_END` must be either in an [acceptable datetime format](#Acceptable DateTime Formats) or prefixed with keyword `NEXT` followed by a datetime unit (DAY, MONTH, YEAR) or weekday (MONDAY, TUESDAY …​)<br>
 
-* Either and only one, `TIMESLOT_END` or `TIMESLOT_DURATION`, must be provided.<br>
+* Either `TIMESLOT_END` or `TIMESLOT_DURATION` must be provided. User may choose only one of either field to enter.<br>
 
 * Raises an exception if there are conflicts in schedule for the patient or the doctor.<br>
 
@@ -306,25 +306,25 @@ Examples:
 
 ### Locating appointments by fields : `find-appt`
 
-Format: `find-appt [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS_KEYWORDS] [t/TAG KEYWORDS]`
+Format: `find-appt [pt/PATIENT NAME KEYWORDS] [dr/DOCTOR NAME KEYWORDS] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS KEYWORDS] [t/TAG KEYWORDS]`
 
 * At least one of the optional fields must be provided.<br>
 
-* The search is case-insensitive. e.g `hans` will match `Hans`<br>
+* The search is case-insensitive. e.g `pt/alex` will match `pt/Alex`<br>
 
-* Only full words will be matched. e.g. `han` will not match `Hans`<br>
+* Only full words will be matched. e.g. `pt/freddi` will not match `pt/freddie`<br>
 
-* Search fields require at least one keyword to be matched in the field description for the search condition of that field to be satisfied. e.g. `find n/Hans Bo` will match both patients `Hans Gruber` and `Bo Young`.
+* Search fields require at least one keyword to be matched in the field description for the search condition of that field to be satisfied. e.g. `find-appt pt/Alex Edward` will match both appointments with patients `Alex Karev` and `Edward Hyde`.
 
 * Certain fields such as datetime, phone number and email do not support a search by keywords and require a match with the entire field description for the search condition to be satisfied.
 
-* Where multiple search fields are specified, the search is conditioned on the satisfaction of <strong>all</strong> of the search fields' subconditions. e.g. `find n/Hans Bo dr/Grey` will match appointments that satisfy both:
-  - Grey in the assigned doctor's name; and
-  - Either Hans or Bo in the patient's name.
+* Where multiple search fields are specified, the search is conditioned on the satisfaction of <strong>all</strong> of the search fields' subconditions. e.g. `find-appt n/Alex Edward Bo dr/Jekyll` will match appointments that satisfy both:
+  - Jekyll in the assigned doctor's name; and
+  - Either Alex or Edward in the patient's name.
 
 Examples:
 
-* `find-appt n/john alex` returns appointments with patients `john`, `John`, `John Doe`, `alex`, `Alex` and `Alex Anderson`.
+* `find-appt pt/john alex` returns appointments with patients `john`, `John`, `John Doe`, `alex`, `Alex` and `Alex Anderson`.
 
 * `find-appt dr/Grey Who t/BrainSurgery` returns appointments with doctors `grey` or `who` and are tagged as `BrainSurgery`.
 
@@ -378,6 +378,33 @@ If your changes to the data files makes its format invalid, App-Ointment will di
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous App-Ointment home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Acceptable DateTime Formats
+Must be any of:
+### Date:
++ DD-MM-YYYY
++ DD-MM-YY
++ YYYY-MM-DD
++ DD/MM/YYYY
++ DD/MM/YY
++ next DAY [MONDAY, TUESDAY, ...]
++ next month
++ next year
+
+### Time:
+
++ hh:mm (In 24-Hour format)
++ hh:mmam/pm
+  
+### Valid Examples:
++ 12/12/21 01:15pm
++ 12-12-21 13:15
++ next monday 13:12
++ next monday
++ next month 14:00
+
 
 --------------------------------------------------------------------------------------------------------------------
 
