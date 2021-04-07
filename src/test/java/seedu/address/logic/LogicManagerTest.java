@@ -6,13 +6,13 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_TASKONE;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_TASKONE;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_TASKONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_TASKONE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -63,14 +63,12 @@ public class LogicManagerTest {
     }
 
     @Test
-    @Disabled
     public void execute_validCommand_success() throws Exception {
         String listTaskCommand = ListTaskCommand.COMMAND_WORD;
         assertCommandSuccess(listTaskCommand, ListTaskCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
-    @Disabled
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonSocheduleStorage socheduleStorage =
@@ -83,7 +81,7 @@ public class LogicManagerTest {
         // Execute add task command
         String addTaskCommand = AddTaskCommand.COMMAND_WORD + NAME_DESC_TASKONE + DEADLINE_DESC_TASKONE
                 + PRIORITY_DESC_TASKONE;
-        Task expectedTask = new TaskBuilder().build();
+        Task expectedTask = new TaskBuilder().withName(VALID_TASK_NAME_TASKONE).build();
         ModelManager expectedModel = new ModelManager(new Sochedule(), new UserPrefs());
         expectedModel.addTask(expectedTask);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
@@ -91,7 +89,6 @@ public class LogicManagerTest {
     }
 
     @Test
-    @Disabled
     public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredTaskList().remove(0));
     }

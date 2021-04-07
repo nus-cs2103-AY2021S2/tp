@@ -558,6 +558,10 @@ The sequence diagram for `EditEventCommand` can be found below.
 
 ![Sequence Diagram of EditEvent Command](images/EditEventCommandSequenceDiagram.png)
 
+The following activity diagram summarises what happens when a user executes a SaveCommand:
+
+<img src="images/EditEventCommandActivityDiagram.png" width="450" />
+
 [Return to Table of Contents](#table-of-contents)  
 
 **Implementation of FindFreeTimeCommand**  
