@@ -317,7 +317,7 @@ Assigns a student or multiple student and/or a tutor to a specific class
 
 A class must always be provided, either student or tutor can be optional.
 
-### Unassigning people from a session : `assign`
+### Unassigning people from a session : `unassign`
 
 Unassigns the specified people from a session.
 
