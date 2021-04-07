@@ -20,6 +20,7 @@ public class ClearCommand extends Command {
         model.setAddressBook(new AddressBook());
         model.updateUpcomingDates();
         model.updateDetailedPerson(null);
+        model.setCurrentGroup(null);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

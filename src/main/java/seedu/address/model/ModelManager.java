@@ -32,6 +32,7 @@ public class ModelManager implements Model {
     private final ObservableList<PersonEvent> upcomingDates;
     private final ObservableList<Person> detailedPerson;
     private final ObservableList<PersonStreak> personStreaks;
+    private Group currentGroup;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -49,6 +50,7 @@ public class ModelManager implements Model {
         upcomingDates = this.addressBook.getUpcomingDates();
         detailedPerson = FXCollections.observableArrayList();
         personStreaks = this.addressBook.getPersonStreaks();
+        currentGroup = null;
     }
 
     public ModelManager() {
@@ -131,6 +133,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addGroup(Group group) {
+        setCurrentGroup(group);
         addressBook.addGroup(group);
     }
 
@@ -142,12 +145,26 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteGroup(Group target) {
+        if (currentGroup.isSameGroup(target)) {
+            setCurrentGroup(null);
+        }
         addressBook.removeGroup(target);
     }
 
     @Override
     public void setGroup(Name groupName, Group editedGroup) {
+        setCurrentGroup(editedGroup);
         addressBook.setGroup(groupName, editedGroup);
+    }
+
+    @Override
+    public void setCurrentGroup(Group currentGroup) {
+        this.currentGroup = currentGroup;
+    }
+
+    @Override
+    public Predicate<Person> getCurrentGroupPredicate() {
+        return p -> currentGroup.getPersonNames().contains(p.getName());
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -165,6 +182,15 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredPersonList() {
+        if (currentGroup != null) {
+            filteredPersons.setPredicate(getCurrentGroupPredicate());
+        } else {
+            filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
+        }
     }
 
     /**

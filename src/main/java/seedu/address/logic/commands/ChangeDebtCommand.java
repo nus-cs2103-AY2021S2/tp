@@ -1,7 +1,5 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -58,7 +56,7 @@ public class ChangeDebtCommand extends Command {
             editedPerson = personToEdit.withDebt(Debt.subtract(currentDebt, debt));
         }
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList();
         if (isAdd) {
             return new CommandResult(String.format(MESSAGE_ADD_DEBT_SUCCESS, debt.toUi(), editedPerson.getName()));
         } else {
