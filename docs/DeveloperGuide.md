@@ -482,11 +482,10 @@ as a pop-up window for you.
 
 **Target user profile**:
 
-* has a need to manage exams or events deadlines
+* has a need to manage exams, assignments and events deadlines
 * prefer desktop apps over other types
 * tend to forget upcoming events/exams
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using CLI and GUI apps
 
 **Value proposition**: manage deadlines and events faster than a typical mouse/GUI driven app
 
@@ -495,16 +494,19 @@ as a pop-up window for you.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
+| Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see instructions help page     | refer to help page when I forget how to use the App                 |
-| `* * *`  | student taking numerous modules            | add events/exams/assignments deadlines              |                                                                        |
-| `* * *`  | user                                       | delete a deadline               | view the ones that matter                                  |
+| `* * *`  | user                                       | exit the App                   |                  |
+| `* * *`  | student taking a module                    | add module                     | keep track of the module exams, assignments                                                                       |
+| `* * *`  | student having assignments                 | add assignments to module      | keep track of the assignment deadline                                  |
+| `* * *`  | student having exams                       | add exams to module            | keep track of the exam start time |
+| `* * *`  | user with friends                          | to track of their birthdays    | wish them happy birthday promptly |
 | `* * *`  | user                                       | edit a deadline          | can adjust schedule when there is a change of plan |
 | `* *`    | user                                       | view events in a calendar view   | to have a better sense of the upcoming events                |
-| `* *`      | forgetful student | get reminded about the most urgent events/assignments/exams          | finish the deadlines on time   
-| `* `    | student                                    | distinguish among modules,exams and assignments | |
-| `* `    | student                                     | view which friend of mine is enrolled in the same module/event | seek help from them |
+| `* *`    | forgetful student | get reminded about the most urgent events/assignments/exams          | finish the deadlines on time   
+| `* `     | student                                    | distinguish among modules,exams and assignments | |
+| `* `     | student                                     | view which friend of mine is enrolled in the same module/event | seek help from them |
 
 *{More to be added}*
 
@@ -512,19 +514,90 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `RemindMe` and the **Actor** is the `user`, unless specified otherwise)
 
-
-### Use Case: `UC01` - add assignment
+### Use Case: `UC01` - view help
 
 **MSS:**
 
-1. User enters the details of assignment.
+1. User enters the command to view help.
+2. System shows help and url to copy to user guide webpage for more in depth help.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in formatting of command.
+    * 1a1. System display error message.
+      <br> Use case ends.
+      
+### Use Case: `UC02` - exit
+
+**MSS:**
+
+1. User enters the command to exit system.
+2. System exits by closing all relevant GUI.
+   <br> Use case ends.
+
+**Extensions:**
+
+* 1a. System detects an error in formatting of command.
+    * 1a1. System display error message.
+      <br> Use case ends.
+      
+### Use Case: `UC03` - add module
+
+**MSS:**
+
+1. User enters command to add a module.
+2. System adds module and displays module info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+* 1b. System detects that module is present in system.
+    * 1b1. System display duplicate module error message.
+    <br> Use case ends.      
+
+
+### Use Case: `UC04` - add assignment
+
+**MSS:**
+
+1. User enters command to add an assignment for a module.
 2. System adds assignment and displays assignments info.
 <br> Use case ends.
    
 **Extensions:**
 
-* 1a. System detects an error in format in entered data.
-    * 1a1. System display error message.
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+* 1b. System detects that module for assignment is not present in the system.
+    * 1b1. System display module missing error message.
+    <br> Use case ends.
+* 1c. System detects that assignment is present in the module.
+    * 1c1. System display duplicate assignment error message.
+    <br> Use case ends.
+    
+### Use Case: `UC05` - add exam
+
+**MSS:**
+
+1. User enters command to add an exam for a module.
+2. System adds exam and displays exam info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+* 1b. System detects that module for exam is not present in the system.
+    * 1b1. System display module missing error message.
+    <br> Use case ends.
+* 1c. System detects that exam is present in the module.
+    * 1c1. System display duplicate exam error message.
     <br> Use case ends.
 
 ### Use Case: `UC02` - delete assignment
@@ -569,19 +642,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System display error message.
       <br> Use case ends.
 
-### Use Case: `UC05` - view help
 
-**MSS:**
-
-1. User enters the command to view help.
-2. System shows help and url for more in depth help.
-   <br> Use case ends.
-
-**Extensions:**
-
-* 1a. System detects an error in formatting of command.
-    * 1a1. System display error message.
-      <br> Use case ends.
 
 ### Use Case: `UC06` - view calendar
 
