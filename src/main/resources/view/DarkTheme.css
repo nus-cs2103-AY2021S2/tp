@@ -335,6 +335,12 @@
     -fx-border-color: aqua;
 }
 
+#planCardPane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 3 0;
+    -fx-border-color: red;
+}
+
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: #F70D1A;

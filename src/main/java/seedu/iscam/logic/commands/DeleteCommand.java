@@ -33,6 +33,7 @@ public class DeleteCommand extends UndoableCommand {
 
     /**
      * Creates a DeleteCommand to delete the client at the specified {@code Index}
+     *
      * @param targetIndex index of client to be deleted
      */
     public DeleteCommand(Index targetIndex) {
@@ -42,6 +43,7 @@ public class DeleteCommand extends UndoableCommand {
 
     /**
      * Creates a DeleteCommand to delete the specified {@code Client}
+     *
      * @param client client to be deleted
      */
     public DeleteCommand(Client client) {

@@ -13,6 +13,7 @@ public class DeleteEventFactory {
 
     /**
      * A static method to generate the delete events based on the delete commands parsed.
+     *
      * @param command Delete Command to be parsed.
      * @return Corresponding event representing the delete command parsed.
      * @throws EventException
@@ -20,7 +21,7 @@ public class DeleteEventFactory {
     public static Event parse(DeleteCommand command, Model model) throws EventException {
         String commandWord = command.getCommandWord();
 
-        switch(commandWord) {
+        switch (commandWord) {
         case (DeleteCommand.COMMAND_WORD):
             DeleteCommand tempCommand = command;
             return generateDeleteClientEvent(tempCommand.getTargetIndex(model), model);

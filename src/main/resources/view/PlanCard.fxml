@@ -1,0 +1,16 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<HBox id="planCardPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="90"/>
+        </columnConstraints>
+        <padding>
+            <Insets top="5" right="5" bottom="5" left="5"/>
+        </padding>
+        <Label fx:id="planName" styleClass="cell_medium_label" text="\$planName"/>
+    </GridPane>
+</HBox>

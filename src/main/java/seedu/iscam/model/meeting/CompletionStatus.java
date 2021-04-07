@@ -12,6 +12,7 @@ public class CompletionStatus {
         COMPLETED,
         INCOMPLETE
     }
+
     public static final String ARGUMENT_COMPLETE = "complete";
     public static final String ARGUMENT_INCOMPLETE = "incomplete";
     public static final String TEXT_COMPLETE = "Completed";
