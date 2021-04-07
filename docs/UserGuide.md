@@ -116,7 +116,7 @@ Legend | Description
 ---
 
 ## Date format
-DietLAH! uses the following date format for command inputs: `d MMM yyyy` which is clearer to interprete and reduces the chances of typos. Refer to the table below for more information:
+DietLAH! uses the following date format for command inputs: `d MMM yyyy` which is clearer to interpret and reduces the chances of typos. Refer to the table below for more information:
 
 Legend | Description
 -------|-------------
