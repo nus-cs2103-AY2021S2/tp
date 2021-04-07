@@ -75,18 +75,18 @@ public class AddModuleCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_MODULE_CODE);
         }
         // 4. Use modelManager::hasModule to check if it already exists.
-        if (model.hasModule(planIndex.getZeroBased(), semIndex.getZeroBased(), matchingModule)) {
+        if (model.hasModule(planIndex.getZeroBased(), semIndex.getOneBased(), matchingModule)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
         if (this.grade.equals("-")) {
-            model.addModule(planIndex.getZeroBased(), semIndex.getZeroBased(), matchingModule);
+            model.addModule(planIndex.getZeroBased(), semIndex.getOneBased(), matchingModule);
         } else {
             if (!model.isValidGrade(this.grade)) {
                 throw new CommandException(MESSAGE_INVALID_GRADE);
             }
             Module moduleWithGrade = matchingModule.setGrade(this.grade);
-            model.addModule(planIndex.getZeroBased(), semIndex.getZeroBased(), moduleWithGrade);
+            model.addModule(planIndex.getZeroBased(), semIndex.getOneBased(), moduleWithGrade);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, planIndex.toString(), semIndex.toString(), moduleCode));
     }

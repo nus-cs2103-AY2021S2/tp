@@ -22,12 +22,12 @@ public class DeleteModuleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a Module from the semester identified by the semester number and plan number.\n"
             + "Parameters: "
-            + CliSyntax.PREFIX_PLAN_NUMBER + "PLAN NUMBER"
-            + CliSyntax.PREFIX_SEM_NUMBER + "SEM NUMBER"
+            + CliSyntax.PREFIX_PLAN_NUMBER + "PLAN NUMBER  "
+            + CliSyntax.PREFIX_SEM_NUMBER + "SEM NUMBER  "
             + CliSyntax.PREFIX_MODULE_CODE + "MODULE CODE\n"
             + "Example: " + COMMAND_WORD + " "
             + CliSyntax.PREFIX_PLAN_NUMBER + "1 "
-            + CliSyntax.PREFIX_SEM_NUMBER + "1"
+            + CliSyntax.PREFIX_SEM_NUMBER + "1 "
             + CliSyntax.PREFIX_MODULE_CODE + "CS1101S";
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Module deleted from Semester %1$s, Plan %2$s";
