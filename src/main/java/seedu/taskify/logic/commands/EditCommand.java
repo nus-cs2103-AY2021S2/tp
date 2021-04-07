@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.taskify.commons.core.Messages;
 import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.commons.util.CollectionUtil;
 import seedu.taskify.logic.commands.exceptions.CommandException;
@@ -67,12 +68,17 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        Task taskToEdit = lastShownList.get(index.getZeroBased());
-        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
-
         if (!CommandResult.isHomeTab()) {
             throw new CommandException(MESSAGE_SWITCH_TO_HOME);
         }
+
+        if (this.index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        }
+
+        Task taskToEdit = lastShownList.get(index.getZeroBased());
+        Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
