@@ -11,8 +11,8 @@ public class Food {
     public static final String VALIDATION_CHAR_REGEX = "[a-zA-Z0-9\\s]*";
     public static final String VALIDATION_CHAR_REGEX_IMPORT = "[a-zA-Z0-9 ]*";
     public static final String VALIDATION_POSITIVE_DOUBLE_REGEX = "(\\d*\\.?\\d+)";
-    public static final String MESSAGE_CONSTRAINTS = "Food name can take only alphanumeric character " +
-            "and it should not be empty. (No leading spaces are allowed)";
+    public static final String MESSAGE_CONSTRAINTS = "Food name can take only alphanumeric character "
+            + "and it should not be empty.";
     public static final String MESSAGE_DIGIT_CONSTRAINTS = "Double value input can only be positive and at least 0.";
 
     private String name;
