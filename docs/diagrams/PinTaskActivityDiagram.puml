@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes `pin_task` command;
+
+if () then ([command commits AddressBook])
+    :Purge redundant states;
+    :Save AddressBook to
+    addressBookStateList;
+else ([else])
+endif
+stop
+@enduml
