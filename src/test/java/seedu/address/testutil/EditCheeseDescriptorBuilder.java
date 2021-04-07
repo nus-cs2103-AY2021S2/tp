@@ -6,7 +6,6 @@ import seedu.address.model.cheese.Cheese;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.cheese.ExpiryDate;
 import seedu.address.model.cheese.ManufactureDate;
-import seedu.address.model.cheese.MaturityDate;
 
 /**
  * A utility class to help with building EditCheeseDescriptor objects.
@@ -30,7 +29,6 @@ public class EditCheeseDescriptorBuilder {
         descriptor = new EditCheeseCommand.EditCheeseDescriptor();
         descriptor.setCheeseType(cheese.getCheeseType());
         descriptor.setManufactureDate(cheese.getManufactureDate());
-        descriptor.setMaturityDate(cheese.getMaturityDate().get());
         descriptor.setExpiryDate(cheese.getExpiryDate().get());
     }
 
@@ -47,14 +45,6 @@ public class EditCheeseDescriptorBuilder {
      */
     public EditCheeseDescriptorBuilder withManufactureDate(String manufactureDate) {
         descriptor.setManufactureDate(new ManufactureDate(manufactureDate));
-        return this;
-    }
-
-    /**
-     * Sets the {@code MaturityDate} of the {@code EditCheeseDescriptor} that we are building.
-     */
-    public EditCheeseDescriptorBuilder withMaturityDate(String maturityDate) {
-        descriptor.setMaturityDate(new MaturityDate(maturityDate));
         return this;
     }
 

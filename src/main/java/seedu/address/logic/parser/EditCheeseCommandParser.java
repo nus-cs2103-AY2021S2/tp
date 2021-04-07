@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHEESE_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPIRY_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MANUFACTURE_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MATURITY_DATE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCheeseCommand;
@@ -26,8 +25,7 @@ public class EditCheeseCommandParser implements Parser<EditCheeseCommand> {
     public EditCheeseCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CHEESE_TYPE,
-                        PREFIX_MANUFACTURE_DATE, PREFIX_MATURITY_DATE, PREFIX_EXPIRY_DATE);
+                ArgumentTokenizer.tokenize(args, PREFIX_CHEESE_TYPE, PREFIX_MANUFACTURE_DATE, PREFIX_EXPIRY_DATE);
 
         Index index;
 
@@ -46,10 +44,6 @@ public class EditCheeseCommandParser implements Parser<EditCheeseCommand> {
         if (argMultimap.getValue(PREFIX_MANUFACTURE_DATE).isPresent()) {
             editCheeseDescriptor.setManufactureDate(
                     ParserUtil.parseManufactureDate(argMultimap.getValue(PREFIX_MANUFACTURE_DATE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_MATURITY_DATE).isPresent()) {
-            editCheeseDescriptor.setMaturityDate(
-                    ParserUtil.parseMaturityDate(argMultimap.getValue(PREFIX_MATURITY_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_EXPIRY_DATE).isPresent()) {
             editCheeseDescriptor.setExpiryDate(

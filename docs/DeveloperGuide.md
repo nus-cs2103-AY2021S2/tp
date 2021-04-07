@@ -473,7 +473,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User enters a cheese number to edit with at least 1 field: cheese type, manufacture date, maturity date and expiry date.
+1. User enters a cheese number to edit with at least 1 field: cheese type, manufacture date and expiry date.
 2. CHIM edits the cheese and shows details of the new cheese.
 
    Use case ends.

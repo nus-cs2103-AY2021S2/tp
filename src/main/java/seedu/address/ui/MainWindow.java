@@ -146,6 +146,10 @@ public class MainWindow extends UiPart<Stage> {
         listPanelPlaceholder.getChildren().clear();
         panel = logic.getGuiSettings().getPanel();
 
+        // Re-initialize orderListPanel with new customer details
+        // We need to do this because customer details may have changed from the EditCustomerCommand
+        orderListPanel = new OrderListPanel(logic.getFilteredOrderList(), logic.getCompleteCustomerList());
+
         if (panel == PanelToShow.CHEESE_LIST) {
             listPanelPlaceholder.getChildren().add(cheeseListPanel.getRoot());
         } else if (panel == PanelToShow.ORDER_LIST) {

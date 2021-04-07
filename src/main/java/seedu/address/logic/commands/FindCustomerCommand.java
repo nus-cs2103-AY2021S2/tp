@@ -12,8 +12,8 @@ import seedu.address.model.customer.Customer;
 import seedu.address.model.util.predicate.FieldPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds the customers in CHIM whose details matches the input keywords; keyword matching is case insensitive.
+ * Lists the matching customers to the user.
  */
 public class FindCustomerCommand extends Command {
 

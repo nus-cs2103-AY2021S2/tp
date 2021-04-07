@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHEESE_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPIRY_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MANUFACTURE_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MATURITY_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.Arrays;
@@ -14,24 +13,22 @@ import seedu.address.model.Model;
 import seedu.address.model.cheese.Cheese;
 
 /**
- * Adds a cheese to the address book.
+ * Adds a cheese to CHIM.
  */
 public class AddCheeseCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "addcheese";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a cheese to the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a cheese to CHIM.\n"
             + "Parameters: "
             + PREFIX_CHEESE_TYPE + "CHEESE TYPE "
             + PREFIX_QUANTITY + "QUANTITY "
             + "[" + PREFIX_MANUFACTURE_DATE + "MANUFACTURE_DATE] "
-            + "[" + PREFIX_MATURITY_DATE + "MATURITY_DATE] "
             + "[" + PREFIX_EXPIRY_DATE + "EXPIRY_DATE]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CHEESE_TYPE + "Parmesan "
             + PREFIX_QUANTITY + "5 "
             + PREFIX_MANUFACTURE_DATE + "2020-12-30 "
-            + PREFIX_MATURITY_DATE + "2021-01-20 "
             + PREFIX_EXPIRY_DATE + "2021-02-30";
 
     public static final String MESSAGE_SUCCESS = "New cheeses added: ";

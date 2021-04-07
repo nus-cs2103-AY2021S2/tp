@@ -10,6 +10,7 @@ import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.AbstractDate;
 import seedu.address.model.cheese.exceptions.CheeseNotFoundException;
 import seedu.address.model.cheese.exceptions.DuplicateCheeseException;
 import seedu.address.model.order.Quantity;
@@ -111,9 +112,11 @@ public class UniqueCheeseList implements Iterable<Cheese> {
 
         Set<CheeseId> cheeses = new HashSet<>();
         int c = quantity.getQuantity();
+        AbstractDate abstractDateNow = ManufactureDate.now();
         for (int i = 0; i < internalList.size() && c > 0; i++) {
             Cheese cheese = internalList.get(i);
-            if (!cheese.isCheeseAssigned() && cheese.isSameType(cheeseType)) {
+            if (!cheese.isCheeseAssigned() && cheese.isSameType(cheeseType)
+                    && cheese.getExpiryDate().map(x -> x.isAfter(abstractDateNow)).orElse(true)) {
                 cheeses.add(cheese.getCheeseId());
                 c--;
             }
@@ -128,12 +131,10 @@ public class UniqueCheeseList implements Iterable<Cheese> {
     public void updateCheesesStatus(Set<CheeseId> cheesesAssigned) {
         requireAllNonNull(cheesesAssigned);
 
-        CheeseId[] cheesesIds = cheesesAssigned.toArray(new CheeseId[cheesesAssigned.size()]);
-        for (int i = 0, c = 0; i < internalList.size() && c < cheesesIds.length; i++) {
+        for (int i = 0; i < internalList.size(); i++) {
             Cheese cheese = internalList.get(i);
-            if (cheese.getCheeseId().equals(cheesesIds[c])) {
+            if (cheesesAssigned.contains(cheese.getCheeseId())) {
                 internalList.set(i, cheese.assignToOrder());
-                c++;
             }
         }
     }

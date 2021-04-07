@@ -28,7 +28,6 @@
       </HBox>
       <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
       <Label fx:id="manufactureDate" styleClass="cell_small_label" text="\$manufactureDate" />
-      <Label fx:id="maturityDate" styleClass="cell_small_label" text="\$maturityDate" />
       <Label fx:id="expiryDate" styleClass="cell_small_label" text="\$expiryDate" />
     </VBox>
   </GridPane>

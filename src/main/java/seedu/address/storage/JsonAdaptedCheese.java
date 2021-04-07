@@ -9,7 +9,6 @@ import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.cheese.ExpiryDate;
 import seedu.address.model.cheese.ManufactureDate;
-import seedu.address.model.cheese.MaturityDate;
 
 /**
  * Jackson-friendly version of {@link Cheese}.
@@ -21,7 +20,6 @@ class JsonAdaptedCheese {
     private final Integer cheeseId;
     private final String cheeseType;
     private final String manufactureDate;
-    private final String maturityDate;
     private final String expiryDate;
     private final boolean isAssigned;
 
@@ -32,13 +30,11 @@ class JsonAdaptedCheese {
     public JsonAdaptedCheese(@JsonProperty("cheeseId") Integer cheeseId,
                              @JsonProperty("cheeseType") String cheeseType,
                              @JsonProperty("manufactureDate") String manufactureDate,
-                             @JsonProperty("maturityDate") String maturityDate,
                              @JsonProperty("expiryDate") String expiryDate,
                              @JsonProperty("isAssigned") boolean isAssigned) {
         this.cheeseId = cheeseId;
         this.cheeseType = cheeseType;
         this.manufactureDate = manufactureDate;
-        this.maturityDate = maturityDate;
         this.expiryDate = expiryDate;
         this.isAssigned = isAssigned;
     }
@@ -50,7 +46,6 @@ class JsonAdaptedCheese {
         cheeseId = source.getCheeseId().value;
         cheeseType = source.getCheeseType().value;
         manufactureDate = source.getManufactureDate().toJsonString();
-        maturityDate = source.getMaturityDate().map(MaturityDate::toJsonString).orElse(null);
         expiryDate = source.getExpiryDate().map(ExpiryDate::toJsonString).orElse(null);
         isAssigned = source.isCheeseAssigned();
     }
@@ -81,16 +76,6 @@ class JsonAdaptedCheese {
         }
         final ManufactureDate modelManufactureDate = new ManufactureDate(manufactureDate);
 
-        final MaturityDate modelMaturityDate;
-
-        if (maturityDate == null) {
-            modelMaturityDate = null;
-        } else if (!MaturityDate.isValidDate(maturityDate)) {
-            throw new IllegalValueException(MaturityDate.MESSAGE_CONSTRAINTS);
-        } else {
-            modelMaturityDate = new MaturityDate(maturityDate);
-        }
-
         final ExpiryDate modelExpiryDate;
 
         if (expiryDate == null) {
@@ -101,8 +86,7 @@ class JsonAdaptedCheese {
             modelExpiryDate = new ExpiryDate(expiryDate);
         }
 
-        return new Cheese(modelCheeseType, modelManufactureDate,
-                modelMaturityDate, modelExpiryDate, modelId, isAssigned);
+        return new Cheese(modelCheeseType, modelManufactureDate, modelExpiryDate, modelId, isAssigned);
     }
 
 }

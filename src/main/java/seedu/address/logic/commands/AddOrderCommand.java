@@ -17,13 +17,13 @@ import seedu.address.model.order.OrderDate;
 import seedu.address.model.order.Quantity;
 
 /**
- * Adds an order to the address book.
+ * Adds an order to CHIM.
  */
 public class AddOrderCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "addorder";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an order to the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an order to CHIM.\n"
             + "Parameters: "
             + PREFIX_CHEESE_TYPE + "CHEESE TYPE "
             + PREFIX_QUANTITY + "QUANTITY "
@@ -36,7 +36,7 @@ public class AddOrderCommand extends AddCommand {
             + PREFIX_ORDER_DATE + "2020-12-30";
 
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
-    public static final String MESSAGE_NO_CUSTOMERS_FOUND = "No customer in the address book owns the phone number.";
+    public static final String MESSAGE_NO_CUSTOMERS_FOUND = "No customer in CHIM owns the phone number.";
 
     private final CheeseType toAddCheeseType;
     private final Phone customerPhone;
@@ -63,9 +63,15 @@ public class AddOrderCommand extends AddCommand {
         }
 
         Customer customer = model.getCustomerWithPhone(customerPhone);
-        Order toAdd = new Order(toAddCheeseType, toAddQuantity, toAddOrderDate, null, customer.getId());
+        Order toAdd;
 
-        model.addOrder(toAdd);
+        try {
+            toAdd = new Order(toAddCheeseType, toAddQuantity, toAddOrderDate, null, customer.getId());
+            model.addOrder(toAdd);
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(e.getMessage());
+        }
+
         model.setPanelToOrderList();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

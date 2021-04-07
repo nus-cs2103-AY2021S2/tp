@@ -4,7 +4,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Deletes a customer identified using it's displayed index from the address book.
+ * Deletes a customer, an order, or a cheese from CHIM.
  */
 public abstract class DeleteCommand extends Command {
 

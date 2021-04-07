@@ -28,7 +28,7 @@ import seedu.address.model.customer.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing customer in the address book.
+ * Edits the details of an existing customer in CHIM.
  */
 public class EditCustomerCommand extends EditCommand {
 
@@ -49,7 +49,7 @@ public class EditCustomerCommand extends EditCommand {
 
     public static final String MESSAGE_EDIT_CUSTOMER_SUCCESS = "Edited Customer: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CUSTOMER = "Customer with that phone number already exists in CHIM.";
 
     protected final Index index;
     protected final EditCustomerDescriptor editCustomerDescriptor;
@@ -94,7 +94,8 @@ public class EditCustomerCommand extends EditCommand {
      * edited with {@code editCustomerDescriptor}.
      */
     private static Customer createEditedCustomer(Customer customerToEdit,
-                                                 EditCustomerDescriptor editCustomerDescriptor) {
+                                                 EditCustomerDescriptor editCustomerDescriptor)
+        throws CommandException {
         assert customerToEdit != null;
 
         Name updatedName = editCustomerDescriptor.getName().orElse(customerToEdit.getName());

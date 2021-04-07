@@ -3,15 +3,12 @@ package seedu.address.model.cheese;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EXPIRY_DATE_1;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_MANUFACTURE_DATE_1;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_MATURITY_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_CAMEMBERT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_TYPE_FETA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXPIRY_DATE_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANUFACTURE_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MANUFACTURE_DATE_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MATURITY_DATE_2;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCheese.CAMEMBERT;
 import static seedu.address.testutil.TypicalCheese.FETA;
@@ -30,25 +27,10 @@ public class CheeseTest {
     }
 
     @Test
-    public void constructor_maturityDateBeforeManufactureDate_throwsIllegalArgumentException() {
-        CheeseBuilder cheeseBuilder = new CheeseBuilder().withMaturityDate(INVALID_MATURITY_DATE_1);
-        assertThrows(IllegalArgumentException.class,
-            "The maturity date of the cheese should be after the manufacture date.", () -> cheeseBuilder.build());
-    }
-
-    @Test
     public void constructor_expiryDateBeforeManufactureDate_throwsIllegalArgumentException() {
         CheeseBuilder cheeseBuilder = new CheeseBuilder().withExpiryDate(INVALID_EXPIRY_DATE_1);
         assertThrows(IllegalArgumentException.class,
             "The expiry date of the cheese should be after the manufacture date.", () -> cheeseBuilder.build());
-    }
-
-    @Test
-    public void constructor_expiryDateBeforeMaturityDate_throwsIllegalArgumentException() {
-        CheeseBuilder cheeseBuilder = new CheeseBuilder().withManufactureDate(INVALID_MANUFACTURE_DATE_1)
-                                            .withExpiryDate(INVALID_EXPIRY_DATE_1);
-        assertThrows(IllegalArgumentException.class,
-            "The expiry date of the cheese should be after the maturity date.", () -> cheeseBuilder.build());
     }
 
     @Test
@@ -117,11 +99,6 @@ public class CheeseTest {
         // Different manufacturing date -> return false
         editedCamembert = new CheeseBuilder(CAMEMBERT)
                 .withManufactureDate(VALID_MANUFACTURE_DATE_2).build();
-        assertFalse(CAMEMBERT.equals(editedCamembert));
-
-        // Different maturity date --> return false
-        editedCamembert = new CheeseBuilder(CAMEMBERT)
-                .withMaturityDate(VALID_MATURITY_DATE_2).build();
         assertFalse(CAMEMBERT.equals(editedCamembert));
 
         // Different expire date -> returns false
