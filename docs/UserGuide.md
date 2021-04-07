@@ -250,6 +250,7 @@ Format: `addTask TITLE -d DESCRIPTION -b DEADLINE [-s STATUS] [-p PRIORITY] [-a 
 * STATUS field can only take on the values **completed** or **uncompleted**.
 * If you did not specify a value for PRIORITY, the Task will be assigned a default priority of **unassigned**.
 * PRIORITY field can only take on the values **high**, **medium**, **low** or **unassigned**.
+* ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex     Yeoh" are not the same assignee.
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
 A task can have any number of assignees (including 0). To add multiple assignees, simply use multiple assignees prefix. 
@@ -288,6 +289,7 @@ Format: `editTask INDEX [-n NEW_TITLE] [-d NEW_DESCRIPTION] [-b NEW_DEADLINE] [-
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * If the assignee field is being edited, the previous assignees will be overwritten. 
+* ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex     Yeoh" are not the same assignee.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Any number of assignees can be specified here (including 0).    
