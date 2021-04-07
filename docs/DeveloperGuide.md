@@ -268,7 +268,7 @@ which calls `AddressBook#removeSession(studentName, sessionIndex)` and
 The following sequence diagram shows how deleting a session works:
 ![DeleteSessionSequenceDiagram](images/shion/DeleteSessionSequenceDiagram.png)
 
-It shares the same design considerations as what is mentioned in Add Session Feature. 
+It shares the same design considerations as what is mentioned in Add Session Feature.
 
 
 ### \[Proposed\] Undo/redo feature

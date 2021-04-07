@@ -253,7 +253,29 @@ public class UniqueStudentList implements Iterable<Student> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueStudentList // instanceof handles nulls
-                        && internalList.equals(((UniqueStudentList) other).internalList));
+                        && internalList.equals(((UniqueStudentList) other).internalList)
+                        && allSessionEquals(((UniqueStudentList) other).internalList));
+    }
+
+    /**
+     * Checks if all sessions of each student in {@code internalList} are equal to all sessions
+     * of each student in {@code studentList}.
+     */
+    private boolean allSessionEquals(ObservableList<Student> studentList) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Student currStudent = internalList.get(i);
+            Student otherStudent = studentList.get(i);
+            List<Session> currSessionList = currStudent.getListOfSessions();
+            List<Session> otherSessionList = otherStudent.getListOfSessions();
+            for (int j = 0; j < currSessionList.size(); j++) {
+                Session currSession = currSessionList.get(j);
+                Session otherSession = otherSessionList.get(j);
+                if (!currSession.equals(otherSession)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override
