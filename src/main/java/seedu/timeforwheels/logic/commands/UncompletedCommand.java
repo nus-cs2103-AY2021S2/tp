@@ -23,7 +23,8 @@ public class UncompletedCommand extends Command {
         requireNonNull(model);
         String trimmedArgs = "[X]";
         String[] nameKeywords = trimmedArgs.split("\\s+");
-        AttributeContainsKeywordsPredicate uncomplete = new AttributeContainsKeywordsPredicate(Arrays.asList(nameKeywords));
+        AttributeContainsKeywordsPredicate uncomplete
+            = new AttributeContainsKeywordsPredicate(Arrays.asList(nameKeywords));
         model.updateFilteredCustomerList(uncomplete);
         return new CommandResult(
                 String.format(Messages.MESSAGE_CUSTOMERS_UNCOMPLETED, model.getFilteredCustomerList().size()));
