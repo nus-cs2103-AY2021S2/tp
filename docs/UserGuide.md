@@ -163,7 +163,7 @@ Examples:
 
 ### Listing all contacts : `list`
 
-Shows a list of all student contacts in TutorsPet. Each student's name, phone number, subjects and lessons are displayed. 
+Shows a list of all student contacts in TutorsPet. Each student's name, phone number, subjects and lessons are displayed.
 
 Format: `list`
 
