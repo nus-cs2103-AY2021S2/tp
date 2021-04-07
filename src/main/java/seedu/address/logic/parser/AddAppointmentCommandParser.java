@@ -49,7 +49,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         if (isAppointmentDateOver(date)) {
             throw new ParseException(MESSAGE_DATE_OVER);
         }
-        if (isAppointmentTimeOver(time)) {
+        if (isAppointmentToday(date) && isAppointmentTimeOver(time)) {
             throw new ParseException(MESSAGE_TIME_OVER);
         }
 
@@ -68,6 +68,10 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
 
     private static boolean isAppointmentDateOver(Date date) {
         return date.compareTo(new Date(LocalDate.now())) < 0;
+    }
+
+    private static boolean isAppointmentToday(Date date) {
+        return date.compareTo(new Date(LocalDate.now())) == 0;
     }
 
     private static boolean isAppointmentTimeOver(Time time) {
