@@ -23,8 +23,8 @@ public class CompletedCommand extends Command {
         requireNonNull(model);
         String trimmedArgs = "[✓]";
         String[] nameKeywords = trimmedArgs.split("\\s+");
-        AttributeContainsKeywordsPredicate complete
-            = new AttributeContainsKeywordsPredicate(Arrays.asList(nameKeywords));
+        AttributeContainsKeywordsPredicate complete =
+            new AttributeContainsKeywordsPredicate(Arrays.asList(nameKeywords));
         model.updateFilteredCustomerList(complete);
         return new CommandResult(
                 String.format(Messages.MESSAGE_CUSTOMERS_COMPLETED, model.getFilteredCustomerList().size()));
