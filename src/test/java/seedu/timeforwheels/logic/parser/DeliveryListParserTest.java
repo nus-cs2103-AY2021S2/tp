@@ -25,8 +25,8 @@ import seedu.timeforwheels.logic.commands.HelpCommand;
 import seedu.timeforwheels.logic.commands.ListCommand;
 import seedu.timeforwheels.logic.commands.RemarkCommand;
 import seedu.timeforwheels.logic.parser.exceptions.ParseException;
+import seedu.timeforwheels.model.customer.AttributeContainsKeywordsPredicate;
 import seedu.timeforwheels.model.customer.Customer;
-import seedu.timeforwheels.model.customer.NameContainsKeywordsPredicate;
 import seedu.timeforwheels.model.customer.Remark;
 import seedu.timeforwheels.testutil.CustomerBuilder;
 import seedu.timeforwheels.testutil.CustomerUtil;
@@ -76,7 +76,7 @@ public class DeliveryListParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(FindCommand.COMMAND_WORD + " "
             + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new AttributeContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

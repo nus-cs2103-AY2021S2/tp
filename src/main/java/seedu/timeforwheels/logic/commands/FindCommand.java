@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.timeforwheels.commons.core.Messages;
 import seedu.timeforwheels.model.Model;
-import seedu.timeforwheels.model.customer.NameContainsKeywordsPredicate;
+import seedu.timeforwheels.model.customer.AttributeContainsKeywordsPredicate;
 
 
 /**
@@ -20,9 +20,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final AttributeContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(AttributeContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
