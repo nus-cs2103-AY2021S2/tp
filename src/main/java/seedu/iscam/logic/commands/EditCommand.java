@@ -45,7 +45,7 @@ public class EditCommand extends UndoableCommand {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_LOCATION + "LOCATION] "
-            + "[" + PREFIX_PLAN + "INSURANCE_PLAN] "
+            + "[" + PREFIX_PLAN + "INSURANCE_PLAN]..."
             + "[" + PREFIX_IMAGE + "IMAGE_FILE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -92,10 +92,10 @@ public class EditCommand extends UndoableCommand {
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Location updatedLocation = editClientDescriptor.getLocation().orElse(clientToEdit.getLocation());
-        InsurancePlan updatedPlan = editClientDescriptor.getPlan().orElse(clientToEdit.getPlan());
+        Set<InsurancePlan> updatedPlans = editClientDescriptor.getPlan().orElse(clientToEdit.getPlan());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
         Image updatedImageRes = editClientDescriptor.getImageRes().orElse(clientToEdit.getImageRes());
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedLocation, updatedPlan, updatedTags,
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedLocation, updatedPlans, updatedTags,
                 updatedImageRes);
     }
 
@@ -161,7 +161,7 @@ public class EditCommand extends UndoableCommand {
         private Name name;
         private Phone phone;
         private Email email;
-        private InsurancePlan plan;
+        private Set<InsurancePlan> plan;
         private Location location;
         private Set<Tag> tags;
         private Image imageRes;
@@ -222,12 +222,12 @@ public class EditCommand extends UndoableCommand {
             this.location = location;
         }
 
-        public Optional<InsurancePlan> getPlan() {
+        public Optional<Set<InsurancePlan>> getPlan() {
             return Optional.ofNullable(plan);
         }
 
-        public void setPlan(InsurancePlan plan) {
-            this.plan = plan;
+        public void setPlan(Set<InsurancePlan> plan) {
+            this.plan = (plan != null) ? new HashSet<>(plan) : null;
         }
 
         /**

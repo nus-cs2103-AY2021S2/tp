@@ -29,7 +29,7 @@ class JsonAdaptedClient {
     private final String name;
     private final String phone;
     private final String email;
-    private final String insurancePlan;
+    private final List<JsonAdaptedClientPlan> plans = new ArrayList<>();
     private final String location;
     private final List<JsonAdaptedClientTag> tagged = new ArrayList<>();
     private final String imageRes;
@@ -40,12 +40,17 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("location") String location,
-            @JsonProperty("plan") String insurancePlan, @JsonProperty("tagged") List<JsonAdaptedClientTag> tagged,
+            @JsonProperty("plan") List<JsonAdaptedClientPlan> plans,
+            @JsonProperty("tagged") List<JsonAdaptedClientTag> tagged,
             @JsonProperty("image") String imageRes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.insurancePlan = insurancePlan;
+
+        if (plans != null) {
+            this.plans.addAll(plans);
+        }
+
         this.location = location;
 
         if (tagged != null) {
@@ -62,7 +67,9 @@ class JsonAdaptedClient {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        insurancePlan = source.getPlan().planName;
+        plans.addAll(source.getPlan().stream()
+                .map(JsonAdaptedClientPlan::new)
+                .collect(Collectors.toList()));
         location = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedClientTag::new)
@@ -76,7 +83,11 @@ class JsonAdaptedClient {
      * @throws IllegalValueException if there were any data constraints violated in the adapted client.
      */
     public Client toModelType() throws IllegalValueException {
+        final List<InsurancePlan> clientPlans = new ArrayList<>();
         final List<Tag> clientTags = new ArrayList<>();
+        for(JsonAdaptedClientPlan plan : plans) {
+            clientPlans.add(plan.toModelType());
+        }
         for (JsonAdaptedClientTag tag : tagged) {
             clientTags.add(tag.toModelType());
         }
@@ -130,17 +141,7 @@ class JsonAdaptedClient {
         }
         final Location modelLocation = new Location(location);
 
-        if (insurancePlan == null) {
-            throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, InsurancePlan.class.getSimpleName()));
-        }
-        if (!InsurancePlan.isValidPlan(insurancePlan)) {
-            throw new IllegalValueException(InsurancePlan.MESSAGE_CONSTRAINTS);
-        }
-        if (!InsurancePlan.isValidLength(insurancePlan)) {
-            throw new IllegalValueException(InsurancePlan.MESSAGE_LENGTH_CONSTRAINTS);
-        }
-        final InsurancePlan modelPlan = new InsurancePlan(insurancePlan);
+        final Set<InsurancePlan> modelPlans = new HashSet<>(clientPlans);
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
 
@@ -154,7 +155,7 @@ class JsonAdaptedClient {
         }
         final Image modelImage = new Image(imageRes);
 
-        return new Client(modelName, modelPhone, modelEmail, modelLocation, modelPlan, modelTags, modelImage);
+        return new Client(modelName, modelPhone, modelEmail, modelLocation, modelPlans, modelTags, modelImage);
     }
 
 }

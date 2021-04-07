@@ -165,6 +165,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<InsurancePlan> plans} into a {@code Set<InsurancePlan>}.
+     */
+    public static Set<InsurancePlan> parsePlans(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<InsurancePlan> planSet = new HashSet<>();
+        for (String planName : tags) {
+            planSet.add(parsePlan(planName));
+        }
+        return planSet;
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *

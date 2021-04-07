@@ -23,7 +23,7 @@ public class JsonAdaptedClientTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_LOCATION = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_PLAN = " Plan $";
+    private static final String INVALID_PLAN = "Med1care";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_IMAGE = "w ef.jaypeg";
 
@@ -31,7 +31,9 @@ public class JsonAdaptedClientTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_LOCATION = BENSON.getLocation().toString();
-    private static final String VALID_PLAN = BENSON.getPlan().toString();
+    private static final List<JsonAdaptedClientPlan> VALID_PLAN = BENSON.getPlan().stream()
+            .map(JsonAdaptedClientPlan::new)
+            .collect(Collectors.toList());
     private static final List<JsonAdaptedClientTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedClientTag::new)
             .collect(Collectors.toList());
@@ -113,8 +115,10 @@ public class JsonAdaptedClientTest {
 
     @Test
     public void toModelType_invalidPlan_throwsIllegalValueException() {
+        List<JsonAdaptedClientPlan> invalidPlans = new ArrayList<>(VALID_PLAN);
+        invalidPlans.add(new JsonAdaptedClientPlan(INVALID_PLAN));
         JsonAdaptedClient client =
-                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_LOCATION, INVALID_PLAN, VALID_TAGS,
+                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_LOCATION, invalidPlans, VALID_TAGS,
                         VALID_IMAGE);
         String expectedMessage = InsurancePlan.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
@@ -140,8 +144,10 @@ public class JsonAdaptedClientTest {
 
     @Test
     public void toModelType_invalidImage_throwsIllegalValueException() {
+        List<JsonAdaptedClientPlan> invalidPlans = new ArrayList<>(VALID_PLAN);
+        invalidPlans.add(new JsonAdaptedClientPlan(INVALID_PLAN));
         JsonAdaptedClient client =
-                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_LOCATION, INVALID_PLAN, VALID_TAGS,
+                new JsonAdaptedClient(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_LOCATION, invalidPlans, VALID_TAGS,
                         INVALID_IMAGE);
         String expectedMessage = InsurancePlan.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
