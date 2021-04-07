@@ -26,6 +26,9 @@ public class BreedTest {
         // invalid breed
         assertFalse(Breed.isValidBreed("")); // empty string
         assertFalse(Breed.isValidBreed(" ")); // spaces only
+        assertFalse(Breed.isValidBreed("123")); // numerical digits
+        assertFalse(Breed.isValidBreed("Corgi123")); // alphanumeric input
+        assertFalse(Breed.isValidBreed("Corgi 123")); // alphanumeric + spaces
 
         // valid breed
         assertTrue(Breed.isValidBreed("Poodle"));
