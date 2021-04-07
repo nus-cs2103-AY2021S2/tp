@@ -1,6 +1,5 @@
 package seedu.address.logic.parser.deletecommandparser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENERAL_EVENT;
 
 import seedu.address.commons.core.index.Index;

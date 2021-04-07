@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.deletecommand.DeletePersonCommand;
 import seedu.address.logic.parser.deletecommandparser.DeletePersonCommandParser;
-import seedu.address.model.module.Title;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

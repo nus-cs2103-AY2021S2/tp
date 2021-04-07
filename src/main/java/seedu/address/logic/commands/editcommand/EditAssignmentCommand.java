@@ -2,10 +2,6 @@ package seedu.address.logic.commands.editcommand;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.time.LocalDateTime;
 

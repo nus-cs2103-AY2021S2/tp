@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.deletecommand;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GENERAL_EVENT;
 
 import java.util.List;
 

@@ -1,6 +1,5 @@
 package seedu.address.logic.parser.deletecommandparser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -12,8 +11,6 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Title;
-
-import java.awt.image.TileObserver;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
