@@ -104,7 +104,7 @@ public class IssueList implements Iterable<Issue> {
      * Checks if any issues have the given room associated with it
      *
      * @param target Room to check if it has issues associated with it.
-     * @return true if there are issues with the given room associated with it
+     * @return True if there are issues with the given room associated with it.
      */
     public boolean containsRoom(Room target) {
         return internalList.stream().anyMatch(issue ->
