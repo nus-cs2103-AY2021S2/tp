@@ -13,7 +13,6 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.commons.core.index.Index;
@@ -237,21 +236,6 @@ public class AddCommandTest {
 
         @Override
         public void setDetailedMeeting(Meeting meeting) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setClientMode() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setMeetingMode() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableValue<Boolean> getIsClientMode() {
             throw new AssertionError("This method should not be called.");
         }
     }

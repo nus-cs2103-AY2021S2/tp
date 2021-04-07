@@ -18,15 +18,15 @@ import seedu.iscam.model.commons.Tag;
 public class Client {
 
     // Identity fields
-    private Name name;
-    private Phone phone;
-    private Email email;
+    private final Name name;
+    private final Phone phone;
+    private final Email email;
 
     // Data fields
-    private InsurancePlan insurancePlan;
-    private Location location;
-    private Set<Tag> tags = new HashSet<>();
-    private Image imageRes;
+    private final InsurancePlan insurancePlan;
+    private final Location location;
+    private final Set<Tag> tags = new HashSet<>();
+    private final Image imageRes;
 
     /**
      * Every field must be present and not null except for imageRes.
@@ -35,6 +35,7 @@ public class Client {
     public Client(Name name, Phone phone, Email email, Location location, InsurancePlan plan, Set<Tag> tags,
                   Image imageRes) {
         requireAllNonNull(name, phone, email, location, plan, tags);
+
         this.name = name;
         this.phone = phone;
         this.email = email;

@@ -80,7 +80,7 @@ public class EditMeetingCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_failure() {
         EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_ITEM, new EditMeetingDescriptor());
-        assertMeetingCommandFailure(editMeetingCommand, model, EditMeetingCommand.MESSAGE_DUPLICATE_MEETING);
+        assertMeetingCommandFailure(editMeetingCommand, model, EditMeetingCommand.MESSAGE_NO_CHANGES);
     }
 
     @Test

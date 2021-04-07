@@ -89,7 +89,9 @@ public class Meeting {
      * Returns true if both meetings have the same date and time.
      */
     public boolean isInConflict(Meeting otherMeeting) {
-        if (otherMeeting == this) {
+        if (otherMeeting == null) {
+            return false;
+        } else if (otherMeeting == this) {
             return true;
         }
 

@@ -9,8 +9,10 @@ import static seedu.iscam.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric, and it should not be blank.";
+    public static final String MESSAGE_LENGTH_CONSTRAINTS = "Tags should not be longer than 50 characters.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    private static final int MESSAGE_MAX_LENGTH = 50;
 
     public final String tagName;
 
@@ -22,6 +24,7 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidLength(tagName), MESSAGE_LENGTH_CONSTRAINTS);
         this.tagName = tagName;
     }
 
@@ -31,6 +34,14 @@ public class Tag {
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
+
+    /**
+     * Returns true if a given tag has valid length.
+     */
+    public static boolean isValidLength(String test) {
+        return test.length() <= MESSAGE_MAX_LENGTH;
+    }
+
 
     @Override
     public boolean equals(Object other) {

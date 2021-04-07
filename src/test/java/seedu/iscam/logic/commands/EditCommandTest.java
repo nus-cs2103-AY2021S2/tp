@@ -78,12 +78,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, new EditClientDescriptor());
         Client editedClient = model.getFilteredClientList().get(INDEX_FIRST_ITEM.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
-
-        Model expectedModel = new ModelManager(new ClientBook(model.getClientBook()),
-                new MeetingBook(model.getMeetingBook()), new UserPrefs());
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NO_CHANGES);
     }
 
     @Test
@@ -117,7 +112,7 @@ public class EditCommandTest {
     public void execute_duplicateClientFilteredList_failure() {
         showClientAtIndex(model, INDEX_FIRST_ITEM);
 
-        // edit client in filtered list into a duplicate in iscam book
+        // edit client in filtered list into a duplicate in iScam book
         Client clientInList = model.getClientBook().getClientList().get(INDEX_SECOND_ITEM.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM,
                 new EditClientDescriptorBuilder(clientInList).build());

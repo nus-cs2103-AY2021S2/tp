@@ -241,20 +241,6 @@ public class AddMeetingCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public void setClientMode() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setMeetingMode() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableValue<Boolean> getIsClientMode() {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
     /**

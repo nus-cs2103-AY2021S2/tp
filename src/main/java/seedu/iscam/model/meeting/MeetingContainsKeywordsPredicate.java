@@ -1,12 +1,13 @@
 package seedu.iscam.model.meeting;
 
-import static seedu.iscam.model.meeting.CompletionStatus.TEXT_COMPLETE;
-import static seedu.iscam.model.meeting.CompletionStatus.TEXT_INCOMPLETE;
+import static seedu.iscam.model.meeting.CompletionStatus.ARGUMENT_COMPLETE;
+import static seedu.iscam.model.meeting.CompletionStatus.ARGUMENT_INCOMPLETE;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.iscam.commons.util.StringUtil;
+
 
 /**
  * Tests that the details of a {@code Meeting} matches any of the keywords given.
@@ -25,14 +26,18 @@ public class MeetingContainsKeywordsPredicate implements Predicate<Meeting> {
         for (String keyword : keywords) {
             str = str.concat(keyword + " ");
         }
-        searchString = str.strip();
+        searchString = str.strip().toLowerCase();
     }
 
     @Override
     public boolean test(Meeting meeting) {
-        if (searchString.equals(TEXT_COMPLETE.toLowerCase())) {
+        if (keywords.isEmpty()) {
+            return false;
+        }
+
+        if (searchString.equals(ARGUMENT_COMPLETE.toLowerCase())) {
             return meeting.getStatus().isComplete();
-        } else if (searchString.equals(TEXT_INCOMPLETE.toLowerCase())) {
+        } else if (searchString.equals(ARGUMENT_INCOMPLETE.toLowerCase())) {
             return !meeting.getStatus().isComplete();
         } else {
             return keywords.stream()
