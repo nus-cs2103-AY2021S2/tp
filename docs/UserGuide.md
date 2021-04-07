@@ -174,7 +174,7 @@ Note:
 - Names are allowed to contain numerics. This is catered for cases when a program name contains numbers and in some cases, even dog names and owner names.
 - Pawbook support arbitrary length phone numbers. This is to support phone numbers with differing lengths from different regions. 
 - Tags are optional and multiple tags can be added.
-- Tags are able to only take in one alphanumeric string. To write tags with multiple words, consider using camelCase or _ to represent a space.
+- Tags are only able to take in one alphanumeric string. To write tags with multiple words, consider using camelCase or _ to represent a space.
 
 Examples:
 
@@ -253,8 +253,8 @@ Note:
 
 <div markdown="block" class="alert alert-info">
 :heavy_exclamation_mark: Take note that editing tags for an entity will automatically override **all** its current tags! <br>
+:heavy_exclamation_mark: At least one variable needs to be changed!
 :bulb: Tags are able to only take in one alphanumeric string! 
-:bulb: At least one variable needs to be changed!
 </div>
 
 Examples:
