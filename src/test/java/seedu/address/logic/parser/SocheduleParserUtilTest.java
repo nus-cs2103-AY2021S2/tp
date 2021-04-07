@@ -10,10 +10,12 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.common.Category;
 import seedu.address.model.common.Date;
@@ -31,7 +33,7 @@ public class SocheduleParserUtilTest {
     private static final String INVALID_TIME_VALUE = "25:00";
     private static final String INVALID_PRIORITY = "test";
     private static final String INVALID_CATEGORY = "#school";
-
+    private static final String INVALID_INDEX = "10 a";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_TAG_1 = "friend";
@@ -41,12 +43,14 @@ public class SocheduleParserUtilTest {
     private static final String VALID_PRIORITY = "6";
     private static final String VALID_CATEGORY_1 = "school";
     private static final String VALID_CATEGORY_2 = "math";
+    private static final String VALID_INDEX_1 = "1";
+    private static final String VALID_INDEX_2 = "2";
 
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> SocheduleParserUtil.parseIndex("10 a"));
+        assertThrows(ParseException.class, () -> SocheduleParserUtil.parseIndex(INVALID_INDEX));
     }
 
     @Test
@@ -68,6 +72,36 @@ public class SocheduleParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_EVENT, SocheduleParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseIndexes_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> SocheduleParserUtil.parseIndexes(null));
+    }
+
+    @Test
+    public void parseIndexes_collectionWithInvalidIndexes_throwsParseException() {
+        assertThrows(ParseException.class, ()
+            -> SocheduleParserUtil.parseIndexes(Arrays.asList(INVALID_INDEX, VALID_INDEX_2)));
+    }
+
+    @Test
+    public void parseIndexes_emptyCollection_returnsEmptyList() throws Exception {
+        assertTrue(SocheduleParserUtil.parseIndexes(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseIndexes_collectionWithValidIndexes_returnsIndexList() throws Exception {
+        List<Index> actualIndexList = SocheduleParserUtil.parseIndexes(Arrays.asList(VALID_INDEX_1, VALID_INDEX_2));
+        List<Index> expectedIndexList = Arrays.asList(Index.fromOneBased(1), Index.fromOneBased(2));
+
+        assertEquals(expectedIndexList, actualIndexList);
+    }
+
+    @Test
+    public void parseIndexes_collectionWithDuplicateIndexes_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, ()
+            -> SocheduleParserUtil.parseIndexes(Arrays.asList(VALID_INDEX_2, VALID_INDEX_2)));
     }
 
     @Test

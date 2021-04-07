@@ -5,8 +5,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -26,9 +28,9 @@ import seedu.address.model.task.TaskComparator;
  */
 public class SocheduleParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.\n";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero positive integer.\n";
     public static final String MESSAGE_INVALID_INDEXES =
-            "Some of the given index(es) are not non-zero unsigned integers.\n";
+            "Some of the given index(es) are not non-zero positive integers.\n";
     public static final String MESSAGE_DUPLICATE_INDEXES = "Some of the given index(es) contain duplicates.\n";
 
     /**
@@ -113,6 +115,37 @@ public class SocheduleParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    public static Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        if (tags.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(parseTags(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> categories} into a {@code Set<Category>} if {@code categories} is non-empty.
+     * If {@code categories} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Category>} containing zero categories.
+     */
+    public static Optional<Set<Category>> parseCategoriesForEdit(Collection<String> categories) throws ParseException {
+        assert categories != null;
+
+        if (categories.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> categorySet = categories.size() == 1 && categories.contains("")
+                ? Collections.emptySet() : categories;
+        return Optional.of(parseCategories(categorySet));
     }
 
     /**
