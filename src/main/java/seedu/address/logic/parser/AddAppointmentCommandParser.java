@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.appointment.Date.MESSAGE_DATE_OVER;
 import static seedu.address.model.appointment.Time.MESSAGE_TIME_OVER;
-import static seedu.address.model.property.Deadline.MESSAGE_DEADLINE_OVER;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -19,7 +18,6 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Date;
 import seedu.address.model.appointment.Time;
 import seedu.address.model.name.Name;
-import seedu.address.model.property.Deadline;
 import seedu.address.model.remark.Remark;
 
 /**

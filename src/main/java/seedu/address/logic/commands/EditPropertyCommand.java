@@ -56,7 +56,7 @@ public class EditPropertyCommand extends Command {
             + "[" + PREFIX_CLIENT_CONTACT + "CLIENT_CONTACT] "
             + "[" + PREFIX_CLIENT_EMAIL + "CLIENT_EMAIL] "
             + "[" + PREFIX_CLIENT_ASKING_PRICE + "CLIENT_ASKING_PRICE] "
-            + "[" + PREFIX_TAGS + "TAGS...]\n"
+            + "[" + PREFIX_TAGS + "TAGS_SEPARATED_BY_COMMAS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Mayfair "
             + PREFIX_TYPE + "Condo "
