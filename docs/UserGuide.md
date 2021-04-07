@@ -125,6 +125,9 @@ Here are some general rules to follow when entering prefixes and parameters:
   
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. If you specify `-u https://github.com/ -u https://google.com/`, only `-u https://google.com/` will be taken.<br>
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. If the command specifies `help 123`, it will be interpreted as `help`.<br>
   
 * For Add, Edit and Run commands, to add multiple parameters of the same prefix, add the prefix multiple times before each parameter.<br>
   e.g. To add two TAGs, enter `-t tagOne -t tagTwo`.<br>
@@ -132,9 +135,6 @@ Here are some general rules to follow when entering prefixes and parameters:
   
 * Multiple headers/tags must be unique and duplicates will be ignored.
   e.g. `edit 1 -t tag -t tag` will only create one `tag`.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. If the command specifies `help 123`, it will be interpreted as `help`.<br>
 
 
 About the URL Parameter:
@@ -258,9 +258,9 @@ be a positive integer).
 
 #### 4.2.5 Find a saved API endpoint: <span class="main-command">find</span>
 
-**Description:** Find endpoints containing the search word/s through all fields **(requires at least one keyword)**.
+**Description (General Search):** Find endpoints containing the search word/s through all fields **(requires at least one keyword)**.
 
-**Format:** <span class="main-command">find</span> <span class="optional-param">[KEYWORD]</span>
+**Format (General Search):** <span class="main-command">find</span> <span class="optional-param">[KEYWORD]</span>
 
 **Example & Output:** <span class="main-command">find</span> <span class="optional-param">github</span> <span class="optional-param">transport</span>
 
@@ -298,7 +298,6 @@ Searches across multiple [prefixes](#prefix-table) will preform an **AND** searc
 `find -x get -x post` is not the same as `find -x get post`. <br>
 The first command will only search for items matching post (as stated [here](#general-rules)), while the second command will search for all items matching get and post.
 </div>
-
 
 <div style="page-break-after: always;"></div>
 

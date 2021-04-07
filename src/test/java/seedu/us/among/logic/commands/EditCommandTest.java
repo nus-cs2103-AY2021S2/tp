@@ -2,6 +2,7 @@ package seedu.us.among.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
 import static seedu.us.among.logic.commands.CommandTestUtil.DESC_GET;
 import static seedu.us.among.logic.commands.CommandTestUtil.DESC_POST;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_ADDRESS_RANDOM;
@@ -137,7 +138,10 @@ public class EditCommandTest {
         EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withMethod(VALID_METHOD_POST).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
+        String expectedOutput = String.format(MESSAGE_INVALID_COMMAND_ERROR, Messages.MESSAGE_INDEX_NOT_WITHIN_LIST,
+                EditCommand.MESSAGE_USAGE);
+
+        assertCommandFailure(editCommand, model, expectedOutput);
     }
 
     /**
@@ -154,7 +158,9 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditEndpointDescriptorBuilder().withMethod(VALID_METHOD_POST).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
+        String expectedOutput = String.format(MESSAGE_INVALID_COMMAND_ERROR, Messages.MESSAGE_INDEX_NOT_WITHIN_LIST,
+                EditCommand.MESSAGE_USAGE);
+        assertCommandFailure(editCommand, model, expectedOutput);
     }
 
     @Test
