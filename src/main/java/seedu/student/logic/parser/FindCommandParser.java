@@ -31,8 +31,9 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         assert matriculationNumber.toString().equals(matriculationNumber.toString().toUpperCase());
 
-        return new FindCommand(new StudentContainsMatriculationNumberPredicate(matriculationNumber),
+        return  new FindCommand(new StudentContainsMatriculationNumberPredicate(matriculationNumber),
                 new AppointmentListContainsMatriculationNumberPredicate(matriculationNumber),
                 new AppointmentContainsMatriculationNumberPredicate(matriculationNumber));
+
     }
 }

@@ -3,6 +3,7 @@ package seedu.student.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.student.commons.core.Messages;
+import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.Model;
 import seedu.student.model.appointment.AppointmentContainsMatriculationNumberPredicate;
 import seedu.student.model.appointment.AppointmentListContainsMatriculationNumberPredicate;
@@ -45,7 +46,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws ParseException {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
         model.updateFilteredAppointmentList(appointmentListPredicate, appointmentPredicate);
@@ -55,13 +56,14 @@ public class FindCommand extends Command {
 
         assert (filteredStudentListSize >= 0 && filteredAppointmentListSize >= 0);
 
-        if (filteredStudentListSize == 0) {
-            return new CommandResult(String.format(Messages.MESSAGE_NONEXISTENT_MATRIC_NUM,
-                    model.getFilteredStudentList().size()));
+        if(filteredStudentListSize == 0){
+            model.updateFilteredStudentList(predicate->true);
+            model.updateFilteredAppointmentList(second_predicate->true, second_predicate->true);
+            throw new ParseException(Messages.MESSAGE_NONEXISTENT_MATRIC_NUM);
         } else if (filteredAppointmentListSize == 0) {
             return new CommandResult(String.format(Messages.MESSAGE_NONEXISTENT_APPOINTMENT,
                     model.getFilteredStudentList().size()));
-        } else {
+        } else{
             return new CommandResult(String.format(Messages.MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
                     predicate.getKeyword()));
         }
