@@ -252,6 +252,16 @@ Examples:
 * `sort o/name` returns the contact list sorted in alphabetical order.
 * `sort o/date` returns the contact list sorted in chronological order.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If sort is entered after executing find, a sorted found list will be displayed.
+However, the full address book will also be sorted.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The sorting order is saved across different use sessions.
+The default order is by the date the contact was added.
+</div>
+
 #### Favourite a contact : `fav`
 
 Format: `fav INDEX [o/OPTION]`
