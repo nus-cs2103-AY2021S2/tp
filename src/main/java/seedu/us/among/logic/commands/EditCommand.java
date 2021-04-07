@@ -58,14 +58,14 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of an existing API endpoint "
             + "identified using its displayed index from the API endpoint list. "
-            + "Existing values will be overwritten by the input values.\n\n"
+            + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX "
             + PREFIX_METHOD + " METHOD "
             + PREFIX_ADDRESS + " ADDRESS "
             + PREFIX_DATA + " DATA "
             + "[" + PREFIX_HEADER + " HEADER] "
             + "[" + PREFIX_TAG + " TAG]\n"
-            + "All parameters are optional, but least one parameter to edit must be provided.\n\n"
+            + "Only INDEX is compulsory, all other parameters are optional, but least one endpoint parameter must be provided.\n\n"
             + "Examples: \n"
             + MESSAGE_API_EXAMPLE_1
             + MESSAGE_API_EXAMPLE_2
