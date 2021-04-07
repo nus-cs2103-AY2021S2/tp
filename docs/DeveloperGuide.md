@@ -445,6 +445,10 @@ It is largely similar to `SortTaskCommand`, with a some minor differences:
 
 ![Sequence Diagram of PinTaskCommand](images/PinTaskSequenceDiagram.png)
 
+The below activity diagram summarises what happens when `pin_task` is called.
+It can also be similarly extrapolated to apply to `unpin_task`.
+![Activity Diagram of PinTaskCommand](images/PinTaskActivityDiagram.png)
+
 [Return to Table of Contents](#table-of-contents)  
 
 **Implementation of ClearCompletedTaskCommand**  
