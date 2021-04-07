@@ -39,11 +39,11 @@ public class UniqueTaskListTest {
     }
 
     @Test
-    public void contains_taskWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_taskWithSameIdentityFieldsInList_returnsFalse() {
         uniqueTaskList.add(CS2103);
         Task editedAlice = new TaskBuilder(CS2103).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniqueTaskList.contains(editedAlice));
+        assertFalse(uniqueTaskList.contains(editedAlice));
     }
 
     @Test

@@ -122,21 +122,24 @@ public class Task {
     }
 
     /**
-     * Returns true if both persons have the same taskName.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both tasks have the same taskName and data fields.
+     * This defines a stronger notion of equality between two tasks.
      */
     public boolean isSameTask(Task otherTask) {
-        if (otherTask == this) {
+        if (otherTask == null) {
+            return false;
+        }
+
+        if (otherTask.equals(this)) {
             return true;
         }
 
-        return otherTask != null
-            && otherTask.getTaskName().equals(getTaskName());
+        return false;
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both tasks have the same task name and data fields.
+     * This defines a stronger notion of equality between two tasks.
      */
     @Override
     public boolean equals(Object other) {
