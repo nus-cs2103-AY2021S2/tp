@@ -25,8 +25,9 @@ import seedu.address.logic.commands.ViewCommand;
  * Contains all mapping for command and alias.
  */
 public class AliasMap {
-    private HashMap<String, String> aliasMap;
-    private final String[] commandsWord = {
+
+    public static final String ALPHANUMERICAL_REGEX = "\\p{Alnum}+";
+    private static final String[] commandsWord = {
         AddCommand.COMMAND_WORD,
         AliasCommand.COMMAND_WORD,
         ClearCommand.COMMAND_WORD,
@@ -44,6 +45,17 @@ public class AliasMap {
         UndoCommand.COMMAND_WORD,
         ViewCommand.COMMAND_WORD
     };
+    private static final String[] reviewWords = {
+        "n",
+        "p",
+        "a",
+        "h",
+        "t",
+        "f",
+        "q"
+    };
+
+    private HashMap<String, String> aliasMap;
 
     public AliasMap() {
         aliasMap = new HashMap<>();
@@ -113,6 +125,34 @@ public class AliasMap {
      */
     public boolean isCommand(String input) {
         return Arrays.stream(commandsWord).anyMatch(c -> c.equals(input));
+    }
+
+    /**
+     * Returns true if input is a review command
+     */
+    public boolean isReview(String input) {
+        return Arrays.stream(reviewWords).anyMatch(c -> c.equals(input));
+    }
+
+    /**
+     * Returns true if aliasMap is corrupted
+     */
+    public boolean isCorrupted() {
+        for (Map.Entry<String, String> entry: aliasMap.entrySet()) {
+            if (!Arrays.asList(commandsWord).contains(entry.getKey())) {
+                return true;
+            }
+            if (Arrays.asList(commandsWord).contains(entry.getValue())) {
+                return true;
+            }
+            if (Arrays.asList(reviewWords).contains(entry.getValue())) {
+                return true;
+            }
+            if (!entry.getValue().matches(ALPHANUMERICAL_REGEX)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

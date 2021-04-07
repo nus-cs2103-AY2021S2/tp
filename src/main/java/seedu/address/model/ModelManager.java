@@ -208,4 +208,9 @@ public class ModelManager implements Model {
     public boolean isCommand(String input) {
         return userPrefs.isCommand(input);
     }
+
+    @Override
+    public boolean isReview(String input) {
+        return userPrefs.isReview(input);
+    }
 }
