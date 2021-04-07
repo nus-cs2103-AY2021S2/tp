@@ -29,8 +29,7 @@ public class DeleteModuleCommandTest {
         Module module = SOFTWARE_ENGINEERING_MODULE;
         Semester semesterToDelete = new Semester(1);
         model.addSemester(INDEX_FIRST_PLAN.getZeroBased(), semesterToDelete);
-        model.addModule(INDEX_FIRST_PLAN.getZeroBased(),
-                INDEX_FIRST_PLAN.getZeroBased(), module);
+        model.addModule(INDEX_FIRST_PLAN.getZeroBased(), 1, module);
         DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(INDEX_FIRST_PLAN,
                 INDEX_FIRST_PLAN, module.getModuleCode());
         String successMessage = String.format(DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS,
