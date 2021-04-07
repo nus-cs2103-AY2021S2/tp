@@ -80,19 +80,19 @@ Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+**Format:** `help`
 
 ### 3.1.2 Clearing all entries : `clear`
 
 Clears all entries from the passenger list and pool list.
 
-Format: `clear`
+**Format:** `clear`
 
 ### 3.1.3 Exiting the program : `exit`
 
 Exits the program.
 
-Format: `exit`
+**Format:** `exit`
 
 ### 3.1.4 Saving the data
 
@@ -114,7 +114,7 @@ GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanc
 
 Adds a new passenger in the GME terminal.
 
-Format: `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [tag/TAG]`
+**Format:** `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [tag/TAG]`
 
 <div markdown="block" class="alert alert-info">
 
@@ -131,13 +131,13 @@ Format: `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [tag/TAG]`
 
 Lists the passengers currently stored in the GME terminal.
 
-Format: `list`
+**Format:** `list`
 
 ### 3.2.3 Editing a person : `edit`
 
 Edits an existing person in the GME terminal.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]…​`
+**Format:** `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]…​`
 
 <div markdown="block" class="alert alert-info">
 
@@ -159,7 +159,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]…
 
 Finds passengers whose names contain any of the given keywords.
 
-Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p`, `tag`, `pr`, `all`, `d`, `t`
+**Format:** `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p`, `tag`, `pr`, `all`, `d`, `t`
 
 <div markdown="block" class="alert alert-info">
 
@@ -186,7 +186,7 @@ Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p
 
 Deletes the specific passenger from the GME terminal.
 
-Format: `delete INDEX [INDEX ...]`
+**Format:** `delete INDEX [INDEX ...]`
 
 <div markdown="block" class="alert alert-info">
 
@@ -211,7 +211,7 @@ Format: `delete INDEX [INDEX ...]`
 
 Selects passengers from the current view in the bottom left pane of the GME terminal to arrange a carpool. 
 
-Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX d/TRIPDAY t/TRIPTIME [c/INDEX c/INDEX...] [tag/TAG]`
+**Format:** `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX d/TRIPDAY t/TRIPTIME [c/INDEX c/INDEX...] [tag/TAG]`
 
 <div markdown="block" class="alert alert-info">
 
@@ -236,7 +236,7 @@ Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX d/TRIPDAY t/TRIPTIME [c/INDEX
 
 Removes the pool specified by an index from the GME terminal.
 
-Format: `unpool INDEX`
+**Format:** `unpool INDEX`
 
 <div markdown="block" class="alert alert-info">
 
@@ -254,7 +254,7 @@ Format: `unpool INDEX`
 
 Filtering pools where the name of the pool's passengers contain any of the given keywords.
 
-Format: `findPool n/KEYWORD [n/KEYWORD c/KEYWORD...]`
+**Format:** `findPool n/KEYWORD [n/KEYWORD c/KEYWORD...]`
 
 <div markdown="block" class="alert alert-info">
 
