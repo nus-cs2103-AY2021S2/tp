@@ -75,11 +75,13 @@ public class AddScheduleCommand extends Command {
 
         if (model.hasSchedule(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SCHEDULE);
-        } else if (model.hasClashingDateTime(toAdd)) {
-            throw new CommandException(MESSAGE_CLASH_SCHEDULE);
-        } else {
-            model.addSchedule(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.SCHEDULE);
         }
+
+        if (model.hasClashingDateTime(toAdd)) {
+            throw new CommandException(MESSAGE_CLASH_SCHEDULE);
+        }
+
+        model.addSchedule(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.SCHEDULE);
     }
 }

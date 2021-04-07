@@ -31,7 +31,7 @@ public class Messages {
             + "that tutor teaches this subject: %s";
     public static final String MESSAGE_TIME_FROM_GREATER_THAN = "TIME_FROM must be before TIME_TO. "
             + "Please check your input for TIME_FROM and TIME_TO again.";
-    public static final String MESSAGE_INVALID_DATE = "The new date must not be in the past. "
+    public static final String MESSAGE_INVALID_DATE = "The date entered must not be in the past. "
             + "Please check your input again.";
     public static final String MESSAGE_UNABLE_TO_EDIT_PAST_APPOINTMENT = "Past appointment cannot be edited! "
             + "Please add a new appointment instead.";
