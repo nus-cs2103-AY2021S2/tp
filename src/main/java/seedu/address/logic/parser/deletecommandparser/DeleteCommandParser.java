@@ -13,13 +13,14 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.deletecommand.DeleteCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.CommandParser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates new parseCommand Object
  */
-public class DeleteCommandParser {
+public class DeleteCommandParser implements CommandParser {
     /**
      * Parses the {@code String} of arguments of a delete command
      * to execute the specific delete command
