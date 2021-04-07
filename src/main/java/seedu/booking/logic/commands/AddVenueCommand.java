@@ -1,7 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PERSONS;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_VENUES;
 
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
@@ -35,7 +35,7 @@ public class AddVenueCommand extends Command {
         }
 
         model.addVenue(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), COMMAND_SHOW_PERSONS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), COMMAND_SHOW_VENUES);
     }
 
     @Override
