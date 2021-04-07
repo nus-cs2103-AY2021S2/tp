@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.OPTION_DATE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_NAME;
 
 import java.io.Serializable;
+import java.security.InvalidParameterException;
 import java.util.Comparator;
 import java.util.Objects;
 
@@ -30,10 +31,12 @@ public class AddressBookSettings implements Serializable {
 
     public Comparator<Contact> getComparator() {
         switch (comparator) {
+        case OPTION_DATE:
+            return new DateComparator();
         case OPTION_NAME:
             return new NameComparator();
         default:
-            return new DateComparator();
+            throw new InvalidParameterException();
         }
     }
 
