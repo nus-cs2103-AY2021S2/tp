@@ -82,6 +82,18 @@ public interface Model {
     void massDelete(int startIndex, int endIndex);
 
     /**
+     * Blacklists all unblacklisted contacts within the specified index range (inclusive).
+     * If the contact is already blacklisted, then no change will occur.
+     */
+    void massBlacklist(int startIndex, int endIndex);
+
+    /**
+     * Unblacklists all blacklisted contacts within the specified index range (inclusive).
+     * If the contact is already unblacklisted, then no change will occur.
+     */
+    void massUnblacklist(int startIndex, int endIndex);
+
+    /**
      * Sorts the contact in the address book by name in alphabetical order.
      *
      * @param isAscending The list will be sorted by ascending order if true and descending
@@ -94,18 +106,6 @@ public interface Model {
      * {@code target} must exist in the address book.
      */
     void toggleBlacklist(Person target);
-
-    /**
-     * Blacklists the given person {@code target}.
-     * {@code target} must exist in the address book.
-     */
-    void blacklistPerson(Person target);
-
-    /**
-     * Unblacklists the given person {@code target}.
-     * {@code target} must exist in the address book.
-     */
-    void unblacklistPerson(Person target);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

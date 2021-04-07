@@ -103,11 +103,27 @@ public class TypicalPersons {
         return ab;
     }
 
+    /**
+     * Returns an {@code AddressBook} where each person is blacklisted to test the massblacklist
+     * commands.
+     */
+    public static AddressBook getBlacklistedTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Person person : getBlacklistedTypicalPersons()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
+
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, JANE));
     }
 
     public static List<Person> getUnsortedTypicalPersons() {
         return new ArrayList<>(Arrays.asList(BENSON, ELLE, CARL, ALICE, JANE, GEORGE, FIONA, DANIEL));
+    }
+
+    public static List<Person> getBlacklistedTypicalPersons() {
+        return new ArrayList<>(Arrays.asList(CARL, FIONA, JANE));
     }
 }
