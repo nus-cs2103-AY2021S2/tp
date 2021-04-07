@@ -124,6 +124,7 @@ Format: `edit INDEX [n/NAME] [desc/DESCRIPTION] [date/DATE] [s/STATUS] [t/TAG]â€
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
 * You can remove all the taskâ€™s tags by typing `t/` without specifying any tags after it.
+* There are 3 Task statuses: `expired`, `uncompleted` and `completed`. However you can cannot directly modify task's status to `expired`
 
 Examples:
 *  `edit 1 desc/my typical description` Edits the description of the 1st task to be `my typical description`.
