@@ -300,7 +300,7 @@ from a particular student in a given month and year.
 This section explains the implementation of the `fee` command and highlights the design considerations taken into account when implementing this feature.
 
 #### Implementation
-The creation of a session is facilitated by `GetMonthlyFeeCommand` and it extends `Command`. The method,
+The calculation of the fees is facilitated by the `GetMonthlyFeeCommand` and it extends `Command`. The method,
 `GetMonthlyFeeCommand#execute()`, performs a validity check on student name input to ensure that the student name exists in the application.
 
 The following sequence diagram shows the interactions between the Model, Logic and FeeUtil components during the execution of
