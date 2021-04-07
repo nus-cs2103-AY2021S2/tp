@@ -416,11 +416,11 @@ hence changing of timing on a computer could affect the judgement of expiration.
 
 
 ### Finding tasks and events before or on a given date: `find_schedule`
-Finds ongoing tasks and events before or on the specified date in SOChedule.
+Finds tasks and events before or on the specified date in SOChedule.
 
 Format: `find_schedule DATE`
-* **Ongoing tasks** refer to **uncompleted tasks** with deadlines before or on the specified date
-* **Ongoing events** refer to events with start date before or on the specified date and end date after or on the specified date, 
+* Tasks refer to **uncompleted tasks** with deadlines before or on the specified date
+* Events refer to events with start date before or on the specified date and end date after or on the specified date, 
   i.e., `event start date <= given date <= event end date`
 * Date entered must be a valid date and in the format of `YYYY-MM-DD`, e.g. `2021-04-01`
 * Only one single date can be entered. If more than one dates are supplied, program will return an error message
@@ -429,7 +429,8 @@ Format: `find_schedule DATE`
   please use the `list_task` and `list_event` respectively.
 
 Examples:
-* `find_schedule 2021-06-01` finds all existing tasks with deadlines and all existing events with start date 
+* `find_schedule 2021-06-01` finds all existing uncompleted tasks with deadlines 
+  and all existing events with start date before or on the specified date and end date after or on 
   before or on `1st June 2021`.
 
 [Return to Feature List](#feature-list)
