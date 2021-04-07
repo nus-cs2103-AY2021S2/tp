@@ -72,6 +72,7 @@ public class AliasCommand extends Command {
 
         // update model
         model.addAlias(alias);
+        model.commitAddressBook();
 
         if (isExisting) {
             return new CommandResult(String.format(MESSAGE_SUCCESS_UPDATED, alias.getAliasName()));
