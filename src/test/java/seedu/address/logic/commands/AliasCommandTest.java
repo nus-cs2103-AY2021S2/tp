@@ -59,6 +59,8 @@ public class AliasCommandTest {
     public void execute_invalidAlias_throwsCommandException() {
         assertCommandFailure(new AliasCommand("add", "add"), model,
                 String.format(AliasCommand.MESSAGE_ALIAS_IS_COMMAND, "add"));
+        assertCommandFailure(new AliasCommand("add", "a"), model,
+                String.format(AliasCommand.MESSAGE_ALIAS_IS_COMMAND, "a"));
         assertCommandFailure(new AliasCommand("a", "ad"), model,
                 String.format(AliasCommand.MESSAGE_COMMAND_IS_REVIEW, "a"));
         assertCommandFailure(new AliasCommand("invalid", "ad"), model,
