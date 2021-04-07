@@ -346,18 +346,18 @@ Vax@NUS saves your current date in the hard disk automatically after any command
 
 Action | Format, Examples
 --------|------------------
-**Add <br> Student** | `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]` <br> e.g., `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
-**Edit <br> Student** | `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
+**Add Student** | `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]` <br> e.g., `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+**Edit Student** | `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
 **Delete Student** | `delete MATRICULATION_NUMBER` e.g., `delete A1234567X`
 **Filter Students** | `filter VACCINATION_STATUS`  e.g., `filter vaccinated`, `filter not vaccinated`, <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
 **View Student Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
-**Add <br> Appointment** | `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME` <br> e.g., `addAppt i/A1234567X d/2021-12-13 ts/13:00`
+**Add  Appointment** | `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME` <br> e.g., `addAppt i/A1234567X d/2021-12-13 ts/13:00`
 **Edit Appointment** | `editAppt MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM` <br> e.g.,` editAppt A1234567X d/2021-12-13 ts/14:00`
 **Delete Appointment** | `deleteAppt MATRICULATION_NUMBER` <br> e.g., `deleteAppt A1234567X`
 **View Appointment Statistics** | `statsAppt`
-**List <br> All Data** | `list`
-**Find <br> Student and Appointment** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
-**View <br> Help** | `help` 
-**Clear <br> All Data** | `clear` 
-**Exit <br> Program** | `exit`
+**List All Data** | `list`
+**Find Student and Appointment** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
+**View Help** | `help` 
+**Clear All Data** | `clear` 
+**Exit Program** | `exit`
 
