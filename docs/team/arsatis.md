@@ -37,28 +37,67 @@ Given below are my contributions to the project.
   * Credits: _AB3's prior implementation of `list` guided the implementation of the `listreader` command._
 
 * **Enhancements to existing features**:
-  * Introduced book barcode to enable storage of books with same names (pull requests [\#152](), [\#160](), [\#195]())
-  * Improved the formatting of time and date in GUI to enhance user-friendliness of SmartLib (pull request [\#174]())
+  * Introduced book barcode to enable storage of books with same names (pull requests
+    [\#152](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/152),
+    [\#160](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/160),
+    [\#195](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/195))
+  * Improved the formatting of time and date in GUI to enhance user-friendliness of SmartLib (pull request
+    [\#174](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/174))
   * Added Javadoc to existing features to enhance readability and understandability of each method (pull requests
-    [\#161](), [\#191]())
-  * Wrote additional tests for existing features to increase coverage (pull requests [\#184](), [\#185](), [\#186](),
-    [\#192](), [\#196](), [\#197](), [\#279](), [\#280](), [\#281](), [\#282]())
-  * Fixed miscellaneous bugs in existing features (pull requests [\#171](), [\#183](), [\#195](), [\#270]())
+    [\#161](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/161),
+    [\#191](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/191))
+  * Wrote additional tests for existing features to increase coverage (pull requests
+    [\#184](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/184),
+    [\#185](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/185),
+    [\#186](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/186),
+    [\#192](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/192),
+    [\#196](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/196),
+    [\#197](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/197),
+    [\#279](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/279),
+    [\#280](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/280),
+    [\#281](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/281),
+    [\#282](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/282))
+  * Fixed miscellaneous bugs in existing features (pull requests
+    [\#171](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/171),
+    [\#183](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/183),
+    [\#195](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/195),
+    [\#270](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/270))
 
 * **Contributions to the User Guide**:
-  * Added an introduction to enhance reader-friendliness of the UG (pull requests [\#65](), [\#159](), [\#169]())
-  * Added documentation for the features `listreader` and `findreader` (pull requests [\#65](), [\#178]())
-  * Rearranged the ordering of the features to enhance reader-friendliness of the UG (pull request [\#169]())
-  * Added table of command parameters for each section (pull requests [\#178](), [\#194](), [\#273]())
-  * Added glossary to clarify technical terminology  (pull requests [\#178](), [\#273]())
+  * Added an introduction to enhance reader-friendliness of the UG (pull requests
+    [\#65](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/65),
+    [\#159](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/159),
+    [\#169](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/169))
+  * Added documentation for the features `listreader` and `findreader` (pull requests
+    [\#65](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/65),
+    [\#178](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/178))
+  * Rearranged the ordering of the features to enhance reader-friendliness of the UG (pull request
+    [\#169](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/169))
+  * Added table of command parameters for each section (pull requests
+    [\#178](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/178),
+    [\#194](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/194),
+    [\#273](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/273))
+  * Added glossary to clarify technical terminology (pull requests
+    [\#178](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/178),
+    [\#273](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/273))
 
 * **Contributions to the Developer Guide**:
-  * Added target user profile, value proposition, and user stories (pull request [\#62]())
-  * Added use cases (pull requests [\#66](), [\#82]())
-  * Replaced all instances of AddressBook with SmartLib (pull request [\#138]())
-  * Added implementation details of the `findreader` and `listreader` features (pull requests [\#139](), [\#143]())
-  * Added an introduction to enhance reader-friendliness of the DG  (pull request [\#157]())
-  * Fixed bugs with the DG (pull requests [\#157](), [\#159](), [\#199]())
+  * Added target user profile, value proposition, and user stories (pull request
+    [\#62](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/62))
+  * Added use cases (pull requests
+    [\#66](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/66),
+    [\#82](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/82))
+  * Replaced all instances of AddressBook with SmartLib (pull request
+    [\#138](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/138))
+  * Added implementation details of the `findreader` and `listreader` features (pull requests
+    [\#139](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/139),
+    [\#143](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/143))
+  * Added an introduction to enhance reader-friendliness of the DG  (pull request
+    [\#157](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/157))
+  * Fixed bugs with the DG (pull requests
+    [\#157](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/157),
+    [\#159](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/159),
+    [\#199](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/199))
 
 * **Project management**:
   * Refactored all references to "AddressBook" in the code to "SmartLib"
@@ -69,8 +108,11 @@ Given below are my contributions to the project.
   * Kept track of task schedules and deadlines
 
 * **Community**:
-  * PRs reviewed: [\#154](), [\#158]()
-  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/194),
+  * PRs reviewed:
+    [\#154](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/154),
+    [\#158](https://github.com/AY2021S2-CS2103T-W13-2/tp/pull/158)
+  * Contributed to forum discussions (examples:
+    [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/194),
     [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/139),
     [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/110#issuecomment-774674147))
   * Reported bugs and suggestions for other teams in the class (example: [PE-D](https://github.com/arsatis/ped/issues))
