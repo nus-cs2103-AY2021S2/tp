@@ -94,6 +94,7 @@ public class EditStudentCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
+        expectedModel.updateFilteredStudentList(model.getFilteredStudentListPredicate());
 
         assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }

@@ -29,9 +29,9 @@ public class SampleDataUtil {
             new SessionDate("2021-04-07T12:00")));
 
         List<Session> berniceSessionList = new ArrayList<>();
-        berniceSessionList.add(new Session(new SessionDate("2021-02-01T12:00"),
+        berniceSessionList.add(new Session(new SessionDate("2021-02-01T13:30"),
             new Duration("120"),
-            new Subject("Math"), new Fee("23.4")));
+            new Subject("Science"), new Fee("23.4")));
         berniceSessionList.add(new RecurringSession(new SessionDate("2021-01-25T12:00"),
             new Duration("90"),
             new Subject("Math"), new Fee("31.3"), new Interval("7"),

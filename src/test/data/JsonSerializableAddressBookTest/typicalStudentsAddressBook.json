@@ -11,12 +11,29 @@
     "sessions": [
       {
         "type" : "JsonAdaptedSession",
-        "sessionDate": "2020-01-01T12:00",
+        "sessionDate": "2021-02-05T12:00",
         "duration": "100",
         "subject": "COMPUTING",
-        "fee": "40.0"
-      }
-    ]
+        "fee": "39.40"
+      }, {
+        "type" : "JsonAdaptedSession",
+        "sessionDate": "2021-02-01T12:00",
+        "duration": "100",
+        "subject": "COMPUTING",
+        "fee": "81.50"
+      }, {
+        "type" : "JsonAdaptedSession",
+        "sessionDate": "2021-03-01T12:00",
+        "duration": "100",
+        "subject": "COMPUTING",
+        "fee": "29.31"
+      }, {
+        "type" : "JsonAdaptedSession",
+        "sessionDate": "2020-02-01T12:00",
+        "duration": "100",
+        "subject": "COMPUTING",
+        "fee": "50.28"
+      } ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -44,11 +61,13 @@
     "relationship" : "Mother",
     "sessions": [
       {
-        "type" : "JsonAdaptedSession",
-        "sessionDate": "2020-01-03T12:00",
+        "type" : "JsonAdaptedRecurringSession",
+        "sessionDate": "2021-01-01T00:00",
         "duration": "100",
         "subject": "COMPUTING",
-        "fee": "40.0"
+        "fee": "40.0",
+        "interval" : "7",
+        "lastSessionDate" : "2021-01-15T00:00"
       }
     ]
   }, {
@@ -59,15 +78,7 @@
     "studyLevel" : "Junior College 2",
     "guardianPhone" : "97213021",
     "relationship" : "Father",
-    "sessions": [
-      {
-        "type" : "JsonAdaptedSession",
-        "sessionDate": "2020-01-04T12:00",
-        "duration": "100",
-        "subject": "COMPUTING",
-        "fee": "40.0"
-      }
-    ]
+    "sessions" : [ ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "94822242",
@@ -76,15 +87,7 @@
     "studyLevel" : "Primary 2",
     "guardianPhone" : "92134012",
     "relationship" : "Mother",
-    "sessions": [
-      {
-        "type" : "JsonAdaptedSession",
-        "sessionDate": "2020-01-05T12:00",
-        "duration": "100",
-        "subject": "COMPUTING",
-        "fee": "40.0"
-      }
-    ]
+    "sessions" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "94824272",
@@ -93,15 +96,7 @@
     "studyLevel" : "Sec 2",
     "guardianPhone" : "99021234",
     "relationship" : "Mother",
-    "sessions": [
-      {
-        "type" : "JsonAdaptedSession",
-        "sessionDate": "2020-01-06T12:00",
-        "duration": "100",
-        "subject": "COMPUTING",
-        "fee": "40.0"
-      }
-    ]
+    "sessions" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "94824422",
@@ -110,14 +105,6 @@
     "studyLevel" : "Sec 3",
     "guardianPhone" : "87620000",
     "relationship" : "Father",
-    "sessions": [
-      {
-        "type" : "JsonAdaptedSession",
-        "sessionDate": "2020-01-07T12:00",
-        "duration": "100",
-        "subject": "COMPUTING",
-        "fee": "40.0"
-      }
-    ]
+    "sessions" : [ ]
   } ]
 }

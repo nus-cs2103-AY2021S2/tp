@@ -27,7 +27,10 @@ public class EmailCommand extends Command {
 
         for (Student student : studentList) {
             assert student.getEmail() != null && !student.getEmail().value.equals("");
-            concatenatedEmails.append(student.getEmail()).append(";");
+            String studentEmail = student.getEmail().value;
+            if (concatenatedEmails.indexOf(studentEmail) < 0) {
+                concatenatedEmails.append(studentEmail).append(";");
+            }
         }
 
         return new CommandResult(concatenatedEmails.toString());
