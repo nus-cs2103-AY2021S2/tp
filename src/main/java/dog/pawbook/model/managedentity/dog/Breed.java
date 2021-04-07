@@ -30,10 +30,6 @@ public class Breed {
      * Returns true if a given string is a valid breed.
      */
     public static boolean isValidBreed(String test) {
-        if (test.trim().equals("")) {
-            return false;
-        }
-        
         return test.matches(VALIDATION_REGEX);
     }
 
