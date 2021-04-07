@@ -20,7 +20,7 @@ public class LevelDownCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Demotes all students by one level by default. To exclude students, add their index numbers after "
             + "the ex/ prefix. The space after the ex/ prefix cannot be left blank.\n"
-            + "Parameters: " + PREFIX_EXCLUDE + " INDEX... (optional, must be a positive integer)\n"
+            + "Parameters: " + PREFIX_EXCLUDE + " INDEX... (optional, must be a positive integer and less than 2147483648)\n"
             + "Example: " + COMMAND_WORD + "\n"
             + COMMAND_WORD + " " + PREFIX_EXCLUDE + "2\n"
             + COMMAND_WORD + " " + PREFIX_EXCLUDE + "1 4";
@@ -67,9 +67,6 @@ public class LevelDownCommand extends Command {
     private void checkIndexWithinBounds(Model model) throws CommandException {
         for (int i = 0; i < indices.size(); i++) {
             Index index = indices.get(i);
-            if (index.getZeroBased() < 1) {
-                throw new CommandException(Messages.MESSAGE_NEGATIVE_INDEX);
-            }
             if (index.getZeroBased() >= model.getTransformedPersonList().size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }

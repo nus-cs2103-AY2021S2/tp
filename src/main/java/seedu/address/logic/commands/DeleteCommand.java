@@ -38,9 +38,6 @@ public class DeleteCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-        if (targetIndex.getZeroBased() < 1) {
-            throw new CommandException(Messages.MESSAGE_NEGATIVE_INDEX);
-        }
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
         model.removePersonFromLesson(personToDelete);

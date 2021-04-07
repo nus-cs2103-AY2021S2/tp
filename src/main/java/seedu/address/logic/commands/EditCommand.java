@@ -84,9 +84,6 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getTransformedPersonList();
 
-        if (index.getZeroBased() < 1) {
-            throw new CommandException(Messages.MESSAGE_NEGATIVE_INDEX);
-        }
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
