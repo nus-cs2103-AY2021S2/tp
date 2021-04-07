@@ -61,13 +61,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        InsurancePlan plan = ParserUtil.parsePlan(argMultimap.getValue(PREFIX_PLAN).orElse("No plans yet"));
+        Set<InsurancePlan> planList = ParserUtil.parsePlans(argMultimap.getAllValues(PREFIX_PLAN));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         // TODO: Set a better place to refer default.png to
         Image imageRes = ParserUtil.parseImageRes(argMultimap.getValue(PREFIX_IMAGE).orElse("default.png"));
 
-        Client client = new Client(name, phone, email, location, plan, tagList, imageRes);
+        Client client = new Client(name, phone, email, location, planList, tagList, imageRes);
 
         return new AddCommand(client);
     }

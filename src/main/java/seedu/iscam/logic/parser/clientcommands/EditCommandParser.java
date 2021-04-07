@@ -25,6 +25,7 @@ import seedu.iscam.logic.parser.ParserUtil;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.logic.parser.exceptions.ParseIndexException;
+import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.commons.Tag;
 
 /**
@@ -67,16 +68,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
             editClientDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
         }
-        if (argMultimap.getValue(PREFIX_PLAN).isPresent()) {
-            String planName = argMultimap.getValue(PREFIX_PLAN).get();
 
-            // If user input "ip/", Insurance Plan changes to "No plans yet"
-            if (planName.equals("")) {
-                planName = "No plans yet";
-            }
+        parsePlansForEdit(argMultimap.getAllValues(PREFIX_PLAN)).ifPresent(editClientDescriptor::setPlan);
 
-            editClientDescriptor.setPlan(ParserUtil.parsePlan(planName));
-        }
         if (argMultimap.getValue(PREFIX_IMAGE).isPresent()) {
             editClientDescriptor.setImageRes(ParserUtil.parseImageRes(argMultimap.getValue(PREFIX_IMAGE).get()));
         }
@@ -88,6 +82,21 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         return new EditCommand(index, editClientDescriptor);
+    }
+
+    /**
+     * Parses {@code Collection<String> plans} into a {@code Set<InsurancePlan>} if {@code plans} is non-empty.
+     * If {@code plans} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<InsurancePlan>} containing no insurance plans.
+     */
+    private Optional<Set<InsurancePlan>> parsePlansForEdit(Collection<String> plans) throws ParseException {
+        assert plans != null;
+
+        if (plans.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> planSet = plans.size() == 1 && plans.contains("") ? Collections.emptySet() : plans;
+        return Optional.of(ParserUtil.parsePlans(planSet));
     }
 
     /**

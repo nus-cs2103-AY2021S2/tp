@@ -23,7 +23,7 @@ public class Client {
     private Email email;
 
     // Data fields
-    private InsurancePlan insurancePlan;
+    private Set<InsurancePlan> insurancePlans = new HashSet<>();
     private Location location;
     private Set<Tag> tags = new HashSet<>();
     private Image imageRes;
@@ -32,13 +32,13 @@ public class Client {
      * Every field must be present and not null except for imageRes.
      * If insurance plan is not present, it will be a String of "No plans yet"
      */
-    public Client(Name name, Phone phone, Email email, Location location, InsurancePlan plan, Set<Tag> tags,
+    public Client(Name name, Phone phone, Email email, Location location, Set<InsurancePlan> plans, Set<Tag> tags,
                   Image imageRes) {
-        requireAllNonNull(name, phone, email, location, plan, tags);
+        requireAllNonNull(name, phone, email, location, plans, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.insurancePlan = plan;
+        this.insurancePlans.addAll(plans);
         this.location = location;
         this.tags.addAll(tags);
         this.imageRes = imageRes;
@@ -60,8 +60,8 @@ public class Client {
         return location;
     }
 
-    public InsurancePlan getPlan() {
-        return insurancePlan;
+    public Set<InsurancePlan> getPlan() {
+        return Collections.unmodifiableSet(insurancePlans);
     }
 
     /**
@@ -134,10 +134,10 @@ public class Client {
                 .append(getLocation());
 
         // If insurance plan is present, display it
-        InsurancePlan plan = getPlan();
-        if (!plan.toString().equals("No plans yet")) {
-            builder.append("; Insurance Plan: ")
-                    .append(getPlan());
+        Set<InsurancePlan> plan = getPlan();
+        if (!insurancePlans.isEmpty()) {
+            builder.append(", Insurance Plan: ");
+            plan.forEach(builder::append);
         }
 
         Set<Tag> tags = getTags();

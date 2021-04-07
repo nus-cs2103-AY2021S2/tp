@@ -37,11 +37,6 @@ public class InsurancePlan {
     }
 
     @Override
-    public String toString() {
-        return planName;
-    }
-
-    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof InsurancePlan // instanceof handles nulls
@@ -51,5 +46,13 @@ public class InsurancePlan {
     @Override
     public int hashCode() {
         return planName.hashCode();
+    }
+
+    /**
+     * Format state as text for viewing.
+     */
+    @Override
+    public String toString() {
+        return '[' + planName + ']';
     }
 }
