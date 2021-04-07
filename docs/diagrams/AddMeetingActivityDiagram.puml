@@ -15,7 +15,7 @@ else ([Else])
     note right
         Different messages can be displayed
         depending on which field is invalid
-        and why. They are ommitted here for
+        and why. They are omitted here for
         brevity.
     end note
 endif

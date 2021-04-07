@@ -217,7 +217,7 @@ displayed to the user.
 
 This process is visualised in the diagram below:
 
-DIAGRAM HERE
+![EditMeetingCommand activity diagram](images/EditMeetingActivityDiagram.png)
 
 ##### EditMeetingCommand
 Similar to the `AddMeetingCommand`, `EditMeetingCommand` is inherited from `Command` class and overrides its `execute()`
