@@ -17,7 +17,7 @@ import seedu.address.model.event.GeneralEvent;
 public class DeleteGeneralEventCommand extends DeleteCommand {
 
     public static final String MESSAGE_GENERAL_EVENT_SUCCESS = "Deleted General Event: %1$s";
-
+    public static final String MESSAGE_EMPTY_EVENTLIST = "Event list is empty";
     private final Index targetIndex;
 
     public DeleteGeneralEventCommand(Index targetIndex) {
@@ -28,6 +28,9 @@ public class DeleteGeneralEventCommand extends DeleteCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<GeneralEvent> lastShownList = model.getFilteredEventList();
+        if (lastShownList.size() == 0) {
+            throw new CommandException(MESSAGE_EMPTY_EVENTLIST);
+        }
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_GENERAL_EVENT_DISPLAYED_INDEX);
         }
