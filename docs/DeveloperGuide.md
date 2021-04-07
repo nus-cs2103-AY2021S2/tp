@@ -1,3 +1,4 @@
+
 ---
 layout: page
 title: Developer Guide
@@ -290,27 +291,76 @@ The following sequence diagram shows how the delete operation works:
 
 ### FoodIntake Object
 
-The FoodIntake class stores a `LocalDate` and `Food` object representing the date and food associated with a particular FoodIntake.
+The FoodIntake represents the date and food associated with a particular FoodIntake.
+
+[Class diagram]
+
+The FoodIntake class stores a `LocalDate` and `Food`:
 
 1. `date` : Represents the date that the FoodIntake was recorded
 2. `food` : Represents the `Food` object associated with the FoodIntake record
 
 The `Food` object associated with each `FoodIntake` object is independent of the `UniqueFoodList` and editing a `Food` in the `UniqueFoodList` will not affect old FoodIntake values, and vice versa.
 
+#### FoodIntake Constructors
 There are two constructors for the creation of a FoodIntake object.
 
 1. `public FoodIntake(LocalDate date, Food temporaryFood)` : Creates a `FoodIntake` object given the `LocalDate` and `Food` object - used in the general FoodIntakeCommand when there is no need to alter the `Food` name e.g. appending the numerical duplicate count.
 2. `public FoodIntake(LocalDate date, String name, double carbos, double fats, double proteins)` : Creates a FoodIntake object given the `LocalDate` and individual food name and nutrient values - used when loading to file and saving duplicate `FoodIntake` Food names.
 
 #### Design consideration
+##### Aspect: Allowing special `Food` names for duplicate `FoodIntake` names
+When adding multiple `FoodIntake`s with the same `Food` name in a given date, the `FoodIntake` with the duplicate name will be appended with a **duplicate count**.
 
-The `FoodIntake` class makes use of a `Food` object as it can be directly retrieved from the `UniqueFoodList` which stores a list of `Food` objects.
+For example, adding two 'chicken rice' will result in the following list of food intakes: chicken rice, chicken rice #2.
 
-Two constructors were used to get-around the restrictions by the `Food` name field. By default, the `Food` name can only contain **alphabets and spaces**, however, when adding a new `FoodIntake` item to the `FoodIntakeList`, duplicate `Food` names are appended with a **numerical duplicate count** (e.g. Chicken rice 2 symbolises that it is the second 'Chicken rice' added on the specific date). As such, the second constructor allows for `Food` names with numerical values and is used when loading the `FoodIntakeList` from file, and when adding a `FoodIntake` with a duplicate `Food` name.
+Hence, there is a need to allow for a by-pass in the name validation by `Food` which conventionally only allows **alphanumeric characters**. When a `Food` contains a duplicate name and is added to the `FoodIntakeList`, the name will be renamed to include the duplicate count which contains the '#' character - which is not allowed by the default constructor.
 
-### FoodIntakeList Class
+* Current Choice:
+  * Create two different constructors for the `FoodIntake` class. One directly accepts a `Food` object, which must adhere to the naming validation by `Food`, while the other accepts all the individual name and nutrient values.
+  * In the background, the `FoodIntake` class creates a `Food` object with a temporary name and then calls the `setName()` method to reflect the name with the duplicate count - bypassing the alphanumeric check.
+* Pros:
+  * There is no need to amend the original `Food` class and potentially harm the integrity of the `Food` names
+  * Does not affect the `UniqueFoodList`
+* Cons:
+  * Results in two different constructors
+* Alternative 1: Make a separate class to store foods specifically in the `FoodIntake`
+  * Pros:
+    * No need for multiple constructors in `Food`
+  * Cons:
+    * Less intuitive, as both classes are essentially taking on the role of a 'Food'
 
-[Work in progress]
+### FoodIntakeList Object
+
+The FoodIntake class represents a list of recorded food intakes by the user.
+
+[Class diagram]
+
+The FoodIntake class stores an ObservableList of `FoodIntake`s:
+1. `ObservableList<FoodIntake>`: Represents the list of recorded `FoodIntake`s
+
+Additionally, some noteworthy information to note:
+2. `FoodIntake`s with duplicate `Food` names will have their names renamed to include a duplicate count. More information on the implementation is provided in the below section.
+3. Whenever a `FoodIntake` is deleted, the duplicate count is re-ordered for `FoodIntake`s matching the name and date. More information on the implementation is provided in the below section.
+
+#### Design consideration
+##### Aspect: A single `FoodIntakeList` used for the program
+* Current Choice:
+  * A single `FoodIntakeList` is used to store all `FoodIntake`s by the user
+* Pros:
+  * Easier maintenance and storage of files
+* Cons:
+  * All data from multiple plans may reside in the same list when the user switches plans midway
+* Alternative 1: Keep multiple `FoodIntakeList`s
+  * Pros:
+    * Looking at the individual storage files would be clearer as different FoodIntakes from different plans are located in different files
+  * Cons:
+    * It is generally more complicated to implement and harder to ensure that the user is saving to the right `FoodIntakeList` instance
+
+[Add food intake - interacts with food, multiple commands]
+[How food intakes are added when have duplicate names]
+[Duplicate food count]
+[Reordering - associated with deletion]
 
 ### Progress Report feature
 
