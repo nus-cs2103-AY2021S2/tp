@@ -9,6 +9,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
+import seedu.address.model.person.DoctorMap;
+import seedu.address.model.person.PatientMap;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -127,9 +129,9 @@ public class Appointment implements Comparable<Appointment> {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Patient: ")
-                .append(getPatientUuid().toString())
+                .append(PatientMap.getPatientFromUuid(getPatientUuid()))
                 .append("; Doctor: ")
-                .append(getDoctorUuid().toString())
+                .append(DoctorMap.getDoctorFromUuid(getDoctorUuid()))
                 .append("; Timeslot: ")
                 .append(getTimeslot().toString());
 

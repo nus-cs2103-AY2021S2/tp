@@ -78,6 +78,13 @@ Format: `add-patient n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`
 
 * The patient can have any number of tags (including 0).<br>
 
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+
+* When a tag is too long, an ellipsis will be automatically added to prevent overflow. 
+It is recommended that tags not be too long to avoid this.<br>
+
 </div><br>
 
 Examples:
@@ -89,7 +96,7 @@ Clears all entries from the patient records. <br>
 Format: `clear-patient`
 
 * Entries in the patient records can only be cleared if there are no existing appointments in the appointment schedule. <br>
-* Otherwise, `clear-appt` have to called first. <br>
+* Otherwise, `clear-appt` will have to be called first. <br>
 * The above-mentioned requirements are similarly applicable to [`clear-doctor`](#clearing-all-entries-in-doctor-records-clear-doctor)
 
 ### Deleting a patient : `delete-patient`
@@ -162,6 +169,13 @@ Format: `add-doctor n/NAME [t/TAG]…​`
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 
 * The doctor can have any number of tags (including 0).<br>
+
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+
+* When a tag is too long, an ellipsis will be automatically added to prevent overflow. 
+It is recommended that tags not be too long to avoid this.<br>
 
 </div><br>
 
@@ -247,6 +261,13 @@ Format: `add-appt pt/PATIENT_INDEX dr/DOCTOR_INDEX at/TIMESLOT_START [to/TIMESLO
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 
 * The appointment can have any number of tags (including 0). It is recommended to use the tags to define the purpose of the appointment.<br>
+
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
+
+* When a tag is too long, an ellipsis will be automatically added to prevent overflow. 
+It is recommended that tags not be too long to avoid this.<br>
 
 </div><br>
 
