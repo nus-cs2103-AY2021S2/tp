@@ -16,10 +16,11 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": List all entities or a specified entity only.\n"
+            + ": List a specified type of entity.\n"
             + "Parameters: ENTITY_TYPE";
 
-    public static final String MESSAGE_SUCCESS_FORMAT = "Listed all %s(s)";
+    public static final String MESSAGE_SUCCESS_FORMAT = "Listed all %s(s)!";
+    public static final String MESSAGE_NO_ENTITY_AVAILABLE = "No %ss available to be listed!";
 
     private final String entityName;
 
@@ -42,6 +43,8 @@ public class ListCommand extends Command {
         model.updateFilteredEntityList(predicate);
         model.sortEntities(model.COMPARATOR_ID_ASCENDING_ORDER);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, entityName));
+        return new CommandResult(model.getFilteredEntityList().size() != 0
+                ? String.format(MESSAGE_SUCCESS_FORMAT, entityName)
+                : String.format(MESSAGE_NO_ENTITY_AVAILABLE, entityName));
     }
 }

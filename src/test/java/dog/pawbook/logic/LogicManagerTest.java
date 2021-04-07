@@ -66,7 +66,8 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD + " " + Dog.ENTITY_WORD;
-        assertCommandSuccess(listCommand, String.format(ListCommand.MESSAGE_SUCCESS_FORMAT, Dog.ENTITY_WORD), model);
+        assertCommandSuccess(listCommand, String.format(ListCommand.MESSAGE_NO_ENTITY_AVAILABLE, Dog.ENTITY_WORD),
+                model);
     }
 
     @Test

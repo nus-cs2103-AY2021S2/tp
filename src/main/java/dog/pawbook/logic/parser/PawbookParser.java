@@ -166,8 +166,8 @@ public class PawbookParser {
     }
 
     private ListCommand generateListCommand(String entityType, String arguments) throws ParseException {
-        if (!arguments.isBlank() && !Pattern.matches("^s*\\s*$", arguments)) {
-            throw new ParseException(ListCommand.MESSAGE_USAGE);
+        if (!arguments.isBlank() && !Pattern.matches("^s*\\s*$", arguments) || entityType.isEmpty()) {
+            throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
         }
 
         Predicate<Pair<Integer, Entity>> predicate;
@@ -183,7 +183,7 @@ public class PawbookParser {
             break;
 
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
+            throw new AssertionError("This entity type is not implemented!");
         }
         return new ListCommand(predicate, entityType);
     }
