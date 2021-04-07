@@ -24,8 +24,8 @@ import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
-import seedu.taskify.model.task.Status;
-import seedu.taskify.model.task.StatusType;
+//import seedu.taskify.model.task.Status;
+//import seedu.taskify.model.task.StatusType;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -79,12 +79,14 @@ public class ParserUtilTest {
                 ) -> parseMultipleIndex(onlyOneIndexAndValid));
     }
 
+    /*
     @Test
     public void parseInputToStatus_validArgs_returnsCorrectStatus() throws ParseException {
         assertEquals(new Status(StatusType.UNCOMPLETED), parseInputToStatus(" uncompleted -all"));
         assertEquals(new Status(StatusType.COMPLETED), parseInputToStatus(" completed -all"));
         assertEquals(new Status(StatusType.EXPIRED), parseInputToStatus(" expired  -all"));
     }
+     */
 
 
     // test for more rogue inputs in v1.4 like "... --all"
