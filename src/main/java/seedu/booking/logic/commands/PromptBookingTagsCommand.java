@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 
 import java.util.Set;
 
@@ -23,6 +24,6 @@ public class PromptBookingTagsCommand extends Command {
 
         ModelManager.processStateInput(tagSet);
         ModelManager.setNextState();
-        return new CommandResult(ModelManager.getNextPromptMessage());
+        return new CommandResult(ModelManager.getNextPromptMessage() + PROMPT_MESSAGE_EXIT_PROMPT);
     }
 }

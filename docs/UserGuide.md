@@ -152,11 +152,13 @@ Format: `exit_prompt`
 
 #### 3.3.1. Adding a person : `add_person` (Multi step command)
 
-Adds a new person for the booking app. `add_person` is a multi-step command that will prompt you for additional input. Inputting
-`add_person` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
+Adds a new person for the booking app. `add_person` is a multi-step command that will prompt you for additional input. Inputting 
+`add_person n/NAME` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
 
-Email and phone number must be unique. Tags are optional.<br>
-Format: `add_person`
+After keying in a valid initial input, the multi-step prompting will prompt you to enter details for the field email, phone and tags.
+Email and phone number must be unique. Tags are optional.
+Emails should be of the format local-part@domain. Phone numbers should only contain numbers, and it should be between 7 to 15 digits long (inclusive). <br>
+Format: `add_person n/NAME`
 
 #### 3.3.2. Editing a person : `edit_person`
 
@@ -310,7 +312,7 @@ contains the data of your previous BookCoin home folder.
 
 Action | Format, Example
 --------|------------------
-**add person** | `add_person` <br> (Note: add_person is a multi-step command)
+**add person** | `add_person n/NAME` <br> (Note: add_person is a multi-step command)
 **delete person** | `delete_person e/EMAIL` <br> e.g. `delete_person e/jane@gmail.com`
 **edit person** | `edit_person eo/EMAIL [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]` <br> e.g., `edit_person eo/jane@example.com p/94857267`
 **find person** | `find_person e/EMAIL` <br> e.g., `find_person e/jane@example.com` 

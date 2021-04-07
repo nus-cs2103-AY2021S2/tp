@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
@@ -21,6 +22,6 @@ public class PromptBookingDescCommand extends Command {
 
         ModelManager.processStateInput(description);
         ModelManager.setNextState();
-        return new CommandResult(ModelManager.getNextPromptMessage());
+        return new CommandResult(ModelManager.getNextPromptMessage() + PROMPT_MESSAGE_EXIT_PROMPT);
     }
 }

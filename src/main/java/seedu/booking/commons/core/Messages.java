@@ -18,7 +18,7 @@ public class Messages {
 
     // Venue related messages
     public static final String PROMPT_CAPACITY_MESSAGE = "Please enter the capacity of the venue.\n"
-            + "Default capacity is set to 10 if no input is provided.";
+            + "Default capacity is set to 10 if no input is provided.\n";
     public static final String PROMPT_VENUE_DESC_MESSAGE = "Please provide an optional venue description.\n";
     public static final String PROMPT_DUPLICATE_VENUE_MESSAGE = "A venue already exists "
             + "in the system with the same name!\n";
@@ -54,6 +54,8 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_EMAIL_FORMAT = "Invalid email address format, please try again.\n";
     public static final String PROMPT_MESSAGE_TRY_AGAIN = "Please try again or enter exit_prompt to quit prompting.\n";
+    public static final String PROMPT_MESSAGE_EXIT_PROMPT = "Enter exit_prompt to quit prompting.\n";
+
 
     public static final String PROMPT_EMAIL_MESSAGE = "Please provide the email address of the booker.\n"
             + "Ensure that the booker is already recorded in the system.\n";

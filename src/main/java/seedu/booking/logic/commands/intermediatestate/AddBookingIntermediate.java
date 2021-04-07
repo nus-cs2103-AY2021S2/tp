@@ -51,6 +51,17 @@ public class AddBookingIntermediate implements Intermediate<AddBookingCommand> {
         this.tags = tagset;
     }
 
+    /**
+     * Initialises an AddBookingIntermediate object to store temporary user input.
+     */
+    public AddBookingIntermediate(Email email) {
+        this.bookerEmail = email;
+        this.venueName = null;
+        this.description = null;
+        this.bookingStart = null;
+        this.bookingEnd = null;
+        this.tags = null;
+    }
 
 
     public Email getBookerEmail() {

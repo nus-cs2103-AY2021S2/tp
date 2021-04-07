@@ -36,7 +36,7 @@ public class PromptPersonEmailParserTest {
 
     @Test
     public void parsePersonEmail_invalidField_failure() {
-        String expectedMessage = MESSAGE_INVALID_EMAIL_FORMAT + PROMPT_MESSAGE_TRY_AGAIN;
+        String expectedMessage = MESSAGE_INVALID_EMAIL_FORMAT + Email.MESSAGE_CONSTRAINTS + PROMPT_MESSAGE_TRY_AGAIN;
 
         // empty field
         assertParseFailure(parser, "hello@gmail.com   eorij erpf     ", expectedMessage);
