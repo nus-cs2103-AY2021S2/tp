@@ -114,7 +114,9 @@ In the example above, <span class="main-command">add</span> is the command word 
 | DATA         |   -d   | The data to use for an endpoint **(must be in [JSON](#85-json-format) format)**          |
 | TAG          |   -t   | The tag to label an endpoint                 |
 
+<a name="general-rules"></a>
 Here are some general rules to follow when entering prefixes and parameters:
+
 * A whitespace must be included before every prefix.<br>
   e.g. `-x METHOD-u URL` is not acceptable, and `-x METHOD -u URL` is in the correct format.<br>
   
@@ -127,17 +129,30 @@ Here are some general rules to follow when entering prefixes and parameters:
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.<br>
   
-* To add multiple parameters of the same prefix, add the prefix multiple times before each parameter.<br>
+* For Add, Edit and Run commands, to add multiple parameters of the same prefix, add the prefix multiple times before each parameter.<br>
   e.g. To add two TAGs, enter `-t tagOne -t tagTwo`.<br>
   e.g. To add three HEADERs, enter `-h "header: one" -h "header: two" -h "header: three"`.<br>
-
+  
 * Multiple headers/tags must be unique and duplicates will be ignored.
   e.g. `edit 1 -t tag -t tag` will only create one `tag`.
 
-About the URL Parameter:
-* We do not check the validity of the URLs during input as it is impossible to verify if it exists without sending a request to the server. We will instead prevent impossible URL from being keyed in. e.g. `abc.com\go` (`\` cannot exist in a valid URL)
 
-* If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be specified for an API request to be carried out.For instance, if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
+About the URL Parameter:
+* We understand that the technical specifications of what constitutes a valid [URL](https://en.wikipedia.org/wiki/URL) 
+  can be complex. Our application focuses on API testing, and we have no plans to direct all our efforts in verifying 
+  every technically valid or invalid URLs against the official [URL standard](https://url.spec.whatwg.org/#url-parsing). 
+  While we prevent certain user inputs from being interpreted as valid URLs, we will also provide relevant error 
+  messages to keep users informed if an invalid URL is used to establish a connection.
+  * e.g.`abc.com\go` is an invalid URL as `\` cannot exist in a valid URL.
+
+* If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be 
+  specified for an API request to be carried out. 
+  * e.g. if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`.
+
+About the INDEX Parameter:
+* Index provided should be a non-zero unsigned integer within the allowed range of Java's `int` data type:
+  * the maximum value an `int` can have is (2^31)-1.
+  * the minimum value an `int` can have is -(2^31).
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 Check out the screenshot of each command for an idea of the expected output in the application's **Result Display**!
@@ -277,6 +292,11 @@ to-do tanjin update pic here (will match `get OR post` from the Method field **a
 Partial Words **will** be matched. e.g. `appl` will match `Apple`<br>
 Searches with no none or a single [prefix](#prefix-table) will preform an **OR** search and all Endpoints matching either keywords will be returned.<br>
 Searches across multiple [prefixes](#prefix-table) will preform an **AND** search and only endpoints matching all keywords will be returned.
+</div>
+
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
+`find -x get -x post` is not the same as `find -x get post`. <br>
+The first command will only search for items matching post (as stated [here](#general-rules)), while the second command will search for all items matching get and post.
 </div>
 
 <div style="page-break-after: always;"></div>
