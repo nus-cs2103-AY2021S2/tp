@@ -253,7 +253,8 @@ Note:
 
 <div markdown="block" class="alert alert-info">
 :heavy_exclamation_mark: Take note that editing tags for an entity will automatically override **all** its current tags! <br>
-:bulb: Reminder, tags are able to only take in one alphanumeric string! 
+:bulb: Tags are able to only take in one alphanumeric string! 
+:bulb: At least one variable needs to be changed!
 </div>
 
 Examples:
