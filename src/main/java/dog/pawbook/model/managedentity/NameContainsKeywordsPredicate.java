@@ -3,7 +3,6 @@ package dog.pawbook.model.managedentity;
 import java.util.List;
 import java.util.function.Predicate;
 
-import dog.pawbook.commons.util.StringUtil;
 import javafx.util.Pair;
 
 /**
@@ -24,8 +23,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Pair<Integer, En
     @Override
     public boolean test(Pair<Integer, Entity> integerEntityPair) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(integerEntityPair.getValue()
-                        .getName().fullName, keyword));
+                .map(keyword -> keyword.toLowerCase())
+                .anyMatch(keyword -> integerEntityPair.getValue().getName().fullName.toLowerCase().contains(keyword));
     }
 
     @Override
