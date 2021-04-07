@@ -57,7 +57,7 @@ public class BookingCardBig extends UiPart<Region> {
         startTime.setText(booking.getBookingStart().toString());
         endTime.setText(booking.getBookingEnd().toString());
         description.setText(booking.getDescription().value);
-        bookingId.setText("ID: " + booking.getId().toString());
+        //bookingId.setText("ID: " + booking.get.toString());
         booking.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
