@@ -12,13 +12,12 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonAppointmentBookStorage implements ParentPalStorage {
+public class JsonAppointmentBookStorage implements AppointmentBookStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAppointmentBookStorage.class);
 
@@ -77,60 +76,6 @@ public class JsonAppointmentBookStorage implements ParentPalStorage {
 
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableAppointmentBook(appointmentBook), filePath);
-    }
-
-
-    // ================ AddressBook methods ==============================
-
-
-    /**
-     * Returns the file path of the data file.
-     */
-    @Override
-    public Path getAddressBookFilePath() {
-        return null;
-    }
-
-    /**
-     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
-     * Returns {@code Optional.empty()} if storage file is not found.
-     *
-     * @throws DataConversionException if the data in storage is not in the expected format.
-     * @throws IOException             if there was any problem when reading from the storage.
-     */
-    @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return Optional.empty();
-    }
-
-    /**
-     * @param filePath
-     * @see #getAddressBookFilePath()
-     */
-    @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
-        return Optional.empty();
-    }
-
-    /**
-     * Saves the given {@link ReadOnlyAddressBook} to the storage.
-     *
-     * @param addressBook cannot be null.
-     * @throws IOException if there was any problem writing to the file.
-     */
-    @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-
-    }
-
-    /**
-     * @param addressBook
-     * @param filePath
-     * @see #saveAddressBook(ReadOnlyAddressBook)
-     */
-    @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-
     }
 
 }
