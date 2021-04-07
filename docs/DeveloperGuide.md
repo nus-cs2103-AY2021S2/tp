@@ -568,8 +568,8 @@ The following activity diagram summarizes what happens when a user executes a cl
 ![ClearActivityDiagram](images/ClearLocationActivityDiagram.png)
 
 ### Help feature
-The help feature redirects the user to StoreMando's User Guide. If the user is connected to an internet access, StoreMando
-will redirect its User Guide through opening another browser. Otherwise, it will have a pop out window with the User
+The help feature redirects the user to StoreMando's User Guide. If the device is connected to the Internet, StoreMando 
+will automatically open the User Guide in a new browser. Otherwise, it will have a pop out window with the User
 Guide link. This will save the user the hassle of locating the documentation. <br>
 The help command has the following format :`help`.
 
@@ -1006,18 +1006,6 @@ testers are expected to do more *exploratory* testing.
        Expected: All items are cleared from the inventory.
 
 1. Clearing all the items in a specific location 
-
-    1. Test case: `clear l/Bedroom`<br>
-       Expected: All items in the specified location are cleared.
-
-### Clearing items
-
-1. Clearing all the items in the inventory
-
-    1. Test case: `clear`<br>
-       Expected: All items are cleared from the inventory.
-
-1. Clearing all the items in a specific location
 
     1. Test case: `clear l/Bedroom`<br>
        Expected: All items in the specified location are cleared.
