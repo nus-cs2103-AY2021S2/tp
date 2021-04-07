@@ -69,19 +69,30 @@
                     </columns>
                     <items>
                         <FXCollections fx:factory="observableArrayList">
-                            <UG action="Help" format="help" />
+                            <UG action="Add Dog" format="add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]..."/>
+                            <UG action="Add Owner" format="add owner n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]..."/>
+                            <UG action="Add Program" format="add program n/PROGRAM_NAME [s/DATE_OF_SESSION]... [t/TAG]..."/>
+                            <UG action="Delete Dog" format="delete dog DOG_ID"/>
+                            <UG action="Delete Owner" format="delete owner OWNER_ID"/>
+                            <UG action="Delete Program" format="delete program PROGRAM_ID"/>
+                            <UG action="Drop a dog from a program" format="drop d/DOG_ID p/PROGRAM_ID" />
+                            <UG action="Drop multiple dogs from a program" format="drop d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID" />
+                            <UG action="Drop a dog from multiple programs" format="drop d/DOG_ID p/PROGRAM_ID [p/PROGRAM_ID]..." />
+                            <UG action="Edit Dog" format="edit dog DOG_ID [n/DOG_NAME] [b/BREED] [d/DATE_OF_BIRTH] [s/SEX] [o/OWNER_ID] [t/TAG]..." />
+                            <UG action="Edit Owner" format="edit owner OWNER_ID [n/OWNER_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]..." />
+                            <UG action="Edit Program" format="edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION]... [t/TAG]..." />
+                            <UG action="Enrol a dog to a program" format="enrol d/DOG_ID p/PROGRAM_ID" />
+                            <UG action="Enrol multiple dogs to a program" format="enrol d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID" />
+                            <UG action="Enrol a dog to multiple programs" format="enrol d/DOG_ID p/PROGRAM_ID [p/PROGRAM_ID]..." />
                             <UG action="Exit" format="exit" />
-                            <UG action="Add Owner" format="add owner n/OWNERNAME p/PHONE e/EMAIL a/ADDRESS [t/TAG].../"/>
-                            <UG action="Add Dog" format="add dog n/DOGNAME b/BREED d/DATEOFBIRTH s/SEX o/OWNERID [t/TAG]…"/>
-                            <UG action="Add Program" format="add program n/NAME [s/DATEOFSESSION]... [t/TAG]..."/>
-                            <UG action="Edit Owner" format="edit owner OWNERID n/OWNERNAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]..." />
-                            <UG action="Edit Dog" format="edit dog DOGID n/DOGNAME b/BREED d/DATEOFBIRTH s/SEX o/OWNERID [t/TAG]..." />
-                            <UG action="Edit Program" format="edit program PROGRAMID n/NAME [s/DATEOFSESSION]... [t/TAG]..." />
-                            <UG action="Enrol" format="enrol d/DOGID p/PROGRAMID" />
-                            <UG action="Drop" format="drop d/DOGID p/PROGRAMID" />
-                            <UG action="Find" format="find KEYWORD [MORE_KEYWORDS]…" />
+                            <UG action="Find" format="find KEYWORD [MORE_KEYWORDS]..." />
+                            <UG action="Help" format="help" />
                             <UG action="List" format="list" />
-                            <UG action="View" format="view IDNUMBER" />
+                            <UG action="List Dog" format="list dog" />
+                            <UG action="List Owner" format="list owner" />
+                            <UG action="List Program" format="list program" />
+                            <UG action="Schedule" format="schedule [DATE]" />
+                            <UG action="View" format="view ENTITY_ID" />
                         </FXCollections>
                     </items>
                 </TableView>

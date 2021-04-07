@@ -174,7 +174,7 @@ Note:
 - Names are allowed to contain numerics. This is catered for cases when a program name contains numbers and in some cases, even dog names and owner names.
 - Pawbook support arbitrary length phone numbers. This is to support phone numbers with differing lengths from different regions. 
 - Tags are optional and multiple tags can be added.
-- Tags are able to only take in one alphanumeric string. To write tags with multiple words, consider using camelCase or _ to represent a space.
+- Tags are only able to take in one alphanumeric string. To write tags with multiple words, consider using camelCase or _ to represent a space.
 
 Examples:
 
@@ -241,9 +241,9 @@ allows you to quickly correct that mistake. More details about the formatting of
 Format:
 
 ```
-edit dog DOG_ID n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAGS]...
-edit owner OWNER_ID n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAGS]...
-edit program PROGRAM_ID n/PROGRAM_NAME [s/SESSION]... [t/TAGS]...
+edit dog DOG_ID [n/DOG_NAME] [b/BREED] [d/DATE_OF_BIRTH] [s/SEX] [o/OWNER_ID] [t/TAG]...
+edit owner OWNER_ID [n/OWNER_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
+edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION]... [t/TAG]...
 ```
 
 Note: 
@@ -253,7 +253,8 @@ Note:
 
 <div markdown="block" class="alert alert-info">
 :heavy_exclamation_mark: Take note that editing tags for an entity will automatically override **all** its current tags! <br>
-:bulb: Reminder, tags are able to only take in one alphanumeric string! 
+:heavy_exclamation_mark: At least one variable needs to be changed!
+:bulb: Tags are only able to take in one alphanumeric string! 
 </div>
 
 Examples:
@@ -281,8 +282,8 @@ Format:
 
 ```
 enrol d/DOG_ID p/PROGRAM_ID
-enrol d/DOG_ID...d/DOG_ID p/PROGRAM_ID (enrolling multiple dogs into one program)
-enrol d/DOG_ID p/PROGRAM_ID...p/PROGRAM_ID (enrolling one dog into multiple programs)
+enrol d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID (enrolling multiple dogs into one program)
+enrol d/DOG_ID p/PROGRAM_ID [p/PROGRAM_ID]... (enrolling one dog into multiple programs)
 ```
 
 Note: 
@@ -320,10 +321,11 @@ multiple programs.<br>
 this command. After a dog has been dropped from the program, the program will no longer have that dog ID stored. 
 
 Format:
+
 ```
 drop d/DOG_ID p/PROGRAM_ID
-drop d/DOG_ID...d/DOG_ID p/PROGRAM_ID (dropping multiple dogs from one program)
-drop d/DOG_ID p/PROGRAM_ID...p/PROGRAM_ID (dropping one dog from multiple programs)
+drop d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID (dropping multiple dogs from one program)
+drop d/DOG_ID p/PROGRAM_ID [p/PROGRAM_ID]... (dropping one dog from multiple programs)
 ```
 
 Note:
@@ -360,7 +362,7 @@ lined up on any given day.
 Format:
 
 ```
-schedule DATE
+schedule [DATE]
 ```
 
 Note: 
@@ -413,10 +415,10 @@ Examples:
 **Usage**: When you want to find a particular entity (dog/owner/program), you can simply find them by their name. You
 can also find multiple entities by providing multiple keywords. This may be helpful when you want to see just one specific entity profile. 
 
-Format: 
+Format:
 
 ```
-find KEYWORD_1 [KEYWORD_2]...[KEYWORD_N]
+find KEYWORD [MORE_KEYWORDS]...
 ```
 
 Note: 
@@ -443,6 +445,8 @@ Examples:
 to see more details. At the top entry, it will be the profile of the entity you want to view. This is followed by the 
 all its related entities. For instance, when you view Bruce the dog, you will first see the his profile, followed by his 
 owner's profile and finally all the programs that Bruce is enrolled in. 
+
+Format:
 
 ```
 view ENTITY_ID
@@ -523,15 +527,15 @@ Action | Format
 --------|------------------
 **Add** | 1. `add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]...`<br> 2. `add owner n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br> 3. `add program n/PROGRAM_NAME [s/DATE_OF_SESSION]... [t/TAG]...`
 **Delete** | 1. `delete dog DOG_ID`<br> 2. `delete owner OWNER_ID`<br> 3. `delete program PROGRAM_ID`
-**Edit** | 1. `edit dog DOG_ID n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAGS]...`<br> 2. `edit owner OWNER_ID n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAGS]...`<br> 3. `edit program PROGRAM_ID n/PROGRAM_NAME [s/SESSION]... [t/TAGS]...`
-**Enrol** | 1. `enrol d/DOG_ID p/PROGRAM_ID`<br> 2. `enrol d/DOG_ID...d/DOG_ID p/PROGRAM_ID`<br> 3. `enrol d/DOG_ID p/PROGRAM_ID...p/PROGRAM_ID`
-**Drop** | 1. `drop d/DOG_ID] p/PROGRAM_ID]`<br> 2. `drop d/DOG_ID...d/DOG_ID p/PROGRAM_ID`<br> 3. `drop d/DOG_ID p/PROGRAM_ID...p/PROGRAM_ID`
-**Schedule** | `schedule DATE`
-**List** | 1. `list dog`<br> 2. `list owner`<br> 3. `list program`<br> 4. `list`
-**Find** | `find KEYWORD_1 [KEYWORD_2]...[KEYWORD_N]`
-**View** | `view ENTITY_ID`
-**Help** | `help`
+**Drop** | 1. `drop d/DOG_ID p/PROGRAM_ID`<br> 2. `drop d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID`<br> 3. `drop d/DOG_ID p/PROGRAM_ID [p/PROGRAM_ID]...`
+**Edit** | 1. `edit dog DOG_ID [n/DOG_NAME] [b/BREED] [d/DATE_OF_BIRTH] [s/SEX] [o/OWNER_ID] [t/TAG]...`<br> 2. `edit owner OWNER_ID [n/OWNER_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`<br> 3. `edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION]... [t/TAG]...`
+**Enrol** | 1. `enrol d/DOG_ID p/PROGRAM_ID`<br> 2. `enrol d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID`<br> 3. `enrol d/DOG_ID p/PROGRAM_ID [p/PROGRAM_ID]...`
 **Exit** | `exit`
+**Find** | `find KEYWORD [MORE_KEYWORDS]...`
+**Help** | `help`
+**List** | 1. `list dog`<br> 2. `list owner`<br> 3. `list program`<br> 4. `list`
+**Schedule** | `schedule [DATE]`
+**View** | `view ENTITY_ID`
 
 -----
 
