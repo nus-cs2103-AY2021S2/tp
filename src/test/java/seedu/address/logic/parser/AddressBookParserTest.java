@@ -6,10 +6,14 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.MASSBLACKLIST_BLACKLIST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MASSBLACKLIST_KEYWORD_BLACKLIST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_JANE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORT_DIRECTION_ASCENDING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SORT_DIRECTION_DESCENDING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLACKLIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -151,8 +155,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_remark() throws Exception {
-        Person person = new PersonBuilder().build();
-        assertTrue(parser.parseCommand(PersonUtil.getRemarkCommand(person)) instanceof RemarkCommand);
+        assertTrue(parser.parseCommand(RemarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                + " " + PREFIX_REMARK + VALID_REMARK_BOB) instanceof RemarkCommand);
+        assertTrue(parser.parseCommand(RemarkCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                + " " + PREFIX_REMARK + VALID_REMARK_JANE) instanceof RemarkCommand);
     }
 
     @Test
@@ -160,7 +166,7 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " "
                 + VALID_SORT_DIRECTION_ASCENDING) instanceof SortCommand);
         assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " "
-                + VALID_SORT_DIRECTION_ASCENDING) instanceof SortCommand);
+                + VALID_SORT_DIRECTION_DESCENDING) instanceof SortCommand);
     }
 
     @Test

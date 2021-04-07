@@ -221,15 +221,15 @@ Format: `clear`
 
 ### Adding a new remark or replacing an existing remark : `remark`
 
-Adds a new remark to the specified person in the contacts list. 
-If the person already has a remark, the new remark will replace the
-existing remark.
+Adds a remark to the specified person in the address book. 
+If the person already has a remark, the existing remark will be replaced. To remove a remark from a contact, simply leave the remark field empty. 
 
 Format: `remark INDEX r/REMARK`
 
-* Adds/Replaces the remark of the person at the specified `INDEX`.
+* Adds or replaces the remark of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a valid positive integer** 1, 2, …​, 2147483647
+* The index must be a valid positive integer 1, 2, 3,...
+* If a remark is removed from a contact, the contact will be displayed as having 'No remark' by default.
 
 Example:
 

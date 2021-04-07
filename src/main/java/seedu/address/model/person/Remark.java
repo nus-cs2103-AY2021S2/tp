@@ -1,40 +1,29 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's remark in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidRemark(String)}
+ * Guarantees: immutable;
  */
 public class Remark {
 
-    public static final String MESSAGE_CONSTRAINTS = "Remarks can take any values, and it should not be blank";
-
-    /*
-     * The first character of the remark must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String DEFAULT_REMARK = "No remark";
 
     public final String value;
 
     /**
-     * Constructs an {@code Remark}.
+     * Constructs a {@code Remark}
      *
-     * @param remark A valid remark.
+     * @param remark If the remark is the empty string, then the default remark "No remark" will be used.
      */
     public Remark(String remark) {
         requireNonNull(remark);
-        checkArgument(isValidRemark(remark), MESSAGE_CONSTRAINTS);
-        value = remark;
-    }
-
-    /**
-     * Return true if a given string is a valid remark.
-     */
-    public static boolean isValidRemark(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (remark.length() == 0) {
+            this.value = DEFAULT_REMARK;
+        } else {
+            this.value = remark;
+        }
     }
 
     @Override

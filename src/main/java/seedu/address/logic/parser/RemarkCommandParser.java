@@ -31,16 +31,11 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    RemarkCommand.MESSAGE_USAGE), ive);
-        }
-        try {
             Remark remark = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
             return new RemarkCommand(index, remark);
-        } catch (NoSuchElementException ive) {
+        } catch (IllegalValueException | NoSuchElementException exception) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    RemarkCommand.MESSAGE_USAGE), ive);
+                    RemarkCommand.MESSAGE_USAGE), exception);
         }
     }
 }

@@ -15,7 +15,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 
 /**
- * Add a remark a person to the address book. If the person already has a remark, the existing
+ * Adds a remark to a contact in the address book. If the contact already has a remark, the existing
  * remark will be replaced.
  */
 public class RemarkCommand extends Command {
@@ -24,12 +24,12 @@ public class RemarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds or replaces the remark of the"
             + " person identified by the index number used in the last person listing.\n"
-            + "Parameters: INDEX (must be a positive integer) + "
-            + "[" + PREFIX_REMARK + "REMARK]\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + PREFIX_REMARK + "REMARK\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + "r/Currently in Quarantine.";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Changed remark of person: %1$s";
 
     private final Index index;
     private final Remark remark;
@@ -39,7 +39,6 @@ public class RemarkCommand extends Command {
      */
     public RemarkCommand(Index index, Remark remark) {
         requireAllNonNull(index, remark);
-
         this.index = index;
         this.remark = remark;
     }
@@ -62,7 +61,7 @@ public class RemarkCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_ADD_REMARK_SUCCESS, personToEdit));
+        return new CommandResult(String.format(MESSAGE_ADD_REMARK_SUCCESS, editedPerson));
     }
 
     @Override
@@ -76,10 +75,7 @@ public class RemarkCommand extends Command {
         if (!(other instanceof RemarkCommand)) {
             return false;
         }
-
-        // state check
-        RemarkCommand remarkCommand = (RemarkCommand) other;
-        return index.equals(remarkCommand.index)
-                && remark.equals(remarkCommand.remark);
+        RemarkCommand otherRemarkCommand = (RemarkCommand) other;
+        return index.equals(otherRemarkCommand.index) && remark.equals(otherRemarkCommand.remark);
     }
 }
