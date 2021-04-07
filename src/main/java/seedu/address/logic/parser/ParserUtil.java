@@ -178,7 +178,7 @@ public class ParserUtil {
      */
     public static PersonType parsePersonType(String type) throws ParseException {
         requireNonNull(type);
-        String trimmedType = type.trim();
+        type = type.toLowerCase();
         if (!PersonType.isValidPersonType(type)) {
             throw new ParseException(PersonType.MESSAGE_CONSTRAINTS);
         } else {
