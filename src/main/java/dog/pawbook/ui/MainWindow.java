@@ -115,6 +115,7 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        resultDisplay.setFeedbackToUser("Welcome to Pawbook!");
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getDatabaseFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
