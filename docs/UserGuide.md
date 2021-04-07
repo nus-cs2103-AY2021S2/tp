@@ -23,7 +23,9 @@ on ModuleBook3.5.
 
 1. Once the jar file is ready, simply double-click the file in the download section.
 
-1. Refer to the [Commands](#commands) below for details of each command.
+1. Go through the entire list of [Commands](#commands) in the given order.
+
+1. Once you are familiar with the app, you may use the table of contents to jump to a command that you may be unsure of.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -140,41 +142,6 @@ However, the colours will be arranged such that no two modules with the same col
 
 </div>
 
-### Command list
-
-   * **`list`** : List out tasks
-
-   * **`add`** : Add a task
-
-   * **`clear`** : Delete all tasks
-
-   * **`delete`** : Delete a task
-
-   * **`done`** : Mark a task as done
-
-   * **`notdone`** : Mark a task as not done
-
-   * **`tag`** : Add a tag to a task
-
-   * **`find`** : Search for tasks with name
-
-   * **`findTag`** : Search for tasks with tag
-     
-   * **`deleteTag`** : Delete a tag of a task
-
-   * **`mod`** : Search for tasks of a specific module
-
-   * **`edit`** : Edit task
-
-   * **`sort`** : Sort tasks
-   
-   * **`recur`** : Recur tasks
-   
-   * **`refresh`** : Refresh all showing tasks
-
-   * **`exit`** : Close the app
-
-
 ### Parameter Prefixes
 Below is a table of prefixes mapped to the respective parameters:<br>
 
@@ -200,17 +167,45 @@ t/ | TAG |
 1. However, if the last argument happens to be invalid, the command will not execute.<br>
    E.g. for `edit 1 m/CS2101 m/Invalid`, `m/Invalid` will be taken as the module argument, which is invalid. Even though m/CS2101 is valid, it is ignored entirely.
 
+### Command list
+
+All commands are ordered in a sequential manner. Do give them a try!
+
+* **`list`** : List out tasks
+
+* **`add`** : Add a task
+
+* **`clear`** : Delete all tasks
+
+* **`delete`** : Delete a task
+
+* **`done`** : Mark a task as done
+
+* **`notdone`** : Mark a task as not done
+
+* **`tag`** : Add a tag to a task
+
+* **`find`** : Search for tasks with name
+
+* **`findTag`** : Search for tasks with tag
+
+* **`deleteTag`** : Delete a tag of a task
+
+* **`mod`** : Search for tasks of a specific module
+
+* **`edit`** : Edit task
+
+* **`sort`** : Sort tasks
+
+* **`recur`** : Recur tasks
+
+* **`refresh`** : Refresh all showing tasks
+
+* **`exit`** : Close the app
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-
-### List out tasks : `list`
-
-Shows a list of all tasks you have added.
-
-Format: `list`
-
-![add message](images/listCommand.png)
 
 ### Add a task: `add`
 
@@ -232,31 +227,6 @@ Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORK
 Examples:
 * `add n/v1.2 TP m/CS2103T d/implement basic features b/2021-03-13 23:59 w/3 t/urgent`
 * `add n/practice sets m/CS3230 d/practice master's theorem a/2021-03-14 00:00 b/2021-03-15 00:00 w/1 r/weekly`
-
-
-### Delete a task : `delete`
-
-Deletes the specified task from the module book.
-
-Application: Used to remove tasks when tracking them is no longer necessary.
-
-Format: `delete INDEX`
-
-* Deletes the task at the specified `INDEX`.
-* The index refers to the index number shown in the displayed task list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd task in the ModuleBook3.5.
-* `find CS2103T` followed by `delete 1` deletes the 1st task in the results of the `find` command.
-
-### Delete all tasks: `clear`
-
-Deletes all tasks from the module book.
-
-Application: Used to clear out module book after a school term ends.
-
-Format: `clear`
 
 ### Mark a task as done : `done`
 
@@ -324,6 +294,16 @@ Format: `find KEYWORD`
 
 Examples:
 * `find revise`
+
+### List out tasks : `list`
+
+Shows a list of all tasks you have added.
+
+Application: Used to display all tasks if you previously entered a command meant to show only certain tasks like `find`.
+
+Format: `list`
+
+![add message](images/listCommand.png)
 
 
 ### Search tasks with tag: `findTag`
@@ -446,9 +426,33 @@ Examples:
 
 Refreshes the current list that is showing, updates the deadline if necessary.
 
+Application: Used to update deadlines based on recurrences. Also done automatically.
+
 Format: `refresh`
 
-<div style="page-break-after: always;"></div>
+### Delete a task : `delete`
+
+Deletes the specified task from the module book.
+
+Application: Used to remove tasks when tracking them is no longer necessary.
+
+Format: `delete INDEX`
+
+* Deletes the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd task in the ModuleBook3.5.
+* `find CS2103T` followed by `delete 1` deletes the 1st task in the results of the `find` command.
+
+### Delete all tasks: `clear`
+
+Deletes all tasks from the module book.
+
+Application: Used to clear out module book after a school term ends.
+
+Format: `clear`
 
 ### Close app: `exit`
 
@@ -457,6 +461,8 @@ Closes the app.
 Application: Used to exit the app. You may also click the close button or the `Exit` button under `File` in the toolbar.
 
 Format: `exit`
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
