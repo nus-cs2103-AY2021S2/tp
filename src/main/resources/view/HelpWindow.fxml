@@ -91,7 +91,7 @@
                         <UserGuide command="Clear" example="clear" />
                         <UserGuide command="Send" example="send 1" />
                         <UserGuide command="Run"
-                                   example="run -x get -u https://api.data.gov.sg/v1/environment/psi" />
+                                   example="run -x GET -u https://api.data.gov.sg/v1/environment/psi" />
                     </FXCollections>
                 </items>
             </TableView>

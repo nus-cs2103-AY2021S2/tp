@@ -224,9 +224,11 @@ Check out the screenshot of each command for an idea of the expected output in t
 </p>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-When editing tags, the existing tags of the endpoint will be removed. <br>
-i.e adding of tags is not cumulative.<br>
-You may remove all the endpoint’s tags by typing ` -t` without specifying any tags after it
+When editing tags/headers, the existing tags/headers of the endpoint will be removed. <br>
+i.e adding of tags/headers is not cumulative.<br>
+You may remove all the endpoint’s tags by typing ` -t` without specifying any tags after it. Similarly, you may remove
+all the endpoint's headers by typing ` -h` without specifying any headers after it.
+For example: `edit 1 -t` will remove all existing tags for the first endpoint in the saved endpoint list.
 </div>
 
 #### 4.2.3 Show an API endpoint: <span class="main-command">show</span>
@@ -272,18 +274,18 @@ be a positive integer).
 
 **Format (Precise Search):** <span class="main-command">find</span> <span class="optional-param">-x [METHOD]</span> <span class="optional-param">-u [URL]</span> <span class="optional-param">-d [DATA]</span> <span class="optional-param">-h [HEADER]</span> <span class="optional-param">-t [TAG]</span>
 
-**Example & Output:** <span class="main-command">find</span> <span class="optional-param">-x get</span> <span 
+**Example & Output:** <span class="main-command">find</span> <span class="optional-param">-x GET</span> <span 
 class="optional-param">-u google</span>
 
-to-do tanjin update pic here (will match `get` from the Method field **and** `google` from the URL field)
+to-do tanjin update pic here (will match `GET` from the Method field **and** `google` from the URL field)
 <p align="center">
   <img width="450px" src="images/commands/find.png" >
 </p>
 
-**Example & Output:** <span class="main-command">find</span> <span class="optional-param">-x get post</span> <span 
+**Example & Output:** <span class="main-command">find</span> <span class="optional-param">-x GET POST</span> <span 
 class="optional-param">-u google</span>
 
-to-do tanjin update pic here (will match `get OR post` from the Method field **and** `google` from the URL field)
+to-do tanjin update pic here (will match `GET OR POST` from the Method field **and** `google` from the URL field)
 <p align="center">
   <img width="450px" src="images/commands/find.png" >
 </p>
@@ -295,8 +297,9 @@ Searches across multiple [prefixes](#prefix-table) will preform an **AND** searc
 </div>
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-`find -x get -x post` is not the same as `find -x get post`. <br>
-The first command will only search for items matching post (as stated [here](#general-rules)), while the second command will search for all items matching get and post.
+`find -x GET -x POST` is not the same as `find -x GET POST`. <br>
+The first command will only search for items matching `POST` (as stated [here](#general-rules)), while the second command 
+will search for all items matching `GET` and `POST`.
 </div>
 
 <div style="page-break-after: always;"></div>

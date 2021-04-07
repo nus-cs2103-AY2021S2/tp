@@ -18,28 +18,17 @@ import seedu.us.among.model.endpoint.Response;
 public class RunCommand extends Command {
 
     public static final String COMMAND_WORD = "run";
-
     public static final String MESSAGE_API_EXAMPLE_1 = "1. "
             + COMMAND_WORD + " "
-            + PREFIX_METHOD + " get "
-            + PREFIX_ADDRESS + " http://localhost:3000/ "
-            + PREFIX_DATA + " {\"some\": \"data\"} "
-            + PREFIX_HEADER + " \"key: value\" "
-            + PREFIX_HEADER + " \"key: value2\"\n";
+            + PREFIX_METHOD + " POST "
+            + PREFIX_ADDRESS + " https://reqres.in/api/users "
+            + PREFIX_DATA + " {\"name\": \"tester\", \"job\": \"have fun\"} "
+            + PREFIX_HEADER + " \"Content-Type: application/json\"\n";
 
     public static final String MESSAGE_API_EXAMPLE_2 = "2. "
             + COMMAND_WORD + " "
-            + PREFIX_METHOD + " get "
+            + PREFIX_METHOD + " GET "
             + PREFIX_ADDRESS + " https://api.data.gov.sg/v1/environment/air-temperature\n";
-
-    public static final String QUICK_RUN_COMMAND_SYNTAX = "Tip (Only for 10x developers):\n"
-            + "Run command has a special syntax! Simply specify the API address to be tested"
-            + " and a GET request will be performed. This is to cater for the most common test cases"
-            + " in API testing.\n"
-            + "Parameters: VALID_API_ADDRESS\n"
-            + "Examples:\n"
-            + "1. run https://reqres.in/api/users\n"
-            + "2. run https://api.data.gov.sg/v1/environment/air-temperature";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Runs an API request without saving it to the API endpoint list.\n\n"
