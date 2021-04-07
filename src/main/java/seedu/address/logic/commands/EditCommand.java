@@ -44,7 +44,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed student list. "
             + "Missing details will be added in.\n"
             + "Existing details will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer and lesser than 2147483648) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
