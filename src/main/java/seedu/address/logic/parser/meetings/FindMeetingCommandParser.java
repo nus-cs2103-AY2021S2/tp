@@ -81,15 +81,13 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
             Predicate<Meeting> predicateHasDescription = handleDescription(meetingDescription);
             Predicate<Meeting> predicateHasPriority = handlePriority(meetingPriority);
 
-
-
             Predicate<Meeting> bigPredicate = combinePredicates(predicateHasName,
                     predicateHasDescription,predicateHasPriority,predicateHasTimes,
                     predicateHasGroups);
 
             return new FindMeetingCommand(bigPredicate, personsIndexesToSearch);
         } catch (Exception e) {
-            throw new ParseException(FindMeetingCommand.MESSAGE_USAGE);
+            throw new ParseException("findm: " + e.getMessage());
         }
 
     }
