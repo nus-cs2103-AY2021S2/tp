@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_VENUES;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
@@ -46,7 +47,8 @@ public class FindVenueCommand extends Command {
         Predicate<Venue> predicate = combineVenuePredicates(predicateList);
         model.updateFilteredVenueList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_VENUE_DISPLAYED, model.getFilteredVenueList().size()));
+                String.format(Messages.MESSAGE_VENUE_DISPLAYED, model.getFilteredVenueList().size()),
+                COMMAND_SHOW_VENUES);
     }
 
     @Override

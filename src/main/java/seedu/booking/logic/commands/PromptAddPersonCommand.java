@@ -3,6 +3,7 @@ package seedu.booking.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.PROMPT_EMAIL_PERSON_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PERSONS;
 import static seedu.booking.logic.commands.states.AddPersonCommandState.STATE_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 
@@ -34,7 +35,7 @@ public class PromptAddPersonCommand extends Command {
         ModelManager.setCommandState(commandState);
         ModelManager.setStateActive();
         ModelManager.setState(STATE_EMAIL);
-        return new CommandResult(PROMPT_EMAIL_PERSON_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
+        return new CommandResult(PROMPT_EMAIL_PERSON_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT, COMMAND_SHOW_PERSONS);
     }
 
     @Override

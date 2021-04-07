@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PERSONS;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -52,7 +53,7 @@ public class AddPersonCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), COMMAND_SHOW_PERSONS);
     }
 
 

@@ -2,6 +2,7 @@ package seedu.booking.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PERSONS;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_AMY_GMAIL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_BOB_GMAIL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -44,7 +45,7 @@ public class EditPersonCommandTest {
         Model expectedModel = new ModelManager(new BookingSystem(model.getBookingSystem()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editPersonCommand, model, expectedMessage, COMMAND_SHOW_PERSONS, expectedModel);
     }
 
 
@@ -58,7 +59,7 @@ public class EditPersonCommandTest {
 
         Model expectedModel = new ModelManager(new BookingSystem(model.getBookingSystem()), new UserPrefs());
 
-        assertCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editPersonCommand, model, expectedMessage, COMMAND_SHOW_PERSONS, expectedModel);
     }
 
     @Test
@@ -75,7 +76,7 @@ public class EditPersonCommandTest {
         Model expectedModel = new ModelManager(new BookingSystem(model.getBookingSystem()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(editPersonCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editPersonCommand, model, expectedMessage, COMMAND_SHOW_PERSONS, expectedModel);
     }
 
     /*@Test

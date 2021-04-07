@@ -1,5 +1,6 @@
 package seedu.booking.logic.commands;
 
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_NONE;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 
@@ -17,7 +18,7 @@ public class ClearCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, COMMAND_SHOW_NONE, expectedModel);
     }
 
     @Test
@@ -26,7 +27,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalBookingSystem(), new UserPrefs());
         expectedModel.setBookingSystem(new BookingSystem());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, COMMAND_SHOW_NONE, expectedModel);
     }
 
 }

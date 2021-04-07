@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PERSONS;
 import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.booking.model.Model;
@@ -18,6 +19,6 @@ public class ListPersonCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, COMMAND_SHOW_PERSONS);
     }
 }

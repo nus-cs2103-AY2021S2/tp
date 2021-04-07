@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_VENUES;
 
 import java.util.List;
 
@@ -39,7 +40,8 @@ public class DeleteVenueCommand extends Command {
         }
 
         model.deleteVenue(lastShownList.stream().filter(targetVenue::isSameVenue).findFirst().orElse(null));
-        return new CommandResult(String.format(MESSAGE_DELETE_VENUE_SUCCESS, targetVenue.getVenueName()));
+        return new CommandResult(String.format(MESSAGE_DELETE_VENUE_SUCCESS, targetVenue.getVenueName()),
+                COMMAND_SHOW_VENUES);
     }
 
     @Override

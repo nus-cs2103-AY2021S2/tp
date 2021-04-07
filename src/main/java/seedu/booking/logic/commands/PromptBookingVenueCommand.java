@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.MESSAGE_NON_EXISTENT_VENUE_NAME;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_TRY_AGAIN;
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_BOOKINGS;
 
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
@@ -28,6 +29,7 @@ public class PromptBookingVenueCommand extends Command {
 
         ModelManager.processStateInput(venueName);
         ModelManager.setNextState();
-        return new CommandResult(ModelManager.getNextPromptMessage() + PROMPT_MESSAGE_EXIT_PROMPT);
+        return new CommandResult(ModelManager.getNextPromptMessage() + PROMPT_MESSAGE_EXIT_PROMPT,
+                COMMAND_SHOW_BOOKINGS);
     }
 }

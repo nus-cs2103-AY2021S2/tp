@@ -1,5 +1,6 @@
 package seedu.booking.logic.commands;
 
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PERSONS;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
@@ -33,7 +34,7 @@ public class AddPersonCommandIntegrationTest {
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddPersonCommand(validPerson), model,
-                String.format(AddPersonCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
+                String.format(AddPersonCommand.MESSAGE_SUCCESS, validPerson), COMMAND_SHOW_PERSONS, expectedModel);
     }
 
     @Test

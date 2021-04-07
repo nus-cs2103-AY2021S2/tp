@@ -1,5 +1,6 @@
 package seedu.booking.logic.commands;
 
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_BOOKINGS;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.testutil.TypicalBookings.getTypicalBookingSystem;
 
@@ -27,7 +28,7 @@ public class ListBookingCommandTest {
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(new ListBookingCommand(), model,
-                ListBookingCommand.MESSAGE_BOOKING_LISTED_SUCCESS, expectedModel);
+                ListBookingCommand.MESSAGE_BOOKING_LISTED_SUCCESS, COMMAND_SHOW_BOOKINGS, expectedModel);
     }
 
     /*@Test

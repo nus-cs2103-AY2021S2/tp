@@ -1,5 +1,7 @@
 package seedu.booking.logic.commands;
 
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PREVIOUS;
+
 import seedu.booking.model.Model;
 
 /**
@@ -16,6 +18,6 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+        return new CommandResult(SHOWING_HELP_MESSAGE, true, COMMAND_SHOW_PREVIOUS, false);
     }
 }

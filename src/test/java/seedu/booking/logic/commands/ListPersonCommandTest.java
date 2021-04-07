@@ -1,5 +1,6 @@
 package seedu.booking.logic.commands;
 
+import static seedu.booking.logic.commands.CommandShowType.COMMAND_SHOW_PERSONS;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST;
@@ -28,12 +29,14 @@ public class ListPersonCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListPersonCommand(), model, ListPersonCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListPersonCommand(), model,
+                ListPersonCommand.MESSAGE_SUCCESS, COMMAND_SHOW_PERSONS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST);
-        assertCommandSuccess(new ListPersonCommand(), model, ListPersonCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListPersonCommand(), model,
+                ListPersonCommand.MESSAGE_SUCCESS, COMMAND_SHOW_PERSONS, expectedModel);
     }
 }
