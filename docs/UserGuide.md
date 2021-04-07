@@ -316,8 +316,10 @@ Format: `find-appt [pt/PATIENT NAME KEYWORDS] [dr/DOCTOR NAME KEYWORDS] [at/TIME
 
 * Search fields require at least one keyword to be matched in the field description for the search condition of that field to be satisfied. e.g. `find-appt pt/Alex Edward` will match both appointments with patients `Alex Karev` and `Edward Hyde`.
 
-* Certain fields such as datetime, phone number and email do not support a search by keywords and require a match with the entire field description for the search condition to be satisfied.
-
+* Where `[at/TIMESLOT_START]` field is specified, the search is conditioned on the satisfaction of either or both the date and time elements. e.g.:
+  * `find-appt at/05-08-2021 12:00pm` will match appointments that satisfy both the date and time elements.
+  * `find-appt at/12:00pm` will match all appointments that occur at time `12:00pm`
+  * `find-appt at/05-08-2021` will match all appointments that occur on date `05-08-2021`
 * Where multiple search fields are specified, the search is conditioned on the satisfaction of <strong>all</strong> of the search fields' subconditions. e.g. `find-appt n/Alex Edward Bo dr/Jekyll` will match appointments that satisfy both:
   - Jekyll in the assigned doctor's name; and
   - Either Alex or Edward in the patient's name.
