@@ -54,22 +54,17 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
-    public static final String NAME_DESC_JANE = " " + PREFIX_NAME + VALID_NAME_JANE;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String PHONE_DESC_JANE = " " + PREFIX_PHONE + VALID_PHONE_JANE;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String EMAIL_DESC_JANE = " " + PREFIX_EMAIL + VALID_EMAIL_JANE;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String ADDRESS_DESC_JANE = " " + PREFIX_ADDRESS + VALID_ADDRESS_JANE;
     public static final String REMARK_DESC_AMY = " " + PREFIX_REMARK + VALID_REMARK_AMY;
     public static final String REMARK_DESC_BOB = " " + PREFIX_REMARK + VALID_REMARK_BOB;
     public static final String REMARK_DESC_JANE = " " + PREFIX_REMARK + VALID_REMARK_JANE;
     public static final String MODE_OF_CONTACT_DESC_AMY = " " + PREFIX_MODE_OF_CONTACT + VALID_MODE_OF_CONTACT_AMY;
     public static final String MODE_OF_CONTACT_DESC_BOB = " " + PREFIX_MODE_OF_CONTACT + VALID_MODE_OF_CONTACT_BOB;
-    public static final String MODE_OF_CONTACT_DESC_JANE = " " + PREFIX_MODE_OF_CONTACT + VALID_MODE_OF_CONTACT_JANE;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -89,9 +84,21 @@ public class CommandTestUtil {
     public static final boolean SORT_ASCENDING = true;
     public static final boolean SORT_DESCENDING = false;
 
+    public static final String VALID_MASSBLACKLIST_KEYWORD_BLACKLIST = "blacklist";
+    public static final String VALID_MASSBLACKLIST_KEYWORD_UNBLACKLIST = "unblacklist";
+    public static final String INVALID_MASSBLACKLIST_KEYWORD = "bruh";
+    public static final boolean MASSBLACKLIST_BLACKLIST = true;
+    public static final boolean MASSBLACKLIST_UNBLACKLIST = false;
+
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final EditCommand.EditPersonDescriptor DESC_JANE;
+    public static final String EMPTY_COMMAND = "";
+    public static final String DUMMY_COMMAND = "abc";
+    public static final String EMPTY_LIST = "[]";
+    public static final String EDIT_WORD = "edit";
+    public static final String DELETE_WORD = "delete";
+    public static final String ADD_WORD = "add";
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

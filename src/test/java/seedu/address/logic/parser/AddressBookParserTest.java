@@ -4,11 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.MASSBLACKLIST_BLACKLIST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MASSBLACKLIST_KEYWORD_BLACKLIST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_JANE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORT_DIRECTION_ASCENDING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORT_DIRECTION_DESCENDING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLACKLIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -33,6 +36,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MassBlacklistCommand;
 import seedu.address.logic.commands.MassDeleteCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SortCommand;
@@ -63,6 +67,17 @@ public class AddressBookParserTest {
         BlacklistCommand command = (BlacklistCommand) parser.parseCommand(
                 BlacklistCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new BlacklistCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_massBlacklist() throws Exception {
+        String input = MassBlacklistCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + "-"
+                + INDEX_SECOND_PERSON.getOneBased() + " " + PREFIX_BLACKLIST + " "
+                + VALID_MASSBLACKLIST_KEYWORD_BLACKLIST;
+
+        MassBlacklistCommand command = (MassBlacklistCommand) parser.parseCommand(input);
+        assertEquals(new MassBlacklistCommand(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON,
+                MASSBLACKLIST_BLACKLIST), command);
     }
 
     @Test
