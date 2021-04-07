@@ -9,7 +9,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_ENTRY_INDEX = "The entry index provided is invalid";
     public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Deleted Entry: %1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
-    public static final String MESSAGE_INVALID_DATE_RANGE = "The provided start date is after the provided end date!";
+    public static final String MESSAGE_INVALID_DATE_RANGE = "The provided start date time is after the provided"
+            + " end date time!";
     public static final String MESSAGE_ENTRIES_LISTED_OVERVIEW = "%1$d entries listed!";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_SCHEDULES_LISTED_OVERVIEW = "%1$d schedules listed!";
@@ -25,7 +26,7 @@ public class Messages {
     public static final String MESSAGE_EDIT_ENTRY_SUCCESS = "Edited entry: %1$s";
     public static final String MESSAGE_FREE = "You're free!";
     public static final String MESSAGE_NOT_FREE = "Sorry, you're not free. Schedules occupying that time interval "
-                                                    + "listed below!";
+            + "listed below!";
     public static final String MESSAGE_DUPLICATED_ENTRY = "This entry already exists in the list.";
 
 }
