@@ -31,6 +31,9 @@ public class Index {
         return zeroBasedIndex + 1;
     }
 
+    /**
+     * Returns true if the start index is strictly smaller than the end index and false otherwise.
+     */
     public static boolean isValidIndexRange(Index startIndex, Index endIndex) {
         return endIndex.getZeroBased() > startIndex.getZeroBased();
     }

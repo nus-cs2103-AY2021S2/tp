@@ -75,6 +75,12 @@ public class CommandTestUtil {
     public static final boolean SORT_ASCENDING = true;
     public static final boolean SORT_DESCENDING = false;
 
+    public static final String VALID_MASSBLACKLIST_KEYWORD_BLACKLIST = "blacklist";
+    public static final String VALID_MASSBLACKLIST_KEYWORD_UNBLACKLIST = "unblacklist";
+    public static final String INVALID_MASSBLACKLIST_KEYWORD = "bruh";
+    public static final boolean MASSBLACKLIST_BLACKLIST = true;
+    public static final boolean MASSBLACKLIST_UNBLACKLIST = false;
+
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
