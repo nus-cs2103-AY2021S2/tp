@@ -342,7 +342,8 @@ Deletes the room at a specified index.
 
 Format: `odel INDEX`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
-* `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room.
+* `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room. See [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
+* `odel` will be blocked if the there are issues associated with the room. Run `idel` to delete all issues associated the room before attempting to delete the room. See [delete an issue](#delete-an-issue--idel) for more info.
 
 Parameters:
 * [INDEX](#index) The index of the room to delete.
