@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.lang.Exception.*;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 
@@ -22,8 +23,8 @@ import seedu.address.model.appointment.exceptions.NegativeOrZeroDurationExceptio
  * Contains Utility methods used for parsing dates, time, and timeslots from raw user inputs
  */
 public class TimeslotParser {
-    public static final String MESSAGE_INVALID_DATE_TIME_FORMAT = "Input format for date time parameters "
-            + "must be any of:\n"
+    public static final String MESSAGE_INVALID_DATE_TIME_FORMAT = "Invalid Date Time Format!\n"
+            + "Input format for date time parameters must be any of:\n"
             + "==== Date ====\n"
             + "> DD-MM-YYYY\n"
             + "> DD-MM-YY\n"
@@ -37,9 +38,9 @@ public class TimeslotParser {
             + "> hh:mmam/pm\n"
             + "Example:\n" + PREFIX_TIMESLOT_START
             + "12/12/21 01:15pm or 12-12-21 13:15";
-    public static final String MESSAGE_INVALID_NEXT_DATE_TIME_FORMAT = "Input format for next date time parameters "
-            + "must be:\n"
-            + "next DAY TIME\n"
+    public static final String MESSAGE_INVALID_NEXT_DATE_TIME_FORMAT = "Invalid Date Time Format with Next keyword!\n"
+            + "Input format for next date time parameters must be:\n"
+            + "next [DAY] [TIME] or next [DAY]\n"
             + "Example:\n" + PREFIX_TIMESLOT_START
             + "next Wednesday 12:12pm or next Wednesday\n"
             + "Input format for time parameters must be: "
@@ -56,8 +57,6 @@ public class TimeslotParser {
             + "150M   - returns a duration of 150 minutes";
     private static final String PREFIX_DURATION_PARSE_SEQUENCE = "PT";
     private static final String REMOVE_WHITESPACE_REGEX = "\\s+";
-    private static final String MESSAGE_INVALID_TIME_FORMAT = "test";
-    private static boolean isInvalidTime = false;
 
     /**
      * Parses a {@code String userInput} into a {@code LocalDateTime}.
@@ -137,8 +136,6 @@ public class TimeslotParser {
             return parsedDate;
 
         } catch (DateTimeParseException e) {
-            String messageUsage = isInvalidTime ? MESSAGE_INVALID_TIME_FORMAT
-                    : MESSAGE_INVALID_NEXT_DATE_TIME_FORMAT;
             throw new ParseException(MESSAGE_INVALID_NEXT_DATE_TIME_FORMAT);
         }
     }
@@ -148,20 +145,26 @@ public class TimeslotParser {
      * Adjusts the date in current LocalDateTime based on user next date input.
      * Flips {@code isInvalidTime} if
      */
-    public static LocalDateTime parseNextDate(String nextDatePeriod) {
+    public static LocalDateTime parseNextDate(String nextDatePeriod) throws ParseException {
         LocalDateTime currentDateTime = LocalDateTime.now().withSecond(0).withNano(0);
         LocalDateTime parsedDate = null;
 
         if (Arrays.stream(Day.values()).anyMatch(e -> e.name().equals(nextDatePeriod))) {
             parsedDate = currentDateTime.with(TemporalAdjusters.next(DayOfWeek.valueOf(nextDatePeriod)));
-        } else if (nextDatePeriod.contains("MONTH")) {
-            parsedDate = currentDateTime.plusMonths(1);
-        } else if (nextDatePeriod.contains("YEAR")) {
-            parsedDate = currentDateTime.plusYears(1);
-        } else {
-            isInvalidTime = true;
         }
-        return parsedDate;
+
+        if (nextDatePeriod.contains("MONTH")) {
+            parsedDate = currentDateTime.plusMonths(1);
+        }
+        if (nextDatePeriod.contains("YEAR")) {
+            parsedDate = currentDateTime.plusYears(1);
+        }
+
+        if (parsedDate == null) {
+            throw new ParseException(MESSAGE_INVALID_NEXT_DATE_TIME_FORMAT);
+        } else {
+            return parsedDate;
+        }
     }
 
     /**
