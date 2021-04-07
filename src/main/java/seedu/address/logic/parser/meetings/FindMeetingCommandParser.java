@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.meetings;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
 
@@ -28,6 +29,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
 import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
@@ -53,17 +55,19 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PERSON_CONNECTION,
                         PREFIX_NAME, PREFIX_TIME, PREFIX_DESCRIPTION,
-                        PREFIX_PRIORITY);
+                        PREFIX_PRIORITY, PREFIX_GROUP);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_CONNECTION,
                 PREFIX_NAME, PREFIX_TIME, PREFIX_DESCRIPTION,
-                PREFIX_PRIORITY)
+                PREFIX_PRIORITY,PREFIX_GROUP)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(FindMeetingCommand.MESSAGE_USAGE);
         }
 
         List<String> personIndexes = argMultimap.getAllValues(PREFIX_PERSON_CONNECTION);
         List<String> meetingTimes = argMultimap.getAllValues(PREFIX_TIME);
+        List<String> meetingGroups = argMultimap.getAllValues(PREFIX_GROUP);
+
         Optional<String> meetingName = argMultimap.getValue(PREFIX_NAME);
         Optional<String> meetingDescription = argMultimap.getValue(PREFIX_DESCRIPTION);
         Optional<String> meetingPriority = argMultimap.getValue(PREFIX_PRIORITY);
@@ -76,12 +80,16 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
             Set<Index> personsIndexesToSearch = getPersonsSet(personIndexes);
 
             Predicate<Meeting> predicateHasTimes = handleTimes(meetingTimes);
+            Predicate<Meeting> predicateHasGroups = handleGroups(meetingGroups);
             Predicate<Meeting> predicateHasName = handleName(meetingName);
             Predicate<Meeting> predicateHasDescription = handleDescription(meetingDescription);
             Predicate<Meeting> predicateHasPriority = handlePriority(meetingPriority);
 
+
+
             Predicate<Meeting> bigPredicate = combinePredicates(predicateHasName,
-                    predicateHasDescription,predicateHasPriority,predicateHasTimes);
+                    predicateHasDescription,predicateHasPriority,predicateHasTimes,
+                    predicateHasGroups);
 
             return new FindMeetingCommand(bigPredicate, personsIndexesToSearch);
         } catch (Exception e) {
@@ -117,6 +125,17 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
                 meeting.hasTime(time));
         return timePred;
     }
+
+    private Predicate<Meeting> handleGroups(List<String> groups) throws ParseException {
+        if (groups.isEmpty()) {
+            return meeting -> true;
+        }
+        Set<Group> parsedGroups = ParserUtil.parseGroups(groups);
+        Predicate<Meeting> groupPred = meeting -> parsedGroups.stream().allMatch(group ->
+                meeting.containsGroup(group));
+        return groupPred;
+    }
+
 
     private Predicate<Meeting> handleName(Optional<String> name) throws ParseException {
         if (name.isEmpty()) {

@@ -155,10 +155,6 @@ public class ParserUtil {
         return new Description(trimmedDescription);
     }
 
-    public static Set<Description> parseMeetingDescriptions(Collection<String> descriptions)
-            throws ParseException {
-        return parseMany(ParserUtil::parseMeetingDescription, descriptions);
-    }
 
     /**
      * Parses a {@code String priority} into a {@code DateTime}.
@@ -173,11 +169,6 @@ public class ParserUtil {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
         return new Priority(trimmedPriority);
-    }
-
-    public static Set<Priority> parseMeetingPriorities(Collection<String> priorities)
-            throws ParseException {
-        return parseMany(ParserUtil::parseMeetingPriority, priorities);
     }
 
 

@@ -1,6 +1,12 @@
 package seedu.address.logic.commands.meetings;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +29,24 @@ public class FindMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "findm";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": FIX THIS Finds all meetings with names containing any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds meetings with that has all the "
+            + "specified values.\n"
+            + "Parameters: "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_TIME + "TIME "
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_PRIORITY + "PRIORITY "
+            + "[" + PREFIX_GROUP + "GROUP]..."
+            + "[" + PREFIX_PERSON_CONNECTION + "INDEX OF PERSON RELATED]...\n"
+            + "Example: " + COMMAND_WORD
+            + PREFIX_NAME + "CS2103 Lecture "
+            + PREFIX_TIME + "2021-03-12 14:00 "
+            + PREFIX_DESCRIPTION + "Week 7 "
+            + PREFIX_PRIORITY + "3 "
+            + PREFIX_GROUP + "lectures "
+            + PREFIX_GROUP + "SoC "
+            + PREFIX_PERSON_CONNECTION + "1 "
+            + PREFIX_PERSON_CONNECTION + "2";
 
     private final Predicate<Meeting> combinedPredicate;
 

@@ -158,6 +158,10 @@ public class Meeting implements Schedulable {
         return allPersons.contains(person);
     }
 
+    public boolean containsGroup(Group group) {
+        return groups.contains(group);
+    }
+
     public boolean hasTime(DateTime time) {
         boolean afterOrAtStart = time.compareTo(start) >= 0;
         boolean beforeOrAtEnd = time.compareTo(terminate) <= 0;
