@@ -3,7 +3,6 @@ package seedu.storemando.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.storemando.testutil.TypicalItems.APPLE;
 import static seedu.storemando.testutil.TypicalItems.BREAD;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
@@ -36,14 +35,14 @@ public class ReminderCommandTest {
         ItemExpiringPredicate secondPredicate =
             new ItemExpiringPredicate((long) 7);
 
-        ReminderCommand reminderFirstCommand = new ReminderCommand(firstPredicate);
-        ReminderCommand reminderSecondCommand = new ReminderCommand(secondPredicate);
+        ReminderCommand reminderFirstCommand = new ReminderCommand(firstPredicate, 3, "days");
+        ReminderCommand reminderSecondCommand = new ReminderCommand(secondPredicate, 3, "days");
 
         // same object -> returns true
         assertTrue(reminderFirstCommand.equals(reminderFirstCommand));
 
         // same values -> returns true
-        ReminderCommand reminderFirstCommandCopy = new ReminderCommand(firstPredicate);
+        ReminderCommand reminderFirstCommandCopy = new ReminderCommand(firstPredicate, 3, "days");
         assertTrue(reminderFirstCommand.equals(reminderFirstCommandCopy));
 
         // different types -> returns false
@@ -64,6 +63,5 @@ public class ReminderCommandTest {
         expectedModel.updateSortedItemList(comparator);
         expectedModel.setItems(expectedModel.getSortedItemList());
         assertEquals(Arrays.asList(BREAD, APPLE), expectedModel.getFilteredItemList());
-        assertCommandSuccess(new ReminderCommand(predicate), model, ReminderCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
