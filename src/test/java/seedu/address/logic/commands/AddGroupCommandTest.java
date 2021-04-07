@@ -43,7 +43,10 @@ public class AddGroupCommandTest {
 
         AddGroupCommand addGroupCommand = new AddGroupCommand(indexes, group.getName());
 
-        String expectedMessage = String.format(AddGroupCommand.MESSAGE_ADD_GROUP_SUCCESS, group.getName());
+        String expectedMessage = String.format(
+                AddGroupCommand.MESSAGE_ADD_GROUP_SUCCESS,
+                group.toUi(),
+                group.getName());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addGroup(group);
