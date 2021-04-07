@@ -6,10 +6,13 @@ start
 
 if () then ([All parameters are valid])
     :Constructs a meeting with the given parameters;
-    :Adds the meeting to the model;
-    :Saves the meeting to the storage;
-    :Display success message to the user;
-'    stop
+    if () then ([No date-time conflict with existing meetings])
+        :Adds the meeting to the model;
+        :Saves the meeting to the storage;
+        :Display success message to the user;
+    else ([Else])
+        :Display conflict message to the user;
+    endif
 else ([Else])
     :Display a feedback message to the user;
     note right

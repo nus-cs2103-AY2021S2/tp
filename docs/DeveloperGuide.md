@@ -183,8 +183,8 @@ date and time,location and any tags if needed. The entire command string will be
 were inputted and if they are all valid, a Meeting object is constructed and added to the Model and saved to the local
 storage. Upon successful adding, a feedback message is displayed to the user.
 
-Note. In unsuccessful adding caused by cases like invalid parameters or lack of parameters, an appropriate message is 
-displayed to the user.
+Note
+* When given an invalid parameters or no parameters at all, a feedback message will be displayed to the user.
 
 This process is visualised in the diagram below:
 
@@ -212,8 +212,11 @@ extract the parameters that were inputted and if they are all valid, the Meeting
 to the displayed index will be modified and replaced the original one in the Model and local storage. Upon successful
 editing, a feedback message is displayed to the user.
 
-Note. In an unsuccessful editing caused by cases like editing a completed meeting or no fields are changed, an appropriate message is
-displayed to the user.
+Note. 
+* When there are issues with the parameters or the meeting to modify is already completed, a feedback message will be 
+  displayed to the user 
+* When the edited meeting's date-time collides with an existing meeting in the model, a conflict message will be 
+  displayed to the user.
 
 This process is visualised in the diagram below:
 
@@ -235,14 +238,17 @@ This section will detail the implementation of the Find Meeting feature via the 
 ##### Overview of Finding Process
 The `FindMeetingCommand` is executed through entering `findmeet` followed by partial, full or unique keywords to return 
 a list of filtered meetings to be displayed by the UI. The entire command string will be parsed to extract the keywords
-that were inputted and if they match any of the meeting's fields, those meetings will be returned and displayed. Upon 
-successful editing, a feedback message is displayed to the user.
+that were inputted and form a predicate that require a meeting to match all the keywords in order to pass. This
+predicate is then used to filter the meeting list in the model and display the filtered list onto the UI. Upon successful
+filtering, a success message is displayed to the user.
 
-Note. In an unsuccessful search whereby there are no matches, a feedback message will be displayed to the user.
+Note
+* When no keywords are provided, a feedback message will be displayed to the user.
+* When no meetings are found, a failure message is displayed to the user.
 
 This process is visualised in the diagram below:
 
-DIAGRAM HERE
+![FindMeetingCommand activity diagram](images/FindMeetingActivityDiagram.png)
 
 ##### FindMeetingCommand
 Similar to the `AddMeetingCommand`, `FindMeetingCommand` is inherited from `Command` class and overrides its `execute()`
