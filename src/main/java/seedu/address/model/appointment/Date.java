@@ -18,6 +18,8 @@ public class Date implements Comparable<Date> {
     public static final String MESSAGE_INVALID_DATE = "Invalid date entered.\n"
             + "Please ensure that the appointment date entered is valid";
 
+    public static final String MESSAGE_DATE_OVER = "Appointment date is already over!!!";
+
     private static final String VALIDATION_REGEX = "\\d{2}-\\d{2}-\\d{4}";
 
     public final LocalDate date;

@@ -19,6 +19,8 @@ public class Time implements Comparable<Time> {
             + "Please ensure that the appointment time entered is valid\n"
             + "Note: 2400 is not a valid time. Please enter 0000 instead.";
 
+    public static final String MESSAGE_TIME_OVER = "Appointment time is already over!!!";
+
     private static final String VALIDATION_REGEX = "\\d{4}";
 
     public final LocalTime time;
