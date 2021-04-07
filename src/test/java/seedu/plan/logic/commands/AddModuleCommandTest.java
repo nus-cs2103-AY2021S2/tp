@@ -255,7 +255,7 @@ public class AddModuleCommandTest {
         public boolean hasModule(int planNumber, int semNumber, Module module) {
             requireAllNonNull(planNumber, semNumber, module);
             Plan plan = modulePlanner.getPersonList().get(planNumber);
-            Semester semester = plan.getSemesters().get(semNumber);
+            Semester semester = plan.getSemesterBySemNumber(semNumber);
             return semester.getModules().stream().anyMatch((currentModule) ->
                     currentModule.getModuleCode() == module.getModuleCode()
             );
@@ -265,7 +265,7 @@ public class AddModuleCommandTest {
         public void addModule(int planNumber, int semNumber, Module module) {
             requireAllNonNull(planNumber, semNumber, module);
             Plan plan = modulePlanner.getPersonList().get(planNumber);
-            Semester semester = plan.getSemesters().get(semNumber);
+            Semester semester = plan.getSemesterBySemNumber(semNumber);
             semester.addModule(module);
             modulePlanner.setPlan(plan, plan.addSemester(semester));
             moduleAdded.add(module);
