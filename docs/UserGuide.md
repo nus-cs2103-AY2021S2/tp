@@ -201,8 +201,12 @@ t/ | TAG |
    E.g. for `edit 1 m/CS2101 m/Invalid`, `m/Invalid` will be taken as the module argument, which is invalid. 
    Even though m/CS2101 is valid, it is ignored entirely.
    
-1. Tag prefix for `add`, `tag` and `edit` commands are an exception. For 2 or more tags which share the same spelling,
-   only the first tag is accepted. Note that tag spelling check is case-insensitive.
+1. Tag prefix for `add`, `tag` and `edit` commands are an exception. 
+   All arguments with `t/` prefix will be accepted for processing.
+   
+1. For 2 or more tags which share the same spelling, only the first tag is accepted. 
+   Note that tag spelling check is case-insensitive. This also means that if a blank `t/` is passed in, 
+   the app will give an error message due to the tag being empty.
    E.g. for `tag 1 t/quiz t/QUIZ, t/Quiz`, only `t/quiz` is accepted and the actual tag will be spelt as `quiz`.
 
 <div style="page-break-after: always;"></div>
