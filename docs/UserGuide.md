@@ -50,11 +50,11 @@ title: User Guide
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listcommand`, `exit` and `clearcontact`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-  
+
 * Extraneous parameter for commands that only take in one parameters (such as `open`, `close`, and `setdividerc` will **not** be ignored.<br>
   e.g. if the command specifies `open -c 123`, the command will be invalid.
-  
-  
+
+
 </div>
 
 ### Guide Feature
@@ -305,7 +305,7 @@ Format: `quit`
 Examples:
 * `quit`
   * quit edit mode and discard all changes.
-  
+
 
 ### Contact Features
 
@@ -412,7 +412,7 @@ Format: `clearcontact`
 
 
 ### User Interface Feature
-Dictionote allows the user to manipulate the user-interface via command. 
+Dictionote allows the user to manipulate the user-interface via command.
 The following are the 5 region where the user can manipulate
 
 ![Ui Panel](images/UiPanel.png)
@@ -472,7 +472,7 @@ The following are the 4 divider where the user can manipulate
 
 ![Ui Divider](images/UiDivider.png)
 
-The following images show the position the divider will be set when user enter a value from 1 to 9 
+The following images show the position the divider will be set when user enter a value from 1 to 9
 in either horizontally or vertically mode.
 
 ![Ui Divider Configuration](images/UiDividerConfig.png)
