@@ -21,7 +21,7 @@ import seedu.address.model.module.Title;
 public class DeleteAssignmentCommand extends DeleteCommand {
 
     public static final String MESSAGE_DELETE_ASSIGNMENT_SUCCESS = "Deleted Assignment: %1$s";
-
+    public static final String MESSAGE_EMPTY_ASSIGNMENTLIST = "Assignment list is empty";
     private final Title moduleTitle;
 
     private final Index assignmentIndex;
@@ -47,6 +47,9 @@ public class DeleteAssignmentCommand extends DeleteCommand {
         int indexOfModule = getIndex(lastShownList, moduleToCheck);
         Module moduleToGet = lastShownList.get(indexOfModule);
         AssignmentList assignmentList = moduleToGet.getAssignments();
+        if (assignmentList.size() == 0) {
+            throw new CommandException(MESSAGE_EMPTY_ASSIGNMENTLIST);
+        }
         if (assignmentIndex.getZeroBased() >= assignmentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
         }
