@@ -18,8 +18,8 @@ import seedu.timeforwheels.commons.core.index.Index;
 import seedu.timeforwheels.logic.commands.exceptions.CommandException;
 import seedu.timeforwheels.model.DeliveryList;
 import seedu.timeforwheels.model.Model;
-import seedu.timeforwheels.model.customer.Customer;
 import seedu.timeforwheels.model.customer.AttributeContainsKeywordsPredicate;
+import seedu.timeforwheels.model.customer.Customer;
 import seedu.timeforwheels.testutil.EditCustomerDescriptorBuilder;
 
 /**
