@@ -24,6 +24,7 @@ import static seedu.smartlib.testutil.TypicalModels.SECRET;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -592,6 +593,63 @@ public class ModelManagerTest {
         // EP: valid book name -> returns barcode of book
         assertEquals(SECRET.getBarcode(), modelManager.getBookBarcode(SECRET.getName()));
         assertEquals(HARRY.getBarcode(), modelManager.getBookBarcode(HARRY.getName()));
+    }
+
+    @Test
+    public void getBookByBarcode() {
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
+
+        // EP: null barcode
+        assertThrows(NullPointerException.class, () -> modelManager.getBookByBarcode(null));
+
+        // EP: invalid barcode -> returns null
+        assertNull(modelManager.getBookByBarcode(HABIT.getBarcode()));
+        assertNull(modelManager.getBookByBarcode(LIFE.getBarcode()));
+
+        // EP: valid barcode -> returns book
+        assertEquals(SECRET, modelManager.getBookByBarcode(SECRET.getBarcode()));
+        assertEquals(HARRY, modelManager.getBookByBarcode(HARRY.getBarcode()));
+    }
+
+    @Test
+    public void getBooksByName() {
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
+
+        // EP: null book name
+        assertThrows(NullPointerException.class, () -> modelManager.getBooksByName(null));
+
+        // EP: invalid book name -> returns null
+        assertEquals(new ArrayList<>(), modelManager.getBooksByName(HABIT.getName()));
+        assertEquals(new ArrayList<>(), modelManager.getBooksByName(LIFE.getName()));
+
+        // EP: valid book name -> returns single book
+        ArrayList<Book> al = new ArrayList<>();
+        al.add(SECRET);
+        assertEquals(al, modelManager.getBooksByName(SECRET.getName()));
+        al.remove(SECRET);
+
+        al.add(HARRY);
+        assertEquals(al, modelManager.getBooksByName(HARRY.getName()));
+        al.remove(HARRY);
+
+        // EP: valid book name -> returns list of books
+        Book habit2 = new Book(
+                HABIT.getName(),
+                HABIT.getAuthor(),
+                HABIT.getPublisher(),
+                HABIT.getIsbn(),
+                new Barcode(HABIT.getBarcode().getValue() + 10),
+                HABIT.getGenre()
+        );
+        modelManager.addBook(HABIT);
+        modelManager.addBook(habit2);
+        al.add(HABIT);
+        al.add(habit2);
+        assertEquals(al, modelManager.getBooksByName(HABIT.getName()));
+        modelManager.deleteBook(HABIT);
+        modelManager.deleteBook(habit2);
     }
 
     @Test

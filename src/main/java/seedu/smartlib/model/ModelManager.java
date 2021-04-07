@@ -330,14 +330,6 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Retrieves the list of books that has the bookName
-     * @param bookName bookName to query
-     * @return the list of bookNames
-     */
-    public ArrayList<Book> getBooksByName(Name bookName) {
-        return smartLib.getBooksByName(bookName);
-    }
-    /**
      * Adds the given reader.
      * {@code reader} must not already exist in the registered reader base.
      *
@@ -392,10 +384,28 @@ public class ModelManager implements Model {
         return null;
     }
 
+    /**
+     * Returns the book with the given barcode.
+     *
+     * @param barcode the specified barcode
+     * @return the book with the given barcode
+     */
     @Override
     public Book getBookByBarcode(Barcode barcode) {
         requireNonNull(barcode);
         return smartLib.getBookByBarcode(barcode);
+    }
+
+    /**
+     * Retrieves the list of books that has the bookName.
+     *
+     * @param bookName bookName to query
+     * @return the list of bookNames
+     */
+    @Override
+    public ArrayList<Book> getBooksByName(Name bookName) {
+        requireNonNull(bookName);
+        return smartLib.getBooksByName(bookName);
     }
 
     /**
