@@ -228,12 +228,20 @@ Format: `today_task`
 
 
 ### Finding tasks by name: `find_task`
-Finds matching tasks from Task List.
+Finds tasks whose names contain any of the given keywords from the Task List.
 
-Format: `find_task KEYWORDS`
-* Finds the tasks whose names contain the given keywords.
-* The keywords are case-insensitive.
-* A list of matching tasks will be displayed with their indexes.
+Format: `find_task KEYWORD [MORE_KEYWORDS]`
+* The search is case-insensitive. e.g. `homework` will match `Homework`.
+* The order of the keywords does not matter. e.g. `Practice Problems` will match `Problems Practice`.
+* Only the name of the tasks is searched.
+* Only full words will be matched. e.g. `CS` will not match `CS2103`.
+* Tasks matching at least one keyword will be returned (i.e. `OR` search). e.g. `CS2103 Homework` will return 
+  `ST2131 Homework`, `CS2103 Quiz`.
+  
+Examples:
+* `find_task Homework` returns `st2131 homework` and `Homework 1`
+* `find_task assignment homework` returns `Assignment 1`, `Homework 2`
+![find_task example](images/find_task-example.png)
 
 [Return to Feature List](#feature-list)
 
@@ -401,12 +409,20 @@ Format: `today_event`
 
 
 ### Finding events by name: `find_event`
-Finds matching events from Event Scheduler.
+Finds events whose names contain any of the given keywords from the Event List.
 
-Format: `find_event KEYWORDS`
-* Finds the events whose names contain given keywords.
-* The keywords are case-insensitive.
-* A list of matching events will be displayed with their indexes.
+Format: `find_event KEYWORDS [MORE_KEYWORDS]`
+* The search is case-insensitive. e.g. `meeting` will match `Meeting`.
+* The order of the keywords does not matter. e.g. `Attending Lecture` will match `Lecture Attending`.
+* Only the name of the events is searched.
+* Only full words will be matched. e.g. `CS` will not match `CS2103`.
+* Events matching at least one keyword will be returned (i.e. `OR` search). e.g. `CS2103 Meeting` will return
+  `Project Meeting`, `CS2103 Lecture`.
+
+Examples:
+* `find_event Meeting` returns `project meeting` and `Research Meeting`.
+* `find_event talk competition` returns `Career Talk`, `Coding Competition`
+  ![find_event example](images/find_event-example.png)
 
 [Return to Feature List](#feature-list)
 
