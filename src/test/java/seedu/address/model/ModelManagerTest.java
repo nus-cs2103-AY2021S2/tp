@@ -26,6 +26,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.AddressBookSettings;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.predicate.ApptNameContainsKeywordsPredicate;
 import seedu.address.model.contact.predicate.NameContainsKeywordsPredicate;
@@ -71,6 +72,19 @@ public class ModelManagerTest {
         GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
         modelManager.setGuiSettings(guiSettings);
         assertEquals(guiSettings, modelManager.getGuiSettings());
+    }
+
+    @Test
+    public void setAddressBookSettings_nullAddressBook_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookSettings(null));
+    }
+
+    @Test
+    public void setAddressBook_validGAddressBook_setsAddressBook() {
+        AddressBookSettings addressBookSettings = new AddressBookSettings();
+
+        modelManager.setAddressBookSettings(addressBookSettings);
+        assertEquals(addressBookSettings, modelManager.getAddressBookSettings());
     }
 
     @Test
