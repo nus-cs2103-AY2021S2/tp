@@ -26,7 +26,7 @@ import seedu.address.model.order.OrderId;
 import seedu.address.model.order.Quantity;
 
 /**
- * Edits the details of an existing order in the address book.
+ * Edits the details of an existing order in CHIM.
  */
 public class EditOrderCommand extends EditCommand {
 
@@ -48,8 +48,8 @@ public class EditOrderCommand extends EditCommand {
 
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited Order: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_NO_CUSTOMERS_FOUND = "No customer in the address book owns the phone number.";
-    public static final String MESSAGE_SAME_CUSTOMER_PHONE = "Customer phone provided is the same.";
+    public static final String MESSAGE_NO_CUSTOMERS_FOUND = "No customer in CHIM owns that phone number.";
+    public static final String MESSAGE_SAME_CUSTOMER_PHONE = "Customer phone number provided is the same.";
     public static final String MESSAGE_COMPLETED_ORDER_ERROR = "Not allowed to change the fields of a completed order.";
 
     protected final Index index;
