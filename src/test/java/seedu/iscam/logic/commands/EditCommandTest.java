@@ -74,7 +74,7 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredList_failure() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, new EditClientDescriptor());
         Client editedClient = model.getFilteredClientList().get(INDEX_FIRST_ITEM.getZeroBased());
 

@@ -58,6 +58,7 @@ class DoneMeetingCommandTest {
         assertCommandSuccess(doneMeetingCommand, model, expectedMessage, expectedModel);
     }
 
+    //TODO
     @Test
     public void execute_alreadyCompleted_throwsCommandException() {
         Meeting meetingToComplete = model.getFilteredMeetingList().get(INDEX_FIRST_ITEM.getZeroBased());
