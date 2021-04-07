@@ -64,6 +64,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIENDLY = "friendly";
     public static final String VALID_TAG_QUIET = "quiet";
 
+    public static final String VALID_ENTITY_ID = "1";
+
     public static final String NAME_DESC_ASHER = " " + PREFIX_NAME + VALID_NAME_ASHER;
     public static final String NAME_DESC_BELL = " " + PREFIX_NAME + VALID_NAME_BELL;
     public static final String SEX_DESC_ASHER = " " + PREFIX_SEX + VALID_SEX_ASHER;
@@ -93,6 +95,10 @@ public class CommandTestUtil {
 
     public static final EditOwnerCommand.EditOwnerDescriptor DESC_AMY;
     public static final EditOwnerCommand.EditOwnerDescriptor DESC_BOB;
+
+    public static final String INVALID_EMPTY_STRING = "";
+    public static final String INVALID_NEGATIVE_ID_STRING = "-1";
+    public static final String INVALID_UNKNOWN_ID_STRING = "dummy";
 
     static {
         DESC_AMY = new EditOwnerDescriptorBuilder().withName(VALID_NAME_AMY)
