@@ -17,13 +17,16 @@ public class FindReaderCommand extends Command {
 
     public static final String COMMAND_WORD = "findreader";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all readers whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all readers whose registered names/tags contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "To find a reader with a certain tag, use \"findreader " + PREFIX_TAG + "TAG [MORE_TAGS]\" instead.\n"
+            + "To find a reader with his/her registered name, use \"findreader " + "NAME [MORE_NAME_INFO]\".\n"
+            + "To find reader(s) with matching tags, use \"findreader " + PREFIX_TAG + "TAG [MORE_TAGS]\".\n"
             + "Note that the current version of our app does not support the searching of "
-            + "keywords and tags within the same command.\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "readers with names and tags within the same command.\n"
+            + "Example 1: " + COMMAND_WORD + " John Doe\n"
+            + "Example 2: " + COMMAND_WORD + " " +  PREFIX_TAG + "vip";
 
     private final Predicate<Reader> predicate;
 
