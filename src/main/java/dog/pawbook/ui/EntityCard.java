@@ -6,6 +6,7 @@ import java.util.Comparator;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.program.Program;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -48,9 +49,7 @@ public class EntityCard extends UiPart<Region> {
     @FXML
     private Label staticId;
     @FXML
-    private ImageView entityImage;
-
-
+    private ImageView imageView;
 
     /**
      * Creates a {@code EntityCard} with the given {@code Entity} and index to display.
@@ -59,16 +58,18 @@ public class EntityCard extends UiPart<Region> {
         super(FXML);
         this.entity = entity;
 
-        this.entityImage.setFitHeight(50);
-        this.entityImage.setFitWidth(50);
+        this.imageView.setFitHeight(70);
+        this.imageView.setFitWidth(70);
 
         if (entity instanceof Dog) {
-            this.entityImage.setImage(dogImage);
+            this.imageView.setImage(dogImage);
         } else if (entity instanceof Owner) {
-            this.entityImage.setImage(ownerImage);
-        } else {
-            this.entityImage.setImage(programImage);
+            this.imageView.setImage(ownerImage);
+        } else if (entity instanceof Program) {
+            this.imageView.setImage(programImage);
         }
+
+        assert (imageView.getImage() != null);
 
         id.setText(displayedId + ": ");
         name.setText(entity.getName().fullName);

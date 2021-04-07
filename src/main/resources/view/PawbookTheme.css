@@ -320,11 +320,6 @@
     -fx-padding: 8 1 8 1;
 }
 
-#cardPaneDog {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
-}
-
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: #F70D1A;
