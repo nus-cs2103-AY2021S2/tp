@@ -51,7 +51,7 @@ public class FindMeetingCommand extends Command {
         requireNonNull(model);
         Predicate<Meeting> containsPeoplePredicate = makeContainsPeoplePredicate(persons, model);
         Predicate<Meeting> finalPredicate = combinedPredicate.and(containsPeoplePredicate);
-        model.updateFilteredMeetingList(finalPredicate);
+        model.updateFilteredMeetingList(containsPeoplePredicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW, model.getFilteredMeetingList().size()));
     }

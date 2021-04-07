@@ -154,7 +154,8 @@ public class Meeting implements Schedulable {
     }
 
     public boolean containsPerson(Person person) {
-        return connection.existPersonMeetingConnection(person,this);
+        Set<Person> allPersons = getConnectionToPerson();
+        return allPersons.contains(person);
     }
 
     public boolean hasTime(DateTime time) {
