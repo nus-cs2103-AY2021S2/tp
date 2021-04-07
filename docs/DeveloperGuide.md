@@ -813,6 +813,15 @@ testers are expected to do more *exploratory* testing.
     1. Test cases: `list` <br>
     Expected: `FlashcardListPanel` displays all flashcards stored in `flashback.json` file. The result display shows a message: `Listed all flashcards`.
     
+### Adding a flashcard
+1. Adding a flashcard with a specific question, answer, category, priority and tags(if possible).
+    1. Prerequisites: Application is in main mode and running
+    1. Test case: `add q/Who invented the alternating current? a/Nikola Tesla c/Physics p/Mid`
+    Expected: A new card is added to the list. Result display shows the details of the added flashcards.
+    1. Test case: `add q/Who initiated the Arab Spring operation? a/Barack Obama c/Political Studies p/High t/war`
+    Expected: A new card is added to the list. Result display shows the details of the added flashcards with tags.
+    1. Test case: `add`
+    Expected: No flashcard is deleted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
 ### Deleting a flashcard
 
 1. Deleting a flashcard at a specific index.
@@ -907,8 +916,16 @@ testers are expected to do more *exploratory* testing.
        Expected: The view pane on the bottom left does not display anything, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
     
     1. Test case: `view 2001` <br>
-       Expected: The view pane on the bottom left does not display anything, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `The flashcard index provided is invalid`.
-    
+    Expected: The view pane on the bottom left does not display anything, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `The flashcard index provided is invalid`.
+
+### Sorting flashcards
+1. Sorting all flashcards in FlashBack.
+    1. Prerequisites: There must be at least 1 flashcard currently shown in the list.
+    1. Test case: `sort priority -a`
+    Expected: The display list will be updated to show flashcards sorted in ascending order of priority.
+    1. Test case: `sort`
+    Expected: No flashcards sorted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
+
 ### Review mode
 
 1. Entering the review mode
