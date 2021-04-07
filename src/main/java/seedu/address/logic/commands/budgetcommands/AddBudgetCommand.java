@@ -47,7 +47,7 @@ public class AddBudgetCommand extends Command {
             return new CommandResult(MESSAGE_DUPLICATE_BUDGET);
         } else {
             model.addBudget(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getValue()));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getValue()), TabName.BUDGET);
         }
     }
 

@@ -96,7 +96,7 @@ public class CalendarView extends UiPart<Region> {
         generateCalender();
     }
 
-    // @@author {zwasd}-reused
+    // @@author zwasd-reused
     // Reused from
     // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
     // with minor modifications (renaming variables).
@@ -116,7 +116,7 @@ public class CalendarView extends UiPart<Region> {
         return d1.withDayOfMonth(1).equals(d2.withDayOfMonth(1));
     }
 
-    // @@author {zwasd}-reused
+    // @@author zwasd-reused
     // Reused from
     // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
     // with no modifications.
@@ -137,7 +137,7 @@ public class CalendarView extends UiPart<Region> {
         }
     }
 
-    // @@author {zwasd}-reused
+    // @@author zwasd-reused
     // Reused from
     // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
     // with no modifications.
@@ -158,7 +158,7 @@ public class CalendarView extends UiPart<Region> {
         }
     }
 
-    // @@author {zwasd}-reused
+    // @@author zwasd-reused
     // Reused from
     // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
     // with no modifications.
@@ -175,7 +175,7 @@ public class CalendarView extends UiPart<Region> {
         }
     }
 
-    // @@author {zwasd}-reused
+    // @@author zwasd-reused
     // Reused from
     // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
     // with no modifications.
@@ -192,7 +192,7 @@ public class CalendarView extends UiPart<Region> {
     }
 
 
-    // @@author {zwasd}-reused
+    // @@author zwasd-reused
     // Reused from
     // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
     // with no modifications.
@@ -220,7 +220,7 @@ public class CalendarView extends UiPart<Region> {
         }
     }
 
-    // @@author {zwasd}-reused
+    // @@author zwasd-reused
     // Reused from
     // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
     // with no modifications.
@@ -237,7 +237,7 @@ public class CalendarView extends UiPart<Region> {
         return label;
     }
 
-    // @@author {zwasd}-reused
+    // @@author zwasd-reused
     // Reused from
     // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
     // with no modifications.
@@ -258,7 +258,7 @@ public class CalendarView extends UiPart<Region> {
     }
 
 
-    // @@author {zwasd}-reused
+    // @@author zwasd-reused
     // Reused from
     // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
     // with minor modifications (change of colors and code structure).
@@ -325,7 +325,7 @@ public class CalendarView extends UiPart<Region> {
     }
 
 
-    // @@author {zwasd}-reused
+    // @@author zwasd-reused
     // Reused from
     // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
     // with no modifications.
@@ -340,7 +340,7 @@ public class CalendarView extends UiPart<Region> {
     }
 
 
-    // @@author {zwasd}-reused
+    // @@author zwasd-reused
     // Reused from
     // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
     // with no modifications.
@@ -362,7 +362,7 @@ public class CalendarView extends UiPart<Region> {
         }
     }
 
-    // @@author {zwasd}-reused
+    // @@author zwasd-reused
     // Reused from
     // https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
     // with no modifications.

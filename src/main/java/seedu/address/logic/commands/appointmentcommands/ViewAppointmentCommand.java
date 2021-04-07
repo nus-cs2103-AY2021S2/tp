@@ -31,7 +31,8 @@ public class ViewAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredAppointmentList(predicate);
-        return new CommandResult(String.format(MESSAGE_VIEW_APPOINTMENT_SUCCESS, predicate.toString()));
+        return new CommandResult(String.format(MESSAGE_VIEW_APPOINTMENT_SUCCESS, predicate.toString()),
+                TabName.APPOINTMENT);
     }
 
     @Override

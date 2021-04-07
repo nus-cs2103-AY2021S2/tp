@@ -57,7 +57,7 @@ public class DeleteGradeCommand extends Command {
 
         Grade gradeToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteGrade(gradeToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_GRADE_SUCCESS, gradeToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_GRADE_SUCCESS, gradeToDelete), TabName.GRADE);
     }
 
     @Override

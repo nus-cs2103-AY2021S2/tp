@@ -31,7 +31,8 @@ public class ViewScheduleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredScheduleList(predicate);
-        return new CommandResult(String.format(MESSAGE_VIEW_SCHEDULE_SUCCESS, predicate.toString()));
+        return new CommandResult(String.format(MESSAGE_VIEW_SCHEDULE_SUCCESS, predicate.toString()),
+                TabName.SCHEDULE);
     }
 
     @Override

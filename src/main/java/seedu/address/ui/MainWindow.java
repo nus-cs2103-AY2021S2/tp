@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -15,11 +14,11 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.budget.Budget;
-import seedu.address.ui.budgetpanel.BudgetCard;
+import seedu.address.ui.budgetpanel.BudgetListPanel;
 import seedu.address.ui.reminderpanel.ReminderListPanel;
 import seedu.address.ui.schedulepanel.ScheduleListPanel;
 import seedu.address.ui.timetablepanel.TimeTableWindow;
@@ -48,7 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private ReminderListPanel reminderListPanel;
     private FiltersPanel filtersPanel;
     private ScheduleListPanel scheduleListPanel;
-    private BudgetCard budgetCard;
+    private BudgetListPanel budgetListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -158,17 +157,8 @@ public class MainWindow extends UiPart<Stage> {
         appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
-        /* Budget */
-        ObservableList<Budget> budgetList = logic.getBudgetList();
-
-        if (budgetList.size() == 0) {
-            budgetList.add(new Budget("0"));
-            budgetCard = new BudgetCard(budgetList.get(0), 1);
-        } else {
-            budgetCard = new BudgetCard(budgetList.get(0), 1);
-        }
-        budgetPanelPlaceholder.getChildren().add(budgetCard.getRoot());
-
+        budgetListPanel = new BudgetListPanel(logic.getBudgetList());
+        budgetPanelPlaceholder.getChildren().add(budgetListPanel.getRoot());
 
         scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
@@ -193,6 +183,43 @@ public class MainWindow extends UiPart<Stage> {
         filtersPanelPlaceholder.getChildren().add(filtersPanel.getRoot());
         filtersPanel.fillInnerParts(logic.getPersonFilterStringList(),
                 logic.getAppointmentFilterStringList());
+
+        tabSidePanePlaceHolder.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
+            String tabName = newTab.getText();
+            try {
+                switch (tabName) {
+                case "Reminders":
+                    executeCommand("list_reminders");
+                    break;
+                case "Grades":
+                    executeCommand("list_grades");
+                    break;
+                default:
+                    break;
+                }
+            } catch (CommandException | ParseException e) {
+                logger.info("Invalid command executed");
+            }
+        });
+
+        setTabsWidth(tabPanePlaceHolder);
+        setTabsWidth(tabSidePanePlaceHolder);
+    }
+
+    //@@author Mantas Visockis-reused
+    //Reused from https://stackoverflow.com/questions/31051756/javafx-tab-fit-full-size-of-header
+    //with minor modifications
+    /**
+     * Sets the width programmatically according to the window's size and number of tabs.
+     * @param tabPane TabPane to be adjusted
+     */
+    private void setTabsWidth(TabPane tabPane) {
+        assert tabPane != null;
+        tabPane.widthProperty().addListener((observable, oldValue, newWidth) -> {
+            int numTabs = tabPane.getTabs().size();
+            tabPane.setTabMinWidth(newWidth.doubleValue() / numTabs - (20));
+            tabPane.setTabMaxWidth(newWidth.doubleValue() / numTabs - (20));
+        });
     }
 
     /**
@@ -257,6 +284,29 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.getTabName().isPresent()) {
+                Command.TabName tabName = commandResult.getTabName().get();
+                switch (tabName) {
+                case APPOINTMENT:
+                    tabPanePlaceHolder.getSelectionModel().select(0);
+                    break;
+                case SCHEDULE:
+                    tabPanePlaceHolder.getSelectionModel().select(1);
+                    break;
+                case BUDGET:
+                    tabSidePanePlaceHolder.getSelectionModel().select(2);
+                    break;
+                case GRADE:
+                    tabSidePanePlaceHolder.getSelectionModel().select(1);
+                    break;
+                case REMINDER:
+                    tabSidePanePlaceHolder.getSelectionModel().select(0);
+                    break;
+                default:
+                    break;
+                }
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

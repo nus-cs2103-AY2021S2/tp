@@ -57,7 +57,8 @@ public class DeleteScheduleCommand extends Command {
 
         Schedule scheduleToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteSchedule(scheduleToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_SCHEDULE_SUCCESS, scheduleToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_SCHEDULE_SUCCESS, scheduleToDelete),
+                TabName.SCHEDULE);
     }
 
     @Override

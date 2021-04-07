@@ -18,8 +18,8 @@ public class NameSubjectRate {
      * Primary Constructor.
      */
     public NameSubjectRate(String filePath) {
-        GetAddressBook getAddressBook = new GetAddressBook(filePath);
-        this.nameRateHash = createNameSubjectMap(getAddressBook.getAddressBook());
+        GetTutorBook getTutorBook = new GetTutorBook(filePath);
+        this.nameRateHash = createNameSubjectMap(getTutorBook.getAddressBook());
     }
 
     /**

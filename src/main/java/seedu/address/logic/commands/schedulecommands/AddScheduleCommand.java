@@ -79,7 +79,7 @@ public class AddScheduleCommand extends Command {
             throw new CommandException(MESSAGE_CLASH_SCHEDULE);
         } else {
             model.addSchedule(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.SCHEDULE);
         }
     }
 }
