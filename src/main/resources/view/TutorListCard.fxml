@@ -41,6 +41,7 @@
               <children>
                 <VBox>
                   <children>
+                              <Label fx:id="gender" layoutX="10.0" layoutY="27.0" styleClass="cell_small_label" text="GENDER" />
                     <Label fx:id="phone" styleClass="cell_small_label" text="PHONE" />
                     <Label fx:id="address" styleClass="cell_small_label" text="ADDRESS" />
                     <Label fx:id="email" styleClass="cell_small_label" text="EMAIL" />
