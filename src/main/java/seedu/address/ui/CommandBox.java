@@ -10,6 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -99,31 +100,37 @@ public class CommandBox extends UiPart<Region> {
         });
     }
 
-    /*
-     * TODO: the code below can be more comprehensive
-     *
-     * Intended Idea:
-     * E.g "edit blah blah blah <index>": on UP/Down KeyEvents, ONLY trigger <index> to change,
-     * Same concept can be applied for other commands.
-     * "Last value change only"
-     *
-     * For now,
-     * - Current implementation does not factor in if the command is correct
-     * - Current implementation only checks the first keyword after splitting by space character
-     * - Currently only works on "Delete"
-     *
-     * Can consider having an implementation where only the index changes
-     */
     /**
-     * Sets the text after appending an index.
+     * Sets the textfield after appending an index.
      *
      * @param index to accept user entered index.
      */
     public void setAndAppendIndex(String index) {
-        String firstCommand = commandTextField.getText().split(" ")[0];
-        if (firstCommand.equals(DeleteCommand.COMMAND_WORD)) {
-            commandTextField.setText(firstCommand + " " + index);
+        String[] substrings = commandTextField.getText().split(" ");
+        String firstCommand = substrings[0];
+
+        if (firstCommand.equals(DeleteCommand.COMMAND_WORD) || firstCommand.equals(EditCommand.COMMAND_WORD)) {
+            this.setTextValue(firstCommand + " " + index);
         }
+    }
+
+    /**
+     * Sets the textfield after appending a flag
+     *
+     * @param flag to accept user entered flag
+     */
+    public void setAndAppendFlag(String flag) {
+        String existingText = commandTextField.getText();
+        this.setTextValue(existingText + " " + flag);
+    }
+
+    /**
+     * Returns the text in JavaFX textField.
+     *
+     * @return text in JavaFX textField
+     */
+    public String getTextFieldText() {
+        return commandTextField.getText();
     }
 
     /**

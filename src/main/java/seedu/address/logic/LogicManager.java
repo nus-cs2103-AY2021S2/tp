@@ -30,6 +30,7 @@ import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.DisplayFilterPredicate;
 import seedu.address.model.Model;
@@ -159,6 +160,84 @@ public class LogicManager implements Logic {
                 return FXCollections.observableList(filteredCommandList);
             }
         }
+    }
+
+    @Override
+    public List<String> getAutocompleteFlags(String command) {
+        if (command.equals(AddCommand.COMMAND_WORD) || command.equals(EditCommand.COMMAND_WORD)) {
+            List<String> flagList = new ArrayList<>();
+            flagList.add(CliSyntax.PREFIX_NAME.getPrefix());
+            flagList.add(CliSyntax.PREFIX_PHONE.getPrefix());
+            flagList.add(CliSyntax.PREFIX_EMAIL.getPrefix());
+            flagList.add(CliSyntax.PREFIX_COMPANY.getPrefix());
+            flagList.add(CliSyntax.PREFIX_JOB_TITLE.getPrefix());
+            flagList.add(CliSyntax.PREFIX_ADDRESS.getPrefix());
+            flagList.add(CliSyntax.PREFIX_REMARK.getPrefix());
+            flagList.add(CliSyntax.PREFIX_TAG.getPrefix());
+
+            return flagList;
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<String> filterExistingFlags(String currentStrings, String command) {
+        List<String> flags = getAutocompleteFlags(command);
+        flags.removeIf(currentStrings::contains);
+        return flags;
+    }
+
+    @Override
+    public boolean isAutocompleteFlag(String commandStrings) {
+        if (commandStrings == null) {
+            return false;
+        }
+        if (commandStrings.length() == 0) {
+            return false;
+        }
+
+        if (commandStrings.startsWith(AddCommand.COMMAND_WORD + " ")
+                || commandStrings.startsWith(EditCommand.COMMAND_WORD + " ")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public List<String> getAvailableFlags(String commandStrings) {
+
+        boolean isAutocompleteFlag = this.isAutocompleteFlag(commandStrings);
+
+        if (!isAutocompleteFlag) {
+            return null;
+        }
+
+        if (commandStrings.startsWith(AddCommand.COMMAND_WORD + " ")) {
+            // Get possible flags for "ADD" command
+            List<String> availFlags = this.filterExistingFlags(commandStrings, AddCommand.COMMAND_WORD);
+            if (availFlags.size() != 0) {
+                return availFlags;
+            }
+        }
+
+        if (commandStrings.startsWith(EditCommand.COMMAND_WORD + " ")) {
+            try {
+
+                // TODO:
+                // Check if Edit command already has index
+                Integer.parseInt(commandStrings.split("-")[0].replaceAll("\\D+", ""));
+                List<String> availFlags = this.filterExistingFlags(commandStrings,
+                        EditCommand.COMMAND_WORD);
+                if (availFlags.size() != 0) {
+                    return availFlags;
+                }
+            } catch (NumberFormatException e) {
+                logger.info("Edit Command does not have an index. Autocomplete flags failed...");
+            }
+        }
+        return new ArrayList<>();
     }
 
     @Override
