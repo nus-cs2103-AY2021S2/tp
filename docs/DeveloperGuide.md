@@ -3,17 +3,15 @@ layout: page
 title: imPoster Developer Guide
 nav-text: Developer Guide
 ---
-
+<!--Remember to revert README! -->
 <p align="center">
   <img width="300px" src="images/imPosterDevGuide.png" >
 </p>
 
 <h1 class="post-title">{{ page.title | escape }}</h1>
-<h3 class="post-subtitle">v1.3</h3>
+<h3 class="post-subtitle">v1.4</h3>
 
 <div style="page-break-after: always;"></div>
-<br/>
-
 ## Table of Contents
 {:.no_toc}
 
@@ -36,9 +34,19 @@ However, it is highly recommended for readers to refer to proper tutorial conten
 Readers are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application.
 
 * to-do brief description and some navigation tips about the developer guide as to what was similarly done in the user guide.
+## **Navigating this Developer Guide**
+
+Before diving into the rest of the contents in our developer guide, the following are a few important syntaxes to take note of to facilitate your reading:
+
+| Syntax              | Description                                    |
+| ------------------- | ---------------------------------------------- |
+|`Markdown`           | Denotes distinct classes, their methods or examples|
+|<div markdown="span" class="alert alert-info">:information_source: Note | Important things to take note of |
+|<kbd>Keyboard</kbd>  | Keyboard actions                               |
+
+<div style="page-break-after: always;"></div>
 
 ## **Design**
-
 ### Architecture
 
 ![Architecture_Diagram](images/ArchitectureDiagram.png)
@@ -83,7 +91,6 @@ The sections below give more details of each component.
 <div style="page-break-after: always;"></div>
 
 ### UI component
-
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
@@ -106,7 +113,6 @@ The `UI` component,
 <div style="page-break-after: always;"></div>
 
 ### Logic component
-
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
@@ -129,7 +135,6 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div style="page-break-after: always;"></div>
 
 ### Model component
-
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/model/Model.java)
@@ -158,7 +163,6 @@ require one `Tag` object per unique `Tag`, instead of each `Endpoint` needing th
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the Endpoint List data in json format and read it back.
-
 ### Common classes
 
 Classes used by multiple components are in the `seedu.us.among.commons` package.
@@ -172,7 +176,6 @@ Classes used by multiple components are in the `seedu.us.among.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 ### Endpoint Components
 * Change/Add classes in the Endpoint package to encapsulate an API endpoint.
-
 #### Implementation
 ![Structure of the Model Component](images/EndpointClassDiagram.png)
 An `Endpoint`,
@@ -194,8 +197,12 @@ An `Endpoint` contains the following attributes:
 * Before an API call is made, the `Response` object will be empty
 * Only when a Request#executeTimed(request) is called will a `Response` contain information about the API call response
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes how an endpoint is created when a user executes an add command:
 ![AddActivityDiagram](images/AddActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design consideration:
 ##### Aspect: How the components within `Endpoint` are added or changed
@@ -254,7 +261,9 @@ Step 3. `Model#updateFilteredEndpointList` will be called and model will be upda
 
 The following activity diagram summarizes what happens when a user executes a find command:
 
-![FindActivityDiagram](images/FindActivityDiagram.png)
+<p align="center">
+  <img src="images/FindActivityDiagram.png" alt="FindActivityDiagram" width="450px" />
+</p>
 
 ### Send/run command feature
 
@@ -290,7 +299,9 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 The `run` command deploys a similar trick but for an endpoint specified directly within the command arguments.
 
 The following activity diagram summarizes what happens when a user executes a run command:
-![RunActivityDiagram](images/RunActivityDiagram.png)
+<p align="center">
+  <img alt="RunActivityDiagram" src="images/RunActivityDiagram.png" width="400px"/>
+</p>
 #### Design consideration:
 
 ##### Aspect: How send & run executes
@@ -335,7 +346,9 @@ Step 4. The response retrieved will also be parsed and passed to UI for further 
 </div>
 
 The following sequence diagram shows how the request operation works when a user executes a `send` command for an endpoint with a `GET` request:
-![SendSequenceDiagram](images/RequestSequenceDiagram.png)
+<p align="centre">
+  <img alt="SendSequenceDiagram" src="images/RequestSequenceDiagram.png"/>
+</p>
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SendCommand`, `EndpointCaller` and `GetRequest` should end 
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -343,7 +356,10 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 The following activity diagram summarizes what happens when a user executes a `send` command for an endpoint with a `GET` request:
 <br/>
-![RequestActivityDiagram](images/RequestActivityDiagram.png)
+<p align="center">
+  <img alt="RequestActivityDiagram" src="images/RequestActivityDiagram.png" />
+</p>
+
 #### Design consideration:
 
 ##### Aspect: How request executes
@@ -375,7 +391,9 @@ Step 2. The `toggle` command returns a `CommandResult` that triggers the `update
 The following sequence diagram shows how the toggle command works for the above example: 
 ![ToggleSequenceDiagram](images/ToggleSequenceDiagram.png)
 
-### TODO MORE IMPLEMENTATION
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ToggleCommand`, `ToggleCommandParser` and `CommandResult` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ---
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -409,6 +427,8 @@ The following sequence diagram shows how the toggle command works for the above 
 - simple and easy to get started
 - unintrusive
 - great user experience
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix B: User Stories**
 
