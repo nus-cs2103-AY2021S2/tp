@@ -8,7 +8,6 @@ import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ORDER_DESCRIPTION;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_REQUEST;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
