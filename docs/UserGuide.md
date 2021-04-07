@@ -40,7 +40,7 @@ Commands in this user guide follow this format:
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `ilist`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-### Command parsing
+### Command Parsing
 
 #### Repeated parameters
 All commands in SunRez default to taking the latest occurrence of a duplicate parameter **except [tags](#tag)**. 
