@@ -68,6 +68,8 @@ your contact management tasks done faster than traditional GUI apps.
   will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
+* The module code parameter only takes in uppercase CS module codes.
+  e.g. `mc/CS2103` will be accepted but `mc/cs2103` will throw an error.
 </div>
 
 ### Prefixes for `add` and `edit` commands
