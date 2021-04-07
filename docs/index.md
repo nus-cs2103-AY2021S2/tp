@@ -8,8 +8,9 @@ title: Taskify
 
 ![Ui](images/Ui.png)
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**Taskify desktop app for university students who have a seemingly endless list of tasks to finish week after week.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
+* It is morphed from [AddressBook Level 3](https://se-education.org/addressbook-level3/) (AB3). 
 * If you are interested in using Taskify, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing Taskify, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
