@@ -43,3 +43,4 @@ Given below are my contributions to the project.
     * Set up GitHub team org and repo
     * Contributed to UI design mockup
     * Contributed to maintaining of issue tracker and release management
+    
