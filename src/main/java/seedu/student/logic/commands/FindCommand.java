@@ -56,14 +56,14 @@ public class FindCommand extends Command {
 
         assert (filteredStudentListSize >= 0 && filteredAppointmentListSize >= 0);
 
-        if(filteredStudentListSize == 0){
+        if (filteredStudentListSize == 0) {
             model.updateFilteredStudentList(predicate->true);
             model.updateFilteredAppointmentList(second_predicate->true, second_predicate->true);
             throw new ParseException(Messages.MESSAGE_NONEXISTENT_MATRIC_NUM);
         } else if (filteredAppointmentListSize == 0) {
             return new CommandResult(String.format(Messages.MESSAGE_NONEXISTENT_APPOINTMENT,
                     model.getFilteredStudentList().size()));
-        } else{
+        } else {
             return new CommandResult(String.format(Messages.MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
                     predicate.getKeyword()));
         }

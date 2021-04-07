@@ -20,6 +20,7 @@ import java.util.List;
 
 import seedu.student.commons.core.index.Index;
 import seedu.student.logic.commands.exceptions.CommandException;
+import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.Model;
 import seedu.student.model.StudentBook;
 import seedu.student.model.student.MatriculationNumber;
@@ -125,7 +126,7 @@ public class CommandTestUtil {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedModel, actualModel);
-        } catch (CommandException ce) {
+        } catch (CommandException | ParseException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
