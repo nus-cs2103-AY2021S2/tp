@@ -151,21 +151,6 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredTaskList, actualModel.getFilteredTaskList());
     }
 
-    /**
-     * Executes the given {@code viewCommand}, confirms that <br>
-     * - a {@code CommandException} is thrown <br>
-     * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} might change
-     */
-    public static void assertViewCommandFailure(Command command, Model model, String expectedMessage) {
-        try {
-            command.execute(model);
-            throw new AssertionError("The expected Command Exception was not thrown.");
-        } catch (CommandException ce) {
-            assertEquals(expectedMessage, ce.getMessage());
-        }
-    }
-
 
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the

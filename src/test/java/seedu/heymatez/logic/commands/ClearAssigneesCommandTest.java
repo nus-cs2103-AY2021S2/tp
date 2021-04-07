@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.heymatez.commons.core.Messages;
 import seedu.heymatez.commons.core.index.Index;
+import seedu.heymatez.model.HeyMatez;
 import seedu.heymatez.model.Model;
 import seedu.heymatez.model.ModelManager;
 import seedu.heymatez.model.UserPrefs;
@@ -108,16 +109,17 @@ public class ClearAssigneesCommandTest {
     }
 
     @Test
-    public void execute_emptyFilteredList_throwsCommandException() {
-        showNoTask(model);
+    public void execute_emptyFilteredList_success() {
+        ModelManager myModel= new ModelManager(new HeyMatez(), new UserPrefs());
 
         Index givenIndex = INDEX_SECOND_TASK;
 
         ClearAssigneesCommand clearAssigneesCommand = new ClearAssigneesCommand(givenIndex);
 
-        assertCommandFailure(clearAssigneesCommand, model, MESSAGE_LIST_IS_EMPTY);
-    }
+        ModelManager expectedModel = new ModelManager(new HeyMatez(), new UserPrefs());
 
+        assertCommandSuccess(clearAssigneesCommand, myModel, ClearAssigneesCommand.MESSAGE_LIST_IS_EMPTY, expectedModel);
+    }
     /**
      * Updates {@code model}'s filtered list to show no one.
      */

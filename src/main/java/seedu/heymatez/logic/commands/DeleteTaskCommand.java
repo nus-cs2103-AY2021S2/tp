@@ -24,8 +24,7 @@ public class DeleteTaskCommand extends Command {
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
-    public static final String MESSAGE_LIST_IS_EMPTY = "The task index specified is invalid as there "
-            + "are no displayed tasks in view!";
+    public static final String MESSAGE_LIST_IS_EMPTY = "There are no tasks found!";
 
     private final Index targetIndex;
 

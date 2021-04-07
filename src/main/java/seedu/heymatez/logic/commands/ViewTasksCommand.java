@@ -15,15 +15,14 @@ public class ViewTasksCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all Tasks!";
 
-    public static final String MESSAGE_EMPTY_TASK_LIST = "Tasks' list is empty, there are no tasks to be displayed! \n"
-            + "Consider adding tasks to the list before using the 'viewTasks' command.";
+    public static final String MESSAGE_EMPTY_TASK_LIST = "There are no tasks found!";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        if (model.getFilteredTaskList().isEmpty()) {
-            throw new CommandException(MESSAGE_EMPTY_TASK_LIST);
+        if (model.isTaskListEmpty()) {
+            return new CommandResult(MESSAGE_EMPTY_TASK_LIST);
         }
         return new CommandResult(MESSAGE_SUCCESS);
     }

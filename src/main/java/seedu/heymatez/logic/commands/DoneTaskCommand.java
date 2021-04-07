@@ -33,8 +33,7 @@ public class DoneTaskCommand extends Command {
 
     public static final String MESSAGE_TASK_ALREADY_MARKED_DONE = "Task is already marked completed!";
 
-    public static final String MESSAGE_LIST_IS_EMPTY = "The task index specified is invalid as there "
-            + "are no displayed tasks in view!";
+    public static final String MESSAGE_LIST_IS_EMPTY = "There are no tasks found!";
 
     private final Index index;
 
@@ -53,7 +52,7 @@ public class DoneTaskCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (lastShownList.isEmpty()) {
-            throw new CommandException(MESSAGE_LIST_IS_EMPTY);
+            return new CommandResult(MESSAGE_LIST_IS_EMPTY);
         }
 
         if (index.getZeroBased() >= lastShownList.size()) {

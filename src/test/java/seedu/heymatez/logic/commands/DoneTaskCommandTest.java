@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.heymatez.commons.core.Messages;
 import seedu.heymatez.commons.core.index.Index;
+import seedu.heymatez.model.HeyMatez;
 import seedu.heymatez.model.Model;
 import seedu.heymatez.model.ModelManager;
 import seedu.heymatez.model.UserPrefs;
@@ -71,14 +72,16 @@ public class DoneTaskCommandTest {
     }
 
     @Test
-    public void execute_emptyFilteredList_throwsCommandException() {
-        showNoTask(model);
+    public void execute_emptyFilteredList_success() {
+        ModelManager myModel= new ModelManager(new HeyMatez(), new UserPrefs());
 
         Index givenIndex = INDEX_SECOND_TASK;
 
         DoneTaskCommand doneTaskCommand = new DoneTaskCommand(givenIndex);
 
-        assertCommandFailure(doneTaskCommand, model, DoneTaskCommand.MESSAGE_LIST_IS_EMPTY);
+        ModelManager expectedModel = new ModelManager(new HeyMatez(), new UserPrefs());
+
+        assertCommandSuccess(doneTaskCommand, myModel, DoneTaskCommand.MESSAGE_LIST_IS_EMPTY, expectedModel);
     }
 
     @Test

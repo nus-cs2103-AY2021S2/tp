@@ -1,7 +1,6 @@
 package seedu.heymatez.logic.commands;
 
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.heymatez.logic.commands.CommandTestUtil.assertViewCommandFailure;
 import static seedu.heymatez.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.heymatez.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
@@ -46,8 +45,9 @@ public class ViewUnassignedTasksCommandTest {
     @Test
     public void execute_emptyFilteredList_showsNoTask() {
         HeyMatez hm = new HeyMatez();
-        assertViewCommandFailure(new ViewUnassignedTasksCommand(), new ModelManager(hm, new UserPrefs()),
-                ViewUnassignedTasksCommand.MESSAGE_EMPTY_TASK_LIST);
+        assertCommandSuccess(new ViewUnassignedTasksCommand(), new ModelManager(hm, new UserPrefs()),
+                ViewUnassignedTasksCommand.MESSAGE_NO_UNASSIGNED_TASKS,
+                new ModelManager(hm, new UserPrefs()));
     }
 
     @Test
@@ -58,7 +58,9 @@ public class ViewUnassignedTasksCommandTest {
         HeyMatez hm = new HeyMatez();
         hm.addTask(homework);
         Model newModel = new ModelManager(hm, new UserPrefs());
-        assertViewCommandFailure(new ViewUnassignedTasksCommand(), newModel,
-                ViewUnassignedTasksCommand.MESSAGE_NO_UNASSIGNED_TASKS);
+        Model myExpectedModel = new ModelManager(hm, new UserPrefs());
+        assertCommandSuccess(new ViewUnassignedTasksCommand(), newModel,
+                ViewUnassignedTasksCommand.MESSAGE_NO_UNASSIGNED_TASKS,
+                myExpectedModel);
     }
 }

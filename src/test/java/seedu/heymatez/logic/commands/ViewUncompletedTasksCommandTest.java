@@ -2,7 +2,6 @@ package seedu.heymatez.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.heymatez.logic.commands.CommandTestUtil.assertViewCommandFailure;
 import static seedu.heymatez.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.heymatez.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
@@ -47,8 +46,9 @@ public class ViewUncompletedTasksCommandTest {
     @Test
     public void execute_emptyFilteredList_showsNoTask() {
         HeyMatez hm = new HeyMatez();
-        assertViewCommandFailure(new ViewUncompletedTasksCommand(), new ModelManager(hm, new UserPrefs()),
-                ViewUncompletedTasksCommand.MESSAGE_EMPTY_TASK_LIST);
+        assertCommandSuccess(new ViewUncompletedTasksCommand(), new ModelManager(hm, new UserPrefs()),
+                ViewUncompletedTasksCommand.MESSAGE_NO_UNCOMPLETED_TASKS,
+                new ModelManager(hm, new UserPrefs()));
     }
 
     @Test
@@ -58,8 +58,10 @@ public class ViewUncompletedTasksCommandTest {
         HeyMatez hm = new HeyMatez();
         hm.addTask(homework);
         Model newModel = new ModelManager(hm, new UserPrefs());
-        assertViewCommandFailure(new ViewUncompletedTasksCommand(), newModel,
-                ViewUncompletedTasksCommand.MESSAGE_NO_UNCOMPLETED_TASKS);
+        Model myExpectedModel = new ModelManager(hm, new UserPrefs());
+        assertCommandSuccess(new ViewUncompletedTasksCommand(), newModel,
+                ViewUncompletedTasksCommand.MESSAGE_NO_UNCOMPLETED_TASKS,
+                myExpectedModel);
     }
 
 

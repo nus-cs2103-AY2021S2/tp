@@ -15,20 +15,17 @@ public class ViewUnassignedTasksCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all Unassigned Tasks";
 
-    public static final String MESSAGE_NO_UNASSIGNED_TASKS = "There are no unassigned tasks at the moment!";
-
-    public static final String MESSAGE_EMPTY_TASK_LIST = "Tasks' list is empty, there are no tasks to be displayed! \n"
-            + "Consider adding tasks to the list before using the 'viewUnassignedTasks' command.";
+    public static final String MESSAGE_NO_UNASSIGNED_TASKS = "There are no unassigned tasks found!";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (model.getFilteredTaskList().isEmpty()) {
-            throw new CommandException(MESSAGE_EMPTY_TASK_LIST);
+        if (model.isTaskListEmpty()) {
+            return new CommandResult(MESSAGE_NO_UNASSIGNED_TASKS);
         }
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_UNASSIGNED_TASKS);
-        if (model.getFilteredTaskList().isEmpty()) {
-            throw new CommandException(MESSAGE_NO_UNASSIGNED_TASKS);
+        if (model.isTaskListEmpty()) {
+            return new CommandResult(MESSAGE_NO_UNASSIGNED_TASKS);
         }
         return new CommandResult(MESSAGE_SUCCESS);
     }
