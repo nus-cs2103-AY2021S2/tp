@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_APPOINTMENT;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
@@ -64,6 +65,10 @@ public class AddAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.hasAppointment(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        }
 
         if (!model.hasTutorByName(toAdd.getName())) {
             throw new CommandException(MESSAGE_TUTOR_DOES_NOT_EXIST);

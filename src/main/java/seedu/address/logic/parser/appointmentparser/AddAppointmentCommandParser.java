@@ -1,10 +1,6 @@
 package seedu.address.logic.parser.appointmentparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_END_TIME;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_START_TIME;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TIME_MINUTES;
-import static seedu.address.commons.core.Messages.MESSAGE_TIME_FROM_GREATER_THAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -28,7 +24,6 @@ import seedu.address.model.tutor.Name;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
-
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddAppointmentCommand

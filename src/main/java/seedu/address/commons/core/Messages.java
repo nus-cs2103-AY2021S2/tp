@@ -49,8 +49,8 @@ public class Messages {
             + "Please check your input again";
     public static final String MESSAGE_INVALID_LONG_HOURS = "The longest timeslot you can add is 8 hours. "
             + "Please check your input again";
-    public static final String MESSAGE_DATE_CLASH = "The timeslot you are trying to add clashes with " +
-            "another timeslot of an existing appointment or schedule. Please ensure timeslots to not clash.";
+    public static final String MESSAGE_DATE_CLASH = "The timeslot you are trying to add clashes with "
+            + "another timeslot of an existing appointment or schedule. Please ensure timeslots to not clash.";
     public static final String MESSAGE_MISSING_DATE_FIELD = "The datetime fields (DATE, "
             + "TIME_FROM and TIME_TO) are all required together if any one of them is "
             + "edited. You are missing at least one of these fields.";
