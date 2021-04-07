@@ -1,10 +1,12 @@
 package seedu.address.ui;
 
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.PersonEvent;
@@ -29,6 +31,14 @@ public class UpcomingEventsTab extends UiPart<Region> {
     public UpcomingEventsTab(ObservableList<PersonEvent> upcomingDatesList) {
         super(FXML);
         upcomingEventsTitle.setText("Upcoming Events");
+        //Prevent mouse selection
+        upcomingEventsListView.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                event.consume();
+            }
+        });
+
         upcomingEventsListView.setItems(upcomingDatesList);
         upcomingEventsListView.setCellFactory(listView -> new UpcomingEventsListViewCell());
     }
