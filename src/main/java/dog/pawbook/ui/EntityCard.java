@@ -22,9 +22,9 @@ import javafx.scene.layout.VBox;
 public class EntityCard extends UiPart<Region> {
 
     private static final String FXML = "EntityListCard.fxml";
-    private static final Image dogImage = new Image("images/dog.png");
-    private static final Image ownerImage = new Image("images/owner.png");
-    private static final Image programImage = new Image("images/program.png");
+    private static final Image dogImage = new Image("images/dog.png", 70, 70, true, true);
+    private static final Image ownerImage = new Image("images/owner.png", 70, 70, true, true);
+    private static final Image programImage = new Image("images/program.png", 70, 70, true, true);
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -57,9 +57,6 @@ public class EntityCard extends UiPart<Region> {
     public EntityCard(Entity entity, int displayedId) {
         super(FXML);
         this.entity = entity;
-
-        this.imageView.setFitHeight(70);
-        this.imageView.setFitWidth(70);
 
         if (entity instanceof Dog) {
             this.imageView.setImage(dogImage);
