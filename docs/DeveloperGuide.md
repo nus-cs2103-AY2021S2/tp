@@ -395,11 +395,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------------------------- | ------------------------------------------------------------ |
 | `* * *`  | user                                       | create a student's profile                        | keep track of my student's information                       |
 | `* * *`  | user                                       | see the profile of a particular student           | get their information                                        |
-| `* * *`  | user                                       | see a list of all my students' profile            |                                                              |
-| `* * *`  | user                                       | get all the emails of the parent of my students'  | email them reminders for payment                             |
 | `* * *`  | user                                       | remove a student's profile                        | keep track of only students that I teach                     |
+| `* * *`  | user                                       | edit the details of a student                     | keep track of up-to-date information                         |
 | `* * *`  | user                                       | add individual tuition sessions                   | keep track of my tuition sessions                            |
 | `* * *`  | user                                       | delete an individual tuition session              | update my tuition schedule                                   |
+| `* * *`  | user                                       | see a list of all the students profile and sessions|                                                             |
+| `* * *`  | user                                       | get all the emails of the parent of my students'  | email them reminders for payment                             |
+| `* * *`  | user                                       | calculate the monthly fees of a particular student| use the information when collecting monthly fees             |
+| `* * *`  | user                                       | get the monthly fees that I would have received for the past 3 months    | manage my finance better              |
+| `* *`    | new user                                   | get a list of commands of the application         | know at a glance what are the features of the application    |
+| `* *`    | potential user                             | see the app populated with sample data on the first run  | try using the features easily                         |
+| `* *`    | new user                                   | purge all current data                            | get rid of sample/current data I used for exploring the app  |
+| `* *`    | user                                       | exit the application                              |                                                              |
 
 *{More to be added}*
 
@@ -407,11 +414,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *(For all use cases, the **System** is the TutorBuddy Application, **Actor** is the user, and the **Precondition** is that the application has already been opened, unless otherwise specified)*
 
-**Use case: UC01 - Create a student profile**
+**Use case: UC0X - Create a student profile**
 
 MSS:
 
-1. User enters the add student command, together with the student details.
+1. User enters the `add_student` command, together with the student details.
 2. TutorBuddy creates the profile in the background.
 3. TutorBuddy displays the success message.
 
@@ -424,39 +431,11 @@ Extensions:
 
     Use case ends.
 
-**Use case: UC02 - Delete a student profile**
+**Use case: UC0X - Find a student’s profile**
 
 MSS:
 
-1. User enters the delete student command, along with the student’s name.
-2. TutorBuddy verifies that the student profile exists.
-3. TutorBuddy prompts the user to confirm the deletion.
-4. User confirms the deletion.
-
-   Use case ends.
-
-Extensions:
-
-* 2a. TutorBuddy detects an error in the entered command.
-    * 2a1. TutorBuddy displays error messages to the user.
-
-  Use case ends.
-
-* 3a. TutorBuddy detects that the user does not exist.
-    * 3a1. TutorBuddy displays an error message for unknown student profiles.
-
-  Use case ends.
-
-* 4a. User cancels the confirmation of deletion.
-    * 4a1. Student profile is not created; the student is returned to the home page.
-
-  Use case ends.
-
-**Use case: UC03 - Find a student’s profile**
-
-MSS:
-
-1. User enters the find student command, along with a keyword from the student’s name.
+1. User enters the `find_student` command, along with a keyword from the student’s name.
 2. TutorBuddy displays all students’ profiles matching the keyword if any.
 
    Use case ends.
@@ -468,7 +447,42 @@ Extensions:
 
   Use case ends.
 
-**Use case: UC04 - Create a session**
+**Use case: UC0X - Delete a student profile**
+
+MSS:
+
+1. User enters the `delete_student` command, along with the student’s name.
+2. TutorBuddy verifies that the inputs are valid and student profile exists.
+3. TutorBuddy displays a success message.
+
+   Use case ends.
+
+Extensions:
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+
+  Use case ends.
+
+**Use case: UC0X - Edit student details**
+
+MSS:
+
+1. User enters the `edit_student` command with the appropriate input.
+2. TutorBuddy verifies that the inputs are valid and student profile exists.
+3. TutorBuddy edits the student information.
+4. TutorBuddy displays a success message.
+
+   Use case ends.
+
+Extensions:
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+    
+  Use case ends.
+
+**Use case: UC0X - Create a session**
 
 **Preconditions: Student profile linked to session has been created.**
 
@@ -492,13 +506,85 @@ MSS:
 
   Use case ends.
 
-**Use case: UC05 -  Getting the emails from the application**
+**Use case: UC0X - List all students and sessions**
+
+MSS:
+
+1. User enters the `list` command.
+2. TutorBuddy shows all the students and sessions information on the `tuition` tab.
+
+   Use case ends.
+
+**Use case: UC0X -  Getting the emails from the application**
 
 MSS:
 
 1. User enters the command to get the email from TutorBuddy.
 2. TutorBuddy returns a list of all the email addresses to the user.
 3. User copies the email address given.
+
+   Use case ends.
+
+**Use case: UC0X - Calculate fee for a student of a particular month and year**
+
+MSS:
+
+1. User enters the `fee` commands with the appropriate inputs.
+2. TutorBuddy verifies that the inputs are valid and student profile exists.
+3. TutorBuddy shows the calculated fees to the user.
+
+   Use case ends.
+
+Extensions:
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+
+  Use case ends.
+
+**UC0X - View 3 months monthly fee**
+
+MSS:
+
+1. User toggles to the `Home` tab.
+2. TutorBuddy shows the monthly fee that the user would have received for the past 3 months based on current sessions in the application.
+
+   Use case ends.
+
+**Use case: UC0X - Show help**
+
+MSS:
+
+1. User enters the `help` command.
+2. TutorBuddy displays a help window that contains a list of commands available on the application, and a link to our user guide.
+
+   Use case ends.
+
+**Use case: UC0X - Sample data for new users**
+
+MSS:
+
+1. A new user opens up the application.
+2. TutorBuddy detects that the user does not have a .json file in the data folder.
+3. TutorBuddy is populated with sample students and sessions data.
+
+   Use case ends.
+
+**Use case: UC0X - Clear data**
+
+MSS:
+
+1. User enters the `clear` command.
+2. TutorBuddy deletes all the current data from the application.
+
+   Use case ends.
+
+**Use case: UC0X - Exit application**
+
+MSS:
+
+1. User enters the `exit` command.
+2. TutorBuddy closes.
 
    Use case ends.
 
@@ -554,29 +640,17 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
 
    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `delete_student 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delete_student 0`<br>
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
