@@ -434,14 +434,13 @@ currently uses an implementation of this interface called `PlainTextCommandHisto
 command history entry as a single line of plain text in the command history file. The class structure is shown 
 in the class diagram in the _Command History Overview_ subsection above.
 
-Command history is saved immediately after it is updated. `CommandHistoryStorage` creates a serialized string from
-a `ReadOnlyCommandHistory` view of the command history, then writes it to disk using `FileUtil#writeToFile()` as a
-helper. The following sequence diagram shows a simplified view of the storage process from command execution to 
-writing the command history to file. For brevity, `FileUtil` is not shown, and the details of appending a command 
-history entry are abbreviated to `appendCommandHistoryEntry("help")` because they are detailed in the subsection 
-_How Command History is Updated_ above.
+Command history is saved immediately after it is updated. Since command history is only updated after a successful
+command execution, this implies that only successful commands are saved. In order to save command history, 
+`CommandHistoryStorage` creates a serialized string from a `ReadOnlyCommandHistory` view of the command history, then 
+writes it to disk using `FileUtil#writeToFile()` as a helper. The following activity diagram shows a simplified flow 
+of the storage process from command execution to writing the command history to file.
 
-![CommandHistoryStorageSequenceDiagram](images/commandhistory/CmdHistStorageSequenceDiagram.png)
+![CommandHistoryStorageActivityDiagram](images/commandhistory/CommandHistoryStorageActivityDiagram.png)
 
 #### Design Considerations
 
