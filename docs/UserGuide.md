@@ -128,6 +128,7 @@ Description:
   * No two properties with the exact same address and postal code can exist in the app at the same time.
 * Postal codes should have a minimum of 5 digits and a maximum of 10 digits.
 * Client's contact number should have a minimum of 7 digits and a maximum of 15 digits.
+* The format for specifying a deadline date is `DD-MM-YYYY`.
 * There can be multiple tags but different tags should be separated with a comma. <br> e.g. `tags/TAGS_SEPARATED_BY_COMMAS` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
 
 Examples:
@@ -143,7 +144,9 @@ Format: `add appointment n/NAME r/REMARKS d/DATE t/TIME​`
 Description:
 * Each appointment has a unique pair of date and time.
   * No two appointments with the exact same meeting date and time can exist in the app at the same time.
-
+* The format for specifying a date is `DD-MM-YYYY`.
+* The format for specifying a time is `HHMM` (in 24-hour clock).
+   
 Examples:
 * `add appointment n/Meet Alex r/At M Hotel d/17-2-2021 t/1500`
 * `add appointment n/Celebrate CNY with Pauline r/Her house d/01-02-2022 t/1900`
