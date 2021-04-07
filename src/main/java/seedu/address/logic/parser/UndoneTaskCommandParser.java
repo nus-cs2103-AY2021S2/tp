@@ -21,7 +21,7 @@ public class UndoneTaskCommandParser {
             return new UndoneTaskCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UndoneTaskCommand.MESSAGE_USAGE), pe);
+                    String.format(pe.getMessage() + "%1$s", UndoneTaskCommand.MESSAGE_USAGE), pe);
         }
     }
 }
