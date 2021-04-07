@@ -116,6 +116,7 @@ A session can have any number of tags (including 0)
 * A new session will have a unique session ID assigned after creation. 
 * DAY should match the format of a valid day in the week.
 * TIMESLOT should be in the format `HH:MM to HH:MM` and the end time should only be after the start time.
+* DAY and SUBJECT will be capitalised when displayed but do not have to be capitalised in the input
 * Note that while persons added to EZManage must be unique, there can be duplicates of sessions to accomidate multiple sessions of the same subject occurring at once
 
 Examples:
