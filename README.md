@@ -1,14 +1,30 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![Java CI](https://github.com/AY2021S2-CS2103-T14-2/tp/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/AY2021S2-CS2103-T14-2/tp/actions/workflows/gradle.yml)
 
-![Ui](docs/images/Ui.png)
+<div align="center">
+    <img alt="Logo" src="docs/images/Logo.png">
+</div>
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+* The Food Diary is a desktop app for managing food diary entries, optimized with a Command Line Interface (CLI)
+and packaged with a Graphical User Interface (GUI).
+
+* The Food Diary caters to food-passionate NUS students who would ideally benefit from keeping records of food
+options tasted in the vicinity of NUS.
+
+* The Food Diary will allow students to save time and effort when finding places to eat around the NUS vicinity.
+
+<div align="center">
+    <img alt="Ui" src="docs/images/Ui.png">
+</div>
+
+## Acknowledgements
+
+## Site Map
+* For new users who are new to using The Food Diary, visit [User Guide](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/docs/UserGuide.md)
+* For more detailed documentation of our The Food Diary, visit [Developer Guide](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/docs/DeveloperGuide.md)
+* [About Us](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/docs/AboutUs.md)
+
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+### Libraries Used:
+* JavaFX
+* Jackson
+* JUnit5

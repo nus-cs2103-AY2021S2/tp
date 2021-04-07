@@ -1,0 +1,16 @@
+{
+  "entries": [ {
+    "name": "Restaurant A",
+    "reviews": ["This is a review."],
+    "rating": "2",
+    "price": "7",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "tagged": [ "WESTERN" ]
+  }, {
+    "name": "Restaurant A",
+    "reviews": ["This is a review."],
+    "rating": "2",
+    "price": "7",
+    "address": "123, Jurong West Ave 6, #08-111"
+  } ]
+}

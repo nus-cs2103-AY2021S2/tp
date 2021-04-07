@@ -1,0 +1,9 @@
+{
+  "entries": [ {
+    "name": "Entry with invalid name field: Ha!ns Mu@ster",
+    "rating": "3",
+    "price": "12",
+    "reviews": ["This is an invalid entry"],
+    "address": "4th street"
+  } ]
+}

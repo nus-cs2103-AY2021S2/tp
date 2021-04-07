@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.stage.*?>
+
+<fx:root resizable="false" title="Viewing Specified Entry" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/food_diary_logo.png" />
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
+            </stylesheets>
+            <ScrollPane hbarPolicy="NEVER">
+                <VBox alignment="CENTER_LEFT" styleClass="background">
+                    <padding>
+                        <Insets bottom="15" left="10" right="10" top="15" />
+                    </padding>
+                    <Label fx:id="name" styleClass="view_label" text="Name:" />
+                    <TextField fx:id="nameText" editable="false" opacity="0.7" />
+                    <Label fx:id="rating" styleClass="view_label" text="Rating:" />
+                    <TextField fx:id="ratingText" editable="false" opacity="0.7" />
+                    <Label fx:id="price" styleClass="view_label" text="Price:" />
+                    <TextField fx:id="priceText" editable="false" opacity="0.7" />
+                    <Label fx:id="address" styleClass="view_label" text="Address:" />
+                    <TextField fx:id="addressText" editable="false" opacity="0.7" />
+                    <Label fx:id="reviews" styleClass="view_label" text="Reviews:" />
+                    <TextArea fx:id="reviewsText" editable="false" minHeight="250.0" opacity="0.7" wrapText="true">
+                      <font>
+                         <Font size="15.0" />
+                      </font>
+                    </TextArea>
+                    <Label fx:id="categoriesLabel" styleClass="view_label" text="Categories:" />
+                    <FlowPane fx:id="tagCategories" />
+                    <Label fx:id="schoolsLabel" styleClass="view_label" text="Schools:" />
+                    <FlowPane fx:id="tagSchools" />
+                </VBox>
+            </ScrollPane>
+        </Scene>
+    </scene>
+</fx:root>

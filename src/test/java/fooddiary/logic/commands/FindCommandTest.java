@@ -1,0 +1,85 @@
+package fooddiary.logic.commands;
+
+import static fooddiary.commons.core.Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW_WITH_SUGGESTION;
+import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static fooddiary.testutil.TypicalEntries.ENTRY_C;
+import static fooddiary.testutil.TypicalEntries.ENTRY_E;
+import static fooddiary.testutil.TypicalEntries.ENTRY_F;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiaryWithMultipleEntries;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
+
+import fooddiary.model.Model;
+import fooddiary.model.ModelManager;
+import fooddiary.model.UserPrefs;
+import fooddiary.model.entry.NameContainsKeywordsPredicate;
+
+
+
+/**
+ * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ */
+public class FindCommandTest {
+    private Model model = new ModelManager(getTypicalFoodDiaryWithMultipleEntries(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalFoodDiaryWithMultipleEntries(), new UserPrefs());
+
+    @Test
+    public void equals() {
+        NameContainsKeywordsPredicate firstPredicate =
+                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
+        NameContainsKeywordsPredicate secondPredicate =
+                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+
+        FindCommand findFirstCommand = new FindCommand(firstPredicate);
+        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+
+        // same object -> returns true
+        assertTrue(findFirstCommand.equals(findFirstCommand));
+
+        // same values -> returns true
+        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(findFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(findFirstCommand.equals(null));
+
+        // different entry -> returns false
+        assertFalse(findFirstCommand.equals(findSecondCommand));
+    }
+
+    @Test
+    public void execute_zeroKeywords_noEntryFound() {
+        String expectedMessage = String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW_WITH_SUGGESTION, 0, "");
+        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredEntryList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredEntryList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_multipleEntriesFound() {
+        String expectedMessage = String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW_WITH_SUGGESTION, 3, "");
+        NameContainsKeywordsPredicate predicate = preparePredicate("C E F");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredEntryList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ENTRY_C, ENTRY_E, ENTRY_F), model.getFilteredEntryList());
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     */
+    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+}
