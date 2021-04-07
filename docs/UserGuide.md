@@ -360,9 +360,13 @@ Update the nutrient value(s) of a previously entered food intake given the date 
 
 **Example:** `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
 
-💡 **Tip:** Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged.
+<div class="alert alert-info">
+  💡 **Tip:** Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged.
+</div>
 
-❕ **Note:** At least one nutrient value is required.
+<div class="alert alert-danger">
+  ❕ **Note:** At least one nutrient value is required.
+</div>
 
 **Expected output:**
 
