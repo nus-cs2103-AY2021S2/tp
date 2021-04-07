@@ -323,10 +323,10 @@ Sorts all flashcards in display according to a given option.
 Format: `sort OPTION ORDER` <br>
 Examples:
 
-`sort priority -a` will sort the flashcards by ascending priority. <br>
-`sort priority -d` will sort the flashcards by descending priority. <br>
-`sort question -a` will sort the flashcards by ascending question. <br>
-`sort question -d` will sort the flashcards by descending question. <br>
+`sort priority -a` will sort the flashcards by ascending priority(Low to High). <br>
+`sort priority -d` will sort the flashcards by descending priority(High to Low). <br>
+`sort question -a` will sort the flashcards by question in ascending alphabetical order. <br>
+`sort question -d` will sort the flashcards by question in descending alphabetical order. <br>
 <div style="page-break-after: always;"></div>
 
 Before sort command is executed. <br><br>
