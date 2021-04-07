@@ -5,42 +5,43 @@ title: Azeem's Project Portfolio Page
 
 ## Project: AddressBook Level 3
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+SunRez is a resident management system for use in hostels and residential colleges (RCs). The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 12 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to manage rooms (CRUD Rooms)
+  * What it does: Allows the user to manage the rooms of the hostel/RC
+  * Justification: This feature is a core feature of SunRez, which allows for the user to CRUD rooms. Without rooms, there would be no hostel to manage. 
+  * Highlights: This feature is a core part of SunRez. Significant effort went into the creation of the models, commmands (`oadd`, `oedit`, `odel`, `olist`, `ofind`) and supporting structures (read/write from storage, tests) to ensure that it integrates well with the existing infrastructure. There was also some challenge in dealing with enum values for RoomType to ensure that they are displayed in a user friendly manner but can also be easily added.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Worked with Colin to design and plan the development of the Resident-Room allocation feature. There were various alternative implementations and I assisted in working through each possibility to arrive at the one we decided to use.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&tabAuthor=DrWala&tabRepo=AY2021S2-CS2103-T14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Managed bug triaging, allocation, and fix timelines after PE-D
+  * Managed team pacing, priorities, and deadlines for release `v1.4` 
+  * Managed release `v1.4` on GitHub
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Updated how command parsing deals with invalid inputs to present clearer messages to the user.
+  * Wrote additional tests for command parsing to support the change
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for all the room features: `oadd`, `oedit`, `olist`, `ofind` and `odel`: [\#150](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/150), [\#289](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/289) 
+    * Created a section to explain how command parsing works and how parameter values are processed: [\#290](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/290) 
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added explanation of how the Room class works, and fits in to the broader SunRez system:  [\#115](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/115)
+    * Added implementation details of the `AddRoomCommand` command: [\#115](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/115)
+    * Wrote use cases UC-006 - UC-010
+
+* **Team tasks**:
+  * Assisted in planning and implementation of forking workflow, including the norms the group will agree to
+  * Assisted members in using Intellij to manage and resolve merge conflicts
+  * Set up system of reviewing PRs within the team to enable a faster PR response time
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+  * PRs reviewed (with non-trivial review comments): [\#116](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/116), [\#103](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/103), [\#285](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/285), [\#318](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/318); with full list of all [PRs reviewed](https://github.com/AY2021S2-CS2103-T14-1/tp/pulls?q=is%3Apr+reviewed-by%3Adrwala)
+  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/114), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/242), [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/254)
+  * Bug reports made for other teams were fully accepted during PE-D: [PE-D](https://github.com/DrWala/ped)
