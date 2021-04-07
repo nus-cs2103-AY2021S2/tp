@@ -33,25 +33,22 @@ public class AddExamCommandParser extends AddCommandParser implements Parser<Add
                     AddExamCommand.MESSAGE_USAGE));
         }
 
-        try {
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE)
+            .filter(Title::isValidTitle)
+            .orElseThrow(() -> new ParseException(
+                    String.format(Title.MESSAGE_CONSTRAINTS, "Modules"))));
+        assert title != null;
 
-            Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE)
-                .orElseThrow(() -> new ParseException("")));
-            assert title != null;
+        Module module = new Module(title);
 
-            Module module = new Module(title);
+        LocalDateTime examDate = argMultimap.getValue(PREFIX_EXAM)
+                .map(ParserUtil::parseExamDate)
+                .orElseThrow(() -> new ParseException(Exam.MESSAGE_CONSTRAINTS));
+        assert examDate != null;
 
-            LocalDateTime examDate = ParserUtil.parseExamDate(argMultimap.getValue(PREFIX_EXAM)
-                    .orElseThrow(() -> new ParseException("")));
-            assert examDate != null;
+        Tag tag = new Tag(title.modTitle.replaceAll(" ", ""));
+        Exam exam = new Exam(examDate, tag);
 
-            Tag tag = new Tag(title.modTitle.replaceAll(" ", ""));
-            Exam exam = new Exam(examDate, tag);
-
-            return new AddExamCommand(module, exam);
-        } catch (ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()
-            + "\n" + AddExamCommand.MESSAGE_USAGE));
-        }
+        return new AddExamCommand(module, exam);
     }
 }

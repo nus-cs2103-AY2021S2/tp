@@ -9,8 +9,9 @@ import seedu.address.model.module.Description;
 import seedu.address.model.tag.Tag;
 
 public class GeneralEvent extends Event {
-    public static final String MESSAGE_CONSTRAINTS = "Event date must be formatted "
-            + "to a valid DD/MM/YYYY TIME";
+    public static final String DATE_CONSTRAINT = "Event date must be formatted "
+            + "to a valid DD/MM/YYYY HHmm";
+    public static final String DESCRIPTION_CONSTRAINT = "Event description should not be blank.";
 
     public final Description description;
     public final LocalDateTime date;
@@ -22,7 +23,7 @@ public class GeneralEvent extends Event {
      * @param date A valid date and time.
      */
     public GeneralEvent(Description description, LocalDateTime date) {
-        super(description, date, new Tag());
+        super(description, date, new Tag("GeneralEvent"));
         this.description = description;
         this.date = date;
     }

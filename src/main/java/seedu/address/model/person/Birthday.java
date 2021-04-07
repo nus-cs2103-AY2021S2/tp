@@ -13,7 +13,8 @@ import seedu.address.model.tag.Tag;
  */
 public class Birthday extends Event {
 
-    public static final String MESSAGE_CONSTRAINTS = "Birthdays should be in the form of DD/MM/YYYY";
+    public static final String MESSAGE_CONSTRAINTS = "Birthdays should be in the form of "
+            + "a valid DD/MM/YYYY";
 
     private final LocalDate birthday;
 
@@ -38,7 +39,7 @@ public class Birthday extends Event {
     public Birthday(String birthday, String name) {
         super(new Description(name + "'s birthday"),
             LocalDate.parse(birthday, LocalDateTimeUtil.DATE_FORMATTER).atStartOfDay(),
-            new Tag("birthday"));
+            new Tag("Birthday"));
         this.birthday = LocalDate.parse(birthday, LocalDateTimeUtil.DATE_FORMATTER);
     }
 

@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.tag.Tag;
 
 class JsonAdaptedExamTest {
     private static final String INVALID_EXAM_DATE = "35-01-2020 2359";
@@ -21,7 +22,7 @@ class JsonAdaptedExamTest {
     @Test
     void toModelType_validExamDetails_returnExam() throws Exception {
         JsonAdaptedExam exam =
-            new JsonAdaptedExam(VALID_EXAM_DATETIME_1, VALID_TITLE_CS2103);
+            new JsonAdaptedExam(VALID_EXAM);
         assertEquals(VALID_EXAM, exam.toModelType());
     }
 
@@ -44,4 +45,22 @@ class JsonAdaptedExamTest {
 
         assertThrows(IllegalValueException.class, expectedMessage, exam::toModelType);
     }
+
+    @Test
+    public void toModelType_nullTag_throwsIllegalValueException() {
+        JsonAdaptedExam exam =
+            new JsonAdaptedExam(VALID_EXAM_DATETIME_1, null);
+        String expectedMessage = String.format(JsonAdaptedExam.MISSING_FIELD_MESSAGE_FORMAT,
+            Tag.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, exam::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidTag_throwsIllegalValueException() {
+        JsonAdaptedExam exam =
+            new JsonAdaptedExam(VALID_EXAM_DATETIME_1, "@");
+        String expectedMessage = Tag.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, exam::toModelType);
+    }
+
 }

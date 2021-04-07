@@ -30,7 +30,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddPersonCommandParserTest {
-    private AddPersonCommandParser parser = new AddPersonCommandParser();
+    private final AddPersonCommandParser parser = new AddPersonCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -38,10 +38,6 @@ public class AddPersonCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + BIRTHDAY_DESC_BOB
-                + TAG_DESC_FRIEND, new AddPersonCommand(expectedPerson));
-
-        // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + BIRTHDAY_DESC_AMY
                 + TAG_DESC_FRIEND, new AddPersonCommand(expectedPerson));
 
         // multiple tags - all accepted
@@ -77,19 +73,16 @@ public class AddPersonCommandParserTest {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + BIRTHDAY_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Name.MESSAGE_CONSTRAINTS + "\n"
-                + AddPersonCommand.MESSAGE_USAGE));
+                Name.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + BIRTHDAY_DESC_BOB
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Tag.MESSAGE_CONSTRAINTS + "\n"
-                + AddPersonCommand.MESSAGE_USAGE));
+                Tag.MESSAGE_CONSTRAINTS);
 
         // invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + BIRTHDAY_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Name.MESSAGE_CONSTRAINTS + "\n"
-                        + AddPersonCommand.MESSAGE_USAGE));
+                Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + BIRTHDAY_DESC_BOB

@@ -18,49 +18,56 @@ import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Person;
 
 /**
- * A Calendar storage using hash map to store date map to events of that date.
+ * A Calendar storage to extract events from {@code Logic} and store them for future calendar usage.
  */
 public class CalendarStorage {
     private HashMap<LocalDate, EventList> storage;
     private ArrayList<Birthday> birthdays;
-    private ArrayList<GeneralEvent> generalEvents;
     private Logic logic;
 
     /**
-     * Creates new storage for Calendar.
-     * @param logic that calender uses.
+     * Constructs new storage for the calendar of RemindMe.
+     *
+     * @param logic Logic that calendar storage uses.
      */
     public CalendarStorage(Logic logic) {
         storage = new HashMap<>();
         this.logic = logic;
         this.birthdays = new ArrayList<>();
-        this.generalEvents = new ArrayList<>();
     }
 
     /**
-     * Returns events in a events list that occurs on a certain date.
-     * @param date the date which event occurs.
-     * @return event list that contains all events for a certain date.
+     * Returns sorted {@code Event} in a {@code EventsList} that occurs on a certain date.
+     *
+     * @param date Date which event occurs.
+     * @return {@code EventList} that contains all events for a certain date.
      */
     public EventList getDateEvents(LocalDate date) {
         EventList events = new EventList();
+
+        //Add assignments, exams, general events to returning event list
         if (isDateOccupied(date)) {
             events = storage.get(date);
         }
 
+        //Add birthday to returning event list
         for (Birthday bday : birthdays) {
             if (bday.isDate(date)) {
                 events.add(bday);
             }
         }
 
+        //Sort the event according to time
+        events.sort();
+
         return events;
     }
 
     /**
-     * Store the event via date into storage.
-     * @param date date in which the event occurs.
-     * @param event event that occurs.
+     * Stores the event via date into storage.
+     *
+     * @param date Date in which the event occurs.
+     * @param event Event that occurs.
      */
     public void storeEvent(LocalDate date, Event event) {
         EventList events = storage.getOrDefault(date, new EventList());
@@ -69,11 +76,12 @@ public class CalendarStorage {
     }
 
     /**
-     * Check if calendar date is free of events.
-     * @param date date to check in calendar.
-     * @return true if date free, else return false.
+     * Checks if calendar date has any assignments, exams, general events.
+     *
+     * @param date Date to check in calendar.
+     * @return True if date occupied, else False.
      */
-    public boolean isDateOccupied(LocalDate date) {
+    private boolean isDateOccupied(LocalDate date) {
         return storage.containsKey(date);
     }
 
@@ -85,10 +93,6 @@ public class CalendarStorage {
         loadModuleEvents();
         loadGeneralEvents();
         loadBirthdays();
-    }
-
-    public ArrayList<Birthday> getBirthdays() {
-        return new ArrayList<>(birthdays);
     }
 
     private void clearStorage() {
@@ -120,12 +124,10 @@ public class CalendarStorage {
         }
     }
 
-    /**
-     * As Birthdays can occur every year, we cannot simply add the birthday into the hashmap storage.
-     * The year of the birth date would not be the same as the current year, meaning that Birthday
-     * would not be able to be stored on the day itself of any year except the year the person was born.
-     * Therefore birthday is stored in a separate list.
-     */
+    // As Birthdays can occur every year, we cannot simply add the birthday into the hashmap storage.
+    // The year of the birth date would not be the same as the current year, meaning that Birthday
+    // would not be able to be stored on the day itself of any year except the year the person was born.
+    // Therefore birthday is stored in a separate list.
     private void loadBirthdays() {
         ObservableList<Person> personList = logic.getFilteredPersonList();
         for (Person p : personList) {

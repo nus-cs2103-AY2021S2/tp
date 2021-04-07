@@ -40,8 +40,8 @@ public class EditExamCommandTest {
 
         String expectedMessage = String.format(EditExamCommand.MESSAGE_SUCCESS, editedExam);
         Model expectedModel = new ModelManager(getTypicalRemindMeWithFilledModules(), new UserPrefs());
-        expectedModel.editExam(target, 1, edit);
 
+        expectedModel.editExam(target, 1, edit);
         assertCommandSuccess(editExamCommand, modelCopy, expectedMessage, expectedModel);
     }
 

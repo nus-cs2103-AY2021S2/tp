@@ -8,8 +8,10 @@ import seedu.address.model.Event;
 import seedu.address.model.tag.Tag;
 
 public class Assignment extends Event {
-    public static final String MESSAGE_CONSTRAINTS = "Assignment deadline must be formatted "
+    public static final String DATE_CONSTRAINTS = "Assignment deadline must be formatted "
             + "to a valid DD/MM/YYYY HHmm";
+    public static final String DESCRIPTION_CONSTRAINTS = "Assignment description should not be "
+            + "blank.";
 
     public final Description description;
     public final LocalDateTime deadline;
@@ -90,7 +92,7 @@ public class Assignment extends Event {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Assignment // instanceof handles nulls
-                && isDone() == isDone())
+                && isDone().equals(isDone()))
                 && description.equals(((Assignment) other).description)
                 && deadline.equals(((Assignment) other).deadline);
     }

@@ -14,7 +14,7 @@ import seedu.address.model.person.Birthday;
 import seedu.address.ui.UiPart;
 
 /**
- * A {@code Event} card to show details for event for {@code DayEventList} in calendar window.
+ * A GUI card to show details for an {@code Event} for {@code DayEventList} in calendar window.
  */
 public class CalendarEventCard extends UiPart<Region> {
     private static final String FXML = "schedule/CalendarEventCard.fxml";
@@ -32,8 +32,9 @@ public class CalendarEventCard extends UiPart<Region> {
     private Label time;
 
     /**
-     * Creates new {@code CalendarEventCard} to be show a event in the {@code DayEventList}.
-     * @param event
+     * Constructs new {@code CalendarEventCard} to show a event in the {@code DayEventList}.
+     *
+     * @param event Event to be shown.
      */
     public CalendarEventCard(Event event) {
         super(FXML);
@@ -43,7 +44,15 @@ public class CalendarEventCard extends UiPart<Region> {
 
     private void init() {
         loadCardColour();
-        this.description.setText(event.getDescription().description);
+        setDescription();
+        setTime();
+    }
+
+    private void setDescription() {
+        this.description.setText(event.getTag().tagName + ": " + event.getDescription().description);
+    }
+
+    private void setTime() {
         String time = TIME_FORMATTER.format(event.getDateTime());
         this.time.setText(time);
     }
@@ -53,7 +62,7 @@ public class CalendarEventCard extends UiPart<Region> {
             cardPane.setStyle("-fx-background-color: salmon;");
         }
         if (event instanceof Exam) {
-            cardPane.setStyle("-fx-background-color: yellow;");
+            cardPane.setStyle("-fx-background-color: khaki;");
         }
         if (event instanceof Assignment) {
             cardPane.setStyle("-fx-background-color: lightblue;");

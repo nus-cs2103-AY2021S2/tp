@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.clearcommand;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
@@ -11,13 +10,9 @@ import seedu.address.model.Model;
  */
 public class ClearPersonsCommand extends ClearCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Clears ALL contacts in RemindMe. "
-            + "\nParameters: " + PREFIX_NAME
-            + "\nExample: " + COMMAND_WORD + " "
-            + PREFIX_NAME;
+    public static final String MESSAGE_USAGE = "After n/, it should be empty!";
 
-    public static final String MESSAGE_SUCCESS = "Contacts have been cleared!";
+    public static final String MESSAGE_SUCCESS = "All persons have been cleared!";
 
     @Override
     public CommandResult execute(Model model) {

@@ -41,21 +41,20 @@ public class AddPersonCommandParser extends AddCommandParser implements Parser<A
                     AddPersonCommand.MESSAGE_USAGE));
         }
 
-        try {
-            Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)
-                    .orElseThrow(() -> new ParseException("")));
-            Birthday birthday = ParserUtil.parseBirthday(
-                    argMultimap.getValue(PREFIX_BIRTHDAY).orElseThrow(() -> new ParseException("")),
-                    argMultimap.getValue(PREFIX_NAME).orElseThrow(() -> new ParseException("")));
-            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)
+            .filter(Name::isValidName)
+            .orElseThrow(() -> new ParseException(Name.MESSAGE_CONSTRAINTS)));
 
-            Person person = new Person(name, birthday, tagList);
+        Birthday birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY)
+                        .filter(Birthday::isValidBirthday)
+                        .orElseThrow(() -> new ParseException(Birthday.MESSAGE_CONSTRAINTS)),
+                name.fullName);
 
-            return new AddPersonCommand(person);
-        } catch (ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()
-            + "\n" + AddPersonCommand.MESSAGE_USAGE));
-        }
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+        Person person = new Person(name, birthday, tagList);
+
+        return new AddPersonCommand(person);
     }
 
 }

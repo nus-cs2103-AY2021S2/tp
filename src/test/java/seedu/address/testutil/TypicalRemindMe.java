@@ -27,7 +27,6 @@ import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.typicalmodules.ModuleBuilder;
 
 
@@ -41,8 +40,8 @@ public class TypicalRemindMe {
     public static final LocalDateTime DATE_2 = LocalDateTime.parse(VALID_EXAM_DATETIME_2,
             Exam.EXAM_DATE_FORMATTER);
     public static final Assignment VALID_ASSIGNMENT =
-            new Assignment(new Description(VALID_ASSIGNMENT_DESCRIPTION_1),
-                DATE_1, new Tag(VALID_TITLE_CS2103));
+        new AssignmentBuilder().withDescription(VALID_ASSIGNMENT_DESCRIPTION_1).withDeadline(DATE_1)
+        .withTag(VALID_TITLE_CS2103).withDoneStatus(false).build();
     public static final GeneralEvent VALID_GENERAL_EVENT_1 =
             new GeneralEvent(new Description(VALID_GENERAL_EVENT_DESCRIPTION_1),
                 LocalDateTime.parse(VALID_GENERAL_EVENT_DATE_1, LocalDateTimeUtil.DATETIME_FORMATTER));
@@ -53,7 +52,7 @@ public class TypicalRemindMe {
             new GeneralEvent(new Description(VALID_GENERAL_EVENT_DESCRIPTION_1),
                     LocalDateTime.parse(VALID_GENERAL_EVENT_DATE_2, LocalDateTimeUtil.DATETIME_FORMATTER));
     public static final Exam VALID_EXAM =
-        new Exam(DATE_1, new Tag(VALID_TITLE_CS2103));
+        new ExamBuilder().withExamDate(DATE_1).withTag(VALID_TITLE_CS2103).build();
     public static final Module MOD_1 = new ModuleBuilder().withTitle("MOD 1").build();
     public static final Module MOD_2 = new ModuleBuilder().withTitle("MOD 2").emptyBuild();
     public static final Module MOD_1_WITH_ASSIGNMENTS =

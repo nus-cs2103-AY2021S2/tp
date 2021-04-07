@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.deletecommand;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.List;
 
@@ -16,12 +15,6 @@ import seedu.address.model.module.Title;
  * Deletes a person identified using it's displayed index from the remindMe.
  */
 public class DeleteModuleCommand extends DeleteCommand {
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the module identified by the title used list of modules\n"
-            + "Parameters: Module Title\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + " CS2103T";
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
 

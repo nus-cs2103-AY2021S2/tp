@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.clearcommand;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
@@ -11,11 +10,7 @@ import seedu.address.model.Model;
  */
 public class ClearModulesCommand extends ClearCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Clears ALL modules in RemindMe. "
-            + "\nParameters: " + PREFIX_MODULE
-            + "\nExample: " + COMMAND_WORD + " "
-            + PREFIX_MODULE;
+    public static final String MESSAGE_USAGE = "After m/, it should be empty!";
 
     public static final String MESSAGE_SUCCESS = "Modules have been cleared!";
 

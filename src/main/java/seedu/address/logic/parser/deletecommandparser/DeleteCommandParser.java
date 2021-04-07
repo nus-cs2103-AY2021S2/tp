@@ -10,22 +10,20 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.deletecommand.DeletePersonCommand;
+import seedu.address.logic.commands.deletecommand.DeleteCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.CommandParser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates new parseCommand Object
  */
-public class DeleteCommandParser {
+public class DeleteCommandParser implements CommandParser {
     /**
      * Parses the {@code String} of arguments of a delete command
      * to execute the specific delete command
-     * @param args
-     * @return parseCommand
-     * @throws ParseException
      */
     public Command parseCommand(String args) throws ParseException {
         Command command;
@@ -44,15 +42,13 @@ public class DeleteCommandParser {
             command = new DeletePersonCommandParser().parse(args);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeletePersonCommand.MESSAGE_USAGE));
+                    DeleteCommand.MESSAGE_USAGE));
         }
         return command;
     }
 
     /**
      * returns true when arguments match input for deleteModule command
-     * @param argMultimap
-     * @return
      */
     public boolean deleteModuleCondition(ArgumentMultimap argMultimap) {
         return arePrefixesPresent(argMultimap, PREFIX_MODULE)
@@ -63,8 +59,6 @@ public class DeleteCommandParser {
 
     /**
      * returns true when arguments match input for deleteAssignment command
-     * @param argMultimap
-     * @return
      */
     public boolean deleteAssignmentCondition(ArgumentMultimap argMultimap) {
         return arePrefixesPresent(argMultimap, PREFIX_MODULE)
@@ -75,8 +69,6 @@ public class DeleteCommandParser {
 
     /**
      * returns true when arguments match input for deleteExam command
-     * @param argMultimap
-     * @return
      */
     public boolean deleteExamCondition(ArgumentMultimap argMultimap) {
         return arePrefixesPresent(argMultimap, PREFIX_MODULE)
@@ -87,8 +79,6 @@ public class DeleteCommandParser {
 
     /**
      * returns true when arguments match input for deletePerson command
-     * @param argMultimap
-     * @return boolean value if it fits deletePerson conditional statement
      */
     public boolean deletePersonCondition(ArgumentMultimap argMultimap) {
         return !arePrefixesPresent(argMultimap, PREFIX_NAME);
@@ -96,8 +86,6 @@ public class DeleteCommandParser {
 
     /**
      * returns true when arguments match input for deleteGeneralEvent command
-     * @param argMultimap
-     * @return boolean value if it fits the deleteGeneralEvent conditional statement
      */
     public boolean deleteGeneralEventCondition(ArgumentMultimap argMultimap) {
         return arePrefixesPresent(argMultimap, PREFIX_GENERAL_EVENT)

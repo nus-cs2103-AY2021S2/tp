@@ -34,12 +34,15 @@ public class CommandTestUtil {
     public static final LocalDateTime VALID_DATE = LocalDateTime.of(2021, 03, 15, 23, 59);
     public static final String VALID_TITLE_CS2103 = "CS2103";
     public static final String VALID_TITLE_CS2101 = "CS2101";
+    public static final String INVALID_TITLE = "Invalid!";
 
     public static final Exam VALID_EXAM = new Exam(VALID_DATE, new Tag(VALID_TITLE_CS2101));
     public static final String VALID_EXAM_DATETIME_1 = "03/05/2021 1300";
     public static final String VALID_EXAM_DATETIME_2 = "06/06/2021 0500";
     public static final String VALID_ASSIGNMENT_DESCRIPTION_1 = "Assignment 1";
     public static final String VALID_ASSIGNMENT_DESCRIPTION_2 = "Assignment 2";
+    public static final String VALID_ASSIGNMENT_DEADLINE_1 = "04/04/2021 1700";
+    public static final String VALID_ASSIGNMENT_DEADLINE_2 = "04/07/2021 1700";
     public static final ArrayList<Exam> VALID_EXAMS_CS2103 = new ArrayList<Exam>();
 
     public static final String VALID_NAME_AMY = "Amy Bee";
@@ -53,6 +56,8 @@ public class CommandTestUtil {
     public static final String VALID_GENERAL_EVENT_DESCRIPTION_2 = "Eat food";
     public static final String VALID_GENERAL_EVENT_DATE_1 = "01/01/2021 2359";
     public static final String VALID_GENERAL_EVENT_DATE_2 = "02/02/2021 2359";
+    public static final String INVALID_GENERAL_EVENT_DATE_1 = "01/1/2021 2359";
+    public static final String INVALID_GENERAL_EVENT_DATE_2 = "01-01-2021 23:59";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -60,8 +65,6 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String BIRTHDAY_DESC_AMY = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_AMY;
     public static final String BIRTHDAY_DESC_BOB = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_BOB;
-
-
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags

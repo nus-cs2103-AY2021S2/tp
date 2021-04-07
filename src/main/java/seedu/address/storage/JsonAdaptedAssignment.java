@@ -94,8 +94,7 @@ class JsonAdaptedAssignment {
         }
 
         if (doneStatus == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                Boolean.class.getSimpleName()));
+            throw new IllegalValueException(MISSING_FIELD_MESSAGE_FORMAT);
         }
 
         final boolean isDone;

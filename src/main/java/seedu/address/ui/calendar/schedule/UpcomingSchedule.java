@@ -1,11 +1,9 @@
 package seedu.address.ui.calendar.schedule;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.ScheduleUiUtil.calendarTextToDate;
+import static seedu.address.commons.util.CalendarUtil.calendarTextToDate;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 import javafx.event.EventHandler;
@@ -20,15 +18,17 @@ import seedu.address.storage.CalendarStorage;
 import seedu.address.ui.UiPart;
 
 /**
- * Represents a timeline GUI to show the upcoming events for a day in the calendar.
+ * Represents a GUI to show the upcoming events for a day in the calendar.
  */
 public class UpcomingSchedule extends UiPart<Region> implements EventHandler<MouseEvent> {
-    //Code adapted from https://github.com/AY2021S1-CS2103T-T12-3/tp
+    //Solution adapted from https://github.com/AY2021S1-CS2103T-T12-3/tp
+
     private static final String FXML = "schedule/UpcomingSchedule.fxml";
-    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
     private static Logger logger = LogsCenter.getLogger(UpcomingSchedule.class);
 
-    private Thread thread;
+    private DayEventListPanel eventHolder;
+    private LocalDate currentDay;
+
     private CalendarStorage calendarStorage;
 
     @FXML
@@ -43,87 +43,73 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
     @FXML
     private Label day;
 
-    private CurrentTimePointer currentTimePointer;
-    private TimeScale timeScale;
-    private DayEventList eventHolder;
-    private LocalDate currentDay;
-
     /**
      * Constructs a schedule for the UpcomingSchedulePanel, which is the left panel of the {@Code CalendarWindow}.
-     * @param calendarStorage storage for calendar to access events.
+     *
+     * @param calendarStorage Storage for schedule to access events.
      */
     public UpcomingSchedule(CalendarStorage calendarStorage) {
         super(FXML);
         requireNonNull(calendarStorage);
+
+        //Initialises attributes
         this.calendarStorage = calendarStorage;
         currentDay = LocalDate.now();
-        timeScale = new TimeScale();
-        eventHolder = new DayEventList();
+        eventHolder = new DayEventListPanel();
+
+        //Loads schedule
         schedule.getChildren().add(eventHolder.getRoot());
-        //schedule.getChildren().add(timeScale.getRoot());
         loadSchedule(currentDay);
-        logger.info("upcoming schedule successfully initialised");
+
+        logger.info("Upcoming schedule successfully initialised");
     }
 
     /**
-     * Lods the schedule for a certain date.
+     * Loads the schedule for a certain date.
+     *
      * @param date Date for schedule.
      */
     public void loadSchedule(LocalDate date) {
-        currentDay = date;
+        setCurrentDay(date);
         fillTopLabelForDay();
-        logger.info("date details of upcoming schedule loaded successfully");
         fillBase();
-        logger.info("timeline nodes loaded successfully");
     }
 
+    /**
+     * Refreshes the {@code DayEventList} when the refresh button is clicked on the CalendarWindow.
+     */
+    public void refreshSchedule() {
+        fillBase();
+    }
+
+    private void setCurrentDay(LocalDate date) {
+        this.currentDay = date;
+    }
+
+    /**
+     * Fills the {@code UpcomingSchedule} at the bottom with events for the date.
+     */
     private void fillBase() {
+        //Remove events previously and refresh calendar storage
         schedule.getChildren().remove(eventHolder.getRoot());
+        calendarStorage.refreshStorage();
+
+        //Get new events for the day and update the eventHolder
         EventList events = calendarStorage.getDateEvents(currentDay);
         eventHolder.updateList(events);
         schedule.getChildren().add(eventHolder.getRoot());
+
+        logger.info("Events for the day has loaded successfully");
     }
-    /*
-    private void addTimePointer() {
-        // Add the currentTimePointer to the TimeScale
-        String currentTime = getCurrentTime();
-        double marginTop = getMarginFromTime(currentTime) - CURRENT_TIME_POINTER_PADDING;
-        currentTimePointer = new CurrentTimePointer(toAmPmTime(currentTime));
 
-        // The sequence matters, tasks must be on top.
-        timeScale.placeCurrentTime(currentTimePointer, marginTop);
-        timeScale.handleOverlap(currentTime);
-
-        // Open a new thread to handle the position of the currentTimePointer
-        thread = new Thread(() -> {
-            while (true) {
-                try {
-                    Thread.sleep(1000); // a minute
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Platform.runLater(() -> {
-                    String newCurrentTime = getCurrentTime();
-
-                    //update the position of the currentTimePointer
-                    currentTimePointer.updateTime(toAmPmTime(newCurrentTime));
-                    timeScale.updateCurrentTimePosition(getMarginFromTime(newCurrentTime)
-                            - CURRENT_TIME_POINTER_PADDING);
-                    timeScale.handleOverlap(newCurrentTime);
-
-                    // update the today label
-                    fillTopLabelForDay();
-                });
-            }
-        });
-        thread.start();
-    }
-    */
-
+    /**
+     * Fills the {@code UpcomingSchedule} at the top with the description of the date.
+     */
     private void fillTopLabelForDay() {
         year.setText(String.valueOf(currentDay.getYear()));
         date.setText(getDateString(currentDay));
         day.setText(getDayString(currentDay));
+        logger.info("Date details of upcoming schedule loaded successfully");
     }
 
     private String getDateString(LocalDate date) {
@@ -139,22 +125,10 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
     }
 
     /**
-     * Returns time in the format of "HH:mm"
-     */
-    private String getCurrentTime() {
-        LocalDateTime now = LocalDateTime.now();
-        return TIME_FORMATTER.format(now);
-    }
-
-    public void endThread() {
-        //thread.stop();
-    }
-
-    /**
      * Handles the mouse click event to load and show the
      * date events of a Calendar Box in the upcoming schedule.
      *
-     * @param mouseEvent click on the a {@Code CalendarBox} event.
+     * @param mouseEvent Clicking on the a {@Code CalendarBox} mouse event.
      */
     @Override
     public void handle(MouseEvent mouseEvent) {
@@ -163,7 +137,7 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
         LocalDate clickedDate = calendarTextToDate(formattedTime);
 
         if (clickedDate == currentDay) {
-            return;
+            refreshSchedule();
         }
 
         currentDay = clickedDate;

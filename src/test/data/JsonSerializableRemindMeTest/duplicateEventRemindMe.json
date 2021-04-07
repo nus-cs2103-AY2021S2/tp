@@ -1,0 +1,11 @@
+{
+  "modules" : [],
+  "persons" : [],
+  "events" : [ {
+    "description" : "party1",
+    "date" : "01/01/1998 2359"
+  }, {
+    "description" : "party1",
+    "date" : "01/01/1998 2359"
+  }]
+}

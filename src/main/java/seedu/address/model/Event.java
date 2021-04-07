@@ -10,7 +10,7 @@ import seedu.address.model.module.Description;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represent an event that occurs
+ * Represent an event that occurs.
  */
 public abstract class Event implements Comparable<Event> {
 
@@ -18,8 +18,15 @@ public abstract class Event implements Comparable<Event> {
     protected final LocalDateTime dateTime;
     protected final Tag tag;
 
-    protected Event(Description description, LocalDateTime dateTime, Tag tag) {
-        requireAllNonNull(description, dateTime);
+    /**
+     * Constructs a new {@code Event}.
+     *
+     * @param description Description of event.
+     * @param dateTime Timing of event.
+     * @param tag Tag for event.
+     */
+    public Event(Description description, LocalDateTime dateTime, Tag tag) {
+        requireAllNonNull(description, dateTime, tag);
         this.description = description;
         this.dateTime = dateTime;
         this.tag = tag;
@@ -43,10 +50,6 @@ public abstract class Event implements Comparable<Event> {
 
     public Tag getTag() {
         return tag;
-    }
-
-    public int getDuration() {
-        return 0;
     }
 
     @Override

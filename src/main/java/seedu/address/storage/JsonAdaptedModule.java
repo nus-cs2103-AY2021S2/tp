@@ -13,7 +13,6 @@ import seedu.address.model.module.Exam;
 import seedu.address.model.module.ExamList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
-import seedu.address.model.person.Name;
 
 
 /**
@@ -75,10 +74,11 @@ class JsonAdaptedModule {
         }
 
         if (title == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
         if (!Title.isValidTitle(title)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(
+                    String.format(Title.MESSAGE_CONSTRAINTS, "Modules"));
         }
         assert title != null;
 
