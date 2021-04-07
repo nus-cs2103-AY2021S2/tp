@@ -129,7 +129,7 @@ public class StatsCommand extends Command {
                         + "%" + " )",
                 deliveryDue + " ( " + String.format("%.2f", deliveriesDuePercentage)
                         + "%" + " )",
-                deliveryNotDue + " ( " + String.format("%.2f", 100 - deliveriesDuePercentage)
+                deliveryNotDue - deliveriesDone + " ( " + String.format("%.2f", 100 - deliveriesDuePercentage - donePercentage)
                         + "%" + " )",
                 fragile + " ( " + String.format("%.2f", fragilePercentage) + "%" + " )",
                 liquid + " ( " + String.format("%.2f", liquidPercentage) + "%" + " )",
