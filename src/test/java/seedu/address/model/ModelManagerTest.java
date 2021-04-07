@@ -128,7 +128,7 @@ public class ModelManagerTest {
         modelManager.updateFilteredContactList(new NameContainsKeywordsPredicate(toFind));
         modelManager.sortContactList(OPTION_NAME);
 
-        assertTrue(modelManager.getFilteredContactList().equals(modelManagerNew.getFilteredContactList()));
+        assertEquals(modelManager.getFilteredContactList(), modelManagerNew.getFilteredContactList());
     }
 
     @Test
@@ -157,7 +157,7 @@ public class ModelManagerTest {
         // unfilter list
         modelManager.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
 
-        assertTrue(modelManager.getFilteredContactList().equals(modelManagerNew.getFilteredContactList()));
+        assertEquals(modelManager.getFilteredContactList(), modelManagerNew.getFilteredContactList());
     }
 
     @Test
@@ -177,7 +177,7 @@ public class ModelManagerTest {
         modelManager.addContact(ALICE);
         modelManager.addContact(BENSON);
 
-        assertTrue(modelManager.getFilteredContactList().equals(modelManagerNew.getFilteredContactList()));
+        assertEquals(modelManager.getFilteredContactList(), modelManagerNew.getFilteredContactList());
     }
 
     @Test
@@ -198,7 +198,7 @@ public class ModelManagerTest {
         modelManager.addContact(BENSON);
         modelManager.setContact(BENSON, GEORGE);
 
-        assertTrue(modelManager.getFilteredContactList().equals(modelManagerNew.getFilteredContactList()));
+        assertEquals(modelManager.getFilteredContactList(), modelManagerNew.getFilteredContactList());
     }
 
     @Test
@@ -226,8 +226,7 @@ public class ModelManagerTest {
         // unfilter list
         modelManager.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
 
-        assertTrue(modelManager.getFilteredAppointmentList().equals(
-                modelManagerNew.getFilteredAppointmentList()));
+        assertEquals(modelManager.getFilteredAppointmentList(), modelManagerNew.getFilteredAppointmentList());
     }
 
     @Test
@@ -247,8 +246,7 @@ public class ModelManagerTest {
 
         modelManager.orderAppointments();
 
-        assertTrue(modelManager.getFilteredAppointmentList().equals(
-                modelManagerNew.getFilteredAppointmentList()));
+        assertEquals(modelManager.getFilteredAppointmentList(), modelManagerNew.getFilteredAppointmentList());
     }
 
     @Test
@@ -269,8 +267,7 @@ public class ModelManagerTest {
 
         modelManager.orderAppointments();
 
-        assertTrue(modelManager.getFilteredAppointmentList().equals(
-                modelManagerNew.getFilteredAppointmentList()));
+        assertEquals(modelManager.getFilteredAppointmentList(), modelManagerNew.getFilteredAppointmentList());
     }
 
     @Test
