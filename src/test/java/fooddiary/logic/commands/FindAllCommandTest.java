@@ -3,7 +3,7 @@ package fooddiary.logic.commands;
 import static fooddiary.commons.core.Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW_WITH_SUGGESTION;
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static fooddiary.testutil.TypicalEntries.ENTRY_C;
-import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiary;
+import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiaryWithMultipleEntries;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,8 +23,8 @@ import fooddiary.model.entry.NameContainsAllKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindAllCommand}.
  */
 public class FindAllCommandTest {
-    private Model model = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalFoodDiary(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalFoodDiaryWithMultipleEntries(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalFoodDiaryWithMultipleEntries(), new UserPrefs());
 
     @Test
     public void equals() {

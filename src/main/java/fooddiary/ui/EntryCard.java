@@ -61,7 +61,7 @@ public class EntryCard extends UiPart<Region> {
         address.setText(String.format("Address: %s", entry.getAddress().value));
         String reviewStr = "";
         for (int i = 0; i < entry.getReviews().size(); i++) {
-            reviewStr += entry.getReviews().get(i) + "\n";
+            reviewStr += entry.getReviews().get(i).value + "\n";
         }
         reviews.setText(String.format("Reviews:\n%s", reviewStr));
 

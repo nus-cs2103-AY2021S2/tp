@@ -1,6 +1,6 @@
 package fooddiary.logic;
 
-import static fooddiary.commons.core.Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX;
+import static fooddiary.commons.core.Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL;
 import static fooddiary.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static fooddiary.testutil.Assert.assertThrows;
 import static fooddiary.testutil.TypicalEntries.VALID_ENTRY_A;
@@ -56,7 +56,9 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, String.format(
+                MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL,
+                model.getFilteredEntryList().size()));
     }
 
     @Test

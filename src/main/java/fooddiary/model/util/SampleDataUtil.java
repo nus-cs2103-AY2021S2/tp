@@ -52,7 +52,7 @@ public class SampleDataUtil {
                 new Address("12 Clementi Rd, Singapore 129742"),
                 getTagCategorySet("Indian"),
                 getTagSchoolSet("SOC")),
-            new Entry(new Name("Techo Edge"), new Rating("5"), new Price("5"),
+            new Entry(new Name("Techno Edge"), new Rating("5"), new Price("5"),
                 getReviewList("Food is cheap and good! Especially the mixed rice stall."),
                 new Address("2 Engineering Drive 4, Singapore 117584"),
                 getTagCategorySet("dessert", "chinese", "western", "malay", "indian"),
