@@ -1,9 +1,5 @@
 package seedu.address.logic.commands.meetings;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.List;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -11,6 +7,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
+
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
 
 
 public class DeleteMeetingCommand extends Command {
@@ -41,6 +41,7 @@ public class DeleteMeetingCommand extends Command {
 
         Meeting meetingToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteMeeting(meetingToDelete);
+        model.deleteAllPersonMeetingConnectionByMeeting(meetingToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_MEETING_SUCCESS, meetingToDelete));
     }
 

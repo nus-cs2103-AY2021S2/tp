@@ -387,6 +387,16 @@ public class AddMeetingCommandWithConnectionTest {
         }
 
         @Override
+        public UniqueMeetingList getUniqueMeetingListByPersonConnection(Person person) {
+            return null;
+        }
+
+        @Override
+        public UniquePersonList getUniquePersonListByMeetingConnection(Meeting meeting) {
+            return null;
+        }
+
+        @Override
         public ReadOnlyReminderBook getReminderBook() {
             return new ReminderBook();
         }
