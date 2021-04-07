@@ -211,6 +211,8 @@ public class MainWindow extends UiPart<Stage> {
      * Displays the help panel.
      */
     public void displayHelp() {
+        sidePanel.clearButtonStyles();
+        sidePanel.clearSelection();
         if (!infoDisplayPlaceholder.getChildren().contains(helpPanel.getRoot())) {
             infoDisplayPlaceholder.getChildren().clear();
             infoDisplayPlaceholder.getChildren().add(helpPanel.getRoot());

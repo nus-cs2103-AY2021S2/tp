@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -15,7 +16,9 @@
     <URL value="@ProjectDisplayPanel.css" />
   </stylesheets>
 
-  <Label fx:id="projectName" styleClass="cell_huge_label" />
+  <ScrollPane minHeight="50" vbarPolicy="NEVER" fitToHeight="true">
+    <Label fx:id="projectName" styleClass="cell_huge_label"/>
+  </ScrollPane>
   <TabPane fx:id="tabPane" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
     <tabs>
       <Tab>
@@ -60,6 +63,5 @@
   </TabPane>
   <styleClass>
     <String fx:value="pane-with-border" />
-    <String fx:value="white-text" />
   </styleClass>
 </VBox>
