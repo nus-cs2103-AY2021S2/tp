@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Fee {
 
-    public static final String MESSAGE_CONSTRAINTS = "Format of fee input is incorrect.";
+    public static final String MESSAGE_CONSTRAINTS = "Format of fee input is incorrect (Non-negative and maximum of "
+        + "2 decimal places) or the given fee is unacceptable (Only accepts value between 0 to 999999.99).";
     private static final String VALIDATION_REGEX = "([1-9]\\d+|\\d)(\\.\\d{0,2}|)";
 
     private double fee;
@@ -34,7 +35,7 @@ public class Fee {
      * Returns true if fee is valid
      */
     public static boolean isValidFee(String value) {
-        return value.matches(VALIDATION_REGEX);
+        return value.matches(VALIDATION_REGEX) && Double.parseDouble(value) <= 999999.99;
     }
 
     @Override

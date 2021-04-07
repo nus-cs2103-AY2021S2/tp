@@ -86,6 +86,14 @@ public class TypicalStudents {
             .withEmail("hans@example.com").withAddress("chicago ave")
             .withStudyLevel("JC 4").withGuardianPhone("87621200").withRelationship("Uncle").build();
 
+    // Manually added -- both students have the same parent, which points to the same email and guardian phone
+    public static final Student CHIARA = new StudentBuilder().withName("Chiara Tan").withPhone("91234567")
+            .withEmail("tancheeleng@gmail.com").withAddress("tan residence")
+            .withStudyLevel("Secondary 4").withGuardianPhone("98110022").withRelationship("Father").build();
+    public static final Student CHARLENE = new StudentBuilder().withName("Charlene Tan").withPhone("91234567")
+            .withEmail("tancheeleng@gmail.com").withAddress("tan residence")
+            .withStudyLevel("JC 4").withGuardianPhone("98110022").withRelationship("Father").build();
+
     // Manually added - Student's details found in {@code CommandTestUtil}
     public static final Student AMY = new StudentBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withStudyLevel(VALID_STUDY_LEVEL_AMY)

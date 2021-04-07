@@ -51,7 +51,7 @@
                 </VBox>
 
                 <VBox>
-                  <Label styleClass="tuitionTitle" prefWidth="${screen.visualBounds.width}" minWidth="250" text="Fees" />
+                  <Label styleClass="tuitionTitle" prefWidth="${screen.visualBounds.width}" minWidth="250" text="3 Months Monthly Fee" />
                   <StackPane fx:id="monthlyFeePanelPlaceholder" prefWidth="${screen.visualBounds.width}" minWidth="250" style="-fx-wrap-text: true" />
                   <padding>
                     <Insets top="10" right="10" bottom="10" left="10" />
