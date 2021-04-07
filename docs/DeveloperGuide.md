@@ -417,6 +417,60 @@ The sequence diagram for `sortTaskCommand` can be found below.
 The following is a brief explanation , as shown in a sequence diagram, of how sorting is implemented inside the Model component.
 ![Sequence Diagram of SortTaskCommand in Model Component](images/SortTaskModelSequenceDiagram.png)
 
+***Design Considerations for `SortTaskCommand`***
+<table>
+    <tr>
+        <th> Alternative 1 (Chosen Implementation) </th>
+        <th> Alternative 2 </th>
+    </tr>
+    <tr>
+        <td> 
+            <ul>
+                <li>Persistent Sorting using a Comparator</li>
+                <li> Pros:
+                    <ul>
+                        <li>UX considerations when users expect sorting to be persistent over multiple commands</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>Additional Testing of Comparator needed</li>
+                        <li>Additional component added might add to complexity</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+        <td> 
+            <ul>
+                <li>Transient Sorting by sorting the UniqueTaskList directly</li>
+                <li> Pros:
+                    <ul>
+                        <li>Straightforward implementation</li>
+                        <li>Less testing required due to less components</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>UX might be compromised as order is not maintained over command executions</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<div markdown="block">
+Our group decided to go with alternative 1 and implemented an additional sort comparator known as `TaskComparator`.
+This is to ensure smoother UX, as well as better integration with other commands.
+
+By implementing it in this way, our group is able to ensure that the sort order remains consistent over commands that could either:
+    <ul>
+        <li>Alter the number of tasks shown at any one time (See <code>find_task</code>)</li>
+        <li>Change the order of task appearance independent of <code>sort_task</code> (See <code>pin_task</code>)</li>
+    </ul>
+
+This would enable SOChedule to better serve the needs of its user base. 
+</div>
+
 [Return to Table of Contents](#table-of-contents)  
 
 **Implementation of PinTaskCommand/UnpinTaskCommand**  
