@@ -35,21 +35,17 @@ public class MeetingContainsKeywordsPredicate implements Predicate<Meeting> {
             return false;
         }
 
-        if (searchString.equals(ARGUMENT_COMPLETE.toLowerCase())) {
-            return meeting.getStatus().isComplete();
-        } else if (searchString.equals(ARGUMENT_INCOMPLETE.toLowerCase())) {
-            return !meeting.getStatus().isComplete();
-        } else {
-            return keywords.stream()
-                    .allMatch(keyword -> StringUtil.containsIgnoreCase(meeting.getClientName().toString(), keyword)
-                        || StringUtil.containsIgnoreCase(meeting.getDateTime().toString(), keyword)
-                        || meeting.getDateTime().getDayOfWeek().equals(keyword.toLowerCase())
-                        || meeting.getDateTime().getDayOfWeekFull().equals(keyword.toLowerCase())
-                        || StringUtil.containsIgnoreCase(meeting.getLocation().toString(), keyword)
-                        || StringUtil.containsIgnoreCase(meeting.getDescription().toString(), keyword)
-                        || meeting.getTags().stream()
-                            .anyMatch(tag -> StringUtil.containsIgnoreCase(tag.toString(), keyword)));
-        }
+        return keywords.stream()
+                .allMatch(keyword -> StringUtil.containsIgnoreCase(meeting.getClientName().toString(), keyword)
+                    || StringUtil.containsIgnoreCase(meeting.getDateTime().toString(), keyword)
+                    || meeting.getDateTime().getDayOfWeek().equals(keyword.toLowerCase())
+                    || meeting.getDateTime().getDayOfWeekFull().equals(keyword.toLowerCase())
+                    || StringUtil.containsIgnoreCase(meeting.getLocation().toString(), keyword)
+                    || StringUtil.containsIgnoreCase(meeting.getDescription().toString(), keyword)
+                    || meeting.getTags().stream()
+                        .anyMatch(tag -> StringUtil.containsIgnoreCase(tag.toString(), keyword))
+                    || (keyword.equalsIgnoreCase(ARGUMENT_COMPLETE) && meeting.getStatus().isComplete())
+                    || (keyword.equalsIgnoreCase(ARGUMENT_INCOMPLETE) && !meeting.getStatus().isComplete()));
     }
 
     @Override

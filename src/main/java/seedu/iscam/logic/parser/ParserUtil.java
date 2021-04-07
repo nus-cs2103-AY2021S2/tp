@@ -42,7 +42,7 @@ public class ParserUtil {
      *
      * @throws ParseIndexException if the specified index is invalid (not non-zero unsigned integer).
      * @throws ParseIndexException if the specified index is bigger than the maximum holding value of an int.
-     * @throws ParseException if {@code oneBasedIndex} is an empty string (index field is empty).
+     * @throws ParseException      if {@code oneBasedIndex} is an empty string (index field is empty).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         // Remove the trailing white spaces at the beginning and ending of oneBasedIndex.

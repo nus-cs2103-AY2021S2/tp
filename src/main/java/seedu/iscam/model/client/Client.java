@@ -60,7 +60,7 @@ public class Client {
         return location;
     }
 
-    public Set<InsurancePlan> getPlan() {
+    public Set<InsurancePlan> getPlans() {
         return Collections.unmodifiableSet(insurancePlans);
     }
 
@@ -110,7 +110,7 @@ public class Client {
         return otherClient.getName().equals(getName())
                 && otherClient.getPhone().equals(getPhone())
                 && otherClient.getEmail().equals(getEmail())
-                && otherClient.getPlan().equals(getPlan())
+                && otherClient.getPlans().equals(getPlans())
                 && otherClient.getLocation().equals(getLocation())
                 && otherClient.getTags().equals(getTags())
                 && otherClient.getImageRes().equals(getImageRes());
@@ -134,7 +134,7 @@ public class Client {
                 .append(getLocation());
 
         // If insurance plan is present, display it
-        Set<InsurancePlan> plan = getPlan();
+        Set<InsurancePlan> plan = getPlans();
         if (!insurancePlans.isEmpty()) {
             builder.append(", Insurance Plan: ");
             plan.forEach(builder::append);

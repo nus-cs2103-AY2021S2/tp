@@ -19,6 +19,7 @@ public class DeleteClientEvent implements Event {
     /**
      * Creates a DeleteClientEvent wrapper that wraps around a DeleteClient Command deleting the client at the
      * specified {@code Index}
+     *
      * @param index index of client to be deleted
      * @param model model of app that client is to be deleted from
      */
@@ -37,6 +38,7 @@ public class DeleteClientEvent implements Event {
 
     /**
      * Retrieves the Client object that is going to be deleted.
+     *
      * @param model Current model in the application.
      * @return Client about to be deleted.
      */

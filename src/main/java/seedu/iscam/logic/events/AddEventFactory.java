@@ -12,6 +12,7 @@ public class AddEventFactory {
 
     /**
      * A static method to generate the add events based on the add commands parsed.
+     *
      * @param command Add Command to be parsed.
      * @return Corresponding event representing the add command parsed.
      * @throws EventException
@@ -19,7 +20,7 @@ public class AddEventFactory {
     public static Event parse(AddCommand command) throws EventException {
         String commandWord = command.getCommandWord();
 
-        switch(commandWord) {
+        switch (commandWord) {
         case (AddCommand.COMMAND_WORD):
             AddCommand tempCommand = command;
             return generateAddClientEvent(tempCommand.getClient());

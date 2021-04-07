@@ -214,7 +214,7 @@ Adds a meeting to iScam.
 Format: `addmeet c/CLIENT_NAME on/DATE_TIME l/LOCATION d/DESCRIPTION [t/TAG(s)]`
 * `DATE_TIME` **cannot be in the past** as of the moment when this command is called.
 * `LOCATION` cannot be blank and can have at most 100 characters.
-* `DESCRIPTION` must have at least 1 character and at most 1000 characters.  
+* `DESCRIPTION` must have at least 1 character and at most 1000 characters.
 * There can only be 1 meeting happening at the date and time specified in `DATE_TIME`.
 
 Example:
@@ -223,12 +223,12 @@ Example:
 
 #### Listing all meetings: `listmeet`
 
-Displays the full meeting list without any filtering applied via `findmeet`.  
+Displays the full meeting list without any filtering applied via `findmeet`.
 
 Format: `listmeet`
-* The meetings are grouped by its completion status (Incomplete / Complete) with the incomplete meetings at the top of 
+* The meetings are grouped by its completion status (Incomplete / Complete) with the incomplete meetings at the top of
   the list.
-* Within each group, the meetings are sorted by their chronological order with the most upcoming meeting at the top of 
+* Within each group, the meetings are sorted by their chronological order with the most upcoming meeting at the top of
   the group.
 
 #### Editing a meeting: `editmeet`
@@ -237,16 +237,16 @@ Edits an existing meeting in iScam.
 
 Format: `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/LOCATION] [d/DESCRIPTION] [t/TAG(s)] [s/COMPLETION_STATUS]`
 
-* `INDEX` refers to the meeting's index number shown in the displayed meeting list. The index **must be a positive 
+* `INDEX` refers to the meeting's index number shown in the displayed meeting list. The index **must be a positive
   integer 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * If the field already has an existing value, it will be replaced by the input value.
 * `DATE_TIME` **cannot be in the past** as of the moment when this command is called.
 * `DATE_TIME` **cannot be in conflict** with the date and time of any existing meeting.
-* When `TAG`s are given, the existing tags will be removed and replaced with the new given tags. (i.e adding of tags is 
+* When `TAG`s are given, the existing tags will be removed and replaced with the new given tags. (i.e adding of tags is
   not cumulative)
 * `COMPLETION_STATUS` **only accepts `complete` or `incomplete`**.
-* If the meeting's status is already `complete`, no fields can be edited unless the status field is also being set to 
+* If the meeting's status is already `complete`, no fields can be edited unless the status field is also being set to
   `incomplete`.
 
 Example:
@@ -259,7 +259,7 @@ Modifies the location of an existing meeting in iScam.
 
 Format: `relocate INDEX l/LOCATION`
 
-* `INDEX` refer to the meeting's index number shown in the displayed meeting list. The index **must be a positive 
+* `INDEX` refer to the meeting's index number shown in the displayed meeting list. The index **must be a positive
   integer 1, 2, 3, …**.
 * If the meeting specified by `INDEX` is already `complete`, this meeting cannot be relocated.
 * `LOCATION` cannot be blank and can have at most 100 characters.
@@ -273,7 +273,7 @@ Modifies the date and time of an existing meeting in iScam.
 
 Format: `reschedule INDEX on/DATE_TIME`
 
-* `INDEX` refer to the meeting's index number shown in the displayed meeting list. The index **must be a positive 
+* `INDEX` refer to the meeting's index number shown in the displayed meeting list. The index **must be a positive
   integer 1, 2, 3, …**.
 * If the meeting specified by `INDEX` is already `complete`, this meeting cannot be rescheduled.
 * `DATE_TIME` **cannot be in the past** as of the moment when this command is called.
@@ -293,12 +293,10 @@ Format: `findmeet KEYWORD [MORE_KEYWORDS]`
 * The keywords will be match against all parameters of a meeting.
     * To find by the status of a meeting, use keyword `complete` to find completed meetings and keyword `incomplete`
     to find incomplete meetings.
-    * To find by the date and time of a meeting, the keyword can be a partial date, a full date or a day of the week 
+    * To find by the date and time of a meeting, the keyword can be a partial date, a full date or a day of the week
       (e.g. `10-02`, `10-02-2022`, `sat` or `saturday`) .
 * Meeting matching all keywords will be returned (i.e. `AND` search). e.g. `Johnson Smith` will not return
   `Sam Smith` and `Johnson Drake` but will return `Johnson Shawn Smith`.
-
-Examples:
 * `findmeet johnson 2020` can return a meeting with Johnson on 2020
 * `findmeet complete` returns completed meetings
 * Both `findmeet tue` and `findmeet tuesday` returns meetings that take place on Tuesday
@@ -311,15 +309,15 @@ Marks a specified existing meeting from iScam as completed.
 
 Format: `donemeet INDEX`
 
-* `INDEX` refer to the meeting's index number shown in the displayed meeting list. The index **must be a positive 
+* `INDEX` refer to the meeting's index number shown in the displayed meeting list. The index **must be a positive
   integer 1, 2, 3, …**.
-  
+
 #### Deleting a meeting: `deletemeet`
 Deletes a specified existing meeting from iScam.
 
 Format: `deletemeet INDEX`
 
-* `INDEX` refer to the meeting's index number shown in the displayed meeting list. The index **must be a positive 
+* `INDEX` refer to the meeting's index number shown in the displayed meeting list. The index **must be a positive
   integer 1, 2, 3, …**.
 
 ### General

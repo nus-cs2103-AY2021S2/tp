@@ -4,14 +4,14 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "location": "123, Jurong West Ave 6, #08-111",
-    "plan" : "Plan A",
+    "plan" : [ "Plan A" ],
     "tagged": [ "friends" ],
     "image" : "default.png"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "plan" : "Plan A",
+    "plan" : [ "Plan A" ],
     "location": "4th street",
     "image" : "default.png"
   } ]

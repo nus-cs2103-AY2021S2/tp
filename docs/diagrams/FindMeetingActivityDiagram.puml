@@ -1,0 +1,19 @@
+@startuml
+start
+:User enters command to find meetings;
+
+:Parse the command string into keywords;
+
+if () then ([No keywords found])
+    :Display feedback message to the user;
+else ([else])
+    :Construct a predicate with those keywords to check against meetings;
+    :Filter the displayed meeting list using the predicate;
+    if () then ([No meetings left in the list])
+        :Display failure message to the user;
+    else ([Else])
+        :Display success message to the user;
+    endif
+endif
+stop
+@enduml

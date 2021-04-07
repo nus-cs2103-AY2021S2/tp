@@ -14,15 +14,16 @@ public class EditEventFactory {
 
     /**
      * A static method to generate the edit events based on the edit commands parsed.
+     *
      * @param command Edit Command to be parsed.
-     * @param model Current model of the application.
+     * @param model   Current model of the application.
      * @return Corresponding event representing the edit command parsed.
      * @throws EventException
      */
     public static Event parse(EditCommand command, Model model) throws EventException {
         String commandWord = command.getCommandWord();
 
-        switch(commandWord) {
+        switch (commandWord) {
         case (EditCommand.COMMAND_WORD):
             EditCommand tempCommand = (EditCommand) command;
             return generateEditClientEvent(tempCommand.getIndex(),

@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.iscam.commons.exceptions.IllegalValueException;
 import seedu.iscam.model.client.Email;
+import seedu.iscam.model.client.Image;
 import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Phone;
 import seedu.iscam.model.commons.Location;
@@ -23,7 +24,7 @@ public class JsonAdaptedClientTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_LOCATION = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_PLAN = "Med1care";
+    private static final String INVALID_PLAN = "Med1care@#";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_IMAGE = "w ef.jaypeg";
 
@@ -31,7 +32,7 @@ public class JsonAdaptedClientTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_LOCATION = BENSON.getLocation().toString();
-    private static final List<JsonAdaptedClientPlan> VALID_PLAN = BENSON.getPlan().stream()
+    private static final List<JsonAdaptedClientPlan> VALID_PLAN = BENSON.getPlans().stream()
             .map(JsonAdaptedClientPlan::new)
             .collect(Collectors.toList());
     private static final List<JsonAdaptedClientTag> VALID_TAGS = BENSON.getTags().stream()
@@ -125,14 +126,6 @@ public class JsonAdaptedClientTest {
     }
 
     @Test
-    public void toModelType_nullPlan_throwsIllegalValueException() {
-        JsonAdaptedClient client = new JsonAdaptedClient(
-                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_LOCATION, null, VALID_TAGS, VALID_IMAGE);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, InsurancePlan.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
-    }
-
-    @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedClientTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedClientTag(INVALID_TAG));
@@ -156,8 +149,8 @@ public class JsonAdaptedClientTest {
     @Test
     public void toModelType_nullImage_throwsIllegalValueException() {
         JsonAdaptedClient client = new JsonAdaptedClient(
-                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_LOCATION, null, VALID_TAGS, null);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, InsurancePlan.class.getSimpleName());
+                VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_LOCATION, VALID_PLAN, VALID_TAGS, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Image.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
