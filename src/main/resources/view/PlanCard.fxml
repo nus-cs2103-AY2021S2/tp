@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 
 <?import javafx.geometry.Insets?>
-<HBox id="meetingCardPane" fx:id="meetingCardPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="planCardPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="90" />
