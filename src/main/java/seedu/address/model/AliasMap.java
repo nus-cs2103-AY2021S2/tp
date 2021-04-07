@@ -25,8 +25,7 @@ import seedu.address.logic.commands.ViewCommand;
  * Contains all mapping for command and alias.
  */
 public class AliasMap {
-    private HashMap<String, String> aliasMap;
-    private final String[] commandsWord = {
+    private static final String[] commandsWord = {
         AddCommand.COMMAND_WORD,
         AliasCommand.COMMAND_WORD,
         ClearCommand.COMMAND_WORD,
@@ -44,6 +43,8 @@ public class AliasMap {
         UndoCommand.COMMAND_WORD,
         ViewCommand.COMMAND_WORD
     };
+
+    private HashMap<String, String> aliasMap;
 
     public AliasMap() {
         aliasMap = new HashMap<>();
