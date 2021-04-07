@@ -18,7 +18,7 @@ public class FreeCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Indicates if an interval is free. "
             + "If free, 'free' will be shown. If not, tasks occupying that interval will be shown in "
-            + "this result display\n"
+            + "the entries list below.\n"
             + "Parameters: "
             + PREFIX_START_DATE + "START_DATE "
             + PREFIX_END_DATE + "END_DATE\n"
