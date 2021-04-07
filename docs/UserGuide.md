@@ -85,10 +85,13 @@ Examples:
 
 ### Clearing all entries in patient records: `clear-patient`
 Clears all entries from the patient records. <br>
+
+Format: `clear-patient`
+
 * Entries in the patient records can only be cleared if there are no existing appointments in the appointment schedule. <br>
 * Otherwise, `clear-appt` have to called first. <br>
 
-Format: `clear-patient`
+
 
 ### Deleting a patient : `delete-patient`
 Deletes the specified patient from the patient records.<br>
@@ -299,6 +302,7 @@ Examples:
 
 
 ### Locating appointments by fields : `find-appt`
+Find appointments with details that contain any of the given keywords. <br>
 
 Format: `find-appt [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS_KEYWORDS] [t/TAG KEYWORDS]`
 
@@ -337,10 +341,11 @@ Exits the program.
 Format: `exit`
 
 ### Viewing help: `help`
+Shows a message with an url to this User Guide webpage.
 
-Format: `help`
+Format: `help` <br>
 
-Showing a message containing the url to the User Guide page
+![result for 'help'](images/helpMessage.png)
 
 ### Saving the data
 
