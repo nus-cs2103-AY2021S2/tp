@@ -15,7 +15,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalTasks.getTypicalSochedule;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -77,7 +76,8 @@ public class EditTaskCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Task taskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task editedTask = new TaskBuilder(taskInFilteredList).withName(VALID_TASK_NAME_TASKTWO).build();
+        Task editedTask = new TaskBuilder(taskInFilteredList)
+                .withName(VALID_TASK_NAME_TASKTWO).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK,
                 new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_TASKTWO).build());
 
@@ -139,7 +139,6 @@ public class EditTaskCommandTest {
     }
 
     @Test
-    @Disabled
     public void execute_editTaskDeadlineToExpiredDeadline_failure() {
         Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
 
