@@ -227,7 +227,7 @@ Examples:
 Returns all the articles of clothing that match the colour and dress code
   of the garment at index 1 in the list of garments on display, but do not match
   its type.
-* `match 1 2`  [using 2 indices to find their matching garments is to be implemented]<br> 
+* `match 1 2`  **[using 2 indices to find their matching garments is to be implemented]**<br> 
 Returns all the articles of clothing that match the colours and dress code of
   the garments at indices 1 and 2 in the list of garments on display, but
   do not match their types.
