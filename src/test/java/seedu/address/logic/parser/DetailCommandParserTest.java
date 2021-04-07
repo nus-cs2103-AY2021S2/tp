@@ -28,6 +28,6 @@ public class DetailCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DetailCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", String.format("Invalid index! \n%1$s", DetailCommand.MESSAGE_USAGE));
     }
 }
