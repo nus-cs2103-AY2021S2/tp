@@ -22,7 +22,10 @@ public class DeliveryStatusCommand extends Command {
 
     public static final String CANCELLED_COMMAND_WORD = "cancelled";
 
-    public static final String MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS = "Updated order status for: %1$s";
+    public static final String MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS_UPDATED = "Updated order status for: %1$s";
+
+    public static final String MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS_SAME =
+            "The order status has already been updated for: %1$s";
 
     private final IndexList targetIndexList;
 
@@ -51,12 +54,31 @@ public class DeliveryStatusCommand extends Command {
         return messageUsage(commandWord.toLowerCase());
     }
 
-    public static String getResultString(List<Order> ordersToUpdate) {
-        String convertedToString = "";
+    public static String getResultString(List<Order> ordersToUpdate, List<Order> sameOrders) {
+        String convertedToStringUpdated = "";
         for (Order order : ordersToUpdate) {
-            convertedToString = convertedToString + String.format("\n%1$s", order);
+            convertedToStringUpdated = convertedToStringUpdated + String.format("\n%1$s", order);
         }
-        return String.format(MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS, convertedToString);
+
+        String convertedToStringSame = "";
+        for (Order order : sameOrders) {
+            convertedToStringSame = convertedToStringSame + String.format("\n%1$s", order);
+        }
+
+        String output = "";
+        if (!convertedToStringUpdated.equals("")) {
+            output += String.format(MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS_UPDATED, convertedToStringUpdated);
+        }
+
+        if (!convertedToStringUpdated.equals("") && !convertedToStringSame.equals("")) {
+            output += "\n\n";
+        }
+
+        if (!convertedToStringSame.equals("")) {
+            output += String.format(MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS_SAME, convertedToStringSame);
+        }
+
+        return output;
     }
 
     @Override
@@ -64,17 +86,25 @@ public class DeliveryStatusCommand extends Command {
         requireNonNull(model);
         List<Order> lastShownList = model.getFilteredOrderList();
         List<Order> updatedOrders = new ArrayList<>();
+        List<Order> sameOrders = new ArrayList<>();
+
         for (Index targetIndex:this.targetIndexList.getIndexList()) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
             }
+
             Order orderToUpdate = lastShownList.get(targetIndex.getZeroBased());
-            Order editedOrder = updateOrder(orderToUpdate, status);
-            model.setOrder(orderToUpdate, editedOrder);
-            model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
-            updatedOrders.add(orderToUpdate);
+
+            if (orderToUpdate.getDeliveryStatus().equals(status)) {
+                sameOrders.add(orderToUpdate);
+            } else {
+                Order editedOrder = updateOrder(orderToUpdate, status);
+                model.setOrder(orderToUpdate, editedOrder);
+                model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+                updatedOrders.add(editedOrder);
+            }
         }
-        return new CommandResult(getResultString(updatedOrders));
+        return new CommandResult(getResultString(updatedOrders, sameOrders));
     }
 
     private static Order updateOrder(Order order, DeliveryStatus status) {
