@@ -32,7 +32,7 @@ faster than traditional GUI apps.
   as `addcustomer n/John Doe`.
 
 * Items in square brackets are optional.<br>
-e.g. `addcheese t/CHEESE_TYPE q/QUANTITY [d/MANUFACTURE_DATE] [e/EXPIRY_DATE]` can be used as `addcheese t/Brie q/3 d/2021-01-12` or as `addcheese t/Brie q/3`.
+  e.g. `addcheese t/CHEESE_TYPE q/QUANTITY [d/MANUFACTURE_DATE] [e/EXPIRY_DATE]` can be used as `addcheese t/Brie q/3 d/2021-01-12` or as `addcheese t/Brie q/3`.
 
 * Parameters with trailing dots allows for inputting of multiple items.<br>
   e.g. `[t/TAG…]` means multiple tags can be specified.
@@ -49,11 +49,11 @@ e.g. `addcheese t/CHEESE_TYPE q/QUANTITY [d/MANUFACTURE_DATE] [e/EXPIRY_DATE]` c
   e.g. if the command specifies `listcustomers 123`, it will be interpreted as `listcustomers`.
 
 * Parameters expecting dates must be given in these formats: `DD/MM/YYYY` or `YYYY-MM-DD` or `MMM DD YYYY`,<br>
-e.g. `31/03/2021` or `2021-03-31` or `Mar 31 2021` where `Mar` is case-sensitive.
+  e.g. `31/03/2021` or `2021-03-31` or `Mar 31 2021` where `Mar` is case-sensitive.
 
-* Parameters for dates will trim any day given in the range [1..31] to the latest valid
-day for the month you have chosen,<br>
-e.g. `31/04/2021` will be edited to `30/04/2021` by CHIM.
+* Parameters for dates will accept any day given in the range [1..31].
+  If the day is invalid for the month you have chosen, it will be trimmed to the latest valid day,<br>
+  e.g. `31/02/2021` will be edited to `28/02/2021` by CHIM.
 
 </div>
 
@@ -109,7 +109,7 @@ Format: `findcustomer [n/NAME_KEYWORDS…] [p/PHONE_KEYWORDS…] [e/EMAIL_KEYWOR
 * At least one of the optional fields must be provided to find a customer.
 * Search is case-insensitive, e.g. Betty will match betty.
 * Search will search by given keywords as prefix, e.g. Bet will match Betty.
-* Search will find any customers which match all of the given fields,
+* Search will find any customers which match **all** of the given fields,
 e.g. `findcustomer n/Betty p/9123` will find a customer with the name `Betty` and a phone number with prefix `9123`.
 
 Examples:
@@ -148,7 +148,7 @@ Format: `editcheese INDEX [t/CHEESE_TYPE] [d/MANUFACTURE_DATE] [d/EXPIRY_DATE]`
 * At least one of the optional fields must be provided to edit a cheese.
 * The specified `INDEX` must be a positive integer.
 * All dates must be given in these formats: `DD/MM/YYYY` or `YYYY-MM-DD` or `MMM DD YYYY`.
-* Expiry Date specified must occur after the Manufacture Date.
+* `EXPIRY_DATE` specified must occur after the `MANUFACTURE_DATE`.
 
 Example: `editcheese 1 t/Parmesan d/2021-03-12`
 
@@ -169,7 +169,7 @@ Format: `findcheese [t/CHEESE_TYPE_KEYWORDS…] [s/ASSIGNMENT_STATUS]`
 * At least one of the optional fields must be provided to find a cheese.
 * Search is case-insensitive, e.g. Brie will match brie.
 * Assignment status parameter must be either `assigned` or `unassigned`.
-* Search will find any cheeses which match all of the given fields,
+* Search will find any cheeses which match **all** of the given fields,
 e.g. `findcheese t/Gouda s/assigned` will find a cheese with type `Gouda` and an `assigned` status.
 
 Examples:
@@ -247,7 +247,7 @@ Format: `findorder [t/CHEESE_TYPE_KEYWORDS…] [n/CUSTOMER_NAME_KEYWORDS…] [p/
 * At least one of the optional fields must be provided to find an order.
 * Search is case-insensitive, e.g. Brie will match brie.
 * Assignment status parameter must be either `complete` or `incomplete`.
-* Search will find an order which matches all of the given fields,
+* Search will find an order which matches **all** of the given fields,
 e.g. `findorder t/Brie s/incomplete` will find an order with cheese type Brie and is incomplete.
 
 Examples:
