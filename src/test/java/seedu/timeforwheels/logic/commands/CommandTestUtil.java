@@ -19,7 +19,7 @@ import seedu.timeforwheels.logic.commands.exceptions.CommandException;
 import seedu.timeforwheels.model.DeliveryList;
 import seedu.timeforwheels.model.Model;
 import seedu.timeforwheels.model.customer.Customer;
-import seedu.timeforwheels.model.customer.NameContainsKeywordsPredicate;
+import seedu.timeforwheels.model.customer.AttributeContainsKeywordsPredicate;
 import seedu.timeforwheels.testutil.EditCustomerDescriptorBuilder;
 
 /**
@@ -126,7 +126,7 @@ public class CommandTestUtil {
 
         Customer customer = model.getFilteredCustomerList().get(targetIndex.getZeroBased());
         final String[] splitName = customer.getName().fullName.split("\\s+");
-        model.updateFilteredCustomerList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredCustomerList(new AttributeContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredCustomerList().size());
     }

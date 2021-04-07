@@ -10,10 +10,10 @@ import seedu.timeforwheels.model.tag.Tag;
 /**
  * Tests that a {@code Customer}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Customer> {
+public class AttributeContainsKeywordsPredicate implements Predicate<Customer> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public AttributeContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -54,7 +54,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Customer> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof AttributeContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((AttributeContainsKeywordsPredicate) other).keywords)); // state check
     }
 }
