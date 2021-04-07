@@ -5,8 +5,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_FILE_NOT_FOUND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE_EXTENSION;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TestDataUtil.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.io.File;
 import java.io.IOException;

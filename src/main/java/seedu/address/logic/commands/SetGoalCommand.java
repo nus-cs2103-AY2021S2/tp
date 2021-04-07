@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -57,5 +58,29 @@ public class SetGoalCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_ADD_GOAL_SUCCESS,
                 newGoal.toString().toLowerCase(), editedPerson.getName()));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        SetGoalCommand that = (SetGoalCommand) o;
+
+        if (!Objects.equals(index, that.index)) {
+            return false;
+        }
+        return frequency == that.frequency;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = index != null ? index.hashCode() : 0;
+        result = 31 * result + (frequency != null ? frequency.hashCode() : 0);
+        return result;
     }
 }

@@ -39,11 +39,11 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedEvent> VALID_DATES = BENSON.getDates().stream()
-            .map(JsonAdaptedEvent::new)
+    private static final List<JsonAdaptedSpecialDate> VALID_DATES = BENSON.getDates().stream()
+            .map(JsonAdaptedSpecialDate::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedEvent> VALID_MEETINGS = BENSON.getMeetings().stream()
-            .map(JsonAdaptedEvent::new)
+    private static final List<JsonAdaptedMeeting> VALID_MEETINGS = BENSON.getMeetings().stream()
+            .map(JsonAdaptedMeeting::new)
             .collect(Collectors.toList());
     private static final String VALID_GOAL = Frequency.WEEKLY.toString();
 

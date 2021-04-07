@@ -9,6 +9,7 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.application.Application;
@@ -124,6 +125,28 @@ public class FileUtil {
     }
 
     /**
+     * Checks if the content of the file is prefixed with any magic number from a given set.
+     *
+     * @throws IOException If the file cannot be read.
+     */
+    public static boolean hasMagicNumber(Path filePath, Set<Byte[]> allowedMagicNumber) throws IOException {
+        byte[] bytes = Files.readAllBytes(filePath);
+        Byte current;
+        for (Byte[] magicNumber : allowedMagicNumber) {
+            for (int i = 0; i < magicNumber.length; i++) {
+                current = magicNumber[i];
+                if (current != null && bytes[i] != current) {
+                    break;
+                }
+                if (i == magicNumber.length - 1 && (current == null || current == bytes[i])) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
      * Checks if the file at the path given is below {@code maxSize}
      */
     public static boolean belowSizeLimit(Path path, long maxSize) throws IOException {
@@ -146,5 +169,24 @@ public class FileUtil {
 
     public static String getSeparator() {
         return System.getProperty("file.separator");
+    }
+
+    /**
+     * Returns a {@code Byte} array given an {@code int} array. Wildcard bytes should be
+     * represented by a 32 bit integer with its MSB set.
+     *
+     * @param intArray the array to convert from.
+     * @return a {@code Byte[]} based on the values in {@code intArray}
+     */
+    public static Byte[] intArrayToByteArray(int[] intArray) {
+        Byte[] bytes = new Byte[intArray.length];
+        for (int i = 0; i < intArray.length; i++) {
+            if (intArray[i] < 0) {
+                bytes[i] = null;
+            } else {
+                bytes[i] = (Byte) ((byte) intArray[i]);
+            }
+        }
+        return bytes;
     }
 }

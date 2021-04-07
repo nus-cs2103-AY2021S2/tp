@@ -5,6 +5,7 @@ import static java.time.DayOfWeek.SUNDAY;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.function.Function;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -84,7 +85,8 @@ public class Goal {
     }
 
     /**
-     * Calculates the next goal deadline from the given {@code date}. Deadlines are guaranteed to fall on Sundays.
+     * Calculates the next goal deadline from the given {@code date}. Deadlines are guaranteed to fall on Sundays for
+     * WEEKLY goals.
      */
     public LocalDate getGoalDeadline(LocalDate date) {
         Frequency freq = getFrequency();
@@ -110,6 +112,13 @@ public class Goal {
         }
 
         return deadline;
+    }
+
+    /**
+     * Returns the UI string representation of this object
+     */
+    public String toUi() {
+        return this.toString().toLowerCase(Locale.ROOT);
     }
 
     @Override

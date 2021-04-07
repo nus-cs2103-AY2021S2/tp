@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TestDataUtil.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,10 @@ public class AddGroupCommandTest {
 
         AddGroupCommand addGroupCommand = new AddGroupCommand(indexes, group.getName());
 
-        String expectedMessage = String.format(AddGroupCommand.MESSAGE_ADD_GROUP_SUCCESS, group.getName());
+        String expectedMessage = String.format(
+                AddGroupCommand.MESSAGE_ADD_GROUP_SUCCESS,
+                group.toUi(),
+                group.getName());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addGroup(group);
