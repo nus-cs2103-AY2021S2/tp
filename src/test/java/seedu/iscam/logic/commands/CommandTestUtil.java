@@ -27,6 +27,7 @@ import seedu.iscam.model.commons.NameContainsKeywordsPredicate;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.meeting.MeetingContainsKeywordsPredicate;
 import seedu.iscam.model.util.clientbook.ClientBook;
+import seedu.iscam.model.util.meetingbook.MeetingBook;
 import seedu.iscam.testutil.EditClientDescriptorBuilder;
 import seedu.iscam.testutil.EditMeetingDescriptorBuilder;
 
@@ -79,7 +80,7 @@ public class CommandTestUtil {
     public static final String VALID_CLIENT_NAME_CLEO = "Cleo Patra";
     public static final String VALID_CLIENT_NAME_DAN = "Dan Ikris";
     public static final String VALID_DATETIME_CLEO = "28-10-2099 10:00";
-    public static final String VALID_DATETIME_DAN = "29-2-2096 13:30";
+    public static final String VALID_DATETIME_DAN = "29-02-2096 13:30";
     public static final String VALID_LOCATION_CLEO = "Starbucks, Tampines Hub";
     public static final String VALID_LOCATION_DAN = "Hon Sui Sen Memorial Library";
     public static final String VALID_DESCRIPTION_CLEO = "Discuss the upgrading of Insurance Plan";
@@ -114,6 +115,8 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditClientDescriptor DESC_AMY;
     public static final EditCommand.EditClientDescriptor DESC_BOB;
+    public static final EditMeetingCommand.EditMeetingDescriptor DESC_CLEO;
+    public static final EditMeetingCommand.EditMeetingDescriptor DESC_DAN;
 
     static {
         DESC_AMY = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -127,12 +130,12 @@ public class CommandTestUtil {
         DESC_CLEO = new EditMeetingDescriptorBuilder().withClientName(VALID_CLIENT_NAME_CLEO)
                 .withDateTime(VALID_DATETIME_CLEO).withLocation(VALID_LOCATION_CLEO)
                 .withDescription(VALID_DESCRIPTION_CLEO).withTags(VALID_TAG_PREMIUM)
-                .withStatus(VALID_STATUS_CLEO);
+                .withStatus(VALID_STATUS_CLEO).build();
 
         DESC_DAN = new EditMeetingDescriptorBuilder().withClientName(VALID_CLIENT_NAME_DAN)
                 .withDateTime(VALID_DATETIME_DAN).withLocation(VALID_LOCATION_DAN)
                 .withDescription(VALID_DESCRIPTION_DAN).withTags(VALID_TAG_URGENT)
-                .withStatus(VALID_STATUS_DAN);
+                .withStatus(VALID_STATUS_DAN).build();
     }
 
     /**
@@ -171,12 +174,33 @@ public class CommandTestUtil {
         // We are unable to defensively copy the model for comparison later,
         // so we can only do so by copying its components.
         ClientBook expectedClientBook = new ClientBook(actualModel.getClientBook());
-        List<Client> expectedFilteredList = new ArrayList<>(actualModel.getFilteredClientList());
+
+        List<Client> expectedClientFilteredList = new ArrayList<>(actualModel.getFilteredClientList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedClientBook, actualModel.getClientBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredClientList());
+        assertEquals(expectedClientFilteredList, actualModel.getFilteredClientList());
     }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the filtered meeting list and selected meeting in {@code actualModel} remain unchanged
+     */
+    public static void assertMeetingCommandFailure(Command command, Model actualModel, String expectedMessage) {
+        // We are unable to defensively copy the model for comparison later,
+        // so we can only do so by copying its components.
+        MeetingBook expectedMeetingBook = new MeetingBook(actualModel.getMeetingBook());
+
+        List<Meeting> expectedMeetingFilteredList = new ArrayList<>(actualModel.getFilteredMeetingList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedMeetingBook, actualModel.getMeetingBook());
+        assertEquals(expectedMeetingFilteredList, actualModel.getFilteredMeetingList());
+    }
+
+
 
     /**
      * Updates {@code model}'s filtered list to show only the client at the given {@code targetIndex} in the

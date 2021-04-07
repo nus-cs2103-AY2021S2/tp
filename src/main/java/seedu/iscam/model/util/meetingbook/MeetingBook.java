@@ -70,8 +70,8 @@ public class MeetingBook implements ReadOnlyMeetingBook {
         requireNonNull(meeting);
 
         for (Meeting other : meetings) {
-            if (other.isInConflict(meeting) && !other.getClientName().equals(meeting.getClientName())) {
-                return Arrays.stream(exclusions).noneMatch(e -> other.getClientName().equals(e.getClientName()));
+            if (other.isInConflict(meeting)) {
+                return Arrays.stream(exclusions).noneMatch(e -> other.equals(e));
             }
         }
         return false;

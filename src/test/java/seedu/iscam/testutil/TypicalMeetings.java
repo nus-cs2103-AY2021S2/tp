@@ -38,11 +38,11 @@ public class TypicalMeetings {
             .build();
     public static final Meeting FIONA_1 = new MeetingBuilder()
             .withName("Fiona Kunz").withDateTime("03-10-2025 16:30").withLocation("Doot Cafe, One North")
-            .withDescription("Discuss additional policies.").withStatus("incomplete")
+            .withDescription("Discuss additional policies.").withStatus("complete")
             .build();
     public static final Meeting FIONA_2 = new MeetingBuilder()
             .withName("Fiona Kunz").withDateTime("05-01-2021 16:30").withLocation("Doot Cafe, One North")
-            .withDescription("Introducing policies.").withStatus("complete")
+            .withDescription("Introducing policies.").withStatus("incomplete")
             .build();
 
     public static MeetingBook getTypicalMeetingBook() {
