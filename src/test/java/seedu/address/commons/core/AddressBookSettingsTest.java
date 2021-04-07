@@ -1,23 +1,20 @@
 package seedu.address.commons.core;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.parser.CliSyntax.OPTION_DATE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.security.InvalidParameterException;
-import java.util.logging.Logger;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.contact.comparator.DateComparator;
-import seedu.address.model.contact.comparator.NameComparator;
-
 class AddressBookSettingsTest {
-    AddressBookSettings addressBookSettings = new AddressBookSettings();
+    private AddressBookSettings addressBookSettings = new AddressBookSettings();
 
     @Test
-    void AddressBookSettings_invalidComparator_throwInvalidParameterError() {
+    void addressBookSettings_invalidComparator_throwInvalidParameterError() {
         assertThrows(InvalidParameterException.class, () -> new AddressBookSettings("invalid comparator"));
     }
 
