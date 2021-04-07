@@ -104,6 +104,13 @@ public class Task {
         return assignees.contains(assignee);
     }
 
+    public boolean hasAnyAssignees() {
+        if (assignees.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Returns an updated task with the assignee specified removed from the set of
      * assignees to this task.
