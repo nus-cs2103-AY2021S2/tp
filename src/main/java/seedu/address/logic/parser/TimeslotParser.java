@@ -41,8 +41,8 @@ public class TimeslotParser {
             + "must be:\n"
             + "next DAY TIME\n"
             + "Example:\n" + PREFIX_TIMESLOT_START
-            + "next Wednesday 12:12pm";
-    public static final String MESSAGE_INVALID_TIME_FORMAT = "Input format for time parameters must be: "
+            + "next Wednesday 12:12pm or next Wednesday\n"
+            + "Input format for time parameters must be: "
             + "hh:mm (In 24-Hour format) or hh:mmam/pm\n"
             + "Example:\n"
             + "15:12 or 03:12pm";
@@ -56,16 +56,18 @@ public class TimeslotParser {
             + "150M   - returns a duration of 150 minutes";
     private static final String PREFIX_DURATION_PARSE_SEQUENCE = "PT";
     private static final String REMOVE_WHITESPACE_REGEX = "\\s+";
+    private static final String MESSAGE_INVALID_TIME_FORMAT = "test";
     private static boolean isInvalidTime = false;
 
     /**
      * Parses a {@code String userInput} into a {@code LocalDateTime}.
      * Leading and trailing whitespaces will be trimmed. Raw User Input set to all Uppercase.
      * Multiple user Input formats are accepted and parsed accordingly, mainly in absolute
-     * date formats or the next relevant dateTime.
+     * date formats or the next relevant LocalDateTime.
      *
-     * @throws ParseException if the given {@code dateTime} does not
-     * conform to the expected date time format.
+     * @throws ParseException for the following scenarios:
+     * - if the given {@code LocalDateTime} does not conform to the expected date time format.
+     * - if the given {@code LocalDateTime} is a date time that has already occurred in the past as of now.
      */
     public static LocalDateTime parseDateTime(String userInput) throws ParseException {
         String formattedInput = userInput.toUpperCase().trim();
@@ -98,13 +100,11 @@ public class TimeslotParser {
      * Parses user input containing the next day, month or year. Time can remain the same or
      * revised into a new one as per user input.
      *
-     * @throws ParseException if the given {@code dateTime} does not
+     * @throws ParseException if the given {@code LocalDateTime} does not
      * conform to the expected date time format.
-     * @throws NullPointerException if the {@code timeInput} does not
-     * conform to the expected time format.
      */
     public static LocalDateTime parseNextDateTime(String userInput) throws ParseException {
-        final Pattern nextDateTimeFormat = Pattern.compile("(?<nextKeyword>\\w+)\\s(?<nextTimePeriod>\\w+)"
+        final Pattern nextDateTimeFormat = Pattern.compile("(?<nextKeyword>\\w+)\\s(?<nextDatePeriod>\\w+)"
                         + "\\s(?<timeInput>.*)", Pattern.CASE_INSENSITIVE);
         final Matcher nextDateTimeMatcher = nextDateTimeFormat.matcher(userInput);
 
@@ -117,10 +117,10 @@ public class TimeslotParser {
             LocalDateTime parsedDate = null;
 
             if (nextDateTimeMatcher.matches()) {
-                final String nextTimePeriod = nextDateTimeMatcher.group("nextTimePeriod");
+                final String nextDatePeriod = nextDateTimeMatcher.group("nextDatePeriod");
                 final String timeInput = nextDateTimeMatcher.group("timeInput").trim();
 
-                parsedDate = parseNextDate(nextTimePeriod);
+                parsedDate = parseNextDate(nextDatePeriod);
 
                 int[] hoursMinutesArray = parseNextTime(timeInput);
                 parsedDate = parsedDate.withHour(hoursMinutesArray[0]);
@@ -143,15 +143,20 @@ public class TimeslotParser {
         }
     }
 
-    public static LocalDateTime parseNextDate(String nextTimePeriod) {
+    /**
+     * Parses a {@code String nextDatePeriod} into a {@code LocalDateTime}.
+     * Adjusts the date in current LocalDateTime based on user next date input.
+     * Flips {@code isInvalidTime} if
+     */
+    public static LocalDateTime parseNextDate(String nextDatePeriod) {
         LocalDateTime currentDateTime = LocalDateTime.now().withSecond(0).withNano(0);
         LocalDateTime parsedDate = null;
 
-        if (Arrays.stream(Day.values()).anyMatch(e -> e.name().equals(nextTimePeriod))) {
-            parsedDate = currentDateTime.with(TemporalAdjusters.next(DayOfWeek.valueOf(nextTimePeriod)));
-        } else if (nextTimePeriod.contains("MONTH")) {
+        if (Arrays.stream(Day.values()).anyMatch(e -> e.name().equals(nextDatePeriod))) {
+            parsedDate = currentDateTime.with(TemporalAdjusters.next(DayOfWeek.valueOf(nextDatePeriod)));
+        } else if (nextDatePeriod.contains("MONTH")) {
             parsedDate = currentDateTime.plusMonths(1);
-        } else if (nextTimePeriod.contains("YEAR")) {
+        } else if (nextDatePeriod.contains("YEAR")) {
             parsedDate = currentDateTime.plusYears(1);
         } else {
             isInvalidTime = true;
@@ -163,9 +168,6 @@ public class TimeslotParser {
      * Parses a {@code String timeInput} into a {@code LocalDateTime}.
      * Adjusts the time in current LocalDateTime based on user time input.
      * Accommodates both 24-clock or Meridian time format.
-     *
-     * @throws NullPointerException if the {@code timeInput} does not
-     * conform to the expected time format.
      */
     public static int[] parseNextTime(String timeInput) {
 
@@ -190,9 +192,6 @@ public class TimeslotParser {
     /**
      * Removes Meridian format from a {@code String timeInput} to {@code String}.
      * Gets rid of Meridian Format of "AM" and "PM" in raw user time input.
-     *
-     * @throws NullPointerException if the {@code timeInput} does not
-     * conform to the expected time format.
      */
     public static String removeMeridian(String timeInput) {
         String timeSubString = null;
