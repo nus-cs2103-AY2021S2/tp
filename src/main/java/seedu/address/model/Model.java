@@ -104,6 +104,16 @@ public interface Model {
      */
     void setGroup(Name groupName, Group editedGroup);
 
+    /**
+     * Updates the current group to be displayed with the provided {@code currentGroup}.
+     */
+    void setCurrentGroup(Group currentGroup);
+
+    /**
+     * Returns a predicate that filters {@code Person}s to include only those in {@code currentGroup}
+     */
+    Predicate<Person> getCurrentGroupPredicate();
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
@@ -112,6 +122,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the filter of the filtered person list to filter by all persons, or persons in {@code currentGroup}.
+     */
+    void updateFilteredPersonList();
 
     /**
      * Returns an unmodifiable view of the filtered group list

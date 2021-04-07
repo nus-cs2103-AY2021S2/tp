@@ -137,8 +137,7 @@ public class FileUtil {
                 current = magicNumber[i];
                 if (current != null && bytes[i] != current) {
                     break;
-                }
-                if (i == magicNumber.length - 1 && (current == null || current == bytes[i])) {
+                } else if (i == magicNumber.length - 1) {
                     return true;
                 }
             }

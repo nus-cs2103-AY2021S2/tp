@@ -40,7 +40,7 @@ public class DeleteGroupCommand extends Command {
         }
 
         model.deleteGroup(group);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList();
 
         return new CommandResult(String.format(MESSAGE_DELETE_GROUP_SUCCESS, groupName));
     }

@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_FILE_NOT_FOUND;
 import static seedu.address.commons.core.Messages.MESSAGE_FILE_TOO_BIG;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE_EXTENSION;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE_SIGNATURE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -79,7 +78,7 @@ public class AddPictureCommand extends Command {
         Person editedPerson = personToEdit.deletePicture().withPicture(picture);
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList();
 
         return new CommandResult(String.format(MESSAGE_ADD_PICTURE_SUCCESS, editedPerson.getName()));
     }

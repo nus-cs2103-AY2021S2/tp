@@ -53,7 +53,7 @@ public class SetGoalCommand extends Command {
         Goal newGoal = new Goal(this.frequency);
         Person editedPerson = personToEdit.withGoal(newGoal);
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList();
         model.updateUpcomingDates();
 
         return new CommandResult(String.format(MESSAGE_ADD_GOAL_SUCCESS,

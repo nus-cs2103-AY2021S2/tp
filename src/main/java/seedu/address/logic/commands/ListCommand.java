@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Optional;
 
@@ -36,7 +35,8 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (this.name.isEmpty()) {
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            model.setCurrentGroup(null);
+            model.updateFilteredPersonList();
             return new CommandResult(MESSAGE_SUCCESS_DEFAULT);
         } else {
             Group group = model.getGroupMap().get(name.get());
@@ -46,7 +46,7 @@ public class ListCommand extends Command {
 
             //this will cause the UI to select the group cell.
             model.setGroup(group.getName(), group);
-            model.updateFilteredPersonList(p -> group.getPersonNames().contains(p.getName()));
+            model.updateFilteredPersonList();
             return new CommandResult(String.format(MESSAGE_SUCCESS_GROUP, group.getName()));
         }
     }
