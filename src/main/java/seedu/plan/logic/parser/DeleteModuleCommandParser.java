@@ -5,7 +5,6 @@ import java.util.stream.Stream;
 import seedu.plan.commons.core.Messages;
 import seedu.plan.commons.core.index.Index;
 import seedu.plan.logic.commands.DeleteModuleCommand;
-import seedu.plan.logic.commands.DeleteSemesterCommand;
 import seedu.plan.logic.parser.exceptions.ParseException;
 
 /**
