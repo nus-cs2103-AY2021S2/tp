@@ -1,6 +1,6 @@
 package dog.pawbook.model;
 
-import static dog.pawbook.model.Model.PREDICATE_SHOW_ALL_ENTITIES;
+import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_DOG_PREDICATE;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalEntities.ALICE;
 import static dog.pawbook.testutil.TypicalEntities.APPLE;
@@ -122,7 +122,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(database, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
+        modelManager.updateFilteredEntityList(IS_DOG_PREDICATE);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

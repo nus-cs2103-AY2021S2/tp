@@ -31,15 +31,13 @@ public class DeleteOwnerCommandTest {
 
     @Test
     public void execute_validIdUnfilteredList_success() {
-        Pair<Integer, Entity> pair = model.getFilteredEntityList().get(0);
-        int id = pair.getKey();
-        Entity entity = pair.getValue();
-        DeleteOwnerCommand deleteOwnerCommand = new DeleteOwnerCommand(id);
+        Entity entity = model.getEntity(ID_ONE);
+        DeleteOwnerCommand deleteOwnerCommand = new DeleteOwnerCommand(ID_ONE);
 
         String expectedMessage = DeleteOwnerCommand.MESSAGE_SUCCESS + entity;
 
         ModelManager expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
-        expectedModel.deleteEntity(pair.getKey());
+        expectedModel.deleteEntity(ID_ONE);
         expectedModel.deleteEntity(((Owner) entity).getDogIdSet().stream().findAny().get());
 
         assertCommandSuccess(deleteOwnerCommand, model, expectedMessage, expectedModel);

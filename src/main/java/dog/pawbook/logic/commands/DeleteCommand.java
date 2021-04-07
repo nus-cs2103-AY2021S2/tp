@@ -3,8 +3,6 @@ package dog.pawbook.logic.commands;
 import static dog.pawbook.commons.core.Messages.MESSAGE_ID_MISMATCH_FORMAT;
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ID_FORMAT;
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
-import static dog.pawbook.model.Model.COMPARATOR_ID_ASCENDING_ORDER;
-import static dog.pawbook.model.Model.PREDICATE_SHOW_ALL_ENTITIES;
 import static java.util.Objects.requireNonNull;
 
 import dog.pawbook.logic.commands.exceptions.CommandException;
@@ -55,16 +53,6 @@ public abstract class DeleteCommand<T extends Entity> extends Command {
         }
 
         return cls.cast(entityToDelete);
-    }
-
-    /**
-     * Updates the filtered list and sorts it in the desired order.
-     */
-    protected final void filteredListShowAllAscendingId(Model model) {
-        requireNonNull(model);
-
-        model.updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
-        model.sortEntities(COMPARATOR_ID_ASCENDING_ORDER);
     }
 
     protected abstract String getEntityWord();

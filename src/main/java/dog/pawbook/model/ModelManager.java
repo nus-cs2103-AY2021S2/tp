@@ -1,6 +1,7 @@
 package dog.pawbook.model;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
+import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_DOG_PREDICATE;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
@@ -37,6 +38,7 @@ public class ModelManager implements Model {
         this.database = new Database(database);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredEntities = new FilteredList<>(this.database.getEntityList());
+        filteredEntities.setPredicate(IS_DOG_PREDICATE);
     }
 
     public ModelManager() {

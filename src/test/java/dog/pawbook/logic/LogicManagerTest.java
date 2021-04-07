@@ -6,6 +6,7 @@ import static dog.pawbook.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_OWNER_PREDICATE;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalEntities.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -86,6 +87,7 @@ public class LogicManagerTest {
         Owner expectedOwner = new OwnerBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addEntity(expectedOwner);
+        expectedModel.updateFilteredEntityList(IS_OWNER_PREDICATE);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
