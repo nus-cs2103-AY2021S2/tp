@@ -14,7 +14,8 @@ Class ResultDisplay
 Class TaskListPanel
 Class UncompletedTaskListPanel
 Class CompletedTaskListPanel
-class ExpiredTaskListPanel
+Class ExpiredTaskListPanel
+Class TodaysTaskListPanel
 Class TaskCard
 Class StatusBarFooter
 Class CommandBox
@@ -43,9 +44,11 @@ TaskListPanel -down-> TaskCard
 TaskListPanel -down-> CompletedTaskListPanel
 TaskListPanel -down-> UncompletedTaskListPanel
 TaskListPanel -down-> ExpiredTaskListPanel
+TaskListPanel -down-> TodaysTaskListPanel
 UncompletedTaskListPanel -down-> TaskCard
 CompletedTaskListPanel -down-> TaskCard
 ExpiredTaskListPanel -down-> TaskCard
+TodaysTaskListPanel -down-> TaskCard
 
 MainWindow -left-|> UiPart
 
