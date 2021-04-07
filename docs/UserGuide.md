@@ -178,9 +178,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 * Edits the student at the specified `INDEX`.
   
 * The index refers to the index number shown in the displayed student list.
-  
-* The index **must be a positive integer** 1, 2, 3, …​
-  
+
+* The index **must be a positive integer** ranging from 1 to 2147483647.
+
 * At least one of the optional fields must be provided.
   
 * Existing values will be updated to the input values.
@@ -307,9 +307,9 @@ Format: `levelup ex/[INDEX]...`
   
 * The index refers to the index number shown in the displayed student list. Indexes are used to 
   indicate students who are to be excluded from the advancement.
-  
-* The index **must be a positive integer** 1, 2, 3, …​
-  
+
+* The index **must be a positive integer** ranging from 1 to 2147483647.
+
 * Multiple indexes can be taken in, including no indexes. Indexes must be separated by spaces.
 
 </div>
@@ -336,9 +336,9 @@ Format: `leveldown ex/[INDEX]...`
   
 * The index refers to the index number shown in the displayed student list. Indexes are used to
   indicate students who are to be excluded from the demotion.
-  
-* The index **must be a positive integer** 1, 2, 3, …​
-  
+
+* The index **must be a positive integer** ranging from 1 to 2147483647.
+
 * Multiple indexes can be taken in, including no indexes. Indexes must be separated by spaces.
 
 </div>
@@ -365,7 +365,7 @@ Format: `detail INDEX`
 
 * The index refers to the index number shown in the displayed student list.
 
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** ranging from 1 to 2147483647.
 
 </div>
 
@@ -387,7 +387,7 @@ Format: `delete INDEX`
   
 * The index refers to the index number shown in the displayed student list.
   
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** ranging from 1 to 2147483647. 
 
 </div>
 
@@ -431,9 +431,8 @@ Format: `delete-date INDEX`
 * Deletes the important date at the specified `INDEX`.
   
 * The index refers to the index number shown in the displayed important dates list.
-  
-* The index **must be a positive integer** 1, 2, 3, …​
 
+* The index **must be a positive integer** ranging from 1 to 2147483647.
 </div>
 
 Examples:
