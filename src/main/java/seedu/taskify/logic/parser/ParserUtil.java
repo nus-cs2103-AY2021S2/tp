@@ -25,7 +25,7 @@ import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.StatusType;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various Parser classes.
  */
 public class ParserUtil {
 

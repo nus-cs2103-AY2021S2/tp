@@ -2,7 +2,9 @@ package seedu.taskify.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_DELETE_BY_STATUS_USAGE;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_INDEX;
 import static seedu.taskify.logic.parser.ParserUtil.ASSERTION_ERROR_PARSE_MULTIPLE_INDEX_CALLED;
 import static seedu.taskify.logic.parser.ParserUtil.parseInputToStatus;
@@ -24,8 +26,8 @@ import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
-//import seedu.taskify.model.task.Status;
-//import seedu.taskify.model.task.StatusType;
+import seedu.taskify.model.task.Status;
+import seedu.taskify.model.task.StatusType;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -79,20 +81,23 @@ public class ParserUtilTest {
                 ) -> parseMultipleIndex(onlyOneIndexAndValid));
     }
 
-    /*
     @Test
     public void parseInputToStatus_validArgs_returnsCorrectStatus() throws ParseException {
         assertEquals(new Status(StatusType.UNCOMPLETED), parseInputToStatus(" uncompleted -all"));
         assertEquals(new Status(StatusType.COMPLETED), parseInputToStatus(" completed -all"));
         assertEquals(new Status(StatusType.EXPIRED), parseInputToStatus(" expired  -all"));
     }
-     */
+
 
 
     // test for more rogue inputs in v1.4 like "... --all"
     @Test
     public void parseInputToStatus_invalidArgs_throwsParseException() {
-        assertThrows(ParseException.class, () -> parseInputToStatus("in progress all"));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                MESSAGE_DELETE_BY_STATUS_USAGE), () -> parseInputToStatus("expired all"));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                MESSAGE_DELETE_BY_STATUS_USAGE), () -> parseInputToStatus("completed ---all"));
+
     }
 
     @Test

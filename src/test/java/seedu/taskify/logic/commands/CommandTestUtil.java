@@ -31,8 +31,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_CS2103T_TP = "Bob Choo";
     public static final String VALID_DESCRIPTION_CS2103T_IP = "crazy workload for 6 weeks";
     public static final String VALID_DESCRIPTION_CS2103T_TP = "save me lord";
-    public static final String VALID_DATE_CS2103T_IP = "2020-12-25 22:30";
-    public static final String VALID_DATE_CS2103T_TP = "2019-12-25 22:30";
+    public static final String VALID_DATE_CS2103T_IP = "2022-12-25 22:30";
+    public static final String VALID_DATE_CS2103T_TP = "2023-12-25 22:30";
     public static final String VALID_TAG_DEBUGGING = "debugging";
     public static final String VALID_TAG_CS2103T_TP = "team";
 

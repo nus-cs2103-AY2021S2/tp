@@ -5,7 +5,6 @@ import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAG
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_DELETE_BY_STATUS_USAGE;
 import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.taskify.model.task.Status.INVALID_STATUS_STRING;
 import static seedu.taskify.testutil.Assert.assertThrows;
 import static seedu.taskify.testutil.TypicalIndexes.INDEXES_FIRST_TO_THIRD_TASK;
 
@@ -16,8 +15,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import seedu.taskify.logic.commands.DeleteMultipleCommand;
 import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.StatusType;
-//import seedu.taskify.model.task.Status;
-//import seedu.taskify.model.task.StatusType;
 
 public class DeleteMultipleCommandParserTest {
 
@@ -65,16 +62,9 @@ public class DeleteMultipleCommandParserTest {
 
     // need to extend testing for this for more rogue inputs like "... ---all", in v1.4
     @ParameterizedTest
-    @ValueSource(strings = {" Expired all", "Uncompleted all", "Completed -all"})
+    @ValueSource(strings = {" expired all", "uncompleted --all", "Completed -all"})
     public void parse_deleteByStatusAndArgsInvalid_throwsParseException(String input) {
-        switch (input) {
-        case "Completed -all":
-            assertParseFailure(parser, input, INVALID_STATUS_STRING);
-            break;
-        default:
-            assertParseFailure(parser, input, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    MESSAGE_DELETE_BY_STATUS_USAGE));
-        }
-
+        assertParseFailure(parser, input, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                MESSAGE_DELETE_BY_STATUS_USAGE));
     }
 }

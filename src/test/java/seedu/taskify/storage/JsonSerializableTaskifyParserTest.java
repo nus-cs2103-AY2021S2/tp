@@ -1,6 +1,6 @@
 package seedu.taskify.storage;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.taskify.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.taskify.commons.exceptions.IllegalValueException;
 import seedu.taskify.commons.util.JsonUtil;
-//import seedu.taskify.model.Taskify;
-//import seedu.taskify.testutil.TypicalTasks;
+import seedu.taskify.model.Taskify;
+import seedu.taskify.testutil.TypicalTasks;
 
 public class JsonSerializableTaskifyParserTest {
 
@@ -20,7 +20,7 @@ public class JsonSerializableTaskifyParserTest {
     private static final Path INVALID_TASK_FILE = TEST_DATA_FOLDER.resolve("invalidTaskTaskify.json");
     private static final Path DUPLICATE_TASK_FILE = TEST_DATA_FOLDER.resolve("duplicateTaskTaskify.json");
 
-    /*
+
     @Test
     public void toModelType_typicalTasksFile_success() throws Exception {
         JsonSerializableTaskify dataFromFile = JsonUtil.readJsonFile(TYPICAL_TASKS_FILE,
@@ -29,7 +29,7 @@ public class JsonSerializableTaskifyParserTest {
         Taskify typicalTasksTaskify = TypicalTasks.getTypicalAddressBook();
         assertEquals(taskifyFromFile, typicalTasksTaskify);
     }
-     */
+
 
     @Test
     public void toModelType_invalidTaskFile_throwsIllegalValueException() throws Exception {
