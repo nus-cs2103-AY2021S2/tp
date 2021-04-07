@@ -926,3 +926,50 @@ starting point for testers to work on; testers are expected to do more *explorat
 
     2. Re-launch the app by double-clicking the jar file. <br>
        Expected: The most recent window size and location is retained.
+
+3. Saving command history
+
+    1. Enter a few successful commands in SunRez. Then check the command history with `history`. Close the window.
+
+    2. Re-launch the app by double-clicking the jar file. Check the command history again with `history`. <br>
+       Expected: The same command history (possibly with one extra `history` and/or `exit` command) is displayed.
+
+### Command history
+
+1. Viewing command history
+
+    1. Prerequisites: There are fewer than 1000 successful commands in command history.
+
+    2. Test case: `history` <br>
+       Expected: All previous successful commands are displayed, or a message indicating that there are no commands
+       in history (if command history is empty).
+
+    3. Test case: `history 1000` <br>
+       Expected: An error message is shown indicating that there are fewer than 1000 successful commands in command
+       history.
+
+    4. Other incorrect `history` commands to try: `history x` where `x` is either a non-positive number or not a number
+       at all. E.g. `history -1` and `history asd`. <br>
+       Expected: An error message indicating the problem is shown.
+
+2. Accessing command history
+
+    1. Prerequisites: There are at least 2 successful commands in command history, and the command box is in focus
+       (if it is not, simply click on the command box).
+
+    2. Press the `UP` arrow key on the keyboard. <br>
+       Expected: The command box is filled with the text of the most recent successful command.
+
+    3. After step 2, press the `UP` arrow key again. <br>
+       Expected: The command box is filled with the text of the next most recent successful command.
+
+    4. After step 3, press the `DOWN` arrow key. <br>
+       Expected: The command box is filled with the same command text as in step 2.
+
+    5. After step 4, press the `DOWN` arrow key. <br>
+       Expected: The command box is emptied.
+
+    6. Other tests to try: press the `UP` and `DOWN` arrow keys any number of times in any order.
+       Expected: `UP` fills the command box with the next oldest command and `DOWN` fills the command box with the next
+       most recent command. When the oldest command is reached, it should remain in the command box even if `UP` is
+       pressed again.
