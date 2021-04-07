@@ -34,7 +34,7 @@ public class DoneTaskCommandParser implements Parser<DoneTaskCommand> {
             return new DoneTaskCommand(targetIndexes);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage() + DoneTaskCommand.MESSAGE_USAGE), pe);
+                    String.format(pe.getMessage() + "%1$s", DoneTaskCommand.MESSAGE_USAGE), pe);
         }
     }
 }
