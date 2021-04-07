@@ -117,15 +117,16 @@ Example output:
 
 Format for adding: `addp d/DESCRIPTION [OPTIONAL: t/TAG...]`
 
-Format for deleting: `deletep d/DESCRIPTION`
+Format for deleting: `deletep p/PLAN_NUMBER`
 
 Shows 2 rows:
-- Whether plan is added/deleted is successful/unsuccessful
+- Whether plan is added/deleted successfully/unsuccessfully
 - Plan number
 
 Constraints:
-- Trying to add a plan that already exist will not be allowed
+- Trying to add a plan with invalid description will not be allowed
 - Trying to delete a plan that does not exist will not be allowed
+- Tags provided when adding a plan should contain only alphanumeric characters with no spaces
 
 Example output for adding plan:
 ![add_plan](images/AddPlan.png)
