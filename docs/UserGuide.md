@@ -48,18 +48,18 @@ App-Ointment is a **desktop app for managing and scheduling patient appointments
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Parameters in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Parameters with `…`​ after them can be used multiple times (including zero times).<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters can be in any order.<br>
+* Parameters with prefixes (e.g. `/n`, `/p`, `/t`) can be in any order.<br>
   e.g. if the command format specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, and you specified it multiple times instead, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `clear`, `exit`, `help`, `list-appt`, `list-doctor` and `list-patient`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `clear-appt`, `clear-doctor`, `clear-patient`, `exit`, `help`, `list-appt`, `list-doctor` and `list-patient`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -99,7 +99,7 @@ Format: `delete-patient [--force] INDEX`
 * The index refers to the index number shown in the displayed patient records.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The specified patient can only be deleted if there are no existing appointments associated with him/her in the appointment schedule.
-  Otherwise, `--force` must be included to force delete the specified patient, along with all associated appointments in the appointment schedule.
+  Otherwise, `--force` must be included before `INDEX` to force delete the specified patient, along with all associated appointments in the appointment schedule.
 
 Examples:
 * `list-patient` followed by `delete-patient 3` deletes the 3rd patient in the patient records.
@@ -114,7 +114,7 @@ Format: `edit-patient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…�
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient records. The index **must be a positive integer** 1, 2, 3, …​<br>
 * At least one of the optional fields must be provided.<br>
 * Existing values will be updated to the input values.<br>
-* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.<br>
+* When editing tags, the existing tags of the patient will be removed i.e. adding of tags is not cumulative.<br>
 * You can remove all the patient’s tags by typing `t/` without specifying any tags after it.<br>
 * Raises an exception if there are conflicts in the new appointment schedule for the patient and the doctor.<br>
 
@@ -123,11 +123,11 @@ Examples:
 * `edit-patient 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
 ### Locating patients by name: `find-patient`
-Finds patients whose names contain any of the given keywords.<br>
+Find patients whose names contain any of the given keywords.<br>
 
 Format: `find-patient KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `edward` will match `Edward`.
+* The search is case-insensitive. e.g. `edward` will match `Edward`.
 * The order of the keywords does not matter. e.g. `Edward Charlotte` will match `Charlotte Edward`.
 * Only the name is searched.
 * Only full words will be matched e.g. `Edwar` will not match `Edward`.
@@ -168,21 +168,17 @@ Examples:
 
 ### Clearing all entries in doctor records: `clear-doctor`
 Clears all entries from the doctor records. <br>
-* Entries in the doctor records can only be cleared if there are no existing appointments in the appointment schedule.
-* Otherwise, `clear-appt` have to called first.
 
-Format: `clear-doctor`
+Format: `clear-doctor` <br>
+
+Similar requirements as [`clear-patient`](#clearing-all-entries-in-patient-records-clear-patient) <br>
 
 ### Deleting a doctor : `delete-doctor`
 Deletes the specified doctor from the doctor records.<br>
 
-Format: `delete-doctor [--force] INDEX`
+Format: `delete-doctor [--force] INDEX` <br>
 
-* Deletes the doctor at the specified `INDEX`.
-* The index refers to the index number shown in the displayed doctor records.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The specified doctor can only be deleted if there are no existing appointments associated with him/her in the appointment schedule.
-Otherwise, `--force` must be included to force delete the specified doctor, along with all associated appointments in the appointment schedule. 
+Similar requirements as [`delete-patient`](#deleting-a-patient--delete-patient) <br>
 
 Examples:
 * `list-doctor` followed by `delete-doctor 3` deletes the 3rd doctor in the doctor records.
@@ -198,7 +194,7 @@ Format: `edit-doctor INDEX [n/NAME] [t/TAG]…​`
 * Edits the doctor at the specified `INDEX`. The index refers to the index number shown in the displayed doctor records. The index must be a **positive integer** 1, 2, 3, …​<br>
 * At least one of the optional fields must be provided.<br>
 * Existing values will be updated to the input values.<br>
-* When editing tags, the existing tags of the doctor will be removed i.e adding of tags is not cumulative.<br>
+* When editing tags, the existing tags of the doctor will be removed i.e. adding of tags is not cumulative.<br>
 * You can remove all the doctor’s tags by typing `t/` without specifying any tags after it.<br>
 * Raises an exception if there are conflicts in the new appointment schedule for the patient and the doctor.<br>
 
@@ -207,16 +203,11 @@ Examples:
 * `edit-doctor 2 n/Dr Betsy Crower t/` Edits the name of doctor under the 2nd displayed doctor record to be Betsy Crower and clears all existing tags.
 
 ### Locating doctors by name: `find-doctor`
-Finds doctors in the doctor records whose names contain any of the given keywords.<br>
+Find doctors in the doctor records whose names contain any of the given keywords.<br>
 
 Format: `find-doctor KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `strange` will match `Strange`.
-* The order of the keywords does not matter. e.g. `Strange Meredith` will match `Meredith Strange`.
-* Only the name is searched.
-* Only full words will be matched e.g. `Jekyl` will not match `Jekyll`.
-* Doctors matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Strange Meredith` will return `Dr Strange` and `Dr Meredith`.
+Similar requirements as [`find-patient`](#locating-patients-by-name-find-patient) <br>
 
 Examples:
 * `find-doctor murphy who` returns `Dr Murphy` and `Dr Who`<br>
@@ -294,7 +285,7 @@ Format: `edit-appt APPOINTMENT_INDEX [pt/PATIENT_INDEX] [dr/DOCTOR_INDEX] [at/TI
 
 * Existing values will be updated to the input values.<br>
 
-* When editing tags, the existing tags of the appointment will be removed i.e adding of tags is not cumulative.<br>
+* When editing tags, the existing tags of the appointment will be removed i.e. adding of tags is not cumulative.<br>
 
 * You can remove all the person’s tags by typing t/ without specifying any tags after it.<br>
 
@@ -313,7 +304,7 @@ Format: `find-appt [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHO
 
 * At least one of the optional fields must be provided.<br>
 
-* The search is case-insensitive. e.g `n/alex` will match `n/Alex`<br>
+* The search is case-insensitive. e.g. `n/alex` will match `n/Alex`<br>
 
 * Only full words will be matched. e.g. `n/freddi` will not match `n/freddie`<br>
 
@@ -321,7 +312,7 @@ Format: `find-appt [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHO
 
 * Certain fields such as datetime, phone number and email do not support a search by keywords and require a match with the entire field description for the search condition to be satisfied.
 
-* Where multiple search fields are specified, the search is conditioned on the satisfaction of <strong>all</strong> of the search fields' subconditions. e.g. `find n/Alex Edward dr/Jekyll` will match appointments that satisfy both:
+* Where multiple search fields are specified, the search is conditioned on the satisfaction of <strong>all</strong> of the search fields' sub-conditions. e.g. `find n/Alex Edward dr/Jekyll` will match appointments that satisfy both:
   - Jekyll in the assigned doctor's name; and
   - Either Alex or Edward in the patient's name.
 
