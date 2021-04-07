@@ -22,7 +22,9 @@ public class StringUtilTest {
 
         // EP: empty strings
         assertEquals(INVALID_INPUT, StringUtil.checkIndexValidity("")); // Boundary value
+        assertNotEquals(VALID_INTEGER, StringUtil.checkIndexValidity(""));
         assertEquals(INVALID_INPUT, StringUtil.checkIndexValidity("  "));
+        assertNotEquals(VALID_INTEGER, StringUtil.checkIndexValidity("  "));
 
         // EP: not a number
         assertEquals(INVALID_INPUT, StringUtil.checkIndexValidity("a"));

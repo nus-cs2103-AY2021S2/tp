@@ -60,6 +60,14 @@ public class ClearAssigneesCommandTest {
     }
 
     @Test
+    public void execute_invalidIntegerUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(Integer.MAX_VALUE + 1);
+        ClearAssigneesCommand clearAssigneesCommand = new ClearAssigneesCommand(outOfBoundIndex);
+
+        assertCommandFailure(clearAssigneesCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
     public void execute_validIndexFilteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
