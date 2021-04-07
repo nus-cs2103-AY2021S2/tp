@@ -30,7 +30,7 @@ public class StatsCommand extends Command {
             + "Other Deliveries : %13$s\n";
 
     public final String[] tagList = {"[hot]", "[liquid]", "[heavy]", "[fragile]",
-            "[bulky]", "[food]", "[cold]", "[urgent]"};
+        "[bulky]", "[food]", "[cold]", "[urgent]"};
     public final HashMap<String, Integer> tagMap = new HashMap<>();
 
 
@@ -129,7 +129,8 @@ public class StatsCommand extends Command {
                         + "%" + " )",
                 deliveryDue + " ( " + String.format("%.2f", deliveriesDuePercentage)
                         + "%" + " )",
-                deliveryNotDue - deliveriesDone + " ( " + String.format("%.2f", 100 - deliveriesDuePercentage - donePercentage)
+                deliveryNotDue - deliveriesDone + " ( " + String.format("%.2f",
+                        100 - deliveriesDuePercentage - donePercentage)
                         + "%" + " )",
                 fragile + " ( " + String.format("%.2f", fragilePercentage) + "%" + " )",
                 liquid + " ( " + String.format("%.2f", liquidPercentage) + "%" + " )",
