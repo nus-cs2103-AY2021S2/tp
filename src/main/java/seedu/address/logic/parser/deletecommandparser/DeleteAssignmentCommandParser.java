@@ -1,6 +1,5 @@
 package seedu.address.logic.parser.deletecommandparser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -20,24 +19,22 @@ import seedu.address.model.module.Title;
 public class DeleteAssignmentCommandParser extends DeleteCommandParser implements Parser<DeleteAssignmentCommand> {
 
     /**
-     * Parses the {@code String} of arguments of a delete assignment command
-     * to execute the specific delete command
-     * @param args
-     * @return DeleteAssignmentCommand
-     * @throws ParseException
+     * Parses the given {@code String} of arguments in the context of the DeleteAssignmentCommand
+     * and returns an DeleteAssignmentCommand object for execution.
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     @Override
     public DeleteAssignmentCommand parse(String args) throws ParseException {
-        try {
-            ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_EXAM, PREFIX_ASSIGNMENT);
-            Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE).get());
-            Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_ASSIGNMENT).get());
-            return new DeleteAssignmentCommand(title, index);
-        } catch (ParseException pe) {
-            throw new ParseException(
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteAssignmentCommand.MESSAGE_USAGE), pe);
-        }
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_EXAM, PREFIX_ASSIGNMENT);
 
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE)
+                .filter(Title::isValidTitle)
+                .orElseThrow(() -> new ParseException(
+                        String.format(Title.MESSAGE_CONSTRAINTS, "Modules"))));
+
+        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_ASSIGNMENT).get());
+
+        return new DeleteAssignmentCommand(title, index);
     }
 }

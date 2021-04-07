@@ -2,10 +2,6 @@ package seedu.address.logic.commands.editcommand;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.time.LocalDateTime;
 
@@ -18,16 +14,11 @@ import seedu.address.model.module.Module;
 
 public class EditAssignmentCommand extends EditCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an assignment in RemindMe."
-            + "\nParameters: "
-            + PREFIX_MODULE + "MODULE TITLE "
-            + PREFIX_ASSIGNMENT + "ASSIGNMENT INDEX\n"
-            + "[" + PREFIX_DESCRIPTION + "NEW DESCRIPTION OR "
-            + PREFIX_DEADLINE + "NEW DEADLINE]\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103T "
-            + PREFIX_ASSIGNMENT + "1 "
-            + PREFIX_DESCRIPTION + "Complete DG";
+    public static final String MESSAGE_USAGE =
+            "Missing necessary prefixes: m/, a/, and [d/ or by/]\n"
+            + "At least d/ or by/ must be used.\n"
+            + "Assignment: edit m/TITLE a/INDEX [d/DESCRIPTION or by/DEADLINE]\n"
+            + "Example: edit m/MOD1 a/1 by/03/02/2021 2359";
 
     public static final String MESSAGE_SUCCESS = "Assignment edited: %1$s";
     public static final String MESSAGE_NO_MODULE = "This module does not exists in RemindMe";

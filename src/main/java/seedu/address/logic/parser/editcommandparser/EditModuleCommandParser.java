@@ -36,7 +36,11 @@ public class EditModuleCommandParser extends EditCommandParser implements Parser
         }
 
         int intIndex = index.getOneBased();
-        Title edited = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE).get());
+        Title edited = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE)
+                .filter(Title::isValidTitle)
+                .orElseThrow(() -> new ParseException(
+                        String.format(Title.MESSAGE_CONSTRAINTS, "Modules")
+                )));
 
         return new EditModuleCommand(intIndex, edited);
     }
