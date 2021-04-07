@@ -17,9 +17,23 @@ features a Graphical User Interface (GUI) but is optimized for use via a Command
 * Keeps track of student records
 * Keeps track of room records
 
-## About this Guide
+## SunRez User Interface (UI)
+The following image shows the different parts of the SunRez application window:
 
-### User Interface
+![Ui Layout](images/UiLayout.png)
+
+### Using the UI
+
+SunRez is optimized for fast typists, so most input to SunRez takes the form of commands. To execute a command, 
+simply type it into the **Command Box** then press `ENTER` on the keyboard. The result (or an error message) will be
+displayed in the **Result Box** following a command execution. Details about specific commands can be found in the 
+[features](#features) section.
+
+An error message may be shown for various reasons. Most commonly, one is shown if a command cannot be parsed (that is,
+if SunRez cannot understand the format of your command) or if a command has been given parameters which are out of
+the acceptable range. In the following sections, more information is given about acceptable 
+[command formats](#command-format), [command parameters](#command-parameters), and the 
+[command parsing process](#command-parsing). 
 
 ### Command Format
 
@@ -40,7 +54,7 @@ Commands in this user guide follow this format:
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `ilist`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
+  
 ### Command Parsing
 
 #### Repeated parameters
