@@ -1,6 +1,7 @@
 package seedu.plan.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.plan.logic.parser.CliSyntax.PREFIX_SEM_NUMBER;
 
 import seedu.plan.logic.commands.exceptions.CommandException;
 import seedu.plan.model.Model;
@@ -14,8 +15,10 @@ public class CurrentSemesterCommand extends Command {
 
     public static final String COMMAND_WORD = "current";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "s/SEM_NUMBER\n: "
-            + "Marks the supplied semester as the current one.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Marks the supplied semester as the current one. "
+            + "Parameters: "
+            + PREFIX_SEM_NUMBER + "SEM_NUMBER";
 
     public static final String MESSAGE_SUCCESS = "Successfully marked current semester: %1$d";
 
