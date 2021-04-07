@@ -175,10 +175,13 @@ public class Endpoint {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
 
-        builder.append("Method:\n")
-                .append(getMethod()).append("\n")
-                .append("\nAddress:\n")
-                .append(getAddress()).append("\n");
+        // builder.append("Method:\n")
+        //         .append(getMethod())
+        //         .append("\n");
+
+        builder.append("Address:\n")
+                .append(getAddress())
+                .append("\n");
 
         if (!data.isEmpty()) {
             builder.append("\nData:\n")
@@ -205,16 +208,16 @@ public class Endpoint {
             builder.append("\n");
         }
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
+        Set<Tag> tagSet = getTags();
+        if (!tagSet.isEmpty()) {
             builder.append("\nTags:\n");
-            tags.forEach(builder::append);
+            tagSet.forEach(builder::append);
             builder.append("\n");
         }
 
         if (response != null) {
             builder.append("\nLast Response:\n")
-                    .append(getResponse());
+                    .append(getResponse().getResponseEntity());
         }
         builder.append("\n");
 

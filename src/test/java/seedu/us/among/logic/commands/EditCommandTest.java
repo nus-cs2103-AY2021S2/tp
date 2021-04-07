@@ -12,7 +12,7 @@ import static seedu.us.among.logic.commands.CommandTestUtil.VALID_METHOD_POST;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_CAT;
 import static seedu.us.among.logic.commands.CommandTestUtil.VALID_TAG_COOL;
 import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.us.among.logic.commands.CommandTestUtil.assertEditCommandSuccess;
 import static seedu.us.among.logic.commands.CommandTestUtil.showEndpointAtIndex;
 import static seedu.us.among.testutil.TypicalEndpoints.getTypicalEndpointList;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_FIRST_ENDPOINT;
@@ -58,7 +58,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new EndpointList(model.getEndpointList()), new UserPrefs());
         expectedModel.setEndpoint(model.getFilteredEndpointList().get(0), editedEndpoint);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertEditCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new EndpointList(model.getEndpointList()), new UserPrefs());
         expectedModel.setEndpoint(lastEndpoint, editedEndpoint);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertEditCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new EndpointList(model.getEndpointList()), new UserPrefs());
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertEditCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -109,7 +109,7 @@ public class EditCommandTest {
         expectedModel.updateFilteredEndpointList(filteredModelPred);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENDPOINT_SUCCESS, editedEndpoint);
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertEditCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

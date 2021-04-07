@@ -109,6 +109,34 @@ public class CommandTestUtil {
 
     /**
      * Convenience wrapper to
+     * {@link #assertAddCommandSuccess(Command, Model, CommandResult, Model, Endpoint)} that
+     * takes a string {@code expectedMessage}.
+     */
+    public static void assertAddCommandSuccess(Command command, Model actualModel, String expectedMessage,
+            Model expectedModel, Endpoint endpoint) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, endpoint, false);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to
+     * {@link #assertEditCommandSuccess(Command, Model, CommandResult, Model, Endpoint)} that
+     * takes a string {@code expectedMessage}.
+     */
+    public static void assertEditCommandSuccess(Command command, Model actualModel, String expectedMessage,
+            Model expectedModel) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            String resultString = result.getFeedbackToUser();
+            assertEquals(expectedMessage, resultString);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException | RequestException | AbortRequestException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Convenience wrapper to
      * {@link #assertCommandSuccess(Command, Model, CommandResult, Model)} that
      * takes a string {@code expectedMessage}.
      */

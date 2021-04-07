@@ -15,6 +15,8 @@ import seedu.us.among.commons.util.JsonUtil;
 public class Response {
     public static final String MESSAGE_CONSTRAINTS = "Responses can take any values, and it should not be blank";
     public static final String VALIDATION_REGEX = ".*";
+    public static final String EMPTY_RESPONSE = "";
+    public static final String EMPTY_RESPONSE_STRING = "No Data";
 
     public final String protocolVersion;
     public final String statusCode;
@@ -27,12 +29,12 @@ public class Response {
      * Constructs an empty {@code Response}.
      */
     public Response() {
-        this.protocolVersion = "";
-        this.statusCode = "";
-        this.reasonPhrase = "";
-        this.statusLine = "";
-        this.responseEntity = "";
-        this.responseTime = "";
+        this.protocolVersion = EMPTY_RESPONSE;
+        this.statusCode = EMPTY_RESPONSE;
+        this.reasonPhrase = EMPTY_RESPONSE;
+        this.statusLine = EMPTY_RESPONSE;
+        this.responseEntity = EMPTY_RESPONSE;
+        this.responseTime = EMPTY_RESPONSE;
     }
 
     /**
@@ -56,6 +58,18 @@ public class Response {
     }
 
     /**
+     * Returns true if current statusCode and reasonPhrase are empty.
+     * @return a boolean
+     */
+    public boolean isReasonEmpty() {
+        boolean firstCondition = this.statusCode.equals(EMPTY_RESPONSE)
+                && this.reasonPhrase.equals(EMPTY_RESPONSE);
+        boolean secondCondition = this.statusCode.equals(EMPTY_RESPONSE_STRING)
+                && this.reasonPhrase.equals(EMPTY_RESPONSE_STRING);
+        return firstCondition || secondCondition;
+    }
+
+    /**
      * Returns true if a given string is a valid response.
      */
     public static boolean isValidResponse(String protocolVersion, String statusCode, String reasonPhrase,
@@ -67,36 +81,36 @@ public class Response {
     }
 
     public String getProtocolVersion() {
-        if (this.protocolVersion.equals("")) {
-            return "No Data";
+        if (this.protocolVersion.equals(EMPTY_RESPONSE)) {
+            return EMPTY_RESPONSE_STRING;
         }
         return this.protocolVersion;
     }
 
     public String getStatusCode() {
-        if (this.statusCode.equals("")) {
-            return "No Data";
+        if (this.statusCode.equals(EMPTY_RESPONSE)) {
+            return EMPTY_RESPONSE_STRING;
         }
         return this.statusCode;
     }
 
     public String getReasonPhrase() {
-        if (this.reasonPhrase.equals("")) {
-            return "No Data";
+        if (this.reasonPhrase.equals(EMPTY_RESPONSE)) {
+            return EMPTY_RESPONSE_STRING;
         }
         return this.reasonPhrase;
     }
 
     public String getStatusLine() {
-        if (this.statusLine.equals("")) {
-            return "No Data";
+        if (this.statusLine.equals(EMPTY_RESPONSE)) {
+            return EMPTY_RESPONSE_STRING;
         }
         return this.statusLine;
     }
 
     public String getResponseEntity() {
-        if (this.responseEntity.equals("")) {
-            return "No Data";
+        if (this.responseEntity.equals(EMPTY_RESPONSE)) {
+            return EMPTY_RESPONSE_STRING;
         }
         try {
             return JsonUtil.toPrettyPrintJsonString(this.responseEntity);
@@ -106,8 +120,8 @@ public class Response {
     }
 
     public String getResponseTime() {
-        if (this.responseTime.equals("")) {
-            return "No Data";
+        if (this.responseTime.equals(EMPTY_RESPONSE)) {
+            return EMPTY_RESPONSE_STRING;
         }
         return this.responseTime;
     }

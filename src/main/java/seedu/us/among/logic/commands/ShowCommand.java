@@ -46,7 +46,7 @@ public class ShowCommand extends Command {
         }
 
         Endpoint endpointToShow = lastShownList.get(index.getZeroBased());
-        return new CommandResult(endpointToShow.toString());
+        return new CommandResult(endpointToShow.toString(), endpointToShow, false);
     }
 
 
