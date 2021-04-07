@@ -498,15 +498,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see instructions help page     | refer to help page when I forget how to use the App                 |
 | `* * *`  | user                                       | exit the App                   |                  |
-| `* * *`  | student taking a module                    | add module                     | keep track of the module exams, assignments                                                                       |
-| `* * *`  | student having assignments                 | add assignments to module      | keep track of the assignment deadline                                  |
+| `* * *`  | student taking a module                    | add module                     | keep track of the module exams, assignments |
+| `* * *`  | student having assignments                 | add assignments to module      | keep track of the assignment deadline |
 | `* * *`  | student having exams                       | add exams to module            | keep track of the exam start time |
 | `* * *`  | user with friends                          | to track of their birthdays    | wish them happy birthday promptly |
-| `* * *`  | user                                       | edit a deadline          | can adjust schedule when there is a change of plan |
-| `* *`    | user                                       | view events in a calendar view   | to have a better sense of the upcoming events                |
-| `* *`    | forgetful student | get reminded about the most urgent events/assignments/exams          | finish the deadlines on time   
-| `* `     | student                                    | distinguish among modules,exams and assignments | |
-| `* `     | student                                     | view which friend of mine is enrolled in the same module/event | seek help from them |
+| `* * *`  | user                                       | add general events             | keep track of events happening outside school curriculum |
+| `* * *`  | user                                       | edit a module                  | adjust module name if module name changes |
+| `* * *`  | user                                       | edit a assignment              | can adjust schedule when there is a change of plan |
+| `* * *`  | user                                       | edit a exam                    | can adjust schedule when there is a change of plan |
+| `* * *`  | user                                       | edit a birthday                | fine tune person name and birthday according |
+| `* * *`  | user                                       | edit a general event           | adjust schedule when there is a change of plan |
+| `* *`    | user                                       | view events in a calendar view    | to have a better sense of the upcoming events                |
+| `* *`    | forgetful student                          | be reminded about upcoming events | respond to upcoming events accordingly   
 
 *{More to be added}*
 
@@ -600,6 +603,124 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. System display duplicate exam error message.
     <br> Use case ends.
 
+## Use Case: `UC06` - add birthday
+
+**MSS:**
+
+1. User enters command to add a person and his/her birthday.
+2. System adds person with his/her birthday and displays person info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+* 1b. System detects that person is present in system.
+    * 1b1. System display duplicate person error message.
+    <br> Use case ends.      
+
+### Use Case: `UC07` - add general events
+
+**MSS:**
+
+1. User enters command to add a general event.
+2. System adds general event and displays general event info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+* 1b. System detects that general event is present in system.
+    * 1b1. System display duplicate event error message.
+    <br> Use case ends. 
+
+### Use Case: `UC08` - edit module
+
+**MSS:**
+
+1. User enters command to edit a module.
+2. System edits module and displays edited module info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.
+ 
+### Use Case: `UC09` - edit assignment
+
+**MSS:**
+
+1. User enters command to edit an assignment for a module.
+2. System edits assignment and displays edited assignment info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends. 
+        
+### Use Case: `UC10` - edit exam
+
+**MSS:**
+
+1. User enters command to edit an exam for a module.
+2. System edits exam and displays edited exam info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.      
+    
+### Use Case: `UC11` - edit exam
+
+**MSS:**
+
+1. User enters command to edit an exam for a module.
+2. System edits exam and displays edited exam info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends. 
+        
+### Use Case: `UC12` - edit birthday
+
+**MSS:**
+
+1. User enters command to edit the birthday of a person.
+2. System edits birthday and displays edited birthday info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends.     
+
+### Use Case: `UC13` - edit general event
+
+**MSS:**
+
+1. User enters command to edit a general event.
+2. System edits general event and displays edited event info.
+<br> Use case ends.
+   
+**Extensions:**
+
+* 1a. System detects formatting error in command.
+    * 1a1. System display formatting error message.
+        <br> Use case ends. 
+        
 ### Use Case: `UC02` - delete assignment
 
 **MSS:**
