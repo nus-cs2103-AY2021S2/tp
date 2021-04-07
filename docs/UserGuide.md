@@ -133,9 +133,11 @@ If this is your first time using Pawbook, follow these simple steps to jump stra
    typing `add` and pressing <kbd>Enter</kbd>  will allow you to start adding information to
    the database.
 
+<div markdown="block" class="alert alert-info">
 :bulb: Please refer to the features below for details of each command. <br>
 :heavy_exclamation_mark: Ensure that the pawbook.json file is not corrupted. If corrupted, Pawbook 
 will not be able to use the data from JSON to build the list for usage. 
+</div>
 
 ----
 
@@ -169,7 +171,10 @@ add program n/PROGRAM_NAME s/TIME_AND_DATE_OF_SESSION [t/TAG]...
 Note:
 
 - Different prefixes should be used for the respective entities to specify details.
+- Names are allowed to contain numerics. This is catered for cases when a program name contains numbers and in some cases, even dog names and owner names.
+- Pawbook support arbitrary length phone numbers. This is to support phone numbers with differing lengths from different regions. 
 - Tags are optional and multiple tags can be added.
+- Tags are able to only take in one alphanumeric string. To write tags with multiple words, consider using camelCase or _ to represent a space.
 
 Examples:
 
@@ -179,8 +184,11 @@ Examples:
    Command: `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`
 3. Creates a program with program name Obedience Training. <br>
    Command: `add program n/Obedience Training s/02-02-2020 18:00 t/puppies`
-   
-:bulb: The order of the prefixes do not matter, feel free to add your information in any order that is convenient for you! 
+
+<div markdown="block" class="alert alert-info">
+:bulb: The order of the prefixes do not matter, feel free to add your information in any order that is convenient for you! <br>
+:bulb: Address fields are free from input checking to allow flexibility to users from different countries with different address formats. 
+</div>
 
 ![Add Command](images/AddCommandScreenshot1.png) ![Add Command Result](images/AddCommandScreenshot2.png)
 
@@ -213,9 +221,11 @@ Examples:
    Command: `delete dog 2`
 3. Deletes the program with ID 3 in Pawbook.<br>
    Command: `delete program 3`
-   
+
+<div markdown="block" class="alert alert-info">
 :bulb: Deleting using ID instead of name? Yes, all commands other than `add` and `find` uses the entity's ID. 
 When a new entity is added to Pawbook, the system assigns a unique ID to each entity.
+</div>
 
 ![ID](images/DeleteCommandIDScreenshot.png)
 
@@ -241,7 +251,8 @@ Note:
 - The ID must be a positive integer 1, 2, 3 etc.
 - Only include the variables that need to be edited after the integer
 
-:heavy_exclamation_mark: Take note that editing tags for an entity will automatically override **all** its current tags!
+:heavy_exclamation_mark: Take note that editing tags for an entity will automatically override **all** its current tags! <br>
+:bulb: Reminder, tags are able to only take in one alphanumeric string! 
 
 Examples:
 
@@ -277,9 +288,11 @@ Note:
 - The dogs and programs must be valid.
 - Dog must not be enrolled in the program.
 
+<div markdown="block" class="alert alert-info">
 :bulb: Even for batch enrolment, the dog must not be enrolled in any of the programs, or all dogs must not be enrolled in that program, in order for the command to work.<br>
 :heavy_exclamation_mark: Take note that enrolling multiple dogs into multiple programs at once is **NOT** allowed! 
 For example, `enrol d/2 d/3 p/4 p/5` is **NOT** allowed!
+</div>
 
 Examples:
 
@@ -316,9 +329,11 @@ Note:
 - The dog and program must both be valid.
 - Dog must be enrolled in the program.
 
+<div markdown="block" class="alert alert-info">
 :bulb: Even for batch dropping, the dog must be enrolled in all of the programs, or all dogs must be enrolled in that program, in order for the command to work.<br>
 :heavy_exclamation_mark: Take note that dropping multiple dogs from multiple programs at once is **NOT** allowed! 
 For example, `drop d/2 d/3 p/4 p/5` is **NOT** allowed!
+</div>
 
 Examples:
 
@@ -412,8 +427,10 @@ Examples:
    Command: `find alice`
 2. Find all entities with the name 'Alice' or 'Bob' or 'Charlie'.<br>
    Command: `find alice bob charlie`
-   
+
+<div markdown="block" class="alert alert-info">
 :bulb: `find` is able to take in multiple keywords and return all results as long as the name contains any one of the keywords. 
+</div>
 
 ![Find Command](images/FindCommandScreenshot1.png) ![Find Command Result](images/FindCommandScreenshot2.png)
 
@@ -523,3 +540,4 @@ Term  | Explanation
 CLI | Short for Command Line Interface. CLI-based applications are primarily used through processing text commands. 
 GUI | Short for Graphical User Interface. GUIs work as the tangible user interface between program and user. Users interact with Pawbook through the GUI on their devices.
 Entity | Refers to either an owner, a dog or a program
+Camel Case | Refers the a style of writing without spaces and indicating the separation of words using a single capitalised letter. 
