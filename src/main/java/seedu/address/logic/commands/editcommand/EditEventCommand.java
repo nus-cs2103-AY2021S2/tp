@@ -14,15 +14,11 @@ import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Description;
 
 public class EditEventCommand extends EditCommand {
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an event in RemindMe."
-            + "\nParameters: "
-            + "EVENT INDEX "
-            + "[" + PREFIX_GENERAL_EVENT + "NEW EVENT DESCRIPTION] "
-            + "[" + PREFIX_DATE + "NEW EVENT DATE]\n"
-            + "Example: " + COMMAND_WORD + " "
-            + "1 "
-            + PREFIX_GENERAL_EVENT + "Different description OR "
-            + PREFIX_DATE + "29/10/2021 1000";
+    public static final String MESSAGE_USAGE =
+            "Missing necessary prefixes: [g/ or on/]\n"
+            + "One of g/ or on/ must be used.\n"
+            + "Event: edit INDEX [d/DESCRIPTION OR on/EVENT DATE]\n"
+            + "Example: edit 1 g/Meet up";
 
     public static final String MESSAGE_SUCCESS = "Event edited: %1$s";
     public static final String MESSAGE_NO_EVENT = "This event does not exists in RemindMe";
