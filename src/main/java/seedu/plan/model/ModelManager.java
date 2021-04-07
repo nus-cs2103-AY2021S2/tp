@@ -152,6 +152,8 @@ public class ModelManager implements Model {
                 continue;
             }
 
+            Plan newPlan = p;
+
             List<Module> modulesInPlan = new ArrayList<>();
             for (int i = 1; i < currentSemester.getSemNumber(); i++) {
                 Semester sem = p.getSemester(i);
@@ -162,10 +164,11 @@ public class ModelManager implements Model {
                         .collect(Collectors.toList());
             }
             if (modulesInPlan.containsAll(masterModules)) {
-                p.setIsValid(true);
+                newPlan.setIsValid(true);
             } else {
-                p.setIsValid(false);
+                newPlan.setIsValid(false);
             }
+            modulePlanner.setPlan(p, newPlan);
         }
 
         updateFilteredPlanList(PREDICATE_SHOW_ALL_PLANS);

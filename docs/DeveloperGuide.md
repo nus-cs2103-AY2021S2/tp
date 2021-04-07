@@ -155,7 +155,7 @@ Creates a `Plan` object using the plan's `description`, its relevant `tags` as w
 ![PlanConstructorSequenceDiagram](images/PlanConstructorSequenceDiagram.png)
 
 ##### Method:`Plan#toString()`
-Builds a formatted string by appending the plan's descriptions as well as all of its tags.
+Builds a formatted string by appending the plan's description as well as all of its tags.
 The `getDescription` method is used to obtain the Description in `String` format.
 Each Tag's `toString()` method is called.
 ![PlanToStringSequenceDiagram](images/PlanToStringSequenceDiagram.png)
@@ -213,6 +213,32 @@ The following presents a final overview of how the `history command` is used:
 
 Do note that the current implementation always creates a new `History` instance whenever the `history command` is provided by the user, to ensure that users are presented with their most updated information.
 
+### Validate feature
+
+The `validate` command looks at all modules from the `master` plan, specifically all semesters from the first to `current`. Every other plan is then looked at the same way up to whatever semester that `current` is set to. For example, if `current` is set to semester 5, validate takes the first 5 semesters of modules from the master plan and compares it to every other plan. If the other plans have every module that was found in the master plan, it is valid.
+
+#### Implementation
+
+##### Overview: Validate command
+
+![ValidateArchitectureDiagram](images/ValidateArchitectureDiagram.png)
+
+The `validate` command makes use of the `ModelManager` class which contains the necessary list of `plan` objects, which contains the relevant `semester` and `module` objects. After accessing the ValidateCommand logic component, if `master` and `current` is set, the `ModelManager` is accessed.
+
+##### State Diagrams
+
+![ValidateStateDiagram](images/ValidateStateDiagram.png)
+
+The `validate` command does not create other objects. It initializes with a null `masterPlan` and `currentSemester`, and updates them in the `execute()` method, throwing exceptions if they have not yet been set. If set successfully, validation continues.
+
+![ValidateModelManagerSequenceDiagram](images/ValidateModelManagerSequenceDiagram.png)
+
+In the `ModelManager`, the `validate(masterPlan, currentSemester)` method references every other existing `Plan` from the base master plan. The method then sets whether or not they are valid.
+
+##### [Proposed] Validating using History object
+
+Currently validate checks each plan up to their semesters for the taken modules. This is rather slow since it has to loop through the modules. This can be done much faster using the `HashTable` which is provided by the `History` object. Although not currently a necessary feature since only a single user uses the application, this is a rather simple optimization that should be implemented.
+=======
 ### Info feature
 
 #### Implementation

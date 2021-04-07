@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+scale 350 width
+
+state ValidateCommand {
+  [*] --> Constructor
+  Constructor : null masterplan
+  Constructor : null currentSemester
+  Constructor --> Executing : execute
+
+  state Executing {
+    [*] --> Execute
+    Execute --> ValidateInModelManager : foundMasterPlanAndCurrentSemester
+    Execute --> [*] : notFoundThrowException
+
+    state ValidateInModelManager
+  }
+}
+
+
+@enduml

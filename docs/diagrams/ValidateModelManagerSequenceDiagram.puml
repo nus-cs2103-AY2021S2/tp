@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":Plan" as Plan MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> ModelManager : execute("validate")
+activate ModelManager
+
+ModelManager -> Plan : getMasterModules()
+activate Plan
+Plan --> ModelManager : result
+deactivate Plan
+
+loop for each plan
+ModelManager -> Plan : getOtherPlanModules()
+activate Plan
+Plan --> ModelManager : result
+deactivate Plan
+
+ModelManager -> ModelManager : checkIfOtherPlanIsValid
+
+ModelManager -> Model : storeIsValid
+activate Model
+Model --> ModelManager : successfullyStored
+deactivate Model
+
+end
+
+[<--ModelManager
+deactivate ModelManager
+@enduml

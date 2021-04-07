@@ -19,18 +19,18 @@ NUS Module Planner is a **desktop app for NUS students to manage and plan the mo
 1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UiLanding.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   - **`list`** : Lists all contacts.
+   - **`list`** : Lists all plans.
 
-   - **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   - **`addp d/sample plan`** : Adds a plan with description `sample plan` to the Address Book.
 
-   - **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   - **`deletep p/3`** : Deletes the 3rd plan shown in the current list.
 
-   - **`clear`** : Deletes all contacts.
+   - **`clear`** : Deletes all plans.
 
    - **`exit`** : Exits the app.
 
@@ -77,29 +77,14 @@ Format: `help`
 ## General Commands
 
 ### Check graduation : `validate`
-Format: `validate [p/PLAN_NUMBER]`
-
-If the optional argument `[p/PLAN_NUMBER]` is provided:
+Format: `validate`
 
 - Shows header
     - Shows plan number
+    - Shows description of plan
+    - Shows if the plan is valid compared to master plan
     - Shows how many MCs the plan has
-    - Shows how many MCs completed
-    - Shows how many semesters remaining in plan
-- Shows rows of modules placed in respective semesters
-    - Shows X tables of X semesters
-    - Each table has a header of how many MCs the semester will have
-    - Each table shows module details
-
-Otherwise:
-
-- Shows list of plans that are still valid
-    - Each row is a plan
-        - Each plan has 4 column attributes:
-            - Shows plan number
-            - Shows how many MCs the plan has
-            - Shows how many MCs completed
-            - Shows how many semesters remaining in plan
+    - Shows how many semesters the plan has
 
 > Tip: A plan is valid if the modules contained in its history match those of the current Master Plan.
 > This ensures that any valid plan is a viable option for the user.
@@ -118,32 +103,30 @@ Format: `exit`
 
 
 ## Plan commands
-### List a summary of all plans: `list plans`
+### List a summary of all plans: `list`
 
-Format: `list plans`
-Tip: A user can view an individual plan to see more details about it. (See show p/PLAN_NUMBER)
-
-Format: `master p/PLAN_NUMBER`
+Format: `list`
 
 This command must be done by the user at least once before they can use other commands.
 Marks the given plan as the master plan, and this plan should contain all the modules that the user has taken (if any).
 
 Example output:
-[IMG]
+![list plans](images/listPlans.png)
 
 ### Create/Delete Plan: `addp`/`deletep`
 
 Format for adding: `addp d/DESCRIPTION [OPTIONAL: t/TAG...]`
 
-Format for deleting: `deletep d/DESCRIPTION`
+Format for deleting: `deletep p/PLAN_NUMBER`
 
 Shows 2 rows:
-- Whether plan is added/deleted is successful/unsuccessful
+- Whether plan is added/deleted successfully/unsuccessfully
 - Plan number
 
 Constraints:
-- Trying to add a plan that already exist will not be allowed
+- Trying to add a plan with invalid description will not be allowed
 - Trying to delete a plan that does not exist will not be allowed
+- Tags provided when adding a plan should contain only alphanumeric characters with no spaces
 
 Example output for adding plan:
 ![add_plan](images/AddPlan.png)
@@ -206,8 +189,6 @@ The user will have to manually update the current semester as time progresses.
 Example output:
 ![currentSemesterExample](images/currentSemesterExample.png)
 
-
-
 ### Show history: `history`
 Format: `history`
 
@@ -216,9 +197,8 @@ The above command takes no arguments and shows the user a list of modules that t
 > Tip: The *current semester* is the semester that was marked using the `current semester` command.
 
 Example output:
+
 ![historyCommandExample](images/historyCommandExample.png)
-
-
 
 ## Module commands
 
@@ -266,3 +246,9 @@ By default, this command takes in one optional argument, `MODULE_CODE` and outpu
 
 Constraints:
 * Module has to exist
+
+#### Example output listing all module information:
+![InfoCommandDemo](images/InfoCommandDemo.png)
+
+#### Example output for finding a specific module information
+![InfoCommandDemo](images/InfoCommandSingleModuleDemo.png)

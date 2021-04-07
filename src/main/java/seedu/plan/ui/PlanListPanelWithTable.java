@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -23,9 +22,9 @@ public class PlanListPanelWithTable extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PlanListPanelWithTable.class);
 
     @FXML
-    private ListView<Plan> personListView;
+    private ListView<Plan> planListView;
     @FXML
-    private TableView<Plan> personTableView;
+    private TableView<Plan> planTableView;
     @FXML
     private TableColumn<Plan, Number> indexCol = new TableColumn<>("Plan#");
     @FXML
@@ -46,15 +45,15 @@ public class PlanListPanelWithTable extends UiPart<Region> {
     public PlanListPanelWithTable(ObservableList<Plan> planList) {
         super(FXML);
 
-        indexCol.setMinWidth(50);
+        indexCol.setMinWidth(80);
         descriptionCol.setMinWidth(150);
         numMcCol.setMinWidth(135);
         isValidCol.setMinWidth(100);
         numSemestersCol.setMinWidth(135);
         numModulesCol.setMinWidth(135);
 
-        personTableView.setItems(planList);
-        personTableView.getColumns().addAll(indexCol, descriptionCol, isValidCol, numMcCol,
+        planTableView.setItems(planList);
+        planTableView.getColumns().addAll(indexCol, descriptionCol, isValidCol, numMcCol,
                 numSemestersCol, numModulesCol);
         indexCol.setCellFactory(new LineNumbersCellFactory<>());
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -62,23 +61,6 @@ public class PlanListPanelWithTable extends UiPart<Region> {
         numMcCol.setCellValueFactory(new PropertyValueFactory<Plan, Boolean>("numMcs"));
         numSemestersCol.setCellValueFactory(new PropertyValueFactory<Plan, Integer>("numSemester"));
         numModulesCol.setCellValueFactory(new PropertyValueFactory<Plan, Integer>("numModules"));
-    }
-
-    /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Plan} using a {@code PersonCard}.
-     */
-    class PersonListViewCell extends ListCell<Plan> {
-        @Override
-        protected void updateItem(Plan plan, boolean empty) {
-            super.updateItem(plan, empty);
-
-            if (empty || plan == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new PlanCard(plan, getIndex() + 1).getRoot());
-            }
-        }
     }
 
     public class LineNumbersCellFactory<T, E> implements Callback<TableColumn<T, E>, TableCell<T, E>> {
@@ -94,7 +76,9 @@ public class PlanListPanelWithTable extends UiPart<Region> {
                     super.updateItem(item, empty);
 
                     if (!empty) {
-                        setText(this.getTableRow().getIndex() + 1 + "");
+                        if (!(this.getTableRow() == null)) {
+                            setText(this.getTableRow().getIndex() + 1 + "");
+                        }
                     } else {
                         setText("");
                     }

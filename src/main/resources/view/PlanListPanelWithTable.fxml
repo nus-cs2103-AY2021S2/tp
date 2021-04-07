@@ -17,7 +17,7 @@
         <Label style="-fx-font: NORMAL 20 Tahoma;" text="All Plans"
                GridPane.columnIndex="0" GridPane.rowIndex="0">
         </Label>
-        <TableView fx:id="personTableView" GridPane.columnIndex="0"
+        <TableView fx:id="planTableView" GridPane.columnIndex="0"
                    GridPane.rowIndex="1">
             <items>
                 <FXCollections fx:factory="observableArrayList">
