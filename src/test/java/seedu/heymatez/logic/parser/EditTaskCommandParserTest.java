@@ -72,6 +72,14 @@ public class EditTaskCommandParserTest {
     }
 
     @Test
+    public void parse_invalidInteger_failure() {
+        // invalid index
+        assertParseFailure(parser, "0", MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+
+        assertParseFailure(parser, "-1", MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
     public void parse_invalidValue_failure() {
         // invalid deadline
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC,

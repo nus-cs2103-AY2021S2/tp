@@ -31,6 +31,10 @@ public class ClearAssigneesCommandParserTest {
 
         assertParseFailure(parser, "1, 2 ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ClearAssigneesCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidInteger_throwsParseException() {
 
         assertParseFailure(parser, "0", MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
 
