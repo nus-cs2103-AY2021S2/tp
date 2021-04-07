@@ -32,9 +32,9 @@ import seedu.address.testutil.EventUtil;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class FocurisParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final FocurisParser parser = new FocurisParser();
 
     @Test
     public void parseCommand_add() throws Exception {
