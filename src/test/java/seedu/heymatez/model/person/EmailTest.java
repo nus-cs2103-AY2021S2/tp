@@ -35,8 +35,8 @@ public class EmailTest {
         assertFalse(Email.isValidEmail("@example.com")); // missing local part
         assertFalse(Email.isValidEmail("peterjackexample.com")); // missing '@' symbol
         assertFalse(Email.isValidEmail("peterjack@.com")); // missing domain name
-        assertFalse(Email.isValidEmail("peterjack@examplecom")); // missing '.' symbol for top-level domain
         assertFalse(Email.isValidEmail("peterjack@example")); // missing top-level domain
+        assertFalse(Email.isValidEmail("peterjack@examplecom")); // missing '.' symbol for top-level domain
 
         // invalid parts
         assertFalse(Email.isValidEmail("peterjack@-")); // invalid domain name
