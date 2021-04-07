@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSONS;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -29,7 +30,7 @@ public class AddGroupCommand extends Command {
             + PREFIX_NAME + "Close Friends" + " "
             + PREFIX_PERSONS + "1 2 3 4";
 
-    public static final String MESSAGE_ADD_GROUP_SUCCESS = "Added/Added into group %1$s";
+    public static final String MESSAGE_ADD_GROUP_SUCCESS = "Added %1$s into group %2$s";
 
     private final List<Index> indexes;
     private final Name groupName;
@@ -72,7 +73,10 @@ public class AddGroupCommand extends Command {
             model.setGroup(groupName, group);
         }
         model.updateFilteredPersonList(p -> group.getPersonNames().contains(p.getName()));
-        return new CommandResult(String.format(MESSAGE_ADD_GROUP_SUCCESS, groupName));
+        return new CommandResult(String.format(
+                MESSAGE_ADD_GROUP_SUCCESS,
+                group.getPersonNames().stream().map(Name::toString).sorted().collect(Collectors.joining(", ")),
+                groupName));
     }
 
     @Override
