@@ -2,7 +2,7 @@
 layout: page
 title: Developer Guide
 ---
-Table of Contents
+## Table of Contents
 1. [Preface](#1-preface)<br>
 1. [Setting up, getting started](#2-setting-up-getting-started)<br>
 1. [Design](#3-design)<br>
@@ -13,9 +13,15 @@ Table of Contents
    3.5  [Storage Component](#35-storage-component)<br>
    3.6  [Common Classes](#36-common-classes)<br>
 1. [Implementation](#4-implementation)<br>
-   4.1 [Sochedule](#41-sochedule)<br>
+   4.1 [SOChedule](#41-sochedule)<br>
+       4.1.1 [Overview](#411-overview)<br>
+       4.1.2 [Implementation of SOChedule-level Commands](#412-implementation)<br>
    4.2 [Task](#42-task)<br>
+       4.1.1 [Overview](#421-overview)<br>
+       4.1.2 [Implementation of Task-level Commands](#422-implementation)<br>
    4.3 [Event](#43-event)<br>
+       4.1.1 [Overview](#431-overview)<br>
+       4.1.2 [Implementation of Event-level Commands](#432-implementation)<br>
 1. [Planned Features](#5-documentation-logging-testing-configuration-dev-ops)<br>
 1. [Appendix](#appendix)<br>
    A1. [Product Scope](#a1-product-scope)<br>
@@ -81,7 +87,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_task 1`.
 
 ![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
@@ -122,6 +128,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTaskCommandParser`should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+[Return to Table of Contents](#table-of-contents)  
 
 ### 3.4 Model component
 
@@ -189,6 +197,8 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
+[Return to Table of Contents](#table-of-contents)  
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4 Implementation
@@ -219,6 +229,8 @@ The sequence diagram for `ClearCommand` can be found below.
 
 ![Sequence Diagram of Clear Command](images/ClearCommandSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)  
+
 **Implementation of SummaryCommand**  
 The following is a detailed explanation on how SummaryCommand is implemented.
 
@@ -240,6 +252,8 @@ A success message will be appended with `CommandResult#MESSAGE_SUCCESS`.
 The sequence diagram for `SummaryCommand` can be found below.
 
 ![Sequence Diagram of Summary Command](images/SummaryCommandSequenceDiagram.png)
+
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of FindScheduleCommand**  
 The following is a detailed explanation on how SummaryCommand is implemented.
@@ -271,6 +285,8 @@ when calling the method `Model#updateFilteredTaskList(TaskFindSchedulePredicate 
 Same for the method `Model#updateFilteredEventList(EventFindSchedulePredicate eventPredicate)`.
 </div>
 
+[Return to Table of Contents](#table-of-contents)  
+
 ### 4.2 Task
 
 #### 4.2.1 Overview
@@ -297,6 +313,8 @@ The sequence diagram for `AddTaskCommand` can be found below.
 
 ![Sequence Diagram of AddTask Command](images/AddTaskCommandSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)  
+
 **Implementation of DeleteTaskCommand**  
 The following is a detailed explanation on how DeleteTaskCommand is implemented.
 
@@ -317,6 +335,7 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 
 ![Sequence Diagram of DeleteTask Command](images/DeleteTaskCommandSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of UndoneTaskCommand**  
 The following is a detailed explanation on how UndoneTaskCommand is implemented.
@@ -372,6 +391,7 @@ The sequence diagram for `EditTaskCommand` can be found below.
 
 ![Sequence Diagram of EditTask Command](images/EditTaskCommandSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of SortTaskCommand**  
 The following is a detailed explanation on how SortTaskCommand is implemented in the Logic component.
@@ -396,6 +416,62 @@ The sequence diagram for `sortTaskCommand` can be found below.
 ***Lower Level implementation***  
 The following is a brief explanation , as shown in a sequence diagram, of how sorting is implemented inside the Model component.
 ![Sequence Diagram of SortTaskCommand in Model Component](images/SortTaskModelSequenceDiagram.png)
+
+***Design Considerations for `SortTaskCommand`***
+<table>
+    <tr>
+        <th> Alternative 1 (Chosen Implementation) </th>
+        <th> Alternative 2 </th>
+    </tr>
+    <tr>
+        <td> 
+            <ul>
+                <li>Persistent Sorting using a Comparator</li>
+                <li> Pros:
+                    <ul>
+                        <li>UX considerations when users expect sorting to be persistent over multiple commands</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>Additional Testing of Comparator needed</li>
+                        <li>Additional component added might add to complexity</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+        <td> 
+            <ul>
+                <li>Transient Sorting by sorting the UniqueTaskList directly</li>
+                <li> Pros:
+                    <ul>
+                        <li>Straightforward implementation</li>
+                        <li>Less testing required due to less components</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>UX might be compromised as order is not maintained over command executions</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<div markdown="block">
+Our group decided to go with alternative 1 and implemented an additional sort comparator known as `TaskComparator`.
+This is to ensure smoother UX, as well as better integration with other commands.
+
+By implementing it in this way, our group is able to ensure that the sort order remains consistent over commands that could either:
+    <ul>
+        <li>Alter the number of tasks shown at any one time (See <code>find_task</code>)</li>
+        <li>Change the order of task appearance independent of <code>sort_task</code> (See <code>pin_task</code>)</li>
+    </ul>
+
+This would enable SOChedule to better serve the needs of its user base. 
+</div>
+
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of PinTaskCommand/UnpinTaskCommand**  
 The following is a detailed explanation on how PinTaskCommand is implemented.
@@ -423,6 +499,12 @@ It is largely similar to `SortTaskCommand`, with a some minor differences:
 
 ![Sequence Diagram of PinTaskCommand](images/PinTaskSequenceDiagram.png)
 
+The below activity diagram summarises what happens when `pin_task` is called.
+It can also be similarly extrapolated to apply to `unpin_task`.
+![Activity Diagram of PinTaskCommand](images/PinTaskActivityDiagram.png)
+
+[Return to Table of Contents](#table-of-contents)  
+
 **Implementation of ClearCompletedTaskCommand**  
 The following is a detailed explanation on how ClearCompletedTaskCommand is implemented.
 
@@ -440,6 +522,7 @@ The sequence diagram for `ClearCompletedTaskCommand` can be found below.
 
 ![Sequence Diagram of Clear Command](images/ClearCompletedTaskCommandSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of ClearExpiredTaskCommand**  
 The following is a detailed explanation on how ClearExpiredTaskCommand is implemented.
@@ -458,7 +541,7 @@ The sequence diagram for `ClearExpiredTaskCommand` can be found below.
 
 ![Sequence Diagram of Clear Command](images/ClearExpiredTaskCommandSequenceDiagram.png)
 
-
+[Return to Table of Contents](#table-of-contents)  
 
 ### 4.3 Event
 
@@ -486,6 +569,7 @@ The sequence diagram for `AddEventCommand` can be found below.
 
 ![Sequence Diagram of AddEvent Command](images/AddEventCommandSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of DeleteEventCommand**  
 The following is a detailed explanation on how DeleteEventCommand is implemented.
@@ -507,6 +591,7 @@ The sequence diagram for `DeleteEventCommand` can be found below.
 
 ![Sequence Diagram of DeleteEvent Command](images/DeleteEventCommandSequenceDiagram.png)
 
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of EditEventCommand**  
 The following is a detailed explanation on how EditEventCommand is implemented.
@@ -539,6 +624,8 @@ The following activity diagram summarises what happens when a user executes a Ed
 
 <img src="images/EditEventCommandActivityDiagram.png" width="450" />
 
+[Return to Table of Contents](#table-of-contents)  
+
 **Implementation of FindFreeTimeCommand**  
 The following is a detailed explanation on how FindFreeTaskCommand is implemented.
 
@@ -558,7 +645,7 @@ The sequence diagram for `FindFreeTimeCommand` can be found below.
 
 ![Sequence Diagram of FindFreeTimeCommand](images/FindFreeTimeCommandSequenceDiagram.png)
 
-
+[Return to Table of Contents](#table-of-contents)  
 
 **Implementation of ClearExpiredEventCommand**  
 The following is a detailed explanation on how ClearExpiredEventCommand is implemented.
@@ -577,7 +664,7 @@ The sequence diagram for `ClearExpiredEventCommand` can be found below.
 
 ![Sequence Diagram of Clear Command](images/ClearExpiredEventCommandSequenceDiagram.png)
 
-
+[Return to Table of Contents](#table-of-contents)  
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -657,7 +744,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SOChedule` and the **Actor** is the `User`, unless specified otherwise)
 
-**Use case: UC01 - Add a task**
+**Use case: UC01 - Adding a task**
 
 **MSS**
 
@@ -682,17 +769,7 @@ Use case ends.
       is invalid, or not following the `YYYY-MM-DD` format.
       Use case ends.
 
-**Use case: UC02 - List tasks**
-
-**MSS**
-
-1. User wishes to add a new task.
-2. User enters the corresponding command.
-3. SOChedule displays all tasks.
-<br><br>
-Use case ends.
-
-**Use case: UC03 - Delete a task**
+**Use case: UC02 - Deleting a task**
 
 **MSS**
 
@@ -701,8 +778,8 @@ Use case ends.
 3. User chooses to delete a task.
 4. User enters the index of the task to be deleted.
 5. SOChedule displays a success message for deleting the task.
-<br><br>
-Use case ends.
+   <br><br>
+   Use case ends.
 
 **Extensions**
 
@@ -718,8 +795,23 @@ Use case ends.
 
       Use case resumes at step 2.
 
-**Use case: UC04 - Mark a task as completed**
+**Use case: UC03 - Editing a task**
 
+`<pending>`
+
+**Use case: UC04 - List tasks**
+
+**MSS**
+
+1. User wishes to add a new task.
+2. User enters the corresponding command.
+3. SOChedule displays all tasks.
+<br><br>
+Use case ends.
+
+
+**Use case: UC05 - Marking tasks complete**
+*TO BE EDITED*
 **MSS**
 
 1. User requests to <u> list tasks (UC02)</u>.
@@ -727,8 +819,8 @@ Use case ends.
 3. User chooses to mark a task as completed.
 4. User enters the index of the task to be marked.
 5. SOChedule displays a success message for marking the task as completed.
-<br><br>
-Use case ends.
+   <br><br>
+   Use case ends.
 
 **Extensions**
 
@@ -743,7 +835,110 @@ Use case ends.
 
       Use case resumes at step 2.
 
-**Use case: UC05 - Add an event**
+**Use case: UC06 - Undoing a task completion**
+
+`<pending>`
+
+**Use case: UC07 - Getting tasks today**
+
+`<pending>`
+
+**Use case: UC08 - Sorting all tasks**
+
+**MSS**
+
+1. User requests to <u> list tasks (UC02)</u>.
+2. SOChedule shows a list of tasks.
+3. User chooses to sort task.
+4. User enters the sort parameter.
+5. SOChedule sorts the task list, and displays a success message.
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. The task list is empty.
+
+  Use case ends.
+
+
+* 4a. The given sort argument is invalid.
+
+    * 4a1. SOChedule shows an error message indicating the invalidity of the sort argument.
+
+      Use case resumes at step 2.
+
+**Use case: UC09 - Pinning a task**
+
+**MSS**
+
+1. User requests to <u> list tasks (UC02)</u>.
+2. SOChedule shows a list of tasks.
+3. User chooses to pin a task.
+4. User enters the index of the task to be pinned.
+5. SOChedule pins the task, <u> sorts the task list (UC08)</u>, and displays a success message for pinning the task.
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. The task list is empty.
+
+  Use case ends.
+
+
+* 3a. The given index is invalid.
+
+    * 3a1. SOChedule shows an error message indicating the invalidity of the index.
+
+      Use case resumes at step 2.
+        
+* 3b. The task specified by index is already pinned
+
+    * 3b1. SOChedule shows an error message indicating that task is already pinned.
+
+      Use Case resumes at step 2.
+
+**Use case: UC10 - Unpinning a task**
+
+**MSS**
+
+1. User requests to <u> list tasks (UC02)</u>.
+2. SOChedule shows a list of tasks.
+3. User chooses to unpin a task.
+4. User enters the index of the task to be unpinned.
+5. SOChedule unpins the task, <u> sorts the task list (UC08)</u>, and displays a success message for unpinning the task.
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. The task list is empty.
+
+  Use case ends.
+
+
+* 3a. The given index is invalid (negative or out of range).
+
+    * 3a1. SOChedule shows an error message indicating the invalidity of the index.
+
+      Use case resumes at step 2.
+    
+* 3b. The task specified by index is not pinned
+
+    * 3b1. SOChedule shows an error message indicating that task is not pinned.
+    
+      Use Case resumes at step 2.
+
+**Use case: UC11 - Clearing all completed tasks**
+
+`<pending>`
+
+**Use case: UC12 - Clearing all expired tasks**
+
+`<pending>`
+
+**Use case: UC13 - Add an event**
 
 **MSS**
 
@@ -767,22 +962,7 @@ Use case ends.
       is invalid, or not following the `YYYY-MM-DD` format.
       Use case ends.
 
-**Use case: UC06 - List events**
-
-**MSS**
-
-1. User requests to list all events in the SOChedule.
-1. SOChedule displays a list of all events added.
-<br><br>
-Use case ends.
-
-**Extensions**
-
-* 1a. No events have been added.
-    * 1a1. SOChedule displays an empty list.
-      Use case ends.
-
-**Use case: UC07 - Delete an event**
+**Use case: UC14 - Delete an event**
 
 **MSS**
 
@@ -807,7 +987,53 @@ Use case ends.
 
       Use case resumes at step 2.
 
-      
+**Use case: UC15 - Editing an event**
+
+`<pending>`
+
+**Use case: UC16 - List events**
+
+**MSS**
+
+1. User requests to list all events in the SOChedule.
+1. SOChedule displays a list of all events added.
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. No events have been added.
+    * 1a1. SOChedule displays an empty list.
+      Use case ends.
+
+**Use case: UC17 - Getting today's events**
+
+`<pending>`
+
+**Use case: UC18 - Find an event**
+
+`<pending>`
+
+**Use case: UC19 - Clearing expired events**
+
+`<pending>`
+
+**Use case: UC20 - Finding tasks and events before or on given date**
+
+`<pending>`
+
+**Use case: UC21 - Finding free time slots**
+
+`<pending>`
+
+**Use case: UC22 - Getting a summary of SOChedule**
+
+`<pending>`
+
+**Use case: UC23 - Clearing SOChedule**
+
+`<pending>`
+
 *{More to be added}*
 
 ### A4. Non-Functional Requirements
