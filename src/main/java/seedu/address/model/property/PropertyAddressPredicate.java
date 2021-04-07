@@ -1,5 +1,7 @@
 package seedu.address.model.property;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.function.Predicate;
 
 /**
@@ -8,13 +10,17 @@ import java.util.function.Predicate;
 public class PropertyAddressPredicate implements Predicate<Property> {
     private final String address;
 
+    /**
+     * Constructs a PropertyAddressPredicate.
+     */
     public PropertyAddressPredicate(String address) {
+        requireNonNull(address);
         this.address = address;
     }
 
     @Override
     public boolean test(Property property) {
-        return property.getAddress().propertyAddress.equals(address);
+        return property.getAddress().propertyAddress.toLowerCase().contains(address.toLowerCase());
     }
 
     @Override

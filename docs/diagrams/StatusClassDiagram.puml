@@ -5,7 +5,7 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Status <<Rectangle>> {
-    Class Status <<Interface>> {
+    Class "<<Interface>>\nStatus" as Status {
         +next()
     }
     Class Option implements Status {

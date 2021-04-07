@@ -56,7 +56,7 @@ This user guide uses various formatting styles to facilitate reading and to comm
 1. Let's try out your first command by adding a new property! Type <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021` into the command box and press <kbd>Enter</kbd> to execute it. After that, scroll down to the bottom of the property list to see your newly added property.
 1. Want to view the properties in order of their asking price? Type the command <br>`sort property o/desc k/price` and press <kbd>Enter</kbd>. The property list will now be in descending order based on price, with the property having the highest asking price at the top.
 1. Now let's try adding a new appointment. Type <br>`add appointment n/Meet Jacob for dinner r/At Lot One's food court d/19-4-2021 t/1930` and hit the <kbd>Enter</kbd> button. Scroll down to the bottom of the appointment list to see your newly added appointment.
-1. Forgot when you are supposed to meet Simon again? Let's try finding out! Type <br>`find appointment simon` and press <kbd>Enter</kbd>. There it is! Your appointment with Simon is on Sep 20, 2021.
+1. Forgot when you are supposed to meet Simon again? Let's try finding out! Type <br>`find appointment n/simon` and press <kbd>Enter</kbd>. There it is! Your appointment with Simon is on Sep 20, 2021.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
  Some other example commands you can try:
@@ -103,7 +103,7 @@ For a quick reference of the available commands and their syntax, refer to the [
 
 #### 3.1.1 Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the help page. A link to the user guide will be provided.
 
 ![help message](images/helpMessage.png)
 
@@ -136,8 +136,12 @@ Adds an appointment to the app.
 
 Format: `add appointment n/NAME r/REMARKS d/DATE t/TIME​`
 
+Description:
+* All fields are compulsory.
+
 Examples:
 * `add appointment n/Meet Alex r/At M Hotel d/17-2-2021 t/1500`
+* `add appointment n/Celebrate CNY with Pauline r/Her house d/01-02-2022 t/1900`
 
 ### 3.3 Editing
 
@@ -177,21 +181,33 @@ Examples:
 
 ### 3.4 Deleting
 
-#### 3.4.1 Removing an entry : `delete`
+#### 3.4.1 Removing a property : `delete property`
 
-Deletes the specified property or appointment from the app.
+Deletes the property at the specified index from the app.
 
-Formats:
-* `delete appointment INDEX`
+Format:
 * `delete property INDEX`
 
 Description:
-* Deletes the appointment or property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
+* Deletes the property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
 * The field INDEX must be provided.
 
 Examples:
-*  `delete appointment 7` Deletes the `appointment` at index `7`.
-*  `delete property 7` Deletes the `property` at index `7`.
+*  `delete property 7` deletes the property at index `7`.
+
+#### 3.4.2 Removing an appointment : `delete appointment`
+
+Deletes the appointment at the specified index from the app.
+
+Format:
+* `delete appointment INDEX`
+
+Description:
+* Deletes the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
+* The field INDEX must be provided.
+
+Examples:
+*  `delete appointment 7` deletes the appointment at index `7`.
 
 ### 3.5 Listing
 
@@ -223,17 +239,17 @@ Description:
 Options:
 * `u/new AMOUNT`
 
-    The `new` keyword can only be used on a property without an existing status. AMOUNT is the amount of money that is offered in the Option to Purchase
+    `u/new` can only be used on a property without an existing status. `AMOUNT` is the amount of money that is offered in the Option to Purchase
 
 
 * `u/proceed`
 
-    Can only be used on a property with an existing status. `proceed` would move the status on to the next one. e.g. `Option` to `SalesAgreement` or `SalesAgreement` to `Completion`.
+    Can only be used on a property with an existing status. `u/proceed` would move the status on to the next one. e.g. `Option` to `SalesAgreement` or `SalesAgreement` to `Completion`.
 
 
 * `u/cancel`
 
-  Can only be used on a property with an existing status. `cancel` would remove the status of the property
+  Can only be used on a property with an existing status. `u/cancel` would remove the status of the property
 
 Status Types:
 
@@ -247,43 +263,74 @@ Examples:
 
 ### 3.7 Sorting
 
-#### 3.7.1 Sorting : `sort`
+#### 3.7.1 Sorting properties: `sort property`
 
-Sorts and shows a list of properties or appointments that is sorted according to the comparator provided.
+Sorts and shows a list of properties that are sorted by the specified sorting key in the specified sorting order.
 
-Formats:
-* `sort appointment o/SORTING_ORDER k/SORTING_KEY`
+Format:
 * `sort property o/SORTING_ORDER k/SORTING_KEY`
 
 Description:
-* Sorts appointment or property by the specified sorting key in ascending or descending order.
+* Sorts properties by the specified sorting key in ascending or descending order.
 * The sorting key and sorting order fields must be specified.
+* The `SORTING_ORDER` can only take values of `asc` and `desc`.
+* The `SORTING_KEY` can take values of `name`, `price`, `postalcode`, `address`, or `deadline`, and it should not be any other values.
+
+Examples:
+*  `sort property o/asc k/name` Sorts `property` by `name` in ascending order.
+
+#### 3.7.2 Sorting appointments: `sort appointment`
+
+Sorts and shows a list of appointments that are sorted by the specified sorting key in the specified sorting order.
+
+Format:
+* `sort appointment o/SORTING_ORDER k/SORTING_KEY`
+
+Description:
+* Sorts appointments by the specified sorting key in ascending or descending order.
+* The sorting key and sorting order fields must be specified.
+* The `SORTING_ORDER` can only take values of `asc` and `desc`.
+* The `SORTING_KEY` can take values of either `datetime` or `name`, and it should not be any other values.
 
 Examples:
 *  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
-*  `sort property o/desc k/price` Sorts `property` by `price` in descending order.
 
-### 3.8 Searching
+### 3.8 Undoing
 
-#### 3.8.1 Searching properties: `find property`
+#### 3.8.1 Undoing : `undo`
 
-Finds properties that match the criterion provided.
+Undoes the last add, delete, edit or clear commands in the command history.
 
-Formats:
-* `find property [KEYWORD]... [OPTION]...`
+Format:
+* `undo`
 
 Description:
-* There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty. All text are case insensitive.
+* Undoes the last add, delete, edit, or clear commands in the command history.
+
+Examples:
+*  `undo` after command `delete appointment 1` adds the deleted appointment back to the app.
+
+### 3.9 Searching
+
+#### 3.9.1 Searching properties: `find property`
+
+Finds all properties containing any of the specified keywords (case-insensitive) and/or with the given options. 
+
+Format:
+* `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS]* 
+[p/POSTAL_CODE]* [d/DEADLINE]* [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT]* 
+[ce/CLIENT_EMAIL]* [tags/TAGS_SEPARATED_BY_COMMA]`
+* Note that all options marked with `*` are limited to one per query. 
+
+Description:
+* There can be 1 or more parameters. Other than options marked with `*`, there can be multiple of 
+each option. 
+* All text are case insensitive.
 
 Options:
-* `[t/PROPERTY_TYPE]`
+* `[n/NAME]`
 
-    Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`.
-
-    The following property types are supported:
-    * hdb
-    * condo
-    * landed
+    Searches for properties with names matching `NAME`. 
 
 * `[pm/PRICE_UPPER_LIMIT]`
 
@@ -292,47 +339,120 @@ Options:
 * `[pl/PRICE_LOWER_LIMIT]`
 
     Search for properties with prices less than `[PRICE_LOWER_LIMIT]`.
+    
+* `[t/PROPERTY_TYPE]`
+
+    Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`.
+
+    The following property types are supported:
+    * hdb
+    * condo
+    * landed
+    
+* `[a/ADDRESS]`
+    
+    Searches for properties with `[ADDRESS]` as address. 
+    
+    Limited to one per query. 
+    
+* `[p/POSTAL_CODE]`
+    
+    Searches for properties with `[POSTAL_CODE]` as postal code. 
+    
+    Limited to one per query. 
+    
+* `[d/DEADLINE]`
+    
+    Searches for properties with `[DEADLINE]` as deadline. 
+    
+    Limited to one per query. 
+    
+* `[r/REMARKS]` 
+
+    Searches for properties containing `[REMARKS]` in their remarks. 
+
+* `[cn/CLIENT_NAME]` 
+
+    Searches for properties whose clients contain `[CLIENT_NAME]` in their names. 
+     
+* `[cc/CLIENT_CONTACT]`
+
+    Searches for properties whose clients' contact numbers match `[CLIENT_CONTACT]`. 
+
+* `[ce/CLIENT_EMAIL]` 
+
+    Searches for properties whose clients' emails match `[CLIENT_EMAIL]`. 
+
+* `[tags/TAGS_SEPARATED_BY_COMMA]`
+
+    Searches for properties whose tags match `[TAGS_SEPARATED_BY_COMMA]`. `TAGS_SEPARATED_BY_COMMA` consists of 
+    all tags you wish to search for, all separated with comma. 
+
 
 Examples:
-* `find property jurong west`
-* `find property pm/500000`
-* `find property bishan north t/hdb pl/$1,000,000`
+* `find property n/jurong west`
+* `find property n/bishan north t/hdb pl/$1,000,000`
+* `find property pl/1000000 t/hdb a/1 Jurong East Street 32, #08-111 tags/3 bedrooms, need renovation cc/91234567`
 
-#### 3.8.2 Searching appointments: `find appointment`
+#### 3.9.2 Searching appointments: `find appointment`
 
-Finds appointments that match the criterion provided.
+Finds all appointments containing any of the specified keywords (case-insensitive) and/or with the given parameters. 
 
-Formats:
-* `find appointment [KEYWORD]...`
+Format:
+* `find appointment [n/NAME] [r/REMARKS] [d/DATE]* [t/TIME]*`
+* Note that all options marked with `*` are limited to one per query. 
 
 Description:
-* There can be 0 or more keywords. Keywords are case insensitive.
+* There can be 1 or more options. Other than options marked with `*`, there can be multiple of 
+each option. 
+* All text are case insensitive.
+
+Options: 
+* `[n/NAME]`
+    
+    Searches for appointments with `[NAME]` in their names. 
+    
+* `[r/REMARKS]` 
+
+    Searches for appointments containing `[REMARKS]` in their remarks. 
+    
+* `[d/DATE]`
+    
+    Searches for properties with `[DATE]` as date. 
+    
+    Limited to one per query. 
+    
+* `[t/TIME]`
+    
+    Searches for properties with `[TIME]` as time. 
+    
+    Limited to one per query. 
 
 Examples:
-* `find appointment bob`
-* `find appointment sunday`
+* `find appointment n/bob`
+* `find appointment n/alex d/25-12-2021`
 
-#### 3.8.3 Searching clients: `find client`
+#### 3.9.3 Searching clients: `find client`
 
 Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time.
 
-Formats:
+Format:
 * `find client [KEYWORD]...`
 
 Description:
 * There can be 0 or more keywords. Keywords are case insensitive.
 
-### 3.9 Clearing
+### 3.10 Clearing
 
-#### 3.9.1 Clearing all entries : `clear all`
+#### 3.10.1 Clearing all entries : `clear all`
 
 Clears all properties and appointments from the app.
 
-#### 3.9.2 Clearing all properties : `clear property`
+#### 3.10.2 Clearing all properties : `clear property`
 
 Clears all properties from the app.
 
-#### 3.9.3 Clearing all appointments : `clear appointment`
+#### 3.10.3 Clearing all appointments : `clear appointment`
 
 Clears all appointments from the app.
 
@@ -394,10 +514,11 @@ Action | Format, Examples
 **List appointment** | `list appointment`
 **Update status** | `update INDEX OPTION`<br><br>  Options: <br>{::nomarkdown}<ul> <li>{:/}`u/new AMOUNT`{::nomarkdown}</li> <li>{:/}`u/proceed`{::nomarkdown}</li> <li>{:/}`u/cancel`{::nomarkdown}</li> </ul>{:/} e.g.,`update 1 u/new 600000`
 **Sort** | `sort appointment o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort property o/asc k/price`
-**Find property** | `find property [KEYWORD]... [OPTION]...` <br><br> Options: <br>{::nomarkdown}<ul> <li>{:/}`[t/PROPERTY_TYPE]`{::nomarkdown}</li> <li>{:/}`[pl/PRICE_UPPER_LIMIT]`{::nomarkdown}</li> <li>{:/}`[pm/PRICE_LOWER_LIMIT]`{::nomarkdown}</li> </ul>{:/} e.g. `find property bishan north t/hdb pl/$1,000,000`
-**Find appointment** | `find property [KEYWORD]` <br> e.g., `find appointment bob`
+**Find property** | `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS]* [p/POSTAL_CODE]* [d/DEADLINE]* [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT]* [ce/CLIENT_EMAIL]* [tags/TAGS_SEPARATED_BY_COMMA]` <br><br> e.g. `find property n/bishan north t/hdb pl/$1,000,000`
+**Find appointment** | `find appointment [n/NAME] [r/REMARKS] [d/DATE]* [t/TIME]* [KEYWORD]` <br> e.g., `find appointment n/bob d/23-12-2021`
 **Find client** | `find client [KEYWORD]` <br> e.g., `find client alice`
 **Clear** | `clear property` <br> `clear appointment` <br> `clear all`
+**Undo** | `undo`
 
 ## 7. Appendix
 

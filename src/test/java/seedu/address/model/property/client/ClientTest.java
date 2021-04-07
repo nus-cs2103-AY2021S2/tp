@@ -10,12 +10,12 @@ public class ClientTest {
     private static final String DEFAULT_CLIENT_NAME_STRING = "Alice";
     private static final String DEFAULT_CLIENT_CONTACT_STRING = "91234567";
     private static final String DEFAULT_CLIENT_EMAIL_STRING = "alice@gmail.com";
-    private static final String DEFAULT_CLIENT_ASKING_PRICE_STRING = "$800,000";
+    private static final Long DEFAULT_CLIENT_ASKING_PRICE_LONG = Long.parseLong("800000");
 
     private static final Name DEFAULT_CLIENT_NAME = new Name(DEFAULT_CLIENT_NAME_STRING);
     private static final Contact DEFAULT_CLIENT_CONTACT = new Contact(DEFAULT_CLIENT_CONTACT_STRING);
     private static final Email DEFAULT_CLIENT_EMAIL = new Email(DEFAULT_CLIENT_EMAIL_STRING);
-    private static final AskingPrice DEFAULT_CLIENT_ASKING_PRICE = new AskingPrice(DEFAULT_CLIENT_ASKING_PRICE_STRING);
+    private static final AskingPrice DEFAULT_CLIENT_ASKING_PRICE = new AskingPrice(DEFAULT_CLIENT_ASKING_PRICE_LONG);
 
     @Test
     public void testStringConversion() {

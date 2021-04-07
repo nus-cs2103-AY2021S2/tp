@@ -6,7 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_DEADLINE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_DEADLINE_IN_INVALID_FORMAT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_DEADLINE_IN_VALID_FORMAT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_POSTAL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_TYPE_DESC;
@@ -146,9 +147,15 @@ public class AddPropertyCommandParserTest {
         assertParseFailure(parser, NAME_DESC_MAYFAIR + TYPE_DESC_MAYFAIR + ADDRESS_DESC_MAYFAIR
                 + INVALID_PROPERTY_POSTAL_DESC + DEADLINE_DESC_MAYFAIR, PostalCode.MESSAGE_CONSTRAINTS);
 
-        // invalid deadline
+        // invalid deadline in invalid format
         assertParseFailure(parser, NAME_DESC_MAYFAIR + TYPE_DESC_MAYFAIR + ADDRESS_DESC_MAYFAIR
-                + POSTAL_DESC_MAYFAIR + INVALID_PROPERTY_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS);
+                + POSTAL_DESC_MAYFAIR + INVALID_PROPERTY_DEADLINE_IN_INVALID_FORMAT_DESC,
+                Deadline.MESSAGE_CONSTRAINTS);
+
+        // invalid deadline in valid format
+        assertParseFailure(parser, NAME_DESC_MAYFAIR + TYPE_DESC_MAYFAIR + ADDRESS_DESC_MAYFAIR
+                + POSTAL_DESC_MAYFAIR + INVALID_PROPERTY_DEADLINE_IN_VALID_FORMAT_DESC,
+                Deadline.MESSAGE_INVALID_DATE);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_PROPERTY_NAME_DESC + TYPE_DESC_MAYFAIR + ADDRESS_DESC_MAYFAIR

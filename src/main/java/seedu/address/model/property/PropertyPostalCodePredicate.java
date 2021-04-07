@@ -14,7 +14,7 @@ public class PropertyPostalCodePredicate implements Predicate<Property> {
 
     @Override
     public boolean test(Property property) {
-        return property.getPostalCode().postal.equals(postal);
+        return property.getPostalCode().postal.contains(this.postal);
     }
 
     @Override

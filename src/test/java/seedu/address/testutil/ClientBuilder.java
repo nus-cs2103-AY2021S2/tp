@@ -14,7 +14,7 @@ public class ClientBuilder {
     public static final String DEFAULT_NAME = "Alice";
     public static final String DEFAULT_CONTACT = "91234567";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
-    public static final String DEFAULT_ASKING_PRICE = "$800,000";
+    public static final Long DEFAULT_ASKING_PRICE = Long.parseLong("800000");
 
     private Name clientName;
     private Contact clientContact;
@@ -68,7 +68,7 @@ public class ClientBuilder {
     /**
      * Sets the {@code AskingPrice} of the {@code Client} that we are building.
      */
-    public ClientBuilder withClientAskingPrice(String clientAskingPrice) {
+    public ClientBuilder withClientAskingPrice(Long clientAskingPrice) {
         this.clientAskingPrice = new AskingPrice(clientAskingPrice);
         return this;
     }

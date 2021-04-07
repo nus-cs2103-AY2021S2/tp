@@ -83,6 +83,16 @@ public class AddAppointmentCommandTest {
      */
     private class ModelStub implements Model {
         @Override
+        public void clearAppointmentBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearPropertyBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void undoAppointmentBook() {
             throw new AssertionError("This method should not be called.");
         }
@@ -134,6 +144,11 @@ public class AddAppointmentCommandTest {
 
         @Override
         public boolean hasProperty(Property property) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasProperty() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -204,6 +219,11 @@ public class AddAppointmentCommandTest {
 
         @Override
         public boolean hasAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAppointment() {
             throw new AssertionError("This method should not be called.");
         }
 

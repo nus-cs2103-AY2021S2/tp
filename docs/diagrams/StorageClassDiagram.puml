@@ -4,10 +4,10 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
-Interface Storage <<Interface>>
-Interface UserPrefsStorage <<Interface>>
-Interface AppointmentBookStorage <<Interface>>
-Interface PropertyBookStorage <<Interface>>
+Class "<<Interface>>\nStorage" as Storage
+Class "<<Interface>>\nUserPrefsStorage" as UserPrefsStorage
+Class "<<Interface>>\nAppointmentBookStorage" as AppointmentBookStorage
+Class "<<Interface>>\nPropertyBookStorage" as PropertyBookStorage
 
 Class StorageManager
 Class JsonUserPrefsStorage
