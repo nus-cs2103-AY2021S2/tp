@@ -26,7 +26,7 @@ import seedu.address.model.task.TaskComparator;
  */
 public class SocheduleParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.\n";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero positive integer.\n";
     public static final String MESSAGE_INVALID_INDEXES =
             "Some of the given index(es) are not non-zero unsigned integers.\n";
     public static final String MESSAGE_DUPLICATE_INDEXES = "Some of the given index(es) contain duplicates.\n";

@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UnpinTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -18,7 +16,8 @@ public class UnpinTaskCommandParser implements Parser<UnpinTaskCommand> {
             return new UnpinTaskCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnpinTaskCommand.MESSAGE_USAGE), pe);
+                    String.format(pe.getMessage()
+                            + "%1$s", UnpinTaskCommand.MESSAGE_USAGE), pe);
         }
     }
 }
