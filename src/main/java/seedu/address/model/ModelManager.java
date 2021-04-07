@@ -174,6 +174,10 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         personBook.setPerson(target, editedPerson);
+        List<Order> ordersFromTarget = getOrdersFromPerson(target);
+        for (Order o : ordersFromTarget) {
+            o.updateCustomer(editedPerson);
+        }
     }
 
     /**
