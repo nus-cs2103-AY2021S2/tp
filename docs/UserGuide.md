@@ -172,7 +172,7 @@ Adds a person to FriendDex.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`
 
 * FriendDex only allows unique friends to be added. This means that each friend should only have a single entry in FriendDex.
-* FriendDex determines uniqueness solely based on the person's names ignoring their letter case.
+* FriendDex determines uniqueness solely based on the person's names ignoring their letter case, i.e. `John Tan` and `JoHn TaN` are the same name. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can provide any number of tags (including 0)
@@ -228,6 +228,7 @@ Format: `add-group n/GROUP_NAME p/INDEX…​`
 * You should provide at least one index.
 * If the group name you provided already exists, the friends at the specified `INDEX…​` will be added to the group.
 * If some friends specified already exist in the group, they will be ignored.
+* Each group needs to have a unique name, ignoring their letter case, i.e. `Friends` and `frIeNds` are the same group.   
 
 Examples:
 * `add-group n/Close Friends  p/1 2 3 4 5`
@@ -306,6 +307,14 @@ Deletes a friend group from FriendDex with the specified name.
 Format: `del-group n/GROUP_NAME`
 
 * The group name provided should already exist in FriendDex.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes: Deleting a friend group**<br>
+
+* The command ignores the letter case of the group name, 
+  i.e. `del-group n/Close friends` and `del-group n/ClOse FriendS` are the same commands.
+</div>
 
 Examples:
 * `del-group n/Close Friends`
