@@ -13,10 +13,11 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.findcommand.FindCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.CommandParser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class FindCommandParser {
+public class FindCommandParser implements CommandParser {
 
     /**
      * Parses the given {@code String} of arguments in the context of an Find Command and returns
