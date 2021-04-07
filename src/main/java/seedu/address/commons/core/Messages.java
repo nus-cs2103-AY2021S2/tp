@@ -9,6 +9,7 @@ public class Messages {
     public static final String MESSAGE_NO_SUCH_ENTRY = "There is no such entry with that name!";
     public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Deleted Entry: %1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
+    public static final String MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX = "The contact index provided is invalid";
     public static final String MESSAGE_INVALID_DATE_RANGE = "The provided start date is after the provided end date!";
     public static final String MESSAGE_ENTRIES_LISTED_OVERVIEW = "%1$d entries listed!";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
