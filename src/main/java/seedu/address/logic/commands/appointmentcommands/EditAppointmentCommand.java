@@ -1,9 +1,7 @@
 package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DATE_CLASH_EDIT;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_APPOINTMENT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNABLE_TO_EDIT_PAST_APPOINTMENT;
@@ -21,6 +19,7 @@ import java.util.Optional;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.commons.util.DateTimeValidationUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -107,15 +106,11 @@ public class EditAppointmentCommand extends Command {
         }
 
         Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
-        Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
-
         if (appointmentToEdit.getTimeFrom().isBeforeNow() && appointmentToEdit.getTimeTo().isBeforeNow()) {
             throw new CommandException(MESSAGE_UNABLE_TO_EDIT_PAST_APPOINTMENT);
         }
 
-        if (editedAppointment.getTimeFrom().isBeforeNow() && editedAppointment.getTimeTo().isBeforeNow()) {
-            throw new CommandException(MESSAGE_INVALID_DATE);
-        }
+        Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
 
         if (appointmentToEdit.equals(editedAppointment) || model.hasAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
@@ -131,9 +126,7 @@ public class EditAppointmentCommand extends Command {
                     editedAppointment.getSubject()));
         }
 
-        if (model.hasClashingDateTime(editedAppointment, appointmentToEdit)) {
-            throw new CommandException(MESSAGE_DATE_CLASH_EDIT);
-        }
+        DateTimeValidationUtil.validateDateTime(model, editedAppointment, appointmentToEdit);
 
         model.setAppointment(appointmentToEdit, editedAppointment);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT);

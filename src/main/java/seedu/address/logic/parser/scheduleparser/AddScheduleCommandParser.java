@@ -1,7 +1,6 @@
 package seedu.address.logic.parser.scheduleparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TIME_MINUTES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
@@ -47,10 +46,6 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
         String timeToString = argMultimap.getValue(PREFIX_TIME_TO).get();
         AppointmentDateTime timeFrom = ParserUtil.parseDateTime(dateString + " " + timeFromString);
         AppointmentDateTime timeTo = ParserUtil.parseDateTime(dateString + " " + timeToString);
-
-        if (!timeFrom.isValidMinutes() || !timeTo.isValidMinutes()) {
-            throw new ParseException(MESSAGE_INVALID_TIME_MINUTES);
-        }
 
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 

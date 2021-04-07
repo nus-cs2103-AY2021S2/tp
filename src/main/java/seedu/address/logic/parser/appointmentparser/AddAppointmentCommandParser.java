@@ -68,6 +68,4 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
 
         return new AddAppointmentCommand(appointment);
     }
-
-
 }

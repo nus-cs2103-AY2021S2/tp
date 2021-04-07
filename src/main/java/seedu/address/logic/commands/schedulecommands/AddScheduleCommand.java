@@ -1,14 +1,13 @@
 package seedu.address.logic.commands.schedulecommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
-import static seedu.address.commons.core.Messages.MESSAGE_TIME_FROM_GREATER_THAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import seedu.address.commons.util.DateTimeValidationUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -65,13 +64,7 @@ public class AddScheduleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (toAdd.getTimeFrom().isBeforeNow() && toAdd.getTimeTo().isBeforeNow()) {
-            throw new CommandException(MESSAGE_INVALID_DATE);
-        }
-
-        if (toAdd.isInvalidTimeRange()) {
-            throw new CommandException(MESSAGE_TIME_FROM_GREATER_THAN);
-        }
+        DateTimeValidationUtil.validateDateTime(model, toAdd);
 
         if (model.hasSchedule(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SCHEDULE);

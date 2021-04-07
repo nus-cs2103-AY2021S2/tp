@@ -130,7 +130,7 @@ public class AppointmentDateTime {
      * than given {@code AppointmentDateTime} in params
      */
     public boolean isInvalidEndTime() {
-        return this.getValue().toLocalTime().isAfter(LocalTime.of(22, 1));
+        return this.getValue().toLocalTime().isAfter(LocalTime.of(23, 1));
     }
 
     /**

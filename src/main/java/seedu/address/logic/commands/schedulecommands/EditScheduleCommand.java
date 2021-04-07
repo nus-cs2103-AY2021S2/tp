@@ -1,8 +1,6 @@
 package seedu.address.logic.commands.schedulecommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
-import static seedu.address.commons.core.Messages.MESSAGE_TIME_FROM_GREATER_THAN;
 import static seedu.address.commons.core.Messages.MESSAGE_UNABLE_TO_EDIT_PAST_SCHEDULE;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
@@ -12,14 +10,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULE;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.commons.util.DateTimeValidationUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -64,7 +61,6 @@ public class EditScheduleCommand extends Command {
      */
     public EditScheduleCommand(Index index, EditScheduleDescriptor editScheduleDescriptor) {
         requireAllNonNull(index, editScheduleDescriptor);
-
         this.index = index;
         this.editScheduleDescriptor = editScheduleDescriptor;
     }
@@ -83,7 +79,6 @@ public class EditScheduleCommand extends Command {
         Description updatedDescription =
                 editScheduleDescriptor.getDescription().orElse(scheduleToEdit.getDescription());
 
-        assert updatedTimeTo != null && updatedTimeFrom != null;
         return new Schedule(updatedTitle, updatedTimeFrom, updatedTimeTo, updatedDescription);
     }
 
@@ -97,27 +92,17 @@ public class EditScheduleCommand extends Command {
         }
 
         Schedule scheduleToEdit = lastShownList.get(index.getZeroBased());
-        Schedule editedSchedule = createEditedSchedule(scheduleToEdit, editScheduleDescriptor);
-
         if (scheduleToEdit.getTimeFrom().isBeforeNow() && scheduleToEdit.getTimeTo().isBeforeNow()) {
             throw new CommandException(MESSAGE_UNABLE_TO_EDIT_PAST_SCHEDULE);
         }
 
-        if (editedSchedule.getTimeFrom().isBeforeNow() && editedSchedule.getTimeTo().isBeforeNow()) {
-            throw new CommandException(MESSAGE_INVALID_DATE);
-        }
-
-        if (!editedSchedule.getTimeFrom().isTimeFromValid(editedSchedule.getTimeTo())) {
-            throw new CommandException(MESSAGE_TIME_FROM_GREATER_THAN);
-        }
+        Schedule editedSchedule = createEditedSchedule(scheduleToEdit, editScheduleDescriptor);
 
         if (!scheduleToEdit.equals(editedSchedule) && model.hasSchedule(editedSchedule)) {
             throw new CommandException(MESSAGE_DUPLICATE_SCHEDULE);
         }
 
-        if (model.hasClashingDateTime(editedSchedule, scheduleToEdit)) {
-            throw new CommandException(MESSAGE_CLASH_SCHEDULE);
-        }
+        DateTimeValidationUtil.validateDateTime(model, editedSchedule, scheduleToEdit);
 
         model.setSchedule(scheduleToEdit, editedSchedule);
         model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULE);
@@ -152,10 +137,6 @@ public class EditScheduleCommand extends Command {
         private AppointmentDateTime timeTo;
         private Description description;
 
-        private LocalDate dateOnly;
-        private LocalTime timeFromOnly;
-        private LocalTime timeToOnly;
-
         public EditScheduleDescriptor() {
         }
 
@@ -173,8 +154,7 @@ public class EditScheduleCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, timeFrom, timeTo, description,
-                    timeFromOnly, timeToOnly, dateOnly);
+            return CollectionUtil.isAnyNonNull(title, timeFrom, timeTo, description);
         }
 
         public Optional<Title> getTitle() {
@@ -185,14 +165,6 @@ public class EditScheduleCommand extends Command {
             this.title = title;
         }
 
-        public Optional<LocalDate> getDateOnly() {
-            return Optional.ofNullable(this.dateOnly);
-        }
-
-        public void setDateOnly(LocalDate dateOnly) {
-            this.dateOnly = dateOnly;
-        }
-
         public Optional<AppointmentDateTime> getTimeFrom() {
             return Optional.ofNullable(this.timeFrom);
         }
@@ -201,28 +173,12 @@ public class EditScheduleCommand extends Command {
             this.timeFrom = timeFrom;
         }
 
-        public Optional<LocalTime> getTimeFromOnly() {
-            return Optional.ofNullable(timeFromOnly);
-        }
-
-        public void setTimeFromOnly(LocalTime timeFromOnly) {
-            this.timeFromOnly = timeFromOnly;
-        }
-
         public Optional<AppointmentDateTime> getTimeTo() {
             return Optional.ofNullable(this.timeTo);
         }
 
         public void setTimeTo(AppointmentDateTime timeTo) {
             this.timeTo = timeTo;
-        }
-
-        public Optional<LocalTime> getTimeToOnly() {
-            return Optional.ofNullable(timeToOnly);
-        }
-
-        public void setTimeToOnly(LocalTime timeToOnly) {
-            this.timeToOnly = timeToOnly;
         }
 
         public Optional<Description> getDescription() {

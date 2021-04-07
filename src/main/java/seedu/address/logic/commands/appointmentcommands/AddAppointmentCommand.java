@@ -1,13 +1,6 @@
 package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DATE_CLASH_ADD;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_APPOINTMENT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_END_TIME;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_START_TIME;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TIME_MINUTES;
-import static seedu.address.commons.core.Messages.MESSAGE_TIME_FROM_GREATER_THAN;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
@@ -17,19 +10,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
 
+import seedu.address.commons.util.DateTimeValidationUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.eventcommands.AddEventCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentDateTime;
 
 /**
  * Adds an appointment to the appointment list.
  */
-public class AddAppointmentCommand extends AddEventCommand {
+public class AddAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "add_appointment";
 
@@ -51,15 +42,17 @@ public class AddAppointmentCommand extends AddEventCommand {
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
 
+    private final Appointment toAdd;
+
     /**
      * Primary constructor to accept an appointment and add it to appointment list.
      *
      * @param appointment Appointment to add
      */
     public AddAppointmentCommand(Appointment appointment) {
-        super(appointment);
+        requireNonNull(appointment);
+        toAdd = appointment;
     }
-
 
     /**
      * Main execute method that creates adds a new appointment to the appointment list
@@ -72,20 +65,18 @@ public class AddAppointmentCommand extends AddEventCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Appointment appointmentToAdd = (Appointment) toAdd;
-
-        if (!model.hasTutorByName(appointmentToAdd.getName())) {
+        if (!model.hasTutorByName(toAdd.getName())) {
             throw new CommandException(MESSAGE_TUTOR_DOES_NOT_EXIST);
         }
 
-        if (!model.doesTutorTeachSubject(appointmentToAdd.getName(), appointmentToAdd.getSubject())) {
+        if (!model.doesTutorTeachSubject(toAdd.getName(), toAdd.getSubject())) {
             throw new CommandException(String.format(MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT,
-                    appointmentToAdd.getSubject()));
+                    toAdd.getSubject()));
         }
 
-        super.validateDateTime(model);
+        DateTimeValidationUtil.validateDateTime(model, toAdd);
 
-        model.addAppointment(appointmentToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, appointmentToAdd), TabName.APPOINTMENT);
+        model.addAppointment(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.APPOINTMENT);
     }
 }

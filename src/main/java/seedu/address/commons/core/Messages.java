@@ -41,17 +41,19 @@ public class Messages {
             + "Please add a new reminder instead.";
     public static final String MESSAGE_INVALID_TIME_MINUTES = "TIME_FROM and TIME_TO must be in "
             + "blocks of 30 or 60 minutes. Please check your input again.";
-    public static final String MESSAGE_INVALID_START_TIME = "The earliest TIME_FROM you can add is 6:00 AM. Please check your input again";
-    public static final String MESSAGE_INVALID_END_TIME = "The latest TIME_TO you can add is 11:00 PM. Please check your input again";
-    public static final String MESSAGE_INVALID_HOURS = "The longest timeslot you can add is 8 hours. Please check your input again";
-    public static final String MESSAGE_DATE_CLASH_ADD = "The appointment you are trying "
-            + "to book clashes with the timeslot of an existing appointment or schedule. Please "
-            + "ensure timeslots to not clash.";
-    public static final String MESSAGE_DATE_CLASH_EDIT = "The appointment you are "
-            + "trying to change to clashes with the timeslot of an existing "
-            + "appointment or schedule. Please ensure timeslots do not clash.";
+    public static final String MESSAGE_INVALID_START_TIME = "The earliest TIME_FROM you can add is 6:00 AM. "
+            + "Please check your input again";
+    public static final String MESSAGE_INVALID_END_TIME = "The latest TIME_TO you can add is 11:00 PM. "
+            + "Please check your input again";
+    public static final String MESSAGE_INVALID_SHORT_HOURS = "The shortest timeslot you can add is 1 hour. "
+            + "Please check your input again";
+    public static final String MESSAGE_INVALID_LONG_HOURS = "The longest timeslot you can add is 8 hours. "
+            + "Please check your input again";
+    public static final String MESSAGE_DATE_CLASH = "The timeslot you are trying to add clashes with " +
+            "another timeslot of an existing appointment or schedule. Please ensure timeslots to not clash.";
     public static final String MESSAGE_MISSING_DATE_FIELD = "The datetime fields (DATE, "
             + "TIME_FROM and TIME_TO) are all required together if any one of them is "
             + "edited. You are missing at least one of these fields.";
-
+    public static final String MESSAGE_ADD_EDIT_COMMAND_ERROR = "Something went wrong when processing your request. "
+            + "Please check your inputs again.";
 }
