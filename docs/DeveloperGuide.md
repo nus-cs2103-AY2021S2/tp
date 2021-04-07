@@ -148,6 +148,122 @@ Classes used by multiple components are in the `seedu.iscam.storage` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Client Features
+#### Client Class
+#### Add Client
+
+### Meeting Features
+The Meeting family of features consist of the following features: Add Meeting, Edit Meeting, List Meeting, Find Meeting,
+Reschedule Meeting, Relocate Meeting, Complete Meeting and Delete Meeting.
+
+#### Meeting Class
+The Meeting class consists of 6 fields, each of the fields represented by own respective classes. Within those classes, 
+they have their own methods to verify their respective inputs and display error message when the given input is invalid.
+This allows the fields to have a low degree of coupling and we can change how the fields are verified without affecting
+other classes in the App. Additionally, the Meeting class can be expanded to contain more fields without affecting the 
+existing fields as well.
+
+Fields
+* `ClientName` - Name of the client involved 
+  * The client referred here does not need to be in the ClientBook.
+* `DateTime` - Date and time when the meeting take place.
+* `Location` - Location where the meeting take place.
+* `Description` - General description of what the meeting is about.
+* `Tags` - Tagging the type of meeting it is.
+* `CompletionStatus` - Status of the meeting, whether if it is completed or not.
+
+The `Meeting` objects are stored in a `MeetingList` within `MeetingBook`.
+
+#### Add Meeting
+This section will detail the implementation of the Add Meeting feature via the `addmeet` command.
+
+##### Overview of Adding Process
+The `AddMeetingCommand` is executed through entering `addmeet` followed by valid parameters of the client's name,
+date and time,location and any tags if needed. The entire command string will be parsed to extract the parameters that 
+were inputted and if they are all valid, a Meeting object is constructed and added to the Model and saved to the local
+storage. Upon successful adding, a feedback message is displayed to the user.
+
+Note
+* When given an invalid parameters or no parameters at all, a feedback message will be displayed to the user.
+
+This process is visualised in the diagram below:
+
+![AddMeetingCommand activity diagram](images/AddMeetingActivityDiagram.png)
+
+##### AddMeetingCommand
+The `AddMeetingCommand` is inherited from the `Command` class and overrides its `execute()` method to initiate the 
+creation of meeting, addition to the model and saving to the local storage. Through the inheritance from `Command`, the
+`Logic` component can deal with `AddMeetingCommand` as if it is just a `Command` through polymorphism, further reducing
+coupling.
+
+##### Detailed execution pathway
+The diagram below details how the user's command to add a meeting propagates through the system to eventually add a
+meeting.
+
+![AddMeetingCommand sequence diagram](images/AddMeetingSequenceDiagram.png)
+
+#### Edit Meeting
+This section will detail the implementation of the Edit Meeting feature via the `editmeet` command.
+
+##### Overview of Editing process
+The `EditMeetingCommand` is executed through entering `editmeet` followed by valid parameters of the displayed index of
+the meeting and any fields of a meeting that is going to be modified. The entire command string will be parsed to 
+extract the parameters that were inputted and if they are all valid, the Meeting object in the Model that corresponds
+to the displayed index will be modified and replaced the original one in the Model and local storage. Upon successful
+editing, a feedback message is displayed to the user.
+
+Note. 
+* When there are issues with the parameters or the meeting to modify is already completed, a feedback message will be 
+  displayed to the user 
+* When the edited meeting's date-time collides with an existing meeting in the model, a conflict message will be 
+  displayed to the user.
+
+This process is visualised in the diagram below:
+
+![EditMeetingCommand activity diagram](images/EditMeetingActivityDiagram.png)
+
+##### EditMeetingCommand
+Similar to the `AddMeetingCommand`, `EditMeetingCommand` is inherited from `Command` class and overrides its `execute()`
+method to initiate the modification of an existing meeting, updating the model and local storage. 
+
+##### Detailed execution pathway
+The diagram below details how the user's command to edit a meeting propagates through the system to eventually edit a 
+meeting.
+
+![EditMeetingCommand sequence diagram](images/EditMeetingSequenceDiagram.png)
+
+#### Find Meeting
+This section will detail the implementation of the Find Meeting feature via the `findmeet` command.
+
+##### Overview of Finding Process
+The `FindMeetingCommand` is executed through entering `findmeet` followed by partial, full or unique keywords to return 
+a list of filtered meetings to be displayed by the UI. The entire command string will be parsed to extract the keywords
+that were inputted and form a predicate that require a meeting to match all the keywords in order to pass. This
+predicate is then used to filter the meeting list in the model and display the filtered list onto the UI. Upon successful
+filtering, a success message is displayed to the user.
+
+Note
+* When no keywords are provided, a feedback message will be displayed to the user.
+* When no meetings are found, a failure message is displayed to the user.
+
+This process is visualised in the diagram below:
+
+![FindMeetingCommand activity diagram](images/FindMeetingActivityDiagram.png)
+
+##### FindMeetingCommand
+Similar to the `AddMeetingCommand`, `FindMeetingCommand` is inherited from `Command` class and overrides its `execute()`
+method to initiate the search and filtering of the displayed list in the UI.
+
+##### Detailed execution pathway
+The diagram below details how the user's command to find meetings propagates through the system to eventually displays 
+the matching meetings to the user.
+
+![FindMeetingCommand sequence diagram](images/FindMeetingSequenceDiagram.png)
+
+### Customisation Features
+
+#### Profile picture for clients
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -231,7 +347,6 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 

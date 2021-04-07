@@ -1,0 +1,27 @@
+@startuml
+start
+:User enters command to add a meeting;
+
+:Parse the command string;
+
+if () then ([All parameters are valid])
+    :Constructs a meeting with the given parameters;
+    if () then ([No date-time conflict with existing meetings])
+        :Adds the meeting to the model;
+        :Saves the meeting to the storage;
+        :Display success message to the user;
+    else ([Else])
+        :Display conflict message to the user;
+    endif
+else ([Else])
+    :Display a feedback message to the user;
+    note right
+        Different messages can be displayed
+        depending on which field is invalid
+        and why. They are omitted here for
+        brevity.
+    end note
+endif
+stop
+'    stop
+@enduml
