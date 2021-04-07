@@ -2,6 +2,7 @@ package seedu.heymatez.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.heymatez.logic.commands.ClearAssigneesCommand.MESSAGE_LIST_IS_EMPTY;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.heymatez.logic.commands.CommandTestUtil.showTaskAtIndex;
@@ -59,6 +60,14 @@ public class ClearAssigneesCommandTest {
     }
 
     @Test
+    public void execute_invalidIntegerUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(Integer.MAX_VALUE + 1);
+        ClearAssigneesCommand clearAssigneesCommand = new ClearAssigneesCommand(outOfBoundIndex);
+
+        assertCommandFailure(clearAssigneesCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
     public void execute_validIndexFilteredList_success() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
@@ -86,7 +95,7 @@ public class ClearAssigneesCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_emptyFilteredList_throwsCommandException() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Index outOfBoundIndex = INDEX_SECOND_TASK;
@@ -96,6 +105,17 @@ public class ClearAssigneesCommandTest {
         ClearAssigneesCommand clearAssigneesCommand = new ClearAssigneesCommand(outOfBoundIndex);
 
         assertCommandFailure(clearAssigneesCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidIndexFilteredList_throwsCommandException() {
+        showNoTask(model);
+
+        Index givenIndex = INDEX_SECOND_TASK;
+
+        ClearAssigneesCommand clearAssigneesCommand = new ClearAssigneesCommand(givenIndex);
+
+        assertCommandFailure(clearAssigneesCommand, model, MESSAGE_LIST_IS_EMPTY);
     }
 
     /**
