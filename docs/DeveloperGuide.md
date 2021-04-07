@@ -200,7 +200,7 @@ coupling.
 The diagram below details how the user's command to add a meeting propagates through the system to eventually add a
 meeting.
 
-![AddMeetingCommand sequence diagram](images/AddMeetingSequenceDiagram.png))
+![AddMeetingCommand sequence diagram](images/AddMeetingSequenceDiagram.png)
 
 #### Edit Meeting
 This section will detail the implementation of the Edit Meeting feature via the `editmeet` command.
@@ -230,7 +230,7 @@ method to initiate the modification of an existing meeting, updating the model a
 The diagram below details how the user's command to edit a meeting propagates through the system to eventually edit a 
 meeting.
 
-DIAGRAM HERE
+![EditMeetingCommand sequence diagram](images/EditMeetingSequenceDiagram.png)
 
 #### Find Meeting
 This section will detail the implementation of the Find Meeting feature via the `findmeet` command.

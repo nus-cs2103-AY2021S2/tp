@@ -65,8 +65,8 @@ deactivate Model
 
 AddMeetingCommand -> Model : addMeeting(meeting)
 activate Model
-note right: Storage feature is omitted\n here for brevity
 Model --> AddMeetingCommand
+note right: Storage feature is omitted\n here for brevity
 deactivate Model
 
 create CommandResult
@@ -82,6 +82,6 @@ deactivate AddMeetingCommand
 LogicManager --> CommandBox: result
 deactivate LogicManager
 
-CommandBox -> user: displays result
+CommandBox --> user: displays result
 deactivate CommandBox
 @enduml
