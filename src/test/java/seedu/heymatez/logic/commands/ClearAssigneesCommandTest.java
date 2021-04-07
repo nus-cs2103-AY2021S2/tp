@@ -110,7 +110,7 @@ public class ClearAssigneesCommandTest {
 
     @Test
     public void execute_emptyFilteredList_success() {
-        ModelManager myModel= new ModelManager(new HeyMatez(), new UserPrefs());
+        ModelManager myModel = new ModelManager(new HeyMatez(), new UserPrefs());
 
         Index givenIndex = INDEX_SECOND_TASK;
 

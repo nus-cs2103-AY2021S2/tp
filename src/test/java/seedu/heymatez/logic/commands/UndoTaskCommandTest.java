@@ -78,7 +78,7 @@ public class UndoTaskCommandTest {
 
         UndoTaskCommand undoTaskCommand = new UndoTaskCommand(givenIndex);
 
-        ModelManager myModel= new ModelManager(new HeyMatez(), new UserPrefs());
+        ModelManager myModel = new ModelManager(new HeyMatez(), new UserPrefs());
         ModelManager expectedModel = new ModelManager(new HeyMatez(), new UserPrefs());
 
         assertCommandSuccess(undoTaskCommand, myModel, UndoTaskCommand.MESSAGE_LIST_IS_EMPTY, expectedModel);
