@@ -256,7 +256,7 @@ Example:
 
 ##### Locating student by name: `find_student`
 
-Filters the list to only include students, and their respective session whose student name contains any of the given keywords.
+Filters the student and session list to only include student(s), and their respective session(s) whose student name contains any of the given keywords.
 
 Format: `find_student KEYWORD [MORE_KEYWORDS]`
 * The search will be case-insensitive. e.g. searching `john` will match `JOHN`
@@ -425,7 +425,7 @@ before and after 2021-03-31 18:00
 
 ##### Calculating monthly fee for a particular student: `fee`
 
-Calculates and retrieves the monthly fee for a particular student for a particular month and year.
+Calculates and displays the monthly fee for a particular student for a particular month and year.
 
 Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 
