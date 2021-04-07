@@ -3,16 +3,11 @@ layout: page
 title: Zheng Yong's Project Portfolio Page
 ---
 
-## Project: SmartLib
-
-### Project overview
+### Project: SmartLib
 
 SmartLib is a desktop app for managing private book loaning services owning less than 10,000 books,
 optimized for use via a Command Line Interface (CLI),
 while still having the benefits of a Graphical User Interface (GUI).
-
-If you can type fast, SmartLib would be a brilliant and efficient assistant in the systematic management of your books
-and borrowers' information, as compared to the traditional GUI apps currently available in the market.
 
 ### Summary of contribution
 
