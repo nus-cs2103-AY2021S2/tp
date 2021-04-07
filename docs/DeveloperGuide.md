@@ -473,6 +473,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 * **Education Level**: The level of education offered by a tutor for a specific subject, e.g, "O level".
 * **Years of Experience**: Years of experience of tutoring a specific subject.
 * **Qualifications**: Official certificates of successful completion of an education programme, e.g, Bachelor of Science.
+* **Index**: Index number shown in the displayed tutor list. The index must be a positive integer 1, 2, 3, …​
 
 --------------------------------------------------------------------------------------------------------------------
 

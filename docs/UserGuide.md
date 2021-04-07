@@ -95,7 +95,7 @@ This feature allows tutees to maintain and keep track of the list of tuition tut
 
 #### Add a new tutor: `add_tutor`
 
-Add a new tutor and enter their basic details as well as an optional Note.
+Add a new tutor and enter their basic details as well as an optional note.
 
 Format:
 `add_tutor n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL  a/ADDRESS <s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>... notes/NOTE`
@@ -105,7 +105,7 @@ Example Input:
 
 #### List tutors: `list_tutors`
 
-View a list of all tutors known. Will ignore all input after `list_tutors`.
+View a list of all tutors known. Will ignore all input(s) after `list_tutors`.
 
 Example Output:
 ```
@@ -134,11 +134,11 @@ Maths
 
 #### Delete a tutor: `delete_tutor`
 
-Delete a tutor by index. Deletion cannot occur if there is at least one existing appointment booked with the tutor in question.
+Delete the tutor at the specified index. Deletion cannot occur if there is at least one existing appointment booked with the tutor in question.
 
 Format: `delete_tutor INDEX`
 
-Example: `delete_tutor 1`
+Example: `delete_tutor 1` deletes the first tutor.
 
 #### Edit a tutor: `edit_tutor`
 
@@ -181,7 +181,7 @@ Shortcut for adding note to tutor at a particular index. One tutor can only have
 
 Format: `add_note INDEX NOTE`
 
-Example: `add_note 1 patient tutor`
+Example: `add_note 1 patient tutor` adds note of `patient tutor` to the first tutor displayed.
 
 Example Output:
 on the right of ,<br>
@@ -204,11 +204,11 @@ patient tutor
 
 ##### Edit note of a tutor: `edit_note`
 
-Shortcut for editing note to tutor at a particular index
+Shortcut for editing note to tutor at a particular index. The tutor must have a note in order to edit.
 
 Format: `edit_note INDEX NOTE`
 
-Example: `edit_note 1 not patient`
+Example: `edit_note 1 not patient` edits existing note of tutor 1 to `not patient`
 
 Example Output:
 on the right of ,<br>
@@ -231,11 +231,11 @@ not patient
 ```
 ##### Delete note of a tutor: `delete_note`
 
-Deletes solely the note to tutor at a particular index
+Deletes solely the note to tutor at a particular index that was added previously.
 
 Format: `delete_note INDEX NOTE`
 
-Example: `delete_note 1`
+Example: `delete_note 1` deletes the existing note from the first tutor displayed.
 
 ##### List tutors with note `list_note`
 Lists all the tutor with note. Will ignore all input after `list_note`.
@@ -243,17 +243,16 @@ Lists all the tutor with note. Will ignore all input after `list_note`.
 Format:`list_note`
 
 ##### Export the tutor details: `export`
-Export the tutor details of that index together with the notes and subject list into a text file 
-exit
-in the directory you saved
-TutorTracker in /export/TUTORNAME
+Export the tutor details of that index together with the notes and subject list into a text file in the directory you saved the 
+TutorTracker jar under the export folder, with the tutor's name as file name. 
 
 Format:`export INDEX`
 
-Example: `export 1`
+Example: `export 1` If the jar is saved in C:\Users\user\Downloads, and first tutor name is Alex Yeoh,
+text file Alex_Yeoh.txt will be saved under the export folder. Full path in this case would be C:\Users\user\Downloads\export\Alex_Yeoh.txt
 
 #### Favourites
-This feature allows tutees to track and manage their favourite tutors.
+This feature allows users to track and manage their favourite tutors.
 
 ![Favourite Ui](images/ug-images/Favourite.png)
 
@@ -281,15 +280,15 @@ English
 
 ##### Unfavourite a tutor: `unfavourite`
 
-Removes the favourite label from a tutor
+Removes favourite status of a particular tutor that had been previously added as a favourite by using the index.
 
 Format: `unfavourite INDEX`
 
-Example: `unfavourite 1`
+Example: `unfavourite 1` removes the first tutor as a favourite.
 
 ##### List favourites: `list_favourites`
 
-View a list of all favourites
+View list of tutor(s) that had been added as favourite.
 
 Format: `list_favourites`
 
