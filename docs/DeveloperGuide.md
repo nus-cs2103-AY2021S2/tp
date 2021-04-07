@@ -26,6 +26,7 @@ The features of Tutor Tracker includes:
 - Adding new tuition appointments
 - Filtering tutors by personal preference (i.e. availability, experiences, name, location, price, etc.)
 - Viewing upcoming tuition appointments
+- Adding, editing, deleting and listing grade records in GradeBook
 
 The purpose of this Developer Guide is to help you understand the design and implementation of Tutor Tracker to get started on your contributions to Tutor Tracker.
 
