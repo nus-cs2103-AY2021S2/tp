@@ -56,11 +56,11 @@ public class FindCommand extends Command {
         assert (filteredStudentListSize >= 0 && filteredAppointmentListSize >= 0);
 
         if (filteredStudentListSize == 0) {
-            return new CommandResult(String.format(Messages.MESSAGE_NONEXISTENT_MATRIC_NUM,
-                    model.getFilteredStudentList().size()));
+            return new CommandResult(String.format(Messages.MESSAGE_NO_STUDENT_FOUND,
+                    predicate.getKeyword()));
         } else if (filteredAppointmentListSize == 0) {
             return new CommandResult(String.format(Messages.MESSAGE_NONEXISTENT_APPOINTMENT,
-                    model.getFilteredStudentList().size()));
+                    predicate.getKeyword()));
         } else {
             return new CommandResult(String.format(Messages.MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
                     predicate.getKeyword()));
