@@ -4,6 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -38,9 +39,10 @@ public class SameDateAppointmentListContainer extends UiPart<Region> {
         date.setText(appointmentList.getDate().format(dateFormatter).toUpperCase());
         ObservableList<Appointment> filteredAppointments = appointmentList.getFilteredAppointmentList();
         appointmentListView.setItems(filteredAppointments);
-        appointmentListView.setCellFactory(listView -> new AppointmentListViewCell(studentList));
+        appointmentListView.setCellFactory(listView -> new AppointmentListViewCell(studentList,
+                listView.prefWidthProperty()));
         appointmentListView.prefHeightProperty().bind(Bindings.size(filteredAppointments)
-                .multiply(110));
+                .multiply(100));
     }
 
 
@@ -49,10 +51,12 @@ public class SameDateAppointmentListContainer extends UiPart<Region> {
      */
     class AppointmentListViewCell extends ListCell<Appointment> {
         private ObservableList<Student> studentList;
+        private DoubleProperty width;
 
-        public AppointmentListViewCell(ObservableList<Student> studentList) {
+        public AppointmentListViewCell(ObservableList<Student> studentList, DoubleProperty width) {
             super();
             this.studentList = studentList;
+            this.width = width;
         }
 
         @Override
@@ -64,6 +68,7 @@ public class SameDateAppointmentListContainer extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new AppointmentCard(appointment, getIndex() + 1, studentList).getRoot());
+                prefWidthProperty().bind(width.subtract(20));
             }
         }
     }
