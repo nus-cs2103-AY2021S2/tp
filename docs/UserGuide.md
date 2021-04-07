@@ -170,10 +170,7 @@ Adds an appointment to Vax@NUS' records.
 
 Format: `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME`
 
-* Date must be of the format `YYYY-MM-DD`
-* Time must be of the format `HH:00` or `HH:30`
-* The student that the appointment is for must exist in the records before the appointment can be created.
-
+[Conditions for valid appointments](#conditions-for-valid-appointments)
 
 Examples:
 * `addAppt i/A1234567X d/2021-12-13 ts/13:00`
@@ -200,15 +197,9 @@ It is optional to include the following details:
 * The date of the appointment, in `YYYY-MM-DD` format.
 * The time of the appointment, in `HH:MM` format.
 
-Format: `editAppt MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM`
+Format: `editAppt MATRICULATION_NUMBER d/DATE ts/START_TIME`
 
-* The edited appointment must not clash with an existing appointment.
-* If two matriculation numbers dates or start time are provided, the first one will be taken.
-  
-  **i.e.** if `A1234567X A7654321J` is provided, then `A1234567X` will be used. 
-* If two dates or times are provided, the first of each will be taken 
- 
-  **i.e.** if `d/2021-12-13 d/2021-12-14 ts/14:00 ts/15:00` is provided, `2021-12-13` and `14:00` will be used. 
+[Conditions for valid appointments](#conditions-for-valid-appointments)
 
 Examples:
 * `editAppt A1234567X d/2021-12-13 ts/14:00`
