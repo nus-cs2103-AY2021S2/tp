@@ -6,8 +6,10 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+
 
 <HBox id="cardPane" fx:id="cardPane" style="-fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <GridPane HBox.hgrow="ALWAYS">
@@ -23,15 +25,26 @@
            <Insets bottom="5" left="15" right="5" top="5" />
          </padding>
          <HBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
-           <Label fx:id="id" styleClass="cell_big_label" />
-           <Label fx:id="name" styleClass="cell_big_label" text="\$first" HBox.hgrow="ALWAYS" />
+           <Label fx:id="id" styleClass="cell_big_label" >
+             <minWidth>
+                 <!-- Ensures that the label text is never truncated -->
+                 <Region fx:constant="USE_PREF_SIZE" />
+             </minWidth>
+           </Label>
+           <Label fx:id="name" styleClass="cell_big_label" text="\$first" HBox.hgrow="ALWAYS" >
+             <minWidth>
+                 <!-- Ensures that the label text is never truncated -->
+                 <Region fx:constant="USE_PREF_SIZE" />
+             </minWidth>
+           </Label>
          </HBox>
          <FlowPane fx:id="tags" prefWrapLength="1000.0" VBox.vgrow="ALWAYS" />
          <Label fx:id="description" styleClass="cell_small_label" text="\$description" VBox.vgrow="ALWAYS">
-               <VBox.margin>
-                  <Insets top="2.0" />
-               </VBox.margin>
-            </Label>
+             <minWidth>
+                 <!-- Ensures that the label text is never truncated -->
+                 <Region fx:constant="USE_PREF_SIZE" />
+             </minWidth>
+         </Label>
          <Label fx:id="status" styleClass="status" text="\$status" VBox.vgrow="ALWAYS" />
          <Label fx:id="date" styleClass="cell_small_label" text="\$date" VBox.vgrow="ALWAYS" />
          </VBox>
