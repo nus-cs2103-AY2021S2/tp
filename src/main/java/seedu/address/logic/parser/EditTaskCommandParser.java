@@ -8,17 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.common.Category;
-import seedu.address.model.common.Tag;
 
 /**
  * Parses input arguments and creates a new EditTaskCommand object
@@ -54,8 +47,10 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
             editTaskDescriptor.setPriority(SocheduleParserUtil.parsePriority(
                     argMultimap.getValue(PREFIX_PRIORITY).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
-        parseCategoriesForEdit(argMultimap.getAllValues(PREFIX_CATEGORY)).ifPresent(editTaskDescriptor::setCategories);
+        SocheduleParserUtil.parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))
+                .ifPresent(editTaskDescriptor::setTags);
+        SocheduleParserUtil.parseCategoriesForEdit(argMultimap.getAllValues(PREFIX_CATEGORY))
+                .ifPresent(editTaskDescriptor::setCategories);
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditTaskCommand.MESSAGE_NOT_EDITED);
@@ -64,34 +59,4 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         return new EditTaskCommand(index, editTaskDescriptor);
     }
 
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(SocheduleParserUtil.parseTags(tagSet));
-    }
-
-    /**
-     * Parses {@code Collection<String> categories} into a {@code Set<Category>} if {@code categories} is non-empty.
-     * If {@code categories} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Category>} containing zero categories.
-     */
-    private Optional<Set<Category>> parseCategoriesForEdit(Collection<String> categories) throws ParseException {
-        assert categories != null;
-
-        if (categories.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> categorySet = categories.size() == 1 && categories.contains("")
-                ? Collections.emptySet() : categories;
-        return Optional.of(SocheduleParserUtil.parseCategories(categorySet));
-    }
 }
