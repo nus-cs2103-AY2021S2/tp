@@ -34,7 +34,7 @@ public class ContactBuilder {
     private Favourite favourite;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code ContactBuilder} with the default details.
      */
     public ContactBuilder() {
         name = new Name(DEFAULT_NAME);

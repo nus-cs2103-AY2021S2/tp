@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,11 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             List<Index> indexes = stringArrayToIndexList(indexStrings);
             return new DeleteCommand(indexes);
         } catch (ParseException pe) {
-            throw new ParseException(MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX, pe);
+            if (pe.getMessage().equals(MESSAGE_INVALID_INDEX)) {
+                throw new ParseException(MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX, pe);
+            } else {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            }
         }
     }
 
