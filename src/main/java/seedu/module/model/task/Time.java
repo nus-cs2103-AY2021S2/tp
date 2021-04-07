@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Represents a Task's deadline in the module book.
@@ -76,13 +77,14 @@ public class Time implements Comparable<Time> {
         LocalDate newDate = oldTime.getDate().plusDays(increment);
 
         String dateString = newDate.format(ISO_LOCAL_DATE);
-        String hourMinuteFieldString = "";
 
         if (hasHoursMinutes(oldTime.value)) {
-            LocalTime hourMinuteField = oldTime.getTime().toLocalTime();
-            hourMinuteFieldString = hourMinuteField.format(ISO_LOCAL_TIME);
+            LocalTime hourMinuteField = oldTime.getTime().toLocalTime().truncatedTo(ChronoUnit.MINUTES);
+            String hourMinuteFieldString = hourMinuteField.toString();
+            return dateString + " " + hourMinuteFieldString;
+        } else {
+            return dateString;
         }
-        return dateString + " " + hourMinuteFieldString;
     }
 
     public LocalDate getDate() {
