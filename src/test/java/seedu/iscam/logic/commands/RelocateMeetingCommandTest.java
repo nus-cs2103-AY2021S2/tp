@@ -120,7 +120,7 @@ public class RelocateMeetingCommandTest {
         Meeting lastMeeting = model.getFilteredMeetingList().get(lastIndex.getZeroBased());
 
         // Ensures that the lastMeeting is completed
-        assertEquals(lastMeeting.getStatus(), new CompletionStatus("complete")));
+        assertEquals(lastMeeting.getStatus(), new CompletionStatus("complete"));
 
         RelocateMeetingCommand relocateMeetingCommand = new RelocateMeetingCommand(lastIndex,
                 new Location(VALID_LOCATION_DAN));
@@ -151,9 +151,4 @@ public class RelocateMeetingCommandTest {
         // different client -> returns false
         assertFalse(relocateFirstCommand.equals(relocateSecondCommand));
     }
-
-
-
-
-
 }
