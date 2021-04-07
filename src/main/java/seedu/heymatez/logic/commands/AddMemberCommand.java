@@ -19,14 +19,14 @@ public class AddMemberCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a member to HeyMatez. "
             + "Parameters: "
             + "NAME "
-            + PREFIX_PHONE + " PHONE "
-            + PREFIX_EMAIL + " EMAIL "
-            + "[ " + PREFIX_ROLE + " ROLE ] \n"
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + "[ " + PREFIX_ROLE + "ROLE ] \n"
             + "Example: " + COMMAND_WORD
             + " John Doe "
-            + PREFIX_PHONE + " 98765432 "
-            + PREFIX_EMAIL + " johnd@example.com "
-            + PREFIX_ROLE + " Vice president";
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_ROLE + "Vice president";
 
     public static final String MESSAGE_SUCCESS = "New Member Added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This member already exists in HeyMatez";

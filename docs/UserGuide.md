@@ -158,7 +158,7 @@ Format: `addMember NAME p/PHONE_NUMBER e/EMAIL [r/ROLE]`
 * The field ROLE is optional.
 * NAME and ROLE fields can take on any values with alphanumeric characters.
 * PHONE field has to have a minimum length of 3 digits and maximum length of 15 digits.
-* If role field is not specified, person will be assigned a default role of member.
+* If ROLE field is not specified, person will be assigned a default role of member.
 
 Assumptions:
 * Every member in the CCA has a different name. An error will be prompted when you add a member with the same name but with
