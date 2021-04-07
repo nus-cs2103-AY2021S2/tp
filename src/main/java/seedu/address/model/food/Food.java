@@ -8,11 +8,11 @@ public class Food {
     public static final double PROTEIN_AND_CARBOS_MULTIPLIER = 4; //Conversion to KCAL
     public static final double FAT_MULTIPLIER = 9; //Conversion to KCAL
     public static final String VALIDATION_WHITESPACE_REGEX = "[^\\s].*";
-    public static final String VALIDATION_CHAR_REGEX = "[a-zA-Z ]*";
+    public static final String VALIDATION_CHAR_REGEX = "[a-zA-Z0-9\\s]*";
     public static final String VALIDATION_CHAR_REGEX_IMPORT = "[a-zA-Z0-9 ]*";
     public static final String VALIDATION_POSITIVE_DOUBLE_REGEX = "(\\d*\\.?\\d+)";
-    public static final String MESSAGE_CONSTRAINTS = "Food name can take any alphabets charcter and it should not be"
-            + " blank.";
+    public static final String MESSAGE_CONSTRAINTS = "Food name can take only alphanumeric character " +
+            "and it should not be empty. (No leading spaces are allowed)";
     public static final String MESSAGE_DIGIT_CONSTRAINTS = "Double value input can only be positive and at least 0.";
 
     private String name;
