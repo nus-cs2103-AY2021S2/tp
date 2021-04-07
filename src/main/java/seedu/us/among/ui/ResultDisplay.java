@@ -15,6 +15,7 @@ import javafx.scene.layout.Region;
 import javafx.util.Duration;
 import seedu.us.among.commons.core.GuiSettings;
 import seedu.us.among.model.endpoint.Endpoint;
+import seedu.us.among.model.endpoint.Response;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -130,11 +131,13 @@ public class ResultDisplay extends UiPart<Region> {
         char firstChar = statusCode.charAt(0);
         switch (firstChar) {
         case '2':
-            return "-fx-background-color: #228B22";
+            return "-fx-background-color: #228B22"; //green
         case '3':
-            return "-fx-background-color: #999900";
+            return "-fx-background-color: #999900"; //orange
+        case 'N':
+            return "-fx-background-color: #999999"; //grey
         default:
-            return "-fx-background-color: #B22222";
+            return "-fx-background-color: #B22222"; //red
         }
     }
 
@@ -163,26 +166,38 @@ public class ResultDisplay extends UiPart<Region> {
     }
 
     /**
+     * Helper function for setting responseMetaFeedback to user.
+     * @param feedbackToUser feedback to give user
+     * @param endpoint endpoint to display
+     */
+    public void responseMetaFeedbackHelper(String feedbackToUser, Endpoint endpoint) {
+        if (feedbackToUser.length() > MAX_TEXT_LENGTH) {
+            feedbackToUser = feedbackToUser.substring(0, MAX_TEXT_LENGTH);
+        }
+        setResponseMetaToUser(endpoint);
+        resultDisplay.setText(feedbackToUser);
+    }
+
+    public void setResponseMetaFeedbackHelper(String feedbackToUser, Endpoint endpoint) {
+        if (!Platform.isFxApplicationThread()) {
+            Platform.runLater(() -> responseMetaFeedbackHelper(feedbackToUser, endpoint));
+        } else {
+            responseMetaFeedbackHelper(feedbackToUser, endpoint);
+        }
+    }
+
+    /**
      * Helper function for setting API feedback to user.
      *
-     * @param textFeedback API feedback to give user
+     * @param feedbackToUser API feedback to give user
      * @param endpoint endpoint to give feedback for
      */
-    public void apiFeedbackHelper(String textFeedback, Endpoint endpoint) {
-        if (textFeedback.length() > MAX_TEXT_LENGTH) {
-            textFeedback = textFeedback.substring(0, MAX_TEXT_LENGTH);
+    public void apiFeedbackHelper(String feedbackToUser, Endpoint endpoint) {
+        if (feedbackToUser.length() > MAX_TEXT_LENGTH) {
+            feedbackToUser = feedbackToUser.substring(0, MAX_TEXT_LENGTH);
         }
-        Label method = new Label(String.format("Method: %s", endpoint.getMethod().toString()));
-        Label statusCodeAndPhrase = new Label(String.format("Status: %s %s", endpoint.getResponse().getStatusCode(),
-                endpoint.getReasonPhrase()));
-        Label responseTime = new Label(String.format("Time: %s", endpoint.getResponse().getResponseTime()));
-        String colorCode = getColorCode(endpoint.getResponse().getStatusCode());
-        method.setStyle(colorCode);
-        statusCodeAndPhrase.setStyle(colorCode);
-        responseTime.setStyle(colorCode);
-        responseMeta.getChildren().clear();
-        responseMeta.getChildren().addAll(method, statusCodeAndPhrase, responseTime);
-        resultDisplay.setText(textFeedback);
+        setResponseMetaToUser(endpoint);
+        resultDisplay.setText(feedbackToUser);
     }
 
     /**
@@ -203,5 +218,38 @@ public class ResultDisplay extends UiPart<Region> {
         } else {
             apiFeedbackHelper(textFeedback, endpoint);
         }
+    }
+
+    /**
+     * Sets the flow pane for a unique endpoint. Contains the fields of methods,
+     * status code + phrase, response time and protocol version.
+     * @param endpoint endpoint to give feedback for
+     */
+    public void setResponseMetaToUser(Endpoint endpoint) {
+        Label method;
+        Label statusCodeAndPhrase;
+        Label responseTime;
+        Label protocolVersion;
+
+        if (endpoint.getResponse().isReasonEmpty()) {
+            statusCodeAndPhrase = new Label(String.format("Status: %s", Response.EMPTY_RESPONSE_STRING));
+        } else {
+            statusCodeAndPhrase = new Label(String.format("Status: %s %s", endpoint.getResponse().getStatusCode(),
+                    endpoint.getReasonPhrase()));
+        }
+
+        method = new Label(String.format("Method: %s", endpoint.getMethod().toString()));
+        responseTime = new Label(String.format("Time: %s", endpoint.getResponse().getResponseTime()));
+        protocolVersion = new Label(String.format("Protocol Version: %s", endpoint.getResponse().getProtocolVersion()));
+
+        String colorCode = getColorCode(endpoint.getResponse().getStatusCode());
+
+        method.setStyle(colorCode);
+        statusCodeAndPhrase.setStyle(colorCode);
+        responseTime.setStyle(colorCode);
+        protocolVersion.setStyle(colorCode);
+
+        responseMeta.getChildren().clear();
+        responseMeta.getChildren().addAll(method, statusCodeAndPhrase, responseTime, protocolVersion);
     }
 }

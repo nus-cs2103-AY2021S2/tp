@@ -114,33 +114,46 @@ In the example above, <span class="main-command">add</span> is the command word 
 | DATA         |   -d   | The data to use for an endpoint **(must be in [JSON](#85-json-format) format)**          |
 | TAG          |   -t   | The tag to label an endpoint                 |
 
+Note that the fields **METHOD**, **URL**, **HEADER**, **DATA** and **TAG** are used to uniquely identify an endpoint.
+
+<div style="page-break-after: always;"></div>
+
+<a name="general-rules"></a>
 Here are some general rules to follow when entering prefixes and parameters:
-* A whitespace must be included before every prefix.<br>
-  e.g. `-x METHOD-u URL` is not acceptable, and `-x METHOD -u URL` is in the correct format.<br>
+
+* A **whitespace** must be included before **every prefix**.<br>
+  e.g. `-x METHOD -u URL` is acceptable but `-x METHOD-u URL` is not.<br>
   
-* Parameters can be in any order.<br>
-  e.g. If the command specifies `-x METHOD -u URL`, `-u URL -x METHOD` is also acceptable.<br>
+* Parameters may be entered in **any order**.<br>
+  e.g. Both `-x METHOD -u URL` and `-u URL -x METHOD` are acceptable.<br>
   
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command but you specified it multiple times, only the **last occurrence** of the parameter will be taken.<br>
   e.g. If you specify `-u https://github.com/ -u https://google.com/`, only `-u https://google.com/` will be taken.<br>
-  
-* To add multiple parameters of the same prefix, add the prefix multiple times before each parameter.<br>
-  e.g. To add two TAGs, enter `-t tagOne -t tagTwo`.<br>
-  e.g. To add three HEADERs, enter `-h "header: one" -h "header: two" -h "header: three"`.<br>
-  
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+
+* **Extraneous parameters** for commands that do not take in parameters (such as **help**, **list**, **exit** and **clear**) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.<br>
+  
+* For **add**, **edit** and **run** commands, to add multiple parameters of the same prefix, add the prefix multiple times before each parameter.<br>
+  e.g. To add two tags, enter `-t tagOne -t tagTwo`.<br>
+  e.g. To add three headers, enter `-h "header: one" -h "header: two" -h "header: three"`.<br>
+  
+* Multiple **headers/tags must be unique** and duplicates will be ignored.<br>
+e.g. `edit 1 -t tagA -t tagA` will only create one `tagA`.
 
-* Multiple headers/tags must be unique and duplicates will be ignored.
-  e.g. `edit 1 -t tag -t tag` will only create one `tag`.
+* For the **URL** parameter, as our application is focused on API testing, we have no plans to direct all our efforts in
+  verifying every technically valid or invalid [**URL**](https://en.wikipedia.org/wiki/URL) against the official [URL standard](https://url.spec.whatwg.org/#url-parsing). Hence, **minimal checks** are performed for cases of **invalid URL** for which we will still display error messages.
+  e.g.`abc.com\go` is an invalid URL as `\` cannot exist in a valid URL.
 
-About the URL Parameter:
-* We do not check the validity of the URLs during input as it is impossible to verify if it exists without sending a request to the server. We will instead prevent impossible URL from being keyed in. e.g. `abc.com\go` (`\` cannot exist in a valid URL)
+* If no website [protocol](#glossary-protocol) is specified for the **URL**, we enforce a **HTTP protocol** as a protocol needs 
+  to be specified for an API request to be carried out.<br>
+  e.g. if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`.
 
-* If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be specified for an API request to be carried out.For instance, if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
+* The **index** parameter provided should be a **non-zero unsigned integer** within the allowed range of Java's `int` data type:
+  * the maximum value an `int` can have is (2^31)-1.
+  * the minimum value an `int` can have is -(2^31).
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-Check out the screenshot of each command for an idea of the expected output in the application's **Result Display**!
+Every command explanation comes with a screenshot that shows the expected message in the application's **Result Display** (screenshot may be partial to save space!)
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -209,9 +222,11 @@ Check out the screenshot of each command for an idea of the expected output in t
 </p>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-When editing tags, the existing tags of the endpoint will be removed. <br>
-i.e adding of tags is not cumulative.<br>
-You may remove all the endpoint’s tags by typing ` -t` without specifying any tags after it
+When editing tags/headers, the existing tags/headers of the endpoint will be removed. <br>
+i.e adding of tags/headers is not cumulative.<br>
+You may remove all the endpoint’s tags by typing ` -t` without specifying any tags after it. Similarly, you may remove
+all the endpoint's headers by typing ` -h` without specifying any headers after it.
+For example: `edit 1 -t` will remove all existing tags for the first endpoint in the saved endpoint list.
 </div>
 
 #### 4.2.3 Show an API endpoint: <span class="main-command">show</span>
@@ -243,9 +258,9 @@ be a positive integer).
 
 #### 4.2.5 Find a saved API endpoint: <span class="main-command">find</span>
 
-**Description:** Find endpoints containing the search word/s through all fields **(requires at least one keyword)**.
+**Description (General Search):** Find endpoints containing the search word/s through all fields **(requires at least one keyword)**.
 
-**Format:** <span class="main-command">find</span> <span class="optional-param">[KEYWORD]</span>
+**Format (General Search):** <span class="main-command">find</span> <span class="optional-param">[KEYWORD]</span>
 
 **Example & Output:** <span class="main-command">find</span> <span class="optional-param">github</span> <span class="optional-param">transport</span>
 
@@ -257,18 +272,18 @@ be a positive integer).
 
 **Format (Precise Search):** <span class="main-command">find</span> <span class="optional-param">-x [METHOD]</span> <span class="optional-param">-u [URL]</span> <span class="optional-param">-d [DATA]</span> <span class="optional-param">-h [HEADER]</span> <span class="optional-param">-t [TAG]</span>
 
-**Example & Output:** <span class="main-command">find</span> <span class="optional-param">-x get</span> <span 
+**Example & Output:** <span class="main-command">find</span> <span class="optional-param">-x GET</span> <span 
 class="optional-param">-u google</span>
 
-to-do tanjin update pic here (will match `get` from the Method field **and** `google` from the URL field)
+to-do tanjin update pic here (will match `GET` from the Method field **and** `google` from the URL field)
 <p align="center">
   <img width="450px" src="images/commands/find.png" >
 </p>
 
-**Example & Output:** <span class="main-command">find</span> <span class="optional-param">-x get post</span> <span 
+**Example & Output:** <span class="main-command">find</span> <span class="optional-param">-x GET POST</span> <span 
 class="optional-param">-u google</span>
 
-to-do tanjin update pic here (will match `get OR post` from the Method field **and** `google` from the URL field)
+to-do tanjin update pic here (will match `GET OR POST` from the Method field **and** `google` from the URL field)
 <p align="center">
   <img width="450px" src="images/commands/find.png" >
 </p>
@@ -279,6 +294,11 @@ Searches with no none or a single [prefix](#prefix-table) will preform an **OR**
 Searches across multiple [prefixes](#prefix-table) will preform an **AND** search and only endpoints matching all keywords will be returned.
 </div>
 
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
+`find -x GET -x POST` is not the same as `find -x GET POST`. <br>
+The first command will only search for items matching `POST` (as stated [here](#general-rules)), while the second command 
+will search for all items matching `GET` and `POST`.
+</div>
 
 <div style="page-break-after: always;"></div>
 

@@ -22,6 +22,7 @@ Given below are my contributions to the project.
 - **Enhancements**: 
   - Designed logo and various mascot images for the project [/#77](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/77) [/#308](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/308)
   - Fixed and wrote additional test cases [/#127](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/127) [/#254](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/254) [/#272](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/272) [/#277](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/277) [/#428](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/428)
+  - Help fix index error messages and the formatting of command help messages [/#566](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/566)
   
 
 - **Feature**: Update UI for when List is called when the Endpoint List is empty [/#384](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/384)

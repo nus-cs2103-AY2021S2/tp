@@ -174,14 +174,18 @@ public class Endpoint {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Method:\n")
-                .append(getMethod())
-                .append("\nAddress:\n")
-                .append(getAddress());
+
+        // builder.append("Method:\n")
+        //         .append(getMethod())
+        //         .append("\n");
+
+        builder.append("Address:\n")
+                .append(getAddress())
+                .append("\n");
 
         if (!data.isEmpty()) {
             builder.append("\nData:\n")
-                    .append(getData());
+                    .append(getData()).append("\n");
         }
 
         Set<Header> headers = getHeaders();
@@ -201,18 +205,22 @@ public class Endpoint {
                 builder.append("\nHeaders:\n");
                 headers.forEach(builder::append);
             }
+            builder.append("\n");
         }
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
+        Set<Tag> tagSet = getTags();
+        if (!tagSet.isEmpty()) {
             builder.append("\nTags:\n");
-            tags.forEach(builder::append);
+            tagSet.forEach(builder::append);
+            builder.append("\n");
         }
 
         if (response != null) {
             builder.append("\nLast Response:\n")
-                    .append(getResponse());
+                    .append(getResponse().getResponseEntity());
         }
+        builder.append("\n");
+
         return builder.toString();
     }
 

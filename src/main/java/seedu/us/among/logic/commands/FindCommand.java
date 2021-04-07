@@ -16,10 +16,19 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all API endpoints whose fields contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " get facebook google";
+    public static final String MESSAGE_USAGE_1 = COMMAND_WORD + ": Find endpoints containing the search word/s through "
+            + "all fields.\n"
+            + "Parameters: [KEYWORD]\n"
+            + "All parameters are optional, but least one parameter to edit must be provided.\n"
+            + "Example: " + COMMAND_WORD + " GET github";
+
+    public static final String MESSAGE_USAGE_2 = COMMAND_WORD + " (precise search)" + ": Find endpoints containing the "
+            + "search word/s based on the prefix.\n"
+            + "Parameters: -x [METHOD] -u [URL] -d [DATA] -h [HEADER] -t [TAG]\n"
+            + "All parameters are optional, but least one parameter to edit must be provided.\n"
+            + "Example: " + COMMAND_WORD + " -x GET -u google";
+
+    public static final String MESSAGE_USAGE = MESSAGE_USAGE_1 + "\n\n" + MESSAGE_USAGE_2;
 
     private final Predicate<Endpoint> predicate;
 

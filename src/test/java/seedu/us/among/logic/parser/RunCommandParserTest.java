@@ -37,8 +37,10 @@ public class RunCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "-x get -u ur\\l", Address.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "get https://google.com", Address.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " -x -u https://google.com", Method.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " -x https://google.com", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, " -x get -u ur\\l", Address.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " get https://google.com", Address.MESSAGE_CONSTRAINTS);
     }
 
     @Test

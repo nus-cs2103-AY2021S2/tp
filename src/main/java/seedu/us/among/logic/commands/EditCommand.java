@@ -1,6 +1,7 @@
 package seedu.us.among.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_DATA;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
@@ -36,54 +37,34 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_API_EXAMPLE_1 = "1. "
             + COMMAND_WORD + " " + " 1 "
-            + PREFIX_METHOD + " get \n";
+            + PREFIX_METHOD + " GET "
+            + PREFIX_ADDRESS + " http://localhost:3000/ "
+            + PREFIX_DATA + " {\"some\": \"new data\"}\n";
 
     public static final String MESSAGE_API_EXAMPLE_2 = "2. "
-            + COMMAND_WORD + " " + " 2 "
-            + PREFIX_ADDRESS + " http://localhost:3000/ \n";
-
-    public static final String MESSAGE_API_EXAMPLE_3 = "3. "
-            + COMMAND_WORD + " " + " 3 "
-            + PREFIX_DATA + " {\"some\": \"new data\"} \n";
-
-    public static final String MESSAGE_API_EXAMPLE_4 = "4. "
-            + COMMAND_WORD + " " + " 4 "
-            + PREFIX_HEADER + " \"new key1: new value1\" "
-            + PREFIX_HEADER + " \"new key2: new value2\" \n";
-
-    public static final String MESSAGE_API_EXAMPLE_5 = "5. "
-            + COMMAND_WORD + " " + " 5 "
-            + PREFIX_TAG + " newtagone "
-            + PREFIX_TAG + " newtagtwo \n";
-
-    public static final String MESSAGE_API_EXAMPLE_6 = "6. "
-            + COMMAND_WORD + " " + " 6 "
-            + PREFIX_HEADER + " //remove all headers \n";
-
-    public static final String MESSAGE_API_EXAMPLE_7 = "7. "
-            + COMMAND_WORD + " " + " 7 "
-            + PREFIX_TAG + " //removes all tags \n";
+            + COMMAND_WORD + " " + " 1 "
+            + PREFIX_HEADER + " \"key1: newvalue1\" "
+            + PREFIX_HEADER + " \"key2: newvalue2\" "
+            + PREFIX_TAG + " search "
+            + PREFIX_TAG + " important\n";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of an existing API endpoint "
             + "identified using its displayed index from the API endpoint list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX "
-            + "[" + PREFIX_METHOD + " METHOD] "
-            + "[" + PREFIX_ADDRESS + " ADDRESS] "
-            + "[" + PREFIX_DATA + " DATA] "
-            + "[" + PREFIX_HEADER + " HEADER]... "
-            + "[" + PREFIX_TAG + " TAG]...\n"
+            + PREFIX_METHOD + " METHOD "
+            + PREFIX_ADDRESS + " ADDRESS "
+            + PREFIX_DATA + " DATA "
+            + "[" + PREFIX_HEADER + " HEADER] "
+            + "[" + PREFIX_TAG + " TAG]\n"
+            + "Only INDEX is compulsory, all other parameters are optional, but least "
+            + "one endpoint parameter must be provided.\n\n"
             + "Examples: \n"
             + MESSAGE_API_EXAMPLE_1
-            + MESSAGE_API_EXAMPLE_2
-            + MESSAGE_API_EXAMPLE_3
-            + MESSAGE_API_EXAMPLE_4
-            + MESSAGE_API_EXAMPLE_5
-            + MESSAGE_API_EXAMPLE_6
-            + MESSAGE_API_EXAMPLE_7;
+            + MESSAGE_API_EXAMPLE_2;
 
     public static final String MESSAGE_EDIT_ENDPOINT_SUCCESS = "Edited endpoint:\n%1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one parameter to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ENDPOINT = "This API endpoint already exists in the "
             + "API endpoint list.";
 
@@ -108,7 +89,10 @@ public class EditCommand extends Command {
         List<Endpoint> lastShownList = model.getFilteredEndpointList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_ERROR,
+                    Messages.MESSAGE_INDEX_NOT_WITHIN_LIST,
+                    EditCommand.MESSAGE_USAGE));
+            //throw new CommandException(Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
         }
 
         Endpoint endpointToEdit = lastShownList.get(index.getZeroBased());
@@ -120,7 +104,7 @@ public class EditCommand extends Command {
 
         model.setEndpoint(endpointToEdit, editedEndpoint);
         model.updateFilteredEndpointList(model.getFilteredPredicate());
-        return new CommandResult(String.format(MESSAGE_EDIT_ENDPOINT_SUCCESS, editedEndpoint));
+        return new CommandResult(String.format(MESSAGE_EDIT_ENDPOINT_SUCCESS, editedEndpoint), editedEndpoint, false);
     }
 
     /**

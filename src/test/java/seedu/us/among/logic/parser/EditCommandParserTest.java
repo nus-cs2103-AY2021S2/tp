@@ -1,6 +1,6 @@
 package seedu.us.among.logic.parser;
 
-import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
 import static seedu.us.among.logic.commands.CommandTestUtil.ADDRESS_DESC_FACT;
 import static seedu.us.among.logic.commands.CommandTestUtil.ADDRESS_DESC_RANDOM;
 import static seedu.us.among.logic.commands.CommandTestUtil.DATA_DESC_DEFAULT;
@@ -35,6 +35,7 @@ import static seedu.us.among.testutil.TypicalIndexes.INDEX_THIRD_ENDPOINT;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.us.among.commons.core.Messages;
 import seedu.us.among.commons.core.index.Index;
 import seedu.us.among.logic.commands.EditCommand;
 import seedu.us.among.logic.commands.EditCommand.EditEndpointDescriptor;
@@ -51,8 +52,8 @@ public class EditCommandParserTest {
 
     private static final String HEADER_EMPTY = " " + PREFIX_HEADER;
 
-    private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            EditCommand.MESSAGE_USAGE);
+    private static final String MESSAGE_INVALID_FORMAT = String.format(MESSAGE_INVALID_COMMAND_ERROR,
+            Messages.MESSAGE_INVALID_INDEX, EditCommand.MESSAGE_USAGE);
 
     private EditCommandParser parser = new EditCommandParser();
 

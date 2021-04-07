@@ -20,32 +20,34 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_API_EXAMPLE_1 = "1. "
             + COMMAND_WORD + " "
-            + PREFIX_METHOD + " get "
+            + PREFIX_METHOD + " GET "
             + PREFIX_ADDRESS + " http://localhost:3000/ "
             + PREFIX_DATA + " {\"some\": \"data\"} "
             + PREFIX_HEADER + " \"key1: value1\" "
             + PREFIX_HEADER + " \"key2: value2\" "
-            + PREFIX_TAG + " local "
-            + PREFIX_TAG + " data\n";
+            + PREFIX_TAG + " github "
+            + PREFIX_TAG + " transport \n";
 
     public static final String MESSAGE_API_EXAMPLE_2 = "2. "
             + COMMAND_WORD + " "
-            + PREFIX_METHOD + " get "
+            + PREFIX_METHOD + " GET "
             + PREFIX_ADDRESS + " https://api.data.gov.sg/v1/environment/air-temperature";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds an API endpoint to the API endpoint list.\n"
+            + ": Adds an API endpoint to the API endpoint list.\n\n"
             + "Parameters: "
             + PREFIX_METHOD + " METHOD "
             + PREFIX_ADDRESS + " ADDRESS "
-            + "[" + PREFIX_DATA + " DATA] "
-            + "[" + PREFIX_HEADER + " HEADER]... "
-            + "[" + PREFIX_TAG + " TAG]...\n"
+            + PREFIX_DATA + " DATA "
+            + "[" + PREFIX_HEADER + " HEADER] "
+            + "[" + PREFIX_TAG + " TAG]\n"
+            + "Compulsory parameters: METHOD, ADDRESS\n"
+            + "Optional parameters: DATA, HEADER(s), TAG(s)\n\n"
             + "Examples:\n"
             + MESSAGE_API_EXAMPLE_1
             + MESSAGE_API_EXAMPLE_2;
 
-    public static final String MESSAGE_SUCCESS = "New API endpoint added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New API endpoint added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_ENDPOINT = "This API endpoint already exists in the API endpoint list";
 
     private final Endpoint toAdd;
@@ -67,7 +69,7 @@ public class AddCommand extends Command {
         }
 
         model.addEndpoint(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), toAdd, false);
     }
 
     @Override
