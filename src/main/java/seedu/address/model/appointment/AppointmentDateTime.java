@@ -114,6 +114,26 @@ public class AppointmentDateTime {
     }
 
     /**
+     * Checks whether time from to time to is valid.
+     *
+     * @return True if time of current {@code AppointmentDateTime} object is smaller
+     * than given {@code AppointmentDateTime} in params
+     */
+    public boolean isInvalidStartTime() {
+        return this.getValue().toLocalTime().isBefore(LocalTime.of(6, 0));
+    }
+
+    /**
+     * Checks whether time from to time to is valid.
+     *
+     * @return True if time of current {@code AppointmentDateTime} object is smaller
+     * than given {@code AppointmentDateTime} in params
+     */
+    public boolean isInvalidEndTime() {
+        return this.getValue().toLocalTime().isAfter(LocalTime.of(22, 1));
+    }
+
+    /**
      * @param otherAppointmentTime Other appointment date time to check with.
      * @return True if current appointment date time is before or equals
      */

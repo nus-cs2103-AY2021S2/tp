@@ -2,6 +2,7 @@ package seedu.address.logic.parser.appointmentparser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_DATE_FIELD;
 import static seedu.address.commons.core.Messages.MESSAGE_TIME_FROM_GREATER_THAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
@@ -21,13 +22,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentDateTime;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new EditAppointmentCommandParser object
  */
 public class EditAppointmentCommandParser implements Parser<EditAppointmentCommand> {
-
-    public static final String MESSAGE_MISSING_DATE_FIELD = "The three fields Date, "
-            + "timeFrom and timeTo are all required together if any one of them is "
-            + "present. You are likely missing at least one of these fields.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditAppointmentCommand
