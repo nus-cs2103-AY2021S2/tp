@@ -26,7 +26,9 @@ public class AddressBookSettings implements Serializable {
      * Constructs an {@code AddressBookSettings} with the specified sort.
      */
     public AddressBookSettings(String comparator) {
-        this.comparator = OPTION_DATE;
+        isValidComparator(comparator);
+
+        this.comparator = comparator;
     }
 
     public Comparator<Contact> getComparator() {
@@ -41,7 +43,21 @@ public class AddressBookSettings implements Serializable {
     }
 
     public void setComparator(String comparator) {
+        isValidComparator(comparator);
         this.comparator = comparator;
+    }
+
+    /**
+     * Check that comparator is valid
+     */
+    public boolean isValidComparator(String comparator) {
+        switch (comparator) {
+        case OPTION_DATE:
+        case OPTION_NAME:
+            return true;
+        default:
+            throw new InvalidParameterException();
+        }
     }
 
     @Override
