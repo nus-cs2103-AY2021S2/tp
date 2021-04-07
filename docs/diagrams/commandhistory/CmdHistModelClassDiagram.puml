@@ -26,7 +26,7 @@ class PlainTextCommandHistoryStorage STORAGE_COLOR_T3
 
 ReadOnlyCommandHistory <|.. CommandHistory
 CommandBox --> CommandHistorySelector : delegates\nselection logic to >
-CommandHistory *-> "*" CommandHistoryEntry : composed of
+CommandHistory *-> "*" CommandHistoryEntry : composed of >
 ModelManager -> "1" CommandHistory : has >
 ViewHistoryCommand ..> ReadOnlyCommandHistory : formats >
 ViewHistoryCommandParser ..> ViewHistoryCommand : constructs >
