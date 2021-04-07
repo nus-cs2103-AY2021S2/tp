@@ -51,7 +51,7 @@ title: User Guide
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listcommand`, `exit` and `clearcontact`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* Extraneous parameter for commands that only take in one parameters (such as `open`, `close`, and `setdividerc) will not be ignored.<br>
+* Extraneous parameter for commands that only take in one parameters (such as `open`, `close`, and `setdividerc` will **not** be ignored.<br>
   e.g. if the command specifies `open -c 123`, the command will be invalid.
 
 
@@ -267,7 +267,7 @@ Examples:
 
 Edits a note in edit mode.
 
-Format: `editmodenote`
+Format: `editmode`
 
 * A note have to be show on the note content panel using `shownote` command.
 * In edit note mode, all others note related command will be disable.
@@ -275,7 +275,7 @@ Format: `editmodenote`
 
 
 Examples:
-* `editmodenote`
+* `editmode`
   * note content will be editable
 
 #### Save and exit edit mode: `save`
@@ -480,7 +480,7 @@ in either horizontally or vertically mode.
 ##### Set contact divider position: `setdividerc`
 
 Sets the position of the contact divider.
-The note divider is the divider separating the contact and others user interface.
+The contact divider is the divider separating the contact and others user interface.
 
 Format: `setdividerc Position`
 
@@ -544,7 +544,7 @@ it will be changed to vertical and vice versa.
 Format: `toggledividerd`
 
 Examples:
-* `togglerdividerd`
+* `toggledividerd`
 
 ##### Toggle note divider orientation: `toggledividern`
 
