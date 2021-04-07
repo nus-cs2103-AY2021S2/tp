@@ -15,6 +15,9 @@ import seedu.address.model.task.repeatable.Event;
  */
 public class EventCard extends UiPart<Region> {
 
+    public static final String MESSAGE_EVENT_NON_REPEATABLE = "%s, %s, %s";
+    public static final String MESSAGE_EVENT_REPEATABLE = "Every %s, starting %s, %s";
+
     private static final String FXML = "EventCard.fxml";
 
     public final Event event;
@@ -26,11 +29,7 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label eventDescription;
     @FXML
-    private Label day;
-    @FXML
-    private Label date;
-    @FXML
-    private Label time;
+    private Label dateTime;
 
     /**
      * Creates an {@code EventCard} with the given {@code Event} and index to display.
@@ -42,13 +41,13 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         eventDescription.setText(event.getDescription());
-        day.setText(DateUtil.decodeDateIntoDay(event.getDate()));
-        time.setText(TimeUtil.decodeTime(event.getTime()));
 
         if (event.getIsWeekly()) {
-            date.setText("every");
+            dateTime.setText(String.format(MESSAGE_EVENT_REPEATABLE, DateUtil.decodeDateIntoDay(event.getDate()),
+                    DateUtil.decodeDate(event.getDate()), TimeUtil.decodeTime(event.getTime())));
         } else {
-            date.setText(DateUtil.decodeDate(event.getDate()));
+            dateTime.setText(String.format(MESSAGE_EVENT_NON_REPEATABLE, DateUtil.decodeDateIntoDay(event.getDate()),
+                    DateUtil.decodeDate(event.getDate()), TimeUtil.decodeTime(event.getTime())));
         }
     }
 

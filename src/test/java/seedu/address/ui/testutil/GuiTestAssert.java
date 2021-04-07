@@ -3,7 +3,8 @@ package seedu.address.ui.testutil;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.util.DateUtil.decodeDate;
 import static seedu.address.commons.util.DateUtil.decodeDateIntoDay;
-import static seedu.address.commons.util.TimeUtil.decodeTime;
+import static seedu.address.ui.EventCard.MESSAGE_EVENT_NON_REPEATABLE;
+import static seedu.address.ui.EventCard.MESSAGE_EVENT_REPEATABLE;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +16,8 @@ import guitests.guihandles.ContactListPanelHandle;
 import guitests.guihandles.EventCardHandle;
 import guitests.guihandles.ProjectCardHandle;
 import guitests.guihandles.ResultDisplayHandle;
+import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.TimeUtil;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableDeadline;
@@ -83,12 +86,18 @@ public class GuiTestAssert {
      */
     public static void assertCardDisplaysEvent(Event expectedEvent, EventCardHandle actualCard) {
         assertEquals(expectedEvent.getDescription(), actualCard.getDescription());
-        assertEquals(decodeTime(expectedEvent.getTime()), actualCard.getTime());
-        assertEquals(decodeDateIntoDay(expectedEvent.getDate()), actualCard.getDay());
         if (expectedEvent.getIsWeekly()) {
-            assertEquals("every", actualCard.getDate());
+            assertEquals(String.format(MESSAGE_EVENT_REPEATABLE,
+                    DateUtil.decodeDateIntoDay(expectedEvent.getDate()),
+                    DateUtil.decodeDate(expectedEvent.getDate()),
+                    TimeUtil.decodeTime(expectedEvent.getTime())),
+                    actualCard.getDateTime());
         } else {
-            assertEquals(decodeDate(expectedEvent.getDate()), actualCard.getDate());
+            assertEquals(String.format(MESSAGE_EVENT_NON_REPEATABLE,
+                    DateUtil.decodeDateIntoDay(expectedEvent.getDate()),
+                    DateUtil.decodeDate(expectedEvent.getDate()),
+                    TimeUtil.decodeTime(expectedEvent.getTime())),
+                    actualCard.getDateTime());
         }
     }
 
