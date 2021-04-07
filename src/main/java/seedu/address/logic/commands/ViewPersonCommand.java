@@ -17,7 +17,7 @@ public class ViewPersonCommand extends Command {
     public static final String COMMAND_WORD = "view_person";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": View a specific person by personID.\n"
+            + ": View a specific person by person ID.\n"
             + "Parameters: PERSON_ID\n"
             + "Example: " + COMMAND_WORD + " s/1";
 

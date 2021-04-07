@@ -221,12 +221,12 @@ Examples:
 
 ### Editing a session : `edit_session`
 
-Edits an existing session in the address book.
+Edits an existing session in EZManage.
 
 Format: `edit_session c/ID [d/DAY] [ts/TIMESLOT] [s/SUBJECT] [tag/TAG]…​`
 
 * Edits the session with the specified session ID. The session ID can be found from the displayed session list. 
-* The session ID has to be a valid session ID i.e. the session has to exist in the Address Book.
+* The session ID has to be a valid session ID i.e. the session has to exist in EZManage.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * DAY should match the format of a valid day in the week.
@@ -283,7 +283,7 @@ Examples:
 
 ### Deleting a session : `delete_session`
 
-Deletes the specified session from the address book.
+Deletes the specified session from EZManage.
 
 Format: `delete_session c/ID`
 
@@ -335,7 +335,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the list of students, tutors and classes.
+Clears all entries from the list of students, tutors and sessions.
 
 Format: `clear`
 
