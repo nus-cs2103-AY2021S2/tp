@@ -5,11 +5,13 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableMap;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.group.Group;
@@ -26,6 +28,15 @@ public class GroupListPanel extends UiPart<Region> {
      */
     public GroupListPanel(ObservableMap<Name, Group> groupMap) {
         super(FXML);
+
+        //Prevent mouse selection
+        groupListView.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                event.consume();
+            }
+        });
+
         groupListView.getItems().addAll(groupMap.keySet());
         groupMap.addListener((MapChangeListener<Name, Group>) change -> {
             if (change.wasAdded()) {

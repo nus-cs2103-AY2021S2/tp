@@ -1,10 +1,12 @@
 package seedu.address.ui;
 
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
@@ -29,6 +31,15 @@ public class PersonDetailsTab extends UiPart<Region> {
     public PersonDetailsTab(ObservableList<Person> detailedPerson) {
         super(FXML);
         personDetailsTitle.setText("Contact Details");
+
+        //Prevent mouse selection
+        personDetailsListView.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                event.consume();
+            }
+        });
+
         personDetailsListView.setItems(detailedPerson);
         personDetailsListView.setCellFactory(listView -> new PersonDetailsListViewCell());
     }
