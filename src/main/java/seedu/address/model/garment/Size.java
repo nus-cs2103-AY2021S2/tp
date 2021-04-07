@@ -22,7 +22,7 @@ public class Size {
     public Size(String size) {
         requireNonNull(size);
         checkArgument(isValidSize(size), MESSAGE_CONSTRAINTS);
-        value = size;
+        value = String.valueOf(Integer.parseInt(size));
     }
 
     /**
