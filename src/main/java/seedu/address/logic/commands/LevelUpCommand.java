@@ -20,7 +20,8 @@ public class LevelUpCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Advance all students by one level by default. To exclude students, add their index numbers after "
             + "the ex/ prefix. The space after the ex/ prefix cannot be left blank.\n"
-            + "Parameters: " + PREFIX_EXCLUDE + " INDEX... (optional, must be a positive integer and and less than 2147483648)\n"
+            + "Parameters: " + PREFIX_EXCLUDE + " INDEX... (optional, must be a positive integer" 
+            + "and less than 2147483648)\n"
             + "Example: " + COMMAND_WORD + "\n"
             + COMMAND_WORD + " " + PREFIX_EXCLUDE + "2\n"
             + COMMAND_WORD + " " + PREFIX_EXCLUDE + "1 4";
