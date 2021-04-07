@@ -306,7 +306,7 @@ Examples:
 
 ### Locating appointments by fields : `find-appt`
 
-Format: `find-appt [pt/PATIENT NAME KEYWORDS] [dr/DOCTOR NAME KEYWORDS] [at/TIMESLOT START] [t/TAG KEYWORDS]`
+Format: `find-appt [pt/PATIENT_NAME] [MORE_KEYWORDS] [dr/DOCTOR_NAME] [MORE_KEYWORDS] [at/TIMESLOT_START] [MORE_KEYWORDS] [t/TAG] [MORE_KEYWORDS]`
 
 * At least one of the optional fields must be provided.<br>
 
@@ -316,7 +316,7 @@ Format: `find-appt [pt/PATIENT NAME KEYWORDS] [dr/DOCTOR NAME KEYWORDS] [at/TIME
 
 * Search fields require at least one keyword to be matched in the field description for the search condition of that field to be satisfied. e.g. `find-appt pt/Alex Edward` will match both appointments with patients `Alex Karev` and `Edward Hyde`.
 
-* Where `[at/TIMESLOT_START]` field is specified, the search is conditioned on the satisfaction of either or both the date and time elements. e.g.:
+* Where `at/TIMESLOT_START` field is specified, the search is conditioned on the satisfaction of either or both the date and time elements. e.g.:
   * `find-appt at/05-08-2021 12:00pm` will match appointments that satisfy both the date and time elements.
   * `find-appt at/12:00pm` will match all appointments that occur at time `12:00pm`
   * `find-appt at/05-08-2021` will match all appointments that occur on date `05-08-2021`
