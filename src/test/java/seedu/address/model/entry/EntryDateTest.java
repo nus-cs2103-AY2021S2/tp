@@ -26,11 +26,6 @@ public class EntryDateTest {
     }
 
     @Test
-    public void testGetHashcode() {
-        assertEquals(-339693648, validLocalDateTime.hashCode());
-    }
-
-    @Test
     public void isAfter_entryDateIsAfter_returnTrue() {
         assertTrue(validEntryDate.isAfter(new EntryDate("2020-12-31 12:12")));
         assertTrue(validEntryDate.isAfter(new EntryDate("2021-01-01 12:11")));
@@ -66,7 +61,7 @@ public class EntryDateTest {
 
     @Test
     public void isValidDate_invalidTime_returnFalse() {
-        assertFalse(EntryDate.isValidDate("2021-01-01 24:00"));
+        assertFalse(EntryDate.isValidDate("2021-01-01 25:00"));
         assertFalse(EntryDate.isValidDate("2021-01-01 23:60"));
     }
 
