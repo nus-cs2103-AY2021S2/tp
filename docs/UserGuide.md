@@ -101,9 +101,9 @@ Then, include the file name under the i/ prefix when adding client. The image sh
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com l/01 Singapore Street, #23-45 ip/MediShield Life i/john_doe.png t/friends t/owesMoney`
-  Output: (Insert Output here)
-* `add n/Betsy Crowe e/betsycrowe@example.com l/Newgate Prison p/1234567 t/criminal i/criminal.jpeg`
-  Output: (Insert Output here)
+    > Output: `New client added: John Doe; Phone: 98765432; Email: johnd@example.com; Location: 01 Singapore Street, #23-45; Insurance Plan: MediShield Life; Tags: [owesMoney][friends]; Image: john_doe.png`
+* `add n/Betsy Crowe e/betsycrowe@example.com l/Newgate Prison p/12345678 t/criminal i/criminal.jpeg`
+    > Output: `New client added: Betsy Crowe; Phone: 12345678; Email: betsycrowe@example.com; Location: Newgate Prison; Tags: [criminal]; Image: criminal.jpeg`
 
 #### Listing all clients : `list`
 
@@ -219,7 +219,7 @@ Format: `addmeet c/CLIENT_NAME on/DATE_TIME l/LOCATION d/DESCRIPTION [t/TAG(s)]`
 
 Example:
 * `addmeet c/John Smith on/20-02-2022 15:00 l/Starbucks, Serangoon d/Discuss on insurance plans t/VIP`
-  Output: (Insert Output here)
+    > Output: `New meeting added: Client Name: John Smith; Date & Time: 20-02-2022 15:00; Location: Starbucks, Serangoon; Description: Discuss on insurance plans; Tags: [VIP]; Status: Not completed`
 
 #### Listing all meetings: `listmeet`
 
@@ -265,7 +265,7 @@ Format: `relocate INDEX l/LOCATION`
 * `LOCATION` cannot be blank and can have at most 100 characters.
 
 Example:
-* `relocate 1 l/KFC, Block 556 Bugis` Output: (Insert Output here)
+* `relocate 1 l/KFC, Block 556 Bugis`
 
 #### Rescheduling a meeting: `reschedule`
 
@@ -280,7 +280,7 @@ Format: `reschedule INDEX on/DATE_TIME`
 * `DATE_TIME` **cannot be in conflict** with the date and time of any existing meeting.
 
 Example:
-* `reschedule 3 on/08-10-2021 20:00` Output: (Insert Output here)
+* `reschedule 3 on/08-10-2021 20:00`
 
 #### Finding meetings by keywords: `findmeet`
 Displays the meetings which has its fields matched by any given keywords.
