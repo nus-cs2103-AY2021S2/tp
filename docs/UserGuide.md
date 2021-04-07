@@ -361,7 +361,7 @@ lined up on any given day.
 Format:
 
 ```
-schedule DATE
+schedule [DATE]
 ```
 
 Note: 
@@ -533,7 +533,7 @@ Action | Format
 **Find** | `find KEYWORD [MORE_KEYWORDS]...`
 **Help** | `help`
 **List** | 1. `list dog`<br> 2. `list owner`<br> 3. `list program`<br> 4. `list`
-**Schedule** | `schedule DATE`
+**Schedule** | `schedule [DATE]`
 **View** | `view ENTITY_ID`
 
 -----

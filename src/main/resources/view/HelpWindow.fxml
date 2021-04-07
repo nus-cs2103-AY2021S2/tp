@@ -91,7 +91,7 @@
                             <UG action="List Dog" format="list dog" />
                             <UG action="List Owner" format="list owner" />
                             <UG action="List Program" format="list program" />
-                            <UG action="Schedule" format="schedule DATE" />
+                            <UG action="Schedule" format="schedule [DATE]" />
                             <UG action="View" format="view ENTITY_ID" />
                         </FXCollections>
                     </items>
