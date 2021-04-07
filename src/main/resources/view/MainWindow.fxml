@@ -54,14 +54,14 @@
                         <VBox GridPane.columnIndex="0" fx:id="itemList" styleClass="pane-with-border"
                               VBox.vgrow="ALWAYS">
                             <padding>
-                                <Insets top="5" right="10" bottom="10" left="10"/>
+                                <Insets top="5" right="5" bottom="10" left="5"/>
                             </padding>
                             <StackPane fx:id="itemListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                         </VBox>
                         <VBox GridPane.columnIndex="1" styleClass="pane-with-border"
                               VBox.vgrow="ALWAYS">
                             <padding>
-                                <Insets top="5" right="10" bottom="10" left="10"/>
+                                <Insets top="5" right="5" bottom="10" left="5"/>
                             </padding>
                             <StackPane fx:id="tablePanelPlaceholder" VBox.vgrow="ALWAYS"/>
                         </VBox>
@@ -69,7 +69,7 @@
                         <VBox GridPane.columnIndex="2" styleClass="pane-with-border"
                               VBox.vgrow="ALWAYS">
                             <padding>
-                                <Insets top="5" right="10" bottom="10" left="10"/>
+                                <Insets top="5" right="5" bottom="10" left="5"/>
                             </padding>
                             <StackPane fx:id="locationPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                         </VBox>
