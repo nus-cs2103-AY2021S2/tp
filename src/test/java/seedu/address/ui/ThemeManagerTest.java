@@ -8,8 +8,8 @@ public class ThemeManagerTest {
 
     @Test
     public void themeManager_setTheme() {
-        ThemeManager.setTheme(ThemeFactory.getDefaultTheme(), null);
-        assertEquals(ThemeFactory.getDefaultTheme(), ThemeManager.getTheme());
+        ThemeManager.getInstance().setTheme(ThemeFactory.getDefaultTheme(), null);
+        assertEquals(ThemeFactory.getDefaultTheme(), ThemeManager.getInstance().getTheme());
     }
 
 }
