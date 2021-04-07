@@ -12,6 +12,8 @@ import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DESCRIPT
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_PRIORITY;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_STATUS;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_TITLE;
+import static seedu.heymatez.commons.util.StringUtil.INVALID_INPUT;
+import static seedu.heymatez.commons.util.StringUtil.INVALID_INTEGER;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -40,6 +42,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    public static final String MESSAGE_NON_POSITIVE_INDEX = "Index is a non positive integer.";
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -48,10 +52,13 @@ public class ParserUtil {
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         System.out.println(trimmedIndex);
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+        if (StringUtil.checkIndexValidity(trimmedIndex) == INVALID_INPUT) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
+        } else if (StringUtil.checkIndexValidity(trimmedIndex) == INVALID_INTEGER) {
+            throw new ParseException(MESSAGE_NON_POSITIVE_INDEX);
+        } else {
+            return Index.fromOneBased(Integer.parseInt(trimmedIndex));
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
     /**
@@ -81,6 +88,10 @@ public class ParserUtil {
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(MESSAGE_INVALID_PERSON_PHONE + Phone.MESSAGE_CONSTRAINTS);
         }
+        if (!Phone.isValidLength(trimmedPhone)) {
+            throw new ParseException(MESSAGE_INVALID_PERSON_PHONE + Phone.MESSAGE_CONSTRAINTS);
+        }
+
         return new Phone(trimmedPhone);
     }
 
@@ -93,7 +104,8 @@ public class ParserUtil {
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
+
+        if (!Email.isValidLength(trimmedEmail) || !Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(MESSAGE_INVALID_PERSON_EMAIL + Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);

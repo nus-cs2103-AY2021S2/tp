@@ -2,6 +2,7 @@ package seedu.heymatez.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.heymatez.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.heymatez.logic.parser.ParserUtil.MESSAGE_NON_POSITIVE_INDEX;
 import static seedu.heymatez.testutil.Assert.assertThrows;
 import static seedu.heymatez.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -45,12 +46,40 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
+
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("abc"));
+
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("a a a"));
     }
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+        assertThrows(ParseException.class, MESSAGE_NON_POSITIVE_INDEX, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+    }
+
+    @Test
+    public void parseIndex_invalidIntegerInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_NON_POSITIVE_INDEX, ()
+            -> ParserUtil.parseIndex("-1"));
+
+        assertThrows(ParseException.class, MESSAGE_NON_POSITIVE_INDEX, ()
+            -> ParserUtil.parseIndex("0"));
+    }
+
+    @Test
+    public void parseIndex_invalidIntegerWithPositiveSigns_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+            -> ParserUtil.parseIndex(" +1 "));
+
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+            -> ParserUtil.parseIndex(" +3 "));
+
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+            -> ParserUtil.parseIndex("+2"));
+
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+            -> ParserUtil.parseIndex(" + 8 "));
     }
 
     @Test

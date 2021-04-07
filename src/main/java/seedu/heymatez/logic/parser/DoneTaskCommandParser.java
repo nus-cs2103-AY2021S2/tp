@@ -2,6 +2,8 @@ package seedu.heymatez.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
+import static seedu.heymatez.logic.parser.ParserUtil.MESSAGE_NON_POSITIVE_INDEX;
 
 import seedu.heymatez.commons.core.index.Index;
 import seedu.heymatez.logic.commands.DoneTaskCommand;
@@ -25,6 +27,9 @@ public class DoneTaskCommandParser implements Parser<DoneTaskCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
+            if (pe.getMessage().equals(MESSAGE_NON_POSITIVE_INDEX)) {
+                throw new ParseException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX, pe);
+            }
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DoneTaskCommand.MESSAGE_USAGE), pe);
         }
