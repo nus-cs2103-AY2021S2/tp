@@ -15,6 +15,7 @@ title: User Guide
 * [Introduction](#introduction)
 * [Understanding the User Guide](#understanding-the-user-guide)
 * [Quick start](#quick-start)
+* [Date format](#date-format)
 * [Features](#features)
 * [1. Body Mass Index (BMI) Tracker](#1-body-mass-index-bmi-tracker)
   * [1.1. Input weight, height and ideal weight](#11-input-weight-height-and-ideal-weight)
@@ -111,6 +112,19 @@ Legend | Description
    * **`progress`**: Shows your progress towards your ideal weight.
 
 6. Refer to the [Features](#features) section below for details of each command
+
+---
+
+## Date format
+DietLAH! uses the following date format for command inputs: `d MMM yyyy` which is clearer to interprete and reduces the chances of typos. Refer to the table below for more information:
+
+Legend | Description
+-------|-------------
+d | Day in the calendar, ranging from 0 - 31, without leading zeroes
+MMM | 3-letter textual representation of a month in the calendar, ranging from Jan - Dec
+yyyy | Numerical 4-digit year in the calendar, e.g. 2021
+
+Some example year inputs: `3 Jan 2021`, `21 Feb 2021`, `30 Mar 2021`
 
 ---
 
