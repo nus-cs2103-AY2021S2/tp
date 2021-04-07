@@ -9,7 +9,7 @@ Remember to revert README!
 </p>
 
 <h1 class="post-title">{{ page.title | escape }}</h1>
-<h3 class="post-subtitle">v1.3</h3>
+<h3 class="post-subtitle">v1.4</h3>
 
 <div style="page-break-after: always;"></div>
 ## Table of Contents
@@ -34,6 +34,15 @@ However, it is highly recommended for readers to refer to proper tutorial conten
 Readers are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application.
 
 * to-do brief description and some navigation tips about the developer guide as to what was similarly done in the user guide.
+## **Navigating this Developer Guide**
+
+Before diving into the rest of the contents in our developer guide, the following are some important syntax to take note of to facilitate your reading:
+
+| Syntax              | Description                                    |
+| ------------------- | ---------------------------------------------- |
+|`Markdown`           | Denotes distinct classes in explanations       |
+|<div markdown="span" class="alert alert-info">:information_source: Note | Important things to take note of |
+|<kbd>Keyboard</kbd>  | Keyboard actions                               |
 
 <div style="page-break-after: always;"></div>
 
@@ -414,7 +423,9 @@ The following sequence diagram shows how the toggle command works for the above 
 - simple and easy to get started
 - unintrusive
 - great user experience
+
 <div style="page-break-after: always;"></div>
+
 ## **Appendix B: User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low
