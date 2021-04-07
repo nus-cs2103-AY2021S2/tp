@@ -120,32 +120,22 @@ Adds a student’s contact to TutorsPet.
 
 Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]…​ [le/LESSON]…​`
 
+
 <div markdown="block" class="alert alert-primary">
 
 :bulb:**Tips:** <br>
 
 * `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional.
-  
-* Education Levels are represented by abbreviated names. Available levels cover
-  
-    > Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`
-      
-    > Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`
-      
-    > Junior College: `jc1`, `jc2`
-      
-    > Post Junior College: `graduated` 
 
-* Subjects are represented by abbreviated names. Available subjects cover commonly tutored ones, including
-  
-    > Languages: `cn`, `eng`
-      
-    > Mathematics & Sciences: `math`, `bio`, `chem`, `phys`, `sci`
-      
-    > Humanities: `econ`, `geo`, `hist`
-      
-    > They represent subjects Chinese, English, Mathematics, Biology, Chemistry, Physics, Science,
-      Economics, Geography and History in order of the above listing.
+* Levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
+  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `graduated`.
+  They cover the education levels in Primary School, Secondary School and Junior College. For more details, see the [Field Format Summary](#field-format-summary) below.
+
+
+* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
+
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
+  For more details, see the [Field Format Summary](#field-format-summary) below.
 
 * A student’s contact can have any number of subjects (including 0). 
   
@@ -194,7 +184,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 * At least one of the optional fields must be provided.
   
 * Existing values will be updated to the input values.
-  
+
+* Levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
+  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `graduated`.
+  They cover the education levels in Primary School, Secondary School and Junior College. For more details, see the [Field Format Summary](#field-format-summary) below.
+
 * When editing subjects or lessons, the existing subjects or lessons of the student will be removed i.e adding of subjects or lessons are not cumulative.
   
 * You can remove all the student’s subjects by typing `t/` without specifying any subject names after it.
@@ -203,7 +197,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
   
 * Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
   
-    > They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
+  For more details, see the [Field Format Summary](#field-format-summary) below.
 
 </div>
 
@@ -296,7 +291,7 @@ Examples:
 
 ### Advancing all students: `levelup`
 
-Advances the education level of all the student contacts by one level, unless the student is excluded.
+Advances the education level of all the student contacts by one grade , unless the student is excluded.
 This feature can be used at the start of the school year.
 
 Format: `levelup ex/[INDEX]...`
@@ -308,7 +303,7 @@ Format: `levelup ex/[INDEX]...`
 * Students who are `jc1` will advance to `graduated` when `levelup` is applied. Students will not 
   advance any further if they are `graduated`.
   
-* If no index is provided, all students will advance by one level (unless they have `graduated`).
+* If no index is provided, all students will advance by one education level (unless they have `graduated`).
   
 * The index refers to the index number shown in the displayed student list. Indexes are used to 
   indicate students who are to be excluded from the advancement.
@@ -326,7 +321,7 @@ Examples:
 
 ### Demoting all students: `leveldown`
 
-Demotes the education level of all the student contacts by one level, unless the student is excluded.
+Demotes the education level of all the student contacts by one grade, unless the student is excluded.
 This feature can be used to undo `levelup` or indicate retainees.
 
 Format: `leveldown ex/[INDEX]...`
@@ -337,7 +332,7 @@ Format: `leveldown ex/[INDEX]...`
 
 * Students who are `pri1` will not demote any further.
   
-* If no index is provided, all students will demote by one level (unless they are `pri1`).
+* If no index is provided, all students will be demoted by one education level (unless they are `pri1`).
   
 * The index refers to the index number shown in the displayed student list. Indexes are used to
   indicate students who are to be excluded from the demotion.
@@ -500,6 +495,28 @@ by providing the file path to the picture._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TutorsPet home folder.
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Field Format Summary
+
+Student Contact Field   | Prefix | Optional?| Notes
+------------------------| -------|--------- |------------------------------------
+Name                    | `n/`   | Y        | Contains alphanumeric characters and spaces only
+Phone number            | `p/`   | Y        | Contains numbers only; at least 3 digits long
+Email                   | `e/`   | N        | Should be in the format of **local-part@domain** e.g. **alexyeoh@gmail.com**
+Address                 | `a/`   | N        | Any format
+Guardian's name         | `gn/`  | N        | Contains alphanumeric characters and spaces only
+Guardian's phone number | `gp/`  | N        | Contains numbers only; at least 3 digits long
+Education level         | `lv/`  | N        | Fixed format: <br>Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6` <br>Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`<br>Junior College: `jc1`, `jc2`<br>Post Junior College: `graduated`
+Subject                 | `t/`   | N        | Can have any number of inputs (including 0)<br><br>Fixed format: <br> Languages: `cn`, `eng`<br>Mathematics & Sciences: `math`, `bio`, `chem`, `phys`, `sci`<br>Humanities: `econ`, `geo`, `hist`<br><br>Represents subjects Chinese, English, Mathematics, Biology, Chemistry, Physics, Science Economics, Geography and History in order of the above listing.
+Lesson                  | `le/`  | N        | Can have any number of inputs (including 0)<br><br>Consist of lesson day and lesson time:<br>Lesson day: `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`<br>Lesson time: In **HHmm** format e.g. **1300**
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+TutorsPet does not corroborate the school, education level, subject and lesson fields of the student contacts
+input in the app. Users will have to ensure the information they enter for these fields match up accordingly,
+e.g. A student contact in ABC Primary School will probably not be in sec3, or take subjects
+like chem and bio.
+
+</div>
 
 ## Command summary
 
