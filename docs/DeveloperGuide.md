@@ -3,7 +3,7 @@ layout: page
 title: imPoster Developer Guide
 nav-text: Developer Guide
 ---
-<!--Remember to revert README! -->
+Remember to revert README!
 <p align="center">
   <img width="300px" src="images/imPosterDevGuide.png" >
 </p>
@@ -298,6 +298,8 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 The `run` command deploys a similar trick but for an endpoint specified directly within the command arguments.
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes a run command:
 <p align="center">
   <img alt="RunActivityDiagram" src="images/RunActivityDiagram.png" width="400px"/>
@@ -313,6 +315,8 @@ The following activity diagram summarizes what happens when a user executes a ru
 * **Alternative 2:** Individual command checks if the endpoint/url address is valid by itself.
     * Pros: Checking of url address validity right before execution will ensure proper request is processed.
     * Cons: Duplication of code across Send and Run commands.
+
+<div style="page-break-after: always;"></div>
 
 ### Request feature
 
@@ -353,6 +357,8 @@ The following sequence diagram shows how the request operation works when a user
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a `send` command for an endpoint with a `GET` request:
 <br/>
