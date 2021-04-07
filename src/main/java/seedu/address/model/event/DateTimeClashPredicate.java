@@ -1,7 +1,11 @@
 package seedu.address.model.event;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
@@ -10,15 +14,30 @@ import java.util.function.Predicate;
  */
 public class DateTimeClashPredicate implements Predicate<Event> {
     private final Event toCheck;
+    private final Optional<Event> preEditEvent;
 
     public DateTimeClashPredicate(Event toCheck) {
+        requireNonNull(toCheck);
         this.toCheck = toCheck;
+        this.preEditEvent = Optional.empty();
+    }
+
+    public DateTimeClashPredicate(Event toCheck, Event preEditEvent) {
+        requireAllNonNull(toCheck, preEditEvent);
+        this.toCheck = toCheck;
+        this.preEditEvent = Optional.of(preEditEvent);
     }
 
     @Override
     public boolean test(Event event) {
         if (Objects.equals(toCheck, event)) {
             return false;
+        }
+
+        if (preEditEvent.isPresent()) {
+            if (Objects.equals(preEditEvent.get(), event)) {
+                return false;
+            }
         }
 
         LocalDateTime timeFromCheck = toCheck.getTimeFrom().getValue();

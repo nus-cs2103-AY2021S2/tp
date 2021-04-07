@@ -610,6 +610,13 @@ public class ModelManager implements Model {
         return filteredEvents.stream().anyMatch(new DateTimeClashPredicate(event));
     }
 
+    @Override
+    public boolean hasClashingDateTime(Event editedEvent, Event preEditEvent) {
+        requireNonNull(editedEvent);
+        requireNonNull(preEditEvent);
+        return filteredEvents.stream().anyMatch(new DateTimeClashPredicate(editedEvent, preEditEvent));
+    }
+
     /**
      * Sets schedule tracker file path.
      *

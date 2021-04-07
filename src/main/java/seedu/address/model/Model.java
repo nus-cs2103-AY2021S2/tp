@@ -424,6 +424,14 @@ public interface Model {
     boolean hasClashingDateTime(Event event);
 
     /**
+     * Checks if Appointment or Schedule have clashing date time in event list.
+     *
+     * @param editedEvent Event to check
+     * @return True if the new Appointment or Schedule have clashes in event list
+     */
+    boolean hasClashingDateTime(Event editedEvent, Event preEditEvent);
+
+    /**
      * Returns the ReminderTracker
      */
     ReadOnlyReminderTracker getReminderTracker();
