@@ -6,55 +6,183 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
-  <icons>
-    <Image url="@/images/address_book_32.png" />
-  </icons>
-  <scene>
-    <Scene>
-      <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
-      </stylesheets>
+<fx:root maxHeight="800.0" maxWidth="1000.0" minHeight="600.0" minWidth="700.0" onCloseRequest="#handleExit" title="Taskify" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
+            </stylesheets>
 
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
-
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-      </VBox>
-    </Scene>
-  </scene>
+            <VBox fx:id="root">
+                <MenuBar fx:id="menuBar" minWidth="750.0" prefHeight="35.0" prefWidth="750.0" VBox.vgrow="NEVER">
+                    <Menu mnemonicParsing="false" text="File">
+                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Help">
+                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+                    </Menu>
+                </MenuBar>
+                <GridPane fx:id="gridPane" hgap="0" vgap="0" VBox.vgrow="ALWAYS">
+               <HBox style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                  <children>
+                          <TabPane fx:id="tabsPane" prefHeight="326.0" prefWidth="446.0" tabClosingPolicy="UNAVAILABLE" style="-fx-background-radius: 20;" HBox.hgrow="ALWAYS">
+                              <Tab fx:id="tabHome" closable="false" text="Tasks" disable="false">
+                                  <VBox fx:id="taskListPanel" layoutX="10.0" layoutY="157.0" maxHeight="Infinity" minWidth="200" prefWidth="200" style="-fx-border-radius: 20;">
+                                      <padding>
+                                          <Insets bottom="5" left="5" right="5" top="5" />
+                                      </padding>
+                                      <children>
+                                          <StackPane fx:id="taskListPanelPlaceholder" prefHeight="278.0" prefWidth="406.0" style="-fx-border-radius: 20;" VBox.vgrow="ALWAYS" />
+                                      </children>
+                                  </VBox>
+                              </Tab>
+                              <Tab fx:id="tabExpired" closable="false" text="Expired" disable="true">
+                                  <VBox fx:id="expiredTaskList" maxHeight="Infinity" minWidth="200.0" prefWidth="200" VBox.vgrow="ALWAYS">
+                                      <padding>
+                                          <Insets bottom="5" left="5" right="5" top="5" />
+                                      </padding>
+                                      <StackPane fx:id="expiredTaskListPanelPlaceholder" VBox.vgrow="ALWAYS">
+                                          <VBox.margin>
+                                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                          </VBox.margin>
+                                      </StackPane>
+                                  </VBox>
+                              </Tab>
+                              <Tab fx:id="tabCompleted" closable="false" text="Completed" disable="true">
+                                  <VBox fx:id="completedTaskListPanel" maxHeight="Infinity" minWidth="200.0" prefWidth="200" VBox.vgrow="ALWAYS">
+                                      <padding>
+                                          <Insets bottom="5" left="5" right="5" top="5" />
+                                      </padding>
+                                      <StackPane fx:id="completedTaskListPanelPlaceholder" VBox.vgrow="ALWAYS">
+                                          <VBox.margin>
+                                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                          </VBox.margin>
+                                      </StackPane>
+                                  </VBox>
+                              </Tab>
+                              <Tab fx:id="tabUncompleted" closable="false" text="Uncompleted" disable="true">
+                                  <VBox fx:id="uncompletedTaskListPanel" maxHeight="Infinity" minWidth="200.0" prefWidth="200" VBox.vgrow="ALWAYS">
+                                      <padding>
+                                          <Insets bottom="5" left="5" right="5" top="5" />
+                                      </padding>
+                                      <StackPane fx:id="uncompletedTaskListPanelPlaceholder" VBox.vgrow="ALWAYS">
+                                          <VBox.margin>
+                                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                          </VBox.margin>
+                                      </StackPane>
+                                  </VBox>
+                              </Tab>
+                          </TabPane>
+                  </children>
+                  <GridPane.margin>
+                     <Insets bottom="5.0" left="5.0" right="10.0" top="10.0" />
+                  </GridPane.margin>
+               </HBox>
+                    <StackPane fx:id="resultDisplayPlaceholder" style="-fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" VBox.vgrow="NEVER">
+                        <padding>
+                            <Insets bottom="5" left="5" right="5" top="5" />
+                        </padding>
+                        <GridPane.margin>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        </GridPane.margin>
+                    </StackPane>
+                   <StackPane fx:id="commandBoxPlaceholder" prefHeight="30.0" prefWidth="419.0" style="-fx-background-radius: 20;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
+                       <padding>
+                           <Insets bottom="5" left="10" right="10" top="5" />
+                       </padding>
+                      <GridPane.margin>
+                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                      </GridPane.margin>
+                   </StackPane>
+                    <HBox fx:id="welcomePanel" alignment="CENTER" prefHeight="252.0" prefWidth="399.0" style="-fx-background-radius: 20;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.rowSpan="1" GridPane.valignment="CENTER">
+                        <children>
+                     <VBox prefWidth="261.0">
+                        <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Taskify!" textAlignment="CENTER" wrappingWidth="254.34442138671875">
+                                        <font>
+                                            <Font size="28.0" />
+                                        </font>
+                                    </Text>
+                           <HBox alignment="CENTER">
+                              <VBox.margin>
+                                 <Insets />
+                              </VBox.margin>
+                              <children>
+                                 <ImageView fx:id="imageView1" fitHeight="172.0" fitWidth="238.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@/images/taskify.png" />
+                                    </image>
+                                    <VBox.margin>
+                                       <Insets top="10.0" />
+                                    </VBox.margin>
+                                    <HBox.margin>
+                                       <Insets left="20.0" top="10.0" />
+                                    </HBox.margin>
+                                 </ImageView>
+                              </children>
+                           </HBox>
+                        </children>
+                     </VBox>
+                        </children>
+                        <GridPane.margin>
+                            <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                        </GridPane.margin>
+                    </HBox>
+                    <VBox fx:id="todaysTaskListPanel" alignment="CENTER" prefWidth="400.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <children>
+                            <Text fill="Black" strokeType="OUTSIDE" strokeWidth="0.0" text="Due Today" textAlignment="CENTER">
+                                <font>
+                                    <Font name="Segoe UI Semibold" size="20.0" />
+                                </font>
+                            </Text>
+                     <HBox style="-fx-background-radius: 20;" VBox.vgrow="ALWAYS">
+                        <VBox.margin>
+                           <Insets bottom="10.0" left="5.0" right="5.0" top="5.0" />
+                        </VBox.margin>
+                        <children>
+                                  <StackPane fx:id="todaysTaskListPanelPlaceholder" prefWidth="400.0" style="-fx-border-radius: 20; -fx-background-radius: 20;">
+                                      <opaqueInsets>
+                                         <Insets />
+                                      </opaqueInsets>
+                                  </StackPane>
+                        </children>
+                     </HBox>
+                        </children>
+                        <GridPane.margin>
+                            <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+                        </GridPane.margin>
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
+                    </VBox>
+                    <columnConstraints>
+                        <ColumnConstraints fillWidth="false" hgrow="ALWAYS" maxWidth="1004.7999877929688" minWidth="0.0" prefWidth="299.0" />
+                        <ColumnConstraints hgrow="ALWAYS" maxWidth="552.0" minWidth="0.0" prefWidth="451.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="300.0" minHeight="250.0" />
+                        <RowConstraints minHeight="0.0" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="30.0" vgrow="NEVER" />
+                        <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="NEVER" />
+                    </rowConstraints>
+                </GridPane>
+                <StackPane fx:id="statusbarPlaceholder" alignment="BASELINE_CENTER" VBox.vgrow="NEVER" />
+            </VBox>
+        </Scene>
+    </scene>
 </fx:root>
