@@ -12,6 +12,12 @@ import java.util.Arrays;
  */
 public class StringUtil {
 
+    public static final int VALID_INTEGER = 1;
+
+    public static final int INVALID_INTEGER = 2;
+
+    public static final int INVALID_INPUT = 3;
+
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
      *   Ignores case, but a full word match is required.
@@ -49,20 +55,28 @@ public class StringUtil {
     }
 
     /**
-     * Returns true if {@code s} represents a non-zero unsigned integer
+     * Returns an integer (1) VALID if {@code s} represents a non-zero unsigned integer or
      * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
-     * Will return false for any other non-null string input
+     * an integer (2) INVALID_INTEGER if {@code s} represents a non-positive integer.
+     * e.g. 0, -1, -2, ..., {@code Integer.MIN_VALUE} <br>
+     * Will return an integer (3) INVALID_INPUT for any other non-null string input
      * e.g. empty string, "-1", "0", "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
      * @throws NullPointerException if {@code s} is null.
      */
-    public static boolean isNonZeroUnsignedInteger(String s) {
+    public static int checkIndexValidity(String s) {
         requireNonNull(s);
 
         try {
             int value = Integer.parseInt(s);
-            return value > 0 && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
+            if (value > 0 && !s.startsWith("+")) { // "+1" is successfully parsed by Integer#parseInt(String)
+                return VALID_INTEGER;
+            } else if (value <= 0) {
+                return INVALID_INTEGER;
+            }
+            return INVALID_INPUT;
         } catch (NumberFormatException nfe) {
-            return false;
+            return INVALID_INPUT;
         }
     }
+
 }

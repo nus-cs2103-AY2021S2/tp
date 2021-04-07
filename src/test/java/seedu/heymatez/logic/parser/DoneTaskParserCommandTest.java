@@ -1,6 +1,7 @@
 package seedu.heymatez.logic.parser;
 
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.heymatez.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.heymatez.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -31,5 +32,13 @@ public class DoneTaskParserCommandTest {
 
         assertParseFailure(parser, "1, 2 ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DoneTaskCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidInteger_throwsParseException() {
+        assertParseFailure(parser, "0", MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+
+        assertParseFailure(parser, "-1", MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+
     }
 }

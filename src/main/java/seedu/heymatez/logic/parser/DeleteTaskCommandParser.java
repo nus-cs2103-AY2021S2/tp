@@ -1,6 +1,8 @@
 package seedu.heymatez.logic.parser;
 
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
+import static seedu.heymatez.logic.parser.ParserUtil.MESSAGE_NON_POSITIVE_INDEX;
 
 import seedu.heymatez.commons.core.index.Index;
 import seedu.heymatez.logic.commands.DeleteTaskCommand;
@@ -20,8 +22,12 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteTaskCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE), pe);
+            if (pe.getMessage().equals(MESSAGE_NON_POSITIVE_INDEX)) {
+                throw new ParseException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX, pe);
+            } else {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE), pe);
+            }
         }
     }
 }

@@ -149,6 +149,14 @@ public class HeyMatez implements ReadOnlyHeyMatez {
         tasks.removeAssignee(name);
     }
 
+    /**
+     * Replaces the given Assignee {@code targetName} with {@code editedName} in tasks from the task list.
+     * {@code targetName} must exist in HEY MATEz.
+     */
+    public void editAssignee(Name targetName, Name editedName) {
+        tasks.editAssignee(targetName, editedName);
+    }
+
     @Override
     public ObservableList<Task> getTaskList() {
         return tasks.asUnmodifiableObservableList();

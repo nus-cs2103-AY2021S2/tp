@@ -155,8 +155,10 @@ With new members joining the club, you can add a new member along with his/her c
 
 Format: `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]`
 
+* The field ROLE is optional.
 * NAME and ROLE fields can take on any values with alphanumeric characters.
-* If ROLE field is not specified, person will be assigned a default role of member.
+* PHONE field has to have a minimum length of 3 digits and maximum length of 15 digits.
+* If role field is not specified, person will be assigned a default role of member.
 
 Assumptions:
 * Every member in the CCA has a different name. An error will be prompted when you add a member with the same name but with
@@ -200,8 +202,9 @@ existing Member in the application with the name you specify.
 Format: `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-r NEW_ROLE]`
 
 * Edits the member at the specified NAME_IN_LIST.
+* The fields NEW_NAME, NEW_PHONE_NUMBER, NEW_EMAIL, NEW_ROLE are all optional.
 * At least one of the optional fields must be provided.
-* ROLE field can take on any values with alphanumeric characters
+* ROLE field can take on any values with alphanumeric characters.
 * Existing values will be updated to the input values.
 * NEW_NAME field can take on any values with alphanumeric characters.
 
@@ -320,7 +323,7 @@ Examples:
 ### 7. Find Tasks by Keywords: `findTasks`
 
 With so many tasks, you may want to find tasks with given keywords quickly.
-This feature allows you to find all tasks with its TITLE or DESCRIPTION containing any of the specified keywords.
+This feature allows you to find all tasks which contains any of the specified keywords in its TITLE or DESCRIPTION.
 
 Format: `findTasks KEYWORD [MORE_KEYWORDS]...`
 

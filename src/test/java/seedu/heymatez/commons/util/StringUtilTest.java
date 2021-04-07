@@ -1,7 +1,12 @@
 package seedu.heymatez.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.heymatez.commons.util.StringUtil.INVALID_INPUT;
+import static seedu.heymatez.commons.util.StringUtil.INVALID_INTEGER;
+import static seedu.heymatez.commons.util.StringUtil.VALID_INTEGER;
 import static seedu.heymatez.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
@@ -13,36 +18,38 @@ public class StringUtilTest {
     //---------------- Tests for isNonZeroUnsignedInteger --------------------------------------
 
     @Test
-    public void isNonZeroUnsignedInteger() {
+    public void checkIndexValidity() {
 
         // EP: empty strings
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("")); // Boundary value
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("  "));
+        assertEquals(INVALID_INPUT, StringUtil.checkIndexValidity("")); // Boundary value
+        assertNotEquals(VALID_INTEGER, StringUtil.checkIndexValidity(""));
+        assertEquals(INVALID_INPUT, StringUtil.checkIndexValidity("  "));
+        assertNotEquals(VALID_INTEGER, StringUtil.checkIndexValidity("  "));
 
         // EP: not a number
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("a"));
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("aaa"));
+        assertEquals(INVALID_INPUT, StringUtil.checkIndexValidity("a"));
+        assertEquals(INVALID_INPUT, StringUtil.checkIndexValidity("aaa"));
 
         // EP: zero
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("0"));
+        assertEquals(INVALID_INTEGER, StringUtil.checkIndexValidity("0"));
 
         // EP: zero as prefix
-        assertTrue(StringUtil.isNonZeroUnsignedInteger("01"));
+        assertEquals(VALID_INTEGER, StringUtil.checkIndexValidity("01"));
 
         // EP: signed numbers
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("-1"));
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("+1"));
+        assertEquals(INVALID_INTEGER, StringUtil.checkIndexValidity("-1"));
+        assertEquals(INVALID_INPUT, StringUtil.checkIndexValidity("+1"));
 
         // EP: numbers with white space
-        assertFalse(StringUtil.isNonZeroUnsignedInteger(" 10 ")); // Leading/trailing spaces
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("1 0")); // Spaces in the middle
+        assertEquals(INVALID_INPUT, StringUtil.checkIndexValidity(" 10 ")); // Leading/trailing spaces
+        assertEquals(INVALID_INPUT, StringUtil.checkIndexValidity("1 0")); // Spaces in the middle
 
         // EP: number larger than Integer.MAX_VALUE
-        assertFalse(StringUtil.isNonZeroUnsignedInteger(Long.toString(Integer.MAX_VALUE + 1)));
+        assertNotEquals(VALID_INTEGER, StringUtil.checkIndexValidity(Long.toString(Integer.MAX_VALUE + 1)));
 
         // EP: valid numbers, should return true
-        assertTrue(StringUtil.isNonZeroUnsignedInteger("1")); // Boundary value
-        assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
+        assertEquals(VALID_INTEGER, StringUtil.checkIndexValidity("1")); // Boundary value
+        assertEquals(VALID_INTEGER, StringUtil.checkIndexValidity("10"));
     }
 
 
