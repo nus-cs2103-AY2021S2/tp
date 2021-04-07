@@ -15,10 +15,15 @@ public class ViewUnassignedTasksCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all Unassigned Tasks";
 
+    public static final String MESSAGE_NO_UNASSIGNED_TASKS = "There are no unassigned tasks!";
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_UNASSIGNED_TASKS);
+        if (model.getFilteredTaskList().isEmpty()) {
+            throw new CommandException(MESSAGE_NO_UNASSIGNED_TASKS);
+        }
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

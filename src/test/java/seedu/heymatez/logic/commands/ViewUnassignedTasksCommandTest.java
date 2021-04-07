@@ -1,15 +1,21 @@
 package seedu.heymatez.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.heymatez.logic.commands.CommandTestUtil.assertViewCommandFailure;
 import static seedu.heymatez.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.heymatez.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.heymatez.model.HeyMatez;
 import seedu.heymatez.model.Model;
 import seedu.heymatez.model.ModelManager;
 import seedu.heymatez.model.UserPrefs;
+import seedu.heymatez.model.task.Task;
+import seedu.heymatez.testutil.TaskBuilder;
 import seedu.heymatez.testutil.TypicalTasks;
 
 
@@ -37,5 +43,24 @@ public class ViewUnassignedTasksCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         assertCommandSuccess(new ViewUnassignedTasksCommand(), model,
                 ViewUnassignedTasksCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_emptyFilteredList_showsNoTask() {
+        HeyMatez hm = new HeyMatez();
+        assertViewCommandFailure(new ViewUnassignedTasksCommand(), new ModelManager(hm, new UserPrefs()),
+                ViewUnassignedTasksCommand.MESSAGE_NO_UNASSIGNED_TASKS);
+    }
+
+    @Test
+    public void executed_noUnassignedTaskFilteredList_showsNoTask() {
+        Task HOMEWORK = new TaskBuilder().withTitle("Homework").withDescription("do CS2103tp")
+                .withDeadline("2021-02-04").withTaskStatus("completed").withPriority("unassigned")
+                .withAssignees("Rachel").build();
+        HeyMatez hm = new HeyMatez();
+        hm.addTask(HOMEWORK);
+        Model newModel =  new ModelManager(hm, new UserPrefs());
+        assertViewCommandFailure(new ViewUnassignedTasksCommand(), newModel,
+                ViewUnassignedTasksCommand.MESSAGE_NO_UNASSIGNED_TASKS);
     }
 }

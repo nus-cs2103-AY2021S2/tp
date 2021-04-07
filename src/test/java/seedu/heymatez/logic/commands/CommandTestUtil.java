@@ -151,6 +151,15 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredTaskList, actualModel.getFilteredTaskList());
     }
 
+    public static void assertViewCommandFailure(Command command, Model model, String expectedMessage) {
+        try {
+            command.execute(model);
+            throw new AssertionError("The expected Command Exception was not thrown.");
+        } catch (CommandException ce) {
+            assertEquals(expectedMessage, ce.getMessage());
+        }
+    }
+
 
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
