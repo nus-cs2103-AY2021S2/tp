@@ -124,6 +124,8 @@ Adds a property to the app.
 Format: `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]​`
 
 Description:
+* Each property has a unique pair of address and postal code.
+  * No two properties with the exact same address and postal code can exist in the app at the same time.
 * There can be multiple tags but different tags should be separated with a comma. <br> e.g. `tags/TAGS_SEPARATED_BY_COMMAS` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
 
 Examples:
@@ -137,7 +139,8 @@ Adds an appointment to the app.
 Format: `add appointment n/NAME r/REMARKS d/DATE t/TIME​`
 
 Description:
-* All fields are compulsory.
+* Each appointment has a unique pair of date and time.
+  * No two appointments with the exact same meeting date and time can exist in the app at the same time.
 
 Examples:
 * `add appointment n/Meet Alex r/At M Hotel d/17-2-2021 t/1500`
