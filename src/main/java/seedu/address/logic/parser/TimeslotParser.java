@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -16,8 +15,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Timeslot;
