@@ -2,6 +2,7 @@ package seedu.address.logic.commands.remindercommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
+import static seedu.address.commons.core.Messages.MESSAGE_UNABLE_TO_EDIT_PAST_REMINDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_REMINDER;
@@ -82,6 +83,10 @@ public class EditReminderCommand extends Command {
 
         Reminder reminderToEdit = lastShownList.get(index.getZeroBased());
         Reminder editedReminder = createEditedReminder(reminderToEdit, editReminderDescriptor);
+
+        if (reminderToEdit.getReminderDate().isBeforeToday()) {
+            throw new CommandException(MESSAGE_UNABLE_TO_EDIT_PAST_REMINDER);
+        }
 
         if (editedReminder.getReminderDate().isBeforeToday()) {
             throw new CommandException(MESSAGE_INVALID_DATE);

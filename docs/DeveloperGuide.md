@@ -21,6 +21,8 @@ Tutor Tracker is an all-in-one tuition management solution for tech-savvy second
 The features of Tutor Tracker includes:
 
 - Viewing of tutors' profile
+- Adding a note to each tutor's profile
+- Exporting tutor's details  
 - Adding new tuition appointments
 - Filtering tutors by personal preference (i.e. availability, experiences, name, location, price, etc.)
 - Viewing upcoming tuition appointments
@@ -30,7 +32,6 @@ The purpose of this Developer Guide is to help you understand the design and imp
 ## **Design**
 This section will help you learn more about the design and structure of Tutor Tracker. Each section will describe and explains how each component of the application works.
 It's noteworthy to mention that the Tutor Tracker follows an Object-Oriented Programming paradigm.
-
 
 ### Architecture
 
@@ -138,8 +139,8 @@ Classes used by multiple components are in the `seedu.TutorTracker.commons` pack
 
 ### [Proposed] Favourite Feature
 ####Proposed Implementation
-The proposed favourite feature is to facilitate the user to keep track of his/her favourites.
-out of the entire list of tutors. It implements the following operations:
+The proposed favourite feature is to facilitate the user to keep track of his/her favourites out of the entire list of tutors. 
+It implements the following operations:
 * `Favourite tutor` - Add a tutor to the list of favourite tutors.
 * `Unfavourite tutor` - Delete the tutor from the list of favourite.
 * `List favourites` - Show the list of the favourite tutor.
@@ -151,11 +152,12 @@ Given below are example usage scenarios and how the favourite feature behaves at
 
 ### [Proposed] Note Feature
 ####Proposed Implementation
-The proposed note feature is to facilitate the user to keep track of his/her own notes of different
-tutors and appointments. Additionally, it implements the following operations:
+The proposed note feature is to facilitate the user to keep track of his/her own note of different tutors.
+Additionally, it implements the following operations:
 * `Add note` - Add a note
 * `Delete note` - Delete a note
 * `Edit note` - Edit a note
+* `List note` - List tutor(s) that has note added
 
 Given below are example usage scenarios and how the note feature behaves at each step.
 
@@ -237,8 +239,6 @@ Given below is example usage scenarios and how the reminder features behave.
 
 _{More to be added}_
 
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -268,12 +268,12 @@ The demand for tuition in Singapore is escalating, especially among secondary sc
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| Priority| As a …​                                 | I want to …​                 | So that I can…​                                                    |
+| --------| ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *` | User | Add new tutor details                              | Keep track of a new tutor that I have heard about               |
+| `* * *` | User | Delete tutor details                               | Remove tutors that I no longer need the details of              |
 | `* * *` | User | List all tutors                                    | See all known tutors                                            |
 | `* * *` | User | View details of a tutor (subject, background, age) | Determine whether I should choose this tutor                    |
-| `* * *` | User | Get the email address of a tutor                   | Contact tutors directly for queries                             |
 | `* * *` | User | Add tuition appointment                            | Keep track of appointments I have made                          |
 | `* * *` | User | View my tuition appointments                       | Keep track of appointments                                      |
 | `* * *` | User | Filter my tuition appointments by tutor's name     | Keep track of all the tuition appointments under a particular tutor|
@@ -286,7 +286,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | User | Filter tutors by their years of experience         | Find a tutor with experience within the range of my expectation |
 | `* * *` | User | Filter tutors by their available timeslots         | Find a tutor with matched tuition time                          |
 | `* * *` | User | Filter tutors by their available location          | Find tutors in a specific area                                  |
-
+| `* *`   | Careless user  | Edit tutor details                       | Fix typos or add in details that I forgot to enter of the tutor |
+| `* * `  | Tech-savvy user| Export tutor's details into a text file  | Share the tutor's details with others                           |
+| `* *`   | User | Keep track of the details of my favourite tutors   | Contact them and set up an appointment with them                |
+| `* *`   | User | Unfavourite a tutor                                | Remove the tutor from my list of favourites                     |
+| `* *`   | User | List all the tutors that were added to favourites  | Access the details of the favourite tutor(s) fast               |
+| `* *`   | Meticulous user| Add note to tutor                        | Remind myself of some additional details of the tutor           |
+| `* *`   | User | Delete note from tutor                             | Remove note from tutor that are no longer relevant              |
+| `* *`   | User | List tutors with note                              | Keep track which tutor has note added                           |
 
 *{More to be added}*
 
@@ -304,47 +311,157 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 2. TutorTracker confirms that tutor details have been added to list.
 
 **Extensions**
-* 2a. Tutor details already exists in list.
-    * 2a1. TutorTracker shows an error message
+* 1a. Details are not keyed in the correct format as specified in user guide.
+    * 1a1. TutorTracker shows an error message
 
-  Use case resumes at step 1.
+      Use case resumes at step 1.
+    
+* 2a. Tutor details already exists in list.
+    * 2a1. TutorTracker shows an error message 
+      
+      Use case resumes at step 1.
 
 <hr/>
 
-**Use Case UC0002: List all tutors**
+**Use Case UC0002: Edit tutor**
 
 **MSS**
-1. User requests to list tutors.
-2. TutorTracker shows a list of tutors.
+1. User requests to edit tutor.
+2. TutorTracker confirms that tutor details have been edited.
+
+   Use case ends.
+
+**Extensions**
+* 1a. Details are not keyed in the correct format as specified in user guide.
+    * 1a1. TutorTracker shows an error message
+
+      Use case resumes at step 1.
+
+* 1b. The index of tutor is invalid.
+    * 1b1. TutorTracker shows an error message.
+    
+      Use case resumes at step 1.
+    
+<hr/>
+
+**Use Case UC0003: List tutor(s)**
+
+**MSS**
+1. User requests to list tutor(s).
+2. TutorTracker shows a list of tutor(s).
 
     Use case ends.
 
 <hr/>
 
-**Use Case UC0003: View a tutor**
+**Use Case UC0004: Delete a tutor**
 
 **MSS**
 
-1.  User requests to list the list of all tutors.
+1.  User requests to list tutors.
 2.  TutorTracker shows a list of tutors.
-3.  User requests to view a tutor by index.
-4.  TutorTracker displays the tutor.
+3.  User requests to delete a tutor in the list by index.
+4.  TutorTracker deletes the tutor.
+
+    Use case ends.
 
 **Extensions**
 
 * 1a. The list is empty.
-    * 1a1. TutorTracker shows a message that there are no tutors.
-
-  Use case ends.
+  
+      Use case ends.
 
 * 3a. The index is invalid.
     * 3a1. TutorTracker shows an error message.
-
-  User case ends.
+      Use case resumes at step 2.
 
 <hr/>
 
-**Use Case UC0004: Add new tuition appointment**
+**Use Case UC0005: Favourite a tutor**
+
+**MSS**
+
+1.  User requests to list tutors.
+2.  TutorTracker shows a list of tutors.
+3.  User requests to favourite a tutor in the list by index.
+4.  Tutor added as favourite.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+      Use case ends.
+
+* 3a. The index is invalid.
+    * 3a1. TutorTracker shows an error message.
+      Use case resumes at step 2.
+
+<hr/>
+
+**Use Case UC0006: List favourite(s)**
+
+**MSS**
+
+1.  User requests to list tutors who were added as favourite.
+2.  TutorTracker shows a list of favourite tutor(s).
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+      Use case ends.
+
+<hr/>
+
+**Use Case UC0007: Unfavourite a tutor**
+
+**MSS**
+
+1.  User requests to list tutors.
+2.  TutorTracker shows a list of tutors.
+3.  User requests to favourite a tutor in the list by index.
+4.  Tutor added as favourite.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+      Use case ends.
+
+* 3a. The index is invalid.
+    * 3a1. TutorTracker shows an error message.
+      Use case resumes at step 2.
+
+<hr/>
+
+**Use Case UC0008: Export tutor's details **
+
+**MSS**
+
+1.  User requests to list tutors.
+2.  TutorTracker shows a list of tutors.
+3.  User requests to export a tutor's details and notes in the list by index.
+4.  Text file containing tutor's details and notes created.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+      Use case ends.
+
+* 3a. The index is invalid.
+    * 3a1. TutorTracker shows an error message.
+      Use case resumes at step 2.
+
+<hr/>
+
+**Use Case UC0009: Add new tuition appointment**
 
 **MSS**
 
@@ -366,7 +483,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 <hr/>
 
-**Use Case UC0005: List all tuition appointments**
+**Use Case UC0010: List all tuition appointments**
 
 **MSS**
 
@@ -377,7 +494,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 <hr/>
 
-**Use Case UC0006: View tuition appointment**
+**Use Case UC0011: View tuition appointment**
 
 **MSS**
 
@@ -402,7 +519,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 <hr/>
 
-**Use Case UC0007: Find tuition appointment**
+**Use Case UC0012: Find tuition appointment**
 
 **MSS**
 
@@ -427,7 +544,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 <hr/>
 
-**Use Case UC0008: Delete a tuition appointment**
+**Use Case UC0013: Delete a tuition appointment**
 
 **MSS**
 
@@ -438,7 +555,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 <hr/>
 
-**Use Case UC0009: Add a new grade**
+**Use Case UC0014: Add a new grade**
 
 **MSS**
 
@@ -456,7 +573,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 <hr/>
 
-**Use Case UC0010: List all grades**
+**Use Case UC0015: List all grades**
 
 **MSS**
 1. User requests to list grades.
@@ -466,7 +583,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 <hr/>
 
-**Use Case UC0011: Delete a grade**
+**Use Case UC0016: Delete a grade**
 
 **MSS**
 
@@ -483,7 +600,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 <hr/>
 
-**Use Case UC0012: Edit a grade**
+**Use Case UC0017: Edit a grade**
 
 **MSS**
 
@@ -502,7 +619,6 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
   Use case resumes at step 1.
 
 <hr/>
-
 
 *{More to be added}*
 
@@ -537,6 +653,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 * **Education Level**: The level of education offered by a tutor for a specific subject, e.g, "O level".
 * **Years of Experience**: Years of experience of tutoring a specific subject.
 * **Qualifications**: Official certificates of successful completion of an education programme, e.g, Bachelor of Science.
+* **Unfavourite**: Reverse the action of adding as a favourite
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -568,12 +685,12 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a tutor
 
-1. Deleting a tutor while all persons are being shown
+1. Deleting a tutor while all tutor(s) are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple tutors in the list.
+    1. Prerequisites: List all tutor(s) using the `list` command. Multiple tutors in the list.
 
     1. Test case: `delete 1`<br>
-       Expected: First tutor is deleted from the list. Details of the deleted tutor shown in the status message. Timestamp in the status bar is updated.
+       Expected: First tutor is deleted from the list. Details of the deleted tutor shown in the status message.
 
     1. Test case: `delete 0`<br>
        Expected: No tutor is deleted. Error details shown in the status message. Status bar remains the same.

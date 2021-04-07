@@ -29,6 +29,14 @@ public abstract class Event {
         return timeTo;
     }
 
+    public boolean isInvalidTimeRange() {
+        return !timeFrom.isBefore(timeTo);
+    }
+
+    public boolean isSameDate() {
+        return timeFrom.toDate().isEqual(timeTo.toDate());
+    }
+
     @Override
     public String toString() {
         return String.format("from %s to %s", this.timeFrom.toString(), this.timeTo.toString());

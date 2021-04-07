@@ -2,7 +2,7 @@
   "grades": [ {
     "subject" : "Valid Grade",
     "gradedItem" : "Lab 1",
-    "grade" : "B"
+    "grade" : "B3"
   },
     {
     "subject": "Grade with Invalid Grade Field",

@@ -1,11 +1,14 @@
 package seedu.address.model.grade;
 
 public enum GradeEnum {
-    A("A"), B("B"), C("C"), D("D"), E("E"),
-    F("F"), S("S"), U("U");
+    A1("A1"), A2("A2"),
+    B3("B3"), B4("B4"),
+    C5("C5"), C6("C6"),
+    D7("D7"), E8("E8"), F9("F9");
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Grade should only be alphabetic letter from A to F, S and U, "
+            "Grade should follow the grading pattern of the Singapore-Cambridge GCE \"O\" level examination: "
+                    + "A1, A2, B3, B4, C5, C6, D7, E8, F9 "
                     + "and it should not be blank";
     public final String gradeLetter;
 

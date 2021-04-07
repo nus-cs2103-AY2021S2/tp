@@ -25,7 +25,7 @@ public class AddGradeCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SUBJECT_NAME + "Science "
             + PREFIX_GRADED_ITEM + "Midterm "
-            + PREFIX_GRADE + "A\n";
+            + PREFIX_GRADE + "A1\n";
     public static final String MESSAGE_SUCCESS = "New grade added: %1$s";
     public static final String MESSAGE_DUPLICATE_GRADE = "This grade already exists in the grade book";
 

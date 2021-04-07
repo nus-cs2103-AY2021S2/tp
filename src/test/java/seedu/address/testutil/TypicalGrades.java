@@ -14,25 +14,25 @@ public class TypicalGrades {
     public static final Grade MATHS_GRADE = new GradeBuilder()
             .withSubject("Mathematics")
             .withGradedItem("Midterm Exam")
-            .withGrade("A").build();
+            .withGrade("A1").build();
     public static final Grade SCIENCE_GRADE = new GradeBuilder()
             .withSubject("Science")
             .withGradedItem("Lab 1")
-            .withGrade("B").build();
+            .withGrade("B3").build();
     public static final Grade ENGLISH_GRADE = new GradeBuilder()
             .withSubject("English")
             .withGradedItem("Final")
-            .withGrade("C").build();
+            .withGrade("C5").build();
 
     // Manually added
     public static final Grade PHYSICS_GRADE = new GradeBuilder()
             .withSubject("Physics")
             .withGradedItem("Quiz")
-            .withGrade("D").build();
+            .withGrade("D7").build();
     public static final Grade HISTORY_GRADE = new GradeBuilder()
             .withSubject("History")
             .withGradedItem("CA1")
-            .withGrade("S").build();
+            .withGrade("F9").build();
 
     private TypicalGrades() {
     } // prevents instantiation

@@ -16,7 +16,7 @@ public class ViewAppointmentCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsViewCommand() {
-        assertParseSuccess(parser, "2021-03-24",
+        assertParseSuccess(parser, "2021-05-24",
                 new ViewAppointmentCommand(new DateViewPredicate(APPOINTMENT_FIRST_DATE)));
     }
 

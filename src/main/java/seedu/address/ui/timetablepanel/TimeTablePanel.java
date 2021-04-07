@@ -53,7 +53,6 @@ public class TimeTablePanel extends UiPart<Region> {
     private LocalDate queryDate;
     private final FilteredList<Event> events;
     private CurrentWeekPredicate weekPredicate;
-    private boolean hasChanges;
 
     @FXML
     private ScrollPane scrollPane;
@@ -73,11 +72,10 @@ public class TimeTablePanel extends UiPart<Region> {
     public TimeTablePanel(ObservableList<Event> events) {
         super(FXML);
         this.events = new FilteredList<>(events);
-        this.queryDate = LocalDate.now(); // Need to allow command to change the week / view a certain week
+        this.queryDate = LocalDate.now();
         this.dateSlot = new ArrayList<>(NUM_OF_DAYS);
         this.hourSlot = new ArrayList<>();
         this.weekPredicate = new CurrentWeekPredicate(queryDate);
-        this.hasChanges = false;
     }
 
     // @@author hansebastian-reused
@@ -103,19 +101,12 @@ public class TimeTablePanel extends UiPart<Region> {
      * Re-populate the grid pane with new events.
      */
     public void reconstruct(LocalDate date) {
-        if (!dateSlot.isEmpty() && !gridPane.getChildren().isEmpty()
-                && !hourSlot.isEmpty() && !timeGridPane.getChildren().isEmpty()) {
-            // No re-rendering required if dates are the same
-            if (date.isEqual(this.queryDate)) {
-                this.hasChanges = false;
-                return;
-            }
-        }
-
-        this.hasChanges = true;
         this.queryDate = date;
         this.weekPredicate = new CurrentWeekPredicate(date);
         this.events.setPredicate(weekPredicate);
+        if (!dateSlot.contains(date)) {
+            dateSlot.clear();
+        }
         title.setText("Timetable from " + weekPredicate.toString());
         construct();
     }
@@ -189,7 +180,7 @@ public class TimeTablePanel extends UiPart<Region> {
     }
 
     private void createRowConstraints() {
-        if ((gridPane.getRowCount() != (NUM_OF_DAYS + DATE_DISPLAY_BUFFER)) || hasChanges) {
+        if ((gridPane.getRowCount() != (NUM_OF_DAYS + DATE_DISPLAY_BUFFER))) {
             gridPane.getRowConstraints().clear();
             for (int i = 0; i < NUM_OF_DAYS; i++) {
                 RowConstraints con = new RowConstraints();
@@ -200,7 +191,7 @@ public class TimeTablePanel extends UiPart<Region> {
     }
 
     private void createColConstraints(int numColumns) {
-        if ((gridPane.getColumnCount() != numColumns) || hasChanges) {
+        if ((gridPane.getColumnCount() != numColumns)) {
             hourSlot.clear();
             timeGridPane.getChildren().clear();
             timeGridPane.getColumnConstraints().clear();
@@ -261,12 +252,11 @@ public class TimeTablePanel extends UiPart<Region> {
             // https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
             // SchedulePanel.java
             // with no modification.
-            LocalDate eventDate = curr.getTimeFrom().value.toLocalDate();
+            LocalDate eventDate = curr.getTimeFrom().toDate();
             SlotContainer eventSlot = getSlot(curr);
             int colSpan = getColSpan(curr);
 
-            double hour = curr.getTimeFrom().value.toLocalTime().getHour()
-                    + (curr.getTimeFrom().value.toLocalTime().getMinute() / 60.0);
+            double hour = curr.getTimeFrom().toTime().getHour() + (curr.getTimeFrom().toTime().getMinute() / 60.0);
             int colIndex = hourSlot.indexOf(hour);
 
             if (colIndex == 0) {
@@ -291,11 +281,6 @@ public class TimeTablePanel extends UiPart<Region> {
     }
 
     private void populateDates() {
-        if (dateSlot.contains(queryDate)) {
-            return;
-        }
-
-        dateSlot.clear();
         for (int rowIndex = 0; rowIndex < NUM_OF_DAYS; rowIndex++) {
             LocalDate currentDate = queryDate.with(DayOfWeek.of(rowIndex + 1));
             dateSlot.add(currentDate);

@@ -32,29 +32,29 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the TutorBook.
      *
      * @see seedu.address.model.Model#getTutorBook()
      */
-    ReadOnlyTutorBook getAddressBook();
+    ReadOnlyTutorBook getTutorBook();
 
     /**
-     * Returns an unmodifiable view of the filtered list of persons
+     * Returns an unmodifiable view of the filtered list of persons.
      */
     ObservableList<Tutor> getFilteredPersonList();
 
     /**
-     * Returns an unmodifiable view of the filtered list of appointments
+     * Returns an unmodifiable view of the filtered list of appointments.
      */
     ObservableList<Appointment> getFilteredAppointmentList();
 
     /**
-     * Returns an unmodifiable view of the filtered list of events
+     * Returns an unmodifiable view of the filtered list of events.
      */
     ObservableList<Event> getFilteredEventList();
 
     /**
-     * Returns an unmodifiable view of the filtered list of grades
+     * Returns an unmodifiable view of the filtered list of grades.
      */
     ObservableList<Grade> getFilteredGradeList();
 
@@ -69,7 +69,7 @@ public interface Logic {
     ObservableList<String> getAppointmentFilterStringList();
 
     /**
-     * Returns an unmodifiable view of the filtered list of schedules
+     * Returns an unmodifiable view of the filtered list of schedules.
      */
     ObservableList<Schedule> getFilteredScheduleList();
 
@@ -99,7 +99,7 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns timetable viewing datetime
+     * Returns the query date for Timetable Window.
      */
     LocalDate getTimeTableDate();
 }

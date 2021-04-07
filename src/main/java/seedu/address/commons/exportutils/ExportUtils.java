@@ -27,7 +27,7 @@ public class ExportUtils {
             }
         }
 
-        String fileName = tutor.getName().toString().replaceAll(" ", "_");
+        String fileName = tutor.getName().toString().replaceAll(" ", "_") + ".txt";
         String feedback = "";
 
         File exportFile = new File(directory + "/" + fileName);

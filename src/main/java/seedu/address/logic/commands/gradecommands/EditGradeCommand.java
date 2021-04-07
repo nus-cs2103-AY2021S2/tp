@@ -34,7 +34,7 @@ public class EditGradeCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_SUBJECT_NAME + "Science "
             + PREFIX_GRADED_ITEM + "Midterm"
-            + PREFIX_GRADE + "A";
+            + PREFIX_GRADE + "A1";
 
     public static final String MESSAGE_EDIT_GRADE_SUCCESS = "Edited Grade: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

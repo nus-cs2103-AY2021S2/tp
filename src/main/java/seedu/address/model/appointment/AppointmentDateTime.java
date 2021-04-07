@@ -22,6 +22,10 @@ public class AppointmentDateTime {
 
     public static final String MESSAGE_CONSTRAINTS = "AppointmentDateTime should be in "
             + "YYYY-MM-DD HH:MM AM/PM format";
+    public static final String DATE_FORMAT = "MMM dd yyyy";
+    public static final String TIME_FORMAT = "hh:mm a";
+    public static final String DATE_TIME_FORMAT = DATE_FORMAT + " " + TIME_FORMAT;
+    public static final String DATE_TIME_STORAGE_FORMAT = "yyyy-MM-dd hh:mm a";
 
     /*
      * DateTime make use of formatter to validate instead of Regex for DateTime accuracy.
@@ -83,6 +87,7 @@ public class AppointmentDateTime {
 
     /**
      * Getter method to retrieve value of AppointmentDateTime.
+     *
      * @return LocalDateTime stored
      */
     public LocalDateTime getValue() {
@@ -100,11 +105,32 @@ public class AppointmentDateTime {
 
     /**
      * Checks whether time from to time to is valid.
+     *
      * @return True if time of current {@code AppointmentDateTime} object is smaller
      * than given {@code AppointmentDateTime} in params
      */
     public boolean isTimeFromValid(AppointmentDateTime givenAppointment) {
         return this.getValue().isBefore(givenAppointment.getValue());
+    }
+
+    /**
+     * Checks whether time from to time to is valid.
+     *
+     * @return True if time of current {@code AppointmentDateTime} object is smaller
+     * than given {@code AppointmentDateTime} in params
+     */
+    public boolean isInvalidStartTime() {
+        return this.getValue().toLocalTime().isBefore(LocalTime.of(6, 0));
+    }
+
+    /**
+     * Checks whether time from to time to is valid.
+     *
+     * @return True if time of current {@code AppointmentDateTime} object is smaller
+     * than given {@code AppointmentDateTime} in params
+     */
+    public boolean isInvalidEndTime() {
+        return this.getValue().toLocalTime().isAfter(LocalTime.of(23, 1));
     }
 
     /**
@@ -128,7 +154,7 @@ public class AppointmentDateTime {
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mma");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
         return value.format(formatter);
     }
 
@@ -136,7 +162,7 @@ public class AppointmentDateTime {
      * Returns a date only string for display purpose.
      */
     public String toDateString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         return value.format(formatter);
     }
 
@@ -144,7 +170,7 @@ public class AppointmentDateTime {
      * Returns a time only string for display purpose.
      */
     public String toTimeString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TIME_FORMAT);
         return value.format(formatter);
     }
 
@@ -152,7 +178,7 @@ public class AppointmentDateTime {
      * Returns a date time string for storage purpose.
      */
     public String toStorageString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_TIME_STORAGE_FORMAT);
         return value.format(formatter);
     }
 
@@ -162,6 +188,35 @@ public class AppointmentDateTime {
 
     public boolean isBefore(AppointmentDateTime other) {
         return this.value.isBefore(other.value);
+    }
+
+    /**
+     * Returns true if the {@code AppointmentDateTime} is before now.
+     */
+    public boolean isBeforeNow() {
+        return this.value.isBefore(LocalDateTime.now());
+    }
+
+    /**
+     * Returns {@code LocalDate} portion of {@code AppointmentDateTime}.
+     */
+    public LocalDate toDate() {
+        return this.value.toLocalDate();
+    }
+
+    /**
+     * Returns {@code LocalTime} portion of {@code AppointmentDateTime}.
+     */
+    public LocalTime toTime() {
+        return this.value.toLocalTime();
+    }
+
+    /**
+     * Returns true if {@code AppointmentDateTime} is in blocks of 30 or 60 minutes.
+     */
+    public boolean isValidMinutes() {
+        int minutes = this.value.getMinute();
+        return minutes == 0 || minutes == 30;
     }
 
     @Override
