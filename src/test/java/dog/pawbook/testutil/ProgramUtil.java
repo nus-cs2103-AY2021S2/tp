@@ -2,8 +2,6 @@ package dog.pawbook.testutil;
 
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOGID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
-import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
-import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PROGRAMID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SESSION;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 
