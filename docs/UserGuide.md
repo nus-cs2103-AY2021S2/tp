@@ -115,7 +115,8 @@ Deletes the student specified by his/her matriculation number from Vax@NUS recor
 Format: `delete MATRICULATION NUMBER`
 
 * If the matriculation number does not exist in the records, a message will be shown to inform users that 
-  the matriculation number is not found.
+  no student with the specified matriculation number can be found in the records.
+* If the student to be deleted has an appointment, the student's appointment will be deleted as well.
   
 
 Examples:
@@ -140,7 +141,7 @@ Examples:
 
 ### Viewing statistics for student population: `stats`
 
-Displays the statistics in terms of percentage of student vaccinated for the requested faculty/school residence or whole of NUS. 
+Displays the statistics in terms of percentage of student vaccinated for the specified faculty/school residence or whole of NUS. 
 
 Format: <br>
 `stats FACULTY`
@@ -149,8 +150,8 @@ Format: <br>
 <br> `stats all`
 
 * Only one condition should be specified at a time. 
-* If there is no available data for the requested faculty or school residence, a message will be displayed to inform
-  users that the requested faculty or School Residence has no available data.
+* If there is no available data for the specified faculty or school residence, a message will be displayed to inform
+  users that the specified faculty or school residence has no available data.
 
 Examples:
 * `stats COM` displays the percentage of vaccinated students in School of Computing.
