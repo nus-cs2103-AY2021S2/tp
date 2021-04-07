@@ -114,6 +114,10 @@ Review mode | This is where you can review all your flashcards. You can enter th
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. <br>
   e.g. If you specify `c/Geography c/History`, only `c/History` will be taken.
+  
+* For commands that accepts `INDEX` parameter (e.g. `edit`, `view`, `delete`, and `stats`):
+    * The index refers to the index number shown in the displayed flashcard list.
+    * The index **must be a positive integer** 1, 2, 3, …​ but not above 2147483647.
 
 </div>
 <div style="page-break-after: always;"></div>
@@ -150,8 +154,6 @@ Edits an existing flashcard in the flashcard list.
 Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY] [p/NEW PRIORITY] [t/TAG]...`
 
 * Edits the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
 * At least 1 updated card field must be provided for modification.
 * If the tag field is specified in the command, all existing tag(s) will be removed and replaced by the new tag(s).
 * New tag(s) should be alphanumeric, and there should not be any spacing between characters.
@@ -176,8 +178,6 @@ Deletes the specified flashcard from the flashcard list. <br>
 Format: `delete INDEX`
 
 * Deletes the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
@@ -196,8 +196,6 @@ Views a specific flashcard from the flashcard list. <br>
 Format: `view INDEX`
 
 * Views the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …​
 <div style="page-break-after: always;"></div>
 
 Examples:
@@ -206,7 +204,7 @@ Examples:
 
 ### Finding flashcards : `find`
 
-Finds flashcards containing any of the given keywords.
+Finds flashcards containing any of the given keywords in FlashBack.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -234,7 +232,7 @@ Examples:
 
 ### Filtering flashcards: `filter`
 
-Filter flashcards based on specified field input.
+Filter flashcards based on specified field input in FlashBack.
 
 <div markdown="span" class="alert alert-primary">
 

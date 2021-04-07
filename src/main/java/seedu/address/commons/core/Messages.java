@@ -9,5 +9,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX = "The flashcard index provided is invalid";
     public static final String MESSAGE_FLASHCARDS_LISTED_OVERVIEW = "%1$d flashcards listed!";
+    public static final String MESSAGE_FLASHCARDS_FILTERED_OVERVIEW = "%1$d flashcard(s) filtered!";
+    public static final String MESSAGE_FLASHCARDS_FOUND_OVERVIEW = "%1$d flashcard(s) found!";
 
 }

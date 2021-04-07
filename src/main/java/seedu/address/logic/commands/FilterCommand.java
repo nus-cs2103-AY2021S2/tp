@@ -48,7 +48,7 @@ public class FilterCommand extends Command {
         requireNonNull(model);
         model.updateFilteredFlashcardList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW, model.getFilteredFlashcardList().size()));
+                String.format(Messages.MESSAGE_FLASHCARDS_FILTERED_OVERVIEW, model.getFilteredFlashcardList().size()));
     }
 
     @Override
