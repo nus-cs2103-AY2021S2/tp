@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FlashBackParser" as FlashBackParser LOGIC_COLOR
+participant ":AliasCommandParser" as AliasCommandParser LOGIC_COLOR
+participant "a:AliasCommand" as AliasCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":UserPrefs" as UserPrefs MODEL_COLOR
+participant ":AliasMap" as AliasMap MODEL_COLOR
+end box
+[-> LogicManager : execute(input)
+activate LogicManager
+
+LogicManager -> FlashBackParser : parseCommand(input)
+activate FlashBackParser
+
+FlashBackParser -> AliasCommandParser : parse(args)
+activate AliasCommandParser
+create AliasCommand
+AliasCommandParser -> AliasCommand : AliasCommand(command, alias)
+activate AliasCommand
+
+AliasCommand --> AliasCommandParser
+deactivate AliasCommand
+
+AliasCommandParser --> FlashBackParser : a
+deactivate AliasCommandParser
+AliasCommandParser -[hidden]-> FlashBackParser : a
+destroy AliasCommandParser
+
+FlashBackParser --> LogicManager : a
+deactivate FlashBackParser
+
+LogicManager -> AliasCommand : execute()
+activate AliasCommand
+
+AliasCommand -> Model : addAlias(command, alias)
+activate Model
+
+Model -> UserPrefs : addAlias(command, alias)
+activate UserPrefs
+
+UserPrefs -> AliasMap : addAlias(command, alias)
+activate AliasMap
+
+AliasMap --> UserPrefs
+deactivate AliasMap
+
+UserPrefs --> Model
+deactivate UserPrefs
+
+Model --> AliasCommand
+deactivate Model
+
+AliasCommand --> LogicManager : result
+deactivate AliasCommand
+AliasCommand -[hidden]-> LogicManager : result
+destroy AliasCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

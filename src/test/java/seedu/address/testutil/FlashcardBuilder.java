@@ -47,7 +47,7 @@ public class FlashcardBuilder {
         answer = flashcardToCopy.getAnswer();
         category = flashcardToCopy.getCategory();
         priority = flashcardToCopy.getPriority();
-        remark = flashcardToCopy.getRemark();
+        remark = new Remark(DEFAULT_REMARK);
         tags = new HashSet<>(flashcardToCopy.getTags());
         stats = flashcardToCopy.getStats();
     }
@@ -89,14 +89,6 @@ public class FlashcardBuilder {
      */
     public FlashcardBuilder withCategory(String category) {
         this.category = new Category(category);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Remark} of the {@code Flashcard} that we are building.
-     */
-    public FlashcardBuilder withRemark(String remark) {
-        this.remark = new Remark(remark);
         return this;
     }
 

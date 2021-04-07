@@ -162,6 +162,16 @@
     -fx-background-radius: 20 20 20 20;
 }
 
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+     -fx-background: #ffffff;
+     -fx-border-color: #ffffff;
+     -fx-background-color: transparent;
+}
+
 .status-bar {
     -fx-background-color: derive(#ffffff, 30%);
 }
@@ -211,7 +221,7 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#ffffff, 50%);
 }
 
 .context-menu .label {

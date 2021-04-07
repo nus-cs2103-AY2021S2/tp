@@ -87,6 +87,14 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return aliasMap.isCommand(input);
     }
 
+    public boolean isReview(String input) {
+        return aliasMap.isReview(input);
+    }
+
+    public boolean isAliasMapCorrupted() {
+        return aliasMap.isCorrupted();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

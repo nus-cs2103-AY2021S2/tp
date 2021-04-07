@@ -74,10 +74,6 @@ public class Flashcard {
         return priority;
     }
 
-    public Remark getRemark() {
-        return remark;
-    }
-
     public Statistics getStats() {
         return stats;
     }
@@ -123,7 +119,6 @@ public class Flashcard {
                 && otherFlashcard.getCategory().equals(getCategory())
                 && otherFlashcard.getPriority().equals(getPriority())
                 && otherFlashcard.getTags().equals(getTags())
-                && otherFlashcard.getRemark().equals(getRemark())
                 && otherFlashcard.getStats().equals(getStats());
     }
 
