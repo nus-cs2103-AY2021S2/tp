@@ -74,11 +74,12 @@ public class UndoTaskCommandTest {
 
     @Test
     public void execute_emptyFilteredList_success() {
-        ModelManager myModel= new ModelManager(new HeyMatez(), new UserPrefs());
         Index givenIndex = INDEX_SECOND_TASK;
 
         UndoTaskCommand undoTaskCommand = new UndoTaskCommand(givenIndex);
 
+        ModelManager myModel= new ModelManager(new HeyMatez(), new UserPrefs());
+        
         ModelManager expectedModel = new ModelManager(new HeyMatez(), new UserPrefs());
 
         assertCommandSuccess(undoTaskCommand, myModel, UndoTaskCommand.MESSAGE_LIST_IS_EMPTY, expectedModel);
