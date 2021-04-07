@@ -548,7 +548,7 @@ If a parameter is expected only once in the command, but you specified it multip
       ![meet-clash](images/meet-clash.png)
 
 * Delete a meeting.
-    * `meet 5 -delete 25.05.2021 12:00 13:00 KENT RIDGE MRT`
+    * `meet 1 -delete 20.05.2021 15:00 16:00 MRT`
 
 * Clear all meetings.
     * `meet 2 -clear`
