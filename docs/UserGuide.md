@@ -4,7 +4,7 @@ title: User Guide
 ---
 ModuleBook3.5 is the go-to tool for busy students/professionals who are confident that typing can save them time. 
 Using ModuleBook3.5, one can organise and keep track of tasks and their deadlines in an 
-Easy, Seamless and Straightforward manner, all without the need for consistent internet connection. 
+*Easy, Seamless and Straightforward* manner, all without the need for consistent internet connection. 
 Even if your online learning portal fails, you can still see your task details
 on ModuleBook3.5.
 

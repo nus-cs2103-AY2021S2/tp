@@ -6,7 +6,7 @@ title: T13-2 ModuleBook Level 3.5
 ## Project: ModuleBook Level 3.5
 
 ModuleBook - Level 3.5 is a desktop module book application used for keeping track of tasks for various NUS modules
-in an Easy, Simple and Straightforward manner. 
+in an *Easy, Simple and Straightforward* manner. 
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
@@ -17,7 +17,7 @@ Given below are my contributions to the project.
     and the app should provide a convenient way for the user to indicate that the previously done task is actually not done yet.
   * Highlights: This enhancement affects existing commands and commands to be added in the future.
     The implementation was challenging as it required changes to existing commands.
-  * Credits: *yhtMinceraft1010X ip*
+  * Credits: [*yhtMinceraft1010X ip*](https://github.com/yhtMinceraft1010X/ip)
 
 * **New Feature**: Added a workload field that allows the user to rate a task's expected workload 
   using integers in the range 1-3 inclusive.
@@ -31,19 +31,19 @@ Given below are my contributions to the project.
   * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Updated the GUI color scheme (Pull requests [\#118](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/118), [\#34]())
+  * Wrote additional tests for existing features to increase coverage (Pull requests [\#226](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/226), [\#38]())
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `done` and `notdone` [\#72]()
-    * Did cosmetic tweaks to existing documentation: [\#74]()
+    * Edited documentation for the feature `edit` [\#47](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/47)
+    * Did cosmetic tweaks to existing documentation: [\#231](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/231)
   * Developer Guide:
-    * Added implementation details of the `done` feature.
+    * Added implementation details of the `done` feature. [\#107](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/107)
     * Did cosmetic tweaks to existing documentation.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
+  * PRs reviewed (with non-trivial review comments): [\#71](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/71), [\#32](), [\#19](), [\#42]()
   * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/262), [2](), [3]())
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/262)
   
