@@ -159,7 +159,7 @@ Examples:
 * `stats NUS` displays the percentage of vaccinated students in NUS.
 * `stats all` displays the list of percentages of vaccinated students in every Faculty and School Residence.
 
-Sample Output for `stats All`:
+Sample Output for `stats all`:
 ![StatsALl](images/statsAll.png)
 
 Sample Output for `stats PGPH`:
