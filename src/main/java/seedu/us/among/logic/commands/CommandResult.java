@@ -67,6 +67,15 @@ public class CommandResult {
     }
 
     /**
+     * Constructs a {@code CommandResult} with the specified fields. This is the constructor for request related
+     * commands such show, add and edit.
+     */
+    public CommandResult(String feedbackToUser, Endpoint endpoint, Boolean isApiRequest) {
+        this(feedbackToUser, null, endpoint,
+                false, false, false, isApiRequest);
+    }
+
+    /**
      * Constructs a {@code CommandResult} with the specified fields, including the newly added theme to toggle.
      */
     public CommandResult(String feedbackToUser, String themeToToggle) {
@@ -149,5 +158,6 @@ public class CommandResult {
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit, isList);
     }
+
 
 }

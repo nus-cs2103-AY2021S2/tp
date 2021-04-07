@@ -133,7 +133,8 @@ public class MainWindow extends UiPart<Stage> {
                 try {
                     CommandResult commandResult = logic.execute
                             ("show " + endpointListPanel.getSelectedEndpoint());
-                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                    resultDisplay.setResponseMetaFeedbackHelper(
+                            commandResult.getFeedbackToUser(), commandResult.getEndpoint());
                 } catch (Exception e) {
                     logger.warning(e.toString());
                 }
@@ -221,6 +222,9 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             if (commandResult.isApiResponse()) {
                 resultDisplay.setApiFeedbackToUser(commandResult.getFeedbackToUser(), commandResult.getEndpoint());
+            } else if (commandResult.getEndpoint() != null) {
+                resultDisplay.setResponseMetaFeedbackHelper(
+                        commandResult.getFeedbackToUser(), commandResult.getEndpoint());
             } else {
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             }

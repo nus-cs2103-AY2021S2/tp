@@ -10,7 +10,7 @@ import java.util.Objects;
  */
 public class GuiSettings implements Serializable {
 
-    public static final String DEFAULT_THEME = "material";
+    public static final String DEFAULT_THEME = "dark";
     private static String loadedTheme;
 
     private static final double DEFAULT_HEIGHT = 600;
