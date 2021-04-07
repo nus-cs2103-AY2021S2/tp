@@ -244,7 +244,7 @@ Format: `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/ADDRESS] [d/DESCRIPTIO
   * `HH:mm` is the time in 24 hours format. 
 * The specified date and time **cannot be in the past**.
 * The specified date and time **cannot be in conflict with existing meetings** in iScam.
-* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the client will be removed i.e. adding of tags is not cumulative.
 * The `done` parameter **only accepts `yes` or `no`**.
 
 Examples:
