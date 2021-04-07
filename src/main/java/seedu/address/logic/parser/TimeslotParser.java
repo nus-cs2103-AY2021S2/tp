@@ -45,6 +45,9 @@ public class TimeslotParser {
             + "hh:mm (In 24-Hour format) or hh:mmam/pm\n"
             + "Example:\n"
             + "15:12 or 03:12pm";
+    public static final String MESSAGE_INVALID_PAST_DATE_TIME_FORMAT = "Invalid date and time!\n"
+            + "This timeslot has already occurred in the past."
+            + "Please input Date and Times that have not yet occurred as of now.";
     public static final String MESSAGE_INVALID_DURATION_FORMAT = "Input format for duration must be: "
             + "[%d UNIT...] where units are { H:hours, M:minutes }\n"
             + "Examples of duration inputs:\n"
@@ -64,17 +67,27 @@ public class TimeslotParser {
      */
     public static LocalDateTime parseDateTime(String userInput) throws ParseException {
         String formattedInput = userInput.toUpperCase().trim();
+        boolean isOldDateTime = false;
+
         if (formattedInput.contains("NEXT")) {
             return parseNextDateTime(formattedInput);
         } else {
             for (DateTimeFormat dateTimeFormat : DateTimeFormat.values()) {
                 try {
-                    return LocalDateTime.parse(formattedInput, dateTimeFormat.getDateTimeFormatter());
+                    LocalDateTime timeslotInput = LocalDateTime.parse(formattedInput,
+                            dateTimeFormat.getDateTimeFormatter());
+                    if (timeslotInput.compareTo(LocalDateTime.now()) < 0) {
+                        isOldDateTime = true;
+                        break;
+                    }
+                    return timeslotInput;
                 } catch (DateTimeParseException e) {
                     continue;
                 }
             }
-            throw new ParseException(MESSAGE_INVALID_DATE_TIME_FORMAT);
+            String messageUsage = isOldDateTime ? MESSAGE_INVALID_PAST_DATE_TIME_FORMAT
+                    : MESSAGE_INVALID_DATE_TIME_FORMAT;
+            throw new ParseException(messageUsage);
         }
     }
 
