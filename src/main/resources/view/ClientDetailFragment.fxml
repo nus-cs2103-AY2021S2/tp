@@ -33,12 +33,8 @@
         <VBox alignment="TOP_LEFT" HBox.hgrow="ALWAYS" prefWidth="170">
             <ListView fx:id="clientMeetingListView" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
         </VBox>
-        <VBox alignment="TOP_LEFT" fx:id="insurancePlanBox" styleClass="insurance-pane" HBox.hgrow="ALWAYS">
-            <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
-            </padding>
-            <Label text="Insurance Plan" styleClass="details_large_label"/>
-            <Label fx:id="insurancePlanName" text="/$insuranceName" styleClass="details_small_label"/>
+        <VBox alignment="TOP_LEFT" HBox.hgrow="ALWAYS" prefWidth="170">
+            <ListView fx:id="plansListView" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
         </VBox>
     </HBox>
 </VBox>
