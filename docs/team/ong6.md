@@ -31,22 +31,26 @@ imPoster is a desktop application for beginners of API development to easily gra
   - Justification: Being able to quickly find the endpoint in a large list of endpoints is important as it would save the developer time and reduce confusion.
   - Highlights: Allows users to specify the field to be searched through and allows for combining of the specifications to allow for a more targeted search.
 
-- **Enhancements**:
+- **Features**:
 
+  - Managed UI aspects of the application.
+  - Added the ability to show endpoints in the API list from mouse clicks.
   - Added more detailed error messages to commands.
   - Upgraded and redesigned the `imposter`, `light theme` and `dark theme` for the UI.
 
 #### Project management
 
   - Added the team self-initiated [main project website](https://imposter-dev.tk).
-  - Managed releases `v1.1`, `v1.2`, `v1.2b`, `v1.3` (4 releases) on GitHub.
-  - Maintained [gantt chart](https://docs.google.com/spreadsheets/d/10HzmFh2pCHIu-8VpJSCRy0jzpVehnYpm/edit#gid=577662797) and [project development board](https://github.com/AY2021S2-CS2103T-T12-4/tp/projects/1).
-  - Setup the GitHub team organization/repository and added favicon to project page.
-  - Setup [tools](#tools) and [workflow guide](../WorkflowGuide.md) to ease project workflow.
+  - Managed releases `v1.4` on GitHub.
+  - Maintained [project development board](https://github.com/AY2021S2-CS2103T-T12-4/tp/projects/1)
+  - Setup the GitHub team organization/repository.
+  - Setup [workflow guide](../WorkflowGuide.md) to ease project workflow.
 
 #### Community
 
-  - to-do
+  - Helped with many PRs and provided tips on how to improve code.
+  - Provided tips through forum discussions and gave input to some forum discussions.
+  
 #### Tools
 
   - Integrated the third party library [Apache HttpComponents](http://hc.apache.org/index.html) to the project ([\#125](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/125)).
@@ -56,6 +60,8 @@ imPoster is a desktop application for beginners of API development to easily gra
 
   - User Guide:
     - Added documentation for `add`, `edit` and `find` command.
-    - Updated all commands summary table.
+    - Added documentation on general command usage and detailed find command usage.
+    - Redid the all commands summary table.
+    - Added styling and formatting.
   - Developer Guide:
     - Added implementation details of the `add` and `find` features.
