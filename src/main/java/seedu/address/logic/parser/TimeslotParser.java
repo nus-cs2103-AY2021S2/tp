@@ -8,6 +8,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -47,7 +48,7 @@ public class TimeslotParser {
             + "15:12 or 03:12pm";
     public static final String MESSAGE_INVALID_PAST_DATE_TIME_FORMAT = "Invalid date and time!\n"
             + "This timeslot has already occurred in the past."
-            + "Please input Date and Times that have not yet occurred as of now.";
+            + "Please input future dates and times that that have yet to occur as of now.";
     public static final String MESSAGE_INVALID_DURATION_FORMAT = "Input format for duration must be: "
             + "[%d UNIT...] where units are { H:hours, M:minutes }\n"
             + "Examples of duration inputs:\n"
@@ -76,7 +77,7 @@ public class TimeslotParser {
                 try {
                     LocalDateTime timeslotInput = LocalDateTime.parse(formattedInput,
                             dateTimeFormat.getDateTimeFormatter());
-                    if (timeslotInput.compareTo(LocalDateTime.now()) < 0) {
+                    if (timeslotInput.compareTo(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES)) < 0) {
                         isOldDateTime = true;
                         break;
                     }
