@@ -27,9 +27,9 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static dog.pawbook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static dog.pawbook.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static dog.pawbook.testutil.TypicalIndexes.ID_FIRST_OWNER;
-import static dog.pawbook.testutil.TypicalIndexes.ID_SECOND_OWNER;
-import static dog.pawbook.testutil.TypicalIndexes.ID_THIRD_OWNER;
+import static dog.pawbook.testutil.TypicalId.ID_ONE;
+import static dog.pawbook.testutil.TypicalId.ID_THREE;
+import static dog.pawbook.testutil.TypicalId.ID_TWO;
 
 import org.junit.jupiter.api.Test;
 
@@ -106,7 +106,7 @@ public class EditOwnerCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Integer targetId = ID_SECOND_OWNER;
+        Integer targetId = ID_TWO;
         String userInput = targetId + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
@@ -120,7 +120,7 @@ public class EditOwnerCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Integer targetId = ID_FIRST_OWNER;
+        Integer targetId = ID_ONE;
         String userInput = targetId + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder().withPhone(VALID_PHONE_BOB)
@@ -133,7 +133,7 @@ public class EditOwnerCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Integer targetId = ID_THIRD_OWNER;
+        Integer targetId = ID_THREE;
         String userInput = targetId + NAME_DESC_AMY;
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditOwnerCommand expectedCommand = new EditOwnerCommand(targetId, descriptor);
@@ -166,7 +166,7 @@ public class EditOwnerCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Integer targetId = ID_FIRST_OWNER;
+        Integer targetId = ID_ONE;
         String userInput = targetId + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ADDRESS_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
                 + PHONE_DESC_BOB + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
@@ -182,7 +182,7 @@ public class EditOwnerCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Integer targetId = ID_FIRST_OWNER;
+        Integer targetId = ID_ONE;
         String userInput = targetId + INVALID_PHONE_DESC + PHONE_DESC_BOB;
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
         EditOwnerCommand expectedCommand = new EditOwnerCommand(targetId, descriptor);
@@ -198,7 +198,7 @@ public class EditOwnerCommandParserTest {
 
     @Test
     public void parse_resetTags_success() {
-        Integer targetId = ID_THIRD_OWNER;
+        Integer targetId = ID_THREE;
         String userInput = targetId + TAG_EMPTY;
 
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder().withTags().build();

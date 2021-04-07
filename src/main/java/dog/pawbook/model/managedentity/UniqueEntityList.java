@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.exceptions.BrokenReferencesException;
@@ -28,6 +29,7 @@ import javafx.util.Pair;
 
 public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
 
+    private static final Predicate<Integer> PREDICATE_ILLEGAL_ID = id -> id < 1;
     private int newId = 1; // id is never 0
     private final ObservableList<Pair<Integer, Entity>> internalList = FXCollections.observableArrayList();
     private final ObservableList<Pair<Integer, Entity>> internalUnmodifiableList =
@@ -40,7 +42,8 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      * @return boolean of whether entity exists.
      */
     public boolean contains(Integer id) {
-        return internalList.stream().map(Pair::getKey).anyMatch(id::equals);
+        return !PREDICATE_ILLEGAL_ID.test(id)
+                && internalList.stream().map(Pair::getKey).anyMatch(id::equals);
     }
 
     /**
@@ -51,7 +54,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      */
     public boolean contains(Entity toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().map(Pair::getValue).anyMatch(toCheck::equals);
+        return internalList.stream().map(Pair::getValue).anyMatch(toCheck::isSameAs);
     }
 
     /**
@@ -125,7 +128,8 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
 
         Entity originalEntity = internalList.get(index).getValue();
 
-        if (!originalEntity.equals(editedEntity) && contains(editedEntity)) {
+        if (!originalEntity.isSameAs(editedEntity) // if identity fields unmodified, the next condition is invalid
+                && contains(editedEntity)) {
             throw new DuplicateEntityException();
         }
 
@@ -210,53 +214,79 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
         int focusID = focus.getKey();
         Entity focusEntity = focus.getValue();
         if (focusEntity instanceof Owner) {
-            Owner owner = (Owner) focusEntity;
-            Set<Integer> dogIdSet = owner.getDogIdSet();
-            if (dogIdSet.stream().anyMatch(id -> id < 1)) {
-                return false;
-            }
-            for (int dogId : dogIdSet) {
-                List<Dog> dogs = getIdOfType(entities, dogId, Dog.class);
-                if (dogs.size() == 0) {
-                    return false;
-                }
-                assert dogs.size() == 1 : "There should only be exactly one matching dog";
-                Dog dog = dogs.get(0);
-                if (dog.getOwnerId() != focusID) {
-                    return false;
-                }
-            }
-            return true;
+            return checkReferencedId(entities, focusID, (Owner) focusEntity);
         } else if (focusEntity instanceof Dog) {
-            Dog dog = (Dog) focusEntity;
-            assert(dog.getOwnerId() != null) : "OwnerID should not return a null";
-            int ownerId = dog.getOwnerId();
-            if (ownerId < 1) {
-                return false;
-            }
-            List<Owner> owners = getIdOfType(entities, ownerId, Owner.class);
-            if (owners.size() == 0) {
-                return false;
-            }
-            assert owners.size() == 1 : "There should only be exactly one matching owner";
-            Owner owner = owners.get(0);
-            return owner.getDogIdSet().contains(focusID);
+            return checkReferencedId(entities, focusID, (Dog) focusEntity);
         } else if (focusEntity instanceof Program) {
-            Program program = (Program) focusEntity;
-            Set<Integer> dogIdSet = program.getDogIdSet();
-            if (dogIdSet.stream().anyMatch(id -> id < 1)) {
-                return false;
-            }
-            for (int dogId : dogIdSet) {
-                List<Dog> dogs = getIdOfType(entities, dogId, Dog.class);
-                if (dogs.size() == 0) {
-                    return false;
-                }
-            }
-            return true;
+            return checkReferencedId(entities, (Program) focusEntity);
         }
 
         throw new AssertionError("Unknown entity type to verify!");
+    }
+
+    private static boolean checkReferencedId(List<Pair<Integer, Entity>> entities, Program program) {
+        Set<Integer> dogIdSet = program.getDogIdSet();
+
+        // ensure that the IDs of all dogs enrolled are legal IDs
+        if (dogIdSet.stream().anyMatch(PREDICATE_ILLEGAL_ID)) {
+            return false;
+        }
+
+        // ensure that the dog IDs all point to existing dogs
+        for (int dogId : dogIdSet) {
+            List<Dog> dogs = getIdOfType(entities, dogId, Dog.class);
+            if (dogs.size() == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private static boolean checkReferencedId(List<Pair<Integer, Entity>> entities, int id, Dog dog) {
+        assert(dog.getOwnerId() != null) : "OwnerID should not return a null";
+
+        int ownerId = dog.getOwnerId();
+        if (PREDICATE_ILLEGAL_ID.test(ownerId)) {
+            return false;
+        }
+
+        // every dog must have an owner, no stray dogs allowed
+        List<Owner> owners = getIdOfType(entities, ownerId, Owner.class);
+        if (owners.size() == 0) {
+            return false;
+        }
+
+        assert owners.size() == 1 : "There should only be exactly one matching owner";
+
+        Owner owner = owners.get(0);
+
+        // owner must also own the dog
+        return owner.getDogIdSet().contains(id);
+    }
+
+    private static boolean checkReferencedId(List<Pair<Integer, Entity>> entities, int id, Owner owner) {
+        Set<Integer> dogIdSet = owner.getDogIdSet();
+        if (dogIdSet.stream().anyMatch(PREDICATE_ILLEGAL_ID)) {
+            return false;
+        }
+
+        for (int dogId : dogIdSet) {
+            List<Dog> dogs = getIdOfType(entities, dogId, Dog.class);
+            if (dogs.size() == 0) {
+                return false;
+            }
+
+            assert dogs.size() == 1 : "There should only be exactly one matching dog";
+
+            // dog must also point to this owner
+            Dog dog = dogs.get(0);
+            if (dog.getOwnerId() != id) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -303,7 +333,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueEntityList // instanceof handles nulls
-                && internalList.equals(((UniqueEntityList) other).internalList));
+                    && internalList.equals(((UniqueEntityList) other).internalList));
     }
 
     @Override
@@ -315,13 +345,8 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      * Returns true if {@code entities} contains only unique entities.
      */
     private boolean entitiesAreUnique(List<Entity> entities) {
-        for (int i = 0; i < entities.size() - 1; i++) {
-            for (int j = i + 1; j < entities.size(); j++) {
-                if (entities.get(i).equals(entities.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return entities.stream()
+                .map(entity -> entities.stream().filter(entity::isSameAs))
+                .allMatch(stream -> stream.count() == 1);
     }
 }
