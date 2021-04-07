@@ -99,7 +99,7 @@ Many SunRez commands use various parameters. Their formats, constraints and rati
 | <a id="index"></a> `INDEX` | `-` | `redit` `rdel` `oedit` `odel` `iedit` `iclo` `idel` `alloc` `dealloc`| The index number shown in the displayed list. <ul><li> Must be a positive integer: 1, 2, 3, ... </li></ul> |
 | <a id="keyword"></a> `KEYWORD` | `-` | `rfind` `ofind` `ifind` | A keyword used in the various find commands. <ul><li> Format: Single word consisting of any character except spaces. </li><li> For best usage: Use English characters only. </li></ul> |
 | <a id="name"></a> `NAME` | `n/` | `radd` `redit` | The identifier of a resident. <ul><li> Accepts only alphabetic characters and spaces. </li><li> Must not be blank. </li><li> Must be unique. </li></ul> |
-| <a id="phone_number"></a> `PHONE_NUMBER` | `p/` | `radd` `redit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
+| <a id="phone_number"></a> `PHONE_NUMBER` | `p/` | `radd` `redit` | The phone number of a resident. <ul><li> Must contain only numbers. </li><li> Must be at least 3 digits long. </li></ul> |
 | <a id="room_number"></a> `ROOM_NUMBER` | `r/` | `oadd` `oedit` `iadd` `iedit` | Room number for a room. <ul><li> Format: `XY-ABC`, where XY can be any pair of digits except 00, and ABC can be any 3 digits. <ul><li> Valid examples: 01-000, 11-100, 12-345. </li><li> Invalid examples: 00-000, 00-100. </li></ul> </li><li> Room numbers are unique within SunRez. </li><li> We disallow floor numbers being 00. However, unit numbers can be 000. </li></ul> |
 | <a id="room_type"></a> `ROOM_TYPE` | `t/` | `oadd` `oedit` | Room type of a room. <ul><li> Must be one of the following strings: `corridor_ac`, `corridor_non_ac`, `suite_ac`, `suite_non_ac`. </li><li> Strings are not case-sensitive. </li></ul> |
 | <a id="status"></a> `STATUS` | `s/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul> |
@@ -527,7 +527,7 @@ Example:
 
 #### List all aliases : `aliases`
 
-Shows a list of current aliases in the system sorted by their time of creation.
+Shows a list of current aliases in the system sorted by names in alphabetical order.
 
 Format: `aliases`
 
