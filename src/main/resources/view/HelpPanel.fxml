@@ -15,7 +15,7 @@
     <URL value="@HelpPanel.css"/>
   </stylesheets>
 
-  <HBox alignment="CENTER">
+  <HBox>
     <Label fx:id="helpMessage" wrapText="true" minHeight="-Infinity" text="Label">
       <HBox.margin>
         <Insets left="5.0" right="5.0"/>
