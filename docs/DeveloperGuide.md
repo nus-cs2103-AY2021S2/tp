@@ -164,14 +164,13 @@ Given below are example usage scenarios and how the note feature behaves at each
 The proposed gradebook feature is to facilitate the user to keep track of his/her
 own grades of different subjects for reference, which are internally stored as `gradeList`. Additionally,
 it implements the following operations:
-* `Add a subject grade` - Add a subject grade to user's gradebook
-* `Delete a subject grade` - Delete a subject grade by subject name
-* `Edit a subject grade` - Edit a subject grade by subject name
+* `Add a grade` - Add a grade record to user's GradeBook
+* `Delete a grade` - Delete an existing grade record at specified index
+* `Edit a grade` - Edit an existing grade record at specified index
+* `List all grades` - Display a list of all existing grade records in the GradeBook
 
 These operations are exposed in the `Logic` interface by parsing respective `AddGradeCommand`,
-`DeleteGradeCommand` and `EditGradeCommand`.
-
-Given below is example usage scenarios and how the gradebook features behave.
+`DeleteGradeCommand`, `EditGradeCommand` and `ListGradeCommand`.
 
 ### [Proposed] Filter Feature
 This Filter feature would allow users to manage filters and apply them to the list of tutors
@@ -436,6 +435,71 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 2.  TutorTracker shows a list of appointments.
 3.  User requests to delete a specific appointment in the list.
 4.  TutorTracker deletes that specific appointment.
+
+<hr/>
+
+**Use Case UC0009: Add a new grade**
+
+**MSS**
+
+1. User inputs grade details.
+2. TutorTracker confirms that grade details have been added to GradeBook.
+
+**Extensions**
+* 1a. Grade details are invalid or empty.
+    * 1a1. TutorTracker shows an error message
+    
+* 2a. Grade details already exists in list.
+    * 2a1. TutorTracker shows an error message
+
+  Use case resumes at step 1.
+
+<hr/>
+
+**Use Case UC0010: List all grades**
+
+**MSS**
+1. User requests to list grades.
+2. TutorTracker shows a list of grades.
+
+   Use case ends.
+
+<hr/>
+
+**Use Case UC0011: Delete a grade**
+
+**MSS**
+
+1.  User requests to list grades.
+2.  TutorTracker shows a list of grades.
+3.  User requests to delete a grade at specified index.
+4.  TutorTracker deletes that specific grade.
+
+**Extensions**
+* 3a. Index is invalid.
+    * 3a1. TutorTracker shows an error message
+
+  Use case resumes at step 1.
+
+<hr/>
+
+**Use Case UC0012: Edit a grade**
+
+**MSS**
+
+1.  User requests to list grades.
+2.  TutorTracker shows a list of grades.
+3.  User requests to edit a grade at specified index.
+4.  TutorTracker deletes that specific grade.
+
+**Extensions**
+* 3a. Index is invalid.
+    * 3a1. TutorTracker shows an error message
+
+* 3b. Grade details already exists in list.
+    * 3b1. TutorTracker shows an error message
+
+  Use case resumes at step 1.
 
 <hr/>
 
