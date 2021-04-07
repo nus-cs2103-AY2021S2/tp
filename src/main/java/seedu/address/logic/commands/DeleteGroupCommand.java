@@ -44,7 +44,7 @@ public class DeleteGroupCommand extends Command {
             throw new CommandException(String.format(MESSAGE_DELETE_DEFAULT_GROUP_ERROR, DEFAULT_GROUP_NAME));
         }
         model.deleteGroup(group);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList();
 
         return new CommandResult(String.format(MESSAGE_DELETE_GROUP_SUCCESS, groupName));
     }

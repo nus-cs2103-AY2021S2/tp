@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Optional;
@@ -53,7 +52,7 @@ public class DeletePictureCommand extends Command {
         Person editedPerson = personToEdit.deletePicture();
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList();
 
         return new CommandResult(String.format(MESSAGE_DELETE_PICTURE_SUCCESS, name));
     }

@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_DATE_BEFORE_BIRTHDAY;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -74,7 +73,7 @@ public class AddDateCommand extends Command {
         Person editedPerson = personToEdit.withDates(datesToEdit);
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList();
         model.updateUpcomingDates();
 
         return new CommandResult(String.format(MESSAGE_ADD_DATE_SUCCESS, editedPerson.getName()));

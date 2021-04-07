@@ -9,6 +9,7 @@ import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableMap;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -72,7 +73,9 @@ public class GroupListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new Label(groupName.fullName));
+                Label label = new Label(groupName.fullName);
+                label.setPadding(new Insets(10));
+                setGraphic(label);
             }
         }
     }
