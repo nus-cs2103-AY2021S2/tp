@@ -297,6 +297,14 @@ Format: `edit-appt APPOINTMENT_INDEX [pt/PATIENT_INDEX] [dr/DOCTOR_INDEX] [at/TI
 
 * Raises an exception if there are conflicts in the new appointment with the existing appointments.<br>
 
+* The starting time of an appointment can be updated by command `edit-appt INDEX at/` <br>
+  
+* The duration of an appointment can be updated by command `edit-appt INDEX dur/` <br>
+
+* The end time of an appointment can be updated by command `edit-appt INDEX to/` <br>
+
+
+
 Examples:
 
 * `edit-appt 1 pt/1 dr/2` Edits the appointment at index 1 to assign the patient at index 1 and doctor at index 2.
