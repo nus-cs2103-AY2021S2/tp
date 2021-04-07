@@ -178,7 +178,7 @@ The `Meeting` objects are stored in a `MeetingList` within `MeetingBook`.
 This section will detail the implementation of the Add Meeting feature via the `addmeet` command.
 
 ##### Overview of Adding Process
-The AddMeetingCommand is executed through entering `addmeet` followed by valid parameters of the client's name,
+The `AddMeetingCommand` is executed through entering `addmeet` followed by valid parameters of the client's name,
 date and time,location and any tags if needed. The entire command string will be parsed to extract the parameters that 
 were inputted and if they are all valid, a Meeting object is constructed and added to the Model and saved to the local
 storage. Upon successful adding, a feedback message is displayed to the user.
@@ -188,7 +188,7 @@ displayed to the user.
 
 This process is visualised in the diagram below:
 
-DIAGRAM HERE
+![AddMeetingCommand activity diagram](images/AddMeetingActivityDiagram.png)
 
 ##### AddMeetingCommand
 The `AddMeetingCommand` is inherited from the `Command` class and overrides its `execute()` method to initiate the 
