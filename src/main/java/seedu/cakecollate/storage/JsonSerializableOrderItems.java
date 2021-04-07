@@ -19,7 +19,7 @@ import seedu.cakecollate.model.orderitem.OrderItem;
 @JsonRootName(value = "OrderItems")
 class JsonSerializableOrderItems {
 
-    public static final String MESSAGE_DUPLICATE_ORDER = "OrderItems list contains duplicate orderItems(s).";
+    public static final String MESSAGE_DUPLICATE_ORDER_ITEMS = "OrderItems list contains duplicate orderItems(s).";
 
     private final List<JsonAdaptedOrderItems> orderItems = new ArrayList<>();
 
@@ -51,7 +51,7 @@ class JsonSerializableOrderItems {
         for (JsonAdaptedOrderItems jsonAdaptedOrderItems : orderItems) {
             OrderItem orderItem = jsonAdaptedOrderItems.toModelType();
             if (orderitems.hasOrderItem(orderItem)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_ORDER);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ORDER_ITEMS);
             }
             orderitems.addOrderItem(orderItem);
         }
