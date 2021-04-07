@@ -300,10 +300,12 @@ Deletes the specified food item.
 
 For tracking your diet plan progress, you are encouraged to record your daily food intake. For your convenience, there are a few ways to input a food intake. Refer to the different scenarios outlined below!
 
-❕ **Note:** If there are multiple food intakes with the same date and name, the food name will be automatically renamed to include a duplicate count for easy identification. E.g. Chicken rice, Chicken rice 2
+❕ **Note:** If there are multiple food intakes with the same date and name, the food name will be **automatically renamed** to include a duplicate count for easy identification. This is because there can be multiple food intakes for the same food in the given day, and they may contain different nutrient values.
+
+E.g. when you record two 'Chicken rice' in the food intake, they will appear as Chicken rice and Chicken rice #2 respectively.
 
 
-### 3.5.1 Input food intake (For new food items that are not created before)
+#### 3.5.1 Input food intake (For new food items that are not created before)
 
 Record your food intake for the specified date with a new food item not currently in your food list. The food will also be added to your food list for your convenience!
 
@@ -320,7 +322,7 @@ Record your food intake for the specified date with a new food item not currentl
 </p>
 
 
-### 3.5.2 Input food intake (For existing food items)
+#### 3.5.2 Input food intake (For existing food items)
 
 Record your food intake for the specified date using an existing food from your food list. Now you can save time having to re-enter your favourite food!
 
@@ -334,7 +336,7 @@ Record your food intake for the specified date using an existing food from your 
   <img src="images/user-guide/add-food-intake-new-food-item-result.png">
 </p>
 
-### 3.5.3 Input food intake (For existing food items, using different nutrient value(s))
+#### 3.5.3 Input food intake (For existing food items, using different nutrient value(s))
 
 Record your food intake for the specified date using an existing food from your food list, but with different nutrient value(s). The value(s) will also be updated in your food list.
 
@@ -359,6 +361,8 @@ Update the nutrient value(s) of a previously entered food intake given the date 
 **Example:** `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
 
 💡 **Tip:** Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged.
+
+❕ **Note:** At least one nutrient value is required.
 
 **Expected output:**
 

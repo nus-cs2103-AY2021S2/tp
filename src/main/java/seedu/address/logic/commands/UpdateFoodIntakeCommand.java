@@ -61,9 +61,11 @@ public class UpdateFoodIntakeCommand extends Command {
             throw new CommandException(MESSAGE_FAILURE);
         }
 
+        // Retain original values as date and name are not editable.
         this.date = currentFoodIntake.getDate();
         this.name = currentFoodIntake.getFood().getName();
 
+        // Replace nutrient values, if they were provided
         this.fats = replaceUpdatedValue(currentFoodIntake.getFood().getFats(), this.fats);
         this.carbos = replaceUpdatedValue(currentFoodIntake.getFood().getCarbos(), this.carbos);
         this.proteins = replaceUpdatedValue(currentFoodIntake.getFood().getProteins(), this.proteins);
