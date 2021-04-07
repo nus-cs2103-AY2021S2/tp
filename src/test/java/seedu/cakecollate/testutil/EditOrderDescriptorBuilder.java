@@ -41,6 +41,7 @@ public class EditOrderDescriptorBuilder {
         descriptor.setOrderDescriptions(order.getOrderDescriptions());
         descriptor.setTags(order.getTags());
         descriptor.setDeliveryDate(order.getDeliveryDate());
+        descriptor.setRequest(order.getRequest());
     }
 
     /**
