@@ -1,5 +1,6 @@
 package seedu.heymatez.logic.commands;
 
+import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_TASK_LIST;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.heymatez.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.heymatez.testutil.TypicalIndexes.INDEX_FIRST_TASK;
@@ -38,8 +39,10 @@ public class ViewTasksCommandTest {
     }
 
     @Test
-    public void execute_emptyFilteredList_showsNoTask() {
-        assertCommandSuccess(new ViewTasksCommand(), new ModelManager(new HeyMatez(), new UserPrefs()),
-                ViewTasksCommand.MESSAGE_EMPTY_TASK_LIST, new ModelManager(new HeyMatez(), new UserPrefs()));
+    public void execute_emptyFilteredList_success() {
+        HeyMatez heyMatez = new HeyMatez();
+        model = new ModelManager(heyMatez, new UserPrefs());
+        expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
+        assertCommandSuccess(new ViewTasksCommand(), model, MESSAGE_EMPTY_TASK_LIST, expectedModel);
     }
 }

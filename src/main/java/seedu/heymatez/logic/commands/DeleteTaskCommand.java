@@ -1,6 +1,7 @@
 package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_TASK_LIST;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 
 import java.util.List;
@@ -24,7 +25,6 @@ public class DeleteTaskCommand extends Command {
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
-    public static final String MESSAGE_LIST_IS_EMPTY = "There are no tasks found!";
 
     private final Index targetIndex;
 
@@ -38,7 +38,7 @@ public class DeleteTaskCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (lastShownList.isEmpty()) {
-            throw new CommandException(MESSAGE_LIST_IS_EMPTY);
+            return new CommandResult(MESSAGE_EMPTY_TASK_LIST);
         }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {

@@ -1,6 +1,7 @@
 package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_TASK_LIST;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 
 import seedu.heymatez.model.Model;
@@ -18,8 +19,6 @@ public class FindTasksCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " plan meeting proposal";
 
-    public static final String MESSAGE_LIST_IS_EMPTY = "There are no tasks found!";
-
     private final TaskContainsKeywordPredicate predicate;
 
     public FindTasksCommand(TaskContainsKeywordPredicate predicate) {
@@ -30,7 +29,7 @@ public class FindTasksCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         if (model.isTaskListEmpty()) {
-            return new CommandResult(MESSAGE_LIST_IS_EMPTY);
+            return new CommandResult(MESSAGE_EMPTY_TASK_LIST);
         }
         model.updateFilteredTaskList(predicate);
         return new CommandResult(

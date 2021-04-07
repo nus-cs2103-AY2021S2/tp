@@ -1,6 +1,7 @@
 package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_TASK_LIST;
 import static seedu.heymatez.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import seedu.heymatez.logic.commands.exceptions.CommandException;
@@ -14,8 +15,6 @@ public class ViewTasksCommand extends Command {
     public static final String COMMAND_WORD = "viewTasks";
 
     public static final String MESSAGE_SUCCESS = "Listed all Tasks!";
-
-    public static final String MESSAGE_EMPTY_TASK_LIST = "There are no tasks found!";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
