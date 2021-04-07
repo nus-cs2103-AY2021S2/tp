@@ -162,10 +162,11 @@ Additionally, it implements the following operations:
 
 Given below are example usage scenarios and how the note feature behaves at each step.
 
-### [Proposed] Gradebook Feature
+### [Proposed] Grade Feature
 ####Proposed Implementation
-The proposed gradebook feature is to facilitate the user to keep track of his/her
-own grades of different subjects for reference, which are internally stored as `gradeList`. Additionally,
+The proposed grade feature is to facilitate the user to keep track of his/her
+own grades of different subjects for reference and future study plan, 
+which are internally stored as `GradeBook`. Additionally,
 it implements the following operations:
 * `Add a grade` - Add a grade record to user's GradeBook
 * `Delete a grade` - Delete an existing grade record at specified index
@@ -258,7 +259,8 @@ _{More to be added}_
 
 **Target user profile**:
 
-Tech-savvy secondary school students in Singapore who to need to search for tutors and manage their tuition appointments, and prefer CLI over GUI.
+Tech-savvy secondary school students in Singapore who to need to search for tutors, manage their tuition appointments
+and academic records, and prefer CLI over GUI.
 
 **Value proposition**:
 
@@ -295,9 +297,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | Meticulous user| Add note to tutor                        | Remind myself of some additional details of the tutor           |
 | `* *`   | User | Delete note from tutor                             | Remove note from tutor that are no longer relevant              |
 | `* *`   | User | List tutors with note                              | Keep track which tutor has note added                           |
-| `* *`   | Tech-savvy User | Add grade records to a digital GradeBook | Keep track of grades I obtained for future study plan          |
-| `* *`   | Careless user   | Edit grade record details               | Correct or update the details of my academic records            |
-| `* *`   | User  | Delete outdated grade records                     | Remove past grades when they are not needed                     |
+| `* *`   | Tech-savvy User | Add grade records to a digital GradeBook | Keep track of grades I obtained for reference and future study plan          |
+| `* *`   | Careless user   | Edit grade record details               | Correct typos or update the details of my academic records            |
+| `* *`   | User  | Delete outdated grade records                     | Remove past grades if they are no longer needed                    |
 | `* *`   | User  | List all grades                                   | See all existing academic records in my GradeBook               |
 
 *{More to be added}*
