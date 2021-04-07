@@ -72,7 +72,6 @@ public class TypicalEntities {
             .withDateOfBirth("21-08-2018").withBreed("Australian Shepherd").withOwnerID(11).build();
     public static final Dog GENIE = new DogBuilder().withName("Genie").withSex("male")
             .withDateOfBirth("29-05-2020").withBreed("Husky").withOwnerID(13).build();
-
     // Manually added owners
     public static final Owner HOON = new OwnerBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").build();
