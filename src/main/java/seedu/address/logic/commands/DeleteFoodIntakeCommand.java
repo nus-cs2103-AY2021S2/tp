@@ -46,9 +46,10 @@ public class DeleteFoodIntakeCommand extends Command {
 
         try {
             foodIntakeList.deleteFoodIntake(this.date, this.foodName);
-            return new CommandResult(MESSAGE_DELETE_FOOD_SUCCESS + " " + this.foodName);
+            String updateFoodIntakeList = model.getFoodIntakeList().getFoodIntakeListByDate(this.date);
+            return new CommandResult(MESSAGE_DELETE_FOODINTAKE_SUCCESS + " " + this.foodName + "\n\n" + updateFoodIntakeList);
         } catch (FoodIntakeNotFoundException exception) {
-            throw new CommandException(MESSAGE_DELETE_FOOD_FAILURE);
+            throw new CommandException(MESSAGE_DELETE_FOODINTAKE_FAILURE);
         }
     }
 }

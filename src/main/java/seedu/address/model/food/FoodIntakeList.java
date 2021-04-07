@@ -21,6 +21,7 @@ import seedu.address.model.util.TemplateInitializer;
  */
 public class FoodIntakeList {
     private static final String DATE_FORMAT = "d MMM yyyy";
+    private static final String DUPLICATE_COUNT_PREFIX = "#";
     private static final String MATCH_DUPLICATE_COUNT_REGEX = "(.*)( #[0-9]*)$";
     private ObservableList<FoodIntake> foodIntakeList;
 
@@ -47,7 +48,7 @@ public class FoodIntakeList {
         int foodIntakeItemCount = getFoodIntakeItemCount(foodIntake.getDate(), originalName);
 
         if (foodIntakeItemCount != 0) {
-            String foodNameWithCount = originalName + " #" + (foodIntakeItemCount + 1);
+            String foodNameWithCount = originalName + " " + DUPLICATE_COUNT_PREFIX + (foodIntakeItemCount + 1);
             foodIntake = new FoodIntake(foodIntake.getDate(), foodNameWithCount,
                     originalFood.getCarbos(), originalFood.getFats(), originalFood.getProteins());
         }
@@ -66,6 +67,7 @@ public class FoodIntakeList {
         requireNonNull(date);
         requireNonNull(name);
         FoodIntake foodIntake;
+
         boolean found = false;
         for (int i = 0; i < this.getFoodIntakeList().size(); i++) {
             foodIntake = this.foodIntakeList.get(i);
@@ -162,7 +164,7 @@ public class FoodIntakeList {
                 if (count == 1) {
                     foodIntake.getFood().setName(originalFoodName);
                 } else {
-                    foodIntake.getFood().setName(originalFoodName + " " + count);
+                    foodIntake.getFood().setName(originalFoodName + " " + DUPLICATE_COUNT_PREFIX + count);
                 }
                 count++;
             }
