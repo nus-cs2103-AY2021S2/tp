@@ -44,8 +44,9 @@ public class EditIssueCommandParser implements Parser<EditIssueCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditIssueCommand.MESSAGE_USAGE), pe);
+        } catch (IllegalArgumentException iex) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditIssueCommand.MESSAGE_USAGE), iex);
         }
 
         EditIssueDescriptor editIssueDescriptor = new EditIssueDescriptor();

@@ -23,9 +23,9 @@ public class DeleteIssueCommandParser implements Parser<DeleteIssueCommand> {
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteIssueCommand(index);
-        } catch (ParseException pe) {
+        } catch (IllegalArgumentException iex) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteIssueCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteIssueCommand.MESSAGE_USAGE), iex);
         }
     }
 
