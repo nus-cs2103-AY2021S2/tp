@@ -21,7 +21,7 @@ import seedu.address.model.util.TemplateInitializer;
  */
 public class FoodIntakeList {
     private static final String DATE_FORMAT = "d MMM yyyy";
-    private static final String MATCH_DUPLICATE_COUNT_REGEX = "(.*)( [0-9]*)$";
+    private static final String MATCH_DUPLICATE_COUNT_REGEX = "(.*)( #[0-9]*)$";
     private ObservableList<FoodIntake> foodIntakeList;
 
     /**
@@ -32,26 +32,32 @@ public class FoodIntakeList {
     }
 
     /**
-     * Adds a FoodIntake object to the FoodIntakeList.
+     * Adds a FoodIntake object to the FoodIntakeList and retuns final FoodIntake food name.
+     * The FoodIntake's Food name may have been appended with a duplicate count.
      *
      * @param foodIntake FoodIntake object to add to list
+     *
+     * @return final FoodIntake added to FoodIntakeList
      */
-    public void addFoodIntake(FoodIntake foodIntake) {
+    public Food addFoodIntake(FoodIntake foodIntake) {
         assert foodIntake != null : "FoodIntake cannot be null";
+
         Food originalFood = foodIntake.getFood();
         String originalName = getOriginalFoodName(originalFood.getName());
         int foodIntakeItemCount = getFoodIntakeItemCount(foodIntake.getDate(), originalName);
 
         if (foodIntakeItemCount != 0) {
-            String foodNameWithCount = originalName + " " + (foodIntakeItemCount + 1);
+            String foodNameWithCount = originalName + " #" + (foodIntakeItemCount + 1);
             foodIntake = new FoodIntake(foodIntake.getDate(), foodNameWithCount,
                     originalFood.getCarbos(), originalFood.getFats(), originalFood.getProteins());
         }
         this.foodIntakeList.add(foodIntake);
+
+        return foodIntake.getFood();
     }
 
     /**
-     * Removes a FoodIntake item by the given date and foodintake name.
+     * Removes a FoodIntake item by the given date and FoodIntake Food name.
      *
      * @param date date of food intake
      * @param name name of food intake
