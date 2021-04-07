@@ -240,7 +240,7 @@ Format: `add-appt pt/PATIENT_INDEX dr/DOCTOR_INDEX at/TIMESLOT_START [to/TIMESLO
 
 * The `TIMESLOT_START` and `TIMESLOT_END` must be either in a recognisable datetime format or prefixed with keyword `NEXT` followed by a datetime unit (DAY, MONTH, YEAR) or weekday (MONDAY, TUESDAY …​)<br>
 
-* Either and only one, `TIMESLOT_END` or `TIMESLOT_DURATION`, must be provided.<br>
+* Where both fields `TIMESLOT_END` and `TIMESLOT_DURATION` are provided, priority is granted to `TIMESLOT_END`.<br>
 
 * Raises an exception if there are conflicts in schedule for the patient or the doctor.<br>
 
@@ -295,6 +295,14 @@ Format: `edit-appt APPOINTMENT_INDEX [pt/PATIENT_INDEX] [dr/DOCTOR_INDEX] [at/TI
 
 * Raises an exception if there are conflicts in the new appointment with the existing appointments.<br>
 
+* The starting time of an appointment can be updated by command `edit-appt INDEX at/` <br>
+  
+* The duration of an appointment can be updated by command `edit-appt INDEX dur/` <br>
+
+* The end time of an appointment can be updated by command `edit-appt INDEX to/` <br>
+
+
+
 Examples:
 
 * `edit-appt 1 pt/1 dr/2` Edits the appointment at index 1 to assign the patient at index 1 and doctor at index 2.
@@ -347,6 +355,11 @@ Shows a message with an url to this User Guide webpage.
 Format: `help` <br>
 
 ![result for 'help'](images/helpMessage.png)
+
+### Toggle User Inputs: <kbd>&uarr;</kbd>/<kbd>&darr;</kbd>
+Format: <kbd>&uarr;</kbd>/<kbd>&darr;</kbd>
+
+Toggles between previous inputs keyed into the Command Box previously. Returns user to a *blank* Command Box upon keying <kbd>&darr;</kbd> on the most recent input.
 
 ### Saving the data
 

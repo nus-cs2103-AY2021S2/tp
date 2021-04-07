@@ -71,15 +71,6 @@ public class Timeslot implements Comparable<Timeslot> {
     }
 
     //// Boolean Checks
-    /**
-     * Returns true if the dateTime {@code toCheck} lies within the timeslot period.
-     */
-    public boolean isBetween(LocalDateTime toCheck) {
-        assert toCheck != null : "the LocalDateTime provided should not be null";
-        return (toCheck.isBefore(getEnd()) || toCheck.isEqual(getEnd()))
-                && (toCheck.isAfter(getStart()) || toCheck.isEqual(getStart()));
-
-    }
 
     /**
      * Returns true if the timeslot {@code otherTimeslot} chronologically overlaps
@@ -87,7 +78,8 @@ public class Timeslot implements Comparable<Timeslot> {
      */
     public boolean hasOverlap(Timeslot otherTimeslot) {
         assert otherTimeslot != null : "the Timeslot provided should not be null";
-        return isBetween(otherTimeslot.getStart()) || isBetween(otherTimeslot.getEnd());
+
+        return start.isBefore(otherTimeslot.getEnd()) && end.isAfter(otherTimeslot.getStart());
     }
 
     @Override
