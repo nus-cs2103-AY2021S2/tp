@@ -69,7 +69,7 @@ public class AddAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (toAdd.getTimeFrom().isBeforeNow()) {
+        if (toAdd.getTimeFrom().isBeforeNow() && toAdd.getTimeTo().isBeforeNow()) {
             throw new CommandException(MESSAGE_INVALID_DATE);
         }
 

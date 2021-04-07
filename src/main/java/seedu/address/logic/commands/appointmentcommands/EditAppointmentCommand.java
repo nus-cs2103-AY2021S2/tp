@@ -86,13 +86,19 @@ public class EditAppointmentCommand extends Command {
 
         if (appointmentToEdit.equals(editedAppointment) || model.hasAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
-        } else if (!model.hasTutorByName(editedAppointment.getName())) {
+        }
+
+        if (!model.hasTutorByName(editedAppointment.getName())) {
             throw new CommandException(MESSAGE_TUTOR_DOES_NOT_EXIST);
-        } else if (!model.doesTutorTeachSubject(editedAppointment.getName(),
+        }
+
+        if (!model.doesTutorTeachSubject(editedAppointment.getName(),
                 editedAppointment.getSubject())) {
             throw new CommandException(String.format(MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT,
                     editedAppointment.getSubject()));
-        } else if (model.hasClashingDateTime(editedAppointment, appointmentToEdit)) {
+        }
+
+        if (model.hasClashingDateTime(editedAppointment, appointmentToEdit)) {
             throw new CommandException(MESSAGE_DATE_CLASH_EDIT);
         }
 
