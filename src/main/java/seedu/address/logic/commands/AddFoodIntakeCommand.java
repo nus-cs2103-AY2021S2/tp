@@ -24,12 +24,12 @@ public class AddFoodIntakeCommand extends Command {
             + "3. Input food intake (For existing food items, using different nutrient value(s))\n"
             + "Command usage: food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS\n";
 
-    public static final String MESSAGE_SUCCESS = "Success adding food item (";
-
     public static final String MESSAGE_FAILURE_CREATE_FOOD_REQ = "Suggested food item not found. Please append at "
             + "least 1 nutrient value to add the food item. (Eg. c/CARBOS(g) or f/FATS(g) or p/PROTEINS(g) ";
 
-    public static final String MESSAGE_SUCCESS_FOOD_UPDATE = "Successfully edited food value to: ";
+    public static final String MESSAGE_SUCCESS_FOOD_UPDATE = "For your convenience, we have also updated the nutrient values in your food list.";
+
+    public static final String MESSAGE_SUCCESS_FOODINTAKE_ADD = "Successfully recorded food intake";
 
     private final LocalDate date;
 
