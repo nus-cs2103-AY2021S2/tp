@@ -12,7 +12,7 @@
       alignment="CENTER" spacing="5">
     <Label fx:id="tooltip" text="Use 'show' command to display a client here" styleClass="details_large_label"
            wrapText="true" minHeight="100" textAlignment="CENTER"/>
-    <HBox fx:id="clientSummaryBox" alignment="TOP_LEFT" minHeight="160" VBox.vgrow="NEVER">
+    <HBox fx:id="clientSummaryBox" alignment="TOP_LEFT" minHeight="160" VBox.vgrow="ALWAYS">
         <VBox alignment="CENTER" maxWidth="120">
             <ImageView fx:id="profileImage" fitHeight="120" preserveRatio="true"/>
             <Label fx:id="profileImageRef" styleClass="details_small_label" textAlignment="CENTER"/>
@@ -21,11 +21,10 @@
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Label fx:id="name" text="Use 'show' command to display a client here" styleClass="details_large_label"
-                   wrapText="true"/>
+            <Label fx:id="name" styleClass="details_large_label" wrapText="true"/>
             <FlowPane fx:id="tags"/>
             <Label fx:id="phone" styleClass="details_small_label"/>
-            <Label fx:id="clientLocation" styleClass="details_small_label"/>
+            <Label fx:id="clientLocation" styleClass="details_small_label" />
             <Label fx:id="email" styleClass="details_small_label"/>
             <Label fx:id="remark" styleClass="details_small_label"/>
         </VBox>
