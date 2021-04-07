@@ -46,7 +46,6 @@ public class ListMeetingsCommandTest {
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showMeetingAtIndex(model, INDEX_FIRST_ITEM);
-        expectedModel = new ModelManager(model.getClientBook(), model.getMeetingBook(), new UserPrefs());
         assertCommandSuccess(new ListMeetingsCommand(), model, ListMeetingsCommand.MESSAGE_SUCCESS
                 + "\n" + ALICE_1 + "\n" + ALICE_2 + "\n" + BENSON_1
                 + "\n" + DANIEL_1 + "\n" + ELLE_1 + "\n" + FIONA_1
