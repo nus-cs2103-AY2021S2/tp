@@ -168,8 +168,13 @@ The following sequence diagram shows how the Quiz command works:
 
 ![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
 
-### \[Proposed\] Quiz Scoring
-*{To be updated}*
+### Quiz Scoring
+The quiz can be scored for each individual quiz session. The scoring data will be written into the storage file
+after the quiz session is completed. A quiz session is complete if and only if the message indicating the end of
+quiz is displayed in the GUI window. The following activity diagram summarizes how the score is recorded generated
+along with each quiz session.
+
+![QuizScoringSequenceDiagram](images/QuizScoringSequenceDiagram.png)
 
 ### View Past Quiz Attempts
 
@@ -184,7 +189,8 @@ for how `Score` is represented in *Model* component.
 The *UI* component, which originally only handles the display of flashcards,
 now needs to handle the display for scoring history as well.
 
-The following sequence diagram shows how the UI switches display from flashcards to score history and vice versa.
+The following sequence diagram shows how the UI switches display from flashcards to score history. The mechanism of
+switching UI display the other way around is similar. 
 
 ![HistoryUiSequenceDiagram](images/HistoryUiSequenceDiagram.png)
 
@@ -196,9 +202,9 @@ The following sequence diagram shows how the UI switches display from flashcards
     * Pros: Easy to implement.
     * Cons: 
       * May have the overhead of writing similar code. For instance, `JsonAdaptedFlashcard` and `JsonAdaptedScore`.
-      * Changing the UI display from flashcards to score history may be cumbersome. 
+      * Changing the GUI display from flashcards to score history may be cumbersome. 
 * **Alternative 2:** Let `Score` have inheritance relationship with `Flashcard`.
-    * Pros: Changing UI display is easy.
+    * Pros: Changing GUI display is easy.
     * Cons:
       * The design choice is not intuitive (`Score` does not seem to be a `Flashcard` and vice versa).
       * The overhead of maintaining the inheritance is non-trivial.
