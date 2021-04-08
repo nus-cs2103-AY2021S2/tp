@@ -7,11 +7,12 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Separator?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8"
-      alignment="CENTER">
+      alignment="CENTER" spacing="5">
     <Label fx:id="tooltip" text="Use 'show' command to display a client here" styleClass="details_large_label"
            wrapText="true" minHeight="100" textAlignment="CENTER"/>
-    <HBox fx:id="clientSummaryBox" alignment="TOP_LEFT" minHeight="160" VBox.vgrow="NEVER">
+    <HBox fx:id="clientSummaryBox" alignment="TOP_LEFT" minHeight="160" VBox.vgrow="ALWAYS">
         <VBox alignment="CENTER" maxWidth="120">
             <ImageView fx:id="profileImage" fitHeight="120" preserveRatio="true"/>
             <Label fx:id="profileImageRef" styleClass="details_small_label" textAlignment="CENTER"/>
@@ -20,20 +21,22 @@
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <Label fx:id="name" text="Use 'show' command to display a client here" styleClass="details_large_label"
-                   wrapText="true"/>
+            <Label fx:id="name" styleClass="details_large_label" wrapText="true"/>
             <FlowPane fx:id="tags"/>
             <Label fx:id="phone" styleClass="details_small_label"/>
-            <Label fx:id="clientLocation" styleClass="details_small_label"/>
+            <Label fx:id="clientLocation" styleClass="details_small_label" />
             <Label fx:id="email" styleClass="details_small_label"/>
             <Label fx:id="remark" styleClass="details_small_label"/>
         </VBox>
     </HBox>
+    <Separator />
     <HBox fx:id="clientMeetingsAndPlansBox" alignment="TOP_LEFT" VBox.vgrow="SOMETIMES" spacing="10">
-        <VBox alignment="TOP_LEFT" HBox.hgrow="ALWAYS" prefWidth="170">
+        <VBox alignment="CENTER" HBox.hgrow="ALWAYS" prefWidth="170">
+            <Label styleClass="details_small_label" text="Meetings"/>
             <ListView fx:id="clientMeetingListView" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
         </VBox>
-        <VBox alignment="TOP_LEFT" HBox.hgrow="ALWAYS" prefWidth="170">
+        <VBox alignment="CENTER" HBox.hgrow="ALWAYS" prefWidth="170">
+            <Label styleClass="details_small_label" text="Insurance Plans"/>
             <ListView fx:id="plansListView" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
         </VBox>
     </HBox>
