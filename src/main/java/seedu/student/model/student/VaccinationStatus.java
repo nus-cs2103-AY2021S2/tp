@@ -53,18 +53,22 @@ public class VaccinationStatus {
         }
     }
 
-    public static List<String> getVaccinationStatusAbbreviation() {
-        ArrayList<String> vaccinationStatus = new ArrayList<>();
 
-        String[] statusArray = Stream.of(VaccinationStatus.VaccinationStatusAbbreviation.values())
-                .map(VaccinationStatus.VaccinationStatusAbbreviation::name).toArray(String[]::new);
+    /**
+     * Returns true if the given string is a vaccination status in the enum.
+     *
+     * @param givenVaccinationStatus the string to be checked.
+     * @return true if givenVaccinationStatus is a valid status, false otherwise.
+     */
 
-        for (int i = 0; i < statusArray.length; i++) {
-            vaccinationStatus.add(statusArray[i].toLowerCase());
+    public static Boolean isExist(String givenVaccinationStatus) {
+        for(VaccinationStatusAbbreviation statusAbbreviation : VaccinationStatus.VaccinationStatusAbbreviation.values()) {
+            if(givenVaccinationStatus.equals(statusAbbreviation.name())) {
+                return true;
+            }
         }
-        return vaccinationStatus;
+        return false;
     }
-
     @Override
     public String toString() {
         return status.toString();
@@ -77,8 +81,4 @@ public class VaccinationStatus {
                 && status == ((VaccinationStatus) other).status); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return status.hashCode();
-    }
 }
