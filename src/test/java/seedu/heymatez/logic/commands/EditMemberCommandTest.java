@@ -25,8 +25,10 @@ import seedu.heymatez.model.ModelManager;
 import seedu.heymatez.model.UserPrefs;
 import seedu.heymatez.model.person.Name;
 import seedu.heymatez.model.person.Person;
+import seedu.heymatez.model.task.Task;
 import seedu.heymatez.testutil.EditMemberDescriptorBuilder;
 import seedu.heymatez.testutil.PersonBuilder;
+import seedu.heymatez.testutil.TaskBuilder;
 import seedu.heymatez.testutil.TypicalPersons;
 
 /**
@@ -84,35 +86,6 @@ public class EditMemberCommandTest {
         String expectedMessage = String.format(EditMemberCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new HeyMatez(model.getHeyMatez()), new UserPrefs());
-
-        assertCommandSuccess(editMemberCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_filteredList_success() throws ParseException {
-        Name parsedNameAlice = TypicalPersons.ALICE.getName();
-        showPersonAtName(model, parsedNameAlice);
-
-        Person personInFilteredList = null;
-
-        for (Person person : model.getFilteredPersonList()) {
-            Name currentName = person.getName();
-
-            if (currentName.equals(parsedNameAlice)) {
-                personInFilteredList = person;
-                break;
-            }
-        }
-
-        Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
-
-        EditMemberCommand editMemberCommand = new EditMemberCommand(parsedNameAlice,
-                new EditMemberDescriptorBuilder().withName(VALID_NAME_BOB).build());
-
-        String expectedMessage = String.format(EditMemberCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new HeyMatez(model.getHeyMatez()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
         assertCommandSuccess(editMemberCommand, model, expectedMessage, expectedModel);
     }
@@ -176,6 +149,41 @@ public class EditMemberCommandTest {
 
         assertCommandFailure(editMemberCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
     }
+
+    @Test
+    public void execute_editAssigneeName_filteredListSuccess() throws ParseException {
+        Name parsedNameAlice = TypicalPersons.ALICE.getName();
+        showPersonAtName(model, parsedNameAlice);
+
+        Person personInFilteredList = null;
+
+        Task dummyTaskWithAssigned = new TaskBuilder().withAssignees(parsedNameAlice.fullName).build();
+
+        for (Person person : model.getFilteredPersonList()) {
+            Name currentName = person.getName();
+
+            if (currentName.equals(parsedNameAlice)) {
+                personInFilteredList = person;
+                break;
+            }
+        }
+
+        model.addTask(dummyTaskWithAssigned);
+
+        Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
+
+        EditMemberCommand editMemberCommand = new EditMemberCommand(parsedNameAlice,
+                new EditMemberDescriptorBuilder().withName(VALID_NAME_BOB).build());
+
+        String expectedMessage = String.format(EditMemberCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
+
+        Model expectedModel = new ModelManager(new HeyMatez(model.getHeyMatez()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.editAssignee(personInFilteredList, editedPerson);
+
+        assertCommandSuccess(editMemberCommand, model, expectedMessage, expectedModel);
+    }
+
 
     @Test
     public void equals() throws ParseException {

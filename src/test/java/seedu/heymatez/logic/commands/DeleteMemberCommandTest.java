@@ -16,6 +16,8 @@ import seedu.heymatez.model.ModelManager;
 import seedu.heymatez.model.UserPrefs;
 import seedu.heymatez.model.person.Name;
 import seedu.heymatez.model.person.Person;
+import seedu.heymatez.model.task.Task;
+import seedu.heymatez.testutil.TaskBuilder;
 import seedu.heymatez.testutil.TypicalPersons;
 
 /**
@@ -90,6 +92,35 @@ public class DeleteMemberCommandTest {
         DeleteMemberCommand deleteCommand = new DeleteMemberCommand(invalidName);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
+    }
+
+    @Test
+    public void execute_removePersonAsAssigneeFilteredPersonList_onDeleteSuccess() throws ParseException {
+        Person personToDelete = null;
+        Name parsedNameAlice = TypicalPersons.ALICE.getName();
+        DeleteMemberCommand deleteCommand = new DeleteMemberCommand(parsedNameAlice);
+
+        Task dummyTaskWithAssigned = new TaskBuilder().withAssignees(parsedNameAlice.fullName).build();
+
+        model.addTask(dummyTaskWithAssigned);
+
+        for (Person person : model.getFilteredPersonList()) {
+            Name currentName = person.getName();
+
+            if (currentName.equals(parsedNameAlice)) {
+                personToDelete = person;
+                break;
+            }
+        }
+
+        String expectedMessage = String.format(DeleteMemberCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+
+        ModelManager expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
+
+        expectedModel.deletePerson(personToDelete);
+        expectedModel.removeAssignee(personToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
