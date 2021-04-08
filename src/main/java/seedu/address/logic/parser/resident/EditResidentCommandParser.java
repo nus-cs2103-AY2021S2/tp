@@ -7,6 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.resident.EditResidentCommand;
 import seedu.address.logic.commands.resident.EditResidentCommand.EditResidentDescriptor;
@@ -20,7 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new EditResidentCommand object
  */
 public class EditResidentCommandParser implements Parser<EditResidentCommand> {
-
+    private final Logger logger = LogsCenter.getLogger(EditResidentCommandParser.class);
     /**
      * Parses the given {@code String} of arguments in the context of the EditResidentCommand
      * and returns an EditResidentCommand object for execution.
@@ -36,6 +39,7 @@ public class EditResidentCommandParser implements Parser<EditResidentCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
+            logger.warning("Failed to parse index to be edited for redit command");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 EditResidentCommand.MESSAGE_USAGE), pe);
         }

@@ -1,13 +1,16 @@
 package seedu.address.logic.parser.resident;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.resident.AddResidentCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -27,18 +30,21 @@ import seedu.address.model.resident.Year;
  * Parses input arguments and creates a new AddResidentCommand object
  */
 public class AddResidentCommandParser implements Parser<AddResidentCommand> {
-
+    private final Logger logger = LogsCenter.getLogger(AddResidentCommandParser.class);
     /**
      * Parses the given {@code String} of arguments in the context of the AddResidentCommand
      * and returns an AddResidentCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddResidentCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_YEAR)
                 || !argMultimap.getPreamble().isEmpty()) {
+            logger.warning("Input is not in a valid format for radd command");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddResidentCommand.MESSAGE_USAGE));
         }
 
