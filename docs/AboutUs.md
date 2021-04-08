@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/tanboonji.png" width="200px">
 
 [[github](https://github.com/tanboonji)]
-[[portfolio](team/oeiyiping)]
+[[portfolio](team/tanboonji)]
 
 * Role: Documentation
 * Reponsibilities: Logic (excluding Commands)
@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/oeiyiping.png" width="200px">
 
 [[github](http://github.com/oeiyiping)]
-<!-- [[portfolio](team/johndoe.md)] -->
+[[portfolio](team/oeiyiping)]
 
 * Role: Documentation
 * Responsibilities: Model, Commands
