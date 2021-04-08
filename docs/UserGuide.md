@@ -382,7 +382,8 @@ do not require any input data or header. Note that this feature is only meant fo
 
 #### 4.3.1 Retrieve the last valid command
 
-**Description:** Given that the last valid command executed is most likely to be repeated during the API development
+**Description:** Given that the last valid command executed by the user is most likely to be repeated during the API 
+development
 & verification process, a special key combination <kbd>ctrl</kbd> + <kbd>up-arrow</kbd> (Windows) / <kbd>cmd</kbd> + 
 <kbd>up-arrow</kbd> (macOS) is available to set the 
 command box with that last command.
