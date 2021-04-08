@@ -6,8 +6,12 @@ import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentDatePredicate;
 import seedu.address.model.appointment.AppointmentPredicateList;
 import seedu.address.model.appointment.AppointmentRemarksPredicate;
+import seedu.address.model.appointment.AppointmentTimePredicate;
+import seedu.address.model.appointment.Date;
+import seedu.address.model.appointment.Time;
 import seedu.address.model.property.Deadline;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyAddressPredicate;
@@ -35,6 +39,8 @@ import java.util.function.Predicate;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.parseAppointmentDate;
+import static seedu.address.logic.parser.ParserUtil.parseAppointmentTime;
 import static seedu.address.logic.parser.ParserUtil.parsePropertyDeadline;
 
 public class FindAppointmentCommandParserTest {
@@ -55,8 +61,12 @@ public class FindAppointmentCommandParserTest {
 
         predicates.add(new AppointmentContainsKeywordsPredicate(Arrays.asList("John", "Alex")));
 
+        List<AppointmentPredicateList> orList = Collections.singletonList(
+                new AppointmentPredicateList(Collections.singletonList(new
+                AppointmentContainsKeywordsPredicate(Arrays.asList("John", "Alex")))));
+
         FindAppointmentCommand expectedFindCommand =
-                new FindAppointmentCommand(new AppointmentPredicateList(predicates));
+                new FindAppointmentCommand(new AppointmentPredicateList(new ArrayList<>(), orList));
 
         // no leading and trailing whitespaces
         assertParseSuccess(parser, " n/John Alex", expectedFindCommand);
@@ -68,7 +78,6 @@ public class FindAppointmentCommandParserTest {
     @Test
     public void parseMultipleValidKeywordsTest() {
         List<Predicate<Appointment>> predicates = new ArrayList<>();
-
 
         List<AppointmentPredicateList> orList = Collections.singletonList(new AppointmentPredicateList(Arrays.asList(new
                 AppointmentContainsKeywordsPredicate(Collections.singletonList("John")),
@@ -94,111 +103,46 @@ public class FindAppointmentCommandParserTest {
     }
 
     @Test
-    public void invalidRemarksTest() {
-        String expected = "r/ used but no remarks found! \n"
-                + Remark.MESSAGE_CONSTRAINTS
-                + "\n"
-                + FindAppointmentCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " r/ ", expected);
-    }
+    public void validDateTest() throws ParseException {
+        List<AppointmentPredicateList> predicates = new ArrayList<>();
 
-    @Test
-    public void validDeadlineTest() throws ParseException {
-        List<Predicate<Property>> predicates = new ArrayList<>();
+        predicates.add(new AppointmentPredicateList(
+                Collections.singletonList(new AppointmentDatePredicate(parseAppointmentDate("12-09-2021")))));
 
-        predicates.add(new PropertyDeadlinePredicate(parsePropertyDeadline("12-09-2021")));
-
-        FindPropertyCommand expected =
-                new FindPropertyCommand(new PropertyPredicateList(predicates));
+        FindAppointmentCommand expected =
+                new FindAppointmentCommand(new AppointmentPredicateList(new ArrayList<>(), predicates));
 
         assertParseSuccess(parser, " d/12-09-2021", expected);
     }
 
     @Test
-    public void invalidDeadlineTest() {
-        String expected = "Wrong deadline format! \n"
-                + Deadline.MESSAGE_CONSTRAINTS
+    public void invalidDateTest() {
+        String expected = "Wrong date format! \n"
+                + Date.MESSAGE_CONSTRAINTS
                 + "\n"
-                + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " d/not deadline ", expected);
+                + FindAppointmentCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, " d/not date ", expected);
     }
 
     @Test
-    public void validTagsTest() {
-        List<Predicate<Property>> predicates = new ArrayList<>();
+    public void validTimeTest() throws ParseException {
+        List<AppointmentPredicateList> predicates = new ArrayList<>();
 
-        predicates.add(new PropertyTagsPredicate("3 bedrooms, need renovation, need this"));
+        predicates.add(new AppointmentPredicateList(
+                Collections.singletonList(new AppointmentTimePredicate(parseAppointmentTime("1000")))));
 
-        FindPropertyCommand expected =
-                new FindPropertyCommand(new PropertyPredicateList(predicates));
+        FindAppointmentCommand expected =
+                new FindAppointmentCommand(new AppointmentPredicateList(new ArrayList<>(), predicates));
 
-        assertParseSuccess(parser, " tags/3 bedrooms, need renovation, need this", expected);
-
-        predicates = new ArrayList<>();
-        predicates.add(new PropertyTagsPredicate("3 bedrooms"));
-        expected = new FindPropertyCommand(new PropertyPredicateList(predicates));
-        assertParseSuccess(parser, " tags/3 bedrooms", expected);
+        assertParseSuccess(parser, " t/1000", expected);
     }
 
     @Test
-    public void invalidTagsTest() {
-        String expected = "Wrong tag format! \n"
-                + Tag.MESSAGE_CONSTRAINTS
+    public void invalidTimeTest() {
+        String expected = "Wrong time format! \n"
+                + Time.MESSAGE_CONSTRAINTS
                 + "\n"
-                + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " tags/ ", expected);
-    }
-
-    @Test
-    public void validClientContactTest() {
-        List<Predicate<Property>> predicates = new ArrayList<>();
-
-        predicates.add(new PropertyClientContactPredicate("91234567"));
-
-        FindPropertyCommand expected =
-                new FindPropertyCommand(new PropertyPredicateList(predicates));
-
-        assertParseSuccess(parser, " cc/91234567", expected);
-    }
-
-    @Test
-    public void invalidClientContactTest() {
-        String expected = "Wrong client contact format! \n"
-                + Contact.MESSAGE_CONSTRAINTS
-                + "\n"
-                + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " cc/ ", expected);
-    }
-
-
-    @Test
-    public void validClientEmailTest() {
-        List<Predicate<Property>> predicates = new ArrayList<>();
-
-        predicates.add(new PropertyClientEmailPredicate("example@gmail.com"));
-
-        FindPropertyCommand expected =
-                new FindPropertyCommand(new PropertyPredicateList(predicates));
-
-        assertParseSuccess(parser, " ce/example@gmail.com", expected);
-    }
-
-    @Test
-    public void multipleClientEmailTest() {
-        String expected = "Too many client emails! Please only use 1 client email. \n"
-                + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " ce/abc.example.com ce/cdf@gmail.com", expected);
-    }
-
-    @Test
-    public void clientNameTest() {
-        List<Predicate<Property>> predicates = new ArrayList<>();
-
-        predicates.add(new PropertyClientNamePredicate(Collections.singletonList("bob")));
-
-        FindPropertyCommand expected =
-                new FindPropertyCommand(new PropertyPredicateList(predicates));
-
-        assertParseSuccess(parser, " cn/bob", expected);
+                + FindAppointmentCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, " t/not time ", expected);
     }
 }

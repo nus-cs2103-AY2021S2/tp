@@ -167,15 +167,6 @@ public class FindPropertyCommandParserTest {
     }
 
     @Test
-    public void invalidRemarksTest() {
-        String expected = "r/ used but no remarks found! \n"
-                + Remark.MESSAGE_CONSTRAINTS
-                + "\n"
-                + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " r/ ", expected);
-    }
-
-    @Test
     public void validDeadlineTest() throws ParseException {
         List<Predicate<Property>> predicates = new ArrayList<>();
 
