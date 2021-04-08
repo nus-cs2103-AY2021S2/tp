@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -7,6 +8,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DueInCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.DeadlineDateInRangePredicate;
 
 public class DueInCommandParserTest {
@@ -17,8 +19,14 @@ public class DueInCommandParserTest {
 
     @Test
     public void parse_emptyArg_returnsDueInCommand() {
-        DueInCommand expectedDueInCommand =
-                new DueInCommand(new DeadlineDateInRangePredicate(DEFAULT_NUMBER_OF_DAYS));
+        DueInCommand expectedDueInCommand;
+        try {
+            expectedDueInCommand =
+                    new DueInCommand(new DeadlineDateInRangePredicate(DEFAULT_NUMBER_OF_DAYS));
+        } catch (ParseException e) {
+            assertFalse(true); // Must not be called
+            return;
+        }
         assertParseSuccess(parser, "", expectedDueInCommand);
         assertParseSuccess(parser, " ", expectedDueInCommand); // single whitespaces
         assertParseSuccess(parser, "         ", expectedDueInCommand); // multiple whitespaces
@@ -26,8 +34,14 @@ public class DueInCommandParserTest {
 
     @Test
     public void parse_invalidArgs_returnsDueInCommand() {
-        DueInCommand expectedDueInCommand =
-                new DueInCommand(new DeadlineDateInRangePredicate(DEFAULT_NUMBER_OF_DAYS));
+        DueInCommand expectedDueInCommand;
+        try {
+            expectedDueInCommand =
+                    new DueInCommand(new DeadlineDateInRangePredicate(DEFAULT_NUMBER_OF_DAYS));
+        } catch (ParseException e) {
+            assertFalse(true); // Must not be called
+            return;
+        }
         assertParseSuccess(parser, "   sdadasdas ", expectedDueInCommand); // random
         assertParseSuccess(parser, " days/20", expectedDueInCommand); // typo
         assertParseSuccess(parser, " weeks/20", expectedDueInCommand); // typo
@@ -48,8 +62,14 @@ public class DueInCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDueInCommand() {
-        DueInCommand expectedDueInCommand =
-                new DueInCommand(new DeadlineDateInRangePredicate(DEFAULT_NUMBER_OF_DAYS));
+        DueInCommand expectedDueInCommand;
+        try {
+            expectedDueInCommand =
+                    new DueInCommand(new DeadlineDateInRangePredicate(DEFAULT_NUMBER_OF_DAYS));
+        } catch (ParseException e) {
+            assertFalse(true); // Must not be called
+            return;
+        }
 
         // day given
         assertParseSuccess(parser, " day/7", expectedDueInCommand);

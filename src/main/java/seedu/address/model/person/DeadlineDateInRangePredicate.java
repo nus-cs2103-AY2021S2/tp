@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
-import seedu.address.logic.commands.DueInCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -9,7 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.function.Predicate;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.address.logic.commands.DueInCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Tests that a {@code Task}'s {@code DeadlineDate} within the range of the given days/weeks.
