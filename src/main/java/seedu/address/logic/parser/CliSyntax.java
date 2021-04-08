@@ -11,9 +11,12 @@ public class CliSyntax {
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
     public static final Prefix PREFIX_GENDER = new Prefix("g/");
+    public static final Prefix PREFIX_AGE = new Prefix("age/");
     public static final Prefix PREFIX_BIRTHDATE = new Prefix("b/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_MEETING = new Prefix("m/");
-    public static final Prefix PREFIX_INSURANCE_PLAN = new Prefix("plan/");
-    public static final Prefix PREFIX_INSURANCE_PREMIUM = new Prefix("premium/");
+    public static final Prefix PREFIX_INSURANCE = new Prefix("i/");
+    public static final Prefix PREFIX_NOTE_RECORD = new Prefix("r/");
+    public static final Prefix PREFIX_NOTE_VIEW = new Prefix("v/");
+    public static final Prefix PREFIX_CLEAR = new Prefix("c/");
 }

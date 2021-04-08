@@ -45,10 +45,6 @@ Each of the four components,
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
-
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
-
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -109,12 +105,6 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
-
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -135,87 +125,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-<!-- 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
--->
 
 ### Scheduling meetings and Meeting List Display
 
@@ -237,15 +146,18 @@ In regard to the editing of the `UniqueMeetingList`, we implemented it in such a
 everytime the `UniquePersonList` is edited. Hence the impact of the alteration only remains on the `Model` component and
 the `Ui` components, with the `Logic` component only impacted in terms of accessing the `Model`.
 
-The implementation of the `ScheduleCommand` integrates both adding and removing for the sake of simplicity of
-implementation as well as usability, as the team has concluded that having different commands that does similiar actions
-in regard to the data is overkill and would be a hassle to implement and use. Hence, we've taken the liberty to set the
-removal of a meeting as a type of "special input" case that is processed directly in the parser, rather than sending
-into a further and smaller parser.
-
 In future installments, this implementation may be scraped in favor for an implementation where the `Meeting` class acts
 as the wrapper for the `Person` class, but for the sake of functionality, we shall keep the current implementation as 
 is.
+
+### Displaying Notifications
+![NotifSequenceDiagram](images/NotifSequenceDiagram.png)
+
+The implementation of showing notifications is separated into two parts. First part handles the input command and 
+returns the result to see whether the command is a notification command and returns it back to the main window. For the 
+second part of the implementation, the `MainWindow` handles the notification command and requests the notifications from 
+`Logic`, which in turn requests from model. The `MainWindow` then sends the notification string to the `NotifWindow` to 
+be displayed.
 
 
 ### Representing birthdates of clients
@@ -298,47 +210,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                 | I want to …​                                             | So that I can…​                                                           |
 | -------- | ------------------------------------------ | ----------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `* * *`  | insurance agent                            | add a new client                                            |                                                                              |
+| `* * *`  | insurance agent                            | add a new client along with their contact information       | be able to conveniently check their contact when I need to get in touch      |
 | `* * *`  | insurance agent                            | view a list of all clients                                  | get an overview of all my clients                                            |
-| `* * *`  | insurance agent                            | view a specific client and all of his/her information       | look up their personal information                                           |
 | `* * *`  | insurance agent                            | delete a client                                             | remove clients that I am no longer serving                                   |
 | `* * *`  | insurance agent                            | edit a client                                               | update clients' information without having to delete and add a new entry     |
 | `* * *`  | insurance agent with many clients          | find a client by name                                       | locate details of client without having to go through the entire list        |
-| `* * *`  | insurance agent with many clients          | filter clients by tag                                       | locate clients with a certain tag, without going through the entire list     |
+| `* * *`  | insurance agent with many clients          | filter clients by address, gender, age, tags, plan name     | locate clients without going through the entire list     |
 | `* * *`  | new user                                   | clear all entries                                           | remove sample data and make it ready for me to use                           |
-| `* * *`  | insurance agent                            | add contact information of each client                      | be able to conveniently check their contact when I need to get in touch      |
 | `* * *`  | insurance agent                            | add important dates (e.g. birthdays) related to each client | keep track of client's personal information more easily                      |
-| `* * *`  | insurance agent                            | check the age of each client                                | know if their insurance plan should be updated/ changed, as they get older   |
 | `* * *`  | insurance agent                            | add the current insurance plan of each client               | be aware of their current insurance requirements and coverage                |
 | `* * *`  | insurance agent                            | schedule meetings with people or groups of people           | keep track of upcoming meetings                                              |
+| `* * `   | insurance agent                            | check the age of each client                                | know if their insurance plan should be updated/ changed, as they get older   |
 | `* * `   | user with many persons in the address book | sort clients by criteria (name/age/premium/contract length) | locate clients more easily                                                   |
 | `* * `   | new user                                   | see usage instructions                                      | refer to instructions when I forget how to use the App                       |
 | `* * `   | first-time user                            | see sample entries already in the app                       | get a good idea of the functionalities of the app before deciding to use it  |
 | `* * `   | forgetful insurance agent                  | reminders when clients' important dates are approaching     | prepare a meaningful greeting/ gift                                          |
-| `* * `   | insurance agent                            | add likes & dislikes of each client                         | be thoughtful to them and prepare appropriate gifts                          |
-| `* * `   | insurance agent                            | take notes about the personality of each client             | deal with them in a more effective way                                       |
-| `* * `   | meticulous insurance agent                 | take notes about the insurance needs of each client         | recommend relevant plans and offerings                                       |
+| `* * `   | insurance agent                            | record, view and clear notes regarding each client          | remind myself of things to take note of                                      |
 | `* * `   | insurance agent                            | track the status of claims made on behalf of clients        | update clients of the claims progress                                        |
-| `* * `   | insurance agent                            | archive clients                                             | separate clients who have passed or have switched providers                  |
-| `* * `   | insurance agent                            | pin clients to the top of the app                           | easily access clients that I am currently actively dealing with              |
-| `* * `   | inexperienced insurance agent              | add photographs of each client                              | more easily identify them                                                    |
-| `* * `   | expert user                                | create my own categories for grouping clients               | better organise and group my client contacts                                 |
+| `* `     | insurance agent                            | archive clients                                             | separate clients who have passed or have switched providers                  |
+| `* `     | insurance agent                            | pin clients to the top of the app                           | easily access clients that I am currently actively dealing with              |
+| `* `     | inexperienced insurance agent              | add photographs of each client                              | more easily identify them                                                    |
 | `* `     | first-time user                            | go through an interactive tutorial                          | learn how to use the app                                                     |
-| `* `     | insurance agent                            | suggestions on what to do for clients' important dates      | save time on brainstorming for a gift                                        |
-| `* `     | insurance agent                            | add hobbies of each client                                  | recommend certain plans if they partake in high-risk activities              |
-| `* `     | social media savvy insurance agent         | add social media accounts of each client                    | keep up to date with their lifes and be attentive                            |
-| `* `     | insurance agent                            | track the total claims amount made by each client           | recommend better plans and offerings if needed                               |
-| `* `     | insurance agent                            | add info on the insurance plans of clients' family members  | give insurance advice for client's family                                    |
-| `* `     | insurance agent                            | add info on the previous insurance plans of each client     | have a reference when recommending insurance plans                           |
-| `* `     | insurance agent with few clients           | add potential clients                                       | contact and find new clients                                                 |
+| `* `     | social media savvy insurance agent         | add social media accounts of each client                    | keep up to date with their lives and be attentive                            |
+| `* `     | expert user                                | create my own categories for grouping clients               | better organise and group my client contacts                                 |
+| `* `     | expert user                                | create my own shortcuts for commonly performed actions      | save time on these actions                                                   |
+
+<!-- Removed user stories
+| `* * `   | insurance agent                            | add likes & dislikes of each client                         | be thoughtful to them and prepare appropriate gifts                          |
 | `* `     | insurance agent                            | track the financial status of each client                   | better recommend plans, such as for investment                               |
 | `* `     | insurance agent                            | add basic medical information of each client                | refuse new contracts in case of terminal illness                             |
-| `* `     | expert user                                | create my own shortcuts for commonly performed actions      | save time on these actions                                                   |
+| `* `     | insurance agent with few clients           | add potential clients                                       | contact and find new clients                                                 |
+| `* `     | insurance agent                            | suggestions on what to do for clients' important dates      | save time on brainstorming for a gift                                        |
+| `* `     | insurance agent                            | track the total claims amount made by each client           | recommend better plans and offerings if needed                               |
+| `* `     | insurance agent                            | add hobbies of each client                                  | recommend certain plans if they partake in high-risk activities              |
+| `* `     | insurance agent                            | add info on the insurance plans of clients' family members  | give insurance advice for client's family                                    |
+| `* `     | insurance agent                            | add info on the previous insurance plans of each client     | have a reference when recommending insurance plans                           |
 | `* `     | expert user                                | disable certain UI elements that I do not use               | have a cleaner UI                                                            |
-
-
-
-*{More to be added}*
+-->
 
 ### Use cases
 
@@ -347,157 +255,111 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Add a person**
 
 **MSS**
-
 1.  User adds a person with corresponding information.
 2.  AddressBook shows the list of persons.
-
-    Use case ends.
+3.  Use case ends.
 
 **Extensions**
-
 * 1a. The user's input format is invalid.
-  
-    * 1a1. AddressBook shows an error message.
-
-      Use case resumes at step 1.
+  * 1a1. AddressBook shows an error message. 
+  * Use case resumes at step 1.
 
 * 1b. The given tag is invalid/nonexistent.
-
     * 1b1. AddressBook shows an error message.
-
-      Use case ends.
+    * Use case ends.
 
 
 **Use case: Edit a person**
 
 **MSS**
-
 1.  User requests to list persons
 2.  AddressBook shows the list of persons
 3.  User requests to edit a specific person in the list
-4.  AddressBook edits the person
-
-    Use case ends.
+4.  AddressBook edits the person 
+5.  Use case ends.
 
 **Extensions**
-
 * 2a. The list is empty.
-
-  Use case ends.
+  * Use case ends.
 
 * 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
+  * 3a1. AddressBook shows an error message.
+  * Use case resumes at step 2.
 
 * 3b. No optional fields are given.
-
-    * 3b1. AddressBook shows an error message.
-      
-      Use case resumes at step 2.
+  * 3b1. AddressBook shows an error message.
+  *  Use case resumes at step 2.
 
 * 3c. The user input is invalid.
-  
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
+  * 3a1. AddressBook shows an error message. 
+  * Use case resumes at step 2.
 
 
 
 **Use case: Delete a person**
 
 **MSS**
-
 1.  User requests to list persons
 2.  AddressBook shows a list of persons
 3.  User requests to delete a specific person in the list
 4.  AddressBook deletes the person
-
-    Use case ends.
+5.  Use case ends.
 
 **Extensions**
-
 * 2a. The list is empty.
-
-  Use case ends.
+  * Use case ends.
 
 * 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
+  * 3a1. AddressBook shows an error message.
+  * Use case resumes at step 2.
 
 **Use case: Scheduling a meetup with a client**
 
 **MSS**
-
 1.  User requests to list clients
 2.  AddressBook shows a list of clients
 3.  User requests to schedule a meeting a specific client in the list at a specified date and time
-4.  AddressBook adds the specified client, as well as the specified date and time of the meeting, to the schedule list
-
-    Use case ends.
+4.  AddressBook adds the specified client, as well as the specified date and time of the meeting, to the schedule list 
+5.  Use case ends.
 
 **Extensions**
-
 * 2a. The list is empty.
-
-  Use case ends.
+  * Use case ends.
 
 * 3a. The given index is invalid.
+  * 3a1. AddressBook shows an error message. 
+  * Use case resumes at step 2.
 
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The given date-and-time has an invalid syntax (eg. user input HH:MM_yyyy-mm-dd instead of yyyy-mm-dd_HH:MM
-  (correct version))
-
-    * 3b1. AddressBook shows an error message and reminds the user of the correct format.
-
-      Use case resumes at step 2.
+* 3b. The given date-and-time has an invalid syntax (user input not formatted as yyyy-mm-dd_HH:MM)
+  * 3b1. AddressBook shows an error message and reminds the user of the correct format.
+  * Use case resumes at step 2.
 
 * 3c. The given date-and-time is invalid (eg. user input 2020-02-31_14:30)
+  * 3c1. AddressBook shows an error message 
+  * Use case resumes at step 2.
 
-    * 3c1. AddressBook shows an error message
-
-      Use case resumes at step 2.
-
-* 3d. The given date-and-time coincides with the meeting with another client (eg. user is meeting client no.24601 at
-  2020/2/28 2:30 pm but is also meeting client no.24600 at the same time)
-
-    * 3d1. AddressBook alerts the user that the meeting coincides with another meeting with a specified client
+* 3d. The given date-and-time coincides with the meeting with another client (eg. user is meeting 2 different clients at the same date and time)
+  * 3d1. AddressBook alerts the user that the meeting coincides with another meeting with a specified client
       and asks the user to double-check the meeting time (request user to input Y/N to proceed or cancel).
-
-      If Y, use case continues to step 4. If N, user case resumes at step 2.
+  * If Y, use case continues to step 4. If N, user case resumes at step 2.
 
 **Use case: Filter according to tag**
 
 **MSS**
-
 1.  User requests to search for persons according to tag.
 2.  AddressBook shows the list of persons
-    
-    Use case ends.
+3.  Use case ends.
 
 **Extensions**
-
-* 1a. The list is empty.
-
-  Use case ends.
+* 1a. The list is empty. 
+  * Use case ends.
 
 * 2a. The given tag is invalid/nonexistent.
-
-    * 2a1. AddressBook shows an error message.
-
-      Use case resumes at step 1.
+  * 2a1. AddressBook shows an error message.
+  * Use case resumes at step 1.
     
 
-*{More to be added}*
-
 ### Non-Functional Requirements
-
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The software should not use any OS-dependent libraries and OS-specific features.
@@ -512,7 +374,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 11. Project PDF files should not exceed 15MB each.
 12. The Developer Guide and User Guide should be PDF-friendly and should not contain expandable panels, embedded videos and animated GIFs.
 
-*{More to be added}*
 
 ### Glossary
 

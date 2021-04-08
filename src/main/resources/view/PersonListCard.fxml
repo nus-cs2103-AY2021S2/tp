@@ -26,14 +26,20 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label"/>
             </HBox>
-            <FlowPane fx:id="tags"/>
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
-            <Label fx:id="gender" styleClass="cell_small_label" text="\$gender"/>
-            <Label fx:id="birthdate" styleClass="cell_small_label" text="\$birthdate"/>
-            <Label fx:id="planName" styleClass="cell_small_label" text="\$planName"/>
-            <Label fx:id="premium" styleClass="cell_small_label" text="\$premium"/>
+            <GridPane>
+                <VBox GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" minWidth="300" prefWidth="300" >
+                    <FlowPane fx:id="tags"/>
+                    <Label fx:id="phone" styleClass="cell_small_label" text="\$phone"/>
+                    <Label fx:id="address" styleClass="cell_small_label" text="\$address"/>
+                    <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
+                    <Label fx:id="gender" styleClass="cell_small_label" text="\$gender"/>
+                    <Label fx:id="birthdate" styleClass="cell_small_label" text="\$birthdate"/>
+                    <Label fx:id="numNotes" styleClass="cell_small_label" text="\$numNotes"/>
+                </VBox>
+                <VBox GridPane.columnIndex="1" GridPane.hgrow="NEVER" minWidth="200" prefWidth="200" maxWidth="200">
+                    <FlowPane fx:id="plans"/>
+                </VBox>
+            </GridPane>
         </VBox>
     </GridPane>
 </HBox>
