@@ -21,28 +21,26 @@ import seedu.address.model.property.Property;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final PropertyBook propertyBook;
-
-    private final FilteredList<Property> filteredProperties;
-
     private final UserPrefs userPrefs;
-    private final AppointmentBook appointmentBook;
 
+    private final AppointmentBook appointmentBook;
     private final FilteredList<Appointment> filteredAppointments;
+
+    private final PropertyBook propertyBook;
+    private final FilteredList<Property> filteredProperties;
 
     /**
      * Initializes a ModelManager with the given appointmentBook and userPrefs.
      */
     public ModelManager(ReadOnlyAppointmentBook appointmentBook, ReadOnlyUserPrefs userPrefs) {
-        // TODO: Remove
         super();
         requireAllNonNull(appointmentBook, userPrefs);
 
         logger.fine("Initializing with appointment book: " + appointmentBook
                 + " and user prefs " + userPrefs);
 
-        this.propertyBook = new PropertyBook();
-        filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
+        propertyBook = new PropertyBook();
+        filteredProperties = new FilteredList<>(propertyBook.getPropertyList());
 
         this.userPrefs = new UserPrefs(userPrefs);
         this.appointmentBook = new AppointmentBook(appointmentBook);
@@ -53,7 +51,6 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given propertyBook and userPrefs.
      */
     public ModelManager(ReadOnlyPropertyBook propertyBook, ReadOnlyUserPrefs userPrefs) {
-        // TODO: Remove
         super();
         requireAllNonNull(propertyBook, userPrefs);
 
@@ -63,8 +60,8 @@ public class ModelManager implements Model {
 
         this.propertyBook = new PropertyBook(propertyBook);
         this.filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
-        this.appointmentBook = new AppointmentBook();
-        this.filteredAppointments = new FilteredList<>(this.appointmentBook.getAppointmentList());
+        appointmentBook = new AppointmentBook();
+        filteredAppointments = new FilteredList<>(appointmentBook.getAppointmentList());
     }
 
     /**
@@ -75,15 +72,15 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(appointmentBook, propertyBook, userPrefs);
 
-        logger.fine("Initializing with property book: " + propertyBook + ", appointment book: " + appointmentBook
-                + " and user prefs " + userPrefs);
+        logger.fine("Initializing with appointment book: " + appointmentBook + ", property book: " + propertyBook
+                + ", and user prefs " + userPrefs);
 
         this.userPrefs = new UserPrefs(userPrefs);
 
-        this.propertyBook = new PropertyBook(propertyBook);
-        this.filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
         this.appointmentBook = new AppointmentBook(appointmentBook);
         this.filteredAppointments = new FilteredList<>(this.appointmentBook.getAppointmentList());
+        this.propertyBook = new PropertyBook(propertyBook);
+        this.filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
     }
 
     public ModelManager() {
@@ -142,6 +139,11 @@ public class ModelManager implements Model {
     public boolean hasProperty(Property property) {
         requireNonNull(property);
         return propertyBook.hasProperty(property);
+    }
+
+    @Override
+    public boolean hasProperty() {
+        return propertyBook.hasProperty();
     }
 
     @Override
@@ -230,9 +232,24 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearAppointmentBook() {
+        this.appointmentBook.clearAppointments();
+    }
+
+    @Override
+    public void clearPropertyBook() {
+        this.propertyBook.clearProperties();
+    }
+
+    @Override
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return appointmentBook.hasAppointment(appointment);
+    }
+
+    @Override
+    public boolean hasAppointment() {
+        return appointmentBook.hasAppointment();
     }
 
     @Override

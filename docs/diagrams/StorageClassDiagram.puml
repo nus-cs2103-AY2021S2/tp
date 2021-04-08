@@ -4,21 +4,34 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
-Interface Storage <<Interface>>
-Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
+Class "<<Interface>>\nStorage" as Storage
+Class "<<Interface>>\nUserPrefsStorage" as UserPrefsStorage
+Class "<<Interface>>\nAppointmentBookStorage" as AppointmentBookStorage
+Class "<<Interface>>\nPropertyBookStorage" as PropertyBookStorage
 
 Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+Class JsonAppointmentBookStorage
+Class JsonPropertyBookStorage
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
+StorageManager o--> AppointmentBookStorage
+StorageManager o--> PropertyBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+
+JsonAppointmentBookStorage .left.|> AppointmentBookStorage
+JsonAppointmentBookStorage .down.> JsonSerializableAppointmentBook
+JsonSerializableAppointmentBook .right.> JsonAdaptedAppointment
+
+JsonPropertyBookStorage .left.|> PropertyBookStorage
+JsonPropertyBookStorage .down.> JsonSerializablePropertyBook
+JsonSerializablePropertyBook .right.> JsonAdaptedProperty
+JsonAdaptedProperty .right.> JsonAdaptedTag
+
+Storage --|> AppointmentBookStorage
+Storage --|> PropertyBookStorage
+Storage --|> UserPrefsStorage
+
 @enduml

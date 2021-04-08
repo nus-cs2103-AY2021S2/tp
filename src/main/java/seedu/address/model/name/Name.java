@@ -54,12 +54,12 @@ public class Name implements Comparable<Name> {
             return false;
         }
         Name otherName = (Name) other;
-        return name.equals(otherName.name);
+        return name.equalsIgnoreCase(otherName.name);
     }
 
     @Override
     public int compareTo(Name another) {
-        return name.compareTo(another.name);
+        return name.toUpperCase().compareTo(another.name.toUpperCase());
     }
 
     @Override

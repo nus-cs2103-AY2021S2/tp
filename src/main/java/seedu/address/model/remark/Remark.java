@@ -49,7 +49,7 @@ public class Remark {
             return false;
         }
         Remark otherRemark = (Remark) other;
-        return remark.equals(otherRemark.remark);
+        return remark.equalsIgnoreCase(otherRemark.remark);
     }
 
     @Override

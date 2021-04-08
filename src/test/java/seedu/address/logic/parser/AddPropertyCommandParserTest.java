@@ -6,7 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_ADDRESS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_DEADLINE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_DEADLINE_IN_INVALID_FORMAT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_DEADLINE_IN_VALID_FORMAT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_POSTAL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PROPERTY_TYPE_DESC;
@@ -17,7 +18,7 @@ import static seedu.address.logic.commands.CommandTestUtil.POSTAL_DESC_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_99_YEAR_LEASEHOLD;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FREEHOLD_AND_99_YEAR_LEASEHOLD;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_BALCONY_AND_99_YEAR_LEASEHOLD;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_MAYFAIR;
@@ -25,7 +26,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_MAYFAI
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_POSTAL_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROPERTY_TAG_99_YEAR_LEASEHOLD;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROPERTY_TAG_FREEHOLD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROPERTY_TAG_BALCONY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_MAYFAIR;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -84,10 +85,10 @@ public class AddPropertyCommandParserTest {
 
         // multiple tags - all accepted
         Property expectedPropertyMultipleTags = new PropertyBuilder(BURGHLEY_DRIVE)
-                .withTags(VALID_PROPERTY_TAG_99_YEAR_LEASEHOLD, VALID_PROPERTY_TAG_FREEHOLD)
+                .withTags(VALID_PROPERTY_TAG_BALCONY, VALID_PROPERTY_TAG_99_YEAR_LEASEHOLD)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BURGHLEY_DRIVE + TYPE_DESC_BURGHLEY_DRIVE + ADDRESS_DESC_BURGHLEY_DRIVE
-                + POSTAL_DESC_BURGHLEY_DRIVE + DEADLINE_DESC_BURGHLEY_DRIVE + TAG_DESC_FREEHOLD_AND_99_YEAR_LEASEHOLD,
+                + POSTAL_DESC_BURGHLEY_DRIVE + DEADLINE_DESC_BURGHLEY_DRIVE + TAG_DESC_BALCONY_AND_99_YEAR_LEASEHOLD,
                 new AddPropertyCommand(expectedPropertyMultipleTags));
     }
 
@@ -146,9 +147,15 @@ public class AddPropertyCommandParserTest {
         assertParseFailure(parser, NAME_DESC_MAYFAIR + TYPE_DESC_MAYFAIR + ADDRESS_DESC_MAYFAIR
                 + INVALID_PROPERTY_POSTAL_DESC + DEADLINE_DESC_MAYFAIR, PostalCode.MESSAGE_CONSTRAINTS);
 
-        // invalid deadline
+        // invalid deadline in invalid format
         assertParseFailure(parser, NAME_DESC_MAYFAIR + TYPE_DESC_MAYFAIR + ADDRESS_DESC_MAYFAIR
-                + POSTAL_DESC_MAYFAIR + INVALID_PROPERTY_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS);
+                + POSTAL_DESC_MAYFAIR + INVALID_PROPERTY_DEADLINE_IN_INVALID_FORMAT_DESC,
+                Deadline.MESSAGE_CONSTRAINTS);
+
+        // invalid deadline in valid format
+        assertParseFailure(parser, NAME_DESC_MAYFAIR + TYPE_DESC_MAYFAIR + ADDRESS_DESC_MAYFAIR
+                + POSTAL_DESC_MAYFAIR + INVALID_PROPERTY_DEADLINE_IN_VALID_FORMAT_DESC,
+                Deadline.MESSAGE_INVALID_DATE);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_PROPERTY_NAME_DESC + TYPE_DESC_MAYFAIR + ADDRESS_DESC_MAYFAIR

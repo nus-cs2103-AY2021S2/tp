@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Status <<Rectangle>> {
+    Class "<<Interface>>\nStatus" as Status {
+        +next()
+    }
+    Class Option implements Status {
+        +next()
+    }
+    Class SalesAgreement implements Status {
+        {method} next()
+    }
+    Class Completion implements Status {
+        +next()
+    }
+    Class Offer
+}
+
+Property *--> "0..1 " Status
+
+Option *--> "1 " Offer
+SalesAgreement *--> "1 " Offer
+Completion *--> "1 " Offer
+
+@enduml

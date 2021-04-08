@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
 
 /**
@@ -17,7 +16,7 @@ public class ClearAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAppointmentBook(new AppointmentBook());
+        model.clearAppointmentBook();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

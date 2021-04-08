@@ -18,10 +18,19 @@ public class PropertyPredicateList {
     /**
      * Combines all predicates in its internal list into a single
      * predicate.
-     * @return {@code Predicate<Property>} that is combined with logical AND
+     * @return Logical conjunction of {@code Predicate<Property>}
      */
     public Predicate<Property> combine() {
         return this.predicates.stream().reduce(Predicate::and).orElse(x -> true);
+    }
+
+    /**
+     * Combines all predicates in its internal list into a single
+     * predicate.
+     * @return Logical disjunction of {@code Predicate<Property>}
+     */
+    public Predicate<Property> combineDisjunction() {
+        return this.predicates.stream().reduce(Predicate::or).orElse(x -> true);
     }
 
     @Override

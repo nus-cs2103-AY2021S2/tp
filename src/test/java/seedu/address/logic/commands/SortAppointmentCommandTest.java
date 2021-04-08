@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_KEY_APP
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_ORDER_ASC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_ORDER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 
 import java.util.Comparator;
 
@@ -17,15 +16,14 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.SortAppointmentCommand.SortAppointmentDescriptor;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.testutil.SortAppointmentDescriptorBuilder;
+import seedu.address.testutil.TypicalModelManager;
 
 
 public class SortAppointmentCommandTest {
 
-    private Model model = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
+    private Model model = TypicalModelManager.getTypicalModelManager();
 
     @Test
     public void execute_sortByDatetimeInAscendingOrder_success() {
@@ -37,7 +35,7 @@ public class SortAppointmentCommandTest {
 
         String expectedMessage = String.format(SortAppointmentCommand.MESSAGE_SUCCESS, descriptor);
 
-        Model expectedModel = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
+        Model expectedModel = TypicalModelManager.getTypicalModelManager();
 
         Comparator<Appointment> comparator = (o1, o2) -> {
             if (o1.getDate().compareTo(o2.getDate()) == 0) {
@@ -62,7 +60,7 @@ public class SortAppointmentCommandTest {
 
         String expectedMessage = String.format(SortAppointmentCommand.MESSAGE_SUCCESS, descriptor);
 
-        Model expectedModel = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
+        Model expectedModel = TypicalModelManager.getTypicalModelManager();
 
         Comparator<Appointment> comparator = (o1, o2) -> {
             if (o1.getDate().compareTo(o2.getDate()) == 0) {
@@ -87,7 +85,7 @@ public class SortAppointmentCommandTest {
 
         String expectedMessage = String.format(SortAppointmentCommand.MESSAGE_SUCCESS, descriptor);
 
-        Model expectedModel = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
+        Model expectedModel = TypicalModelManager.getTypicalModelManager();
 
         Comparator<Appointment> comparator = (o1, o2) -> o1.getName().compareTo(o2.getName());
 
@@ -106,7 +104,7 @@ public class SortAppointmentCommandTest {
 
         String expectedMessage = String.format(SortAppointmentCommand.MESSAGE_SUCCESS, descriptor);
 
-        Model expectedModel = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
+        Model expectedModel = TypicalModelManager.getTypicalModelManager();
 
         Comparator<Appointment> comparator = (o1, o2) -> -1 * o1.getName().compareTo(o2.getName());
 

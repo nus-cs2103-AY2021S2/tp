@@ -16,8 +16,8 @@ public class ClearAllCommandTest {
 
     @Test
     public void execute_emptyAppointmentBook_success() {
-        Model model = new ModelManager();
-        Model expectedModel = new ModelManager();
+        Model model = new ModelManager(new AppointmentBook(), new PropertyBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AppointmentBook(), new PropertyBook(), new UserPrefs());
 
         assertCommandSuccess(new ClearAllCommand(), model, ClearAllCommand.MESSAGE_SUCCESS,
                 expectedModel);
@@ -25,8 +25,8 @@ public class ClearAllCommandTest {
 
     @Test
     public void execute_nonEmptyAppointmentBook_success() {
-        Model model = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalAppointmentBook(), new PropertyBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAppointmentBook(), new PropertyBook(), new UserPrefs());
         expectedModel.setAppointmentBook(new AppointmentBook());
 
         assertCommandSuccess(new ClearAllCommand(), model, ClearAllCommand.MESSAGE_SUCCESS,
@@ -35,8 +35,8 @@ public class ClearAllCommandTest {
 
     @Test
     public void execute_emptyPropertyBook_success() {
-        Model model = new ModelManager();
-        Model expectedModel = new ModelManager();
+        Model model = new ModelManager(new AppointmentBook(), new PropertyBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AppointmentBook(), new PropertyBook(), new UserPrefs());
 
         assertCommandSuccess(new ClearAllCommand(), model, ClearAllCommand.MESSAGE_SUCCESS,
                 expectedModel);
@@ -44,8 +44,8 @@ public class ClearAllCommandTest {
 
     @Test
     public void execute_nonEmptyPropertyBook_success() {
-        Model model = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
+        Model model = new ModelManager(new AppointmentBook(), getTypicalPropertyBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AppointmentBook(), getTypicalPropertyBook(), new UserPrefs());
         expectedModel.setPropertyBook(new PropertyBook());
 
         assertCommandSuccess(new ClearAllCommand(), model, ClearAllCommand.MESSAGE_SUCCESS,

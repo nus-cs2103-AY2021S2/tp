@@ -2,14 +2,13 @@ package seedu.address.testutil;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AppointmentBook;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.util.DateTimeFormat;
 
 /**
  * A utility class containing a list of {@code Appointment} objects to be used in tests.
@@ -17,30 +16,42 @@ import seedu.address.model.appointment.Appointment;
 public class TypicalAppointments {
 
     public static final Appointment MEET_ALEX = new AppointmentBuilder().withName("Meet Alex")
-        .withRemark("At M Hotel")
-        .withDate(LocalDate.parse("25-12-2021",
-            DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT)))
-        .withTime(LocalTime.parse("1500", DateTimeFormatter.ofPattern("HHmm"))).build();
+            .withRemark("To celebrate Christmas at Fullerton Hotel")
+            .withDate(LocalDate.parse("25-12-2021", DateTimeFormat.INPUT_DATE_FORMAT))
+            .withTime(LocalTime.parse("1500", DateTimeFormat.INPUT_TIME_FORMAT))
+            .build();
     public static final Appointment MEET_BOB = new AppointmentBuilder().withName("Meet Bob")
-        .withRemark("At Plaza Sing Starbucks")
-        .withDate(LocalDate.parse("25-02-2021",
-            DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT)))
-        .withTime(LocalTime.parse("2000", DateTimeFormatter.ofPattern("HHmm"))).build();
-    public static final Appointment MEET_CHARLIE = new AppointmentBuilder().withName("Meet Charlie")
-        .withRemark("At client's house")
-        .withDate(LocalDate.parse("17-08-2021",
-            DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT)))
-        .withTime(LocalTime.parse("1230", DateTimeFormatter.ofPattern("HHmm"))).build();
+            .withRemark("At his house")
+            .withDate(LocalDate.parse("30-04-2021", DateTimeFormat.INPUT_DATE_FORMAT))
+            .withTime(LocalTime.parse("1030", DateTimeFormat.INPUT_TIME_FORMAT))
+            .build();
+    public static final Appointment MEET_CALEB = new AppointmentBuilder().withName("Meet Caleb")
+            .withRemark("At Causeway point Mcdonalds")
+            .withDate(LocalDate.parse("07-03-2021", DateTimeFormat.INPUT_DATE_FORMAT))
+            .withTime(LocalTime.parse("1030", DateTimeFormat.INPUT_TIME_FORMAT))
+            .build();
     public static final Appointment MEET_DARREN = new AppointmentBuilder().withName("Meet Darren")
-            .withRemark("At MBS Starbucks")
-            .withDate(LocalDate.parse("12-10-2021",
-                    DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT)))
-            .withTime(LocalTime.parse("1400", DateTimeFormatter.ofPattern("HHmm"))).build();
+            .withRemark("For signing of sales agreement at HDB")
+            .withDate(LocalDate.parse("12-10-2021", DateTimeFormat.INPUT_DATE_FORMAT))
+            .withTime(LocalTime.parse("1400", DateTimeFormat.INPUT_TIME_FORMAT))
+            .build();
     public static final Appointment MEET_EMILY = new AppointmentBuilder().withName("Meet Emily")
             .withRemark("At MayFair Gardens")
-            .withDate(LocalDate.parse("15-06-2021",
-                    DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT)))
-            .withTime(LocalTime.parse("1100", DateTimeFormatter.ofPattern("HHmm"))).build();
+            .withDate(LocalDate.parse("15-06-2021", DateTimeFormat.INPUT_DATE_FORMAT))
+            .withTime(LocalTime.parse("1100", DateTimeFormat.INPUT_TIME_FORMAT))
+            .build();
+
+    // Manually added
+    public static final Appointment MEET_FIN = new AppointmentBuilder().withName("Meet Fin")
+            .withRemark("At Ritz Carlton")
+            .withDate(LocalDate.parse("16-09-2021", DateTimeFormat.INPUT_DATE_FORMAT))
+            .withTime(LocalTime.parse("1300", DateTimeFormat.INPUT_TIME_FORMAT))
+            .build();
+    public static final Appointment MEET_JOEL = new AppointmentBuilder().withName("Meet Joel")
+            .withRemark("At Sentosa Cove")
+            .withDate(LocalDate.parse("19-10-2021", DateTimeFormat.INPUT_DATE_FORMAT))
+            .withTime(LocalTime.parse("1000", DateTimeFormat.INPUT_TIME_FORMAT))
+            .build();
 
     private TypicalAppointments() {} // prevents instantiation
 
@@ -56,6 +67,6 @@ public class TypicalAppointments {
     }
 
     public static List<Appointment> getTypicalAppointments() {
-        return new ArrayList<>(Arrays.asList(MEET_ALEX, MEET_BOB, MEET_CHARLIE, MEET_DARREN, MEET_EMILY));
+        return new ArrayList<>(Arrays.asList(MEET_ALEX, MEET_BOB, MEET_CALEB, MEET_DARREN, MEET_EMILY));
     }
 }

@@ -2,9 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
-import seedu.address.model.PropertyBook;
 
 /**
  * Clears all of the data in both the property and appointment book.
@@ -17,8 +15,8 @@ public class ClearAllCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setPropertyBook(new PropertyBook());
-        model.setAppointmentBook(new AppointmentBook());
+        model.clearAppointmentBook();
+        model.clearPropertyBook();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

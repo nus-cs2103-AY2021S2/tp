@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_KEY_PRO
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_ORDER_ASC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SORTING_ORDER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import java.util.Comparator;
 
@@ -17,15 +16,14 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.SortPropertyCommand.SortPropertyDescriptor;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.property.Property;
 import seedu.address.testutil.SortPropertyDescriptorBuilder;
+import seedu.address.testutil.TypicalModelManager;
 
 
 public class SortPropertyCommandTest {
 
-    private Model model = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
+    private Model model = TypicalModelManager.getTypicalModelManager();
 
     @Test
     public void execute_sortByDeadlineInAscendingOrder_success() {
@@ -37,7 +35,7 @@ public class SortPropertyCommandTest {
 
         String expectedMessage = String.format(SortPropertyCommand.MESSAGE_SUCCESS, descriptor);
 
-        Model expectedModel = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
+        Model expectedModel = TypicalModelManager.getTypicalModelManager();
 
         Comparator<Property> comparator = (o1, o2) -> o1.getDeadline().compareTo(o2.getDeadline());
 
@@ -56,7 +54,7 @@ public class SortPropertyCommandTest {
 
         String expectedMessage = String.format(SortPropertyCommand.MESSAGE_SUCCESS, descriptor);
 
-        Model expectedModel = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
+        Model expectedModel = TypicalModelManager.getTypicalModelManager();
 
         Comparator<Property> comparator = (o1, o2) -> -1 * o1.getDeadline().compareTo(o2.getDeadline());
 
@@ -75,7 +73,7 @@ public class SortPropertyCommandTest {
 
         String expectedMessage = String.format(SortPropertyCommand.MESSAGE_SUCCESS, descriptor);
 
-        Model expectedModel = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
+        Model expectedModel = TypicalModelManager.getTypicalModelManager();
 
         Comparator<Property> comparator = (o1, o2) -> o1.getName().compareTo(o2.getName());
 
@@ -94,7 +92,7 @@ public class SortPropertyCommandTest {
 
         String expectedMessage = String.format(SortPropertyCommand.MESSAGE_SUCCESS, descriptor);
 
-        Model expectedModel = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
+        Model expectedModel = TypicalModelManager.getTypicalModelManager();
 
         Comparator<Property> comparator = (o1, o2) -> -1 * o1.getName().compareTo(o2.getName());
 

@@ -1,0 +1,16 @@
+{
+  "properties": [ {
+      "name": "Mayfair",
+      "propertyType": "Invalid Type",
+      "address": "1 Jurong East Street 32, #08-111",
+      "remark": null,
+      "postalCode": "609477",
+      "deadline": "Dec 31, 2021",
+      "client": null,
+      "tagged": [
+        "4 bedrooms",
+        "No need for renovation"
+      ],
+      "status": null
+    } ]
+}

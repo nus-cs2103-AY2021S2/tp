@@ -1,5 +1,6 @@
 package seedu.address.model.property;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -8,11 +9,17 @@ import seedu.address.commons.util.StringUtil;
 /**
  * Tests that a {@code Property}'s {@code Name} matches any of the keywords given.
  */
-public class PropertyContainsKeywordsPredicate implements Predicate<Property> {
+public class PropertyNamePredicate implements Predicate<Property> {
     private final List<String> keywords;
 
-    public PropertyContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    /**
+     * Constructs a {@code PropertyNamePredicate}
+     */
+    public PropertyNamePredicate(List<String> names) {
+        this.keywords = new ArrayList<>();
+        for (String s : names) {
+            this.keywords.add(s.toLowerCase());
+        }
     }
 
     @Override
@@ -24,8 +31,8 @@ public class PropertyContainsKeywordsPredicate implements Predicate<Property> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PropertyContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((PropertyContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof PropertyNamePredicate // instanceof handles nulls
+                && keywords.equals(((PropertyNamePredicate) other).keywords)); // state check
     }
 
 }

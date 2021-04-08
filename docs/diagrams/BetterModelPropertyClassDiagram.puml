@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+PropertyBook *-right-> "1" UniquePropertyList
+PropertyBook *-right-> "1" UniqueTagList
+UniqueTagList -[hidden]down- UniquePropertyList
+UniqueTagList -[hidden]down- UniquePropertyList
+
+UniqueTagList *-right-> "*" Tag
+UniquePropertyList o-right-> Property
+
+Property -up-> "*" Tag
+
+Property *--> Name
+Property *--> Type
+Property *--> Address
+Property *--> PostalCode
+Property *--> Deadline
+Property *--> Remark
+Property *--> "<<Interface>>\nStatus"
+Property *--> Client
+@enduml

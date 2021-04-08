@@ -73,6 +73,15 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     }
 
     /**
+     * Returns true if there is at least one property in the app.
+     *
+     * @return True if there is at least one property in the app.
+     */
+    public boolean hasProperty() {
+        return !properties.isEmpty();
+    }
+
+    /**
      * Adds a property to the app.
      * The property must not already exist in the property book.
      *
@@ -124,6 +133,14 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      */
     public void sortProperties(Comparator<Property> comparator) {
         properties.sortProperties(comparator);
+    }
+
+    /**
+     * Clears property list.
+     */
+    public void clearProperties() {
+        previousPropertyLists.push(new ArrayList<>(properties.asUnmodifiableObservableList()));
+        properties.setProperties(new ArrayList<>());
     }
 
     /**

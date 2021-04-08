@@ -1,14 +1,13 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PropertyBook;
-import seedu.address.model.UserPrefs;
+import seedu.address.testutil.TypicalModelManager;
 
 class ClearPropertyCommandTest {
     @Test
@@ -22,8 +21,8 @@ class ClearPropertyCommandTest {
 
     @Test
     public void execute_nonEmptyPropertyBook_success() {
-        Model model = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalPropertyBook(), new UserPrefs());
+        Model model = TypicalModelManager.getTypicalModelManager();
+        Model expectedModel = TypicalModelManager.getTypicalModelManager();
         expectedModel.setPropertyBook(new PropertyBook());
 
         assertCommandSuccess(new ClearPropertyCommand(), model, ClearPropertyCommand.MESSAGE_SUCCESS,

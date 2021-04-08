@@ -1,0 +1,13 @@
+{
+  "appointments" : [ {
+    "name" : "Meet Alex",
+    "remark" : "At M Hotel",
+    "date" : "Dec 25, 2021",
+    "time" : "3:00PM"
+  }, {
+      "name" : "Meet Emily",
+      "remark" : "At MayFair Gardens",
+      "date" : "Invalid Date",
+      "time" : "11:00AM"
+    } ]
+}

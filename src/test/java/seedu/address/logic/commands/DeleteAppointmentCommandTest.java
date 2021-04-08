@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertAppointmentCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
-import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
 
@@ -15,8 +14,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.testutil.TypicalModelManager;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -24,7 +23,7 @@ import seedu.address.model.appointment.Appointment;
  */
 public class DeleteAppointmentCommandTest {
 
-    private Model model = new ModelManager(getTypicalAppointmentBook(), new UserPrefs());
+    private Model model = TypicalModelManager.getTypicalModelManager();
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -35,7 +34,7 @@ public class DeleteAppointmentCommandTest {
         String expectedMessage = String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
                 appointmentToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAppointmentBook(), new UserPrefs());
+        ModelManager expectedModel = TypicalModelManager.getTypicalModelManager();
         expectedModel.deleteAppointment(appointmentToDelete);
 
         assertCommandSuccess(deleteAppointmentCommand, model, expectedMessage, expectedModel);
@@ -61,7 +60,7 @@ public class DeleteAppointmentCommandTest {
         String expectedMessage = String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
                 appointmentToDelete);
 
-        Model expectedModel = new ModelManager(model.getAppointmentBook(), new UserPrefs());
+        Model expectedModel = TypicalModelManager.getTypicalModelManager();
         expectedModel.deleteAppointment(appointmentToDelete);
         showNoAppointment(expectedModel);
 

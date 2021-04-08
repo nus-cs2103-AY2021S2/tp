@@ -190,10 +190,13 @@ public class ParserUtil {
     public static Deadline parsePropertyDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
         try {
             return new Deadline(LocalDate.parse(trimmedDeadline, DateTimeFormat.INPUT_DATE_FORMAT));
         } catch (DateTimeParseException ex) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Deadline.MESSAGE_INVALID_DATE);
         }
     }
 
@@ -253,7 +256,8 @@ public class ParserUtil {
         if (!AskingPrice.isValidAskingPrice(trimmedAskingPrice)) {
             throw new ParseException(AskingPrice.MESSAGE_CONSTRAINTS);
         }
-        return new AskingPrice(trimmedAskingPrice);
+        Long price = AskingPrice.parse(trimmedAskingPrice);
+        return new AskingPrice(price);
     }
 
     // =====  Parser methods for appointment attributes ==========================================================
@@ -269,10 +273,13 @@ public class ParserUtil {
     public static Date parseAppointmentDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
         try {
             return new Date(LocalDate.parse(trimmedDate, DateTimeFormat.INPUT_DATE_FORMAT));
         } catch (DateTimeParseException ex) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Date.MESSAGE_INVALID_DATE);
         }
     }
 
@@ -287,10 +294,13 @@ public class ParserUtil {
     public static Time parseAppointmentTime(String time) throws ParseException {
         requireNonNull(time);
         String trimmedTime = time.trim();
+        if (!Time.isValidTime(trimmedTime)) {
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+        }
         try {
             return new Time(LocalTime.parse(trimmedTime, DateTimeFormat.INPUT_TIME_FORMAT));
         } catch (DateTimeParseException ex) {
-            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Time.MESSAGE_INVALID_TIME);
         }
     }
 

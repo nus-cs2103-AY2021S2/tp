@@ -15,15 +15,18 @@ public class FindPropertyCommand extends Command {
 
     public static final String COMMAND_WORD = "find property";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all properties containing any of "
-            + "the specified keywords (case-insensitive) and/or by giving a price and search for properties "
-            + "with asking prices above or below that amount, then displaying them as a list with index "
-            + "numbers.\n"
-            + "Parameters: [KEYWORD]... [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/TYPE] \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all properties that match the criteria "
+            + "given by the specified keywords (case-insensitive) indicated by the given parameters, and displays "
+            + "them as a list with index numbers.\n"
+            + "Parameters: [KEYWORD]... [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] \n"
+            + "[a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT] \n"
+            + "[ce/CLIENT_EMAIL] [tags/TAGS_SEPARATED_BY_COMMA] \n"
             + "Price limits are inclusive. \n"
             + "Housing types accepted are: HDB, Condo, and Landed. \n"
+            + "All keywords without a parameter tag will be ignored. \n"
             + "Example: " + COMMAND_WORD + " jurong\n"
-            + COMMAND_WORD + " pl/1000000 t/hdb";
+            + COMMAND_WORD + " pl/1000000 t/hdb a/1 Jurong East Street 32, #08-111 tags/3 bedrooms, need renovation "
+            + "cc/91234567";
 
     private final PropertyPredicateList predicates;
 

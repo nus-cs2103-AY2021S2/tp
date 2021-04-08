@@ -5,13 +5,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.function.Predicate;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.property.client.AskingPrice;
 
 /**
  * Tests that a {@code Property}'s {@code Client}'s {@code AskingPrice} is within the range given.
  */
 public class PropertyPricePredicate implements Predicate<Property> {
-    private final int price;
+    private final Long price;
     private final boolean isLess;
 
     /**
@@ -22,7 +23,7 @@ public class PropertyPricePredicate implements Predicate<Property> {
      *               note that regardless of this value, any askingPrice
      *               that is equals to the given price will return true.
      */
-    public PropertyPricePredicate(String price, boolean isLess) {
+    public PropertyPricePredicate(String price, boolean isLess) throws ParseException {
         requireNonNull(price);
         checkArgument(AskingPrice.isValidAskingPrice(price));
         this.price = AskingPrice.parse(price);
@@ -46,7 +47,7 @@ public class PropertyPricePredicate implements Predicate<Property> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PropertyPricePredicate // instanceof handles nulls
-                && price == ((PropertyPricePredicate) other).price
+                && price.equals(((PropertyPricePredicate) other).price)
                 && isLess == ((PropertyPricePredicate) other).isLess); // state check
     }
 

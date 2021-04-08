@@ -1,16 +1,37 @@
 package seedu.address.testutil;
 
-import seedu.address.model.name.Name;
-import seedu.address.model.property.client.AskingPrice;
-import seedu.address.model.property.client.Client;
-import seedu.address.model.property.client.Contact;
-import seedu.address.model.property.client.Email;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+import seedu.address.model.property.client.Client;
+
+/**
+ * A utility class containing a list of {@code Client} objects to be used in tests.
+ */
 public class TypicalClients {
-    public static final Client CLIENT_ALICE = new Client(new Name("Alice"), new Contact("91234567"),
-                            new Email("alice@gmail.com"), new AskingPrice("$800,000"));
-    public static final Client CLIENT_BOB = new Client(new Name("Bob"), new Contact("91234567"),
-            new Email("bob@yandex.com"), new AskingPrice("$2,000,000"));
-    public static final Client CLIENT_EVE = new Client(new Name("Eve"), new Contact("91234567"),
-            new Email("eve@hotmail.com"), new AskingPrice("$100,000"));
+    public static final Client ALICE = new ClientBuilder().withClientName("Alice")
+            .withClientContact("91234567").withClientEmail("alice@gmail.com")
+            .withClientAskingPrice(Long.parseLong("1000000")).build();
+    public static final Client BOB = new ClientBuilder().withClientName("Bob")
+            .withClientContact("98664535").withClientEmail("bob@gmail.com")
+            .withClientAskingPrice(Long.parseLong("800000")).build();
+    public static final Client CALEB = new ClientBuilder().withClientName("Caleb")
+            .withClientContact("84459627").withClientEmail("caleb_goh@gmail.com")
+            .withClientAskingPrice(Long.parseLong("350000")).build();
+    public static final Client DARREN = new ClientBuilder().withClientName("Darren")
+            .withClientContact("81347564").withClientEmail("darren_likes_swe@hotmail.com.sg")
+            .withClientAskingPrice(Long.parseLong("2000000")).build();
+    public static final Client FIN = new ClientBuilder().withClientName("Fin")
+            .withClientContact("83864380").withClientEmail("fin@gmail.com")
+            .withClientAskingPrice(Long.parseLong("8000000")).build();
+    public static final Client JOEL = new ClientBuilder().withClientName("Joel")
+            .withClientContact("87262389").withClientEmail("joel@gmail.com")
+            .withClientAskingPrice(Long.parseLong("5000000")).build();
+
+    private TypicalClients() {} // prevents instantiation
+
+    public static List<Client> getTypicalClients() {
+        return new ArrayList<>(Arrays.asList(ALICE, BOB, CALEB, DARREN));
+    }
 }

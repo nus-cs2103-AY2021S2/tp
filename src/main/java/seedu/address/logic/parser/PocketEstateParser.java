@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddPropertyCommand;
 import seedu.address.logic.commands.ClearAllCommand;
@@ -40,6 +41,14 @@ public class PocketEstateParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT =
             Pattern.compile("(?<commandWord>\\S+(\\s(appointment|property|all|client))?)(?<arguments>.*)");
+
+    private static final String INVALID_COMMAND_ADD = "add";
+    private static final String INVALID_COMMAND_DELETE = "delete";
+    private static final String INVALID_COMMAND_EDIT = "edit";
+    private static final String INVALID_COMMAND_SORT = "sort";
+    private static final String INVALID_COMMAND_FIND = "find";
+    private static final String INVALID_COMMAND_LIST = "list";
+    private static final String INVALID_COMMAND_CLEAR = "clear";
 
     /**
      * Matches command string to command word and args.
@@ -159,6 +168,17 @@ public class PocketEstateParser {
 
         case ListAppointmentCommand.COMMAND_WORD:
             return new ListAppointmentCommand();
+
+        case INVALID_COMMAND_ADD:
+        case INVALID_COMMAND_DELETE:
+        case INVALID_COMMAND_EDIT:
+        case INVALID_COMMAND_SORT:
+        case INVALID_COMMAND_FIND:
+            throw new ParseException(Messages.missingPropertyAppointmentError(commandWord));
+
+        case INVALID_COMMAND_CLEAR:
+        case INVALID_COMMAND_LIST:
+            throw new ParseException(Messages.missingAllPropertyAppointmentError(commandWord));
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -17,10 +17,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -29,9 +26,10 @@ import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
 import seedu.address.model.PropertyBook;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentDateTimePredicate;
 import seedu.address.model.property.Property;
-import seedu.address.model.property.PropertyContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyAddressPostalCodePredicate;
+import seedu.address.model.util.DateTimeFormat;
 import seedu.address.testutil.EditPropertyDescriptorBuilder;
 import seedu.address.testutil.SortAppointmentDescriptorBuilder;
 import seedu.address.testutil.SortPropertyDescriptorBuilder;
@@ -49,15 +47,14 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_MAYFAIR = "1 Jurong East Street 32, #08-111";
     public static final String VALID_ADDRESS_BURGHLEY_DRIVE = "12 Burghley Drive";
     public static final String VALID_POSTAL_MAYFAIR = "609477";
-    public static final String VALID_POSTAL_BURGHLEY_DRIVE = "123456";
+    public static final String VALID_POSTAL_BURGHLEY_DRIVE = "558977";
     public static final String VALID_DEADLINE_MAYFAIR = "31-12-2021";
-    public static final LocalDate VALID_DEADLINE_LOCALDATE_MAYFAIR = LocalDate.parse(VALID_DEADLINE_MAYFAIR,
-            DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT));
+    public static final LocalDate VALID_DEADLINE_LOCALDATE_MAYFAIR =
+            LocalDate.parse(VALID_DEADLINE_MAYFAIR, DateTimeFormat.INPUT_DATE_FORMAT);
     public static final String VALID_DEADLINE_BURGHLEY_DRIVE = "31-07-2021";
     public static final LocalDate VALID_DEADLINE_LOCALDATE_BURGHLEY_DRIVE =
-            LocalDate.parse(VALID_DEADLINE_BURGHLEY_DRIVE,
-            DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT));
-    public static final String VALID_PROPERTY_TAG_FREEHOLD = "Freehold";
+            LocalDate.parse(VALID_DEADLINE_BURGHLEY_DRIVE, DateTimeFormat.INPUT_DATE_FORMAT);
+    public static final String VALID_PROPERTY_TAG_BALCONY = "Balcony";
     public static final String VALID_PROPERTY_TAG_4_BEDROOMS = "4 bedrooms";
     public static final String VALID_PROPERTY_TAG_99_YEAR_LEASEHOLD = "99 year leasehold";
 
@@ -71,11 +68,11 @@ public class CommandTestUtil {
     public static final String POSTAL_DESC_BURGHLEY_DRIVE = " " + PREFIX_POSTAL + VALID_POSTAL_BURGHLEY_DRIVE;
     public static final String DEADLINE_DESC_MAYFAIR = " " + PREFIX_DEADLINE + VALID_DEADLINE_MAYFAIR;
     public static final String DEADLINE_DESC_BURGHLEY_DRIVE = " " + PREFIX_DEADLINE + VALID_DEADLINE_BURGHLEY_DRIVE;
-    public static final String TAG_DESC_FREEHOLD = " " + PREFIX_TAGS + VALID_PROPERTY_TAG_FREEHOLD;
+    public static final String TAG_DESC_BALCONY = " " + PREFIX_TAGS + VALID_PROPERTY_TAG_BALCONY;
     public static final String TAG_DESC_4_BEDROOMS = " " + PREFIX_TAGS + VALID_PROPERTY_TAG_4_BEDROOMS;
     public static final String TAG_DESC_99_YEAR_LEASEHOLD = " " + PREFIX_TAGS + VALID_PROPERTY_TAG_99_YEAR_LEASEHOLD;
-    public static final String TAG_DESC_FREEHOLD_AND_99_YEAR_LEASEHOLD =
-            " " + PREFIX_TAGS + VALID_PROPERTY_TAG_FREEHOLD + ", " + VALID_PROPERTY_TAG_99_YEAR_LEASEHOLD;
+    public static final String TAG_DESC_BALCONY_AND_99_YEAR_LEASEHOLD =
+            " " + PREFIX_TAGS + VALID_PROPERTY_TAG_BALCONY + ", " + VALID_PROPERTY_TAG_99_YEAR_LEASEHOLD;
 
     public static final String INVALID_PROPERTY_NAME_DESC =
             " " + PREFIX_NAME + "Mayfair&"; // '&' not allowed in names
@@ -85,7 +82,9 @@ public class CommandTestUtil {
             " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_PROPERTY_POSTAL_DESC =
             " " + PREFIX_POSTAL + "12a"; // 'a' not allowed in postal codes
-    public static final String INVALID_PROPERTY_DEADLINE_DESC =
+    public static final String INVALID_PROPERTY_DEADLINE_IN_INVALID_FORMAT_DESC =
+            " " + PREFIX_DEADLINE + "30-4-2021"; // 1 digit in month part is not valid
+    public static final String INVALID_PROPERTY_DEADLINE_IN_VALID_FORMAT_DESC =
             " " + PREFIX_DEADLINE + "31-04-2021"; // 31st April not valid
     public static final String INVALID_PROPERTY_TAG_DESC =
             " " + PREFIX_TAGS + "4 bedrooms*"; // '*' not allowed in tags
@@ -93,20 +92,20 @@ public class CommandTestUtil {
     // For testing appointments
     public static final String VALID_NAME_MEET_ALEX = "Meet Alex";
     public static final String VALID_NAME_MEET_BOB = "Meet Bob";
-    public static final String VALID_REMARK_MEET_ALEX = "At M Hotel";
-    public static final String VALID_REMARK_MEET_BOB = "At Plaza Sing Starbucks";
+    public static final String VALID_REMARK_MEET_ALEX = "To celebrate Christmas at Fullerton Hotel";
+    public static final String VALID_REMARK_MEET_BOB = "At his house";
     public static final String VALID_DATE_MEET_ALEX = "25-12-2021";
     public static final LocalDate VALID_DATE_LOCALDATE_MEET_ALEX = LocalDate.parse(VALID_DATE_MEET_ALEX,
-        DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT));
-    public static final String VALID_DATE_MEET_BOB = "25-02-2021";
+        DateTimeFormat.INPUT_DATE_FORMAT);
+    public static final String VALID_DATE_MEET_BOB = "30-04-2021";
     public static final LocalDate VALID_DATE_LOCALDATE_MEET_BOB = LocalDate.parse(VALID_DATE_MEET_BOB,
-        DateTimeFormatter.ofPattern("d-M-u").withResolverStyle(ResolverStyle.STRICT));
+        DateTimeFormat.INPUT_DATE_FORMAT);
     public static final String VALID_TIME_MEET_ALEX = "1500";
     public static final LocalTime VALID_TIME_LOCALTIME_MEET_ALEX = LocalTime.parse(VALID_TIME_MEET_ALEX,
-        DateTimeFormatter.ofPattern("HHmm"));
-    public static final String VALID_TIME_MEET_BOB = "2000";
+        DateTimeFormat.INPUT_TIME_FORMAT);
+    public static final String VALID_TIME_MEET_BOB = "1030";
     public static final LocalTime VALID_TIME_LOCALTIME_MEET_BOB = LocalTime.parse(VALID_TIME_MEET_BOB,
-        DateTimeFormatter.ofPattern("HHmm"));
+        DateTimeFormat.INPUT_TIME_FORMAT);
 
     public static final String NAME_DESC_MEET_ALEX = " " + PREFIX_NAME + VALID_NAME_MEET_ALEX;
     public static final String NAME_DESC_MEET_BOB = " " + PREFIX_NAME + VALID_NAME_MEET_BOB;
@@ -121,9 +120,13 @@ public class CommandTestUtil {
             " " + PREFIX_NAME + "Meet Alex&"; // '&' not allowed in names
     public static final String INVALID_APPOINTMENT_REMARK_DESC =
             " " + PREFIX_REMARK; // empty string not allowed for remark
-    public static final String INVALID_APPOINTMENT_DATE_DESC =
+    public static final String INVALID_APPOINTMENT_DATE_IN_INVALID_FORMAT_DESC =
+            " " + PREFIX_DATE + "30-4-2021"; // 1 digit in month part is not valid
+    public static final String INVALID_APPOINTMENT_DATE_IN_VALID_FORMAT_DESC =
             " " + PREFIX_DATE + "31-04-2021"; // 31st April not valid
-    public static final String INVALID_APPOINTMENT_TIME_DESC =
+    public static final String INVALID_APPOINTMENT_TIME_IN_INVALID_FORMAT_DESC =
+            " " + PREFIX_TIME + "950"; // there must be 4 digits in a valid time
+    public static final String INVALID_APPOINTMENT_TIME_IN_VALID_FORMAT_DESC =
         " " + PREFIX_TIME + "1260"; // 60 is not valid for the minute component
 
     // For testing of SortAppointmentDescriptor and SortPropertyDescriptor
@@ -248,8 +251,10 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredAppointmentList().size());
 
         Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
-        final String[] splitName = appointment.getName().name.split("\\s+");
-        model.updateFilteredAppointmentList(new AppointmentContainsKeywordsPredicate(Arrays.asList(splitName[1])));
+
+        final LocalDate date = appointment.getDate().date;
+        final LocalTime time = appointment.getTime().time;
+        model.updateFilteredAppointmentList(new AppointmentDateTimePredicate(date, time));
 
         assertEquals(1, model.getFilteredAppointmentList().size());
     }
@@ -262,8 +267,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPropertyList().size());
 
         Property property = model.getFilteredPropertyList().get(targetIndex.getZeroBased());
-        final String[] splitName = property.getName().name.split("\\s+");
-        model.updateFilteredPropertyList(new PropertyContainsKeywordsPredicate(Arrays.asList(splitName[1])));
+        final String address = property.getAddress().propertyAddress;
+        final String postal = property.getPostalCode().postal;
+        model.updateFilteredPropertyList(new PropertyAddressPostalCodePredicate(address, postal));
 
         assertEquals(1, model.getFilteredPropertyList().size());
     }

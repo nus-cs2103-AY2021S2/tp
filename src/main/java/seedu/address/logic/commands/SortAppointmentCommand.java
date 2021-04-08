@@ -32,6 +32,8 @@ public class SortAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Appointment list sorted %1$s";
 
+    public static final String MESSAGE_EMPTY_APPOINTMENT_LIST = "Appointment list is empty!";
+
     private static final Supplier<CommandException> invalidCommandExceptionSupplier = () -> new CommandException(
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
 
@@ -51,6 +53,10 @@ public class SortAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasAppointment()) {
+            throw new CommandException(MESSAGE_EMPTY_APPOINTMENT_LIST);
+        }
 
         Comparator<Appointment> cmp = createAppointmentComparator(sortAppointmentDescriptor);
         model.sortAppointmentList(cmp);

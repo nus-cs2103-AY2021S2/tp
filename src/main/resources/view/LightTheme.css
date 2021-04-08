@@ -124,6 +124,7 @@
 
 .list-cell .label {
     -fx-text-fill: black;
+    -fx-wrap-text: true;
 }
 
 .cell_big_label {
@@ -157,6 +158,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
+    -fx-wrap-text: true;
 }
 
 .result-display .label {
@@ -366,4 +368,25 @@
     -fx-font-weight: bold;
     -fx-font-size: 13px;
     -fx-text-fill: black;
+}
+
+#askingPrice {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+}
+
+#deadline {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 14px;
+}
+
+#date {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 14px;
+}
+
+#time {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 14px;
 }

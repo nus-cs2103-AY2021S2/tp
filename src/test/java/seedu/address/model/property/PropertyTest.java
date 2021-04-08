@@ -9,10 +9,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_LOCALD
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_POSTAL_BURGHLEY_DRIVE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROPERTY_TAG_FREEHOLD;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PROPERTY_TAG_BALCONY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BURGHLEY_DRIVE;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalClients.CLIENT_ALICE;
+import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalProperties.BURGHLEY_DRIVE;
 import static seedu.address.testutil.TypicalProperties.MAYFAIR;
 
@@ -66,8 +66,8 @@ public class PropertyTest {
 
         // with client
         Property mayFairWithClient = new PropertyBuilder(MAYFAIR)
-                .withClient(CLIENT_ALICE).build();
-        assertEquals(mayFairWithClient.getAskingPrice(), CLIENT_ALICE.getClientAskingPrice());
+                .withClient(ALICE).build();
+        assertEquals(mayFairWithClient.getAskingPrice(), ALICE.getClientAskingPrice());
     }
 
     @Test
@@ -111,7 +111,7 @@ public class PropertyTest {
         assertFalse(MAYFAIR.equals(editedMayfair));
 
         // different tags -> returns false
-        editedMayfair = new PropertyBuilder(MAYFAIR).withTags(VALID_PROPERTY_TAG_FREEHOLD).build();
+        editedMayfair = new PropertyBuilder(MAYFAIR).withTags(VALID_PROPERTY_TAG_BALCONY).build();
         assertFalse(MAYFAIR.equals(editedMayfair));
     }
 }

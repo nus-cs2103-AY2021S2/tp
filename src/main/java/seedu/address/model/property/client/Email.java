@@ -9,25 +9,28 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Email {
     private static final String SPECIAL_CHARACTERS = "_.-";
-    public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format prefix@domain "
+
+    public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format prefix@domain.topleveldomain \n"
             + "and adhere to the following constraints:\n"
             + "1. The prefix should only contain alphanumeric characters and these special characters, excluding "
             + "the parentheses, (" + SPECIAL_CHARACTERS + "). "
             + "A special character cannot appear as the first or last character in the prefix "
             + "or appear consecutively two or more times.\n"
-            + "2. This is followed by a '@' and then the domain name. The domain name is made up of domain labels "
-            + "separated by periods.\n"
-            + "The domain name must:\n"
-            + "    - end with a top level domain label that is at least 2 characters long\n"
-            + "    - have each domain label start and end with alphanumeric characters\n"
-            + "    - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.";
+            + "2. This is followed by a '@' and then the domain name. "
+            + "The domain name is made up of one or more domain labels separated by periods "
+            + "and each domain label must:\n"
+            + "  - start and end with alphanumeric characters\n"
+            + "  - consist of alphanumeric characters, separated only by hyphens, if any\n"
+            + "3. The top level domain label must only contain alphanumeric characters "
+            + "and is at least 2 characters long.\n"
+            + "E.g. anthony_123@example.sg is a valid email but anthony_123@sg is an invalid email";
 
     private static final String ALPHANUMERIC = "[^\\W_]+";
     private static final String PREFIX_REGEX = ALPHANUMERIC + "([" + SPECIAL_CHARACTERS + "]" + ALPHANUMERIC + ")*";
     private static final String DOMAIN_REGEX = ALPHANUMERIC + "(-" + ALPHANUMERIC + ")*";
-    private static final String TOP_LEVEL_DOMAIN_REGEX = "(" + DOMAIN_REGEX + "){2,}";
+    private static final String TOP_LEVEL_DOMAIN_REGEX = "(" + ALPHANUMERIC + "){2,}";
     public static final String VALIDATION_REGEX = PREFIX_REGEX + "@" + "(" + DOMAIN_REGEX
-            + "\\.)*" + TOP_LEVEL_DOMAIN_REGEX;
+            + "\\.)+" + TOP_LEVEL_DOMAIN_REGEX;
 
     public final String email;
 

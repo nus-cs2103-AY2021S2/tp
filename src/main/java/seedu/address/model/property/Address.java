@@ -53,7 +53,7 @@ public class Address implements Comparable<Address> {
             return false;
         }
         Address otherAddress = (Address) other;
-        return propertyAddress.equals(otherAddress.propertyAddress);
+        return propertyAddress.equalsIgnoreCase(otherAddress.propertyAddress);
     }
 
     @Override

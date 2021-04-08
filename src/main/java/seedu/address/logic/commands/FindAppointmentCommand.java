@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentPredicateList;
 
 /**
  * Finds and lists all appointments in appointment book containing any of the argument keywords.
@@ -13,21 +13,25 @@ import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 public class FindAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "find appointment";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " charlie monday";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments that match the criteria "
+            + "given by the specified keywords (case-insensitive) indicated by the given parameters, and displays "
+            + "them as a list with index numbers.\n"
+            + "Parameters: [n/NAME] [r/REMARKS] [d/DATE]* [t/TIME]*\n"
+            + "Note that all parameters marked with * are limited to only 1 in each query. \n"
+            + "All keywords without a parameter tag will be ignored. \n"
+            + "Example: " + COMMAND_WORD + " n/charlie\n"
+            + COMMAND_WORD + " r/meet on 25th d/25-11-21";
 
-    private final AppointmentContainsKeywordsPredicate predicate;
+    private final AppointmentPredicateList predicate;
 
-    public FindAppointmentCommand(AppointmentContainsKeywordsPredicate predicate) {
+    public FindAppointmentCommand(AppointmentPredicateList predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredAppointmentList(predicate);
+        model.updateFilteredAppointmentList(predicate.combine());
         int appointmentListSize = model.getFilteredAppointmentList().size();
         return new CommandResult(
                 String.format(appointmentListSize > 1

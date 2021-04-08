@@ -56,11 +56,11 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("PeterJack_1190@example.com")); // prefix with underscore
         assertTrue(Email.isValidEmail("PeterJack-1190@example.com")); // prefix with hyphen
         assertTrue(Email.isValidEmail("PeterJack.1190@example.com")); // prefix with period
-        assertTrue(Email.isValidEmail("a@bc")); // minimal
-        assertTrue(Email.isValidEmail("peterjack@example")); // alphabets only
-        assertTrue(Email.isValidEmail("123@145")); // numeric only
+        assertTrue(Email.isValidEmail("a@b.cd")); // minimal
+        assertTrue(Email.isValidEmail("peterjack@example.com")); // alphabets only
+        assertTrue(Email.isValidEmail("123@145.78")); // numeric only
         assertTrue(Email.isValidEmail("a1_bc-d2e.f3@examp1e.com")); // mixture of alphanumeric and special characters
-        assertTrue(Email.isValidEmail("peterjack@example-com")); // hyphen only in domain name
+        assertTrue(Email.isValidEmail("peterjack@example-com.sg")); // hyphen only in domain name
         assertTrue(Email.isValidEmail("e1234567@u.nus.edu.sg")); // multiple domain parts in domain name
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long prefix
         assertTrue(Email.isValidEmail("peter_jack@very-very-very-long-example.com")); // long domain name
