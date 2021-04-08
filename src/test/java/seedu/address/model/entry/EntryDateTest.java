@@ -40,7 +40,6 @@ public class EntryDateTest {
     public void isValidDate_validDate_returnTrue() {
         assertTrue(EntryDate.isValidDate("2021-01-01 12:12"));
         assertTrue(EntryDate.isValidDate("2021-01-01 00:00"));
-        //Leap year
         assertTrue(EntryDate.isValidDate("2024-02-29 12:12"));
     }
 
