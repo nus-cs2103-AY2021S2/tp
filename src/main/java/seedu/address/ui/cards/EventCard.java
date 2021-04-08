@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.cards;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.util.LocalDateTimeUtil;
 import seedu.address.model.event.GeneralEvent;
+import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code GeneralEvent}.

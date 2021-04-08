@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.panels;
 
 import static java.util.Objects.requireNonNull;
 
@@ -8,6 +8,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.model.event.GeneralEvent;
+import seedu.address.ui.UiPart;
+import seedu.address.ui.cards.EventCard;
+
 
 /**
  * Panel containing the list of general events.
