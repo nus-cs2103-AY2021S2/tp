@@ -30,6 +30,7 @@ import seedu.address.model.user.IdealWeight;
  */
 public class ParserUtil {
 
+    public static final double DOUBLE_DECIMAL_LIMIT = 3;
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
@@ -80,7 +81,7 @@ public class ParserUtil {
         if (!trimmedValue.matches(Food.VALIDATION_POSITIVE_DOUBLE_REGEX)) {
             throw new ParseException(Food.MESSAGE_DIGIT_CONSTRAINTS);
         }
-        if (trimmedValue.length() > dotIndex + 3) {
+        if (trimmedValue.length() > dotIndex + DOUBLE_DECIMAL_LIMIT) {
             throw new ParseException(Food.MESSAGE_DECIMAL_PLACE_CONSTRAINTS);
         }
         return Double.valueOf(trimmedValue);
