@@ -1,0 +1,20 @@
+@startuml
+start
+:User executes `free_time` command;
+:Create a minute array for the date specified;
+
+if () then ([valid date])
+    :Fetch Events from SOChedule;
+    :Go through all Events present in SOChedule;
+    :Update time status for the minute array;
+    :Go through the minute array to locate all free time slots;
+    if () then ([Find free slot])
+        :Print out the free time slots in a list;
+    else([else])
+        :Return no free time on the day;
+    endif
+else ([else])
+    :Throw invalid date error;
+endif
+stop
+@enduml
