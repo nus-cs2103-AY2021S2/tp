@@ -42,8 +42,7 @@ public class UniqueOrderListTest {
     @Test
     public void contains_orderWithSameIdentityFieldsInList_returnsTrue() {
         uniqueOrderList.add(ALICE);
-        Order editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Order editedAlice = new OrderBuilder(ALICE).build();
         assertTrue(uniqueOrderList.contains(editedAlice));
     }
 

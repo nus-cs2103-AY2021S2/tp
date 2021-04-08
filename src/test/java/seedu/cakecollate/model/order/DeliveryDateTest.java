@@ -39,7 +39,7 @@ public class DeliveryDateTest {
     }
 
     @Test
-    public void isValidDeliveryDate() {
+    public void isValidFormat() {
         // null delivery date
         assertThrows(NullPointerException.class, () -> DeliveryDate.isValidFormat(null));
 
@@ -51,6 +51,7 @@ public class DeliveryDateTest {
         assertFalse(DeliveryDate.isValidFormat("01:01:2022")); // invalid delimiter
         assertFalse(DeliveryDate.isValidFormat("01/01-2022")); // inconsistent delimiter
         assertFalse(DeliveryDate.isValidFormat("2022/12/31")); // invalid format
+        assertFalse(DeliveryDate.isValidFormat("29 Feb 2022")); // non-leap year
         assertFalse(DeliveryDate.isValidFormat(LocalDate.now().toString())); // Invalid in-build LocalDate format
 
         // valid delivery dates
@@ -58,6 +59,7 @@ public class DeliveryDateTest {
         assertTrue(DeliveryDate.isValidFormat("02-02-2022"));
         assertTrue(DeliveryDate.isValidFormat("02.02.2022"));
         assertTrue(DeliveryDate.isValidFormat("02 Feb 2022"));
+        assertTrue(DeliveryDate.isValidFormat("29/02/2024"));
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("[dd/MM/yyyy]");
         // 3 working days from current date
         assertTrue(DeliveryDate.isValidFormat(dateFormat.format(LocalDate.now().plusDays(3L))));
