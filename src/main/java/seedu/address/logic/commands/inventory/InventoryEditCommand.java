@@ -23,12 +23,12 @@ public class InventoryEditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
             + ": Edits the details of the ingredient "
-            + "identified by the index number used in the displayed ingredient list. "
+            + "identified by the index number used in the displayed ingredient list.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_QUANTITY + "QUANTITY]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Sweetcorn";
 
     public static final String MESSAGE_EDIT_INGREDIENT_SUCCESS = "Edited Ingredient: %1$s";
