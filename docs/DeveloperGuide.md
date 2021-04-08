@@ -520,11 +520,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | long-time user                             | delete an old card             | remove some notes that I no longer need
 | `* * *`  | student                                    | view all my notes   | easily refer to all my study materials
 | `* * *`  | student                                    | view the question and answer of a specific card | check if I remember the concepts correctly
-| `* * * ` | careless user | modify the details of a flash card | avoid having to delete and add a new card when I wish to update card information
+| `* * * ` | careless user | modify the details of a flashcard | avoid having to delete and add a new card when I wish to update card information
 | `* *` | multi-discipline student | put my notes under different tags and categories | easily organize them
 | `* *`     | angry student   | undo/redo my actions| my emotion will not cloud my judgements
 | `* *` | student | review my own performance after each study session | know what to improve on
-| `*`   | student | look at the statistics | focus on topics that I am not good at
+| `* *`   | student | look at the statistics | focus on topics that I am not good at
 | `* *` | student | sort the cards based on priority | know which cards I should focus on
 | `* *` | long-time user | find what I need easily | search through the list of decks without doing it manually
 | `* *` | student studying many modules | Filter cards according to subjects | it is easier to learn|
@@ -537,11 +537,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `FlashBack` and the **Actor** is the `user`, unless specified
 otherwise) <br /><br />
-**Use case: UC01 - Add a flash card**
+**Use case: UC01 - Add a flashcard**
 
 **MSS**
 
-1. User requests to add a new flash card into the list.
+1. User requests to add a new flashcard into the list.
 2. FlashBack adds the new flashcard.
 
    Use case ends.
@@ -553,15 +553,16 @@ otherwise) <br /><br />
 
       Use case ends.
 
-**Use case: UC02 - Remove a flash card**
+**Use case: UC02 - Remove a flashcard**
 
 **MSS**
 
-1. FlashBack shows a list of flash cards
-2. User requests to delete a specific flash card from the list
-3. FlashBack deletes the specified flash card
+1. FlashBack shows a list of flashcards
+2. User requests to delete a specific flashcard from the list
+3. FlashBack deletes the specified flashcard
 
    Use case ends.
+<div style="page-break-after: always;"></div>
 
 **Extensions**
 
@@ -574,14 +575,14 @@ otherwise) <br /><br />
 
       Use case resumes at step 1.
 
-**Use case: UC03 - Edit a flash card**
+**Use case: UC03 - Edit a flashcard**
 
 **MSS**
 
-1. FlashBack shows a list of flash cards.
-2. User requests to edit a specific flash card on the list.
-3. User enters the details of updated flash card.
-4. FlashBack updates the flash card with the given details.
+1. FlashBack shows a list of flashcards.
+2. User requests to edit a specific flashcard on the list.
+3. User enters the details of updated flashcard.
+4. FlashBack updates the flashcard with the given details.
 
    Use case ends
 
@@ -596,12 +597,12 @@ otherwise) <br /><br />
 
       Use case resumes at step 1.
 
-* 3a. The updated flash card is a duplicate of an existing card.
+* 3a. The updated flashcard is a duplicate of an existing card.
     * 3a1. FlashBack shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: UC04 - View a flash card**
+**Use case: UC04 - View a flashcard**
 
 **MSS**
 
@@ -647,14 +648,15 @@ otherwise) <br /><br />
     
       Use case ends.
 
-**Use case: UC06 - List all flash cards**
+**Use case: UC06 - List all flashcards**
 
 **MSS**
 
-1. User requests to list all flash cards.
-1. FlashBack shows a list of flash cards.
+1. User requests to list all flashcards.
+1. FlashBack shows a list of flashcards.
 
    Use case ends.
+<div style="page-break-after: always;"></div>
 
 **Use case: UC07 - Undo an undoable command**
 
@@ -786,6 +788,7 @@ These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
+<div style="page-break-after: always;"></div>
 
 ### Launch and shutdown
 
@@ -862,7 +865,7 @@ testers are expected to do more *exploratory* testing.
        `Low` priority, an error message will be displayed, and no modifications will be made to the flashcard.
        
     1. Test case: `edit 1 c/CompSci p/Mid t/sorting t/algorithms` <br>
-       Expected: The flash card identified by index 1 will be modified. Its category is changed to `CompSci`, the priority is changed to `Mid`.
+       Expected: The flashcard identified by index 1 will be modified. Its category is changed to `CompSci`, the priority is changed to `Mid`.
        and it now has tags `sorting` and `algorithms`. If the flashcard already has category `CompSci`, priority
        `Mid`, as well as tags `sorting` and `algorithms`, an error message will be displayed, and no modifications will be made to the flashcard.
 
@@ -992,7 +995,7 @@ testers are expected to do more *exploratory* testing.
     
 ### Displaying statistics
 
-1. Displaying statistics of flash card(s) in FlashBack
+1. Displaying statistics of flashcard(s) in FlashBack
 
     1. Prerequisites: There must be at least one reviewed flashcard in the list.
     
@@ -1001,7 +1004,7 @@ testers are expected to do more *exploratory* testing.
        The total review count, total correct count and overall correct rate is also displayed below the pie chart.
        
     1. Test case: `stats 1` <br>
-       Expected: The UI  will be updated to display a pie chart representing the correct rate of the flash card represented
+       Expected: The UI  will be updated to display a pie chart representing the correct rate of the flashcard represented
        by index 1 in the list. The review count, correct count and correct rate is also displayed below the pie chart. 
        
     1. Test case: `stats abc` <br>
