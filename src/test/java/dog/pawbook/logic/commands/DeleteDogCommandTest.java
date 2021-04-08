@@ -5,14 +5,16 @@ import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ID_FORMAT;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_OWNER_PREDICATE;
+import static dog.pawbook.testutil.TypicalEntities.ALICE;
+import static dog.pawbook.testutil.TypicalEntities.DANCING;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
+import static dog.pawbook.testutil.TypicalId.ID_EIGHTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_ONE;
 import static dog.pawbook.testutil.TypicalId.ID_TWO;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import java.util.HashSet;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,8 +24,8 @@ import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.UserPrefs;
 import dog.pawbook.model.managedentity.Entity;
-import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.program.Program;
 import javafx.util.Pair;
 
 /**
@@ -41,21 +43,16 @@ public class DeleteDogCommandTest {
 
     @Test
     public void execute_validIdUnfilteredList_success() {
-        Pair<Integer, Entity> pair = model.getUnfilteredEntityList().get(1);
-        int id = pair.getKey();
-        Entity entity = pair.getValue();
-        DeleteDogCommand deleteDogCommand = new DeleteDogCommand(id);
+        Entity entity = model.getEntity(ID_TWO);
+        DeleteDogCommand deleteDogCommand = new DeleteDogCommand(ID_TWO);
 
         String expectedMessage = DeleteDogCommand.MESSAGE_SUCCESS + entity;
 
         ModelManager expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
-        expectedModel.deleteEntity(pair.getKey());
-        int ownerId = ((Dog) pair.getValue()).getOwnerId();
-        Owner owner = (Owner) model.getEntity(ownerId);
-        HashSet<Integer> newDogIdSet = new HashSet<>(owner.getDogIdSet());
-        newDogIdSet.remove(id);
-        expectedModel.setEntity(ownerId, new Owner(owner.getName(), owner.getPhone(), owner.getEmail(),
-                owner.getAddress(), owner.getTags(), newDogIdSet));
+        expectedModel.deleteEntity(ID_TWO);
+        expectedModel.setEntity(ID_ONE,
+                new Owner(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(), ALICE.getAddress(), ALICE.getTags()));
+        expectedModel.setEntity(ID_EIGHTEEN, new Program(DANCING.getName(), DANCING.getSessions(), DANCING.getTags()));
 
         assertCommandSuccess(deleteDogCommand, model, expectedMessage, expectedModel);
     }
@@ -70,7 +67,7 @@ public class DeleteDogCommandTest {
 
     @Test
     public void execute_invalidIdUnfilteredList_throwsCommandException() {
-        List<Integer> indices = model.getFilteredEntityList().stream().map(Pair::getKey).sorted().collect(toList());
+        List<Integer> indices = model.getUnfilteredEntityList().stream().map(Pair::getKey).sorted().collect(toList());
         int outOfBoundId = indices.get(indices.size() - 1) + 1;
         DeleteDogCommand deleteDogCommand = new DeleteDogCommand(outOfBoundId);
 
@@ -81,21 +78,17 @@ public class DeleteDogCommandTest {
     public void execute_validIdFilteredList_success() {
         model.updateFilteredEntityList(IS_OWNER_PREDICATE);
 
-        Pair<Integer, Entity> pair = model.getUnfilteredEntityList().get(1);
-        int id = pair.getKey();
-        Entity entity = pair.getValue();
-        DeleteDogCommand deleteDogCommand = new DeleteDogCommand(id);
+        Entity entity = model.getEntity(ID_TWO);
+        DeleteDogCommand deleteDogCommand = new DeleteDogCommand(ID_TWO);
 
         String expectedMessage = DeleteDogCommand.MESSAGE_SUCCESS + entity;
+
         ModelManager expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         expectedModel.updateFilteredEntityList(IS_OWNER_PREDICATE);
-        expectedModel.deleteEntity(pair.getKey());
-        int ownerId = ((Dog) pair.getValue()).getOwnerId();
-        Owner owner = (Owner) model.getEntity(ownerId);
-        HashSet<Integer> newDogIdSet = new HashSet<>(owner.getDogIdSet());
-        newDogIdSet.remove(id);
-        expectedModel.setEntity(ownerId, new Owner(owner.getName(), owner.getPhone(), owner.getEmail(),
-                owner.getAddress(), owner.getTags(), newDogIdSet));
+        expectedModel.deleteEntity(ID_TWO);
+        expectedModel.setEntity(ID_ONE,
+                new Owner(ALICE.getName(), ALICE.getPhone(), ALICE.getEmail(), ALICE.getAddress(), ALICE.getTags()));
+        expectedModel.setEntity(ID_EIGHTEEN, new Program(DANCING.getName(), DANCING.getSessions(), DANCING.getTags()));
 
         assertCommandSuccess(deleteDogCommand, model, expectedMessage, expectedModel);
     }
