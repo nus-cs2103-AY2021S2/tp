@@ -334,7 +334,7 @@ The following sequence diagram shows how the operation `done 1` is carried out a
 
 ![Sequence Diagram of the Done Command](images/DoneCommandSeqDiagram.png)
 
-#### Design consideration 
+#### Design consideration
 * Aspect : Searching for available cheese(s) for the order.
     * Current choice : Searching for unassigned cheeses for the order is implemented in the `Model.Chim`.
         * Pros: no dependency between `Done` command and `Cheese`.
@@ -469,7 +469,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-#### Use case: Edit an Cheese
+#### Use case: Edit a Cheese
 
 **MSS**
 
@@ -708,12 +708,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-#### Use case: Clear all data 
+#### Use case: Clear all data
 
 **MSS**
 1. User enters the command to clear all data.
-2. CHIM clears customer , orders and cheese data and informs the user. 
-    
+2. CHIM clears customer , orders and cheese data and informs the user.
+
     Use case ends.
 
 #### Use case: Exit the application
