@@ -4,7 +4,6 @@ import static seedu.student.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.student.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_START_TIME;
-import static seedu.student.model.Model.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

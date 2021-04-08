@@ -66,8 +66,8 @@ public class Faculty {
      */
 
     public static Boolean isExist(String givenFaculty) {
-        for(FacultyAbbreviation facultyAbbreviation : FacultyAbbreviation.values()) {
-            if(givenFaculty.equals(facultyAbbreviation.name())) {
+        for (FacultyAbbreviation facultyAbbreviation : FacultyAbbreviation.values()) {
+            if (givenFaculty.equals(facultyAbbreviation.name())) {
                 return true;
             }
         }

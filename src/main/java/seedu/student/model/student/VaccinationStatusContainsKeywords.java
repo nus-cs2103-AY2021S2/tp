@@ -17,7 +17,7 @@ public class VaccinationStatusContainsKeywords implements Predicate<Student> {
         return keyword.equals((student.getVaccinationStatus().toString().toUpperCase()));
     }
 
-   @Override
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof VaccinationStatusContainsKeywords // instanceof handles nulls

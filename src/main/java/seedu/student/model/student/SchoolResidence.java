@@ -79,8 +79,8 @@ public class SchoolResidence {
      */
 
     public static Boolean isExist(String givenResidence) {
-        for(ResidenceAbbreviation residence : ResidenceAbbreviation.values()) {
-            if(givenResidence.equals(residence.name())) {
+        for (ResidenceAbbreviation residence : ResidenceAbbreviation.values()) {
+            if (givenResidence.equals(residence.name())) {
                 return true;
             }
         }

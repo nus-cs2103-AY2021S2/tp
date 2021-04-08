@@ -8,8 +8,12 @@ import java.util.function.Predicate;
 public class SchoolResidenceContainsKeywords implements Predicate<Student> {
     private final String keyword;
 
+    /**
+     * Create constructor for SchoolResidenceContainsKeyWords
+     */
+
     public SchoolResidenceContainsKeywords(String keywords) {
-        if(keywords.contains("DOES_NOT_LIVE_ON_CAMPUS")){
+        if (keywords.contains("DOES_NOT_LIVE_ON_CAMPUS")) {
             this.keyword = "DOES NOT LIVE ON CAMPUS";
         } else {
             this.keyword = keywords;

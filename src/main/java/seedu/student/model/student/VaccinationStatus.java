@@ -3,10 +3,6 @@ package seedu.student.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.student.commons.util.AppUtil.checkArgument;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
-
 public class VaccinationStatus {
 
     public enum VaccinationStatusAbbreviation {
@@ -62,8 +58,8 @@ public class VaccinationStatus {
      */
 
     public static Boolean isExist(String givenVaccinationStatus) {
-        for(VaccinationStatusAbbreviation statusAbbreviation : VaccinationStatus.VaccinationStatusAbbreviation.values()) {
-            if(givenVaccinationStatus.equals(statusAbbreviation.name())) {
+        for (VaccinationStatusAbbreviation statusAbbreviation : VaccinationStatusAbbreviation.values()) {
+            if (givenVaccinationStatus.equals(statusAbbreviation.name())) {
                 return true;
             }
         }
