@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHEDULE_DATE_T
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHEDULE_DATE_TIME_FROM_TWO;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
 import seedu.address.testutil.AppointmentBuilder;
@@ -13,8 +14,10 @@ import seedu.address.testutil.ScheduleBuilder;
 
 public class ScheduleDateViewPredicateTest {
 
-    AppointmentDateTime firstPredicateDateTime = new AppointmentDateTime(VALID_SCHEDULE_DATE_TIME_FROM_ONE);
-    AppointmentDateTime secondPredicateDateTime = new AppointmentDateTime(VALID_SCHEDULE_DATE_TIME_FROM_TWO);
+    private final AppointmentDateTime firstPredicateDateTime =
+            new AppointmentDateTime(VALID_SCHEDULE_DATE_TIME_FROM_ONE);
+    private final AppointmentDateTime secondPredicateDateTime =
+            new AppointmentDateTime(VALID_SCHEDULE_DATE_TIME_FROM_TWO);
 
     @Test
     public void equals() {

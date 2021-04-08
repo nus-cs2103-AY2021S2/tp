@@ -59,7 +59,8 @@ public class ScheduleListTest {
 
     @Test
     public void setSchedule_targetScheduleNotInList_throwsScheduleNotFoundException() {
-        assertThrows(ScheduleNotFoundException.class, () -> scheduleList.setSchedule(MATHS_HOMEWORK_SCHEDULE, MATHS_HOMEWORK_SCHEDULE));
+        assertThrows(ScheduleNotFoundException.class, () ->
+                scheduleList.setSchedule(MATHS_HOMEWORK_SCHEDULE, MATHS_HOMEWORK_SCHEDULE));
     }
 
     @Test
@@ -84,7 +85,8 @@ public class ScheduleListTest {
     public void setSchedule_duplicateScheduleList_throwsDuplicateScheduleException() {
         scheduleList.add(MATHS_HOMEWORK_SCHEDULE);
         scheduleList.add(SCIENCE_HOMEWORK_SCHEDULE);
-        assertThrows(DuplicateScheduleException.class, () -> scheduleList.setSchedule(MATHS_HOMEWORK_SCHEDULE, SCIENCE_HOMEWORK_SCHEDULE));
+        assertThrows(DuplicateScheduleException.class, () ->
+                scheduleList.setSchedule(MATHS_HOMEWORK_SCHEDULE, SCIENCE_HOMEWORK_SCHEDULE));
     }
 
     @Test
@@ -142,7 +144,7 @@ public class ScheduleListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-                -> scheduleList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+                scheduleList.asUnmodifiableObservableList().remove(0));
     }
 }
