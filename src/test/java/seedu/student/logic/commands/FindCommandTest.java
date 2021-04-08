@@ -3,7 +3,8 @@ package seedu.student.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.student.commons.core.Messages.MESSAGE_NONEXISTENT_MATRIC_NUM;
+import static seedu.student.commons.core.Messages.MESSAGE_NO_STUDENT_FOUND;
+import static seedu.student.commons.core.Messages.MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND;
 import static seedu.student.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.student.testutil.Assert.assertThrows;
 import static seedu.student.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FIFTH_STUDENT;
@@ -95,8 +96,8 @@ public class FindCommandTest {
                 prepareAppointmentPredicate("A0208976R");
         FindCommand command = new FindCommand(studentPredicate, appointmentListPredicate, appointmentPredicate);
 
-        assertThrows(MatriculationNumberDoesNotExistException.class,
-                MESSAGE_NONEXISTENT_MATRIC_NUM, () -> command.execute(modelWithNoAppointments));
+        assertThrows(MatriculationNumberDoesNotExistException.class, String.format(MESSAGE_NO_STUDENT_FOUND,
+                studentPredicate.getKeyword()), () -> command.execute(modelWithNoAppointments));
     }
 
     @Test
@@ -113,7 +114,7 @@ public class FindCommandTest {
         expectedModel.updateFilteredStudentList(studentPredicate);
         expectedModel.updateFilteredAppointmentList(appointmentListPredicate, appointmentPredicate);
 
-        assertCommandSuccess(command, modelWithNoAppointments, command.MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
+        assertCommandSuccess(command, modelWithNoAppointments, MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
                 expectedModel);
         assertEquals(Arrays.asList(student), modelWithNoAppointments.getFilteredStudentList());
     }
@@ -133,7 +134,7 @@ public class FindCommandTest {
 
         Student student = expectedModelWithAppointment.getStudent(new MatriculationNumber("A5678901F"));
         Appointment appointment = expectedModelWithAppointment.getAppointmentList().get(2);
-        assertCommandSuccess(command, modelWithAppointments, command.MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
+        assertCommandSuccess(command, modelWithAppointments, MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
                 expectedModelWithAppointment);
 
         assertEquals(Arrays.asList(student),
@@ -141,7 +142,6 @@ public class FindCommandTest {
         assertEquals(Arrays.asList(appointment),
                 expectedModelWithAppointment.getFilteredAppointmentList().get(0).getFilteredAppointmentList());
     }
-
 
     /**
      * Parses {@code userInput} into a {@code StudentContainsMatriculationNumberPredicate}.

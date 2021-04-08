@@ -21,9 +21,6 @@ public class FindCommand extends Command {
 
 
     public static final String COMMAND_WORD = "find";
-    public static final String MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND =
-            "A student with matriculation number %s \n is found Their appointment will also be listed ";
-    public static final String MESSAGE_NONEXISTENT_APPOINTMENT = "No appointment is found!";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds student and appointment whose "
             + "matriculation number matches the specified keywords (case-sensitive) and displays it.\n"
             + "Parameters: KEYWORD \n"
@@ -66,13 +63,14 @@ public class FindCommand extends Command {
             logger.info("Student with a matriculation number of " + predicate.getKeyword()
                     + "does not exist in VAX@NUS");
 
-            throw new MatriculationNumberDoesNotExistException(Messages.MESSAGE_NONEXISTENT_MATRIC_NUM);
+            throw new MatriculationNumberDoesNotExistException(String.format(Messages.MESSAGE_NO_STUDENT_FOUND,
+                    predicate.getKeyword()));
 
         } else if (filteredAppointmentListSize == 0) {
-            return new CommandResult(String.format(MESSAGE_NONEXISTENT_APPOINTMENT,
+            return new CommandResult(String.format(Messages.MESSAGE_NONEXISTENT_APPOINTMENT,
                     model.getFilteredStudentList().size()));
         } else {
-            return new CommandResult(String.format(MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
+            return new CommandResult(String.format(Messages.MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
                     predicate.getKeyword()));
         }
     }
