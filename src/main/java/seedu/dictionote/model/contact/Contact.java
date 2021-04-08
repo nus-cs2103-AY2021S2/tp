@@ -74,7 +74,7 @@ public class Contact {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have either the same phone or the same email address.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameContact(Contact otherContact) {
@@ -83,7 +83,7 @@ public class Contact {
         }
 
         return otherContact != null
-                && otherContact.getName().equals(getName());
+                && (otherContact.getPhone().equals(getPhone()) || otherContact.getEmail().equals(getEmail()));
     }
 
     /**
