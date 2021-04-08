@@ -348,6 +348,8 @@ public class ModelManager implements Model {
             return false;
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException("Plan or Semester index is invalid", e);
+        } catch (NullPointerException e) {
+            throw new CommandException("Plan or Semester index is invalid", e);
         }
     }
 
