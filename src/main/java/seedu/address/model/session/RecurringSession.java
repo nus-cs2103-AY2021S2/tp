@@ -100,7 +100,7 @@ public class RecurringSession extends Session {
     /**
      * Returns true if recurring session date starts after {@code SessionDate} date.
      */
-    private boolean startAfter(SessionDate sessionDate) {
+    protected boolean startAfter(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
         return getSessionDate().getDate().isAfter(sessionDate.getDate());
     }
@@ -124,7 +124,7 @@ public class RecurringSession extends Session {
      * @param sessionDate A valid sessionDate.
      * @return Session of Recurring Session on particular sessionDate.
      */
-    private Session buildSessionOnDate(SessionDate sessionDate) {
+    protected Session buildSessionOnDate(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
         assert(hasSessionOnDate(sessionDate));
         return new Session(sessionDate, getDuration(), getSubject(), getFee());
@@ -285,6 +285,5 @@ public class RecurringSession extends Session {
         return super.equals(other) // this is intended to extend the parent equals method.
                 && otherSession.getInterval().equals(otherSession.getInterval())
                 && otherSession.getLastSessionDate().equals(otherSession.getLastSessionDate());
-
     }
 }

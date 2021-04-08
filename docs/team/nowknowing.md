@@ -35,6 +35,9 @@ My code contribution can be found [here](https://nus-cs2103-ay2021s2.github.io/t
       when deleting one session of recurring session.)
       
       Some key methods to the recurring session class include:
+      - hasSessionOnDate, which checks if recurring session occurs on given date
+      - buildSessionOnDate, which returns a single, non-recurring session of the recurring session,
+        happening on a valid date
       - lastSessionOnOrBefore, which retrieves the session that would come before a given date.
       - numOfSessionsBetween, which returns the number of sessions that occurs between 2 given dates
       - isOverlapping, which checks if 2 recurring sessions overlap (the deployed method is done by Choon Wei)
