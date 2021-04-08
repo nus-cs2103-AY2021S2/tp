@@ -15,8 +15,8 @@ public class NextCommand extends Command {
     public static final String COMMAND_WORD = "next";
 
     public static final String MESSAGE_SUCCESS = "Here is the next question.\n"
-            + "Enter \"end\" to end the quiz, \"check\" to check the answer, "
-            + "or \"next\" to move on to the next question.";
+            + "Enter \"check\" to check the answer, "
+            + "\"next\" to move to the next question or \"end\" to return to menu.";
 
     public static final String MESSAGE_QUIZ_ENDED = "The Quiz is over! Your score has been recorded:\n";
 
@@ -41,9 +41,10 @@ public class NextCommand extends Command {
         if (model.getNextFlashcard() == null) {
             String quizStatistics = model.getQuizStatisticString() + "\n";
             model.addScore();
-            model.clearQuizInstance();
+            model.showAttemptedQuestions();
+            String correctAttempts = model.getCorrectAttemptsString() + "\n";
             model.switchModeQuizSessionEnded();
-            return new CommandResult(MESSAGE_QUIZ_ENDED + quizStatistics + MESSAGE_QUIZ_END_ACTIONS);
+            return new CommandResult(MESSAGE_QUIZ_ENDED + quizStatistics + correctAttempts);
         }
 
         model.switchModeQuizSession();

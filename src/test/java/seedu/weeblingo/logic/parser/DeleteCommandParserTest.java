@@ -14,15 +14,15 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.weeblingo.commons.core.index.Index;
-import seedu.weeblingo.logic.commands.DeleteCommand;
+import seedu.weeblingo.logic.commands.DeleteTagCommand;
 import seedu.weeblingo.model.tag.Tag;
 
 public class DeleteCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT = String.format(
-            MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
+            MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE);
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private DeleteTagCommandParser parser = new DeleteTagCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -65,13 +65,13 @@ public class DeleteCommandParserTest {
         twoTags.add(new Tag(VALID_TAG_DIFFICULT));
 
         //only index provided
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_FLASHCARD, emptyTag));
+        assertParseSuccess(parser, "1", new DeleteTagCommand(INDEX_FIRST_FLASHCARD, emptyTag));
 
         //exactly one tag provided
-        assertParseSuccess(parser, "1 t/easy", new DeleteCommand(INDEX_FIRST_FLASHCARD, oneTag));
+        assertParseSuccess(parser, "1 t/easy", new DeleteTagCommand(INDEX_FIRST_FLASHCARD, oneTag));
 
         //more than one tag provided
-        assertParseSuccess(parser, "1 t/easy t/difficult", new DeleteCommand(INDEX_FIRST_FLASHCARD, twoTags));
+        assertParseSuccess(parser, "1 t/easy t/difficult", new DeleteTagCommand(INDEX_FIRST_FLASHCARD, twoTags));
     }
 
 }

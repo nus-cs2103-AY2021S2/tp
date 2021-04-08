@@ -342,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 4b. User got the question correct.
 
     * 4b1. WeebLingo prompts user to proceed to the next question.
-      
+
       Use case resumes at step 5.
 
 **Use case: UC03 - See my past quiz attempts history**

@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.weeblingo.logic.commands.CheckCommand;
 import seedu.weeblingo.logic.commands.Command;
-import seedu.weeblingo.logic.commands.DeleteCommand;
+import seedu.weeblingo.logic.commands.DeleteTagCommand;
 import seedu.weeblingo.logic.commands.EndCommand;
 import seedu.weeblingo.logic.commands.ExitCommand;
 import seedu.weeblingo.logic.commands.HelpCommand;
@@ -74,8 +74,8 @@ public class WeeblingoParser {
         case TagCommand.COMMAND_WORD:
             return new TagCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteTagCommand.COMMAND_WORD:
+            return new DeleteTagCommandParser().parse(arguments);
 
         case ViewHistoryCommand.COMMAND_WORD:
             return new ViewHistoryCommand();
