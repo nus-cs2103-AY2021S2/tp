@@ -1,6 +1,5 @@
 package seedu.address.model.event;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -184,31 +183,5 @@ public class UniqueEventListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> uniqueEventList.asUnmodifiableObservableList()
                 .remove(0));
-    }
-
-    @Test
-    public void sortEvents_nullList_nothingThrown() {
-        assertDoesNotThrow(() ->
-                uniqueEventList.sort(EventComparator.getAcceptedVar().get(0)));
-    }
-
-    @Test
-    public void sortEvents_populatedList_allVariables() {
-        for (String comparingVar : EventComparator.getAcceptedVar()) {
-            EventComparator ec = new EventComparator();
-            ec.setComparingVar(comparingVar);
-
-            //build expected UniqueEventList
-            List<Event> originalEvents = TypicalEvents.getTypicalEvents();
-            Collections.sort(originalEvents, ec);
-            UniqueEventList expected = new UniqueEventList();
-            expected.setEvents(originalEvents);
-
-            //build actual UniqueEventList
-            UniqueEventList actual = repopulatedEventList();
-            actual.sort(comparingVar);
-
-            assertEquals(actual, expected);
-        }
     }
 }
