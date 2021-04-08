@@ -126,11 +126,6 @@ public class CheckCommandTest {
         }
 
         @Override
-        public void getCurrentFlashcard() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public int getCurrentIndex() {
             throw new AssertionError("This method should not be called.");
         }
@@ -237,10 +232,6 @@ public class CheckCommandTest {
     private class ModelStubCheckSuccessful extends ModelStub {
 
         @Override
-        public void getCurrentFlashcard() {
-        }
-
-        @Override
         public boolean isCorrectAttempt(Answer attempt) {
             return true;
         }
@@ -265,10 +256,6 @@ public class CheckCommandTest {
      * A Model stub that always checks and returns a wrong answer.
      */
     private class ModelStubCheckFailure extends ModelStub {
-
-        @Override
-        public void getCurrentFlashcard() {
-        }
 
         @Override
         public boolean isCorrectAttempt(Answer attempt) {
