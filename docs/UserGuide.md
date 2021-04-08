@@ -84,7 +84,7 @@ commands may receive.
 </div>
 
 #### **2.2.3 Types of User Input**
-In this section, you will learn about the commonly used User Inputs as well as the prefixes that precede them. These will be helpful when you are trying to specify the fields for certain commands.
+In this section, you will learn about the commonly used User Inputs as well as their accompanying prefixes. These will be helpful when you are trying to specify the fields for certain commands.
 <br><br>
 ##### `NAME`
 The name of the customer who has placed the order.<br>
@@ -128,10 +128,10 @@ Prefix: `d/`
   * `dd-MM-yyyy` E.g. `31-12-2021`
   * `dd.MM.yyyy` E.g. `01.12.2021`
   * `dd MMM yyyy` E.g. `31 Dec 2021`
-* When adding or editing an order using the commands, the `DELIVERY_DATE` should be a future date.<br>
+* When adding or editing an order using the commands, the `DELIVERY_DATE` should be today's date or a future date.<br>
   I.e. the date today or a date after today.
-* `DELIVERY_DATE` can be stored as a date in the past in the application. Orders with a `DELIVERY_DATE` before today's date will not be deleted.<br>
-  I.e. a few days after you entered an order with a valid `DELIVERY_DATE`, it might become a date before today.<br>
+* Orders with a `DELIVERY_DATE` before today's date will not be deleted.<br>
+  I.e. If you entered an order with a `DELIVERY_DATE` for tomorrow, the order will not be deleted even if you launch the application again in two days.<br>
 :information_source: You do not have to worry about losing track of overdue orders.<br>
 
 **:exclamation: For advanced users:** You will be able to enter a past delivery date into the save file `cakecollate.json`. As such, you are recommended to add/edit a delivery date through the application itself.
@@ -157,7 +157,6 @@ Prefix: `t/`
 * There is no specific usage for `TAG`.
   * Use it as a tag for the customer. E.g. `friend`, `fussy`, `important`
   * Use it as a tag for the order. E.g. `urgent`, `complicated`
-  * Etc...
 <br><br>
 ##### `REQUEST`
 The request or notes you can add to an order.<br>
