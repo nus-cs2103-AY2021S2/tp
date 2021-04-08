@@ -21,8 +21,7 @@ public class ParserUtil {
             + "1. Is a value lesser than 2,147,483,647 and greater than -2,147,483,648.\n"
             + "2. Only contains numeric characters, e.g. 0 - 9.";
     public static final String MESSAGE_NEGATIVE_OR_ZERO_IDENTIFIER = "Identifier should be non-zero and positive.";
-    public static final String MESSAGE_ADDITIONAL_ARTEFACTS = "Identifier contains more than one value. "
-            + "Please ensure your command matches with the guide: \n";
+    public static final String MESSAGE_ADDITIONAL_ARTEFACTS = "Please ensure your command matches with the guide: \n";
     public static final String MESSAGE_EMPTY_IDENTIFIER = "Identifier was not provided. "
             + "Please ensure your command matches with the guide: \n";
 
