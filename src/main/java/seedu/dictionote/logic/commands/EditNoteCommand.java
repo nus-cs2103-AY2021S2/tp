@@ -6,6 +6,7 @@ import static seedu.dictionote.commons.core.Messages.MESSAGE_COMMAND_DISABLE_ON_
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.dictionote.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
+import static seedu.dictionote.model.Model.PREDICATE_SHOW_ALL_NOTES;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -44,6 +45,8 @@ public class EditNoteCommand extends Command {
     public static final String MESSAGE_DUPLICATE_NOTE = "This note already exists in the note list.";
     public static final String MESSAGE_NOTHING_CHANGE_NOTE = "This note have not been changed.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_EMPTY_NOTE = "Content cannot be empty.";
+
 
     private final Index index;
     private final EditNoteDescriptor editNoteDescriptor;
@@ -75,18 +78,18 @@ public class EditNoteCommand extends Command {
         }
 
         Note noteToEdit = lastShownList.get(index.getZeroBased());
-        Note editedNote = createEditedNote(noteToEdit, editNoteDescriptor);
-
-        if (noteToEdit.isSameNote(editedNote)) {
-            throw new CommandException(MESSAGE_NOT_EDITED);
+        if(editNoteDescriptor.getNote().get().getNote().equals("")){
+            editNoteDescriptor.setNote(noteToEdit);
         }
 
+        Note editedNote = createEditedNote(noteToEdit, editNoteDescriptor);
+
         if (model.hasNote(editedNote)) {
-            throw new CommandException(MESSAGE_DUPLICATE_NOTE);
+            throw new CommandException(MESSAGE_NOTHING_CHANGE_NOTE);
         }
 
         model.setNote(noteToEdit, editedNote);
-        model.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+        model.updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
         return new CommandResult(String.format(MESSAGE_EDIT_NOTE_SUCCESS, editedNote),
             UiAction.OPEN, UiActionOption.NOTE_LIST);
     }
