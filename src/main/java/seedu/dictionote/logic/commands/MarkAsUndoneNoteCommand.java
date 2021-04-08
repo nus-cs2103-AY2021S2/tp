@@ -22,6 +22,8 @@ public class MarkAsUndoneNoteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_MARK_AS_UNDONE_NOTE_SUCCESS = "Mark as not done note: %1$s";
+    public static final String MESSAGE_COMMAND_ALREADY_UNDONE = "This note is not done yet. "
+            + "You can't mark it as undone.";
 
     private final Index targetIndex;
 
@@ -44,6 +46,11 @@ public class MarkAsUndoneNoteCommand extends Command {
         }
 
         Note noteToMarkAsUndone = lastShownList.get(targetIndex.getZeroBased());
+
+        if (!noteToMarkAsUndone.isDone()) {
+            throw new CommandException(MESSAGE_COMMAND_ALREADY_UNDONE);
+        }
+
         Note markAsUndoneNote = noteToMarkAsUndone.markAsUndoneNote(noteToMarkAsUndone.getNote(),
                 noteToMarkAsUndone.getTags(), noteToMarkAsUndone.getCreateTime());
 
