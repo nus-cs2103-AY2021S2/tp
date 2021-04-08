@@ -46,4 +46,32 @@ public class SortCommand extends Command {
         model.sortTasks(factor);
         return new CommandResult(messageSuccessByFactor);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SortCommand)) {
+            return false;
+        } else {
+            boolean isSortedByWorkload = this.factor instanceof Task.WorkloadComparator
+                && ((SortCommand) other).factor instanceof Task.WorkloadComparator;
+            boolean isSortedByDeadline = this.factor instanceof Task.DeadlineComparator
+                && ((SortCommand) other).factor instanceof Task.DeadlineComparator;
+            boolean isSortedByTaskName = this.factor instanceof Task.NameComparator
+                && ((SortCommand) other).factor instanceof Task.NameComparator;
+            boolean isSortedByModule = this.factor instanceof Task.ModuleComparator
+                && ((SortCommand) other).factor instanceof Task.ModuleComparator;
+            boolean isSortedByDescription = this.factor instanceof Task.DescriptionComparator
+                && ((SortCommand) other).factor instanceof Task.DescriptionComparator;
+            boolean isSortedByNumberOfTag = this.factor instanceof Task.TagComparator
+                && ((SortCommand) other).factor instanceof Task.TagComparator;
+            return isSortedByDeadline || isSortedByDescription || isSortedByModule || isSortedByNumberOfTag
+                || isSortedByTaskName || isSortedByWorkload;
+        }
+    }
 }

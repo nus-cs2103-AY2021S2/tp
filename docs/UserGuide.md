@@ -432,7 +432,7 @@ Application: Used to group and prioritise tasks based on a certain criteria.
 Format:  `sort` or `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` 
 
 *  `sort n/` Sorts the tasks by name alphabetically in ascending order.
-*  `sort d/` Sorts the tasks by description alphabetically in ascending order.
+*  `sort d/` Sorts the tasks by the length of description in descending order.
 *  `sort w/` Sorts the tasks by workload in descending order.
 *  `sort` or `sort b/` Sorts the tasks by deadline so that the the task with closer the deadline in the list, the higher the task.
 *  `sort m/` Sorts the tasks by module code alphabetically in descending order.
