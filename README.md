@@ -123,6 +123,7 @@
     2. `NUMBER_OF_DAYS` & `NUMBER_OF_WEEKS` must be a positive integer.
     3. If both `day/` & `week/` are given, an error will be thrown.
     4. Tasks shown are tasks with deadlines starting from today's date.
+    5. The limit for dueIn is until 31-12-2099.
     
     
     
