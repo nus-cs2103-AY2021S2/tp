@@ -95,7 +95,7 @@ Example: `editcustomer 4 n/Jane Lim p/65558888`
 
 Deletes a customer from the list of customers, using their phone number as an identifier.
 
-If the customer has orders, their orders will be deleted by CHIM.
+If the customer has orders, their orders will be deleted by CHIM. Any cheeses assigned to those orders will also be deleted.
 
 Format: `deletecustomer p/PHONE_NUMBER`
 
@@ -144,7 +144,7 @@ Examples:
 
 Edits an existing unassigned cheese in CHIM.
 
-Format: `editcheese INDEX [t/CHEESE_TYPE] [d/MANUFACTURE_DATE] [d/EXPIRY_DATE]`
+Format: `editcheese INDEX [t/CHEESE_TYPE] [d/MANUFACTURE_DATE] [e/EXPIRY_DATE]`
 * At least one of the optional fields must be provided to edit a cheese.
 * The specified `INDEX` must be a positive integer.
 * All dates must be given in these formats: `DD/MM/YYYY` or `YYYY-MM-DD` or `MMM DD YYYY`.
@@ -303,8 +303,8 @@ Action | Format, Examples
 **Delete Customer**| `deletecustomer p/PHONE_NUMBER` <br> e.g. `deletecustomer p/61234567`
 **Find Customer** | `findcustomer [n/NAME_KEYWORDS…] [p/PHONE_KEYWORDS…] [e/EMAIL_KEYWORDS…] [a/ADDRESS_KEYWORDS…]` <br> e.g. `findcustomer n/char p/9321`
 **List Cheeses** | `listcheeses`
-**Add Cheese** | `addcheese t/CHEESE_TYPE q/QUANTITY [d/MANUFACTURE_DATE] [d/EXPIRY_DATE]` <br> e.g. `addcheese t/gouda q/1 m/2021-05-01 e/2025-12-31`
-**Edit Cheese** | `editcheese INDEX [t/CHEESE_TYPE] [d/MANUFACTURE_DATE] [d/EXPIRY_DATE]` <br> e.g. `editcheese 1 t/Parmesan d/2021-03-12`
+**Add Cheese** | `addcheese t/CHEESE_TYPE q/QUANTITY [d/MANUFACTURE_DATE] [e/EXPIRY_DATE]` <br> e.g. `addcheese t/gouda q/1 d/2021-05-01 e/2025-12-31`
+**Edit Cheese** | `editcheese INDEX [t/CHEESE_TYPE] [d/MANUFACTURE_DATE] [e/EXPIRY_DATE]` <br> e.g. `editcheese 1 t/Parmesan d/2021-03-12`
 **Delete Cheese** | `deletecheese CHEESE_INDEX` <br> e.g. `deletecheese 5`
 **Find Cheese** | `findcheese [t/CHEESE_TYPE_KEYWORDS…] [s/ASSIGNMENT_STATUS]` <br> e.g. `findcheese t/Brie Feta s/unassigned`
 **List Orders** | `listorders`
