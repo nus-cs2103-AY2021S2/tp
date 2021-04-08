@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_KEYWORD_SUPPLIED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
@@ -11,6 +12,8 @@ import java.util.List;
 
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.School;
 import seedu.address.model.person.predicate.NameSchoolAndSubjectContainsKeywordsPredicate;
 import seedu.address.model.subject.Subject;
 
@@ -47,6 +50,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             nameKeywords = extractKeywordsAsArray(argMultimap, PREFIX_NAME);
+
         }
         if (argMultimap.getValue(PREFIX_SCHOOL).isPresent()) {
             schoolKeywords = extractKeywordsAsArray(argMultimap, PREFIX_SCHOOL);
@@ -75,26 +79,57 @@ public class SearchCommandParser implements Parser<SearchCommand> {
      * @param argMultimap ArgumentMultimap that maps the keywords to the prefixes
      * @param prefix The prefix for which the keywords it is mapped to is to be extracted
      * @return An array of keywords
-     * @throws ParseException if there is no keyword following the prefix
+     * @throws ParseException if there is no keyword following the prefix or the keyword is invalid
      */
     public String[] extractKeywordsAsArray(ArgumentMultimap argMultimap, Prefix prefix) throws ParseException {
         String keywords = "";
+        String prefixType = "";
 
         if (prefix.equals(PREFIX_NAME)) {
             keywords = argMultimap.getValue(PREFIX_NAME).get();
+            prefixType = "name";
         } else if (prefix.equals(PREFIX_SCHOOL)) {
             keywords = argMultimap.getValue(PREFIX_SCHOOL).get();
+            prefixType = "school";
         } else if (prefix.equals(PREFIX_SUBJECT)) {
             keywords = argMultimap.getValue(PREFIX_SUBJECT).get();
+            prefixType = "subject";
         }
 
         requireNonNull(keywords);
-        String trimmedName = keywords.trim();
-        if (trimmedName.isEmpty()) {
+        String trimmedKeyword = keywords.trim();
+        if (trimmedKeyword.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
-        return trimmedName.split("\\s+");
+
+        switch (prefixType) {
+        case "name":
+            if (!Name.isValidName(trimmedKeyword)) {
+                throw new ParseException(
+                    String.format(MESSAGE_INVALID_KEYWORD_SUPPLIED, Name.MESSAGE_CONSTRAINTS));
+            }
+            break;
+        case "school":
+            if (!School.isValidSchool(trimmedKeyword)) {
+                throw new ParseException(
+                    String.format(MESSAGE_INVALID_KEYWORD_SUPPLIED, School.MESSAGE_CONSTRAINTS));
+            }
+            break;
+        case "subject":
+            String[] test = trimmedKeyword.split("\\s+");
+            for (int i = 0; i < test.length; i++) {
+                if (!Subject.isValidSubjectName(test[i])) {
+                    throw new ParseException(
+                        String.format(MESSAGE_INVALID_KEYWORD_SUPPLIED, Subject.MESSAGE_CONSTRAINTS));
+                }
+            }
+            break;
+        default:
+            break;
+        }
+
+        return trimmedKeyword.split("\\s+");
     }
 
 }
