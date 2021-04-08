@@ -36,13 +36,12 @@ on ModuleBook3.5.
 1. At the top of the display is a toolbar to either exit the app (under `File`) 
    or access this user guide (under `Help`).
    
-1. Below the toolbar is a command line to key in any of the below commands. 
+2. Below the toolbar is a command line to key in any of the below commands. 
    The result is displayed in a box underneath this command line.
    
-1. A list of modules for which tasks are available is also shown.
+3. A list of modules for which tasks are available is also shown.
     1. For each module, the number of tasks across each workload rating is displayed.
     1. The distribution of workload across all modules is calculated and displayed on a pie chart.
-    
 <div markdown="span" class="alert alert-warning">:exclamation: **Alert:**
 Within the workload pie chart, each module's colour may change as a command is executed. 
 However, the colours will be arranged such that no two modules with the same colour will be next to each other.
@@ -58,19 +57,18 @@ Color | Time to deadline
 **Yellow** | Between 1 to 3 days
 **Orange** | Less than 1 day      
 **Purple** | Expired
-   
+
 5. The pie chart is used to show workload distribution.
    1. The color of pie chart is randomly assigned.
    2. The workload of each module is counted using the tasks of such module inclunding those that are already done and those that are not finished yet.
     
-1. You can rate a task's expected workload using the following mapping:
-   
+6. You can rate a task's expected workload using the following mapping:
+
 Input Parameter | Workload Rating
 --------|------------------
 **w/1** | Low
 **w/2** | Medium
 **w/3** | High
-
 E.g. for a low workload rating, key in `w/1`.
    
 7. The following module codes are supported:
@@ -104,6 +102,12 @@ ST2131 | Probability
     
 If your module code does not appear in the above table, 
 you may use a substitute module code based on the subject description.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:**
+First time using the app? Or want to refresh your handling of the app? Simply look out for these boxes.<br>
+
+Commands for this tutorial are arranged in the sequential order of this User Guide and are accompanied by screenshots.
+</div>
   
 <div style="page-break-after: always;"></div>
 
@@ -227,6 +231,21 @@ All commands are ordered in a sequential manner. Do give them a try!
 
 --------------------------------------------------------------------------------------------------------------------
 
+### Delete all tasks: `clear`
+
+Deletes all tasks from the module book.
+
+Application: Used to clear out module book after a school term ends.
+
+Format: `clear`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:**
+For this tutorial, let's start by clearing out any existing tasks. Type:<br>
+`clear` in the command line and press `ENTER` on your keyboard.
+</div>
+
+<img src="images/clearCommand.png" width="700">
+
 ### Add a task: `add`
 
 Adds a task to ModuleBook3.5. All newly added tasks are not done by default.
@@ -241,8 +260,12 @@ Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORK
 
 * Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm set to 00:00)
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
-`add n/Mix Green And Pink m/CS2101 d/Create the forbidden colour combination w/1 b/2021-04-15`
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:**
+Now, key in the following commands in this order:<br>
+1. `add n/Do tP team tasks m/CS2103T d/Finish the team tasks for v1.4 w/3 a/2021-04-01 b/2021-04-11`
+1. `add n/Participate in class m/CS2105 d/Contribute to discussions w/2 b/2021-04-15 r/weekly t/Participation`
+1. `add n/PAQ m/IS1103 d/Answer quiz questions on ethics w/1 b/2021-04-09`
+1. `add n/Mix Green And Pink m/CS2101 d/Create the forbidden colour combination w/1 b/2021-04-15`
 </div>
 
 <img src="images/addCommand.png" width="700">
@@ -267,7 +290,6 @@ Format: `done INDEX`
 `done 2`
 </div>
 
-
 <img src="images/doneCommand.png" width="700">
 
 Other Examples:
@@ -287,8 +309,9 @@ Format: `notdone INDEX`
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Tutorial Example:<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `notdone 2`
+</div>
 
 <img src="images/notdoneCommand.png" width="700">
 
@@ -308,9 +331,10 @@ Format: `tag INDEX t/TAG [t/MORETAGS]...​`
 * Attaches one or more tags to the task associated with INDEX. Tags can be used to identify related tasks.
 * If only `/t` is provided without preceding value, no tag will be added but MB3.5 will show you the existing tags
 associated to the task you tried to tag.
-  
-Tutorial Example:<br>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `tag 3 t/Ethics t/Quiz`
+</div>
 
 <img src="images/tagCommand.png" width="700">
 
@@ -330,8 +354,9 @@ Format: `find KEYWORD`
 * Searches through ModuleBook3.5 for tasks whose names contain `KEYWORD`.
 * You may key in multiple keywords. ModuleBook3.5 will list down all tasks that contains any of the given keyword.
 
-Tutorial Example:<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `find Green`
+</div>
 
 <img src="images/findCommand.png" width="700">
 
@@ -342,6 +367,10 @@ Shows a list of all tasks you have added.
 Application: Used to display all tasks if you previously entered a command meant to show only certain tasks like `find`.
 
 Format: `list`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
+`list`
+</div>
 
 <img src="images/listCommand.png" width="700">
 
@@ -358,8 +387,9 @@ Format: `findTag KEYWORD`
 * Only allows one tag as input. The rest will be ignored.
 * Tag provided must be alphanumerical.
 
-Tutorial Example:<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `findTag Ethics`
+</div>
 
 <img src="images/findTagCommand.png" width="700">
 
@@ -374,8 +404,9 @@ Format: `mod MODULE`
 
 * Searches through ModuleBook3.5 for tasks which belong to `MODULE`.
 
-Tutorial Example:<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `mod CS2103T`
+</div>
 
 <img src="images/findModuleCommand.png" width="700">
 
@@ -396,9 +427,10 @@ Format: `deleteTag INDEX t/TAG`
   The index refers to the index number shown in the displayed task list. 
   The index must be a positive integer 1, 2, 3, …​
 
-Tutorial Example:
-* `list` (You need to key this in first to see all tasks)
-* `deleteTag 3 t/Quiz`
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
+1. `list` (You need to key this in first to see all tasks)
+1. `deleteTag 3 t/Quiz`
+</div>
 
 <img src="images/deleteTagCommand.png" width="700">
 
@@ -419,8 +451,9 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 * Editing tags through the `edit` command overrides all existing tags. 
   If you wish to add or delete only certain tags, use `tag` and `deleteTag` commands instead.
 
-Tutorial Example:<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `edit 1 n/Refactor tP code d/Make the code look neater b/2021-04-09`
+</div>
 
 <img src="images/editCommand.png" width="700">
 
@@ -447,8 +480,9 @@ Format:  `sort` or `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/`
 *  `sort m/` Sorts the tasks by module code alphabetically in descending order.
 *  `sort t/` Sorts the tasks by number of tags in descending order.
 
-Tutorial Example:<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `sort n/`
+</div>
 
 <img src="images/sortCommand.png" width="700">
 
@@ -468,9 +502,10 @@ Format: `recur INDEX r/RECURRENCE`
 * `RECURRENCE` can only be `daily`, `weekly` or `biweekly` if a task needs to be recurred.
 * `RECURRENCE` should be left empty if the recurrence of a task needs to be removed.
    The prefix `r/` must still be used.
-
-Tutorial Example:<br>
+  
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `recur 1 r/weekly`
+</div>
 
 <img src="images/recurCommand.png" width="700">
 
@@ -488,9 +523,10 @@ Application: Used to update deadlines based on recurrences. Also done automatica
 
 Format: `refresh`
 
-Tutorial Example:
-* `edit 1 b/2021-04-08` (Let's set this task to have a deadline that is past)
-* `refresh` 
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
+1. `edit 1 b/2021-04-08` (Let's set this task to have a deadline that is past)
+1. `refresh` 
+</div>
 
 <img src="images/refreshCommand.png" width="700">
 
@@ -508,24 +544,15 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Tutorial Example:<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `delete 2`
+</div>
 
 <img src="images/deleteCommand.png" width="700">
 
 Other Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the ModuleBook3.5.
 * `find CS2103T` followed by `delete 1` deletes the 1st task in the results of the `find` command.
-
-### Delete all tasks: `clear`
-
-Deletes all tasks from the module book.
-
-Application: Used to clear out module book after a school term ends.
-
-Format: `clear`
-
-<img src="images/clearCommand.png" width="700">
 
 ### Close app: `exit`
 
