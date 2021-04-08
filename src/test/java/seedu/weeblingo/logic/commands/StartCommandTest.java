@@ -3,9 +3,10 @@ package seedu.weeblingo.logic.commands;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_GENERIC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAGS_SET_GENERIC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.assertCommandFailure;
-//import static seedu.weeblingo.logic.commands.StartCommand.MESSAGE_SUCCESS;
+//import static seedu.weeblingo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.weeblingo.logic.commands.StartCommand.MESSAGE_IN_QUIZ_SESSION;
 import static seedu.weeblingo.logic.commands.StartCommand.MESSAGE_NOT_IN_QUIZ_MODE;
+//import static seedu.weeblingo.logic.commands.StartCommand.MESSAGE_SUCCESS;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,7 @@ public class StartCommandTest {
 
     //@Test
     //public void execute_startInQuiz_success() throws CommandException {
-    //    model.switchModeQuiz();
+    //    model.getMode().switchModeQuiz();
     //    CommandResult expectedCommandResult = new CommandResult(
     //            MESSAGE_SUCCESS, false, false);
     //    assertCommandSuccess(new StartCommand(VALID_START_INTEGER_GENERIC, VALID_START_TAGS_SET_GENERIC),
