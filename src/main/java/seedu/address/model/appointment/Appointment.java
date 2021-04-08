@@ -78,7 +78,8 @@ public class Appointment implements Comparable<Appointment> {
         }
 
         return otherAppointment != null
-                && otherAppointment.getName().equals(getName());
+                && (otherAppointment.getName().equals(getName())
+                    && otherAppointment.getDateTime().equals(getDateTime()));
     }
 
     /**
