@@ -1,7 +1,7 @@
 package seedu.iscam.logic.commands;
 
-import static seedu.iscam.logic.commands.CommandTestUtil.assertMeetingCommandFailure;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.iscam.logic.commands.CommandTestUtil.assertMeetingCommandFailure;
 import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
 import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
 
