@@ -19,18 +19,19 @@ Given below are my contributions to the project.
 * **Enhancement to Existing Feature**: Added the ability to find clothings based on various attributes
   * What it does: allows the user to input various types of attributes, and filters out the clothing based on his input
   * Justification: This feature improves the product significantly because a user would require to easily find his
-    clothing based on the various attributes, to view them, know where he placed them or even to know whether he has
+    clothing based on the various attributes, to view them, know where he placed them, or even to know whether he has
     a particular clothing.
   * Highlights: This enhancement affects some of our new features, such as the match feature which relies heavily on the
     find feature, and potentially new features as well. It required an in-depth analysis of design alternatives. 
-    The implementation too was challenging as it required changes to the existing find command, manipulating the input 
-    to a suitable format in order to give the correct output to the user. <br><br>
+    The implementation too was challenging as it required changes to the existing find command, taking in 
+    multiple different attributes of a garment, manipulating the input to a suitable format, and then making use of
+    this format to give the correct output to the user. <br><br>
     
 * **Enhancements to existing features**:
   * Updated the Model from being Person to a Garment.
   * Updated the attributes, such as Phone Number, of the Person to fit the attributes of a Garment, such as Size.
   * Added new parent and subclasses of predicates, which allows the find and match features to find the right 
-    garments to output to the user.
+    garments to output.
   * Wrote additional tests for existing features to increase test coverage.
 
 * **Documentation**:
