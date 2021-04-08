@@ -45,7 +45,6 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String SUBJECT_LIST_INVALID_LENGTH = "Each Tutor Subject must have all fields defined.";
     public static final String MESSAGE_INVALID_DATE = "Date should be in YYYY-MM-DD format.";
-    public static final String MESSAGE_INVALID_TIME = "Tune should be in HH:MM AM/PM format";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -434,30 +433,6 @@ public class ParserUtil {
             throw new ParseException(ReminderDate.MESSAGE_CONSTRAINTS);
         }
         return new ReminderDate(trimmedDate);
-    }
-
-    /**
-     * Parses a {@code String time} into a {@code LocalTime}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code time} is invalid.
-     */
-    public static LocalTime parseLocalTime(String time) throws ParseException {
-        requireNonNull(time);
-        String trimmedTime = time.trim().toUpperCase();
-        LocalTime timeObject;
-        try {
-            timeObject = LocalTime.parse(trimmedTime, DateTimeFormatter.ofPattern("h:m[ ]a"));
-        } catch (DateTimeParseException e) {
-            throw new ParseException(MESSAGE_INVALID_TIME);
-        }
-
-        int minutes = timeObject.getMinute();
-        if (minutes != 0 && minutes != 30) {
-            throw new ParseException(MESSAGE_INVALID_TIME_MINUTES);
-        }
-
-        return timeObject;
     }
 
     /**
