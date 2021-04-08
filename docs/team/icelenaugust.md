@@ -37,7 +37,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation for `free_time`, `summary`, `clear` features (Pull requests [\#229](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/229))
-    * Crafted user stories (Pull requests [\#337](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/337))
+    * Crafted user stories (Pull requests [\#339](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/339))
   * Developer Guide:
     * Added implementation details of the `free_time`, `summary`, `delete_task`, `clear` features (Pull requests [\#212](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/212), [\#214](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/214))
     * Updated implementation details of `UI` component (Pull requests [\#183](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/183))
