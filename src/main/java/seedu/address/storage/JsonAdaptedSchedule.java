@@ -2,15 +2,11 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.common.Description;
 import seedu.address.model.common.Title;
 import seedu.address.model.schedule.Schedule;
-import seedu.address.model.tutor.Address;
-import seedu.address.model.tutor.Name;
-
 
 public class JsonAdaptedSchedule {
 
@@ -19,7 +15,7 @@ public class JsonAdaptedSchedule {
     private final String description;
     private final String timeFrom;
     private final String timeTo;
-    private String title;
+    private final String title;
 
     /**
      * Primary Constructor to create Json Adapted Schedule
@@ -57,7 +53,7 @@ public class JsonAdaptedSchedule {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
         if (!Title.isValidTitle(title)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
         }
         final Title modelTitle = new Title(title);
 
@@ -66,7 +62,7 @@ public class JsonAdaptedSchedule {
                     Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(description)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
         final Description modelDescription = new Description(description);
 
