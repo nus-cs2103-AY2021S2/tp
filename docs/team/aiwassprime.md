@@ -6,7 +6,7 @@ title: T13-2 ModuleBook Level 3.5
 ## Project: ModuleBook Level 3.5
 
 ModuleBook - Level 3.5 is a desktop module book application used for keeping track of tasks for various NUS modules
-in an Easy, Simple and Straightforward manner. 
+in an *Easy, Simple and Straightforward* manner. 
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
