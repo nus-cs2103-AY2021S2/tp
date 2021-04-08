@@ -1,5 +1,10 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE_DESCRIPTION_CEDAR_EXAM;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE_DESCRIPTION_RAFFLES_EXAM;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE_DETAILS_CEDAR_EXAM;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE_DETAILS_RAFFLES_EXAM;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,6 +26,15 @@ public class TypicalDates {
             .withDescription("O-Levels additional mathematics paper 1")
             .withDetails("2021-11-01 1500")
             .build();
+
+    // Manually added - Important Date's information found in {@code CommandTestUtil}
+    public static final ImportantDate CEDAR_EXAM =
+        new ImportantDateBuilder().withDescription(VALID_IMPORTANT_DATE_DESCRIPTION_CEDAR_EXAM)
+        .withDetails(VALID_IMPORTANT_DATE_DETAILS_CEDAR_EXAM).build();
+
+    public static final ImportantDate RAFFLES_EXAM =
+        new ImportantDateBuilder().withDescription(VALID_IMPORTANT_DATE_DESCRIPTION_RAFFLES_EXAM)
+            .withDetails(VALID_IMPORTANT_DATE_DETAILS_RAFFLES_EXAM).build();
 
     private TypicalDates() {} // prevents instantiation
 

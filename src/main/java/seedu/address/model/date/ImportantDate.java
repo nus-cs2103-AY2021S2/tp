@@ -9,7 +9,6 @@ public class ImportantDate implements Comparable<ImportantDate> {
     private final Description description;
     private final Details details;
 
-
     /**
      * Constructs a {@code ImportantDate}.
      *
