@@ -30,4 +30,9 @@ public class FindTagCommandParserTest {
         assertParseSuccess(parser, " \n sell \n  \t", expectedFindCommand);
     }
 
+    @Test
+    public void parse_invalidArgs_throwsParseException() {
+        assertParseFailure(parser, "$%&*",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTagCommand.MESSAGE_USAGE));
+    }
 }

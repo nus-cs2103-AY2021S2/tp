@@ -38,13 +38,14 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/figo2127.png" width="200px">
 
 [[github](http://github.com/figo2127)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/figo2127.md)]
 
 * Role: Developer, QA Engineer
 * Responsibilities:
     * Developer for ModuleBook3.5
     * Model Component Checker
     * QA Checker
+    * Project Management
 
 ### Wang Yuanzhe
 
