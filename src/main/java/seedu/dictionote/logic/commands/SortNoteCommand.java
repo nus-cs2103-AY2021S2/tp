@@ -32,7 +32,6 @@ public class SortNoteCommand extends Command {
         }
 
         model.sortNote();
-        model.updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
         return new CommandResult(MESSAGE_SORT_NOTE_SUCCESS, UiAction.OPEN, UiActionOption.NOTE_LIST);
     }
 
