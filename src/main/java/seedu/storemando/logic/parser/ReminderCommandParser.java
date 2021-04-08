@@ -15,6 +15,7 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
     public static final String WEEK_KEYWORD = "week";
     public static final String DAYS_KEYWORD = "days";
     public static final String WEEKS_KEYWORD = "weeks";
+    public static final String NUMBER_VALIDATION_REGEX = "^(\\+|-)?\\d+$";
 
     /**
      * Parses the given {@code String} of arguments in the context of the ReminderCommand
@@ -31,12 +32,21 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
             }
 
             String[] wordsInTrimmedArgs = trimmedArgs.replaceAll("\\s{2,}", " ").split(" ");
+            if (!isNumber(wordsInTrimmedArgs[0])) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
+            }
+
             long parsedNum = Long.parseLong(wordsInTrimmedArgs[0]);
+            if (parsedNum > 365 || parsedNum < -365) {
+                throw new ParseException(ReminderCommand.MESSAGE_INCORRECT_INTEGER);
+            }
             String timeUnit = wordsInTrimmedArgs[1];
             long numOfDaysFromToday = timeConversion(parsedNum, timeUnit);
             return new ReminderCommand(new ItemExpiringPredicate(numOfDaysFromToday));
-        } catch (ArrayIndexOutOfBoundsException | NumberFormatException ex) {
+        } catch (ArrayIndexOutOfBoundsException ex) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
+        } catch (NumberFormatException ex) {
+            throw new ParseException(ReminderCommand.MESSAGE_INCORRECT_INTEGER);
         }
     }
 
@@ -100,5 +110,14 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
         }
+    }
+
+    /**
+     * Checks if the input provided is an integer
+     * @param input The potential number provided by the user
+     * @return true if the input is an integer
+     */
+    private boolean isNumber(String input) {
+        return input.matches(NUMBER_VALIDATION_REGEX);
     }
 }
