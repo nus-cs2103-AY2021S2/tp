@@ -27,11 +27,11 @@ import seedu.address.logic.parser.CliSyntax;
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
-    public static final String USERGUIDE_URL = "https://github.com/AY2021S2-CS2103-T16-3/"
-                                             + "tp/blob/master/docs/UserGuide.md";
+    public static final String USERGUIDE_URL = "https://ay2021s2-cs2103-t16-3.github.io/tp/UserGuide.html";
 
     public static final String ADD_PROMPT = AddCommand.getCommandWord()
-                                          + " - Adds a residence into ResidenceTracker."
+                                          + " - Adds a residence into ResidenceTracker. If a parameter is specified "
+                                          + "multiple times, only the last occurrence will be taken."
                                           + "\nEnter \"" + AddCommand.getCommandWord()
                                           + " " + CliSyntax.PREFIX_NAME + "NAME_OF_RESIDENCE "
                                           + CliSyntax.PREFIX_RESIDENCE_ADDRESS + "ADDRESS "
@@ -45,15 +45,16 @@ public class HelpWindow extends UiPart<Stage> {
                                           + CliSyntax.PREFIX_TAG + "Reserved\n\n";
 
     public static final String ADDB_PROMPT = AddBookingCommand.getCommandWord()
-                                           + " - Adds a booking to a residence."
+                                           + " - Adds a booking to a residence. If a parameter is specified "
+                                           + "multiple times, only the last occurrence will be taken."
                                            + "\nEnter \""
-                                           + AddBookingCommand.getCommandWord() + " "
+                                           + AddBookingCommand.getCommandWord() + " RESIDENCE_INDEX "
                                            + CliSyntax.PREFIX_NAME + "NAME_OF_BOOKER "
                                            + CliSyntax.PREFIX_PHONE + "PHONE_OF_BOOKER "
                                            + CliSyntax.PREFIX_BOOKING_START_DATE + "START_TIME "
                                            + CliSyntax.PREFIX_BOOKING_END_DATE + "END_TIME\""
                                            + "\nExample: " + AddBookingCommand.getCommandWord()
-                                           + " " + CliSyntax.PREFIX_NAME + "John "
+                                           + " 1 " + CliSyntax.PREFIX_NAME + "John "
                                            + CliSyntax.PREFIX_PHONE + "91234567 "
                                            + CliSyntax.PREFIX_BOOKING_START_DATE + "01-01-2021 "
                                            + CliSyntax.PREFIX_BOOKING_END_DATE + "02-01-2021\n\n";
@@ -63,20 +64,20 @@ public class HelpWindow extends UiPart<Stage> {
                                             + "\nEnter \"" + ClearCommand.getCommandWord() + "\"\n\n";
 
     public static final String DELETE_PROMPT = DeleteCommand.getCommandWord()
-                                             + " - Deletes the specified residence from the list of residences."
+                                             + " - Deletes the specified residence from the list of residences "
                                              + "based on index."
                                              + "\nEnter \"" + DeleteCommand.getCommandWord() + "INDEX\""
-                                             + "\nExample: " + DeleteBookingCommand.getCommandWord() + " 3\n\n";
+                                             + "\nExample: " + DeleteCommand.getCommandWord() + " 3\n\n";
 
     public static final String DELETEB_PROMPT = DeleteBookingCommand.getCommandWord()
-                                              + " - Deletes the specified booking from the specified residence."
+                                              + " - Deletes the specified booking from the specified residence "
                                               + "based on index."
                                               + "\nEnter \"" + DeleteBookingCommand.getCommandWord()
                                               + " " + CliSyntax.PREFIX_RESIDENCE + "RESIDENCE_INDEX "
                                               + CliSyntax.PREFIX_BOOKING + "BOOKING_INDEX\""
                                               + "\nExample: " + DeleteBookingCommand.getCommandWord()
                                               + " " + CliSyntax.PREFIX_RESIDENCE + "3 "
-                                              + CliSyntax.PREFIX_RESIDENCE + "2\n\n";
+                                              + CliSyntax.PREFIX_BOOKING + "2\n\n";
 
     public static final String EDIT_PROMPT = EditCommand.getCommandWord()
                                            + " - Edits fields of an existing residence (other than bookings)."
@@ -143,7 +144,7 @@ public class HelpWindow extends UiPart<Stage> {
                                             + REMIND_PROMPT
                                             + EXIT_PROMPT;
 
-    public static final String URL_MESSAGE = "For more info, refer to the user guide: " + USERGUIDE_URL;
+    public static final String URL_MESSAGE = "For more info, refer to user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
