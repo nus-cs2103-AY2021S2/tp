@@ -22,14 +22,11 @@ public class ToggleDoneAssignmentCommand extends Command {
 
     public static final String MESSAGE_DONE_TOGGLE_SUCCESS = "Assignment updated done status: %1$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": toggles the done status of the assignment identified by the index in AssignmentList of the module\n"
-            + "Parameters: Index (must be a int value)\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103T"
-            + PREFIX_ASSIGNMENT + "1";
+    public static final String MESSAGE_USAGE =
+            "Command: " + COMMAND_WORD + "\n"
+            + "Assignment: add m/TITLE a/INDEX";
 
-    public static final String MESSAGE_EMPTY_ASSIGNMENTLIST = "Assignment List is empty";
+    public static final String MESSAGE_EMPTY_ASSIGNMENTLIST = "Assignment list is empty";
 
     private final Title moduleTitle;
 
