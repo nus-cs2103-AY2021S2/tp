@@ -132,30 +132,42 @@ command:
 
 
 ### View Feature
-View: Allows the user to view a specified entry in a new window, allowing the user to carefully look through
-all the details of an entry. This feature is mainly used to read lengthy food reviews which cannot be shown on the Main UI window. - `view`
-
-The view feature is facilitated by:
-1. `Entry` class. `Entry` objects represent the specific entry to be viewed in a new window.
-2. `Command` class.   
+`View`: Allows the user to view a specified entry in a new window, allowing the user to carefully look through
+all the details of an entry. This feature is mainly used to read lengthy food reviews which cannot be shown on the Main 
+UI window.
 
 Given below is an example usage scenario:
 
-Step 1. The user launches THe Food Diary application. Data will be loaded from the storage to the application memory. 
-The `FoodDiary` 
+Step 1. The user launches The Food Diary application. Data will be loaded from the storage to the application memory. 
+The `FoodDiary` will be populated with a list of `Entry`, each contains: `Name`, `Address`, `Price` 
+, `Rating`, `Review`, `TagCategory` and `TagSchool`.
+
+Step 2. The user executes `View <INDEX>`, for whichever entry with lengthy reviews he/she wants to view.
+
+Step 3. If the user input is invalid, an error message will be displayed in the command box, If the entry specified do
+not exist, the filteredEntryList will be empty and no entry will be displayed on the Main Window.  
 
 The mechanism works in such a way where after the user enters a command in the UI, the command will be passed into
- `MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in
- `FoodDiaryParser#parseCommand()`. The user input will be parsed as a 'View' command and executed to retrieve all the
- details related to the specified entry. The result of this execution will be passed back to the UI and shown in a
- pop up window.
+`MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in
+`FoodDiaryParser#parseCommand()`. The parsed command will be recognised as a 'View' command and executed to 
+retrieve all the details related to the specified entry. The result of this execution will be passed back to the UI and 
+shown in a new window.
 
-The following sequence diagram shows how the View feature works:
+The following sequence diagram shows how the `View` feature works:
 ![View Sequence Diagram](images/ViewSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes the `view` command:
+The following activity diagram summarizes what happens when a user executes the `View` command:
 ![View Activity Diagram](images/ViewActivityDiagram.png)
 
+#### Design Consideration
+
+##### Aspect: Whether to view entry with lengthy reviews in the Main UI or in a new window.
+* **Alternative 1 (current choice):** View entry with lengthy reviews in a new window.
+    * Pros: Easier to implement, do not need to deal with complex UI codes. Entry information looks neater.
+    * Cons: User has to close/minimize the window to return to Main Window.
+* **Alternative 2:** View entry with lengthy reviews in the Main UI.
+    * Pros: Design is integrated within Main UI, which gives it a cleaner look.
+    * Cons: Difficult to implement, lesser time for testability given the project deadline duration.
 
 
 ## **Appendix: Requirements**
@@ -224,7 +236,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     *	1a2. User enters correct syntax.
 
          Use case resumes from step 2.
-    
 
 * 2a. Food Diary detects duplicate restaurant that is already reviewed.
 
@@ -275,7 +286,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 2.
     
-
 * 1b. New category already exists.
     * 1b1. Food Diary tells user that the category already exists.
 
@@ -370,7 +380,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. User enters correct syntax.
     
         Use case ends.
-    
 
 * 2a. User key in non-existent index in list
     * 2a1. Food Diary tells user that no entry was found.
