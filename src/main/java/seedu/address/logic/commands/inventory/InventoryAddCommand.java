@@ -27,7 +27,8 @@ public class InventoryAddCommand extends Command {
             + PREFIX_NAME + "potato "
             + PREFIX_QUANTITY + "51";
 
-    public static final String MESSAGE_SUCCESS = "New ingredient added: %1$s";
+    public static final String ADD_MESSAGE_SUCCESS = "New ingredient added: %1$s";
+    public static final String INCREASE_MESSAGE_SUCCESS = "Ingredient increased: %1$s";
 
     private final Ingredient toAdd;
 
@@ -42,13 +43,19 @@ public class InventoryAddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        InventoryCommandUtil.isValidIngredient(toAdd, model);
 
-        if (InventoryCommandUtil.isValidIngredient(toAdd, model)) {
+        String message = "";
+
+        if (model.hasIngredient(toAdd)) {
+            model.increaseIngredientByName(toAdd.getName(), toAdd.getQuantity());
+            message = String.format(INCREASE_MESSAGE_SUCCESS, toAdd);
+        } else {
             model.addIngredient(toAdd);
+            message = String.format(ADD_MESSAGE_SUCCESS, toAdd);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
-                CommandResult.CRtype.INGREDIENT);
+        return new CommandResult(message, CommandResult.CRtype.INGREDIENT);
     }
 
     @Override

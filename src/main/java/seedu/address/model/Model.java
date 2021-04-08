@@ -205,10 +205,24 @@ public interface Model {
     void setIngredient(Ingredient target, Ingredient editedIngredient);
 
     /**
+     * Decrease the ingredient quantity by given quantity
+     * @param target ingredient to be decreased
+     * @param decreaseQuantity the number to decrease the ingredient quantity
+     */
+    public void decreaseIngredient(Ingredient target, int decreaseQuantity);
+
+    /**
      * Decrease the ingredient quantity with the given {@code order}
      * @param order order added
      */
     void decreaseIngredientByOrder(Order order);
+
+    /**
+     * Increases an existing ingredient by given quantity
+     * @param name existing ingredient's name
+     * @param increaseQuantity the number to increase the ingredient quantity
+     */
+    void increaseIngredientByName(String name, int increaseQuantity);
 
     /**
      * Increase the ingredient quantity with the given {@code order}

@@ -5,8 +5,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ingredient.Ingredient;
 
 public class InventoryCommandUtil {
-    public static final String MESSAGE_DUPLICATE_INGREDIENT = "This ingredient already exists in the inventory";
-
+    public static final String MESSAGE_INVALID_QUANTITY = "The quantity entered is invalid, "
+            + "please enter a positive number only!";
     /**
      * Checks whether the Ingredient is a valid entry.
      * @param ingredient Candidate Ingredient to be added.
@@ -15,8 +15,8 @@ public class InventoryCommandUtil {
      * @throws CommandException If the Ingredient is an invalid entry.
      */
     public static boolean isValidIngredient(Ingredient ingredient, Model model) throws CommandException {
-        if (model.hasIngredient(ingredient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_INGREDIENT);
+        if (ingredient.getQuantity() < 0) {
+            throw new CommandException(MESSAGE_INVALID_QUANTITY);
         }
         return true;
     }
