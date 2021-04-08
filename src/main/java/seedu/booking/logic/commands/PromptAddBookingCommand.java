@@ -22,7 +22,8 @@ public class PromptAddBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "add_booking";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Starts multi-step process to add booking.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " "
+            + PREFIX_EMAIL + "EMAIL: Starts multi-step process to add booking.\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_EMAIL + "alice@gmail.com";
 
     private final Email email;

@@ -66,7 +66,7 @@ public class Messages {
         + "Multiple tags to be separated with commas.\n";
     public static final String PROMPT_NEWDATE_MESSAGE = "Please try another booking time period.\n";
     public static final String PROMPT_START_MESSAGE = "Please indicate the booking start time. "
-            + "Please enter a valid input in yyyy-mm-dd HH:MM format\n";
+            + "Please enter a valid input in yyyy-mm-dd HH:MM format.\n";
     public static final String PROMPT_END_MESSAGE = "Please indicate the booking end time. "
-            + "Please enter a valid input in yyyy-mm-dd HH:MM format\n";
+            + "Please enter a valid input in yyyy-mm-dd HH:MM format.\n";
 }
