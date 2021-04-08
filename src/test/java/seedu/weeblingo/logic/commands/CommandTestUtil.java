@@ -49,6 +49,10 @@ public class CommandTestUtil {
     public static final Set<Tag> VALID_TAGS_SET_GOJUON = new HashSet<>(List.of(new Tag(VALID_START_TAG_GOJUON)));
     public static final Set<Tag> VALID_TAGS_SET_COMBINATION = new HashSet<>(
             List.of(new Tag(VALID_START_TAG_GOJUON), new Tag(VALID_START_TAG_HIRAGANA)));
+    public static final Set<Tag> VALID_TAGS_SET_EASY = new HashSet<>(List.of(new Tag(VALID_TAG_EASY)));
+    public static final Set<Tag> VALID_TAGS_SET_DIFFICULT = new HashSet<>(List.of(new Tag(VALID_TAG_DIFFICULT)));
+    public static final Set<Tag> VALID_TAGS_SET_EASY_AND_DIFFICULT = new HashSet<>(
+            List.of(new Tag(VALID_TAG_DIFFICULT), new Tag(VALID_TAG_EASY)));
     public static final Set<Tag> VALID_NONEXISTENT_TAGS_SET = new HashSet<>(List.of(new Tag(VALID_NONEXISTENT_TAG)));
 
     public static final String VALID_START_INTEGER_MIN_DESC = " " + PREFIX_START_NUMBER + VALID_START_INTEGER_MIN;
