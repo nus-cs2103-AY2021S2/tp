@@ -9,11 +9,11 @@ TutorsPet is a **desktop app designed for private tutors in Singapore to manage 
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
 ## About
-This document can be thought of as a manual, and a reference guide for TutorPets. It will guide you on how to use TutorPets and will provide complete information on each available command.
-Furthermore, the guide gives information on the User Interface (UI) and the other useful features of TutorPets. Each section of the guide can be read independently.
+This document can be thought of as a manual, and a reference guide for TutorsPet. It will guide you on how to use TutorsPet and will provide complete information on each available command.
+Furthermore, the guide gives information on the User Interface (UI) and the other useful features of TutorsPet. Each section of the guide can be read independently.
 You can view the full list of content using the Table of Contents above. You can also use your document viewer’s Find function to quickly navigate to the content you want to know more about.
 
-It is generally advised for new users to at least read through the [Quick Start](#quick-start) section to familiarise themselves with TutorPets.
+It is generally advised for new users to at least read through the [Quick Start](#quick-start) section to familiarise themselves with TutorsPet.
 
 Note the following symbols and formatting used in this document:
 
@@ -152,7 +152,7 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 </div>
 
 <div markdown="span" class="alert alert-warning">
-:exclamation: **Caution:** If TutorPets detects a conflicting lesson being added, a confirmation message will be shown. You
+:exclamation: **Caution:** If TutorsPet detects a conflicting lesson being added, a confirmation message will be shown. You
 will need to type in either y/n for confirmation to add conflicted schedule.
 </div>
 
