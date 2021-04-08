@@ -105,8 +105,7 @@ If your module code does not appear in the above table,
 you may use a substitute module code based on the subject description.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:**
-First time using the app? Or want to refresh your handling of the app? Simply look out for these boxes.<br>
-&nbsp
+First time using the app? Or want to refresh your handling of the app? Simply look out for these boxes.
 Commands for this tutorial are arranged in the sequential order of this User Guide and are accompanied by screenshots.
 </div>
   
@@ -275,6 +274,8 @@ Other Examples:
 * `add n/v1.2 TP m/CS2103T d/implement basic features b/2021-03-13 23:59 w/3 t/urgent`
 * `add n/practice sets m/CS3230 d/practice master's theorem a/2021-03-14 00:00 b/2021-03-15 00:00 w/1 r/weekly`
 
+<div style="page-break-after: always;"></div>
+
 ### Mark a task as done : `done`
 
 Mark an existing task as done. Done tasks are coloured green.
@@ -297,6 +298,7 @@ Other Examples:
 * `list` followed by `done 2` marks the 2nd task as done in the ModuleBook3.5.
 * `find Quiz` followed by `done 1` marks the 1st task in the results of the `find` command as done.
 
+<div style="page-break-after: always;"></div>
 
 ### Mark a task as not done : `notdone`
 
@@ -320,6 +322,7 @@ Other Examples:
 * `list` followed by `notdone 2` marks the 2nd task as not done in the ModuleBook3.5.
 * `find Quiz` followed by `notdone 1` marks the 1st task in the results of the `find` command as not done.
 
+<div style="page-break-after: always;"></div>
 
 ### Add tag(s): `tag`
 
@@ -343,6 +346,7 @@ Other Examples:
 * `tag 1 t/SoftwareEng` adds `SoftwareEng` tag to task 1.
 * `tag 3 t/Participation` adds `Participation` tag to task 3.
 
+<div style="page-break-after: always;"></div>
 
 ### Search tasks with name of task: `find`
 
@@ -361,6 +365,8 @@ Format: `find KEYWORD`
 
 <img src="images/findCommand.png" width="700">
 
+<div style="page-break-after: always;"></div>
+
 ### List out tasks : `list`
 
 Shows a list of all tasks you have added.
@@ -375,6 +381,7 @@ Format: `list`
 
 <img src="images/listCommand.png" width="700">
 
+<div style="page-break-after: always;"></div>
 
 ### Search tasks with tag: `findTag`
 
@@ -394,6 +401,7 @@ Format: `findTag KEYWORD`
 
 <img src="images/findTagCommand.png" width="700">
 
+<div style="page-break-after: always;"></div>
 
 ### Search tasks associated to a Module: `mod`
 
@@ -414,6 +422,7 @@ Format: `mod MODULE`
 Other Examples:
 * `mod CS3243` lists out tasks associated with module CS3243.
 
+<div style="page-break-after: always;"></div>
 
 ### Delete tag of Task: `deleteTag`
 
@@ -435,6 +444,7 @@ Format: `deleteTag INDEX t/TAG`
 
 <img src="images/deleteTagCommand.png" width="700">
 
+<div style="page-break-after: always;"></div>
 
 ### Edit a task: `edit`
 
@@ -465,6 +475,7 @@ Examples:
 *  `edit 2 d/Eat Biscuits b/2021-03-21 10:10` Edits the description of the 2nd task to be `Eat Biscuits` and its deadline to date `2021-03-21 10:10`.
 *  `edit 2 b/2021-03-25` Edits the deadline of the 3rd task to `2021-03-25`
 
+<div style="page-break-after: always;"></div>
 
 ### Sort tasks : `sort`
 
@@ -487,6 +498,7 @@ Format:  `sort` or `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/`
 
 <img src="images/sortCommand.png" width="700">
 
+<div style="page-break-after: always;"></div>
 
 ### Recur tasks: `recur`
 
@@ -516,6 +528,8 @@ Other Examples:
 * `recur 3 r/daily` Recurs the 3rd task in ModuleBook3.5 every day.
 * `recur 4 r/` Removes the recurrence of the 4th task in ModuleBook3.5.
 
+<div style="page-break-after: always;"></div>
+
 ### Refresh all tasks: `refresh`
 
 Refreshes the current list that is showing, updates the deadline if necessary.
@@ -532,6 +546,8 @@ Format: `refresh`
 <img src="images/refreshCommand.png" width="700">
 
 Note that you may get a new deadline for task 1 that is different from what is in the screenshot.
+
+<div style="page-break-after: always;"></div>
 
 ### Delete a task : `delete`
 
