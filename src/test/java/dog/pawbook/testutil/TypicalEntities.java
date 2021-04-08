@@ -31,6 +31,7 @@ import dog.pawbook.model.Database;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.program.Program;
 
 /**
  * A utility class containing a list of {@code Owner} objects to be used in tests.
@@ -99,6 +100,30 @@ public class TypicalEntities {
             .withDateOfBirth(VALID_DATEOFBIRTH_BELL).withBreed(VALID_BREED_BELL).withOwnerID(VALID_OWNERID_17)
             .withTags(VALID_TAG_QUIET, VALID_TAG_FRIENDLY).build();
 
+    // Programs
+    // With no dogs enrolled
+    public static final Program ACTIVE_LISTENING = new ProgramBuilder().withName("Active Listening")
+            .withSessions("12-12-2021 18:00").withTags("Puppies").build();
+    public static final Program BEHAVING = new ProgramBuilder().withName("Behaving")
+            .withSessions("11-11-2021 20:00").withTags("Puppies").build();
+    public static final Program COOLDOWN_SESSION = new ProgramBuilder().withName("Cooldown Session")
+            .withSessions("10-10-2021 10:00").withTags("All").build();
+
+    // With dogs enrolled
+    // 1 dog enrolled
+    public static final Program DANCING = new ProgramBuilder().withName("Dancing")
+            .withSessions("09-12-2021 19:00").withDogs(2).withTags("Puppies").build();
+    public static final Program ELEGANCE_TRAINING = new ProgramBuilder().withName("Elegance Training")
+            .withSessions("08-11-2021 10:00").withDogs(4).withTags("All").build();
+
+    // Multiple dogs enrolled
+    public static final Program FOOD_TASTING = new ProgramBuilder().withName("Food Tasting")
+            .withSessions("09-08-2021 09:00").withDogs(6, 8).withTags("Puppies").build();
+    public static final Program GENERAL_KNOWLEDGE = new ProgramBuilder().withName("General Knowledge")
+            .withSessions("27-08-2021 09:00").withDogs(10, 12, 14).withTags("Puppies").build();
+
+    // TODO: manually added dogs
+
     private TypicalEntities() {} // prevents instantiation
 
     /**
@@ -112,6 +137,21 @@ public class TypicalEntities {
         return db;
     }
 
+    /**
+     * Returns an {@code Database} with all the typical owners, dogs and programs
+     */
+    public static Database getDatabaseWithPrograms() {
+        Database db = new Database();
+        for (Entity entity : getTypicalOwnersWithDog()) {
+            db.addEntity(entity);
+        }
+
+        for (Program program : getTypicalPrograms()) {
+            db.addEntity(program);
+        }
+        return db;
+    }
+
     public static List<Entity> getTypicalOwnersWithDog() {
         return new ArrayList<>(Arrays.asList(ALICE, APPLE,
                 BENSON, BUBBLES,
@@ -120,5 +160,10 @@ public class TypicalEntities {
                 ELLE, ELSA,
                 FIONA, FLORA,
                 GEORGE, GENIE));
+    }
+
+    public static List<Program> getTypicalPrograms() {
+        return new ArrayList<>(Arrays.asList(ACTIVE_LISTENING, BEHAVING, COOLDOWN_SESSION,
+                DANCING, ELEGANCE_TRAINING, FOOD_TASTING, GENERAL_KNOWLEDGE));
     }
 }
