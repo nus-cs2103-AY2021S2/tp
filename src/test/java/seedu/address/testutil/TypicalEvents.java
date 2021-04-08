@@ -15,6 +15,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTTIME
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_FINAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TAG_FUN;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,34 +28,55 @@ import seedu.address.model.event.Event;
  */
 public class TypicalEvents {
 
+    public static final String TODAY_DATE = LocalDate.now().toString();
+
+    public static final String MEETING_DATE = LocalDate.now().plusDays(6).toString();
+
+    public static final String DATING_DATE = LocalDate.now().plusDays(7).toString();
+
+    public static final String CAMPTING_DATE = LocalDate.now().plusMonths(1).toString();
+
+    public static final String HACKATHON_START_DATE = LocalDate.now().plusMonths(1).plusDays(1).toString();
+
+    public static final String HACKATHON_END_DATE = LocalDate.now().plusMonths(2).toString();
+
+    public static final String WORKSHOP_DATE = LocalDate.now().plusMonths(1).plusDays(3).toString();
+
+    public static final String COMPETITION_DATE = LocalDate.now().plusMonths(2).plusDays(10).toString();
+
     public static final Event MEETING = new EventBuilder().withName("CS2103 Meeting")
-            .withStartDate("2021-03-17").withStartTime("21:00")
-            .withEndDate("2022-03-17").withEndTime("23:00")
+            .withStartDate(MEETING_DATE).withStartTime("21:00")
+            .withEndDate(MEETING_DATE).withEndTime("23:00")
             .withTags("SocheduleBest").withCategories("SchoolWork")
             .build();
+
     public static final Event DATE = new EventBuilder().withName("1 Year Anniversary")
-            .withStartDate("2021-03-14").withStartTime("08:00")
-            .withEndDate("2022-03-17").withEndTime("21:00")
+            .withStartDate(DATING_DATE).withStartTime("08:00")
+            .withEndDate(DATING_DATE).withEndTime("21:00")
             .withTags("LoveYou").withCategories("Love")
             .build();
+
     public static final Event CAMP = new EventBuilder().withName("RVRC Camping")
-            .withStartDate("2021-05-11").withStartTime("08:00")
-            .withEndDate("2022-05-15").withEndTime("22:00")
+            .withStartDate(CAMPTING_DATE).withStartTime("08:00")
+            .withEndDate(CAMPTING_DATE).withEndTime("22:00")
             .withTags("Boring").withCategories("Leisure")
             .build();
+
     public static final Event HACKATHON = new EventBuilder().withName("Google Hash Code") // No tags
-            .withStartDate("2021-03-17").withStartTime("21:00")
-            .withEndDate("2022-03-17").withEndTime("23:00")
+            .withStartDate(HACKATHON_START_DATE).withStartTime("21:00")
+            .withEndDate(HACKATHON_END_DATE).withEndTime("23:00")
             .withCategories("Competition")
             .build();
+
     public static final Event WORKSHOP = new EventBuilder().withName("Shopee Code League Workshop") // No category
-            .withStartDate("2021-03-17").withStartTime("21:00")
-            .withEndDate("2022-03-17").withEndTime("23:00")
+            .withStartDate(WORKSHOP_DATE).withStartTime("21:00")
+            .withEndDate(WORKSHOP_DATE).withEndTime("23:00")
             .withTags("Learning")
             .build();
+
     public static final Event COMPETITION = new EventBuilder().withName("Inter College Game Basketball")
-            .withStartDate("2022-03-23").withStartTime("21:00")
-            .withEndDate("2022-03-23").withEndTime("23:00")
+            .withStartDate(COMPETITION_DATE).withStartTime("21:00")
+            .withEndDate(COMPETITION_DATE).withEndTime("23:00")
             .withTags("Semifinal").withCategories("Exercise")
             .build();
 
@@ -68,6 +90,19 @@ public class TypicalEvents {
             .withStartDate("2021-03-17").withStartTime("21:00")
             .withEndDate("2022-03-17").withEndTime("23:00")
             .withTags("Chill").withCategories("Leisure")
+            .build();
+
+    // With duration on today
+    public static final Event HAPPENING = new EventBuilder().withName("Today Event")
+            .withStartDate(TODAY_DATE).withStartTime("09:00")
+            .withEndDate(TODAY_DATE).withEndTime("14:00")
+            .withTags("Today").withCategories("Cool")
+            .build();
+
+    public static final Event ANOTHER_HAPPENING = new EventBuilder().withName("Another Today Event")
+            .withStartDate(TODAY_DATE).withStartTime("15:00")
+            .withEndDate(TODAY_DATE).withEndTime("17:00")
+            .withTags("Today").withCategories("VeryCool")
             .build();
 
     // Manually added - Event's details found in {@code CommandTestUtil}
@@ -94,6 +129,19 @@ public class TypicalEvents {
         for (Event event : getTypicalEvents()) {
             sochedule.addEvent(event);
         }
+        return sochedule;
+    }
+
+    /**
+     * Returns an {@Code Sochedule} with two additional events on today added.
+     */
+    public static Sochedule getTypicalSocheduleWithTodayEvent() {
+        Sochedule sochedule = new Sochedule();
+        for (Event event : getTypicalEvents()) {
+            sochedule.addEvent(event);
+        }
+        sochedule.addEvent(HAPPENING);
+        sochedule.addEvent(ANOTHER_HAPPENING);
         return sochedule;
     }
 

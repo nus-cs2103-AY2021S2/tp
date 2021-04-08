@@ -19,6 +19,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.TaskDeadlineIsTodayPredicate;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for TodayTaskCommand.
+ */
 public class TodayTaskCommandTest {
 
     private Model model;
@@ -42,7 +45,7 @@ public class TodayTaskCommandTest {
     }
 
     @Test
-    public void execute_multipleDeadlineToday_multipleTasksFound() {
+    public void execute_multipleDeadlinesToday_multipleTasksFound() {
         String expectedMessage = String.format(TodayTaskCommand.MESSAGE_TODAY_TASK_SUCCESS
                 + MESSAGE_TASKS_LISTED_OVERVIEW, 2);
         TaskDeadlineIsTodayPredicate predicate = new TaskDeadlineIsTodayPredicate();

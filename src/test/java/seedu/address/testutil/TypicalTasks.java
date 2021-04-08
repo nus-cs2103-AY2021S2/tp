@@ -76,6 +76,7 @@ public class TypicalTasks {
             .withDeadline(LECTURE_DATE).withCategories("SchoolWork").withPriority("2")
             .build();
 
+    // With deadline on today
     public static final Task DUE = new TaskBuilder().withName("Due Today")
             .withDeadline(TODAY_DATE).withCategories("Urgent").withPriority("9")
             .build();
@@ -110,7 +111,7 @@ public class TypicalTasks {
     }
 
     /**
-     * Returns an {@Code Sochedule} with an additional typical task added.
+     * Returns an {@Code Sochedule} with two additional typical tasks on today added.
      */
     public static Sochedule getTypicalSocheduleWithTodayTask() {
         Sochedule sochedule = new Sochedule();
