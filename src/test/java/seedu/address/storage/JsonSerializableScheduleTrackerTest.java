@@ -16,12 +16,14 @@ import seedu.address.testutil.TypicalSchedules;
 
 public class JsonSerializableScheduleTrackerTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableScheduleTrackerTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+            "JsonSerializableScheduleTrackerTest");
     private static final Path TYPICAL_SCHEDULE_FILE = TEST_DATA_FOLDER.resolve("typicalScheduleTracker.json");
     private static final Path INVALID_SCHEDULE_FILE = TEST_DATA_FOLDER.resolve("invalidScheduleTracker.json");
     private static final Path DUPLICATE_SCHEDULE_FILE = TEST_DATA_FOLDER.resolve("duplicateScheduleTracker.json");
     private static final Path MISMATCH_SCHEDULE_FILE = TEST_DATA_FOLDER.resolve("mismatchDateScheduleTracker.json");
-    private static final Path INVALID_TIME_RANGE_SCHEDULE_FILE = TEST_DATA_FOLDER.resolve("invalidTimeRangeScheduleTracker.json");
+    private static final Path INVALID_TIME_RANGE_SCHEDULE_FILE =
+            TEST_DATA_FOLDER.resolve("invalidTimeRangeScheduleTracker.json");
 
     @Test
     public void toModelType_typicalScheduleFile_success() throws Exception {

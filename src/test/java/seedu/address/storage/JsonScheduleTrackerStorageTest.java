@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.ScheduleTracker;
@@ -30,7 +31,8 @@ public class JsonScheduleTrackerStorageTest {
     }
 
     private java.util.Optional<ReadOnlyScheduleTracker> readScheduleTracker(String filePath) throws Exception {
-        return new JsonScheduleTrackerStorage(Paths.get(filePath)).readScheduleTracker(addToTestDataPathIfNotNull(filePath));
+        return new JsonScheduleTrackerStorage(Paths.get(filePath))
+                .readScheduleTracker(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {

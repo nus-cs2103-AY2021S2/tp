@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalDates.APPOINTMENT_FIRST_DATE;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.schedulecommands.ViewScheduleCommand;
 import seedu.address.model.schedule.ScheduleDateViewPredicate;
 

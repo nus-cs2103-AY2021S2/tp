@@ -45,26 +45,26 @@ public class TypicalModel {
         ReadOnlyReminderTracker rt = getTypicalReminderTracker();
 
         switch (modelType) {
-            case ADDRESSBOOK:
-                ab = model.getTutorBook();
-                break;
-            case APPOINTMENTBOOK:
-                apb = model.getAppointmentBook();
-                break;
-            case BUDGETBOOK:
-                bb = model.getBudgetBook();
-                break;
-            case GRADEBOOK:
-                gb = model.getGradeBook();
-                break;
-            case SCHEDULETRACKER:
-                st = model.getScheduleTracker();
-                break;
-            case REMINDERTRACKER:
-                rt = model.getReminderTracker();
-                break;
-            default:
-                break;
+        case ADDRESSBOOK:
+            ab = model.getTutorBook();
+            break;
+        case APPOINTMENTBOOK:
+            apb = model.getAppointmentBook();
+            break;
+        case BUDGETBOOK:
+            bb = model.getBudgetBook();
+            break;
+        case GRADEBOOK:
+            gb = model.getGradeBook();
+            break;
+        case SCHEDULETRACKER:
+            st = model.getScheduleTracker();
+            break;
+        case REMINDERTRACKER:
+            rt = model.getReminderTracker();
+            break;
+        default:
+            break;
         }
 
         return new ModelManager(ab, new UserPrefs(), apb, bb, gb, st, rt);

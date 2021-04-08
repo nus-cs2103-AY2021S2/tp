@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.common.Description;
@@ -36,9 +37,9 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
-    public static final String VALID_SCHEDULE_TITLE = "Maths Homework";
-    public static final String VALID_SCHEDULE_DATE_TIME = "2021-05-24 10:00 AM";
-    public static final String VALID_SCHEDULE_DESCRIPTION = "Chapter 5 Page 841";
+    private static final String VALID_SCHEDULE_TITLE = "Maths Homework";
+    private static final String VALID_SCHEDULE_DATE_TIME = "2021-05-24 10:00 AM";
+    private static final String VALID_SCHEDULE_DESCRIPTION = "Chapter 5 Page 841";
 
     private static final String INVALID_TITLE = "H@mework";
     private static final String INVALID_DATE_TIME = "2/5/2021 11:00 AM";
@@ -53,8 +54,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-                -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () ->
+                ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test

@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalSchedules.MATHS_HOMEWORK_SCHEDULE;
 import static seedu.address.testutil.TypicalSchedules.SCIENCE_HOMEWORK_SCHEDULE;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.ScheduleBuilder;
 
 public class ScheduleTest {

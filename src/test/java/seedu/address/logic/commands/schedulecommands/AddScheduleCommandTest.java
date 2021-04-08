@@ -14,12 +14,10 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.schedulecommands.AddScheduleCommand.MESSAGE_DUPLICATE_SCHEDULE;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.tutorcommands.AddCommand;
+
 import seedu.address.model.Model;
 import seedu.address.model.schedule.Schedule;
-import seedu.address.model.tutor.Tutor;
 import seedu.address.testutil.ScheduleBuilder;
-import seedu.address.testutil.TutorBuilder;
 import seedu.address.testutil.TypicalModel;
 
 
