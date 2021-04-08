@@ -126,7 +126,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
          ```
-         customer add n/[NAME] p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS]
+         customer add n/[NAME] p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] (t/[TAG])
          ```
         
         Example:
@@ -172,7 +172,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
         ```
-        customer edit [INDEX] (n/[NAME]) (p/[PHONE_NUMBER]) (e/[EMAIL]) (a/[ADDRESS])
+        customer edit [INDEX] (n/[NAME]) (p/[PHONE_NUMBER]) (e/[EMAIL]) (a/[ADDRESS]) (t/[TAG])
         ```
         
         At least one of the fields in brackets must be present in the edit command.
