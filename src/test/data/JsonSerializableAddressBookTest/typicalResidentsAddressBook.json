@@ -112,14 +112,14 @@
     {
       "roomNumber": "11-110",
       "description": "Flickering light",
-      "timestamp": "2021/03/20 8:35am",
+      "timestamp": "2021/03/20 08:35am",
       "status": "closed",
       "category": "Electrical"
     },
     {
       "roomNumber": "09-100",
       "description": "Chair cylinder exploded",
-      "timestamp": "2020/12/11 6:53pm",
+      "timestamp": "2020/12/11 06:53pm",
       "status": "pending",
       "category": "Furniture"
     },
@@ -133,7 +133,7 @@
     {
       "roomNumber": "12-110",
       "description": "Cockroach everywhere",
-      "timestamp": "2020/08/10 8:48am",
+      "timestamp": "2020/08/10 08:48am",
       "status": "pending",
       "category": "Others"
     }
