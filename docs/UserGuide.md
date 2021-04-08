@@ -115,11 +115,12 @@ Deletes the student specified by his/her matriculation number from Vax@NUS recor
 Format: `delete MATRICULATION NUMBER`
 
 * If the matriculation number does not exist in the records, a message will be shown to inform users that 
-  the matriculation number is not found.
+  no student with the specified matriculation number can be found in the records.
+* If the student to be deleted has an appointment, the student's appointment will be deleted as well.
   
 
 Examples:
-* `delete A7654321J` deletes Betsy Crowe from the records.
+* `delete A7654321J` deletes Betsy Crowe from the records. If Betsy Crowe has an appointment, her appointment will be deleted as well.
 
 ### Filtering all student records: `filter`
 
@@ -140,7 +141,7 @@ Examples:
 
 ### Viewing statistics for student population: `stats`
 
-Displays the statistics in terms of percentage of student vaccinated for the requested faculty/school residence or whole of NUS. 
+Displays the statistics in terms of percentage of student vaccinated for the specified faculty/school residence or whole of NUS. 
 
 Format: <br>
 `stats FACULTY`
@@ -149,8 +150,8 @@ Format: <br>
 <br> `stats all`
 
 * Only one condition should be specified at a time. 
-* If there is no available data for the requested faculty or school residence, a message will be displayed to inform
-  users that the requested faculty or School Residence has no available data.
+* If there is no available data for the specified faculty or school residence, a message will be displayed to inform
+  users that the specified faculty or school residence has no available data.
 
 Examples:
 * `stats COM` displays the percentage of vaccinated students in School of Computing.
@@ -159,7 +160,7 @@ Examples:
 * `stats NUS` displays the percentage of vaccinated students in NUS.
 * `stats all` displays the list of percentages of vaccinated students in every Faculty and School Residence.
 
-Sample Output for `stats All`:
+Sample Output for `stats all`:
 ![StatsALl](images/statsAll.png)
 
 Sample Output for `stats PGPH`:
@@ -168,9 +169,11 @@ Sample Output for `stats PGPH`:
 
 Adds an appointment to Vax@NUS' records. 
 
+Appointments can be added for both unvaccinated and vaccinated students, as appointments can also entail follow-ups or check-ups in addition to vaccinations.
+
 Format: `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME`
 
-[Conditions for valid appointments](#conditions-for-valid-appointments)
+> For a smooth user experience, please refer to the [conditions for valid appointments](#conditions-for-valid-appointments) section below for more information regarding what the details of an appointment accepted by Vax@NUS.
 
 Examples:
 * `addAppt i/A1234567X d/2021-12-13 ts/13:00`
@@ -199,7 +202,7 @@ It is optional to include the following details:
 
 Format: `editAppt MATRICULATION_NUMBER d/DATE ts/START_TIME`
 
-[Conditions for valid appointments](#conditions-for-valid-appointments)
+> For a smooth user experience, please refer to the [conditions for valid appointments](#conditions-for-valid-appointments) section below for more information regarding what the details of an appointment accepted by Vax@NUS.
 
 Examples:
 * `editAppt A1234567X d/2021-12-13 ts/14:00`
@@ -332,6 +335,12 @@ Vax@NUS saves your current date in the hard disk automatically after any command
  * USP (for University Scholars Programme)
  * UTR (for Utown Residences)
 
+### Conditions for valid appointments
+* `DATE` must be of the format `YYYY-MM-DD`
+* `START_TIME` must be of the format `HH:00` or `HH:30`.
+* The duration of each appointment is fixed at 30 minutes.
+* No appointment should clash with any other appointments.
+* The student that the appointment is for must exist in the records.
 
 ## Command Summary
 
