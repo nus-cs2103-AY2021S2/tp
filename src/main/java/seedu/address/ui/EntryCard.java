@@ -23,6 +23,8 @@ public class EntryCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label id;
+    @FXML
     private Label entryName;
     @FXML
     private Label startDate;
@@ -34,9 +36,10 @@ public class EntryCard extends UiPart<Region> {
     /**
      * Creates a {@code EntryCard} to display.
      */
-    public EntryCard(Entry entry) {
+    public EntryCard(Entry entry, int displayedIndex) {
         super(FXML);
         this.entry = entry;
+        id.setText(displayedIndex + ". ");
         entryName.setText(entry.getEntryName().name);
 
         if (entry.haveDifferentDates()) {
