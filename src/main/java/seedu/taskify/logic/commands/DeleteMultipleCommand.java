@@ -106,9 +106,10 @@ public class DeleteMultipleCommand extends Command {
 
     private String generateSuccessMessage(List<Task> tasksToDelete) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Deleted Tasks: ");
+        sb.append("Deleted Tasks: \n");
         for (Task toDelete : tasksToDelete) {
             sb.append(toDelete);
+            sb.append("\n\n");
         }
         return sb.toString();
     }
