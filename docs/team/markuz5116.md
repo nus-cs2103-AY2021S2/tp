@@ -26,7 +26,7 @@ It is written in Java, and has about 17 kLOC contributed.
       modules and events. Therefore, this implementation required adding of new classes and a change in the logic of RemindMe.
     * Credits: *{AddressBook3's Parser and AddressBook3's FindPersonCommand}*
   
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=w15-1&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&since=2021-02-19&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
     * Managed releases `v1.2` - `v1.4` (4 releases) on GitHub
