@@ -99,7 +99,7 @@ public class AddEntryCommandTest {
     }
 
     @Test
-    public void execute_overdueEntry_throwsSomeShit() {
+    public void execute_overdueEntry_throwsOverdueEntryException() {
         Entry overdueEntry = new EntryBuilder(CONSULTATION)
                 .withStartDate("2000-01-01 01:00")
                 .withEndDate("2000-01-01 02:00")
