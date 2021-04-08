@@ -79,7 +79,7 @@ In addition, it is optional to include the following detail of a student:
 
 Examples:
 * `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
-* `add n/Betsy Crowe f/ENG i/A7654321J p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/not vaccinated m/nose lift surgery in 2012`
+* `add n/Betsy Crowe f/ENG i/A7654321J p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/unvaccinated m/nose lift surgery in 2012`
 
 | Before        | 
 | ------------- |
@@ -132,7 +132,7 @@ Format: <br>
 * Please refer to the parameter formats for a list of valid vaccination status, faculty and school residence input. 
 
 Examples:
-* `filter vaccinated` or `filter not vaccinated`
+* `filter vaccinated` or `filter unvaccinated`
 * `filter COM` 
 * `filter RVRC` 
 
@@ -292,15 +292,27 @@ Vax@NUS saves your current date in the hard disk automatically after any command
 <br>
 **A** : No, you will need to add a new appointment for the new student. 
 
+**Q**: Why are vaccinated students able to receive new appointments?
+<br>
+**A**: Beyond the two shots currently required for the approved Pfizer-BioNTech and Moderna vaccines in Singapore, booster shots could be required in the future to prolong immunity and provide protection against fast-emerging COVID-19 variants. 
+
+**Q**: How long is a vaccination appointment?
+<br>
+**A**: The vaccination appointment lasts 30 mins, which includes registration, administering the vaccine and observation. 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Input Formats
 
 **:information_source: NOTE: The following parameter formats must be followed:**
+
+### Matriculation Number
  The `MATRICULATION_NUMBER` of a student is a unique 9-character alphanumeric sequence that begins with A, followed by
  7 numbers and ends with an alphabet.
 
- The `FACULTY` of a student must be one of the following:
+### Faculty
+
+ The `FACULTY` of a student must be one of the following(case-sensitive):
  * FASS (for Faculty of Arts and Social Sciences)
  * BIZ (for NUS Business School)
  * COM (for School of Computing)
@@ -319,9 +331,13 @@ Vax@NUS saves your current date in the hard disk automatically after any command
  * USP (for University Scholars Programme)
  * YNC (for Yale-NUS College)
 
- The `VACCINATION_STATUS` of a student must only be `vaccinated` or `not vaccinated`
+### Vaccination Status
 
- The `[SCHOOL_RESIDENCE]` of a student must be one of the following:
+ The `VACCINATION_STATUS` of a student must only be `vaccinated` or `unvaccinated`. It is not case-sensitive. 
+
+### School Residence
+
+ The `[SCHOOL_RESIDENCE]` of a student must be one of the following(case-sensitive):
  * PGPH (for Prince George's Park House)
  * PGPR (for Prince George's Park Residences)
  * KE7H (for King Edward VII Hall)
@@ -337,19 +353,22 @@ Vax@NUS saves your current date in the hard disk automatically after any command
  * RC4 (for Residential College 4)
  * USP (for University Scholars Programme)
  * UTR (for Utown Residences)
+ * DOES_NOT_LIVE_ON_CAMPUS
 
+If unindicated, the `School Residence` field will default to `DOES NOT LIVE ON CAMPUS`
 
+-----------------------------------------------------------------------------------------------------------------
 ## Command Summary
 
 Action | Format, Examples
 --------|------------------
-**Add Student** | `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS r/SCHOOL_RESIDENCE[optional]` <br> e.g., `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
-**Edit Student** | `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
+**Add Student** | `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]` <br> e.g., `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+**Edit Student** | `edit INDEX [n/NAME] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
 **Delete Student** | `delete MATRICULATION_NUMBER` e.g., `delete A1234567X`
-**Filter Students** | `filter VACCINATION_STATUS`  e.g., `filter vaccinated`, `filter not vaccinated`, <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
+**Filter Students** | `filter VACCINATION_STATUS`  e.g., `filter vaccinated`, `filter unvaccinated`, <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
 **View Student Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
 **Add Appointment** | `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME` e.g., `addAppt i/A1234567X d/2021-12-13 ts/13:00`
-**Edit Appointment** | `editAppt MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM` e.g.,` editAppt A1234567X d/2021-12-13 ts/14:00`
+**Edit Appointment** | `editAppt MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM` <br> e.g.,` editAppt A1234567X d/2021-12-13 ts/14:00`
 **Delete Appointment** | `deleteAppt MATRICULATION_NUMBER` e.g., `deleteAppt A1234567X`
 **View Appointment Statistics** | `statsAppt`
 **List All Data** | `list`
