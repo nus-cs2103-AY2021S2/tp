@@ -93,9 +93,16 @@ public class DeleteMultipleCommandUtilTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"0-1", "  01-09  "})
-    public void extractStringArguments_invalidIndexes_throwsParseException(String input) {
+    @ValueSource(strings = {"0-1", "  01-09  ", "-5-2", "1.0-3", "3-5.0"})
+    public void extractStringArguments_invalidIndexesInRange_throwsParseException(String input) {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE),
                 () -> extractStringArgumentsIntoIndexes(input));
+    }
+
+    @Test
+    public void extractStringArguments_extraInputAfterValidInput_throwsParseException() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE),
+                () -> extractStringArgumentsIntoIndexes("1-3 2-4"));
+
     }
 }
