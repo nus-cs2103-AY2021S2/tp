@@ -4,6 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_CATEGORY_H
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_CATEGORY_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DEADLINE_TASKONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DEADLINE_TASKTWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_COMPLETED;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_TASKONE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_TASKTWO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_PRIORITY_TASKONE;
@@ -95,6 +96,12 @@ public class TypicalTasks {
             .withCategories(VALID_TASK_CATEGORY_PROJECT)
             .withTags(VALID_TASK_TAG_IMPORTANT, VALID_TASK_TAG_DIFFICULT).build();
 
+    // Manually added - A sample completed Task that mimics TASK ONE but with a different task name.
+    public static final Task COMPLETED_TASK = new TaskBuilder().withName(VALID_TASK_NAME_COMPLETED)
+            .withDeadline(VALID_TASK_DEADLINE_TASKONE).withPriority(VALID_TASK_PRIORITY_TASKONE)
+            .withCategories(VALID_TASK_CATEGORY_HOMEWORK).withTags(VALID_TASK_TAG_IMPORTANT)
+            .buildCompletedTask();
+
     public static final String KEYWORD_MATCHING_ASSIGNMENT = "Assignment"; // A keyword that matches MEIER
 
     private TypicalTasks() {} // prevents instantiation
@@ -120,6 +127,18 @@ public class TypicalTasks {
         }
         sochedule.addTask(DUE);
         sochedule.addTask(ANOTHER_DUE);
+        return sochedule;
+    }
+
+    /**
+     * Returns an {@code Sochedule} with the first task marked as complete and also all the typical tasks.
+     */
+    public static Sochedule getTypicalSocheduleWithCompletedTask() {
+        Sochedule sochedule = new Sochedule();
+        sochedule.addTask(COMPLETED_TASK);
+        for (Task task : getTypicalTasks()) {
+            sochedule.addTask(task);
+        }
         return sochedule;
     }
 

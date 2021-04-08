@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.Sochedule;
+import seedu.address.model.common.Date;
 import seedu.address.model.event.Event;
 
 /**
@@ -43,6 +44,15 @@ public class TypicalEvents {
     public static final String WORKSHOP_DATE = LocalDate.now().plusMonths(1).plusDays(3).toString();
 
     public static final String COMPETITION_DATE = LocalDate.now().plusMonths(2).plusDays(10).toString();
+
+    // for find_schedule related testing
+    // Last date is later than the latest date used in testing
+    public static final Date LAST_DATE = new Date(LocalDate.now().plusYears(3).toString());
+
+    // First date is early than the earliest date used in testing
+    public static final Date EARLIEST_DATE = new Date(LocalDate.now().minusYears(3).toString());
+
+
 
     public static final Event MEETING = new EventBuilder().withName("CS2103 Meeting")
             .withStartDate(MEETING_DATE).withStartTime("21:00")

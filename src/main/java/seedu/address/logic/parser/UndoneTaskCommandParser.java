@@ -7,7 +7,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new UndoneTaskCommand object.
  */
-public class UndoneTaskCommandParser {
+public class UndoneTaskCommandParser implements Parser<UndoneTaskCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DoneTaskCommand
      * and returns a DoneTaskCommand object for execution.

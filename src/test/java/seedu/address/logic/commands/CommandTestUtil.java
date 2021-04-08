@@ -12,6 +12,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TASK;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -37,6 +41,7 @@ public class CommandTestUtil {
     // Task
     public static final String VALID_TASK_NAME_TASKONE = "Task One";
     public static final String VALID_TASK_NAME_TASKTWO = "Task Two";
+    public static final String VALID_TASK_NAME_COMPLETED = "Completed Task";
     public static final String VALID_TASK_DEADLINE_TASKONE = LocalDate.now().plusMonths(3).toString();
     public static final String VALID_TASK_DEADLINE_TASKTWO = LocalDate.now().plusMonths(4).toString();
     public static final String VALID_TASK_PRIORITY_TASKONE = "5";
@@ -106,7 +111,11 @@ public class CommandTestUtil {
     public static final String NO_FREE_TIME_DATE = LocalDate.now().plusMonths(1).plusDays(15).toString();
     public static final String FREE_DATE = LocalDate.now().plusYears(3).plusMonths(2).plusDays(1).toString();
     public static final String EXAMPLE_DATE = LocalDate.now().plusYears(3).plusMonths(2).plusDays(2).toString();
-
+    // Index lists
+    public static final List<Index> INDEX_LIST_ONE = Arrays.asList(INDEX_FIRST_TASK);
+    public static final List<Index> INDEX_LIST_TWO = Arrays.asList(INDEX_SECOND_TASK);
+    public static final List<Index> INDEXES_LIST_ONE = Arrays.asList(INDEX_FIRST_TASK, INDEX_SECOND_TASK);
+    public static final List<Index> INDEXES_LIST_TWO = Arrays.asList(INDEX_FOURTH_TASK, INDEX_THIRD_TASK);
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
