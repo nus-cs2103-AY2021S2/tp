@@ -9,7 +9,7 @@ nav-text: User Guide
 </p>
 
 <h1 class="post-title">{{ page.title | escape }}</h1>
-<h3 class="post-subtitle">v1.3.1</h3>
+<h3 class="post-subtitle">v1.4</h3>
 
 <div style="page-break-after: always;"></div>
 <br/>
