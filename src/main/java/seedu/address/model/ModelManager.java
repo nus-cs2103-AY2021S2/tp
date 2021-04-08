@@ -155,7 +155,7 @@ public class ModelManager implements Model {
     public void sortByName(boolean isAscending) {
         addressBook.sortByName(isAscending);
     }
-    
+
     @Override
     public void unblacklistPerson(Person target) {
         if (target.getBlacklistStatus()) {
