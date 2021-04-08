@@ -77,9 +77,12 @@ public class ClientDetailFragment extends UiPart<Region> {
         profileImage.setClip(imageMask);
         profileImage.setImage(getImageFromData(client.getImageRes().value));
         name.setText(client.getName().fullName);
+        name.setWrapText(true);
         phone.setText(client.getPhone().value);
         clientLocation.setText(client.getLocation().value);
+        clientLocation.setWrapText(true);
         email.setText(client.getEmail().value);
+        email.setWrapText(true);
         tags.getChildren().clear();
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

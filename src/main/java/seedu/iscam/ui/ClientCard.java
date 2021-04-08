@@ -39,6 +39,8 @@ public class ClientCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label insurancePlan;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -55,6 +57,14 @@ public class ClientCard extends UiPart<Region> {
         clientLocation.setWrapText(true);
         email.setText(client.getEmail().value);
         email.setWrapText(true);
+        if (client.getPlans().isEmpty()) {
+            insurancePlan.setText("This client has no insurance plans for now");
+        } else {
+            String plans = client.getPlans().toString();
+            plans = plans.substring(1, plans.length() - 1);
+            insurancePlan.setText(plans);
+        }
+        insurancePlan.setWrapText(true);
         client.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
