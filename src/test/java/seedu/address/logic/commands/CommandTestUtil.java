@@ -83,7 +83,8 @@ public class CommandTestUtil {
 
     public static final String INVALID_DATE_RANGE = " " + PREFIX_START_DATE + "2021-01-01 13:00"
             + " " + PREFIX_END_DATE + "2021-01-01 12:00";
-
+    public static final String PAST_DATE_INTERVAL = " " + PREFIX_START_DATE + "2020-01-01 12:00"
+            + " " + PREFIX_END_DATE + "2020-01-01 13:00";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
