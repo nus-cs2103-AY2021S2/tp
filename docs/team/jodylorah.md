@@ -25,7 +25,7 @@ Given below are my contributions to the project.
     * Limited type of inputs acceptable for Name, Phone, Location, Email, Tags and InsurancePlan inputs to prevent iScam from crashing due to data overloading. (Pull request [\#200](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/200))
     * Customised iScam to include Clients instead of Persons to be more relevant to the insurance agent user. (Pull request [\#21](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/21))
     * Packaged all client and meeting files to respective packages for ease of access of future editors. (Pull requests [\#61](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/61), [\#174](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/174))
-    * Wrote test cases for meeting book storage to increase coverage from 51.30% to 52.81%. (Pull requests [\#85](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/85), [\#202](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/202))
+    * Wrote test cases for meeting book storage to increase coverage from 51.30% to 52.81% and 55.87% to 67.12%. (Pull requests [\#85](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/85), [\#243](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/243))
 
 * **Documentation**:
     * User Guide:
