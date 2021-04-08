@@ -777,6 +777,7 @@ in step 1 and 2 of MSS
 * **Undoable Command**: A command that modifies the content of FlashBack
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -789,7 +790,6 @@ These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
 </div>
-<div style="page-break-after: always;"></div>
 
 ### Launch and shutdown
 1. Initial launch
@@ -845,6 +845,7 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case: `delete 2001` <br>
     Expected: No flashcard is deleted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `The flashcard index provided is invalid`
+<div style="page-break-after: always;"></div>
 
 ### Editing a flashcard
 
@@ -937,6 +938,7 @@ testers are expected to do more *exploratory* testing.
     Expected: The display list will be updated to show flashcards sorted in ascending order of priority.
     1. Test case: `sort`
     Expected: No flashcards sorted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
+<div style="page-break-after: always;"></div>
 
 ### Review mode
 
