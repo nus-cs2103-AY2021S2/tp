@@ -66,7 +66,7 @@ public class UiManager implements Ui {
     private void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
                                                String contentText) {
         final Alert alert = new Alert(type);
-//        alert.getDialogPane().getStylesheets().add(mainWindow.getStyle());
+        alert.getDialogPane().getStylesheets().add(mainWindow.getStyle());
         alert.initOwner(owner);
         alert.setTitle(title);
         alert.setHeaderText(headerText);
