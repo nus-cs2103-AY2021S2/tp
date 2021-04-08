@@ -816,12 +816,12 @@ Exclusive Filters:
 
 Multiples of each attribute are allowed, with the composed filter following these rules:
 
-1) Filters are case-insensitive.
-2) An inclusive filter means that a tutor can match any of the filters within that attribute filter.
-3) An exclusive filter means that a tutor must match all of the filters within that attribute filter.
-4) Inclusive filters match as long as the tutor attirbute contains the filter. eg. The tutor `Peter` matches the filter `pete`.
-5) Exclusive filters support the following inequalities: `>, <, >=, <=, =`.
-6) Only tutors that match all the attribute filters are displayed.
+1. Filters are case-insensitive.
+2. An inclusive filter means that a tutor can match any of the filters within that attribute filter.
+3. An exclusive filter means that a tutor must match all of the filters within that attribute filter.
+4. Inclusive filters match as long as the tutor attirbute contains the filter. eg. The tutor `Peter` matches the filter `pete`.
+5. Exclusive filters support the following inequalities: `>, <, >=, <=, =`.
+6. Only tutors that match all the attribute filters are displayed.
 
 Format: `add_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...`
 
@@ -856,13 +856,13 @@ Exclusive Filters:
 
 Multiples of each attribute are allowed, with the composed filter following these rules:
 
-1) Filters are case-insensitive.
-2) An inclusive filter means that an appointment can match any of the filters within that attribute filter.
-3) An exclusive filter means that an appointment must match all of the filters within that attribute filter.
-4) Inclusive filters match as long as the appointment attirbute contains the filter. eg. The appointment with tutor name `Peter` matches the filter `pete`.
-5) Exclusive filters support the following inequalities: `>, <, >=, <=, =`.
-6) The date time format `YYYY-MM-DD HH:MM AM/PM` must be strictly followed. e.g. `2021-03-25 10:00 AM`.
-7) Only appointments that match all the attribute filters are displayed.
+1. Filters are case-insensitive.
+2. An inclusive filter means that an appointment can match any of the filters within that attribute filter.
+3. An exclusive filter means that an appointment must match all of the filters within that attribute filter.
+4. Inclusive filters match as long as the appointment attirbute contains the filter. eg. The appointment with tutor name `Peter` matches the filter `pete`.
+5. Exclusive filters support the following inequalities: `>, <, >=, <=, =`.
+6. The date time format `YYYY-MM-DD HH:MM AM/PM` must be strictly followed. e.g. `2021-03-25 10:00 AM`.
+7. Only appointments that match all the attribute filters are displayed.
 
 Format: `add_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...`
 
