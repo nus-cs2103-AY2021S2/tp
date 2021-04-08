@@ -24,14 +24,14 @@ import seedu.module.model.task.Workload;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "   ";
-    private static final String INVALID_DEADLINE = "+651234";
+    private static final String INVALID_TIME = "+651234";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_MODULE = "example.com";
     private static final String INVALID_WORKLOAD = "1 a";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Midterm";
-    private static final String VALID_DEADLINE = "2021-03-06 12:00";
+    private static final String VALID_TIME = "2021-03-06 12:00";
     private static final String VALID_DESCRIPTION = "It may be not easy.";
     private static final String VALID_MODULE = "CS3230";
     private static final String VALID_WORKLOAD = "1";
@@ -84,46 +84,46 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDeadline_null_throwsNullPointerException() {
+    public void parseTime_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTime((String) null));
     }
 
     @Test
-    public void parseDeadline_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTime(INVALID_DEADLINE));
+    public void parseTime_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime(INVALID_TIME));
     }
 
     @Test
-    public void parseDeadline_validValueWithoutWhitespace_returnsDeadline() throws Exception {
-        Time expectedDeadline = new Time(VALID_DEADLINE);
-        assertEquals(expectedDeadline, ParserUtil.parseTime(VALID_DEADLINE));
+    public void parseTime_validValueWithoutWhitespace_returnsTime() throws Exception {
+        Time expectedTime = new Time(VALID_TIME);
+        assertEquals(expectedTime, ParserUtil.parseTime(VALID_TIME));
     }
 
     @Test
-    public void parseDeadline_validValueWithWhitespace_returnsTrimmedDeadline() throws Exception {
-        String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
-        Time expectedDeadline = new Time(VALID_DEADLINE);
-        assertEquals(expectedDeadline, ParserUtil.parseTime(deadlineWithWhitespace));
+    public void parseTime_validValueWithWhitespace_returnsTrimmedTime() throws Exception {
+        String timeWithWhitespace = WHITESPACE + VALID_TIME + WHITESPACE;
+        Time expectedTime = new Time(VALID_TIME);
+        assertEquals(expectedTime, ParserUtil.parseTime(timeWithWhitespace));
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
+    public void parseDescription_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
+    public void parseDescription_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
+    public void parseDescription_validValueWithoutWhitespace_returnsDescription() throws Exception {
         Description expectedDescription = new Description(VALID_DESCRIPTION);
         assertEquals(expectedDescription, ParserUtil.parseDescription(VALID_DESCRIPTION));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
+    public void parseDescription_validValueWithWhitespace_returnsTrimmedDescription() throws Exception {
         String descriptionWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
         Description expectedDescription = new Description(VALID_DESCRIPTION);
         assertEquals(expectedDescription, ParserUtil.parseDescription(descriptionWithWhitespace));
