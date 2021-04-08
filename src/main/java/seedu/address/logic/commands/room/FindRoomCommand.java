@@ -29,6 +29,8 @@ public class FindRoomCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        assert predicate != null;
+
         model.updateFilteredRoomList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_ROOMS_LISTED_OVERVIEW, model.getFilteredRoomList().size()));

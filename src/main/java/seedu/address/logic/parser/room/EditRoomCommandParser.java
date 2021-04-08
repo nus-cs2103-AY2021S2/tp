@@ -37,9 +37,9 @@ public class EditRoomCommandParser implements Parser<EditRoomCommand> {
                 ArgumentTokenizer.tokenize(userInput, PREFIX_ROOM_NUMBER, PREFIX_ROOM_TYPE, PREFIX_ROOM_TAG);
 
         Index index;
-
         index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
+        assert index != null;
 
         EditRoomDescriptor editRoomDescriptor = new EditRoomDescriptor();
         if (argMultimap.getValue(PREFIX_ROOM_NUMBER).isPresent()) {
