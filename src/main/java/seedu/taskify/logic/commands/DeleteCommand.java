@@ -18,9 +18,18 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-                   + ": Deletes the task identified by the index number used in the displayed task list.\n"
-                   + "Parameters: INDEX (must be a positive integer)\n"
-                   + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the task identified by the index number used in the displayed task list.\n\n"
+            + "Parameters: INDEX (must be a positive integer)\n\n"
+            + "Example: " + COMMAND_WORD + " 1\n\n"
+            + "Note: Multiple tasks can also be deleted at once, by giving multiple indices, giving an "
+            + "index range or by giving a status to delete all tasks with that status\n\n"
+            + "Parameters for deleting multiple tasks:\n"
+            + "   1. Listing multiple indices: INDEX [MORE_INDICES]\n"
+            + "   2. Stating the range of indices: INDEX-INDEX\n"
+            + "   3. Indicating the status of tasks to delete by: STATUS -all\n\n"
+            + "View the User Guide for more information, at https://ay2021s2-cs2103t-w14-4.github.io/tp/UserGuide.html";
+
+
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
     public static final String MESSAGE_SWITCH_TO_HOME = "Switch back to home page to delete!";

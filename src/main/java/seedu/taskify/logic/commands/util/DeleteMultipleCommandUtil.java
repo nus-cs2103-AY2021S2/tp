@@ -83,32 +83,20 @@ public class DeleteMultipleCommandUtil {
     public static String[] extractStringArgumentsIntoIndexes(String input) throws ParseException {
         input = reduceWhitespaces(input);
 
-        String regexForRangedArgs = "(?<firstNum>[0-9]+)-(?<secondNum>[0-9]+)(?<remaining>.*)";
-        String regexForRemaining = "\\D+"; // if this is matched, then we should reject the input
-
+        String regexForRangedArgs = "^(?<firstNum>[0-9]+)-(?<secondNum>[0-9]+)$";
         Pattern patternRangedArgs = Pattern.compile(regexForRangedArgs);
-        Pattern patternRemaining = Pattern.compile(regexForRemaining);
-
         Matcher matcherRangedArgs = patternRangedArgs.matcher(input);
         boolean hasFoundIndexRange = matcherRangedArgs.find();
-
-        boolean hasNoRemainingInvalidChar;
 
         if (!hasFoundIndexRange) {
             String[] arguments = input.split(" ");
             for (String argument : arguments) {
                 if (!StringUtil.isNonZeroUnsignedInteger(argument)) {
-                    throw new ParseException(MESSAGE_AT_LEAST_ONE_INVALID_INDEX);
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            DeleteCommand.MESSAGE_USAGE));
                 }
             }
             return arguments;
-        }
-
-        Matcher matcherRemaining = patternRemaining.matcher(matcherRangedArgs.group("remaining"));
-        hasNoRemainingInvalidChar = !matcherRemaining.find();
-
-        if (!hasNoRemainingInvalidChar) {
-            throw new ParseException(MESSAGE_AT_LEAST_ONE_INVALID_INDEX);
         }
 
         String first = matcherRangedArgs.group("firstNum");
@@ -119,10 +107,7 @@ public class DeleteMultipleCommandUtil {
         boolean isSecondIndexInvalid = second.matches(leadingZeroesRegex);
 
         if (isFirstIndexInvalid || isSecondIndexInvalid) {
-            /* MESSAGE_INVALID_INDEX_RANGE is not as appropriate as an error message, since it is for indicating
-                when the second number is bigger than the first number. In situations such as "0100-99", while it
-                the first error caught should be that 0100 is an invalid index, rather than 100 > 99. */
-            throw new ParseException(MESSAGE_AT_LEAST_ONE_INVALID_INDEX);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
         int firstNum = Integer.parseInt(first);

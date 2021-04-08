@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_DELETE_BY_STATUS_USAGE;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_INDEX_RANGE;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.extractStringArgumentsIntoIndexes;
@@ -16,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import seedu.taskify.logic.commands.DeleteCommand;
 import seedu.taskify.logic.parser.exceptions.ParseException;
 
 public class DeleteMultipleCommandUtilTest {
@@ -29,7 +29,8 @@ public class DeleteMultipleCommandUtilTest {
     @ParameterizedTest
     @ValueSource(strings = {" 3 kappa", " 1.0 2 3.0", " 1, 2, 3", "3-4.0"})
     public void hasMultipleValidIndex_invalidArgs_throwsParseException(String input) {
-        assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX, () -> hasMultipleValidIndex(input));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), (
+                ) -> hasMultipleValidIndex(input));
     }
 
     @Test
@@ -86,14 +87,21 @@ public class DeleteMultipleCommandUtilTest {
     @ParameterizedTest
     @ValueSource(strings = {"  1-", "10-wtf ", "9to10", "000100-   000101"})
     public void extractStringArguments_argsIsInvalidFormatForIndexRange_throwsParseException(String input) {
-        assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX, (
-                ) -> extractStringArgumentsIntoIndexes(input));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteCommand.MESSAGE_USAGE), () -> extractStringArgumentsIntoIndexes(input));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"0-1", "  01-09  ", "-1 0"})
-    public void extractStringArguments_invalidIndexes_throwsParseException(String input) {
-        assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX, (
-                ) -> extractStringArgumentsIntoIndexes(input));
+    @ValueSource(strings = {"0-1", "  01-09  ", "-5-2", "1.0-3", "3-5.0"})
+    public void extractStringArguments_invalidIndexesInRange_throwsParseException(String input) {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteCommand.MESSAGE_USAGE), () -> extractStringArgumentsIntoIndexes(input));
+    }
+
+    @Test
+    public void extractStringArguments_extraInputAfterValidInput_throwsParseException() {
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteCommand.MESSAGE_USAGE), () -> extractStringArgumentsIntoIndexes("1-3 2-4"));
+
     }
 }
