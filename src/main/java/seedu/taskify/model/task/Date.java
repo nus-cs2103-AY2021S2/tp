@@ -36,7 +36,7 @@ public class Date {
      */
     public Date(LocalDateTime localDateTime) {
         requireNonNull(localDateTime);
-        checkArgument(isValidDate(localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")).toString()),
+        checkArgument(isValidDate(localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))),
                 MESSAGE_CONSTRAINTS);
         this.localDateTime = localDateTime;
         this.value = localDateTime.toString();

@@ -137,7 +137,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, args, MESSAGE_GIVEN_DATE_IS_PAST_CURRENT);
 
         String args2 = " n/TestName desc/TestDesc date/";
-        args2 += LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")).toString();
+        args2 += LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         assertParseFailure(parser, args2, MESSAGE_GIVEN_DATE_IS_PAST_CURRENT);
     }
 }
