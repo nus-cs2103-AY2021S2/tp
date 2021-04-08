@@ -30,7 +30,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
-    private String CurrentCss;
+    private String currentCss;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -67,7 +67,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the Style Sheet
         setCss(logic.getCssSettings());
-        this.CurrentCss = logic.getCssSettings().getCssSettings();
+        this.currentCss = logic.getCssSettings().getCssSettings();
 
         setAccelerators();
 
