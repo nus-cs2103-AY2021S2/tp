@@ -34,7 +34,7 @@ MeetBuddy is a **desktop app for managing contacts and daily tasks, optimized fo
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below (after glossary) for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Glossary 
@@ -209,7 +209,7 @@ Examples
  * Note that you can scroll to view more slots.
  
  
-### Set timetable date : `setTimetable`
+### Set Timetable date : `setTimetable`
  
  Sets a timetable to start on a specified date. Updates the display accordingly.
  
@@ -346,4 +346,4 @@ Action | Format, Examples
 **List** | `list`, `listm`, `listp`
 **Sort** | `sortp by/FIELD d/DIRECTION` <br>  `sortm by/FIELD d/DIRECTION`
 **Help** | `help`
-**SetTimtable**| `setTimetable DATE`
+**SetTimetable**| `setTimetable DATE`
