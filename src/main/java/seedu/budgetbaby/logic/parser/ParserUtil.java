@@ -1,6 +1,7 @@
 package seedu.budgetbaby.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.budgetbaby.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.time.YearMonth;
 import java.util.Collection;
@@ -14,6 +15,7 @@ import seedu.budgetbaby.abmodel.person.Name;
 import seedu.budgetbaby.abmodel.person.Phone;
 import seedu.budgetbaby.commons.core.index.Index;
 import seedu.budgetbaby.commons.util.StringUtil;
+import seedu.budgetbaby.logic.commands.SetBudgetCommand;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.Amount;
@@ -109,13 +111,19 @@ public class ParserUtil {
      * @throws ParseException if the given budget amount is negative.
      */
     public static double parseBudgetAmount(String amount) throws ParseException {
-        requireNonNull(amount);
-        String trimmedAmount = amount.trim();
-        double budgetAmount = Double.parseDouble(trimmedAmount);
-        if (budgetAmount < 0) {
-            throw new ParseException("Budget amount cannot be negative!");
+        try {
+            requireNonNull(amount);
+            String trimmedAmount = amount.trim();
+            double budgetAmount = Double.parseDouble(trimmedAmount);
+            if (budgetAmount < 0) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        SetBudgetCommand.MESSAGE_USAGE));
+            }
+            return budgetAmount;
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SetBudgetCommand.MESSAGE_USAGE));
         }
-        return budgetAmount;
     }
 
     /**

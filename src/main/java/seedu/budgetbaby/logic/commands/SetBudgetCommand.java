@@ -11,8 +11,9 @@ import seedu.budgetbaby.model.BudgetBabyModel;
  */
 public class SetBudgetCommand extends BudgetBabyCommand {
     public static final String COMMAND_WORD = "set-bg";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets the budget for the following months."
-        + "Parameters: BG_AMOUNT";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets the budget for the following months.\n"
+            + "Parameters: BG_AMOUNT\n"
+            + "Note the BG_AMOUNT must be a positive number up to two decimal places.";
     public static final String MESSAGE_SUCCESS = "New budget set: %s";
 
     private final Budget toSet;
