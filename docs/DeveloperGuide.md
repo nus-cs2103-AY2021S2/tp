@@ -442,15 +442,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <ul id="use-cases-toc"></ul>
 <script>
-document.addEventListener('DOMContentLoaded', (event) => {
-  const usecase_h4s = Array.prototype.slice.call(document.getElementsByTagName("h4")).filter(h => h.textContent.startsWith('UC'));
-  for (const usecase_h4 of usecase_h4s) {
-      const usecase_text = usecase_h4.textContent;
-      const usecase_link = '#' + usecase_h4.getAttribute('id');
-      const li = document.createElement('li');
-      li.innerHTML = `<a href="${usecase_link}">${usecase_text}</a>`;
-      document.getElementById('use-cases-toc').appendChild(li);
-  }
+document.addEventListener('DOMContentLoaded', () => {
+    // get all use case headings as an array
+    const usecase_h4s = Array.prototype.slice.call(
+        document.getElementsByTagName("h4")
+    ).filter(h => h.textContent.startsWith('UC'));
+    for (const usecase_h4 of usecase_h4s) {
+        // create a <li> element for the current use case heading
+        // and append it to #use-cases-toc
+        const usecase_text = usecase_h4.textContent;
+        const usecase_link = '#' + usecase_h4.getAttribute('id');
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="${usecase_link}">${usecase_text}</a>`;
+        document.getElementById('use-cases-toc').appendChild(li);
+    }
 });
 </script>
 
@@ -481,8 +486,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 **MSS**
 
-1. User requests to delete a specific project in the list.
-2. CoLAB deletes the contact.
+1. User requests to delete a specific project in the list of projects.
+2. CoLAB deletes the project.
 
    Use case ends.
 
@@ -505,7 +510,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 **MSS**
 
 1. User requests to edit information about a project.
-2. CoLAB updates entry with new information.
+2. CoLAB updates the entry with new information.
 
    Use case ends.
 
@@ -596,7 +601,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 1. User switches to the project panel of a specific project.
 2. User lists all todos under the project.
 3. User requests to edit information about a todo.
-4. CoLAB updates entry with new information.
+4. CoLAB updates the entry with new information.
 
    Use case ends.
 
@@ -696,7 +701,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 **MSS**
 
 1. User requests to edit information about a contact.
-2. CoLAB updates entry with new information.
+2. CoLAB updates the entry with new information.
 
    Use case ends.
 
