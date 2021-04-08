@@ -397,8 +397,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | see the profile of a particular student           | get their information                                        |
 | `* * *`  | user                                       | remove a student's profile                        | keep track of only students that I teach                     |
 | `* * *`  | user                                       | edit the details of a student                     | keep track of up-to-date information                         |
-| `* * *`  | busy user                                  | add an individual tuition sessions                | save time by creating multiple sessions in one command       |
-| `* * *`  | user                                       | add a recurring tuition session                   | keep track of my tuition sessions                            |
+| `* * *`  | user                                       | add individual tuition sessions                   | keep track of my tuition sessions                            |
+| `* * *`  | busy user                                  | add recurring tuition sessions                    | save time by creating multiple sessions in one command       |
 | `* * *`  | user                                       | delete a particular tuition session               | update my tuition schedule                                   |
 | `* * *`  | user                                       | delete the entire recurring session               | update my tuition schedule                                   |
 | `* * *`  | user                                       | delete a single session from a recurring session  | take a break from lessons once in a while                    |
@@ -407,7 +407,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | calculate the monthly fees of a particular student| use the information when collecting monthly fees             |
 | `* * *`  | user                                       | get the monthly fees that I would have received for the past 3 months    | manage my finance better              |
 | `* * *`  | forgetful user                             | see a list of upcoming sessions                   | be aware of my teaching schedule for the next few days       |
-| `* * *`  | user teaching many lessons                 | see my schedule in a calendar view                | visual representation of my hectic schedules at a glance     |
+| `* * *`  | user teaching many lessons                 | see my schedule in a calendar view                | have a visual representation of my hectic schedules at a glance  |
 | `* *`    | new user                                   | get a list of commands of the application         | know at a glance what are the features of the application    |
 | `* *`    | potential user                             | see the app populated with sample data on the first run  | try using the features easily                         |
 | `* *`    | new user                                   | purge all current data                            | get rid of sample/current data I used for exploring the app  |
@@ -533,7 +533,7 @@ MSS:
 
   Use case ends.
 
-**Use case: UC0X - Delete a session**
+**Use case: UC0X - Delete a session or the entire recurring session**
 
 MSS:
 
@@ -551,7 +551,7 @@ MSS:
 
   Use case ends.
 
-**Use case: UC0X - Delete a recurring session**
+**Use case: UC0X - Delete a single session from a recurring session**
 
 MSS:
 
