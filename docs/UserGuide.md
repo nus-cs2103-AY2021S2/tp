@@ -163,7 +163,7 @@ Description:
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit property 1 r/Urgent to sell cn/Alice` Edits the remark and client name of the 1st property to be `Urgent to sell` and `Alice` respectively.
+*  `edit property 1 r/Urgent to sell cc/96011846` Edits the remark and client's contact number of the 1st property to be `Urgent to sell` and `96011846` respectively.
 
 #### 3.3.2 Editing an appointment : `edit appointment`
 
@@ -177,7 +177,7 @@ Description:
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit appointment 3 d/21-03-2021 r/at M hotel` Edits the date and remark of the 3rd appointment to be `21-03-2021` and `at M hotel` respectively.
+*  `edit appointment 3 d/21-07-2021 t/1500` Edits the date and time of the 3rd appointment to be `21-07-2021` and `1500` respectively.
 
 ### 3.4 Deleting
 
