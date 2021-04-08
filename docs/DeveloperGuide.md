@@ -440,6 +440,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `CoLAB` and the **Actor** is the `user`, unless specified otherwise)
 
+* [UC1 - Add a contact](#uc1---add-a-contact)
+* [UC2 - Find a specific contact](#uc2---find-a-specific-contact)
+* [UC3 - Delete a contact](#uc3---delete-a-contact)
+* [UC4 - Purge all entries from the app](#uc4---purge-all-entries-from-the-app)
+* [UC5 - Adding or Modifying information about a contact](uc5---adding-or-modifying-information-about-a-contact)
+
 #### UC1 - Add a contact
 
 **MSS**
@@ -457,14 +463,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-#### UC2 - Find details of a specific contact
+* 2a. User decides to undo the add action.
+
+* 2b1. CoLAB reverses the effects of the previous command
+
+  Use case ends.
+
+#### UC2 - Find a specific contact
 
 **MSS**
 
 1. User requests to find a contact.
 2. CoLAB shows a list of contacts that match user's query.
-3. User requests to view more details about a specific contact in the list.
-4. CoLAB shows more information about the contact in the list.
 
    Use case ends.
 
@@ -473,13 +483,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list of contacts is empty.
 
   Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. CoLAB shows an error message.
-
-      Use case resumes at step 2.
-
 
 #### UC3 - Delete a contact
 
@@ -504,45 +507,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+* 4a. User decides to undo the delete action.
+
+* 4b1. CoLAB reverses the effects of the previous command
+
+  Use case ends.
+
 #### UC4 - Purge all entries from the app
 
 **MSS**
 
 1. User requests to delete all entries from the app.
-2. CoLAB asks user to confirm request.
-3. User confirms that they want to delete all entries.
-4. CoLAB deletes all data from the app.
+2. CoLAB deletes all data from the app.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. User decides not to delete all entries.
+* 2a. User decides to undo the purge action.
+
+* 2b1. CoLAB reverses the effects of the previous command
 
   Use case ends.
 
-#### UC5 - Find all contacts that take a certain module
-
-**MSS**
-
-1. User requests to list all contacts by modules taken.
-2. CoLAB lists all entries who have taken the modules.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The given modules are invalid
-
-    * 1a1. CoLAB shows an error message.
-
-      Use case resumes at step 1.
-
-* 2a. The list of contacts is empty.
-
-  Use case ends.
-
-#### UC6 - Adding or Modifying information about a contact
+#### UC5 - Adding or Modifying information about a contact
 
 **MSS**
 
