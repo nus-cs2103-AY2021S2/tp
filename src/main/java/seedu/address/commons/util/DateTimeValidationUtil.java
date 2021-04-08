@@ -69,13 +69,17 @@ public class DateTimeValidationUtil {
             throw new CommandException(MESSAGE_INVALID_END_TIME);
         }
 
+        double timeToHours = timeTo.toTime().getHour() + (timeTo.toTime().getMinute() / 60.0);
+        double timeFromHours = timeFrom.toTime().getHour() + (timeFrom.toTime().getMinute() / 60.0);
+        double timeDiff = timeToHours - timeFromHours;
+
         /* Time Slot must be at least 1 hour */
-        if (timeTo.toTime().getHour() - timeFrom.toTime().getHour() < 1) {
+        if (timeDiff < 1) {
             throw new CommandException(MESSAGE_INVALID_SHORT_HOURS);
         }
 
         /* Time Slot must not exceed 8 hours */
-        if (timeTo.toTime().getHour() - timeFrom.toTime().getHour() > 8) {
+        if (timeDiff > 8) {
             throw new CommandException(MESSAGE_INVALID_LONG_HOURS);
         }
 

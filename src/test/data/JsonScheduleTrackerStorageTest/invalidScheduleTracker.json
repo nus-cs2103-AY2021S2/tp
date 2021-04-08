@@ -1,0 +1,10 @@
+{
+  "schedules": [
+    {
+      "title": "Schedule with invalid title field: T@t!e",
+      "description": " ",
+      "timeFrom": "2021-04-12 08:00 AM",
+      "timeTo": "2021-04-12 10:00 AM"
+    }
+  ]
+}

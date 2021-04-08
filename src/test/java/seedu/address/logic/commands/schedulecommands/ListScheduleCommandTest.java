@@ -1,9 +1,9 @@
-package seedu.address.logic.commands.appointmentcommands;
+package seedu.address.logic.commands.schedulecommands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showScheduleAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalModel.ModelType.APPOINTMENTBOOK;
+import static seedu.address.testutil.TypicalModel.ModelType.SCHEDULETRACKER;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import seedu.address.testutil.TypicalModel;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListAppointmentCommand.
  */
-public class ListAppointmentCommandTest {
+public class ListScheduleCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -22,19 +22,19 @@ public class ListAppointmentCommandTest {
     @BeforeEach
     public void setUp() {
         model = TypicalModel.getTypicalModel();
-        expectedModel = TypicalModel.getTypicalModel(model, APPOINTMENTBOOK);
+        expectedModel = TypicalModel.getTypicalModel(model, SCHEDULETRACKER);
     }
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListAppointmentCommand(), model,
-                ListAppointmentCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListScheduleCommand(), model,
+                ListScheduleCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showAppointmentAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListAppointmentCommand(), model,
-                ListAppointmentCommand.MESSAGE_SUCCESS, expectedModel);
+        showScheduleAtIndex(model, INDEX_FIRST_PERSON);
+        assertCommandSuccess(new ListScheduleCommand(), model,
+                ListScheduleCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

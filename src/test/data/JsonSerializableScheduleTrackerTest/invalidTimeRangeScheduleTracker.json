@@ -1,0 +1,10 @@
+{
+  "schedules": [
+    {
+      "title": "Math Tuition Homework",
+      "description": "Chapter 5",
+      "timeFrom": "2021-05-24 05:00 PM",
+      "timeTo": "2021-05-24 03:00 PM"
+    }
+  ]
+}

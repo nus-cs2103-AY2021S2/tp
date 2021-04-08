@@ -39,6 +39,7 @@ public class DeleteCommandTest {
 
     }
 
+    @Test
     public void execute_validIndexUnfilteredList_success() {
         Tutor tutorToDelete = model.getFilteredTutorList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);

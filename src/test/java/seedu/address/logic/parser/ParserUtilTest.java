@@ -14,6 +14,9 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.common.Description;
+import seedu.address.model.common.Title;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutor.Address;
 import seedu.address.model.tutor.Email;
@@ -34,6 +37,14 @@ public class ParserUtilTest {
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
+    private static final String VALID_SCHEDULE_TITLE = "Maths Homework";
+    private static final String VALID_SCHEDULE_DATE_TIME = "2021-05-24 10:00 AM";
+    private static final String VALID_SCHEDULE_DESCRIPTION = "Chapter 5 Page 841";
+
+    private static final String INVALID_TITLE = "H@mework";
+    private static final String INVALID_DATE_TIME = "2/5/2021 11:00 AM";
+    private static final String INVALID_DESCRIPTION = " ";
+
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
@@ -43,8 +54,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () ->
+                ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -192,5 +203,74 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseTitle_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTitle((String) null));
+    }
+
+    @Test
+    public void parseTitle_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_TITLE));
+    }
+
+    @Test
+    public void parseTitle_validValueWithoutWhitespace_returnsTitle() throws Exception {
+        Title expectedTitle = new Title(VALID_SCHEDULE_TITLE);
+        assertEquals(expectedTitle, ParserUtil.parseTitle(VALID_SCHEDULE_TITLE));
+    }
+
+    @Test
+    public void parseTitle_validValueWithWhitespace_returnsTrimmedTitle() throws Exception {
+        String titleWithWhitespace = WHITESPACE + VALID_SCHEDULE_TITLE + WHITESPACE;
+        Title expectedTitle = new Title(VALID_SCHEDULE_TITLE);
+        assertEquals(expectedTitle, ParserUtil.parseTitle(titleWithWhitespace));
+    }
+
+    @Test
+    public void parseDateTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDateTime((String) null));
+    }
+
+    @Test
+    public void parseDateTime_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATE_TIME));
+    }
+
+    @Test
+    public void parseDateTime_validValueWithoutWhitespace_returnsName() throws Exception {
+        AppointmentDateTime expectedDateTime = new AppointmentDateTime(VALID_SCHEDULE_DATE_TIME);
+        assertEquals(expectedDateTime, ParserUtil.parseDateTime(VALID_SCHEDULE_DATE_TIME));
+    }
+
+    @Test
+    public void parseDateTime_validValueWithWhitespace_returnsTrimmedDateTime() throws Exception {
+        String titleWithWhitespace = WHITESPACE + VALID_SCHEDULE_DATE_TIME + WHITESPACE;
+        AppointmentDateTime expectedDateTime = new AppointmentDateTime(VALID_SCHEDULE_DATE_TIME);
+        assertEquals(expectedDateTime, ParserUtil.parseDateTime(titleWithWhitespace));
+    }
+
+    @Test
+    public void parseDescription_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription((String) null));
+    }
+
+    @Test
+    public void parseDescription_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
+    }
+
+    @Test
+    public void parseDescription_validValueWithoutWhitespace_returnsDescription() throws Exception {
+        Description expectedDescription = new Description(VALID_SCHEDULE_DESCRIPTION);
+        assertEquals(expectedDescription, ParserUtil.parseDescription(VALID_SCHEDULE_DESCRIPTION));
+    }
+
+    @Test
+    public void parseDescription_validValueWithWhitespace_returnsTrimmedDescription() throws Exception {
+        String descriptionWithWhitespace = WHITESPACE + VALID_SCHEDULE_DESCRIPTION + WHITESPACE;
+        Description expectedDescription = new Description(VALID_SCHEDULE_DESCRIPTION);
+        assertEquals(expectedDescription, ParserUtil.parseDescription(descriptionWithWhitespace));
     }
 }

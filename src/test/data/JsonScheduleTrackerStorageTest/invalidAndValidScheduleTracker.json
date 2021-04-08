@@ -1,0 +1,16 @@
+{
+  "schedules": [
+    {
+      "title": "Valid Schedule",
+      "description": "Chapter 5",
+      "timeFrom": "2021-03-24 02:00 PM",
+      "timeTo": "2021-03-24 03:00 PM"
+    },
+    {
+      "title": "Schedule with invalid description field",
+      "description": " ",
+      "timeFrom": "2021-04-12 08:00 AM",
+      "timeTo": "2021-04-12 10:00 AM"
+    }
+  ]
+}

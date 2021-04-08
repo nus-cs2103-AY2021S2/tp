@@ -64,17 +64,20 @@ public class AddScheduleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        DateTimeValidationUtil.validateDateTime(model, toAdd);
-
         if (model.hasSchedule(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SCHEDULE);
         }
 
-        if (model.hasClashingDateTime(toAdd)) {
-            throw new CommandException(MESSAGE_CLASH_SCHEDULE);
-        }
+        DateTimeValidationUtil.validateDateTime(model, toAdd);
 
         model.addSchedule(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.SCHEDULE);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddScheduleCommand // instanceof handles nulls
+                && toAdd.equals(((AddScheduleCommand) other).toAdd));
     }
 }

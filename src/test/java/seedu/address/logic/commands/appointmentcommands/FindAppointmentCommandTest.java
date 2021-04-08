@@ -15,14 +15,14 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.appointment.NamePredicate;
-import seedu.address.testutil.ModelManagerBuilder;
+import seedu.address.testutil.TypicalModel;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindAppointmentCommandTest}.
  */
 public class FindAppointmentCommandTest {
-    private final Model model = ModelManagerBuilder.getModelManager();
-    private final Model expectedModel = ModelManagerBuilder.getModelManager();
+    private final Model model = TypicalModel.getTypicalModel();
+    private final Model expectedModel = TypicalModel.getTypicalModel();
 
     @Test
     public void equals() {

@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtDate;
-import static seedu.address.testutil.ModelManagerBuilder.ModelType.APPOINTMENTBOOK;
 import static seedu.address.testutil.TypicalDates.APPOINTMENT_FIRST_DATE;
 import static seedu.address.testutil.TypicalDates.APPOINTMENT_SECOND_DATE;
+import static seedu.address.testutil.TypicalModel.ModelType.APPOINTMENTBOOK;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.DateViewPredicate;
-import seedu.address.testutil.ModelManagerBuilder;
+import seedu.address.testutil.TypicalModel;
 
 public class ViewAppointmentCommandTest {
 
@@ -23,8 +23,8 @@ public class ViewAppointmentCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = ModelManagerBuilder.getModelManager();
-        expectedModel = ModelManagerBuilder.getModelManager(model, APPOINTMENTBOOK);
+        model = TypicalModel.getTypicalModel();
+        expectedModel = TypicalModel.getTypicalModel(model, APPOINTMENTBOOK);
     }
 
     @Test
@@ -36,7 +36,6 @@ public class ViewAppointmentCommandTest {
 
         String expectedMessage = String.format(ViewAppointmentCommand.MESSAGE_VIEW_APPOINTMENT_SUCCESS,
                 appointmentToView.getTimeFrom().toDateString());
-        System.out.println(expectedMessage);
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
