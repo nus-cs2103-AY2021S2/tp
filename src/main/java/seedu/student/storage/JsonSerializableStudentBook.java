@@ -73,7 +73,7 @@ class JsonSerializableStudentBook {
                 throw new IllegalValueException(MESSAGE_MISSING_STUDENT);
             }
 
-            if (studentBook.hasAppointment(appointment) || studentBook.hasOverlappingAppointment(appointment)) {
+            if (studentBook.hasOverlappingAppointment(appointment)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);
             }
             studentBook.addAppointment(appointment);
