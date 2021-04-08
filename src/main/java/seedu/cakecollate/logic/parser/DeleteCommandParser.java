@@ -4,6 +4,7 @@ import static seedu.cakecollate.commons.core.Messages.MESSAGE_INVALID_COMMAND_FO
 
 import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.logic.commands.DeleteCommand;
+import seedu.cakecollate.logic.parser.exceptions.IndexOutOfBoundsException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 
 /**
@@ -20,6 +21,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         try {
             IndexList indexList = ParserUtil.parseIndexList(args);
             return new DeleteCommand(indexList);
+        } catch (IndexOutOfBoundsException pe) {
+            throw new IndexOutOfBoundsException(pe.getMessage());
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
