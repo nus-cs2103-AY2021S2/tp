@@ -366,6 +366,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Lesson> getTransformedLessonListForPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void filterThenSortLessonList(Predicate<Lesson> predicate, Comparator<Lesson> comparator) {
             throw new AssertionError("This method should not be called.");
         }
