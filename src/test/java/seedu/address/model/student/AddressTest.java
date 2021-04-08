@@ -1,5 +1,6 @@
 package seedu.address.model.student;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -17,6 +18,12 @@ public class AddressTest {
     public void constructor_invalidAddress_throwsIllegalArgumentException() {
         String invalidAddress = "";
         assertThrows(IllegalArgumentException.class, () -> new Address(invalidAddress));
+    }
+
+    @Test
+    public void hashcode_equals() {
+        String address = "Blk 123 Outer space road";
+        assertEquals(new Address(address).hashCode(), new Address(address).hashCode());
     }
 
     @Test

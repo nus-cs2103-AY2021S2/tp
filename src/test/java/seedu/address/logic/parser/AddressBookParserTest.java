@@ -19,8 +19,10 @@ import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteStudentCommand;
 import seedu.address.logic.commands.EditStudentCommand;
+import seedu.address.logic.commands.EmailCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindStudentCommand;
+import seedu.address.logic.commands.GetMonthlyFeeCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -91,6 +93,17 @@ public class AddressBookParserTest {
     public void parseStudentCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseEmailCommand() throws Exception {
+        assertTrue(parser.parseCommand(EmailCommand.COMMAND_WORD) instanceof EmailCommand);
+    }
+
+    @Test
+    public void parseGetMonthlyFeeCommand() throws Exception {
+        assertTrue(parser.parseCommand(GetMonthlyFeeCommand.COMMAND_WORD
+            + " n/someone m/12 y/2021") instanceof GetMonthlyFeeCommand);
     }
 
     @Test
