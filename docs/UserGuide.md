@@ -55,7 +55,7 @@ Before diving into the rest of the contents in our user guide, the following are
 
 ## 3. Quickstart
 
-1. Ensure you have **Java 11 or above** installed on your Computer.
+1. Ensure you have **Java 11 or above** installed on your computer.
 
 2. Download the latest **imPoster.jar** from
    [here](https://imposter-dev.tk) and move the file to the folder you wish to use as the **home folder** for imPoster.
@@ -131,26 +131,29 @@ Here are some general rules to follow when entering prefixes and parameters:
   e.g. If you specify `-u https://github.com/ -u https://google.com/`, only `-u https://google.com/` will be taken.<br>
 
 * **Extraneous parameters** for commands that do not take in parameters (such as **help**, **list**, **exit** and **clear**) will be ignored.<br>
-  e.g. If the command specifies `help 123`, it will be interpreted as `help`.<br>
+  e.g. If the user input is `help 123`, it will be interpreted as `help`.<br>
   
 * For **add**, **edit** and **run** commands, to add multiple parameters of the same prefix, add the prefix multiple times before each parameter.<br>
   e.g. To add two tags, enter `-t tagOne -t tagTwo`.<br>
   e.g. To add three headers, enter `-h "header: one" -h "header: two" -h "header: three"`.<br>
   
 * Multiple **headers/tags must be unique** and duplicates will be ignored.<br>
-e.g. `edit 1 -t tagA -t tagA` will only create one `tagA`.
+  e.g. `edit 1 -t tagA -t tagA` will only create one `tagA`.
 
 * For the **URL** parameter, as our application is focused on API testing, we have no plans to direct all our efforts in
-  verifying every technically valid or invalid [**URL**](https://en.wikipedia.org/wiki/URL) against the official [URL standard](https://url.spec.whatwg.org/#url-parsing). Hence, **minimal checks** are performed for cases of **invalid URL** for which we will still display error messages.
+  verifying every technically valid or invalid [**URL**](https://en.wikipedia.org/wiki/URL) against the 
+  official [URL standard](https://url.spec.whatwg.org/#url-parsing). Hence, **minimal checks** are performed 
+  for cases of **invalid URL** for which we will still display error messages.<br>
   e.g.`abc.com\go` is an invalid URL as `\` cannot exist in a valid URL.
 
-* If no website [protocol](#glossary-protocol) is specified for the **URL**, we enforce a **HTTP protocol** as a protocol needs 
-  to be specified for an API request to be carried out.<br>
-  e.g. if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`.
+* If no website [protocol](#glossary-protocol) is specified for the **URL**, we enforce a **HTTP protocol** as a 
+  protocol is needed for an API request to be carried out.<br>
+  e.g. If a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`.
 
-* The **index** parameter provided should be a **non-zero unsigned integer** within the allowed range of Java's `int` data type:
-  * the maximum value an `int` can have is (2^31)-1.
-  * the minimum value an `int` can have is -(2^31).
+* The **index** parameter provided should be a **non-zero unsigned integer** within the allowed range of Java's 
+  [`int`](#glossary-int) data type. On top of that, the **index** should be within the bounds of the API endpoint 
+  list.<br>
+  e.g If there are three endpoints saved in the API endpoint list. The range of valid index is from 1 to 3.
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 Every command explanation comes with a screenshot that shows the expected message in the application's **Result Display** (screenshot may be partial to save space!)
@@ -224,15 +227,14 @@ Every command explanation comes with a screenshot that shows the expected messag
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 When editing tags/headers, the existing tags/headers of the endpoint will be removed. <br>
 i.e adding of tags/headers is not cumulative.<br>
-You may remove all the endpoint’s tags by typing ` -t` without specifying any tags after it. Similarly, you may remove
-all the endpoint's headers by typing ` -h` without specifying any headers after it.
-For example: `edit 1 -t` will remove all existing tags for the first endpoint in the saved endpoint list.
+You may remove all the endpoint’s tags by typing `-t` without specifying any tags after it. Similarly, you may remove
+all the endpoint's headers by typing `-h` without specifying any headers after it.
+For example: `edit 1 -t` will remove all existing tags for the first endpoint in the API endpoint list.
 </div>
 
 #### 4.2.3 Show an API endpoint: <span class="main-command">show</span>
 
-**Description:** Show the details of the API endpoint at the specified index shown in the API endpoint list (index must 
-be a positive integer).
+**Description:** Show the details of the API endpoint at the specified index shown in the API endpoint list.
 
 **Format:** <span class="main-command">show</span> <span class="compulsory-param">INDEX</span>
 
@@ -304,7 +306,8 @@ will search for all items matching `GET` and `POST`.
 
 #### 4.2.6 List all saved API endpoints: <span class="main-command">list</span>
 
-**Description:** Show a list of all API endpoints in the API endpoint list. If there are no endpoints in the API endpoint list, nothing will show up on the Endpoint List bar.
+**Description:** Show a list of all API endpoints in the API endpoint list. If there are no endpoints in the API 
+endpoint list, nothing will show up on the endpoint list panel.
 
 **Format:** <span class="main-command">list</span>
 
@@ -370,7 +373,7 @@ request that does not specify any data or header **(an ongoing call can be cance
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 The above shortcut for run command is designed for users to easily verify outputs for common API endpoints that 
-do not require other input data or header. Note that this feature is only meant for sending GET requests.
+do not require any input data or header. Note that this feature is only meant for sending GET requests.
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -379,10 +382,11 @@ do not require other input data or header. Note that this feature is only meant 
 
 #### 4.3.1 Retrieve the last valid command
 
-**Description:** Given that the last valid command from a user is most likely to be repeated during the API development
+**Description:** Given that the last valid command executed by the user is most likely to be repeated during the API 
+development
 & verification process, a special key combination <kbd>ctrl</kbd> + <kbd>up-arrow</kbd> (Windows) / <kbd>cmd</kbd> + 
 <kbd>up-arrow</kbd> (macOS) is available to set the 
-command box with the last command.
+command box with that last command.
 
 **Format:** <kbd>ctrl</kbd> + <kbd>up-arrow</kbd> (Windows) / <kbd>cmd</kbd> + <kbd>up-arrow</kbd> (macOS)
 
@@ -458,7 +462,7 @@ A quick overview of all supported commands, their formats and examples are given
 | Term                                         | Description                                               |
 | -------------------------------------------- | --------------------------------------------------------- |
 | **API** | <a name="glossary-api"></a> API is short for **Application Programming Interface** and allows two systems to interact with each other  |
-| **Call** | <a name="glossary-call"></a> A call to an API endpoint refers to the process of sending a [request to the server and then receiving a response](#83-what-are-requests-and-responses).          |
+| **Call** | <a name="glossary-call"></a> A call to an API endpoint refers to the process of sending a [request to the server and then receiving a response](#83-what-are-requests-and-responses)          |
 | **Endpoint** | <a name="glossary-endpoint"></a> The communication point of a system that allows it to interact with another system, commonly accessed through a URL |
 | **Request** | A process in which information is sent out to an endpoint through one of the [request methods](#84-request-methods) (a more detailed explanation can be found [here](#83-what-are-requests-and-responses)) |
 | **Response** | The information obtained from an endpoint after a request is sent to it (a more detailed explanation can be found [here](#83-what-are-requests-and-responses)) |
@@ -468,7 +472,7 @@ A quick overview of all supported commands, their formats and examples are given
 | **CURL** | <a name="glossary-curl"></a> CURL is short for **Client URL** and is a command-line tool used in the transfer of data via different network protocols |
 | **Index** | Index in this guide refers to the position of the endpoint in the endpoint list (represented by the number beside the endpoint) |
 | **Protocol** | <a name="glossary-protocol"></a> A protocol is a system of rules that define how data is exchanged within or between systems |
-
+| **int**| <a name="glossary-int"></a> A primitive data type of Java that has the maximum value of (2^31)-1. The minimum value an `int` can have is -(2^31).|
 <div style="page-break-after: always;"></div>
 
 ## 8. Appendix
