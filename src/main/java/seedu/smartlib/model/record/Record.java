@@ -166,8 +166,8 @@ public class Record {
     public Duration getBorrowDuration() {
         assert dateBorrowed != null && dateReturned != null : "Date cannot be null";
 
-        LocalDateTime startDate = LocalDateTime.parse(dateBorrowed.getValue());
-        LocalDateTime endDate = LocalDateTime.parse(dateReturned.getValue());
+        LocalDateTime startDate = LocalDateTime.parse(dateBorrowed.toString());
+        LocalDateTime endDate = LocalDateTime.parse(dateReturned.toString());
 
         return Duration.between(startDate, endDate);
     }

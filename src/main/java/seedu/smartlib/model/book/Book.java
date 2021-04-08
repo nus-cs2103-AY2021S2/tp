@@ -186,7 +186,7 @@ public class Book {
             return false;
         }
         LocalDateTime timeNow = LocalDateTime.now();
-        LocalDateTime startDate = LocalDateTime.parse(dateBorrowed.getValue());
+        LocalDateTime startDate = LocalDateTime.parse(dateBorrowed.toString());
 
         return (int) Duration.between(startDate, timeNow).toHours() > HOURS_BORROW_ALLOWED;
     }
