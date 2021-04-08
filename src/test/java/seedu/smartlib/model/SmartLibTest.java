@@ -134,6 +134,53 @@ public class SmartLibTest {
     }
 
     @Test
+    public void getBooksByName() {
+        // EP: null bookname
+        assertThrows(NullPointerException.class, () -> smartLib.getBooksByName(null));
+
+        // EP: invalid bookname -> returns empty arraylist
+        assertTrue(smartLib.getBooksByName(HABIT.getName()).isEmpty());
+        assertTrue(smartLib.getBooksByName(LIFE.getName()).isEmpty());
+
+        // EP: valid bookname -> returns a list of Book objects whose name is specified by bookName, if any
+        ArrayList<Book> newBookList = new ArrayList<>();
+        newBookList.add(HABIT);
+        newBookList.add(LIFE);
+        smartLib.setBooks(newBookList);
+
+        ArrayList<Book> expectedList = new ArrayList<>();
+        expectedList.add(HABIT);
+        assertEquals(expectedList, smartLib.getBooksByName(HABIT.getName()));
+
+        ArrayList<Book> expectedList2 = new ArrayList<>();
+        expectedList2.add(LIFE);
+        assertEquals(expectedList2, smartLib.getBooksByName(LIFE.getName()));
+
+        // clear data
+        smartLib.resetData(new SmartLib());
+    }
+
+    @Test
+    public void getBookByBarcode() {
+        // EP: null barcode
+        assertThrows(NullPointerException.class, () -> smartLib.getBookByBarcode(null));
+
+        // EP: invalid barcode -> returns null
+        assertNull(smartLib.getBookByBarcode(HABIT.getBarcode()));
+        assertNull(smartLib.getBookByBarcode(LIFE.getBarcode()));
+
+        // EP: valid barcode -> returns Book whose barcode is equal to input, if any
+        ArrayList<Book> newBookList = new ArrayList<>();
+        newBookList.add(SECRET);
+        smartLib.setBooks(newBookList);
+
+        assertEquals(SECRET, smartLib.getBookByBarcode(SECRET.getBarcode()));
+
+        // clear data
+        smartLib.resetData(new SmartLib());
+    }
+
+    @Test
     public void hashCodeTest() {
         SmartLib smartLibCopy = new SmartLib(smartLib);
         int hashcode = smartLib.hashCode();
