@@ -11,13 +11,14 @@ import seedu.address.model.tag.Filterable;
  */
 public class SubjectQualification implements Filterable {
     public static final String MESSAGE_CONSTRAINTS =
-            "Qualifications should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Qualifications should only contain alphanumeric characters, spaces,"
+            + " the symbols - ( ) and it should not be blank";
 
     /*
      * The first character of the subject qualification must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum} \\-)(][\\p{Alnum} \\-)(]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}\\-)(][\\p{Alnum} \\-)(]*";
 
     public final String qualification;
 
