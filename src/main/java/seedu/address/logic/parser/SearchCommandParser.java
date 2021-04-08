@@ -118,7 +118,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
             break;
         case "subject":
             String[] test = trimmedKeyword.split("\\s+");
-            for (int i = 0; i < test.length ; i++) {
+            for (int i = 0; i < test.length; i++) {
                 if (!Subject.isValidSubjectName(test[i])) {
                     throw new ParseException(
                         String.format(MESSAGE_INVALID_KEYWORD_SUPPLIED, Subject.MESSAGE_CONSTRAINTS));
