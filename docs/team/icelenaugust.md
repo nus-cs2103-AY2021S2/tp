@@ -44,3 +44,4 @@ Given below are my contributions to the project.
 
 * **Community**:
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S2-CS2103T-T11-2/tp/issues/313), [2](https://github.com/AY2021S2-CS2103T-T11-2/tp/issues/315))
+  
