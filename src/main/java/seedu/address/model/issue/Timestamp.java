@@ -22,16 +22,7 @@ public class Timestamp implements Comparable<Timestamp> {
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(TIMESTAMP_PATTERN, DEFAULT_LOCALE);
 
     public static final String MESSAGE_CONSTRAINTS = "Timestamps should be in the format "
-            + TIMESTAMP_PATTERN + ", and it should not be blank\n\n"
-            + "yyyy - 4 digit year (e.g. 2021)\n"
-            + "M - 1 or 2 digit month (e.g. 1, 01, 12)\n"
-            + "d - 1 or 2 digit day (e.g. 1, 01, 31)\n"
-            + "h - hour (0-12)\n"
-            + "mm - minutes (0-59)\n"
-            + "a - case-insensitive AM/PM\n"
-            + "Example: 2021/1/1 1:00pm";
-
-    public static final String MESSAGE_INVALID_FUTURE = "Timestamps should not be in the future";
+            + TIMESTAMP_PATTERN + ", and it should not be blank";
 
     private static final Logger logger = LogsCenter.getLogger(Timestamp.class);
 
@@ -61,7 +52,7 @@ public class Timestamp implements Comparable<Timestamp> {
      */
     public static boolean isValidTimestamp(String test) {
         try {
-            LocalDateTime datetime = LocalDateTime.parse(test.toUpperCase(), FORMATTER);
+            LocalDateTime.parse(test.toUpperCase(), FORMATTER);
             return true;
         } catch (DateTimeParseException dtpe) {
             logger.warning("Invalid timestamp given: " + dtpe.getMessage());

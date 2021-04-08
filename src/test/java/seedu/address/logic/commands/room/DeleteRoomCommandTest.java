@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.room.RoomCommandTestUtil.showRoomAtIndex;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
@@ -29,9 +28,8 @@ public class DeleteRoomCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredRoomList_success() {
-        // Use 4th as its not tied to any issues in the test data
-        Room roomToDelete = model.getFilteredRoomList().get(INDEX_FOURTH.getZeroBased());
-        DeleteRoomCommand deleteRoomCommand = new DeleteRoomCommand(INDEX_FOURTH);
+        Room roomToDelete = model.getFilteredRoomList().get(INDEX_FIRST.getZeroBased());
+        DeleteRoomCommand deleteRoomCommand = new DeleteRoomCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteRoomCommand.MESSAGE_DELETE_ROOM_SUCCESS, roomToDelete);
 
@@ -51,8 +49,7 @@ public class DeleteRoomCommandTest {
 
     @Test
     public void execute_validIndexFilteredRoomList_success() {
-        // Use 4th as its not tied to any issues in the test data
-        showRoomAtIndex(model, INDEX_FOURTH);
+        showRoomAtIndex(model, INDEX_FIRST);
 
         Room roomToDelete = model.getFilteredRoomList().get(INDEX_FIRST.getZeroBased());
         DeleteRoomCommand deleteRoomCommand = new DeleteRoomCommand(INDEX_FIRST);

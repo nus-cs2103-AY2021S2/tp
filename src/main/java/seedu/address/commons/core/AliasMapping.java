@@ -2,10 +2,7 @@
 package seedu.address.commons.core;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import seedu.address.logic.commands.ClearCommand;
@@ -201,12 +198,10 @@ public class AliasMapping implements Serializable {
         final String format = "%d:\t%s = %s\n";
         StringBuilder msg = new StringBuilder();
         int count = 0;
-        List<String> aliasByName = new ArrayList<>(mapping.keySet());
-        Collections.sort(aliasByName);
 
-        for (String aliasName : aliasByName) {
+        for (String key : mapping.keySet()) {
             count++;
-            msg.append(String.format(format, count, aliasName, mapping.get(aliasName).getCommand()));
+            msg.append(String.format(format, count, key, mapping.get(key).getCommand()));
         }
         return msg.toString();
     }

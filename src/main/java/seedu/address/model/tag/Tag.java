@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tag name should be alphanumeric and maximum 25 characters";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}{1,25}";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
 
@@ -36,7 +36,7 @@ public class Tag {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Tag // instanceof handles nulls
-                        && tagName.equals(((Tag) other).tagName)); // state check
+                && tagName.equals(((Tag) other).tagName)); // state check
     }
 
     @Override

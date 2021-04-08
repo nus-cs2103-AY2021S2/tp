@@ -32,7 +32,9 @@ public class NameTest {
 
         // valid name
         assertTrue(Name.isValidName("peter jack")); // alphabets only
+        assertTrue(Name.isValidName("12345")); // numbers only
+        assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
-        assertTrue(Name.isValidName("Capital Joe Tan ")); // with 3 words
+        assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
     }
 }

@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.resident;
+package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -26,6 +26,7 @@ import static seedu.address.testutil.resident.TypicalResidents.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.resident.AddResidentCommand;
+import seedu.address.logic.parser.resident.AddResidentCommandParser;
 import seedu.address.model.resident.Email;
 import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Phone;

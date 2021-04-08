@@ -11,7 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.resident.EditResidentCommand;
-import seedu.address.testutil.resident.EditResidentDescriptorBuilder;
+import seedu.address.testutil.EditResidentDescriptorBuilder;
 
 public class EditResidentDescriptorTest {
 

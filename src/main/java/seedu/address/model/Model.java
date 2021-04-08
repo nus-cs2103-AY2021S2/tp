@@ -20,9 +20,7 @@ import seedu.address.model.room.RoomNumber;
  * The API of the Model component.
  */
 public interface Model {
-    /**
-     * {@code Predicate} that always evaluate to true
-     */
+    /** {@code Predicate} that always evaluate to true */
     Predicate<Resident> PREDICATE_SHOW_ALL_RESIDENTS = unused -> true;
     Predicate<Room> PREDICATE_SHOW_ALL_ROOMS = unused -> true;
     Predicate<Issue> PREDICATE_SHOW_ALL_ISSUES = unused -> true;
@@ -61,7 +59,6 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     // =========== AddressBook ================================================================================
-
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
@@ -222,14 +219,6 @@ public interface Model {
     void closeIssue(Issue target);
 
     /**
-     * Checks if any issues have the given room associated with it
-     *
-     * @param target Room to check if it has issues associated with it.
-     * @return True if there are issues with the given room associated with it.
-     */
-    boolean issuesContainRoom(Room target);
-
-    /**
      * Returns an unmodifiable view of the filtered issue list.
      */
     ObservableList<Issue> getFilteredIssueList();
@@ -243,7 +232,6 @@ public interface Model {
     void updateFilteredIssueList(Predicate<Issue> predicate);
 
     // =========== ResidentRoom =============================================================
-
     /**
      * Returns true if a residentroom with the same identity as {@code residentRoom} exists in the address book.
      */
@@ -262,11 +250,6 @@ public interface Model {
      * {@code residentRoom} must not already exist in the address book.
      */
     void addResidentRoom(ResidentRoom residentRoom);
-
-    /**
-     * Returns an unmodifiable view of the filtered residentRoom list
-     */
-    ObservableList<ResidentRoom> getFilteredResidentRoomList();
 
     /**
      * Updates the filter of the filtered resident list to filter by the given {@code predicate}.

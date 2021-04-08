@@ -65,7 +65,7 @@ public class AliasCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.addAlias(VALID_ALIAS_1);
 
-        assertCommandSuccess(new AliasCommand(VALID_ALIAS_1), model, String.format(AliasCommand.MESSAGE_SUCCESS_NEW,
+        assertCommandSuccess(new AliasCommand(VALID_ALIAS_1), model, String.format(AliasCommand.MESSAGE_SUCCESS,
                 VALID_ALIAS_1.getAliasName()), expectedModel);
     }
 }

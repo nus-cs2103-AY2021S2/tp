@@ -3,7 +3,6 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Alias;
@@ -30,7 +29,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueResidentRoomList residentRooms;
     private final IssueList issues;
     private final AliasMapping aliasMapping;
-
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -264,16 +262,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         issues.remove(key);
     }
 
-    /**
-     * Checks if any issues have the given room associated with it
-     *
-     * @param target Room to check if it has issues associated with it.
-     * @return True if there are issues with the given room associated with it.
-     */
-    public boolean issuesContainRoom(Room target) {
-        return issues.containsRoom(target);
-    }
-
     //// util methods
 
     @Override
@@ -404,6 +392,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public int hashCode() {
-        return Objects.hash(residents, rooms, residentRooms, issues, aliasMapping);
+        return residents.hashCode();
     }
 }

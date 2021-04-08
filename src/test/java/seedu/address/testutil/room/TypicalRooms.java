@@ -54,12 +54,6 @@ public class TypicalRooms {
             .withOccupancyStatus("n")
             .build();
 
-    public static final Room FIRST_ROOM = new RoomBuilder()
-            .withRoomNumber("01-000")
-            .withRoomType("suite_ac")
-            .withOccupancyStatus("y")
-            .build();
-
 
     private TypicalRooms() {
     }

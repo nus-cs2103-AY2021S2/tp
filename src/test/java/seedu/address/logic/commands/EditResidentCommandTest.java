@@ -24,8 +24,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.resident.Resident;
-import seedu.address.testutil.resident.EditResidentDescriptorBuilder;
-import seedu.address.testutil.resident.ResidentBuilder;
+import seedu.address.testutil.EditResidentDescriptorBuilder;
+import seedu.address.testutil.ResidentBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditResidentCommand.

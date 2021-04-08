@@ -16,7 +16,7 @@ import seedu.address.logic.commands.resident.AddResidentCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.resident.Resident;
-import seedu.address.testutil.resident.ResidentBuilder;
+import seedu.address.testutil.ResidentBuilder;
 
 public class AddResidentCommandTest {
 
