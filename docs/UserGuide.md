@@ -367,7 +367,7 @@ Sub Command Format:
 * `select shown`
 * `select INDEX...`
 
-The selected person will have a highlighted index number to indicate selection status.
+The selected person(s) will have a highlighted index number to indicate selection status.
 
 ![Select UI Example](images/UG_Select%20Indicator.png)
 
