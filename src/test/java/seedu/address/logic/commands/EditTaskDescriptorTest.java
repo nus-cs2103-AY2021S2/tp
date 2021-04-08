@@ -7,8 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDULE_BOB;
-import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
+import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 

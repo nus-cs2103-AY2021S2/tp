@@ -21,11 +21,11 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_BOB;
-import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.TypicalTasks.AMY;
 import static seedu.address.testutil.TypicalTasks.BOB;
 

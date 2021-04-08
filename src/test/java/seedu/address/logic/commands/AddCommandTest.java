@@ -8,8 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
-import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
+import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;

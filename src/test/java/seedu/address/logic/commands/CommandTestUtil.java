@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -19,7 +21,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.Planner;
-import seedu.address.model.tag.UniqueTagListTestUtil;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.predicates.TitleContainsKeywordsPredicate;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
@@ -57,15 +58,15 @@ public class CommandTestUtil {
     public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
     public static final String STATUS_DESC_AMY = " " + PREFIX_STATUS + VALID_STATUS_AMY;
     public static final String STATUS_DESC_BOB = " " + PREFIX_STATUS + VALID_STATUS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + UniqueTagListTestUtil.VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + UniqueTagListTestUtil.VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in titles
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE
             + "12/01/20002"; // Date not allowed in dates
     public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION + "djdjhej"; // ' ' not allowed in duration
     public static final String INVALID_RECURRINGSCHEDULE_DESC = " " + PREFIX_RECURRINGSCHEDULE
-             + "10/06/2021Monbiweekly"; // missing '[]' symbol within the field
+            + "10/06/2021Monbiweekly"; // missing '[]' symbol within the field
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_STATUS_INDEX = " " + "2147483648"; // Integer Overflow
 
@@ -78,11 +79,12 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_AMY).withDuration(VALID_DURATION_AMY)
                 .withDate(VALID_DATE_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
-                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(UniqueTagListTestUtil.VALID_TAG_FRIEND).build();
+                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_BOB).withDuration(VALID_DURATION_BOB)
                 .withDate(VALID_DATE_BOB).withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB)
                 .withDescription(VALID_DESCRIPTION_BOB).withStatus(VALID_STATUS_BOB)
-                .withTags(UniqueTagListTestUtil.VALID_TAG_HUSBAND, UniqueTagListTestUtil.VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**
@@ -127,6 +129,7 @@ public class CommandTestUtil {
         assertEquals(expectedPlanner, actualModel.getPlanner());
         assertEquals(expectedFilteredList, actualModel.getFilteredTaskList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the task at the given {@code targetIndex} in the
      * {@code model}'s planner.

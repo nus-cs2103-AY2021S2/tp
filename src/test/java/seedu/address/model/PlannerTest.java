@@ -8,7 +8,6 @@ import static seedu.address.model.tag.UniqueTagListTestUtil.TAG_FRIEND;
 import static seedu.address.model.tag.UniqueTagListTestUtil.TAG_HUSBAND;
 import static seedu.address.model.tag.UniqueTagListTestUtil.TAG_VIM;
 import static seedu.address.model.tag.UniqueTagListTestUtil.TAG_YELLOW;
-import static seedu.address.model.tag.UniqueTagListTestUtil.TAG_ZOO;
 import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -20,10 +19,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;

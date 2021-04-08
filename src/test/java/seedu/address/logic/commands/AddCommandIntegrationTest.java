@@ -5,10 +5,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
-import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.testutil.TypicalTasks.getTypicalPlanner;
 
 import org.junit.jupiter.api.BeforeEach;
