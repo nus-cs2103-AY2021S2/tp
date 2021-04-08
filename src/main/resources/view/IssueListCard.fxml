@@ -29,9 +29,9 @@
         <Label fx:id="timestamp" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true"/>
+      <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true" />
       <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
-      <Label fx:id="category" styleClass="cell_small_label" text="\$categor" />
+      <Label fx:id="category" styleClass="cell_small_label" text="\$category" />
     </VBox>
   </GridPane>
 </HBox>
