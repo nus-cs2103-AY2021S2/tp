@@ -22,10 +22,10 @@ title: Developer Guide
     * [List food item feature](#list-food-item-feature)
     * [Delete food item feature](#delete-food-item-feature)
   * [FoodIntake Object](#foodintake-object)
+  * [FoodIntakeList Object](#foodintakelist-object)
     * [Add food intake feature](#add-food-intake-feature)
     * [Delete food intake feature](#delete-food-intake-feature)
     * [Update food intake feature](#update-food-intake-feature)
-  * [FoodIntakeList Object](#foodintakelist-object)
   * [Progress Report feature](#progress-report-feature)
   * [Mifflin-St Joer Formula](#mifflin-st-joer-formula)
 * [Product Scope](#product-scope)
@@ -316,9 +316,9 @@ The following sequence diagram shows how the delete operation works:
 
 <img src="images/FoodIntakeClassDiagram.png" width="249" />
 
-The FoodIntake represents the date and food associated with a particular FoodIntake.
+The food intake object represents the date and food associated with a particular food intake.
 
-The FoodIntake class stores a `LocalDate` and `Food`:
+The 'FoodIntake' class stores a `LocalDate` and `Food`:
 
 1. `date` : Represents the date that the FoodIntake was recorded
 2. `food` : Represents the `Food` object associated with the FoodIntake record
@@ -365,8 +365,8 @@ The FoodIntake class stores an ObservableList of `FoodIntake`s:
 1. `ObservableList<FoodIntake>`: Represents the list of recorded `FoodIntake`s
 
 Additionally, some noteworthy information to note:
-2. `FoodIntake`s with duplicate `Food` names will have their names renamed to include a duplicate count. More information on the implementation is provided in the below section.
-3. Whenever a `FoodIntake` is deleted, the duplicate count is re-ordered for `FoodIntake`s matching the name and date. More information on the implementation is provided in the below section.
+1. `FoodIntake`s with duplicate `Food` names will have their names renamed to include a duplicate count. More information on the implementation is provided in the below section.
+2. Whenever a `FoodIntake` is deleted, the duplicate count is re-ordered for `FoodIntake`s matching the name and date. More information on the implementation is provided in the below section.
 
 #### Design consideration
 ##### Aspect: A single `FoodIntakeList` used for the program
@@ -405,7 +405,9 @@ The `AddFoodIntakeParser` first verifies that the expected format is met and the
 1. If there exists an existing `Food` found in the `UniqueFoodList`, the `Food` object is retrieved, and if at least 1 nutrient value is provided, the `UniqueFoodList` will be updated with the new `Food` information.
 2. If no match is found in the `UniqueFoodList`, a new `Food` object is created and added to the `UniqueFoodList` for the user's convenience using the provided nutrient values. Values that are not provided are default to **0**.
 
+<div markdown="span" class="alert alert-info">
 **Note:** when updating a `Food` to its new nutrient values, `FoodIntake`s already in the `FoodIntakeList` will not be affected by the update.
+</div>
 
 The `addFoodIntake()` method of the `FoodIntakeList` is finally called to add the `FoodIntake` into the list. Refer to the detailed implementation below.
 
@@ -415,8 +417,6 @@ The method first strips the duplicate count, if any, from the `Food` name in the
 If the item count is 0, the `FoodIntake` is added as it is. Otherwise, it means that there is at least 1 `FoodIntake` with the same name and date - and would require a duplicate count to be appended to the name.
 
 For example, if the original name is 'chocolate', and there are 3 `FoodIntake`s with 'chocolate' as their original name (duplicate count stripped out), then the name will be updated to 'chocolate #4' as it would be the 4th chocolate added to the `FoodIntakeList` on the specified date.
-
-[diagram]
 
 ### Delete Food Intake feature
 
