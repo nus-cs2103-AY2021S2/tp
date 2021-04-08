@@ -33,6 +33,10 @@ public class TaskListPanel extends UiPart<Region> {
         taskListView.setCellFactory(listView -> new TaskListViewCell());
     }
 
+    public ListView<Task> getTaskListView() {
+        return taskListView;
+    }
+
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Task} using a {@code TaskCard}.
      */
@@ -50,7 +54,7 @@ public class TaskListPanel extends UiPart<Region> {
             } else { //task not done, check for remaining time
                 // if remaining time > 3 days -> green
                 // if remaining time > 1  but <= 3 days -> yellow
-                // if remaining time <= 1 day -> red
+                // if remaining time <= 1 day -> orange
                 TaskCard addedTaskCard = new TaskCard(task, getIndex() + 1);
                 setGraphic(addedTaskCard.getRoot());
                 String colorToAssign = classifyTimeLeftByColor(task);
@@ -67,19 +71,33 @@ public class TaskListPanel extends UiPart<Region> {
             }
         }
 
+        /**
+         * Returns the done status of a given task.
+         *
+         * @param task
+         * @return boolean
+         */
+
         protected boolean taskIsDone(Task task) {
             DoneStatus d = task.getDoneStatus();
             return d.getIsDone();
         }
 
+        /**
+         * Given a task, assign a String representing a color according to the time difference
+         * between now and the deadline of the given task.
+         *
+         * @param task
+         * @return "Green", "Yellow", "Orange" or "Expired"
+         */
         protected String classifyTimeLeftByColor(Task task) {
             LocalDateTime now = LocalDateTime.now();
             LocalDateTime t = task.getDeadline().time;
 
-            Integer i = t.compareTo(now);
+            double i = t.compareTo(now);
             if (i > 0) {
-                long diff = MINUTES.between(now, t);
-                long daydiff = diff / 1440;
+                double diff = MINUTES.between(now, t);
+                double daydiff = diff / 1440; //use double to retain decimal places
 
                 assert(daydiff >= 0);
                 if (daydiff >= 3) {
@@ -87,7 +105,7 @@ public class TaskListPanel extends UiPart<Region> {
                 } else if (daydiff <= 3 && daydiff > 1) {
                     return "Yellow";
                 } else {
-                    return "Red";
+                    return "Orange";
                 }
             } else {
                 return "Expired";
