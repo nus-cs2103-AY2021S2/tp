@@ -1079,11 +1079,17 @@ testers are expected to do more *exploratory* testing.
 6. Finding residents
     1. Prerequisites: There are a few residents. <br>
     2. Test case: `rfind KEYWORD` <br>
-       Expected: Residents' name with words fully matching `KEYWORD` are listed.  
-       
+       Expected: Residents' name with words fully matching `KEYWORD` are listed.
 
-
-### Allocation
+### Allocation and Deallocation
+1. Allocating residents to rooms
+    1. Prerequisites: Have 1 unallocated resident and 1 unallocated room displayed. 
+    2. Test case: `alloc ri/1 oi/1` <br>
+       Expected: 1st resident is allocated to the 1st room displayed in the list.
+2. Deallocating residents
+    1. Prerequisites: There is at least 1 resident allocated displayed. <br>
+    2. Test case: `dealloc 1` <br>
+       Expected: 1st resident is deallocated from the room.
 
 ### Saving data
 
