@@ -202,13 +202,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void getCurrentFlashcard() {
-        requireNonNull(quizInstance);
-        Flashcard current = quizInstance.getCurrentQuestion();
-        updateFilteredFlashcardList(curr -> curr.equals(current));
-    }
-
-    @Override
     public int getCurrentIndex() {
         requireNonNull(quizInstance);
         return quizInstance.getCurrentQuizIndex();

@@ -87,15 +87,6 @@ public class Quiz {
     }
 
     /**
-     * Gets the current flashcard question shown to the user.
-     *
-     * @return The current flashcard shown.
-     */
-    public Flashcard getCurrentQuestion() {
-        return currentQuiz;
-    }
-
-    /**
      * Checks whether the attempt is correct with respect to the current flashcard in the quiz.
      *
      * @param attempt The answer to check.

@@ -111,9 +111,6 @@ public interface Model {
     /** Shows the next question in the Quiz */
     Flashcard getNextFlashcard();
 
-    /** Shows the current question in the Quiz */
-    void getCurrentFlashcard();
-
     /** Returns the index of current question in the Quiz */
     int getCurrentIndex();
 

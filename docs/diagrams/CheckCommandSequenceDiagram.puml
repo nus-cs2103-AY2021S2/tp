@@ -1,0 +1,109 @@
+@startuml
+!include style.puml
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WeeblingoParser" as WeeblingoParser LOGIC_COLOR
+participant ":CheckCommandParser" as CheckCommandParser LOGIC_COLOR
+participant "c:CheckCommand" as CheckCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+[-> MainWindow : executeCommand("check one")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("check one")
+activate LogicManager
+
+LogicManager -> WeeblingoParser : parseCommand("check one")
+activate WeeblingoParser
+
+create CheckCommandParser
+WeeblingoParser -> CheckCommandParser :
+activate CheckCommandParser
+
+CheckCommandParser --> WeeblingoParser :
+deactivate CheckCommandParser
+
+WeeblingoParser --> CheckCommandParser : parse("one")
+activate CheckCommandParser
+
+create CheckCommand
+CheckCommandParser -> CheckCommand :
+activate CheckCommand
+
+CheckCommand --> CheckCommandParser : c
+deactivate CheckCommand
+
+CheckCommandParser --> WeeblingoParser : c
+deactivate CheckCommandParser
+
+CheckCommandParser -[hidden]-> WeeblingoParser
+destroy CheckCommandParser
+
+WeeblingoParser --> LogicManager : c
+deactivate WeeblingoParser
+
+LogicManager -> CheckCommand : execute(model)
+activate CheckCommand
+
+CheckCommand -> ModelManager : isCorrectAttempt("hi")
+activate ModelManager
+
+ModelManager --> CheckCommand : result
+deactivate ModelManager
+
+create CommandResult
+CheckCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> CheckCommand
+deactivate CommandResult
+
+CheckCommand --> LogicManager : result
+deactivate CheckCommand
+
+MainWindow<--LogicManager : result
+deactivate LogicManager
+
+MainWindow -> LogicManager : getCurrentIndex()
+activate LogicManager
+
+LogicManager -> ModelManager : getCurrentIndex()
+activate ModelManager
+
+ModelManager -> LogicManager : index
+deactivate ModelManager
+
+LogicManager -> MainWindow : index
+deactivate LogicManager
+
+MainWindow -> LogicManager : showAnswer()
+activate LogicManager
+
+LogicManager -> ModelManager : getCurrentMode()
+activate ModelManager
+
+ModelManager -> LogicManager : mode
+deactivate ModelManager
+
+LogicManager -> MainWindow : showAnswer
+deactivate LogicManager
+
+
+MainWindow -> MainWindow : updateCard(index, showAnswer)
+activate MainWindow
+
+LogicManager -[hidden]-> LogicManager : result
+deactivate MainWindow
+
+[<--MainWindow
+deactivate MainWindow
+@enduml
