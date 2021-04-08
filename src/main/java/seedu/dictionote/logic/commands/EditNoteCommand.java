@@ -78,7 +78,7 @@ public class EditNoteCommand extends Command {
         Note editedNote = createEditedNote(noteToEdit, editNoteDescriptor);
 
         if (noteToEdit.isSameNote(editedNote)) {
-            throw new CommandException(MESSAGE_NOTHING_CHANGE_NOTE);
+            throw new CommandException(MESSAGE_NOT_EDITED);
         }
 
         if (model.hasNote(editedNote)) {
