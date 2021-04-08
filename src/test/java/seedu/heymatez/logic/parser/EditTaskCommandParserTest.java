@@ -1,6 +1,7 @@
 package seedu.heymatez.logic.parser;
 
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DEADLINE_FORMAT;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_PRIORITY;
 import static seedu.heymatez.logic.commands.CommandTestUtil.ASSIGNEE_TASK2;
@@ -48,7 +49,7 @@ public class EditTaskCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, "-d This is my new description",
+        assertParseFailure(parser, "d/This is my new description",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE));
 
         // no field specified
@@ -64,7 +65,7 @@ public class EditTaskCommandParserTest {
         assertParseFailure(parser, "N", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "-h", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "h/", MESSAGE_INVALID_FORMAT);
 
         assertParseFailure(parser, "0", MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
 
@@ -82,8 +83,8 @@ public class EditTaskCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid deadline
-        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC,
-                 Deadline.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, MESSAGE_INVALID_TASK_DEADLINE_FORMAT
+                + Deadline.MESSAGE_CONSTRAINTS);
 
         //invalid priority
         assertParseFailure(parser, "1" + INVALID_PRIORITY_DESC, MESSAGE_INVALID_TASK_PRIORITY

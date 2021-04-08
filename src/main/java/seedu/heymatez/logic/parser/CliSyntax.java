@@ -6,15 +6,15 @@ package seedu.heymatez.logic.parser;
 public class CliSyntax {
 
     /* Prefix definitions for member*/
-    public static final Prefix PREFIX_NEW_NAME = new Prefix("-n ");
-    public static final Prefix PREFIX_PHONE = new Prefix("-p ");
-    public static final Prefix PREFIX_EMAIL = new Prefix("-e ");
-    public static final Prefix PREFIX_ROLE = new Prefix("-r ");
+    public static final Prefix PREFIX_NEW_NAME = new Prefix("n/");
+    public static final Prefix PREFIX_PHONE = new Prefix("p/");
+    public static final Prefix PREFIX_EMAIL = new Prefix("e/");
+    public static final Prefix PREFIX_ROLE = new Prefix("r/");
     /* Prefix definitions for task */
-    public static final Prefix PREFIX_TITLE = new Prefix("-n ");
-    public static final Prefix PREFIX_DESCRIPTION = new Prefix("-d ");
-    public static final Prefix PREFIX_STATUS = new Prefix("-s ");
-    public static final Prefix PREFIX_DEADLINE = new Prefix("-b ");
-    public static final Prefix PREFIX_PRIORITY = new Prefix("-p ");
-    public static final Prefix PREFIX_ASSIGNEE = new Prefix("-a ");
+    public static final Prefix PREFIX_TITLE = new Prefix("n/");
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
+    public static final Prefix PREFIX_STATUS = new Prefix("s/");
+    public static final Prefix PREFIX_DEADLINE = new Prefix("b/");
+    public static final Prefix PREFIX_PRIORITY = new Prefix("p/");
+    public static final Prefix PREFIX_ASSIGNEE = new Prefix("a/");
 }

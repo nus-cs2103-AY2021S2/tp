@@ -38,17 +38,18 @@ public class EditTaskCommand extends Command {
             + "by the index number used in the displayed task board. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TITLE + " NEW_TITLE] "
-            + "[" + PREFIX_DESCRIPTION + " NEW_DESCRIPTION] "
-            + "[" + PREFIX_DEADLINE + " NEW_DEADLINE] "
-            + "[" + PREFIX_STATUS + " NEW_STATUS] "
-            + "[" + PREFIX_PRIORITY + " NEW_PRIORITY] "
+            + "[" + PREFIX_TITLE + "NEW_TITLE] "
+            + "[" + PREFIX_DESCRIPTION + "NEW_DESCRIPTION] "
+            + "[" + PREFIX_DEADLINE + "NEW_DEADLINE] "
+            + "[" + PREFIX_STATUS + "NEW_STATUS] "
+            + "[" + PREFIX_PRIORITY + "NEW_PRIORITY] "
             + "[" + PREFIX_ASSIGNEE + "NEW_ASSIGNEE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TITLE + "Plan open house meeting "
             + PREFIX_STATUS + "completed";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
+
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;

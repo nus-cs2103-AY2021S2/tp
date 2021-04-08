@@ -175,6 +175,11 @@ public class AddTaskCommandTest {
         }
 
         @Override
+        public boolean isTaskListEmpty() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean checkAssignees(Task task) {
             throw new AssertionError("This method should not be called.");
         };

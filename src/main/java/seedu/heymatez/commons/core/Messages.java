@@ -22,5 +22,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_TASK_DEADLINE = "The task deadline value provided is invalid! \n";
     public static final String MESSAGE_INVALID_TASK_DEADLINE_FORMAT = "The task deadline format provided is "
             + "incorrect! \n";
+    public static final String MESSAGE_EMPTY_TASK_LIST = "There are no tasks found!";
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
 }

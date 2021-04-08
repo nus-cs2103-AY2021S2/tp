@@ -15,10 +15,18 @@ public class ViewUncompletedTasksCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all Uncompleted Tasks";
 
+    public static final String MESSAGE_NO_UNCOMPLETED_TASKS = "There are no uncompleted tasks found!";
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.isTaskListEmpty()) {
+            return new CommandResult(MESSAGE_NO_UNCOMPLETED_TASKS);
+        }
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_UNCOMPLETED_TASKS);
+        if (model.isTaskListEmpty()) {
+            return new CommandResult(MESSAGE_NO_UNCOMPLETED_TASKS);
+        }
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

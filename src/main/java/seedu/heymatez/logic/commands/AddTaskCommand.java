@@ -22,22 +22,22 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new task to HeyMatez dashboard.\n"
             + "Parameters: "
             + "TITLE "
-            + PREFIX_DESCRIPTION + " DESCRIPTION "
-            + PREFIX_DEADLINE + " DEADLINE "
-            + PREFIX_STATUS + " TASK STATUS "
-            + PREFIX_PRIORITY + " PRIORITY "
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_DEADLINE + "DEADLINE "
+            + PREFIX_STATUS + "TASK STATUS "
+            + PREFIX_PRIORITY + "PRIORITY "
             + "[" + PREFIX_ASSIGNEE + "ASSIGNEE]...\n"
             + "Example: " + COMMAND_WORD + " "
             + "Plan board meeting "
-            + PREFIX_DESCRIPTION + " Draft meeting agenda and proposal for board meeting "
+            + PREFIX_DESCRIPTION + "Draft meeting agenda and proposal for board meeting "
             + PREFIX_DEADLINE + "2021-05-02 "
-            + PREFIX_STATUS + " completed "
-            + PREFIX_PRIORITY + " high "
-            + PREFIX_ASSIGNEE + " Rachel";
+            + PREFIX_STATUS + "completed "
+            + PREFIX_PRIORITY + "high "
+            + PREFIX_ASSIGNEE + "Rachel";
 
     public static final String MESSAGE_SUCCESS = "New Task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists in the HeyMatez "
-            + "task board! Pick another name!";
+    public static final String MESSAGE_DUPLICATE_TASK = "A task with the same title already exists in the HeyMatez "
+            + "task board! Pick another title!";
 
     private final Task toAddTask;
 

@@ -1,6 +1,7 @@
 package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_TASK_LIST;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class DoneTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_DONE_TASK_SUCCESS = "Task is marked as completed!";
+
     public static final String MESSAGE_TASK_ALREADY_MARKED_DONE = "Task is already marked completed!";
 
     private final Index index;
@@ -47,6 +49,10 @@ public class DoneTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
+
+        if (lastShownList.isEmpty()) {
+            return new CommandResult(MESSAGE_EMPTY_TASK_LIST);
+        }
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);

@@ -44,7 +44,7 @@ public class EditMemberCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no name specified
-        assertParseFailure(parser, "-p 93451122", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "p/93451122", MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, VALID_NAME_AMY, EditMemberCommand.MESSAGE_NOT_EDITED);
@@ -59,7 +59,7 @@ public class EditMemberCommandParserTest {
         assertParseFailure(parser, "N@ME", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "-h", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "h/", MESSAGE_INVALID_FORMAT);
     }
 
     @Test

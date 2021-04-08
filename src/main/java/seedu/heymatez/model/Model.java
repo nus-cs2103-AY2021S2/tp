@@ -139,4 +139,9 @@ public interface Model {
      * Returns true if the filtered person list is empty.
      */
     boolean isPersonListEmpty();
+
+    /**
+     * Returns true if the filtered task list is empty.
+     */
+    boolean isTaskListEmpty();
 }
