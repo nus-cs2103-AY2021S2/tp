@@ -90,15 +90,15 @@ eg. if the command specifies `n/NUMBER t/TAG`, `t/TAG n/NUMBER` is also acceptab
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
 eg. if you specify `n/5 n/10`, only `n/10` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `next` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help あいうえお`, it will be interpreted as `help`.
 
 </div>
 
-## General Commands
+### General Commands
 Commands listed in this section can be run in all modes of the app.
 
-### Ending the session: `end`
+#### Ending the session: `end`
 
 Prematurely ends the current quiz session. Quiz progress will not be saved if this is done.
 
@@ -112,7 +112,7 @@ end using next instead. The end command is meant as a way to quickly discard and
 
 Format: `end`
 
-### Asking for help: `help`
+#### Asking for help: `help`
 
 Shows a message explaning how to access the help page.
 
@@ -120,16 +120,16 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Exiting the application: `exit`
+#### Exiting the application: `exit`
 
 Exits the application.
 
 Format: `exit`
 
 
-## Learn Mode Commands
+### Learn Mode Commands
 
-### Entering learn mode: `learn`
+#### Entering learn mode: `learn`
 
 Enters Learn Mode, where all current flashcards are listed out. Answers to current flashcards are shown as well.
 
@@ -143,7 +143,7 @@ Format: `learn`
 Learn Mode:
 ![learn mode](images/learn_mode.png)
 
-### Tagging a flashcard: `tag`
+#### Tagging a flashcard: `tag`
 
 Reads in a positive index and one or more tags, and adds these tags to the flashcard at the desired index.
 At least one tag must be provided, else the user will be prompted to enter a valid command.
@@ -166,7 +166,7 @@ Examples:
 After successfully adding a tag:
 ![tag successful](images/tag_success.png)
 
-### Deleting tags from a flashcard: `deleteTag`
+#### Deleting tags from a flashcard: `deleteTag`
 
 Reads in a positive index and zero or more tags, and removes these tags from the flashcard at the desired index.
 If no tags are provided, all user-added tags will be removed from the flashcard.
@@ -178,7 +178,7 @@ The purpose of this command is to allow users to delete tags added by themselves
 
 </div>
 
-Format: `deleteTag INDEX [t/TAGS…]`
+Format: `deleteTag INDEX [t/TAG]…`
 
 Examples:
 * `deleteTag 3`
@@ -188,27 +188,35 @@ After successfully deleting sampleTag from the flashcard at index 3:
 ![delete_successful](images/delete_success.png)
 
 
-## Quiz Mode Commands
+### Quiz Mode Commands
 
-### Entering quiz mode: `quiz`
+#### Entering quiz mode: `quiz`
 
-Enters Quiz Mode, where all current flashcards are listed out. Answers to current flashcards are not shown.
+Enters Quiz Mode. The answer to all displayed flashcards will be hidden. 
 
-Format: `quiz [t/TAG]...`
+Format: `quiz [t/TAG]…​`
 
-### Starting a quiz session: `start`
-
-Starts a quiz session.
-
-Format: `start [n/NUMBER] [t/TAG]...`
-
-* NUMBER specifies the number of questions for the quiz session.
-* TAG specifies the type of questions for the quiz session.
-* NUMBER specified should be positive.
-* There are currently four tags available, gojuon, hiragana, katakana and numbers.
-* You can specify one or two tags.
+* When used with tags, only flashcards that posses all specified tag(s) will be displayed.
+* When used without tags, all flashcards will be displayed.
 
 Examples:
+
+* `quiz`
+* `quiz t/hiragana`
+
+#### Starting a quiz session: `start`
+
+Starts a quiz session with randomly ordered flashcards. 
+
+* NUMBER specifies the number of questions for the quiz session.
+* TAG specifies the categories of questions for the quiz session.
+* NUMBER specified should be a positive integer and less than number of available flashcards in the database.
+* When used without a number, either all existing flashcards (if no tag is specified) or flashcards with specified tags will be tested.
+* There are currently four default tags, gojuon, hiragana, katakana and numbers.
+* When used without tags, all categories of questions can be tested.
+
+Examples:
+* `start`
 * `start n/10`
 * `start t/katakana`
 * `start n/5 t/gojuon t/hiragana`
@@ -219,43 +227,49 @@ Before executing start command:
 After executing start command:
 ![after start](images/start_after.png)
 
-### Checking flashcard answers: `check`
+#### Checking flashcard answers: `check`
 
-Reads in user attempt and check if it matches the answer of currently shown flashcard question.<br>
-Each time a check command is executed, number of attempts increment by one.
-If attempt is correct, answer to the current flashcard will be displayed and number of correct attempt is displayed.
-Else user may choose to try again, skip the question though `next` or end the session through `end`.
+Checks if user attempt matches the answer of the currently displayed flashcard.
 
 Format: `check ATTEMPT`
 
-Examples:
-* `check a`
-* `check hi`
+* `ATTEMPT` is case-insensitive and ignores leading and trailing white spaces.
+* Each time the user checks an attempt, number of attempts increments by one.
+* If attempt is correct, answer to the current flashcard will be displayed and number of correct attempts increments by one.
+* If attempt is incorrect, user may choose to try again through `check`, skip the question though `next` or end the session through `end`.
 
-If user attempt matches correct answer of flashcard:
+Examples:
+* `check hi`
+* `check hI`
+
+If user attempt matches answer of flashcard:
 ![correct answer](images/check_correct.png)
 
-If user attempt does not match correct answer of flashcard:
+If user attempt does not match answer of flashcard:
 ![incorrect answer](images/check_incorrect.png)
 
 If user tries to answer already correctly answered flashcard:
 ![answered again](images/check_again.png)
 
-### Going to next flashcard: `next`
+#### Going to next flashcard: `next`
 
-Goes to the next flashcard in the quiz session, if any.
+Goes to the next flashcard in the quiz session.
 
 Format: `next`
 
-## History Mode Commands
+* If the quiz session has reached an end (i.e. no more flashcards to be tested), result statistic and 
+flashcards tested (with answers shown) will be displayed. User may choose to start a new session through `start`,
+return to quiz view through `quiz` or return to menu through `end`.
 
-### Entering history mode: `history`
+### History Mode Commands
+
+#### Entering history mode: `history`
 
 View scores of all past quiz attempts.
 
 Format: `history`
 
-### Adding and removing entries `[coming in v2.0]`
+#### Adding and removing entries `[coming in v2.0]`
 
 _Details coming soon ..._
 
@@ -279,17 +293,19 @@ is to load the storage file with built-in default flashcards and tags.
 
 Action | Format, Examples |
 -------|------------------|
-**Quiz** | `quiz`
-**Start** | `start`
-**Check** | `check ATTEMPT` <br> e.g. `check a`
+**Learn** | `learn [t/TAG]…` <br> e.g. `learn`, `learn t/hiragana`
+**Tag**| `tag INDEX t/TAG [t/TAG]…` <br> e.g. `tag 1 t/difficult`
+**DeleteTag**| `deleteTag INDEX [t/TAG]…` <br> e.g. `deleteTag 1 t/difficult`, `deleteTag 3`
+**Quiz** | `quiz [t/TAG]…` <br> e.g. `quiz`, `quiz t/hiragana`
+**Start** | `start [n/NUMBER] [t/TAG]…` <br> e.g. `start`, `start n/5`, `start t/hiragana`, `start n/15 t/hiragana`
+**Check** | `check ATTEMPT` <br> e.g. `check he`, `check HE`
 **Next** | `next`
-**Learn** | `learn`
-**End** | `end`
 **History**|`history`
-**Tag**| `tag INDEX t/TAGS…` <br> e.g. `tag 1 t/difficult`
-**DeleteTag**| `deleteTag INDEX [t/TAGS…]` <br> e.g. `deleteTag 1 t/difficult`, `deleteTag 3`
-**Exit** | `exit`
+**End** | `end`
 **Help** | `help`
+**Exit** | `exit`
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
