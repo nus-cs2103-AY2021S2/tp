@@ -13,8 +13,8 @@ import java.util.List;
 public class Colour {
     public static final String MESSAGE_CONSTRAINTS =
             "Garment's Colour field must be non-empty and be either"
-            + " red, orange, yellow, green, blue, pink"
-            + " purple, brown, or black.";
+            + " red, orange, yellow, green, blue, pink, grey, white,"
+            + " purple, brown, beige, or black.";
 
     public static final String[] COLOURARRAY = {
         "red",
@@ -179,7 +179,7 @@ public class Colour {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
         requireNonNull(colour);
-        this.colour = colour;
+        this.colour = colour.toLowerCase();
     }
 
     /**

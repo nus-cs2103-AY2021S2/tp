@@ -84,9 +84,12 @@ has to offer. Read on to learn how to use them to digitise your wardrobe and use
   * `d/DESCRIPTION`, the description of the garment
 * Items in square brackets are optional e.g. `n/NAME [c/COLOUR]` can be used as `n/striped shirt c/blue` or as `n/striped shirt`.
 * Inputs can be in any order e.g. if the command specifies `n/NAME c/COLOUR`, `c/COLOUR n/NAME` is also acceptable.
-* Items with `…` after them can be used multiple times including zero times.<br>e.g. `[d/DESCRIPTION]...` can be used as ` ` (i.e. 0 times), `d/stained`, `d/torn d/stained` etc.
-* Input for `r/DRESSCODE` is either `casual`, `formal` or `active`.
-* Input for `t/TYPE` is either `upper`, `lower` or `footwear`.
+* Items with `…` after them can be used multiple times including zero times.<br>e.g. `[d/DESCRIPTION]...` can be 
+  unused, `d/stained`, `d/torn d/stained` etc.
+* Input for `c/COLOUR` is case-insensitive, and is either`beige`, `black`, `blue`, `brown`, `green`, `grey`, `orange`, 
+  `pink`, `purple`, `red`, `white`, or `yellow`.
+* Input for `r/DRESSCODE` is case-sensitive, and is either `casual`, `CASUAL`, `formal`, `FORMAL`, `active` or `ACTIVE`.
+* Input for `t/TYPE` is case-sensitive, and is either `upper`, `lower` or `footwear`.
 <br><br>
 </div>
 
@@ -130,6 +133,8 @@ Format: `list`
 **:bulb: Tips:** <br>
 * Displays the list of all garments in chronological ordering, to easily find the garments that have not been worn 
   in a long time.
+  
+</div>
 <br><br>
 
 ### Deleting a singular Garment in the Wardrobe: `delete`  
@@ -148,8 +153,8 @@ Format: `delete INDEX`
 </div>
 
 Example:<br>
-* `list` followed by `delete 7`<br>
-Removes the 7th Garment in the wardrobe.
+* `delete 7`<br>
+Removes the 7th Garment in list of clothes currently shown.
 <br><br>
   
 ### Clearing all Garments in Wardrobe : `clear`
@@ -208,15 +213,21 @@ Example:
 Finds all articles of clothing that match the colour and dress code,
 but do not match the type(s) of a specified garment, or two specified
 garments of different types.<br>
-Format: `match INDEX [INDEX]`
-* Number of indices provided must at least 1, and at most 2
+
+<img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/MatchGarment.png" alt="alt 
+text" width="790">
+
+
+Current Supported Format: `match INDEX`<br>
+To be Implemented Format: `match INDEX [INDEX]`
+
 
 Examples:
 * `match 1`  
 Returns all the articles of clothing that match the colour and dress code
   of the garment at index 1 in the list of garments on display, but do not match
   its type.
-* `match 1 2`  [matching of multiple input garments is to be implemented]<br> 
+* `match 1 2`  **[using 2 indices to find their matching garments is to be implemented]**<br> 
 Returns all the articles of clothing that match the colours and dress code of
   the garments at indices 1 and 2 in the list of garments on display, but
   do not match their types.
