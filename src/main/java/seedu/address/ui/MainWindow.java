@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -17,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -36,7 +36,8 @@ public class MainWindow extends UiPart<Stage> {
     private MeetingListPanel meetingListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private Alert notifWindow;
+    private NotifWindow notifWindow;
+    private NotesWindow notesWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -163,14 +164,21 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleNotif() {
-        notifWindow = new Alert(Alert.AlertType.INFORMATION);
-        notifWindow.getDialogPane().getStylesheets().add("view/DarkTheme.css");
-        notifWindow.initOwner(getPrimaryStage());
-        notifWindow.setTitle("Notification");
-        notifWindow.setHeaderText("Welcome to Link.me!");
-        notifWindow.setContentText(logic.getNotifications());
-        notifWindow.showAndWait();
+        notifWindow = new NotifWindow(getPrimaryStage());
+        notifWindow.setMessage(logic.getNotifications());
+        notifWindow.show();
         logger.info("Displaying notif window...");
+    }
+
+    /**
+     * Displays notes to the user.
+     */
+    @FXML
+    public void handleNotes(Person personWithNotes) {
+        notesWindow = new NotesWindow(getPrimaryStage());
+        notesWindow.setMessage(personWithNotes);
+        notesWindow.show();
+        logger.info("Displaying notes window...");
     }
 
     void show() {
@@ -214,6 +222,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowNotif()) {
                 handleNotif();
+            }
+
+            if (commandResult.isShowNote()) {
+                handleNotes(commandResult.getPersonWithNotes());
             }
 
             return commandResult;

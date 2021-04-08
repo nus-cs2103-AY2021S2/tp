@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -32,9 +34,11 @@ public class UniqueMeetingList implements Iterable<Person> {
     /**
      * Checks if the added Person's meeting has any clashes, and returns the clashed meeting.
      */
-    public Optional<Meeting> clash(Person toCheck) {
+    public Optional<Person> clash(Person toCheck) {
         requireNonNull(toCheck);
-        return toCheck.getMeeting().map(meetingMap::get).flatMap(Person::getMeeting);
+        return toCheck.getMeeting()
+                .map(meetingMap::get)
+                .filter(person -> !person.equals(toCheck));
     }
 
     /**
@@ -123,6 +127,7 @@ public class UniqueMeetingList implements Iterable<Person> {
     public void setPersons(List<Person> persons) {
         requireAllNonNull(persons);
         meetingMap.clear();
+        internalList.setAll(meetingMap.values());
         persons.forEach(this::add);
     }
 
@@ -132,9 +137,11 @@ public class UniqueMeetingList implements Iterable<Person> {
         for (Person person : internalList) {
             person.getMeeting()
                     .map(meeting -> meeting.dateTime)
-                    .filter(date -> date.toLocalDate().equals(LocalDate.now()))
-                    .map(date -> sb.append(String.format(template, person.getName().fullName, date.toLocalTime())))
-                    .isPresent();
+                    .filter(datetime -> datetime.toLocalDate().equals(LocalDate.now()))
+                    .filter(datetime -> datetime.toLocalTime().compareTo(LocalTime.now()) > 0)
+                    .map(datetime ->
+                            sb.append(String.format(template, person.getName().fullName,
+                                    datetime.toLocalTime().format(DateTimeFormatter.ofPattern("h:mm a")))));
         }
         return sb.toString();
     }

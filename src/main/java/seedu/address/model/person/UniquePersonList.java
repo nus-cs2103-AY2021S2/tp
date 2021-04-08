@@ -6,11 +6,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDate;
 import java.time.MonthDay;
 import java.time.temporal.ChronoUnit;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -20,7 +22,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
  * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Person#isSamePerson(Person)
@@ -105,19 +107,29 @@ public class UniquePersonList implements Iterable<Person> {
         LocalDate today = LocalDate.now();
         String template = "%s's birthday is coming up in %d days.\n";
         int year = today.getYear();
-        for (Person person : internalList) {
-            MonthDay birthday = MonthDay.from(person.getBirthdate().value);
-            LocalDate nextBday = birthday.atYear(year);
-            if (nextBday.isBefore(today)) {
-                nextBday = birthday.atYear(year + 1);
-            }
-            long period = ChronoUnit.DAYS.between(today, nextBday);
-            if (period >= 0 && period < 14) {
-                sb.append(String.format(template, person.getName().fullName, period));
-            }
-        }
+        internalList.stream()
+                .map(person -> {
+                    MonthDay birthday = MonthDay.from(person.getBirthdate().value);
+                    LocalDate nextBday = birthday.atYear(year);
+                    if (nextBday.isBefore(today)) {
+                        nextBday = birthday.atYear(year + 1);
+                    }
+                    long period = ChronoUnit.DAYS.between(today, nextBday);
+                    return new Pair<>(person, period);
+                })
+                .sorted(Comparator.comparing(Pair::getValue))
+                .forEach(pair -> {
+                    if (pair.getValue() == 0) {
+                        sb.append(String.format("It's %s's birthday today!!\n", pair.getKey().getName().fullName));
+                    } else if (pair.getValue() == 1) {
+                        sb.append(String.format("%s's birthday is tomorrow.\n", pair.getKey().getName().fullName));
+                    } else if (pair.getValue() >= 2 && pair.getValue() <= 14) {
+                        sb.append(String.format(template, pair.getKey().getName().fullName, pair.getValue()));
+                    }
+                });
         return sb.toString();
     }
+
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
@@ -135,7 +147,7 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniquePersonList // instanceof handles nulls
-                        && internalList.equals(((UniquePersonList) other).internalList));
+                && internalList.equals(((UniquePersonList) other).internalList));
     }
 
     @Override

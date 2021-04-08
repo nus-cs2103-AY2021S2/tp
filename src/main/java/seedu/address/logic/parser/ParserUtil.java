@@ -4,20 +4,19 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.insurance.InsurancePlanName;
-import seedu.address.model.insurance.InsurancePremium;
+import seedu.address.model.insurance.InsurancePlan;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -159,6 +158,36 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String plan} into an {@code InsurancePlan}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code plan} is invalid.
+     */
+    public static InsurancePlan parsePlan(String plan) throws ParseException {
+        requireNonNull(plan);
+        String trimmedPlan = plan.trim();
+        if (!InsurancePlan.isValidPlan(trimmedPlan)) {
+            throw new ParseException(InsurancePlan.MESSAGE_CONSTRAINTS);
+        }
+        if (!InsurancePlan.isValidAmount(trimmedPlan.split(" \\$", 2)[1])) {
+            throw new ParseException(InsurancePlan.PREMIUM_CONSTRAINTS);
+        }
+        return new InsurancePlan(trimmedPlan);
+    }
+
+    /**
+     * Retrieves the plan index from a remove plan command.
+     *
+     * @throws ParseException if the given {@code command} is invalid.
+     */
+    public static Index parseRemovePlanIndex(String index) throws ParseException {
+        requireNonNull(index);
+        String trimmedIndex = index.trim();
+        Index planIndex = parseIndex(trimmedIndex);
+        return planIndex;
+    }
+
+    /**
      * Parses a {@code String meeting} into an {@code Meeting}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -167,9 +196,6 @@ public class ParserUtil {
     public static Meeting parseMeeting(String meeting) throws ParseException {
         requireNonNull(meeting);
         String trimmedMeeting = meeting.trim();
-        if (trimmedMeeting.equals("remove")) {
-            return null;
-        }
         if (!Meeting.isValidMeeting(trimmedMeeting)) {
             throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
         }
@@ -177,41 +203,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code Optional<String> optionalName} into a {@code InsurancePlanName}.
+     * Parses a {@code String note} into an {@code Note}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the name in the given {@code optionalName} is present but invalid.
+     * @throws ParseException if the given {@code note} is invalid.
      */
-    public static InsurancePlanName parsePlanName(Optional<String> optionalName) throws ParseException {
-        if (optionalName.isEmpty()) {
-            return null;
+    public static Note parseNote(String note) throws ParseException {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+        if (!Note.isValidNote(trimmedNote)) {
+            throw new ParseException(Note.MESSAGE_CONSTRAINTS);
         }
-        String name = optionalName.get();
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!InsurancePlanName.isValidName(trimmedName)) {
-            throw new ParseException(InsurancePlanName.MESSAGE_CONSTRAINTS);
-        }
-        return new InsurancePlanName(trimmedName);
-    }
-
-    /**
-     * Parses a {@code Optional<String> optionalAmount} into a {@code InsurancePremium}.
-     * Leading and trailing whitespaces will be trimmed.
-     * Leading zeroes will be trimmed.
-     *
-     * @throws ParseException if the amount in the given {@code optionalAmount} is present but invalid.
-     */
-    public static InsurancePremium parsePremium(Optional<String> optionalAmount) throws ParseException {
-        if (optionalAmount.isEmpty()) {
-            return null;
-        }
-        String amount = optionalAmount.get();
-        requireNonNull(amount);
-        String trimmedAmount = amount.trim();
-        if (!InsurancePremium.isValidAmount(trimmedAmount)) {
-            throw new ParseException(InsurancePremium.MESSAGE_CONSTRAINTS);
-        }
-        return new InsurancePremium(trimmedAmount);
+        return new Note(trimmedNote);
     }
 }

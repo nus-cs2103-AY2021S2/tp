@@ -43,11 +43,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label birthdate;
     @FXML
+    private Label numNotes;
+    @FXML
     private FlowPane tags;
     @FXML
-    private Label planName;
-    @FXML
-    private Label premium;
+    private FlowPane plans;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -56,27 +56,43 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
+        id.setWrapText(true);
         name.setText(person.getName().fullName);
+        name.setWrapText(true);
         phone.setText(person.getPhone().value);
+        phone.setWrapText(true);
         address.setText(person.getAddress().value);
+        address.setWrapText(true);
         email.setText(person.getEmail().value);
+        email.setWrapText(true);
         gender.setText(person.getGender().value);
+        gender.setWrapText(true);
+        if (person.getNumNotes() == 0) {
+            numNotes.setText("\u25B6 You have no notes");
+        } else {
+            numNotes.setText(String.format("\u25B6 You have %d note%s",
+                    person.getNumNotes(), person.getNumNotes() == 1 ? "" : "s"));
+        }
         birthdate.setText("DOB: " + person.getBirthdate().value.toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-        String planNameText = "Insurance Plan: ";
-        if (person.getPlanName() != null) {
-            planNameText += person.getPlanName().name;
-        }
-        planName.setText(planNameText);
-
-        String premiumText = "Yearly Premium: ";
-        if (person.getPremium() != null) {
-            premiumText += person.getPremium().toString();
-        }
-        premium.setText(premiumText);
+        tags.getChildren().forEach(child -> {
+            if (child instanceof Label) {
+                Label label = (Label) child;
+                label.setWrapText(true);
+                label.setMaxWidth(300);
+            }
+        });
+        person.getPlanStringsList()
+                .forEach(plan -> plans.getChildren().add(new Label(plan)));
+        plans.getChildren().forEach(child -> {
+            if (child instanceof Label) {
+                Label label = (Label) child;
+                label.setWrapText(true);
+                label.setMaxWidth(200);
+            }
+        });
     }
 
     @Override

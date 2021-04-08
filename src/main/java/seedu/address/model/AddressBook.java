@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -75,7 +74,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns the clashed meeting if a person's meeting time clashes with another meeting in the address book.
      */
-    public Optional<Meeting> clash(Person person) {
+    public Optional<Person> clash(Person person) {
         requireNonNull(person);
         return meetings.clash(person);
     }
@@ -122,9 +121,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         StringBuilder sb = new StringBuilder();
         sb.append("Here are the things you might want to take note of:\n\n");
         int length = sb.length() + 1;
-        boolean hasNotif = false;
-        sb.append(persons.getNotifications());
-        sb.append(meetings.getNotifications());
+        String meetingNotif = meetings.getNotifications();
+        String personNotif = persons.getNotifications();
+        if (meetingNotif.length() > 0) {
+            sb.append(meetingNotif);
+            sb.append("\n");
+        }
+        if (personNotif.length() > 0) {
+            sb.append(personNotif);
+            sb.append("\n");
+        }
         if (sb.length() > length) {
             return sb.toString();
         }
