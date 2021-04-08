@@ -183,6 +183,8 @@ Some example date inputs: `3 Jan 2021`, `21 Feb 2021`, `30 Mar 2021`
 
 ### User Object
 
+<img src="images/UserClassDiagram.png" width="512" />
+
 The User object is where the majority of the user's information and parameters are stored.
 
 The 'User' object contains the following components:
@@ -197,6 +199,8 @@ Some of the actions that can be performed with the User component are:
 
 
 ### Food Object
+
+<img src="images/FoodActivityDiagram.png" width="145" />
 
 The food object stores the name of the food and its nutrient values (Carbohydrates, Fats and Proteins).
 
@@ -374,18 +378,18 @@ Additionally, some noteworthy information to note:
 
 ### Add Food Intake feature
 
-<img src="images/AddFoodIntakeActivityDiagram.png" width="422" />
+<img src="images/AddFoodIntakeActivityDiagram.png" width="507" />
 
 #### Description:
 For the user's convenience, there are 3 scenarios for recording food intake.
 
-1. Add `FoodIntake` for new `Food` not currently in the `UniqueFoodList`:
+1. Add `FoodIntake` for new `Food` not currently in the `UniqueFoodList`.<br/>
 Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
-2. Add `FoodIntake` using existing `Food` in the `UniqueFoodList` and update its nutrient values:
+2. Add `FoodIntake` using existing `Food` in the `UniqueFoodList` and update its nutrient values.<br/>
 Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME p/10 <at least 1 nutrient value>`
 
-3. Add `FoodIntake` using existing `Food` in the `UniqueFoodList` without updating its values:
+3. Add `FoodIntake` using existing `Food` in the `UniqueFoodList` without updating its values.<br/>
 Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME`
 
 #### Implementation:
