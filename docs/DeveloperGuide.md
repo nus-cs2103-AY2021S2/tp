@@ -320,7 +320,7 @@ Steps for the execution of the `ViewTimeTableCommand` (assuming that no errors a
 5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `viewTimetable()`, then create a `CommandResult` object and return the result.
 6. The `Ui` component will detect that it is asking for the timetable window, and will open it as a separate window.
 
-![Sequence Diagram of View TimeTable](images/timetable/TimeTableWindowSequenceDiagram.png)
+![Sequence Diagram of View TimeTable](images/timetable/TimetableWindowSequenceDiagram.png)
 
 **Displaying TimeTable in the GUI**
 
@@ -334,7 +334,7 @@ Reason for choosing option 2:
 
 The following activity diagram summarizes what happens when the `timetable` command is executed.
 
-![Activity Diagram of View TimeTable](images/timetable/TimeTableWindowActivityDiagram.png)
+![Activity Diagram of View TimeTable](images/timetable/TimetableWindowActivityDiagram.png)
 
 ### [Proposed] Budget Feature
 #### Proposed Implementation
