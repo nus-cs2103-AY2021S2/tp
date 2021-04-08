@@ -112,14 +112,19 @@ public class CommandTestUtil {
 
     public static final String TITLE_DESC_ONE = " " + PREFIX_TITLE + VALID_SCHEDULE_TITLE_ONE;
     public static final String TITLE_DESC_TWO = " " + PREFIX_TITLE + VALID_SCHEDULE_TITLE_TWO;
+    public static final String TITLE_DESC_THREE = " " + PREFIX_TITLE + VALID_SCHEDULE_TITLE_THREE;
     public static final String DATE_DESC_ONE = " " + PREFIX_DATE + VALID_SCHEDULE_DATE_ONE;
     public static final String DATE_DESC_TWO = " " + PREFIX_DATE + VALID_SCHEDULE_DATE_TWO;
+    public static final String DATE_DESC_THREE = " " + PREFIX_DATE + VALID_SCHEDULE_DATE_THREE;
     public static final String TIME_FROM_DESC_ONE = " " + PREFIX_TIME_FROM + VALID_SCHEDULE_TIME_FROM_ONE;
     public static final String TIME_FROM_DESC_TWO = " " + PREFIX_TIME_FROM + VALID_SCHEDULE_TIME_FROM_TWO;
+    public static final String TIME_FROM_DESC_THREE = " " + PREFIX_TIME_FROM + VALID_SCHEDULE_TIME_FROM_THREE;
     public static final String TIME_TO_DESC_ONE = " " + PREFIX_TIME_TO + VALID_SCHEDULE_TIME_TO_ONE;
     public static final String TIME_TO_DESC_TWO = " " + PREFIX_TIME_TO + VALID_SCHEDULE_TIME_TO_TWO;
+    public static final String TIME_TO_DESC_THREE = " " + PREFIX_TIME_TO + VALID_SCHEDULE_TIME_TO_THREE;
     public static final String DESC_DESC_ONE = " " + PREFIX_DESCRIPTION + VALID_SCHEDULE_DESCRIPTION_ONE;
     public static final String DESC_DESC_TWO = " " + PREFIX_DESCRIPTION + VALID_SCHEDULE_DESCRIPTION_TWO;
+    public static final String DESC_DESC_THREE = " " + PREFIX_DESCRIPTION + VALID_SCHEDULE_DESCRIPTION_THREE;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "Homework&"; // '&' not allowed in title
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "20/5/2021"; // date must be in YYYY-MM-DD format
