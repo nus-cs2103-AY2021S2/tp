@@ -1,9 +1,6 @@
 package seedu.plan.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.plan.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.plan.logic.parser.CliSyntax.PREFIX_PLAN_NUMBER;
-import static seedu.plan.logic.parser.CliSyntax.PREFIX_SEM_NUMBER;
 
 import seedu.plan.logic.commands.exceptions.CommandException;
 import seedu.plan.model.Model;
