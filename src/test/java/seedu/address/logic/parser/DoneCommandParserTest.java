@@ -7,7 +7,6 @@ import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_FIRST_EVENT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DoneCommand;
 
 /**

@@ -11,6 +11,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.EventName;
 
 public class ParserUtilTest {
+    public static final Long INTEGER_MAX = Integer.toUnsignedLong(Integer.MAX_VALUE);
+    public static final Long LARGE_NUMBER = INTEGER_MAX + 2;
+
     private static final String INVALID_NAME = "CS2030@";
     private static final String INVALID_STATUS = "ASD";
     private static final String INVALID_PRIORITY = "CZXA";
@@ -20,9 +23,6 @@ public class ParserUtilTest {
     private static final String VALID_STATUS = "TODO";
     private static final String VALID_PRIORITY = "HIGH";
     private static final String VALID_DESCRIPTION = "Assignment";
-
-    public static final Long INTEGER_MAX = Integer.toUnsignedLong(Integer.MAX_VALUE);
-    public static final Long LARGE_NUMBER = INTEGER_MAX + 2;
 
     private static final String WHITESPACE = " \t\r\n";
 
