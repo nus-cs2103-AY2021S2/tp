@@ -76,12 +76,23 @@ public class AppointmentFilter implements Predicate<Appointment> {
     /**
      * Checks if appointment filter contains any of the filters from another appointment filter.
      */
-    public boolean has(AppointmentFilter appointmentFilter) {
+    public boolean hasAny(AppointmentFilter appointmentFilter) {
         return !Collections.disjoint(this.nameFilters, appointmentFilter.nameFilters)
                 || !Collections.disjoint(this.subjectNameFilters, appointmentFilter.subjectNameFilters)
                 || !Collections.disjoint(this.timeFromFilters, appointmentFilter.timeFromFilters)
                 || !Collections.disjoint(this.timeToFilters, appointmentFilter.timeToFilters)
                 || !Collections.disjoint(this.locationFilters, appointmentFilter.locationFilters);
+    }
+
+    /**
+     * Checks if appointment filter contains all of the filters from another appointment filter.
+     */
+    public boolean hasAll(AppointmentFilter appointmentFilter) {
+        return this.nameFilters.containsAll(appointmentFilter.nameFilters)
+                && this.subjectNameFilters.containsAll(appointmentFilter.subjectNameFilters)
+                && this.timeFromFilters.containsAll(appointmentFilter.timeFromFilters)
+                && this.timeToFilters.containsAll(appointmentFilter.timeToFilters)
+                && this.locationFilters.containsAll(appointmentFilter.locationFilters);
     }
 
     /**

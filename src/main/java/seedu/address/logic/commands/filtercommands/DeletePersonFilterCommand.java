@@ -44,7 +44,7 @@ public class DeletePersonFilterCommand extends Command {
             + PREFIX_RATE + "50";
 
     public static final String MESSAGE_SUCCESS = "Tutor filters deleted: %1$s";
-    public static final String MESSAGE_DUPLICATE = "A filter in the tutor filter already exists";
+    public static final String MESSAGE_NOT_FOUND = "A given filter does not exist";
 
     private final TutorFilter tutorFilter;
 
@@ -60,10 +60,9 @@ public class DeletePersonFilterCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // TODO: Check if filters do not exist
-        // if (model.hasPersonFilter(personFilter)) {
-        //     throw new CommandException(MESSAGE_DUPLICATE);
-        // }
+        if (!model.hasAllTutorFilters(tutorFilter)) {
+            throw new CommandException(MESSAGE_NOT_FOUND);
+        }
 
         model.removeTutorFilter(tutorFilter);
         return new CommandResult(String.format(MESSAGE_SUCCESS, tutorFilter));

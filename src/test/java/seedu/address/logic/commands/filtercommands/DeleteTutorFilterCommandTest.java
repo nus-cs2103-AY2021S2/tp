@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.filtercommands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
@@ -124,7 +125,7 @@ public class DeleteTutorFilterCommandTest {
     }
 
     @Test
-    public void execute_noFilters_success() {
+    public void execute_noFiltersExist_failure() {
         Tutor alice = TypicalTutors.ALICE;
 
         nameFilters.add(new NameFilter(alice.getName().fullName));
@@ -134,9 +135,6 @@ public class DeleteTutorFilterCommandTest {
                 subjectExperienceFilters, subjectQualificationFilters);
 
         DeletePersonFilterCommand deletePersonFilterCommand = new DeletePersonFilterCommand(tutorFilter);
-
-        expectedModel.removeTutorFilter(tutorFilter);
-        String expectedMessage = String.format(DeletePersonFilterCommand.MESSAGE_SUCCESS, tutorFilter);
-        assertCommandSuccess(deletePersonFilterCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(deletePersonFilterCommand, model, DeletePersonFilterCommand.MESSAGE_NOT_FOUND);
     }
 }

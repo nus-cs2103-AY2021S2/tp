@@ -9,10 +9,10 @@ import seedu.address.model.subject.SubjectQualification;
 
 public class SubjectQualificationFilter implements Predicate<SubjectQualification> {
     public static final String MESSAGE_CONSTRAINTS =
-            "SubjectQualification filters should only contain alphanumeric characters and spaces,"
-            + " and it should not be blank";
+            "SubjectQualification filters should only contain alphanumeric characters, spaces,"
+            + " the symbols - ( ) and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}\\-)(][\\p{Alnum} \\-)(]*";
 
     public final String subjectQualificationFilter;
 

@@ -117,7 +117,7 @@ public class TutorFilter implements Predicate<Tutor> {
     /**
      * Checks if person filter contains any of the filters from another person filter.
      */
-    public boolean has(TutorFilter tutorFilter) {
+    public boolean hasAny(TutorFilter tutorFilter) {
         return !Collections.disjoint(this.nameFilters, tutorFilter.nameFilters)
                 || !Collections.disjoint(this.genderFilters, tutorFilter.genderFilters)
                 || !Collections.disjoint(this.phoneFilters, tutorFilter.phoneFilters)
@@ -128,6 +128,22 @@ public class TutorFilter implements Predicate<Tutor> {
                 || !Collections.disjoint(this.subjectRateFilters, tutorFilter.subjectRateFilters)
                 || !Collections.disjoint(this.subjectExperienceFilters, tutorFilter.subjectExperienceFilters)
                 || !Collections.disjoint(this.subjectQualificationFilters, tutorFilter.subjectQualificationFilters);
+    }
+
+    /**
+     * Checks if person filter contains all of the filters from another person filter.
+     */
+    public boolean hasAll(TutorFilter tutorFilter) {
+        return this.nameFilters.containsAll(tutorFilter.nameFilters)
+                && this.genderFilters.containsAll(tutorFilter.genderFilters)
+                && this.phoneFilters.containsAll(tutorFilter.phoneFilters)
+                && this.emailFilters.containsAll(tutorFilter.emailFilters)
+                && this.addressFilters.containsAll(tutorFilter.addressFilters)
+                && this.subjectNameFilters.containsAll(tutorFilter.subjectNameFilters)
+                && this.subjectLevelFilters.containsAll(tutorFilter.subjectLevelFilters)
+                && this.subjectRateFilters.containsAll(tutorFilter.subjectRateFilters)
+                && this.subjectExperienceFilters.containsAll(tutorFilter.subjectExperienceFilters)
+                && this.subjectQualificationFilters.containsAll(tutorFilter.subjectQualificationFilters);
     }
 
     /**

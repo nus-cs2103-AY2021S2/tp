@@ -32,4 +32,11 @@ public class CollectionUtil {
     public static boolean isAnyNonNull(Object... items) {
         return items != null && Arrays.stream(items).anyMatch(Objects::nonNull);
     }
+
+    /**
+     * Returns true if {@code items} contain any collections that are not empty.
+     */
+    public static boolean isAnyNotEmpty(Collection<?>... items) {
+        return items != null && Arrays.stream(items).anyMatch(x -> !x.isEmpty());
+    }
 }

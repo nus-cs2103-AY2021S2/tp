@@ -473,8 +473,13 @@ public class ModelManager implements Model {
 
     //=========== TutorFilter =====================================================================
     @Override
-    public boolean hasTutorFilter(TutorFilter tutorFilter) {
-        return this.tutorFilter.has(tutorFilter);
+    public boolean hasAnyTutorFilter(TutorFilter tutorFilter) {
+        return this.tutorFilter.hasAny(tutorFilter);
+    }
+
+    @Override
+    public boolean hasAllTutorFilters(TutorFilter tutorFilter) {
+        return this.tutorFilter.hasAll(tutorFilter);
     }
 
     @Override
@@ -504,8 +509,13 @@ public class ModelManager implements Model {
 
     //=========== AppointmentFilter =====================================================================
     @Override
-    public boolean hasAppointmentFilter(AppointmentFilter appointmentFilter) {
-        return this.appointmentFilter.has(appointmentFilter);
+    public boolean hasAnyAppointmentFilter(AppointmentFilter appointmentFilter) {
+        return this.appointmentFilter.hasAny(appointmentFilter);
+    }
+
+    @Override
+    public boolean hasAllAppointmentFilters(AppointmentFilter appointmentFilter) {
+        return this.appointmentFilter.hasAll(appointmentFilter);
     }
 
     @Override
