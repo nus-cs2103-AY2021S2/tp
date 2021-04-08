@@ -152,6 +152,9 @@ public class ParserUtil {
      * @param validFlagValues valid flag values
      * @return a boolean indicating whether flag values are valid
      */
+    //@@author minnzelo-reused
+    //Reused with modifications from "https://github.com/AY2021S1-CS2103T-T17-2/tp/blob/master/src/main
+    // /java/seedu/flashcard/logic/parser/ParserUtil.java"
     public static boolean areValidFlagValues(List<String> flagValueList, String... validFlagValues) {
         List<String> validFlagValueList = Arrays.asList(validFlagValues);
         boolean allValid = flagValueList.stream()
@@ -159,6 +162,7 @@ public class ParserUtil {
                 .anyMatch(validFlagValue -> validFlagValue.equals(flagValue)));
         return allValid;
     }
+    //@@author
 
     /**
      * Parses a {@code String option} and a {@code String order} into a {@code SortOptions}.
@@ -166,6 +170,9 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code option} or {@code order} is invalid.
      */
+    //@@author minnzelo-reused
+    //Reused with modifications from "https://github.com/AY2021S1-CS2103T-T17-2/tp/blob/master/src/main
+    // /java/seedu/flashcard/logic/parser/ParserUtil.java"
     public static SortOptions parseSortOptions(String option, String order) throws ParseException {
         requireNonNull(option, order);
         String trimmedOption = option.trim();
@@ -176,6 +183,7 @@ public class ParserUtil {
         }
         return SortOptions.getOption(sortOption);
     }
+    //@@author
 
     /**
      * Parses {@code String alias} into a {@code String}.
