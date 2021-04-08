@@ -2,8 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.List;
 
