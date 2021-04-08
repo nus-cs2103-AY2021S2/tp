@@ -468,9 +468,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. User decides to undo the add action.
 
-* 2b1. CoLAB reverses the effects of the previous command.
+    * 2a1. CoLAB reverses the effects of the previous command.
 
-  Use case ends.
+      Use case ends.
 
 #### UC2 - Delete a project
 
@@ -483,21 +483,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list of contacts is empty.
+* 1a. The given project index is invalid.
 
-  Use case ends.
+    * 1a1. CoLAB shows an error message.
 
-* 3a. The given index is invalid.
+      Use case resumes at step 1.
 
-    * 3a1. CoLAB shows an error message.
+* 2a. User decides to undo the delete action.
 
-      Use case resumes at step 2.
+    * 2a1. CoLAB reverses the effects of the previous command.
 
-* 4a. User decides to undo the delete action.
-
-* 4b1. CoLAB reverses the effects of the previous command.
-
-  Use case ends.
+      Use case ends.
 
 #### UC3 - Add or modify information about a project
 
@@ -518,11 +514,112 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. User decides to undo the update action.
 
-* 2b1. CoLAB reverses the effects of the previous command.
+    * 2a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+#### UC4 - Add a todo to a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all todos under the project.
+3. User requests to add a todo to the project.
+4. CoLAB adds the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 3a. The given arguments are invalid.
+
+    * 2a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the add action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+#### UC5 - Delete a todo from a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all todos under the project.
+3. User requests to delete a specific todo in the list.
+4. CoLAB deletes the todo.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of todos is empty.
 
   Use case ends.
 
-#### UC4 - Add a contact
+* 3a. The given todo index is invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the delete action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+#### UC6 - Add or modify information about a todo in a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all todos under the project.
+3. User requests to edit information about a todo.
+4. CoLAB updates entry with new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of todos is empty.
+
+  Use case ends.
+
+* 3a. The given arguments are invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the update action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+#### UC7 - Add a contact
 
 **MSS**
 
@@ -541,11 +638,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. User decides to undo the add action.
 
-* 2b1. CoLAB reverses the effects of the previous command.
+    * 2a1. CoLAB reverses the effects of the previous command.
 
-  Use case ends.
+      Use case ends.
 
-#### UC5 - Find a specific contact
+#### UC8 - Find a specific contact
 
 **MSS**
 
@@ -560,7 +657,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-#### UC6 - Delete a contact
+#### UC9 - Delete a contact
 
 **MSS**
 
@@ -585,11 +682,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 4a. User decides to undo the delete action.
 
-* 4b1. CoLAB reverses the effects of the previous command.
+    * 4a1. CoLAB reverses the effects of the previous command.
 
-  Use case ends.
+      Use case ends.
 
-#### UC7 - Add or Modify information about a contact
+#### UC10 - Add or Modify information about a contact
 
 **MSS**
 
@@ -608,9 +705,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. User decides to undo the update action.
 
-* 2b1. CoLAB reverses the effects of the previous command.
+    * 2a1. CoLAB reverses the effects of the previous command.
 
-  Use case ends.
+      Use case ends.
 
 #### UC30 - Purge all entries from the app
 
@@ -625,9 +722,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. User decides to undo the purge action.
 
-* 2b1. CoLAB reverses the effects of the previous command.
+    * 2a1. CoLAB reverses the effects of the previous command.
 
-  Use case ends.
+      Use case ends.
 
 #### Checklist
 
