@@ -5,11 +5,6 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Taskify *-right-> "1" UniqueTaskList
-Taskify *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniqueTaskList
-UniqueTagList -[hidden]down- UniqueTaskList
-
-UniqueTagList *-right-> "*" Tag
 UniqueTaskList o-right-> Task
 
 Task -up-> "*" Tag
