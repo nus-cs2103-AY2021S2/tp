@@ -570,6 +570,40 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a meeting: `add-meeting`
 
+Prerequisites: List all person using the `list` command. There is at least a person present in the list. 
+The first person on the list is born before 12-12-2020.
+
+1. Adding a meeting to an existing person
+    
+    1. Test case: `add-meeting 1 d/12-12-2020 t/1945 desc/sample desc` <br> 
+       Expected: Meeting is added to the first contact. A success message is shown in the status message.
+       
+    2. Test case: `add-meeting 0` (Invalid index) <br>
+       Expected: No meetings added. Error details shown in the status message.
+       
+    3. Other incorrect `add-meeting` commands to try: 
+        * `add-meeting x` (where x is larger than list size),
+        * `add-meeting 1 d/12-12-2020 t/1945` (missing `DESCRIPTION` argument, other arguments can also be left out),
+       Expected: Similar to previous
+   
+2. Adding a meeting with boundary time values. FriendDex will only allow adding of meetings that have already occurred. 
+
+    1. These arguments should be replaced with their proper datetime representation. 
+       `TODAY_DATE`: today's date in the format of dd-MM-yyyy, e.g. `04-04-2021`
+       `TIME_AFTER_NOW`: add a few minutes to the current time in the format of HHmm, e.g. `1230`
+       
+    2. Adding a meeting for today
+       Test case: `add-meeting 1 d/{TODAY_DATE} t/0000 desc/sample desc`.
+       Expected: Meeting is added to the first contact. A success message is shown in the status message. 
+       
+    3. Adding a meeting for today but has not occurred yet
+       Test case: `add-meeting 1 d/{TODAY_DATE} t/{TIME_AFTER_NOW} desc/sample desc`
+       Expected: No meetings added. Error details shown in the status message.
+
+    4. Adding a meeting that happens in the future
+       Test case: `add-meeting 1 d/12-12-2099 t/1945 desc/sample desc` <br> 
+       Expected: Similar to previous
+
 ### Adding a profile picture: `add-picture`
 
 ### Clearing all entries: `clear`
