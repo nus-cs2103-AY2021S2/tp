@@ -18,7 +18,7 @@ public abstract class TagCommand extends Command {
             + ADD_SUB_COMMAND_WORD + " INDEX … -t TAG …, "
             + DELETE_SUB_COMMAND_WORD + " INDEX … -t TAG …\n"
             + "Example: "
-            + COMMAND_WORD + " " + ADD_SUB_COMMAND_WORD + " 1 2 -t Java -t Python"
+            + COMMAND_WORD + " " + ADD_SUB_COMMAND_WORD + " 1 2 -t Java -t Python\n"
             + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " 1 2 3 -t Python";
 
 }
