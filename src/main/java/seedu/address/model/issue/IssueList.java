@@ -37,6 +37,8 @@ public class IssueList implements Iterable<Issue> {
     /**
      * Adds a issue to the list.
      * The issue must not already exist in the list.
+     *
+     * @throws NullPointerException If {@code toAdd} is null.
      */
     public void add(Issue toAdd) {
         assert internalList != null;

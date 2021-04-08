@@ -47,7 +47,7 @@ public class Status {
      * Returns true if a given string is a valid status.
      *
      * @param test String to check.
-     * @return {@code True} If test is valid.
+     * @return True if test is valid.
      */
     public static boolean isValidStatus(String test) {
         return test.matches(VALIDATION_REGEX);

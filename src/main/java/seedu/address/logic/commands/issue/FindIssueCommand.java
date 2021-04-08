@@ -24,10 +24,10 @@ public class FindIssueCommand extends Command {
     private final RoomNumberOrTagContainsKeywordsPredicate predicate;
 
     /**
-     * Creates a FindIssueCommand with the given predicate used to filter issue list
+     * Creates a FindIssueCommand with the given predicate used to filter issue list.
      *
      * @param predicate Predicate to filter the issue list.
-     * @throws NullPointerException If {@code predicate} is null
+     * @throws NullPointerException If {@code predicate} is null.
      */
     public FindIssueCommand(RoomNumberOrTagContainsKeywordsPredicate predicate) {
         requireNonNull(predicate);

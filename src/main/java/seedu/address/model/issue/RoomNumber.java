@@ -32,7 +32,7 @@ public class RoomNumber {
      * Returns true if a given string is a valid room number.
      *
      * @param test String to check.
-     * @return {@code True} If test is valid.
+     * @return True if test is valid.
      */
     public static boolean isValidRoomNumber(String test) {
         return test.matches(VALIDATION_REGEX);

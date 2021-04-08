@@ -67,8 +67,8 @@ public class EditIssueCommand extends Command {
      * Creates an EditIssueCommand to edit the specified issue at {@code targetIndex} to the new Issue described by
      * {@code editIssueDescriptor}.
      *
-     * @param index               Index of the issue in the filtered issue list to edit
-     * @param editIssueDescriptor Description of the updated issue
+     * @param index               Index of the issue in the filtered issue list to edit.
+     * @param editIssueDescriptor Description of the updated issue.
      * @throws NullPointerException If {@code index} or {@code editIssueDescriptor} is null.
      */
     public EditIssueCommand(Index index, EditIssueDescriptor editIssueDescriptor) {
@@ -194,6 +194,8 @@ public class EditIssueCommand extends Command {
 
         /**
          * Sets {@code roomNumber} to this object's {@code roomNumber}.
+         *
+         * @param roomNumber The new room number.
          */
         public void setRoomNumber(RoomNumber roomNumber) {
             this.roomNumber = roomNumber;
@@ -211,6 +213,8 @@ public class EditIssueCommand extends Command {
 
         /**
          * Sets {@code description} to this object's {@code description}.
+         *
+         * @param description The new description.
          */
         public void setDescription(Description description) {
             this.description = description;
@@ -228,6 +232,8 @@ public class EditIssueCommand extends Command {
 
         /**
          * Sets {@code timestamp} to this object's {@code timestamp}.
+         *
+         * @param timestamp The new timestamp.
          */
         public void setTimestamp(Timestamp timestamp) {
             this.timestamp = timestamp;
@@ -245,6 +251,8 @@ public class EditIssueCommand extends Command {
 
         /**
          * Sets {@code status} to this object's {@code status}.
+         *
+         * @param status The new status.
          */
         public void setStatus(Status status) {
             this.status = status;
@@ -262,6 +270,8 @@ public class EditIssueCommand extends Command {
 
         /**
          * Sets {@code category} to this object's {@code category}.
+         *
+         * @param category The new category.
          */
         public void setCategory(Category category) {
             this.category = category;
@@ -288,9 +298,9 @@ public class EditIssueCommand extends Command {
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
          *
-         * @return Optional set of tags
+         * @return Optional set of tags.
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();

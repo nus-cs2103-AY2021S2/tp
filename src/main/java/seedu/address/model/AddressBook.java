@@ -50,7 +50,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Creates an AddressBook using the Residents in the {@code toBeCopied}
+     * Creates an AddressBook using the Residents in the {@code toBeCopied}.
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -228,15 +228,20 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Returns true if a issue with the same identity as {@code issue} exists SunRez.
+     *
+     * @param issue The issue to check.
+     * @return True if SunRez has the issue.
+     * @throws NullPointerException If {@code issue} is null.
      */
     public boolean hasIssue(Issue issue) {
-        requireNonNull(issue);
         return issues.contains(issue);
     }
 
     /**
-     * Adds a issue to SunRez.
-     * The issue must not already exist in SunRez.
+     * Adds the given issue.
+     *
+     * @param issue The issue to add.
+     * @throws NullPointerException If {@code issue} is null.
      */
     public void addIssue(Issue issue) {
         issues.add(issue);
@@ -249,7 +254,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The issue identity of {@code editedIssue} must not be the same as another
      * existing issue in SunRez.
      *
-     * @throws NullPointerException If {@code target} or {@code editedIssue} is null
+     * @param target      The target issue to replace.
+     * @param editedIssue The replacement issue.
+     * @throws NullPointerException If {@code target} or {@code editedIssue} is null.
      */
     public void setIssue(Issue target, Issue editedIssue) {
         issues.setIssue(target, editedIssue);
@@ -267,7 +274,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Checks if any issues have the given room associated with it
+     * Checks if any issues have the given room associated with it.
      *
      * @param target Room to check if it has issues associated with it.
      * @return True if there are issues with the given room associated with it.

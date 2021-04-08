@@ -37,7 +37,7 @@ public class Category {
      * Returns true if a given string is a valid category.
      *
      * @param test String to check.
-     * @return {@code True} if test is valid.
+     * @return True if test is valid.
      */
     public static boolean isValidCategory(String test) {
         return test.matches(VALIDATION_REGEX);
