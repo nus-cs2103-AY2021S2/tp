@@ -43,7 +43,7 @@ public class ThemeCommand extends Command {
         String feedback = String.format(MESSAGE_SUCCESS, this.themePathString);
         try {
             Theme theme = ThemeFactory.load(themePathString);
-            ThemeManager.setTheme(theme, this.themePathString);
+            ThemeManager.getInstance().setTheme(theme, this.themePathString);
         } catch (DataConversionException | InvalidThemeException exception) {
             feedback = String.format(MESSAGE_INVALID_THEME, this.themePathString);
             throw new CommandException(feedback);
