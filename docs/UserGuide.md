@@ -146,7 +146,7 @@ Many SunRez commands use various parameters. Their formats, constraints and rati
 | <a id="category"></a> `CATEGORY` | `c/` | `iadd` `iedit`| The category of an issue.{::nomarkdown}<ul><li> Must be alphanumeric. </li><li> Must not be empty </li></ul>{:/} |
 | <a id="command"></a> `COMMAND` | `cmd/`| `alias` | The command that an alias is short for.{::nomarkdown}  <ul><li> Must not be empty. </li><li> Must not be recursive i.e. contains another alias name. </li></ul>{:/} |
 | <a id="count"></a> `COUNT` | - | `history` | The number of command history entries wanted.{::nomarkdown} <ul><li> Must be a positive integer: 1, 2, 3, ... </li><li> Must be at most the total number of entries in command history. </li></ul>{:/} |
-| <a id="description"></a> `DESCRIPTION` | `d/` | `iadd` `iedit` | The description of an issue{::nomarkdown} <ul><li> Accepts only alphanumeric characters and spaces </li><li> Must not be empty </li></ul>{:/} |
+| <a id="description"></a> `DESCRIPTION` | `d/` | `iadd` `iedit` | The description of an issue{::nomarkdown} <ul><li> Accepts only alphanumeric characters and spaces </li><li> Must not be empty </li><li> Will wrap if too long </li></ul>{:/} |
 | <a id="email"></a> `EMAIL` | `e/` | `radd` `redit` | The email of a resident.{::nomarkdown} <ul><li> Format: local-part@domain. </li><li> Local-part should only contain alphanumeric characters, and these special characters, excluding the parenthesis (!#$%&'*+/=?&#96;{&#124;}~^.-). </li><li> Must contain @. </li><li> Domain must be at least 2 characters long, start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any. </li><li> e.g. e0123456@u.nus.edu </li></ul>{:/} |
 | <a id="index"></a> `INDEX` | - | `redit` `rdel` `oedit` `odel` `iedit` `iclo` `idel` `alloc` `dealloc`| The index number shown in the displayed list.{::nomarkdown} <ul><li> Must be a positive integer: 1, 2, 3, ... </li></ul>{:/} |
 | <a id="keyword"></a> `KEYWORD` | - | `rfind` `ofind` `ifind` | A keyword used in the various find commands.{::nomarkdown} <ul><li> Format: Single word consisting of any character except spaces. </li><li> For best usage: Use English characters only. </li></ul>{:/} |
@@ -384,12 +384,25 @@ Example:
 * `dealloc 1` Deallocates the 1st resident in the resident list from its allocated room.
 
 ### Issue Management
+<div markdown="block" class="alert alert-info">
+**:information_source: Issues are always sorted by status (`Pending` then `Closed`) then by timestamp in ascending order in all views.**
+
+**:information_source: Issues are considered duplicate if their room numbers, description, timestamp, status, and category are the same.**
+</div>
 
 #### Add an open issue : `iadd`
 
 Adds an issue to the housing management system.
 
 Format: `iadd r/ROOM_NUMBER d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
+
+Parameters:
+* [`ROOM_NUMBER`](#room_number) The room number of the issue to be added.
+* [`DESCRIPTION`](#description) The description of the issue to be added.
+* [`TIMESTAMP`](#timestamp) Optional timestamp of the issue to be added, defaults to the current time.
+* [`STATUS`](#status) Optional status of the issue to be added, defaults to `Pending`.
+* [`CATEGORY`](#category) Optional category that the issue belongs in, defaults to `No Category`.
+* [`TAG`](#tag) Optional tags of the issue to be added.
 
 Example:
 * `iadd r/10-100 d/Broken light c/Furniture`
@@ -405,7 +418,11 @@ Format: `ilist`
 
 #### Find issues : `ifind`
 
-Finds all issues that contain any of the given keywords in the description, room number or tags.
+Finds all issues that contain any of the given keywords in the room number, description or tags.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: `ifind` currently only searches through issues via room number and tags. Searching by status will be implemented in the future.**
+</div>
 
 Format: `ifind KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g. `broken` will match `Broken`.
@@ -416,6 +433,9 @@ Format: `ifind KEYWORD [MORE_KEYWORDS]`
 * Only the description, room number, and tags are searched.
 * Issues matching at least one keyword will be returned (i.e. OR search).
   e.g. `Broken window` will return `Broken light`, `Dirty window`, and `Broken window`.
+
+Parameters:
+* [`KEYWORD`](#keyword) The keyword to search for in the issue list.
 
 Examples:
 * `ifind chair` returns `Broken chair` and `Chair missing wheel`.
@@ -432,6 +452,15 @@ Format: `iedit INDEX [r/ROOM_NUMBER] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
+Parameters:
+* [`INDEX`](#index) The index of the issue to edit.
+* [`ROOM_NUMBER`](#room_number) The room number to change the issue identified by [`INDEX`](#index) to.
+* [`DESCRIPTION`](#description) The description to change the issue identified by [`INDEX`](#index) to.
+* [`TIMESTAMP`](#timestamp) The timestamp to change the issue identified by
+* [`STATUS`](#status) The status to change the issue identified by [`INDEX`](#index) to.
+* [`CATEGORY`](#category) The category to change the issue identified by [`INDEX`](#index) to.
+* [`TAG`](#tag) Optional tags that may be updated for the room identified by [`INDEX`](#index).
+
 Example:
 * `iedit 1 r/20-109 s/Closed` Edits the room number and status of the 1st issue to be `20-109` and `Closed` respectively.
 
@@ -443,6 +472,9 @@ Marks as closed the issue at a specified index.
 Format: `iclo INDEX`
 * `INDEX` refers to the index number shown in the displayed issue list. `INDEX` **must be a positive integer 1, 2, 3, …**.
 
+Parameters:
+* [`INDEX`](#index) The index of the displayed issue.
+
 Example:
 * `iclo 1` Closes the 1st issue.
 
@@ -453,6 +485,9 @@ Deletes the issue at a specified index.
 
 Format: `idel INDEX`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
+
+Parameters:
+* [`INDEX`](#index) The index of the displayed issue.
 
 Example:
 * `idel 1` Deletes the 1st issue.
