@@ -14,9 +14,9 @@ public class QueryFoodIntakeCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Query details of food intake based on dates.\n"
             + "There are 2 kinds of query method. You can either choose to query for a certain date or for a range of"
             + " date, both inclusive.\n"
-            + "1. Query based on a date. Command usage: food_intake_query d/DATE(in dd MMM yyyy format)\n"
+            + "1. Query based on a date. Command usage: food_intake_query d/DATE(in dd Mmm yyyy format)\n"
             + "2. Query based on a range of dates.\n"
-            + "Command usage: food_intake_query df/DATE(in dd MMM yyyy format) dt/DATE(in dd MMM yyyy format)\n";
+            + "Command usage: food_intake_query df/DATE(in dd Mmm yyyy format) dt/DATE(in dd Mmm yyyy format)\n";
 
     public static final String MESSAGE_INVALID_SYNTAX = "You have entered an invalid syntax. Only d/ or df/ and dt/"
             + " argument can be used.";

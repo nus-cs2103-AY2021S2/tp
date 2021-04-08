@@ -116,7 +116,7 @@ Legend | Description
 ---
 
 ## Date format
-DietLAH! uses the following date format for command inputs: `dd MMM yyyy` which is clearer to interpret and reduces the chances of typos. Refer to the table below for more information:
+DietLAH! uses the following date format for command inputs: `dd Mmm yyyy` which is clearer to interpret and reduces the chances of typos. Refer to the table below for more information:
 
 Legend | Description
 -------|-------------
@@ -334,7 +334,7 @@ E.g. when you record two 'Chicken rice' in the food intake, they will appear as 
 
 Record your food intake for the specified date with a new food item not currently in your food list. The food will also be added to your food list for your convenience!
 
-**Command Format:** `food_intake_add d/DATE(in dd MMM yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
+**Command Format:** `food_intake_add d/DATE(in dd Mmm yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
 
@@ -353,7 +353,7 @@ Record your food intake for the specified date with a new food item not currentl
 
 Record your food intake for the specified date using an existing food from your food list. Now you can save time having to re-enter your favourite food!
 
-**Command Format:** `food_intake_add d/DATE(in dd MMM yyyy format) n/FOOD_NAME`
+**Command Format:** `food_intake_add d/DATE(in dd Mmm yyyy format) n/FOOD_NAME`
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato`
 
@@ -367,7 +367,7 @@ Record your food intake for the specified date using an existing food from your 
 
 Record your food intake for the specified date using an existing food from your food list, but with different nutrient value(s). The value(s) will also be updated in your food list.
 
-**Command Format:** `food_intake_add d/DATE(in dd MMM yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
+**Command Format:** `food_intake_add d/DATE(in dd Mmm yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
 
@@ -385,7 +385,7 @@ Record your food intake for the specified date using an existing food from your 
 
 Update the nutrient value(s) of a previously entered food intake given the date and food name.
 
-**Command Format:** `food_intake_update d/DATE(in dd MMM yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
+**Command Format:** `food_intake_update d/DATE(in dd Mmm yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
 
 **Example:** `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
 
@@ -407,7 +407,7 @@ Update the nutrient value(s) of a previously entered food intake given the date 
 
 Delete a food intake record from the application.
 
-**Command Format:** `food_intake_delete d/DATE(in dd MMM yyyy format) n/FOOD_NAME`
+**Command Format:** `food_intake_delete d/DATE(in dd Mmm yyyy format) n/FOOD_NAME`
 
 **Example:** `food_intake_delete d/31 Mar 2021 n/tomato`
 
@@ -429,7 +429,7 @@ View the list of food intakes on a given day or over a period of days. Refer to 
 
 View the list of food intakes on a specific day.
 
-**Command Format:** `food_intake_query d/DATE(in dd MMM yyyy format)`
+**Command Format:** `food_intake_query d/DATE(in dd Mmm yyyy format)`
 
 **Example:** `food_intake_query d/31 Mar 2021`
 
@@ -443,7 +443,7 @@ View the list of food intakes on a specific day.
 
 View the list of food intakes over a period of days (both inclusive).
 
-**Command Format:** `food_intake_query df/DATE_FROM(in dd MMM yyyy format) dt/DATE_TO(in dd MMM yyyy format)`
+**Command Format:** `food_intake_query df/DATE_FROM(in dd Mmm yyyy format) dt/DATE_TO(in dd Mmm yyyy format)`
 
 **Example:** `food_intake_query df/1 Mar 2021 dt/31 Mar 2021`
 
@@ -515,13 +515,13 @@ Action | Format, Examples
 **Update food item** | `food_update n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)` <br> e.g. `food_update n/tomato c/20 f/30 p/40`
 **List food items** | `food_list`
 **Delete food item** | `food_delete n/FOOD_NAME` <br> e.g. `food_delete n/tomato`
-**Input food intake (For newly created food items)** | `food_intake_add d/DATE(in dd MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES(G) f/FATS(G) p/PROTEINS(G)` <br> e.g.`food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
-**Input food intake (For existing food items)** | `food_intake_add d/DATE(in dd MMM yyyy format) n/FOOD_NAME` <br> e.g. `food_intake_add d/31 Mar 2021 n/tomato`
+**Input food intake (For newly created food items)** | `food_intake_add d/DATE(in dd Mmm yyyy format) n/FOOD_NAME c/CARBOHYDRATES(G) f/FATS(G) p/PROTEINS(G)` <br> e.g.`food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
+**Input food intake (For existing food items)** | `food_intake_add d/DATE(in dd Mmm yyyy format) n/FOOD_NAME` <br> e.g. `food_intake_add d/31 Mar 2021 n/tomato`
 **Input food intake (For existing food items, using different nutrient value(s))** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES(G) f/FATS(G) p/PROTEINS(G)` <br> e.g. `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
-**Update food intake** | `food_intake_update d/DATE(in dd MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS` <br> e.g. `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
-**Delete food intake** | `food_intake_delete d/DATE(in dd MMM yyyy format) n/FOOD_NAME` <br> e.g. `food_intake_delete d/31 Mar 2021 n/tomato`
-**Query food intake on a day** | `food_intake_query d/DATE(in dd MMM yyyy format)` <br> e.g. `food_intake_query d/31 Mar 2021`
-**Query food intake over a period of days** | `food_intake_query df/DATE_FROM(in dd MMM yyyy format) dt/DATE_TO(in dd MMM yyyy format)` <br> e.g. `food_intake_query df/1 Mar 2021 dt/31 Mar 2021`
+**Update food intake** | `food_intake_update d/DATE(in dd Mmm yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS` <br> e.g. `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
+**Delete food intake** | `food_intake_delete d/DATE(in dd Mmm yyyy format) n/FOOD_NAME` <br> e.g. `food_intake_delete d/31 Mar 2021 n/tomato`
+**Query food intake on a day** | `food_intake_query d/DATE(in dd Mmm yyyy format)` <br> e.g. `food_intake_query d/31 Mar 2021`
+**Query food intake over a period of days** | `food_intake_query df/DATE_FROM(in dd Mmm yyyy format) dt/DATE_TO(in dd Mmm yyyy format)` <br> e.g. `food_intake_query df/1 Mar 2021 dt/31 Mar 2021`
 **Generate progress report** | `progress`
 **Reset application data** | `reset t/blank`
 **Populate application with sample template data** | `reset t/template`

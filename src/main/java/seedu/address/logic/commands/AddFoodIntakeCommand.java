@@ -18,11 +18,11 @@ public class AddFoodIntakeCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": This adds the food intake for the day.\n"
             + "There are 3 variants to this command:\n"
             + "1. Input food intake (For new food items that are not created before)\n"
-            + "Command usage: food_intake_add d/DATE(in dd MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS\n"
+            + "Command usage: food_intake_add d/DATE(in dd Mmm yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS\n"
             + "2. Input food intake (For existing food items)\n"
-            + "Command usage: food_intake_add d/DATE(in dd MMM yyyy format) n/FOOD_NAME\n"
+            + "Command usage: food_intake_add d/DATE(in dd Mmm yyyy format) n/FOOD_NAME\n"
             + "3. Input food intake (For existing food items, using different nutrient value(s))\n"
-            + "Command usage: food_intake_add d/DATE(in dd MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS\n";
+            + "Command usage: food_intake_add d/DATE(in dd Mmm yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS\n";
 
     public static final String MESSAGE_FAILURE_CREATE_FOOD_REQ = "Suggested food item not found. Please append at "
             + "least 1 nutrient value to add the food item. (Eg. c/CARBOS(g) or f/FATS(g) or p/PROTEINS(g) ";
