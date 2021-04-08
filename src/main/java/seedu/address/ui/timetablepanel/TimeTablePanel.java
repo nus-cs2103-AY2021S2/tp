@@ -4,7 +4,6 @@ import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -164,7 +163,7 @@ public class TimeTablePanel extends UiPart<Region> {
                 .filter((time) -> time.isAfter(LocalTime.of(11, 0)))
                 .orElse(LocalTime.of(12, 0));
 
-        long hourDiff = ChronoUnit.HOURS.between(endTime, getStartTime());
+        int hourDiff = endTime.getHour() - getStartTime().getHour();
         if (hourDiff < 4) {
             endTime = endTime.plusHours(4 - hourDiff);
         }

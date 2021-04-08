@@ -11,7 +11,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TIME_MINUTES;
 import static seedu.address.commons.core.Messages.MESSAGE_TIME_FROM_GREATER_THAN;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -70,15 +69,13 @@ public class DateTimeValidationUtil {
             throw new CommandException(MESSAGE_INVALID_END_TIME);
         }
 
-        long hourDifferences = ChronoUnit.HOURS.between(timeTo.toTime(), timeFrom.toTime());
-
         /* Time Slot must be at least 1 hour */
-        if (hourDifferences < 1) {
+        if (timeTo.toTime().getHour() - timeFrom.toTime().getHour() < 1) {
             throw new CommandException(MESSAGE_INVALID_SHORT_HOURS);
         }
 
         /* Time Slot must not exceed 8 hours */
-        if (hourDifferences > 8) {
+        if (timeTo.toTime().getHour() - timeFrom.toTime().getHour() > 8) {
             throw new CommandException(MESSAGE_INVALID_LONG_HOURS);
         }
 
