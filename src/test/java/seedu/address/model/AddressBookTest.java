@@ -174,7 +174,7 @@ public class AddressBookTest {
 
         @Override
         public Alias getAlias(String aliasName) {
-            return new Alias();
+            return new Alias("test", "test");
         }
 
         @Override

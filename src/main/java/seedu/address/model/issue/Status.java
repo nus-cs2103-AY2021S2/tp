@@ -7,7 +7,7 @@ import seedu.address.model.issue.exceptions.InvalidIssueStatusException;
 
 /**
  * Represents an issue's status in SunRez. Guarantees: immutable; is valid as
- * declared in {@link #isValidStatus(String)}
+ * declared in {@link #isValidStatus(String)}.
  */
 public class Status {
 
@@ -45,16 +45,19 @@ public class Status {
 
     /**
      * Returns true if a given string is a valid status.
+     *
+     * @param test String to check.
+     * @return True if test is valid.
      */
     public static boolean isValidStatus(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     /**
-     * Retuns the IssueStatus enum of the given status
+     * Retuns the IssueStatus enum of the given status.
      *
-     * @param status
-     * @return IssueStatus enum of status
+     * @param status String representing status.
+     * @return IssueStatus enum of status.
      */
     private static IssueStatus parse(String status) {
         String lowercaseStatus = status.toLowerCase();

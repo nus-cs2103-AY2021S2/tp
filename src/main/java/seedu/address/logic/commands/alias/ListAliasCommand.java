@@ -33,10 +33,12 @@ public class ListAliasCommand extends Command {
         requireNonNull(model);
 
         AliasMapping mapping = model.getAliasMapping();
+        assert mapping != null;
 
         int aliasCount = mapping.size();
+        assert aliasCount >= 0;
 
-        if (mapping.size() == 0) {
+        if (aliasCount == 0) {
             return new CommandResult(MESSAGE_EMPTY_ALIAS);
         }
 

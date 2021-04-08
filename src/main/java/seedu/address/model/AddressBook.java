@@ -50,7 +50,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Creates an AddressBook using the Residents in the {@code toBeCopied}
+     * Creates an AddressBook using the Residents in the {@code toBeCopied}.
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -186,7 +186,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a residentroom with the same name and room number exists  in SunRez.
+     * Returns true if a residentroom with the same name and room number exists in SunRez.
      */
     public boolean hasBothResidentRoom(ResidentRoom residentRoom) {
         requireNonNull(residentRoom);
@@ -209,7 +209,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         residentRooms.remove(key);
     }
 
-
     //// meta methods
 
     /**
@@ -229,15 +228,20 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Returns true if a issue with the same identity as {@code issue} exists SunRez.
+     *
+     * @param issue The issue to check.
+     * @return True if SunRez has the issue.
+     * @throws NullPointerException If {@code issue} is null.
      */
     public boolean hasIssue(Issue issue) {
-        requireNonNull(issue);
         return issues.contains(issue);
     }
 
     /**
-     * Adds a issue to the address book.
-     * The issue must not already exist in the address book.
+     * Adds the given issue.
+     *
+     * @param issue The issue to add.
+     * @throws NullPointerException If {@code issue} is null.
      */
     public void addIssue(Issue issue) {
         issues.add(issue);
@@ -246,26 +250,31 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given issue {@code target} in the list with
      * {@code editedIssue}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in SunRez.
      * The issue identity of {@code editedIssue} must not be the same as another
-     * existing issue in the address book.
+     * existing issue in SunRez.
+     *
+     * @param target      The target issue to replace.
+     * @param editedIssue The replacement issue.
+     * @throws NullPointerException If {@code target} or {@code editedIssue} is null.
      */
     public void setIssue(Issue target, Issue editedIssue) {
-        requireNonNull(editedIssue);
-
         issues.setIssue(target, editedIssue);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this SunRez.
+     * {@code key} must exist in SunRez.
+     *
+     * @param key Issue to be removed.
+     * @throws NullPointerException If {@code key} is null.
      */
     public void removeIssue(Issue key) {
         issues.remove(key);
     }
 
     /**
-     * Checks if any issues have the given room associated with it
+     * Checks if any issues have the given room associated with it.
      *
      * @param target Room to check if it has issues associated with it.
      * @return True if there are issues with the given room associated with it.

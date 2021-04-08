@@ -2,6 +2,9 @@ package seedu.address.logic.commands.alias;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -21,6 +24,8 @@ public class UnaliasCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Alias deleted: %1$s";
 
     public static final String MESSAGE_FAILURE = "Alias not found";
+
+    private final Logger logger = LogsCenter.getLogger(UnaliasCommand.class);
 
     private String aliasName;
 
@@ -47,9 +52,11 @@ public class UnaliasCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        assert aliasName != null;
 
         // if no alias with the specified name is found
         if (!model.getAliasMapping().containsAlias(aliasName)) {
+            logger.warning("An unknown alias name given entered");
             throw new CommandException(String.format(MESSAGE_FAILURE, aliasName));
         }
 
