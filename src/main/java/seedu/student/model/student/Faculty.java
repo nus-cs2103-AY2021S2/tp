@@ -58,21 +58,6 @@ public class Faculty {
     }
 
 
-    /**
-     * Returns true if the given string is a faculty in the enum.
-     *
-     * @param givenFaculty the string to be checked.
-     * @return true if givenFaculty is a valid faculty, false otherwise.
-     */
-
-    public static Boolean isExist(String givenFaculty) {
-        for (FacultyAbbreviation facultyAbbreviation : FacultyAbbreviation.values()) {
-            if (givenFaculty.equals(facultyAbbreviation.name())) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     @Override
     public String toString() {

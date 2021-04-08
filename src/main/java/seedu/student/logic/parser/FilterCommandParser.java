@@ -27,11 +27,11 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         String condition = args.trim();
 
-        if (VaccinationStatus.isExist(condition.toUpperCase())) {
+        if (VaccinationStatus.isValidStatus(condition.toUpperCase())) {
             return new FilterCommand(new VaccinationStatusContainsKeywords(condition.toUpperCase()));
-        } else if (Faculty.isExist(condition)) {
+        } else if (Faculty.isValidFaculty(condition)) {
             return new FilterCommand(new FacultyContainsKeywords(condition));
-        } else if (SchoolResidence.isExist(condition)) {
+        } else if (SchoolResidence.isValidResidence(condition)) {
             return new FilterCommand(new SchoolResidenceContainsKeywords(condition));
         } else {
             throw new ParseException(
