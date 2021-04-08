@@ -44,7 +44,7 @@ You can reach me at the email `e0417962@u.nus.edu`
 <img src="images/kumsssss.png" width="200px">
 
 [[github](http://github.com/kumsssss)]
-[[portfolio](team/kumaran.md)]
+[[portfolio](team/kumsssss.md)]
 You can reach me at the email `e0407113@u.nus.edu`
 
 * Role: Developer
