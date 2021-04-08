@@ -64,6 +64,9 @@ public class Timestamp implements Comparable<Timestamp> {
 
     /**
      * Returns true if a given string is a valid timestamp.
+     *
+     * @param test string to check
+     * @return {@code True} if test is valid
      */
     public static boolean isValidTimestamp(String test) {
         try {

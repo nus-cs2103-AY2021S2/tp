@@ -193,31 +193,47 @@ public interface Model {
     void appendCommandHistoryEntry(String commandText);
 
     /**
-     * Returns true if a issue with the same identity as {@code issue} exists in the address book.
+     * Returns true if a issue with the same identity as {@code issue} exists in SunRez.
+     *
+     * @param issue to be checked
+     * @return {@code True} if issue is in SunRez
+     * @throws NullPointerException if {@code issue} is null.
      */
     boolean hasIssue(Issue issue);
 
     /**
      * Deletes the given issue.
      * The issue must exist in SunRez.
+     *
+     * @param target to be deleted
+     * @throws NullPointerException if {@code target} is null
      */
     void deleteIssue(Issue target);
 
     /**
      * Adds the given issue.
+     *
+     * @param issue to be added
+     * @throws NullPointerException if {@code issue} is null
      */
     void addIssue(Issue issue);
 
     /**
      * Replaces the given Issue {@code target} with {@code editedIssue}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the SunRez.
+     *
+     * @param target      to be replaced
+     * @param editedIssue to replace {@code target} with
+     * @throws NullPointerException if {@code target} or {@editIssue} is null
      */
     void setIssue(Issue target, Issue editedIssue);
-
 
     /**
      * Closes the given issue.
      * The issue must exist in SunRez.
+     *
+     * @param target to be replaced
+     * @throws NullPointerException if {@code target} is null
      */
     void closeIssue(Issue target);
 
@@ -225,12 +241,14 @@ public interface Model {
      * Checks if any issues have the given room associated with it
      *
      * @param target Room to check if it has issues associated with it.
-     * @return True if there are issues with the given room associated with it.
+     * @return {@code True} if there are issues with the given room associated with it.
      */
     boolean issuesContainRoom(Room target);
 
     /**
      * Returns an unmodifiable view of the filtered issue list.
+     *
+     * @return ObservableList of issues
      */
     ObservableList<Issue> getFilteredIssueList();
 
@@ -238,6 +256,7 @@ public interface Model {
      * Updates the filter of the filtered issue list to filter by the given.
      * {@code predicate}.
      *
+     * @param predicate to filter the issue list
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredIssueList(Predicate<Issue> predicate);

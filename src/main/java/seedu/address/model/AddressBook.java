@@ -186,7 +186,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a residentroom with the same name and room number exists  in SunRez.
+     * Returns true if a residentroom with the same name and room number exists in SunRez.
      */
     public boolean hasBothResidentRoom(ResidentRoom residentRoom) {
         requireNonNull(residentRoom);
@@ -208,7 +208,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void removeResidentRoom(ResidentRoom key) {
         residentRooms.remove(key);
     }
-
 
     //// meta methods
 
@@ -259,6 +258,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
+     *
+     * @param key issue to be removed
+     * @throws NullPointerException if {@code key} is null
      */
     public void removeIssue(Issue key) {
         issues.remove(key);
