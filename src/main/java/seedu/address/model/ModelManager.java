@@ -145,11 +145,6 @@ public class ModelManager implements Model {
         addressBook.sortByName(isAscending);
     }
 
-    @Override
-    public void toggleBlacklist(Person target) {
-        setPerson(target, target.toggleBlacklistStatus());
-    }
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**

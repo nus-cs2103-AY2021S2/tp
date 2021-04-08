@@ -101,12 +101,6 @@ public interface Model {
      */
     void sortByName(boolean isAscending);
 
-    /**
-     * Toggles the blacklist status of the given person {@code target}.
-     * {@code target} must exist in the address book.
-     */
-    void toggleBlacklist(Person target);
-
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 

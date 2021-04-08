@@ -144,11 +144,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void toggleBlacklist(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void massBlacklist(int startIndex, int endIndex) {
             throw new AssertionError("This method should not be called.");
         }
