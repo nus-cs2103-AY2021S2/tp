@@ -401,7 +401,7 @@ public class ParserUtil {
         requireNonNull(title);
         String trimmedTitle = title.trim();
         if (!Title.isValidTitle(trimmedTitle)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
         return new Title(trimmedTitle);
     }
@@ -416,7 +416,7 @@ public class ParserUtil {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         if (!Description.isValidDescription(trimmedDescription)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
     }

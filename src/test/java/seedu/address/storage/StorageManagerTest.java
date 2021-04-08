@@ -82,6 +82,7 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getTutorBookFilePath());
     }
 
+    @Test
     public void appointmentBookReadSave() throws Exception {
         AppointmentBook original = getTypicalAppointmentBook();
         storageManager.saveAppointmentBook(original);

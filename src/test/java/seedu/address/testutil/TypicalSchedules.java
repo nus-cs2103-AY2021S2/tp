@@ -21,6 +21,15 @@ public class TypicalSchedules {
             .withTimeFrom("2021-05-27 12:00PM").withTimeTo("2021-05-27 2:00PM")
             .withDescription("Chapter 3 Page 21").build();
 
+    public static final Schedule ENGLISH_HOMEWORK_SCHEDULE = new ScheduleBuilder()
+            .withTitle("English Homework")
+            .withTimeFrom("2021-05-28 1:00PM").withTimeTo("2021-05-28 3:00PM")
+            .withDescription("Chapter 5 Page 212").build();
+    public static final Schedule LITERATURE_HOMEWORK_SCHEDULE = new ScheduleBuilder()
+            .withTitle("Literature Homework")
+            .withTimeFrom("2021-05-28 5:00PM").withTimeTo("2021-05-28 7:00PM")
+            .withDescription("Chapter 21 Page 1").build();
+
     public static final Schedule PAST_SCHEDULE_1 = new ScheduleBuilder()
             .withTitle("Science Homework")
             .withTimeFrom("2021-01-27 12:00PM").withTimeTo("2021-01-27 2:00PM")
