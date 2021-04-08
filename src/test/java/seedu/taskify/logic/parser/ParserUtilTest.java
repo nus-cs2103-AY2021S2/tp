@@ -24,20 +24,23 @@ import org.junit.jupiter.params.provider.ValueSource;
 import seedu.taskify.logic.commands.DeleteCommand;
 import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.tag.Tag;
+import seedu.taskify.model.task.Date;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
 import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.StatusType;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "Buy @pples";
     private static final String INVALID_DESCRIPTION = "";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_DATE = "20211-04-20 18:00";
+    private static final String INVALID_TAG = "#university";
 
-    private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_DESCRIPTION = "123456";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_NAME = "Buy apples";
+    private static final String VALID_DESCRIPTION = "Sweet apples";
+    private static final String VALID_DATE = "2021-04-20 18:00";
+    private static final String VALID_TAG_1 = "university";
+    private static final String VALID_TAG_2 = "CS2103T";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -143,6 +146,23 @@ public class ParserUtilTest {
         String descriptionWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
         Description expectedDescription = new Description(VALID_DESCRIPTION);
         assertEquals(expectedDescription, ParserUtil.parseDescription(descriptionWithWhitespace));
+    }
+
+    @Test
+    public void parseDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDate((String) null));
+    }
+
+    @Test
+    public void parseDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
+    }
+
+    @Test
+    public void parseDate_validValueWithWhitespace_returnsCorrectDate() throws Exception {
+        String dateWithWhitespace = WHITESPACE + VALID_DATE + WHITESPACE;
+        Date expectedDate = new Date(VALID_DATE);
+        assertEquals(expectedDate, ParserUtil.parseDate(dateWithWhitespace));
     }
 
 

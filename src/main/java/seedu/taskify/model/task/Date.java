@@ -8,13 +8,17 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 
 /**
  * Represents a Task's date (and time) in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
 public class Date {
+    public static final String CORRECT_FORMAT_BUT_INVALID_DATE =
+            "Maybe check if your specified date is an actual date and time?";
     public static final String MESSAGE_CONSTRAINTS = "Date should be of the format \"yyyy-mm-dd hh:mm\"";
+    public static final String NOT_LEAP_YEAR_ERROR = "Oops! The specified date is not a leap year!";
     private static final String END_OF_DAY_TIME = "23:59";
     public final String value;
     private final LocalDateTime localDateTime;
@@ -47,7 +51,7 @@ public class Date {
      * Returns if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        if (test == null || !test.matches("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}")) {
+        if (!Date.isCorrectInputFormat(test)) {
             return false;
         }
         SimpleDateFormat df = new SimpleDateFormat("y-M-d H:m");
@@ -58,6 +62,38 @@ public class Date {
         } catch (ParseException ex) {
             return false;
         }
+    }
+
+    /**
+     * Returns if a given String is of correct format ("yyyy-MM-dd HH:mm").
+     */
+    public static boolean isCorrectInputFormat(String inputDate) {
+        return inputDate != null && inputDate.matches("\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}");
+    }
+
+    /**
+     * Returns if a given String date is of 29th February but not on a leap year.
+     */
+    public static boolean isInvalidLeapYearDate(String inputDate) {
+        if (Date.isCorrectInputFormat(inputDate)) {
+            String[] splitArr = inputDate.split("-");
+            int year = Integer.parseInt(splitArr[0]);
+            String month = splitArr[1];
+            String date = splitArr[2].split(" ")[0];
+            if (!isLeapYear(year) && month.equals("02") && date.equals("29")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns if a given int is a leap year.
+     */
+    private static boolean isLeapYear(int year) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, year);
+        return cal.getActualMaximum(Calendar.DAY_OF_YEAR) > 365;
     }
 
     /**
