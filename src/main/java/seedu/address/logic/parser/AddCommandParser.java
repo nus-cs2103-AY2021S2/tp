@@ -4,21 +4,24 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
-import seedu.address.model.person.passenger.TripDay;
-import seedu.address.model.person.passenger.TripTime;
+import seedu.address.model.person.passenger.Price;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,10 +37,10 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TRIPDAY,
-                        PREFIX_TRIPTIME, PREFIX_TAG);
+                        PREFIX_TRIPTIME, PREFIX_PRICE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TRIPDAY, PREFIX_TRIPTIME)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_TRIPDAY, PREFIX_TRIPTIME
+                ) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -48,7 +51,16 @@ public class AddCommandParser implements Parser<AddCommand> {
         TripDay tripDay = ParserUtil.parseTripDay(argMultimap.getValue(PREFIX_TRIPDAY).get());
         TripTime tripTime = ParserUtil.parseTripTime(argMultimap.getValue(PREFIX_TRIPTIME).get());
 
-        Passenger passenger = new Passenger(name, phone, address, tripDay, tripTime, tagList);
+        // TODO tidy up code style
+        Optional<String> priceStr = argMultimap.getValue(PREFIX_PRICE);
+        Optional<Price> price;
+        if (priceStr.isPresent()) {
+            price = Optional.of(ParserUtil.parsePrice(priceStr.get()));
+        } else {
+            price = Optional.empty();
+        }
+
+        Passenger passenger = new Passenger(name, phone, address, tripDay, tripTime, price, tagList);
 
         return new AddCommand(passenger);
     }

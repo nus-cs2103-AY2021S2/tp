@@ -4,7 +4,7 @@ title: Zechariah Tan's Project Portfolio Page
 ---
 
 ## Project: Green Mileage Efforts
-Green Mileage Efforts - is a shared desktop application used to make finding groups of people to carpool with easier. 
+Green Mileage Efforts - is a shared desktop application used to make finding groups of people to carpool with easier.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about
 10 kLoC.
 

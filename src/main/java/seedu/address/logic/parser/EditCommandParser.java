@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
@@ -59,6 +60,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         if (argMultimap.getValue(PREFIX_TRIPTIME).isPresent()) {
             editPassengerDescriptor.setTripTime(ParserUtil.parseTripTime(argMultimap.getValue(PREFIX_TRIPTIME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
+            editPassengerDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPassengerDescriptor::setTags);

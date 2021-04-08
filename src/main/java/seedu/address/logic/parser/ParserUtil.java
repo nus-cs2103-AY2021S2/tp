@@ -2,18 +2,25 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
-import seedu.address.model.person.passenger.TripDay;
-import seedu.address.model.person.passenger.TripTime;
+import seedu.address.model.person.passenger.Price;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,6 +29,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_NO_ARGS = "No indexes were provided.";
 
     /**
      * Prevents ParserUtil from being instantiated.
@@ -116,16 +124,19 @@ public class ParserUtil {
     /**
      * Parses a {@code String tripDay} into a {@code TripDay}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * and converted to uppercase for case-insensitive enum instantiation of {@code DayOfWeek}.
      * @throws ParseException if the given {@code tripDay} is invalid.
      */
     public static TripDay parseTripDay(String tripDay) throws ParseException {
         requireNonNull(tripDay);
-        String trimmedTripDay = tripDay.trim();
-        if (!TripDay.isValidTripDay(tripDay)) {
+        String trimmedTripDay = tripDay.trim().toUpperCase();
+        DayOfWeek day;
+        try {
+            day = DayOfWeek.valueOf(trimmedTripDay);
+        } catch (IllegalArgumentException e) {
             throw new ParseException(TripDay.MESSAGE_CONSTRAINTS);
         }
-        return new TripDay(trimmedTripDay);
+        return new TripDay(day);
     }
 
     /**
@@ -137,12 +148,32 @@ public class ParserUtil {
     public static TripTime parseTripTime(String tripTime) throws ParseException {
         requireNonNull(tripTime);
         String trimmedTripTime = tripTime.trim();
-        if (!TripTime.isValidTripTime(tripTime)) {
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HHmm");
+        LocalTime parsedTimeObject;
+        try {
+            parsedTimeObject = LocalTime.parse(trimmedTripTime, timeFormat);
+        } catch (DateTimeParseException e) {
             throw new ParseException(TripTime.MESSAGE_CONSTRAINTS);
         }
-        return new TripTime(trimmedTripTime);
+
+        return new TripTime(parsedTimeObject);
     }
 
+    /**
+     * Parses a {@code String price} into a {@code Price}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code price} is invalid.
+     */
+    public static Price parsePrice(String price) throws ParseException {
+        requireNonNull(price);
+        String trimmedPrice = price.trim();
+        if (!Price.isValidPrice(price)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Price(Double.parseDouble(trimmedPrice));
+    }
 
     /**
      * Parses {@code Collection<String> indices} into a {@code Set<Index>}.
@@ -156,4 +187,26 @@ public class ParserUtil {
         return indicesSet;
     }
 
+    /**
+     * Parses {@code oneBasedIndexes} into an {@code List<Index>} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static List<Index> parseDeleteIndex(String oneBasedIndexes) throws ParseException {
+        String[] arguments = oneBasedIndexes.split("\\s+");
+        List<Index> indexes = new ArrayList<>();
+
+        for (String s : arguments) {
+            if (s.length() > 0) {
+                Index index = ParserUtil.parseIndex(s.trim());
+                indexes.add(index);
+            }
+        }
+
+        if (indexes.size() > 0) {
+            return indexes;
+        } else {
+            throw new ParseException(MESSAGE_NO_ARGS);
+        }
+    }
 }

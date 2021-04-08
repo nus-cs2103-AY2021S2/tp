@@ -1,16 +1,18 @@
 package seedu.address.testutil;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
-import seedu.address.model.person.passenger.TripDay;
-import seedu.address.model.person.passenger.TripTime;
+import seedu.address.model.person.passenger.Price;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -22,16 +24,16 @@ public class PassengerBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_TRIPDAY = "FRIDAY";
-    public static final String DEFAULT_TRIPTIME = "1800";
+    public static final DayOfWeek DEFAULT_TRIPDAY = DayOfWeek.FRIDAY;
+    public static final LocalTime DEFAULT_TRIPTIME = LocalTime.of(18, 0);
 
     private Name name;
     private Phone phone;
     private Address address;
     private TripDay tripDay;
     private TripTime tripTime;
+    private Optional<Price> price;
     private Set<Tag> tags;
-    private Optional<Driver> driver;
 
     /**
      * Creates a {@code PassengerBuilder} with the default details.
@@ -42,8 +44,8 @@ public class PassengerBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tripDay = new TripDay(DEFAULT_TRIPDAY);
         tripTime = new TripTime(DEFAULT_TRIPTIME);
+        price = Optional.empty();
         tags = new HashSet<>();
-        driver = Optional.empty();
     }
 
     /**
@@ -55,8 +57,8 @@ public class PassengerBuilder {
         address = passengerToCopy.getAddress();
         tripDay = passengerToCopy.getTripDay();
         tripTime = passengerToCopy.getTripTime();
+        price = passengerToCopy.getPrice();
         tags = new HashSet<>(passengerToCopy.getTags());
-        driver = passengerToCopy.getDriver();
     }
 
     /**
@@ -94,7 +96,7 @@ public class PassengerBuilder {
     /**
      * Sets the {@code TripDay} of the {@code Passenger} that we are building.
      */
-    public PassengerBuilder withTripDay(String tripDay) {
+    public PassengerBuilder withTripDay(DayOfWeek tripDay) {
         this.tripDay = new TripDay(tripDay);
         return this;
     }
@@ -102,33 +104,28 @@ public class PassengerBuilder {
     /**
      * Sets the {@code TripTime} of the {@code Passenger} that we are building.
      */
-    public PassengerBuilder withTripTime(String tripTime) {
+    public PassengerBuilder withTripTime(LocalTime tripTime) {
         this.tripTime = new TripTime(tripTime);
         return this;
     }
 
     /**
-     * Sets the {@code Driver} of the {@code Passenger} that we are building, with {@code DriverBuilder}.
+     * Sets the {@code Price} of the {@code Passenger} that we are building.
      */
-    public PassengerBuilder withDriver() {
-        this.driver = Optional.of(new DriverBuilder().build());
+    public PassengerBuilder withPrice(Double price) {
+        this.price = Optional.of(new Price(price));
         return this;
     }
 
     /**
-     * Sets the {@code Driver} of the {@code Passenger} that we are building.
+     * Sets the {@code Price} of the {@code Passenger} that we are building to empty.
      */
-    public PassengerBuilder withDriver(Driver driver) {
-        this.driver = Optional.ofNullable(driver);
+    public PassengerBuilder withPrice() {
+        this.price = Optional.empty();
         return this;
     }
 
     public Passenger build() {
-        return new Passenger(name, phone, address, tripDay, tripTime, tags);
+        return new Passenger(name, phone, address, tripDay, tripTime, price, tags);
     }
-
-    public Passenger buildWithDriver() {
-        return new Passenger(name, phone, address, tripDay, tripTime, driver.get(), tags);
-    }
-
 }

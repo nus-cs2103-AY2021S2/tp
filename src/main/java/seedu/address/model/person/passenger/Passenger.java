@@ -8,10 +8,11 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.driver.Driver;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,46 +20,26 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Passenger extends Person {
-    private static final String MESSAGE_NO_ASSIGNED_DRIVER = "No driver assigned to this passenger.";
+    private static final String MESSAGE_NO_PRICE_STATED = "No price was listed by the passenger.";
 
     // Data fields
     private final Address address;
     private final TripDay tripDay;
     private final TripTime tripTime;
+    private final Optional<Price> price;
     private final Set<Tag> tags = new HashSet<>();
-    private Optional<Driver> driver;
 
     /**
      * Every field must be present and not null.
      */
-    public Passenger(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Set<Tag> tags) {
-        super(name, phone);
-        requireAllNonNull(address, tripDay, tripTime, tags);
-        this.address = address;
-        this.tripDay = tripDay;
-        this.tripTime = tripTime;
-        this.driver = Optional.empty();
-        this.tags.addAll(tags);
-    }
-
-    /**
-     * Creates a new {@code Passenger} with a driver.
-     * @param name the {@code Name} of the {@code Passenger}
-     * @param phone the {@code Phone} of the {@code Passenger}
-     * @param address the {@code Address} of the {@code Passenger}
-     * @param tripDay the {@code TripDay} of the {@code Passenger}
-     * @param tripTime the {@code TripTime} of the {@code Passenger}
-     * @param driver the {@code Driver} assigned to {@code Passenger}
-     * @param tags the {@code Tag}s of the {@code Passenger}
-     */
-    public Passenger(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Driver driver,
+    public Passenger(Name name, Phone phone, Address address, TripDay tripDay, TripTime tripTime, Optional<Price> price,
                      Set<Tag> tags) {
         super(name, phone);
         requireAllNonNull(address, tripDay, tripTime, tags);
         this.address = address;
         this.tripDay = tripDay;
         this.tripTime = tripTime;
-        this.driver = Optional.of(driver);
+        this.price = price;
         this.tags.addAll(tags);
     }
 
@@ -70,16 +51,29 @@ public class Passenger extends Person {
         return tripDay;
     }
 
+    public String getTripDayAsStr() {
+        return tripDay.toString();
+    }
+
     public TripTime getTripTime() {
         return tripTime;
     }
 
-    public String getDriverStr() {
-        return driver.map(Driver::toString).orElse(MESSAGE_NO_ASSIGNED_DRIVER);
+    public String getTripTimeAsStr() {
+        return tripTime.toString();
     }
 
-    public Optional<Driver> getDriver() {
-        return driver;
+    public Optional<Price> getPrice() {
+        return price;
+    }
+
+    // TODO check if having two methods with almost the same signature is acceptable
+    public String getPriceAsStr() {
+        return price.map(Price::toString).orElse("");
+    }
+
+    public String priceToString() {
+        return price.map(Price::toString).orElse(MESSAGE_NO_PRICE_STATED);
     }
 
     /**
@@ -123,14 +117,14 @@ public class Passenger extends Person {
                 && otherPassenger.getAddress().equals(getAddress())
                 && otherPassenger.getTripDay().equals(getTripDay())
                 && otherPassenger.getTripTime().equals(getTripTime())
-                && otherPassenger.getTags().equals(getTags())
-                && otherPassenger.getDriver().equals(getDriver());
+                && otherPassenger.getPrice().equals(getPrice())
+                && otherPassenger.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, address, tripDay, tripTime, tags);
+        return Objects.hash(name, phone, address, tripDay, tripTime, price, tags);
     }
 
     @Override
@@ -141,12 +135,12 @@ public class Passenger extends Person {
                 .append(getPhone())
                 .append("; Address: ")
                 .append(getAddress())
-                .append("; Trip Day: ")
+                .append("; Pool Day: ")
                 .append(getTripDay())
-                .append("; Trip Time: ")
+                .append("; Pool Time: ")
                 .append(getTripTime())
-                .append("; Driver: ")
-                .append(getDriverStr());
+                .append("; Price: ")
+                .append(getPrice());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

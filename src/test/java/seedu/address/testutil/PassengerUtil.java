@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
@@ -19,6 +20,8 @@ import seedu.address.model.tag.Tag;
  */
 public class PassengerUtil {
 
+    public static final String EMPTY_PRICE = "";
+
     /**
      * Returns an add command string for adding the {@code passenger}.
      */
@@ -34,8 +37,17 @@ public class PassengerUtil {
         sb.append(PREFIX_NAME + passenger.getName().fullName + " ");
         sb.append(PREFIX_PHONE + passenger.getPhone().value + " ");
         sb.append(PREFIX_ADDRESS + passenger.getAddress().value + " ");
-        sb.append(PREFIX_TRIPDAY + passenger.getTripDay().value + " ");
-        sb.append(PREFIX_TRIPTIME + passenger.getTripTime().value + " ");
+        sb.append(PREFIX_TRIPDAY + passenger.getTripDayAsStr() + " ");
+        sb.append(PREFIX_TRIPTIME + passenger.getTripTimeAsStr() + " ");
+
+        // TODO tidy up hacky method
+        // law of demeter might be violated
+        if (passenger.getPrice().isEmpty()) {
+            sb.append(EMPTY_PRICE + " ");
+        } else {
+            sb.append(PREFIX_PRICE + passenger.priceToString() + " ");
+        }
+
         passenger.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

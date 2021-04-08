@@ -6,13 +6,19 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.pool.Pool;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true.
+     */
     Predicate<Passenger> PREDICATE_SHOW_ALL_PASSENGERS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Pool> PREDICATE_SHOW_ALL_POOLS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -58,16 +64,34 @@ public interface Model {
     boolean hasPassenger(Passenger passenger);
 
     /**
+     * Returns true if a pool with the same identity as {@code pool} exists in the address book.
+     */
+    boolean hasPool(Pool pool);
+
+    /**
      * Deletes the given passenger.
      * The passenger must exist in the address book.
+     * @return
      */
-    void deletePassenger(Passenger passenger);
+    boolean deletePassenger(Passenger passenger);
+
+    /**
+     * Deletes the given pool.
+     * The passenger must exist in the address book.
+     */
+    void deletePool(Pool pool);
 
     /**
      * Adds the given passenger.
      * {@code passenger} must not already exist in the address book.
      */
     void addPassenger(Passenger passenger);
+
+    /**
+     * Adds the given pool.
+     * {@code pool} must not already exist in the address book.
+     */
+    void addPool(Pool pool);
 
     /**
      * Replaces the given passenger {@code target} with {@code editedPassenger}.
@@ -80,13 +104,18 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered passenger list */
     ObservableList<Passenger> getFilteredPassengerList();
 
-    /** Returns an unmodifiable view of the filtered passenger list whether
-     * the passenger is assigned to a driver already */
-    ObservableList<Passenger> getFilteredPassengerListByDriverStatus(Boolean isAssigned);
-
     /**
      * Updates the filter of the filtered passenger list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPassengerList(Predicate<Passenger> predicate);
+
+    /** Returns an unmodifiable view of the filtered pool list */
+    ObservableList<Pool> getFilteredPoolList();
+
+    /**
+     * Updates the filter of the filtered pool list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPoolList(Predicate<Pool> predicate);
 }

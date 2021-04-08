@@ -10,7 +10,7 @@ import seedu.address.model.person.passenger.Passenger;
 /**
  * Panel containing the list of passengers.
  */
-public class FreePassengerListPanel extends UiPart<Region> {
+public class FilteredPassengerListPanel extends UiPart<Region> {
     private static final String FXML = "PassengerListPanel.fxml";
     @FXML
     private ListView<Passenger> passengerListView;
@@ -18,7 +18,7 @@ public class FreePassengerListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PassengerListPanel} with the given {@code ObservableList}.
      */
-    public FreePassengerListPanel(ObservableList<Passenger> passengerList) {
+    public FilteredPassengerListPanel(ObservableList<Passenger> passengerList) {
         super(FXML);
         passengerListView.setItems(passengerList);
         passengerListView.setCellFactory(listView -> new FreePassengerListViewCell());

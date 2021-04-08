@@ -20,12 +20,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
-import seedu.address.model.person.passenger.TripDay;
-import seedu.address.model.person.passenger.TripTime;
+import seedu.address.model.person.passenger.Price;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -71,7 +72,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Passenger> lastShownList = model.getFilteredPassengerListByDriverStatus(false);
+        List<Passenger> lastShownList = model.getFilteredPassengerList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
@@ -104,7 +105,16 @@ public class EditCommand extends Command {
         TripDay updatedTripDay = editPassengerDescriptor.getTripDay().orElse(passengerToEdit.getTripDay());
         TripTime updatedTripTime = editPassengerDescriptor.getTripTime().orElse(passengerToEdit.getTripTime());
 
-        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, updatedTags);
+        // TODO find a better way to do this section
+        Optional<Price> updatedPrice;
+        if (editPassengerDescriptor.getTripTime().isPresent()) {
+            updatedPrice = editPassengerDescriptor.getPrice();
+        } else {
+            updatedPrice = passengerToEdit.getPrice();
+        }
+
+        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, updatedPrice,
+                updatedTags);
     }
 
     @Override
@@ -136,6 +146,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private TripDay tripDay;
         private TripTime tripTime;
+        private Price price;
 
         public EditPassengerDescriptor() {}
 
@@ -150,13 +161,14 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setTripDay(toCopy.tripDay);
             setTripTime(toCopy.tripTime);
+            setPrice(toCopy.price);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, address, tripDay, tripTime, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, address, tripDay, tripTime, price, tags);
         }
 
         public void setName(Name name) {
@@ -199,6 +211,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(tripTime);
         }
 
+        public void setPrice(Price price) {
+            this.price = price;
+        }
+
+        public Optional<Price> getPrice() {
+            return Optional.ofNullable(price);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -236,6 +256,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getTripDay().equals(e.getTripDay())
                     && getTripTime().equals(e.getTripTime())
+                    && getPrice().equals(e.getPrice())
                     && getTags().equals(e.getTags());
         }
     }

@@ -31,8 +31,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private FreePassengerListPanel freePassengerListPanel;
-    private TakenPassengerListPanel takenPassengerListPanel;
+    private FilteredPassengerListPanel filteredPassengerListPanel;
+    private PoolListPanel poolListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,10 +43,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane freePassengerListPanelPlaceholder;
+    private StackPane filteredPassengerListPanelPlaceholder;
 
     @FXML
-    private StackPane takenPassengerListPanelPlaceholder;
+    private StackPane poolListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -114,10 +114,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        freePassengerListPanel = new FreePassengerListPanel(logic.getFilteredPassengerListByDriverStatus(false));
-        freePassengerListPanelPlaceholder.getChildren().add(freePassengerListPanel.getRoot());
-        takenPassengerListPanel = new TakenPassengerListPanel(logic.getFilteredPassengerListByDriverStatus(true));
-        takenPassengerListPanelPlaceholder.getChildren().add(takenPassengerListPanel.getRoot());
+        filteredPassengerListPanel = new FilteredPassengerListPanel(logic.getFilteredPassengerList());
+        filteredPassengerListPanelPlaceholder.getChildren().add(filteredPassengerListPanel.getRoot());
+        //TODO: removed creation of takenPassengerListPanel here as the logic should no longer support getting a
+        // passenger list by drivers
+        poolListPanel = new PoolListPanel(logic.getFilteredPoolList());
+        poolListPanelPlaceholder.getChildren().add(poolListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -169,12 +171,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public FreePassengerListPanel getFreePassengerListPanel() {
-        return freePassengerListPanel;
+    public FilteredPassengerListPanel getFreePassengerListPanel() {
+        return filteredPassengerListPanel;
     }
 
-    public TakenPassengerListPanel getTakenPassengerListPanel() {
-        return takenPassengerListPanel;
+    public PoolListPanel getPoolListPanel() {
+        return poolListPanel;
     }
 
     /**

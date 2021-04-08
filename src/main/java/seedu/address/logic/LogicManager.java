@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.pool.Pool;
 import seedu.address.storage.Storage;
 
 /**
@@ -65,8 +66,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Passenger> getFilteredPassengerListByDriverStatus(Boolean isAssigned) {
-        return model.getFilteredPassengerListByDriverStatus(isAssigned);
+    public ObservableList<Pool> getFilteredPoolList() {
+        return model.getFilteredPoolList();
     }
 
     @Override
