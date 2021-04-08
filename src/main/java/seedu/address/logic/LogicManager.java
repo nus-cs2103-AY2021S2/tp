@@ -102,4 +102,13 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    public ObservableList<Person> getUnfilteredPersonList() {
+        return model.getUnfilteredPersonList();
+    }
+
+    public ObservableList<Session> getUnfilteredSessionList() {
+        return model.getUnfilteredSessionList();
+    }
+
 }

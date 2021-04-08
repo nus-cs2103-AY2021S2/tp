@@ -13,12 +13,8 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ViewPersonCommand;
-import seedu.address.logic.commands.ViewSessionCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -146,7 +142,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.setVisible(false);
         personListPanelPlaceholder.toFront();
         personListPanelPlaceholder.getChildren().clear();
-        sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
+        sessionListPanel = new SessionListPanel(logic.getUnfilteredSessionList());
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
         viewIndividualPlaceholder.getItems().add(sessionListPanelPlaceholder);
 
@@ -254,44 +250,26 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            clearPanels();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
-            }
 
-            if (commandResult.isExit()) {
+            } else if (commandResult.isExit()) {
                 handleExit();
-            }
-            if (commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_SESSIONS)) {
-                fillInnerPartsWithSessions();
-            }
 
-            if (commandResult.getFeedbackToUser().equals(ViewSessionCommand.MESSAGE_SUCCESS)) {
+            } else if (commandResult.isViewSession()) {
                 boolean viewSession = true;
                 fillSplitPane(viewSession);
-            }
 
-            if (commandResult.getFeedbackToUser().equals(ViewPersonCommand.MESSAGE_SUCCESS)) {
+            } else if (commandResult.isViewPerson()) {
                 boolean viewSession = false;
                 fillSplitPane(viewSession);
-            }
 
-            if (commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_PERSONS) || commandResult
-                    .getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_STUDENTS)
-                    || commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_TUTORS)) {
-                fillInnerParts();
-            }
+            } else if (commandResult.isListSession() || commandResult.isAddSession() || commandResult.isEditSession()
+                        || commandResult.isDeleteSession()) {
+                fillInnerPartsWithSessions();
 
-            if (commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_EMPTY_PERSON_LIST) || commandResult
-                    .getFeedbackToUser().equals(ListCommand.MESSAGE_EMPTY_SESSION_LIST)
-                    || commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_EMPTY_TUTOR_LIST)
-                    || commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_EMPTY_STUDENT_LIST)) {
-                clearPanels();
-            }
-
-            if (commandResult.getFeedbackToUser().equals(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
-                    logic.getFilteredPersonList().size()))) {
+            } else {
                 fillInnerParts();
             }
 
@@ -299,7 +277,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            clearPanels();
+            //clearPanels();
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }

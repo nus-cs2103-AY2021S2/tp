@@ -271,6 +271,65 @@ The sequence for the example scenerio can be found below:
 
 ![DeletePersonSequenceDiagram](images/DeletePersonSequenceDiagram.png)
 
+The sequence for the example scenario can be found below:
+
+### Delete session feature
+
+#### Current Implementation
+
+The delete session feature is facilitated by `SessionList`. It is stored internally in `AddressBook` as `sessions`. It implements the following relevant operations:
+
+* `SessionList#remove(Session toRemove)` - Removes the given session from the current list of sessions.
+
+This operation is exposed in the `Model` interface as `Model#deleteSession(Session sessionToDelete)`.
+
+Given below is an example usage scenario and how the delete session mechanism behaves at each step.
+
+Step 1: The user launches the application for the first time. The `AddressBook` will contain a `SessionList`.
+
+Step 2: The user executes `delete_session c/1` command to remove the specified session. The `LogicManager` calls `AddressBookParser#parseCommand(String userInput)`.
+
+Step 3: The `parseCommand` method passes the user input to `DeleteSessionCommandParser#parse(String args)` which returns a `DeleteSessionCommand` object.
+
+Step 4: The `LogicManager` then executes the `DeleteSessionCommand` which calls the `Model#deleteSession(Session sessionToDelete)` method.
+
+Step 5: The `Model` calls `AddressBook#removeSession(Session key)`.
+
+Step 6: The `Model` removes the specified session from `sessions` in `AddressBook` and returns a `CommandResult`.
+
+Step 7: A `CommandResult` object is returned and displayed on the UI.
+
+The sequence for the example scenario can be found below:
+
+![DeleteSessionSequenceDiagram](images/DeleteSessionSequenceDiagram.png)
+
+### Edit session feature
+
+#### Current Implementation
+
+The edit session feature is facilitated by `SessionList`. It is stored internally in `AddressBook` as `sessions`. It implements the following relevant operations:
+
+* `SessionList#setSession(Session target, Session editedSession)` — Replaces the target session in the current list of sessions with the edited session.
+
+This operation is exposed in the `Model` interface as `Model#setSession(Session sessionToEdit, Session editedSession)`.
+
+Given below is an example usage scenario and how the edit session mechanism behaves at each step.
+
+Step 1: The user executes `edit_session c/2 d/Monday ts/12:00 to 13:00` command to edit the specified session. The `LogicManager` calls `AddressBookParser#parseCommand(String userInput)`.
+
+Step 2: The `parseCommand` method passes the user input to `EditSessionCommandParser#parse(String args)`.
+
+Step 3: An `EditSessionDescriptor` object is created and used to return an `EditSessionCommand` object.
+
+Step 4: The `LogicManager` then executes the `EditSessionCommand` which calls the `Model#setSession(Session sessionToEdit, Session editedSession)` method.
+
+Step 5: The `Model` replaces the specified session `sessionToEdit` in `sessions` in `AddressBook` with the edited session `editedSession` and returns a `CommandResult`.
+
+Step 6: The `CommandResult` is then displayed on the UI.
+
+The sequence for the example scenerio can be found below:
+
+![AddSessionSequenceDiagram](images/EditSessionSequenceDiagram.png)
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

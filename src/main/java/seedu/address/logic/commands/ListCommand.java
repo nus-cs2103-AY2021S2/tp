@@ -14,7 +14,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.session.Session;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in EZManage to the user.
  */
 public class ListCommand extends Command {
 
@@ -40,9 +40,9 @@ public class ListCommand extends Command {
 
     /**
      * Creates a ListCommand with a specific list type.
-     * @param personPredicate updates the filteredPersonList
-     * @param sessionPredicate updates the filteredSessionList
-     * @param listCommandType type of list to be shown
+     * @param personPredicate updates the filteredPersonList.
+     * @param sessionPredicate updates the filteredSessionList.
+     * @param listCommandType type of list to be shown.
      */
     public ListCommand(Predicate<Person> personPredicate, Predicate<Session> sessionPredicate,
                        String listCommandType) {
@@ -56,7 +56,6 @@ public class ListCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(personPredicate);
         model.updateFilteredSessionList(sessionPredicate);
-
         switch (listCommandType) {
 
         case PERSON_TYPE_LIST:
