@@ -36,7 +36,8 @@ public class AddContactCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New contact added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CONTACT = "This contact already exists in the contacts list.";
+    public static final String MESSAGE_DUPLICATE_CONTACT = "This contact uses the same phone or email address"
+            + " as another existing contact.";
 
     private final Contact toAdd;
 
