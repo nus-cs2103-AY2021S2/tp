@@ -34,12 +34,12 @@ Here are my contributions to the project.
   * What it does: Convert a note that is stored in our local storage application into a .txt file.
   * Justification: User might want to export their notes somewhere else and rather than having to manually copy and paste everything, this feature can be useful.
   * Highlights: User can just type a one-liner command and will be able to get a .txt file rather than manually copy and paste everything.
-  
+
 **Code contributed**: [RepoSense link] (https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=w13&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=godjuansan&tabRepo=AY2021S2-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
   * Managed all of notes feature and divide tasks between myself and jessen11 (https://github.com/jessen11/).
-  
+
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `markasundonenote` and `markallasundonenote` command
@@ -60,3 +60,4 @@ Here are my contributions to the project.
   * Contributed to forum discussions: [\#279](), [\#293](), [\#295](), [\#298]().
   * Reported bugs and suggestions for other teams in the class 
     * Every issue from [\#103](https://github.com/AY2021S2-CS2103-W17-2/tp/issues/) until [\#122](https://github.com/AY2021S2-CS2103-W17-2/tp/issues/).
+    
