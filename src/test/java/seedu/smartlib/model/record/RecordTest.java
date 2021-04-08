@@ -6,20 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_AUTHOR_HARRY;
-import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ISBN_HARRY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_HARRY;
-import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_MAZE;
-import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PUBLISHER_HARRY;
 import static seedu.smartlib.testutil.Assert.assertThrows;
-import static seedu.smartlib.testutil.TypicalModels.ALICE;
-import static seedu.smartlib.testutil.TypicalModels.HARRY_PORTER;
-import static seedu.smartlib.testutil.TypicalModels.MAZE;
-import static seedu.smartlib.testutil.TypicalModels.PROMISE_LAND;
 import static seedu.smartlib.testutil.TypicalModels.RECORD_A;
 import static seedu.smartlib.testutil.TypicalModels.RECORD_B;
 import static seedu.smartlib.testutil.TypicalModels.RECORD_C;
-import static seedu.smartlib.testutil.TypicalModels.SECRET;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -28,9 +19,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.book.Barcode;
-import seedu.smartlib.model.book.Book;
-import seedu.smartlib.testutil.Assert;
-import seedu.smartlib.testutil.BookBuilder;
 
 public class RecordTest {
 
