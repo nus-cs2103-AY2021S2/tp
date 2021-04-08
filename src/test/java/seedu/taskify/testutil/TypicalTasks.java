@@ -25,7 +25,7 @@ public class TypicalTasks {
     public static final Task TASK_1 = new TaskBuilder().withName("firstTask")
                  .withStatus(StatusType.UNCOMPLETED)
                  .withDescription("my first task").withDate("2021-09-13 01:30")
-                 .withTags("friends").build();
+                 .withTags("debugging").build();
     public static final Task TASK_2 = new TaskBuilder().withName("secondTask")
             .withStatus(StatusType.UNCOMPLETED).withDescription("my second task").withDate("2022-01-23 23:30")
                   .withTags("owesMoney", "friends").build();

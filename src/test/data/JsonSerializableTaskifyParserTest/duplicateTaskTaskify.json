@@ -1,21 +1,22 @@
 {
   "tasks": [
     {
-      "name": "Alice Pauline",
-      "description": "2107 ctf",
-      "address": "123, Jurong West Ave 6, #08-111",
-      "status" : "Expired",
+      "name": "CS2106 Lab",
+      "description": "Lab on Synchronization",
+      "status" : "Uncompleted",
       "date": "2014-09-13 01:30",
       "tagged": [
-        "friends"
+        "Lab"
       ]
     },
     {
-      "name": "Alice Pauline",
-      "description": "2107 ctf",
-      "address": "4th street",
-      "status" : "Expired",
-      "date": "2014-09-13 01:30"
+      "name": "CS2106 Lab",
+      "description": "Lab on Synchronization",
+      "status" : "Completed",
+      "date": "2014-09-13 01:30",
+      "tagged": [
+        "Lab"
+      ]
     }
   ]
 }
