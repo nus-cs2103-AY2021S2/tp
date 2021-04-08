@@ -121,7 +121,7 @@ DietLAH! uses the following date format for command inputs: `dd Mmm yyyy` which 
 Legend | Description
 -------|-------------
 d | Day in the calendar month, ranging from 0 - 31, without leading zeroes
-MMM | 3-letter textual representation of a month in the calendar year, ranging from Jan - Dec, case sensitive
+Mmm | 3-letter textual representation of a month in the calendar year, ranging from Jan - Dec, case sensitive
 yyyy | Numerical 4-digit representation of a year in the calendar, e.g. 2021
 
 Some example date inputs: `3 Jan 2021`, `21 Feb 2021`, `30 Mar 2021`
@@ -136,12 +136,12 @@ Some example date inputs: `3 Jan 2021`, `21 Feb 2021`, `30 Mar 2021`
 
 ### 1.1 Input user information
 
-When you first launch DietLAH!, you will be prompted to enter your particulars.
+When you first launch DietLAH!, some sample data will already be loaded. 
 
 DietLAH! uses this information to provide personalized recommendations based on your personal goals and current characteristics.
 
 <div class="alert alert-note">
-    ✏️ <strong>Note:</strong> You need to enter this command before all other commands will work!
+    ✏️ <strong>Note:</strong> You need to enter this command before all other commands will work! Also, note that you need to clear the sample data before you can use this command!
 </div>
 
 **Command Format:** `bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
