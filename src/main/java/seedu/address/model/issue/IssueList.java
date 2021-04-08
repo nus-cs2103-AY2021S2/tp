@@ -56,6 +56,10 @@ public class IssueList implements Iterable<Issue> {
      * {@code target} must exist in the list.
      * The issue identity of {@code editedIssue} must not be the same as another
      * existing issue in the list.
+     *
+     * @param target      issue to be replaced
+     * @param editedIssue the new issue to replace {@code target}
+     * @throws NullPointerException if {@code target} or {@editedIssue} is null
      */
     public void setIssue(Issue target, Issue editedIssue) {
         assert internalList != null;
@@ -79,6 +83,9 @@ public class IssueList implements Iterable<Issue> {
     /**
      * Removes the equivalent issue from the list.
      * The issue must exist in the list.
+     *
+     * @param toRemove issue to be removed
+     * @throws NullPointerException if {@code toRemove} is null
      */
     public void remove(Issue toRemove) {
         assert internalList != null;
@@ -89,6 +96,12 @@ public class IssueList implements Iterable<Issue> {
         }
     }
 
+    /**
+     * Replaces the existing issues with the issues from {@code replacement}
+     *
+     * @param replacement the {@IssueList} to be replaced with
+     * @throws NullPointerException if {@code replacement} is null
+     */
     public void setIssues(IssueList replacement) {
         assert internalList != null;
         requireNonNull(replacement);
@@ -99,6 +112,10 @@ public class IssueList implements Iterable<Issue> {
     /**
      * Replaces the contents of this list with {@code issues}.
      * {@code issues} must not contain duplicate issues.
+     *
+     * @param issues to be replaced with
+     * @throws DuplicateIssueException if {@code issues} contains duplicate issues
+     * @throws NullPointerException    if {@code replacement} is null
      */
     public void setIssues(List<Issue> issues) {
         assert internalList != null;
@@ -117,7 +134,7 @@ public class IssueList implements Iterable<Issue> {
      * Checks if any issues have the given room associated with it
      *
      * @param target Room to check if it has issues associated with it.
-     * @return True if there are issues with the given room associated with it.
+     * @return {@code True} if there are issues with the given room associated with it.
      */
     public boolean containsRoom(Room target) {
         assert internalList != null;
