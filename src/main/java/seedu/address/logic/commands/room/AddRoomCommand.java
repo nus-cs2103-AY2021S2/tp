@@ -5,6 +5,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_TYPE;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -26,6 +29,7 @@ public class AddRoomCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New room added: %1$s";
     public static final String MESSAGE_DUPLICATE_ROOM = "This room already exists in SunRez";
+    private static final Logger logger = LogsCenter.getLogger(AddRoomCommand.class);
 
     private final Room toAdd;
 
@@ -47,6 +51,8 @@ public class AddRoomCommand extends Command {
 
         model.addRoom(toAdd);
         model.commitAddressBook();
+
+        logger.info("AddRoomCommand successfully updated the model");
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
