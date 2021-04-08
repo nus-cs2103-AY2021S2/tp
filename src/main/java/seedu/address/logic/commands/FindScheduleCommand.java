@@ -23,7 +23,7 @@ public class FindScheduleCommand extends Command {
             + "Parameters: DATE (one single valid date in YYYY-MM-DD format)\n"
             + "Example: " + COMMAND_WORD + " 2021-03-29";
 
-    public static final String MESSAGE_FIND_SCHEDULE_SUCCESS = "Displayed the required tasks and events\n";
+    public static final String MESSAGE_FIND_SCHEDULE_SUCCESS = "Displayed the required tasks and events.\n";
 
     private final TaskFindSchedulePredicate taskPredicate;
     private final EventFindSchedulePredicate eventPredicate;

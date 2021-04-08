@@ -27,7 +27,6 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListEventCommand;
 import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.PinTaskCommand;
-import seedu.address.logic.commands.SortEventCommand;
 import seedu.address.logic.commands.SortTaskCommand;
 import seedu.address.logic.commands.SummaryCommand;
 import seedu.address.logic.commands.TodayEventCommand;
@@ -106,9 +105,6 @@ public class SocheduleParser {
 
         case UnpinTaskCommand.COMMAND_WORD:
             return new UnpinTaskCommandParser().parse(arguments);
-
-        case SortEventCommand.COMMAND_WORD:
-            return new SortEventCommandParser().parse(arguments);
 
         case SummaryCommand.COMMAND_WORD:
             return new SummaryCommandParser().parse(arguments);

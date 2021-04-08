@@ -22,7 +22,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Marking one or more tasks as done : [`done_task`](#marking-one-or-more-tasks-as-done-done_task)
 * Marking a task as uncompleted : [`undone_task`](#marking-a-task-as-uncompleted-undone_task)
 * Getting today's tasks: [`today_task`](#listing-all-tasks-today-today_task)
-* Finding tasks: [`find_task`](#finding-all-matching-tasks-find_task)
+* Finding tasks by name: [`find_task`](#finding-all-matching-tasks-find_task)
 * Sorting all tasks: [`sort_task`](#sorting-all-tasks-sort_task)
 * Pinning a task: [`pin_task`](#pinning-a-task-pin_task)
 * Unpinning a task: [`unpin_task`](#unpinning-a-task-unpin_task)
@@ -35,7 +35,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Editing an event: [`edit_event`](#editing-an-event-edit_event)
 * Listing all events: [`list_event`](#listing-all-events-list_event)
 * Getting today's events: [`today_event`](#listing-all-events-today-today_event)
-* Finding events: [`find_event`](#finding-all-matching-events-find_event)
+* Finding events by name: [`find_event`](#finding-all-matching-events-find_event)
 * Clearing expired events: [`clear_expired_event`](#clearing-expired-events-clear_expired_event)
 
 ### Commands Related to Both Task and Event
@@ -174,7 +174,7 @@ As listed below are the attributes to be specified for Tasks and Events. All par
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `SOChedule.jar` from [here](https://github.com/AY2021S2-CS2103-W16-1/tp/releases/download/v1.3.1/SOChedule.jar).
+1. Download the latest `SOChedule.jar` from [here](https://github.com/AY2021S2-CS2103-W16-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your SOChedule.
 
@@ -227,7 +227,7 @@ Shows a message explaining how to access the help page.
 
 
 ### Adding a task: `add_task`
-Adds a task to SOChedule Task List.
+Adds a task into the task list.
 
 Format: `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...`
 * `n/` is followed by the task name.
@@ -244,7 +244,7 @@ Examples:
 
 
 ### Deleting a task: `delete_task`
-Deletes a task from SOChedule Task List.
+Deletes a task from the task list.
 
 Format: `delete_task INDEX`
 * Deletes the task at the specified INDEX.
@@ -258,7 +258,7 @@ Examples:
 
 
 ### Editing a task: `edit_task`
-Edits an **existing and uncompleted** task in SOChedule.
+Edits an **existing and uncompleted** task in the task list.
 
 Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...`
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
@@ -277,7 +277,7 @@ Examples:
 
 
 ### Listing all tasks: `list_task`
-Lists all tasks from SOChedule Task List.
+Lists all tasks from the task list.
 
 Format: `list_task`
 
@@ -285,7 +285,7 @@ Format: `list_task`
 
 
 ### Marking one or more tasks as done: `done_task`
-Marks one or more task from SOChedule Task List as completed.
+Marks one or more task from the task list as completed.
 
 Format: `done_task INDEX1 [INDEX2] ...`
 * Marks the task(s) at the specified INDEX(es) as complete.
@@ -302,7 +302,7 @@ Examples:
 
 
 ### Marking a task as uncompleted: `undone_task`
-Marks a completed task from SOChedule Task List as uncompleted.
+Marks a completed task from the task list as uncompleted.
 
 Format: `undone_task INDEX`
 * Marks the task at the specified INDEX as uncompleted.
@@ -316,27 +316,35 @@ Examples:
 [Return to Feature List](#feature-list)
 
 
-### Listing all tasks today: `today_task`
-Lists all tasks that have deadline on today from SOChedule Task List.
+### Getting today's tasks: `today_task`
+Lists all tasks that have deadline on today from the task list.
 
 Format: `today_task`
 
 [Return to Feature List](#feature-list)
 
 
-### Finding all matching tasks: `find_task`
-Finds matching tasks from Task List.
+### Finding tasks by name: `find_task`
+Finds tasks whose names contain any of the given keywords from the task list.
 
-Format: `find_task KEYWORDS`
-* Finds the tasks whose names contain the given keywords.
-* The keywords are case-insensitive.
-* A list of matching tasks will be displayed with their indexes.
+Format: `find_task KEYWORD [MORE_KEYWORDS]`
+* The search is case-insensitive. e.g. `homework` will match `Homework`.
+* The order of the keywords does not matter. e.g. `Practice Problems` will match `Problems Practice`.
+* Only the name of the tasks is searched.
+* Only full words will be matched. e.g. `CS` will not match `CS2103`.
+* Tasks matching at least one keyword will be returned (i.e. `OR` search). e.g. `CS2103 Homework` will return 
+  `ST2131 Homework`, `CS2103 Quiz`.
+  
+Examples:
+* `find_task Homework` returns `st2131 homework` and `Homework 1`
+* `find_task assignment homework` returns `Assignment 1`, `Homework 2`
+![find_task example](images/find_task-example.png)
 
 [Return to Feature List](#feature-list)
 
 
 ### Sorting all tasks: `sort_task`
-Sorts SOChedule Task List.
+Sorts the task list.
 
 Format: `sort_task ARGUMENT`
 * Sorts task list and updates UI based on supplied argument.
@@ -361,7 +369,7 @@ Examples:
 
 
 ### Pinning a task: `pin_task`
-Pins a task from SOChedule Task List.
+Pins a task from the task list.
 
 Format: `pin_task INDEX`
 * Pins the task at the specified INDEX.
@@ -374,7 +382,7 @@ Format: `pin_task INDEX`
 * Pinned tasks are persistent over instances of SOChedule.
 
 Examples:
-* `pin_task 1` pins the first task in Task List
+* `pin_task 1` pins the first task in the task list
 
 #### Illustration of usage of `pin_task`:
 ![Example of usage of `pin_task`](images/PinTaskUsage.png)
@@ -386,14 +394,14 @@ Examples:
 
 
 ### Unpinning a task: `unpin_task`
-Unpins a task from SOChedule Task List.
+Unpins a task from the task list.
 
 Format: `unpin_task INDEX`
 * Unpins the task at the specified INDEX.
 * Follows similar restrictions to `pin_task`
 
 Examples:
-* `unpin_task 1` unpins the first task in Task List
+* `unpin_task 1` unpins the first task in the task list
 
 #### Illustration of usage of `unpin_task`:
 ![Example of usage of `unpin_task`](images/UnpinTaskUsage.png)
@@ -402,7 +410,7 @@ Examples:
 
 
 ### Clearing completed tasks: `clear_completed_task`
-Clear tasks marked as completed.
+Clear tasks marked as completed from the task list.
 
 Format: `clear_completed_task`
 * If there's no completed task in the list (or even no any task in the list), this command is still able to be executed
@@ -415,7 +423,7 @@ and return success message `Completed tasks (if any) have been cleared!` (In thi
 
 
 ### Clearing expired tasks: `clear_expired_task`
-Clear tasks with past deadlines.
+Clear tasks with past deadlines from the task list.
 
 Format: `clear_expired_task`
 * For a task to be considered expired, the task should have past deadline compare to the local date on the user's computer, 
@@ -430,7 +438,8 @@ and return success message `Expired tasks (if any) have been cleared!` (In this 
 
 
 ### Adding an event: `add_event`
-Adds an event to the SOChedule Event Scheduler.
+Adds an event to the event list.
+
 Format: `add_event n/EVENTNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`
 * `n/` is followed by the event name, it is case-sensitive.
 * `sd/` is followed by the starting date, it has to be a **valid date** and in the format of **YYYY-MM-DD**. Here, Y is the year, M is the month, D is the day and all has to be integers.
@@ -445,13 +454,14 @@ Format: `add_event n/EVENTNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [
 * `t/` is followed by the tag. It is optional.
 
 Examples:
-* `add_event n/CS2103 meeting sd/2021-05-27 st/15:00 ed/2022-02-27 et/17:00` adds an event with name `CS2103` and its respective attributes to the SOChedule Event Scheduler.
+* `add_event n/CS2103 meeting sd/2021-05-27 st/15:00 ed/2022-02-27 et/17:00` adds an event with name `CS2103` and its 
+  respective attributes to the event list.
 
 [Return to Feature List](#feature-list)
 
 
 ### Deleting an event: `delete_event`
-Deletes an event from the SOChedule Event Scheduler.
+Deletes an event from the event list.
 
 Format: `delete_event INDEX`
 * Deletes the event at the specified INDEX.
@@ -459,13 +469,13 @@ Format: `delete_event INDEX`
 * The index must be a positive and valid integer 1, 2, 3, ...
 
 Examples:
-* `delete_event 3` deletes the third event from the Event Scheduler.
+* `delete_event 3` deletes the third event from the event list.
 
 [Return to Feature List](#feature-list)
 
 
 ### Editing an event: `edit_event`
-Edits an **existing and uncompleted** event in SOChedule.
+Edits an **existing and uncompleted** event in the event list.
 
 Format: `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDATE] [et/ENDTIME] [c/CATEGORY]... [t/TAG]...`
 * Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
@@ -475,45 +485,57 @@ Format: `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDAT
 * The STARTDATE and STARTTIME provided should be earlier than ENDDATE and ENDTIME.
 * The ENDDATE and ENDTIME provided cannot be a past date time.
 * Existing values will be updated to the input values.
-* When editing tags/categories, the existing tags/categories of the event will be removed i.e. adding of tags/categories is not cumulative.
+* When editing tags/categories, the existing tags/categories of the event will be removed i.e. adding of tags/categories
+  is not cumulative.
 * You can remove all the event’s tags by typing `t/` without specifying any tags after it. 
   Similarly, you can remove all the event’s categories by typing `c/` without specifying any categories after it.
 
 Examples:
-* `edit_event 1 n/editedEventName` edits the name of the first event (if present in SOChedule) to be `editedEventName`.
-* `edit_event 2 sd/2021-03-18 t/` edits the start date of the second event (if present in SOChedule) to be `2021-03-18` and clears all existing tags.
+* `edit_event 1 n/editedEventName` edits the name of the first event (if present in the event list) to be 
+  `editedEventName`.
+* `edit_event 2 sd/2021-03-18 t/` edits the start date of the second event (if present in the event list) to be 
+  `2021-03-18`and clears all existing tags.
 
 [Return to Feature List](#feature-list)
 
 
 ### Listing all events: `list_event`
-Lists all events from SOChedule Event Scheduler.
+Lists all events from the event list.
+
 Format: `list_event`
 
 [Return to Feature List](#feature-list)
 
 
-### Listing all events today: `today_event`
-Lists all events whose duration have overlap with today from the Event Scheduler.
+### Getting today's events: `today_event`
+Lists all events whose duration have overlap with today from the event list.
 
 Format: `today_event`
 
 [Return to Feature List](#feature-list)
 
 
-### Finding all matching events: `find_event`
-Finds matching events from Event Scheduler.
+### Finding events by name: `find_event`
+Finds events whose names contain any of the given keywords from the event list.
 
-Format: `find_event KEYWORDS`
-* Finds the events whose names contain given keywords.
-* The keywords are case-insensitive.
-* A list of matching events will be displayed with their indexes.
+Format: `find_event KEYWORDS [MORE_KEYWORDS]`
+* The search is case-insensitive. e.g. `meeting` will match `Meeting`.
+* The order of the keywords does not matter. e.g. `Attending Lecture` will match `Lecture Attending`.
+* Only the name of the events is searched.
+* Only full words will be matched. e.g. `CS` will not match `CS2103`.
+* Events matching at least one keyword will be returned (i.e. `OR` search). e.g. `CS2103 Meeting` will return
+  `Project Meeting`, `CS2103 Lecture`.
+
+Examples:
+* `find_event Meeting` returns `project meeting` and `Research Meeting`.
+* `find_event talk competition` returns `Career Talk`, `Coding Competition`
+  ![find_event example](images/find_event-example.png)
 
 [Return to Feature List](#feature-list)
 
 
 ### Clearing expired events: `clear_expired_event`
-Clears events with past end date time.
+Clears events with past end date time from the event list.
 
 Format: `clear_expired_event`
 * For an event to be considered expired, the event should have past end date time compare to the local time on the user's computer, 
@@ -528,7 +550,7 @@ and return success message `Expired events (if any) have been cleared!` (In this
 
 
 ### Finding tasks and events before or on a given date: `find_schedule`
-Finds tasks and events before or on the specified date in SOChedule.
+Finds tasks and events before or on the specified date from the event list.
 
 Format: `find_schedule DATE`
 * Tasks refer to **uncompleted tasks** with deadlines before or on the specified date
@@ -549,7 +571,7 @@ Examples:
 
 
 ### Finding free time slots: `free_time`
-Finds all free time slots in the given date.
+Finds all free time slots on the given date from the event list.
 
 Format: `free_time DATE`
 * **Free time slots** refer to all times in the given date without any event happening
@@ -578,7 +600,7 @@ Format: `summary`
 
 
 ### Clearing Sochedule: `clear`
-Clears all tasks and events in the SOChedule.
+Clears all tasks and events in the SOChedule's task list and event list.
 
 Format: `clear`
 

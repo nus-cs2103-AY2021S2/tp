@@ -93,6 +93,13 @@ public class Sochedule implements ReadOnlySochedule {
     }
 
     /**
+     * Returns true if task list is empty.
+     */
+    public boolean isTaskListEmpty() {
+        return tasks.isEmpty();
+    }
+
+    /**
      * Adds a task to Sochedule.
      * The task must not already exist in Sochedule.
      */
@@ -208,6 +215,13 @@ public class Sochedule implements ReadOnlySochedule {
     }
 
     /**
+     * Returns true if the event list is empty.
+     */
+    public boolean isEventListEmpty() {
+        return events.isEmpty();
+    }
+
+    /**
      * Adds a event to Sochedule.
      * The event must not already exist in Sochedule.
      */
@@ -232,17 +246,6 @@ public class Sochedule implements ReadOnlySochedule {
      */
     public void removeEvent(Event key) {
         events.remove(key);
-    }
-
-    /**
-     * Sorts the contents of this list given {@code comparingVar}.
-     * {@code comparingVar} must be a valid parameter.
-     *
-     * @param comparingVar The value to be used for sorting.
-     */
-    public void sortEvents(String comparingVar) {
-        assert comparingVar != null;
-        events.sort(comparingVar);
     }
 
     /**

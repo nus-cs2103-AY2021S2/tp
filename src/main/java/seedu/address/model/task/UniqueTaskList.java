@@ -33,11 +33,18 @@ public class UniqueTaskList implements Iterable<Task> {
     private TaskComparator taskComparator = new TaskComparator();
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent task as the given argument.
      */
     public boolean contains(Task toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameTask);
+    }
+
+    /**
+     * Returns true if the task list is currently empty.
+     */
+    public boolean isEmpty() {
+        return internalList.isEmpty();
     }
 
     /**

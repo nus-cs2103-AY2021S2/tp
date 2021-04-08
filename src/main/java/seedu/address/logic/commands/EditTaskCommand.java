@@ -36,8 +36,8 @@ public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "edit_task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the uncompleted task identified "
-            + "by the index number used in the displayed task list."
-            + "Parameters: INDEX (must be a positive integer) "
+            + "by the index number. \n"
+            + "Parameters: INDEX "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_PRIORITY + "PRIORITY] "
@@ -45,10 +45,14 @@ public class EditTaskCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "editedTaskName "
-            + PREFIX_DEADLINE + "2021-01-07 "
+            + PREFIX_DEADLINE + "2022-02-07 "
             + PREFIX_PRIORITY + "8 "
             + PREFIX_CATEGORY + "Homework "
-            + PREFIX_TAG + "MA3110";
+            + PREFIX_TAG + "MA311 \n"
+            + "Also, note that: \n"
+            + "1. INDEX is the index shown in the displayed task list.\n"
+            + "2. INDEX must be a non-zero positive integer.\n"
+            + "3. Completed tasks cannot be edited.";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

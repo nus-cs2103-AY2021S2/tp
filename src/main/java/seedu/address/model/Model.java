@@ -71,6 +71,11 @@ public interface Model {
     boolean hasTask(Task task);
 
     /**
+     * Returns true if the task list is currently empty.
+     */
+    boolean isTaskListEmpty();
+
+    /**
      * Deletes the given task.
      * The task must exist in the Sochedule.
      */
@@ -163,6 +168,11 @@ public interface Model {
     boolean hasEvent(Event event);
 
     /**
+     * Returns true if the event list is empty.
+     */
+    boolean isEventListEmpty();
+
+    /**
      * Deletes the given event.
      * The event must exist in the Sochedule.
      */
@@ -180,14 +190,6 @@ public interface Model {
      * The event identity of {@code editedEvent} must not be the same as another existing event in the Sochedule.
      */
     void setEvent(Event target, Event editedEvent);
-
-    /**
-     * Sorts the contents of this list given {@code comparingVar}.
-     * {@code comparingVar} must be a valid parameter.
-     *
-     * @param comparingVar The value to be used for sorting.
-     */
-    void sortEvents(String comparingVar);
 
     /**
      * Returns number of events happening in the next 7 days.
