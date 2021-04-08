@@ -11,7 +11,8 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class EventListPanel
+Class ListPanel
+Class KanbanPanel
 Class EventCard
 Class StatusBarFooter
 Class CommandBox
@@ -33,16 +34,18 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> EventListPanel
+MainWindow *-down-> ListPanel
+MainWindow *-down-> KanbanPanel
 MainWindow *-down-> StatusBarFooter
 
-EventListPanel -down-> EventCard
+ListPanel -down-> EventCard
+KanbanPanel -down-> EventCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-EventListPanel --|> UiPart
+ListPanel --|> UiPart
 EventCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
@@ -51,7 +54,7 @@ EventCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-EventListPanel -[hidden]left- HelpWindow
+ListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
