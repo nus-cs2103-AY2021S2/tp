@@ -51,6 +51,9 @@ public class CommandTestUtil {
     public static final String YEAR_DESC_BOB = " " + PREFIX_YEAR + VALID_YEAR_BOB;
     public static final String ROOM_DESC_AMY = " " + PREFIX_ROOM + VALID_ROOM_AMY;
     public static final String ROOM_DESC_BOB = " " + PREFIX_ROOM + VALID_ROOM_BOB;
+    public static final String ROOM_NUMBER_DESC_AMY = " " + PREFIX_ROOM + VALID_ROOM_NUMBER_AMY;
+    public static final String ROOM_NUMBER_DESC_BOB = " " + PREFIX_ROOM + VALID_ROOM_NUMBER_BOB;
+
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -130,5 +133,4 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredResidentList().size());
     }
-
 }

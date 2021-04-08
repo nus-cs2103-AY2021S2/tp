@@ -1,0 +1,28 @@
+@startuml
+!include ../style.puml
+start
+:User enters command;
+:Parse command text;
+if () then ([else])
+:Show error
+message to user;
+stop
+else ([parsing successful])
+:Execute command;
+if () then ([else])
+:Show error
+message to user;
+stop
+else ([execution successful])
+:Append command text
+to command history;
+:Serialize
+command history;
+:Save command
+history to file;
+:Show success
+message to user;
+stop
+endif
+endif
+@enduml
