@@ -33,4 +33,3 @@ Given below are my contributions to the project:
         - Edited some links and words to Events
 - **Community**:
     - PRs Reviewed (with non-trivial review comments): 3
-    

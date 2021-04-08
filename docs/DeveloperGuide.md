@@ -398,7 +398,7 @@ Use case ends.
     1) High
     2) Medium
     3) Low
-    
+
 **Backlog**: A set of events that the user has agreed to work on next. This could be events that are currently being
 planned to be worked on or pending or any upcoming events, but we leave the definition loose up to the user.
 
