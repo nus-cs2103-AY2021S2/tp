@@ -8,7 +8,9 @@ import java.io.IOException;
 import seedu.address.commons.util.FileUtil;
 
 /**
- * Class for managing the theme of the application. Stores data on what theme is currently being applied.
+ * Class for managing the theme of the application. Stores data on what theme is currently being applied. Note
+ * that this class is a singleton and any instance of the application will be associated with one ThemeManager
+ * instance.
  */
 public class ThemeManager {
 
@@ -46,6 +48,9 @@ public class ThemeManager {
         return theme;
     }
 
+    /**
+     * Returns the ThemeManager associated with the current application instance.
+     */
     public static ThemeManager getInstance() {
         if (instance == null) {
             instance = new ThemeManager();
