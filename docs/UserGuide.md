@@ -229,6 +229,18 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         ```
         menu list (-a)
         ```
+        To show the current available dishes only, a `-a` flag has to be added to the end of the command.
+        Examples:
+        ```
+        menu list
+        ```
+        
+        The above command would display all dishes disregard the availability of the dish.
+        
+        ```
+        menu list -a
+        ```
+        The above command will only display the dishes that are currently available based on the available ingredients.
         
         </details>
         
