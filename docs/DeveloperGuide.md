@@ -638,8 +638,8 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 2. User keys in command to add budget of an amount he wants. 
 
 **Extensions** 
-* 2a. A budget is already present 
-    * 2a1. TutorTracker flags out an error
+* 2a. A budget is already present.
+    * 2a1. TutorTracker flags out an error.
 * 2b. Invalid budget amount is added, for example a negative amount.
     * 2b1. TutorTracker flags out the error.
     
@@ -653,8 +653,8 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 2. Tutor requests to change the budget to an amount he wants.
 
 **Extensions**
-* 2a. A budget is already present
-    * 2a1. TutorTracker flags out an error
+* 2a. A budget is already present.
+    * 2a1. TutorTracker flags out an error.
 
 <hr/>
     
