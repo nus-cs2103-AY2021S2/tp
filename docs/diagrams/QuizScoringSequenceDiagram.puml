@@ -1,0 +1,16 @@
+@startuml
+title How is score produced with quiz\n
+start
+:User starts a quiz;
+:Weeblingo initializes scoring statistics;
+
+while () is ([else])
+    'plantUML does not seem to have the rake notation
+    'https://github.com/nus-cs2103-AY1920S2/forum/issues/105
+    : @Rake: User sees a question during quiz;
+
+endwhile ([The quiz ends])
+        :Weeblingo adds scoring statistics to FlashcardBook;
+        :Weeblingo saves FlashcardBook;
+stop
+@enduml

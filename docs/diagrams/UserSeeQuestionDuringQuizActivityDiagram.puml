@@ -1,0 +1,14 @@
+@startuml
+title User sees a question during quiz\n
+start
+if () then ([User attempts a question])
+        :User checks answer for the question;
+        if () then ([User's answer is correct])
+            :Weeblingo updates 'correct attempts' in statistics;
+        else ([else])
+        endif
+        :Weeblingo updates 'total attempts' in statistics;
+    else ([else])
+    endif
+stop
+@enduml

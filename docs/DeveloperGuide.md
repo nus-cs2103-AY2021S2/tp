@@ -186,7 +186,7 @@ The following sequence diagram shows how the Quiz command works:
 
 ![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
 
-=======
+### Start Command
 
 2. The start command is used to start a quiz session, enabling users to define the number and categories of
 questions they want to be tested on. The activity diagram below shows the flow of events when a user
@@ -198,10 +198,16 @@ Thr following sequence diagram shows the interactions that occur when the start 
 
 ![StartSequenceDiagram](images/StartSequenceDiagram.png)
 
-=======
+### Quiz Scoring
 
-### \[Proposed\] Quiz Scoring
-*{To be updated}*
+The quiz can be scored for each individual quiz session. The scoring data will be written into the storage file
+after the quiz session is completed. A quiz session is complete if and only if the message indicating the end of
+quiz is displayed in the GUI window. The following activity diagrams summarize how the score is recorded generated
+along with each quiz session.
+
+![QuizScoringSequenceDiagram](images/QuizScoringSequenceDiagram-How_is_score_produced_with_quiz__.png)
+
+![QuizScoringSequenceDiagramRake](images/UserSeeQuestionDuringQuizActivityDiagram-User_sees_a_question_during_quiz__.png)
 
 The user enters `check ATTEMPT` and the `WeeblingoParser#parse(String)` will parse input as an Answer
 into a CheckCommand. If the attempt is correct, the Ui will update to reveal the correct answer of current flashcard and the user score will increase.
@@ -220,7 +226,8 @@ for how `Score` is represented in *Model* component.
 The *UI* component, which originally only handles the display of flashcards,
 now needs to handle the display for scoring history as well.
 
-The following sequence diagram shows how the UI switches display from flashcards to score history and vice versa.
+The following sequence diagram shows how the UI switches display from flashcards to score history. The mechanism of
+switching UI display the other way around is similar. 
 
 ![HistoryUiSequenceDiagram](images/HistoryUiSequenceDiagram.png)
 
@@ -232,9 +239,10 @@ The following sequence diagram shows how the UI switches display from flashcards
     * Pros: Easy to implement.
     * Cons:
       * May have the overhead of writing similar code. For instance, `JsonAdaptedFlashcard` and `JsonAdaptedScore`.
+      * Changing the GUI display from flashcards to score history may be cumbersome.
       * Changing the UI display from flashcards to score history may be cumbersome.
 * **Alternative 2:** Let `Score` have inheritance relationship with `Flashcard`.
-    * Pros: Changing UI display is easy.
+    * Pros: Changing GUI display is easy.
     * Cons:
       * The design choice is not intuitive (`Score` does not seem to be a `Flashcard` and vice versa).
       * The overhead of maintaining the inheritance is non-trivial.
@@ -359,25 +367,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 <!-- Updated and maintained by [Yucheng](https://github.com/cheng20010201) -->
 1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  The product should be available for download and usage after each release.
+2.  The product should be available for downloads after each release on GitHub.
 3.  The product's size of the final Jar released should not exceed 100MB.
-4.  The product should be an offline application, which should work either with or without presence of internet
-    connection.
+4.  The product should be an offline application, which should work regardless of internet connection.
 5.  The product should allow one user to have different instances of the application running at the same time.
-6.  The product should be able to hold up to 2000 Japanese words without causing a delay in commands longer than 0.5 seconds.
-7.  The project should be open-sourced.
+6.  The product should be able to hold up to 2000 Japanese words without causing a delay in commands longer than
+    0.5 seconds.
+7.  The product should be open-sourced on GitHub.
 8.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) and
-    beginner typing speed for simple Japanese text (i.e. simple words and sentences) should be able to accomplish most
-    of the learning faster using commands than using the mouse.
-10. A user should find interacting with the user interface easy, even if he/she is relatively new to the application.
-11. Each command should be processed within 3 seconds.
-12. More to be added.
+    should be able to accomplish most of the learning faster using commands than using the mouse/GUI.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Question**: A Japanese character/word
-* **Answer**: The reading/definition of the Japanese given in the corresponding question
+* **Answer**: The pronunciation/translation of the Japanese word given in the corresponding question
 * **Flashcard**: An object that can display a question and its answer
 
 --------------------------------------------------------------------------------------------------------------------
