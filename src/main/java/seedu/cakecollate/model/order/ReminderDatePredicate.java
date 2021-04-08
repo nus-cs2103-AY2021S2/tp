@@ -21,7 +21,7 @@ public class ReminderDatePredicate implements Predicate<Order> {
 
     @Override
     public boolean test(Order order) {
-        return isWithinXDays(order);
+        return isWithinXDays(order) && isUndelivered(order);
     }
 
     /**
@@ -43,6 +43,13 @@ public class ReminderDatePredicate implements Predicate<Order> {
 
     public long getDays() {
         return this.days;
+    }
+
+    /**
+     * Returns true if the order's delivery status is undelivered.
+     */
+    public boolean isUndelivered(Order order) {
+        return order.getDeliveryStatus().getDeliveryStatus() == Status.UNDELIVERED;
     }
 }
 
