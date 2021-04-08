@@ -442,11 +442,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * [UC1 - Add a project](#uc1---add-a-project)
 * [UC2 - Delete a project](#uc2---delete-a-project)
-* [UC3 - Add or Modify information about a project](#uc3---add-or-modify-information-about-a-project)
+* [UC3 - Add or modify information about a project](#uc3---add-or-modify-information-about-a-project)
 * [UC4 - Add a contact](#uc4---add-a-contact)
 * [UC5 - Find a specific contact](#uc5---find-a-specific-contact)
 * [UC6 - Delete a contact](#uc6---delete-a-contact)
-* [UC7 - Add or Modify information about a contact](#uc7---add-or-modify-information-about-a-contact)
+* [UC7 - Add or modify information about a contact](#uc7---add-or-modify-information-about-a-contact)
 * [UC30 - Purge all entries from the app](#uc30---purge-all-entries-from-the-app)
 
 #### UC1 - Add a project
@@ -499,11 +499,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-#### UC3 - Adding or Modifying information about a contact
+#### UC3 - Add or modify information about a project
 
 **MSS**
 
-1. User requests to edit information about a contact.
+1. User requests to edit information about a project.
 2. CoLAB updates entry with new information.
 
    Use case ends.
