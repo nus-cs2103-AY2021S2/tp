@@ -43,28 +43,28 @@ public class ModuleManagerTest {
 
     @Test
     public void insertingNullModuleIntoMappingWithTask_throwsNullPointerException() {
-        Task editedAlice = new TaskBuilder(QUIZ)
+        Task editedQuiz = new TaskBuilder(QUIZ)
                 .withDescription(VALID_DESCRIPTION_PRACTICAL)
                 .withTags(VALID_TAG_PRIORITY_HIGH).build();
-        assertThrows(NullPointerException.class, () -> ModuleManager.insertTaskToMapping(null, editedAlice));
+        assertThrows(NullPointerException.class, () -> ModuleManager.insertTaskToMapping(null, editedQuiz));
         ModuleManager.rebuildMapping();
     }
 
     @Test
     public void deletingNullModuleFromMappingWithTask_throwsNullPointerException() {
-        Task editedAlice = new TaskBuilder(QUIZ)
+        Task editedQuiz = new TaskBuilder(QUIZ)
                 .withDescription(VALID_DESCRIPTION_PRACTICAL)
                 .withTags(VALID_TAG_PRIORITY_HIGH).build();
-        assertThrows(NullPointerException.class, () -> ModuleManager.insertTaskToMapping(null, editedAlice));
+        assertThrows(NullPointerException.class, () -> ModuleManager.insertTaskToMapping(null, editedQuiz));
         ModuleManager.rebuildMapping();
     }
 
     @Test
     public void clearMapping_test() {
-        Task editedAlice = new TaskBuilder(QUIZ)
+        Task editedQuiz = new TaskBuilder(QUIZ)
                 .withDescription(VALID_DESCRIPTION_PRACTICAL)
                 .withTags(VALID_TAG_PRIORITY_HIGH).build();
-        ModuleManager.insertTaskToMapping(editedAlice.getModule(), editedAlice);
+        ModuleManager.insertTaskToMapping(editedQuiz.getModule(), editedQuiz);
         ModuleManager.rebuildMapping();
         assertEquals(ModuleManager.getMappingOfModulesToTasks(), new HashMap<>());
     }
