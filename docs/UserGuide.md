@@ -262,7 +262,7 @@ Examples:
   ![result for `filter q/charles recursion`](images/filterCharlesRecursionResult.png) <br><br>
 * `filter p/mid q/formula` will return cards with `formula` contained in its question and `mid` priority.<br><br>
   ![result for `filter p/mid q/formula`](images/filterMidFormulaResult.png) <br>
-  <div style="page-break-after: always;"></div>
+  <div style="page-break-after: always;"></div><br>
 
 * `filter c/com t/ran` will return cards with `com` contained in its category and `ran`contained in any of its tags.<br><br>
   ![result for `filter c/com t/ran`](images/filterComRanResult.png) <br>
@@ -313,7 +313,7 @@ Examples:
 ![UiClearAfterUndoAfterRedo](./images/UiClearAfterUndoAfterRedo.png) <br>
 
 ### Sorting all flashcards: `sort`
-Sorts all flashcards according to a given option.
+Sorts all flashcards in display according to a given option.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Note:** You can only sort by `priority` or `question`.
@@ -323,10 +323,10 @@ Sorts all flashcards according to a given option.
 Format: `sort OPTION ORDER` <br>
 Examples:
 
-`sort priority -a` will sort the flashcards by ascending priority. <br>
-`sort priority -d` will sort the flashcards by descending priority. <br>
-`sort question -a` will sort the flashcards by ascending question. <br>
-`sort question -d` will sort the flashcards by descending question. <br>
+`sort priority -a` will sort the flashcards by ascending priority(Low to High). <br>
+`sort priority -d` will sort the flashcards by descending priority(High to Low). <br>
+`sort question -a` will sort the flashcards by question in ascending alphabetical order. <br>
+`sort question -d` will sort the flashcards by question in descending alphabetical order. <br>
 <div style="page-break-after: always;"></div>
 
 Before sort command is executed. <br><br>

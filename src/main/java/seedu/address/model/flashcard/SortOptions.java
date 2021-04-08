@@ -76,6 +76,10 @@ public enum SortOptions implements Comparator<Flashcard> {
     };
 
     public static final String MESSAGE_INVALID_SORT_OPTIONS = "Option is invalid.";
+    //@@author minnzelo-reused
+    //Reused with minor modifications from
+    // "https://github.com/AY2021S1-CS2103T-T17-2/tp/blob/master/src/main
+    // /java/seedu/flashcard/model/flashcard/SortCriteria.java"
     private static final Map<String, SortOptions> SORT_OPTIONS_MAP = new TreeMap<>();
 
     public final String option;
@@ -96,4 +100,5 @@ public enum SortOptions implements Comparator<Flashcard> {
     public static SortOptions getOption(String option) {
         return SORT_OPTIONS_MAP.get(option);
     }
+    //@@author
 }
