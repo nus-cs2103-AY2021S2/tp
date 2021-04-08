@@ -53,7 +53,7 @@ public class EditMeetingCommand extends Command {
             + "changing to another time.";
     public static final String MESSAGE_NOT_ALLOWED = "This meeting was already completed, no modification can be made "
             + "unless it is set back to incomplete.";
-    public static final String MESSAGE_ALREADY_COMPLETE = "This meeting was already completed, it cannot be incomplete "
+    public static final String MESSAGE_ALREADY_COMPLETE = "This meeting was already completed, it cannot be completed "
             + "again.";
 
     private final Index index;
@@ -136,10 +136,6 @@ public class EditMeetingCommand extends Command {
         EditMeetingCommand e = (EditMeetingCommand) other;
         return index.equals(e.index)
                 && editMeetingDescriptor.equals(e.editMeetingDescriptor);
-    }
-
-    public EditMeetingCommand.EditMeetingDescriptor getEditMeetingDescriptor() {
-        return editMeetingDescriptor;
     }
 
     /**

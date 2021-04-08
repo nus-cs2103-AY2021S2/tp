@@ -13,10 +13,7 @@ import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.commons.core.LogsCenter;
 import seedu.iscam.logic.commands.Command;
 import seedu.iscam.logic.commands.CommandResult;
-import seedu.iscam.logic.commands.RedoCommand;
-import seedu.iscam.logic.commands.UndoCommand;
 import seedu.iscam.logic.commands.exceptions.CommandException;
-import seedu.iscam.logic.events.exceptions.EventException;
 import seedu.iscam.logic.parser.BookParser;
 import seedu.iscam.logic.parser.MeetingBookParser;
 import seedu.iscam.logic.parser.clientcommands.ClientBookParser;
@@ -58,7 +55,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException, EventException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         Command command = null;
@@ -76,11 +73,6 @@ public class LogicManager implements Logic {
 
             commandResult = command.execute(model);
             break;
-        }
-
-        if (!(command instanceof UndoCommand) && !(command instanceof RedoCommand)) {
-            // We clear the redo stack here as the command is a new command, so can't "redo" commands anymore
-            CommandHistory.clearRedoStack();
         }
 
         if (command == null) {
