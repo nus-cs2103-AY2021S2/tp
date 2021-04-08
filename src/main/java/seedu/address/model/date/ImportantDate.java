@@ -37,6 +37,18 @@ public class ImportantDate implements Comparable<ImportantDate> {
         return this.details.compareTo(other.details);
     }
 
+    /**
+     * Returns true if both important dates have the same description.
+     * This defines a weaker notion of equality between two important dates.
+     */
+    public boolean isSameImportantDate(ImportantDate otherImportantDate) {
+        if (otherImportantDate == this) {
+            return true;
+        }
+
+        return otherImportantDate != null
+            && otherImportantDate.getDescription().equals(getDescription());
+    }
 
     /**
      * Returns true if both important dates have the same description.

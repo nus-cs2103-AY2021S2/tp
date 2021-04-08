@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXCLUDE;
 
 import java.util.List;
 
@@ -17,8 +18,13 @@ import seedu.address.model.person.functions.PersonLevelDownFunction;
 public class LevelDownCommand extends Command {
     public static final String COMMAND_WORD = "leveldown";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Demotes all students by one level."
-            + "Example: " + COMMAND_WORD;
+            + ": Demotes all students by one level by default. To exclude students, add their index numbers after "
+            + "the ex/ prefix. The space after the ex/ prefix cannot be left blank.\n"
+            + "Parameters: " + PREFIX_EXCLUDE + " INDEX... (optional, must be a positive integer "
+            + "and less than 2147483648)\n"
+            + "Example: " + COMMAND_WORD + "\n"
+            + COMMAND_WORD + " " + PREFIX_EXCLUDE + "2\n"
+            + COMMAND_WORD + " " + PREFIX_EXCLUDE + "1 4";
 
     public static final String MESSAGE_SUCCESS = "Demoted all students by one level.";
     private static final String ALTERNATIVE_SUCCESS_MESSAGE = "Demoted all students by one level except exclusions: ";

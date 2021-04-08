@@ -18,10 +18,10 @@ import seedu.address.model.person.functions.PersonLevelUpFunction;
 public class LevelUpCommand extends Command {
     public static final String COMMAND_WORD = "levelup";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Advance all students by one level. To exclude students, add their index numbers after "
-            + "the ex/ prefix.\n "
-            + "If no indices are listed, all students who can be advanced will be advanced.\n"
-            + "Parameters: " + PREFIX_EXCLUDE + " INDEX... (optional, must be a positive integer)\n"
+            + ": Advance all students by one level by default. To exclude students, add their index numbers after "
+            + "the ex/ prefix. The space after the ex/ prefix cannot be left blank.\n"
+            + "Parameters: " + PREFIX_EXCLUDE + " INDEX... (optional, must be a positive integer "
+            + "and less than 2147483648)\n"
             + "Example: " + COMMAND_WORD + "\n"
             + COMMAND_WORD + " " + PREFIX_EXCLUDE + "2\n"
             + COMMAND_WORD + " " + PREFIX_EXCLUDE + "1 4";

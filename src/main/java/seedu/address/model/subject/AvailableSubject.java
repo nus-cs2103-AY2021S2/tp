@@ -13,7 +13,8 @@ public enum AvailableSubject {
     geo("geography"),
     hist("history"),
     math("mathematics"),
-    phys("physics");
+    phys("physics"),
+    sci("science");
 
 
     private final String full;

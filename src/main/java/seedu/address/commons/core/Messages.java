@@ -11,6 +11,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "There is no student with this given index.";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d students listed!";
     public static final String MESSAGE_INVALID_IMPORTANT_DATE_DISPLAYED_INDEX = "There is no important date with "
-        + "this given index.";
-
+            + "this given index.";
 }

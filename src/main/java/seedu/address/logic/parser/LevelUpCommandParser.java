@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXCLUDE;
 
 import java.util.ArrayList;
@@ -44,7 +43,8 @@ public class LevelUpCommandParser {
                 index = ParserUtil.parseIndex(indexStrings.get(i));
             } catch (ParseException pe) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, LevelUpCommand.MESSAGE_USAGE), pe);
+                        // String.format(MESSAGE_INVALID_COMMAND_FORMAT, LevelUpCommand.MESSAGE_USAGE), pe);
+                        String.format(pe.getMessage(), LevelUpCommand.MESSAGE_USAGE), pe);
             }
             indices.add(index);
         }
