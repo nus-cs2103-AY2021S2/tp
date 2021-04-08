@@ -90,7 +90,7 @@ public class JsonSerializableStudentBookTest {
         JsonSerializableStudentBook dataFromFile = JsonUtil.readJsonFile(INVALID_APPOINTMENT_OVERLAP_FILE,
                 JsonSerializableStudentBook.class).get();
 
-        assertThrows(IllegalValueException.class, JsonSerializableStudentBook.MESSAGE_DUPLICATE_APPOINTMENT,
+        assertThrows(IllegalValueException.class, JsonSerializableStudentBook.MESSAGE_CLASHING_APPOINTMENT,
                 dataFromFile::toModelType);
     }
 }
