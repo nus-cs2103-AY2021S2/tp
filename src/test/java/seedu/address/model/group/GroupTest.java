@@ -16,7 +16,7 @@ public class GroupTest {
     private Set<Name> personNameSet = new HashSet<>();
 
     private final Name name = new Name("test");
-    private final Name diffName = new Name("Test");
+    private final Name diffName = new Name("test2");
 
     @Test
     public void constructor_nullGroupName_throwsNullPointerException() {
