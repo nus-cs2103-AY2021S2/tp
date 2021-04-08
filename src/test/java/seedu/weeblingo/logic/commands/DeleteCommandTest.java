@@ -45,12 +45,13 @@ public class DeleteCommandTest {
         ModelManager modelManager = new ModelManager(getTypicalFlashcardBook(), new UserPrefs());
         modelManager.switchModeLearn();
         Model model = modelManager;
-        model.setFlashcard(model.getFilteredFlashcardList().get(0), taggedFlashcard);
 
         ModelManager expectedModelManager = new ModelManager(
                 new FlashcardBook(model.getFlashcardBook()), new UserPrefs());
         expectedModelManager.switchModeLearn();
         Model expectedModel = expectedModelManager;
+
+        model.setFlashcard(model.getFilteredFlashcardList().get(0), taggedFlashcard);
 
         assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
     }
@@ -68,12 +69,13 @@ public class DeleteCommandTest {
         ModelManager modelManager = new ModelManager(getTypicalFlashcardBook(), new UserPrefs());
         modelManager.switchModeLearn();
         Model model = modelManager;
-        model.setFlashcard(model.getFilteredFlashcardList().get(0), taggedFlashcard);
 
         ModelManager expectedModelManager = new ModelManager(
                 new FlashcardBook(model.getFlashcardBook()), new UserPrefs());
         expectedModelManager.switchModeLearn();
         Model expectedModel = expectedModelManager;
+
+        model.setFlashcard(model.getFilteredFlashcardList().get(0), taggedFlashcard);
 
         assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
     }

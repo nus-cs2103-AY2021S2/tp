@@ -40,6 +40,7 @@ public class FlashcardBuilder {
         question = flashcardToCopy.getQuestion();
         answer = flashcardToCopy.getAnswer();
         tags = new HashSet<>(flashcardToCopy.getWeeblingoTags());
+        userTags = new HashSet<>(flashcardToCopy.getUserTags());
     }
 
     /**

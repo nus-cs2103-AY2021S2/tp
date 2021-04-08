@@ -25,6 +25,7 @@ public class TagCommandParserTest {
 
     private TagCommandParser parser = new TagCommandParser();
 
+    // only one part missing at any time
     @Test
     public void parse_missingParts_failure() {
         //no index specified
