@@ -62,7 +62,7 @@ public class SchoolResidence {
     }
 
     public static String getStringResidences() {
-        return String.join(",", getResidenceAbbreviation());
+        return String.join(", ", getResidenceAbbreviation());
     }
 
     public static List<String> getResidenceAbbreviation() { // DOES_NOT_LIVE_ON_CAMPUS
