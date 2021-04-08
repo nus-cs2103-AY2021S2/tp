@@ -6,7 +6,7 @@ title: Chee Erynne's Project Portfolio Page
 ## Project: HEY MATEz
 
 HEY MATEz is a desktop application to get rid of your woes by allowing you to track members and tasks within 
-the club efficiently and easily! It is a Command Line Interface (CLI) application which handles user requests 
+a club efficiently and easily! It is a Command Line Interface (CLI) application which handles user requests 
 that are typed into the input box as commands and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
