@@ -17,7 +17,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -78,21 +77,15 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTutorDescriptor::setTags);
 
-        List<String> subjectNames = argMultimap.getAllValues(PREFIX_SUBJECT_NAME);
-        List<String> subjectLevels = argMultimap.getAllValues(PREFIX_EDUCATION_LEVEL);
-        List<String> subjectRates = argMultimap.getAllValues(PREFIX_RATE);
-        List<String> subjectExperiences = argMultimap.getAllValues(PREFIX_YEAR);
-        List<String> subjectQualifications = argMultimap.getAllValues(PREFIX_QUALIFICATION);
+        SubjectList subjectList = ParserUtil.parseSubjectList(
+                argMultimap.getAllValues(PREFIX_SUBJECT_NAME),
+                argMultimap.getAllValues(PREFIX_EDUCATION_LEVEL),
+                argMultimap.getAllValues(PREFIX_RATE),
+                argMultimap.getAllValues(PREFIX_YEAR),
+                argMultimap.getAllValues(PREFIX_QUALIFICATION)
+        );
 
-        // TODO: Merge with existing list instead of overwriting
-        if (subjectNames.size() > 0) {
-            SubjectList subjectList = ParserUtil.parseSubjectList(
-                    subjectNames,
-                    subjectLevels,
-                    subjectRates,
-                    subjectExperiences,
-                    subjectQualifications);
-
+        if (subjectList.size() > 0) {
             editTutorDescriptor.setSubjectList(subjectList);
         }
 

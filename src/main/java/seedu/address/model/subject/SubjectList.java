@@ -87,6 +87,13 @@ public class SubjectList implements Iterable<TutorSubject> {
     }
 
     /**
+     * Returns the number of subjects in this list.
+     */
+    public int size() {
+        return internalList.size();
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<TutorSubject> asUnmodifiableObservableList() {
