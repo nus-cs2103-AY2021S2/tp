@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import seedu.taskify.logic.commands.DeleteCommand;
 import seedu.taskify.logic.parser.exceptions.ParseException;
 
 public class DeleteMultipleCommandUtilTest {
@@ -29,7 +30,8 @@ public class DeleteMultipleCommandUtilTest {
     @ParameterizedTest
     @ValueSource(strings = {" 3 kappa", " 1.0 2 3.0", " 1, 2, 3", "3-4.0"})
     public void hasMultipleValidIndex_invalidArgs_throwsParseException(String input) {
-        assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX, () -> hasMultipleValidIndex(input));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE),
+                () -> hasMultipleValidIndex(input));
     }
 
     @Test
@@ -86,14 +88,14 @@ public class DeleteMultipleCommandUtilTest {
     @ParameterizedTest
     @ValueSource(strings = {"  1-", "10-wtf ", "9to10", "000100-   000101"})
     public void extractStringArguments_argsIsInvalidFormatForIndexRange_throwsParseException(String input) {
-        assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX, (
-                ) -> extractStringArgumentsIntoIndexes(input));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE),
+                () -> extractStringArgumentsIntoIndexes(input));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"0-1", "  01-09  ", "-1 0"})
+    @ValueSource(strings = {"0-1", "  01-09  "})
     public void extractStringArguments_invalidIndexes_throwsParseException(String input) {
-        assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX, (
-                ) -> extractStringArgumentsIntoIndexes(input));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE),
+                () -> extractStringArgumentsIntoIndexes(input));
     }
 }

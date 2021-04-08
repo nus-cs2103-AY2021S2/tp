@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import seedu.taskify.logic.commands.DeleteCommand;
 import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Description;
@@ -70,8 +71,8 @@ public class ParserUtilTest {
     @ParameterizedTest
     @ValueSource(strings = {"1 2 haha", "1.0 2 3", "1to3", "1-3.0", "2-four"})
     public void parseMultipleIndex_invalidArgs_throwsParseException(String input) {
-        assertThrows(ParseException.class, MESSAGE_AT_LEAST_ONE_INVALID_INDEX, (
-                ) -> parseMultipleIndex(input));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE),
+                () -> parseMultipleIndex(input));
     }
 
     @Test
@@ -90,7 +91,6 @@ public class ParserUtilTest {
 
 
 
-    // test for more rogue inputs in v1.4 like "... --all"
     @Test
     public void parseInputToStatus_invalidArgs_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,

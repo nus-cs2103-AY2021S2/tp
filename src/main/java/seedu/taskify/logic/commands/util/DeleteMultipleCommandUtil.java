@@ -98,7 +98,7 @@ public class DeleteMultipleCommandUtil {
             String[] arguments = input.split(" ");
             for (String argument : arguments) {
                 if (!StringUtil.isNonZeroUnsignedInteger(argument)) {
-                    throw new ParseException(MESSAGE_AT_LEAST_ONE_INVALID_INDEX);
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
                 }
             }
             return arguments;
@@ -108,7 +108,7 @@ public class DeleteMultipleCommandUtil {
         hasNoRemainingInvalidChar = !matcherRemaining.find();
 
         if (!hasNoRemainingInvalidChar) {
-            throw new ParseException(MESSAGE_AT_LEAST_ONE_INVALID_INDEX);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
         String first = matcherRangedArgs.group("firstNum");
@@ -119,10 +119,7 @@ public class DeleteMultipleCommandUtil {
         boolean isSecondIndexInvalid = second.matches(leadingZeroesRegex);
 
         if (isFirstIndexInvalid || isSecondIndexInvalid) {
-            /* MESSAGE_INVALID_INDEX_RANGE is not as appropriate as an error message, since it is for indicating
-                when the second number is bigger than the first number. In situations such as "0100-99", while it
-                the first error caught should be that 0100 is an invalid index, rather than 100 > 99. */
-            throw new ParseException(MESSAGE_AT_LEAST_ONE_INVALID_INDEX);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
         int firstNum = Integer.parseInt(first);

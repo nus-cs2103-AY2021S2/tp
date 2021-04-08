@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import seedu.taskify.logic.commands.DeleteCommand;
 import seedu.taskify.logic.commands.DeleteMultipleCommand;
 import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.StatusType;
@@ -27,9 +28,9 @@ public class DeleteMultipleCommandParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {" 1.0 2 3", " 1.0 kappa 3.0", "pogchamp 2 3.0", "0-1", "100to 101"})
+    @ValueSource(strings = {" 1.0 2 3", " 1.0 kappa 3.0", "pogchamp 2 3.0", "100to 101"})
     public void parse_atLeastOneInvalidIndex_throwsParseException(String input) {
-        assertParseFailure(parser, input, MESSAGE_AT_LEAST_ONE_INVALID_INDEX);
+        assertParseFailure(parser, input, String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
 
