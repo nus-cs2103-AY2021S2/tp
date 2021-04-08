@@ -48,7 +48,7 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
-    [\#45](https://github.com/nus-cs2103-AY2021S2/ip/pull/45), 
+    [\#45](https://github.com/nus-cs2103-AY2021S2/ip/pull/45),
     [\#56](https://github.com/nus-cs2103-AY2021S2/ip/pull/56)
   * Reported bugs and suggestions for other teams in the class (examples: 
     [1](https://github.com/VisnuRavi/ped/issues/9), [2](https://github.com/VisnuRavi/ped/issues/6), 
