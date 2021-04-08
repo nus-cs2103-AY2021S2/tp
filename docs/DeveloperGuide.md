@@ -86,11 +86,11 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete_person s/3")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete_person s/3` Command](images/DeletePersonSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePersonCommandParser` and `DeletePersonCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
@@ -155,9 +155,12 @@ Step 4: The `Model` adds the new session to `sessions` in `AddressBook` and retu
 
 Step 5: The `CommandResult` is then displayed on the UI.
 
-The sequence for the example scenerio can be found below:
+The sequence for the example scenario can be found below:
 
 ![AddSessionSequenceDiagram](images/AddSessionSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddSessionCommandParser` and `AddSessionCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Unassign person feature
 The unassign feature utilises defensive programming to ensure that the `tutor` and `students` attributes of the session correspond with those persons' `sessions` attribute.
@@ -174,9 +177,12 @@ Step 4: The `UnassignCommand` calls the `Person#removeSession(SessionID session)
 
 Step 5: A `CommandResult` object is returned and displayed on the UI.
 
-The sequence for the example scenerio can be found below:
+The sequence for the example scenario can be found below:
 
 ![UnassignSequenceDiagram](images/UnassignSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnassignCommandParser` and `UnassignCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Delete person feature
 
@@ -208,11 +214,12 @@ Step 6: The `Model` removes the specified person from `persons` in `AddressBook`
 
 Step 7: The `commandResult` is then displayed on the UI.
 
-The sequence for the example scenerio can be found below:
+The sequence for the example scenario can be found below:
 
 ![DeletePersonSequenceDiagram](images/DeletePersonSequenceDiagram.png)
 
-The sequence for the example scenario can be found below:
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePersonCommandParser` and `DeletePersonCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Delete session feature
 
@@ -244,6 +251,9 @@ The sequence for the example scenario can be found below:
 
 ![DeleteSessionSequenceDiagram](images/DeleteSessionSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteSessionCommandParser` and `DeleteSessionCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 ### Edit session feature
 
 #### Current Implementation
@@ -268,9 +278,13 @@ Step 5: The `Model` replaces the specified session `sessionToEdit` in `sessions`
 
 Step 6: The `CommandResult` is then displayed on the UI.
 
-The sequence for the example scenerio can be found below:
+The sequence for the example scenario can be found below:
 
-![AddSessionSequenceDiagram](images/EditSessionSequenceDiagram.png)
+![EditSessionSequenceDiagram](images/EditSessionSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditSessionCommandParser`, `EditSessionCommand` and `EditSessionDescriptor` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
