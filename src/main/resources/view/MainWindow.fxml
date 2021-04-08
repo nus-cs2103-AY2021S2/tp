@@ -9,8 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="STOREMANDO" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="STOREMANDO" minWidth="400" minHeight="600" fullScreen="true" resizable="true" onCloseRequest="#handleExit">
     <scene>
         <Scene>
             <stylesheets>
@@ -19,7 +22,7 @@
             </stylesheets>
 
             <VBox>
-                <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+                <MenuBar fx:id="menuBar" VBox.vgrow="NEVER" >
                     <Menu mnemonicParsing="false" text="Shortcuts">
                         <MenuItem fx:id="helpButton" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
                         <MenuItem fx:id="exitButton" mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
@@ -33,19 +36,46 @@
                 </StackPane>
 
                 <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                           minHeight="100" prefHeight="100" maxHeight="100">
+                           minHeight="150" prefHeight="150" maxHeight="150">
                     <padding>
                         <Insets top="5" right="10" bottom="5" left="10"/>
                     </padding>
                 </StackPane>
+                <VBox VBox.vgrow = "ALWAYS">
+                    <GridPane VBox.vgrow="ALWAYS">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="50" />
+                            <ColumnConstraints percentWidth="25" />
+                            <ColumnConstraints percentWidth="25" />
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints percentHeight="100" />
+                        </rowConstraints>
+                        <VBox GridPane.columnIndex="0" fx:id="itemList" styleClass="pane-with-border"
+                              VBox.vgrow="ALWAYS">
+                            <padding>
+                                <Insets top="5" right="5" bottom="10" left="5"/>
+                            </padding>
+                            <StackPane fx:id="itemListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                        </VBox>
+                        <VBox GridPane.columnIndex="1" styleClass="pane-with-border"
+                              VBox.vgrow="ALWAYS">
+                            <padding>
+                                <Insets top="5" right="5" bottom="10" left="5"/>
+                            </padding>
+                            <StackPane fx:id="tablePanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                        </VBox>
 
-                <VBox fx:id="itemList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                      VBox.vgrow="ALWAYS">
-                    <padding>
-                        <Insets top="5" right="10" bottom="10" left="10"/>
-                    </padding>
-                    <StackPane fx:id="itemListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                        <VBox GridPane.columnIndex="2" styleClass="pane-with-border"
+                              VBox.vgrow="ALWAYS">
+                            <padding>
+                                <Insets top="5" right="5" bottom="10" left="5"/>
+                            </padding>
+                            <StackPane fx:id="locationPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                        </VBox>
+                    </GridPane>
                 </VBox>
+
             </VBox>
         </Scene>
     </scene>

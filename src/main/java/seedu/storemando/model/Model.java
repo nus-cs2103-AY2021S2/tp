@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.storemando.commons.core.GuiSettings;
 import seedu.storemando.model.item.Item;
+import seedu.storemando.model.item.Location;
 
 /**
  * The API of the Model component.
@@ -93,7 +94,7 @@ public interface Model {
     void setItems(List<Item> itemList);
 
     /**
-     * Returns an unmodifiable view of the filtered item list
+     * Returns an unmodifiable view of the filtered item list.
      */
     ObservableList<Item> getFilteredItemList();
 
@@ -103,6 +104,11 @@ public interface Model {
      */
 
     void clearLocation(Predicate<Item> predicate);
+
+    /**
+     * Returns an unmodifiable list of the unique locations of items.
+     */
+    ObservableList<Location> getLocationList();
 
     /**
      * Updates the filter of the filtered item list to filter by the given {@code predicate}.

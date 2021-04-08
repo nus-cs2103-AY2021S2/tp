@@ -15,6 +15,7 @@ import seedu.storemando.logic.parser.exceptions.ParseException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.ReadOnlyStoreMando;
 import seedu.storemando.model.item.Item;
+import seedu.storemando.model.item.Location;
 import seedu.storemando.storage.Storage;
 
 /**
@@ -62,6 +63,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Item> getFilteredItemList() {
         return model.getFilteredItemList();
+    }
+
+    @Override
+    public ObservableList<Location> getLocationList() {
+        return model.getLocationList();
     }
 
     @Override
