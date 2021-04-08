@@ -148,6 +148,7 @@ Format: `find KEYWORD...`
 * Only full words will be matched e.g. “Java” will not match “Javascript”
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. “SQL Python” will return “SQL Quiz,
   Python Assignment”
+* Searching allows multiple keywords e.g: "Final Assignment" will match with "Final Assignment part 1" and "Final Assignment part 2". Use of multiple search keys must be delimited by space. Using example above. "FinalAssignment" will not match "Final Assignment part 1".
 
 Examples:
 
