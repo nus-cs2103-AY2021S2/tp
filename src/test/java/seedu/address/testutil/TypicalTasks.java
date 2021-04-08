@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.Planner;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 /**
@@ -86,5 +87,19 @@ public class TypicalTasks {
 
     public static List<Task> getTypicalTasks() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    /**
+     * Tags that are in the list of typical tasks. Duplicate tags are included.
+     * Resulting list is not in order.
+     *
+     * @return List of typical tags that are in the typical tasks.
+     */
+    public static List<Tag> getTypicalTags() {
+        List<Tag> typicalTags = new ArrayList<>();
+        for (Task task: getTypicalTasks()) {
+            typicalTags.addAll(task.getTags());
+        }
+        return typicalTags;
     }
 }

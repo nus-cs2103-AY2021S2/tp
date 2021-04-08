@@ -2,6 +2,7 @@ package seedu.address.model.tag;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -36,8 +37,20 @@ public class UniqueTagListTestUtil {
      * @param tags Variable number of Tags.
      * @return Set of the given tags.
      */
-    public static Set<Tag> buildWithTags(Tag... tags) {
+    public static Set<Tag> buildSetOfTags(Tag... tags) {
         Set<Tag> setOfTags = new HashSet<>(Arrays.asList(tags));
         return setOfTags;
+    }
+
+    /**
+     * Builds a UniqueTagList with the given list of tags.
+     *
+     * @param tags List of tags.
+     * @return UniqueTagList with the given tags.
+     */
+    public static UniqueTagList buildWithTags(List<Tag> tags) {
+        UniqueTagList utl = new UniqueTagList();
+        tags.forEach(utl::add);
+        return utl;
     }
 }

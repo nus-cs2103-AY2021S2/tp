@@ -10,6 +10,7 @@ import static seedu.address.model.tag.UniqueTagListTestUtil.TAG_HUSBAND;
 import static seedu.address.model.tag.UniqueTagListTestUtil.TAG_VIM;
 import static seedu.address.model.tag.UniqueTagListTestUtil.TAG_YELLOW;
 import static seedu.address.model.tag.UniqueTagListTestUtil.TAG_ZOO;
+import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.ALICE;
 import static seedu.address.testutil.TypicalTasks.BENSON;
@@ -19,6 +20,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -117,8 +119,18 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void addTagsIfAbsent_addDuplicateTags_returnsCorrectSet() {
+        modelManager.addTag(TAG_FRIEND);
+
+        Set<Tag> duplicateTagSet = new HashSet<>();
+        duplicateTagSet.add(new Tag(VALID_TAG_FRIEND));
+        Set<Tag> resultSet = modelManager.addTagsIfAbsent(duplicateTagSet);
+        assertTrue(resultSet.contains(TAG_FRIEND));
+    }
+
+    @Test
     public void addTags_tagNotInOrder_maintainsSortedList() {
-        Set<Tag> setOfTags = UniqueTagListTestUtil.buildWithTags(TAG_VIM, TAG_ZOO, TAG_HUSBAND);
+        Set<Tag> setOfTags = UniqueTagListTestUtil.buildSetOfTags(TAG_VIM, TAG_ZOO, TAG_HUSBAND);
         modelManager.addTagsIfAbsent(setOfTags);
 
         List<Tag> expectedSortedList = new ArrayList<>();
@@ -130,10 +142,10 @@ public class ModelManagerTest {
 
     @Test
     public void setTags_tagNotInOrder_maintainsSortedList() {
-        Set<Tag> ogSetOfTags = UniqueTagListTestUtil.buildWithTags(TAG_FRIEND, TAG_YELLOW, TAG_VIM);
+        Set<Tag> ogSetOfTags = UniqueTagListTestUtil.buildSetOfTags(TAG_FRIEND, TAG_YELLOW, TAG_VIM);
         modelManager.addTagsIfAbsent(ogSetOfTags);
-        Set<Tag> oldSetOfTags = UniqueTagListTestUtil.buildWithTags(TAG_FRIEND, TAG_YELLOW);
-        Set<Tag> newSetOfTags = UniqueTagListTestUtil.buildWithTags(TAG_ZOO, TAG_HUSBAND);
+        Set<Tag> oldSetOfTags = UniqueTagListTestUtil.buildSetOfTags(TAG_FRIEND, TAG_YELLOW);
+        Set<Tag> newSetOfTags = UniqueTagListTestUtil.buildSetOfTags(TAG_ZOO, TAG_HUSBAND);
         modelManager.setTags(oldSetOfTags, newSetOfTags);
 
         List<Tag> expectedSortedList = new ArrayList<>();
@@ -151,7 +163,7 @@ public class ModelManagerTest {
         ModelManager unsortedModelManager = new ModelManager(planner, userPrefs);
         unsortedModelManager.updateSortedTagList(COMPARATOR_NATURAL_ORDERED_TAG_LIST);
 
-        Set<Tag> setOfTags = UniqueTagListTestUtil.buildWithTags(TAG_FRIEND, TAG_HUSBAND, TAG_ZOO);
+        Set<Tag> setOfTags = UniqueTagListTestUtil.buildSetOfTags(TAG_FRIEND, TAG_HUSBAND, TAG_ZOO);
         modelManager.addTagsIfAbsent(setOfTags);
         assertEquals(modelManager, unsortedModelManager);
     }
