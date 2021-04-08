@@ -16,7 +16,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Description;
 
-
 /**
  * Parses input arguments and create a new EditEventCommand object.
  */

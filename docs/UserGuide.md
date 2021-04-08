@@ -65,7 +65,8 @@ RemindMe visualises the tasks of our users using a combination of a list and a c
 the best way that works for you!
 
 We also use a Command-Line Interface, so that all the fast-fingered SOC students can use RemindMe quickly and
-comfortably.
+comfortably. For those of you who prefer to use a mouse, we have also integrated GUI into our interface! We hope that 
+having this flexibility will allow you to use RemindMe in the way you are most comfortable with! 
 
 Start scheduling a better work life with RemindMe [here](#2-quick-start)!
 
@@ -734,10 +735,18 @@ The calendar window as shown below will be displayed.
 ![calendarwindow](images/calendarwindow.png)
 <br>
 <br>
-You may browse through the calendar over the months by clicking the 
-left arrow button `<` and right arrow button `>` on the top right of the calendar window.
-Additionally, you may click on the `today` button to browse back to the month of the current day's date,
-and refresh the calendar with the `refresh` button.
+You may browse through the calendar  by clicking the left arrow button `<` or right arrow button `>` 
+on the top right of the calendar window. Additionally, you may click on the `today` button 
+to browse back to the month of the current day's date.
+
+<div markdown="block" class="alert alert-info">
+
+Please refresh the calendar with the `refresh` button whenever you update assignments/exams/birthdays/general events while 
+the calendar window is still open. The calendar window does not automatically update the changes when you update
+assignments/exams/birthdays/general events at the main window.
+
+</div>
+
 
 [Back to Table of Contents](#table-of-contents)
 

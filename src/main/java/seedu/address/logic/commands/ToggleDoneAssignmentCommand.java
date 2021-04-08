@@ -2,8 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.List;
 
@@ -22,12 +20,11 @@ public class ToggleDoneAssignmentCommand extends Command {
 
     public static final String MESSAGE_DONE_TOGGLE_SUCCESS = "Assignment updated done status: %1$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": toggles the done status of the assignment identified by the index in AssignmentList of the module\n"
-            + "Parameters: Index (must be a int value)\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103T"
-            + PREFIX_ASSIGNMENT + "1";
+    public static final String MESSAGE_USAGE =
+            "Command: " + COMMAND_WORD + "\n"
+            + "Assignment: add m/TITLE a/INDEX";
+
+    public static final String MESSAGE_EMPTY_ASSIGNMENTLIST = "Assignment list is empty";
 
     private final Title moduleTitle;
 
@@ -53,6 +50,9 @@ public class ToggleDoneAssignmentCommand extends Command {
         int indexOfModule = getIndex(lastShownList, moduleToCheck);
         Module moduleToGet = lastShownList.get(indexOfModule);
         AssignmentList assignmentList = moduleToGet.getAssignments();
+        if (assignmentList.size() == 0) {
+            throw new CommandException(MESSAGE_EMPTY_ASSIGNMENTLIST);
+        }
         if (assignmentIndex.getZeroBased() >= assignmentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
         }

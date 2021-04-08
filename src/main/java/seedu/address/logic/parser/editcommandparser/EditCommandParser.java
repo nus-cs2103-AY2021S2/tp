@@ -16,6 +16,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.editcommand.EditCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.CommandParser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -23,7 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments, identifies which Edit Command it refers to and
  * creates the corresponding Edit Command.
  */
-public class EditCommandParser {
+public class EditCommandParser implements CommandParser {
     /**
      * Parses the given {@code String} of arguments in the context of an Edit Command
      * and returns a Command object for execution.
