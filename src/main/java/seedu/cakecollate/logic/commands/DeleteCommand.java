@@ -20,9 +20,9 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the order identified by the index number used in the displayed order list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the orders identified by the index numbers used in the displayed order list.\n"
+            + "Parameters: INDEXES (must be positive integers)\n"
+            + "Example: " + COMMAND_WORD + " 1 2 3";
 
     public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted Order: %1$s";
 
