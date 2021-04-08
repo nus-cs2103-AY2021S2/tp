@@ -482,7 +482,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC2 - Delete a project
 
@@ -507,7 +507,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC3 - Add or modify information about a project
 
@@ -532,7 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC4 - Add a todo to a project
 
@@ -565,7 +565,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC5 - Delete a todo from a project
 
@@ -602,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC6 - Add or modify information about a todo in a project
 
@@ -639,7 +639,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC7 - Mark a todo in a project as done
 
@@ -676,7 +676,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC8 - Add a deadline to a project
 
@@ -709,7 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC9 - Delete a deadline from a project
 
@@ -746,7 +746,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC10 - Add or modify information about a deadline in a project
 
@@ -783,7 +783,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC11 - Mark a deadline in a project as done
 
@@ -820,7 +820,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC12 - Add an event to a project
 
@@ -853,7 +853,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC13 - Delete an event from a project
 
@@ -890,7 +890,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC14 - Add or modify information about an event in a project
 
@@ -927,7 +927,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC15 - Add a groupmate to a project
 
@@ -960,7 +960,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC16 - Delete a groupmate from a project
 
@@ -997,7 +997,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC17 - Add or modify information about a groupmate in a project
 
@@ -1034,7 +1034,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC18 - Add a contact
 
@@ -1059,7 +1059,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC19 - Find a specific contact
 
@@ -1076,7 +1076,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC20 - Delete a contact
 
@@ -1107,7 +1107,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC21 - Add or modify information about a contact
 
@@ -1132,22 +1132,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC22 - Manage today's deadlines and events
 
 **MSS**
 
 1. User switches to the today panel.
-2. User <u>adds a new deadline ([UC8](#uc8---add-a-deadline-to-a-project))</u>.
-3. User <u>adds a new event ([UC12](#uc12---add-an-event-to-a-project))</u>.
-4. User <u>marks a deadline as done ([UC11](#uc11---mark-a-deadline-in-a-project-as-done))</u>.
+2. User <u>adds a new deadline (<a href="#uc8---add-a-deadline-to-a-project">UC8</a>)</u>.
+3. User <u>adds a new event (<a href="#uc12---add-an-event-to-a-project">UC12</a>)</u>.
+4. User <u>marks a deadline as done (<a href="#uc11---mark-a-deadline-in-a-project-as-done">UC11</a>)</u>.
 
    Use case ends.
 
 **Extensions**
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC23 - Purge all entries from the app
 
@@ -1166,7 +1166,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-* *a. At any time, User <u>requests to view help ([UC24]((#uc24---view-help)))</u>.
+* *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
 #### UC24 - View help
 
