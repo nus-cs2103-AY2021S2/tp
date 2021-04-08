@@ -145,11 +145,9 @@ This operation is exposed in the `Model` interface as `Model#addPerson(Person pe
 
 Given below is an example usage scenario and how the add person mechanism behaves at each step.
 
-Step 1: The user executes `add person pt/student …`. The LogicManager takes in the string command and 
-calls `AddressBookParser#parseCommand(String userInput)`.
+Step 1: The user executes `add person pt/student …`. The LogicManager takes in the string command and calls `AddressBookParser#parseCommand(String userInput)`.
 
-Step 2: The `parseCommand` method passes the user input to `AddPersonCommandParser#parse(String args)` which returns an 
-AddPersonCommand object. This addPersonCommand object has a reference to a Person which could be either Student or Tutor
+Step 2: The `parseCommand` method passes the user input to `AddPersonCommandParser#parse(String args)` which returns an AddPersonCommand object. This addPersonCommand object has a reference to a Person which could be either Student or Tutor
 
 Step 3: The LogicManager then executes the AddPersonCommand which calls the `Model#addPerson(Person person)` method.
 
@@ -190,23 +188,17 @@ The sequence for the example scenerio can be found below:
 ![AddSessionSequenceDiagram](images/AddSessionSequenceDiagram.png)
 
 ### assign person feature
-The assign feature is able to assign `sessionId` to the list of sessions in a Person. This person can either be
-a Student or a Tutor. 
+The assign feature is able to assign `sessionId` to the list of sessions in a Person. This person can either be a Student or a Tutor. 
 
-Likewise, `studentId` and `tutorId` will be assigned to the list of students and tutor attribute of a session
-respectively.
+Likewise, `studentId` and `tutorId` will be assigned to the list of students and tutor attribute of a session respectively.
 
 Given below is  an example usage scenario and how the assign command behaves at each step.
 
-Step 1 : The user executes `assign s/1 t/1 c/1` command to assign student `s/1` and tutor `t/1` to session `c/1`
-The LogicManager takes in the user input the calls `AddressBookParser#parseCommand(String userInput)`
+Step 1 : The user executes `assign s/1 t/1 c/1` command to assign student `s/1` and tutor `t/1` to session `c/1`The LogicManager takes in the user input the calls `AddressBookParser#parseCommand(String userInput)`
 
-Step 2: The `AddressBookParser` then calls `AssignCommandParser.parse(String args)` that returns a `AssignCommand`.
-This `AssignCommand` will be return back to LogicManager
+Step 2: The `AddressBookParser` then calls `AssignCommandParser.parse(String args)` that returns a `AssignCommand`. This `AssignCommand` will be return back to LogicManager
 
-Step 3: `LogicManager` then calls `AssignCommand#execute()`. In this method, `ÀssignCommand` calls internal methods `getStudents()` and `getTutor()`
-to check if provided studentId and tutorId are valid inputs. Once checked, `AssignCommand` calls internal methods `assignTutor()` and `assignStudents` which 
-updates the provided student, tutor and session in both `UniquePersonList` and `SessionList`.
+Step 3: `LogicManager` then calls `AssignCommand#execute()`. In this method, `ÀssignCommand` calls internal methods `getStudents()` and `getTutor()`to check if provided studentId and tutorId are valid inputs. Once checked, `AssignCommand` calls internal methods `assignTutor()` and `assignStudents` which updates the provided student, tutor and session in both `UniquePersonList` and `SessionList`.
 
 Step 4: A `CommandResult` is returned 
 
