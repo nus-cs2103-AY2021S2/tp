@@ -23,9 +23,9 @@ public class CloseIssueCommandParser implements Parser<CloseIssueCommand> {
         try {
             Index index = ParserUtil.parseIndex(args);
             return new CloseIssueCommand(index);
-        } catch (ParseException pe) {
+        } catch (IllegalArgumentException iex) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, CloseIssueCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, CloseIssueCommand.MESSAGE_USAGE), iex);
         }
     }
 
