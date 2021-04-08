@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
-MeetBuddy is a **desktop app for managing contacts and daily tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, MeetBuddy can get your contact management as well as task management done faster than traditional GUI apps.
+MeetBuddy is a **desktop app for managing contacts and daily meetings, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, MeetBuddy can get your contacts and meetings management done faster than traditional GUI apps. In addition, MeetBuddy is meant for users to organise their meetups
+with friends, family, or work colleagues. It provides a better user experience for users who have alot of contacts having online Gravatar accounts, where there is automatic syncing of
+their profile pictures. 
+
 
 * Table of Contents
 {:toc}
