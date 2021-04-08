@@ -328,6 +328,7 @@ Application: Used to find a certain task that may be further down the list.
 Format: `find KEYWORD`
 
 * Searches through ModuleBook3.5 for tasks whose names contain `KEYWORD`.
+* You may key in multiple keywords. ModuleBook3.5 will list down all tasks that contains any of the given keyword.
 
 Tutorial Example:<br>
 `find Green`
@@ -349,13 +350,13 @@ Format: `list`
 
 Searches for tasks with an associated tag. Tag is case-insensitive for your convenience.
 
-One Tag allowed. Tag provided must be alphanumerical.
-
 Application: Used to find tasks that tend to have the same tags due to similarities between them.
 
 Format: `findTag KEYWORD`
 
 * Searches through ModuleBook3.5 for tasks which have a tag named `KEYWORD`.
+* Only allows one tag as input. The rest will be ignored.
+* Tag provided must be alphanumerical.
 
 Tutorial Example:<br>
 `findTag Ethics`
@@ -440,7 +441,7 @@ Application: Used to group and prioritise tasks based on a certain criteria.
 Format:  `sort` or `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` 
 
 *  `sort n/` Sorts the tasks by name alphabetically in ascending order.
-*  `sort d/` Sorts the tasks by description alphabetically in ascending order.
+*  `sort d/` Sorts the tasks by the length of description in descending order.
 *  `sort w/` Sorts the tasks by workload in descending order.
 *  `sort` or `sort b/` Sorts the tasks by deadline so that the the task with closer the deadline in the list, the higher the task.
 *  `sort m/` Sorts the tasks by module code alphabetically in descending order.
