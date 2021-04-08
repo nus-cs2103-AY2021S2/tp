@@ -56,7 +56,7 @@ Here are my contributions to the project.
 
 ---to be added
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#88]().
+  * PRs reviewed (with non-trivial review comments): [\#88](), [\#245]().
   * Contributed to forum discussions: [\#279](), [\#293](), [\#295](), [\#298]().
   * Reported bugs and suggestions for other teams in the class 
     * Every issue from [\#103](https://github.com/AY2021S2-CS2103-W17-2/tp/issues/) until [\#122](https://github.com/AY2021S2-CS2103-W17-2/tp/issues/).
