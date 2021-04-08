@@ -31,8 +31,8 @@ Given below are my contributions to the project.
   * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#118](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/118), [\#34]())
-  * Wrote additional tests for existing features to increase coverage (Pull requests [\#226](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/226), [\#38]())
+  * Updated the GUI color scheme (Pull requests [\#118](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/118))
+  * Wrote additional tests for existing features to increase coverage (Pull requests [\#226](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/226))
 
 * **Documentation**:
   * User Guide:
@@ -43,7 +43,7 @@ Given below are my contributions to the project.
     * Did cosmetic tweaks to existing documentation.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#71](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/71), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/262)
+  * PRs reviewed (with non-trivial review comments): [\#71](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/71)
+  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/236))
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/262))
   
