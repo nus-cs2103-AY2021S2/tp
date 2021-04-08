@@ -174,7 +174,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 ## Date format
-DietLAH! uses the following date format for command inputs: `d MMM yyyy` which is clearer to interpret and reduces the chances of typos. Refer to the table below for more information:
+DietLAH! uses the following date format for command inputs: `d Mmm yyyy` which is clearer to interpret and reduces the chances of typos. Refer to the table below for more information:
 
 Legend | Description
 -------|-------------
