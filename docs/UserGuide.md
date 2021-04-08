@@ -552,7 +552,7 @@ Format: `find_schedule DATE`
   i.e., `event start date <= given date <= event end date`
 * Date entered must be a valid date and in the format of `YYYY-MM-DD`, e.g. `2021-04-01`
 * Only one single date can be entered. If more than one dates are supplied, program will return an error message
-  indicating invalid date.
+  indicating invalid date format. If no date is given, an error message indicating invalid command format will be returned.
 * After running `find_schedule`, if you wish to view all existing tasks and all existing events, 
   please use the `list_task` and `list_event` respectively.
 
