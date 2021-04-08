@@ -249,17 +249,6 @@ public class Sochedule implements ReadOnlySochedule {
     }
 
     /**
-     * Sorts the contents of this list given {@code comparingVar}.
-     * {@code comparingVar} must be a valid parameter.
-     *
-     * @param comparingVar The value to be used for sorting.
-     */
-    public void sortEvents(String comparingVar) {
-        assert comparingVar != null;
-        events.sort(comparingVar);
-    }
-
-    /**
      * Returns number of events happening in the next 7 days.
      */
     public int getNumIncomingEvents() {

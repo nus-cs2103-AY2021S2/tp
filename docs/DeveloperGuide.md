@@ -458,18 +458,15 @@ The following is a brief explanation , as shown in a sequence diagram, of how so
         </td>
     </tr>
 </table>
-<div markdown="block">
+
 Our group decided to go with alternative 1 and implemented an additional sort comparator known as `TaskComparator`.
 This is to ensure smoother UX, as well as better integration with other commands.
 
 By implementing it in this way, our group is able to ensure that the sort order remains consistent over commands that could either:
-    <ul>
-        <li>Alter the number of tasks shown at any one time (See <code>find_task</code>)</li>
-        <li>Change the order of task appearance independent of <code>sort_task</code> (See <code>pin_task</code>)</li>
-    </ul>
+* Alter the number of tasks shown at any one time (See <code>find_task</code>)</li>
+* Change the order of task appearance independent of <code>sort_task</code> (See <code>pin_task</code>)</li>
 
 This would enable SOChedule to better serve the needs of its user base. 
-</div>
 
 [Return to Table of Contents](#table-of-contents)  
 
