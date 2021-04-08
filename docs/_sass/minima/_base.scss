@@ -64,15 +64,9 @@ main {
  * Images
  */
 img {
-  max-width: 100%;
-  vertical-align: middle;
-}
-
-/**
- * Resize Images
- */
-img.resize {
-  max-width: 100%;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
   vertical-align: middle;
 }
 
