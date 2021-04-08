@@ -16,7 +16,7 @@ public class Address {
      * otherwise " " (a blank string) becomes a valid input.
      */
 
-    public static final String PLACE_HOLDER = "~No addresss";
+    public static final String PLACE_HOLDER = "~No address";
     public static final String VALIDATION_REGEX = "[^\\s].*" + "|" + PLACE_HOLDER;
 
     public final String value;

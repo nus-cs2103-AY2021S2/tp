@@ -166,7 +166,7 @@ Format: `sortp by/FIELD d/DIRECTION`
     * Sort by name : `NAME`
     * Sort by email : `EMAIL`
     * Sort by phone number : `PHONE`
-    * Sort by address : `NAME`
+    * Sort by address : `ADDRESS`
 * `DIRECTION` is only restricted to the following cases:
     * Sort by ascending alphabetical order : `ASC`
     * Sort by descending alphabetical order : `DESC`
