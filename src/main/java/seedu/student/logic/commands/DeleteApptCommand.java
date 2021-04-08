@@ -21,7 +21,7 @@ public class DeleteApptCommand extends Command {
             + "Example: " + COMMAND_WORD + " A1234567X";
 
     public static final String MESSAGE_DELETE_APPT_SUCCESS = "Deleted Appointment: Name; %s, %s"; // appointment
-    public static final String MESSAGE_NONEXISTENT_APPT = "No appointment for that matriculation number exists!";
+    public static final String MESSAGE_NONEXISTENT_APPT = "No appointment for matriculation number %s exists.";
 
     private final MatriculationNumber matriculationNumber;
 
@@ -42,7 +42,7 @@ public class DeleteApptCommand extends Command {
         Appointment appointmentToDelete = model.getAppointment(matriculationNumber);
         Student student = model.getStudent(matriculationNumber);
         if (appointmentToDelete == null || student == null) {
-            throw new CommandException(MESSAGE_NONEXISTENT_APPT);
+            throw new CommandException(String.format(MESSAGE_NONEXISTENT_APPT, matriculationNumber));
         }
         model.deleteAppointment(appointmentToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_APPT_SUCCESS, student.getName(), appointmentToDelete));
