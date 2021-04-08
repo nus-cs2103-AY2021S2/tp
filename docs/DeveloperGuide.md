@@ -589,7 +589,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-#### UC7 - Adding or Modifying information about a contact
+#### UC7 - Add or Modify information about a contact
 
 **MSS**
 
@@ -628,6 +628,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b1. CoLAB reverses the effects of the previous command.
 
   Use case ends.
+
+#### Checklist
+
+* Use period.
+* Correct numbering.
+* Working links.
 
 ### Non-Functional Requirements
 
