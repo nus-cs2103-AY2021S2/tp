@@ -1173,7 +1173,7 @@ document.addEventListener('DOMContentLoaded', () => {
 **MSS**
 
 1. User opens the help page.
-2. User copies the user guide URL to paste in the browser.
+2. CoLAB shows a summary of commands as well as a link to the online User Guide.
 
    Use case ends.
 
