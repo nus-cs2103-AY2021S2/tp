@@ -164,7 +164,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleLightChange() {
         loadFxmlFile(getFxmlFileUrl("MainWindowLight.fxml"), primaryStage);
-        this.CurrentCss = "MainWindowLight.fxml";
+        this.currentCss = "MainWindowLight.fxml";
         fillInnerParts();
     }
 
@@ -180,7 +180,7 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        CssSettings cssSettings = new CssSettings(this.CurrentCss);
+        CssSettings cssSettings = new CssSettings(this.currentCss);
         logic.setCssSettings(cssSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -192,7 +192,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleDarkChange() {
         loadFxmlFile(getFxmlFileUrl("MainWindow.fxml"), primaryStage);
-        this.CurrentCss = "MainWindow.fxml";
+        this.currentCss = "MainWindow.fxml";
         fillInnerParts();
 
     }
