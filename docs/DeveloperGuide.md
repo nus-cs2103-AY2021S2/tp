@@ -1040,6 +1040,50 @@ testers are expected to do more *exploratory* testing.
 
 3. _{ more test cases … }_
 
+### Resident Data
+1. Adding residents
+   
+   1. Test case: `radd n/John Doe p/98765432 e/johnd@example.com y/1` <br>
+      Expected: Resident is added.
+   2. Incorrect `radd` commands to try. <br>
+      `radd n/John 123 p/98765432 e/johnd@example.com y/1`, where name is wrong. <br>
+      `radd n/John Doe p/9876abcd e/johnd@example.com y/1`, where phone number is wrong. <br>
+      `radd n/John Doe p/98765432 e/johndexample.com y/1`, where email is wrong. <br>
+      `radd n/John Doe p/98765432 e/johnd@example.com y/7`, where year is wrong. <br>
+      Expected: An error message indicating the problem is shown, and how to rectify it. 
+2. Editing residents 
+    1. Prerequisites: There is at least 1 resident displayed. <br>
+    1. Test case: `redit 1 n/Jane Doe` <br>
+       Expected: Resident in first index is edited.
+    2. Incorrect `redit` commands to try. <br>
+       `redit ab n/Jane Doe`, where index is wrong. <br>
+       `redit X n/Jane Doe`, where X is an index that is out of bounds. <br>
+       `redit 1 n/John 122`, where name format is wrong. <br>
+       Expected: An error message indicating the problem is shown, and how to rectify it.
+3. Deleting residents
+    1. Prerequisites: There is at least 1 resident displayed. <br>
+    2. Test case: `rdel 1` <br>
+       Expected: Resident in first index is edited.
+    3. Incorrect `rdel` commands to try. <br>
+         `rdel 0`, where index is wrong. <br>
+         `rdel X`, where X is an index that is out of bounds. <br>
+         Expected: An error message indicating the problem is shown, and how to rectify it.
+4. Listing residents
+    1. Prerequisites: There are residents to be listed. <br>
+    2. Test case: `rlist` <br>
+        Expected: All residents are listed.
+5. Listing unallocated residents
+    1. Prerequisites: There is at least 1 resident displayed and the resident is unallocated to a room. <br>
+    2. Test case: `rulist` <br>
+       Expected: Unallocated residents are listed.
+6. Finding residents
+    1. Prerequisites: There are a few residents. <br>
+    2. Test case: `rfind KEYWORD` <br>
+       Expected: Residents' name with words fully matching `KEYWORD` are listed.  
+       
+
+
+### Allocation
 
 ### Saving data
 
