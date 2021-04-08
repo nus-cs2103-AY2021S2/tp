@@ -80,7 +80,7 @@ public class EditContactCommand extends Command {
         Contact contactToEdit = lastShownList.get(index.getZeroBased());
         Contact editedContact = createEditedContact(contactToEdit, editContactDescriptor);
 
-        // Original contact is excluded in the case that either the phone number or
+        // Original contact is excluded from checking in case either the phone number or
         // email address remains unchanged.
         if (model.hasContactExcluding(editedContact, contactToEdit)) {
             throw new CommandException(MESSAGE_DUPLICATE_CONTACT);

@@ -196,10 +196,17 @@ public interface Model {
     ReadOnlyContactsList getContactsList();
 
     /**
-     * Returns true if a person with the same identity as {@code contact} exists in the dictionote book.
+     * Returns true if a contact with the same identity as {@code contact} exists in the contacts list.
      */
     boolean hasContact(Contact contact);
 
+    /**
+     * Returns true if a contact with the same identity as {@code checkedContact} exists in the contacts list
+     * after filtering {@code excludedContact} out.
+     *
+     * @param checkedContact The contact to be checked if it exists or not.
+     * @param excludedContact The contact to be excluded from being checked against.
+     */
     boolean hasContactExcluding(Contact checkedContact, Contact excludedContact);
 
     /**

@@ -71,6 +71,13 @@ public class ContactsList implements ReadOnlyContactsList {
         return contacts.contains(contact);
     }
 
+    /**
+     * Returns true if a contact with the same identity as {@code checkedContact} exists in the contacts list
+     * after filtering {@code excludedContact} out.
+     *
+     * @param checkedContact The contact to be checked if it exists or not.
+     * @param excludedContact The contact to be excluded from being checked against.
+     */
     public boolean hasContactExcluding(Contact checkedContact, Contact excludedContact) {
         requireAllNonNull(checkedContact, excludedContact);
         return contacts.containsExcluding(checkedContact, excludedContact);

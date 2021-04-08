@@ -30,13 +30,17 @@ public class UniqueContactList implements Iterable<Contact> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent contact as the given argument.
      */
     public boolean contains(Contact toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameContact);
     }
 
+    /**
+     * Returns true if the list, excluding the contact {@code toExclude}, contains an
+     * equivalent contact as the given argument {@code toCheck}.
+     */
     public boolean containsExcluding(Contact toCheck, Contact toExclude) {
         requireAllNonNull(toCheck, toExclude);
 

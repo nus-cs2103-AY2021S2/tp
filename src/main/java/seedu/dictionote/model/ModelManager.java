@@ -331,6 +331,7 @@ public class ModelManager implements Model {
         return contactsList.hasContact(contact);
     }
 
+    @Override
     public boolean hasContactExcluding(Contact checkedContact, Contact excludedContact) {
         requireAllNonNull(checkedContact, excludedContact);
         return contactsList.hasContactExcluding(checkedContact, excludedContact);
