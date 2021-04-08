@@ -13,12 +13,20 @@ public class AppointmentPredicateList {
     private List<Predicate<Appointment>> predicates;
     private List<AppointmentPredicateList> otherPredicates;
 
+    /**
+     * Constructs an AppointmentPredicateList with a list of predicates.
+     */
     public AppointmentPredicateList(List<Predicate<Appointment>> predicates) {
         this.predicates = predicates;
         this.otherPredicates = new ArrayList<>();
     }
 
-    public AppointmentPredicateList(List<Predicate<Appointment>> predicates, List<AppointmentPredicateList> otherPredicates) {
+    /**
+     * Constructs an AppointmentPredicateList with a list of predicates and another
+     * list of AppointmentPredicateList that to form a disjunction each.
+     */
+    public AppointmentPredicateList(List<Predicate<Appointment>> predicates,
+                                    List<AppointmentPredicateList> otherPredicates) {
         this.otherPredicates = otherPredicates;
         this.predicates = predicates;
     }
