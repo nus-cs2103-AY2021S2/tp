@@ -2,6 +2,7 @@ package seedu.address.model.contact;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.parser.CliSyntax.PLACEHOLDER;
 
 /**
  * Represents a Contact's email in the address book.
@@ -26,8 +27,6 @@ public class Email {
     private static final String DOMAIN_LAST_CHARACTER_REGEX = "[^\\W_]$";
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@"
             + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
-    private static final String PLACEHOLDER = "NIL";
-
 
     public final String value;
 

@@ -29,4 +29,7 @@ public class CliSyntax {
     public static final String OPTION_CHILD = "child";
     public static final String OPTION_DARK = "dark";
     public static final String OPTION_LIGHT = "light";
+
+    /* Other definitions */
+    public static final String PLACEHOLDER = "NIL";
 }
