@@ -55,7 +55,7 @@ iScam is a **desktop app for insurance agents to manage clients and meetings, op
 1. Refer to the [Features](#features) below for details of each command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you are facing issues launching the application, go to the `data` folder in `[JAR file location]/data` and delete both the `clientbook.json` and `meeitng.json` files and try launching again.
+If you are facing issues launching the application, go to the `data` folder in `[JAR file location]/data` and delete both the `clientbook.json` and `meetingbook.json` files and try launching again.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
