@@ -345,18 +345,6 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st order to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd order to be `Betsy Crower` and clears all existing tags.
 
-
-##### Clearing all existing orders: `clear`
-
-Deletes all existing orders in the CakeCollate database.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-This is not an un-doable action! With this command, all existing orders are deleted from the CakeCollate database
-and you will not be able to retrieve them. 
-</div>
-
-Format: `clear`
-
 #### **4.1.2** ***Order Functionalities*** 
 
 ##### Locating orders: `find`
@@ -442,10 +430,24 @@ Examples:
 * Displays a message with a list of all available commands and their format.
 * To return to the main order list click on the `Return to the main order list` button. 
 * Help can also be accessed by clicking the `help` button in the top left corner of the application or by clicking the `F1` keyboard key.
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** You can enter the command `list` to go back to the order and order item lists.<br>
+</div> <br>
 
 Format: `help`
 
-#### Exiting the program: `exit`
+##### Clearing all existing orders and order items: `clear`
+
+Deletes all existing orders and order items in the CakeCollate database.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This is not an un-doable action! With this command, all existing orders and order items will be deleted from 
+the CakeCollate database and you will not be able to retrieve them. 
+</div>
+
+Format: `clear`
+
+#### Exiting the program : `exit`
 
 Exits the program.
 
@@ -463,7 +465,7 @@ CakeCollate data is saved as a JSON file `[JAR file location]/data/cakecollate.j
 If your changes to the data file makes its format invalid, CakeCollate will discard all data and start with an empty data file at the next run.
 </div>
 
-#### Keyboard shortcuts you can use
+#### Keyboard shortcuts
 
 * Click the `Up` arrow in the keyboard to traverse up the previously inputted commands if they exist. 
 * Click the `Down` arrow in the keyboard to traverse down the previously inputted commands if they exist. 
@@ -471,22 +473,38 @@ If your changes to the data file makes its format invalid, CakeCollate will disc
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **5. FAQ**
+## **5. Glossary**
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **6. FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CakeCollate home folder.
 
+**Q**: How do I install Java?<br>
+**A**: [Click Here](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html) and download java based 
+on the operating system of the computer you are running cakecollate on.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## **6. Command summary**
+## **7. Command and prefix summary**
 
 Action  | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake 3` <br><br> `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_ITEM_INDEXES [o/ORDER_DESCRIPTION]... [t/TAG]...` <br> e.g. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake oi/1` <br>
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...` 
+<br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake 3` 
+<br><br> `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_ITEM_INDEXES [o/ORDER_DESCRIPTION]... [t/TAG]...` 
+<br> e.g. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake oi/1` <br>
+
 **Clear** | `clear`
 **Delete** | `delete INDEXES`<br> e.g., `delete 3 4`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/ORDER_DESCRIPTION]... [t/TAG]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find [n/KEYWORD_NAME]... [p/KEYWORD_PHONE]... [e/KEYWORD_EMAIL]... [a/KEYWORD_ADDRESS]... [o/KEYWORD_ORDER_DESCRIPTION]... [t/KEYWORD_TAG]... [d/KEYWORD_DELIVERY_DATE]... [s/KEYWORD_DELIVERY_STATUS]... [r/KEYWORD_REQUEST]... `<br> e.g., `find James Jake`, `find n/Alex o/Chocolate`, `find n/Bernice d/march s/undelivered` 
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/ORDER_DESCRIPTION]... [t/TAG]...`
+<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find** | `find [n/KEYWORD_NAME]... [p/KEYWORD_PHONE]... [e/KEYWORD_EMAIL]... [a/KEYWORD_ADDRESS]... 
+[o/KEYWORD_ORDER_DESCRIPTION]... [t/KEYWORD_TAG]... [d/KEYWORD_DELIVERY_DATE]... [s/KEYWORD_DELIVERY_STATUS]... [r/KEYWORD_REQUEST]... 
+`<br> e.g., `find James Jake`, `find n/Alex o/Chocolate`, `find n/Bernice d/march s/undelivered`
 **List** | `list`
 **Help** | `help`
 **Remind** | `remind DAYS`<br> e.g., `remind 3`
@@ -497,6 +515,18 @@ Action  | Format, Examples
 **Add Order Item** | `addItem ORDER_ITEM_DESCRIPTION`<br> e.g., `addItem 2 x Red Velvet`
 **Delete Order Item** | `deleteItem ORDER_ITEM_INDEXES`<br> e.g., `deleteItem 2 3`
 
+Prefix  | Description
+--------|------------------
+**n/** / Name of the customer
+**p/** / Phone number of the customer
+**e/** / Email of the customer
+**a/** / Address of the customer
+**d/** / Delivery date of the order
+**o/** / Order placed by the customer
+**oi/** / Order index of the order placed by the customer, based on the order item table on the right
+**t/** / Tags for the order
+**r/** / Request placed by the customer for an order
+**s/** / Status of the order (undelivered, delivered or cancelled)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Acknowledgements
