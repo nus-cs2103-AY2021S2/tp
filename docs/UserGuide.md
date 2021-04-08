@@ -319,6 +319,7 @@ Application: Used to find a certain task that may be further down the list.
 Format: `find KEYWORD`
 
 * Searches through ModuleBook3.5 for tasks whose names contain `KEYWORD`.
+* You may contain multiple keywords. ModuleBook3.5 will list down all tasks that contains any of the given keyword.
 
 Tutorial Example:<br>
 `find Green`
@@ -340,13 +341,13 @@ Format: `list`
 
 Searches for tasks with an associated tag. Tag is case-insensitive for your convenience.
 
-One Tag allowed. Tag provided must be alphanumerical.
-
 Application: Used to find tasks that tend to have the same tags due to similarities between them.
 
 Format: `findTag KEYWORD`
 
 * Searches through ModuleBook3.5 for tasks which have a tag named `KEYWORD`.
+* Only allows one tag as input. The rest will be ignored.
+* Tag provided must be alphanumerical.
 
 Tutorial Example:<br>
 `findTag Ethics`
