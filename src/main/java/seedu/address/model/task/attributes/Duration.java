@@ -3,6 +3,9 @@ package seedu.address.model.task.attributes;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,7 +17,8 @@ public class Duration implements Attribute {
     public static final String FIELD_NAME = "Duration";
 
     public static final String MESSAGE_CONSTRAINTS = "Duration should be numeric, consisting of start time and end time"
-            + " and should be in 24 hours format in the following example format 10:00-14:00";
+            + " and should be in 24 hours format in the following example format 10:00-14:00."
+            + "Start time should also be before end time.";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -46,8 +50,22 @@ public class Duration implements Attribute {
     public static boolean isValidDuration(String test) {
         Pattern p = Pattern.compile(VALIDATION_REGEX);
         Matcher m = p.matcher(test);
+        boolean valid = true;
+        if (m.matches()) {
+            String[] timings = test.split("-");
+            try {
+                Date getFirstTime = new SimpleDateFormat("HH:mm").parse(timings[0]);
+                Date getSecondTime = new SimpleDateFormat("HH:mm").parse(timings[1]);
+                if (getFirstTime.after(getSecondTime)) {
+                    valid = false;
+                }
+            } catch (ParseException e) {
+                throw new IllegalArgumentException(e);
+            }
 
-        return m.matches() || test.matches("");
+        }
+
+        return m.matches() && valid || test.matches("");
     }
 
     /**
