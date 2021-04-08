@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalTasks.ANOTHER_DUE;
 import static seedu.address.testutil.TypicalTasks.DUE;
 import static seedu.address.testutil.TypicalTasks.getTypicalSochedule;
 import static seedu.address.testutil.TypicalTasks.getTypicalSocheduleWithTodayTask;
@@ -43,13 +44,13 @@ public class TodayTaskCommandTest {
     @Test
     public void execute_multipleDeadlineToday_multipleTasksFound() {
         String expectedMessage = String.format(TodayTaskCommand.MESSAGE_TODAY_TASK_SUCCESS
-                + MESSAGE_TASKS_LISTED_OVERVIEW, 1);
+                + MESSAGE_TASKS_LISTED_OVERVIEW, 2);
         TaskDeadlineIsTodayPredicate predicate = new TaskDeadlineIsTodayPredicate();
         TodayTaskCommand command = new TodayTaskCommand();
         updateModelWithTodayTask();
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(DUE), model.getFilteredTaskList());
+        assertEquals(Arrays.asList(DUE, ANOTHER_DUE), model.getFilteredTaskList());
     }
 
     private void updateModelWithTodayTask() {

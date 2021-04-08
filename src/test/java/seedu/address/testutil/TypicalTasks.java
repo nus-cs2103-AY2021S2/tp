@@ -80,6 +80,10 @@ public class TypicalTasks {
             .withDeadline(TODAY_DATE).withCategories("Urgent").withPriority("9")
             .build();
 
+    public static final Task ANOTHER_DUE = new TaskBuilder().withName("Also Due Today")
+            .withDeadline(TODAY_DATE).withCategories("Urgent").withPriority("8")
+            .build();
+
     // Manually added - Task's details found in {@code CommandTestUtil}
     public static final Task TASKONE = new TaskBuilder().withName(VALID_TASK_NAME_TASKONE)
             .withDeadline(VALID_TASK_DEADLINE_TASKONE).withPriority(VALID_TASK_PRIORITY_TASKONE)
@@ -114,6 +118,7 @@ public class TypicalTasks {
             sochedule.addTask(task);
         }
         sochedule.addTask(DUE);
+        sochedule.addTask(ANOTHER_DUE);
         return sochedule;
     }
 
