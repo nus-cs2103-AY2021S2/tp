@@ -49,9 +49,10 @@ public class DoneCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS);
         }
 
-        Optional<Event> optEventToMarkAsDone = model.getEventByIdentifier(targetIdentifier.getValue());
-        Event eventToMarkAsDone = optEventToMarkAsDone
-                .orElseThrow(() -> new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER));
+        Event eventToMarkAsDone = model.getEventByIdentifier(targetIdentifier.getValue())
+                .orElseThrow(() -> new CommandException(
+                        String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER,
+                                targetIdentifier.getValue())));
 
         boolean eventIsAlrDone = eventToMarkAsDone.getStatus() == EventStatus.DONE;
 

@@ -17,8 +17,13 @@ import seedu.address.model.event.EventStatus;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_IDENTIFIER = "Identifier is not a non-zero unsigned integer"
-            + " or the input integer is too large.";
+    public static final String MESSAGE_INVALID_IDENTIFIER = "Identifier is invalid. "
+            + "Please ensure that your identifier:\n"
+            + "1. Is a value lesser than 2,147,483,647 and greater than -2,147,483,648.\n"
+            + "2. Does not contain any non-numeric characters";
+    public static final String MESSAGE_NEGATIVE_IDENTIFIER = "Identifier should be non-zero and positive.";
+    public static final String MESSAGE_ADDITIONAL_ARTEFACTS = "Identifier contains more than one value. "
+            + "Please ensure your command matches with the guide: \n";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Identifier} and returns it. Leading and trailing whitespaces will be
@@ -27,16 +32,24 @@ public class ParserUtil {
      */
     public static Identifier parseIdentifier(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_IDENTIFIER);
-        }
         int identifierInt;
+
+        // check that there's only one argument, if split by whitespace more than 1
+        // there's likely something wrong with input, e.g. wrong prefix
+        if (trimmedIndex.split(" ").length > 1) {
+            throw new ParseException(MESSAGE_ADDITIONAL_ARTEFACTS);
+        }
+
         try {
             identifierInt = Integer.parseInt(trimmedIndex);
-        } catch (Exception e) {
-            System.err.println("From here");
+        } catch (NumberFormatException e) {
             throw new ParseException(MESSAGE_INVALID_IDENTIFIER);
         }
+
+        if (identifierInt <= 0) {
+            throw new ParseException(MESSAGE_NEGATIVE_IDENTIFIER);
+        }
+
         return Identifier.fromIdentifier(identifierInt);
     }
 

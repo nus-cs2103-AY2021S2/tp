@@ -38,9 +38,10 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS);
         }
 
-        Optional<Event> optEventToDelete = model.getEventByIdentifier(targetIdentifier.getValue());
-        Event eventToDelete = optEventToDelete
-                .orElseThrow(() -> new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER));
+        Event eventToDelete = model.getEventByIdentifier(targetIdentifier.getValue())
+                .orElseThrow(() -> new CommandException(
+                        String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER,
+                                targetIdentifier.getValue())));
 
         model.deleteEvent(eventToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete));
