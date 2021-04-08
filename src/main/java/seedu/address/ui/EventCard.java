@@ -43,6 +43,8 @@ public class EventCard extends UiPart<Region> {
         this.generalEvent = generalEvent;
         id.setText(displayedIndex + ". ");
         description.setText(generalEvent.getDescription().description);
+        description.setWrapText(true);
+        description.setMaxWidth(500);
         date.setText("Date: " + generalEvent.getDateTime().format(LocalDateTimeUtil.DATETIME_FORMATTER));
     }
 
