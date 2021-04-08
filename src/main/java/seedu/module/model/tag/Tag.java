@@ -13,6 +13,7 @@ public class Tag {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
+    private final String tagNameLowerCase;
 
     /**
      * Constructs a {@code Tag}.
@@ -23,6 +24,7 @@ public class Tag {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
+        this.tagNameLowerCase = tagName.toLowerCase();
     }
 
     /**
@@ -37,12 +39,12 @@ public class Tag {
     public boolean equals (Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Tag // instanceof handles nulls
-                && tagName.equals(((Tag) other).tagName)); // state check
+                && tagNameLowerCase.equals(((Tag) other).tagNameLowerCase)); // state check
     }
 
     @Override
     public int hashCode() {
-        return tagName.hashCode();
+        return tagNameLowerCase.hashCode();
     }
 
     /**

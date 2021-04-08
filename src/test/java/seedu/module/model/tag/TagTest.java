@@ -1,5 +1,6 @@
 package seedu.module.model.tag;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.testutil.Assert.assertThrows;
@@ -32,8 +33,8 @@ public class TagTest {
         //EP: Same Tag object
         assertTrue(firstTag.equals(firstTag));
 
-        //EP: Different Tag object, same name
-        Tag firstTagOther = new Tag("FirstTag");
+        //EP: Different Tag object, same lowercase name
+        Tag firstTagOther = new Tag("firstTag");
         assertTrue(firstTag.equals(firstTagOther));
 
         //EP: Different Tag object, different name
@@ -45,4 +46,11 @@ public class TagTest {
         assertFalse(firstTag.equals(tagString));
     }
 
+    @Test
+    public void hashCodeTest() {
+        String firstTagLowerCase = "firsttag";
+        Tag firstTag = new Tag("FirstTag");
+
+        assertEquals(firstTag.hashCode(), firstTagLowerCase.hashCode());
+    }
 }

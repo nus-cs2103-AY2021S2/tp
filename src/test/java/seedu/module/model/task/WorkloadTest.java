@@ -98,4 +98,11 @@ public class WorkloadTest {
         assertTrue(thirdWorkload.compareTo(fourthWorkload) > 0);
         assertTrue(fourthWorkload.compareTo(thirdWorkload) < 0);
     }
+
+    @Test
+    public void hashCodeTest() {
+        Integer firstWorkloadInteger = 1;
+        Workload firstWorkload = new Workload("1");
+        assertEquals(firstWorkload.hashCode(), firstWorkloadInteger.hashCode());
+    }
 }

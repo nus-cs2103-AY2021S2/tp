@@ -5,6 +5,7 @@ import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -67,10 +68,11 @@ public class DeleteTagCommand extends Command {
         }
 
         Task editedTask = Task.setTags(taskToTag, newTags);
+        Tag deletedTag = retrieveActualDeletedTag(oldTags, newTags);
 
         model.setTask(taskToTag, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format("%s %s\n%s %s", MESSAGE_SHOW_DELETED_TAG, tag.toString(),
+        return new CommandResult(String.format("%s %s\n%s %s", MESSAGE_SHOW_DELETED_TAG, deletedTag.toString(),
                 MESSAGE_DELETE_TAG_TASK_SUCCESS, editedTask));
     }
 
@@ -85,6 +87,14 @@ public class DeleteTagCommand extends Command {
         Set<Tag> newTags = new HashSet<>(oldTags);
         newTags.remove(toBeDeletedTag);
         return newTags;
+    }
+
+    private Tag retrieveActualDeletedTag(Set<Tag> oldTags, Set<Tag> newTags) {
+        Iterator<Tag> iteratorTags = newTags.iterator();
+        Set<Tag> tempTags = new HashSet<>(oldTags);
+        iteratorTags.forEachRemaining((Tag x) -> tempTags.remove(x));
+        Tag[] oldTagArray = tempTags.toArray(new Tag[1]);
+        return oldTagArray[0];
     }
 
     @Override

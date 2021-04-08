@@ -54,18 +54,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Parses a {@code String time} into a {@code Time}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code deadline} is invalid.
+     * @throws ParseException if the given {@code time} is invalid.
      */
     public static Time parseTime(String deadline) throws ParseException {
         requireNonNull(deadline);
-        String trimmedDeadline = deadline.trim();
-        if (!Time.isValidTime(trimmedDeadline)) {
+        String trimmedTime = deadline.trim();
+        if (!Time.isValidTime(trimmedTime)) {
             throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
-        return new Time(trimmedDeadline);
+        return new Time(trimmedTime);
     }
 
     /**
@@ -137,8 +137,14 @@ public class ParserUtil {
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
+        final Set<String> lowerCaseCheck = new HashSet<>();
         for (String tagName : tags) {
+            if (lowerCaseCheck.contains(tagName.toLowerCase())) {
+                //Skip this tagName
+                continue;
+            }
             tagSet.add(parseTag(tagName));
+            lowerCaseCheck.add(tagName.toLowerCase());
         }
         return tagSet;
     }

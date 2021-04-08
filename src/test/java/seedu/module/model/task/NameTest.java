@@ -1,5 +1,6 @@
 package seedu.module.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.testutil.Assert.assertThrows;
@@ -72,5 +73,12 @@ public class NameTest {
         //EP: Different object, different values
         assertTrue(firstName.compareTo(secondName) < 0);
         assertTrue(secondName.compareTo(firstName) > 0);
+    }
+
+    @Test
+    public void hashCodeTest() {
+        String firstNameString = "First Name";
+        Name firstName = new Name(firstNameString);
+        assertEquals(firstName.hashCode(), firstNameString.hashCode());
     }
 }
