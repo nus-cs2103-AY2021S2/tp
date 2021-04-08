@@ -31,7 +31,6 @@ Given below are my contributions to the project:
         - Updated UML diagrams to include Events
         - Added Use Cases
         - Edited some links and words to Events
-    
 - **Community**:
-  
     - PRs Reviewed (with non-trivial review comments): 3
+    

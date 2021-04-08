@@ -33,5 +33,4 @@ Given below are my contributions to the project:
     - Added material raised and outline buttons
 
 - **Community**:
-  
   - PRs Reviewed (with non-trivial review comments): 19

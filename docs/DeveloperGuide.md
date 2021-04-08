@@ -14,7 +14,7 @@ title: Developer Guide
 
 ---
 ## **Introduction**
-Focuris is a desktop application for managing events with a KanBan board, which is a board where your events displayed 
+Focuris is a desktop application for managing events with a KanBan board, which is a board where your events displayed
 according to the level of completion of each event, which consists of Backlog, Todo, In-Progress and Done. It functions
 via a Command-Line Interface (CLI) that allows more efficient management of events.
 
@@ -386,10 +386,10 @@ Use case ends.
 
 **Mainstream OS**: Windows, Linux, Unix, OS-X
 
-**Event**: A task that needs to be completed by the user. 
-- An event consists of a title, description and identifier that we use 
-  to track each event. 
-- The stage of completion of an event can be split into four types: 
+**Event**: A task that needs to be completed by the user.
+- An event consists of a title, description and identifier that we use
+  to track each event.
+- The stage of completion of an event can be split into four types:
     1) Backlog
     2) Todo
     3) In Progress
@@ -398,23 +398,23 @@ Use case ends.
     1) High
     2) Medium
     3) Low
-     
-**Backlog**: A set of events that the user has agreed to work on next. This could be events that are currently being 
+    
+**Backlog**: A set of events that the user has agreed to work on next. This could be events that are currently being
 planned to be worked on or pending or any upcoming events, but we leave the definition loose up to the user.
 
-**Todo**: A set of events that the user has to work on as effective of immediately or have been delegated to already. 
+**Todo**: A set of events that the user has to work on as effective of immediately or have been delegated to already.
 We leave the definition loose up to the user.
 
 **In Progress**: A set of events that the user is currently working on. We leave the definition loose up to the user.
 
-**Done**: A set of events that the user has completed. This could be events that are currently being 
+**Done**: A set of events that the user has completed. This could be events that are currently being
 planned to be worked on or pending, but we leave the definition loose up to the user.
-     
+
 **Kanban**: Meaning signboard or billboard in Japanese. It is a method of managing and improving work flow across human
-systems. It is often used via a Kanban Board, where cards are used to represent work items and columns are used to 
+systems. It is often used via a Kanban Board, where cards are used to represent work items and columns are used to
 represent each stage of the work process. An example of a Kanban Board is our application itself.
 
-     
+
 **Sprint**: A time-boxed iteration of a continuous development cycle, where a planned amount of work is completed by the team.
 
 ---
