@@ -87,20 +87,20 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
 
         if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
             List<String> time = argMultimap.getAllValues(PREFIX_TIME);
-            if (time.size() > 1) {
-                throw new ParseException("Too many timings! Please only use 1 time. \n"
-                        + FindAppointmentCommand.MESSAGE_USAGE);
-            }
+            List<Predicate<Appointment>> timeList = new ArrayList<>();
             try {
-                predicates.add(new AppointmentTimePredicate(parseAppointmentTime(time.get(0))));
+                for (String s : time) {
+                    timeList.add(new AppointmentTimePredicate(parseAppointmentTime(s)));
+                }
             } catch (ParseException e) {
                 throw new ParseException("Wrong time format! \n"
                         + e.getMessage()
                         + "\n"
                         + FindAppointmentCommand.MESSAGE_USAGE);
             }
+            orPredicates.add(new AppointmentPredicateList(timeList));
         }
-        return new FindAppointmentCommand(new AppointmentPredicateList(predicates));
+        return new FindAppointmentCommand(new AppointmentPredicateList(predicates, orPredicates));
     }
 
     private boolean checkMultiMap(ArgumentMultimap args) {
