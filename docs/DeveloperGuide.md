@@ -365,7 +365,7 @@ in the CS2103 module. This invokes the method `LogicManager#execute(String)` whi
 <br>
 <br>
 
-**Step 3:** RemindMeParser will then create `EditCommandParser` 
+**Step 3:** RemindMeParser will then create `EditCommandParser` (omitted in the sequence diagram)
 which detects the edit conditions and calls `EditAssignmentCommandParser` 
 to parse inputs according to the format specified.
 <br>
@@ -385,7 +385,7 @@ which then verifies whether the target module and assignment exists and whether
 
 **step 6:** The `Model` calls `RemindMe#editAssignment(Module, index, Description)` method which retrieves
 the module to edit from the `UniqueModuleList` ,retrieves and update the assignment and place the
-module back to the list.
+module back to the list. 
 <br>
 <br>
 
@@ -398,10 +398,19 @@ and returned to `LogicManager`.
 
     Note: An EditAssignmentCommand can either change the description or date of an assignment, not both.
     
+<br>
 
 The above process is shown in the following sequence diagram:
 
 ![EditFeatureSequenceDiagram](images/EditFeatureSequenceDiagram.png)
+
+<br>
+
+Below is the separate sequence diagram for editAssignment(m, 1 , Tut2):
+
+![EditFeatureSequenceDiagram1](images/EditFeatureSequenceDiagram1.png)
+
+<br>
 
 The following activity diagram summarises the general workflow for the Edit Command:
 
