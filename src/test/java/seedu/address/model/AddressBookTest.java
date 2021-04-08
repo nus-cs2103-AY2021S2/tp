@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.resident.TypicalResidents.ALICE;
+import static seedu.address.testutil.residentroom.TypicalResidentRooms.ALICE_ROOM_NUMBER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +21,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.Alias;
 import seedu.address.commons.core.AliasMapping;
 import seedu.address.model.issue.Issue;
+import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.resident.exceptions.DuplicateResidentException;
 import seedu.address.model.residentroom.ResidentRoom;
@@ -82,6 +84,36 @@ public class AddressBookTest {
         Resident editedAlice = new ResidentBuilder(ALICE)
                 .build();
         assertTrue(addressBook.hasResident(editedAlice));
+    }
+
+    @Test
+    public void hasResident_nullName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasResident((Name) null));
+    }
+
+    @Test
+    public void hasResident_nameNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasResident(ALICE.getName()));
+    }
+
+    @Test
+    public void hasResident_nameInAddressBook_returnsTrue() {
+        addressBook.addResident(ALICE);
+        assertTrue(addressBook.hasResident(ALICE.getName()));
+    }
+
+    @Test
+    public void hasBothResidentRoom_residentRoomInAddressBook_returnsTrue() {
+        addressBook.addResidentRoom(ALICE_ROOM_NUMBER);
+        assertTrue(addressBook.hasBothResidentRoom(ALICE_ROOM_NUMBER));
+    }
+
+    @Test
+    public void removeResidentRoom_residentRoomInAddressBook_returnsEqual() {
+        addressBook.addResidentRoom(ALICE_ROOM_NUMBER);
+        addressBook.removeResidentRoom(ALICE_ROOM_NUMBER);
+        AddressBook removedAddressBook = new AddressBook();
+        assertEquals(addressBook, removedAddressBook);
     }
 
     @Test

@@ -27,6 +27,8 @@ public class DeleteRoomCommand extends Command {
     public static final String MESSAGE_DELETE_ROOM_SUCCESS = "Deleted room: %1$s";
     public static final String MESSAGE_ROOM_ALLOCATED_FAILURE =
             "The room has been allocated to another resident. Please deallocate the room before deletion.";
+    public static final String MESSAGE_ROOM_HAS_ISSUES = "This room still has issues assigned to it. Please delete all "
+            + "corresponding issues before deleting the room.";
 
     private final Index targetIndex;
 
@@ -47,6 +49,10 @@ public class DeleteRoomCommand extends Command {
 
         if (model.hasEitherResidentRoom(new ResidentRoom(null, roomToDelete.getRoomNumber()))) {
             throw new CommandException(MESSAGE_ROOM_ALLOCATED_FAILURE);
+        }
+
+        if (model.issuesContainRoom(roomToDelete)) {
+            throw new CommandException(MESSAGE_ROOM_HAS_ISSUES);
         }
 
         model.deleteRoom(roomToDelete);
