@@ -4,9 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.cakecollate.model.CakeCollate;
 import seedu.cakecollate.model.Model;
+import seedu.cakecollate.model.OrderItems;
 
 /**
- * Clears the cakecollate.
+ * Clears the orders and the order items in cakecollate.
  */
 public class ClearCommand extends Command {
 
@@ -19,6 +20,7 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setCakeCollate(new CakeCollate());
+        model.setOrderItems(new OrderItems());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
