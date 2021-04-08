@@ -22,10 +22,13 @@ public class ViewHistoryCommand extends Command {
             + "Parameters: COUNT (optional, must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 5";
 
-    public static final String MESSAGE_INVALID_COUNT = "The provided COUNT is invalid. "
+    public static final String MESSAGE_COUNT_OUT_OF_RANGE = "The provided COUNT is invalid. "
             + "Valid range: %d to %d (inclusive)";
 
-    public static final String MESSAGE_EMPTY_HISTORY = "No non-empty commands have been entered yet.";
+    public static final String MESSAGE_INVALID_COUNT = "The provided COUNT is invalid. "
+            + "It should be a positive integer";
+
+    public static final String MESSAGE_EMPTY_HISTORY = "No successful commands have been entered yet.";
 
     public static final String MESSAGE_HEADER_SUCCESS = "Last %d command(s):\n";
 
@@ -71,16 +74,19 @@ public class ViewHistoryCommand extends Command {
         ReadOnlyCommandHistory history = model.getCommandHistory();
         assert history != null;
         assert history.size() >= 0;
+        assert optCount != null;
+        int count = optCount.orElse(history.size());
+
+        if (optCount.isPresent() && count <= 0) {
+            throw new CommandException(MESSAGE_INVALID_COUNT);
+        }
 
         if (history.size() == 0) {
             return new CommandResult(MESSAGE_EMPTY_HISTORY);
         }
 
-        assert optCount != null;
-        int count = optCount.orElse(history.size());
-
-        if (count <= 0 || count > history.size()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_COUNT, 1, history.size()));
+        if (count > history.size()) {
+            throw new CommandException(String.format(MESSAGE_COUNT_OUT_OF_RANGE, 1, history.size()));
         }
 
         StringBuilder msg = new StringBuilder();
