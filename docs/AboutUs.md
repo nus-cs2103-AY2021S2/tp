@@ -34,7 +34,7 @@ You can reach us at the email `e0205114[at]comp.nus.edu.sg`
 <img src="images/colintkn.png" width="200px">
 
 [[github](https://github.com/colintkn)]
-[[portfolio](team/colin.md)]
+[[portfolio](team/colintkn.md)]
 
 * Role: Developer
 * Responsibilities: Integration, Resident Feature
