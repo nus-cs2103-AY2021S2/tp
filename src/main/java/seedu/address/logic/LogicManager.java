@@ -12,7 +12,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.DietLahParser;
+import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -33,7 +33,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final DietLahParser dietLahParser;
+    private final AddressBookParser addressBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -41,7 +41,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        dietLahParser = new DietLahParser();
+        addressBookParser = new AddressBookParser();
     }
 
     @Override
@@ -50,11 +50,11 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         if (model.hasUser()) {
-            Command command = dietLahParser.parseCommand(commandText);
+            Command command = addressBookParser.parseCommand(commandText);
             commandResult = command.execute(model);
         } else {
             // Check if command is creating new user
-            Command command = dietLahParser.parseCommand(commandText);
+            Command command = addressBookParser.parseCommand(commandText);
             if (command instanceof AddUserCommand || command instanceof ResetCommand) {
                 commandResult = command.execute(model);
             } else {
