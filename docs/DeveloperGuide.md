@@ -822,6 +822,7 @@ testers are expected to do more *exploratory* testing.
     Expected: A new card is added to the list. Result display shows the details of the added flashcards with tags.
     1. Test case: `add`
     Expected: No flashcard is deleted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
+
 ### Deleting a flashcard
 
 1. Deleting a flashcard at a specific index.
@@ -871,10 +872,10 @@ testers are expected to do more *exploratory* testing.
        Expected: The list will not be updated, and an invalid command format error is shown in the result display.
        
     1. Test case: `find equa`<br>
-       Expected: The list will be updated, listing the flashcards that have `equa` contained any of its fields (e.g. question, answer, category, priority, tags). The result display states the number of flashcards listed.
+       Expected: The list will be updated, listing the flashcards that have `equa` contained any of its fields (e.g. question, answer, category, priority, tags). The result display states the number of flashcards found.
        
     1. Test case: `find newton random`<br>
-       Expected: The list will be updated, listing the flashcards that have either `newton` or `random` contained in any of its fields. The result display states the number of flashcards listed.
+       Expected: The list will be updated, listing the flashcards that have either `newton` or `random` contained in any of its fields. The result display states the number of flashcards found.
 
 ### Filtering flashcards
 
@@ -886,13 +887,13 @@ testers are expected to do more *exploratory* testing.
        Expected: The list will not be updated, and an invalid command format error is shown in the result display.
        
     1. Test case: `filter q/newton`<br>
-       Expected: The list will be updated, listing the flashcards that have `newton` contained in its question. The result display states the number of flashcards listed.
+       Expected: The list will be updated, listing the flashcards that have `newton` contained in its question. The result display states the number of flashcards filtered.
        
     1. Test case: `filter q/new p/mid t/formula`<br>
-       Expected: The list will be updated, listing the flashcards that have `new` contained in its question, `mid` contained in its priority, and `formula` contained in any of its tags. The result display states the number of flashcards listed.
+       Expected: The list will be updated, listing the flashcards that have `new` contained in its question, `mid` contained in its priority, and `formula` contained in any of its tags. The result display states the number of flashcards filtered.
        
     1. Test case: `filter c/math physics p/mid`<br>
-       Expected: The list will be updated, listing the flashcards that have either `math` or `physics` contained in its question, and `mid` contained in its priority. The result display states the number of flashcards listed.
+       Expected: The list will be updated, listing the flashcards that have either `math` or `physics` contained in its question, and `mid` contained in its priority. The result display states the number of flashcards filtered.
 
 ### Clearing all flashcards
 
