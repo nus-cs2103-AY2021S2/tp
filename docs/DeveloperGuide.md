@@ -35,12 +35,23 @@ learn from it).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Diagrams**
+## **About this guide**
+
+### AddressBook
+
+SunRez was built from an open-source starter project called [Address Book](https://se-education.org/addressbook-level3/).
+Thus, for legacy reasons many internal components of SunRez have traces of AddressBook. For example, namespaces in the
+project start with `seedu.address`, and the primary data class of the Model component is named `AddressBook`. A future
+refactoring to rename all aspects of SunRez is planned, but until then, developer-facing parts of SunRez will contain
+traces of Address Book. That said, user-facing aspects of SunRez (UI, file names, etc.) should be free of references
+to Address Book.
+
+### Diagrams
 
 This guide uses UML diagrams to better illustrate certain design ideas and structures. The following sub-sections
 detail how contributors can read, create and edit these diagrams, as well as various things to note about the diagrams.
 
-### How to read
+#### How to read
 
 If you are unfamiliar with how to read UML diagrams, check out [this chapter](https://se-education.org/se-book/uml/index.html) 
 of the free online SE-EDU textbook.
@@ -53,7 +64,7 @@ located at the end of the lifeline. However, due to a limitation of PlantUML, an
 the X to the end of the diagram.
 </div>
 
-### How to create and edit
+#### How to create and edit
 
 This project uses [PlantUML](https://plantuml.com/) to create diagrams in this document. These diagrams are generated
 from `.puml` files which can be found in the [diagrams](https://github.com/AY2021S2-CS2103-T14-1/tp/tree/master/docs/diagrams) 
