@@ -1,5 +1,7 @@
 package seedu.module.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.module.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.module.testutil.TypicalTasks.getSortedTypicalModuleBookByDeadline;
 import static seedu.module.testutil.TypicalTasks.getSortedTypicalModuleBookByDescription;
@@ -26,6 +28,13 @@ class SortCommandTest {
     private Model nameSortedModel;
     private Model descriptionSortedModel;
     private Model tagSortedModel;
+
+    private SortCommand tagSortCommand = new SortCommand(new Task.TagComparator());
+    private SortCommand nameSortCommand = new SortCommand(new Task.NameComparator());
+    private SortCommand deadlineSortCommand = new SortCommand(new Task.DeadlineComparator());
+    private SortCommand descriptionSortCommand = new SortCommand(new Task.DescriptionComparator());
+    private SortCommand moduleSortCommand = new SortCommand(new Task.ModuleComparator());
+    private SortCommand workloadSortCommand = new SortCommand(new Task.WorkloadComparator());
 
     @BeforeEach
     public void setUp() {
@@ -108,6 +117,52 @@ class SortCommandTest {
     public void execute_sortedTaskByNumberOfTags_showsSortedList() {
         assertCommandSuccess(new SortCommand(new Task.TagComparator()), model,
             "Sorted all tasks by number of tags.", tagSortedModel);
+    }
+
+    @Test
+    public void equals() {
+        assertEquals(tagSortCommand, new SortCommand(new Task.TagComparator()));
+
+        assertEquals(nameSortCommand, new SortCommand(new Task.NameComparator()));
+
+        assertEquals(deadlineSortCommand, new SortCommand(new Task.DeadlineComparator()));
+
+        assertEquals(descriptionSortCommand, new SortCommand(new Task.DescriptionComparator()));
+
+        assertEquals(moduleSortCommand, new SortCommand(new Task.ModuleComparator()));
+
+        assertEquals(workloadSortCommand, new SortCommand(new Task.WorkloadComparator()));
+
+        assertNotEquals(nameSortCommand, new SortCommand(new Task.TagComparator()));
+
+        assertNotEquals(nameSortCommand, new SortCommand(new Task.DeadlineComparator()));
+
+        assertNotEquals(nameSortCommand, new SortCommand(new Task.DescriptionComparator()));
+
+        assertNotEquals(nameSortCommand, new SortCommand(new Task.ModuleComparator()));
+
+        assertNotEquals(nameSortCommand, new SortCommand(new Task.WorkloadComparator()));
+
+        assertNotEquals(tagSortCommand, new SortCommand(new Task.DeadlineComparator()));
+
+        assertNotEquals(tagSortCommand, new SortCommand(new Task.DescriptionComparator()));
+
+        assertNotEquals(tagSortCommand, new SortCommand(new Task.ModuleComparator()));
+
+        assertNotEquals(tagSortCommand, new SortCommand(new Task.WorkloadComparator()));
+
+        assertNotEquals(deadlineSortCommand, new SortCommand(new Task.DescriptionComparator()));
+
+        assertNotEquals(deadlineSortCommand, new SortCommand(new Task.ModuleComparator()));
+
+        assertNotEquals(deadlineSortCommand, new SortCommand(new Task.WorkloadComparator()));
+
+        assertNotEquals(descriptionSortCommand, new SortCommand(new Task.ModuleComparator()));
+
+        assertNotEquals(descriptionSortCommand, new SortCommand(new Task.WorkloadComparator()));
+
+        assertNotEquals(moduleSortCommand, new SortCommand(new Task.WorkloadComparator()));
+
     }
 
 }
