@@ -36,6 +36,8 @@ public class PersonDetails extends UiPart<Region> {
     @FXML
     private Label school;
     @FXML
+    private Label level;
+    @FXML
     private Label studentPhone;
     @FXML
     private Label address;
@@ -71,6 +73,11 @@ public class PersonDetails extends UiPart<Region> {
             school.setText(person.getSchool().get().fullSchoolName);
         } else {
             school.setText("");
+        }
+        if (person.getLevel().isPresent()) {
+            level.setText(person.getLevel().get().getLevel());
+        } else {
+            level.setText("");
         }
         if (person.getAddress().isPresent()) {
             address.setText(person.getAddress().get().value);

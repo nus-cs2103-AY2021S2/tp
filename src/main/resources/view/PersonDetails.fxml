@@ -65,10 +65,10 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="489.0" minWidth="10.0" prefWidth="489.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="154.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="143.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="124.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="124.0" minHeight="10.0" prefHeight="63.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="154.0" minHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="143.0" minHeight="10.0" prefHeight="47.8" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="124.0" minHeight="10.0" prefHeight="48.00001220703126" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="124.0" minHeight="10.0" prefHeight="47.199987792968756" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label styleClass="cell_big_label" text="Address:" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
@@ -76,7 +76,7 @@
                   <Label styleClass="cell_big_label" text="Contact:" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
                   <Label styleClass="cell_big_label" text="Guardian's" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                      <GridPane.margin>
-                        <Insets top="10.0" />
+                        <Insets top="5.0" />
                      </GridPane.margin></Label>
                   <Label fx:id="address" styleClass="cell_big_label" text="\$address" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <GridPane.margin>
@@ -85,10 +85,21 @@
                      <padding>
                         <Insets left="10.0" />
                      </padding></Label>
-                  <Label fx:id="school" styleClass="cell_big_label" text="\$school" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <Label fx:id="school" styleClass="cell_big_label" text="\$school" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                      <padding>
                         <Insets left="10.0" />
-                     </padding></Label>
+                     </padding>
+                     <GridPane.margin>
+                        <Insets top="5.0" />
+                     </GridPane.margin></Label>
+                  <Label fx:id="level" styleClass="cell_big_label" text="\$level" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets top="25.0" />
+                     </GridPane.margin>
+                  </Label>
                   <Label fx:id="studentPhone" styleClass="cell_big_label" text="\$studentPhone" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                      <GridPane.margin>
                         <Insets top="5.0" />
@@ -98,7 +109,7 @@
                      </padding></Label>
                   <Label fx:id="guardianName" styleClass="cell_big_label" text="\$guardianName" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                      <GridPane.margin>
-                        <Insets top="10.0" />
+                        <Insets top="5.0" />
                      </GridPane.margin>
                      <padding>
                         <Insets left="10.0" />
@@ -106,7 +117,7 @@
                   </Label>
                   <Label fx:id="guardianPhone" styleClass="cell_big_label" text="\$guardianNumber" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                      <GridPane.margin>
-                        <Insets top="35.0" />
+                        <Insets top="25.0" />
                      </GridPane.margin>
                      <padding>
                         <Insets left="10.0" />
@@ -122,7 +133,7 @@
                   </Label>
                   <Label styleClass="cell_big_label" text="Contact:" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                      <GridPane.margin>
-                        <Insets top="30.0" />
+                        <Insets top="25.0" />
                      </GridPane.margin>
                   </Label>
                </children>
