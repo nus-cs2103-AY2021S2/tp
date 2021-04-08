@@ -57,7 +57,29 @@ Given below are my contributions to the project.
     [\#299](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/299) and
     [\#300](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/300)
 
-* **Documentation**:
+* **Contributions to user guide (UG)**:
+  * Standardized UG formatting in initial draft: [\#19](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/19).
+  * Added the section describing the SunRez UI: [\#325](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/325).
+  * Added the initial command parameters section (later revised): [\#279](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/279).
+  * Added feature sections on `history`, `undo`, `redo`, `clear` and data transfer:
+    [\#63](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/63),
+    [\#128](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/128),
+    [\#160](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/160) and
+    [\#163](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/163).
+  * Various other fixes and formatting changes. The comprehensive list is
+    [here](https://github.com/AY2021S2-CS2103-T14-1/tp/pulls?q=is%3Apr+author%3Abenedictkhoomw+ug).
+
+* **Contributions to developer guide (DG)**:
+  * Wrote use cases UC-017, UC-018 and UC-021.
+  * Added manual testing instructions for command history and undo/redo:
+    [\#333](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/333).
+  * Updated [logic component](https://ay2021s2-cs2103-t14-1.github.io/tp/DeveloperGuide.html#logic-component)
+    descriptions and diagrams: [\#TODO]().
+  * Added implementation details and diagrams for command history:
+    [\#109](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/109) and
+    [\#317](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/317).
+  * Added introductory sections explaining audience and diagrams:
+    [\#345](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/345).
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments):
