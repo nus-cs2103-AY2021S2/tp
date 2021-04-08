@@ -9,7 +9,7 @@ nav-text: User Guide
 </p>
 
 <h1 class="post-title">{{ page.title | escape }}</h1>
-<h3 class="post-subtitle">v1.3.1</h3>
+<h3 class="post-subtitle">v1.4</h3>
 
 <div style="page-break-after: always;"></div>
 <br/>
@@ -381,10 +381,10 @@ do not require other input data or header. Note that this feature is only meant 
 
 **Description:** Given that the last valid command from a user is most likely to be repeated during the API development
 & verification process, a special key combination <kbd>ctrl</kbd> + <kbd>up-arrow</kbd> (Windows) / <kbd>cmd</kbd> + 
-<kbd>up-arrow</kbd> (Mac) is available to set the 
+<kbd>up-arrow</kbd> (macOS) is available to set the 
 command box with the last command.
 
-**Format:** <kbd>ctrl</kbd> + <kbd>up-arrow</kbd> (Windows) / <kbd>cmd</kbd> + <kbd>up-arrow</kbd> (Mac)
+**Format:** <kbd>ctrl</kbd> + <kbd>up-arrow</kbd> (Windows) / <kbd>cmd</kbd> + <kbd>up-arrow</kbd> (macOS)
 
 #### 4.3.2 Switch focused component
 
@@ -394,9 +394,9 @@ command box with the last command.
 
 #### 4.3.3 Scroll endpoint list or result display
 
-**Description:** As users may wish to scroll the endpoints in the endpoint list or the responses in result display, the <kbd>Page Up</kbd> and <kbd>Page Down</kbd> keys (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on **MacOS**) are available as options to scroll the 2 components above.
+**Description:** As users may wish to scroll the endpoints in the endpoint list or the responses in result display, the <kbd>Page Up</kbd> and <kbd>Page Down</kbd> keys (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on **macOS**) are available as options to scroll the 2 components above.
 
-**Format:** <kbd>Page Up</kbd> and <kbd>Page Down</kbd> (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on **MacOS**)
+**Format:** <kbd>Page Up</kbd> and <kbd>Page Down</kbd> (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on **macOS**)
 
 #### 4.3.4 Error Messages
 
