@@ -3,8 +3,7 @@
 package dog.pawbook.logic.parser;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ENTITY_ID;
-import static dog.pawbook.commons.core.Messages.MESSAGE_NEGATIVE_ENTITY_ID;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ID_GENERAL;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_EMPTY_STRING;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_NEGATIVE_ID_STRING;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_UNKNOWN_ID_STRING;
@@ -41,13 +40,13 @@ public class ViewCommandParserTest {
     @Test
     public void parse_negativeId_parseException() {
         // Test that negative ID ParseException is thrown
-        assertParseFailure(parser, INVALID_NEGATIVE_ID_STRING, MESSAGE_NEGATIVE_ENTITY_ID);
+        assertParseFailure(parser, INVALID_NEGATIVE_ID_STRING, MESSAGE_INVALID_ID_GENERAL);
     }
 
     @Test
     public void parse_invalidId_parseException() {
         // Test that invalid ID parseException is thrown
-        assertParseFailure(parser, INVALID_UNKNOWN_ID_STRING, MESSAGE_INVALID_ENTITY_ID);
+        assertParseFailure(parser, INVALID_UNKNOWN_ID_STRING, MESSAGE_INVALID_ID_GENERAL);
     }
 
     @Test
