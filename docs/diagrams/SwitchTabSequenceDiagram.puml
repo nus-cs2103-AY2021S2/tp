@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+
+autoactivate on
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":DetailsPanel" as DetailsPanel UI_COLOR
+end box
+
+box Model LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InputParser" as InputParser LOGIC_COLOR
+participant "command:Command" as Command LOGIC_COLOR
+participant "cmdResult:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand()
+
+MainWindow -> LogicManager : execute()
+
+LogicManager -> InputParser : parseCommand()
+
+create Command
+InputParser -> Command
+
+Command --> InputParser : command
+
+InputParser --> LogicManager : command
+
+LogicManager -> Command : execute()
+
+create CommandResult
+Command -> CommandResult : CommandResult(tab)
+
+CommandResult --> Command : cmdResult
+
+Command --> LogicManager : cmdResult
+
+LogicManager --> MainWindow : cmdResult
+
+opt cmdResult.getNewTab() != null
+MainWindow -> DetailsPanel : toggleTab()
+DetailsPanel --> MainWindow
+end
+
+[<-- MainWindow : cmdResult
+
+@enduml

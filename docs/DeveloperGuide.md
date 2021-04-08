@@ -191,17 +191,23 @@ When the program terminates, `themePath` is saved into `UserPrefs` so it can loc
 ### Details panel tab switching
 
 The `DetailsPanel` is used for displaying multiple types of content. We will refer to each type of content as a tab.
-By default, it displays a list of upcoming dates, but it can be toggled to display other tabs as well. 
+By default, it displays a list of upcoming dates, but it can be toggled to display other tabs as well.
 
 #### Implementation
 
-All tabs are contained in the `DetailsPanel` fxml file as elements, and are recorded as enums under [`DetailsPanelTab.java`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/java/seedu/address/commons/core/DetailsPanelTab.java).
+Each tab should have its own respective UI component and an instance of the component should be stored in `DetailsPanel`.
+All tabs should also be recorded as enums under [`DetailsPanelTab`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/java/seedu/address/commons/core/DetailsPanelTab.java).
+Toggling to a new tab is done via the execution of commands.
 
-Toggling to a new tab is done by executing commands. The enum representation of the new tab is stored in the executed
-command's `CommandResult`, which is then parsed by the `MainWindow` UI component. If a new tab is found in `CommandResult`,
-`MainWindow` calls `DetailsPanel#toggleTab()` and `DetailsPanel` will switch to the new tab accordingly.
+1. The user will first enter a command text which requests for the tab to be switched.
+2. The command text will be parsed by `InputParser` and the respective command will be created.
+3. The command will be executed by `LogicManager`, and a `CommandResult` containing information of the new tab to toggle to will be created.
+4. When `MainWindow` receives the `CommandResult`, it will check if there is a new tab to toggle to.
+5. If so, `MainWindow` will execute `DetailsPanel#toggleTab()` and `DetailsPanel` will update its display accordingly.
 
-[comment]: <> (Todo: add sequence diagram)
+The sequence diagram below depicts the execution path when the user enters a command which requests for the tab to be switched.
+
+![SwitchTabSequenceDiagram](images/SwitchTabSequenceDiagram.png)
 
 ### Add Picture
 
@@ -215,7 +221,7 @@ FriendDex allows users to add a picture to their contact. This section details t
 4. A `Picture` object will then be created, storing the file path of the copied image file.
 5. Lastly, it will be attached to the `Person` being edited and saved to `Model`.
 
-The below sequence diagram depicts the execution path when a `AddPictureCommand` is executed.
+The sequence diagram below depicts the execution path when a `AddPictureCommand` is executed.
 
 ![AddPictureSequenceDiagram](images/AddPictureSequenceDiagram.png)
 
