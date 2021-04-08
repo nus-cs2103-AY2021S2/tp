@@ -125,13 +125,14 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 
 :bulb:**Tips:** <br>
 
-* `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional.
+* `n/NAME p/PHONE` are compulsory fields that must be provided. **Phone can uniquely identify a student.** i.e. Students cannot share the same phone number, while duplicate names are allowed.
+  
+* `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional which can be added now with `add` command or later with `edit` command.
 
 * Education levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
   `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `graduated`.
   They cover the education levels in Primary School, Secondary School and Junior College, when students are more likely to need private tution. 
   For more details, see the [Field Format Summary](#field-format-summary) below.
-
 
 * Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
 
@@ -186,6 +187,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 * At least one of the optional fields must be provided.
   
 * Existing values will be updated to the input values.
+
+* Optional fields which were not available when a student's contact was initially saved in TutorsPet can be added in.
 
 * Education levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
   `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `graduated`.
