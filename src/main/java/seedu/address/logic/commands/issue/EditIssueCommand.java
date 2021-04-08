@@ -67,8 +67,9 @@ public class EditIssueCommand extends Command {
      * Creates an EditIssueCommand to edit the specified issue at {@code targetIndex} to the new Issue described by
      * {@code editIssueDescriptor}
      *
-     * @param index               of the issue in the filtered issue list to edit
-     * @param editIssueDescriptor details to edit the issue with
+     * @param index               Index of the issue in the filtered issue list to edit
+     * @param editIssueDescriptor Description of the updated issue
+     * @throws NullPointerException If {@code index} or {@code editIssueDescriptor} is null.
      */
     public EditIssueCommand(Index index, EditIssueDescriptor editIssueDescriptor) {
         requireNonNull(index);
@@ -78,6 +79,14 @@ public class EditIssueCommand extends Command {
         this.editIssueDescriptor = new EditIssueDescriptor(editIssueDescriptor);
     }
 
+    /**
+     * Executes an EditIssuecommand to replace a targeted issue with a new issue.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return Result of command execution.
+     * @throws CommandException     If {@code model} is invalid.
+     * @throws NullPointerException If the {@code model} is null.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -194,7 +203,7 @@ public class EditIssueCommand extends Command {
          * Returns an immutable room number.
          * Returns {@code Optional#empty()} if {@code roomNumber} is null.
          *
-         * @return RoomNumber of the issue
+         * @return RoomNumber of the issue.
          */
         public Optional<RoomNumber> getRoomNumber() {
             return Optional.ofNullable(roomNumber);
@@ -211,7 +220,7 @@ public class EditIssueCommand extends Command {
          * Returns an immutable description.
          * Returns {@code Optional#empty()} if {@code description} is null.
          *
-         * @return Description of the issue
+         * @return Description of the issue.
          */
         public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
@@ -228,7 +237,7 @@ public class EditIssueCommand extends Command {
          * Returns an immutable timestamp.
          * Returns {@code Optional#empty()} if {@code timestamp} is null.
          *
-         * @return Timestamp of the issue
+         * @return Timestamp of the issue.
          */
         public Optional<Timestamp> getTimestamp() {
             return Optional.ofNullable(timestamp);
@@ -245,7 +254,7 @@ public class EditIssueCommand extends Command {
          * Returns an immutable status.
          * Returns {@code Optional#empty()} if {@code status} is null.
          *
-         * @return Status of the issue
+         * @return Status of the issue.
          */
         public Optional<Status> getStatus() {
             return Optional.ofNullable(status);
@@ -262,7 +271,7 @@ public class EditIssueCommand extends Command {
          * Returns an immutable status.
          * Returns {@code Optional#empty()} if {@code status} is null.
          *
-         * @return Category of the issue
+         * @return Category of the issue.
          */
         public Optional<Category> getCategory() {
             return Optional.ofNullable(category);
@@ -279,7 +288,9 @@ public class EditIssueCommand extends Command {
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * {@code Optional#empty()} if {@code tags} is null.
+         *
+         * @return Optional set of tags
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();

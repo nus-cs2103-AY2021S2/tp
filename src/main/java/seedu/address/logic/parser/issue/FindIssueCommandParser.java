@@ -23,10 +23,10 @@ public class FindIssueCommandParser implements Parser<FindIssueCommand> {
      * Parses the given {@code String} of arguments in the context of the FindIssueCommand
      * and returns a FindIssueCommand object for execution.
      *
-     * @param args the argument string
-     * @return {@code FindIssueCommand} with the specified arguments
-     * @throws ParseException       if the user input does not conform the expected format
-     * @throws NullPointerException if args is null
+     * @param args The argument string.
+     * @return {@code FindIssueCommand} with the specified arguments.
+     * @throws ParseException       If the user input does not conform the expected format.
+     * @throws NullPointerException If args is null.
      */
     public FindIssueCommand parse(String args) throws ParseException {
         requireNonNull(args);

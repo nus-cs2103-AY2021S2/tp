@@ -33,14 +33,24 @@ public class DeleteIssueCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates a DeleteIssueCommand to delete the specified issue at {@code targetIndex}
+     * Creates a DeleteIssueCommand to delete the specified issue at {@code targetIndex}.
      *
-     * @param targetIndex of the issue in the filtered issue list to delete
+     * @param targetIndex Target index of the issue in the filtered issue list to delete.
+     * @throws NullPointerException If {@code targetIndex} is null.
      */
     public DeleteIssueCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Executes an DeleteIssuecommand to delete a targeted issue.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return Result of command execution.
+     * @throws CommandException     If {@code model} is invalid.
+     * @throws NullPointerException If the {@code model} is null.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

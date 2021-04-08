@@ -235,8 +235,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a issue to the address book.
-     * The issue must not already exist in the address book.
+     * Adds a issue to SunRez.
+     * The issue must not already exist in SunRez.
      */
     public void addIssue(Issue issue) {
         issues.add(issue);
@@ -245,22 +245,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given issue {@code target} in the list with
      * {@code editedIssue}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in SunRez.
      * The issue identity of {@code editedIssue} must not be the same as another
-     * existing issue in the address book.
+     * existing issue in SunRez.
+     *
+     * @throws NullPointerException If {@code target} or {@code editedIssue} is null
      */
     public void setIssue(Issue target, Issue editedIssue) {
-        requireNonNull(editedIssue);
-
         issues.setIssue(target, editedIssue);
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this SunRez.
+     * {@code key} must exist in SunRez.
      *
-     * @param key issue to be removed
-     * @throws NullPointerException if {@code key} is null
+     * @param key Issue to be removed.
+     * @throws NullPointerException If {@code key} is null.
      */
     public void removeIssue(Issue key) {
         issues.remove(key);

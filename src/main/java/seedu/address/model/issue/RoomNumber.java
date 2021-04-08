@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an issue's room number in SunRez. Guarantees: immutable; is valid
- * as declared in {@link #isValidRoomNumber(String)}
+ * as declared in {@link #isValidRoomNumber(String)}.
  */
 public class RoomNumber {
 
@@ -31,8 +31,8 @@ public class RoomNumber {
     /**
      * Returns true if a given string is a valid room number.
      *
-     * @param test string to check
-     * @return {@code True} if test is valid
+     * @param test String to check.
+     * @return {@code True} If test is valid.
      */
     public static boolean isValidRoomNumber(String test) {
         return test.matches(VALIDATION_REGEX);

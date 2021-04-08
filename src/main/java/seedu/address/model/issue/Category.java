@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an issue's category in SunRez. Guarantees: immutable; is valid as
- * declared in {@link #isValidCategory(String)}
+ * declared in {@link #isValidCategory(String)}.
  */
 public class Category {
 
@@ -36,8 +36,8 @@ public class Category {
     /**
      * Returns true if a given string is a valid category.
      *
-     * @param test string to check
-     * @return {@code True} if test is valid
+     * @param test String to check.
+     * @return {@code True} if test is valid.
      */
     public static boolean isValidCategory(String test) {
         return test.matches(VALIDATION_REGEX);

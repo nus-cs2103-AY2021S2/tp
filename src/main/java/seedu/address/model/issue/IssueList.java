@@ -16,7 +16,7 @@ import seedu.address.model.room.Room;
 
 /**
  * A list of issues that does not allow nulls.
- * <p>
+ *
  * Supports a minimal set of list operations.
  */
 public class IssueList implements Iterable<Issue> {
@@ -57,9 +57,9 @@ public class IssueList implements Iterable<Issue> {
      * The issue identity of {@code editedIssue} must not be the same as another
      * existing issue in the list.
      *
-     * @param target      issue to be replaced
-     * @param editedIssue the new issue to replace {@code target}
-     * @throws NullPointerException if {@code target} or {@editedIssue} is null
+     * @param target      Issue to be replaced.
+     * @param editedIssue The new issue to replace {@code target}.
+     * @throws NullPointerException If {@code target} or {@editedIssue} is null.
      */
     public void setIssue(Issue target, Issue editedIssue) {
         assert internalList != null;
@@ -84,8 +84,8 @@ public class IssueList implements Iterable<Issue> {
      * Removes the equivalent issue from the list.
      * The issue must exist in the list.
      *
-     * @param toRemove issue to be removed
-     * @throws NullPointerException if {@code toRemove} is null
+     * @param toRemove Issue to be removed.
+     * @throws NullPointerException If {@code toRemove} is null.
      */
     public void remove(Issue toRemove) {
         assert internalList != null;
@@ -97,10 +97,10 @@ public class IssueList implements Iterable<Issue> {
     }
 
     /**
-     * Replaces the existing issues with the issues from {@code replacement}
+     * Replaces the existing issues with the issues from {@code replacement}.
      *
-     * @param replacement the {@IssueList} to be replaced with
-     * @throws NullPointerException if {@code replacement} is null
+     * @param replacement The {@IssueList} to be replaced with.
+     * @throws NullPointerException If {@code replacement} is null.
      */
     public void setIssues(IssueList replacement) {
         assert internalList != null;
@@ -113,9 +113,9 @@ public class IssueList implements Iterable<Issue> {
      * Replaces the contents of this list with {@code issues}.
      * {@code issues} must not contain duplicate issues.
      *
-     * @param issues to be replaced with
-     * @throws DuplicateIssueException if {@code issues} contains duplicate issues
-     * @throws NullPointerException    if {@code replacement} is null
+     * @param issues List of issues to be replaced with.
+     * @throws DuplicateIssueException If {@code issues} contains duplicate issues.
+     * @throws NullPointerException    If {@code replacement} is null.
      */
     public void setIssues(List<Issue> issues) {
         assert internalList != null;
@@ -131,7 +131,7 @@ public class IssueList implements Iterable<Issue> {
     }
 
     /**
-     * Checks if any issues have the given room associated with it
+     * Checks if any issues have the given room associated with it.
      *
      * @param target Room to check if it has issues associated with it.
      * @return {@code True} if there are issues with the given room associated with it.

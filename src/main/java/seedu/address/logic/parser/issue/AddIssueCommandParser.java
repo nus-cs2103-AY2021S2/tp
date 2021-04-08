@@ -31,7 +31,7 @@ import seedu.address.model.issue.Timestamp;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddIssueCommand object
+ * Parses input arguments and creates a new AddIssueCommand object.
  */
 public class AddIssueCommandParser implements Parser<AddIssueCommand> {
 
@@ -41,10 +41,10 @@ public class AddIssueCommandParser implements Parser<AddIssueCommand> {
      * Parses the given {@code String} of arguments in the context of the AddIssueCommand
      * and returns an AddIssueCommand object for execution.
      *
-     * @param args the argument string
-     * @return {@code AddIssueCommand} with the specified arguments
-     * @throws ParseException       if the user input does not conform the expected format
-     * @throws NullPointerException if args is null
+     * @param args The argument string.
+     * @return {@code AddIssueCommand} with the specified arguments.
+     * @throws ParseException       If the user input does not conform the expected format.
+     * @throws NullPointerException If args is null.
      */
     public AddIssueCommand parse(String args) throws ParseException {
         requireNonNull(args);

@@ -49,16 +49,24 @@ public class AddIssueCommand extends Command {
     private final Issue toAdd;
 
     /**
-     * Creates an AddIssueCommand to add the specified {@code Issue}
+     * Creates an AddIssueCommand to add the specified {@code issue}.
      *
-     * @param issue the issue to add
-     * @throws NullPointerException if {@code issue} is null
+     * @param issue The issue to add.
+     * @throws NullPointerException If {@code issue} is null.
      */
     public AddIssueCommand(Issue issue) {
         requireNonNull(issue);
         toAdd = issue;
     }
 
+    /**
+     * Executes an AddIssuecommand to add an issue.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return Result of command execution.
+     * @throws CommandException     If {@code model} is invalid.
+     * @throws NullPointerException If the {@code model} is null.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

@@ -26,13 +26,22 @@ public class FindIssueCommand extends Command {
     /**
      * Creates a FindIssueCommand with the given predicate used to filter issue list
      *
-     * @param predicate to filter issue list
+     * @param predicate Predicate to filter the issue list.
+     * @throws NullPointerException If {@code predicate} is null
      */
     public FindIssueCommand(RoomNumberOrTagContainsKeywordsPredicate predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;
     }
 
+    /**
+     * Executes an FindIssuecommand that display issues that passes the predicate.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return Result of command execution.
+     * @throws CommandException     If {@code model} is invalid.
+     * @throws NullPointerException If the {@code model} is null.
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

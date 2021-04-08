@@ -13,7 +13,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteIssueCommand object
+ * Parses input arguments and creates a new DeleteIssueCommand object.
  */
 public class DeleteIssueCommandParser implements Parser<DeleteIssueCommand> {
 
@@ -23,10 +23,10 @@ public class DeleteIssueCommandParser implements Parser<DeleteIssueCommand> {
      * Parses the given {@code String} of arguments in the context of the DeleteIssueCommand
      * and returns a DeleteIssueCommand object for execution.
      *
-     * @param args the argument string
-     * @return {@code DeleteIssueCommand} with the specified arguments
-     * @throws ParseException       if the user input does not conform the expected format
-     * @throws NullPointerException if args is null
+     * @param args The argument string.
+     * @return {@code DeleteIssueCommand} with the specified arguments.
+     * @throws ParseException       If the user input does not conform the expected format.
+     * @throws NullPointerException If args is null.
      */
     public DeleteIssueCommand parse(String args) throws ParseException {
         requireNonNull(args);
