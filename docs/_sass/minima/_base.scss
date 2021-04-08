@@ -68,7 +68,13 @@ img {
   vertical-align: middle;
 }
 
-
+/**
+ * Resize Images
+ */
+img.resize {
+  max-width: 100%;
+  vertical-align: middle;
+}
 
 /**
  * Figures
