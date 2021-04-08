@@ -223,7 +223,7 @@ Additionally,  it implements the following operations:
 These operations are exposed in the `Logic` interface by parsing respective `AddReminderCommand`,
 `DeleteReminderCommand` and `EditReminderCommand`.
 
-### [Proposed Budget Feature]
+### [Proposed] Budget Feature
 #### Proposed Implementaion
 The proposed budget feature is to facilitate the user to keep track of the total
 cost of all of his own appointments and whether it is within the budget he has set for
@@ -300,9 +300,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | Tech-savvy User | Add grade records to a digital GradeBook | Keep track of grades I obtained for reference and future study plan          |
 | `* *`   | Careless user   | Edit grade record details               | Correct typos or update the details of my academic records            |
 | `* *`   | User  | Delete outdated grade records                     | Remove past grades if they are no longer needed                    |
-| `* *`   | User  | List all grades                                   | See all existing academic records in my GradeBook               |
+| `* *`   | User  | List all grades                                   | See all existing academic records in my GradeBook      
+| `* *`   | User  | add_budget                                        | Add a personal budget to keep track of
+| `*`     | User  | delete_budget                                     | Delete an existing budget that I have and no longer need
+| `* *`   | User  | edit_budget                                       | Change an existing budget that I have   
+| `* *`   | User  | view_budget                                       | View an existing budget and cost of total appointments of user
 
-*{More to be added}*
 
 ### Use cases
 
@@ -624,6 +627,60 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
     * 3b1. TutorTracker shows an error message
 
   Use case resumes at step 1.
+
+<hr/>
+
+**Use Case UC0018: Add a budget**
+
+**MSS**
+
+1. User wants to add a personal budget to keep track of.
+2. User keys in command to add budget of an amount he wants. 
+
+**Extensions** 
+* 2a. A budget is already present.
+    * 2a1. TutorTracker flags out an error.
+* 2b. Invalid budget amount is added, for example a negative amount.
+    * 2b1. TutorTracker flags out the error.
+    
+<hr/>
+
+**Use Case UC0019: Edit a budget**
+
+**MSS**
+
+1. User wants to change the existing budget.
+2. User requests to change the budget to an amount he wants.
+
+**Extensions**
+* 2a. A budget is already present.
+    * 2a1. TutorTracker flags out an error.
+
+<hr/>
+    
+**Use Case UC0020: Delete a budget**
+
+**MSS**
+
+1. User does not want to do with a budget.
+2. User requests to delete budget. 
+
+**Extensions** 
+* 2a. There is no existing budget.
+    * 2a1. TutorTracker flags out an error.
+
+<hr/>
+
+**Use Case UC0021: View a budget**
+
+**MSS**
+
+1. User does not want view an existing budget.
+2. User requests to view budget.
+
+**Extensions**
+* 2a. There is no existing budget.
+  * 2a1. TutorTracker flags out an error.
 
 <hr/>
 
