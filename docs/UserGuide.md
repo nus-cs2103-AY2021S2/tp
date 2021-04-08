@@ -148,9 +148,8 @@ Format: `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION]
 [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…`
 
 * Only title is compulsory.
-* Date should be in the format dd/mm/yyyy. For example, 1 December 2021
-  should be expressed as `01/12/2021`, not 1/12/2021. Furthermore, Date should be
-  a day that is after the current day.
+* Date should be in the format dd/mm/yyyy. For example, 1 July 2021
+  should be expressed as `01/07/2021`, not 1/7/2021.
 * Duration should be numeric, contain 2 timings, and should be in 24 hours format with a colon, like `22:30-22:45`.
   Duration can only exist when there is date or recurring schedule. 
 * Description can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>.
@@ -202,30 +201,7 @@ Examples:
 Examples:
 *  `mk n/CS2103 team meeting r/[31/05/2021][mon][weekly]` Adds the task with the title `CS2103 team meeting` to the
    planner and generate upcoming recurring dates that is on `mon` `weekly` up to `31/05/2021`.
-
-
-### Adding date to a task : `edit`
-
-Adds a date to an existing task in the planner
-so that you can have the option to set a deadline to the task or use it for a single day event task.
-
-Format: `edit INDEX [set/DATE]…​`
-Date should only be in the format of dd/mm/yyyy as specified above. 
-
-* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list. 
-The index **must be a positive integer** 1, 2, 3, …​
-* Date field must be provided.
-* Existing values will be updated to the input values.
-* When editing date, the existing dates of the task will be removed i.e adding of date is not cumulative.
-* You can remove all the task’s date by typing `set/` without
-  specifying any date after it.
-
-Examples:
-*  `edit 1 set/13/05/2021` Adds a date to the 1st task on the list which is to be `13 May 2021`.
-*  `edit 2 set/` Clears the existing date of 2nd task on the list.
-*  `edit 1 r/[23/12/2021][mon][biweekly]` modifies the first task in the planner and generate upcoming recurring dates 
-   that is on `mon` `biweekly` up to `23/12/2021`.
-
+   
 ### Postpone a task's date : `snooze`
 
 Postpones your task's date by a specified number of days.
@@ -259,15 +235,16 @@ Format: `ls not done`
 
 ### Sort task by date: `sort by a` or `sort by d`
 
-Sort tasks in the list either in ascending dates or descending dates so that users would
+Sort tasks in the displayed list either in ascending dates or descending dates so that users would
 be able to see the task or event nearest to current date or furthest away from current date.
 
 Format: `sort by a` or `sort by d`
 
-* Shows the list of all task.
-* If `sort by a`, task with no deadlines would appear first, 
+* Sorts the displayed list. If `find` command is used before sorting, `sort by a` or `sort by d`
+  will sort the displayed list only. To sort the entire list, make sure to use `ls` before sorting.
+* If `sort by a`, task with no dates would appear last, 
     subsequently task will be ordered in increasing dates. 
-* If `sort by d`, task with no deadlines would appear last, 
+* If `sort by d`, task with no dates would appear first, 
     subsequently task will be ordered in decreasing dates.
 * If two tasks have the same dates, they will be ordered in equal priority.
 

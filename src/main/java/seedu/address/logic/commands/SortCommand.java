@@ -17,7 +17,7 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the task in the planner.\n\n"
             + "Parameters: "
-            + "by a/by b";
+            + "by a/ by d";
 
     public static final String MESSAGE_SUCCESS = "Successfully sorted.";
 
