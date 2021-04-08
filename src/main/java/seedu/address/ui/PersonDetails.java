@@ -56,13 +56,14 @@ public class PersonDetails extends UiPart<Region> {
     public PersonDetails() {
         super(FXML);
         this.person = null;
-        name.setText("Name");
+        name.setText("");
         school.setText("");
         studentPhone.setText("");
         address.setText("");
         guardianName.setText("");
         guardianPhone.setText("");
         studentEmail.setText("");
+        level.setText("");
     }
 
     public void setPerson(Person person) {

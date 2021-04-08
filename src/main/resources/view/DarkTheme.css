@@ -369,3 +369,9 @@
     -fx-text-fill: white;
     -fx-font-size: 18;
 }
+
+.contact_box {
+    -fx-border-color: #3e7b91;
+    -fx-background-color: #424d5f;
+    -fx-border-width: 1;
+}
