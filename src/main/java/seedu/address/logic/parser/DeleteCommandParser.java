@@ -19,7 +19,8 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             Identifier identifier = ParserUtil.parseIdentifier(args);
             return new DeleteCommand(identifier);
         } catch (ParseException pe) {
-            if (pe.getMessage().equals(ParserUtil.MESSAGE_ADDITIONAL_ARTEFACTS)) {
+            if (pe.getMessage().equals(ParserUtil.MESSAGE_ADDITIONAL_ARTEFACTS)
+                    || pe.getMessage().equals(ParserUtil.MESSAGE_EMPTY_IDENTIFIER)) {
                 throw new ParseException(pe.getMessage()
                         + DeleteCommand.MESSAGE_USAGE);
             }

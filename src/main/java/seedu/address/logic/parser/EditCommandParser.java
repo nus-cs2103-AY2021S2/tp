@@ -36,7 +36,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             identifier = ParserUtil.parseIdentifier(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            if (pe.getMessage().equals(ParserUtil.MESSAGE_ADDITIONAL_ARTEFACTS)) {
+            if (pe.getMessage().equals(ParserUtil.MESSAGE_ADDITIONAL_ARTEFACTS)
+                    || pe.getMessage().equals(ParserUtil.MESSAGE_EMPTY_IDENTIFIER)) {
                 throw new ParseException(pe.getMessage()
                         + EditCommand.MESSAGE_USAGE);
             }

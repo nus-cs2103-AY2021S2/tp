@@ -15,7 +15,8 @@ public class DoneCommandParser implements Parser<DoneCommand> {
             Identifier identifier = ParserUtil.parseIdentifier(userInput);
             return new DoneCommand(identifier);
         } catch (ParseException pe) {
-            if (pe.getMessage().equals(ParserUtil.MESSAGE_ADDITIONAL_ARTEFACTS)) {
+            if (pe.getMessage().equals(ParserUtil.MESSAGE_ADDITIONAL_ARTEFACTS)
+                    || pe.getMessage().equals(ParserUtil.MESSAGE_EMPTY_IDENTIFIER)) {
                 throw new ParseException(pe.getMessage()
                         + DoneCommand.MESSAGE_USAGE);
             }

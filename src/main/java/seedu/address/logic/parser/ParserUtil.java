@@ -24,6 +24,8 @@ public class ParserUtil {
     public static final String MESSAGE_NEGATIVE_IDENTIFIER = "Identifier should be non-zero and positive.";
     public static final String MESSAGE_ADDITIONAL_ARTEFACTS = "Identifier contains more than one value. "
             + "Please ensure your command matches with the guide: \n";
+    public static final String MESSAGE_EMPTY_IDENTIFIER = "Identifier was not provided. "
+            + "Please ensure your command matches with the guide: \n";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Identifier} and returns it. Leading and trailing whitespaces will be
@@ -38,6 +40,10 @@ public class ParserUtil {
         // there's likely something wrong with input, e.g. wrong prefix
         if (trimmedIndex.split(" ").length > 1) {
             throw new ParseException(MESSAGE_ADDITIONAL_ARTEFACTS);
+        }
+
+        if (trimmedIndex.length() == 0) {
+            throw new ParseException(MESSAGE_EMPTY_IDENTIFIER);
         }
 
         try {
