@@ -27,13 +27,12 @@ public class VaccinationStatus {
     public VaccinationStatus(String vaccinationStatus) {
         requireNonNull(vaccinationStatus);
         checkArgument(isValidStatus(vaccinationStatus), MESSAGE_CONSTRAINTS);
-        if (vaccinationStatus.equals("vaccinated")) {
+        if (vaccinationStatus.toLowerCase().equals("vaccinated")) {
             status = VaccinationStatusAbbreviation.VACCINATED;
-            textUI = vaccinationStatus;
         } else {
             status = VaccinationStatusAbbreviation.UNVACCINATED;
-            textUI = vaccinationStatus;
         }
+        textUI = status.toString().toLowerCase();
     }
 
     /**
