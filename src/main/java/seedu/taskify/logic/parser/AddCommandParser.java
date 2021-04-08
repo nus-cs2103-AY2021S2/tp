@@ -6,6 +6,7 @@ import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +27,8 @@ import seedu.taskify.model.task.Task;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
-
+    public static final String MESSAGE_GIVEN_DATE_IS_PAST_CURRENT = "The date (and time) for the new task must not "
+            + "be behind the current date (and time)!";
     private static Logger logger = LogsCenter.getLogger(AddCommandParser.class);
 
     /**
@@ -73,6 +75,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         Date date;
         if (arePrefixesPresent(argumentMultimap, PREFIX_DATE)) {
             date = ParserUtil.parseDate(argumentMultimap.getValue(PREFIX_DATE).get());
+            Date currentDate = new Date(LocalDateTime.now());
+            boolean isTaskDateInThePast = date.isBefore(currentDate);
+
+            if (isTaskDateInThePast) {
+                throw new ParseException(MESSAGE_GIVEN_DATE_IS_PAST_CURRENT);
+            }
+
         } else {
             date = Date.endOfToday();
         }

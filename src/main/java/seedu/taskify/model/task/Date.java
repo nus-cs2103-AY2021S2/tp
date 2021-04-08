@@ -22,18 +22,26 @@ public class Date {
     /**
      * Constructs a {@code Date}
      *
-     * @param localDateTime a valid string containing the date and time of the Task
+     * @param dateTimeString a valid string containing the date and time of the Task
      */
-    public Date(String localDateTime) {
-        requireNonNull(localDateTime);
-        checkArgument(isValidDate(localDateTime), MESSAGE_CONSTRAINTS);
-        this.localDateTime = LocalDateTime.parse(localDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        this.value = localDateTime;
+    public Date(String dateTimeString) {
+        requireNonNull(dateTimeString);
+        checkArgument(isValidDate(dateTimeString), MESSAGE_CONSTRAINTS);
+        this.localDateTime = LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        this.value = dateTimeString;
     }
 
-    public LocalDateTime getLocateDateTime() {
-        return this.localDateTime;
+    /**
+     * Constructs a {@code Date} using a {@link LocalDateTime} instead
+     */
+    public Date(LocalDateTime localDateTime) {
+        requireNonNull(localDateTime);
+        checkArgument(isValidDate(localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))),
+                MESSAGE_CONSTRAINTS);
+        this.localDateTime = localDateTime;
+        this.value = localDateTime.toString();
     }
+
 
     /**
      * Returns if a given string is a valid date.
@@ -60,6 +68,15 @@ public class Date {
         String todayDateString = LocalDate.now().toString();
         String todayDateTimeString = todayDateString + " " + END_OF_DAY_TIME;
         return new Date(todayDateTimeString);
+    }
+
+    /**
+     * Checks if this Date is chronologically behind the {@code secondDate}
+     * @param secondDate the Date being compared with
+     * @return true if this Date is chronologically behind {@code secondDate}
+     */
+    public boolean isBefore(Date secondDate) {
+        return localDateTime.isBefore(secondDate.getLocalDateTime());
     }
 
     @Override

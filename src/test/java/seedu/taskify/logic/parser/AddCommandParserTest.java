@@ -19,12 +19,15 @@ import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CS2
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_NAME_CS2103T_TP;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_CS2103T_TP;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_DEBUGGING;
+import static seedu.taskify.logic.parser.AddCommandParser.MESSAGE_GIVEN_DATE_IS_PAST_CURRENT;
 import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.taskify.testutil.TypicalTasks.BOB;
 import static seedu.taskify.testutil.TypicalTasks.CS2103T_IP;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
@@ -126,5 +129,15 @@ public class AddCommandParserTest {
         Task expectedTask = new TaskBuilder().withName("TestName").withDescription("TestDesc")
                 .withDate(expectedDateString).build();
         assertParseSuccess(parser, args, new AddCommand(expectedTask));
+    }
+
+    @Test
+    public void parse_dateIsPastCurrentDate_throwsParseException() {
+        String args = " n/TestName desc/TestDesc date/2020-04-13 11:30";
+        assertParseFailure(parser, args, MESSAGE_GIVEN_DATE_IS_PAST_CURRENT);
+
+        String args2 = " n/TestName desc/TestDesc date/";
+        args2 += LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        assertParseFailure(parser, args2, MESSAGE_GIVEN_DATE_IS_PAST_CURRENT);
     }
 }

@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.testutil.Assert.assertThrows;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -15,13 +17,18 @@ class DateTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Date(null));
+        assertThrows(NullPointerException.class, () -> new Date((String) null));
     }
 
     @Test
     public void constructor_invalidDate_throwsIllegalArgumentException() {
         String invalidDate = "";
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDate));
+    }
+
+    @Test
+    public void overloadedConstructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Date((LocalDateTime) null));
     }
 
     @ParameterizedTest
