@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.commons.core.CssSettings;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -63,6 +64,16 @@ public class ModelManager implements Model {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
+    }
+    @Override
+    public CssSettings getCssSettings() {
+        return userPrefs.getCssSettings();
+    }
+
+    @Override
+    public void setCssSettings(CssSettings cssSettings) {
+        requireNonNull(cssSettings);
+        userPrefs.setCssSettings(cssSettings);
     }
 
     @Override
@@ -143,11 +154,6 @@ public class ModelManager implements Model {
     @Override
     public void sortByName(boolean isAscending) {
         addressBook.sortByName(isAscending);
-    }
-
-    @Override
-    public void toggleBlacklist(Person target) {
-        setPerson(target, target.toggleBlacklistStatus());
     }
 
     //=========== Filtered Person List Accessors =============================================================

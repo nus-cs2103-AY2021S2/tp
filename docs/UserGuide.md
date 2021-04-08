@@ -196,7 +196,8 @@ Example:
 
 ### Collect details from contacts : `collect`
 
-Collects the specified details of all contacts in the displayed person list.
+Collects the specified details of all contacts in the displayed person list. This
+is for ease of copying contact details into recipient lists.
 The type of detail is specified by the prefix provided. Details will be separated
 by the given separator, or by a semicolon if unspecified.
 
