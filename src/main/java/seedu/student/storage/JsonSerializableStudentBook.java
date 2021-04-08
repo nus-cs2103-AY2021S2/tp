@@ -23,7 +23,7 @@ class JsonSerializableStudentBook {
     public static final String MESSAGE_DUPLICATE_STUDENT = "Student list contains duplicate student(s).";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "Appointment list contains duplicate appointment(s),";
     public static final String MESSAGE_MISSING_STUDENT = "The student does not exist in the records.";
-    public static final String MESSAGE_INVALID_START_TIME = "Time should be of the form HH:00 or HH:30";
+    public static final String MESSAGE_INVALID_START_TIME = "Time should be a valid time of the form HH:00 or HH:30";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
