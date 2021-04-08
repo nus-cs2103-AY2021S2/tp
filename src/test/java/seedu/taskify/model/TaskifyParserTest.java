@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.taskify.model.task.StatusType;
 import seedu.taskify.model.task.Task;
 import seedu.taskify.model.task.exceptions.DuplicateTaskException;
 import seedu.taskify.testutil.TaskBuilder;
@@ -46,7 +47,7 @@ public class TaskifyParserTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAlice = new TaskBuilder(TASK_1).withTags(VALID_TAG_DEBUGGING)
+        Task editedAlice = new TaskBuilder(TASK_1).withTags(VALID_TAG_DEBUGGING).withStatus(StatusType.UNCOMPLETED)
                                    .build();
         List<Task> newTasks = Arrays.asList(TASK_1, editedAlice);
         TaskifyStub newData = new TaskifyStub(newTasks);
