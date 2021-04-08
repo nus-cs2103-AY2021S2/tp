@@ -57,6 +57,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_ORDER_SUCCESS = "Edited order: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in CakeCollate.";
+    public static final String MESSAGE_NO_CHANGE = "No changes were made.";
 
     private final Index index;
     private final EditOrderDescriptor editOrderDescriptor;
@@ -88,6 +89,10 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);
         }
 
+        if (orderToEdit.equals(editedOrder)) {
+            throw new CommandException(MESSAGE_NO_CHANGE);
+        }
+
         model.setOrder(orderToEdit, editedOrder);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder));
@@ -110,7 +115,8 @@ public class EditCommand extends Command {
         DeliveryDate updatedDeliveryDate =
                 editOrderDescriptor.getDeliveryDate().orElse(orderToEdit.getDeliveryDate());
         DeliveryStatus deliveryStatus = orderToEdit.getDeliveryStatus();
-        Request updatedRequest = orderToEdit.getRequest(); // edit command does not allow editing requests.
+        // Normal edit command does not support editing request but this is here to support test cases for edit command
+        Request updatedRequest = editOrderDescriptor.getRequest().orElse(orderToEdit.getRequest());
 
         return new Order(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedOrderDescriptions,
                 updatedTags, updatedDeliveryDate, deliveryStatus, updatedRequest);
@@ -162,6 +168,7 @@ public class EditCommand extends Command {
             setOrderDescriptions(toCopy.orderDescriptions);
             setTags(toCopy.tags);
             setDeliveryDate(toCopy.deliveryDate);
+            setRequest(toCopy.request);
         }
 
         /**
@@ -236,6 +243,14 @@ public class EditCommand extends Command {
 
         public Optional<DeliveryDate> getDeliveryDate() {
             return Optional.ofNullable(deliveryDate);
+        }
+
+        public void setRequest(Request request) {
+            this.request = request;
+        }
+
+        public Optional<Request> getRequest() {
+            return Optional.ofNullable(request);
         }
 
         @Override

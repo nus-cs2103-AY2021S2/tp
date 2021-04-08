@@ -6,7 +6,7 @@ import static seedu.cakecollate.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
+import java.time.format.ResolverStyle;
 
 
 /**
@@ -27,7 +27,7 @@ public class DeliveryDate implements Comparable<DeliveryDate> {
             + "Today's date is: " + DateTimeFormatter.ofPattern("dd MMM yyyy").format(LocalDate.now()) + "\n"
             + "You have entered: %1$s";
     private static final DateTimeFormatter ACCEPTABLE_FORMATS =
-            DateTimeFormatter.ofPattern("[dd/MM/yyyy][dd-MM-yyyy][dd.MM.yyyy][dd MMM yyyy]");
+            DateTimeFormatter.ofPattern("[dd/MM/uuuu][dd-MM-uuuu][dd.MM.uuuu][dd MMM uuuu]");
 
     public final LocalDate value;
 
@@ -61,7 +61,7 @@ public class DeliveryDate implements Comparable<DeliveryDate> {
     public static boolean isValidFormat(String test) {
         // Test if date is valid using LocalDate.parse()
         try {
-            LocalDate.parse(test, ACCEPTABLE_FORMATS);
+            LocalDate.parse(test, ACCEPTABLE_FORMATS.withResolverStyle(ResolverStyle.STRICT));
         } catch (DateTimeParseException e) {
             return false;
         }
