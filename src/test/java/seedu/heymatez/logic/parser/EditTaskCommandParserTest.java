@@ -1,6 +1,7 @@
 package seedu.heymatez.logic.parser;
 
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DEADLINE_FORMAT;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_PRIORITY;
 import static seedu.heymatez.logic.commands.CommandTestUtil.ASSIGNEE_TASK2;
@@ -82,8 +83,8 @@ public class EditTaskCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid deadline
-        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC,
-                 Deadline.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, MESSAGE_INVALID_TASK_DEADLINE_FORMAT
+                + Deadline.MESSAGE_CONSTRAINTS);
 
         //invalid priority
         assertParseFailure(parser, "1" + INVALID_PRIORITY_DESC, MESSAGE_INVALID_TASK_PRIORITY
