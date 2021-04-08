@@ -57,7 +57,7 @@ activate CheckCommand
 CheckCommand -> ModelManager : isCorrectAttempt("o")
 activate ModelManager
 
-ModelManager --> CheckCommand : result
+ModelManager --> CheckCommand :
 deactivate ModelManager
 
 create CommandResult
