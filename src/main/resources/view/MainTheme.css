@@ -194,8 +194,8 @@
 .cell_location_header {
     -fx-font-family: "Helveticish";
     -fx-font-weight: bold;
-    -fx-font-size: 20px;
-    -fx-text-fill: #e9e2db;
+    -fx-font-size: 16px;
+    -fx-text-fill: black;
 }
 
 .location_box {
@@ -330,13 +330,13 @@
     -fx-background-radius: 0;
     -fx-padding: 2 2 2 2;
 
-    -fx-min-width: 8;
-    -fx-pref-width: 8;
-    -fx-max-width: 10;
+    -fx-min-width: 12;
+    -fx-pref-width: 12;
+    -fx-max-width: 12;
 
-    -fx-min-height: 8;
-    -fx-pref-height: 8;
-    -fx-max-height: 10;
+    -fx-min-height: 12;
+    -fx-pref-height: 12;
+    -fx-max-height: 12;
 }
 
 .scroll-bar .thumb {
@@ -379,7 +379,7 @@
 }
 
 .table-view .column-header .label {
-    -fx-text-fill: derive(#1d1d1d, 30%);
+    -fx-text-fill: black;
     -fx-font-size: 14;
 }
 
