@@ -42,7 +42,7 @@ public class Birthdate {
     }
 
     public static boolean isValidBirthdate (LocalDate test) {
-        return test.isBefore(LocalDate.now()) && test.isAfter(LocalDate.parse("1900-01-01"));
+        return test.isAfter(LocalDate.parse("1900-01-01").minusDays(1)) && test.isBefore(LocalDate.now().plusDays(1));
     }
 
 
