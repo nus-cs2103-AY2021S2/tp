@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.time.temporal.ChronoUnit;
 
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.testutil.TaskBuilder;
 
 public class DeadlineDateInRangePredicateTest {
-    private static final DateTimeFormatter dateDateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static final DateTimeFormatter dateDateFormatter = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+            .withResolverStyle(ResolverStyle.STRICT);
 
     @Test
     public void equals() {
