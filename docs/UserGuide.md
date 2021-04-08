@@ -216,6 +216,8 @@ Examples
  Format: 'setTimetable DATE'
  
  * DATE must be a string strictly following the format `YYYY-mm-dd`
+ * If no date is specified, for example `setTimetable` without DATE parameter is keyed in, it will default set to
+ today's current date.
  
  
 ### Profile picture:
