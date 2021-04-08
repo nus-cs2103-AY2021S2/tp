@@ -3,11 +3,6 @@ package seedu.smartlib.model.record;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.testutil.TypicalModels.RECORD_A;
-import static seedu.smartlib.testutil.TypicalModels.RECORD_C;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
