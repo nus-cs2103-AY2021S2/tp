@@ -7,5 +7,5 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "frienddex.json"
+  "friendDexFilePath" : "frienddex.json"
 }
