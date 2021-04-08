@@ -34,7 +34,7 @@ public class UniqueNoteList implements Iterable<Note> {
      */
     public boolean contains(Note toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameNote);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
