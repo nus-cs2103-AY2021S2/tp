@@ -236,7 +236,6 @@ The following activity diagram summarizes the general workflow of `check` comman
 The following sequence diagram shows how the `check` command works:
 ![CheckCommandSequenceDiagram](images/CheckCommandSequenceDiagram.png)
 
-
 #### Quiz Scoring
 
 The quiz can be scored for each individual quiz session. The scoring data will be written into the storage file
