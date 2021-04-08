@@ -3,37 +3,30 @@ layout: page
 title: Jiaxiang's Project Portfolio Page
 ---
 
-## Project: SOChedule (to be continued)
+## Project: SOChedule (YET TO BE UPDATED)
 
-### Overview
 SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
 
-### Summary of contributions
 Given below are my contributions to the project.
 
-* **New Feature 1**: Added the ability to mark multiple tasks as done.
+* **New Feature**: Added the ability to undo/redo previous commands.
     * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
     * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
     * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
     * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
-* **New Feature 2**: Added the ability to mark a completed task as uncompleted.
+* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
-* **New Feature 3**: Added the ability to help users find their schedule.
-  
-
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=litone01&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19)
+* **Code contributed**: [RepoSense link]()
 
 * **Project management**:
     * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Contributed to the transition of previous AddressBook3 codebase to current needs, mainly about Logic 
-    (Pull requests [\#87](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/87), [\#89](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/89), 
-    [\#90](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/90), [\#118](https://github.com/AY2021S2-CS2103-W16-1/tp/pull/118))
-  * Updated the function of editing an existing task (Pull requests [])
-  
+    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
+    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `delete` and `find` [\#72]()
