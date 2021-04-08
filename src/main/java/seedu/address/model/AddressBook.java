@@ -226,16 +226,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
-     * Adds food intake object into the food intake list.
+     * Adds a FoodIntake to the FoodIntakeList given the date and Food
+     * The FoodIntake's Food name may be appended with a duplicate count.
      *
-     * @param date date of food intake object
-     * @param food food item of food intake object
+     * @param date date of Food intake object
+     * @param food food item of Food intake object
+     *
+     * @return Food that was successfully added to the FoodIntakeList.
      */
-    public void addFoodIntake(LocalDate date, Food food) {
-        foodIntakeList.addFoodIntake(new FoodIntake(date, food));
+    public Food addFoodIntake(LocalDate date, Food food) {
+        return foodIntakeList.addFoodIntake(new FoodIntake(date, food));
     }
 
     /**

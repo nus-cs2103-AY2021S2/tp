@@ -162,7 +162,7 @@ public class AddFoodItemCommandTest {
         }
 
         @Override
-        public void addFoodIntake(LocalDate date, Food food) {
+        public Food addFoodIntake(LocalDate date, Food food) {
             throw new AssertionError("This method should not be called.");
         }
 

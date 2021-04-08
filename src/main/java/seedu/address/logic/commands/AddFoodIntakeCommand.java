@@ -24,12 +24,13 @@ public class AddFoodIntakeCommand extends Command {
             + "3. Input food intake (For existing food items, using different nutrient value(s))\n"
             + "Command usage: food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS\n";
 
-    public static final String MESSAGE_SUCCESS = "Success adding food item (";
-
     public static final String MESSAGE_FAILURE_CREATE_FOOD_REQ = "Suggested food item not found. Please append at "
             + "least 1 nutrient value to add the food item. (Eg. c/CARBOS(g) or f/FATS(g) or p/PROTEINS(g) ";
 
-    public static final String MESSAGE_SUCCESS_FOOD_UPDATE = "Successfully edited food value to: ";
+    public static final String MESSAGE_SUCCESS_FOOD_UPDATE = "For your convenience, "
+            + "we have also updated the nutrient values in your food list.";
+
+    public static final String MESSAGE_SUCCESS_FOODINTAKE_ADD = "Successfully recorded food intake";
 
     private final LocalDate date;
 
@@ -49,7 +50,7 @@ public class AddFoodIntakeCommand extends Command {
         int index = model.getUniqueFoodList().getFoodItemIndex(this.tempFoodDescriptor.getName().get());
         boolean skipEditCheck = false;
 
-        //Food does not exist in Unique Food List, hence add the food item in.
+        //Food does not exist in Unique Food List, add to Unique Food List
         if (index == -1) {
             Food newFood = createNewFood(this.tempFoodDescriptor);
             model.addFoodItem(newFood);
@@ -62,15 +63,21 @@ public class AddFoodIntakeCommand extends Command {
         if (!skipEditCheck && (this.tempFoodDescriptor.getCarbos().isPresent()
                 || this.tempFoodDescriptor.getFats().isPresent()
                 || this.tempFoodDescriptor.getProteins().isPresent())) {
-            Food edittedFood = editCurrentFood(food, tempFoodDescriptor);
-            model.getUniqueFoodList().getFoodList().set(index, edittedFood);
-            model.addFoodIntake(this.date, edittedFood);
-            return new CommandResult(MESSAGE_SUCCESS_FOOD_UPDATE + edittedFood + ".\n"
-                    + MESSAGE_SUCCESS + edittedFood + ") into food intake list.");
+
+            Food editedFood = editCurrentFood(food, tempFoodDescriptor);
+            model.getUniqueFoodList().getFoodList().set(index, editedFood);
+
+            Food addedFood = model.addFoodIntake(this.date, editedFood);
+            String updateFoodIntakeList = model.getFoodIntakeList().getFoodIntakeListByDate(date);
+
+            return new CommandResult(MESSAGE_SUCCESS_FOODINTAKE_ADD + ": \n"
+                    + addedFood + "\n\n" + MESSAGE_SUCCESS_FOOD_UPDATE + "\n\n" + updateFoodIntakeList);
         }
 
-        model.addFoodIntake(this.date, food);
-        return new CommandResult(MESSAGE_SUCCESS + food + ") into food intake list.");
+        Food addedFood = model.addFoodIntake(this.date, food);
+        String updateFoodIntakeList = model.getFoodIntakeList().getFoodIntakeListByDate(date);
+
+        return new CommandResult(MESSAGE_SUCCESS_FOODINTAKE_ADD + ": \n" + addedFood + "\n\n" + updateFoodIntakeList);
     }
 
     /**

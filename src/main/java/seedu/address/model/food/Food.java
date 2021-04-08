@@ -9,7 +9,7 @@ public class Food {
     public static final double FAT_MULTIPLIER = 9; //Conversion to KCAL
     public static final String VALIDATION_WHITESPACE_REGEX = "[^\\s].*";
     public static final String VALIDATION_CHAR_REGEX = "[a-zA-Z0-9\\s]*";
-    public static final String VALIDATION_CHAR_REGEX_IMPORT = "[a-zA-Z0-9 ]*";
+    public static final String VALIDATION_CHAR_REGEX_IMPORT = "[a-zA-Z0-9# ]*";
     public static final String VALIDATION_POSITIVE_DOUBLE_REGEX = "(\\d*\\.?\\d+)";
     public static final String MESSAGE_CONSTRAINTS = "Food name can take only alphanumeric character "
             + "and it should not be empty.";

@@ -15,6 +15,7 @@ title: User Guide
 * [Introduction](#introduction)
 * [Understanding the User Guide](#understanding-the-user-guide)
 * [Quick start](#quick-start)
+* [Date format](#date-format)
 * [Features](#features)
 * [1. Body Mass Index (BMI) Tracker](#1-body-mass-index-bmi-tracker)
   * [1.1. Input weight, height and ideal weight](#11-input-weight-height-and-ideal-weight)
@@ -75,9 +76,9 @@ To make browsing the user guide more pleasant for you, here are some of the symb
 Legend | Description
 -------|-------------
 `Inline code` | Commands and user input
-[💡] | Tip - Extra information that may be useful
-[❕] | Note - Important things to take note of
-[❌] | Warning - Be extra careful with these
+<span class="alert alert-inline alert-tip">💡 <strong>Tip</strong></span> | Tip - Extra information that may be useful
+<span class="alert alert-inline alert-note">✏️ <strong>Note</strong></span> | Note - Important things to take note of
+<span class="alert alert-inline alert-warning">⚠️ <strong>Warning</strong></span> | Warning - Be extra careful with these
 
 ## Quick start
 
@@ -114,6 +115,19 @@ Legend | Description
 
 ---
 
+## Date format
+DietLAH! uses the following date format for command inputs: `d MMM yyyy` which is clearer to interpret and reduces the chances of typos. Refer to the table below for more information:
+
+Legend | Description
+-------|-------------
+d | Day in the calendar month, ranging from 0 - 31, without leading zeroes
+MMM | 3-letter textual representation of a month in the calendar year, ranging from Jan - Dec, case sensitive
+yyyy | Numerical 4-digit representation of a year in the calendar, e.g. 2021
+
+Some example date inputs: `3 Jan 2021`, `21 Feb 2021`, `30 Mar 2021`
+
+---
+
 ## Features
 
 ---
@@ -126,7 +140,9 @@ When you first launch DietLAH!, you will be prompted to enter your particulars.
 
 DietLAH! uses this information to provide personalized recommendations based on your personal goals and current characteristics.
 
-❕ **Note:** You need to enter this command before all other commands will work!
+<div class="alert alert-note">
+    ✏️ <strong>Note:</strong> You need to enter this command before all other commands will work!
+</div>
 
 **Command Format:** `bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
 
@@ -240,7 +256,9 @@ Save food items you frequently consume, so you don't have to re-enter them every
 
 **Example:** `food_add n/tomato c/10 f/10 p/10`
 
-❕ **Note:** Food names must be unique.
+<div class="alert alert-note">
+  ✏️ <strong>Note:</strong> Food names must be unique.
+</div>
 
 **Expected output:**
 
@@ -256,9 +274,13 @@ Update food items in your food list with new nutrition values.
 
 **Example:** `food_update n/tomato c/20 f/30 p/40`
 
-❕ **Note:** Ensure that the food item exists in the application.
+<div class="alert alert-note">
+  ✏️ <strong>Note:</strong> Ensure that the food item exists in the application.
+</div>
 
-💡 **Tip:** Not all nutrient fields are compulsory. Save time from having to re-enter data and only include fields you wish to update!
+<div class="alert alert-tip">
+💡 <strong>Tip:</strong> Not all nutrient fields are compulsory. Save time from having to re-enter data and only include fields you wish to update!
+</div>
 
 **Expected output:**
 
@@ -288,7 +310,9 @@ Deletes the specified food item.
 
 **Example:** `food_delete n/tomato`
 
-❌ **Warning:** Deletion of a food item will not affect older food intake item records with similar name.
+<div class="alert alert-warning">
+  ⚠️ <strong>Warning</strong> Deletion of a food item will not affect older food intake item records with similar name.
+</div>
 
 **Expected output:**
 
@@ -300,10 +324,13 @@ Deletes the specified food item.
 
 For tracking your diet plan progress, you are encouraged to record your daily food intake. For your convenience, there are a few ways to input a food intake. Refer to the different scenarios outlined below!
 
-❕ **Note:** If there are multiple food intakes with the same date and name, the food name will be automatically renamed to include a duplicate count for easy identification. E.g. Chicken rice, Chicken rice 2
+<div class="alert alert-note">
+  ✏️ <strong>Note:</strong> If there are multiple food intakes with the same date and name, the food name will be <strong>automatically renamed</strong> to include a duplicate count for easy identification. This is because there can be multiple food intakes for the same food in the given day, and they may contain different nutrient values. <br/><br/>
+E.g. when you record two 'Chicken rice' in the food intake, they will appear as Chicken rice and Chicken rice #2 respectively.
+</div>
 
 
-### 3.5.1 Input food intake (For new food items that are not created before)
+#### 3.5.1 Input food intake (For new food items that are not created before)
 
 Record your food intake for the specified date with a new food item not currently in your food list. The food will also be added to your food list for your convenience!
 
@@ -311,7 +338,9 @@ Record your food intake for the specified date with a new food item not currentl
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
 
-❕ **Note:** At least one nutrient value is required to create new food item. If a particular nutrient value is not provided, it will be set to 0 by default.
+<div class="alert alert-note">
+  ✏️ <strong>Note:</strong> At least one nutrient value is required to create new food item. If a particular nutrient value is not provided, it will be set to 0 by default.
+</div>
 
 **Expected output:**
 
@@ -320,7 +349,7 @@ Record your food intake for the specified date with a new food item not currentl
 </p>
 
 
-### 3.5.2 Input food intake (For existing food items)
+#### 3.5.2 Input food intake (For existing food items)
 
 Record your food intake for the specified date using an existing food from your food list. Now you can save time having to re-enter your favourite food!
 
@@ -334,7 +363,7 @@ Record your food intake for the specified date using an existing food from your 
   <img src="images/user-guide/add-food-intake-new-food-item-result.png">
 </p>
 
-### 3.5.3 Input food intake (For existing food items, using different nutrient value(s))
+#### 3.5.3 Input food intake (For existing food items, using different nutrient value(s))
 
 Record your food intake for the specified date using an existing food from your food list, but with different nutrient value(s). The value(s) will also be updated in your food list.
 
@@ -342,7 +371,9 @@ Record your food intake for the specified date using an existing food from your 
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
 
-❕ **Note:** Any nutrient value(s) specified for an existing food item will be overwritten and updated in the food list for future use. Older food intake record(s) associated with the same food item will retain their original values.
+<div class="alert alert-note">
+  ✏️ <strong>Note:</strong> Any nutrient value(s) specified for an existing food item will be overwritten and updated in the food list for future use. Older food intake record(s) associated with the same food item will retain their original values.
+</div>
 
 **Expected output:**
 
@@ -358,7 +389,13 @@ Update the nutrient value(s) of a previously entered food intake given the date 
 
 **Example:** `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
 
-💡 **Tip:** Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged.
+<div class="alert alert-tip">
+  💡 <strong>Tip:</strong> Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged.
+</div>
+
+<div class="alert alert-note">
+  ✏️ <strong>Note:</strong> At least one nutrient value is required.
+</div>
 
 **Expected output:**
 
@@ -373,6 +410,10 @@ Delete a food intake record from the application.
 **Command Format:** `food_intake_delete d/DATE(in d MMM yyyy format) n/FOOD_NAME`
 
 **Example:** `food_intake_delete d/31 Mar 2021 n/tomato`
+
+<div class="alert alert-warning">
+  ⚠️ <strong>Warning</strong> After deletion of a food intake, if there are multiple food intake with the same name, their duplicate count will be reordered.
+</div>
 
 **Expected output:**
 
@@ -420,7 +461,9 @@ Generates a progress report based on your current active diet plan. Your food in
 
 **Command Format:** `progress`
 
-❕ **Note:** An active diet plan must be selected before running this command.
+<div class="alert alert-note">
+  ✏️ <strong>Note:</strong> An active diet plan must be selected before running this command.
+</div>
 
 **Expected output:**
 
