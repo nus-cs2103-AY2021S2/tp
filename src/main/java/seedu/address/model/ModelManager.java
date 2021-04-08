@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.group.GroupHashMap.DEFAULT_GROUP_NAME;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -118,7 +119,6 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         updateUpcomingDates();
     }
 
@@ -146,7 +146,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteGroup(Group target) {
         if (currentGroup.isSameGroup(target)) {
-            setCurrentGroup(null);
+            setCurrentGroup(DEFAULT_GROUP_NAME);
         }
         addressBook.removeGroup(target);
     }
@@ -160,6 +160,11 @@ public class ModelManager implements Model {
     @Override
     public void setCurrentGroup(Group currentGroup) {
         this.currentGroup = currentGroup;
+    }
+
+    @Override
+    public void setCurrentGroup(Name currentGroupName) {
+        this.currentGroup = groupMap.get(currentGroupName);
     }
 
     @Override
@@ -182,14 +187,17 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+        this.setGroup(DEFAULT_GROUP_NAME, groupMap.get(DEFAULT_GROUP_NAME));
     }
 
     @Override
     public void updateFilteredPersonList() {
         if (currentGroup != null) {
             filteredPersons.setPredicate(getCurrentGroupPredicate());
+            this.setGroup(currentGroup.getName(), currentGroup);
         } else {
             filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
+            this.setGroup(DEFAULT_GROUP_NAME, groupMap.get(DEFAULT_GROUP_NAME));
         }
     }
 

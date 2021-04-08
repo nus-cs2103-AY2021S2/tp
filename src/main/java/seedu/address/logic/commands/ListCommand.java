@@ -47,8 +47,7 @@ public class ListCommand extends Command {
                 throw new CommandException(MESSAGE_UNKNOWN_GROUP);
             }
 
-            //this will cause the UI to select the group cell.
-            model.setGroup(group.getName(), group);
+            model.setCurrentGroup(group.getName());
             model.updateFilteredPersonList();
             return new CommandResult(String.format(MESSAGE_SUCCESS_GROUP, group.getName()));
         }

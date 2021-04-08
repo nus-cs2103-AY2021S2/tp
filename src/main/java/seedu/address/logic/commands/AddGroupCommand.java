@@ -30,7 +30,7 @@ public class AddGroupCommand extends Command {
             + PREFIX_NAME + "Close Friends" + " "
             + PREFIX_PERSONS + "1 2 3 4";
 
-    public static final String MESSAGE_ADD_GROUP_SUCCESS = "Added into group %1$s";
+    public static final String MESSAGE_ADD_GROUP_SUCCESS = "Added %1$s into group %2$s";
     public static final String MESSAGE_ADD_DEFAULT_GROUP_ERROR = "Unable to add to the Default Group, %1$s.";
 
     private final List<Index> indexes;

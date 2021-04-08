@@ -169,6 +169,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setCurrentGroup(Name currentGroupName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Predicate<Person> getCurrentGroupPredicate() {
             throw new AssertionError("This method should not be called.");
         }
@@ -253,6 +258,14 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public void setCurrentGroup(Name groupName) {
+        }
+
+        @Override
+        public void updateFilteredPersonList() {
         }
 
         @Override

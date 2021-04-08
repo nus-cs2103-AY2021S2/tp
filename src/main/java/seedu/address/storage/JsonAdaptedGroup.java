@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -67,10 +68,11 @@ public class JsonAdaptedGroup {
                 throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
             }
             Person person;
-            person = personList.stream().filter(x -> x.getName()
-                    .toString().equals(personName))
-                    .findFirst().get();
-            if (person == null) {
+            try {
+                person = personList.stream().filter(x -> x.getName()
+                        .toString().equals(personName))
+                        .findFirst().get();
+            } catch (NoSuchElementException e) {
                 throw new IllegalValueException(MESSAGE_INVALID_PERSON);
             }
             modelPersonNameSet.add(person.getName());
