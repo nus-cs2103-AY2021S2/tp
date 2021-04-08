@@ -7,10 +7,11 @@ import java.util.List;
 import seedu.address.model.issue.Issue;
 
 public class TypicalIssues {
+
     public static final Issue ISSUE_09_100 = new IssueBuilder()
             .withRoomNumber("09-100")
             .withDescription("Chair cylinder exploded")
-            .withTimestamp("2020/12/11 6:53pm")
+            .withTimestamp("2020/12/11 06:53pm")
             .withStatus("pending")
             .withCategory("Furniture")
             .build();
@@ -31,14 +32,14 @@ public class TypicalIssues {
     public static final Issue ISSUE_11_110 = new IssueBuilder()
             .withRoomNumber("11-110")
             .withDescription("Flickering light")
-            .withTimestamp("2021/03/20 8:35am")
+            .withTimestamp("2021/03/20 08:35am")
             .withStatus("closed")
             .withCategory("Electrical")
             .build();
     public static final Issue ISSUE_12_110 = new IssueBuilder()
             .withRoomNumber("12-110")
             .withDescription("Cockroach everywhere")
-            .withTimestamp("2020/08/10 8:48am")
+            .withTimestamp("2020/08/10 08:48am")
             .withStatus("pending")
             .withCategory("Others")
             .build();
