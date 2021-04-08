@@ -3,7 +3,6 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -193,7 +192,7 @@ it back to the `UI` component to display it to the user.
 The following sequence diagram illustrates how the sort operation works:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
-### Find persons by tag and address feature
+### Find persons by other fields
 This feature is built on the current `find` command, which is used to be limited to only finding persons by names. With this change, the format of the `find` command is now modified to `find n/[NAME] t/[TAG] a/[ADDRESS] p/[PHONE] e/[EMAIL] b/[IS_BLACKLISTED] m/[MODE_OF_CONTACT]`.
 This command returns the persons with attributes that matches at least one of the attributes of interest (See User Guide for more details).
 Note that users are only required to provide at least one of the parameters to use this command. In other words, commands such as `find n/Alex` and `find t/autistic` are valid commands.
@@ -222,7 +221,7 @@ The following activity diagram shows what happens when `find` command is execute
     * Cons: It is now not possible to combine both criteria together. More commands to remember. Due to similarity of the commands, they can be confused from one another.
 
 ### Mode of Contact feature
-The mode of contact feature built on the current `AddCommand` class.
+The mode of contact feature is built on the current `AddCommand` class.
 The following is an example usage scenario.
 
 Step 1: The user executes `add n/Bob …/m email …` to add a new Person with the mode of contact as `email`.
@@ -294,7 +293,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire contact list.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
@@ -303,9 +302,48 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
+### Navigating previous commands
 
+#### Implementation
 
+The implementation of this feature is facilitated by `CommandList` class, which is a self-implemented linked list class.
+Whenever a command is executed, regardless of validity, a new node containing the command will be created and added into the linked list.
+The nodes in the linked list are implemented using `CommandNode` class, which keeps track of the following information:
 
+* Command executed
+* A reference to the previous `CommandNode` in the linked list.
+* A reference to the next `CommandNode` in the linked list.
+
+In addition, a `cursor` is introduced in `CommandList` class to help with navigation of the commands.
+The `cursor` keeps track of the current command while users are traversing through the commands using up and down arrow keys.
+Its position will be reset to the newly added `CommandNode`, which is the last node in the list, once a new command has been executed.
+
+When the user presses the up arrow key, there are two possible scenarios:
+* The `cursor` is at the first node in the list.
+  * Nothing happens.
+* The `cursor` is not at the first node in the list.
+  * The `cursor` is moved to the previous node and a new command is retrieved.
+    
+![NavPrevCommandsADUp](images/NavigatingPrevCommandsActivityDiagramUp.png)
+
+Similarly, when the user presses the down arrow key, there are two possible scenarios:
+* The `cursor` is at the last node in the list.
+  * Nothing happens.
+* The `cursor` is not at the last node in the list.
+  * The `cursor` is moved to the next node and a new command is retrieved.
+
+![NavPrevCommandsADUp](images/NavigatingPrevCommandsActivityDiagramDown.png)
+
+#### Design considerations
+
+#### Aspect: Data structure used to model the list of commands
+
+* **Alternative 1 (Current choice)**: Use a self-implemented linked list.
+  * Pros: More control on the implementation. Cursor lies on the element themselves.
+  * Cons: Higher chance of errors in implementation, especially when it comes to addition of nodes.
+* **Alternative 2**: Use the `LinkedList` class provided by Java.
+  * Pros: Easier implementation. Most operations have been provided by Java.
+  * Cons:  Need to devise a workaround to traverse the commands since the `ListIterator` places the cursor in between the elements.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -347,12 +385,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                  |
 | `* * *`  | user                                       | add a new contact                                    |                                                                         |
 | `* * *`  | user                                       | delete a contact                                     | remove entries that I no longer need                                    |
-| `* * *`  | user                                       | find contacts by their attributes                    | 
+| `* * *`  | user                                       | find contacts by their attributes                    | minimize the time spent to find the contacts I need
 | `* * *`  | user                                       | specify preferred mode of contact                    | maximize chance of recipient seeing the information                     |
 | `* * *`  | user                                       | blacklist a contact                                  | reduce dissemination of information to people who do not want it        |
 | `* * *`  | user                                       | undo my operations                                   | minimize time spent to search on the contacts that I need.              |
 | `* * *`  | user                                       | collect specified details of all contacts            | avoid individually copying the details for each contact                 |
-| `* *`    | user                                       | hide private contact details                         | minimize chance of someone else seeing them by accident                 |
 | `* *`    | user with many contacts                    | assign each contact an additional optional remark    | remember contacts more accurately                                       |
 | `* *`    | user with many contacts                    | sort contacts by name                                | locate a contact easily                                                 |
 | `* *`    | user                                       | review my previous commands                          | simply modify them instead of retyping the commands, especially for the commands with longer parameters list
@@ -495,7 +532,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -576,10 +612,34 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisite: List all persons using the `list` command. Multiple contacts in the list.
    1. Test case: execute `add n/Andy p/81234567 e/andy@example.com a/somewhere over the rainbow, Singapore 069420` followed by `undo`. <br>
       Expected: `Andy` is no longer in the contact list after `undo` is executed. Command that is undone is shown in the status message.
-   1. Test case: execute `blacklist 2`, `find b/true` and `undo` in this order.
-      Expected: The second contact in the list is no longer blacklisted. Command that is undone is shown in the status message.
+   1. Test case: execute `blacklist 2`, `find b/true` and `undo` in this order.<br>
+      Expected: The second contact in the list is no longer blacklisted. Command that is undone (i.e. `blacklist 2`) is shown in the status message.
 
-1. Attempt to undo when there is no command to undo.<br>
+1. Attempt to undo when no changes are done to the contact list.<br>
+   1. Prerequisite: No commands have been executed before executing the following test cases.
    1. Test case: `undo`<br>
       Expected: An error stating there is nothing to undo is shown in the status message.
-   1. Test case: execute `light` and  
+   1. Test case: execute `light` and `undo` in this order.<br>
+      Expected: Similar to previous.
+
+### Navigating through commands
+1. Navigating to previous commands.
+   1. Test case: Execute `light`, `edit 1 n/Name`, `find n/Name` in this order and press up arrow key three times. <br>
+      Expected: The commands above are shown in the command box in the reverse order, i.e. `find n/Name`, `edit 1 n/Name1` and finally `light`.
+1. Navigating to later commands.
+   1. Prerequisite: Retain the same setting as in Test case 1.i.
+   1. Test case: Press down arrow key.<br>
+      Expected: The command `edit 1 n/Name` is shown.
+   1. Test case: Press down arrow key again.<br>
+      Expected: The command `find n/Name` is shown.
+   1. Test case: Press down arrow key again.<br>
+      Expected: The command `find n/Name` is shown again since this is the last command executed.
+1. Attempt to navigate the commands when there are no commands executed.
+   1. Test case: Press up arrow key.<br>
+      Expected: Nothing is shown in the command box.
+   1. Test case: Press down arrow key.<br>
+      Expected: Similar to previous.
+1. Attempt to navigate later commands after executing a command.
+   1. Test case: Execute any command and press down arrow key.<br>
+      Expected: Nothing is shown in the command box.
+      
