@@ -87,9 +87,14 @@ public interface Model {
     void setSavedState(boolean isSavedState);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same phone as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Returns true if a person with the same name but different phone as {@code person} exists in the address book.
+     */
+    boolean hasPotentialPerson(Person person);
 
     /**
      * Deletes the given person.

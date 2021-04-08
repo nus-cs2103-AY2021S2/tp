@@ -112,7 +112,8 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same phone number.
+     * Phone is a unique identifier of a person.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -121,7 +122,17 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getPhone().equals(getPhone());
+    }
+
+    /**
+     * Returns true if both persons have the same name and different phone numbers.
+     * This defines a notion of potential equality between two persons.
+     */
+    public boolean isPotentialSamePerson(Person otherPerson) {
+        return otherPerson != null
+                && otherPerson.getName().equals(getName())
+                && (!otherPerson.getPhone().equals(getPhone()));
     }
 
     /**
