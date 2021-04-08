@@ -13,6 +13,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.heymatez.commons.core.Messages;
 import seedu.heymatez.model.Model;
 import seedu.heymatez.model.ModelManager;
 import seedu.heymatez.model.UserPrefs;
@@ -60,7 +61,7 @@ public class FindMemberTasksCommandTest {
 
     @Test
     public void execute_singleKeyword_nonExistentMemberSuccess() {
-        String expectedMessage = FindMemberTasksCommand.MESSAGE_SUCCESS;
+        String expectedMessage = Messages.MESSAGE_EMPTY_TASK_LIST;
 
         // Does not exist in list
         TaskContainsAssigneePredicate predicate = preparePredicate("Alex Yeoh");
@@ -85,7 +86,7 @@ public class FindMemberTasksCommandTest {
 
     @Test
     public void execute_multipleKeywordsExistingMember_noTasksFound() {
-        String expectedMessage = FindMemberTasksCommand.MESSAGE_SUCCESS;
+        String expectedMessage = Messages.MESSAGE_EMPTY_TASK_LIST;
 
         // Does not exist in list
         TaskContainsAssigneePredicate predicate = preparePredicate(VALID_ASSIGNEE_MARATHON + " "
