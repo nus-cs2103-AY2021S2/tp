@@ -24,13 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
-
-    private final Logger logger = LogsCenter.getLogger(getClass());
-
-    private Stage primaryStage;
-    private Logic logic;
-
-    public static String helpMessage = "Welcome to DietLAH!\n\n"
+    private static final String helpMessage = "Welcome to DietLAH!\n\n"
             + "DietLAH! can help you with your eating habits so you can get your desired weight!\n\n"
             + "To start off, we have pre-loaded some sample data for you to play around with!\n"
             + "To clear this sample data, please use:\n"
@@ -44,6 +38,13 @@ public class MainWindow extends UiPart<Stage> {
             + "food_intake_add d/DATE n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS\n\n"
             + "For more help and commands, please visit our User Guide: \n"
             + "https://ay2021s2-cs2103t-t12-2.github.io/tp/UserGuide.html";
+
+    private final Logger logger = LogsCenter.getLogger(getClass());
+
+    private Stage primaryStage;
+    private Logic logic;
+
+
 
     // Independent Ui parts residing in this Ui container
     private ResultDisplay resultDisplay;
@@ -85,6 +86,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+    }
+
+    public static String getHelpMessage() {
+        return MainWindow.helpMessage;
     }
 
     /**
