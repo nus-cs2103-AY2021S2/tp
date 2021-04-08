@@ -33,6 +33,7 @@ import seedu.smartlib.commons.core.GuiSettings;
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
+import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.book.exceptions.BookNotFoundException;
 import seedu.smartlib.model.book.exceptions.DuplicateBookException;
 import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
@@ -258,6 +259,26 @@ public class ModelManagerTest {
         ModelManager modelManager = new ModelManager(smartLib, userPrefs);
         assertTrue(modelManager.hasBook(HARRY.getName()));
         assertTrue(modelManager.hasBook(SECRET.getName()));
+    }
+
+    @Test
+    public void hasBookWithIsbn_nullBook_throwsNullPointerException() {
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
+        assertThrows(NullPointerException.class, () -> modelManager.hasBook((Isbn) null));
+    }
+
+    @Test
+    public void hasBookWithIsbn_bookNotInSmartLib_returnsFalse() {
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
+        assertFalse(modelManager.hasBook(HABIT.getIsbn()));
+        assertFalse(modelManager.hasBook(LIFE.getIsbn()));
+    }
+
+    @Test
+    public void hasBookWithIsbn_bookInSmartLib_returnsTrue() {
+        ModelManager modelManager = new ModelManager(smartLib, userPrefs);
+        assertTrue(modelManager.hasBook(HARRY.getIsbn()));
+        assertTrue(modelManager.hasBook(SECRET.getIsbn()));
     }
 
     @Test
@@ -648,6 +669,46 @@ public class ModelManagerTest {
         al.add(HABIT);
         al.add(habit2);
         assertEquals(al, modelManager.getBooksByName(HABIT.getName()));
+        modelManager.deleteBook(HABIT);
+        modelManager.deleteBook(habit2);
+    }
+
+    @Test
+    public void getBooksByIsbn() {
+        SmartLib smartLibCopy = new SmartLib(smartLib);
+        ModelManager modelManager = new ModelManager(smartLibCopy, userPrefs);
+
+        // EP: null book isbn
+        assertThrows(NullPointerException.class, () -> modelManager.getBooksByIsbn(null));
+
+        // EP: invalid book isbn -> returns null
+        assertEquals(new ArrayList<>(), modelManager.getBooksByIsbn(HABIT.getIsbn()));
+        assertEquals(new ArrayList<>(), modelManager.getBooksByIsbn(LIFE.getIsbn()));
+
+        // EP: valid book isbn -> returns single book
+        ArrayList<Book> al = new ArrayList<>();
+        al.add(SECRET);
+        assertEquals(al, modelManager.getBooksByIsbn(SECRET.getIsbn()));
+        al.remove(SECRET);
+
+        al.add(HARRY);
+        assertEquals(al, modelManager.getBooksByIsbn(HARRY.getIsbn()));
+        al.remove(HARRY);
+
+        // EP: valid book isbn -> returns list of books
+        Book habit2 = new Book(
+                HABIT.getName(),
+                HABIT.getAuthor(),
+                HABIT.getPublisher(),
+                HABIT.getIsbn(),
+                new Barcode(HABIT.getBarcode().getValue() + 10),
+                HABIT.getGenre()
+        );
+        modelManager.addBook(HABIT);
+        modelManager.addBook(habit2);
+        al.add(HABIT);
+        al.add(habit2);
+        assertEquals(al, modelManager.getBooksByIsbn(HABIT.getIsbn()));
         modelManager.deleteBook(HABIT);
         modelManager.deleteBook(habit2);
     }
