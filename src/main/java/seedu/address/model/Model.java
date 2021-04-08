@@ -117,8 +117,6 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    void unblacklistPerson(Person target);
-
     /**
      * Sets the user prefs' CSS settings.
      */
