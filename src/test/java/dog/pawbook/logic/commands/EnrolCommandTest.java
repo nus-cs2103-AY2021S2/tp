@@ -2,7 +2,7 @@ package dog.pawbook.logic.commands;
 
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static dog.pawbook.testutil.Assert.assertThrows;
-import static dog.pawbook.testutil.TypicalEntities.getDatabaseWithPrograms;
+import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 import static dog.pawbook.testutil.TypicalId.ID_FIFTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_FOUR;
 import static dog.pawbook.testutil.TypicalId.ID_SIX;
@@ -30,7 +30,7 @@ public class EnrolCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getDatabaseWithPrograms(), new UserPrefs());
+        model = new ModelManager(getTypicalDatabase(), new UserPrefs());
         expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
     }
 

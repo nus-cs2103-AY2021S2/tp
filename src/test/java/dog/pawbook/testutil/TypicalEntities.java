@@ -152,14 +152,6 @@ public class TypicalEntities {
         for (Entity entity : getTypicalOwnersWithDog()) {
             db.addEntity(entity);
         }
-        return db;
-    }
-
-    public static Database getDatabaseWithPrograms() {
-        Database db = new Database();
-        for (Entity entity : getTypicalOwnersWithDog()) {
-            db.addEntity(entity);
-        }
         for (Program program : getTypicalPrograms()) {
             db.addEntity(program);
         }
