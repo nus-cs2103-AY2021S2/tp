@@ -80,13 +80,13 @@ public class ParserUtilTest {
     // ===== Tests for general shared parser methods =============================================================
 
     @Test
-    public void parseIndex_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
+    public void parseIndex_invalidInput_throwsNumberFormatException() {
+        assertThrows(NumberFormatException.class, () -> ParserUtil.parseIndex("10 a"));
     }
 
     @Test
-    public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+    public void parseIndex_outOfRangeInput_throwsNumberFormatException() {
+        assertThrows(NumberFormatException.class, null, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
