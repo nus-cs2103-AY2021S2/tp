@@ -31,7 +31,7 @@ on ModuleBook3.5.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
-<img src="images/addCommand.png" width="670">
+<img src="images/Ui.png" width="700">
 
 1. At the top of the display is a toolbar to either exit the app (under `File`) 
    or access this user guide (under `Help`).
@@ -70,6 +70,7 @@ Input Parameter | Workload Rating
 **w/1** | Low
 **w/2** | Medium
 **w/3** | High
+
 E.g. for a low workload rating, key in `w/1`.
    
 7. The following module codes are supported:
@@ -239,7 +240,7 @@ Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORK
 Tutorial Example:<br>
 `add n/Mix Green And Pink m/CS2101 d/Create the forbidden colour combination w/1 b/2021-04-15`
 
-![add message](images/addCommand.png)
+<img src="images/addCommand.png" width="700">
 
 Other Examples:
 * `add n/v1.2 TP m/CS2103T d/implement basic features b/2021-03-13 23:59 w/3 t/urgent`
@@ -260,7 +261,7 @@ Format: `done INDEX`
 Tutorial Example:<br>
 `done 2`
 
-![done message](images/doneCommand.png)
+<img src="images/doneCommand.png" width="700">
 
 Other Examples:
 * `list` followed by `done 2` marks the 2nd task as done in the ModuleBook3.5.
@@ -282,7 +283,7 @@ Format: `notdone INDEX`
 Tutorial Example:<br>
 `notdone 2`
 
-![notdone message](images/notdoneCommand.png)
+<img src="images/notDoneCommand.png" width="700">
 
 Other Examples:
 * `list` followed by `notdone 2` marks the 2nd task as not done in the ModuleBook3.5.
@@ -304,7 +305,7 @@ associated to the task you tried to tag.
 Tutorial Example:<br>
 `tag 3 t/Ethics t/Quiz`
 
-![add message](images/tagCommand.png)
+<img src="images/tagCommand.png" width="700">
 
 Other Examples:
 * `tag 1 t/SoftwareEng` adds `SoftwareEng` tag to task 1.
@@ -324,7 +325,7 @@ Format: `find KEYWORD`
 Tutorial Example:<br>
 `find Green`
 
-![find message](images/findCommand.png)
+<img src="images/findCommand.png" width="700">
 
 ### List out tasks : `list`
 
@@ -334,7 +335,7 @@ Application: Used to display all tasks if you previously entered a command meant
 
 Format: `list`
 
-![add message](images/listCommand.png)
+<img src="images/listCommand.png" width="700">
 
 
 ### Search tasks with tag: `findTag`
@@ -352,7 +353,7 @@ Format: `findTag KEYWORD`
 Tutorial Example:<br>
 `findTag Ethics`
 
-![findTag message](images/findTagCommand.png)
+<img src="images/findTagCommand.png" width="700">
 
 
 ### Search tasks associated to a Module: `mod`
@@ -368,7 +369,7 @@ Format: `mod MODULE`
 Tutorial Example:<br>
 `mod CS2103T`
 
-![add message](images/findModuleCommand.png)
+<img src="images/findModuleCommand.png" width="700">
 
 Other Examples:
 * `mod CS3243` lists out tasks associated with module CS3243.
@@ -391,7 +392,7 @@ Tutorial Example:
 * `list` (You need to key this in first to see all tasks)
 * `deleteTag 3 t/Quiz`
 
-![deleteTag message](images/deleteTagCommand.png)
+<img src="images/deleteTagCommand.png" width="700">
 
 
 ### Edit a task: `edit`
@@ -413,7 +414,7 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 Tutorial Example:<br>
 `edit 1 n/Refactor tP code d/Make the code look neater b/2021-04-09`
 
-![add message](images/editCommand.png)
+<img src="images/editCommand.png" width="700">
 
 Notice how the colour of task 1 changed because you edited the deadline to be closer.
 
@@ -441,7 +442,7 @@ Format:  `sort` or `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/`
 Tutorial Example:<br>
 `sort n/`
 
-![add message](images/sortCommand.png)
+<img src="images/sortCommand.png" width="700">
 
 
 ### Recur tasks: `recur`
@@ -463,8 +464,7 @@ Format: `recur INDEX r/RECURRENCE`
 Tutorial Example:<br>
 `recur 1 r/weekly`
 
-![add message](images/recurCommand.png)
-
+<img src="images/recurCommand.png" width="700">
 
 Other Examples:
 * `recur 1 r/biweekly` Recurs the 1st task in ModuleBook3.5 every two weeks.
@@ -484,7 +484,7 @@ Tutorial Example:
 * `edit 1 b/2021-04-08` (Let's set this task to have a deadline that is past)
 * `refresh` 
 
-![refresh up-to-date message](images/refreshCommand.png)
+<img src="images/refreshCommand.png" width="700">
 
 Note that you may get a new deadline for task 1 that is different from what is in the screenshot.
 
@@ -503,7 +503,7 @@ Format: `delete INDEX`
 Tutorial Example:<br>
 `delete 2`
 
-![delete message](images/deleteCommand.png)
+<img src="images/deleteCommand.png" width="700">
 
 Other Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the ModuleBook3.5.
@@ -517,7 +517,7 @@ Application: Used to clear out module book after a school term ends.
 
 Format: `clear`
 
-![clear message](images/clearCommand.png)
+<img src="images/clearCommand.png" width="700">
 
 ### Close app: `exit`
 

@@ -64,9 +64,7 @@ main {
  * Images
  */
 img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
+  max-width: 100%;
   vertical-align: middle;
 }
 
