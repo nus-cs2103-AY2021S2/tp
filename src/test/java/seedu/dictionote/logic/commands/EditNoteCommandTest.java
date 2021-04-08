@@ -63,7 +63,7 @@ public class EditNoteCommandTest {
         EditNoteCommand editNoteCommand = new EditNoteCommand(INDEX_FIRST_NOTE,
                 new EditNoteDescriptorBuilder(noteInList).build());
 
-        assertCommandFailure(editNoteCommand, model, EditNoteCommand.MESSAGE_DUPLICATE_NOTE);
+        assertCommandFailure(editNoteCommand, model, EditNoteCommand.MESSAGE_NOTHING_CHANGE_NOTE);
     }
 
     @Test

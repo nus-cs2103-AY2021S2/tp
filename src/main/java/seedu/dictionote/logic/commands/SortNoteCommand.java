@@ -2,7 +2,6 @@ package seedu.dictionote.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE;
-import static seedu.dictionote.model.Model.PREDICATE_SHOW_ALL_NOTES;
 
 import seedu.dictionote.logic.commands.enums.UiAction;
 import seedu.dictionote.logic.commands.enums.UiActionOption;
@@ -32,7 +31,6 @@ public class SortNoteCommand extends Command {
         }
 
         model.sortNote();
-        model.updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
         return new CommandResult(MESSAGE_SORT_NOTE_SUCCESS, UiAction.OPEN, UiActionOption.NOTE_LIST);
     }
 

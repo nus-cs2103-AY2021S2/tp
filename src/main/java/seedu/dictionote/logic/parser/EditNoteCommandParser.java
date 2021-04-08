@@ -11,10 +11,10 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.dictionote.commons.core.index.Index;
-import seedu.dictionote.logic.commands.EditContactCommand;
 import seedu.dictionote.logic.commands.EditNoteCommand;
 import seedu.dictionote.logic.commands.EditNoteCommand.EditNoteDescriptor;
 import seedu.dictionote.logic.parser.exceptions.ParseException;
+import seedu.dictionote.model.note.Note;
 import seedu.dictionote.model.tag.Tag;
 
 /**
@@ -41,14 +41,22 @@ public class EditNoteCommandParser implements Parser<EditNoteCommand> {
         }
 
         EditNoteDescriptor editNoteDescriptor = new EditNoteDescriptor();
+
+        if (!argMultimap.getValue(PREFIX_CONTENT).isPresent() && argMultimap.getAllValues(PREFIX_TAG).size() == 0) {
+            throw new ParseException(EditNoteCommand.MESSAGE_NOT_EDITED);
+        }
+
         if (argMultimap.getValue(PREFIX_CONTENT).isPresent()) {
-            editNoteDescriptor.setNote(ParserUtil.parseNote(argMultimap.getValue(PREFIX_CONTENT).get()));
+            String content = argMultimap.getValue(PREFIX_CONTENT).get();
+            if (content.equals("")) {
+                throw new ParseException(EditNoteCommand.MESSAGE_EMPTY_NOTE);
+            }
+            editNoteDescriptor.setNote(ParserUtil.parseNote(content));
+        }
+        else {
+            editNoteDescriptor.setNote(new Note(""));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editNoteDescriptor::setTags);
-
-        if (!editNoteDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditContactCommand.MESSAGE_NOT_EDITED);
-        }
         return new EditNoteCommand(index, editNoteDescriptor);
     }
 

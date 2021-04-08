@@ -263,15 +263,18 @@ Format: `markallasundonenote`
 
 Edits an existing note in the note list.
 
-Format: `editnote INDEX c/CONTENT [t/TAG]…​`
+Format: `editnote INDEX [c/CONTENT] [t/TAG]…​`
 
 * Edits the note at the specified `INDEX`. The index refers to the index number shown in the displayed note list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+* If only content are provided, then the tags will be unchanged. Empty content field is not allowed.
+* If only tags are provided, then the content will be unchanged. Multiple tags are supported.
+* If both content and tags are provided, then existing values will be updated to the input values.
 * When editing tags, the existing tags of the note will be removed (i.e., adding of tags is not cumulative).
 
 Examples:
-*  `editnote 1 c/Hello t/Important` Edits the content and tags of the 1st contact to be `Hello` and `Important` respectively.
+* `editnote 1 c/Hello t/Important` Edits the content and tags of the 1st contact to be `Hello` and `Important` respectively.
+* `editnote 1 c/Hi` Edits the content of the 1st contact to be `Hi` and keep the tags. 
 
 #### Show a note : `shownote`
 
@@ -304,11 +307,11 @@ Format: `findnote c/NAME_KEYWORD... [t/TAG_KEYWORD]...`
 * Notes and tags will be matched if they contain the given keywords e.g. `c/CS` will match the note containing `CS2103T`
 * Notes matching at least one content keyword will be returned (i.e. OR search). e.g. `c/CS c/Important` will return `CS Midterm`, `Important stuff`
 * Notes matching all of the given tag keywords will be returned (i.e. AND search). e.g. `t/urgent` will return all notes that are tagged with `urgent`.
-
+* When both `c/` and `t/` are used, notes that satisfy BOTH of the constraints will be returned. 
 Examples:
 
 * `findnote c/CS2103` returns note containing `CS2103`
-
+* `findnote c/CS t/urgent` will return all notes containing `CS` and tagged with `urgent`.
 #### Edit a note in edit mode : `editmode`
 
 Edits a note in edit mode.
