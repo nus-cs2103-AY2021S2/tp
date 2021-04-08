@@ -131,6 +131,7 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -188,6 +189,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.flashback.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -430,8 +432,9 @@ Step 5. `FilterCommand#execute(Model model)` then calls
 `FilteredList<Flashcard> filteredFlashcards` field in `ModelManager`.
 
 Step 6. FlashBack is then updated with the new filtered flashcard list.
+<div style="page-break-after: always;"></div>
 
-The following sequence diagram shows how the filter operation works:
+The following sequence diagram shows how the filter operation works:<br><br>
 ![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">
@@ -439,8 +442,9 @@ The following sequence diagram shows how the filter operation works:
 :information_source: **Note:** The lifeline for `FilterCommandParser` and `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+<div style="page-break-after: always;"></div>
 
-The following activity diagram summarizes what happens when a user executes the filter command:
+The following activity diagram summarizes what happens when a user executes the filter command:<br><br>
 ![FilterActivityDiagram](images/FilterActivityDiagram.png)
 
 ### \[Implemented\] Alias feature
@@ -520,14 +524,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | multi-discipline student | put my notes under different tags and categories | easily organize them
 | `* *`     | angry student   | undo/redo my actions| my emotion will not cloud my judgements
 | `* *` | student | review my own performance after each study session | know what to improve on
+| `*`   | student | look at the statistics | focus on topics that I am not good at
 | `* *` | student | sort the cards based on priority | know which cards I should focus on
 | `* *` | long-time user | find what I need easily | search through the list of decks without doing it manually
 | `* *` | student studying many modules | Filter cards according to subjects | it is easier to learn|
 | `*`   | student | export a part of my materials | share it with others
 | `*`   | experienced user | define my own aliases for commands | use them faster
-| `*`   | chemistry/biology Student | use subscripts | see the chemical formula easier
 | `*`   | careless student | archive my notes | easily restore them
-| `*`   | student | look at the statistics | focus on topics that I am not good at
+
 
 ### Use cases
 
@@ -748,6 +752,7 @@ in step 1 and 2 of MSS
     * 1b1. FlashBack shows an error message.
     
     Use case ends.
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -1030,9 +1035,9 @@ testers are expected to do more *exploratory* testing.
     
     1. Prerequisites: The application is in Main Window.
     
-    1. Test case: `alias cmd/add al/a` <br>
-       Expected: The alias `a` will be mapped to `add`. Users will now be able to perform add command using `a`
-       The result display shows a message: `New alias added for "add" command: a`.
+    1. Test case: `alias cmd/view al/v` <br>
+       Expected: The alias `v` will be mapped to `view`. Users will now be able to perform `view` command using `v`
+       The result display shows a message: `New alias added for "view" command: v`.
     
     1. Test case: `alias cmd/add al/delete` <br>
        Expected: No alias is added, and the text in `CommandBox` turns red to indicate an error.

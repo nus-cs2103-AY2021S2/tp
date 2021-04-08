@@ -41,7 +41,7 @@ ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 FlashBack *--> "1" UniqueFlashcardList
-UniqueFlashcardList o----> "*"Flashcard
+UniqueFlashcardList o--> "*"Flashcard
 Flashcard *--> Question
 Flashcard *--> Answer
 Flashcard *--> Category
@@ -52,5 +52,5 @@ Question -[hidden]right-> Answer
 Answer -[hidden]right-> Priority
 Priority -[hidden]right-> Category
 
-ModelManager ------>" ~* filtered list" Flashcard
+ModelManager -->" ~* filtered list" Flashcard
 @enduml
