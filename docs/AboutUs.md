@@ -13,7 +13,7 @@ You can reach us by creating a new issue on our [GitHub issues page](https://git
 
 <img src="images/sjq-sohjunqi.png" width="200px">
 
-[[github](https://github.com/sjq-sohjunqi)]
+<a href="https://github.com/sjq-sohjunqi">GitHub</a> | <a href="team/sjq-sohjunqi">Portfolio</a>
 
 * Role: Team Lead
 * Responsibilities: Testing (Primary), Documentation (Primary), Model (Primary), UI (Primary), Parsing (Secondary)
@@ -22,7 +22,7 @@ You can reach us by creating a new issue on our [GitHub issues page](https://git
 
 <img src="images/weilianglol.png" width="200px">
 
-[[github](https://github.com/WeiLiangLOL/)]
+<a href="https://github.com/WeiLiangLOL">GitHub</a> | <a href="team/weilianglol">Portfolio</a>
 
 * Role: Assistant Team Lead
 * Responsibilities: Processing (Primary), Testing (Secondary), Code quality (Secondary)
@@ -31,7 +31,7 @@ You can reach us by creating a new issue on our [GitHub issues page](https://git
 
 <img src="images/ssoonwee.png" width="200px">
 
-[[github](https://github.com/ssoonwee)]
+<a href="https://github.com/ssoonwee">GitHub</a> | <a href="team/ssoonwee">Portfolio</a>
 
 * Role: Developer
 * Responsibilities: Parsing (Primary), UI (Secondary), Model (Secondary)
@@ -40,16 +40,16 @@ You can reach us by creating a new issue on our [GitHub issues page](https://git
 
 <img src="images/soonkeatneo.png" width="200px">
 
-[[github](https://github.com/SoonKeatNeo)]
+<a href="https://github.com/SoonKeatNeo">GitHub</a> | <a href="team/soonkeatneo">Portfolio</a>
 
 * Role: Developer
-* Responsibilities: Code quality (Primary), Processing (Secondary), Storage (Secondary)
+* Responsibilities: Deliverables, Code quality (Primary), Processing (Secondary), Storage (Secondary)
 
 ### Jason Lim
 
 <img src="images/jasaaanlim.png" width="200px">
 
-[[github](https://github.com/jasaaanlim)]
+<a href="https://github.com/jasaaanlim">GitHub</a> | <a href="team/jasaaanlim">Portfolio</a>
 
 * Role: Developer
 * Responsibilities: Storage (Primary), Documentation (Secondary), Processing (Secondary)
