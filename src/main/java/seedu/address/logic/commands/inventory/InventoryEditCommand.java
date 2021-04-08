@@ -63,6 +63,8 @@ public class InventoryEditCommand extends Command {
         Ingredient ingredientToEdit = lastShownList.get(index.getZeroBased());
         Ingredient editedIngredient = createEditedIngredient(ingredientToEdit, editIngredientDescriptor);
 
+        InventoryCommandUtil.isValidIngredient(editedIngredient, model);
+
         if (!ingredientToEdit.isSame(editedIngredient) && model.hasIngredient(editedIngredient)) {
             throw new CommandException(MESSAGE_DUPLICATE_INGREDIENT);
         }

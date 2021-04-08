@@ -43,14 +43,16 @@ public class InventoryAddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        InventoryCommandUtil.isValidIngredient(toAdd, model);
+
         String message = "";
 
-        if (InventoryCommandUtil.isValidIngredient(toAdd, model)) {
-            model.addIngredient(toAdd);
-            message = String.format(ADD_MESSAGE_SUCCESS, toAdd);
-        }else {
+        if (model.hasIngredient(toAdd)) {
             model.increaseIngredientByName(toAdd.getName(), toAdd.getQuantity());
             message = String.format(INCREASE_MESSAGE_SUCCESS, toAdd);
+        }else {
+            model.addIngredient(toAdd);
+            message = String.format(ADD_MESSAGE_SUCCESS, toAdd);
         }
 
         return new CommandResult(message, CommandResult.CRtype.INGREDIENT);
