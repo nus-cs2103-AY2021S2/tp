@@ -69,8 +69,8 @@ the command `delete 5`.
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/storemando/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ItemListPanel`
-, etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts `CommandBox`, `ResultDisplay`, `ItemListPanel`
+, `LocationListPanel` and `ReminderPanel`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
 in the `src/main/resources/view` folder. For example, the layout of
@@ -361,7 +361,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons: The search is limited to matching names. If there are many items containing that keyword, the search may not be efficient.
 
 * **Alternative 2:** Find items in the current list that matches the keyword, and an attribute e.g. tag.
-    * Pros: More efficiently retrieve the item needed.
+    * Pros: Users would be able to retrieve a specific item more efficiently.
     * Cons: Users need to remember the items' attributes.
 
 _{more aspects and alternatives to be added}_
@@ -968,17 +968,17 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `list t/food`<br>
        Expected: All items with `food` as the tag are being displayed.
 
-### Finding items x days/weeks from expiry date
+### Show items x days/weeks from expiry date
 
-1. Finding items x days from expiry date
+1. Showing items x days from expiry date
 
     1. Test case: `reminder 7 days`<br>
-       Expected: All the items that are 7 days from expiry are shown.
+       Expected: All items that have already expired or are expiring within the next 7 days are shown.
 
-1. Finding items x weeks from expiry date 
+1. Showing items x weeks from expiry date 
 
     1. Test case: `reminder 7 weeks`<br>
-       Expected: All the items that are 7 weeks from expiry are shown.
+       Expected: All items that have already expired or are expiring within the next 7 weeks are shown.
 
 ### Sorting items
 
@@ -996,7 +996,7 @@ testers are expected to do more *exploratory* testing.
 1. Sorting items in the inventory in terms of expiry date.
 
     1. Test case: `sort expirydate`<br>
-       Expected: All the items are sorted in terms of expiry date from earliest to latest.
+       Expected: All the items are sorted in chronological order of their expiry date.
 
 ### Clearing items
 
