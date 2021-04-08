@@ -170,6 +170,16 @@ public class UniqueTagList implements Iterable<Tag> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Compares another map with this map. A map is considered equal if the key value pairs in both maps are equal.
+     *
+     * @param otherMap Another map to compare with this map.
+     * @return Boolean indicating if the given map is equal to this map.
+     */
+    public boolean hasEqualMap(Map<Tag, Integer> otherMap) {
+        return otherMap.equals(mapOfTagCount);
+    }
+
     @Override
     public Iterator<Tag> iterator() {
         return internalList.iterator();
@@ -179,7 +189,8 @@ public class UniqueTagList implements Iterable<Tag> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueTagList // instanceof handles nulls
-                && internalList.equals(((UniqueTagList) other).internalList));
+                && internalList.equals(((UniqueTagList) other).internalList)
+                && mapOfTagCount.equals(((UniqueTagList) other).mapOfTagCount));
     }
 
     @Override

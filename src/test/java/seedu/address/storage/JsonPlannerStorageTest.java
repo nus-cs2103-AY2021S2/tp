@@ -73,13 +73,16 @@ public class JsonPlannerStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addTask(HOON);
+        original.addTagsIfAbsent(HOON.getTags());
         original.removeTask(ALICE);
+        ALICE.getTags().forEach(original::removeTag);
         jsonPlannerStorage.savePlanner(original, filePath);
         readBack = jsonPlannerStorage.readPlanner(filePath).get();
         assertEquals(original, new Planner(readBack));
 
         // Save and read without specifying file path
         original.addTask(IDA);
+        original.addTagsIfAbsent(IDA.getTags());
         jsonPlannerStorage.savePlanner(original); // file path not specified
         readBack = jsonPlannerStorage.readPlanner().get(); // file path not specified
         assertEquals(original, new Planner(readBack));

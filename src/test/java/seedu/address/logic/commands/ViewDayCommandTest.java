@@ -22,13 +22,13 @@ class ViewDayCommandTest {
 
     @Test
     public void execute_viewDayWithTasks_multipleTasksFound() {
-        String expectedMessage = String.format(ViewDayCommand.MESSAGE_VIEW_DAY_SUCCESS, 1, "May", "2021");
-        Date date = new Date("27/05/2021");
+        String expectedMessage = String.format(ViewDayCommand.MESSAGE_VIEW_DAY_SUCCESS, 1, "June", "2021");
+        Date date = new Date("03/06/2021");
         TaskOnDatePredicate predicate = new TaskOnDatePredicate(date);
         ViewDayCommand command = new ViewDayCommand(predicate, date.getDate());
         expectedModel.updateFilteredTaskList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(GEORGE), expectedModel.getFilteredTaskList());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -38,7 +38,7 @@ class ViewDayCommandTest {
         TaskOnDatePredicate predicate = new TaskOnDatePredicate(date);
         ViewDayCommand command = new ViewDayCommand(predicate, date.getDate());
         expectedModel.updateFilteredTaskList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), expectedModel.getFilteredTaskList());
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 }
