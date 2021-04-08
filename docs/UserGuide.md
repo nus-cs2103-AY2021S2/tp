@@ -72,7 +72,7 @@ In addition, it is optional to include the following detail of a student:
 
 * School Residence, to determine if the student lives on campus. This will help NUS campus residences determine the proportion of vaccinated student residents using the `stats` command. 
 
-:information_source: **NOTE** If the School Residence of a student is not specified, the system will default to DOES_NOT_LIVE_ON_CAMPUS and assume that the student does not live on campus.
+:information_source: **NOTE:** If the School Residence of a student is not specified, the system will default to DOES_NOT_LIVE_ON_CAMPUS and assume that the student does not live on campus.
 
 > For a smooth user experience, please refer to the  please refer to the [Input Formats](#input-formats) section below for more information regarding input formats. That section explains which prefix should be used for each piece of information and how the information should be presented to the program. 
 
@@ -267,7 +267,20 @@ Format: `exit`
 
 ### Saving the data
 
-Vax@NUS saves your current date in the hard disk automatically after any command. There is no need to save manually.
+Vax@NUS saves your current data into your computer automatically after any command. There is no need to save manually.
+
+:information_source: **NOTE:**  VAX@NUS will display our sample data file if no data file is found from your computer.
+
+### Editing the data
+
+VAX@NUS data is saved as a JSON file [JAR file location]/data/studentbook.json. Advanced users are welcome to update data directly by editing that data file.
+
+Please refer to the [Input Formats](#input-formats) section when editing the data file to conform to the required format .
+
+> :warning: **If your changes to the data file makes it an invalid format, VAX@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
+
+:information_source: **NOTE:** VAX@NUS will load an empty data file if you have cleared your data with the `clear` command right before exiting VAX@NUS.
+Additionally, VAX@NUS is unable to detect changes in the matriculation number if it is edited directly from our data file.
 
 --------------------------------------------------------------------------------------------------------------------
 
