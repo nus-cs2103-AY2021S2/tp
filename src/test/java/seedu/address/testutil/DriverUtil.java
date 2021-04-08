@@ -14,7 +14,6 @@ import seedu.address.model.person.driver.Driver;
  */
 public class DriverUtil {
 
-    // TODO should this method append the prefixes, compare this to passengerUtil methods
     public static String getDriverDetails(Driver driver) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + driver.getName().fullName + " ");

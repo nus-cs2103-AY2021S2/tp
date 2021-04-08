@@ -67,11 +67,6 @@ public class Passenger extends Person {
         return price;
     }
 
-    // TODO check if having two methods with almost the same signature is acceptable
-    public String getPriceAsStr() {
-        return price.map(Price::toString).orElse("");
-    }
-
     public String priceToString() {
         return price.map(Price::toString).orElse(MESSAGE_NO_PRICE_STATED);
     }
