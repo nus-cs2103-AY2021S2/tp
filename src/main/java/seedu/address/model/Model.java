@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.AddressBookSettings;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.contact.Contact;
@@ -55,6 +56,26 @@ public interface Model {
      */
     void setTheme(String theme);
 
+    /**
+     * Returns the user prefs' Address Book settings.
+     */
+    AddressBookSettings getAddressBookSettings();
+
+    /**
+     * Sets the user prefs' Address Book settings.
+     */
+    void setAddressBookSettings(AddressBookSettings addressBookSettings);
+
+    /**
+     * Returns the user prefs' Address Book Comparator.
+     */
+    Comparator<Contact> getAddressBookComparator();
+
+    /**
+     * Sets the user prefs' Address Book Comparator.
+     */
+    void setAddressBookComparator(String comparator);
+
     //=========== AddressBook ================================================================================
 
     /**
@@ -102,6 +123,11 @@ public interface Model {
      */
     void setContact(Contact target, Contact editedContact);
 
+    /**
+     * Sets the contact list to the given {@code contacts}.
+     */
+    void setContacts(List<Contact> contacts);
+
     /** Returns an unmodifiable view of the filtered contact list */
     ObservableList<Contact> getFilteredContactList();
 
@@ -115,12 +141,12 @@ public interface Model {
      * Updates the contact list to a sorted list sorted by the given {@code comaparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
-    void sortContactList(Comparator<Contact> comparator);
+    void sortContactList(String comparator);
 
-    /**
-     * Sets the contact list to the given {@code contacts}.
-     */
-    void setContacts(List<Contact> contacts);
+    /** Orders contact list according to saved order.
+     *  Order can be set using {@code sortContactList}.
+     * */
+    void orderContacts();
 
     //=========== AppointmentBook ================================================================================
 

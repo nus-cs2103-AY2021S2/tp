@@ -16,6 +16,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.AddressBookSettings;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -117,6 +118,26 @@ public class AddAppointmentCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public AddressBookSettings getAddressBookSettings() {
+            throw new AssertionError("This mmethod should not be called.");
+        }
+
+        @Override
+        public void setAddressBookSettings(AddressBookSettings addressBookSettings) {
+            throw new AssertionError("This mmethod should not be called.");
+        }
+
+        @Override
+        public Comparator<Contact> getAddressBookComparator() {
+            throw new AssertionError("This mmethod should not be called.");
+        }
+
+        @Override
+        public void setAddressBookComparator(String comparator) {
+            throw new AssertionError("This mmethod should not be called.");
+        }
+
         //=========== AddressBook ================================================================================
 
         @Override
@@ -175,7 +196,12 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
-        public void sortContactList(Comparator<Contact> comparator) {
+        public void sortContactList(String comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void orderContacts() {
             throw new AssertionError("This method should not be called.");
         }
 

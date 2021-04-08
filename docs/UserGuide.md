@@ -251,6 +251,17 @@ Currently available options for the `[OPTION]` field include:
 Examples:
 * `sort o/name` returns the contact list sorted in alphabetical order.
 * `sort o/date` returns the contact list sorted in chronological order.
+* `find Alice` followed by `sort o/name` returns the list of contacts found sorted in alphabetical order.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The sorting order is saved across different use sessions.
+The default order is by the date the contact was added.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If sort is entered after executing find, a sorted found list will be displayed as explained in the 3rd example above.</br>
+The sort order will also be saved and the full address book will be sorted.
+</div>
 
 #### Favourite a contact : `fav`
 
