@@ -1,5 +1,7 @@
 package seedu.heymatez.model.task;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.heymatez.model.assignee.Assignee;
@@ -16,7 +18,13 @@ public class TaskContainsAssigneePredicate implements Predicate<Task> {
 
     @Override
     public boolean test(Task task) {
-        return task.hasAssignee(new Assignee(keyword));
+
+        List<Assignee> assigneeList = new ArrayList<>(task.getAssignees());
+
+        boolean hasAssignee = assigneeList.stream()
+                .anyMatch(assignee -> assignee.assigneeName.toLowerCase().equals(keyword.toLowerCase()));
+
+        return hasAssignee;
     }
 
     @Override
