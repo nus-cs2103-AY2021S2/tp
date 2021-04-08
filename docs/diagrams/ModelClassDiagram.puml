@@ -67,5 +67,5 @@ Task *--> Priority
 Task *--> "*" Assignee
 
 ModelManager ----->" ~* filtered list" Person
-ModelManager ----->" ~* filtered list" Task
+ModelManager ----->" \n\n\n~* filtered list" Task
 @enduml
