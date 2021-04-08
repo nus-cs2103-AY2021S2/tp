@@ -655,6 +655,7 @@ testers are expected to do more *exploratory* testing.
     5. Test case: `add_venue v/Victoria Hall` followed by `50` followed by `Popular concert hall` followed by `indoors`<br>
     Expected: Victoria Hall should appear in the list of venues with a capacity indicated to be 50, a description "Popular concert hall", and a tag "indoors".
        
+
 ### Adding a booking
 1. A multi-step command to add a booking for Victoria Hall
     1. Prerequisites: a venue by the same name already exists, and a venue by the name of Hall does not exist. If it is not present as a record in the system, create one. Similarly, for the email of a person booking, create one if not present
