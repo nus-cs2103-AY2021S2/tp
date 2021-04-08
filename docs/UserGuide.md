@@ -109,7 +109,7 @@ you may use a substitute module code based on the subject description.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Commands
+## Command Notes
 
 <div markdown="block" class="alert alert-info">
 
@@ -183,7 +183,11 @@ t/ | TAG |
    the app will give an error message due to the tag being empty.
    E.g. for `tag 1 t/quiz t/QUIZ, t/Quiz`, only `t/quiz` is accepted and the actual tag will be spelt as `quiz`.
 
-### Command list
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Command list
 
 All commands are ordered in a sequential manner. Do give them a try!
 
@@ -237,8 +241,9 @@ Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORK
 
 * Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm set to 00:00)
 
-Tutorial Example:<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `add n/Mix Green And Pink m/CS2101 d/Create the forbidden colour combination w/1 b/2021-04-15`
+</div>
 
 <img src="images/addCommand.png" width="700">
 
@@ -258,8 +263,10 @@ Format: `done INDEX`
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Tutorial Example:<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `done 2`
+</div>
+
 
 <img src="images/doneCommand.png" width="700">
 
@@ -283,7 +290,7 @@ Format: `notdone INDEX`
 Tutorial Example:<br>
 `notdone 2`
 
-<img src="images/notDoneCommand.png" width="700">
+<img src="images/notdoneCommand.png" width="700">
 
 Other Examples:
 * `list` followed by `notdone 2` marks the 2nd task as not done in the ModuleBook3.5.
