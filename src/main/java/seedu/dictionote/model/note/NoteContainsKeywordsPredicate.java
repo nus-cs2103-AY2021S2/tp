@@ -16,7 +16,7 @@ public class NoteContainsKeywordsPredicate implements Predicate<Note> {
             return true;
         }
         return keywords.stream()
-                .anyMatch(keyword -> note.getNote().contains(keyword));
+                .anyMatch(keyword -> note.getNote().toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override
