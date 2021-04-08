@@ -53,6 +53,7 @@ public class AppointmentPredicateList {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof AppointmentPredicateList
-                    && this.predicates.equals(((AppointmentPredicateList) other).predicates));
+                    && this.predicates.equals(((AppointmentPredicateList) other).predicates)
+                    && this.otherPredicates.equals(((AppointmentPredicateList) other).otherPredicates));
     }
 }
