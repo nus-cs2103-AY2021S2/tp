@@ -13,6 +13,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import seedu.address.commons.util.ImageRequestUtil;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.ProfilePicture;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -62,12 +63,16 @@ public class PersonCard extends UiPart<Region> {
         person.getGroups().stream()
                 .sorted(Comparator.comparing(tag -> tag.groupName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.groupName)));
-        Image image;
+        setUpProfilePicture(person);
+    }
 
-        try {
-            image = ImageRequestUtil.getGravatarImage(person.getEmail().value);
+    public void setUpProfilePicture(Person person) {
+        Image image;
+        ProfilePicture profilePicture = person.getProfilePicture();
+        if (person.getProfilePicture() != null) {
+            image = profilePicture.picture;
             circle.setFill(new ImagePattern(image));
-        } catch (Exception e) {
+        } else {
             circle.setFill(Color.BLUE);
         }
     }
