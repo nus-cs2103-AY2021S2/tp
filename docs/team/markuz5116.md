@@ -46,5 +46,4 @@ It is written in Java, and has about 17 kLOC contributed.
         * Added documentations for the features `clear` and `find` [\#169](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/169) 
         * Added relevant images for sample inputs [\#240](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/240)
     * Developer Guide:
-        * Add implementation details of the `find` feature.    
-    
+        * Add implementation details of the `find` feature.
