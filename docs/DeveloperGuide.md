@@ -308,8 +308,6 @@ The following sequence diagram shows how the delete operation works:
 
 The FoodIntake represents the date and food associated with a particular FoodIntake.
 
-[Class diagram]
-
 The FoodIntake class stores a `LocalDate` and `Food`:
 
 1. `date` : Represents the date that the FoodIntake was recorded
@@ -375,6 +373,9 @@ Additionally, some noteworthy information to note:
     * It is generally more complicated to implement and harder to ensure that the user is saving to the right `FoodIntakeList` instance
 
 ### Add Food Intake feature
+
+<img src="images/AddFoodIntakeActivityDiagram.png" width="422" />
+
 #### Description:
 For the user's convenience, there are 3 scenarios for recording food intake.
 
