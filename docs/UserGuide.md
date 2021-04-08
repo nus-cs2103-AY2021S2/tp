@@ -33,13 +33,13 @@ on ModuleBook3.5.
 ## Features
 <img src="images/Ui.png" width="700">
 
-1. At the top of the display is a toolbar to either exit the app (under `File`) 
+* At the top of the display is a toolbar to either exit the app (under `File`) 
    or access this user guide (under `Help`).
    
-2. Below the toolbar is a command line to key in any of the below commands. 
+* Below the toolbar is a command line to key in any of the below commands. 
    The result is displayed in a box underneath this command line.
    
-3. A list of modules for which tasks are available is also shown.
+* A list of modules for which tasks are available is also shown.
     1. For each module, the number of tasks across each workload rating is displayed.
     2. The distribution of workload across all modules is calculated and displayed on a pie chart.
 <div markdown="span" class="alert alert-warning">:exclamation: **Alert:**
@@ -47,7 +47,7 @@ Within the workload pie chart, each module's colour may change as a command is e
 However, the colours will be arranged such that no two modules with the same colour will be next to each other.
 </div>
 
-4. Tasks are colour coded based on done status. 
+* Tasks are colour coded based on done status. 
    1. Done tasks are coloured pink. 
    2. Tasks that are not done are classified into 4 different categories (colors):
 
@@ -58,11 +58,11 @@ Color | Time to deadline
 **Orange** | Less than 1 day      
 **Purple** | Expired
 
-5. The pie chart is used to show workload distribution.
+* The pie chart is used to show workload distribution.
    1. The color of pie chart is randomly assigned.
    2. The workload of each module is counted using the tasks of such module inclunding those that are already done and those that are not finished yet.
     
-6. You can rate a task's expected workload using the following mapping:
+* You can rate a task's expected workload using the following mapping:
 
 Input Parameter | Workload Rating
 --------|------------------
@@ -72,7 +72,7 @@ Input Parameter | Workload Rating
 
 E.g. for a low workload rating, key in `w/1`.
 
-7. The following module codes are supported:
+* The following module codes are supported:
 
 Module Code | Subject Description
 --------|------------------
@@ -106,7 +106,7 @@ you may use a substitute module code based on the subject description.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:**
 First time using the app? Or want to refresh your handling of the app? Simply look out for these boxes.<br>
-
+&nbsp
 Commands for this tutorial are arranged in the sequential order of this User Guide and are accompanied by screenshots.
 </div>
   
