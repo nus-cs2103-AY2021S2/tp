@@ -5,6 +5,7 @@ import static seedu.dictionote.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +35,14 @@ public class UniqueContactList implements Iterable<Contact> {
     public boolean contains(Contact toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameContact);
+    }
+
+    public boolean containsExcluding(Contact toCheck, Contact toExclude) {
+        requireAllNonNull(toCheck, toExclude);
+
+        return internalList.stream()
+                .filter(Predicate.not(toExclude::equals))
+                .anyMatch(toCheck::isSameContact);
     }
 
     /**

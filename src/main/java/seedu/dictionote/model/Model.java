@@ -200,6 +200,8 @@ public interface Model {
      */
     boolean hasContact(Contact contact);
 
+    boolean hasContactExcluding(Contact checkedContact, Contact excludedContact);
+
     /**
      * Deletes the given person.
      * The person must exist in the dictionote book.
