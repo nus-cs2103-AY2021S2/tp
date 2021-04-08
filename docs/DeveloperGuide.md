@@ -26,6 +26,7 @@ The features of Tutor Tracker includes:
 - Adding new tuition appointments
 - Filtering tutors by personal preference (i.e. availability, experiences, name, location, price, etc.)
 - Viewing upcoming tuition appointments
+- Adding, editing, deleting and listing grade records in GradeBook
 
 The purpose of this Developer Guide is to help you understand the design and implementation of Tutor Tracker to get started on your contributions to Tutor Tracker.
 
@@ -161,19 +162,19 @@ Additionally, it implements the following operations:
 
 Given below are example usage scenarios and how the note feature behaves at each step.
 
-### [Proposed] Gradebook Feature
+### [Proposed] Grade Feature
 ####Proposed Implementation
-The proposed gradebook feature is to facilitate the user to keep track of his/her
-own grades of different subjects for reference, which are internally stored as `gradeList`. Additionally,
+The proposed grade feature is to facilitate the user to keep track of his/her
+own grades of different subjects for reference and future study plan, 
+which are internally stored as `GradeBook`. Additionally,
 it implements the following operations:
-* `Add a subject grade` - Add a subject grade to user's gradebook
-* `Delete a subject grade` - Delete a subject grade by subject name
-* `Edit a subject grade` - Edit a subject grade by subject name
+* `Add a grade` - Add a grade record to user's GradeBook
+* `Delete a grade` - Delete an existing grade record at specified index
+* `Edit a grade` - Edit an existing grade record at specified index
+* `List all grades` - Display a list of all existing grade records in the GradeBook
 
 These operations are exposed in the `Logic` interface by parsing respective `AddGradeCommand`,
-`DeleteGradeCommand` and `EditGradeCommand`.
-
-Given below is example usage scenarios and how the gradebook features behave.
+`DeleteGradeCommand`, `EditGradeCommand` and `ListGradeCommand`.
 
 ### [Proposed] Filter Feature
 This Filter feature would allow users to manage filters and apply them to the list of tutors
@@ -258,7 +259,8 @@ _{More to be added}_
 
 **Target user profile**:
 
-Tech-savvy secondary school students in Singapore who to need to search for tutors and manage their tuition appointments, and prefer CLI over GUI.
+Tech-savvy secondary school students in Singapore who to need to search for tutors, manage their tuition appointments
+and academic records, and prefer CLI over GUI.
 
 **Value proposition**:
 
@@ -295,6 +297,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | Meticulous user| Add note to tutor                        | Remind myself of some additional details of the tutor           |
 | `* *`   | User | Delete note from tutor                             | Remove note from tutor that are no longer relevant              |
 | `* *`   | User | List tutors with note                              | Keep track which tutor has note added                           |
+| `* *`   | Tech-savvy User | Add grade records to a digital GradeBook | Keep track of grades I obtained for reference and future study plan          |
+| `* *`   | Careless user   | Edit grade record details               | Correct typos or update the details of my academic records            |
+| `* *`   | User  | Delete outdated grade records                     | Remove past grades if they are no longer needed                    |
+| `* *`   | User  | List all grades                                   | See all existing academic records in my GradeBook               |
 
 *{More to be added}*
 
@@ -555,6 +561,73 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 4.  TutorTracker deletes that specific appointment.
 
 <hr/>
+
+**Use Case UC0014: Add a new grade**
+
+**MSS**
+
+1. User inputs grade details.
+2. TutorTracker confirms that grade details have been added to GradeBook.
+
+**Extensions**
+* 1a. Grade details are invalid or empty.
+    * 1a1. TutorTracker shows an error message
+    
+* 2a. Grade details already exists in list.
+    * 2a1. TutorTracker shows an error message
+
+  Use case resumes at step 1.
+
+<hr/>
+
+**Use Case UC0015: List all grades**
+
+**MSS**
+1. User requests to list grades.
+2. TutorTracker shows a list of grades.
+
+   Use case ends.
+
+<hr/>
+
+**Use Case UC0016: Delete a grade**
+
+**MSS**
+
+1.  User requests to list grades.
+2.  TutorTracker shows a list of grades.
+3.  User requests to delete a grade at specified index.
+4.  TutorTracker deletes that specific grade.
+
+**Extensions**
+* 3a. Index is invalid.
+    * 3a1. TutorTracker shows an error message
+
+  Use case resumes at step 1.
+
+<hr/>
+
+**Use Case UC0017: Edit a grade**
+
+**MSS**
+
+1.  User requests to list grades.
+2.  TutorTracker shows a list of grades.
+3.  User requests to edit a grade at specified index.
+4.  TutorTracker deletes that specific grade.
+
+**Extensions**
+* 3a. Index is invalid.
+    * 3a1. TutorTracker shows an error message
+
+* 3b. Grade details already exists in list.
+    * 3b1. TutorTracker shows an error message
+
+  Use case resumes at step 1.
+
+<hr/>
+
+*{More to be added}*
 
 ### Non-Functional Requirements
 **Technical Requirements**:
