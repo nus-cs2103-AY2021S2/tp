@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_MORE_THAN_ONE_SAME_PREFIX;
 import static seedu.address.logic.parser.CliSyntax.OPTION_DARK;
 import static seedu.address.logic.parser.CliSyntax.OPTION_LIGHT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -26,8 +25,11 @@ class ThemeCommandParserTest {
     }
 
     @Test
-    public void parse_duplicateOption_failure() {
-        assertParseFailure(parser, " o/light o/dark", MESSAGE_MORE_THAN_ONE_SAME_PREFIX);
+    public void parse_duplicateOption_takesLastOptionSuccess() {
+        assertParseSuccess(parser, " o/light o/light", new ThemeCommand(OPTION_LIGHT));
+        assertParseSuccess(parser, " o/dark o/dark", new ThemeCommand(OPTION_DARK));
+        assertParseSuccess(parser, " o/light o/dark", new ThemeCommand(OPTION_DARK));
+        assertParseSuccess(parser, " o/dark o/light", new ThemeCommand(OPTION_LIGHT));
     }
 
     @Test
