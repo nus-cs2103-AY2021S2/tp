@@ -2,8 +2,45 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-  {:toc}
+## Contents
+- [Quick Start](#setting-up-getting-started)
+- [Design](#design)
+  - [Architecture](#architecture)
+  - [UI](#ui-component)
+  - [Logic](#logic-component)
+  - [Model](#model-component)
+  - [Storage](#storage-component)
+- [Implementation](#implementation)
+  - [Blacklist](#blacklist-feature)
+  - [Collect]
+  - [Find](#finding-persons-by-details-feature)
+  - [Light/Dark] >Ryan
+  - [Mass Blacklist] >JB
+  - [Mass Delete] >JB  
+  - [Mode of Contact](#mode-of-contact-feature)  
+  - [Remark] >JB
+  - [Sort](#sort-feature)
+  - [Undo](#undo-feature)
+- [Additional guides](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
+  - [Deleting a contact](#deleting-a-contact)
+  - [Saving data](#saving-data)
+  - [Add a contact] >Ryan (Mode of contact)
+  - [Changing blacklist status of a contact] >Ern
+  - [Collecting details from all contacts] >Ern
+  - [Editing remark for a contact] >JB
+  - [Finding persons by details] >JQ
+  - [Performing mass blacklist] >JB
+  - [Performing mass delete] >JB
+  - [Sorting visible contact list] >JB
+  - [Transitioning between light and dark mode] >Ryan
+  - [Undoing a command] >JQ
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -172,28 +209,8 @@ The following activity diagram summarizes what happens when a user executes a bl
 * **Alternative 2:** `+blist INDEX` to blacklist, `-blist INDEX` to un-blacklist.
     * Pros: Able to directly set blacklist status without checking current status.
     * Cons: More commands to remember.
-### Sort feature
-The sort feature is implemented in the `SortCommand` class.
-Below is an example usage scenario.
 
-Step 1: The user executes `sort c/...` to sort the contact list according to some specific criteria.
-The `UI` component passes the string to the `LogicManager` class in the `Logic` component.
-
-Step 2: The `Logic` component parses the string and creates a corresponding `SortCommand` object.
-
-Step 3: The `LogicManager` executes the `SortCommand` object. This calls the appropriate `sort` method in
-the `Model` component.
-
-Step 4: The `Model` component sorts the internal contact list. After sorting, the appropriate method in the `Storage`
-component is called to update the file.
-
-Step 5: Finally, the `Model` component passes the `CommandResult` back to the `Logic` component, which in turn passes
-it back to the `UI` component to display it to the user.
-
-The following sequence diagram illustrates how the sort operation works:
-![SortSequenceDiagram](images/SortSequenceDiagram.png)
-
-### Find persons by tag and address feature
+### Finding persons by details feature
 This feature is built on the current `find` command, which is used to be limited to only finding persons by names. With this change, the format of the `find` command is now modified to `find n/[NAME] t/[TAG] a/[ADDRESS] p/[PHONE] e/[EMAIL] b/[IS_BLACKLISTED] m/[MODE_OF_CONTACT]`.
 This command returns the persons with attributes that matches at least one of the attributes of interest (See User Guide for more details).
 Note that users are only required to provide at least one of the parameters to use this command. In other words, commands such as `find n/Alex` and `find t/autistic` are valid commands.
@@ -239,6 +256,26 @@ Step 5: The `Model` component passes the `CommandResult` to the `Logic` componen
 The following sequence diagram shows how the add command works:
 ![ModeOfContactSequenceDiagram](images/ModeOfContactSequenceDiagram.png)
 
+### Sort feature
+The sort feature is implemented in the `SortCommand` class.
+Below is an example usage scenario.
+
+Step 1: The user executes `sort c/...` to sort the contact list according to some specific criteria.
+The `UI` component passes the string to the `LogicManager` class in the `Logic` component.
+
+Step 2: The `Logic` component parses the string and creates a corresponding `SortCommand` object.
+
+Step 3: The `LogicManager` executes the `SortCommand` object. This calls the appropriate `sort` method in
+the `Model` component.
+
+Step 4: The `Model` component sorts the internal contact list. After sorting, the appropriate method in the `Storage`
+component is called to update the file.
+
+Step 5: Finally, the `Model` component passes the `CommandResult` back to the `Logic` component, which in turn passes
+it back to the `UI` component to display it to the user.
+
+The following sequence diagram illustrates how the sort operation works:
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
     
 ### Undo feature
 
