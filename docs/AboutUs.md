@@ -13,8 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/darkdestry-t.png" width="200px">
 
-[[github](http://github.com/darkdestry-t)]
-<!-- [[portfolio](team/johndoe.md)] -->
+[[github](http://github.com/darkdestry-t)][[portfolio](team/darkdestry-t.md)]
 
 * Role: Team Leader
 * Responsibilities: Storage
