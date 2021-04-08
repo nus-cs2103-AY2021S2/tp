@@ -54,6 +54,10 @@ iScam is a **desktop app for insurance agents to manage clients and meetings, op
 
 1. Refer to the [Features](#features) below for details of each command.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you are facing issues launching the application, go to the `data` folder in `[JAR file location]/data` and delete both the `clientbook.json` and `meeitng.json` files and try launching again.
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -68,8 +72,8 @@ iScam is a **desktop app for insurance agents to manage clients and meetings, op
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `(s)`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG(s)]​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -86,13 +90,38 @@ iScam is a **desktop app for insurance agents to manage clients and meetings, op
 #### Adding a client: `add`
 Adds a client to iScam.
 
-Format: `add n/NAME p/PHONE e/EMAIL l/LOCATION [ip/INSURANCE_PLAN] [i/IMAGE_FILE] [t/TAG]…​`
+Format: `add n/NAME p/PHONE e/EMAIL l/LOCATION [ip/INSURANCE_PLAN] [i/IMAGE_FILE] [t/TAG(s)]​`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the limit for inputs:**<br>
+
+* NAME in `n/NAME` should not be than 50 alphanumeric characters. <br>
+  e.g `n/John Doe 123` is acceptable 
+  
+* PHONE in `p/PHONE` can only consist of 8 digits and start with `6`, `8` or `9`. It should not contain spaces between numbers. <br>
+  e.g `p/81234567` is acceptable <br>
+  Additional info: Singapore numbers are only 8 digits long. Should you need to add a foreign number, you can always add it as a `tag`
+
+* EMAIL in `e/EMAIL` should not be longer than 254 characters. It should also be of the format local-part@domain <br>
+  e.g `e/someone@email.com` is acceptable
+
+* LOCATION in `l/LOCATION` should not be blank or longer than 100 characters. <br>
+  e.g `l/Starbucks @ Frontier` is acceptable
+
+* INSURANCE_PLAN in `ip/INSURANCE_PLAN` should not be longer than 50 alphanumeric characters. <br>
+  e.g `ip/Premium Savings Plan 2` is acceptable
+
+* Individual TAG(s) in `t/TAG(s)` should not be longer than 50 alphanumeric characters. <br>
+  e.g `t/friend` is acceptable
+  
+</div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have any number of tags (including 0)
+A client can have any number of tags (including 0). For optimal usage of the app, try to keep less than 10 tags per client
 </div>
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have only one or no insurance plan
+A client can have any number of insurance plans (including 0). For optimal usage of the app, try to keep less than 10 insurance plans per client
 </div>
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can add a profile picture for your client by first adding the picture file into [JAR file location]/data/[picture file].
@@ -129,7 +158,7 @@ Example:
 
 Edits an existing client in iScam.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOCATION] [ip/INSURANCE_PLAN] [i/IMAGE_FILE] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOCATION] [ip/INSURANCE_PLAN] [i/IMAGE_FILE] [t/TAG(s)]​`
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -212,14 +241,38 @@ Examples:
 Adds a meeting to iScam.
 
 Format: `addmeet c/CLIENT_NAME on/DATE_TIME l/LOCATION d/DESCRIPTION [t/TAG(s)]`
-* `DATE_TIME` **cannot be in the past** as of the moment when this command is called.
-* `LOCATION` cannot be blank and can have at most 100 characters.
-* `DESCRIPTION` must have at least 1 character and at most 1000 characters.
-* There can only be 1 meeting happening at the date and time specified in `DATE_TIME`.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the limit for inputs:**<br>
+
+* CLIENT_NAME in `c/CLIENT_NAME` should not be longer than 50 alphanumeric characters. <br>
+  e.g `c/John Doe 123` is acceptable
+
+* DATE_TIME in `on/DATE_TIME` should be in the format of `dd-MM-yyyy HH:mm` <br>
+  e.g `on/25-10-2021 10:00` is acceptable <br>
+  Additional info: `DATE_TIME` **cannot be in the past** as of the moment when this command is called.
+  Additional info: There can only be 1 meeting happening at the date and time specified in `DATE_TIME`.
+
+* LOCATION in `l/LOCATION` should not be blank or longer than 100 characters. <br>
+  e.g `l/Starbucks @ Frontier` is acceptable
+
+* DESCRIPTION in `d/DESCRIPTION` should not be blank or longer than 1000 characters. <br>
+  e.g `d/Plan expiring soon.` is acceptable
+
+* Individual TAG(s) in `t/TAG(s)` should not be longer than 50 alphanumeric characters. <br>
+  e.g `t/friend` is acceptable
+
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A client can have any number of meetings (including 0). For optimal usage of the app, try to keep less than 10 meetings per client
+</div>
 
 Example:
 * `addmeet c/John Smith on/20-02-2022 15:00 l/Starbucks, Serangoon d/Discuss on insurance plans t/VIP`
     > Output: `New meeting added: Client Name: John Smith; Date & Time: 20-02-2022 15:00; Location: Starbucks, Serangoon; Description: Discuss on insurance plans; Tags: [VIP]; Status: Not completed`
+
 
 #### Listing all meetings: `listmeet`
 
@@ -377,16 +430,16 @@ If your changes to the data file makes its format invalid, iScam will discard al
 Action | Format, Examples
 --------|------------------
 **Help** | `help`
-**Add Client** | `add n/NAME p/PHONE e/EMAIL l/LOCATION [ip/INSURANCE_PLAN] [i/IMAGE_FILE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com l/01 Singapore Street, #23-45 ip/MediShield Life i/john_doe.png t/friends t/owesMoney`
+**Add Client** | `add n/NAME p/PHONE e/EMAIL l/LOCATION [ip/INSURANCE_PLAN] [i/IMAGE_FILE] [t/TAG(s)]​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com l/01 Singapore Street, #23-45 ip/MediShield Life i/john_doe.png t/friends t/owesMoney`
 **List Clients** | `list`
 **Show Client** | `show INDEX` <br> e.g., `show 1`
-**Edit Client** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOCATION] [ip/INSURANCE_PLAN] [i/IMAGE_FILE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit Client** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOCATION] [ip/INSURANCE_PLAN] [i/IMAGE_FILE] [t/TAG(s)]​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find Client by Name** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Find Client by Insurance Plan** | `findplan KEYWORD [MORE_KEYWORDS]` <br> e.g., `findplan MediShield`
 **Delete Client** | `delete INDEX`<br> e.g., `delete 3`
 **Add Meeting** | `addmeet c/CLIENT_NAME on/DATE_TIME l/LOCATION d/DESCRIPTION [t/TAG(s)]` <br> e.g., `addmeet c/John Doe on/12-10-2021 10:00 l/Starbucks, Tampines Hub d/Discuss insurance policy t/Urgent t/Premium`
 **List Meetings** | `listmeet`
-**Edit Meeting** | `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/LOCATION] [d/DESCRIPTION] [t/TAG(s)] [s/COMPLETION_STATUS]…​`<br> e.g.,`editmeet 2 c/James Lee done/yes`
+**Edit Meeting** | `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/LOCATION] [d/DESCRIPTION] [t/TAG(s)] [s/COMPLETION_STATUS]​`<br> e.g.,`editmeet 2 c/James Lee s/yes`
 **Relocate Meeting** | `relocate INDEX l/LOCATION` <br> e.g., `relocate 1 l/KFC, Blk 556 Bugis`
 **Reschedule Meeting** | `reschedule INDEX on/DATE_TIME` <br> e.g., `reschedule 2 on/20-10-2021 10:00`
 **Find Meeting** | `findmeet KEYWORD [MORE_KEYWORDS]`<br> e.g., `findmeet 05-2022 Sam`
