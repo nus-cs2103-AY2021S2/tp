@@ -2,10 +2,8 @@ package seedu.iscam.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.Messages;
 import seedu.iscam.model.Model;
-import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.meeting.MeetingContainsKeywordsPredicate;
 
 /**
@@ -27,20 +25,12 @@ public class FindMeetingsCommand extends Command {
         this.predicate = predicate;
     }
 
-    private String stringifyMeetings(ObservableList<Meeting> meetings) {
-        String str = "";
-        for (int i = 0; i < meetings.size(); i++) {
-            str += meetings.get(i).toString() + "\n";
-        }
-        return str;
-    }
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredMeetingList(predicate);
         return new CommandResult(String.format(Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW,
-                model.getFilteredMeetingList().size()) + "\n" + stringifyMeetings(model.getFilteredMeetingList()));
+                model.getFilteredMeetingList().size()));
     }
 
     @Override
