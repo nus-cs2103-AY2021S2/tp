@@ -94,7 +94,7 @@ class DeleteRecurringSessionCommandTest {
         Model expectedModel = new ModelManager(expectedAddressBook, new UserPrefs());
         String expectedMessage =
                 String.format(DeleteRecurringSessionCommand.MESSAGE_DELETE_SESSION_OF_RECURRING_SESSION_SUCCESS,
-                        expectedRecurringSession.toString());
+                        expectedRecurringSession.toString(), sessionToDelete.getSessionDate().getDate().toString());
         expectedModel.deleteSessionInRecurringSession(expectedAlice.getName(),
                 INDEX_FIRST_SESSION, sessionToDelete.getSessionDate());
         DeleteRecurringSessionCommand deleteRecurringSessionCommand =
