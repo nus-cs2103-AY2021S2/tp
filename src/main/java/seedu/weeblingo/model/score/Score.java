@@ -2,10 +2,12 @@ package seedu.weeblingo.model.score;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.logging.Logger;
 
 import seedu.weeblingo.MainApp;
 import seedu.weeblingo.commons.core.LogsCenter;
+import seedu.weeblingo.model.exceptions.EmptyStringInputException;
 import seedu.weeblingo.model.exceptions.NullInputException;
 
 /**
@@ -37,9 +39,16 @@ public class Score implements Comparable<Score> {
         if (questionAttempted < questionCorrect) {
             throw new NullInputException("Questions attempted must be larger or equal to questions correct.");
         }
-        if (durationString.equals("")) {
-            throw new NullInputException("Duration string cannot be empty.");
+        if (durationString.matches("\\s*")) {
+            throw new EmptyStringInputException();
         }
+
+        try {
+            DateTimeFormatter.ofPattern("HH:mm:ss").parse(durationString);
+        } catch (DateTimeParseException e) {
+            throw e;
+        }
+
         this.datetime = datetime;
         this.questionAttempted = questionAttempted;
         this.questionCorrect = questionCorrect;
@@ -84,7 +93,6 @@ public class Score implements Comparable<Score> {
 
     private Double getCorrectRatio() {
         assert questionAttempted != null;
-        assert questionAttempted > 0;
         assert questionCorrect != null;
         assert questionCorrect >= 0;
         if (questionAttempted == 0) {
