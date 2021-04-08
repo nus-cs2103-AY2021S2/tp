@@ -21,6 +21,9 @@ public class ReminderCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Display all expiring items";
 
+    public static final String MESSAGE_INCORRECT_INTEGER = "Number provided must be greater than -366 "
+        + "and cannot exceed 365";
+
     private final ItemExpiringPredicate predicate;
 
     public ReminderCommand(ItemExpiringPredicate predicate) {
