@@ -29,6 +29,8 @@ public class Date implements Comparable<Date> {
     public static final String MESSAGE_CONSTRAINTS = "Dates should be in one of the following formats:\n"
             + MESSAGE_YEAR_FORMATS + "\n" + MESSAGE_NOYEAR_FORMATS;
     public static final String EMPTY_DATE_STRING = "";
+
+    /** Map lowercase month string to value, all values listed for efficiency */
     public static final Map<String, Integer> MONTH_NAME_MAPPING = Map.ofEntries(
             entry("jan", 1),
             entry("january", 1),
@@ -55,11 +57,15 @@ public class Date implements Comparable<Date> {
             entry("december", 12)
     );
 
-    public static final int EMPTY_MONTH = 0;
-    protected static final int MIN_YEAR = 1;
-    protected static final int NON_YEAR = 0;
+    // Note: Must be a valid format adhering to 'VALID_FORMATS' as well
+    public static final DateTimeFormatter READABLE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
+    public static final DateTimeFormatter READABLE_FORMAT_WITHOUT_YEAR = DateTimeFormatter.ofPattern("d MMM");
 
-    protected static final DateTimeFormatter[] VALID_FORMATS = new DateTimeFormatter[] {
+    /** Defined in date with no month, e.g. empty date */
+    public static final int EMPTY_MONTH = 0;
+    private static final int NON_YEAR = 0; // Java LocalDate does not accept 0 year
+
+    private static final DateTimeFormatter[] VALID_FORMATS = new DateTimeFormatter[] {
             DateTimeFormatter.ofPattern("yyyy-MM-dd"),
             DateTimeFormatter.ofPattern("d.M.yyyy"),
             DateTimeFormatter.ofPattern("d/M/yyyy"),
@@ -68,7 +74,7 @@ public class Date implements Comparable<Date> {
             DateTimeFormatter.ofPattern("MMM d yyyy"),
             DateTimeFormatter.ofPattern("MMMM d yyyy"),
     };
-    protected static final DateTimeFormatter[] VALID_FORMATS_WITHOUT_YEAR = new DateTimeFormatter[] {
+    private static final DateTimeFormatter[] VALID_FORMATS_WITHOUT_YEAR = new DateTimeFormatter[] {
             DateTimeFormatter.ofPattern("--MM-dd"),
             DateTimeFormatter.ofPattern("d.M"),
             DateTimeFormatter.ofPattern("d/M"),
@@ -77,8 +83,6 @@ public class Date implements Comparable<Date> {
             DateTimeFormatter.ofPattern("MMM d"),
             DateTimeFormatter.ofPattern("MMMM d"),
     };
-    protected static final DateTimeFormatter READABLE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
-    protected static final DateTimeFormatter READABLE_FORMAT_WITHOUT_YEAR = DateTimeFormatter.ofPattern("d MMM");
 
     /** In "dd mmm yyyy" formatted string for human-readable display */
     public final String value;
@@ -97,6 +101,7 @@ public class Date implements Comparable<Date> {
      * Constructs a {@code Date}.
      * Date can optionally contain a year.
      * Some invalid dates are mapped to the nearest valid date, e.g. 29 Feb 2021 -> 28 Feb 2021.
+     * Note: Dates should not accept a LocalDate parameter directly, which will bypass the parseDate method
      *
      * @param inputDate A valid date string.
      */
@@ -127,14 +132,11 @@ public class Date implements Comparable<Date> {
      * Attempts to match {@code date} to any parsing rule.
      * If valid, a LocalDate is returned, otherwise a DateTimeException will be thrown.
      */
-    public static LocalDate parseDate(String date) throws DateTimeException {
+    protected static LocalDate parseDate(String date) throws DateTimeException {
         date = toTitleCase(date);
         for (DateTimeFormatter dateFormat: VALID_FORMATS) {
             try {
                 LocalDate parsedDate = LocalDate.parse(date, dateFormat);
-                if (parsedDate.getYear() < MIN_YEAR) {
-                    continue;
-                }
                 return parsedDate;
             } catch (DateTimeException e) {
                 continue;
@@ -154,7 +156,7 @@ public class Date implements Comparable<Date> {
      * Returns title case for strings.
      * Required for user inputs in arbitrary case, which DateTimeFormatter does not support parsing for.
      */
-    public static String toTitleCase(String date) {
+    private static String toTitleCase(String date) {
         StringBuilder titleCase = new StringBuilder(date.length());
         boolean nextCapitalize = true;
         for (char c: date.toCharArray()) {
