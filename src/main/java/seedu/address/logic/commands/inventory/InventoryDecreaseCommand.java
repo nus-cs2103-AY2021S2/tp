@@ -53,7 +53,7 @@ public class InventoryDecreaseCommand extends Command {
 
         if (model.hasIngredient(toDecrease)) {
             model.decreaseIngredient(toDecrease, quantity);
-        }else {
+        } else {
             throw new CommandException(MESSAGE_INVALID_INGREDIENT);
         }
 

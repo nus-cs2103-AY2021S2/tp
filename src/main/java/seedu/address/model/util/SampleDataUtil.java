@@ -24,69 +24,63 @@ import seedu.address.model.person.ReadOnlyPersonBook;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    static Ingredient potato = new Ingredient("Potato", 50);
-    static Ingredient chicken = new Ingredient("Chicken", 50);
-    static Ingredient lettuce = new Ingredient("Lettuce", 50);
-    static Ingredient beefPatty = new Ingredient("Beef patty", 50);
-    static Ingredient burgerBun = new Ingredient("Burger bun", 30);
+    private static Ingredient potato = new Ingredient("Potato", 50);
+    private static Ingredient chicken = new Ingredient("Chicken", 50);
+    private static Ingredient lettuce = new Ingredient("Lettuce", 50);
+    private static Ingredient beefPatty = new Ingredient("Beef patty", 50);
+    private static Ingredient burgerBun = new Ingredient("Burger bun", 30);
 
-    static Dish potatoSalad = new Dish("Potato salad", 6.50,
+    private static Dish potatoSalad = new Dish("Potato salad", 6.50,
             new ArrayList<Pair<Ingredient, Integer>>(Arrays.asList(
                     new Pair<>(potato, 1),
                     new Pair<>(lettuce, 1)
             )));
-    static Dish burger = new Dish("Burger", 11.50,
+    private static Dish burger = new Dish("Burger", 11.50,
             new ArrayList<Pair<Ingredient, Integer>>(Arrays.asList(
                     new Pair<>(burgerBun, 1),
                     new Pair<>(beefPatty, 1),
                     new Pair<>(lettuce, 1)
             )));
-    static Dish wings = new Dish("Chicken wings", 6.00,
+    private static Dish wings = new Dish("Chicken wings", 6.00,
             new ArrayList<Pair<Ingredient, Integer>>(Arrays.asList(
                     new Pair<>(chicken, 1)
             )));
-    static Dish fries = new Dish("French fries", 5.50,
+    private static Dish fries = new Dish("French fries", 5.50,
             new ArrayList<Pair<Ingredient, Integer>>(Arrays.asList(
                     new Pair<>(potato, 1)
             )));
 
-    static Person alex = new Person("Alex Yeoh", "87438807", "alexyeoh@example.com",
+    private static Person alex = new Person("Alex Yeoh", "87438807", "alexyeoh@example.com",
             "Blk 30 Geylang Street 29, #06-40",
             getTagList("gluten allergy"));
-    static Person bernice = new Person("Bernice Yu", "99272758", "berniceyu@example.com",
+    private static Person bernice = new Person("Bernice Yu", "99272758", "berniceyu@example.com",
             "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
             getTagList("regular", "seafood allergy"));
-    static Person charlotte = new Person("Charlotte Oliveiro", "93210283", "charlotte@example.com",
+    private static Person charlotte = new Person("Charlotte Oliveiro", "93210283", "charlotte@example.com",
             "Blk 11 Ang Mo Kio Street 74, #11-04",
             getTagList("vegan"));
-    static Person david = new Person("David Li", "91031282", "lidavid@example.com",
+    private static Person david = new Person("David Li", "91031282", "lidavid@example.com",
             "Blk 436 Serangoon Gardens Street 26, #16-43",
             getTagList("employee discount"));
-    static Person ibrahim = new Person("Irfan Ibrahim", "92492021", "irfan@example.com",
+    private static Person ibrahim = new Person("Irfan Ibrahim", "92492021", "irfan@example.com",
             "Blk 47 Tampines Street 20, #17-35",
             getTagList("regular"));
-    static Person roy = new Person("Roy Balakrishnan", "92624417", "royb@example.com",
+    private static Person roy = new Person("Roy Balakrishnan", "92624417", "royb@example.com",
             "Blk 45 Aljunied Street 85, #11-31",
             getTagList("regular"));
 
     public static Person[] getSamplePersons() {
-        return new Person[] {
-                alex, bernice, charlotte, david, ibrahim,roy
-        };
+        return new Person[] { alex, bernice, charlotte, david, ibrahim, roy };
     }
 
     public static Dish[] getSampleDishes() {
         // dummy dishes to populate order list
-        return new Dish[] {
-                potatoSalad, burger, wings, fries
-        };
+        return new Dish[] { potatoSalad, burger, wings, fries };
     }
 
 
     public static Ingredient[] getSampleIngredients() {
-        return new Ingredient[] {
-                potato, chicken, lettuce, beefPatty, burgerBun
-        };
+        return new Ingredient[] { potato, chicken, lettuce, beefPatty, burgerBun };
     }
 
     public static Order[] getSampleOrders() {

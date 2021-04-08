@@ -50,7 +50,7 @@ public class InventoryAddCommand extends Command {
         if (model.hasIngredient(toAdd)) {
             model.increaseIngredientByName(toAdd.getName(), toAdd.getQuantity());
             message = String.format(INCREASE_MESSAGE_SUCCESS, toAdd);
-        }else {
+        } else {
             model.addIngredient(toAdd);
             message = String.format(ADD_MESSAGE_SUCCESS, toAdd);
         }
