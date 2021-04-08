@@ -14,8 +14,9 @@ Given below are my contributions to the project.
 * **New Feature**: Added ability to check user attempts during quiz session.
   * What it does: Allows user to check if own attempt matches the correct answer of the flashcard currently tested 
   * Justification: This feature improves the user experience as user can test themselves to see if they truly understand 
-  the given questions.
-  * Highlights: This enhancement allowed implementation of more features, such as scoring, which are crucial for our app
+  the given questions. Testing to ensure acquisition of knowledge is fundamental for any language learning app 
+  * Highlights: This enhancement allowed implementation of more features, such as scoring, which are crucial for our app.
+  Modifications to `model`, `logic` and `ui` were necessary.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=xyzhang&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&tabAuthor=xyzhang00&tabRepo=AY2021S2-CS2103T-T13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
@@ -23,7 +24,7 @@ Given below are my contributions to the project.
   * Assigned issues to relevant parties for efficient responsibility management
 
 * **Enhancements to existing features**:
-  * Refactored code to more suit our application (Pull request [#59](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/59))
+  * Refactored code to match our application (Pull request [#59](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/59))
   * Refactored code to fix OOP principles violations resulted from lack of understanding of code base during early project (Pull request [#77](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/77/files))
 
 * **Documentation**:
