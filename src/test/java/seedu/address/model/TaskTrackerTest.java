@@ -46,8 +46,10 @@ public class TaskTrackerTest {
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
         Task editedAlice = new TaskBuilder(CS2103).withTags(VALID_TAG_HUSBAND)
-                .build();
-        List<Task> newTasks = Arrays.asList(CS2103, editedAlice);
+            .build();
+        Task duplicateAlice = new TaskBuilder(CS2103).withTags(VALID_TAG_HUSBAND)
+            .build();
+        List<Task> newTasks = Arrays.asList(duplicateAlice, editedAlice);
         TaskTrackerStub newData = new TaskTrackerStub(newTasks);
 
         assertThrows(DuplicateTaskException.class, () -> taskTracker.resetData(newData));
@@ -70,11 +72,11 @@ public class TaskTrackerTest {
     }
 
     @Test
-    public void hasTask_taskWithSameIdentityFieldsInTaskTracker_returnsTrue() {
+    public void hasTask_taskWithSameIdentityFieldsInTaskTracker_returnsFalse() {
         taskTracker.addTask(CS2103);
         Task editedAlice = new TaskBuilder(CS2103).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(taskTracker.hasTask(editedAlice));
+            .build();
+        assertFalse(taskTracker.hasTask(editedAlice));
     }
 
     @Test

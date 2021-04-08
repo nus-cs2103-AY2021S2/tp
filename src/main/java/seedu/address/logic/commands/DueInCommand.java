@@ -16,7 +16,7 @@ public class DueInCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose date is "
             + "in range of the specified days or weeks.\n"
-            + "Parameters: [days/NUMBER_OF_DAYS] [week/NUMBER_OF_WEEKS]\n"
+            + "Parameters: days/NUMBER_OF_DAYS OR week/NUMBER_OF_WEEKS\n"
             + "NUMBER_OF_DAYS and NUMBER_OF_WEEKS must be a positive integer.\n"
             + "Example: " + COMMAND_WORD + " days/10\n"
             + "If no parameters specified, the command will show assignments within the next 7 days.\n"

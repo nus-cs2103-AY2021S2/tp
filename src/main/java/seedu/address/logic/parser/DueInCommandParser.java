@@ -23,10 +23,15 @@ public class DueInCommandParser implements Parser<DueInCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NUMBER_OF_DAY, PREFIX_NUMBER_OF_WEEK);
         long numberOfDays;
+        if (argMultimap.getValue(PREFIX_NUMBER_OF_DAY).isPresent()
+                && argMultimap.getValue(PREFIX_NUMBER_OF_WEEK).isPresent()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DueInCommand.MESSAGE_USAGE));
+        }
         if (argMultimap.getValue(PREFIX_NUMBER_OF_DAY).isPresent()) {
             try {
                 numberOfDays = ParserUtil.parseNumberOfDays(argMultimap.getValue(PREFIX_NUMBER_OF_DAY).get());
-            } catch (NumberFormatException e) {
+            } catch (ParseException e) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, DueInCommand.MESSAGE_USAGE));
             }
@@ -34,7 +39,7 @@ public class DueInCommandParser implements Parser<DueInCommand> {
             try {
                 long numberOfWeeks = ParserUtil.parseNumberOfWeeks(argMultimap.getValue(PREFIX_NUMBER_OF_WEEK).get());
                 numberOfDays = numberOfWeeks * 7; // One week consists of 7 days
-            } catch (NumberFormatException e) {
+            } catch (ParseException e) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, DueInCommand.MESSAGE_USAGE));
             }

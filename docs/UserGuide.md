@@ -68,6 +68,10 @@ your contact management tasks done faster than traditional GUI apps.
   will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
+* All available inputs of priority tags are `LOW/MEDIUM/HIGH`. The application only accept these inputs as valid inputs and will throw an error if other inputs are entered
+
+* The module code parameter only takes in uppercase CS module codes.
+  e.g. `mc/CS2103` will be accepted but `mc/cs2103` will throw an error.
 </div>
 
 ### Prefixes for `add` and `edit` commands
@@ -119,24 +123,18 @@ Examples:
   Book” respectively.
 * `edit 3 n/Finals ptag/HIGH` edits the task name and priority tag of the task at index 3 to be "Finals" and "HIGH" respectively.
 
-### Clear Application : `clear`
-
-Clears all tasks from the application
-
-Format: `clear`
-
 ### Delete a task: `delete`
 
-Deletes the task at the specified index.
+Deletes the task at the specified index under All Tasks
 
 Format: `delete INDEX`
 
 * Index to be inserted must be positive, and
-* Index must be available on the list else an error will be thrown
+* Index must be available on the All Tasks list else an error will be thrown
 
 Example:
 
-* `delete 3` will delete the 3rd task on the list
+* `delete 3` will delete the 3rd task on the list of All Tasks
 * Using `list` to show all tasks, the user wants to delete the 2nd task. User use command `delete 2` to delete
   the 2nd task from the list.
 
@@ -152,6 +150,7 @@ Format: `find KEYWORD...`
 * Only full words will be matched e.g. “Java” will not match “Javascript”
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. “SQL Python” will return “SQL Quiz,
   Python Assignment”
+* Searching allows multiple keywords e.g: "Final Assignment" will match with "Final Assignment part 1" and "Final Assignment part 2". Use of multiple search keys must be delimited by space. Using example above. "FinalAssignment" will not match "Final Assignment part 1".
 
 Examples:
 
@@ -170,7 +169,7 @@ Toggle the status of a task from finished to unfinished or from unfinished to fi
 
 Format: `done INDEX`
 
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed All Tasks list.
 * The index must be a positive integer 1, 2, 3, …​
 * Index must be available on the list else an error will be thrown
 
@@ -200,6 +199,12 @@ Format: `sort [dateTime OR taskName OR moduleCode OR priorityTag OR weightage]`
 Clears all tasks from the application.
 
 Format: `clear`
+
+### Exit Application `exit`
+
+Exit from semester.config, changes will be saved
+
+Format: `exit`
 
 ### Show tasks that due soon: `dueIn`
 
@@ -272,19 +277,20 @@ the data of your previous `semester.config` home folder.
 
 Action | Format, Examples
 --------|------------------
-**add** | `add mc/MODULE_CODE n/TASK_NAME d/DEADLINE_DATE t/DEADLINE_TIME w/WEIGHTAGE [pt/TAGS] [ptag/PRIORITY_TAG]` <br> e.g, `add mc/CS1010 n/Practical Exam d/12-12-2020 t/10:10 w/10%` 
+**add** | `add mc/MODULE_CODE n/TASK_NAME d/DEADLINE_DATE t/DEADLINE_TIME w/WEIGHTAGE [pt/TAGS] [ptag/PRIORITY_TAG]` <br> e.g, `add mc/CS1010 n/Practical Exam d/12-12-2020 t/10:10 w/10%`
  **delete**  | `delete INDEX` <br> e.g, `delete 3` `delete 1`
 **find** | `find KEYWORD ...` <br> e.g, `find Database` `find Software`
 **list** | `list`
 **done** | `done INDEX` <br> e.g, `done 1`
-**sort** | `sort [dateTime OR taskName OR moduleCode OR priorityTag OR weightage]` <br> e.g, `sort dateTime` `sort moduleCode` 
-**notes** | `notes INDEX notes/NOTES` <br> e.g, `notes 4 notes/Assignment must be handwritten` 
-**edit** | `edit INDEX [n/TASK NAME] [mc/MODULE CODE] [d/DEADLINE_DATE] [t/DEADLINE_TIME] [notes/NOTES] [ptag/PRIORITY_TAG]` <br> e.g, `edit 2 n/Assignment 7` 
+**sort** | `sort [dateTime OR taskName OR moduleCode OR priorityTag OR weightage]` <br> e.g, `sort dateTime` `sort moduleCode`
+**notes** | `notes INDEX notes/NOTES` <br> e.g, `notes 4 notes/Assignment must be handwritten`
+**edit** | `edit INDEX [n/TASK NAME] [mc/MODULE CODE] [d/DEADLINE_DATE] [t/DEADLINE_TIME] [notes/NOTES] [ptag/PRIORITY_TAG]` <br> e.g, `edit 2 n/Assignment 7`
 **clear** |`clear`
-**dueIn** | `dueIn [day/NUMBER_OF_DAYS OR week/NUMBER_OF_WEEKS]` <br> e.g, `dueIn`  `dueIn day/10` `dueIn week/2` 
-**doToday** | `doToday [-a OR -r] INDEX` <br>e.g, `doToday -a 2` `doToday -r 2` 
+**dueIn** | `dueIn [day/NUMBER_OF_DAYS OR week/NUMBER_OF_WEEKS]` <br> e.g, `dueIn`  `dueIn day/10` `dueIn week/2`
+**doToday** | `doToday [-a OR -r] INDEX` <br>e.g, `doToday -a 2` `doToday -r 2`
 **undo** | `undo`
 **redo** | `redo`
+**exit** | `exit`
 
 
 
