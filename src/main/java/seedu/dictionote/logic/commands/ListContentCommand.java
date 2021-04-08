@@ -14,7 +14,7 @@ public class ListContentCommand extends Command {
 
     public static final String COMMAND_WORD = "listcontent";
 
-    public static final String MESSAGE_SUCCESS = "Dictionary shown.";
+    public static final String MESSAGE_SUCCESS = "Dictionary shown in the Dictionary Panel.";
 
 
     @Override

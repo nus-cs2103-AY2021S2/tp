@@ -14,7 +14,7 @@ public class ListDefinitionCommand extends Command {
 
     public static final String COMMAND_WORD = "listdef";
 
-    public static final String MESSAGE_SUCCESS = "All existing definitions shown.";
+    public static final String MESSAGE_SUCCESS = "All existing definitions shown in the Dictionary Panel.";
 
 
     @Override
