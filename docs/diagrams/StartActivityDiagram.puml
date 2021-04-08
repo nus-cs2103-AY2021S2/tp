@@ -1,0 +1,10 @@
+@startuml
+start
+:User executes Start command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:Weeblingo enters Quiz Session mode;
+stop
+@enduml

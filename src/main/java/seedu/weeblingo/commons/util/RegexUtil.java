@@ -23,6 +23,6 @@ public class RegexUtil {
     public static final String REGEX_ENG_WORDS = "[\\p{Alpha}][\\p{Alpha} ]*";
     public static final String REGEX_ENG_SENTENCE = "[\\p{Alnum}|\\p{Punct}]"
             + "[\\p{Alnum}|\\p{Punct} ]*";
-    public static final String REGEX_WEEBLINGO_TAG = "\\p{Alnum}+";
+    public static final String REGEX_WEEBLINGO_TAG = "[\\p{Alnum}][\\p{Alnum} ]*";
 
 }

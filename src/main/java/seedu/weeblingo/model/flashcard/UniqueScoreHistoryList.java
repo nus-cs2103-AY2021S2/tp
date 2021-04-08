@@ -3,6 +3,7 @@ package seedu.weeblingo.model.flashcard;
 import static java.util.Objects.requireNonNull;
 import static seedu.weeblingo.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -47,15 +48,7 @@ public class UniqueScoreHistoryList implements Iterable<Score> {
             throw new DuplicateAttemptScoreException();
         }
         internalList.add(toAdd);
-    }
-
-    /**
-     * Replaces the UniqueScoreHistoryList with {@code replacement}.
-     * {@code replacement} is meant to contain unique score histories.
-     */
-    public void setScores(UniqueScoreHistoryList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
+        Collections.sort(internalList);
     }
 
     /**
@@ -67,8 +60,8 @@ public class UniqueScoreHistoryList implements Iterable<Score> {
         if (!scoresAreUnique(scores)) {
             throw new DuplicateFlashcardException();
         }
-
         internalList.setAll(scores);
+        Collections.sort(internalList);
     }
 
     /**

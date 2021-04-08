@@ -19,7 +19,7 @@ public class StartCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Here is the first question.\n"
             + "Enter \"check\" to check the answer, "
-            + "\"next\" to move to the next question and \"end\" to return to menu.";
+            + "\"next\" to move to the next question or \"end\" to return to menu.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": starts a new quiz with the specified number of "
             + "questions, filtered to have only questions that have the specified tag(s). All parameters are"
@@ -29,6 +29,16 @@ public class StartCommand extends Command {
 
     public static final String MESSAGE_INVALID_NUMBER_OF_QUESTIONS = "Oops! Number of questions must "
             + "be a positive integer!";
+
+    public static final String MESSAGE_NUMBER_TOO_LARGE =
+            "The number you specified is much larger than the "
+                    + "number of flashcards WeebLingo has!\n"
+                    + "Please enter a smaller number. ";
+
+    public static final String MESSAGE_NUMBER_LARGER_THAN_DATABASE_FLASHCARDS_SIZE =
+            "The number you specified is larger than the "
+                    + "number of flashcards WeebLingo has!\n"
+                    + "Please enter a maximum number of ";
 
     public static final String MESSAGE_IN_QUIZ_SESSION = "You are in a quiz session!\n"
             + "Enter \"end\" to return to menu first or complete current quiz session "
@@ -64,7 +74,7 @@ public class StartCommand extends Command {
         if (currentMode != Mode.MODE_QUIZ && currentMode != Mode.MODE_QUIZ_SESSION_ENDED) {
             throw new CommandException(MESSAGE_NOT_IN_QUIZ_MODE);
         }
-
+        model.clearQuizInstance();
         model.startQuiz(numOfQnsForQuizSession, tags);
         model.switchModeQuizSession();
         return new CommandResult(MESSAGE_SUCCESS, false, false);
