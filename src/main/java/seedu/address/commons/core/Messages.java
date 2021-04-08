@@ -13,4 +13,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_SESSION_DISPLAYED_INDEX = "The session ID provided is invalid";
     public static final String MESSAGE_CANNOT_EDIT = "Please unassign ALL students and tutor before editing the session"
                                                     + "'s day OR timeslot.";
+    public static final String MESSAGE_CANNOT_DELETE = "Please unassign ALL students and tutor before deleting the"
+                                                        + " session";
 }
