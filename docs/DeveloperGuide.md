@@ -901,6 +901,107 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
+#### UC15 - Add a groupmate to a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all groupmates under the project.
+3. User requests to add a groupmate to the project.
+4. CoLAB adds the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 3a. The given arguments are invalid.
+
+    * 2a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the add action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+#### UC16 - Delete a groupmate from a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all groupmates under the project.
+3. User requests to delete a specific groupmate in the list.
+4. CoLAB deletes the deadline.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of groupmates is empty.
+
+  Use case ends.
+
+* 3a. The given groupmate index is invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the delete action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+#### UC17 - Add or modify information about a groupmate in a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all groupmates under the project.
+3. User requests to edit information about a groupmate.
+4. CoLAB updates the entry with new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of groupmates is empty.
+
+  Use case ends.
+
+* 3a. The given arguments are invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the update action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
 #### UC20 - Add a contact
 
 **MSS**
