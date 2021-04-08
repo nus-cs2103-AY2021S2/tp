@@ -175,7 +175,7 @@ As members leave the club, you can delete a member along with all of his/her con
 Format: `deleteMember NAME`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The name you specify must belong to an existing Member in the Application.
+To prevent unintentional deleting of Members, the NAME you specify must be in the currently displayed list of Members 
 </div>
 
 Examples:
@@ -196,14 +196,18 @@ Examples:
 Club members may change their emails or phone numbers after a while. This feature allows you to edit the details of the 
 existing Member in the application with the name you specify.
 
-Format: `editMember NAME_IN_LIST [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/NEW_ROLE]`
+Format: `editMember NAME [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/NEW_ROLE]`
 
-* Edits the member at the specified NAME_IN_LIST.
+* Edits the member at the specified NAME.
 * The fields NEW_NAME, NEW_PHONE_NUMBER, NEW_EMAIL, NEW_ROLE are all optional.
 * At least one of the optional fields must be provided.
 * NEW_ROLE field can take on any values with alphanumeric characters.
 * NEW_NAME field can take on any values with alphanumeric characters.    
 * Existing values will be updated to the input values.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+To prevent unintentional editing of Members, the NAME you specify must be in the currently displayed list of Members 
+</div>
 
 Examples: 
 * `editMember Alice n/Alice Tan`
@@ -456,7 +460,7 @@ Action | Format, Examples
 **Add Member** | `addMember NAME p/PHONE_NUMBER e/EMAIL [r/ROLE]` <br> e.g., `addMember Dylan p/64529356 e/dylan@gmail.com r/Member`
 **Delete Member** | `deleteMember NAME` <br> e.g., `deleteMember Rachel`
 **View Members** | `viewMembers`<br> e.g., `viewMembers`
-**Edit Member** | `editMember NAME_IN_LIST [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/ROLE]`<br> e.g.,`editMember Alice e/newAlice@gmail.com r/Events head`
+**Edit Member** | `editMember NAME [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/ROLE]`<br> e.g.,`editMember Alice e/newAlice@gmail.com r/Events head`
 **Find Members by Keywords** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `findMembers Rachel 98562154 john@gmail.com`
 ||
 **Add Task** | `addTask TITLE d/DESCRIPTION b/DEADLINE [s/STATUS] [p/PRIORITY] [a/ASSIGNEE]` <br> e.g., Example: `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 s/completed p/high a/Rachel`
