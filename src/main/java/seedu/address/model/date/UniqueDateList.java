@@ -22,7 +22,7 @@ public class UniqueDateList implements Iterable<ImportantDate> {
      */
     public boolean contains(ImportantDate toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameImportantDate);
     }
 
     /**

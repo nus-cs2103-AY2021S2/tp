@@ -19,7 +19,7 @@
                 <URL value="@Extensions.css" />
             </stylesheets>
             <VBox alignment="CENTER">
-                 <StackPane fx:id="dateListPanelPlaceholder" prefHeight="401.0" prefWidth="270.0" VBox.vgrow="ALWAYS" />
+                 <StackPane fx:id="dateListPanelPlaceholder" prefHeight="401.0" prefWidth="300.0" VBox.vgrow="ALWAYS" />
             </VBox>
         </Scene>
     </scene>
