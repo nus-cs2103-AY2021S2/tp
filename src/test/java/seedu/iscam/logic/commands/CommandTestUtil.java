@@ -105,9 +105,11 @@ public class CommandTestUtil {
     public static final String STATUS_DESC_DAN = " " + PREFIX_STATUS + VALID_STATUS_DAN;
 
     // Invalid values for Meeting
+    public static final String INVALID_CLIENT_NAME_DESC = " " + PREFIX_CLIENT + "James&Co";
     public static final String INVALID_DATETIME_DESC = " " + PREFIX_ON + "282099 10:00";
+    public static final String INVALID_DATETIME_PAST_DESC = " " + PREFIX_ON + "28-12-1999 10:00";
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION
-            + "Describe @$(*!)@#$";
+            + "";
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "done";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
