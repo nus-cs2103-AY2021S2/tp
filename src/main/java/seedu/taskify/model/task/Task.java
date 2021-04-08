@@ -61,7 +61,7 @@ public class Task {
 
     public boolean isTaskExpired() {
         LocalDateTime timeNow = LocalDateTime.now();
-        if (this.date.getLocateDateTime().isBefore(timeNow)) {
+        if (this.date.getLocalDateTime().isBefore(timeNow)) {
             this.status = new Status(StatusType.EXPIRED);
             return true;
         }
