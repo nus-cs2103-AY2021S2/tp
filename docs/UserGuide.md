@@ -99,7 +99,7 @@ Format: `add n/NAME p/PHONE e/EMAIL l/LOCATION [ip/INSURANCE_PLAN] [i/IMAGE_FILE
 * NAME in `n/NAME` should not be than 50 alphanumeric characters. <br>
   e.g `n/John Doe 123` is acceptable 
   
-* PHONE in `p/PHONE` can only consist of 8 digits and start with `6`, `8` or `9`. It should not contain spaces between numbers. <br>
+* PHONE in `p/PHONE` can only consist of 8 digits and start with `6`, `8` or `9`. It should **not** contain spaces between numbers. <br>
   e.g `p/81234567` is acceptable <br>
   Additional info: Singapore numbers are only 8 digits long. Should you need to add a foreign number, you can always add it as a `tag`
 
@@ -115,7 +115,11 @@ Format: `add n/NAME p/PHONE e/EMAIL l/LOCATION [ip/INSURANCE_PLAN] [i/IMAGE_FILE
 * Individual TAG(s) in `t/TAG(s)` should not be longer than 50 alphanumeric characters. <br>
   e.g `t/friend` is acceptable
   
-</div>
+</div> <br>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The above limits apply for all [client commands](#client-management)
+</div> <br>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A client can have any number of tags (including 0). For optimal usage of the app, try to keep less than 10 tags per client
@@ -263,7 +267,11 @@ Format: `addmeet c/CLIENT_NAME on/DATE_TIME l/LOCATION d/DESCRIPTION [t/TAG(s)]`
 * Individual TAG(s) in `t/TAG(s)` should not be longer than 50 alphanumeric characters. <br>
   e.g `t/friend` is acceptable
 
-</div>
+</div> <br>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The above limits apply for all [meeting commands](#meeting-management)
+</div> <br>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A client can have any number of meetings (including 0). For optimal usage of the app, try to keep less than 10 meetings per client
