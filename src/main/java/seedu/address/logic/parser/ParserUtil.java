@@ -42,7 +42,7 @@ import seedu.address.model.tutor.Phone;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String SUBJECT_LIST_INVALID_LENGTH = "Each Tutor Subject must have all fields defined.";
+    public static final String SUBJECT_LIST_INVALID_LENGTH = "All subjects must have all attributes provided.";
     public static final String MESSAGE_INVALID_DATE = "Date should be in YYYY-MM-DD format.";
 
     /**

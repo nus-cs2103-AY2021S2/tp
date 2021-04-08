@@ -97,6 +97,8 @@ This feature allows tutees to maintain and keep track of the list of tuition tut
 
 Add a new tutor and enter their basic details as well as an optional note.
 
+Multiple subjects may be provided, and all subject attributes must be present when providing a subject.
+
 Format:
 `add_tutor n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL  a/ADDRESS <s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>... notes/NOTE`
 
@@ -143,6 +145,10 @@ Example: `delete_tutor 1` deletes the first tutor.
 #### Edit a tutor: `edit_tutor`
 
 Edit a tutor's information by index. Only the attributes present can be changed in the tutor, including notes.
+
+All subjects taught by the tutor will be overwritten by subjects provided to
+this command. Furthermore, all subject attributes must be present when providing
+a subject.
 
 Format: `edit_tutor INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [<s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>]... notes/NOTES`
 
