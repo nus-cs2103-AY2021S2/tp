@@ -504,10 +504,10 @@ Action | Format, Examples
 --------|------------------
 **Help** | `help`
 **Exit** | `exit`
-**Add property** | `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` <br><br> e.g., `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`
-**Add appointment** | `add appointment n/NAME r/REMARKS d/DATE t/TIME` <br><br> e.g., `add appointment n/Meet Jacob for dinner r/At Lot One's food court d/19-4-2021 t/1930`
-**Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]`<br><br> e.g.,`edit property 1 r/Urgent to sell cn/Alice`
-**Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br><br> e.g.,`edit appointment 3 d/28-03-2021 r/at M hotel`
+**Add property** | `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` <br><br> e.g., `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`
+**Add appointment** | `add appointment n/NAME r/REMARKS d/DATE t/TIME` <br><br> e.g., `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930`
+**Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]`<br><br> e.g.,`edit property 1 r/Urgent to sell cc/96011846`
+**Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br><br> e.g.,`edit appointment 3 d/21-07-2021 t/1500`
 **Remove an entry** | `delete appointment INDEX` <br> e.g. `delete appointment 7` <br><br> `delete property INDEX` <br> e.g. `delete property 7`
 **List all** | `list all`
 **List property** | `list property`
