@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
-MeetBuddy is a **desktop app for managing contacts and daily tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, MeetBuddy can get your contact management as well as task management done faster than traditional GUI apps.
+MeetBuddy is a **desktop app for managing contacts and daily meetings, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, MeetBuddy can get your contacts and meetings management done faster than traditional GUI apps. In addition, MeetBuddy is meant for users to organise their meetups
+with friends, family, or work colleagues. It provides a better user experience for users who have alot of contacts having online Gravatar accounts, where there is automatic syncing of
+their profile pictures. 
+
 
 * Table of Contents
 {:toc}
@@ -34,9 +38,17 @@ MeetBuddy is a **desktop app for managing contacts and daily tasks, optimized fo
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below (after glossary) for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Glossary 
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+--------------------------------------------------------------------------------------------------------------------
+
 
 ## Features
 
@@ -61,6 +73,13 @@ MeetBuddy is a **desktop app for managing contacts and daily tasks, optimized fo
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  
+* Note that for all date arguments, if the day is less than or equal to 31 and 
+there is no such day corresponding to the given month and year of the date, the program is smart enough to handle 
+ such cases and automatically corrects the date to the nearest valid end-of-month date. For example 
+`31-02-2021` will be auto-corrected to `28-02-2021` because there is no such date. 
+  But `32-02-2021` will not be autocorrected and the user will be prompted with an error message.
+
 
 </div>
 
@@ -194,21 +213,22 @@ Examples
  * Note that you can scroll to view more slots.
  
  
-### Set timetable date : `setTimetable`
+### Set Timetable date : `setTimetable`
  
  Sets a timetable to start on a specified date. Updates the display accordingly.
  
  Format: 'setTimetable DATE'
  
  * DATE must be a string strictly following the format `YYYY-mm-dd`
+ * If no date is specified, for example `setTimetable` without DATE parameter is keyed in, it will default set to
+ today's current date.
  
  
 ### Profile picture:
 
-Gets the image of contacts from Gravatar. If contact does not have a gravatar account linked to 
-the email address, the what will be shown is a unique robo-hashed image obtained from email.
-There is no need to use any commands, the profile picture will be shown after updating/ adding contact
-If there is a problem establishing connection to the server, a default blue circle icon will be displayed
+Instantly updates your contacts with their Gravatar profile picture, if your contact has their email linked
+to their gravatar account. The profile picture will be automatically displayed upon adding the contact.
+If there is a problem obtaining the image, a default blue circle icon will be displayed
 instead.
 
 ### Clearing all entries : `clear`
@@ -330,4 +350,4 @@ Action | Format, Examples
 **List** | `list`, `listm`, `listp`
 **Sort** | `sortp by/FIELD d/DIRECTION` <br>  `sortm by/FIELD d/DIRECTION`
 **Help** | `help`
-**SetTimtable**| `setTimetable DATE`
+**SetTimetable**| `setTimetable DATE`

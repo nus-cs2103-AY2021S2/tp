@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="MeetBuddy" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
   <scene>
     <Scene>
@@ -72,7 +72,7 @@
                            <StackPane fx:id="meetingDashboardPlaceholder" />
                         </content>
                      </Tab>
-                     <Tab fx:id="timetableTab" text="TimeTable">
+                     <Tab fx:id="timetableTab" text="Timetable">
                         <content>
                            <StackPane fx:id="timetableHolder" />
                         </content>

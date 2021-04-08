@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.scene.image.Image;
+import seedu.address.commons.util.ImageRequestUtil;
 import seedu.address.model.group.Group;
 
 /**
@@ -19,6 +21,7 @@ public class Person {
     private final PersonName personName;
     private final Phone phone;
     private final Email email;
+    private ProfilePicture picture;
 
     // Data fields
     private final Address address;
@@ -35,6 +38,21 @@ public class Person {
         this.email = email;
         this.address = address;
         this.groups.addAll(groups);
+
+        try {
+            Image image = ImageRequestUtil.getGravatarImage(email.value);
+            this.picture = new ProfilePicture(image);
+        } catch (Exception e) {
+            this.picture = null;
+        }
+    }
+
+    /**
+     * Returns the profile picture, null if there is no profile picture.
+     * @return
+     */
+    public ProfilePicture getProfilePicture() {
+        return picture;
     }
 
     public PersonName getName() {
