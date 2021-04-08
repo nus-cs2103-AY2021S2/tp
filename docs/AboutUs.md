@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/zatkiller.png" width="200px">
 
 [[github](https://github.com/zatkiller)]
-[[portfolio](team/tashawan23.md)]
+[[portfolio](team/zatkiller.md)]
 
 * Role: Software Developer
 
@@ -22,7 +22,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/cheeerynne.png" width="200px">
 
-[[github](https://github.com/cheeerynne)] [[portfolio](team/tashawan23.md)]
+[[github](https://github.com/cheeerynne)] 
+[[portfolio](team/cheeerynne.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -32,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/rachelljt.png" width="200px">
 
 [[github](http://github.com/rachelljt)]
-[[portfolio](team/tashawan23.md)]
+[[portfolio](team/rachelljt.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
