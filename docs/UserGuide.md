@@ -252,7 +252,7 @@ Tutorial Example:<br>
 
 ![done message](images/doneCommand.png)
 
-Examples:
+Other Examples:
 * `list` followed by `done 2` marks the 2nd task as done in the ModuleBook3.5.
 * `find Quiz` followed by `done 1` marks the 1st task in the results of the `find` command as done.
 
@@ -297,12 +297,13 @@ Tutorial Example:<br>
 ![add message](images/tagCommand.png)
 
 Other Examples:
-* `tag 1 t/SoftwareEng`
+* `tag 1 t/SoftwareEng` adds `SoftwareEng` tag to task 1.
+* `tag 3 t/Participation` adds `Participation` tag to task 3.
 
 
 ### Search tasks with name of task: `find`
 
-Searches for tasks with a name of task  provided.
+Searches for tasks with a name of task provided.
 
 Application: Used to find a certain task that may be further down the list.
 
@@ -332,7 +333,7 @@ Searches for tasks with an associated tag. Tag is case-insensitive for your conv
 
 One Tag allowed. Tag provided must be alphanumerical.
 
-Application: Used to find tasks that are similar in nature.
+Application: Used to find tasks that tend to have the same tags due to similarities between them.
 
 Format: `findTag KEYWORD`
 
@@ -359,8 +360,8 @@ Tutorial Example:<br>
 
 ![add message](images/findModuleCommand.png)
 
-Examples:
-* `mod CS3243`
+Other Examples:
+* `mod CS3243` lists out tasks associated with module CS3243.
 
 
 ### Delete tag of Task: `deleteTag`
@@ -430,8 +431,6 @@ Tutorial Example:<br>
 
 ![add message](images/sortCommand.png)
 
-Examples:
-* `sort w/`
 
 ### Recur tasks: `recur`
 
@@ -455,7 +454,7 @@ Tutorial Example:<br>
 ![add message](images/recurCommand.png)
 
 
-Examples:
+Other Examples:
 * `recur 1 r/biweekly` Recurs the 1st task in ModuleBook3.5 every two weeks.
 * `recur 2 r/weekly` Recurs the 4th task in ModuleBook3.5 every week.
 * `recur 3 r/daily` Recurs the 3rd task in ModuleBook3.5 every day.
@@ -494,7 +493,7 @@ Tutorial Example:<br>
 
 ![delete message](images/deleteCommand.png)
 
-Examples:
+Other Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the ModuleBook3.5.
 * `find CS2103T` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
