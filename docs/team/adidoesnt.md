@@ -28,5 +28,3 @@ This document entails my contribution to the NuFash project.
 * **Community:**
   
   * Reviewed another team's application and helped point out bug for them to fix in order for them to improve their product. [2](https://github.com/adidoesnt/ped/issues/2), [4](https://github.com/adidoesnt/ped/issues/4), [11](https://github.com/adidoesnt/ped/issues/11), [13](https://github.com/adidoesnt/ped/issues/13) among others.
-  
-    
