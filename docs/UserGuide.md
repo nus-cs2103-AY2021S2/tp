@@ -167,10 +167,14 @@ Format: `addnote c/CONTENT [t/TAG]...`
 
 * Tags are optional. However, there must be exactly one content.
 * In the current version, notes will be stored as a pure string.
+* Note with the same exact content can only be added once regardless of different tags. 
+* Tags must be in alphanumeric format.
+* `...` means that you can add multiple tags.
 
 Examples:
 * `addnote c/Do Homework`
 * `addnote c/Study for Midterms t/CS2103`
+* `addnote c/Go to school t/Panic t/Confused`
 
 #### Delete a new note: `deletenote`
 
