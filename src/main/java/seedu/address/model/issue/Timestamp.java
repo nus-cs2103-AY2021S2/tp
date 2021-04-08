@@ -33,7 +33,7 @@ public class Timestamp implements Comparable<Timestamp> {
             + "MM - 2 digits month (e.g. 01, 05, 12)\n"
             + "dd - 2 digits day (e.g. 01, 05, 31)\n"
             + "hh - 2 digits hour (01-12) (midnight is 12:00am)\n"
-            + "mm - minutes (0-59)\n"
+            + "mm - 2 digits minutes (00-59)\n"
             + "a - case-insensitive AM/PM\n"
             + "Example: 2021/01/01 12:00am";
 
