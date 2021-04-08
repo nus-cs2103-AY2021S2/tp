@@ -10,7 +10,7 @@ title: Dick Jessen William Project Portfolio Page
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to create, read, update and delete notes. (Done together with Otto Alexander Sutianto / godjuansan).
+* **New Feature**: Added the ability to create, read, update and delete notes. (Done together with Otto Alexander Sutianto (https://github.com/godjuansan/)).
   * What it does: Allows the user to to create, read, update and delete notes via command
   * Justification: This is essential as Dictionote is a note-taking app.
   * Highlights: Supports full CRUD operation fully with CLI (Command Line Interface).
@@ -33,7 +33,7 @@ Given below are my contributions to the project.
 
 * **Project Management and Contributions**:
   * Attended weekly meetings and contribute ideas.
-  * Managed workload for `Note` features between myself and Otto (godjuansan).
+  * Managed workload for `Note` features between myself and Otto (https://github.com/godjuansan/).
 
 * **Enhancement Features**:
   * Update `Help` Feature : Update `listCommand` and `ListCommandNoteCommand`
