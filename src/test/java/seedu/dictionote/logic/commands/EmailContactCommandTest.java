@@ -169,27 +169,6 @@ public class EmailContactCommandTest {
     }
 
     @Test
-    public void executeWithNote_invalidIndexFilteredContactListAndFilteredNoteList_throwsCommandException() {
-        showContactAtIndex(model, INDEX_FIRST_CONTACT);
-        showNoteAtIndex(model, INDEX_FIRST_NOTE);
-
-        Index outOfBoundContactIndex = INDEX_SECOND_CONTACT;
-        Index outOfBoundNoteIndex = INDEX_SECOND_NOTE;
-
-        // ensures that outOfBoundContactIndex is still in bounds of the contacts list
-        assertTrue(outOfBoundContactIndex.getZeroBased() < model.getNoteBook().getNoteList().size());
-        // ensures that outOfBoundNoteIndex is still in bounds of the notes list
-        assertTrue(outOfBoundNoteIndex.getZeroBased() < model.getNoteBook().getNoteList().size());
-
-        EmailContactCommand emailContactCommand = new EmailContactCommand(outOfBoundContactIndex, outOfBoundNoteIndex);
-
-        // Invalid contact index takes precedence in terms of thrown exceptions.
-        // Reason: contact index is required by the EmailContactCommand, while the note index
-        // is optional.
-        assertCommandFailure(emailContactCommand, model, Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
-    }
-
-    @Test
     public void equals() {
         EmailContactCommand emailFirstCommand = new EmailContactCommand(INDEX_FIRST_CONTACT);
         EmailContactCommand emailSecondCommand = new EmailContactCommand(INDEX_SECOND_CONTACT);

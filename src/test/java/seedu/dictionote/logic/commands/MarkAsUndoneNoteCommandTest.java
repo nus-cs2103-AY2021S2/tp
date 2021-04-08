@@ -17,6 +17,7 @@ import seedu.dictionote.commons.core.index.Index;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
+import seedu.dictionote.testutil.TypicalNoteContentConfig;
 
 public class MarkAsUndoneNoteCommandTest {
     private Model model = new ModelManager(getTypicalContactsList(), new UserPrefs(),
@@ -27,6 +28,7 @@ public class MarkAsUndoneNoteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredContactList().size() + 1);
         MarkAsUndoneNoteCommand markAsUndoneNoteCommand = new MarkAsUndoneNoteCommand(outOfBoundIndex);
 
+        model.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigWitouthNote());
         assertCommandFailure(markAsUndoneNoteCommand, model, Messages.MESSAGE_INVALID_NOTE_DISPLAYED_INDEX);
     }
 

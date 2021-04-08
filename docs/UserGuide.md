@@ -19,7 +19,7 @@ title: User Guide
 1. Copy the file to the folder you want to use as the _home folder_ for your Dictionote application.
 
 1. Double-click the file to start the app. The GUI should appear in a few seconds. <br>
-   ![Ui](images/Ui.png)
+   ![UiUserguide](images/UiUserGuide.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
 
@@ -50,11 +50,11 @@ title: User Guide
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listcommand`, `exit` and `clearcontact`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-  
-* Extraneous parameter for commands that only take in one parameters (such as `open`, `close`, and `setdividerc) will not be ignored.<br>
+
+* Extraneous parameter for commands that only take in one parameters (such as `open`, `close`, and `setdividerc` will **not** be ignored.<br>
   e.g. if the command specifies `open -c 123`, the command will be invalid.
-  
-  
+
+
 </div>
 
 ### Guide Feature
@@ -62,7 +62,7 @@ title: User Guide
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/HelpMessage.png)
 
 Format: `help`
 
@@ -71,6 +71,32 @@ Format: `help`
 Shows a list of available command
 
 Format: `listcommand`
+
+#### Viewing Command Details
+
+##### Viewing Dictionary Command Details : `commanddetaild`
+
+Shows a list of available dictionary command with description
+
+Format: `commanddetaild`
+
+##### Viewing note Command Details : `commanddetailn`
+
+Shows a list of available note command with description
+
+Format: `commanddetailn`
+
+##### Viewing Contact Command Details : `commanddetailc`
+
+Shows a list of available contact command with description
+
+Format: `commanddetailc`
+
+##### Viewing Ui Command Details : `commanddetailu`
+
+Shows a list of available Ui command with description
+
+Format: `commanddetailu`
 
 ### Dictionary Features
 This section will introduce to you the commands to be used in the Dictionary Panel.
@@ -183,10 +209,14 @@ Format: `addnote c/CONTENT [t/TAG]...`
 
 * Tags are optional. However, there must be exactly one content.
 * In the current version, notes will be stored as a pure string.
+* Note with the same exact content can only be added once regardless of different tags. 
+* Tags must be in alphanumeric format.
+* `...` means that you can add multiple tags.
 
 Examples:
 * `addnote c/Do Homework`
 * `addnote c/Study for Midterms t/CS2103`
+* `addnote c/Go to school t/Panic t/Confused`
 
 #### Delete a new note: `deletenote`
 
@@ -273,7 +303,7 @@ Format: `findnote c/NAME_KEYWORD... [t/TAG_KEYWORD]...`
 * Only the content and tags are searched.
 * Notes and tags will be matched if they contain the given keywords e.g. `c/CS` will match the note containing `CS2103T`
 * Notes matching at least one content keyword will be returned (i.e. OR search). e.g. `c/CS c/Important` will return `CS Midterm`, `Important stuff`
-* Notes matching all of the given tag keywords will be returned (i.e. AND search). e.g. `c/urgent` will return all notes that are tagged with `urgent`.
+* Notes matching all of the given tag keywords will be returned (i.e. AND search). e.g. `t/urgent` will return all notes that are tagged with `urgent`.
 
 Examples:
 
@@ -281,27 +311,28 @@ Examples:
 
 #### Edit a note in edit mode : `editmode`
 
-Edits a note in edits mode.
+Edits a note in edit mode.
 
-Format: `editmodenote`
+Format: `editmode`
 
 * A note have to be show on the note content panel using `shownote` command.
 * In edit note mode, all others note related command will be disable.
-* To exit edit note mode, use `exitnote` to discard all changes or `savenote` to save all changes
+* To exit edit note mode, use `quit` to discard all changes or `save` to save all changes
 
 
 Examples:
-* `editmodenote`
+* `editmode`
   * note content will be editable
 
-#### Save and quit edit mode: `save`
+#### Save and exit edit mode: `save`
 
-Save edited content and quit edits mode and.
+Save edited content and exit edit mode.
 
 Format: `save`
 
 * The program have to be in edit mode.
 * All changes will be saved.
+* The program will exit edit mode after saving.
 
 Examples:
 * `save`
@@ -309,17 +340,18 @@ Examples:
 
 #### Quit edit mode : `quit`
 
-Quit edits mode.
+Quit edit mode and discard all changes.
 
 Format: `quit`
 
 * The program have to be in edit mode.
 * All changes will be discarded.
+* The program will exit edit mode.
 
 Examples:
 * `quit`
   * quit edit mode and discard all changes.
-  
+
 
 ### Contact Features
 
@@ -426,18 +458,10 @@ Format: `clearcontact`
 
 
 ### User Interface Feature
-Dictionote allows the user to manipulate the user-interface via command. 
+Dictionote allows the user to manipulate the user-interface via command.
 The following are the 5 region where the user can manipulate
 
-![Ui Panel ](images/UiPanel.png)
-
-The region name is as follow :
-1. Contact Panel
-1. Dictionary List Panel
-1. Dictionary Content Panel
-1. Note List Panel
-1. Dictionary Content Panel
-
+![Ui Panel](images/UiPanel.png)
 
 #### Opening and Closing UI Panel
 
@@ -451,10 +475,10 @@ Format: `open Option`
 * The following `Option` are supported
     * `-a`: All panel
     * `-c`: Contact panel
-    * `-d`: Dictionary panel
+    * `-d`: Both dictionary list panel and dictionary content panel
     * `-dc`: Dictionary content panel
     * `-dl`: Dictionary list panel
-    * `-n`: Note panel
+    * `-n`: Both note list panel and note content panel
     * `-nc`: Note content panel
     * `-nl`: Note list panel
     * `-l`: Both dictionary list and note list panel
@@ -492,22 +516,17 @@ Examples:
 Dictionote allows the user to manipulate the divider between the region via command.
 The following are the 4 divider where the user can manipulate
 
-![Ui Panel ](images/UiDivider.png)
+![Ui Divider](images/UiDivider.png)
 
-The divider name is as follow :
-1. Contact Divider
-1. Dictionary Divider
-1. Note Divider 
-1. Main Divider
+The following images show the position the divider will be set when user enter a value from 1 to 9
+in either horizontally or vertically mode.
 
-The following images show the position the divider will be set when user enter a value from 1 to 9 horizontally and vertically
-
-![Ui Panel ](images/UiDividerConfig.png)
+![Ui Divider Configuration](images/UiDividerConfig.png)
 
 ##### Set contact divider position: `setdividerc`
 
 Sets the position of the contact divider.
-The note divider is the divider separating the contact and others user interface.
+The contact divider is the divider separating the contact and others user interface.
 
 Format: `setdividerc Position`
 
@@ -560,11 +579,7 @@ Examples:
 Dictionote allows the user to change the orientation of the divider between the region via command.
 The following are the 2 divider where the user can manipulate
 
-![Ui Panel ](images/UiOrientation.png)
-
-The divider name is as follow :
-1. Dictionary Divider
-1. Note Divider
+![Ui Orientation](images/UiOrientation.png)
 
 ##### Toggle dictionary divider orientation: `toggledividerd`
 
@@ -575,7 +590,7 @@ it will be changed to vertical and vice versa.
 Format: `toggledividerd`
 
 Examples:
-* `togglerdividerd`
+* `toggledividerd`
 
 ##### Toggle note divider orientation: `toggledividern`
 
@@ -625,6 +640,10 @@ Action | Format, Examples
 --------|------------------
 **Viewing help** | `help`
 **Viewing Command List** | `listcommand`
+**Viewing Dictionary Command Details** | `listcommandd`
+**Viewing Note Command Details** | `listcommandn`
+**Viewing Contact Command Details** | `listcommandc`
+**Viewing UI Command Details** | `listcommandu`
 **Exit** | `exit`
 ***Dictionary Features*** | -
 **Find content** | `findcontent KEYWORD [MORE_KEYWORDS]`
@@ -647,8 +666,8 @@ Action | Format, Examples
 **Sort all notes** | `sortnote`
 **Find notes using keywords** | `findnote c/NAME_KEYWORD…​ [t/TAG_KEYWORD]…​`
 **Edit note in edit mode** | `editmodenote`
-**Exit edit mode** | `exitnote`
-**Save changes to note** | `savenote`
+**Quit edit mode** | `quit`
+**Save changes to note** | `save`
 ***Contact Features*** | -
 **Add contact** | `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addcontact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **List all contacts** | `listcontact`
@@ -659,8 +678,8 @@ Action | Format, Examples
 **Sort contacts by most-frequent** | `mostfreqcontact`
 **Clear contacts list** | `clearcontact`
 ***UI Features*** | -
-**Open** | `open Option` <br> e.g., `open -c`
-**Close** | `close Option` <br> e.g., `close -c`
+**Open UI panel** | `open Option` <br> e.g., `open -c`
+**Close UI panel** | `close Option` <br> e.g., `close -c`
 **Set contact divider position** | `setdividerc POSITION`
 **Set dictionary divider position** | `setdividerd POSITION`
 **Set note divider position** | `setdividern POSITION`

@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
+import seedu.dictionote.testutil.TypicalNoteContentConfig;
 
 public class SortNoteCommandTest {
 
@@ -27,6 +28,9 @@ public class SortNoteCommandTest {
         expectedModel = new ModelManager(model.getContactsList(), new UserPrefs(),
                 getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
         expectedModel.sortNote();
+
+        model.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigWitouthNote());
+        expectedModel.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigWitouthNote());
     }
 
     @Test

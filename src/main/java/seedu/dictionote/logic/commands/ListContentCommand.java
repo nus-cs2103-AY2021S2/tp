@@ -21,7 +21,7 @@ public class ListContentCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredContentList(PREDICATE_SHOW_ALL_CONTENTS);
-        return new CommandResult(MESSAGE_SUCCESS, UiAction.OPEN, UiActionOption.DICTIONARY_CONTENT);
+        return new CommandResult(MESSAGE_SUCCESS, UiAction.OPEN, UiActionOption.DICTIONARY_LIST);
     }
 
 }

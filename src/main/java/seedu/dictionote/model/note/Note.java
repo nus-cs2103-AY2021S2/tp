@@ -156,9 +156,9 @@ public class Note implements Comparable<Note> {
         }
 
         Note otherNote = (Note) other;
-        return otherNote.getNote().equals(getNote())
-                && otherNote.getTags().equals(getTags())
-                && otherNote.isDone().equals(isDone());
+        return otherNote.getNote().toLowerCase().equals(this.getNote().toLowerCase())
+                && otherNote.getTags().equals(this.getTags())
+                && otherNote.isDone().equals(this.isDone());
     }
 
     @Override

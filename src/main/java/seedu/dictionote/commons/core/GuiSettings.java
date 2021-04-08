@@ -26,8 +26,8 @@ public class GuiSettings implements Serializable {
     private static final boolean DEFAULT_DICTIONARY_LIST_PANEL_IS_VISIBLE = true;
     private static final boolean DEFAULT_DICTIONARY_CONTENT_PANEL_IS_VISIBLE = true;
 
-    private static final boolean DEFAULT_NOTE_ORIENTATION_ISVERTICIAL = false;
-    private static final boolean DEFAULT_DICTIONARY_ORIENTATION_ISVERTICIAL = false;
+    private static final boolean DEFAULT_NOTE_ORIENTATION_ISVERTICIAL = true;
+    private static final boolean DEFAULT_DICTIONARY_ORIENTATION_ISVERTICIAL = true;
 
 
     private final double windowWidth;
