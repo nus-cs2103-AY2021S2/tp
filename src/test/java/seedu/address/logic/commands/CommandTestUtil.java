@@ -37,6 +37,7 @@ public class CommandTestUtil {
     // Task
     public static final String VALID_TASK_NAME_TASKONE = "Task One";
     public static final String VALID_TASK_NAME_TASKTWO = "Task Two";
+    public static final String VALID_TASK_NAME_COMPLETED = "Completed Task";
     public static final String VALID_TASK_DEADLINE_TASKONE = LocalDate.now().plusMonths(3).toString();
     public static final String VALID_TASK_DEADLINE_TASKTWO = LocalDate.now().plusMonths(4).toString();
     public static final String VALID_TASK_PRIORITY_TASKONE = "5";

@@ -94,6 +94,12 @@ public interface Model {
     void doneTask(Task task);
 
     /**
+     * Undone the given task.
+     * {@code task} must not already exist in the Sochedule.
+     */
+    void undoneTask(Task task);
+
+    /**
      * Pins the given task.
      * {@code task} must not already exist in the Sochedule.
      */

@@ -95,4 +95,13 @@ public class TaskBuilder {
     public Task build() {
         return new Task(name, deadline, priority, categories, tags);
     }
+
+    /**
+     * Builds the task with completion status set as complete.
+     */
+    public Task buildCompletedTask() {
+        Task newTask = build();
+        newTask.markTaskAsDone();
+        return newTask;
+    }
 }

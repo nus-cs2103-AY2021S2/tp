@@ -82,10 +82,16 @@ public class Task {
         pinnedStatus.unpin();
     }
 
+    /**
+     * Updates the completion status to be complete.
+     */
     public void markTaskAsDone() {
         completionStatus.markAsDone();
     }
 
+    /**
+     * Updates the completion status to be incomplete(i.e. uncompleted).
+     */
     public void markTaskAsUndone() {
         completionStatus.markAsUndone();
     }

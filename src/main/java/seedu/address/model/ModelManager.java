@@ -151,6 +151,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void undoneTask(Task task) {
+        requireAllNonNull(task);
+        sochedule.undoneTask(task);
+    }
+
+    @Override
     public void pinTask(Task task) {
         requireAllNonNull(task);
         sochedule.pinTask(task);
