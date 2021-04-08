@@ -3,7 +3,7 @@ layout: page
 title: imPoster Developer Guide
 nav-text: Developer Guide
 ---
-Remember to revert README!
+<!-- Remember to revert README! -->
 <p align="center">
   <img width="300px" src="images/imPosterDevGuide.png" >
 </p>
@@ -23,13 +23,13 @@ Remember to revert README!
 ## **Introduction**
 imPoster is a desktop application for beginners of API development to quickly grasp the basics. 
 imPoster's simple and minimalistic style can help beginner API developers **explore** and **test** APIs, whether those **found online** or those that they have **built** themselves.
-imPoster is also highly optimised fast typists and can be fully operated through keyboard commands. </br>
+imPoster is also highly optimised fast typists and can be fully operated through keyboard commands. <br>
 
 This developer's guide assumes its readers to have a **basic understanding** of APIs. 
 For a basic definition of [what an API is](#what-is-an-api), an appendix has been provided for readers who may be unfamiliar with the concept.
-However, it is highly recommended for readers to refer to proper tutorial contents for the basics of APIs prior to developing the application. </br>
+However, it is highly recommended for readers to refer to proper tutorial contents for the basics of APIs prior to developing the application. <br>
 
-Readers are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application. </br>
+Readers are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application. <br>
 
 ## **Navigating this Developer Guide**
 
