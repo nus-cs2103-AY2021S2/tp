@@ -35,4 +35,4 @@ NUS Module Planner is a desktop application for managing your study plans at NUS
 [TODO]
 
 #### DG
-![ssagit_DG](https://github.com/AY2021S2-CS2103-W17-1/tpimages/pdfs/ssagit_DG_contri.pdf)
+[ssagit_DG](https://github.com/AY2021S2-CS2103-W17-1/tp/raw/master/docs/images/pdfs/ssagit_DG_contri.pdf)
