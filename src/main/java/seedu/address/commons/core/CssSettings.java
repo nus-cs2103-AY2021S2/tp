@@ -36,7 +36,7 @@ public class CssSettings implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(NewCss);
+        return Objects.hash(newCss);
     }
 
     @Override
