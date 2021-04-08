@@ -13,7 +13,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.issue.EditIssueCommand;
 import seedu.address.logic.commands.issue.EditIssueCommand.EditIssueDescriptor;
@@ -28,6 +30,8 @@ import seedu.address.model.tag.Tag;
  * Parses input arguments and creates a new EditIssueCommand object
  */
 public class EditIssueCommandParser implements Parser<EditIssueCommand> {
+
+    private final Logger logger = LogsCenter.getLogger(EditIssueCommandParser.class);
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditIssueCommand
@@ -45,6 +49,7 @@ public class EditIssueCommandParser implements Parser<EditIssueCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
+            logger.warning("Failed to parse preamble for index to be edited for iedit command");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditIssueCommand.MESSAGE_USAGE), pe);
         }
 
@@ -70,6 +75,7 @@ public class EditIssueCommandParser implements Parser<EditIssueCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editIssueDescriptor::setTags);
 
         if (!editIssueDescriptor.isAnyFieldEdited()) {
+            logger.warning("iedit command did not edit any field for targeted issue");
             throw new ParseException(EditIssueCommand.MESSAGE_NOT_EDITED);
         }
 

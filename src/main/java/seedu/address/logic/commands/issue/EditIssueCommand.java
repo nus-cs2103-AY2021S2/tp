@@ -14,7 +14,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -56,6 +58,8 @@ public class EditIssueCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ISSUE = "This issue already exists in SunRez.";
 
+    private final Logger logger = LogsCenter.getLogger(EditIssueCommand.class);
+
     private final Index index;
     private final EditIssueDescriptor editIssueDescriptor;
 
@@ -77,6 +81,7 @@ public class EditIssueCommand extends Command {
         List<Issue> lastShownList = model.getFilteredIssueList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
+            logger.warning("Provided index was more than current list size");
             throw new CommandException(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX);
         }
 
@@ -84,10 +89,12 @@ public class EditIssueCommand extends Command {
         Issue editedIssue = createEditedIssue(issueToEdit, editIssueDescriptor);
 
         if (!model.hasRoom(new seedu.address.model.room.RoomNumber(editedIssue.getRoomNumber().value))) {
+            logger.warning("Non existent room given to iadd command");
             throw new CommandException(MESSAGE_NO_SUCH_ROOM);
         }
 
         if (!issueToEdit.equals(editedIssue) && model.hasIssue(editedIssue)) {
+            logger.warning("Duplicate issue given to iadd command");
             throw new CommandException(MESSAGE_DUPLICATE_ISSUE);
         }
 

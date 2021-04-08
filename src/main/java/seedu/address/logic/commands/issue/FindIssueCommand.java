@@ -23,7 +23,13 @@ public class FindIssueCommand extends Command {
 
     private final RoomNumberOrTagContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates a FindIssueCommand with the given predicate used to filter issue list
+     *
+     * @param predicate to filter issue list
+     */
     public FindIssueCommand(RoomNumberOrTagContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 

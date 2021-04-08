@@ -5,9 +5,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.issue.exceptions.DuplicateIssueException;
 import seedu.address.model.issue.exceptions.IssueNotFoundException;
 import seedu.address.model.room.Room;
@@ -19,6 +21,7 @@ import seedu.address.model.room.Room;
  */
 public class IssueList implements Iterable<Issue> {
 
+    private final Logger logger = LogsCenter.getLogger(IssueList.class);
     private final ObservableList<Issue> internalList = FXCollections.observableArrayList();
     private final ObservableList<Issue> internalUnmodifiableList = FXCollections
             .unmodifiableObservableList(internalList);
@@ -39,6 +42,7 @@ public class IssueList implements Iterable<Issue> {
         requireNonNull(toAdd);
 
         if (contains(toAdd)) {
+            logger.warning("Attempted to add duplicate issue");
             throw new DuplicateIssueException();
         }
 
@@ -57,10 +61,12 @@ public class IssueList implements Iterable<Issue> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
+            logger.warning("Failed to find target issue to be replaced");
             throw new IssueNotFoundException();
         }
 
         if (!target.equals(editedIssue) && internalList.contains(editedIssue)) {
+            logger.warning("Attempted to add duplicate issue");
             throw new DuplicateIssueException();
         }
 
@@ -75,6 +81,7 @@ public class IssueList implements Iterable<Issue> {
     public void remove(Issue toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
+            logger.warning("Failed to find target issue to be removed");
             throw new IssueNotFoundException();
         }
     }
@@ -93,6 +100,7 @@ public class IssueList implements Iterable<Issue> {
         requireAllNonNull(issues);
 
         if (!issuesAreUnique(issues)) {
+            logger.warning("List of issues provided contain duplicate issues");
             throw new DuplicateIssueException();
         }
 
@@ -107,8 +115,8 @@ public class IssueList implements Iterable<Issue> {
      * @return True if there are issues with the given room associated with it.
      */
     public boolean containsRoom(Room target) {
-        return internalList.stream().anyMatch(issue ->
-                issue.getRoomNumber().value.equals(target.getRoomNumber().roomNumber));
+        return internalList.stream()
+                .anyMatch(issue -> issue.getRoomNumber().value.equals(target.getRoomNumber().roomNumber));
     }
 
     /**
@@ -127,7 +135,7 @@ public class IssueList implements Iterable<Issue> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof IssueList // instanceof handles nulls
-                && internalList.equals(((IssueList) other).internalList));
+                        && internalList.equals(((IssueList) other).internalList));
     }
 
     @Override

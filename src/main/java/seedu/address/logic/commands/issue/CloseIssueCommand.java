@@ -3,7 +3,9 @@ package seedu.address.logic.commands.issue;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -29,6 +31,8 @@ public class CloseIssueCommand extends Command {
 
     public static final String MESSAGE_CLOSE_ISSUE_CLOSED = "Issue has already been closed.";
 
+    private final Logger logger = LogsCenter.getLogger(CloseIssueCommand.class);
+
     private final Index targetIndex;
 
     public CloseIssueCommand(Index targetIndex) {
@@ -41,12 +45,14 @@ public class CloseIssueCommand extends Command {
         List<Issue> lastShownList = model.getFilteredIssueList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            logger.warning("Provided index was more than current list size");
             throw new CommandException(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX);
         }
 
         Issue issueToClose = lastShownList.get(targetIndex.getZeroBased());
 
         if (issueToClose.getStatus().value == IssueStatus.Closed) {
+            logger.warning("Issue to close is already closed");
             throw new CommandException(MESSAGE_CLOSE_ISSUE_CLOSED);
         }
 

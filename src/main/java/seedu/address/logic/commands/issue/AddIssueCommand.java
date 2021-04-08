@@ -8,6 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -41,6 +44,8 @@ public class AddIssueCommand extends Command {
     public static final String MESSAGE_NO_SUCH_ROOM = "There is no such room";
     public static final String MESSAGE_DUPLICATE_ISSUE = "This issue already exists in SunRez";
 
+    private final Logger logger = LogsCenter.getLogger(AddIssueCommand.class);
+
     private final Issue toAdd;
 
     /**
@@ -56,10 +61,12 @@ public class AddIssueCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasRoom(new seedu.address.model.room.RoomNumber(toAdd.getRoomNumber().value))) {
+            logger.warning("Non existent room given to iadd command");
             throw new CommandException(MESSAGE_NO_SUCH_ROOM);
         }
 
         if (model.hasIssue(toAdd)) {
+            logger.warning("Duplicate issue given to iadd command");
             throw new CommandException(MESSAGE_DUPLICATE_ISSUE);
         }
 

@@ -9,8 +9,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.issue.AddIssueCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -32,6 +34,8 @@ import seedu.address.model.tag.Tag;
  */
 public class AddIssueCommandParser implements Parser<AddIssueCommand> {
 
+    private final Logger logger = LogsCenter.getLogger(AddIssueCommandParser.class);
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddIssueCommand
      * and returns an AddIssueCommand object for execution.
@@ -44,6 +48,7 @@ public class AddIssueCommandParser implements Parser<AddIssueCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ROOM_NUMBER, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
+            logger.warning("Input is not in a valid format for iadd command");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddIssueCommand.MESSAGE_USAGE));
         }
 

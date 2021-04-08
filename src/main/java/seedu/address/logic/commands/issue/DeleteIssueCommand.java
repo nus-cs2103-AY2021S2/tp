@@ -3,7 +3,9 @@ package seedu.address.logic.commands.issue;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -26,6 +28,8 @@ public class DeleteIssueCommand extends Command {
 
     public static final String MESSAGE_DELETE_ISSUE_SUCCESS = "Deleted Issue: %1$s";
 
+    private final Logger logger = LogsCenter.getLogger(DeleteIssueCommand.class);
+
     private final Index targetIndex;
 
     public DeleteIssueCommand(Index targetIndex) {
@@ -38,6 +42,7 @@ public class DeleteIssueCommand extends Command {
         List<Issue> lastShownList = model.getFilteredIssueList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            logger.warning("Provided index was more than current list size");
             throw new CommandException(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX);
         }
 
