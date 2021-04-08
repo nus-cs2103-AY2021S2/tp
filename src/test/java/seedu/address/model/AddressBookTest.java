@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.SORT_DESCENDING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.PersonBuilder.MODE_OF_CONTACT_PHONE;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.GEORGE;
@@ -51,8 +52,8 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Person editedAlice = new PersonBuilder(ALICE).withBlacklist(true)
+                .withModeOfContact(MODE_OF_CONTACT_PHONE).build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPersons);
 
@@ -76,11 +77,19 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameNameEmailAddressPhone_returnsTrue() {
+        addressBook.addPerson(BOB);
+        Person editedBob = new PersonBuilder(BOB).withModeOfContact(PersonBuilder.DEFAULT_MODE_OF_CONTACT)
+                .withBlacklist(true).build();
+        assertTrue(addressBook.hasPerson(editedBob));
+    }
+
+    @Test
+    public void hasPerson_personWithSameNameDifferentFieldsInAddressBook_returnsFalse() {
         addressBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertFalse(addressBook.hasPerson(editedAlice));
     }
 
     @Test
