@@ -32,14 +32,14 @@ Given below are my contributions to the project.
 
 * **Code Refactoring**: General adherence to OOP
   * Refactor several parts of the features both old and new to conform to OOP standards and avoid boilerplate wherever possible.
-  
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=kouyk&tabRepo=AY2021S2-CS2103T-T10-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=)
 
 * **Project management**:
   * Managed milestones `v1.1 - v1.4` on GitHub.
   * Planned out the necessary work to be allocated.
   * Reviewed most of the functional code PRs and gave constructive feedback on areas that can be improved.
-  * Provided assistance to teammates when they are stuck on a particular task. 
+  * Provided assistance to teammates when they are stuck on a particular task.
 
 * **Documentation**:
   * User Guide:
