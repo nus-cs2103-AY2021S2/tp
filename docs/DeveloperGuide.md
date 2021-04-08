@@ -315,7 +315,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | busy student                               | view workload count for each module           | decide which module requires more effort
 | `*`      | busy student                               | search for tags                               | locate my tasks easily                                                            |
 | `*`      | busy student                               | delete tags                                   | edit tags of my tasks without having to recreate them                             |
-| `*`      | busy student with many repeating tasks     | make a task repeat daily, monthly or weekly   | avoid keying in the same task daily or weekly or monthly                     |                              
+| `*`      | busy student with many repeating tasks     | make a task repeat daily, biweekly or weekly   | avoid keying in the same task daily or weekly or biweekly                     |                              
 
 <div style="page-break-after: always;"></div>
 
@@ -661,7 +661,7 @@ Use case ends.
     
         Use case resumes at step 2.
 
-* 2b. The recurrence is not daily, weekly or monthly.
+* 2b. The recurrence is not daily, weekly or biweekly.
 
     * 2b1. No recurrence is entered. <ins>removes recurrence (UC14)<ins>
         
@@ -696,7 +696,7 @@ Use case ends.
 
 * 2b. The recurrence input is not empty.
 
-    * 2b1. The recurrence input is daily, monthly or weekly. <ins>add recurrence (UC13)<ins>
+    * 2b1. The recurrence input is daily, biweekly or weekly. <ins>add recurrence (UC13)<ins>
         
         Use case resumes at step 2.
         
@@ -705,6 +705,15 @@ Use case ends.
     * 2c1. ModuleBook3.5 shows an error message.
     
         Use case resumes at step 2.
+        
+**Use case 15: Refresh all tasks**
+
+**MSS**
+
+1.  User requests to refresh all tasks in the list.
+
+2.  ModuleBook3.5 refreshes all tasks in the list.
+
 <div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements

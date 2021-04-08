@@ -90,11 +90,11 @@
                      </VBox>
                      <VBox GridPane.rowIndex="1">
                         <children>
-                           <StackPane fx:id="statsPlaceholder" style="-fx-border-color: white;" />
+                           <StackPane fx:id="statsPlaceholder" style="-fx-border-color: white;" VBox.vgrow="ALWAYS" />
                         </children></VBox>
                      <VBox>
                         <children>
-                           <StackPane fx:id="moduleListPanelPlaceholder" style="-fx-border-color: white;" />
+                           <StackPane fx:id="moduleListPanelPlaceholder" style="-fx-border-color: white;" VBox.vgrow="ALWAYS" />
                         </children>
                         <GridPane.margin>
                            <Insets />

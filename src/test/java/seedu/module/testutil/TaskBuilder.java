@@ -28,7 +28,7 @@ public class TaskBuilder {
     public static final String DEFAULT_DONE = String.valueOf(Boolean.FALSE);
     public static final String DEFAULT_DESCRIPTION = "Not very hard.";
     public static final String DEFAULT_WORKLOAD = "1";
-    public static final String DEFAULT_RECURRENCE = "monthly";
+    public static final String DEFAULT_RECURRENCE = "biweekly";
 
     private Name name;
     private OptionalField<Time> startTime;

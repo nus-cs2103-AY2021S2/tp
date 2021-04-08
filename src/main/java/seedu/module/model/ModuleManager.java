@@ -24,8 +24,10 @@ public class ModuleManager {
     private static HashMap<Module, Integer> moduleMediumWorkLoadDistribution;
     private static HashMap<Module, Integer> moduleHighWorkLoadDistribution;
     private static List<String> supportedModulesInStr;
-    private static final String[] arrOfModules = {"CS1101S", "CS1231S", "CS2030", "CS2040S", "CS2101",
-        "CS2103T", "CS2105", "CS2106", "CS3230", "CS3243", "CS3244", "IS1103", "ST2131"};
+    private static final String[] arrOfModules = {"CS1010S", "CS1101S", "CS1231S",
+        "CS2030", "CS2040S", "CS2101", "CS2102", "CS2103T", "CS2105", "CS2106", "CS3103",
+        "CS3210", "CS3212", "CS3217", "CS3219", "CS3220", "CS3221", "CS3223", "CS3225",
+        "CS3230", "CS3231", "CS3233", "CS3243", "CS3244", "IS1103", "ST2131"};
     private static final int LOW_LEVEL = 1;
     private static final int MEDIUM_LEVEL = 2;
     private static final int HIGH_LEVEL = 3;

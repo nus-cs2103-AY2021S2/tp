@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.module.commons.core.optionalfield.OptionalField;
 
@@ -35,6 +36,10 @@ public class ArgumentMultimap {
 
     public int getPrefixesSize() {
         return argMultimap.keySet().size();
+    }
+
+    public Set<Prefix> getPrefixes() {
+        return argMultimap.keySet();
     }
 
     public boolean contains(Prefix prefix) {
@@ -79,5 +84,26 @@ public class ArgumentMultimap {
      */
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
+    }
+
+    /**
+     * Returns true if all the existing prefixes are without extra parameters.
+     */
+    public boolean arePrefixesNotWithParameter() {
+        boolean isPrefixNotWithParameter = true;
+        for (Prefix prefix : this.getPrefixes()) {
+            isPrefixNotWithParameter = isPrefixNotWithParameter && this.getAllValues(prefix).get(0).isEmpty();
+        }
+        return isPrefixNotWithParameter;
+    }
+
+    /**
+     * Because of the implementation inheriting from AB3, the prefixes will contain "", so here 2 means "" and the only
+     * existing prefix.
+     *
+     * @return true if the command only has one prefix.
+     */
+    public boolean areLessThanTwoPrefixes() {
+        return this.getPrefixesSize() <= 2;
     }
 }

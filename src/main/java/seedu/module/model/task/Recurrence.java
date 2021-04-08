@@ -6,7 +6,7 @@ import static seedu.module.commons.util.AppUtil.checkArgument;
 import java.util.Objects;
 
 public class Recurrence {
-    public static final String MESSAGE_CONSTRAINTS = "recurrence can only be daily, weekly or monthly.";
+    public static final String MESSAGE_CONSTRAINTS = "recurrence can only be daily, weekly or biweekly.";
     public final String value;
     private final RecurrenceType recurrenceType;
 
@@ -24,7 +24,7 @@ public class Recurrence {
     }
 
     /**
-     * Checks if recurrence is daily, weekly or monthly.
+     * Checks if recurrence is daily, weekly or biweekly.
      *
      * @param recurrenceString is the recurrence in type String.
      * @return true if recurrence is valid. false otherwise.

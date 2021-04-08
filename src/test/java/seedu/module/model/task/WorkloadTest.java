@@ -22,18 +22,24 @@ public class WorkloadTest {
 
     @Test
     public void isValidWorkloadTest() {
-        // null name
+        // null workload
         assertThrows(NullPointerException.class, () -> Workload.isValidWorkload(null));
 
-        // invalid name
+        // invalid strings
         assertFalse(Workload.isValidWorkload("")); // empty string
         assertFalse(Workload.isValidWorkload(" ")); // spaces only
         assertFalse(Workload.isValidWorkload("1 a")); // contains letters
-        assertFalse(Workload.isValidWorkload("0")); // contains 0
-        assertFalse(Workload.isValidWorkload("-1")); // contains negative
-        assertFalse(Workload.isValidWorkload("4")); // beyond 3
 
-        // valid name
+        //EP: Negative to 0
+        assertFalse(Workload.isValidWorkload(String.valueOf(Integer.MIN_VALUE)));
+        assertFalse(Workload.isValidWorkload("0"));
+        assertFalse(Workload.isValidWorkload("-1"));
+
+        //EP: Beyond 3
+        assertFalse(Workload.isValidWorkload("4"));
+        assertFalse(Workload.isValidWorkload(String.valueOf(Integer.MAX_VALUE)));
+
+        //EP: Valid workload
         assertTrue(Workload.isValidWorkload("1")); // 1
         assertTrue(Workload.isValidWorkload("2")); // 2
         assertTrue(Workload.isValidWorkload("3")); // 3
@@ -41,9 +47,9 @@ public class WorkloadTest {
 
     @Test
     public void testDisplayUi() {
-        assertEquals(new Workload("1").displayUi(), Workload.LOW_WORKLOAD);
-        assertEquals(new Workload("2").displayUi(), Workload.MEDIUM_WORKLOAD);
-        assertEquals(new Workload("3").displayUi(), Workload.HIGH_WORKLOAD);
+        assertEquals(new Workload("1").displayUi(), Workload.LOW_WORKLOAD + " workload");
+        assertEquals(new Workload("2").displayUi(), Workload.MEDIUM_WORKLOAD + " workload");
+        assertEquals(new Workload("3").displayUi(), Workload.HIGH_WORKLOAD + " workload");
     }
 
     @Test
@@ -51,11 +57,52 @@ public class WorkloadTest {
         Workload firstWorkload = new Workload("1");
         Workload secondWorkload = new Workload("1");
         Workload thirdWorkload = new Workload("2");
+        Workload fourthWorkload = new Workload("3");
         String somethingElse = "Not Workload";
 
+        //EP: Same Workload object
         assertTrue(firstWorkload.equals(firstWorkload));
+
+        //EP: Different Workload object, same value
         assertTrue(firstWorkload.equals(secondWorkload));
+
+        //EP: Different Workload object, different values
         assertFalse(firstWorkload.equals(thirdWorkload));
+        assertFalse(firstWorkload.equals(fourthWorkload));
+        assertFalse(thirdWorkload.equals(fourthWorkload));
+
+        //EP: Not a Workload object
         assertFalse(firstWorkload.equals(somethingElse));
+    }
+
+    @Test
+    public void compareTo() {
+        Workload firstWorkload = new Workload("1");
+        Workload secondWorkload = new Workload("1");
+        Workload thirdWorkload = new Workload("2");
+        Workload fourthWorkload = new Workload("3");
+
+        //EP: Same Workload object
+        assertTrue(firstWorkload.compareTo(firstWorkload) == 0);
+
+        //EP: Different Workload object, same value
+        assertTrue(firstWorkload.compareTo(secondWorkload) == 0);
+
+        //EP: Different Workload object, different values
+        assertTrue(firstWorkload.compareTo(thirdWorkload) > 0);
+        assertTrue(firstWorkload.compareTo(fourthWorkload) > 0);
+
+        assertTrue(thirdWorkload.compareTo(firstWorkload) < 0);
+        assertTrue(fourthWorkload.compareTo(firstWorkload) < 0);
+
+        assertTrue(thirdWorkload.compareTo(fourthWorkload) > 0);
+        assertTrue(fourthWorkload.compareTo(thirdWorkload) < 0);
+    }
+
+    @Test
+    public void hashCodeTest() {
+        Integer firstWorkloadInteger = 1;
+        Workload firstWorkload = new Workload("1");
+        assertEquals(firstWorkload.hashCode(), firstWorkloadInteger.hashCode());
     }
 }

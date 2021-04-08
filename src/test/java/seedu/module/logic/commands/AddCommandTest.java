@@ -141,6 +141,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void refreshTasks() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void sortTasks(Comparator<Task> factor) {
             throw new AssertionError("This method should not be called.");
         }

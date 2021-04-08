@@ -20,21 +20,23 @@ import seedu.module.model.task.Task;
 public class RecurCommand extends Command {
     public static final String COMMAND_WORD = "recur";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Make a task not recur daily, weekly or monthly "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Make a task not recur daily, weekly or biweekly "
             + "or remove a tasks recurrence identified by the INDEX.\n"
             + "Parameters: INDEX, RECURRENCE \n"
             + "If RECURRENCE specified, it is overwritten by the RECURRENCE. "
             + "If RECURRENCE is not specified, recurrence of task removed.\n"
-            + "r/RECURRENCE ('', 'daily', 'weekly' or 'monthly')\n"
-            + "Example for adding recurrence: " + COMMAND_WORD + " 1 r/monthly\n"
+            + "r/RECURRENCE ('', 'daily', 'weekly' or 'biweekly')\n"
+            + "Example for adding recurrence: " + COMMAND_WORD + " 1 r/biweekly\n"
             + "Example for removal: " + COMMAND_WORD + " 2 r/";
 
     public static final String MESSAGE_ADD_RECURRENCE_SUCCESS = "New recurrence to task added successfully.\n%1$s";
-    public static final String MESSAGE_INVALID_RECURRENCE = "Recurrence can only be daily, weekly or monthly.";
+    public static final String MESSAGE_INVALID_RECURRENCE = "Recurrence can only be daily, weekly or biweekly.";
     public static final String MESSAGE_DUPLICATE_RECURRENCE = "This task is already recurring %1$s";
     public static final String MESSAGE_REMOVE_RECURRENCE_SUCCESS = "Recurrence for this task has been removed.";
+    public static final String MESSAGE_REMOVE_RECURRENCE_UNSUCCESSFUL = "Recurrence was not removed because this"
+            + " task does not have any existing recurrence.";
 
-    private Index index;
+    private final Index index;
     private OptionalField<Recurrence> recurrence;
 
     /**
@@ -68,7 +70,7 @@ public class RecurCommand extends Command {
         Task nextRecurringTask = Task.makeNextRecurringTask(taskToRecur, recurrence);
 
         if (taskToRecur.equals(nextRecurringTask) && model.hasRecurringTask(nextRecurringTask)) {
-            emptyRecurrenceHandler(recurrence);
+            emptyRecurrenceHandler(recurrence, taskToRecur);
         }
 
         model.setTask(taskToRecur, nextRecurringTask);
@@ -84,10 +86,14 @@ public class RecurCommand extends Command {
         return new CommandResult(returnMessage);
     }
 
-    private void emptyRecurrenceHandler(OptionalField<Recurrence> recurrenceOptionalField) throws CommandException {
+    private void emptyRecurrenceHandler(OptionalField<Recurrence> recurrenceOptionalField,
+                                        Task taskToCheck) throws CommandException {
         assert recurrenceOptionalField != null;
+        requireNonNull(taskToCheck);
 
-        if (recurrenceOptionalField.isNull()) {
+        if (!taskToCheck.isRecurring() && recurrenceOptionalField.isNull()) {
+            throw new CommandException(MESSAGE_REMOVE_RECURRENCE_UNSUCCESSFUL);
+        } else if (recurrenceOptionalField.isNull()) {
             throw new CommandException(MESSAGE_INVALID_RECURRENCE);
         } else {
             throw new CommandException(

@@ -1,11 +1,9 @@
 package seedu.module.model.task;
 
-import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.module.model.task.Recurrence.isValidRecurrence;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -193,6 +191,15 @@ public class Task {
     }
 
     /**
+     * Returns true if the deadline is behind the current time.
+     */
+    public boolean isBehind() {
+        assert this.isRecurring();
+        Time currTime = Time.makeTimeObject(LocalDateTime.now());
+        return deadline.compareTo(currTime) < 0;
+    }
+
+    /**
      * Returns a new valid Deadline for the recurring task if previous recurring deadline has expired.
      *
      * @param task the task need to be updated.
@@ -200,42 +207,32 @@ public class Task {
      * @return new Deadline object for the recurring task.
      */
     private static Time getRecurringTime(Task task, Time oldTime) {
-        requireAllNonNull(oldTime);
-        assert(task.isRecurring());
+        assert(oldTime != null && task.isRecurring());
 
-        DateTimeFormatter formatter;
-        String nextRecurringDeadlineStr = oldTime.value;
-        Time currTime = Time.makeDeadlineWithTime(LocalDateTime.now());
+        String nextRecurringTimeStr = oldTime.value;
+        Time currTime = Time.makeTimeObject(LocalDateTime.now());
         Recurrence taskRecurrence = task.getRecurrence();
-
-        String dateValue = oldTime.value.split(" ")[0];
-        if (oldTime.value.length() == dateValue.length()) {
-            formatter = ISO_LOCAL_DATE;
-        } else {
-            formatter = Time.DATE_TIME_FORMATTER_WITH_TIME;
-        }
 
         if (oldTime.compareTo(currTime) < 0) {
             switch (taskRecurrence.getRecurrenceType()) {
             case daily:
                 //change date to day + 1
-                nextRecurringDeadlineStr = oldTime.getTime().plusDays(1)
-                        .format(formatter);
+                nextRecurringTimeStr = Time.makeNextTimeString(oldTime, 1);
+
                 break;
             case weekly:
                 //change date to day + 7
-                nextRecurringDeadlineStr = oldTime.getTime().plusDays(7)
-                        .format(formatter);
+                nextRecurringTimeStr = Time.makeNextTimeString(oldTime, 7);
+
                 break;
-            case monthly:
-                //change date to month + 1
-                nextRecurringDeadlineStr = oldTime.getTime().plusMonths(1)
-                        .format(formatter);
+            case biweekly:
+                //change date to day + 14
+                nextRecurringTimeStr = Time.makeNextTimeString(oldTime, 14);
                 break;
             default:
                  assert isValidRecurrence(taskRecurrence.value);
             }
-            return new Time(nextRecurringDeadlineStr);
+            return new Time(nextRecurringTimeStr);
         } else {
             //deadline is still valid
             return oldTime;

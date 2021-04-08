@@ -62,7 +62,7 @@ public class TaskListPanel extends UiPart<Region> {
                 } else if (colorToAssign.equals("Yellow")) {
                     addedTaskCard.getRoot().setStyle("-fx-background-color: #F0E68C; ");
                 } else {
-                    addedTaskCard.getRoot().setStyle("-fx-background-color: #DC143C; ");
+                    addedTaskCard.getRoot().setStyle("-fx-background-color: #FF6347; ");
                 }
             }
         }

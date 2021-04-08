@@ -5,6 +5,7 @@ import static seedu.module.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -23,14 +24,15 @@ public class DeleteTagCommand extends Command {
     public static final String COMMAND_WORD = "deleteTag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a tag from task identified "
-            + "by the index number used in the last person listing. "
+            + "by the index number used in the last task listing. "
             + "Only one tag deletion per command.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "t/[TAG]\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + "t/Midterm";
 
-    public static final String MESSAGE_DELETE_TAG_TASK_SUCCESS = "Deleted Tag from Task: %1$s";
+    public static final String MESSAGE_SHOW_DELETED_TAG = "Tag that was deleted: ";
+    public static final String MESSAGE_DELETE_TAG_TASK_SUCCESS = "Deleted Tag from Task: ";
     public static final String MESSAGE_NOT_EDITED = "At least one tag must be provided to delete.";
     public static final String MESSAGE_TAG_NOT_EXISTS = "This tag does not exist.";
 
@@ -66,10 +68,12 @@ public class DeleteTagCommand extends Command {
         }
 
         Task editedTask = Task.setTags(taskToTag, newTags);
+        Tag deletedTag = retrieveActualDeletedTag(oldTags, newTags);
 
         model.setTask(taskToTag, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format(MESSAGE_DELETE_TAG_TASK_SUCCESS, editedTask));
+        return new CommandResult(String.format("%s %s\n%s %s", MESSAGE_SHOW_DELETED_TAG, deletedTag.toString(),
+                MESSAGE_DELETE_TAG_TASK_SUCCESS, editedTask));
     }
 
     /**
@@ -83,6 +87,14 @@ public class DeleteTagCommand extends Command {
         Set<Tag> newTags = new HashSet<>(oldTags);
         newTags.remove(toBeDeletedTag);
         return newTags;
+    }
+
+    private Tag retrieveActualDeletedTag(Set<Tag> oldTags, Set<Tag> newTags) {
+        Iterator<Tag> iteratorTags = newTags.iterator();
+        Set<Tag> tempTags = new HashSet<>(oldTags);
+        iteratorTags.forEachRemaining((Tag x) -> tempTags.remove(x));
+        Tag[] oldTagArray = tempTags.toArray(new Tag[1]);
+        return oldTagArray[0];
     }
 
     @Override

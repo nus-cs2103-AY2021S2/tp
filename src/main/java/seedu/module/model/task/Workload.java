@@ -57,11 +57,11 @@ public class Workload implements Comparable<Workload> {
     public String displayUi() {
         switch(workloadLevel) {
         case 1:
-            return LOW_WORKLOAD;
+            return LOW_WORKLOAD + " workload";
         case 2:
-            return MEDIUM_WORKLOAD;
+            return MEDIUM_WORKLOAD + " workload";
         case 3:
-            return HIGH_WORKLOAD;
+            return HIGH_WORKLOAD + " workload";
         default:
             throw new InputMismatchException(MESSAGE_CONSTRAINTS);
         }

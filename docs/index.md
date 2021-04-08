@@ -8,10 +8,11 @@ title: ModuleBook Level-3.5
 
 ![Ui](images/Ui.png)
 
-**ModuleBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**ModuleBook3.5 is a desktop application for managing your tasks in an *Easy, Seamless and Straightforward* manner.** 
+While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using ModuleBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing ModuleBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in using ModuleBook3.5, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested in developing ModuleBook3.5 or creating a spin-off app, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**

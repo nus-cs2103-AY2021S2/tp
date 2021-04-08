@@ -14,7 +14,7 @@ import seedu.module.model.tag.Tag;
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
  * outside of the NotDoneCommand code. For example, inputs "1" and "1 abc" take the
- * same path through the NotDoneCommand, and therefore we test only one of them.
+ * same path through the DeleteTagCommand, and therefore we test only one of them.
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
@@ -29,8 +29,13 @@ public class DeleteTagCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
+        //No index
         assertParseFailure(parser, "a tag", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteTagCommand.MESSAGE_USAGE));
+
+        //Valid index, but no other arguments offered
+        assertParseFailure(parser, "1 ",
+                String.format(DeleteTagCommand.MESSAGE_NOT_EDITED));
     }
 }
 

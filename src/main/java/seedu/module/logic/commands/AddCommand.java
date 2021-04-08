@@ -38,7 +38,7 @@ public class AddCommand extends Command {
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_DESCRIPTION + "Finish basic commands for TP "
             + PREFIX_WORKLOAD + "1 "
-            + PREFIX_RECURRENCE + "monthly "
+            + PREFIX_RECURRENCE + "biweekly "
             + PREFIX_TAG + "highPriority ";
 
     public static final String MESSAGE_SUCCESS = "New task added successfully:\n%1$s";
@@ -55,14 +55,7 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        /*
-        if (!toAdd.isRecurring() && model.hasTask(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        }
-        if (toAdd.isRecurring() && model.hasRecurringTask(toAdd)) {
-            throw new CommandException(RecurCommand.MESSAGE_DUPLICATE_RECURRENCE);
-        }
-        */
+
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
