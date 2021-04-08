@@ -31,8 +31,8 @@ public class HelpWindow extends UiPart<Stage> {
 
     private static final int TABLE_ITEM_HEIGHT = 32;
     private static final int ADDITIONAL_MARGIN = 30;
-    private static final double WINDOW_HEIGHT = 800;
-    private static final double WINDOW_WIDTH = 900;
+    private static final double WINDOW_HEIGHT = 768;
+    private static final double WINDOW_WIDTH = 1099;
 
     /**
      * Creates wrapping ability for cells in TableView.
@@ -99,8 +99,8 @@ public class HelpWindow extends UiPart<Stage> {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
 
-        root.setWidth(WINDOW_WIDTH);
-        root.setHeight(WINDOW_HEIGHT);
+        root.setMaxHeight(WINDOW_HEIGHT);
+        root.setMaxWidth(WINDOW_WIDTH);
 
         setUpTable(generalTableView, getGeneralCommands());
         setUpTable(studentTableView, getStudentCommands());
@@ -142,10 +142,10 @@ public class HelpWindow extends UiPart<Stage> {
 
     private static ObservableList<CommandHelper> getGeneralCommands() {
         return FXCollections.observableArrayList(
-                new CommandHelper("Open help panel", "help"),
-                new CommandHelper("List all", "list"),
-                new CommandHelper("Clear all data", "clear"),
-                new CommandHelper("Exit", "exit")
+                new CommandHelper(" Open help panel", "help"),
+                new CommandHelper(" List all", "list"),
+                new CommandHelper(" Clear all data", "clear"),
+                new CommandHelper(" Exit", "exit")
         );
     }
 
