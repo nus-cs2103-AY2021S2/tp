@@ -39,7 +39,7 @@ public class ModuleCard extends UiPart<Region> {
         requireNonNull(module);
         this.module = module;
         title.setWrapText(true);
-        title.setMaxWidth(200);
+        title.setMaxWidth(600);
         title.setText(displayIndex + ". " + module.getTitle().modTitle + ": ");
         assignments.setWrapText(true);
         assignments.setText(module.getAssignments().toString());

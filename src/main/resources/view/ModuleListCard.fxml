@@ -18,13 +18,9 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-         <HBox prefHeight="19.0" prefWidth="73.0">
+         <HBox >
             <children>
            <Label fx:id="title" styleClass="cell_big_label">
-<!--             <minWidth>-->
-<!--               &lt;!&ndash; Ensures that the label text is never truncated &ndash;&gt;-->
-<!--               <Region fx:constant="USE_PREF_SIZE" />-->
-<!--             </minWidth>-->
            </Label>
                <Label fx:id="tag" layoutX="10.0" layoutY="10.0" styleClass="cell_big_label" translateX="75.0">
                   <minWidth>
