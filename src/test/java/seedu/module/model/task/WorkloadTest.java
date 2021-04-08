@@ -47,9 +47,9 @@ public class WorkloadTest {
 
     @Test
     public void testDisplayUi() {
-        assertEquals(new Workload("1").displayUi(), Workload.LOW_WORKLOAD);
-        assertEquals(new Workload("2").displayUi(), Workload.MEDIUM_WORKLOAD);
-        assertEquals(new Workload("3").displayUi(), Workload.HIGH_WORKLOAD);
+        assertEquals(new Workload("1").displayUi(), Workload.LOW_WORKLOAD + " workload");
+        assertEquals(new Workload("2").displayUi(), Workload.MEDIUM_WORKLOAD + " workload");
+        assertEquals(new Workload("3").displayUi(), Workload.HIGH_WORKLOAD + " workload");
     }
 
     @Test
