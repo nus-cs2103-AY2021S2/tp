@@ -205,10 +205,9 @@ Examples
  
 ### Profile picture:
 
-Gets the image of contacts from Gravatar. If contact does not have a gravatar account linked to 
-the email address, the what will be shown is a unique robo-hashed image obtained from email.
-There is no need to use any commands, the profile picture will be shown after updating/ adding contact
-If there is a problem establishing connection to the server, a default blue circle icon will be displayed
+Instantly updates your contacts with their Gravatar profile picture, if your contact has their email linked
+to their gravatar account. The profile picture will be automatically displayed upon adding the contact.
+If there is a problem obtaining the image, a default blue circle icon will be displayed
 instead.
 
 ### Clearing all entries : `clear`
