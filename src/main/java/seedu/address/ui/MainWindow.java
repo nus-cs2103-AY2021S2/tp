@@ -24,11 +24,27 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final String helpMessage = "Welcome to DietLAH!\n\n"
+            + "DietLAH! can help you with your eating habits so you can get your desired weight!\n\n"
+            + "To start off, we have pre-loaded some sample data for you to play around with!\n"
+            + "To clear this sample data, please use:\n"
+            + "reset t/blank\nand set your own data with:\n"
+            + "bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)"
+            + "\n\nThereafter, you can get a diet plan recommendation using:\n"
+            + "plan_recommend\n"
+            + "and select your active diet plan using\n"
+            + "plan_set p/ID\n\n"
+            + "Finally, you can input your food items using \n"
+            + "food_intake_add d/DATE n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS\n\n"
+            + "For more help and commands, please visit our User Guide: \n"
+            + "https://ay2021s2-cs2103t-t12-2.github.io/tp/UserGuide.html";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
     private Logic logic;
+
+
 
     // Independent Ui parts residing in this Ui container
     private ResultDisplay resultDisplay;
@@ -45,9 +61,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
-
-    @FXML
-    private StackPane statusbarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -73,6 +86,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+    }
+
+    public static String getHelpMessage() {
+        return MainWindow.helpMessage;
     }
 
     /**
@@ -113,27 +130,10 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-        String messageToShow = "Welcome to DietLAH!\n\n"
-                + "DietLAH! can help you with your eating habits so you can get your desired weight!\n\n"
-                + "To start off, we have pre-loaded some sample data for you to play around with!\n"
-                + "To clear this sample data, please use:\n"
-                + "reset t/blank\nand set your own data with:\n"
-                + "bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)"
-                + "\n\nThereafter, you can get a diet plan recommendation using:\n"
-                + "plan_recommend\n"
-                + "and select your active diet plan using\n"
-                + "plan_set p/ID\n\n"
-                + "Finally, you can input your food items using \n"
-                + "food_intake_add d/DATE n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS\n\n"
-                + "For more help and commands, please visit our User Guide: \n"
-                + "https://ay2021s2-cs2103t-t12-2.github.io/tp/UserGuide.html";
 
-        resultDisplay.setFeedbackToUser(messageToShow);
+        resultDisplay.setFeedbackToUser(helpMessage);
     }
 
     /**
