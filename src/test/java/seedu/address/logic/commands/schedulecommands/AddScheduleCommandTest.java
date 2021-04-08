@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.schedulecommands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_DATE_CLASH;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_END_TIME;
@@ -12,9 +14,12 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.schedulecommands.AddScheduleCommand.MESSAGE_DUPLICATE_SCHEDULE;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.logic.commands.tutorcommands.AddCommand;
 import seedu.address.model.Model;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.model.tutor.Tutor;
 import seedu.address.testutil.ScheduleBuilder;
+import seedu.address.testutil.TutorBuilder;
 import seedu.address.testutil.TypicalModel;
 
 
@@ -120,5 +125,29 @@ public class AddScheduleCommandTest {
         AddScheduleCommand addScheduleCommand = new AddScheduleCommand(invalidSchedule);
 
         assertCommandFailure(addScheduleCommand, model, MESSAGE_DATE_CLASH);
+    }
+
+    @Test
+    public void equals() {
+        Schedule schedule1 = new ScheduleBuilder().withTitle("Maths Homework").build();
+        Schedule schedule2 = new ScheduleBuilder().withTitle("Science Homework").build();
+        AddScheduleCommand addSchedule1Command = new AddScheduleCommand(schedule1);
+        AddScheduleCommand addSchedule2Command = new AddScheduleCommand(schedule2);
+
+        // same object -> returns true
+        assertEquals(addSchedule1Command, addSchedule1Command);
+
+        // same values -> returns true
+        AddScheduleCommand addSchedule1CommandCopy = new AddScheduleCommand(schedule1);
+        assertEquals(addSchedule1CommandCopy, addSchedule1Command);
+
+        // different types -> returns false
+        assertNotEquals(addSchedule1Command, 1);
+
+        // null -> returns false
+        assertNotEquals(addSchedule1Command, null);
+
+        // different person -> returns false
+        assertNotEquals(addSchedule1Command, addSchedule2Command);
     }
 }
