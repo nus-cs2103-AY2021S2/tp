@@ -372,6 +372,20 @@
 
 .contact_box {
     -fx-border-color: #3e7b91;
-    -fx-background-color: #424d5f;
-    -fx-border-width: 1;
+    -fx-background-color: #383838;
+    -fx-border-width: 0;
+}
+
+.detail_heading {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #010504;
+    -fx-background-color: #3e7b91;
+}
+
+.basic_contact_box {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #010504;
+    -fx-background-color: #383838;
 }
