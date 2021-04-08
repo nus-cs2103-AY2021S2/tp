@@ -15,8 +15,8 @@ import java.time.format.ResolverStyle;
 public class Date implements Comparable<Date> {
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd");
     public static final String MESSAGE_CONSTRAINTS_FORMAT =
-            "Date should be represented in the format of YYYY-MM-DD";
-    public static final String MESSAGE_CONSTRAINTS = "Please make sure the date is valid";
+            "Date should be represented in the format of YYYY-MM-DD.";
+    public static final String MESSAGE_CONSTRAINTS = "Please make sure the date is valid.";
     public static final String VALIDATION_REGEX = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$";
 
     public final LocalDate date;
