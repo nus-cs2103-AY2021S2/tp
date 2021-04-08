@@ -146,7 +146,8 @@ public class PawbookParser {
     /**
      * Generate a DeleteCommand according to type of entity.
      */
-    private DeleteCommand generateDeleteCommand(String entityType, String arguments) throws ParseException {
+    private DeleteCommand<? extends Entity> generateDeleteCommand(String entityType, String arguments)
+            throws ParseException {
         if (entityType.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
@@ -165,13 +166,8 @@ public class PawbookParser {
     }
 
     private ListCommand generateListCommand(String entityType, String arguments) throws ParseException {
-        if (!arguments.isBlank() && !Pattern.matches("^ s*\\s*$", arguments)) {
-            throw new ParseException(ListCommand.MESSAGE_USAGE);
-        }
-
-        // if no entity is specified, list everything
-        if (entityType.isEmpty()) {
-            return new ListCommand();
+        if (!arguments.isBlank() && !Pattern.matches("^s*\\s*$", arguments) || entityType.isEmpty()) {
+            throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
         }
 
         Predicate<Pair<Integer, Entity>> predicate;
@@ -187,7 +183,7 @@ public class PawbookParser {
             break;
 
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
+            throw new AssertionError("This entity type is not implemented!");
         }
         return new ListCommand(predicate, entityType);
     }

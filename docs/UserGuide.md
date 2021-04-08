@@ -73,7 +73,7 @@ Here are some important syntax to take note of to facilitate your reading before
 | `Markdown` | Example of what to type in the command textbox |
 | **Bold** | Note-worthy keywords |
 | :bulb: | Indicates an important note that will enhance your user experience
-| :heavy_exclamation_mark: | Indicates something that the user should take caution of. |
+| :heavy_exclamation_mark: | Indicates something that the user should take caution of |
 
 ## Syntax Format
 
@@ -105,12 +105,12 @@ Here is how the main page looks like:
 
 Component | Purpose
 --------|-----------------
-**Menu Bar** | A menu bar that allows users to click on shortcuts. 
-**Dashboard** (Coming soon...) | A dashboard that shows the user the status of Pawbook. 
-**Main Display** | The main display that shows the results of each command.
-**Response Display** | A display that shows the response message from Pawbook after a command has been executed.
-**Card Component** | Each card component represents one entity profile (i.e. Dog, Owner, Program). 
-**Command Box** | A text field for the user to enter his/her command.
+**Menu Bar** | A menu bar that allows users to click on shortcuts
+**Dashboard** (Coming soon...) | A dashboard that shows the user the status of Pawbook
+**Main Display** | The main display that shows the results of each command
+**Response Display** | A display that shows the response message from Pawbook after a command has been executed
+**Card Component** | Each card component represents one entity profile (i.e. Dog, Owner, Program)
+**Command Box** | A text field for the user to enter his/her command
 
 ### Help Page View
 
@@ -165,7 +165,7 @@ Format:
 ```
 add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]...
 add owner n/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...
-add program n/PROGRAM_NAME s/TIME_AND_DATE_OF_SESSION [t/TAG]...
+add program n/PROGRAM_NAME s/DATE_OF_SESSION [t/TAG]...
 ```
 
 Note:
@@ -174,7 +174,7 @@ Note:
 - Names are allowed to contain numerics. This is catered for cases when a program name contains numbers and in some cases, even dog names and owner names.
 - Pawbook support arbitrary length phone numbers. This is to support phone numbers with differing lengths from different regions. 
 - Tags are optional and multiple tags can be added.
-- Tags are able to only take in one alphanumeric string. To write tags with multiple words, consider using camelCase or _ to represent a space.
+- Tags are only able to take in one alphanumeric string. To write tags with multiple words, consider using camelCase or _ to represent a space.
 
 Examples:
 
@@ -241,9 +241,9 @@ allows you to quickly correct that mistake. More details about the formatting of
 Format:
 
 ```
-edit dog DOG_ID n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAGS]...
-edit owner OWNER_ID n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAGS]...
-edit program PROGRAM_ID n/PROGRAM_NAME [s/SESSION]... [t/TAGS]...
+edit dog DOG_ID [n/DOG_NAME] [b/BREED] [d/DATE_OF_BIRTH] [s/SEX] [o/OWNER_ID] [t/TAG]...
+edit owner OWNER_ID [n/OWNER_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
+edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION]... [t/TAG]...
 ```
 
 Note: 
@@ -252,8 +252,9 @@ Note:
 - Only include the variables that need to be edited after the integer
 
 <div markdown="block" class="alert alert-info">
+:bulb: Tags are only able to take in one alphanumeric string!
 :heavy_exclamation_mark: Take note that editing tags for an entity will automatically override **all** its current tags! <br>
-:bulb: Reminder, tags are able to only take in one alphanumeric string! 
+:heavy_exclamation_mark: At least one variable needs to be changed!
 </div>
 
 Examples:
@@ -281,8 +282,8 @@ Format:
 
 ```
 enrol d/DOG_ID p/PROGRAM_ID
-enrol d/DOG_ID...d/DOG_ID p/PROGRAM_ID (enrolling multiple dogs into one program)
-enrol d/DOG_ID p/PROGRAM_ID...p/PROGRAM_ID (enrolling one dog into multiple programs)
+enrol d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID (enrolling multiple dogs into one program)
+enrol d/DOG_ID p/PROGRAM_ID [p/PROGRAM_ID]... (enrolling one dog into multiple programs)
 ```
 
 Note: 
@@ -320,10 +321,11 @@ multiple programs.<br>
 this command. After a dog has been dropped from the program, the program will no longer have that dog ID stored. 
 
 Format:
+
 ```
 drop d/DOG_ID p/PROGRAM_ID
-drop d/DOG_ID...d/DOG_ID p/PROGRAM_ID (dropping multiple dogs from one program)
-drop d/DOG_ID p/PROGRAM_ID...p/PROGRAM_ID (dropping one dog from multiple programs)
+drop d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID (dropping multiple dogs from one program)
+drop d/DOG_ID p/PROGRAM_ID [p/PROGRAM_ID]... (dropping one dog from multiple programs)
 ```
 
 Note:
@@ -360,7 +362,7 @@ lined up on any given day.
 Format:
 
 ```
-schedule DATE
+schedule [DATE]
 ```
 
 Note: 
@@ -378,8 +380,8 @@ Examples:
 ### List Command
 
 **Function**: Display entities filtered by type.<br>
-**Usage**: To see the three different types of entities (dog/owner/program), you can simply use this command. Let's say
-you want to see all the dogs that you are in-charge of. Simply list them and this command will provide you the full list.
+**Usage**: To see the three different types of entities (dog/owner/program), you can use this command. Let's say
+you want to see all the dogs that you are in-charge of. Simply type `list dog` and all the dogs in Pawbook will be displayed.
 
 Format:
 
@@ -387,7 +389,6 @@ Format:
 list dog
 list owner
 list program
-list
 ```
 
 Note:
@@ -413,10 +414,10 @@ Examples:
 **Usage**: When you want to find a particular entity (dog/owner/program), you can simply find them by their name. You
 can also find multiple entities by providing multiple keywords. This may be helpful when you want to see just one specific entity profile. 
 
-Format: 
+Format:
 
 ```
-find KEYWORD_1 [KEYWORD_2]...[KEYWORD_N]
+find KEYWORD [MORE_KEYWORDS]...
 ```
 
 Note: 
@@ -443,6 +444,8 @@ Examples:
 to see more details. At the top entry, it will be the profile of the entity you want to view. This is followed by the 
 all its related entities. For instance, when you view Bruce the dog, you will first see the his profile, followed by his 
 owner's profile and finally all the programs that Bruce is enrolled in. 
+
+Format:
 
 ```
 view ENTITY_ID
@@ -523,15 +526,15 @@ Action | Format
 --------|------------------
 **Add** | 1. `add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]...`<br> 2. `add owner n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br> 3. `add program n/PROGRAM_NAME [s/DATE_OF_SESSION]... [t/TAG]...`
 **Delete** | 1. `delete dog DOG_ID`<br> 2. `delete owner OWNER_ID`<br> 3. `delete program PROGRAM_ID`
-**Edit** | 1. `edit dog DOG_ID n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAGS]...`<br> 2. `edit owner OWNER_ID n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAGS]...`<br> 3. `edit program PROGRAM_ID n/PROGRAM_NAME [s/SESSION]... [t/TAGS]...`
-**Enrol** | 1. `enrol d/DOG_ID p/PROGRAM_ID`<br> 2. `enrol d/DOG_ID...d/DOG_ID p/PROGRAM_ID`<br> 3. `enrol d/DOG_ID p/PROGRAM_ID...p/PROGRAM_ID`
-**Drop** | 1. `drop d/DOG_ID] p/PROGRAM_ID]`<br> 2. `drop d/DOG_ID...d/DOG_ID p/PROGRAM_ID`<br> 3. `drop d/DOG_ID p/PROGRAM_ID...p/PROGRAM_ID`
-**Schedule** | `schedule DATE`
-**List** | 1. `list dog`<br> 2. `list owner`<br> 3. `list program`<br> 4. `list`
-**Find** | `find KEYWORD_1 [KEYWORD_2]...[KEYWORD_N]`
-**View** | `view ENTITY_ID`
-**Help** | `help`
+**Drop** | 1. `drop d/DOG_ID p/PROGRAM_ID`<br> 2. `drop d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID`<br> 3. `drop d/DOG_ID p/PROGRAM_ID [p/PROGRAM_ID]...`
+**Edit** | 1. `edit dog DOG_ID [n/DOG_NAME] [b/BREED] [d/DATE_OF_BIRTH] [s/SEX] [o/OWNER_ID] [t/TAG]...`<br> 2. `edit owner OWNER_ID [n/OWNER_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`<br> 3. `edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION]... [t/TAG]...`
+**Enrol** | 1. `enrol d/DOG_ID p/PROGRAM_ID`<br> 2. `enrol d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID`<br> 3. `enrol d/DOG_ID p/PROGRAM_ID [p/PROGRAM_ID]...`
 **Exit** | `exit`
+**Find** | `find KEYWORD [MORE_KEYWORDS]...`
+**Help** | `help`
+**List** | 1. `list dog`<br> 2. `list owner`<br> 3. `list program`<br>
+**Schedule** | `schedule [DATE]`
+**View** | `view ENTITY_ID`
 
 -----
 
@@ -541,5 +544,5 @@ Term  | Explanation
 -----|------------------
 CLI | Short for Command Line Interface. CLI-based applications are primarily used through processing text commands. 
 GUI | Short for Graphical User Interface. GUIs work as the tangible user interface between program and user. Users interact with Pawbook through the GUI on their devices.
-Entity | Refers to either an owner, a dog or a program
+Entity | Refers to either an owner, a dog or a program.
 Camel Case | Refers the a style of writing without spaces and indicating the separation of words using a single capitalised letter. 
