@@ -29,6 +29,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.gradecommands.EditGradeCommand;
+import seedu.address.logic.commands.schedulecommands.EditScheduleCommand;
 import seedu.address.logic.commands.tutorcommands.EditCommand;
 import seedu.address.model.GradeBook;
 import seedu.address.model.Model;
@@ -42,6 +43,7 @@ import seedu.address.model.schedule.ScheduleDateViewPredicate;
 import seedu.address.model.tutor.NameContainsKeywordsPredicate;
 import seedu.address.model.tutor.Tutor;
 import seedu.address.testutil.EditGradeDescriptorBuilder;
+import seedu.address.testutil.EditScheduleDescriptorBuilder;
 import seedu.address.testutil.EditTutorDescriptorBuilder;
 
 /**
@@ -97,6 +99,16 @@ public class CommandTestUtil {
             + VALID_SCHEDULE_TIME_FROM_TWO;
     public static final String VALID_SCHEDULE_DATE_TIME_TO_TWO = VALID_SCHEDULE_DATE_TWO + " "
             + VALID_SCHEDULE_TIME_TO_TWO;
+
+    public static final String VALID_SCHEDULE_TITLE_THREE = "English Homework";
+    public static final String VALID_SCHEDULE_DESCRIPTION_THREE = "Chapter 35 Page 21";
+    public static final String VALID_SCHEDULE_DATE_THREE = "2021-6-22";
+    public static final String VALID_SCHEDULE_TIME_FROM_THREE = "1:00PM";
+    public static final String VALID_SCHEDULE_TIME_TO_THREE = "3:00PM";
+    public static final String VALID_SCHEDULE_DATE_TIME_FROM_THREE = VALID_SCHEDULE_DATE_THREE + " "
+            + VALID_SCHEDULE_TIME_FROM_THREE;
+    public static final String VALID_SCHEDULE_DATE_TIME_TO_THREE = VALID_SCHEDULE_DATE_THREE + " "
+            + VALID_SCHEDULE_TIME_TO_THREE;
 
     public static final String TITLE_DESC_ONE = " " + PREFIX_TITLE + VALID_SCHEDULE_TITLE_ONE;
     public static final String TITLE_DESC_TWO = " " + PREFIX_TITLE + VALID_SCHEDULE_TITLE_TWO;
@@ -162,6 +174,10 @@ public class CommandTestUtil {
     public static final EditGradeCommand.EditGradeDescriptor DESC_MATHS;
     public static final EditGradeCommand.EditGradeDescriptor DESC_SCIENCE;
 
+    public static final EditScheduleCommand.EditScheduleDescriptor DESC_SCHEDULE_MATHS;
+    public static final EditScheduleCommand.EditScheduleDescriptor DESC_SCHEDULE_SCIENCE;
+
+
     static {
         DESC_AMY = new EditTutorDescriptorBuilder().withName(VALID_NAME_AMY).withGender(VALID_GENDER_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -183,6 +199,14 @@ public class CommandTestUtil {
         DESC_SCIENCE = new EditGradeDescriptorBuilder()
                 .withSubject(VALID_SUBJECT_NAME_SCIENCE)
                 .withGradedItem(VALID_GRADED_ITEM_SCIENCE).withGrade(VALID_GRADE_SCIENCE).build();
+
+        // EditScheduleDescriptor
+        DESC_SCHEDULE_MATHS = new EditScheduleDescriptorBuilder().withTitle(VALID_SCHEDULE_TITLE_ONE)
+                .withDescription(VALID_SCHEDULE_DESCRIPTION_ONE).withTimeFrom(VALID_SCHEDULE_DATE_TIME_FROM_ONE)
+                .withTimeTo(VALID_SCHEDULE_DATE_TIME_TO_ONE).build();
+        DESC_SCHEDULE_SCIENCE = new EditScheduleDescriptorBuilder().withTitle(VALID_SCHEDULE_TITLE_TWO)
+                .withDescription(VALID_SCHEDULE_DESCRIPTION_TWO).withTimeFrom(VALID_SCHEDULE_DATE_TIME_FROM_TWO)
+                .withTimeTo(VALID_SCHEDULE_DATE_TIME_TO_TWO).build();
     }
 
     /**
