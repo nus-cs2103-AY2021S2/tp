@@ -1,5 +1,6 @@
 package seedu.iscam.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.iscam.logic.commands.CommandTestUtil.DESC_CLEO;
@@ -7,6 +8,8 @@ import static seedu.iscam.logic.commands.CommandTestUtil.DESC_DAN;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_CLIENT_NAME_CLEO;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_CLIENT_NAME_DAN;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_DATETIME_DAN;
+import static seedu.iscam.logic.commands.CommandTestUtil.VALID_LOCATION_DAN;
+import static seedu.iscam.logic.commands.CommandTestUtil.VALID_STATUS_CLEO;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertMeetingCommandFailure;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -23,6 +26,8 @@ import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
+import seedu.iscam.model.commons.Location;
+import seedu.iscam.model.meeting.CompletionStatus;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.user.UserPrefs;
 import seedu.iscam.model.util.clientbook.ClientBook;
@@ -122,7 +127,8 @@ public class EditMeetingCommandTest {
     @Test
     public void execute_invalidMeetingIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredMeetingList().size() + 1);
-        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withClientName(VALID_CLIENT_NAME_CLEO).build();
+        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withClientName(VALID_CLIENT_NAME_CLEO)
+                .build();
         EditMeetingCommand editCommand = new EditMeetingCommand(outOfBoundIndex, descriptor);
 
         assertMeetingCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
@@ -143,6 +149,38 @@ public class EditMeetingCommandTest {
                 new EditMeetingDescriptorBuilder().withClientName(VALID_CLIENT_NAME_CLEO).build());
 
         assertMeetingCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_editWithoutStatusAlreadyCompletedMeeting_failure() {
+        Index lastIndex = Index.fromOneBased(model.getFilteredMeetingList().size() - 1);
+        Meeting lastMeeting = model.getFilteredMeetingList().get(lastIndex.getZeroBased());
+
+        // Ensures that the lastMeeting is completed
+        assertEquals(lastMeeting.getStatus(), new CompletionStatus("complete"));
+
+        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withClientName(VALID_CLIENT_NAME_CLEO)
+                .build();
+
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(lastIndex, descriptor);
+
+        assertMeetingCommandFailure(editMeetingCommand, model, EditMeetingCommand.MESSAGE_NOT_ALLOWED);
+    }
+
+    @Test
+    public void execute_editWithStatusCompleteAlreadyCompletedMeeting_failure() {
+        Index lastIndex = Index.fromOneBased(model.getFilteredMeetingList().size() - 1);
+        Meeting lastMeeting = model.getFilteredMeetingList().get(lastIndex.getZeroBased());
+
+        // Ensures that the lastMeeting is completed
+        assertEquals(lastMeeting.getStatus(), new CompletionStatus("complete"));
+
+        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withStatus(VALID_STATUS_CLEO)
+                .build();
+
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(lastIndex, descriptor);
+
+        assertMeetingCommandFailure(editMeetingCommand, model, EditMeetingCommand.MESSAGE_ALREADY_COMPLETE);
     }
 
     @Test
