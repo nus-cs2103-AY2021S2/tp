@@ -7,20 +7,7 @@ import java.util.List;
 import seedu.address.model.issue.Issue;
 
 public class TypicalIssues {
-    public static final Issue ISSUE_10_100 = new IssueBuilder()
-            .withRoomNumber("10-100")
-            .withDescription("Broken table")
-            .withTimestamp("2021/01/01 12:00pm")
-            .withStatus("pending")
-            .withCategory("Furniture")
-            .build();
-    public static final Issue ISSUE_11_110 = new IssueBuilder()
-            .withRoomNumber("11-110")
-            .withDescription("Flickering light")
-            .withTimestamp("2021/03/20 08:35am")
-            .withStatus("closed")
-            .withCategory("Electrical")
-            .build();
+
     public static final Issue ISSUE_09_100 = new IssueBuilder()
             .withRoomNumber("09-100")
             .withDescription("Chair cylinder exploded")
@@ -34,6 +21,20 @@ public class TypicalIssues {
             .withTimestamp("2020/11/29 11:23pm")
             .withStatus("closed")
             .withCategory("Furniture")
+            .build();
+    public static final Issue ISSUE_10_100 = new IssueBuilder()
+            .withRoomNumber("10-100")
+            .withDescription("Broken table")
+            .withTimestamp("2021/01/01 12:00pm")
+            .withStatus("pending")
+            .withCategory("Furniture")
+            .build();
+    public static final Issue ISSUE_11_110 = new IssueBuilder()
+            .withRoomNumber("11-110")
+            .withDescription("Flickering light")
+            .withTimestamp("2021/03/20 08:35am")
+            .withStatus("closed")
+            .withCategory("Electrical")
             .build();
     public static final Issue ISSUE_12_110 = new IssueBuilder()
             .withRoomNumber("12-110")

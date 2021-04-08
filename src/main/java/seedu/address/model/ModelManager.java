@@ -45,7 +45,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook, userPrefs and commandHistory.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
-            ReadOnlyCommandHistory commandHistory) {
+        ReadOnlyCommandHistory commandHistory) {
         super();
         requireAllNonNull(addressBook, userPrefs, commandHistory);
 
@@ -285,6 +285,14 @@ public class ModelManager implements Model {
 
 
     // =========== Filtered ResidentRoom List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code ResidentRoom} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<ResidentRoom> getFilteredResidentRoomList() {
+        return filteredResidentRooms;
+    }
 
     @Override
     public void updateFilteredResidentRoomList(Predicate<ResidentRoom> predicate) {
@@ -335,6 +343,12 @@ public class ModelManager implements Model {
 
         setIssue(target, closedIssue);
     }
+
+    @Override
+    public boolean issuesContainRoom(Room target) {
+        return statefulAddressBook.issuesContainRoom(target);
+    }
+
 
     // =========== Filtered Issue List Accessors =============================================================
 
