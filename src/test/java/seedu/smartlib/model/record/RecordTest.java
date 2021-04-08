@@ -183,9 +183,9 @@ public class RecordTest {
                 RECORD_A.getBookBarcode(),
                 RECORD_A.getReaderName(),
                 RECORD_A.getDateBorrowed(),
-                new DateReturned(RECORD_A.getDateBorrowed().getValue())
+                new DateReturned(RECORD_A.getDateBorrowed().toString())
         );
-        assertEquals(new DateReturned(RECORD_A.getDateBorrowed().getValue()), record.getDateReturned());
+        assertEquals(new DateReturned(RECORD_A.getDateBorrowed().toString()), record.getDateReturned());
     }
 
     @Test
@@ -229,7 +229,7 @@ public class RecordTest {
                 RECORD_A.getBookBarcode(),
                 RECORD_A.getReaderName(),
                 RECORD_A.getDateBorrowed(),
-                new DateReturned(RECORD_A.getDateBorrowed().getValue())
+                new DateReturned(RECORD_A.getDateBorrowed().toString())
         );
         assertTrue(RECORD_A.isSameRecord(record));
 
@@ -239,26 +239,26 @@ public class RecordTest {
                 RECORD_A.getBookBarcode(),
                 RECORD_A.getReaderName(),
                 RECORD_A.getDateBorrowed(),
-                new DateReturned(RECORD_C.getDateBorrowed().getValue())
+                new DateReturned(RECORD_C.getDateBorrowed().toString())
         );
         assertFalse(record.isSameRecord(record2));
 
         // one has date borrowed but one doesn't, all other attributes same -> returns true
-        record2 = new Record(
-                RECORD_A.getBookName(),
-                RECORD_A.getBookBarcode(),
-                RECORD_A.getReaderName(),
-                new DateReturned(RECORD_A.getDateBorrowed().getValue())
-        );
-        assertTrue(record.isSameRecord(record2));
-
-        // different borrow date, all other attributes same -> returns false
         record = new Record(
                 RECORD_A.getBookName(),
                 RECORD_A.getBookBarcode(),
                 RECORD_A.getReaderName(),
                 RECORD_B.getDateBorrowed()
         );
+        record2 = new Record(
+                RECORD_A.getBookName(),
+                RECORD_A.getBookBarcode(),
+                RECORD_A.getReaderName(),
+                new DateReturned(RECORD_A.getDateBorrowed().toString())
+        );
+        assertTrue(record.isSameRecord(record2));
+
+        // different borrow date, all other attributes same -> returns false
         assertFalse(RECORD_A.isSameRecord(record));
     }
 
@@ -269,7 +269,7 @@ public class RecordTest {
                 RECORD_A.getBookName(),
                 RECORD_A.getBookBarcode(),
                 RECORD_A.getReaderName(),
-                new DateReturned(RECORD_A.getDateBorrowed().getValue())
+                new DateReturned(RECORD_A.getDateBorrowed().toString())
         );
         assertThrows(AssertionError.class, record::getBorrowDuration);
 
@@ -282,7 +282,7 @@ public class RecordTest {
                 RECORD_A.getBookBarcode(),
                 RECORD_A.getReaderName(),
                 RECORD_A.getDateBorrowed(),
-                new DateReturned(RECORD_A.getDateBorrowed().getValue())
+                new DateReturned(RECORD_A.getDateBorrowed().toString())
         );
         assertEquals(Duration.ZERO, record.getBorrowDuration());
     }

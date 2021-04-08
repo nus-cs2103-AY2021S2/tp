@@ -11,8 +11,7 @@ import java.time.format.DateTimeParseException;
  */
 public class DateReturned {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be of the format yyyy-mm-dd ";
-    public static final String VALIDATION_REGEX = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
+    public static final String MESSAGE_CONSTRAINTS = "Date should be of the format yyyy-mm-dd.";
 
     private final String value;
 
@@ -36,10 +35,6 @@ public class DateReturned {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         value = date;
-    }
-
-    public String getValue() {
-        return value;
     }
 
     /**
