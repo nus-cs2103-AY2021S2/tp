@@ -37,6 +37,8 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Student> getFilteredStudentList();
 
+    ObservableList<Student> getStudentList();
+
     ObservableList<SameDateAppointmentList> getFilteredAppointmentList();
 
     /**

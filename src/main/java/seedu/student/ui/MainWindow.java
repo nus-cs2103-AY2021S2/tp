@@ -90,7 +90,7 @@ public class MainWindow extends UiPart<Stage> {
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList(),
-                logic.getFilteredStudentList());
+                logic.getStudentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

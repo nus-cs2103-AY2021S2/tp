@@ -32,9 +32,9 @@ public class EditAppointmentCommand extends Command {
             + PREFIX_START_TIME + "11:00 \n";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "The appointment overlaps with another appointment";
-    public static final String MESSAGE_APPOINTMENT_DOES_NOT_EXIST = "The requested appointment does not exist";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "The appointment overlaps with another appointment.";
+    public static final String MESSAGE_APPOINTMENT_DOES_NOT_EXIST = "The requested appointment does not exist.";
 
     private final MatriculationNumber matriculationNumber;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
