@@ -19,8 +19,12 @@ public class AddUserCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Success in updating user information";
 
-    public static final String MESSAGE_UPDATE = "Unsuccessful! Please update your particulars "
-            + "using the bmi update command.";
+    public static final String MESSAGE_UPDATE = "Unsuccessful! Your particulars have already been set.\n"
+            + "Please update your particulars "
+            + "using the bmi update command."
+            + "\nIf you have not set your particulars before, maybe you have not cleared\n"
+            + "the sample data yet? Simply type \n\n"
+            + "reset /t blank\n\nto clear the sample data!";
 
     private final User temporaryUser;
 

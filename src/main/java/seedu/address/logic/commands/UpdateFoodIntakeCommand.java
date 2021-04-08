@@ -16,7 +16,7 @@ public class UpdateFoodIntakeCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": This updates the nutritional values for a particular date and food.\n"
-            + "Command usage: food_intake_update d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS";
+            + "Command usage: food_intake_update d/DATE(in dd Mmm yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS";
 
     public static final String MESSAGE_SUCCESS = "Food intake successfully updated for:";
 
