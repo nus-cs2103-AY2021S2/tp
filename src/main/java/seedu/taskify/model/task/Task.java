@@ -101,8 +101,7 @@ public class Task {
             return true;
         }
 
-        return otherTask != null
-                       && otherTask.getName().equals(getName());
+        return otherTask != null && this.equals(otherTask);
     }
 
     /**
@@ -122,7 +121,6 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getName().equals(getName())
                        && otherTask.getDescription().equals(getDescription())
-                       && otherTask.getStatus().equals(getStatus())
                        && otherTask.getDate().equals(getDate())
                        && otherTask.getTags().equals(getTags());
     }
