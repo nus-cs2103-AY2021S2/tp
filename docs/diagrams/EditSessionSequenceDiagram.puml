@@ -1,0 +1,77 @@
+@startuml
+!include Style.puml
+hide footbox
+title Edit Session Sequence Diagram
+skinparam sequenceMessageAlign center
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditSessionCommandParser" as EditSessionCommandParser LOGIC_COLOR
+participant "command:EditSessionCommand" as command LOGIC_COLOR
+participant "e:EditSessionDescriptor" as EditSessionDescriptor LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+-> LogicManager : execute("edit_session c/2 d/Mon…")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edit_session c/2 d/Mon…")
+activate AddressBookParser
+
+create EditSessionCommandParser
+AddressBookParser -> EditSessionCommandParser
+activate EditSessionCommandParser
+
+EditSessionCommandParser -[hidden]-> AddressBookParser
+deactivate EditSessionCommandParser
+
+AddressBookParser -> EditSessionCommandParser : parse("c/2 d/Mon…")
+activate EditSessionCommandParser
+
+create EditSessionDescriptor
+EditSessionCommandParser -> EditSessionDescriptor
+activate EditSessionDescriptor
+EditSessionDescriptor --> EditSessionCommandParser : e
+deactivate EditSessionDescriptor
+
+create command
+EditSessionCommandParser -> command : EditSessionCommand(c/2 , e)
+
+activate command
+EditSessionCommandParser <-- command
+deactivate command
+
+EditSessionCommandParser --> AddressBookParser :
+deactivate EditSessionCommandParser
+
+AddressBookParser -[hidden]-> EditSessionCommandParser
+destroy EditSessionCommandParser
+
+AddressBookParser --> LogicManager :
+deactivate AddressBookParser
+
+LogicManager -> command : execute()
+activate command
+
+command -> Model : setSession(sessionToEdit , editedSession)
+activate Model
+
+deactivate Model
+
+command --> LogicManager : commandResult
+deactivate command
+
+LogicManager -[hidden]-> EditSessionDescriptor
+destroy EditSessionDescriptor
+
+LogicManager -[hidden]-> command
+destroy command
+
+<-- LogicManager
+deactivate LogicManager
+
+@enduml
