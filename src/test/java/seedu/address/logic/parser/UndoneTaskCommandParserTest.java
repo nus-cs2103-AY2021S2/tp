@@ -19,14 +19,21 @@ public class UndoneTaskCommandParserTest {
     private UndoneTaskCommandParser parser = new UndoneTaskCommandParser();
 
     @Test
-    public void parse_validArgs_returnsUndoneTaskCommand() {
+    public void parse_validArg_returnsUndoneTaskCommand() {
         assertParseSuccess(parser, "1", new UndoneTaskCommand(INDEX_FIRST_TASK));
     }
 
     @Test
     @Disabled
-    public void parse_invalidArgs_throwsParseException() {
+    public void parse_invalidArg_throwsParseException() {
         assertParseFailure(parser, "a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UndoneTaskCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    @Disabled
+    public void parse_invalidArgNegativeIndex_throwsParseException() {
+        assertParseFailure(parser, "-1",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, UndoneTaskCommand.MESSAGE_USAGE));
     }
 }

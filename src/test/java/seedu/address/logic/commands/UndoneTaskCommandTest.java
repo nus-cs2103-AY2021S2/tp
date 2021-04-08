@@ -34,7 +34,7 @@ public class UndoneTaskCommandTest {
         String expectedMessage = String.format(UndoneTaskCommand.MESSAGE_UNDONE_TASK_SUCCESS, taskToUndone);
 
         ModelManager expectedModel = new ModelManager(model.getSochedule(), new UserPrefs());
-        // copy the taskToUdone so that 'undone' it in expectedModel does not affect the task in actual model.
+        // copy the taskToUndone so that 'undone' it in expectedModel does not affect the task in actual model.
         Task taskToUndoneCopy = taskToUndone.getCopy();
         expectedModel.setTask(taskToUndone, taskToUndoneCopy);
         expectedModel.undoneTask(taskToUndoneCopy);
