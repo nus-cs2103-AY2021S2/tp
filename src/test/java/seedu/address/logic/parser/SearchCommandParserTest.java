@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_KEYWORD_SUPPLIED;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -24,10 +25,12 @@ public class SearchCommandParserTest {
     @Test
     public void parse_invalidSubject_throwsParseException() {
         //first subject name is invalid
-        assertParseFailure(parser, " n/Alice Bob s/simei jurong t/abc", Subject.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " n/Alice Bob s/simei jurong t/abc",
+            String.format(MESSAGE_INVALID_KEYWORD_SUPPLIED, Subject.MESSAGE_CONSTRAINTS));
 
         //second subject name is invalid
-        assertParseFailure(parser, " n/Alice Bob s/simei jurong t/bio abc", Subject.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " n/Alice Bob s/simei jurong t/bio abc",
+            String.format(MESSAGE_INVALID_KEYWORD_SUPPLIED, Subject.MESSAGE_CONSTRAINTS));
     }
 
     @Test
@@ -40,8 +43,8 @@ public class SearchCommandParserTest {
         assertParseSuccess(parser, " n/Alice Bob s/simei jurong t/bio math", expectedSearchCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n n/Alice \n \t Bob  \t s/simei \n jurong"
-                + " t/bio \t math   \t", expectedSearchCommand);
+        assertParseSuccess(parser, "   n/Alice     Bob   s/simei  jurong"
+            + " t/bio   math    ", expectedSearchCommand);
     }
 
 }
