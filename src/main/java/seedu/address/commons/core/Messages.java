@@ -7,6 +7,7 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_ENTRY_INDEX = "The entry index provided is invalid";
+    public static final String MESSAGE_ENTRY_END_DATE_IN_PAST = "The provided end date and time is in the past";
     public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Deleted Entry: %1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_DATE_RANGE = "The provided start date is after the provided end date!";

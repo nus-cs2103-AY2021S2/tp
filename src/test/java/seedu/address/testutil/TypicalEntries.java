@@ -10,19 +10,19 @@ import seedu.address.model.entry.Entry;
 public class TypicalEntries {
 
     public static final Entry CONSULTATION = new EntryBuilder().withEntryName("Consultation")
-            .withStartDate("2021-02-01 13:00").withEndDate("2021-02-01 14:30").withTags("History").build();
+            .withStartDate("2022-02-01 13:00").withEndDate("2022-02-01 14:30").withTags("History").build();
 
     public static final Entry CLASS_MEETING = new EntryBuilder().withEntryName("Class Meeting")
-            .withStartDate("2021-02-01 15:00").withEndDate("2021-02-01 16:30").withTags("21S07").build();
+            .withStartDate("2022-02-01 15:00").withEndDate("2022-02-01 16:30").withTags("21S07").build();
 
     public static final Entry EXTRA_CLASS = new EntryBuilder().withEntryName("Extra class")
-            .withStartDate("2021-02-02 17:00").withEndDate("2021-02-02 18:30").withTags("Math").build();
+            .withStartDate("2022-02-02 17:00").withEndDate("2022-02-02 18:30").withTags("Math").build();
 
     public static final Entry SHORT_QUIZ = new EntryBuilder().withEntryName("Short Geo Quiz")
-            .withStartDate("2021-02-02 14:30").withEndDate("2021-02-02 15:15").withTags("Geography", "21A01").build();
+            .withStartDate("2022-02-02 14:30").withEndDate("2022-02-02 15:15").withTags("Geography", "21A01").build();
 
     public static final Entry DO_STUFF = new EntryBuilder().withEntryName("Go do something important")
-            .withStartDate("2021-02-04 09:00").withEndDate("2021-02-04 09:30").withTags("Important", "Stuff").build();
+            .withStartDate("2022-02-04 09:00").withEndDate("2022-02-04 09:30").withTags("Important", "Stuff").build();
 
     private TypicalEntries() {} // prevents instantiation
 
