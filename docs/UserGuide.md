@@ -17,6 +17,38 @@ features a Graphical User Interface (GUI) but is optimized for use via a Command
 * Keeps track of student records
 * Keeps track of room records
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Quick start
+
+1. Ensure you have Java `11` or above installed in your Computer.
+
+2. Download the latest `sunrez.jar` from [here](https://github.com/AY2021S2-CS2103-T14-1/tp/releases).
+
+3. Copy the file to the folder you want to use as the _home folder_ for your SunRez.
+
+4. Double-click the file to start the app. A GUI like the one pictured below should appear in a few seconds.
+   Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)
+
+5. Type a command in the command box and press Enter to execute it.
+   e.g. typing `help` and pressing Enter will open the help window.<br>
+
+   Some example commands you can try:
+
+    * `rlist`: Lists all residents.
+
+    * `radd n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2`:
+      Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, a 2nd year student.
+
+    * `rdel 3`: Deletes the 3rd resident shown in the current resident list.
+
+    * `exit`: Exits the app.
+
+6. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## SunRez User Interface (UI)
 The following image shows the different parts of the SunRez application window:
 
@@ -126,34 +158,6 @@ Many SunRez commands use various parameters. Their formats, constraints and rati
 | <a id="tag"></a> `TAG` | `g/` | `oadd` `oedit` `iadd` `iedit` | The tag associated with a room or issue.{::nomarkdown} <ul><li> Tags must be non-blank and alphanumeric (spaces are not allowed). </li><li> Tags are limited to 25 characters. </li><li> Tags are case-sensitive: e.g. <code>SHN</code>,<code>shn</code> and <code>Shn</code> are each considered separate tags. </li><li> Insertion order of tags does not guarantee display order in any part of the user interface. </li><li> Duplicate tags will be accepted as input, but only one instance will be recorded. </li><li> For the best experience, we recommend keeping tags short and having fewer than 20 of them per entry. There is no theoretical limit to the number of tags an entry can have, but SunRez may slow down or run into unexpected problems for a huge number of tags. </li></ul>{:/} |
 | <a id="timestamp"></a> `TIMESTAMP` | `t/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
 | <a id="year"></a> `YEAR` | `y/` | `radd` `redit` | The year of study of a resident.{::nomarkdown} <ul><li> Must be a single digit numeric character from 1 to 5 inclusive. </li></ul>{:/} |
-
-## Quick start
-
-1. Ensure you have Java `11` or above installed in your Computer.
-
-2. Download the latest `sunrez.jar` from [here](https://github.com/AY2021S2-CS2103-T14-1/tp/releases).
-
-3. Copy the file to the folder you want to use as the _home folder_ for your SunRez.
-
-4. Double-click the file to start the app. A GUI like the one pictured below should appear in a few seconds. 
-   Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-   
-5. Type a command in the command box and press Enter to execute it. 
-   e.g. typing `help` and pressing Enter will open the help window.<br>
-   
-   Some example commands you can try:
-
-    * `rlist`: Lists all residents.
-    
-    * `radd n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2`: 
-      Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, a 2nd year student.
-
-    * `rdel 3`: Deletes the 3rd resident shown in the current resident list.
-
-    * `exit`: Exits the app.
-
-6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
