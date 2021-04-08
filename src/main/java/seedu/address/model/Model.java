@@ -232,7 +232,7 @@ public interface Model {
      * Closes the given issue.
      * The issue must exist in SunRez.
      *
-     * @param target Target issue to be replaced
+     * @param target Target issue to be replaced.
      * @throws NullPointerException If {@code target} is null.
      */
     void closeIssue(Issue target);

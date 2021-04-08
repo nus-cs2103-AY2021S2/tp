@@ -65,7 +65,7 @@ public class EditIssueCommand extends Command {
 
     /**
      * Creates an EditIssueCommand to edit the specified issue at {@code targetIndex} to the new Issue described by
-     * {@code editIssueDescriptor}
+     * {@code editIssueDescriptor}.
      *
      * @param index               Index of the issue in the filtered issue list to edit
      * @param editIssueDescriptor Description of the updated issue
@@ -82,7 +82,7 @@ public class EditIssueCommand extends Command {
     /**
      * Executes an EditIssuecommand to replace a targeted issue with a new issue.
      *
-     * @param model {@code Model} which the command should operate on.
+     * @param model The {@code model} which the command should operate on.
      * @return Result of command execution.
      * @throws CommandException     If {@code model} is invalid.
      * @throws NullPointerException If the {@code model} is null.
@@ -119,7 +119,7 @@ public class EditIssueCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Issue} with the details of {@code issueToEdit}
+     * Creates and returns an {@code Issue} with the details of {@code issueToEdit}
      * edited with {@code editIssueDescriptor}.
      */
     private static Issue createEditedIssue(Issue issueToEdit, EditIssueDescriptor editIssueDescriptor) {
