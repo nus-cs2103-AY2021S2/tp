@@ -699,6 +699,8 @@ Use case ends.
 * 3b. User enters `h` command when the answer is currently hidden.
     * 3b1. FlashBack shows an error message <br>
     Use case resumes at step 3.
+<div style="page-break-after: always;"></div>
+
 * 3c. User enters `a` command when the answer is currently shown.
     * 3c1. FlashBack shows an error message <br>
     Use case resumes at step 3.
@@ -754,8 +756,7 @@ in step 1 and 2 of MSS
     * 1b1. FlashBack shows an error message.
     
     Use case ends.
-<div style="page-break-after: always;"></div>
-
+    
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -791,9 +792,7 @@ testers are expected to do more *exploratory* testing.
 <div style="page-break-after: always;"></div>
 
 ### Launch and shutdown
-
 1. Initial launch
-
     1. Download the jar file and copy into an empty folder
 
     1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
@@ -820,7 +819,8 @@ testers are expected to do more *exploratory* testing.
     
     1. Test cases: `list` <br>
     Expected: `FlashcardListPanel` displays all flashcards stored in `flashback.json` file. The result display shows a message: `Listed all flashcards`.
-    
+<div style="page-break-after: always;"></div>
+
 ### Adding a flashcard
 1. Adding a flashcard with a specific question, answer, category, priority and tags(if possible).
     1. Prerequisites: Application is in main mode and running
@@ -884,6 +884,7 @@ testers are expected to do more *exploratory* testing.
        
     1. Test case: `find newton random`<br>
        Expected: The list will be updated, listing the flashcards that have either `newton` or `random` contained in any of its fields. The result display states the number of flashcards found.
+<div style="page-break-after: always;"></div>
 
 ### Filtering flashcards
 
@@ -912,6 +913,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `clear` <br>
        Expected: All flashcards shown in `FlashcardListPanel` are deleted. The result display shows the message: `FlashBack has been cleared!`.
     
+<div style="page-break-after: always;"></div>
+
 ### Viewing a flashcard
 
 1. Viewing a flashcard at a specific index.
@@ -1051,6 +1054,7 @@ testers are expected to do more *exploratory* testing.
        The result display shows a message: `The command "cleaaar" does not exist in FlashBack.`.
 
 ------------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Effort**
 
