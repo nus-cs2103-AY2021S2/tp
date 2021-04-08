@@ -10,10 +10,11 @@ import static seedu.address.testutil.alias.AliasUtil.ALIAS_2_TO_1;
 import static seedu.address.testutil.alias.AliasUtil.ALIAS_HELP;
 import static seedu.address.testutil.alias.AliasUtil.VALID_ALIAS_1;
 import static seedu.address.testutil.alias.AliasUtil.VALID_ALIAS_2;
+import static seedu.address.testutil.alias.AliasUtil.VALID_ALIAS_3;
+import static seedu.address.testutil.alias.AliasUtil.VALID_ALIAS_4;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Alias;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -33,7 +34,7 @@ public class AliasCommandTest {
         assertTrue(aliasOne.equals(aliasOneCopy));
 
         // different instance types -> returns false
-        assertFalse(aliasOne.equals(new Alias()));
+        assertFalse(aliasOne.equals(1));
 
         // null -> returns false
         assertFalse(aliasOne.equals(null));
@@ -63,9 +64,20 @@ public class AliasCommandTest {
     public void execute_aliasCommandIsValid_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.addAlias(VALID_ALIAS_1);
+        expectedModel.addAlias(VALID_ALIAS_3);
 
-        assertCommandSuccess(new AliasCommand(VALID_ALIAS_1), model, String.format(AliasCommand.MESSAGE_SUCCESS_NEW,
-                VALID_ALIAS_1.getAliasName()), expectedModel);
+        assertCommandSuccess(new AliasCommand(VALID_ALIAS_3), model, String.format(AliasCommand.MESSAGE_SUCCESS_NEW,
+                VALID_ALIAS_3.getAliasName()), expectedModel);
+    }
+
+    @Test
+    public void execute_aliasNamePreviouslyDefined_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model.addAlias(VALID_ALIAS_3);
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.addAlias(VALID_ALIAS_4);
+
+        assertCommandSuccess(new AliasCommand(VALID_ALIAS_4), model, String.format(AliasCommand.MESSAGE_SUCCESS_UPDATED,
+                VALID_ALIAS_4.getAliasName()), expectedModel);
     }
 }
