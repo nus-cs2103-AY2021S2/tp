@@ -24,7 +24,7 @@ You can reach us at the email `jdlian505[at]gmail.com`, `juhaeradittya2000[at]gm
 <img src="images/pasha-292.png" width="200px">
 
 [[github](http://github.com/johndoe)]
-[[portfolio](team/juhaer.md)]
+[[portfolio](team/pasha-292.md)]
 
 * Role: Developer
 * Responsibilities: UI, Logic
