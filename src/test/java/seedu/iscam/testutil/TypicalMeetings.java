@@ -44,6 +44,9 @@ public class TypicalMeetings {
             .withName("Fiona Kunz").withDateTime("05-01-2021 16:30").withLocation("Doot Cafe, One North")
             .withDescription("Introducing policies.").withStatus("complete")
             .build();
+    public static final Meeting DANIEL_CONFLICTED_WITH_FIONA = new MeetingBuilder(DANIEL_1)
+            .withDateTime(FIONA_1.getDateTime().toString())
+            .build();
 
     // Manually added
     public static final Meeting HOON = new MeetingBuilder()

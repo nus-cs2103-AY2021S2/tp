@@ -37,7 +37,6 @@ public class Meeting {
         requireAllNonNull(clientName, dateTime, location, description, tags);
         this.clientName = clientName;
         this.dateTime = dateTime;
-
         this.location = location;
         this.description = description;
         this.tags = tags;
@@ -52,7 +51,6 @@ public class Meeting {
         requireAllNonNull(clientName, dateTime, location, description, tags);
         this.clientName = clientName;
         this.dateTime = dateTime;
-
         this.location = location;
         this.description = description;
         this.tags = tags;
@@ -91,7 +89,9 @@ public class Meeting {
      * Returns true if both meetings have the same date and time.
      */
     public boolean isInConflict(Meeting otherMeeting) {
-        if (otherMeeting == this) {
+        if (otherMeeting == null) {
+            return false;
+        } else if (otherMeeting == this) {
             return true;
         }
 

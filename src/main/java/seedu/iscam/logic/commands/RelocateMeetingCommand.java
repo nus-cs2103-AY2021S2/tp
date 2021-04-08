@@ -28,7 +28,7 @@ public class RelocateMeetingCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Relocated meeting: %1$s";
     public static final String MESSAGE_DUPLICATE_LOCATION = "The new location must be different from the one in the "
-            + "iscam book";
+            + "iScam book";
     public static final String MESSAGE_ALREADY_COMPLETE = "This meeting was already completed, it cannot be relocated.";
 
     private final Index index;
@@ -45,6 +45,14 @@ public class RelocateMeetingCommand extends Command {
     private Meeting relocateMeeting(Meeting meeting, Location newLocation) {
         return new Meeting(meeting.getClientName(), meeting.getDateTime(), newLocation,
                 meeting.getDescription(), meeting.getTags(), meeting.getStatus());
+    }
+
+    public Index getIndex() {
+        return index;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 
     @Override
@@ -69,5 +77,21 @@ public class RelocateMeetingCommand extends Command {
         model.setMeeting(meeting, relocatedMeeting);
         model.updateFilteredMeetingList(Model.PREDICATE_SHOW_ALL_MEETINGS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, relocatedMeeting));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof RelocateMeetingCommand)) {
+            return false;
+        }
+
+        RelocateMeetingCommand e = (RelocateMeetingCommand) other;
+
+        return getIndex().equals(e.getIndex())
+                && getLocation().equals(e.getLocation());
     }
 }

@@ -23,7 +23,6 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-        model.setClientMode();
         ObservableList<Client> clients = model.getFilteredClientList();
         if (clients.size() == 0) {
             throw new CommandException(MESSAGE_EMPTY_LIST);

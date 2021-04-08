@@ -1,0 +1,28 @@
+@startuml
+start
+:User enters command to edit a meeting;
+
+:Parse the command string;
+
+if () then ([All parameters are valid])
+    if () then ([The meeting is incomplete or the user is setting status to incomplete])
+        :Constructs a modified meeting with the updated parameters;
+        if () then ([No date-time conflict with existing meetings])
+            :Replace the original meeting with the
+            modified meeting in the model;
+            :Overwrite the  original meeting with
+            the modified meeting in the storage;
+            :Display success message to the user;
+        else ([Else])
+            :Display conflict message to the user;
+        endif
+    else ([Else])
+        :Display failure message to the user;
+    endif
+
+else ([Else])
+    : Display feedback message to the user;
+endif
+stop
+'    stop
+@enduml

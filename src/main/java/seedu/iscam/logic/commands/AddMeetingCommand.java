@@ -21,13 +21,13 @@ public class AddMeetingCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a meeting with a client to the iScam Book. \n"
             + "Parameters: "
             + PREFIX_CLIENT + "CLIENT_NAME "
-            + PREFIX_ON + "DATE TIME "
+            + PREFIX_ON + "DATE_TIME "
             + PREFIX_LOCATION + "LOCATION "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + "[" + PREFIX_TAG + "TAG(s)] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CLIENT + "John Doe "
-            + PREFIX_ON + "12-10-2021 10:00 "
+            + PREFIX_ON + "25-10-2021 10:00 "
             + PREFIX_LOCATION + "Starbucks, Tampines Hub "
             + PREFIX_DESCRIPTION + "Discuss insurance policy "
             + PREFIX_TAG + "Urgent "
@@ -35,7 +35,7 @@ public class AddMeetingCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
     public static final String MESSAGE_MEETING_CONFLICT = "A meeting with this date and time already exists in the "
-            + "iscam book ";
+            + "iScam book ";
 
     private final Meeting toAdd;
 

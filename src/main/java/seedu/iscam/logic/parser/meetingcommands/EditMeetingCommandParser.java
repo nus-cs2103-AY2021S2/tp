@@ -66,7 +66,7 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
-            editMeetingDescriptor.setAddress(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
+            editMeetingDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
         }
 
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {

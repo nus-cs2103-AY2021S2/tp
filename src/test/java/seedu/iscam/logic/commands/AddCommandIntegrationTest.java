@@ -1,6 +1,6 @@
 package seedu.iscam.logic.commands;
 
-import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.iscam.logic.commands.CommandTestUtil.assertClientCommandFailure;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
 import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
@@ -40,7 +40,7 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicateClient_throwsCommandException() {
         Client clientInList = model.getClientBook().getClientList().get(0);
-        assertCommandFailure(new AddCommand(clientInList), model, AddCommand.MESSAGE_DUPLICATE_CLIENT);
+        assertClientCommandFailure(new AddCommand(clientInList), model, AddCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 
 }

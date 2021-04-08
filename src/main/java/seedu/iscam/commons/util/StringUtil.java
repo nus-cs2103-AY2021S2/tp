@@ -48,7 +48,7 @@ public class StringUtil {
      *       </pre>
      *
      * @param sentence cannot be null
-     * @param str     cannot be null, cannot be empty, must be a single word
+     * @param str      cannot be null, cannot be empty, must be a single word
      */
     public static boolean containsIgnoreCase(String sentence, String str) {
         requireNonNull(sentence);

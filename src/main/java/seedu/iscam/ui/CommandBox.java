@@ -6,7 +6,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.iscam.logic.commands.CommandResult;
 import seedu.iscam.logic.commands.exceptions.CommandException;
-import seedu.iscam.logic.events.exceptions.EventException;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 
 /**
@@ -45,7 +44,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
-        } catch (CommandException | ParseException | EventException e) {
+        } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
     }
@@ -80,7 +79,7 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see seedu.iscam.logic.Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException, EventException;
+        CommandResult execute(String commandText) throws CommandException, ParseException;
     }
 
 }

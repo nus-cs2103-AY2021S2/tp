@@ -25,7 +25,7 @@ public class RescheduleMeetingCommand extends Command {
             + "INDEX (must be a positive integer) "
             + PREFIX_ON + "DATE-TIME (must not be in the past)\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_ON + "12-10-2020 16:30\n";
+            + PREFIX_ON + "12-10-2022 16:30\n";
 
     public static final String MESSAGE_SUCCESS = "Rescheduled meeting: %1$s";
     public static final String MESSAGE_DUPLICATE_DATETIME = "The new date and time must be different from the "
@@ -50,6 +50,14 @@ public class RescheduleMeetingCommand extends Command {
     private Meeting rescheduleMeeting(Meeting meeting, DateTime newDateTime) {
         return new Meeting(meeting.getClientName(), newDateTime, meeting.getLocation(),
                 meeting.getDescription(), meeting.getTags(), meeting.getStatus());
+    }
+
+    public Index getIndex() {
+        return index;
+    }
+
+    public DateTime getDateTime() {
+        return dateTime;
     }
 
     @Override
@@ -79,5 +87,21 @@ public class RescheduleMeetingCommand extends Command {
         model.setMeeting(meeting, rescheduledMeeting);
         model.updateFilteredMeetingList(Model.PREDICATE_SHOW_ALL_MEETINGS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, rescheduledMeeting));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof RescheduleMeetingCommand)) {
+            return false;
+        }
+
+        RescheduleMeetingCommand e = (RescheduleMeetingCommand) other;
+
+        return getIndex().equals(e.getIndex())
+                && getDateTime().equals(e.getDateTime());
     }
 }

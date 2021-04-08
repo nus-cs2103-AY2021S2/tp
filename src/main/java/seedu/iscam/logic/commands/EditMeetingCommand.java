@@ -7,8 +7,6 @@ import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_ON;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.iscam.model.meeting.CompletionStatus.ARGUMENT_COMPLETE;
-import static seedu.iscam.model.meeting.CompletionStatus.ARGUMENT_INCOMPLETE;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -44,18 +42,18 @@ public class EditMeetingCommand extends Command {
             + "[" + PREFIX_LOCATION + "LOCATION] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG(s)] "
-            + "[" + PREFIX_STATUS + "STATUS (" + ARGUMENT_COMPLETE + "/" + ARGUMENT_INCOMPLETE + ")]\n"
+            + "[" + PREFIX_STATUS + "COMPLETION_STATUS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_LOCATION + "Macdonald, Bedok "
             + PREFIX_DESCRIPTION + "Client's family will be coming along";
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_MEETING = "No changes found in any field.";
+    public static final String MESSAGE_NO_CHANGES = "No changes found in any field.";
     public static final String MESSAGE_CONFLICT = "There is another meeting with the same date and time, consider "
             + "changing to another time.";
     public static final String MESSAGE_NOT_ALLOWED = "This meeting was already completed, no modification can be made "
             + "unless it is set back to incomplete.";
-    public static final String MESSAGE_ALREADY_COMPLETE = "This meeting was already completed, it cannot be complete "
+    public static final String MESSAGE_ALREADY_COMPLETE = "This meeting was already completed, it cannot be completed "
             + "again.";
 
     private final Index index;
@@ -81,7 +79,7 @@ public class EditMeetingCommand extends Command {
 
         Name updatedClientName = editMeetingDescriptor.getClientName().orElse(meetingToEdit.getClientName());
         DateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(meetingToEdit.getDateTime());
-        Location updatedLocation = editMeetingDescriptor.getAddress().orElse(meetingToEdit.getLocation());
+        Location updatedLocation = editMeetingDescriptor.getLocation().orElse(meetingToEdit.getLocation());
         Description updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
         Set<Tag> updatedTags = editMeetingDescriptor.getTags().orElse(meetingToEdit.getTags());
         CompletionStatus updatedStatus = editMeetingDescriptor.getStatus().orElse(meetingToEdit.getStatus());
@@ -110,7 +108,7 @@ public class EditMeetingCommand extends Command {
         }
 
         if (meeting.equals(editedMeeting)) {
-            throw new CommandException(MESSAGE_DUPLICATE_MEETING);
+            throw new CommandException(MESSAGE_NO_CHANGES);
         }
 
         if (model.hasConflictingMeetingWith(editedMeeting, meeting)) {
@@ -120,6 +118,24 @@ public class EditMeetingCommand extends Command {
         model.setMeeting(meeting, editedMeeting);
         model.updateFilteredMeetingList(Model.PREDICATE_SHOW_ALL_MEETINGS);
         return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditMeetingCommand)) {
+            return false;
+        }
+
+        // state check
+        EditMeetingCommand e = (EditMeetingCommand) other;
+        return index.equals(e.index)
+                && editMeetingDescriptor.equals(e.editMeetingDescriptor);
     }
 
     /**
@@ -143,7 +159,7 @@ public class EditMeetingCommand extends Command {
         public EditMeetingDescriptor(EditMeetingDescriptor toCopy) {
             setClientName(toCopy.clientName);
             setDateTime(toCopy.dateTime);
-            setAddress(toCopy.location);
+            setLocation(toCopy.location);
             setDescription(toCopy.description);
             setTags(toCopy.tags);
             setStatus(toCopy.status);
@@ -172,11 +188,11 @@ public class EditMeetingCommand extends Command {
             this.dateTime = dateTime;
         }
 
-        public Optional<Location> getAddress() {
+        public Optional<Location> getLocation() {
             return Optional.ofNullable(location);
         }
 
-        public void setAddress(Location location) {
+        public void setLocation(Location location) {
             this.location = location;
         }
 
@@ -218,7 +234,7 @@ public class EditMeetingCommand extends Command {
 
             return getClientName().equals(e.getClientName())
                     && getDateTime().equals(e.getDateTime())
-                    && getAddress().equals(e.getAddress())
+                    && getLocation().equals(e.getLocation())
                     && getDescription().equals(e.getDescription())
                     && getTags().equals(e.getTags())
                     && getStatus().equals(e.getStatus());

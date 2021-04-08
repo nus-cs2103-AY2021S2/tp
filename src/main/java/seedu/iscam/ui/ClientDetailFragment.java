@@ -8,6 +8,7 @@ import java.util.Comparator;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,10 +16,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.util.clientbook.ObservableClient;
 
@@ -49,20 +51,24 @@ public class ClientDetailFragment extends UiPart<Region> {
     @FXML
     private ListView<Meeting> clientMeetingListView;
     @FXML
-    private VBox insurancePlanBox;
+    private Label tooltip;
     @FXML
-    private Label insurancePlanName;
+    private HBox clientSummaryBox;
+    @FXML
+    private HBox clientMeetingsAndPlansBox;
+    @FXML
+    private ListView<InsurancePlan> plansListView;
 
     /**
      * Creates a ClientDetailFragment that observes the given ObservableClient
+     *
      * @param observableClient ObservableClient to monitor
      */
     public ClientDetailFragment(ObservableClient observableClient, ObservableList<Meeting> meetingList) {
         super(FXML);
         observableClient.addListener(new ClientListener());
         this.meetingList = meetingList;
-        profileImage.setPreserveRatio(true);
-        insurancePlanBox.setVisible(false);
+        setTooltipMode();
     }
 
     public void setClientDetails(Client client) {
@@ -81,9 +87,23 @@ public class ClientDetailFragment extends UiPart<Region> {
         clientMeetingListView.setItems(
                 meetingList.filtered(meeting -> meeting.getClientName().equals(client.getName())));
         clientMeetingListView.setCellFactory(listview -> new MeetingListPanel.MeetingListViewCell());
+        ObservableList<InsurancePlan> observablePlanList = FXCollections.observableArrayList(client.getPlans());
+        plansListView.setItems(observablePlanList);
+        plansListView.setCellFactory(listview -> new PlanListPanel.PlanListViewCell());
+    }
 
-        insurancePlanBox.setVisible(true);
-        insurancePlanName.setText(client.getPlan().planName);
+    private void setTooltipMode() {
+        tooltip.setManaged(true);
+        tooltip.setVisible(true);
+        clientSummaryBox.setVisible(false);
+        clientMeetingsAndPlansBox.setVisible(false);
+    }
+
+    private void setClientDetailMode() {
+        tooltip.setManaged(false);
+        tooltip.setVisible(false);
+        clientSummaryBox.setVisible(true);
+        clientMeetingsAndPlansBox.setVisible(true);
     }
 
     // TODO: Migrate image access to the model and storage and not hardcode the "data" path
@@ -120,6 +140,9 @@ public class ClientDetailFragment extends UiPart<Region> {
         public void changed(ObservableValue<? extends Client> observable, Client oldValue, Client newValue) {
             if (observable.getValue() != null) {
                 setClientDetails(observable.getValue());
+                setClientDetailMode();
+            } else {
+                setTooltipMode();
             }
         }
     }

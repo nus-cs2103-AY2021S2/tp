@@ -13,7 +13,6 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.commons.core.index.Index;
@@ -25,7 +24,6 @@ import seedu.iscam.model.user.ReadOnlyUserPrefs;
 import seedu.iscam.model.util.clientbook.ClientBook;
 import seedu.iscam.model.util.clientbook.ObservableClient;
 import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
-import seedu.iscam.model.util.meetingbook.MeetingBook;
 import seedu.iscam.model.util.meetingbook.ObservableMeeting;
 import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
 import seedu.iscam.testutil.ClientBuilder;
@@ -166,7 +164,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public MeetingBook getMeetingBook() {
+        public ReadOnlyMeetingBook getMeetingBook() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -237,21 +235,6 @@ public class AddCommandTest {
 
         @Override
         public void setDetailedMeeting(Meeting meeting) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setClientMode() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setMeetingMode() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableValue<Boolean> getIsClientMode() {
             throw new AssertionError("This method should not be called.");
         }
     }

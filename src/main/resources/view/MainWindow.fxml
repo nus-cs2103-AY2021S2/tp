@@ -2,17 +2,18 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
-<?import javafx.scene.layout.HBox?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8"
-         title="iScam" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="iScam" minWidth="900" minHeight="700" onCloseRequest="#handleExit">
     <icons>
         <Image url="@/images/iScam_icon.png"/>
     </icons>
@@ -40,28 +41,38 @@
                 </StackPane>
 
                 <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                           minHeight="100" prefHeight="100" maxHeight="100">
+                           minHeight="150" prefHeight="150" maxHeight="150">
                     <padding>
                         <Insets top="5" right="10" bottom="5" left="10"/>
                     </padding>
                 </StackPane>
-
                 <HBox fx:id="clientFragment" VBox.vgrow="ALWAYS" styleClass="pane-with-border"
-                      minWidth="500" prefWidth="500">
-                    <VBox fx:id="clientList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                          HBox.hgrow="ALWAYS">
+                      prefWidth="500">
+                    <VBox fx:id="clientList" styleClass="pane-with-border" prefWidth="340"
+                          HBox.hgrow="ALWAYS" alignment="CENTER">
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10"/>
                         </padding>
+                        <Label text="Client List" styleClass="details_small_label"/>
                         <StackPane fx:id="clientListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                     </VBox>
 
-                    <VBox fx:id="clientDetail" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                          HBox.hgrow="ALWAYS">
+                    <VBox fx:id="clientDetail" styleClass="pane-with-border" prefWidth="340"
+                          HBox.hgrow="ALWAYS" alignment="CENTER">
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10"/>
                         </padding>
+                        <Label text="Client Detail" styleClass="details_small_label" wrapText="true"/>
                         <StackPane fx:id="clientDetailFragmentPlaceholder" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+
+                    <VBox fx:id="meetingList" styleClass="pane-with-border" prefWidth="340"
+                          HBox.hgrow="ALWAYS" alignment="CENTER">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        <Label text="Meeting List" styleClass="details_small_label"/>
+                        <StackPane fx:id="meetingListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                     </VBox>
                 </HBox>
 

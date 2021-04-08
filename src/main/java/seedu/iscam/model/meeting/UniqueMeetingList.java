@@ -41,7 +41,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     public void add(Meeting toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new MeetingNotFoundException();
+            throw new MeetingConflictException();
         }
         internalList.add(toAdd);
         sortMeetings();
@@ -86,11 +86,17 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         sortMeetings();
     }
 
-    // TODO: Complete this method and add headers
+    /**
+     * Replaces the contents of this list with {@code meetings}.
+     * {@code meetings} must not contain duplicate meetings.
+     */
     public void setMeetings(List<Meeting> meetings) {
         requireAllNonNull(meetings);
-
+        if (!meetingsAreUnique(meetings)) {
+            throw new MeetingConflictException();
+        }
         internalList.setAll(meetings);
+        sortMeetings();
     }
 
     private void sortMeetings() {
@@ -104,7 +110,6 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         return internalUnmodifiableList;
     }
 
-    // This is done
     @Override
     public Iterator<Meeting> iterator() {
         return internalList.iterator();
@@ -115,6 +120,20 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         return other == this
                 || (other instanceof UniqueMeetingList
                 && internalList.equals(((UniqueMeetingList) other).internalList));
+    }
+
+    /**
+     * Returns true if {@code meetings} contains only unique meetings.
+     */
+    private boolean meetingsAreUnique(List<Meeting> meetings) {
+        for (int i = 0; i < meetings.size() - 1; i++) {
+            for (int j = i + 1; j < meetings.size(); j++) {
+                if (meetings.get(i).isInConflict(meetings.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private class MeetingComparator implements Comparator<Meeting> {

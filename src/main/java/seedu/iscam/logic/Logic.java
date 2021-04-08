@@ -2,12 +2,10 @@ package seedu.iscam.logic;
 
 import java.nio.file.Path;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.logic.commands.CommandResult;
 import seedu.iscam.logic.commands.exceptions.CommandException;
-import seedu.iscam.logic.events.exceptions.EventException;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.meeting.Meeting;
@@ -29,7 +27,7 @@ public interface Logic {
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException   If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException, EventException;
+    CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
      * Returns the ClientBook.
@@ -42,12 +40,6 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of clients
      */
     ObservableList<Client> getFilteredClientList();
-
-
-    /**
-     * Returns the mode of iScam.
-     */
-    ObservableValue<Boolean> getIsClientMode();
 
     /**
      * Returns an unmodifiable view of a client to be displayed in detail

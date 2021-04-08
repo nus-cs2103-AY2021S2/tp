@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+
+box UI UI_COLOR_T1
+participant ":CommandBox" as CommandBox UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MeetingBookParser" as MeetingBookParser LOGIC_COLOR
+participant ":AddMeetingCommandParser" as AddMeetingCommandParser LOGIC_COLOR
+participant "command:AddMeetingCommand" as AddMeetingCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+user -> CommandBox: enters "addmeet c/John Doe \non/25-10-2021 10:00 l/Starbucks, \nTampines Hub d/Discuss insurance \npolicy t/Urgent t/Premium"
+activate CommandBox
+
+CommandBox-> LogicManager : executeCommand(cmdTxt)
+activate LogicManager
+
+LogicManager -> MeetingBookParser : parseCommand(commandText)
+activate MeetingBookParser
+
+create AddMeetingCommandParser
+MeetingBookParser -> AddMeetingCommandParser
+activate AddMeetingCommandParser
+
+AddMeetingCommandParser --> MeetingBookParser
+deactivate AddMeetingCommandParser
+
+MeetingBookParser -> AddMeetingCommandParser : parse(args)
+note bottom: The parser will convert the \ncommandText into an \nargumentMap, args. The \nparsing process is omitted \nfor brevity.
+activate AddMeetingCommandParser
+
+create AddMeetingCommand
+AddMeetingCommandParser -> AddMeetingCommand
+activate AddMeetingCommand
+
+AddMeetingCommand --> AddMeetingCommandParser : command
+deactivate AddMeetingCommand
+
+AddMeetingCommandParser --> MeetingBookParser : command
+deactivate AddMeetingCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddMeetingCommandParser -[hidden]-> MeetingBookParser
+destroy AddMeetingCommandParser
+
+MeetingBookParser --> LogicManager : command
+deactivate MeetingBookParser
+
+LogicManager -> AddMeetingCommand : execute(model)
+activate AddMeetingCommand
+
+AddMeetingCommand -> Model: hasMeeting(meeting)
+activate Model
+Model --> AddMeetingCommand: hasMeeting
+deactivate Model
+
+AddMeetingCommand -> Model : addMeeting(meeting)
+activate Model
+Model --> AddMeetingCommand
+note right: Storage feature is omitted\n here for brevity
+deactivate Model
+
+create CommandResult
+AddMeetingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddMeetingCommand: result
+deactivate CommandResult
+
+AddMeetingCommand --> LogicManager : result
+deactivate AddMeetingCommand
+AddMeetingCommand -[hidden]-> MeetingBookParser
+destroy AddMeetingCommand
+
+LogicManager --> CommandBox: result
+deactivate LogicManager
+
+CommandBox --> user: displays result
+deactivate CommandBox
+@enduml

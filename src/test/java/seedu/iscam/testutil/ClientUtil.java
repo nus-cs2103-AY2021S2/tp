@@ -13,6 +13,7 @@ import java.util.Set;
 import seedu.iscam.logic.commands.AddCommand;
 import seedu.iscam.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.commons.Tag;
 
 /**
@@ -36,7 +37,9 @@ public class ClientUtil {
         sb.append(PREFIX_PHONE + client.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + client.getEmail().value + " ");
         sb.append(PREFIX_LOCATION + client.getLocation().value + " ");
-        sb.append(PREFIX_PLAN + client.getPlan().planName + " ");
+        client.getPlans().stream().forEach(
+            s -> sb.append(PREFIX_PLAN + s.planName + " ")
+        );
         client.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -53,10 +56,17 @@ public class ClientUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getLocation().ifPresent(location -> sb.append(PREFIX_LOCATION).append(location.value).append(" "));
-        descriptor.getPlan().ifPresent(insurancePlan ->
-                sb.append(PREFIX_PLAN).append(insurancePlan.planName).append(" "));
         descriptor.getImageRes().ifPresent(image ->
                 sb.append(PREFIX_IMAGE).append(image.value).append(" "));
+        if (descriptor.getPlans().isPresent()) {
+            Set<InsurancePlan> plans = descriptor.getPlans().get();
+            if (plans.isEmpty()) {
+                sb.append(PREFIX_PLAN);
+            } else {
+                plans.forEach(s -> sb.append(PREFIX_PLAN).append(s.planName).append(" "));
+            }
+        }
+        sb.append(" ");
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
