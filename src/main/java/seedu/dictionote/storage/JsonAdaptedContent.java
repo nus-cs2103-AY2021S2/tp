@@ -21,7 +21,7 @@ class JsonAdaptedContent {
      * Constructs a {@code JsonAdaptedContent} with the given person d.
      */
     @JsonCreator
-    public JsonAdaptedContent(@JsonProperty("week") String week,
+    public JsonAdaptedContent(@JsonProperty("title") String week,
                               @JsonProperty("header") String header,
                               @JsonProperty("maincontent") String maincontent) {
         this.week = week;

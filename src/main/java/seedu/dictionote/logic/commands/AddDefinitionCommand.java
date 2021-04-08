@@ -14,10 +14,10 @@ import seedu.dictionote.model.dictionary.Definition;
 public class AddDefinitionCommand extends Command {
     public static final String COMMAND_WORD = "adddef";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a definition to the dictionote book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a definition to the dictionote book. \n\n"
             + "Parameters: "
             + PREFIX_TERM + "TERM "
-            + PREFIX_DEFINITION + "DEFINITION "
+            + PREFIX_DEFINITION + "DEFINITION \n\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TERM + "OOP "
             + PREFIX_DEFINITION + "A programming paradigm";
