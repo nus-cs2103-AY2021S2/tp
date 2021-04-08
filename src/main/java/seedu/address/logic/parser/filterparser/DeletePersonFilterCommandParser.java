@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.filterparser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_NO_FILTER_PROVIDED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -17,6 +18,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.filtercommands.DeletePersonFilterCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -112,7 +114,20 @@ public class DeletePersonFilterCommandParser implements Parser<DeletePersonFilte
                                 .map(SubjectQualificationFilter::new)
                                 .collect(Collectors.toList()));
 
-        // TODO: Check if no arguments
+        if (!CollectionUtil.isAnyNotEmpty(
+                nameFilters,
+                genderFilters,
+                phoneFilters,
+                emailFilters,
+                addressFilters,
+                subjectNameFilters,
+                subjectLevelFilters,
+                subjectRateFilters,
+                subjectExperienceFilters,
+                subjectQualificationFilters)) {
+            throw new ParseException(MESSAGE_NO_FILTER_PROVIDED);
+        }
+
         // TODO: Throw ParseException
         // TODO: Maybe switch to using ParserUtil
 

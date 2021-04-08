@@ -56,4 +56,5 @@ public class Messages {
             + "edited. You are missing at least one of these fields.";
     public static final String MESSAGE_ADD_EDIT_COMMAND_ERROR = "Something went wrong when processing your request. "
             + "Please check your inputs again.";
+    public static final String MESSAGE_NO_FILTER_PROVIDED = "At least one filter must be provided.";
 }

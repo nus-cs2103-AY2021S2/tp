@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.filterparser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_NO_FILTER_PROVIDED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
@@ -11,6 +12,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.filtercommands.DeleteAppointmentFilterCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -66,7 +68,15 @@ public class DeleteAppointmentFilterCommandParser implements Parser<DeleteAppoin
                         .map(AddressFilter::new)
                         .collect(Collectors.toList()));
 
-        // TODO: Check if no arguments
+        if (!CollectionUtil.isAnyNotEmpty(
+                nameFilters,
+                subjectNameFilters,
+                timeFromFilters,
+                timeToFilters,
+                locationFilters)) {
+            throw new ParseException(MESSAGE_NO_FILTER_PROVIDED);
+        }
+
         // TODO: Throw ParseException
         // TODO: Maybe switch to using ParserUtil
 
