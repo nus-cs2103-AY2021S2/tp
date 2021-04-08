@@ -448,7 +448,7 @@ Examples:
 Edits the existing issue record at a specified index.
 
 Format: `iedit INDEX [r/ROOM_NUMBER] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
-* `INDEX` refers to the index number shown in the displayed issue list. `INDEX` **must be a positive integer 1, 2, 3, …**.
+* `INDEX` refers to the index number shown in the displayed issue list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -470,7 +470,7 @@ Example:
 Marks as closed the issue at a specified index.
 
 Format: `iclo INDEX`
-* `INDEX` refers to the index number shown in the displayed issue list. `INDEX` **must be a positive integer 1, 2, 3, …**.
+* `INDEX` refers to the index number shown in the displayed issue list.
 
 Parameters:
 * [`INDEX`](#index) The index of the displayed issue.
@@ -484,7 +484,7 @@ Example:
 Deletes the issue at a specified index.
 
 Format: `idel INDEX`
-* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
+* `INDEX` refers to the index number shown in the displayed resident list.
 
 Parameters:
 * [`INDEX`](#index) The index of the displayed issue.

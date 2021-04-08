@@ -28,8 +28,6 @@ public class FindIssueCommandParserTest {
                 new IssueContainsKeywordsPredicate(Arrays.asList("10-", "20-", "abc")));
         assertParseSuccess(parser, "10- 20- abc", expectedFindIssueCommand);
 
-        assertParseSuccess(parser, "10- 20- abc", expectedFindIssueCommand);
-
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n 10- \n \t 20-  \t \n\n abc", expectedFindIssueCommand);
     }
