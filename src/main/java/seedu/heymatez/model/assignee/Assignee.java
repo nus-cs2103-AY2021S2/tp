@@ -12,7 +12,8 @@ public class Assignee {
             + "proper name";
 
     public static final String MESSAGE_CONSTRAINTS = "Assignee specified must be a member in the "
-            + "displayed member's list, with the exact name (case-sensitive).";
+            + "displayed member's list, with the exact name (case-sensitive and format-sensitive) and name should not "
+            + "have extra spaces or characters between words.";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
