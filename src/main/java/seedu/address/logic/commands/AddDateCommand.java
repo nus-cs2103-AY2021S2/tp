@@ -8,7 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -69,6 +71,9 @@ public class AddDateCommand extends Command {
 
         List<SpecialDate> datesToEdit = new ArrayList<>(personToEdit.getDates());
         datesToEdit.add(specialDate);
+        datesToEdit = datesToEdit.stream()
+                .sorted(Comparator.comparing(SpecialDate::getDate).reversed())
+                .collect(Collectors.toList());
 
         Person editedPerson = personToEdit.withDates(datesToEdit);
 
