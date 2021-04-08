@@ -57,7 +57,7 @@
                             <cellValueFactory><PropertyValueFactory property="action" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="580.0" text="Format">
+                        <TableColumn prefWidth="700.0" text="Format">
                             <cellValueFactory><PropertyValueFactory property="format" />
                             </cellValueFactory>
                         </TableColumn>
