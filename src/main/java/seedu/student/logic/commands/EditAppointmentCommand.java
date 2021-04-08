@@ -5,7 +5,8 @@ import static seedu.student.logic.commands.AddAppointmentCommand.MESSAGE_OVERLAP
 import static seedu.student.logic.commands.AddAppointmentCommand.MESSAGE_STUDENT_DOES_NOT_EXIST;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_START_TIME;
-import static seedu.student.model.Model.*;
+import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
+import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENT_LISTS;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -31,9 +32,9 @@ public class EditAppointmentCommand extends Command {
             + PREFIX_START_TIME + "11:00 \n";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "The appointment overlaps with another appointment";
-    public static final String MESSAGE_APPOINTMENT_DOES_NOT_EXIST = "The requested appointment does not exist";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "The appointment overlaps with another appointment.";
+    public static final String MESSAGE_APPOINTMENT_DOES_NOT_EXIST = "The requested appointment does not exist.";
 
     private final MatriculationNumber matriculationNumber;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
@@ -78,7 +79,6 @@ public class EditAppointmentCommand extends Command {
 
         model.setAppointment(appointmentToEdit, editedAppointment);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT_LISTS, PREDICATE_SHOW_ALL_APPOINTMENTS);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));
     }

@@ -3,10 +3,6 @@ package seedu.student.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.student.commons.util.AppUtil.checkArgument;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
-
 public class VaccinationStatus {
 
     public enum VaccinationStatusAbbreviation {
@@ -52,22 +48,6 @@ public class VaccinationStatus {
         }
     }
 
-
-    /**
-     * Returns true if the given string is a vaccination status in the enum.
-     *
-     * @param givenVaccinationStatus the string to be checked.
-     * @return true if givenVaccinationStatus is a valid status, false otherwise.
-     */
-
-    public static Boolean isExist(String givenVaccinationStatus) {
-        for(VaccinationStatusAbbreviation statusAbbreviation : VaccinationStatus.VaccinationStatusAbbreviation.values()) {
-            if(givenVaccinationStatus.equals(statusAbbreviation.name())) {
-                return true;
-            }
-        }
-        return false;
-    }
     @Override
     public String toString() {
         return status.toString();

@@ -62,29 +62,13 @@ public class SchoolResidence {
     }
 
     public static String getStringResidences() {
-        return String.join(",", getResidenceAbbreviation());
+        return String.join(", ", getResidenceAbbreviation());
     }
 
     public static List<String> getResidenceAbbreviation() { // DOES_NOT_LIVE_ON_CAMPUS
         String[] residenceArray = Stream.of(SchoolResidence.ResidenceAbbreviation.values())
                 .map(SchoolResidence.ResidenceAbbreviation::name).toArray(String[]::new);
         return Arrays.asList(residenceArray);
-    }
-
-    /**
-     * Returns true if the given string is a residence in the enum.
-     *
-     * @param givenResidence the string to be checked.
-     * @return true if givenResidence is a valid residence, false otherwise.
-     */
-
-    public static Boolean isExist(String givenResidence) {
-        for(ResidenceAbbreviation residence : ResidenceAbbreviation.values()) {
-            if(givenResidence.equals(residence.name())) {
-                return true;
-            }
-        }
-        return false;
     }
 
     @Override

@@ -70,15 +70,13 @@ public class StudentBookParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
-   /* @Test
+    @Test
     public void parseCommand_filter() throws Exception {
         String keywords = "vaccinated";
         FilterCommand command = (FilterCommand) parser.parseCommand(
                 FilterCommand.COMMAND_WORD + " " + keywords);
         assertEquals(new FilterCommand(new VaccinationStatusContainsKeywords(keywords)), command);
     }
-
-    */
 
     @Test
     public void parseCommand_find() throws Exception {
