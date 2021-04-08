@@ -246,6 +246,8 @@ For this tutorial, let's start by clearing out any existing tasks. Type:<br>
 
 <img src="images/clearCommand.png" width="700">
 
+<div style="page-break-after: always;"></div>
+
 ### Add a task: `add`
 
 Adds a task to ModuleBook3.5. All newly added tasks are not done by default.
@@ -571,6 +573,8 @@ Other Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the ModuleBook3.5.
 * `find CS2103T` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
+<div style="page-break-after: always;"></div>
+
 ### Close app: `exit`
 
 Closes the app.
@@ -578,8 +582,6 @@ Closes the app.
 Application: Used to exit the app. You may also click the close button or the `Exit` button under `File` in the toolbar.
 
 Format: `exit`
-
-<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -606,6 +608,8 @@ If your changes to the data file makes its format invalid, ModuleBook3.5 will di
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ModuleBook3.5 home folder.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
