@@ -50,7 +50,8 @@ public class GroupHashMap {
     }
 
     /**
-     * Deletes given person from all groups in {@code internalMap}.
+     * Deletes given person from all groups in {@code internalMap}. All groups are guaranteed to contain no
+     * instance of the {@code person} with given {@code name} in this group.
      */
     public void deletePerson(Name personToDelete) {
         internalMap.values().forEach(g -> g.deletePerson(personToDelete));

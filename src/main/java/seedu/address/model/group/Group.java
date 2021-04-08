@@ -72,7 +72,9 @@ public class Group {
     }
 
     /**
-     * Deletes the given person from this {@code group}.
+     * Deletes the given person from this {@code group}. The group object is guaranteed to have no
+     * instance of the given {@code person} in this group. If person cannot be found this method
+     * does nothing and no exceptions will be thrown.
      *
      * @param personNameToDelete The name of the person to delete.
      */
