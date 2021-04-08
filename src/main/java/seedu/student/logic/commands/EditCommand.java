@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_FACULTY;
-import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_MEDICAL_DETAILS;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -43,7 +42,6 @@ public class EditCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_MATRICULATION_NUMBER + "MATRICULATION NUMBER] "
             + "[" + PREFIX_FACULTY + "FACULTY] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -58,6 +56,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the records";
+    public static final String MESSAGE_EDIT_MATRIC_FAILURE = "The matriculation number of a student is not allowed"
+            + " to be edited";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;

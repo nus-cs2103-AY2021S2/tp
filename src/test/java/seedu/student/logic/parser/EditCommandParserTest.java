@@ -9,7 +9,6 @@ import static seedu.student.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.student.logic.commands.CommandTestUtil.INVALID_DETAILS_DESC;
 import static seedu.student.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.student.logic.commands.CommandTestUtil.INVALID_FACULTY_DESC;
-import static seedu.student.logic.commands.CommandTestUtil.INVALID_MATRIC_DESC;
 import static seedu.student.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.student.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.student.logic.commands.CommandTestUtil.INVALID_RESIDENCE_DESC;
@@ -43,7 +42,6 @@ import seedu.student.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.student.model.student.Address;
 import seedu.student.model.student.Email;
 import seedu.student.model.student.Faculty;
-import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.MedicalDetails;
 import seedu.student.model.student.Name;
 import seedu.student.model.student.Phone;
@@ -88,8 +86,6 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_MATRIC_DESC,
-                MatriculationNumber.MESSAGE_CONSTRAINTS); // invalid matric number
         assertParseFailure(parser, "1" + INVALID_FACULTY_DESC, Faculty.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
