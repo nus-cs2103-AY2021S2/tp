@@ -23,17 +23,14 @@ nav-text: Developer Guide
 ## **Introduction**
 imPoster is a desktop application for beginners of API development to quickly grasp the basics. 
 imPoster's simple and minimalistic style can help beginner API developers **explore** and **test** APIs, whether those **found online** or those that they have **built** themselves.
-imPoster is also highly optimised fast typists and can be fully operated through keyboard commands.
-
+imPoster is also highly optimised fast typists and can be fully operated through keyboard commands. </br>
 
 This developer's guide assumes its readers to have a **basic understanding** of APIs. 
 For a basic definition of [what an API is](#what-is-an-api), an appendix has been provided for readers who may be unfamiliar with the concept.
-However, it is highly recommended for readers to refer to proper tutorial contents for the basics of APIs prior to developing the application.
+However, it is highly recommended for readers to refer to proper tutorial contents for the basics of APIs prior to developing the application. </br>
 
+Readers are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application. </br>
 
-Readers are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application.
-
-* to-do brief description and some navigation tips about the developer guide as to what was similarly done in the user guide.
 ## **Navigating this Developer Guide**
 
 Before diving into the rest of the contents in our developer guide, the following are a few important syntaxes to take note of to facilitate your reading:
@@ -53,9 +50,7 @@ Before diving into the rest of the contents in our developer guide, the followin
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
-**`Main`** has two classes called [`Main`](https://github.
-com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/Main.java) and [`ImPoster`](https://github.
-com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/ImPoster.java). They are responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/Main.java) and [`ImPoster`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/ImPoster.java). They are responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -81,28 +76,25 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user 
-issues the command `send 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `remove 1`.
 
-![Architecture_Sequence_Diagram](images/ArchitectureSequenceDiagram.png)
+<img src="images/ArchitectureSequenceDiagramRemove.png" width="600" />
 
 The sections below give more details of each component.
 
 <div style="page-break-after: always;"></div>
 
 ### UI component
+
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EndpointListPanel`, 
-`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EndpointListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that 
-are in the `src/main/resources/view` folder. For example, the layout of the 
-[`MainWindow`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/ui/MainWindow.java) 
-is specified in 
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the 
+[`MainWindow`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/ui/MainWindow.java) is specified in 
 [`MainWindow.fxml`](https://https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
@@ -118,15 +110,13 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/logic/Logic.java)
 
-1. Logic first uses the `ImposterParser` class to parse a user's input, through the `parseCommand` method.
-2. Depending on the Command, the user's input could be parsed by that command's specific parser. (e.g `AddCommandParser`) 
-3. This causes a `Command` object to be created, which is executed by the `LogicManager`through the `execute` method.
-4. The execution of Command can create, alter, retrieve or execute an `Endpoint` Object, or change the `EndpointList`. (eg. add, edit, find, show, run, send)
-5. What occured in the execution is encapsulated in a `CommandResult`, which is then passed to `UI` component, which displays to user infomation about what has occured.
+1. `Logic` uses the `ImposterParser` class to parse the user command
+2. This results in a `Command` object which is executed by the `LogicManager`.
+3. The command execution can affect the `Model` (e.g. adding a endpoint).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-<div style="page-break-after: always;"></div>
-
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("remove 1")` API call.
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/RemoveSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -141,9 +131,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the Endpoint List data.
-* exposes an unmodifiable `ObservableList<Endpoint>` that can be 'observed' e.g. the UI can be bound to this list so 
-  that the UI automatically updates when the data in the list change.
+* stores the Endpoint List Data.
+* exposes an unmodifiable `ObservableList<Endpoint>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model
@@ -163,6 +152,7 @@ require one `Tag` object per unique `Tag`, instead of each `Endpoint` needing th
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the Endpoint List data in json format and read it back.
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.us.among.commons` package.
