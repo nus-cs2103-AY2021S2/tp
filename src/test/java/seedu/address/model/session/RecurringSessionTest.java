@@ -4,14 +4,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.SessionBuilder.*;
+import static seedu.address.testutil.SessionBuilder.DEFAULT_DATE;
+import static seedu.address.testutil.SessionBuilder.DEFAULT_DURATION;
+import static seedu.address.testutil.SessionBuilder.DEFAULT_FEE;
+import static seedu.address.testutil.SessionBuilder.DEFAULT_SUBJECT;
+import static seedu.address.testutil.SessionBuilder.DEFAULT_TIME;
 import static seedu.address.testutil.TypicalStudents.CARL;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.RecurringSessionBuilder;
 import seedu.address.testutil.SessionBuilder;
 
-import java.time.LocalDate;
 
 class RecurringSessionTest extends SessionTest {
     static final Interval INTERVAL = new Interval("7");
