@@ -200,7 +200,7 @@ Some of the actions that can be performed with the User component are:
 
 ### Food Object
 
-<img src="images/FoodActivityDiagram.png" width="145" />
+<img src="images/FoodClassDiagram.png" width="145" />
 
 The food object stores the name of the food and its nutrient values (Carbohydrates, Fats and Proteins).
 
