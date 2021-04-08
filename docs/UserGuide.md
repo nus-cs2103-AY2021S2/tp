@@ -31,7 +31,8 @@ on ModuleBook3.5.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
-![add message](images/Ui.png)
+<img src="images/addCommand.png" width="200">
+
 1. At the top of the display is a toolbar to either exit the app (under `File`) 
    or access this user guide (under `Help`).
    
