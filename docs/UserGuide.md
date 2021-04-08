@@ -23,7 +23,7 @@ on ModuleBook3.5.
 
 1. Once the jar file is ready, simply double-click the file in the download section.
 
-1. Go through the entire list of [Commands](#commands) in the given order.
+1. Go through the tutorial in the given order. Simply look out for blue boxes with a bulb icon and titled "Tutorial Example:".
 
 1. Once you are familiar with the app, you may use the table of contents to jump to a command that you may be unsure of.
 
@@ -41,7 +41,7 @@ on ModuleBook3.5.
    
 3. A list of modules for which tasks are available is also shown.
     1. For each module, the number of tasks across each workload rating is displayed.
-    1. The distribution of workload across all modules is calculated and displayed on a pie chart.
+    2. The distribution of workload across all modules is calculated and displayed on a pie chart.
 <div markdown="span" class="alert alert-warning">:exclamation: **Alert:**
 Within the workload pie chart, each module's colour may change as a command is executed. 
 However, the colours will be arranged such that no two modules with the same colour will be next to each other.
@@ -49,7 +49,7 @@ However, the colours will be arranged such that no two modules with the same col
 
 4. Tasks are colour coded based on done status. 
    1. Done tasks are coloured pink. 
-   1. Tasks that are not done are classified into 4 different categories (colors):
+   2. Tasks that are not done are classified into 4 different categories (colors):
 
 Color | Time to deadline 
 --------|------------------
@@ -69,8 +69,9 @@ Input Parameter | Workload Rating
 **w/1** | Low
 **w/2** | Medium
 **w/3** | High
+
 E.g. for a low workload rating, key in `w/1`.
-   
+
 7. The following module codes are supported:
 
 Module Code | Subject Description
@@ -262,10 +263,10 @@ Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORK
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:**
 Now, key in the following commands in this order:<br>
-1. `add n/Do tP team tasks m/CS2103T d/Finish the team tasks for v1.4 w/3 a/2021-04-01 b/2021-04-11`
-1. `add n/Participate in class m/CS2105 d/Contribute to discussions w/2 b/2021-04-15 r/weekly t/Participation`
-1. `add n/PAQ m/IS1103 d/Answer quiz questions on ethics w/1 b/2021-04-09`
-1. `add n/Mix Green And Pink m/CS2101 d/Create the forbidden colour combination w/1 b/2021-04-15`
+1. `add n/Do tP team tasks m/CS2103T d/Finish the team tasks for v1.4 w/3 a/2021-04-01 b/2021-04-11`<br>
+2. `add n/Participate in class m/CS2105 d/Contribute to discussions w/2 b/2021-04-15 r/weekly t/Participation`<br>
+3. `add n/PAQ m/IS1103 d/Answer quiz questions on ethics w/1 b/2021-04-09`<br>
+4. `add n/Mix Green And Pink m/CS2101 d/Create the forbidden colour combination w/1 b/2021-04-15`
 </div>
 
 <img src="images/addCommand.png" width="700">
@@ -428,8 +429,8 @@ Format: `deleteTag INDEX t/TAG`
   The index must be a positive integer 1, 2, 3, …​
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
-1. `list` (You need to key this in first to see all tasks)
-1. `deleteTag 3 t/Quiz`
+1. `list` (You need to key this in first to see all tasks)<br>
+2. `deleteTag 3 t/Quiz`
 </div>
 
 <img src="images/deleteTagCommand.png" width="700">
@@ -524,8 +525,8 @@ Application: Used to update deadlines based on recurrences. Also done automatica
 Format: `refresh`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
-1. `edit 1 b/2021-04-08` (Let's set this task to have a deadline that is past)
-1. `refresh` 
+1. `edit 1 b/2021-04-08` (Let's set this task to have a deadline that is past)<br>
+2. `refresh` 
 </div>
 
 <img src="images/refreshCommand.png" width="700">
