@@ -20,7 +20,7 @@ public class ChangeDebtCommand extends Command {
     public static final String MESSAGE_USAGE_SUBTRACT = String.format(ChangeDebtCommand.MESSAGE_USAGE,
             COMMAND_WORD_SUBTRACT);
     public static final String MESSAGE_ADD_DEBT_SUCCESS = "Added %1$s to %2$s debt";
-    public static final String MESSAGE_SUBTRACT_DEBT_SUCCESS = "Subtracted %1$s to %2$s debt";
+    public static final String MESSAGE_SUBTRACT_DEBT_SUCCESS = "Subtracted %1$s from %2$s debt";
     private static final String MESSAGE_USAGE = "%1$s: Adds the specified debt to the person identified"
             + " by the index number used in the last person listing. \n"
             + "Parameters: INDEX (must be a positive integer) DEBT \n"

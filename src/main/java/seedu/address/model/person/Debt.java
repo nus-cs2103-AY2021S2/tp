@@ -79,12 +79,12 @@ public class Debt {
     }
 
     public String toUi() {
-        return String.format("%.2f", value);
+        return String.format("$%.2f", value);
     }
 
     @Override
     public String toString() {
-        return String.format("%.2f", value);
+        return String.format("$%.2f", value);
     }
 
     @Override
