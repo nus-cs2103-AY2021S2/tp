@@ -102,7 +102,6 @@ to manage tasks which can be identified by their unique deadlines or priorities.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-  
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -111,6 +110,8 @@ to manage tasks which can be identified by their unique deadlines or priorities.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * For features which use the INDEX field, the INDEX you specify must be a valid number displayed on the list of tasks.
+
+* For features which 
 
 </div>
 
@@ -178,7 +179,7 @@ Format: `deleteMember NAME`
 * The name specified must match the member's name in the list exactly, case-sensitive. 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The name you specify must belong to an existing Member in the Application.
+To prevent unintentional deleting of Members, the NAME you specify must be in the currently displayed list of Members 
 </div>
 
 Examples:
@@ -207,6 +208,10 @@ Format: `editMember NAME_IN_LIST [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL]
 * ROLE field can take on any values with alphanumeric characters.
 * Existing values will be updated to the input values.
 * NEW_NAME field can take on any values with alphanumeric characters.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+To prevent unintentional editing of Members, the NAME you specify must be in the currently displayed list of Members 
+</div>
 
 Examples: 
 * `editMember Alice n/Alice Tan`
