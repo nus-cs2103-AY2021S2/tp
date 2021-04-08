@@ -235,6 +235,8 @@ Below is the Sequence Flow Diagram when a Food gets added to the UniqueFoodList 
 
 ### Add food item feature
 
+<img src="images/AddFoodItemActivityDiagram.png" width="415" />
+
 #### Description:
 This command adds a valid food item into the unique food list. Users are able to add a food item in with the valid input to the command below. If a food item with a similar name is added, this command will not allow it and an error will be shown to ask the user if they want to update the value instead.
 
@@ -429,6 +431,10 @@ When the user deletes a food intake, the matching `FoodIntake` with the same dat
 The `deleteFoodIntake()` method in the `FoodIntakeList`  looks for the matching `FoodIntake` `Food` name with the specified date and deletes the `FoodIntake` if it exists or throw a `FoodIntakeNotFoundException`. After successfully deleting, the `reorderDuplicateFoodNames()` is called to re-order all matching `Food` names as the counter might be out-of-date. This step is crucial, as the duplicate count's numbering may be out of order if they are not re-ordered.
 
 ### Update Food Intake feature
+
+<img src="images/UpdateFoodIntakeActivityDiagram.png" width="635" />
+
+
 #### Description:
 The user can update the nutrient values of previously recorded food intakes. At least 1 nutrient value must be provided to be updated and values not provided will remain unchanged.
 
