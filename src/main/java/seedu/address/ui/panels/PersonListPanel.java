@@ -11,8 +11,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
-import seedu.address.ui.cards.PersonCard;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.cards.PersonCard;
+
 
 /**
  * Panel containing the list of persons.
