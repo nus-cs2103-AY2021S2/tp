@@ -400,17 +400,27 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Increase the ingredient quantity by given quantity
+     * Increases the ingredient quantity by given quantity
      * @param target ingredient to be increased
-     * @param decreaseQuantity the number to increase the ingredient quantity
+     * @param increaseQuantity the number to increase the ingredient quantity
      */
-    public void increaseIngredient(Ingredient target, int decreaseQuantity) {
-        Ingredient increase = new Ingredient(target.getName(), target.getQuantity() + decreaseQuantity);
+    public void increaseIngredient(Ingredient target, int increaseQuantity) {
+        Ingredient increase = new Ingredient(target.getName(), target.getQuantity() + increaseQuantity);
         this.setIngredient(target, increase);
     }
 
     /**
-     * Increase the ingredient quantity with the given {@code order}
+     * Increases an existing ingredient by given quantity
+     * @param name existing ingredient's name
+     * @param increaseQuantity the number to increase the ingredient quantity
+     */
+    public void increaseIngredientByName(String name, int increaseQuantity) {
+        Ingredient ingredient = ingredientBook.getIngredientByName(name);
+        increaseIngredient(ingredient, increaseQuantity);
+    }
+
+    /**
+     * Increases the ingredient quantity with the given {@code order}
      * @param order order added
      */
     public void increaseIngredientByOrder(Order order) {

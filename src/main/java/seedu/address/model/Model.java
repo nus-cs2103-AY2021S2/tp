@@ -211,6 +211,13 @@ public interface Model {
     void decreaseIngredientByOrder(Order order);
 
     /**
+     * Increases an existing ingredient by given quantity
+     * @param name existing ingredient's name
+     * @param increaseQuantity the number to increase the ingredient quantity
+     */
+    void increaseIngredientByName(String name, int increaseQuantity);
+
+    /**
      * Increase the ingredient quantity with the given {@code order}
      * @param order order deleted
      */

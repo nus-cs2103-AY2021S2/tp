@@ -16,7 +16,8 @@ public class InventoryCommandUtil {
      */
     public static boolean isValidIngredient(Ingredient ingredient, Model model) throws CommandException {
         if (model.hasIngredient(ingredient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_INGREDIENT);
+//            throw new CommandException(MESSAGE_DUPLICATE_INGREDIENT);
+            return false;
         }
         return true;
     }
