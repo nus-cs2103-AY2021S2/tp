@@ -251,10 +251,28 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
         ```
-        menu delete [INDEX]
-        or
         menu delete [INDEX] (-f)
         ```
+        
+        In the event that there are uncompleted orders by the dishes that is being attempted to be deleted, a `-f` flag 
+        has to be added to the end of the command to confirm the command. This is to prevent you from accidentally 
+        deleting orders unknowingly and leading to unhappy customers!
+        
+        Examples:
+        ```
+        menu delete 2
+        ```
+        
+        The above command would delete the second dishes on the menu information pane.
+        
+        ```
+        menu delete 2 -f
+        ```
+        
+        In the event that there are pending orders that have not been fulfilled that contains dish id 2, then deletion 
+        of the dish will not be allowed since we do not want to unknowingly delete orders that are still pending.
+        If deleting any dishes that belongs to any uncompleted order is desired, then adding the `-f` at the 
+        end of the command acknowledges and confirms the deletion behavior.
         
         </details>
         
@@ -436,10 +454,28 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
         ```
-        inventory delete [INDEX]
-        or
         inventory delete [INDEX] (-f)
         ```
+
+        In the event that there are ingredients that is needed by certain dishes that is being attempted to be deleted, 
+        a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from 
+        accidentally deleting dishes unknowingly and leads to invalid orders!
+        
+        Examples:
+        ```
+        inventory delete 2
+        ```
+        
+        The above command would delete the second ingredient on the inventory information pane.
+        
+        ```
+        inventory delete 2 -f
+        ```
+        
+        In the event that there are dishes that needs ingredient id 2, then deletion
+        of the dish will not be allowed since we do not want to unknowingly delete dishes that needs the ingredient.
+        If deleting any ingredient that is needed to any dishes is desired, then adding the `-f` at the
+        end of the command acknowledges and confirms the deletion behavior.
         
         </details>
         
