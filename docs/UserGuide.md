@@ -228,7 +228,7 @@ Every command explanation comes with a screenshot that shows the expected messag
 When editing tags/headers, the existing tags/headers of the endpoint will be removed. <br>
 i.e adding of tags/headers is not cumulative.<br>
 You may remove all the endpoint’s tags by typing `-t` without specifying any tags after it. Similarly, you may remove
-all the endpoint's headers by typing `-h` without specifying any headers after it.
+all the endpoint's headers by typing `-h` without specifying any headers after it.<br>
 For example: `edit 1 -t` will remove all existing tags for the first endpoint in the API endpoint list.
 </div>
 
@@ -472,7 +472,8 @@ A quick overview of all supported commands, their formats and examples are given
 | **CURL** | <a name="glossary-curl"></a> CURL is short for **Client URL** and is a command-line tool used in the transfer of data via different network protocols |
 | **Index** | Index in this guide refers to the position of the endpoint in the endpoint list (represented by the number beside the endpoint) |
 | **Protocol** | <a name="glossary-protocol"></a> A protocol is a system of rules that define how data is exchanged within or between systems |
-| **int**| <a name="glossary-int"></a> A primitive data type of Java that has the maximum value of (2^31)-1. The minimum value an `int` can have is -(2^31).|
+| **int** | <a name="glossary-int"></a> A primitive data type of Java that has the maximum value of (2^31)-1 and the minimum value of -(2^31) |
+
 <div style="page-break-after: always;"></div>
 
 ## 8. Appendix
