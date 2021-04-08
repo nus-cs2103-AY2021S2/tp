@@ -37,7 +37,6 @@ public class Meeting {
         requireAllNonNull(clientName, dateTime, location, description, tags);
         this.clientName = clientName;
         this.dateTime = dateTime;
-
         this.location = location;
         this.description = description;
         this.tags = tags;
@@ -52,7 +51,6 @@ public class Meeting {
         requireAllNonNull(clientName, dateTime, location, description, tags);
         this.clientName = clientName;
         this.dateTime = dateTime;
-
         this.location = location;
         this.description = description;
         this.tags = tags;

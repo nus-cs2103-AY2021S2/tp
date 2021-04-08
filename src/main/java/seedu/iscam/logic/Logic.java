@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.logic.commands.CommandResult;
 import seedu.iscam.logic.commands.exceptions.CommandException;
-import seedu.iscam.logic.events.exceptions.EventException;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.meeting.Meeting;
@@ -28,7 +27,7 @@ public interface Logic {
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException   If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException, EventException;
+    CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
      * Returns the ClientBook.

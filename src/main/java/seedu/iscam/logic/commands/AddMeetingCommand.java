@@ -35,7 +35,7 @@ public class AddMeetingCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
     public static final String MESSAGE_MEETING_CONFLICT = "A meeting with this date and time already exists in the "
-            + "iscam book ";
+            + "iScam book ";
 
     private final Meeting toAdd;
 

@@ -6,18 +6,14 @@ import java.util.List;
 
 import seedu.iscam.commons.core.Messages;
 import seedu.iscam.commons.core.index.Index;
-import seedu.iscam.logic.CommandHistory;
 import seedu.iscam.logic.commands.exceptions.CommandException;
-import seedu.iscam.logic.events.Event;
-import seedu.iscam.logic.events.EventFactory;
-import seedu.iscam.logic.events.exceptions.EventException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Client;
 
 /**
  * Deletes a client identified using it's displayed index from the iscam book.
  */
-public class DeleteCommand extends UndoableCommand {
+public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -28,7 +24,6 @@ public class DeleteCommand extends UndoableCommand {
 
     public static final String MESSAGE_DELETE_CLIENT_SUCCESS = "Deleted Client: %1$s";
 
-    private Client clientToDelete;
     private Index targetIndex;
 
     /**
@@ -37,30 +32,7 @@ public class DeleteCommand extends UndoableCommand {
      * @param targetIndex index of client to be deleted
      */
     public DeleteCommand(Index targetIndex) {
-        clientToDelete = null;
         this.targetIndex = targetIndex;
-    }
-
-    /**
-     * Creates a DeleteCommand to delete the specified {@code Client}
-     *
-     * @param client client to be deleted
-     */
-    public DeleteCommand(Client client) {
-        clientToDelete = client;
-        targetIndex = null;
-    }
-
-    public Index getTargetIndex(Model model) {
-        if (targetIndex == null) {
-            targetIndex = model.getIndexOfClient(clientToDelete);
-        }
-        return targetIndex;
-    }
-
-    @Override
-    public String getCommandWord() {
-        return COMMAND_WORD;
     }
 
     @Override
@@ -70,28 +42,13 @@ public class DeleteCommand extends UndoableCommand {
         List<Client> lastShownList = model.getFilteredClientList();
         Client clientToBeDeleted;
 
-        if (clientToDelete != null) {
-            clientToBeDeleted = clientToDelete;
-
-        } else if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
-        } else {
-            clientToBeDeleted = lastShownList.get(targetIndex.getZeroBased());
-            clientToDelete = clientToBeDeleted;
-        }
-
-        try {
-            Event undoableEvent = EventFactory.parse(this, model);
-            CommandHistory.addToUndoStack(undoableEvent);
-        } catch (EventException e) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
-        if (model.getDetailedClient().getValue() == clientToDelete) {
-            model.setDetailedClient(null);
-        }
+        Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteClient(clientToDelete);
 
-        model.deleteClient(clientToBeDeleted);
         return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete));
     }
 

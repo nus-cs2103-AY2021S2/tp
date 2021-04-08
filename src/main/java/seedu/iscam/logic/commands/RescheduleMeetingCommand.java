@@ -52,6 +52,14 @@ public class RescheduleMeetingCommand extends Command {
                 meeting.getDescription(), meeting.getTags(), meeting.getStatus());
     }
 
+    public Index getIndex() {
+        return index;
+    }
+
+    public DateTime getDateTime() {
+        return dateTime;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -79,5 +87,21 @@ public class RescheduleMeetingCommand extends Command {
         model.setMeeting(meeting, rescheduledMeeting);
         model.updateFilteredMeetingList(Model.PREDICATE_SHOW_ALL_MEETINGS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, rescheduledMeeting));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof RescheduleMeetingCommand)) {
+            return false;
+        }
+
+        RescheduleMeetingCommand e = (RescheduleMeetingCommand) other;
+
+        return getIndex().equals(e.getIndex())
+                && getDateTime().equals(e.getDateTime());
     }
 }

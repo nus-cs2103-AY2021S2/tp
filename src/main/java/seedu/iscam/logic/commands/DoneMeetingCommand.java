@@ -59,4 +59,11 @@ public class DoneMeetingCommand extends Command {
         model.updateFilteredMeetingList(Model.PREDICATE_SHOW_ALL_MEETINGS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, completedMeeting));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof DoneMeetingCommand
+                && index.equals(((DoneMeetingCommand) other).index));
+    }
 }

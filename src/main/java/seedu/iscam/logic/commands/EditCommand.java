@@ -33,7 +33,7 @@ import seedu.iscam.model.commons.Tag;
 /**
  * Edits the details of an existing client in the iScam book.
  */
-public class EditCommand extends UndoableCommand {
+public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -70,15 +70,6 @@ public class EditCommand extends UndoableCommand {
 
         this.index = index;
         this.editClientDescriptor = new EditClientDescriptor(editClientDescriptor);
-    }
-
-    public Index getIndex() {
-        return index;
-    }
-
-    @Override
-    public String getCommandWord() {
-        return COMMAND_WORD;
     }
 
     /**
@@ -122,7 +113,7 @@ public class EditCommand extends UndoableCommand {
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
-        // Causes the ClientDetailFragment to update if was displaying the edited client
+        // Causes the ClientDetailFragment to update if it was displaying the edited client
         Client displayedClient = model.getDetailedClient().getValue();
         if (clientToEdit.equals(displayedClient)) {
             model.setDetailedClient(editedClient);
@@ -147,10 +138,6 @@ public class EditCommand extends UndoableCommand {
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
                 && editClientDescriptor.equals(e.editClientDescriptor);
-    }
-
-    public EditClientDescriptor getEditClientDescriptor() {
-        return editClientDescriptor;
     }
 
     /**

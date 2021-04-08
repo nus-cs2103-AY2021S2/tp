@@ -53,7 +53,7 @@ public class EditMeetingCommand extends Command {
             + "changing to another time.";
     public static final String MESSAGE_NOT_ALLOWED = "This meeting was already completed, no modification can be made "
             + "unless it is set back to incomplete.";
-    public static final String MESSAGE_ALREADY_COMPLETE = "This meeting was already completed, it cannot be complete "
+    public static final String MESSAGE_ALREADY_COMPLETE = "This meeting was already completed, it cannot be completed "
             + "again.";
 
     private final Index index;
@@ -79,7 +79,7 @@ public class EditMeetingCommand extends Command {
 
         Name updatedClientName = editMeetingDescriptor.getClientName().orElse(meetingToEdit.getClientName());
         DateTime updatedDateTime = editMeetingDescriptor.getDateTime().orElse(meetingToEdit.getDateTime());
-        Location updatedLocation = editMeetingDescriptor.getAddress().orElse(meetingToEdit.getLocation());
+        Location updatedLocation = editMeetingDescriptor.getLocation().orElse(meetingToEdit.getLocation());
         Description updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
         Set<Tag> updatedTags = editMeetingDescriptor.getTags().orElse(meetingToEdit.getTags());
         CompletionStatus updatedStatus = editMeetingDescriptor.getStatus().orElse(meetingToEdit.getStatus());
@@ -120,6 +120,24 @@ public class EditMeetingCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditMeetingCommand)) {
+            return false;
+        }
+
+        // state check
+        EditMeetingCommand e = (EditMeetingCommand) other;
+        return index.equals(e.index)
+                && editMeetingDescriptor.equals(e.editMeetingDescriptor);
+    }
+
     /**
      * Stores the details to edit the meeting with. Each non-empty field value will replace the corresponding field
      * value of the meeting.
@@ -141,7 +159,7 @@ public class EditMeetingCommand extends Command {
         public EditMeetingDescriptor(EditMeetingDescriptor toCopy) {
             setClientName(toCopy.clientName);
             setDateTime(toCopy.dateTime);
-            setAddress(toCopy.location);
+            setLocation(toCopy.location);
             setDescription(toCopy.description);
             setTags(toCopy.tags);
             setStatus(toCopy.status);
@@ -170,11 +188,11 @@ public class EditMeetingCommand extends Command {
             this.dateTime = dateTime;
         }
 
-        public Optional<Location> getAddress() {
+        public Optional<Location> getLocation() {
             return Optional.ofNullable(location);
         }
 
-        public void setAddress(Location location) {
+        public void setLocation(Location location) {
             this.location = location;
         }
 
@@ -216,7 +234,7 @@ public class EditMeetingCommand extends Command {
 
             return getClientName().equals(e.getClientName())
                     && getDateTime().equals(e.getDateTime())
-                    && getAddress().equals(e.getAddress())
+                    && getLocation().equals(e.getLocation())
                     && getDescription().equals(e.getDescription())
                     && getTags().equals(e.getTags())
                     && getStatus().equals(e.getStatus());
