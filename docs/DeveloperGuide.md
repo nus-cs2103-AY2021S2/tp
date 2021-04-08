@@ -497,7 +497,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see instructions help page     | refer to help page when I forget how to use the App |
-| `* * *`  | user                                       | exit the App                   | |
+| `* * *`  | user                                       | exit the App                   | use other applications on my computer |
 | `* * *`  | student taking a module                    | add module                     | keep track of the module exams, assignments |
 | `* * *`  | student having assignments                 | add assignments to module      | keep track of the assignment deadline |
 | `* * *`  | student having exams                       | add exams to module            | keep track of the exam start time |
@@ -508,15 +508,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student                                    | edit a exam                    | can adjust schedule when there is a change of plan |
 | `* * *`  | user                                       | edit a person and birthday     | fine tune person name and birthday according |
 | `* * *`  | user                                       | edit a general event           | adjust schedule when there is a change of plan |
-| `* * *`  | student                                    | delete a module                | |
-| `* * *`  | student                                    | delete a assignment            | |
-| `* * *`  | student                                    | delete a exam                  | |
-| `* * *`  | user                                       | delete a person and birthday   | |
-| `* * *`  | user                                       | delete a general event         | |
+| `* * *`  | student                                    | delete a module                | I can remove a module I do not require |
+| `* * *`  | student                                    | delete a assignment            | I can remove an assignment once it's done |
+| `* * *`  | student                                    | delete a exam                  | I can remove an exam after I completed it |
+| `* * *`  | user                                       | delete a person and birthday   | I can remove a person I am no longer close to |
+| `* * *`  | user                                       | delete a general event         | I can remove an event that is already over |
 | `* * `   | student                                    | find a module                  | quickly locate details for module |
 | `* * `   | user                                       | find a person                  | quickly locate details for person |
 | `* * `   | user                                       | find a general event           | quickly locate details for event |
-| `* * `   | user                                       | see all entries after finding command | |
+| `* * `   | user                                       | see all entries after finding command | I can have a big picture of all my entries |
 | `* * `   | student                                    | mark my assignments as done    | identify if assignments are done or not |
 | `* * `   | user                                       | clear App                      | quickly delete all details in App |
 | `* * `   | student                                    | clear modules                  | quickly delete all details for modules |
@@ -955,7 +955,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Term | Meaning
 ---|---
-**Mainstream OS** | Windows, Linux, Unix, OS-X
+**Mainstream OS** | Windows, Linux, Unix, OS-X.
 **Module** | A school module consisting of module name/module id. 
 **Examination** | Consists of a start time and date which it occurs on under a relevant module.
 **Event** | Consists of a start time and date which it occurs on.
