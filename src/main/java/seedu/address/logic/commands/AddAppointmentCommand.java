@@ -5,10 +5,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.model.appointment.Date.MESSAGE_DATE_OVER;
+import static seedu.address.model.appointment.Time.MESSAGE_TIME_OVER;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.Date;
+import seedu.address.model.appointment.Time;
 
 /**
  * Adds an appointment to the app.
@@ -49,6 +53,15 @@ public class AddAppointmentCommand extends Command {
 
         if (model.hasAppointment(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        }
+
+        Date date = toAdd.getDate();
+        Time time = toAdd.getTime();
+
+        if (date.isOver()) {
+            throw new CommandException(MESSAGE_DATE_OVER);
+        } else if (date.isToday() && time.isOver()) {
+            throw new CommandException(MESSAGE_TIME_OVER);
         }
 
         model.addAppointment(toAdd);
