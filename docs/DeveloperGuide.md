@@ -953,12 +953,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Module**: A school module consisting of module name/module id. 
-* **Examination**: Consists of a start time and date which it occurs on under a relevant module.
-* **Event**: Consists of a start time and date which it occurs on.
-* **Assignment**: Consists of a deadline under a relevant module.
-* **GUI**: Graphic User Interface, the visible interface the user sees for the application.
+Term | Meaning
+---|---
+**Mainstream OS** | Windows, Linux, Unix, OS-X
+**Module** | A school module consisting of module name/module id. 
+**Examination** | Consists of a start time and date which it occurs on under a relevant module.
+**Event** | Consists of a start time and date which it occurs on.
+**Assignment** | Consists of a deadline under a relevant module.
+**GUI** | Graphic User Interface, the visible interface the user sees for the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
