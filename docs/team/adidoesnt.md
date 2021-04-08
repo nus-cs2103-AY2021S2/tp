@@ -26,4 +26,7 @@ This document entails my contribution to the NuFash project.
     * Added target user profile and value proposition under product scope section. [\#17](https://github.com/AY2021S2-CS2103T-T12-1/tp/commit/4991a938a184c9bf07effa230f50f862e6677f64)
     * Added documentation for the `match` command. [\#74](https://github.com/AY2021S2-CS2103T-T12-1/tp/commit/549690d032f9110e462169857183ec38f1c179a8)
 * **Community:**
+  
   * Reviewed another team's application and helped point out bug for them to fix in order for them to improve their product. [2](https://github.com/adidoesnt/ped/issues/2), [4](https://github.com/adidoesnt/ped/issues/4), [11](https://github.com/adidoesnt/ped/issues/11), [13](https://github.com/adidoesnt/ped/issues/13) among others.
+  
+    
