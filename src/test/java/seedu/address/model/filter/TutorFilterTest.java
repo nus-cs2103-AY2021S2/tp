@@ -90,7 +90,7 @@ public class TutorFilterTest {
     }
 
     @Test
-    public void has_personFilter_success() {
+    public void hasAny_personFilter_success() {
         Tutor amy = TypicalTutors.AMY;
         Tutor bob = TypicalTutors.BOB;
 
@@ -108,13 +108,13 @@ public class TutorFilterTest {
                 subjectNameFilters, subjectLevelFilters, subjectRateFilters,
                 subjectExperienceFilters, subjectQualificationFilters);
 
-        assertTrue(tutorFilterTwo.has(tutorFilterOne));
-        assertFalse(tutorFilterTwo.has(new TutorFilter()));
+        assertTrue(tutorFilterTwo.hasAny(tutorFilterOne));
+        assertFalse(tutorFilterTwo.hasAny(new TutorFilter()));
     }
 
     @Test
-    public void has_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TutorFilter().has(null));
+    public void hasAny_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new TutorFilter().hasAny(null));
     }
 
     @Test

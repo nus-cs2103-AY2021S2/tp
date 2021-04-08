@@ -318,7 +318,15 @@ public interface Model {
      * @param tutorFilter Filters to check for inside model's tutor filter.
      * @return true if model's tutor filter contains a filter that was passed in.
      */
-    boolean hasTutorFilter(TutorFilter tutorFilter);
+    boolean hasAnyTutorFilter(TutorFilter tutorFilter);
+
+    /**
+     * Checks if all of the filters are in tutor filter.
+     *
+     * @param tutorFilter Filters to check for inside model's tutor filter.
+     * @return true if model's tutor filter contains all filters that were passed in.
+     */
+    boolean hasAllTutorFilters(TutorFilter tutorFilter);
 
     /**
      * Adds filters to tutor filter.
@@ -345,7 +353,15 @@ public interface Model {
      * @param appointmentFilter Filters to check for inside model's appointment filter.
      * @return true if model's appointment filter contains a filter that was passed in.
      */
-    boolean hasAppointmentFilter(AppointmentFilter appointmentFilter);
+    boolean hasAnyAppointmentFilter(AppointmentFilter appointmentFilter);
+
+    /**
+     * Checks if all of the filters are in appointment filter.
+     *
+     * @param appointmentFilter Filters to check for inside model's appointment filter.
+     * @return true if model's appointment filter contains all filters that were passed in.
+     */
+    boolean hasAllAppointmentFilters(AppointmentFilter appointmentFilter);
 
     /**
      * Adds filters to appointment filter.

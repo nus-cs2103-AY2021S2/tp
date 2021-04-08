@@ -335,7 +335,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasTutorFilter(TutorFilter tutorFilter) {
+        public boolean hasAnyTutorFilter(TutorFilter tutorFilter) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAllTutorFilters(TutorFilter tutorFilter) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -355,7 +360,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasAppointmentFilter(AppointmentFilter appointmentFilter) {
+        public boolean hasAnyAppointmentFilter(AppointmentFilter appointmentFilter) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAllAppointmentFilters(AppointmentFilter appointmentFilter) {
             throw new AssertionError("This method should not be called.");
         }
 

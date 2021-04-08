@@ -32,7 +32,7 @@ public class DeleteAppointmentFilterCommand extends Command {
             + PREFIX_LOCATION + "Clementi";
 
     public static final String MESSAGE_SUCCESS = "Appoinment filters deleted: %1$s";
-    public static final String MESSAGE_DUPLICATE = "A filter in the appointment filter already exists";
+    public static final String MESSAGE_NOT_FOUND = "A given filter does not exist";
 
     private final AppointmentFilter appointmentFilter;
 
@@ -48,10 +48,9 @@ public class DeleteAppointmentFilterCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // TODO: Check if filters do not exist
-        // if (model.hasAppointmentFilter(appointmentFilter)) {
-        //     throw new CommandException(MESSAGE_DUPLICATE);
-        // }
+        if (!model.hasAllAppointmentFilters(appointmentFilter)) {
+            throw new CommandException(MESSAGE_NOT_FOUND);
+        }
 
         model.removeAppointmentFilter(appointmentFilter);
         return new CommandResult(String.format(MESSAGE_SUCCESS, appointmentFilter));
