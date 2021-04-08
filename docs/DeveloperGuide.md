@@ -254,7 +254,7 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `State` will be initialized with the initial `AddressBookCommandPair`. Since no command is executed, the command stored in the pair will be an empty string.
 
-![UndoRedoState0|](images/UndoRedoState0.png)
+![UndoRedoState0](images/UndoRedoState0.png)
 
 Step 2. The user executes `delete 5` command to delete the 5th person in the contact list. After execution, `State#addState()` is called, causing the modified state of the contact list after the `delete 5` command executes to be saved in the `addressBookStates`.
 
@@ -347,17 +347,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                  |
 | `* * *`  | user                                       | add a new contact                                    |                                                                         |
 | `* * *`  | user                                       | delete a contact                                     | remove entries that I no longer need                                    |
-| `* * *`  | user                                       | find a contact by name                               | locate details of contacts without having to go through the entire list |
-| `* * *`  | user                                       | filter contacts by tag                               | minimize chance of sending emails to the wrong recipient                |
-| `* * *`  | user                                       | find contacts by their address                       | group the contact list by the places they live and thus ease the process of sending information to those who prefer receiving information by mail.
+| `* * *`  | user                                       | find contacts by their attributes                    | 
 | `* * *`  | user                                       | specify preferred mode of contact                    | maximize chance of recipient seeing the information                     |
 | `* * *`  | user                                       | blacklist a contact                                  | reduce dissemination of information to people who do not want it        |
-| `* * *`  | user                                       | undo my operations                                   |                                                                         |
+| `* * *`  | user                                       | undo my operations                                   | minimize time spent to search on the contacts that I need.              |
 | `* * *`  | user                                       | collect specified details of all contacts            | avoid individually copying the details for each contact                 |
 | `* *`    | user                                       | hide private contact details                         | minimize chance of someone else seeing them by accident                 |
 | `* *`    | user with many contacts                    | assign each contact an additional optional remark    | remember contacts more accurately                                       |
 | `* *`    | user with many contacts                    | sort contacts by name                                | locate a contact easily                                                 |
-| `* *`    | user                                       | review my previous commands                          | simply modify them instead of retyping the commands, especially for the commands with longer parameters list.
+| `* *`    | user                                       | review my previous commands                          | simply modify them instead of retyping the commands, especially for the commands with longer parameters list
 
 ### Use cases
 
@@ -572,3 +570,16 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect find commands to try: `find n/`, `find t/`, `...` <br>
        Expected: Similar to previous.
+
+### Undo previous operations
+1. Undo previous operations.
+   1. Prerequisite: List all persons using the `list` command. Multiple contacts in the list.
+   1. Test case: execute `add n/Andy p/81234567 e/andy@example.com a/somewhere over the rainbow, Singapore 069420` followed by `undo`. <br>
+      Expected: `Andy` is no longer in the contact list after `undo` is executed. Command that is undone is shown in the status message.
+   1. Test case: execute `blacklist 2`, `find b/true` and `undo` in this order.
+      Expected: The second contact in the list is no longer blacklisted. Command that is undone is shown in the status message.
+
+1. Attempt to undo when there is no command to undo.<br>
+   1. Test case: `undo`<br>
+      Expected: An error stating there is nothing to undo is shown in the status message.
+   1. Test case: execute `light` and  
