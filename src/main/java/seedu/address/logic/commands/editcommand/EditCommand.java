@@ -10,5 +10,5 @@ public abstract class EditCommand extends Command {
             + "Module: edit INDEX m/TITLE\n"
             + "Assignment: edit m/TITLE a/INDEX d/DESCRIPTION OR by/DEADLINE\n"
             + "Exam: edit m/TITLE e/INDEX on/EXAM DATE\n"
-            + "Event: add INDEX g/DESCRIPTION OR on/EVENT DATE";
+            + "Event: edit INDEX g/DESCRIPTION OR on/EVENT DATE";
 }
