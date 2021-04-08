@@ -14,8 +14,9 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.CssSettings;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -26,6 +27,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
+        assertEquals(new CssSettings(), modelManager.getCssSettings());
         assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
     }
 
@@ -46,6 +48,18 @@ public class ModelManagerTest {
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
         userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
+    }
+
+    @Test
+    public void setCssSettings_nullCssSettings_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setGuiSettings(null));
+    }
+
+    @Test
+    public void setCssSettings_validCssSettings_setsCssSettings() {
+        CssSettings cssSettings = new CssSettings("MainWindow.fxml");
+        modelManager.setCssSettings(cssSettings);
+        assertEquals(cssSettings, modelManager.getCssSettings());
     }
 
     @Test

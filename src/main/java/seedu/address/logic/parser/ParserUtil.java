@@ -6,13 +6,18 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.util.Pair;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.MassBlacklistCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.ModeOfContact;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,6 +26,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_RANGE = "Invalid range format.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -93,6 +99,83 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String remark} into a {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code remark} is invalid.
+     */
+    public static Remark parseRemark(String remark) throws ParseException {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        return new Remark(trimmedRemark);
+    }
+
+    /**
+     * Parses a {@code String sortDirection} into a {@code boolean}. Returns true if the
+     * direction is ascending and false if the direction is descending. Leading and trailing
+     * whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code sortDirection} is invalid.
+     */
+    public static boolean parseSortDirection(String sortDirection) throws ParseException {
+        requireNonNull(sortDirection);
+        String trimmedSortDirection = sortDirection.trim();
+        if (!SortCommand.isValidSortDirection(trimmedSortDirection)) {
+            throw new ParseException(SortCommand.MESSAGE_USAGE);
+        }
+        return trimmedSortDirection.equals("ascending");
+    }
+
+    /**
+     * Parses a {@code String blacklistKeyword} into a {@code boolean}. Returns true if the
+     * string is blacklist and false if the string is unblacklist. Leading and trailing
+     * whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code isBlacklist} is invalid.
+     */
+    public static boolean parseBlacklistKeyword(String blacklistKeyword) throws ParseException {
+        requireNonNull(blacklistKeyword);
+        String trimmedBlacklistKeyword = blacklistKeyword.trim();
+        if (!MassBlacklistCommand.isValidBlacklistKeyword(trimmedBlacklistKeyword)) {
+            throw new ParseException(MassBlacklistCommand.MESSAGE_USAGE);
+        }
+        return trimmedBlacklistKeyword.equals("blacklist");
+    }
+
+    /**
+     * Parses a {@code String modeOfContact} into a {@code ModeOfContact}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code modeOfContact} is invalid.
+     */
+    public static ModeOfContact parseModeOfContact(String modeOfContact) throws ParseException {
+        requireNonNull(modeOfContact);
+        String trimmedModeOfContact = modeOfContact.trim();
+        if (!ModeOfContact.isValidModeOfContact(trimmedModeOfContact)) {
+            throw new ParseException(ModeOfContact.MESSAGE_CONSTRAINTS);
+        }
+        return new ModeOfContact(trimmedModeOfContact);
+    }
+
+    /**
+     * Parses a {@code String range} into a {@code Pair}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code range} is invalid.
+     */
+    public static Pair<Index, Index> parseRange(String range) throws ParseException {
+        requireNonNull(range);
+        String trimmedRange = range.trim();
+        String[] splitRange = trimmedRange.split("-");
+        if (splitRange.length != 2) {
+            throw new ParseException(MESSAGE_INVALID_RANGE);
+        }
+        Index startIndex = parseIndex(splitRange[0]);
+        Index endIndex = parseIndex(splitRange[1]);
+        return new Pair<>(startIndex, endIndex);
     }
 
     /**

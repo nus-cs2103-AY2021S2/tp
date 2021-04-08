@@ -7,15 +7,25 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.BlacklistCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CollectCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DarkCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LightCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MassBlacklistCommand;
+import seedu.address.logic.commands.MassDeleteCommand;
+import seedu.address.logic.commands.RemarkCommand;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.state.State;
 
 /**
  * Parses user input.
@@ -26,6 +36,8 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
+    private State addressBookState;
 
     /**
      * Parses user input into command for execution.
@@ -47,11 +59,23 @@ public class AddressBookParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
+        case BlacklistCommand.COMMAND_WORD:
+            return new BlacklistCommandParser().parse(arguments);
+
+        case CollectCommand.COMMAND_WORD:
+            return new CollectCommandParser().parse(arguments);
+
+        case MassBlacklistCommand.COMMAND_WORD:
+            return new MassBlacklistCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+
+        case MassDeleteCommand.COMMAND_WORD:
+            return new MassDeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
@@ -68,9 +92,28 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case RemarkCommand.COMMAND_WORD:
+            return new RemarkCommandParser().parse(arguments);
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand(this.addressBookState);
+
+        case LightCommand.COMMAND_WORD:
+            return new LightCommand();
+
+        case DarkCommand.COMMAND_WORD:
+            return new DarkCommand();
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    public void setState(State addressBookState) {
+        this.addressBookState = addressBookState;
     }
 
 }

@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.commons.core.CssSettings;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -29,6 +30,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private String currentCss;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -62,6 +64,10 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+
+        // Configure the Style Sheet
+        setCss(logic.getCssSettings());
+        this.currentCss = logic.getCssSettings().getCssSettings();
 
         setAccelerators();
 
@@ -135,6 +141,11 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    @FXML
+    private void setCss(CssSettings cssSettings) {
+        loadFxmlFile(getFxmlFileUrl(cssSettings.getCssSettings()), primaryStage);
+    }
+
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -145,6 +156,16 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+    }
+
+    /**
+     * Changes to light mode
+     */
+    @FXML
+    public void handleLightChange() {
+        loadFxmlFile(getFxmlFileUrl("MainWindowLight.fxml"), primaryStage);
+        this.currentCss = "MainWindowLight.fxml";
+        fillInnerParts();
     }
 
     void show() {
@@ -159,8 +180,21 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        CssSettings cssSettings = new CssSettings(this.currentCss);
+        logic.setCssSettings(cssSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    /**
+     * Changes to dark mode
+     */
+    @FXML
+    private void handleDarkChange() {
+        loadFxmlFile(getFxmlFileUrl("MainWindow.fxml"), primaryStage);
+        this.currentCss = "MainWindow.fxml";
+        fillInnerParts();
+
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -184,6 +218,17 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isLight()) {
+                handleLightChange();
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            }
+
+            if (commandResult.isDark()) {
+                handleDarkChange();
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
             }
 
             return commandResult;

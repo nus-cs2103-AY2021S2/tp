@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![Architecture Diagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -53,7 +53,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -133,45 +133,151 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Blacklist feature
+The blacklist mechanism is facilitated by `Person`.
+It represents if a `Person` is blacklisted or not, stored internally by adding a `Blacklist` object to the parameters of `Person`.
+Blacklist status is displayed externally via `PersonListCard#blacklist`.
 
-#### Proposed Implementation
+Given below is an example usage scenario.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+Step 1. The user executes `add n/David …​` to add a new person.
+A new `Person` is created, with the default status of un-blacklisted.
+It is then added to `AddressBook`.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+![BlacklistState1](images/BlacklistState1.png)
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Step 2. The user decides to blacklist the person, and executes the `blist INDEX` command.
+The `blist INDEX` command will create a new `Person` with the same information as the person at `INDEX` in `AddressBook`,
+but with a new `Blacklist` with a different blacklist status, which then replaces the original person.
+
+![BlacklistState1](images/BlacklistState2.png)
+
+The following sequence diagram shows how the blacklist operation works:
+
+![BlacklistSequenceDiagram](images/BlacklistSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a blacklist command:
+
+![BlacklistActivityDiagram](images/BlacklistActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: The command format of blacklist
+
+* **Alternative 1 (current choice):** `blist INDEX` to toggle blacklist status.
+    * Pros: Easier to remember, faster to type.
+            More straightforward and logical for a value with only 2 states.
+    * Cons: Requires checking current blacklist status.
+
+* **Alternative 2:** `+blist INDEX` to blacklist, `-blist INDEX` to un-blacklist.
+    * Pros: Able to directly set blacklist status without checking current status.
+    * Cons: More commands to remember.
+### Sort feature
+The sort feature is implemented in the `SortCommand` class.
+Below is an example usage scenario.
+
+Step 1: The user executes `sort c/...` to sort the contact list according to some specific criteria.
+The `UI` component passes the string to the `LogicManager` class in the `Logic` component.
+
+Step 2: The `Logic` component parses the string and creates a corresponding `SortCommand` object.
+
+Step 3: The `LogicManager` executes the `SortCommand` object. This calls the appropriate `sort` method in
+the `Model` component.
+
+Step 4: The `Model` component sorts the internal contact list. After sorting, the appropriate method in the `Storage`
+component is called to update the file.
+
+Step 5: Finally, the `Model` component passes the `CommandResult` back to the `Logic` component, which in turn passes
+it back to the `UI` component to display it to the user.
+
+The following sequence diagram illustrates how the sort operation works:
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+### Find persons by tag and address feature
+This feature is built on the current `find` command, which is used to be limited to only finding persons by names. With this change, the format of the `find` command is now modified to `find n/[NAME] t/[TAG] a/[ADDRESS] p/[PHONE] e/[EMAIL] b/[IS_BLACKLISTED] m/[MODE_OF_CONTACT]`.
+This command returns the persons with attributes that matches at least one of the attributes of interest (See User Guide for more details).
+Note that users are only required to provide at least one of the parameters to use this command. In other words, commands such as `find n/Alex` and `find t/autistic` are valid commands.
+
+To facilitate the implementation of this feature, several new predicate classes are introduced, for instance, `PersonTagContainsKeywordsPredicate` `AddressContainsKeywordsPredicate`, `ReturnTruePredicate` etc. Of course, As the name suggests, `ReturnTruePredicate` always returns `true`. 
+
+The introduction of `ReturnTruePredicate` may seem pointless, but it is of great use. The key here is to realize that if X is a boolean variable, then X `and` `true` simplifies to X. If all keywords are given, the `FindCommand` class will receive all the predicates. If, say, only `name` keywords are given, then rest of the predicates will be replaced with `ReturnTruePredicate`s. As such, the filter will now solely depend on `NameContainsKeywordsPredicate` since the other predicates always returns 
+true.
+
+The following sequence diagram shows how the `find` command works:
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+The following activity diagram shows what happens when `find` command is executed.
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Command design
+
+* **Alternative 1 (current choice):** `find` command alone supports finding by the different fields.
+    * Pros: More intuitive to use since most commands have similar format. Makes further extensions easier as developers only need to define a new predicate class.
+    * Cons: Can make debugging harder since further extensions are centralized into one class.
+
+* **Alternative 2:** Find by names and find by tags are separate commands.
+    * Pros: Easier to debug as one command is meant for one criterion.
+    * Cons: It is now not possible to combine both criteria together. More commands to remember. Due to similarity of the commands, they can be confused from one another.
+
+### Mode of Contact feature
+The mode of contact feature built on the current `AddCommand` class.
+The following is an example usage scenario.
+
+Step 1: The user executes `add n/Bob …/m email …` to add a new Person with the mode of contact as `email`.
+The `UI` component then passes the string to the `LogicManager` class in `Logic` component.
+
+Step 2: The `Logic` component parses the string and creates an `AddCommand` object.
+
+Step 3: The `LogicManager` class then executes the `AddCommand` object, which calls all the appropriate methods including `mode of contact` in the `Model` component.
+
+Step 4: The `Model` component adds the inputted string and the appropriate method in the `Storage` component is executed to update the file.
+
+Step 5: The `Model` component passes the `CommandResult` to the `Logic` component, which is then passed to the `UI` component to display to the user.
+
+The following sequence diagram shows how the add command works:
+![ModeOfContactSequenceDiagram](images/ModeOfContactSequenceDiagram.png)
+
+    
+### Undo feature
+
+#### Implementation
+
+The undo mechanism is facilitated by `State` class. It contains a list of `AddressBookCommandPair`s, which are made up of the state of `AddressBook` and the command executed.
+They are stored internally as `addressBookStates`. Additionally, it implements the following operations:
+
+* `State#addState()` — Saves a new `AddressBookCommandPair` in its history.
+* `State#deleteState()` — Deletes the last `AddressBookCommandPair` in the list. The undo operation is done by calling this method.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `State` will be initialized with the initial `AddressBookCommandPair`. Since no command is executed, the command stored in the pair will be an empty string.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![UndoRedoState0|](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the contact list. After execution, `State#addState()` is called, causing the modified state of the contact list after the `delete 5` command executes to be saved in the `addressBookStates`.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. This causes another modified contact list state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution or does not modify the contact list in anyway, it will not call `State#addState()`, so the contact list state will not be saved into the `addressBookStates`.
+Examples of commands that do not modify the list include <code>find</code>, <code>list</code> etc.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will first call `State#deletePreviousState()` to delete `pair2` and then call `model#setAddressBook` to set the contact list to be the same `AddressBook` as in `pair1`.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If there is only one state saved in the <code>addressBookStates</code>, then there are no previous AddressBook states to restore. The `undo` command uses `State#getPreviousState` to check if this is the case. If so, the method will return <code>null</code>
+, causing the command to return an error to the user rather than attempting to perform the undo.
 
 </div>
-
+ 
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
@@ -180,42 +286,24 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: How undo executes
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -241,24 +329,35 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* is an NUS Computer Science undergraduate
+* works in the NUS Office of Campus Amenities communications team
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: OCA has a wide range of information to disseminate
+to students / staff at NUS. The large number of emails to send, and the large
+student / staff population may introduce errors during dissemination.
+We aim to help them classify this information based on the relevant parties
+and the required means of communication.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                 | I want to …​                                      | So that I can…​                                                      |
+| -------- | ------------------------------------------ | ---------------------------------------------------- | ----------------------------------------------------------------------- |
+| `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                  |
+| `* * *`  | user                                       | add a new contact                                    |                                                                         |
+| `* * *`  | user                                       | delete a contact                                     | remove entries that I no longer need                                    |
+| `* * *`  | user                                       | find a contact by name                               | locate details of contacts without having to go through the entire list |
+| `* * *`  | user                                       | filter contacts by tag                               | minimize chance of sending emails to the wrong recipient                |
+| `* * *`  | user                                       | find contacts by their address                       | group the contact list by the places they live and thus ease the process of sending information to those who prefer receiving information by mail.
+| `* * *`  | user                                       | specify preferred mode of contact                    | maximize chance of recipient seeing the information                     |
+| `* * *`  | user                                       | blacklist a contact                                  | reduce dissemination of information to people who do not want it        |
+| `* * *`  | user                                       | undo my operations                                   |                                                                         |
+| `* * *`  | user                                       | collect specified details of all contacts            | avoid individually copying the details for each contact                 |
+| `* *`    | user                                       | hide private contact details                         | minimize chance of someone else seeing them by accident                 |
+| `* *`    | user with many contacts                    | assign each contact an additional optional remark    | remember contacts more accurately                                       |
+| `* *`    | user with many contacts                    | sort contacts by name                                | locate a contact easily                                                 |
+| `* *`    | user                                       | review my previous commands                          | simply modify them instead of retyping the commands, especially for the commands with longer parameters list.
 
 ### Use cases
 
@@ -268,10 +367,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list contacts
+2.  SpamEZ shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  SpamEZ deletes the contact
 
     Use case ends.
 
@@ -283,9 +382,106 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SpamEZ shows an error message.
 
       Use case resumes at step 2.
+
+**Use case: Filter contacts by tags**
+
+**MSS**
+1. User requests to list contacts
+2. SpamEZ shows a list of contacts
+3. User requests to find the contacts using name and/or tags
+4. SpamEZ returns a filtered list of contacts
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. No keywords are given or invalid syntax.
+    * 3a1. SpamEZ shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Specify a preferred mode of contact for a contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  SpamEZ shows a list of contacts
+3.  User requests to edit the preferred mode of contact for a contact
+4.  SpamEZ edits the contact
+    
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Blacklist a contact**
+
+**MSS**
+
+1. User requests to list contacts
+2. SpamEZ shows a list of contacts
+3. User requests to change the blacklist status of a specific contact 
+   in the list
+4. SpamEZ changes the blacklist status of the contact
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. SpamEZ shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Assign an optional remark to a contact**
+
+**MSS**
+
+1. User requests to list contacts.
+2. SpamEZ shows a list of contacts.
+3. User requests to add an optional remark to a specific contact in the list.
+4. SpamEZ adds the optional remark to the specific contact.
+5. SpamEZ shows the updated list of contacts.
+   
+   Use case ends.
+
+**Extensions**
+
+* 3a. The given index is invalid.
+
+  * 3a1. SpamEZ shows an error message.
+    
+    Use case resumes at step 3.
+
+* 3b. The user enters details in the wrong format.
+
+    * 3b1. SpamEZ shows an error message and the correct format.
+
+      Use case resumes at step 3.
+
+**Use case: Sort contacts by name**
+
+**MSS**
+
+1. User requests to sort the contact list by name in alphabetical order.
+2. SpamEZ sorts the contact list.
+3. SpamEZ displays the updated contact list.
+   
+   Use case ends.
 
 *{More to be added}*
 
@@ -294,6 +490,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  Every command that is accessible via the graphical user interface should be possible using only command line inputs.
 
 *{More to be added}*
 
@@ -317,33 +514,33 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a contact
 
-1. Deleting a person while all persons are being shown
+1. Deleting a contact while all contacts are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -351,6 +548,27 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Filtering the contacts
+
+1. Filter the list of contacts based on the keywords provided.
+
+    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
+
+    1. Test case: `find n/Alex Bernice` <br>
+       Expected: A list of contacts whose name contains `Alex` **or** `Bernice`. The filter is case-insensitive, so `Alex` will match with `aLeX` too, for instance.
+
+    1. Test case: `find t/friends NEIGHBOUR` <br>
+       Expected: A list of contacts whose tags contain `friends` **or** `NEIGHBOUR`.
+
+    1. Test case: `find n/Alex Bernice t/friends neighbour` <br>
+       Expected: A list of contacts whose name contains `Alex` or `Bernice` **and** tags contains `friends` or `neighbour`.
+
+    1. Test case: `find` <br>
+       Expected: No filtering is done, and the original list is presented. Error details shown in the status message.
+
+    1. Other incorrect find commands to try: `find n/`, `find t/`, `...` <br>
+       Expected: Similar to previous.

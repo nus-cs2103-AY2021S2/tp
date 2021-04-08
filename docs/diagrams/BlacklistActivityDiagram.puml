@@ -1,0 +1,13 @@
+@startuml
+start
+:User executes blacklist command;
+:The specified person is found;
+if () then ([person is blacklisted])
+    :Duplicate person but unblacklisted;
+else ([else])
+    :Duplicate person but blacklisted;
+endif
+:Replace person with duplicated person;
+:Save changes to storage;
+stop
+@enduml

@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -26,15 +27,19 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_SORT_DIRECTION = "???????";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_REMARK = "Hospitalised";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_SORT_DIRECTION = "ascending";
 
     private static final String WHITESPACE = " \t\r\n";
+    private static final boolean VALID_SORT_DIRECTION_RESULT = true;
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -147,6 +152,44 @@ public class ParserUtilTest {
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
+
+    @Test
+    public void parseRemark_validValueWithoutWhitespace_returnsRemark() throws Exception {
+        Remark expectedRemark = new Remark(VALID_REMARK);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(VALID_REMARK));
+    }
+
+    @Test
+    public void parseRemark_validValueWithWhitespace_returnsRemark() throws Exception {
+        String remarkWithWhitespace = WHITESPACE + VALID_REMARK + WHITESPACE;
+        Remark expectedRemark = new Remark(VALID_REMARK);
+        assertEquals(expectedRemark, ParserUtil.parseRemark(VALID_REMARK));
+    }
+
+    @Test
+    public void parseSortDirection_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSortDirection((String) null));
+    }
+
+    @Test
+    public void parseSortDirection_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSortDirection(INVALID_SORT_DIRECTION));
+    }
+
+    @Test
+    public void parseSortDirection_validValueWithoutWhitespace_returnsBoolean() throws Exception {
+        assertEquals(VALID_SORT_DIRECTION_RESULT,
+                ParserUtil.parseSortDirection(VALID_SORT_DIRECTION));
+    }
+
+    @Test
+    public void parseSortDirection_validValueWithWhitespace_returnsBoolean() throws Exception {
+        String sortDirectionWithWhitespace = WHITESPACE + VALID_SORT_DIRECTION + WHITESPACE;
+        assertEquals(VALID_SORT_DIRECTION_RESULT,
+                ParserUtil.parseSortDirection(sortDirectionWithWhitespace));
+    }
+
+
 
     @Test
     public void parseTag_null_throwsNullPointerException() {

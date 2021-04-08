@@ -3,10 +3,15 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.SORT_ASCENDING;
+import static seedu.address.logic.commands.CommandTestUtil.SORT_DESCENDING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
+import static seedu.address.testutil.TypicalPersons.JANE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -81,6 +86,24 @@ public class AddressBookTest {
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    }
+
+    @Test
+    public void sortByName_ascendingOrder_success() {
+        addressBook.addPerson(BOB);
+        addressBook.addPerson(ALICE);
+        addressBook.sortByName(SORT_ASCENDING);
+        assertEquals(ALICE, addressBook.getPersonList().get(0));
+        assertEquals(BOB, addressBook.getPersonList().get(1));
+    }
+
+    @Test
+    public void sortByName_descendingOrder_success() {
+        addressBook.addPerson(GEORGE);
+        addressBook.addPerson(JANE);
+        addressBook.sortByName(SORT_DESCENDING);
+        assertEquals(JANE, addressBook.getPersonList().get(0));
+        assertEquals(GEORGE, addressBook.getPersonList().get(1));
     }
 
     /**

@@ -38,6 +38,20 @@ public class IndexTest {
     }
 
     @Test
+    public void isValidIndexRange_validRange_returnsTrue() {
+        Index startIndex = Index.fromZeroBased(5);
+        Index endIndex = Index.fromZeroBased(12);
+        assertTrue(Index.isValidIndexRange(startIndex, endIndex));
+    }
+
+    @Test
+    public void isValidIndexRange_invalidRange_returnsFalse() {
+        Index startIndex = Index.fromZeroBased(7);
+        Index endIndex = Index.fromZeroBased(3);
+        assertFalse(Index.isValidIndexRange(startIndex, endIndex));
+    }
+
+    @Test
     public void equals() {
         final Index fifthPersonIndex = Index.fromOneBased(5);
 

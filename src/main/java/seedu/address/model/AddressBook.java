@@ -93,11 +93,21 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Sorts the contacts in the address book by name in alphabetical order.
+     *
+     * @param isAscending The list will be sorted by ascending order if true and descending
+     * order otherwise.
+     */
+    public void sortByName(boolean isAscending) {
+        persons.sortByName(isAscending);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return persons.asUnmodifiableObservableList().toString();
         // TODO: refine later
     }
 

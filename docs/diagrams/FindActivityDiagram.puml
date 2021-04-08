@@ -1,0 +1,10 @@
+@startuml
+start
+:User executes find command;
+repeat
+    :Check if the next person matches the keywords;
+repeat while () is ([has next person])
+-> [else];
+:Display results;
+end
+@enduml
