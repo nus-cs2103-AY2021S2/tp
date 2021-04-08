@@ -27,6 +27,7 @@ jobs:
         run: ./run-checks.sh
 
       - name: Validate Gradle Wrapper
+        timeout-minutes: 10
         uses: gradle/wrapper-validation-action@v1
 
       - name: Setup JDK 11
