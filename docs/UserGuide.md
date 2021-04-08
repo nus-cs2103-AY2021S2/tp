@@ -119,12 +119,6 @@ Examples:
   Book” respectively.
 * `edit 3 n/Finals ptag/HIGH` edits the task name and priority tag of the task at index 3 to be "Finals" and "HIGH" respectively.
 
-### Clear Application : `clear`
-
-Clears all tasks from the application
-
-Format: `clear`
-
 ### Delete a task: `delete`
 
 Deletes the task at the specified index.
@@ -200,6 +194,12 @@ Format: `sort [dateTime OR taskName OR moduleCode OR priorityTag OR weightage]`
 Clears all tasks from the application.
 
 Format: `clear`
+
+### Exit Application `exit`
+
+Exit from semester.config, changes will be saved
+
+Format: `exit`
 
 ### Show tasks that due soon: `dueIn`
 
@@ -285,6 +285,7 @@ Action | Format, Examples
 **doToday** | `doToday [-a OR -r] INDEX` <br>e.g, `doToday -a 2` `doToday -r 2` 
 **undo** | `undo`
 **redo** | `redo`
+**exit** | `exit`
 
 
 
