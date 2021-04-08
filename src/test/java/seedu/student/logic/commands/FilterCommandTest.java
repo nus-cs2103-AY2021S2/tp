@@ -6,7 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.student.commons.core.Messages.MESSAGE_NO_STUDENTS_ARE_LISTED;
 import static seedu.student.commons.core.Messages.MESSAGE_STUDENTS_ARE_LISTED;
 import static seedu.student.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.student.testutil.TypicalStudents.*;
+import static seedu.student.testutil.TypicalStudents.ALICE;
+import static seedu.student.testutil.TypicalStudents.BENSON;
+import static seedu.student.testutil.TypicalStudents.DANIEL;
+import static seedu.student.testutil.TypicalStudents.ELLE;
+import static seedu.student.testutil.TypicalStudents.FIONA;
+import static seedu.student.testutil.TypicalStudents.GEORGE;
+import static seedu.student.testutil.TypicalStudents.getTypicalStudentBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -124,7 +130,7 @@ public class FilterCommandTest {
     }
 
     @Test
-    public void execute_oneKeywords_StudentFoundFilter() {
+    public void execute_oneKeyword_multipleStudentFound() {
 
         String expectedMessage = String.format(MESSAGE_STUDENTS_ARE_LISTED, 0);
 

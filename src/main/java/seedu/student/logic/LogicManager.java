@@ -1,11 +1,12 @@
 package seedu.student.logic;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.logging.Logger;
 import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENT_LISTS;
 import static seedu.student.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.student.commons.core.GuiSettings;
