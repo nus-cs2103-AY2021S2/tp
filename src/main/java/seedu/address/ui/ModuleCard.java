@@ -38,11 +38,15 @@ public class ModuleCard extends UiPart<Region> {
         super(FXML);
         requireNonNull(module);
         this.module = module;
+        title.setWrapText(true);
+        title.setMaxWidth(200);
         title.setText(displayIndex + ". " + module.getTitle().modTitle + ": ");
         assignments.setWrapText(true);
         assignments.setText(module.getAssignments().toString());
+        assignments.setMaxWidth(300);
         exams.setWrapText(true);
         exams.setText(module.getExams().toString());
+        exams.setMaxWidth(300);
     }
 
 

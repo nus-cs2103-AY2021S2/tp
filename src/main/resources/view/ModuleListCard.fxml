@@ -21,10 +21,10 @@
          <HBox prefHeight="19.0" prefWidth="73.0">
             <children>
            <Label fx:id="title" styleClass="cell_big_label">
-             <minWidth>
-               <!-- Ensures that the label text is never truncated -->
-               <Region fx:constant="USE_PREF_SIZE" />
-             </minWidth>
+<!--             <minWidth>-->
+<!--               &lt;!&ndash; Ensures that the label text is never truncated &ndash;&gt;-->
+<!--               <Region fx:constant="USE_PREF_SIZE" />-->
+<!--             </minWidth>-->
            </Label>
                <Label fx:id="tag" layoutX="10.0" layoutY="10.0" styleClass="cell_big_label" translateX="75.0">
                   <minWidth>
