@@ -44,6 +44,10 @@ public class DateTimeClashPredicate implements Predicate<Event> {
             if (Objects.equals(preEditEvent.get(), event)) {
                 return false;
             }
+
+            if (Objects.equals(preEditEvent.get(), toCheck)) {
+                return false;
+            }
         }
 
         LocalDateTime timeFromCheck = toCheck.getTimeFrom().getValue();
