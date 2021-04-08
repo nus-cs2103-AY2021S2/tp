@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.predicates.ReturnTruePredicate;
 import seedu.address.model.state.State;
 
 /**
@@ -12,7 +13,7 @@ public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
 
-    public static final String MESSAGE_SUCCESS = "Undo operation successful.";
+    public static final String MESSAGE_SUCCESS = "Successfully undo the command: %1$s";
 
     public static final String MESSAGE_NOTHING_TO_UNDO = "There is nothing to undo.";
 
@@ -27,8 +28,10 @@ public class UndoCommand extends Command {
         if (this.state.getPreviousState() == null) {
             throw new CommandException(MESSAGE_NOTHING_TO_UNDO);
         }
+        String previousCommand = state.getCurrentCommand();
         this.state.deleteCurrentState();
-        model.setAddressBook(state.getCurrentState());
-        return new CommandResult(MESSAGE_SUCCESS);
+        model.setAddressBook(state.getCurrentAddressBook());
+        model.updateFilteredPersonList(new ReturnTruePredicate());
+        return new CommandResult(String.format(MESSAGE_SUCCESS, previousCommand));
     }
 }

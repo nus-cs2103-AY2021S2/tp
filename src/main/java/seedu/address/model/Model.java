@@ -77,14 +77,22 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /**
+     * Deletes all contacts within the specified index range (inclusive).
+     */
+    void massDelete(int startIndex, int endIndex);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
+     * Blacklists all unblacklisted contacts within the specified index range (inclusive).
+     * If the contact is already blacklisted, then no change will occur.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void massBlacklist(int startIndex, int endIndex);
+
+    /**
+     * Unblacklists all blacklisted contacts within the specified index range (inclusive).
+     * If the contact is already unblacklisted, then no change will occur.
+     */
+    void massUnblacklist(int startIndex, int endIndex);
 
     /**
      * Sorts the contact in the address book by name in alphabetical order.
@@ -100,14 +108,15 @@ public interface Model {
      */
     void toggleBlacklist(Person target);
 
-    /**
-     * Blacklists the given person.
-     */
-    void blacklistPerson(Person target);
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Unblacklists the given person.
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
      */
+    void updateFilteredPersonList(Predicate<Person> predicate);
+  
     void unblacklistPerson(Person target);
 
     /**
@@ -118,5 +127,6 @@ public interface Model {
     /**
      * Sets the user prefs' CSS settings.
      */
-    void setCssSettings(CssSettings cssSettings);
+    void setCssSettings(CssSettings cssSettings);    
+
 }

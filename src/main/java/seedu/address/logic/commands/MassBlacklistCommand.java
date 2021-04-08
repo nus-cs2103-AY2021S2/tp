@@ -1,32 +1,34 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.index.Index.getInterval;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Blacklists all contacts within a specified index range(inclusive).
+ * Blacklists or unblacklists all contacts within the specified index range (inclusive).
  */
 public class MassBlacklistCommand extends Command {
 
     public static final String COMMAND_WORD = "massblist";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Blacklists all contacts within a specified index range(inclusive).\n"
-            + "Parameters: STARTINDEX-ENDINDEX (Both must be positive integers) \n"
-            + "Example: " + COMMAND_WORD + " " + "5-21";
+            + ": Blacklists or unblacklists all contacts within the specified index range "
+            + "(inclusive).\n"
+            + "Parameters: START-END (Both must be positive integers)"
+            + " b/BLACKLIST_OR_UNBLACKLIST\n"
+            + "Example: " + COMMAND_WORD + " 5-21 b/blacklist";
 
-    public static final String MESSAGE_MASS_BLACKLIST_PERSON_SUCCESS = "Successfully toggled the "
-            + "blacklist status of all contacts within the specified range";
-    public static final String MESSAGE_INVALID_END_INDEX = "End index must be larger than start index but "
-            + "smaller than the number of people in the contact list.";
+    public static final String MESSAGE_MASS_BLACKLIST_SUCCESS = "Successfully blacklisted "
+            + "all contacts within the index range %1$d-%2$d";
+
+    public static final String MESSAGE_MASS_UNBLACKLIST_SUCCESS = "Successfully unblacklisted "
+            + "all contacts within the index range %1$d-%2$d";
 
     private final Index startIndex;
     private final Index endIndex;
@@ -41,23 +43,34 @@ public class MassBlacklistCommand extends Command {
         this.toBlacklist = toBlacklist;
     }
 
+    /**
+     * Returns true if the given string is a valid keyword (Either blacklist or unblacklist).
+     */
+    public static boolean isValidBlacklistKeyword(String blacklistKeyword) {
+        return blacklistKeyword.equals("blacklist") || blacklistKeyword.equals("unblacklist");
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        if (!Index.isValidIndexRange(startIndex, endIndex)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_START_INDEX);
+        }
         if (endIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_END_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_END_INDEX);
         }
-        ArrayList<Index> intervalToBlacklist = getInterval(startIndex, endIndex);
-        for (Index index : intervalToBlacklist) {
-            Person personToBlacklist = lastShownList.get(index.getZeroBased());
-            if (toBlacklist) {
-                model.blacklistPerson(personToBlacklist);
-            } else {
-                model.unblacklistPerson(personToBlacklist);
-            }
+        String outputMessage;
+        if (toBlacklist) {
+            model.massBlacklist(startIndex.getOneBased(), endIndex.getOneBased());
+            outputMessage = String.format(MESSAGE_MASS_BLACKLIST_SUCCESS,
+                    startIndex.getOneBased(), endIndex.getOneBased());
+        } else {
+            model.massUnblacklist(startIndex.getOneBased(), endIndex.getOneBased());
+            outputMessage = String.format(MESSAGE_MASS_UNBLACKLIST_SUCCESS,
+                    startIndex.getOneBased(), endIndex.getOneBased());
         }
-        return new CommandResult(MESSAGE_MASS_BLACKLIST_PERSON_SUCCESS);
+        return new CommandResult(outputMessage);
     }
 
     @Override
@@ -66,10 +79,12 @@ public class MassBlacklistCommand extends Command {
             return true; // short circuit if same object
         }
         if (other instanceof MassBlacklistCommand) {
-            return startIndex.equals(((MassBlacklistCommand) other).startIndex)
-                    && endIndex.equals(((MassBlacklistCommand) other).endIndex);
-        } else {
-            return false;
+            MassBlacklistCommand otherBlacklistCommand = (MassBlacklistCommand) other;
+            boolean sameStartIndex = startIndex.equals(otherBlacklistCommand.startIndex);
+            boolean sameEndIndex = endIndex.equals(otherBlacklistCommand.endIndex);
+            boolean sameKeyword = toBlacklist == otherBlacklistCommand.toBlacklist;
+            return sameStartIndex && sameEndIndex && sameKeyword;
         }
+        return false;
     }
 }
