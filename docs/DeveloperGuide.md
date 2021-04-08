@@ -18,7 +18,7 @@ Weeblingo is a desktop app for managing flashcards, **optimized for use via a Co
   * [Quiz Feature](#implemented-quiz-feature)
     * [Entering Quiz Mode](#entering-quiz-mode)
     * [Starting a Session](#starting-a-session)
-    * [Checking User Attempt]()
+    * [Checking User Attempt](#checking-user-attempt)
     * [Quiz Scoring](#quiz-scoring)
   * [View Quiz Attempt Histories](#view-past-quiz-attempts)
 * [Documentation, Logging, Testing, Configuration, Dev-ops](#documentation-logging-testing-configuration-dev-ops)
