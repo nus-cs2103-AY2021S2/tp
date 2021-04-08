@@ -39,14 +39,9 @@ public class Dog extends Entity {
         this.ownerID = ownerID;
     }
 
-    public Name getName() {
-        return name;
-    }
-
     public Breed getBreed() {
         return breed;
     }
-
 
     public Sex getSex() {
         return sex;
@@ -58,14 +53,6 @@ public class Dog extends Entity {
 
     public Integer getOwnerId() {
         return ownerID;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
     }
 
     @Override

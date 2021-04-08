@@ -126,5 +126,11 @@
     "sex" : "male",
     "ownerId" : 13,
     "tagged" : [ ]
-  } ]
+  }, {
+    "type": "program",
+    "id": 15,
+    "name" : "Active Listening",
+    "session" : ["12-12-2021 18:00"],
+    "tagged" : ["Puppies"]
+  }]
 }

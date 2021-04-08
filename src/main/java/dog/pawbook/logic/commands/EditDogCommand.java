@@ -1,3 +1,4 @@
+//@@author CharlesLee01
 package dog.pawbook.logic.commands;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
@@ -50,36 +51,6 @@ public class EditDogCommand extends EditEntityCommand {
      */
     public EditDogCommand(Integer id, EditDogDescriptor editDogDescriptor) {
         super(id, editDogDescriptor);
-    }
-
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        if (!model.hasEntity(id)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DOG_ID);
-        }
-        Entity targetEntity = model.getEntity(id);
-
-        if (!(targetEntity instanceof Dog)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DOG_ID);
-        }
-        Dog targetDog = (Dog) targetEntity;
-        Dog editedDog = createEditedEntity(targetEntity, editEntityDescriptor);
-
-        if (!targetDog.equals(editedDog) && model.hasEntity(editedDog)) {
-            throw new CommandException(getDuplicateEntityMessage());
-        }
-
-        // special handling of Owner ID change
-        int originalOwnerId = targetDog.getOwnerId();
-        int editedOwnerId = editedDog.getOwnerId();
-        if (originalOwnerId != editedOwnerId) {
-            changeOwner(model, originalOwnerId, editedOwnerId);
-        }
-
-        model.setEntity(id, editedDog);
-        return new CommandResult(getSuccessMessage(editedDog));
     }
 
     private void changeOwner(Model model, int originalOwnerId, int editedOwnerId) throws CommandException {

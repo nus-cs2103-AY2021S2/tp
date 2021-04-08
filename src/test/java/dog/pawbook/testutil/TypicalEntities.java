@@ -131,35 +131,21 @@ public class TypicalEntities {
      */
     public static Database getTypicalDatabase() {
         Database db = new Database();
-        for (Entity entity : getTypicalOwnersWithDog()) {
+        for (Entity entity : getTypicalEntities()) {
             db.addEntity(entity);
         }
         return db;
     }
 
-    /**
-     * Returns an {@code Database} with all the typical owners, dogs and programs
-     */
-    public static Database getDatabaseWithPrograms() {
-        Database db = new Database();
-        for (Entity entity : getTypicalOwnersWithDog()) {
-            db.addEntity(entity);
-        }
-
-        for (Program program : getTypicalPrograms()) {
-            db.addEntity(program);
-        }
-        return db;
-    }
-
-    public static List<Entity> getTypicalOwnersWithDog() {
+    public static List<Entity> getTypicalEntities() {
         return new ArrayList<>(Arrays.asList(ALICE, APPLE,
                 BENSON, BUBBLES,
                 CARL, CARSON,
                 DANIEL, DUKE,
                 ELLE, ELSA,
                 FIONA, FLORA,
-                GEORGE, GENIE));
+                GEORGE, GENIE,
+                ACTIVE_LISTENING));
     }
 
     public static List<Program> getTypicalPrograms() {
