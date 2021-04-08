@@ -297,6 +297,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
     - <details open>
         <summary class="dropdown-3">List all orders - <code>list</code></summary>
         
+        Displays the list of upcoming orders.  
         Format:
         ```
         order list
@@ -308,9 +309,19 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
     - <details open>
         <summary class="dropdown-3">Add an order - <code>add</code></summary>
         
+        Creates an order and add it to the order list.  
         Format:
         ```
-        order add n/[CUSTOMER_NAME] dt/[DELIVERY_DATETIME, DD-MM-YYYY HH:MM] d/[DISH_NAME] q/[QUANTITY]...   
+        order add n/[CUSTOMER_INDEX] dt/[DELIVERY_DATETIME, DD-MM-YYYY HH:MM] d/[DISH_NAME] q/[QUANTITY]...   
+        ```
+        Example:  
+        ![OrderAddExample](images/order/OrderAddExample.png)  
+        `Bernice Yu` has ordered a `burger` and 2 `chicken wings` on `14th Feb 2021 6:30pm`.  
+        You can see on the customer list (right column) that `Bernice Yu` has an id of `2`.  
+        While a `burger` has an id of `2`, `Chicken Wings` has an id of `3` on the menu list (right column).  
+        The command to be inputted will be:
+        ```
+        order add n/2 dt/14-02-2021 18:30 d/1 q/1 d/3 q/1  
         ```
         
         </details>
@@ -332,7 +343,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
         ```
-        inventory edit [INDEX] (n/[CUSTOMER_NAME]) (dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM)) (d/[DISH_NAME] q/[QUANTITY]...)
+        order edit [INDEX] (n/[CUSTOMER_INDEX]) (dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM)) (d/[DISH_NAME] q/[QUANTITY]...)
         ```
         
         At least one of the fields in brackets must be present in the edit command.
