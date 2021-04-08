@@ -3,7 +3,6 @@ package seedu.taskify.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_DELETE_BY_STATUS_USAGE;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_INDEX;
 import static seedu.taskify.logic.parser.ParserUtil.ASSERTION_ERROR_PARSE_MULTIPLE_INDEX_CALLED;
@@ -71,8 +70,8 @@ public class ParserUtilTest {
     @ParameterizedTest
     @ValueSource(strings = {"1 2 haha", "1.0 2 3", "1to3", "1-3.0", "2-four"})
     public void parseMultipleIndex_invalidArgs_throwsParseException(String input) {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE),
-                () -> parseMultipleIndex(input));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteCommand.MESSAGE_USAGE), () -> parseMultipleIndex(input));
     }
 
     @Test

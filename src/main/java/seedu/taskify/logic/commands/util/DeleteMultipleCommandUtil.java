@@ -92,7 +92,8 @@ public class DeleteMultipleCommandUtil {
             String[] arguments = input.split(" ");
             for (String argument : arguments) {
                 if (!StringUtil.isNonZeroUnsignedInteger(argument)) {
-                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+                    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            DeleteCommand.MESSAGE_USAGE));
                 }
             }
             return arguments;

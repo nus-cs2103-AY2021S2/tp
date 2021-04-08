@@ -1,7 +1,6 @@
 package seedu.taskify.logic.parser;
 
 import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_AT_LEAST_ONE_INVALID_INDEX;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_DELETE_BY_STATUS_USAGE;
 import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseSuccess;
