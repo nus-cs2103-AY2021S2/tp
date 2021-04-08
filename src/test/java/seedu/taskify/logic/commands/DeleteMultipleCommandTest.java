@@ -39,9 +39,9 @@ public class DeleteMultipleCommandTest {
 
 
     private static final String MESSAGE_DELETE_FIRST_TO_THIRD_TASK_SUCCESS =
-            "Deleted Tasks: " + TASK_1.toString() + TASK_2.toString() + TASK_3.toString();
+            "Deleted Tasks: \n" + TASK_1.toString() + "\n\n" + TASK_2.toString() + "\n\n" + TASK_3.toString() + "\n\n";
     private static final String MESSAGE_DELETE_COMPLETED_TASKS_SUCCESS =
-            "Deleted Tasks: " + TASK_3.toString() + TASK_5.toString();
+            "Deleted Tasks: \n" + TASK_3.toString() + "\n\n" + TASK_5.toString() + "\n\n";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
