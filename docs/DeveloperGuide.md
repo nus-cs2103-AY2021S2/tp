@@ -649,8 +649,8 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **MSS**
 
-1. Tutor wants to change the existing budget.
-2. Tutor requests to change the budget to an amount he wants.
+1. User wants to change the existing budget.
+2. User requests to change the budget to an amount he wants.
 
 **Extensions**
 * 2a. A budget is already present.
@@ -662,8 +662,8 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **MSS**
 
-1. Tutor does not want to do with a budget.
-2. Tutor requests to delete budget. 
+1. User does not want to do with a budget.
+2. User requests to delete budget. 
 
 **Extensions** 
 * 2a. There is no existing budget.
@@ -675,8 +675,8 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 
 **MSS**
 
-1. Tutor does not want view an existing budget.
-2. Tutor requests to view budget.
+1. User does not want view an existing budget.
+2. User requests to view budget.
 
 **Extensions**
 * 2a. There is no existing budget.
