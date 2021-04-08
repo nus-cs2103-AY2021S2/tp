@@ -166,7 +166,7 @@ public class ParserUtil {
         try {
             assert Title.isValidTitle(trimmedTitle) : "You have to input a task Title";
         } catch (AssertionError e) {
-            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_TASK_TITLE + Title.MESSAGE_CONSTRAINTS);
         }
 
         if (!Title.isValidTitle(trimmedTitle)) {
@@ -188,7 +188,7 @@ public class ParserUtil {
         try {
             assert Description.isValidDescription(trimmedDesc) : "You have to input a task description";
         } catch (AssertionError e) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_TASK_DESCRIPTION + Description.MESSAGE_CONSTRAINTS);
         }
 
         if (!Description.isValidDescription(trimmedDesc)) {
@@ -210,7 +210,7 @@ public class ParserUtil {
         try {
             assert TaskStatus.isValidValue(trimmedStatus) : "You have to input a valid status";
         } catch (AssertionError e) {
-            throw new ParseException(TaskStatus.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_TASK_STATUS + TaskStatus.MESSAGE_CONSTRAINTS);
         }
 
         if (!TaskStatus.isValidValue(trimmedStatus)) {
@@ -231,9 +231,14 @@ public class ParserUtil {
         DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         sdf.setLenient(false);
         try {
+            assert Deadline.isValidFormat(trimmedDeadline) : " You have to input a deadline with the correct format!";
+        } catch (AssertionError e) {
+            throw new ParseException(MESSAGE_INVALID_TASK_DEADLINE_FORMAT + Deadline.MESSAGE_CONSTRAINTS);
+        }
+        try {
             assert Deadline.isValidDeadline(trimmedDeadline) : "You have to input a valid deadline!";
         } catch (AssertionError e) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_TASK_DEADLINE + Deadline.MESSAGE_CONSTRAINTS);
         }
         if (!Deadline.isValidFormat(trimmedDeadline)) {
             throw new ParseException(MESSAGE_INVALID_TASK_DEADLINE_FORMAT + Deadline.MESSAGE_CONSTRAINTS);
