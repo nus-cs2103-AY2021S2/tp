@@ -1,14 +1,23 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: clarlzx's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: ParentPal
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+ParentPal is a desktop app for parents to manage their children's contacts and their related appointments. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
+* **New Feature**: Designed architecture for Appointment functionalities.
+  * What it does: Designed UML class diagrams for the different components (Model, Logic, UI and Storage) for Appointment.
+  * Justification: This step was important as the classes and methods related to Appointment would greatly affect the design of the current architecture. Hence, it was necessary to draft out the design so that changes would be easy to integrate, without affecting the design of AddressBook-Level 3 too much.
+  * Highlights:
+* **New Feature**: Add Model and UI component for Appointment.
+* **New Feature**: Add command to enable users to change theme.
+  * What it does: allows the user to change theme to a light or dark theme.
+  * Justification: This feature provides user with more UI choices. The light theme also provides a more family-oriented appearance to the application.
+  * Highlights: 
 * **New Feature**: Added the ability to undo/redo previous commands.
   * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
