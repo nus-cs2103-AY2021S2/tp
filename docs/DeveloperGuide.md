@@ -361,25 +361,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 <!-- Updated and maintained by [Yucheng](https://github.com/cheng20010201) -->
 1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  The product should be available for download and usage after each release.
+2.  The product should be available for downloads after each release on GitHub.
 3.  The product's size of the final Jar released should not exceed 100MB.
-4.  The product should be an offline application, which should work either with or without presence of internet
-    connection.
+4.  The product should be an offline application, which should work regardless of internet connection.
 5.  The product should allow one user to have different instances of the application running at the same time.
-6.  The product should be able to hold up to 2000 Japanese words without causing a delay in commands longer than 0.5 seconds.
-7.  The project should be open-sourced.
+6.  The product should be able to hold up to 2000 Japanese words without causing a delay in commands longer than
+    0.5 seconds.
+7.  The product should be open-sourced on GitHub.
 8.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) and
-    beginner typing speed for simple Japanese text (i.e. simple words and sentences) should be able to accomplish most
-    of the learning faster using commands than using the mouse.
-10. A user should find interacting with the user interface easy, even if he/she is relatively new to the application.
-11. Each command should be processed within 3 seconds.
-12. More to be added.
+    should be able to accomplish most of the learning faster using commands than using the mouse/GUI.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Question**: A Japanese character/word
-* **Answer**: The reading/definition of the Japanese given in the corresponding question
+* **Answer**: The pronunciation/translation of the Japanese word given in the corresponding question
 * **Flashcard**: An object that can display a question and its answer
 
 --------------------------------------------------------------------------------------------------------------------
