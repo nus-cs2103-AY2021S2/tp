@@ -3,6 +3,7 @@ package seedu.heymatez.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_PERSON_LIST;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.heymatez.testutil.TypicalPersons.BENSON;
@@ -59,7 +60,7 @@ public class FindMembersCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = MESSAGE_EMPTY_PERSON_LIST;
         DetailsContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindMembersCommand command = new FindMembersCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
@@ -76,6 +77,17 @@ public class FindMembersCommandTest {
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_noPersonsFound() {
+        String expectedMessage = MESSAGE_EMPTY_PERSON_LIST;
+        DetailsContainsKeywordsPredicate predicate =
+                preparePredicate("Michelle Joelle Tim 98755432 vicePresident tim@example.com");
+        FindMembersCommand command = new FindMembersCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
     /**

@@ -103,7 +103,6 @@ to manage tasks which can be identified by their unique deadlines or priorities.
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
   
-
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
   
@@ -175,8 +174,6 @@ As members leave the club, you can delete a member along with all of his/her con
 
 Format: `deleteMember NAME`
 
-* The name specified must match the member's name in the list exactly, case-sensitive. 
-
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 The name you specify must belong to an existing Member in the Application.
 </div>
@@ -187,12 +184,12 @@ Examples:
 <a name="viewMembers"></a>
 ### 3. View Members: `viewMembers`
 
-Display the list of members you have added.
+Displays the list of members that you have added into HEY MATEz.
 
 Format: `viewMembers `
 
 Examples: 
-* `viewMembers `
+* `viewMembers`
 
 <a name="editMember"></a>
 ### 4. Edit Member: `editMember`
@@ -204,9 +201,9 @@ Format: `editMember NAME_IN_LIST [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL]
 * Edits the member at the specified NAME_IN_LIST.
 * The fields NEW_NAME, NEW_PHONE_NUMBER, NEW_EMAIL, NEW_ROLE are all optional.
 * At least one of the optional fields must be provided.
-* ROLE field can take on any values with alphanumeric characters.
+* NEW_ROLE field can take on any values with alphanumeric characters.
+* NEW_NAME field can take on any values with alphanumeric characters.    
 * Existing values will be updated to the input values.
-* NEW_NAME field can take on any values with alphanumeric characters.
 
 Examples: 
 * `editMember Alice n/Alice Tan`
@@ -288,8 +285,8 @@ Format: `editTask INDEX [n/NEW_TITLE] [d/NEW_DESCRIPTION] [b/NEW_DEADLINE] [s/NE
 * Edits the Task at the specified index.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* If the assignee field is being edited, the previous assignees will be overwritten. 
-* ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex     Yeoh" are not the same assignee.
+* If the assignee field is being edited, all previous assignees will be overwritten. 
+* NEW_ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex     Yeoh" are not the same assignee.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Any number of assignees can be specified here (including 0).    
