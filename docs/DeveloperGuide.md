@@ -1,22 +1,8 @@
 --------------------------------------------------------------------------------------------------------------------
-## Developer Guide for v1.2
+## Developer Guide for The Food Diary
 
-## Table of contents
-
-- Description of Application
-- Design
-    - Architecture
-- Implementation
-    - AddOn feature
-    - View feature
-    - FindAll feature
-- Appendix: Requirements
-    - Product Scope
-    - User Stories
-    - Use Cases
-    - Non-Functional Requirements
-    - Glossary
-    - UI Mock-Up
+* Table of Contents
+  {:toc}
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Description**
@@ -60,7 +46,7 @@ using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Logic Class Diagram](images/LogicClassDiagram.png)
 
-####How the architecture components interact with each other
+#### How the architecture components interact with each other
 The *Sequence Diagram* below shows how the components interact with each other for the scenario 
 where the user issues the command `addon 1 re/i like this food`.
 
@@ -68,15 +54,15 @@ where the user issues the command `addon 1 re/i like this food`.
 
 The sections below give more details of each component. 
 
-###UI component
+### UI component
 
-###Logic Component
+### Logic Component
 
-###Model Component
+### Model Component
 
-###Storage Component
+### Storage Component
 
-###Common classes
+### Common classes
 Classes used by multiple components are in the seedu.fooddiary.commons package.
 
 
