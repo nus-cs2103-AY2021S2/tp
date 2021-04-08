@@ -3,32 +3,33 @@ package seedu.weeblingo.logic.commands;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_GENERIC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAGS_SET_GENERIC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.assertCommandFailure;
-//import static seedu.weeblingo.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.weeblingo.logic.commands.StartCommand.MESSAGE_NOT_IN_QUIZ_MODE;
-//import static seedu.weeblingo.logic.commands.StartCommand.MESSAGE_SUCCESS;
-
-import org.junit.jupiter.api.Test;
+import static seedu.weeblingo.logic.commands.StartCommand.MESSAGE_SUCCESS;
 
 import seedu.weeblingo.model.Model;
 import seedu.weeblingo.model.ModelManager;
-//import seedu.weeblingo.model.tag.Tag;
+import seedu.weeblingo.model.tag.Tag;
 
-//import java.util.Set;
+import org.junit.jupiter.api.Test;
+
+
+import java.util.Set;
 
 public class StartCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();
 
-    //@Test
-    //public void execute_start_success() {
-    //    model.getMode().switchModeQuiz();
-    //    CommandResult expectedCommandResult = new CommandResult(
-    //            MESSAGE_SUCCESS, false, false);
-    //    Set<Tag> tags = VALID_START_TAGS_SET_GENERIC;
-    //    tags.add(new Tag("hiragana"));
-    //    assertCommandSuccess(new StartCommand(VALID_START_INTEGER_GENERIC, tags),
-    //            model, expectedCommandResult, expectedModel);
-    //}
+    @Test
+    public void execute_start_success() {
+        model.getMode().switchModeQuiz();
+        CommandResult expectedCommandResult = new CommandResult(
+                MESSAGE_SUCCESS, false, false);
+        Set<Tag> tags = VALID_START_TAGS_SET_GENERIC;
+        tags.add(new Tag("hiragana"));
+        assertCommandSuccess(new StartCommand(VALID_START_INTEGER_GENERIC, tags),
+                model, expectedCommandResult, expectedModel);
+    }
 
     @Test
     public void execute_startInMenu_failure() {
