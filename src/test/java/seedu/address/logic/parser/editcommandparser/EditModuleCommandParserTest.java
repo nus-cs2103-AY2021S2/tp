@@ -33,7 +33,8 @@ public class EditModuleCommandParserTest {
 
         // no field specified
         String userInput3 = "1 " + PREFIX_MODULE.getPrefix();
-        assertParseFailure(parser, userInput3, Title.MESSAGE_CONSTRAINTS); //empty description
+        assertParseFailure(parser, userInput3,
+                String.format(Title.MESSAGE_CONSTRAINTS, "Modules")); //empty description
     }
 
     @Test
@@ -62,7 +63,8 @@ public class EditModuleCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         String userInput = "1 " + PREFIX_MODULE.getPrefix() + INVALID_TITLE;
-        assertParseFailure(parser, userInput, Title.MESSAGE_CONSTRAINTS); // invalid date format
+        assertParseFailure(parser, userInput,
+                String.format(Title.MESSAGE_CONSTRAINTS, "Modules")); // invalid date format
     }
 
     @Test

@@ -41,6 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_EXAM_DATETIME_2 = "06/06/2021 0500";
     public static final String VALID_ASSIGNMENT_DESCRIPTION_1 = "Assignment 1";
     public static final String VALID_ASSIGNMENT_DESCRIPTION_2 = "Assignment 2";
+    public static final String VALID_ASSIGNMENT_DEADLINE_1 = "04/04/2021 1700";
+    public static final String VALID_ASSIGNMENT_DEADLINE_2 = "04/07/2021 1700";
     public static final ArrayList<Exam> VALID_EXAMS_CS2103 = new ArrayList<Exam>();
 
     public static final String VALID_NAME_AMY = "Amy Bee";
@@ -63,8 +65,6 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String BIRTHDAY_DESC_AMY = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_AMY;
     public static final String BIRTHDAY_DESC_BOB = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_BOB;
-
-
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags

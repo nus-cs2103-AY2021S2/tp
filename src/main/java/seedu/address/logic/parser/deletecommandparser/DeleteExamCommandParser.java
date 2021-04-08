@@ -1,6 +1,5 @@
 package seedu.address.logic.parser.deletecommandparser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -18,16 +17,15 @@ public class DeleteExamCommandParser extends DeleteCommandParser implements Pars
     @Override
     public DeleteExamCommand parse(String args) throws ParseException {
 
-        try {
-            ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_EXAM, PREFIX_ASSIGNMENT);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_EXAM, PREFIX_ASSIGNMENT);
 
-            Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE).get());
-            Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_EXAM).get());
-            return new DeleteExamCommand(title, index);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteExamCommand.MESSAGE_USAGE), pe);
-        }
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE)
+                .filter(Title::isValidTitle)
+                .orElseThrow(() -> new ParseException(
+                        String.format(Title.MESSAGE_CONSTRAINTS, "Modules'")
+                )));
+        Index index = ParserUtil.parseExamIndex(argMultimap.getValue(PREFIX_EXAM).get());
+        return new DeleteExamCommand(title, index);
     }
 }

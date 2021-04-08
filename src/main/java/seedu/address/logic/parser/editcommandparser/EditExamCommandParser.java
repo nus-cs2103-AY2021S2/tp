@@ -14,6 +14,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
 
@@ -31,19 +32,24 @@ public class EditExamCommandParser extends EditCommandParser implements Parser<E
     public EditExamCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_EXAM, PREFIX_DATE);
-
         if (!arePrefixesPresent(argMultimap, PREFIX_MODULE, PREFIX_EXAM, PREFIX_DATE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditExamCommand.MESSAGE_USAGE));
         }
 
-        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE).get());
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE)
+                .filter(Title::isValidTitle)
+                .orElseThrow(() -> new ParseException(
+                        String.format(Title.MESSAGE_CONSTRAINTS, "Modules")
+                )));
         Module module = new Module(title);
 
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_EXAM).get());
         int intIndex = index.getOneBased();
 
-        LocalDateTime edit = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DATE).get());
+        LocalDateTime edit = argMultimap.getValue(PREFIX_DATE)
+                .map(ParserUtil::parseExamDate)
+                .orElseThrow(() -> new ParseException(Exam.MESSAGE_CONSTRAINTS));
 
         return new EditExamCommand(module, intIndex, edit);
     }

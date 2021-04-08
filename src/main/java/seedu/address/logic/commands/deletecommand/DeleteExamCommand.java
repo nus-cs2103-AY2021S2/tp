@@ -2,8 +2,6 @@ package seedu.address.logic.commands.deletecommand;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.List;
 
@@ -22,14 +20,8 @@ import seedu.address.model.module.Title;
  */
 public class DeleteExamCommand extends DeleteCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the exam identified by the index in ExamList of the module\n"
-            + "Parameters: Index\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103T "
-            + PREFIX_EXAM + "1";
-
     public static final String MESSAGE_DELETE_EXAM_SUCCESS = "Deleted Exam: %1$s";
+    public static final String MESSAGE_EMPTY_EXAMLIST = "Exam list is empty";
 
     private final Title moduleTitle;
 
@@ -56,6 +48,9 @@ public class DeleteExamCommand extends DeleteCommand {
         int indexOfModule = getIndex(lastShownList, moduleToCheck);
         Module moduleToGet = lastShownList.get(indexOfModule);
         ExamList examList = moduleToGet.getExams();
+        if (examList.size() == 0) {
+            throw new CommandException(MESSAGE_EMPTY_EXAMLIST);
+        }
         if (examIndex.getZeroBased() >= examList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EXAM_DISPLAYED_INDEX);
         }

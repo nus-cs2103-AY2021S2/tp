@@ -2,8 +2,6 @@ package seedu.address.logic.commands.deletecommand;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.List;
 
@@ -22,15 +20,8 @@ import seedu.address.model.module.Title;
  */
 public class DeleteAssignmentCommand extends DeleteCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the assignment identified by the index in Assignment list of the module\n"
-            + "Parameters: Index\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103T "
-            + PREFIX_ASSIGNMENT + "1";
-
     public static final String MESSAGE_DELETE_ASSIGNMENT_SUCCESS = "Deleted Assignment: %1$s";
-
+    public static final String MESSAGE_EMPTY_ASSIGNMENTLIST = "Assignment list is empty";
     private final Title moduleTitle;
 
     private final Index assignmentIndex;
@@ -56,6 +47,9 @@ public class DeleteAssignmentCommand extends DeleteCommand {
         int indexOfModule = getIndex(lastShownList, moduleToCheck);
         Module moduleToGet = lastShownList.get(indexOfModule);
         AssignmentList assignmentList = moduleToGet.getAssignments();
+        if (assignmentList.size() == 0) {
+            throw new CommandException(MESSAGE_EMPTY_ASSIGNMENTLIST);
+        }
         if (assignmentIndex.getZeroBased() >= assignmentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
         }

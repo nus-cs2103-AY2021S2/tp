@@ -16,12 +16,8 @@ import seedu.address.model.person.Person;
  */
 public class DeletePersonCommand extends DeleteCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX\n"
-            + "Example: " + COMMAND_WORD + " 1";
-
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_EMPTY_PERSONLIST = "Contact list is empty";
 
     private final Index targetIndex;
 
@@ -34,6 +30,9 @@ public class DeletePersonCommand extends DeleteCommand {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
+        if (lastShownList.size() == 0) {
+            throw new CommandException(MESSAGE_EMPTY_PERSONLIST);
+        }
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }

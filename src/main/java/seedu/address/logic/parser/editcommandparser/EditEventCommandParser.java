@@ -13,8 +13,8 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Description;
-
 
 /**
  * Parses input arguments and create a new EditEventCommand object.
@@ -43,10 +43,14 @@ public class EditEventCommandParser extends EditCommandParser implements Parser<
         Description eventEdit = null;
         LocalDateTime dateEdit = null;
         if (arePrefixesPresent(argMultimap, PREFIX_GENERAL_EVENT)) {
-            eventEdit = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_GENERAL_EVENT).get());
+            eventEdit = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_GENERAL_EVENT)
+                .filter(Description::isValidDescription)
+                .orElseThrow(() -> new ParseException(Description.MESSAGE_CONSTRAINTS)));
         }
         if (arePrefixesPresent(argMultimap, PREFIX_DATE)) {
-            dateEdit = ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get());
+            dateEdit = argMultimap.getValue(PREFIX_DATE)
+                    .map(ParserUtil::parseEventDate)
+                    .orElseThrow(() -> new ParseException(GeneralEvent.DATE_CONSTRAINT));
         }
 
         return new EditEventCommand(intIndex, eventEdit, dateEdit);

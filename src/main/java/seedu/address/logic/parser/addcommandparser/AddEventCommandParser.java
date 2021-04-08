@@ -38,7 +38,7 @@ public class AddEventCommandParser extends AddCommandParser implements Parser<Ad
                 .filter(Description::isValidDescription)
                 .orElseThrow(() -> new ParseException(GeneralEvent.DESCRIPTION_CONSTRAINT)));
         LocalDateTime date = (argMultimap.getValue(PREFIX_DATE)
-                .map(ParserUtil::parseDeadline)
+                .map(ParserUtil::parseEventDate)
                 .orElseThrow(() -> new ParseException(GeneralEvent.DATE_CONSTRAINT)));
         assert description != null && date != null;
 

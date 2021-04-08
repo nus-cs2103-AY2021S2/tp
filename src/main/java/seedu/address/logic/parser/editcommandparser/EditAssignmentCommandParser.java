@@ -15,10 +15,10 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
-
 
 /**
  * Parses input arguments and create a new EditAssignmentCommand object.
@@ -39,7 +39,10 @@ public class EditAssignmentCommandParser extends EditCommandParser implements Pa
                                                     EditAssignmentCommand.MESSAGE_USAGE));
         }
 
-        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE).get());
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE)
+                .filter(Title::isValidTitle)
+                .orElseThrow(() -> new ParseException(
+                        String.format(Title.MESSAGE_CONSTRAINTS, "Modules"))));
         Module module = new Module(title);
 
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_ASSIGNMENT).get());
@@ -48,10 +51,14 @@ public class EditAssignmentCommandParser extends EditCommandParser implements Pa
         Description descriptionEdit = null;
         LocalDateTime dateEdit = null;
         if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
-            descriptionEdit = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+            descriptionEdit = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION)
+                    .filter(Description::isValidDescription)
+                    .orElseThrow(() -> new ParseException(Description.MESSAGE_CONSTRAINTS)));
         }
         if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
-            dateEdit = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
+            dateEdit = argMultimap.getValue(PREFIX_DEADLINE)
+                    .map(ParserUtil::parseDeadline)
+                    .orElseThrow(() -> new ParseException(Assignment.DATE_CONSTRAINTS));
         }
 
         return new EditAssignmentCommand(module, intIndex, descriptionEdit, dateEdit);

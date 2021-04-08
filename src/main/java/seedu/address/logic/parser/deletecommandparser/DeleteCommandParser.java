@@ -13,13 +13,14 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.deletecommand.DeleteCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.CommandParser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates new parseCommand Object
  */
-public class DeleteCommandParser {
+public class DeleteCommandParser implements CommandParser {
     /**
      * Parses the {@code String} of arguments of a delete command
      * to execute the specific delete command
@@ -46,6 +47,7 @@ public class DeleteCommandParser {
         return command;
     }
 
+
     /**
      * returns true when arguments match input for deleteModule command
      */
@@ -53,7 +55,8 @@ public class DeleteCommandParser {
         return arePrefixesPresent(argMultimap, PREFIX_MODULE)
                 && argMultimap.getPreamble().isEmpty()
                 && !arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT)
-                && !arePrefixesPresent(argMultimap, PREFIX_EXAM);
+                && !arePrefixesPresent(argMultimap, PREFIX_EXAM)
+                && !arePrefixesPresent(argMultimap, PREFIX_GENERAL_EVENT);
     }
 
     /**
@@ -63,7 +66,9 @@ public class DeleteCommandParser {
         return arePrefixesPresent(argMultimap, PREFIX_MODULE)
                 && argMultimap.getPreamble().isEmpty()
                 && arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT)
-                && !arePrefixesPresent(argMultimap, PREFIX_EXAM);
+                && !arePrefixesPresent(argMultimap, PREFIX_EXAM)
+                && !arePrefixesPresent(argMultimap, PREFIX_GENERAL_EVENT);
+
     }
 
     /**
@@ -73,14 +78,20 @@ public class DeleteCommandParser {
         return arePrefixesPresent(argMultimap, PREFIX_MODULE)
                 && argMultimap.getPreamble().isEmpty()
                 && !arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT)
-                && arePrefixesPresent(argMultimap, PREFIX_EXAM);
+                && arePrefixesPresent(argMultimap, PREFIX_EXAM)
+                && !arePrefixesPresent(argMultimap, PREFIX_GENERAL_EVENT);
+
     }
 
     /**
      * returns true when arguments match input for deletePerson command
      */
     public boolean deletePersonCondition(ArgumentMultimap argMultimap) {
-        return !arePrefixesPresent(argMultimap, PREFIX_NAME);
+        return !arePrefixesPresent(argMultimap, PREFIX_NAME)
+                && !arePrefixesPresent(argMultimap, PREFIX_GENERAL_EVENT)
+                && !arePrefixesPresent(argMultimap, PREFIX_MODULE)
+                && !arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT)
+                && !arePrefixesPresent(argMultimap, PREFIX_EXAM);
     }
 
     /**
@@ -88,6 +99,9 @@ public class DeleteCommandParser {
      */
     public boolean deleteGeneralEventCondition(ArgumentMultimap argMultimap) {
         return arePrefixesPresent(argMultimap, PREFIX_GENERAL_EVENT)
+                && !arePrefixesPresent(argMultimap, PREFIX_MODULE)
+                && !arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT)
+                && !arePrefixesPresent(argMultimap, PREFIX_EXAM)
                 && argMultimap.getPreamble().isEmpty();
     }
 
