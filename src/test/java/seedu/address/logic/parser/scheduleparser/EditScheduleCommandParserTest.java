@@ -150,7 +150,8 @@ public class EditScheduleCommandParserTest {
         // title
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + TITLE_DESC_THREE;
-        EditScheduleDescriptor descriptor = new EditScheduleDescriptorBuilder().withTitle(VALID_SCHEDULE_TITLE_THREE).build();
+        EditScheduleDescriptor descriptor = new EditScheduleDescriptorBuilder().withTitle(VALID_SCHEDULE_TITLE_THREE)
+                .build();
         EditScheduleCommand expectedCommand = new EditScheduleCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

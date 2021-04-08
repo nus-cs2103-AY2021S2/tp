@@ -2,14 +2,14 @@ package seedu.address.logic.commands.appointmentcommands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
-import static seedu.address.testutil.ModelManagerBuilder.ModelType.APPOINTMENTBOOK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalModel.ModelType.APPOINTMENTBOOK;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
-import seedu.address.testutil.ModelManagerBuilder;
+import seedu.address.testutil.TypicalModel;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListAppointmentCommand.
@@ -21,8 +21,8 @@ public class ListAppointmentCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = ModelManagerBuilder.getModelManager();
-        expectedModel = ModelManagerBuilder.getModelManager(model, APPOINTMENTBOOK);
+        model = TypicalModel.getTypicalModel();
+        expectedModel = TypicalModel.getTypicalModel(model, APPOINTMENTBOOK);
     }
 
     @Test
