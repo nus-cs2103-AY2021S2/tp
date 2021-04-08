@@ -32,7 +32,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class DietLahParser {
 
     /**
      * Useditial separation of command word and args.

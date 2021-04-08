@@ -1,3 +1,5 @@
+
+
 ---
 layout: page
 title: Developer Guide
@@ -20,6 +22,10 @@ title: Developer Guide
     * [List food item feature](#list-food-item-feature)
     * [Delete food item feature](#delete-food-item-feature)
   * [FoodIntake Object](#foodintake-object)
+  * [FoodIntakeList Object](#foodintakelist-object)
+    * [Add food intake feature](#add-food-intake-feature)
+    * [Delete food intake feature](#delete-food-intake-feature)
+    * [Update food intake feature](#update-food-intake-feature)
   * [Progress Report feature](#progress-report-feature)
   * [Mifflin-St Joer Formula](#mifflin-st-joer-formula)
 * [Product Scope](#product-scope)
@@ -167,7 +173,21 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+## Date format
+DietLAH! uses the following date format for command inputs: `d Mmm yyyy` which is clearer to interpret and reduces the chances of typos. Refer to the table below for more information:
+
+Legend | Description
+-------|-------------
+d | Day in the calendar month, ranging from 0 - 31, without leading zeroes
+Mmm | 3-letter textual representation of a month in the calendar year, ranging from Jan - Dec, case sensitive
+yyyy | Numerical 4-digit representation of a year in the calendar, e.g. 2021
+
+Some example date inputs: `3 Jan 2021`, `21 Feb 2021`, `30 Mar 2021`
+
+
 ### User Object
+
+<img src="images/UserClassDiagram.png" width="512" />
 
 The User object is where the majority of the user's information and parameters are stored.
 
@@ -183,6 +203,8 @@ Some of the actions that can be performed with the User component are:
 
 
 ### Food Object
+
+<img src="images/FoodClassDiagram.png" width="145" />
 
 The food object stores the name of the food and its nutrient values (Carbohydrates, Fats and Proteins).
 
@@ -213,9 +235,11 @@ Below is the Sequence Flow Diagram when a Food gets added to the UniqueFoodList 
   * Pros:
     * Less prone to bugs
   * Cons:
-    * More overhead to update items as a new object is created everytime
+    * More overhead to update items as a new object is created every time
 
 ### Add food item feature
+
+<img src="images/AddFoodItemActivityDiagram.png" width="415" />
 
 #### Description:
 This command adds a valid food item into the unique food list. Users are able to add a food item in with the valid input to the command below. If a food item with a similar name is added, this command will not allow it and an error will be shown to ask the user if they want to update the value instead.
@@ -290,27 +314,141 @@ The following sequence diagram shows how the delete operation works:
 
 ### FoodIntake Object
 
-The FoodIntake class stores a `LocalDate` and `Food` object representing the date and food associated with a particular FoodIntake.
+<img src="images/FoodIntakeClassDiagram.png" width="249" />
+
+The food intake object represents the date and food associated with a particular food intake.
+
+The 'FoodIntake' class stores a `LocalDate` and `Food`:
 
 1. `date` : Represents the date that the FoodIntake was recorded
 2. `food` : Represents the `Food` object associated with the FoodIntake record
 
 The `Food` object associated with each `FoodIntake` object is independent of the `UniqueFoodList` and editing a `Food` in the `UniqueFoodList` will not affect old FoodIntake values, and vice versa.
 
+#### FoodIntake Constructors
 There are two constructors for the creation of a FoodIntake object.
 
 1. `public FoodIntake(LocalDate date, Food temporaryFood)` : Creates a `FoodIntake` object given the `LocalDate` and `Food` object - used in the general FoodIntakeCommand when there is no need to alter the `Food` name e.g. appending the numerical duplicate count.
 2. `public FoodIntake(LocalDate date, String name, double carbos, double fats, double proteins)` : Creates a FoodIntake object given the `LocalDate` and individual food name and nutrient values - used when loading to file and saving duplicate `FoodIntake` Food names.
 
 #### Design consideration
+##### Aspect: Allowing special `Food` names for duplicate `FoodIntake` names
+When adding multiple `FoodIntake`s with the same `Food` name in a given date, the `FoodIntake` with the duplicate name will be appended with a **duplicate count**.
 
-The `FoodIntake` class makes use of a `Food` object as it can be directly retrieved from the `UniqueFoodList` which stores a list of `Food` objects.
+For example, adding two 'chicken rice' will result in the following list of food intakes: chicken rice, chicken rice #2.
 
-Two constructors were used to get-around the restrictions by the `Food` name field. By default, the `Food` name can only contain **alphabets and spaces**, however, when adding a new `FoodIntake` item to the `FoodIntakeList`, duplicate `Food` names are appended with a **numerical duplicate count** (e.g. Chicken rice 2 symbolises that it is the second 'Chicken rice' added on the specific date). As such, the second constructor allows for `Food` names with numerical values and is used when loading the `FoodIntakeList` from file, and when adding a `FoodIntake` with a duplicate `Food` name.
+Hence, there is a need to allow for a by-pass in the name validation by `Food` which conventionally only allows **alphanumeric characters**. When a `Food` contains a duplicate name and is added to the `FoodIntakeList`, the name will be renamed to include the duplicate count which contains the '#' character - which is not allowed by the default constructor.
 
-### FoodIntakeList Class
+* Current Choice:
+  * Create two different constructors for the `FoodIntake` class. One directly accepts a `Food` object, which must adhere to the naming validation by `Food`, while the other accepts all the individual name and nutrient values.
+  * In the background, the `FoodIntake` class creates a `Food` object with a temporary name and then calls the `setName()` method to reflect the name with the duplicate count - bypassing the alphanumeric check.
+* Pros:
+  * There is no need to amend the original `Food` class and potentially harm the integrity of the `Food` names
+  * Does not affect the `UniqueFoodList`
+* Cons:
+  * Results in two different constructors
+* Alternative 1: Make a separate class to store foods specifically in the `FoodIntake`
+  * Pros:
+    * No need for multiple constructors in `Food`
+  * Cons:
+    * Less intuitive, as both classes are essentially taking on the role of a 'Food'
 
-[Work in progress]
+### FoodIntakeList Object
+
+<img src="images/FoodIntakeListClassDiagram.png" width="287" />
+
+The FoodIntake class represents a list of recorded food intakes by the user.
+
+<img src="images/FoodIntakeListFoodAssociationClassDiagram.png" width="305" />
+
+The FoodIntake class stores an ObservableList of `FoodIntake`s:
+1. `ObservableList<FoodIntake>`: Represents the list of recorded `FoodIntake`s
+
+Additionally, some noteworthy information to note:
+1. `FoodIntake`s with duplicate `Food` names will have their names renamed to include a duplicate count. More information on the implementation is provided in the below section.
+2. Whenever a `FoodIntake` is deleted, the duplicate count is re-ordered for `FoodIntake`s matching the name and date. More information on the implementation is provided in the below section.
+
+#### Design consideration
+##### Aspect: A single `FoodIntakeList` used for the program
+* Current Choice:
+  * A single `FoodIntakeList` is used to store all `FoodIntake`s by the user
+* Pros:
+  * Easier maintenance and storage of files
+* Cons:
+  * All data from multiple plans may reside in the same list when the user switches plans midway
+* Alternative 1: Keep multiple `FoodIntakeList`s
+  * Pros:
+    * Looking at the individual storage files would be clearer as different FoodIntakes from different plans are located in different files
+  * Cons:
+    * It is generally more complicated to implement and harder to ensure that the user is saving to the right `FoodIntakeList` instance
+
+### Add Food Intake feature
+
+<img src="images/AddFoodIntakeActivityDiagram.png" width="507" />
+
+#### Description:
+For the user's convenience, there are 3 scenarios for recording food intake.
+
+1. Add `FoodIntake` for new `Food` not currently in the `UniqueFoodList`.<br/>
+Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
+
+2. Add `FoodIntake` using existing `Food` in the `UniqueFoodList` and update its nutrient values.<br/>
+Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME p/PROTEINS <at least 1 nutrient value>`
+
+3. Add `FoodIntake` using existing `Food` in the `UniqueFoodList` without updating its values.<br/>
+Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME`
+
+#### Implementation:
+
+The `AddFoodIntakeParser` first verifies that the expected format is met and then calls the `AddFoodIntakeCommand()` method which checks whether an existing `Food` exists in the `UniqueFoodList`.
+
+1. If there exists an existing `Food` found in the `UniqueFoodList`, the `Food` object is retrieved, and if at least 1 nutrient value is provided, the `UniqueFoodList` will be updated with the new `Food` information.
+2. If no match is found in the `UniqueFoodList`, a new `Food` object is created and added to the `UniqueFoodList` for the user's convenience using the provided nutrient values. Values that are not provided are default to **0**.
+
+<div markdown="span" class="alert alert-info">
+**Note:** when updating a `Food` to its new nutrient values, `FoodIntake`s already in the `FoodIntakeList` will not be affected by the update.
+</div>
+
+The `addFoodIntake()` method of the `FoodIntakeList` is finally called to add the `FoodIntake` into the list. Refer to the detailed implementation below.
+
+##### addFoodIntake(FoodIntake foodIntake)
+The method first strips the duplicate count, if any, from the `Food` name in the `FoodIntake` using the `getOriginalName()`. Thereafter, the `getFoodIntakeItemCount()` method is called which returns the number of `FoodIntakes` matching the `Food` name and `date` (item count).
+
+If the item count is 0, the `FoodIntake` is added as it is. Otherwise, it means that there is at least 1 `FoodIntake` with the same name and date - and would require a duplicate count to be appended to the name.
+
+For example, if the original name is 'chocolate', and there are 3 `FoodIntake`s with 'chocolate' as their original name (duplicate count stripped out), then the name will be updated to 'chocolate #4' as it would be the 4th chocolate added to the `FoodIntakeList` on the specified date.
+
+### Delete Food Intake feature
+
+<img src="images/DeleteFoodIntakeActivityDiagram.png" width="523" />
+
+
+#### Description:
+The user can delete food intakes already added to the application by providing the food name, and date of intake. 
+
+Example: `food_intake_delete d/dd MMM yyy n/FOOD_NAME`
+
+#### Implementation:
+
+When the user deletes a food intake, the matching `FoodIntake` with the same date will be deleted. Because of the duplicate count appended in the add process, all names are guaranteed unique for a specified date.
+
+The `deleteFoodIntake()` method in the `FoodIntakeList`  looks for the matching `FoodIntake` `Food` name with the specified date and deletes the `FoodIntake` if it exists or throw a `FoodIntakeNotFoundException`. After successfully deleting, the `reorderDuplicateFoodNames()` is called to re-order all matching `Food` names as the counter might be out-of-date. This step is crucial, as the duplicate count's numbering may be out of order if they are not re-ordered.
+
+### Update Food Intake feature
+
+<img src="images/UpdateFoodIntakeActivityDiagram.png" width="635" />
+
+
+#### Description:
+The user can update the nutrient values of previously recorded food intakes. At least 1 nutrient value must be provided to be updated and values not provided will remain unchanged.
+
+Example: `food_intake_update d/dd MMM yyy n/FOOD_NAME p/PROTEINS <at least 1 nutrient value>`
+
+#### Implementation:
+The `UpdateFoodIntakeCommand` will take in the provided nutrient values to be updated, and for those that were not provided, the original `FoodIntake`'s `Food` values will be copied over and retained.
+
+The newly packaged `FoodIntake` object with the updated `Food` values is passed to the `updateFoodIntake()` method in the `FoodIntakeList` and will replace the matching `FoodIntake`.
+
 
 ### Progress Report feature
 
@@ -362,6 +500,8 @@ The progress calculator then uses the *macronutrients' percentages* to decide wh
 The following sections will explain how each of these information is collected by the `ProgressCalculator` class.
 
 #### Active diet plan details
+
+<img src="images/DietPlanListClassDiagram.png" width="547" />
 
 This section of the progress report details information pertaining to the active diet plan. These information is retrieved from the respective `DietPlan` class of the active diet plan selected by the user.
 This includes the name of the diet plan, a brief description of the diet plan and the macronutrient requirements (in percentages).
@@ -527,6 +667,26 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 2.  MacroTracker displays the summary intake for that day.
 
     Use case ends.
+
+#### Use case: Update food intake for a particular food and date
+
+**MSS**
+
+1.  User keys in the date, food name, and nutrient values.
+2.  MacroTracker displays updated list of food intakes for the specified date.
+
+    Use case ends.
+    
+**Extensions**
+*  1a. The food intake exists.
+
+   * 1a1. MacroTracker updates the provided nutrient values in the food intake list.
+   * Use case resumes at step 2.
+
+*  1b. The food intake does not exists.
+
+   * 1b1. Show invalid food intake message
+   * Use case ends
 
 *{More to be added}*
 

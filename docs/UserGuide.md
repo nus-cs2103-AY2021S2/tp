@@ -140,7 +140,7 @@ When you first launch DietLAH!, some sample data will already be loaded.
 
 DietLAH! uses this information to provide personalized recommendations based on your personal goals and current characteristics.
 
-<div class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
     ✏️ <strong>Note:</strong> You need to enter this command before all other commands will work! Also, note that you need to clear the sample data before you can use this command!
 </div>
 
@@ -256,7 +256,7 @@ Save food items you frequently consume, so you don't have to re-enter them every
 
 **Example:** `food_add n/tomato c/10 f/10 p/10`
 
-<div class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> Food names must be unique.
 </div>
 
@@ -274,11 +274,11 @@ Update food items in your food list with new nutrition values.
 
 **Example:** `food_update n/tomato c/20 f/30 p/40`
 
-<div class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> Ensure that the food item exists in the application.
 </div>
 
-<div class="alert alert-tip">
+<div markdown="span" class="alert alert-success">
 💡 <strong>Tip:</strong> Not all nutrient fields are compulsory. Save time from having to re-enter data and only include fields you wish to update!
 </div>
 
@@ -310,7 +310,7 @@ Deletes the specified food item.
 
 **Example:** `food_delete n/tomato`
 
-<div class="alert alert-warning">
+<div markdown="span" class="alert alert-warning">
   ⚠️ <strong>Warning</strong> Deletion of a food item will not affect older food intake item records with similar name.
 </div>
 
@@ -324,7 +324,7 @@ Deletes the specified food item.
 
 For tracking your diet plan progress, you are encouraged to record your daily food intake. For your convenience, there are a few ways to input a food intake. Refer to the different scenarios outlined below!
 
-<div class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> If there are multiple food intakes with the same date and name, the food name will be <strong>automatically renamed</strong> to include a duplicate count for easy identification. This is because there can be multiple food intakes for the same food in the given day, and they may contain different nutrient values. <br/><br/>
 E.g. when you record two 'Chicken rice' in the food intake, they will appear as Chicken rice and Chicken rice #2 respectively.
 </div>
@@ -338,7 +338,7 @@ Record your food intake for the specified date with a new food item not currentl
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
 
-<div class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> At least one nutrient value is required to create new food item. If a particular nutrient value is not provided, it will be set to 0 by default.
 </div>
 
@@ -371,7 +371,7 @@ Record your food intake for the specified date using an existing food from your 
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
 
-<div class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> Any nutrient value(s) specified for an existing food item will be overwritten and updated in the food list for future use. Older food intake record(s) associated with the same food item will retain their original values.
 </div>
 
@@ -389,11 +389,11 @@ Update the nutrient value(s) of a previously entered food intake given the date 
 
 **Example:** `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
 
-<div class="alert alert-tip">
+<div markdown="span" class="alert alert-success">
   💡 <strong>Tip:</strong> Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged.
 </div>
 
-<div class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> At least one nutrient value is required.
 </div>
 
@@ -411,7 +411,7 @@ Delete a food intake record from the application.
 
 **Example:** `food_intake_delete d/31 Mar 2021 n/tomato`
 
-<div class="alert alert-warning">
+<div markdown="span" class="alert alert-warning">
   ⚠️ <strong>Warning</strong> After deletion of a food intake, if there are multiple food intake with the same name, their duplicate count will be reordered.
 </div>
 
@@ -461,7 +461,7 @@ Generates a progress report based on your current active diet plan. Your food in
 
 **Command Format:** `progress`
 
-<div class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> An active diet plan must be selected before running this command.
 </div>
 
@@ -556,55 +556,45 @@ The following are diet plans options that comes with DietLAH!.
 
 ### A1.1 Standard Ketogenic Diet
 
-The Standard Ketogenic Diet is a high-fat, low-carb weight-loss diet.
-It is designed in such a way that by reducing the intake of carbohydrates,
-the body is forced to burn its fat reserves for fuel thereby resulting in weight-loss.
+The Standard Ketogenic Diet is a high-fat, low-carb weight-loss diet. It is designed in such a way that by reducing the intake of carbohydrates, the body is forced to burn its fat reserves for fuel thereby resulting in weight-loss.
 
-The Standard Ketogenic Diet is suitable for individuals suffering from Type II Diabetes where
-excess carbohydrates would have been converted into glucose.
+The Standard Ketogenic Diet is suitable for individuals suffering from Type II Diabetes where excess carbohydrates would have been converted into glucose.
 
-**Classification:** `Weight Loss`  
+**Classification:** `Weight Loss`
 **Composition:** `70% Fat` `10% Carbohydrates` `20% Proteins`
 
 ### A1.2 High-Protein Ketogenic Diet
 
-The High-Protein Ketogenic Diet is a variation of the Ketogenic Diet (high-fat, low-carb)
-which increases the protein intake. This variation is designed to help athletes and
-bodybuilders maintain their muscle mass whilst burning fat.
+The High-Protein Ketogenic Diet is a variation of the Ketogenic Diet (high-fat, low-carb) which increases the protein intake. This variation is designed to help athletes and bodybuilders maintain their muscle mass whilst burning fat.
 
-**Classification:** `Weight Loss`  
+**Classification:** `Weight Loss`
 **Composition:** `60% Fat` `5% Carbohydrates` `35% Proteins`
 
 ### A1.3 Balanced Plan For Weight Gain
 
-This plan is aimed at individuals who are intending to gain healthy weight in a balanced manner.
-Some exercise coupled with this diet plan will allow individuals to gain some muscle steadily.
+This plan is aimed at individuals who are intending to gain healthy weight in a balanced manner. Some exercise coupled with this diet plan will allow individuals to gain some muscle steadily.
 
-**Classification:** `Weight Gain`  
+**Classification:** `Weight Gain`
 **Composition:** `30% Fat` `35% Carbohydrates` `35% Proteins`
 
 ### A1.4 Clean Bulk
 
-The clean bulk is a process which bodybuilders use to gain lean muscle mass.
-The clean bulk emphasizes consuming healthy whole foods as compared to eating sugary and 
+The clean bulk is a process which bodybuilders use to gain lean muscle mass. The clean bulk emphasizes consuming healthy whole foods as compared to eating sugary and 
 processed foods to hit the calorie intake.
 
-**Classification:** `Weight Gain`  
+**Classification:** `Weight Gain`
 **Composition:** `30% Fat` `30% Carbohydrates` `40% Proteins`
 
 ### A1.5 High Carbohydrates Bulk
 
-This plan is intended for athletes who are involved in high intensity sports which require high energy consumption.
-As such, this plan prescribes a higher amount of carbohydrates to offset this need whilst ensuring the protein 
-intake is enough to promote muscle growth and in turn, healthy weight gain.
+This plan is intended for athletes who are involved in high intensity sports which require high energy consumption. As such, this plan prescribes a higher amount of carbohydrates to offset this need whilst ensuring the protein intake is enough to promote muscle growth and in turn, healthy weight gain.
 
-**Classification:** `Weight Gain`  
+**Classification:** `Weight Gain`
 **Composition:** `15% Fat` `55% Carbohydrates` `30% Proteins`
 
 ### A1.6 Balanced Plan
 
-The perfect ying-yang. Eat healthy food and complete the calorie goal.
-Eat lots of fruits and vegetables, and base meals on higher fiber starchy carbohydrates.
+The perfect ying-yang. Eat healthy food and complete the calorie goal. Eat lots of fruits and vegetables, and base meals on higher fiber starchy carbohydrates.
 
-**Classification:** `Maintain Weight`  
+**Classification:** `Maintain Weight`
 **Composition:** `30% Fat` `40% Carbohydrates` `30% Proteins`

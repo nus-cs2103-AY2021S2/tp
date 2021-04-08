@@ -11,9 +11,9 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class AddressBookParserTest {
+public class DietLahParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final DietLahParser parser = new DietLahParser();
 
     /* TODO Use this for reference when creating tests
     @Test
