@@ -104,8 +104,7 @@ public class Contact {
         return otherContact.getName().equals(getName())
                 && otherContact.getPhone().equals(getPhone())
                 && otherContact.getEmail().equals(getEmail())
-                && otherContact.getAddress().equals(getAddress())
-                && otherContact.getTags().equals(getTags());
+                && otherContact.getAddress().equals(getAddress());
     }
 
     @Override
