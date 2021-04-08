@@ -152,7 +152,7 @@
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
-    -fx-background-radius: 20;
+    -fx-background-radius: 15;
     -fx-font-size: 10pt;
     -fx-text-fill: black;
 }
@@ -341,13 +341,13 @@
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
-#welcomePanel, #upcomingTaskListPanel{
+#welcomePanel, #todaysTaskListPanel{
     -fx-background-color: #e8eff2;
     -fx-text-fill: black;
     -fx-border-width: 0;
 }
 
-#taskListPanel {
+#taskListPanel, #uncompletedTaskListPanel, #completedTaskListPanel, #expiredTaskListPanel {
     -fx-background-color: #e8eff2;
     -fx-background-radius: 15 15 15 15;
     -fx-border-width: 0;
@@ -369,7 +369,15 @@
 
 #resultDisplay .content {
     -fx-background-color: transparent, #e8eff2, transparent, #e8eff2;
-    -fx-background-radius: 20;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-padding: 5 5 5 5;
+}
+#resultDisplayPlaceholder{
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-padding: 5 5 5 5;
+
 }
 
 #tags {
