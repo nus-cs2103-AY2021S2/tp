@@ -123,7 +123,7 @@ Format: `findcontent KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `content some` will match `some content`
 * Only the content is searched, headers and titles are not included.
   (the breakdown of the content is as follows):
-  ![content breakdown](images/contentbreakdown.png)
+  ![content breakdown](images/contentdbreakdown.png)
   
 * Only full words will be matched e.g. `prog` will not match `programming`, `OOP` will also not return `(OOP)`
 * Contents matching at least one keyword will be returned (i.e. `OR` search).
@@ -197,7 +197,7 @@ To view the note created, use the command `shownote` at the respective index, in
 `shownote 6`:
   ![shownote for content](images/shownoteforcontent.png)  
   
-To edit the note/carry out other commands, please view the detailed commands under the [Notes Features](#note-features).
+To edit the note/carry out other commands, please view the detailed commands under the [Note Features](#note-features).
 
 ### Note Features
 
