@@ -176,6 +176,11 @@ public class ModelManager implements Model {
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
+    @Override
+    public boolean isPersonListEmpty() {
+        return filteredPersons.isEmpty();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

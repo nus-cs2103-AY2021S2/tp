@@ -193,6 +193,11 @@ public class AddTaskCommandTest {
         public void editAssignee(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean isPersonListEmpty() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
