@@ -72,7 +72,7 @@ public class EditOrderCommand extends EditCommand {
         List<Order> lastShownList = model.getFilteredOrderList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CHEESE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
         Order orderToEdit = lastShownList.get(index.getZeroBased());
@@ -215,6 +215,7 @@ public class EditOrderCommand extends EditCommand {
 
             return getOrderDate().equals(e.getOrderDate())
                     && getCheeseType().equals(e.getCheeseType())
+                    && getQuantity().equals(e.getQuantity())
                     && getPhone().equals(e.getPhone());
         }
     }

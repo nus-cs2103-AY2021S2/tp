@@ -31,6 +31,7 @@ import seedu.address.model.order.Order;
 import seedu.address.model.order.predicates.OrderIdPredicate;
 import seedu.address.testutil.EditCheeseDescriptorBuilder;
 import seedu.address.testutil.EditCustomerDescriptorBuilder;
+import seedu.address.testutil.EditOrderDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -41,6 +42,7 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_PHONE_CARL = "95352563";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
@@ -71,7 +73,8 @@ public class CommandTestUtil {
     public static final EditCustomerCommand.EditCustomerDescriptor DESC_AMY;
     public static final EditCustomerCommand.EditCustomerDescriptor DESC_BOB;
 
-    //public static final EditOrderCommand.EditOrderDescriptor DESC_BRIE;
+    public static final EditOrderCommand.EditOrderDescriptor DESC_BRIE;
+    public static final EditOrderCommand.EditOrderDescriptor DESC_MOZZARELLA;
 
     public static final EditCheeseCommand.EditCheeseDescriptor DESC_EDIT_CHEESE;
 
@@ -109,17 +112,18 @@ public class CommandTestUtil {
 
     public static final String CHEESE_TYPE_DESC_CAMEMBERT = " " + PREFIX_CHEESE_TYPE + VALID_CHEESE_TYPE_CAMEMBERT;
     public static final String CHEESE_TYPE_DESC_FETA = " " + PREFIX_CHEESE_TYPE + VALID_CHEESE_TYPE_FETA;
+    public static final String CHEESE_TYPE_DESC_GOUDA = " " + PREFIX_CHEESE_TYPE + VALID_CHEESE_TYPE_GOUDA;
     public static final String QUANTITY_DESC = " " + PREFIX_QUANTITY + VALID_QUANTITY_1;
     public static final String QUANTITY_5_DESC = " " + PREFIX_QUANTITY + VALID_QUANTITY_5;
     public static final String MANUFACTURE_DATE_DESC = " " + PREFIX_MANUFACTURE_DATE + VALID_MANUFACTURE_DATE_1;
     public static final String EXPIRY_DATE_DESC = " " + PREFIX_EXPIRY_DATE + VALID_EXPIRY_DATE_1;
     public static final String ORDER_DATE_DESC = " " + PREFIX_ORDER_DATE + VALID_ORDER_DATE_1;
     public static final String ORDER_DATE_DESC_FETA = " " + PREFIX_ORDER_DATE + VALID_ORDER_DATE_2;
+    public static final String CARL_PHONE_DESC = " " + PREFIX_PHONE + VALID_PHONE_CARL;
 
     public static final String CHEESE_TYPE_DESC_MOZZARELLA = " " + PREFIX_CHEESE_TYPE + VALID_CHEESE_TYPE_MOZZARELLA;
     public static final String EXPIRY_DATE_5_DESC = " " + PREFIX_EXPIRY_DATE + VALID_EXPIRY_DATE_5;
     public static final String MANUFACTURE_DATE_5_DESC = " " + PREFIX_MANUFACTURE_DATE + VALID_MANUFACTURE_DATE_5;
-
 
     public static final String INVALID_CHEESE_TYPE_DESC = " " + PREFIX_CHEESE_TYPE + ""; // Blanks not allowed
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "911a"; // 'a' not allowed in quantity
@@ -140,13 +144,16 @@ public class CommandTestUtil {
                 .withManufactureDate(VALID_MANUFACTURE_DATE_5)
                 .withExpiryDate(VALID_EXPIRY_DATE_5).build();
 
-        /*
         DESC_BRIE = new EditOrderDescriptorBuilder()
-                .setCheeseType(VALID_CHEESE_TYPE_BRIE).withQuantity(VALID_QUANTITY_1)
-                .withOrderDate(VALID_ORDER_DATE_3).withCompletedDate(null)
-                .withCustomerId(CARL.getId()).withOrderId(1)
+                .withCheeseType(VALID_CHEESE_TYPE_BRIE).withQuantity(VALID_QUANTITY_1)
+                .withOrderDate(VALID_ORDER_DATE_3)
                 .build();
-         */
+
+        DESC_MOZZARELLA = new EditOrderDescriptorBuilder()
+                .withCheeseType(VALID_CHEESE_TYPE_MOZZARELLA).withQuantity(VALID_QUANTITY_2)
+                .withOrderDate(VALID_ORDER_DATE_4)
+                .withPhone(VALID_PHONE_CARL)
+                .build();
     }
 
     /**

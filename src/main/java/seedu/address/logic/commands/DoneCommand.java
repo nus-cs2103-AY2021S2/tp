@@ -39,7 +39,7 @@ public class DoneCommand extends Command {
         List<Order> lastShownList = model.getFilteredOrderList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
 
         Order orderToUpdate = lastShownList.get(targetIndex.getZeroBased());

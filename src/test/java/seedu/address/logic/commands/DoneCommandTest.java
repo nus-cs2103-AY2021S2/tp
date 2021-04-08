@@ -53,7 +53,7 @@ public class DoneCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredOrderList().size() + 1);
         DoneCommand doneCommand = new DoneCommand(outOfBoundIndex);
 
-        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_ORDER_INDEX);
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
     @Test
@@ -84,7 +84,7 @@ public class DoneCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredOrderList().size() + 1);
         DoneCommand doneCommand = new DoneCommand(outOfBoundIndex);
 
-        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_ORDER_INDEX);
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
     @Test
