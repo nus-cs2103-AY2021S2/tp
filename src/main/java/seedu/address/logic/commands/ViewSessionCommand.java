@@ -35,7 +35,6 @@ public class ViewSessionCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredSessionList(sessionPredicate);
         List<Session> lastShownList = model.getUnfilteredSessionList();
 
         Optional<Session> sessionToView = lastShownList.stream()
@@ -44,6 +43,7 @@ public class ViewSessionCommand extends Command {
             List<PersonId> studentList = sessionToView.get().getStudents();
             StudentSessionPredicate studentSessionPredicate = new StudentSessionPredicate(studentList);
             model.updateFilteredPersonList(studentSessionPredicate);
+            model.updateFilteredSessionList(sessionPredicate);
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);

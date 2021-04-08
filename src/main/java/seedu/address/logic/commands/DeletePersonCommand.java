@@ -46,6 +46,7 @@ public class DeletePersonCommand extends Command {
 
         if (personToDelete.isPresent()) {
             model.deletePerson(personToDelete.get());
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete.get()));
         } else {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

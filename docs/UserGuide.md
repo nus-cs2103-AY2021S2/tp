@@ -116,6 +116,8 @@ A session can have any number of tags (including 0)
 * A new session will have a unique session ID assigned after creation. 
 * DAY should match the format of a valid day in the week.
 * TIMESLOT should be in the format `HH:MM to HH:MM` and the end time should only be after the start time.
+* DAY and SUBJECT will be capitalised when displayed but do not have to be capitalised in the input
+* Note that while persons added to EZManage must be unique, there can be duplicates of sessions to accomidate multiple sessions of the same subject occurring at once
 
 Examples:
 * `add_session d/Saturday ts/13:00 to 15:00 s/Math tag/Hard`
@@ -221,12 +223,12 @@ Examples:
 
 ### Editing a session : `edit_session`
 
-Edits an existing session in the address book.
+Edits an existing session in EZManage.
 
 Format: `edit_session c/ID [d/DAY] [ts/TIMESLOT] [s/SUBJECT] [tag/TAG]…​`
 
 * Edits the session with the specified session ID. The session ID can be found from the displayed session list. 
-* The session ID has to be a valid session ID i.e. the session has to exist in the Address Book.
+* The session ID has to be a valid session ID i.e. the session has to exist in EZManage.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * DAY should match the format of a valid day in the week.
@@ -283,7 +285,7 @@ Examples:
 
 ### Deleting a session : `delete_session`
 
-Deletes the specified session from the address book.
+Deletes the specified session from EZManage.
 
 Format: `delete_session c/ID`
 
@@ -317,7 +319,7 @@ Assigns a student or multiple student and/or a tutor to a specific class
 
 A class must always be provided, either student or tutor can be optional.
 
-### Unassigning people from a session : `assign`
+### Unassigning people from a session : `unassign`
 
 Unassigns the specified people from a session.
 
@@ -335,7 +337,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the list of students, tutors and classes.
+Clears all entries from the list of students, tutors and sessions.
 
 Format: `clear`
 
