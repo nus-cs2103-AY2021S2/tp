@@ -57,7 +57,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, String.format(AddCommand.MESSAGE_DUPLICATE_PERSON,
+                validPerson.getPhone(), validPerson.getName()), () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -165,6 +166,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPotentialPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -447,6 +453,12 @@ public class AddCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return personsAdded.stream().anyMatch(person::isSamePerson);
+        }
+
+        @Override
+        public boolean hasPotentialPerson(Person person) {
+            requireNonNull(person);
+            return personsAdded.stream().anyMatch(person::isPotentialSamePerson);
         }
 
         @Override
