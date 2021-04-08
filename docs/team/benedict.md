@@ -100,4 +100,3 @@ Given below are my contributions to the project.
   * Created SunRez logo: [\#19](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/19).
   * Created [PE-D bug triage spreadsheet](https://docs.google.com/spreadsheets/d/1mXHfqkTdQwbmS0mEdQXIWZdkCLMxEFyW35C4lfsnoDY/edit?usp=sharing) and collated 33 PE-D issues.
   * Updated sample SunRez data: [\#172](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/172).
-  
