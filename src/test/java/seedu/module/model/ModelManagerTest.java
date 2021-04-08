@@ -7,6 +7,7 @@ import static seedu.module.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.module.testutil.Assert.assertThrows;
 import static seedu.module.testutil.TypicalTasks.MIDTERM;
 import static seedu.module.testutil.TypicalTasks.QUIZ;
+import static seedu.module.testutil.TypicalTasks.RECURRING_MIDTERM;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -87,6 +88,22 @@ public class ModelManagerTest {
     public void hasTask_taskInModuleBook_returnsTrue() {
         modelManager.addTask(QUIZ);
         assertTrue(modelManager.hasTask(QUIZ));
+    }
+
+    @Test
+    public void hasRecurringTask_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasRecurringTask(null));
+    }
+
+    @Test
+    public void hasRecurringTask_recurringTaskNotInModuleBook_returnsFalse() {
+        assertFalse(modelManager.hasRecurringTask(RECURRING_MIDTERM));
+    }
+
+    @Test
+    public void hasRecurringTask_recurringTaskInModuleBook_returnsTrue() {
+        modelManager.addTask(RECURRING_MIDTERM);
+        assertTrue(modelManager.hasRecurringTask(RECURRING_MIDTERM));
     }
 
     @Test

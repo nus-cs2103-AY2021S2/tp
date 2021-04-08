@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIGH;
 import static seedu.module.testutil.Assert.assertThrows;
+import static seedu.module.testutil.TypicalTasks.MIDTERM;
 import static seedu.module.testutil.TypicalTasks.QUIZ;
 import static seedu.module.testutil.TypicalTasks.getTypicalModuleBook;
 
@@ -75,11 +76,34 @@ public class ModuleBookTest {
     @Test
     public void hasTask_taskWithSameIdentityFieldsInModuleBook_returnsTrue() {
         moduleBook.addTask(QUIZ);
-        Task editedAlice = new TaskBuilder(QUIZ)
+        Task editedQuiz = new TaskBuilder(QUIZ)
                 .withDescription(VALID_DESCRIPTION_PRACTICAL)
                 .withTags(VALID_TAG_PRIORITY_HIGH)
                 .build();
-        assertTrue(moduleBook.hasTask(editedAlice));
+        assertTrue(moduleBook.hasTask(editedQuiz));
+    }
+
+    @Test
+    public void hasRecurringTask_isNull_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> moduleBook.hasRecurringTask(null));
+    }
+
+    @Test
+    public void hasRecurringTask_recurringTaskNotInModuleBook_returnsFalse() {
+        assertFalse(moduleBook.hasRecurringTask(MIDTERM));
+    }
+
+    @Test
+    public void hasRecurringTask_recurringTaskInModuleBook_returnsTrue() {
+        moduleBook.addTask(MIDTERM);
+        assertTrue(moduleBook.hasRecurringTask(MIDTERM));
+    }
+
+    @Test
+    public void hasRecurringTask_taskWithSameFieldsExceptRecurrence_returnsFalse() {
+        moduleBook.addTask(MIDTERM);
+        Task editedMidterm = new TaskBuilder(MIDTERM).withRecurrence("").build();
+        assertFalse(moduleBook.hasRecurringTask(editedMidterm));
     }
 
     @Test
