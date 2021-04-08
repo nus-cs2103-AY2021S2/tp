@@ -128,4 +128,12 @@ public class DeletePersonToMeetingConnectionCommand extends Command {
         return new Meeting(updatedMeetingName, updatedStart,
                 updatedTerminate, updatedPriority, updatedDescription, updatedGroups);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeletePersonToMeetingConnectionCommand // instanceof handles nulls
+                && meetingIndex.equals(((DeletePersonToMeetingConnectionCommand) other).meetingIndex)
+                && personsIndexToDelete.equals(((DeletePersonToMeetingConnectionCommand) other).personsIndexToDelete));
+    }
 }
