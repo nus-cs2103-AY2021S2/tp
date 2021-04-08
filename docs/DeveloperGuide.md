@@ -1002,7 +1002,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-#### UC20 - Add a contact
+#### UC18 - Add a contact
 
 **MSS**
 
@@ -1025,7 +1025,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-#### UC21 - Find a specific contact
+#### UC19 - Find a specific contact
 
 **MSS**
 
@@ -1040,7 +1040,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   Use case ends.
 
-#### UC22 - Delete a contact
+#### UC20 - Delete a contact
 
 **MSS**
 
@@ -1069,7 +1069,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-#### UC23 - Add or Modify information about a contact
+#### UC21 - Add or modify information about a contact
 
 **MSS**
 
@@ -1092,7 +1092,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-#### UC24 - Purge all entries from the app
+#### UC22 - Manage today's deadlines and events
+
+**MSS**
+
+1. User switches to the today panel.
+2. User adds a new deadline ([UC8](#uc8---add-a-deadline-to-a-project)).
+3. User adds a new event ([UC12](#uc12---add-an-event-to-a-project)).
+4. User marks a deadline as done ([UC11](#uc11---mark-a-deadline-in-a-project-as-done)).
+
+   Use case ends.
+
+#### UC23 - Purge all entries from the app
 
 **MSS**
 
