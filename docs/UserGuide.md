@@ -73,7 +73,7 @@ Here are some important syntax to take note of to facilitate your reading before
 | `Markdown` | Example of what to type in the command textbox |
 | **Bold** | Note-worthy keywords |
 | :bulb: | Indicates an important note that will enhance your user experience
-| :heavy_exclamation_mark: | Indicates something that the user should take caution of. |
+| :heavy_exclamation_mark: | Indicates something that the user should take caution of |
 
 ## Syntax Format
 
@@ -105,12 +105,12 @@ Here is how the main page looks like:
 
 Component | Purpose
 --------|-----------------
-**Menu Bar** | A menu bar that allows users to click on shortcuts. 
-**Dashboard** (Coming soon...) | A dashboard that shows the user the status of Pawbook. 
-**Main Display** | The main display that shows the results of each command.
-**Response Display** | A display that shows the response message from Pawbook after a command has been executed.
-**Card Component** | Each card component represents one entity profile (i.e. Dog, Owner, Program). 
-**Command Box** | A text field for the user to enter his/her command.
+**Menu Bar** | A menu bar that allows users to click on shortcuts
+**Dashboard** (Coming soon...) | A dashboard that shows the user the status of Pawbook
+**Main Display** | The main display that shows the results of each command
+**Response Display** | A display that shows the response message from Pawbook after a command has been executed
+**Card Component** | Each card component represents one entity profile (i.e. Dog, Owner, Program)
+**Command Box** | A text field for the user to enter his/her command
 
 ### Help Page View
 
@@ -165,7 +165,7 @@ Format:
 ```
 add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]...
 add owner n/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...
-add program n/PROGRAM_NAME s/TIME_AND_DATE_OF_SESSION [t/TAG]...
+add program n/PROGRAM_NAME s/DATE_OF_SESSION [t/TAG]...
 ```
 
 Note:
@@ -252,9 +252,9 @@ Note:
 - Only include the variables that need to be edited after the integer
 
 <div markdown="block" class="alert alert-info">
+:bulb: Tags are only able to take in one alphanumeric string!
 :heavy_exclamation_mark: Take note that editing tags for an entity will automatically override **all** its current tags! <br>
 :heavy_exclamation_mark: At least one variable needs to be changed!
-:bulb: Tags are only able to take in one alphanumeric string! 
 </div>
 
 Examples:
@@ -380,8 +380,8 @@ Examples:
 ### List Command
 
 **Function**: Display entities filtered by type.<br>
-**Usage**: To see the three different types of entities (dog/owner/program), you can simply use this command. Let's say
-you want to see all the dogs that you are in-charge of. Simply list them and this command will provide you the full list.
+**Usage**: To see the three different types of entities (dog/owner/program), you can use this command. Let's say
+you want to see all the dogs that you are in-charge of. Simply type `list dog` and all the dogs in Pawbook will be displayed.
 
 Format:
 
@@ -389,7 +389,6 @@ Format:
 list dog
 list owner
 list program
-list
 ```
 
 Note:
@@ -533,7 +532,7 @@ Action | Format
 **Exit** | `exit`
 **Find** | `find KEYWORD [MORE_KEYWORDS]...`
 **Help** | `help`
-**List** | 1. `list dog`<br> 2. `list owner`<br> 3. `list program`<br> 4. `list`
+**List** | 1. `list dog`<br> 2. `list owner`<br> 3. `list program`<br>
 **Schedule** | `schedule [DATE]`
 **View** | `view ENTITY_ID`
 
@@ -545,5 +544,5 @@ Term  | Explanation
 -----|------------------
 CLI | Short for Command Line Interface. CLI-based applications are primarily used through processing text commands. 
 GUI | Short for Graphical User Interface. GUIs work as the tangible user interface between program and user. Users interact with Pawbook through the GUI on their devices.
-Entity | Refers to either an owner, a dog or a program
+Entity | Refers to either an owner, a dog or a program.
 Camel Case | Refers the a style of writing without spaces and indicating the separation of words using a single capitalised letter. 
