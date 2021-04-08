@@ -16,7 +16,9 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.AddressBookSettings;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
@@ -51,7 +53,7 @@ public class AddAppointmentCommandTest {
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(validAppointment);
         ModelStub modelStub = new ModelStubWithAppointment(validAppointment);
 
-        assertThrows(CommandException.class, AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT, (
+        assertThrows(CommandException.class, Messages.MESSAGE_DUPLICATE_APPOINTMENT, (
                 ) -> addAppointmentCommand.execute(modelStub));
     }
 
@@ -116,6 +118,26 @@ public class AddAppointmentCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public AddressBookSettings getAddressBookSettings() {
+            throw new AssertionError("This mmethod should not be called.");
+        }
+
+        @Override
+        public void setAddressBookSettings(AddressBookSettings addressBookSettings) {
+            throw new AssertionError("This mmethod should not be called.");
+        }
+
+        @Override
+        public Comparator<Contact> getAddressBookComparator() {
+            throw new AssertionError("This mmethod should not be called.");
+        }
+
+        @Override
+        public void setAddressBookComparator(String comparator) {
+            throw new AssertionError("This mmethod should not be called.");
+        }
+
         //=========== AddressBook ================================================================================
 
         @Override
@@ -174,7 +196,12 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
-        public void sortContactList(Comparator<Contact> comparator) {
+        public void sortContactList(String comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void orderContacts() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -183,35 +210,35 @@ public class AddAppointmentCommandTest {
         @Override
         public Path getAppointmentBookFilePath() {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public void setAppointmentBookFilePath(Path appointmentBookFilePath) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public void setAppointmentBook(ReadOnlyAppointmentBook appointmentBook) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public ReadOnlyAppointmentBook getAppointmentBook() {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public boolean hasAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public void deleteAppointment(Appointment target) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public void addAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public void setAppointment(Appointment target, Appointment editedAppointment) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public void setAppointments(List<Appointment> appointments) {
             throw new AssertionError("This method should not be called.");
@@ -219,7 +246,7 @@ public class AddAppointmentCommandTest {
 
         public ObservableList<Appointment> getFilteredAppointmentList() {
             throw new AssertionError("This method should not be called.");
-        };
+        }
 
         public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
             throw new AssertionError("This method should not be called.");
