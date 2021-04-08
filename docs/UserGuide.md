@@ -67,6 +67,8 @@ your contact management tasks done faster than traditional GUI apps.
 * Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`)
   will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
+ 
+* All available inputs of priority tags are `LOW/MEDIUM/HIGH`. The application only accept these inputs as valid inputs and will throw an error if other inputs are entered
 
 </div>
 
