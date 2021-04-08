@@ -18,16 +18,20 @@ public class UpdateFoodIntakeCommand extends Command {
             + ": This updates the nutritional values for a particular date and food.\n"
             + "Command usage: food_intake_update d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS";
 
-    public static final String MESSAGE_SUCCESS = "Food intake successfully updated for ";
+    public static final String MESSAGE_SUCCESS = "Food intake successfully updated for:";
 
     public static final String MESSAGE_FAILURE = "Unable to find food intake record. Are you trying "
             + "to add a new intake?";
+
+    public static final String MESSAGE_NUTRIENTS_REQUIRED = "Please specify at least 1 nutrient value to be updated.";
+    public static final int EDITABLE_NUTRIENT_COUNT = 3;
 
     private String name;
     private LocalDate date;
     private String fats;
     private String carbos;
     private String proteins;
+    private int nutrientsEdited = 0;
 
     /**
      * Creates an UpdateFoodIntake command to update existing foodIntakes.
@@ -57,25 +61,36 @@ public class UpdateFoodIntakeCommand extends Command {
             throw new CommandException(MESSAGE_FAILURE);
         }
 
+        // Retain original values as date and name are not editable.
         this.date = currentFoodIntake.getDate();
         this.name = currentFoodIntake.getFood().getName();
 
-        if (this.fats == null) {
-            this.fats = String.valueOf(currentFoodIntake.getFood().getFats());
-        }
+        // Replace nutrient values, if they were provided
+        this.fats = replaceUpdatedValue(currentFoodIntake.getFood().getFats(), this.fats);
+        this.carbos = replaceUpdatedValue(currentFoodIntake.getFood().getCarbos(), this.carbos);
+        this.proteins = replaceUpdatedValue(currentFoodIntake.getFood().getProteins(), this.proteins);
 
-        if (this.carbos == null) {
-            this.carbos = String.valueOf(currentFoodIntake.getFood().getCarbos());
-        }
-
-        if (this.proteins == null) {
-            this.proteins = String.valueOf(currentFoodIntake.getFood().getProteins());
+        if (nutrientsEdited == 0) {
+            throw new CommandException(MESSAGE_NUTRIENTS_REQUIRED);
         }
 
         newFoodIntake = new FoodIntake(this.date, this.name,
                 Double.parseDouble(this.carbos), Double.parseDouble(this.fats),
                 Double.parseDouble(this.proteins));
         model.updateFoodIntake(index, newFoodIntake);
-        return new CommandResult(MESSAGE_SUCCESS + "(" + this.name + ")");
+
+        String updateFoodIntakeList = model.getFoodIntakeList().getFoodIntakeListByDate(this.date);
+        return new CommandResult(MESSAGE_SUCCESS + " " + this.name + "\n\n" + updateFoodIntakeList);
+    }
+
+    /**
+     * Returns current existing value if no updated value provided.
+     */
+    public String replaceUpdatedValue(Double current, String updated) {
+        if (updated == null) {
+            return String.valueOf(current);
+        }
+        nutrientsEdited++;
+        return updated;
     }
 }

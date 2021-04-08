@@ -39,7 +39,8 @@ public class FoodIntakeQueryProcessor {
             counter++;
         }
         foodIntakeCalculator = new FoodIntakeCalculator(carbos, fats, proteins);
-        stringBuilder.append("Total Daily Calories Intake: " + String.format("%.2f", foodIntakeCalculator.getCalories())
+        stringBuilder.append("\nTotal Daily Calories Intake: "
+                + String.format("%.2f", foodIntakeCalculator.getCalories())
                 + " calories.\n");
         return stringBuilder.toString();
     }

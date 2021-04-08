@@ -281,8 +281,8 @@ public class ModelManager implements Model {
     //=========== FoodIntakeList Accessors =============================================================
 
     @Override
-    public void addFoodIntake(LocalDate date, Food food) {
-        addressBook.addFoodIntake(date, food);
+    public Food addFoodIntake(LocalDate date, Food food) {
+        return addressBook.addFoodIntake(date, food);
     }
 
     @Override

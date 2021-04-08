@@ -19,10 +19,10 @@ public class DeleteFoodIntakeCommand extends Command {
             + ": This deletes the food intake item identified by its name on that date.\n"
             + "Command usage: food_intake_delete d/DATE(in d MMM yyyy format) n/FOOD_NAME";
 
-    public static final String MESSAGE_DELETE_FOOD_SUCCESS = "Successfully deleted food intake: ";
+    public static final String MESSAGE_DELETE_FOODINTAKE_SUCCESS = "Successfully deleted food intake: ";
 
-    public static final String MESSAGE_DELETE_FOOD_FAILURE = "Food intake could not be found. Please ensure its name "
-            + "and date provided are correct.";
+    public static final String MESSAGE_DELETE_FOODINTAKE_FAILURE = "Food intake could not be found. "
+            + "Please verify that the name and date provided is correct.";
 
     private final String foodName;
 
@@ -46,9 +46,11 @@ public class DeleteFoodIntakeCommand extends Command {
 
         try {
             foodIntakeList.deleteFoodIntake(this.date, this.foodName);
-            return new CommandResult(MESSAGE_DELETE_FOOD_SUCCESS + " " + this.foodName);
+            String updateFoodIntakeList = model.getFoodIntakeList().getFoodIntakeListByDate(this.date);
+            return new CommandResult(MESSAGE_DELETE_FOODINTAKE_SUCCESS + " "
+                    + this.foodName + "\n\n" + updateFoodIntakeList);
         } catch (FoodIntakeNotFoundException exception) {
-            throw new CommandException(MESSAGE_DELETE_FOOD_FAILURE);
+            throw new CommandException(MESSAGE_DELETE_FOODINTAKE_FAILURE);
         }
     }
 }
