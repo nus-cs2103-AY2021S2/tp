@@ -98,6 +98,10 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
         internalList.setAll(flashcards);
     }
 
+    public int size() {
+        return internalList.size();
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

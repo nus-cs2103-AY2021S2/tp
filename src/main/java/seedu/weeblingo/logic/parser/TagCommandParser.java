@@ -1,7 +1,7 @@
 package seedu.weeblingo.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.weeblingo.logic.commands.TagCommand.MESSAGE_NO_TAGS_PROVIDED;
 import static seedu.weeblingo.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -30,13 +30,18 @@ public class TagCommandParser implements Parser<TagCommand> {
 
         Index index;
 
+        // throw a parseException if the index provided is not valid or format is wrong
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(pe.getMessage(), TagCommand.MESSAGE_USAGE));
         }
 
         Set<Tag> tags = parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).orElse(Collections.emptySet());
+
+        if (tags.equals(Collections.emptySet())) {
+            throw new ParseException(MESSAGE_NO_TAGS_PROVIDED);
+        }
 
         return new TagCommand(index, tags);
     }

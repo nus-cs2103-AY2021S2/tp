@@ -2,7 +2,6 @@ package seedu.weeblingo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.weeblingo.model.Mode.MODE_LEARN;
-import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,9 +16,9 @@ import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.flashcard.Question;
 import seedu.weeblingo.model.tag.Tag;
 
-public class DeleteCommand extends Command {
+public class DeleteTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "deleteTag";
 
     public static final String MESSAGE_SUCCESS = "Tag(s) deleted successfully!";
 
@@ -37,12 +36,12 @@ public class DeleteCommand extends Command {
     private Set<Tag> tags;
 
     /**
-     * Creates a DeleteCommand representing a user command to delete tags from a flashcard.
+     * Creates a DeleteTagCommand representing a user command to delete tags from a flashcard.
      *
      * @param index The index of the flashcard to be deleted.
      * @param tags The tags to be deleted.
      */
-    public DeleteCommand(Index index, Set<Tag> tags) {
+    public DeleteTagCommand(Index index, Set<Tag> tags) {
         this.index = index;
         this.tags = tags;
     }
@@ -67,20 +66,18 @@ public class DeleteCommand extends Command {
             throw new CommandException(MESSAGE_NO_TAGS_TO_DELETE);
         }
 
-        boolean isAllTagsExist = true;
+        boolean isAllTagsExist;
         for (Tag t : tags) {
-            isAllTagsExist = isAllTagsExist && checkIfTagExists(t, flashcardToDeleteTags);
-        }
+            isAllTagsExist = checkIfTagExists(t, flashcardToDeleteTags);
 
-        if (!isAllTagsExist) {
-            throw new CommandException(MESSAGE_TAG_DOES_NOT_EXIST);
+            if (!isAllTagsExist) {
+                throw new CommandException(MESSAGE_TAG_DOES_NOT_EXIST);
+            }
         }
 
         Flashcard flashcardWithDeletedTags = createDeletedTagFlashcard(flashcardToDeleteTags, tags);
 
         model.setFlashcard(flashcardToDeleteTags, flashcardWithDeletedTags);
-        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-
         return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 
@@ -121,5 +118,13 @@ public class DeleteCommand extends Command {
         }
 
         return new Flashcard(question, answer, tags, userTags);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteTagCommand // instanceof handles nulls
+                && index.equals(((DeleteTagCommand) other).index)
+                && tags.equals(((DeleteTagCommand) other).tags));
     }
 }

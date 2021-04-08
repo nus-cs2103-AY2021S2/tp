@@ -138,9 +138,9 @@ public class Score implements Comparable<Score> {
     }
 
     /**
-     * A getter that wraps the number of questions attempted fields in a string as return value.
+     * A getter that wraps the date and time when the score is awarded field in a string as return value.
      *
-     * @return The String representation of the number of questions attempted in this Score object.
+     * @return The String representation of the the date and time when the score is awarded in this Score object.
      */
     public String getCompletedTime() {
         return DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss").format(datetime).toString();
@@ -155,7 +155,7 @@ public class Score implements Comparable<Score> {
      */
     @Override
     public int compareTo(Score o) {
-        return datetime.compareTo(o.datetime);
+        return o.datetime.compareTo(this.datetime);
     }
 
     /**

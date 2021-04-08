@@ -2,7 +2,6 @@ package seedu.weeblingo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.weeblingo.model.Mode.MODE_LEARN;
-import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import java.util.List;
 import java.util.Set;
@@ -28,7 +27,9 @@ public class TagCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Tags the indicated flashcard with the requested tag(s).\n"
             + "Parameters: FLASHCARD_INDEX, TAG...\n"
-            + "Example: " + COMMAND_WORD + " 2 t/very difficult t/revise by tomorrow";
+            + "Example: " + COMMAND_WORD + " 2 t/very difficult t/revise soon";
+
+    public static final String MESSAGE_NO_TAGS_PROVIDED = "Please provide a tag for your flashcard!";
 
     public static final String MESSAGE_DUPLICATE_TAG = "Duplicate tags are not allowed.";
 
@@ -65,14 +66,18 @@ public class TagCommand extends Command {
         Flashcard taggedFlashcard = createTaggedFlashcard(flashcardToTag, tags);
 
         for (Tag t : flashcardToTag.getUserTags()) {
-            if (checkUserTagsForDuplicates(t)) {
+            if (checkGivenTagsForDuplicates(t)) {
+                throw new CommandException(MESSAGE_DUPLICATE_TAG);
+            }
+        }
+
+        for (Tag t: flashcardToTag.getWeeblingoTags()) {
+            if (checkGivenTagsForDuplicates(t)) {
                 throw new CommandException(MESSAGE_DUPLICATE_TAG);
             }
         }
 
         model.setFlashcard(flashcardToTag, taggedFlashcard);
-        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-
         return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 
@@ -82,7 +87,7 @@ public class TagCommand extends Command {
      * @param tag The tag to be checked.
      * @return true if the tag(s) already exist, false otherwise.
      */
-    private boolean checkUserTagsForDuplicates(Tag tag) {
+    private boolean checkGivenTagsForDuplicates(Tag tag) {
         for (Tag otherTag : tags) {
             if (tag.equals(otherTag)) {
                 return true;
@@ -109,6 +114,14 @@ public class TagCommand extends Command {
         userTags.addAll(userTagsToAdd);
 
         return new Flashcard(question, answer, tags, userTags);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TagCommand // instanceof handles nulls
+                && index.equals(((TagCommand) other).index)
+                && tags.equals(((TagCommand) other).tags));
     }
 
 }

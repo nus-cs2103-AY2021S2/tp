@@ -88,13 +88,14 @@ The `UI` component,
 
 1. `Logic` uses the `WeeblingoParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a flashcard).
+1. The command execution can affect the `Model` (e.g. updating mode).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("learn")` API call.
 
 ![Interactions Inside the Logic Component for the `learn` Command](images/LearnSequenceDiagram.png)
+note: [lifeline should end]
 
 ### Model component
 
@@ -108,7 +109,7 @@ The `Model`,
 
 * stores the Weeblingo data.
 
-* exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Flashcard>` and `ObservableList<Score>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -142,11 +143,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-### Tagging Flashcards
+### [Implemented] Tagging Flashcards
 
 The tagging mechanism allows users to add tags to flashcards of their choice while in the _Learn Mode_
 of the WeebLingo application. Each flashcard has a set of default tags which cannot be edited, followed by
-any unique user added tags. 
+any unique user added tags.
 
 ![Structure of the Flashcard with tags](images/FlashcardWithTagsObjectDiagram.png)
 
@@ -157,9 +158,26 @@ The following activity diagram summarizes what happens when a user adds a new co
 The tags function ties together with the Start function of the application, as users can choose to start a quiz
 containing flashcards that have the same tag only (to be implemented...)
 
-### Quiz Command
+### [Implemented] Quiz feature
 
-The quiz command is used to enter Quiz mode, allowing the user to start various quizzes from there.
+The quiz feature for users to test the vocabulary is facilitated by Model and Command. It does so by allowing a command
+to set model to quiz mode. When model is in quiz mode, it will take commands allowing users to attempt answering the quiz question,
+skip the flashcard or end the quiz session.
+
+Following operations are implemeted
+
+  * `Weeblingo#quiz(Model)`: Enters quiz mode
+  * `Weeblingo#start(Model)`: Starts a quiz session
+  * `Weeblingo#check(Model)`: Checks if attempt is correct English definition of Japanese word shown on flashcard
+  * `Weeblingo#next(Model)`: Proceeds to next question in the quiz session
+  * `Weeblingo#end(Model)`: Ends the quiz session and returns to main menu
+
+These operations are exposed in `Ui` through `Logic`. They are implemented by `QuizCommand`, `StartCommand`, `CheckCommand`,
+`NextCommand` and `EndCommand`.
+
+Given below is an example usage scenario and how the quizzing mechanism behaves at each step.
+
+1. The quiz command is used to enter Quiz mode, allowing the user to start various quizzes from there.
 The following activity diagram summarizes what happens when a user enters the Quiz command:
 
 ![QuizActivityDiagram](images/QuizActivityDiagram.png)
@@ -168,18 +186,31 @@ The following sequence diagram shows how the Quiz command works:
 
 ![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
 
+### Start Command
+
+The start command is used to start a quiz session, enabling users to define the number and type of
+questions they want to be tested on. The activity diagram below shows the flow of events when a user
+enters the start command.
+
 ### Quiz Scoring
+
 The quiz can be scored for each individual quiz session. The scoring data will be written into the storage file
 after the quiz session is completed. A quiz session is complete if and only if the message indicating the end of
-quiz is displayed in the GUI window. The following activity diagram summarizes how the score is recorded generated
+quiz is displayed in the GUI window. The following activity diagrams summarize how the score is recorded generated
 along with each quiz session.
 
-![QuizScoringSequenceDiagram](images/QuizScoringSequenceDiagram.png)
+![QuizScoringSequenceDiagram](images/QuizScoringSequenceDiagram-How_is_score_produced_with_quiz__.png)
+
+![QuizScoringSequenceDiagramRake](images/UserSeeQuestionDuringQuizActivityDiagram-User_sees_a_question_during_quiz__.png)
+
+The user enters `check ATTEMPT` and the `WeeblingoParser#parse(String)` will parse input as an Answer
+into a CheckCommand. If the attempt is correct, the Ui will update to reveal the correct answer of current flashcard and the user score will increase.
+Else the user will be prompted to try again.
 
 ### View Past Quiz Attempts
 
 The view quiz history mechanism allows users to view their past attempts of quizzes. Each entry of quiz history is
-represented in a way similar how the flashcards are represented in the Weeblingo application. 
+represented in a way similar how the flashcards are represented in the Weeblingo application.
 
 Below is the class diagram
 for how `Score` is represented in *Model* component.
@@ -200,14 +231,16 @@ switching UI display the other way around is similar.
 
 * **Alternative 1 (current choice):** Make `Score` and `Flashcard` two separate classes.
     * Pros: Easy to implement.
-    * Cons: 
+    * Cons:
       * May have the overhead of writing similar code. For instance, `JsonAdaptedFlashcard` and `JsonAdaptedScore`.
-      * Changing the GUI display from flashcards to score history may be cumbersome. 
+      * Changing the GUI display from flashcards to score history may be cumbersome.
+      * Changing the UI display from flashcards to score history may be cumbersome.
 * **Alternative 2:** Let `Score` have inheritance relationship with `Flashcard`.
     * Pros: Changing GUI display is easy.
     * Cons:
       * The design choice is not intuitive (`Score` does not seem to be a `Flashcard` and vice versa).
       * The overhead of maintaining the inheritance is non-trivial.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -244,16 +277,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​         | I want to …​                            | So that I can…​                              |
 | -------- | ------------------ | ------------------------------------------ | ----------------------------------------------- |
-| `* * *`  | new user           | view valid commands                        | remember how to use the Weeblingo               |
+| `* * *`  | new user           | view valid commands                        | learn how to use the Weeblingo               |
 | `* * *`  | user               | view a flashcard                           |                                                 |
+| `* * *`  | user               | view all flashcards                        | study the flashcards before a quiz session           |
 | `* * *`  | user               | see the answer to a flashcard              | check if I answered correctly                   |
-| `* * *`  | user               | start a practice run of all flashcards     | practice all flashcards in a single session     |
-| `* * *`  | user               | view all flashcards                        | study the flashcards before a session           |
+| `* * *`  | user               | start a quiz session                       | assess my knowledge of the Japanese language          |
+| `* * *`  | hardworking user   | start a quiz containing all flashcards     | practice all flashcards in a single quiz session     |
 | `* *`    | user               | quiz myself on a specific set of flashcards| practice a specific group of words that I may be bad at |
-| `* *`    | user               | quiz myself on a specific number of random flashcards| spot test myself with a group of random words |
+| `* *`    | busy user          | quiz myself on a specific number of flashcards| roughly control how long I spend on the quiz |
 | `* *`    | user               | add tags to certain flashcards             | group flashcards to test myself (e.g. specific coverage for an exam) |
-| `* *`    | user               | know how well I scored on a Quiz           | see how many mistakes I made in this Quiz       |
-| `* *`    | user               | see how I did on past Quizzes              | see how my scores have changed over time        |
+| `* *`    | results-oriented user | know how well I scored on a Quiz        | see how many mistakes I made in this Quiz       |
+| `* *`    | competitive user   | see the duration of a Quiz                 | gauge how fast I am at answering questions      |
+| `* *`    | user               | see my past quiz attempts                  | track my progress      |
 
 *{More to be added}*
 
@@ -261,72 +296,65 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Weeblingo` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: See flashcards one by one**
+**Use case : UC01 - See the list of flashcards**
 
 **MSS**
 
-1.  User requests to view flashcards
-2.  WeebLingo shows a new flashcard on the screen
-3.  User clicks next
-4.  Go to step 2 again
+1.  User requests to enter learn mode.
+2.  WeebLingo shows a list of flashcards on the screen.
 
-**Extensions**
+    Use case ends.
 
-* 2a. All flashcards have been shown.
-
-  Use case ends.
-
-**Use case: Take a quiz**
+**Use case: UC02 - Take a quiz**
 
 **MSS**
 
-1.  User clicks quiz
-2.  WeebLingo shows a new question on the screen
-3.  User enters his answer
-4.  WeebLingo shows whether user's answer is correct/wrong
-5.  WeebLingo displays correct answer if user's answer is wrong
-6.  WeebLingo removes this question from the list of questions for this session
-7.  Go to step 2 again
+1.  User requests to enter quiz mode.
+2.  WeebLingo shows a new question on the screen.
+3.  User enters and checks his answer.
+4.  WeebLingo shows whether user's answer is correct/wrong.
+5.  User requests to see the next question.
+6.  WeebLingo removes this question from the list of questions for this session.
+7.  Go to step 2 again.
 
 **Extensions**
 
 * 2a. All questions have been shown.
 
-  Use case ends.
+    * 2a1. WeebLingo informs user that the quiz is over.
 
-**Use case: Save and see all my study data**
+      Use case ends.
+
+* 3a. User already got the question correct.
+
+    * 3a1. WeebLingo prompts user to proceed to the next question.
+
+      Use case resumes at step 5.
+
+* 4a. User got the question wrong.
+
+    * 4a1a. User wants to proceed to the next question.
+
+      Use case resumes at step 5.
+
+    * 4a1b. User wants to reattempt the same question.
+
+      Use case resumes at step 3.
+
+* 4b. User got the question correct.
+
+    * 4b1. WeebLingo prompts user to proceed to the next question.
+
+      Use case resumes at step 5.
+
+**Use case: UC03 - See my past quiz attempts history**
 
 **MSS**
 
-1.  User looks at a flashcard
-2.  User can save a flashcard if he is confident he has learnt the japanese word
-3.  WeebLingo saves the learnt flashcard to a storage file
-4.  User can request to see all learnt flashcards
+1.  User requests to see the history of past attempts.
+2.  WeebLingo shows the history, including relevant details of the quiz attempts.
 
     Use case ends.
-
-**Use case: Delete a flashcard**
-
-**MSS**
-
-1.  User requests to list flashcards
-2.  AddressBook shows a list of flashcards
-3.  User requests to delete a specific flashcard in the list
-4.  AddressBook deletes the flashcard
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
 
 *{More to be added}*
 
@@ -353,6 +381,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Question**: A Japanese character/word
 * **Answer**: The reading/definition of the Japanese given in the corresponding question
 * **Flashcard**: An object that can display a question and its answer
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -387,8 +416,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: No quiz has been started
 
-   1. Test case: `end` _while in the quiz_<br> 
-      Expected: The current quiz is ended and displayed flashcard disappears. 
+   1. Test case: `end` _while in the quiz_<br>
+      Expected: The current quiz is ended and displayed flashcard disappears.
 
    1. Test case: `end` _while in the start menu_<br>
       Expected: Nothing happens. An error message is displayed to the user telling them that no Quiz has started yet.

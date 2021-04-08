@@ -15,27 +15,36 @@ public class NextCommand extends Command {
     public static final String COMMAND_WORD = "next";
 
     public static final String MESSAGE_SUCCESS = "Here is the next question.\n"
-            + "Enter \"end\" to end the quiz, \"check\" to check the answer, "
-            + "and \"next\" to move to the next question.";
+            + "Enter \"check\" to check the answer, "
+            + "\"next\" to move to the next question or \"end\" to return to menu.";
 
-    public static final String MESSAGE_SCORE_ADDED = "Your score has been recorded:\n";
+    public static final String MESSAGE_QUIZ_ENDED = "The Quiz is over! Your score has been recorded:\n";
+
+    public static final String MESSAGE_QUIZ_ALREADY_ENDED = "The quiz session has already ended. \n";
+
+    public static final String MESSAGE_QUIZ_END_ACTIONS = "Please enter \"quiz\" to return to quiz view, "
+            + "\"start\" to start a new session, or \"end\" to return to menu.\n";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         int currentMode = model.getCurrentMode();
-        if (model.getQuizInstance() == null) {
-            throw new CommandException(Messages.NO_QUIZ_ERROR_MESSAGE);
+
+        if (currentMode == Mode.MODE_QUIZ_SESSION_ENDED) {
+            throw new CommandException(MESSAGE_QUIZ_ALREADY_ENDED + MESSAGE_QUIZ_END_ACTIONS);
+        }
+
+        if (currentMode != Mode.MODE_QUIZ_SESSION && currentMode != Mode.MODE_CHECK_SUCCESS) {
+            throw new CommandException(Messages.MESSAGE_NOT_IN_QUIZ_SESSION);
         }
 
         if (model.getNextFlashcard() == null) {
-            if (currentMode == Mode.MODE_QUIZ_SESSION_ENDED) {
-                throw new CommandException(Messages.MESSAGE_QUIZ_ALREADY_ENDED);
-            }
-            String quizStatistics = model.getQuizStatisticString();
+            String quizStatistics = model.getQuizStatisticString() + "\n";
             model.addScore();
+            model.showAttemptedQuestions();
+            String correctAttempts = model.getCorrectAttemptsString() + "\n";
             model.switchModeQuizSessionEnded();
-            return new CommandResult(Messages.MESSAGE_QUIZ_ENDED + MESSAGE_SCORE_ADDED + quizStatistics);
+            return new CommandResult(MESSAGE_QUIZ_ENDED + quizStatistics + correctAttempts);
         }
 
         model.switchModeQuizSession();

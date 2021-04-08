@@ -1,6 +1,8 @@
 package seedu.weeblingo.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -27,12 +29,16 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        try {
+            checkNumber(trimmedIndex);
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
-
 
     /**
      * Parses a {@code String answer} into an {@code Answer}.
@@ -89,5 +95,21 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Checks if the user input provided is a valid number.
+     *
+     * @param possibleIndex The given String.
+     * @throws ParseException The appropriate exception if the String is not a valid Integer or not even a number.
+     */
+    private static void checkNumber(String possibleIndex) throws ParseException {
+        if (!possibleIndex.matches("[0-9]+")) {
+            if (possibleIndex.substring(0, 1).equals("-")
+                    && possibleIndex.substring(1).matches("[0-9]+")) {
+                throw new ParseException(MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+            }
+            throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
     }
 }

@@ -1,6 +1,6 @@
 package seedu.weeblingo.storage;
 
-import static seedu.weeblingo.testutil.TypicalFlashcards.BENSON;
+import static seedu.weeblingo.testutil.TypicalFlashcards.I_CARD;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,9 +10,9 @@ public class JsonAdaptedFlashcardTest {
     private static final String INVALID_QUESTION = "how do you spell elephant?";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_QUESTION = BENSON.getQuestion().toString();
-    private static final String VALID_ANSWER = BENSON.getAnswer().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getWeeblingoTags().stream()
+    private static final String VALID_QUESTION = I_CARD.getQuestion().toString();
+    private static final String VALID_ANSWER = I_CARD.getAnswer().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = I_CARD.getWeeblingoTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
