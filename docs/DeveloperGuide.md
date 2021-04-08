@@ -484,25 +484,83 @@ Extensions:
 
 **Use case: UC0X - Create a session**
 
-**Preconditions: Student profile linked to session has been created.**
-
 MSS:
 
-1. User enters the add session command, together with the session details.
-2. TutorBuddy creates the session.
-3. TutorBuddy displays a success message.
+1. User enters the `add_session` command, together with the session details.
+2. TutorBuddy verifies that the student exists, and the inputs are valid.
+3. TutorBuddy creates the session.
+4. TutorBuddy displays a success message.
 
    Use case ends.
 
 **Extensions:**
 
-* 1a. TutorBuddy detects an error in the entered data.
-    * 1a1. TutorBuddy prompts an error and requests for the correct data.
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
 
   Use case ends.
 
-* 1b. TutorBuddy detects another session that the user has in the same timeframe.
-    * 1b1. TutorBuddy prompts an error and requests for the correct data.
+* 2b. TutorBuddy detects another overlapping session that the user has in the same timeframe.
+    * 2b1. TutorBuddy prompts an error and requests for the correct data.
+
+  Use case ends.
+
+**Use case: UC0X - Create a recurring session**
+
+MSS:
+
+1. User enters the `add_rec_session` command, together with the session details.
+2. TutorBuddy verifies that the student exists, and the inputs are valid.
+3. TutorBuddy creates the recurring session.
+4. TutorBuddy displays a success message.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+
+  Use case ends.
+
+* 2b. TutorBuddy detects another overlapping session that the user has in the same timeframe.
+    * 2b1. TutorBuddy prompts an error and requests for the correct data.
+
+  Use case ends.
+
+**Use case: UC0X - Delete a session**
+
+MSS:
+
+1. User enters the `delete_session` command with the appropriate inputs.
+2. TutorBuddy verifies that the student exists, and the inputs are valid.
+3. TutorBuddy deletes the session.
+4. TutorBuddy displays a success message.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+
+  Use case ends.
+
+**Use case: UC0X - Delete a recurring session**
+
+MSS:
+
+1. User enters the `delete_rec_session` command with the appropriate inputs.
+2. TutorBuddy verifies that the student exists, and the inputs are valid.
+3. TutorBuddy deletes the single session and splits up the remaining session into 2 recurring sessions (Before and After).
+4. TutorBuddy displays a success message.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
 
   Use case ends.
 
@@ -548,6 +606,24 @@ MSS:
 
 1. User toggles to the `Home` tab.
 2. TutorBuddy shows the monthly fee that the user would have received for the past 3 months based on current sessions in the application.
+
+   Use case ends.
+
+**UC0X - Reminders for upcoming sessions**
+
+MSS:
+
+1. User toggles to the `Home` tab.
+2. TutorBuddy shows a list of upcoming sessions that would happen, within the next 3 days.
+
+   Use case ends.
+
+**UC0X - Calendar View**
+
+MSS:
+
+1. User toggles to the `Calendar` tab.
+2. TutorBuddy shows a calendar representation of the sessions, showing .
 
    Use case ends.
 
