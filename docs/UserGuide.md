@@ -273,18 +273,6 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st order to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd order to be `Betsy Crower` and clears all existing tags.
 
-
-##### Clearing all existing orders and order items: `clear`
-
-Deletes all existing orders and order items in the CakeCollate database.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-This is not an un-doable action! With this command, all existing orders and order items will be deleted from 
-the CakeCollate database and you will not be able to retrieve them. 
-</div>
-
-Format: `clear`
-
 #### **4.1.2** ***Order Functionalities*** 
 
 ##### Locating orders by name: `find`
@@ -370,8 +358,22 @@ Examples:
 * Displays a message with a list of all available commands and their format.
 * To return to the main order list click on the `Return to the main order list` button. 
 * Help can also be accessed by clicking the `help` button in the top left corner of the application or by clicking the `F1` keyboard key.
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** You can enter the command `list` to go back to the order and order item lists.<br>
+</div> <br>
 
 Format: `help`
+
+##### Clearing all existing orders and order items: `clear`
+
+Deletes all existing orders and order items in the CakeCollate database.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This is not an un-doable action! With this command, all existing orders and order items will be deleted from 
+the CakeCollate database and you will not be able to retrieve them. 
+</div>
+
+Format: `clear`
 
 #### Exiting the program : `exit`
 
