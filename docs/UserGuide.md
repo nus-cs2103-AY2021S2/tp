@@ -165,7 +165,8 @@ Adds a note equipped with some tags.
 
 Format: `addnote c/CONTENT [t/TAG]...`
 
-* Tags are optional. However, there must be exactly one content.
+* Tags are optional.
+* When adding multiple contents, only the last content will be added.
 * In the current version, notes will be stored as a pure string.
 * Note with the same exact content can only be added once regardless of different tags. 
 * Tags must be in alphanumeric format.
