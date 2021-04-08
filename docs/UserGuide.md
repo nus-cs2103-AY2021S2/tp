@@ -76,9 +76,9 @@ To make browsing the user guide more pleasant for you, here are some of the symb
 Legend | Description
 -------|-------------
 `Inline code` | Commands and user input
-<span markdown="span" class="alert alert-success">💡 <strong>Tip</strong></span> | Tip - Extra information that may be useful
-<span markdown="span" class="alert alert-info">✏️ <strong>Note</strong></span> | Note - Important things to take note of
-<span markdown="span" class="alert alert-warning">⚠️ <strong>Warning</strong></span> | Warning - Be extra careful with these
+<span markdown="span" class="alert alert-inline alert-success">💡 <strong>Tip</strong></span> | Tip - Extra information that may be useful
+<span markdown="span" class="alert alert-inline alert-info">✏️ <strong>Note</strong></span> | Note - Important things to take note of
+<span markdown="span" class="alert alert-inline alert-warning">⚠️ <strong>Warning</strong></span> | Warning - Be extra careful with these
 
 ## Quick start
 
