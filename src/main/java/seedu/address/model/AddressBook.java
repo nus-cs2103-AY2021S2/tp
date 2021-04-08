@@ -123,6 +123,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        groups.deletePerson(key.getName());
         personStreaks.remove(key);
     }
 
