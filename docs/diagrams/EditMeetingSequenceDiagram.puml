@@ -1,0 +1,100 @@
+@startuml
+!include style.puml
+
+Actor User as user USER_COLOR
+
+box UI UI_COLOR_T1
+participant ":CommandBox" as CommandBox UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MeetingBookParser" as MeetingBookParser LOGIC_COLOR
+participant ":EditMeetingCommandParser" as EditMeetingCommandParser LOGIC_COLOR
+participant "command:EditMeetingCommand" as EditMeetingCommand LOGIC_COLOR
+
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+user -> CommandBox: enters "editmeet 1 \nd/Discuss Policy"
+activate CommandBox
+
+CommandBox-> LogicManager : executeCommand(cmdTxt)
+activate LogicManager
+
+LogicManager -> MeetingBookParser : parseCommand(commandText)
+activate MeetingBookParser
+
+create EditMeetingCommandParser
+MeetingBookParser -> EditMeetingCommandParser
+activate EditMeetingCommandParser
+
+EditMeetingCommandParser --> MeetingBookParser
+deactivate EditMeetingCommandParser
+
+MeetingBookParser -> EditMeetingCommandParser : parse(args)
+note bottom: The parser will convert the \ncommandText into an \nargumentMap, args. The \nparsing process is omitted \nfor brevity.
+activate EditMeetingCommandParser
+
+create EditMeetingCommand
+note right: Constructor creates a \nEditMeetingDescriptor \nnamed descriptor, \n it is omitted for brevity.
+EditMeetingCommandParser -> EditMeetingCommand
+activate EditMeetingCommand
+
+EditMeetingCommand --> EditMeetingCommandParser : command
+deactivate EditMeetingCommand
+
+EditMeetingCommandParser --> MeetingBookParser : command
+deactivate EditMeetingCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditMeetingCommandParser -[hidden]-> MeetingBookParser
+destroy EditMeetingCommandParser
+
+MeetingBookParser --> LogicManager : command
+deactivate MeetingBookParser
+
+LogicManager -> EditMeetingCommand : execute(model)
+activate EditMeetingCommand
+
+EditMeetingCommand -> Model: getFilteredMeetingList()
+activate Model
+Model --> EditMeetingCommand: meetings
+deactivate Model
+
+note top: Creation and verification of the\n modified meeting named\n editedMeeting is omitted for bravity
+
+EditMeetingCommand -> Model: setMeeting(meeting, editedMeeting)
+activate Model
+Model --> EditMeetingCommand
+note right: Storage feature is omitted\n here for brevity
+deactivate Model
+
+note top: The "meeting" here refers to the meeting\n that user is intending to modify and is \nretrieved from meetings.
+
+EditMeetingCommand -> Model: updateFilteredMeetingList\n(PREDICATE_SHOW_ALL_MEETINGS)
+activate Model
+Model --> EditMeetingCommand
+deactivate Model
+
+create CommandResult
+EditMeetingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditMeetingCommand: result
+deactivate CommandResult
+
+EditMeetingCommand --> LogicManager : result
+deactivate EditMeetingCommand
+EditMeetingCommand -[hidden]-> MeetingBookParser
+destroy EditMeetingCommand
+
+LogicManager --> CommandBox: result
+deactivate LogicManager
+
+CommandBox --> user: displays result
+deactivate CommandBox
+@enduml

@@ -47,6 +47,7 @@ public class AddCommand extends Command {
 
     /**
      * Creates an AddCommand to add the specified {@code Client}
+     *
      * @param client client to be added
      */
     public AddCommand(Client client) {

@@ -8,6 +8,7 @@ import java.util.Comparator;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -17,9 +18,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.util.clientbook.ObservableClient;
 
@@ -50,18 +51,17 @@ public class ClientDetailFragment extends UiPart<Region> {
     @FXML
     private ListView<Meeting> clientMeetingListView;
     @FXML
-    private VBox insurancePlanBox;
-    @FXML
-    private Label insurancePlanName;
-    @FXML
     private Label tooltip;
     @FXML
     private HBox clientSummaryBox;
     @FXML
     private HBox clientMeetingsAndPlansBox;
+    @FXML
+    private ListView<InsurancePlan> plansListView;
 
     /**
      * Creates a ClientDetailFragment that observes the given ObservableClient
+     *
      * @param observableClient ObservableClient to monitor
      */
     public ClientDetailFragment(ObservableClient observableClient, ObservableList<Meeting> meetingList) {
@@ -87,7 +87,9 @@ public class ClientDetailFragment extends UiPart<Region> {
         clientMeetingListView.setItems(
                 meetingList.filtered(meeting -> meeting.getClientName().equals(client.getName())));
         clientMeetingListView.setCellFactory(listview -> new MeetingListPanel.MeetingListViewCell());
-        insurancePlanName.setText(client.getPlan().planName);
+        ObservableList<InsurancePlan> observablePlanList = FXCollections.observableArrayList(client.getPlans());
+        plansListView.setItems(observablePlanList);
+        plansListView.setCellFactory(listview -> new PlanListPanel.PlanListViewCell());
     }
 
     private void setTooltipMode() {

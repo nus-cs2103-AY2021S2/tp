@@ -28,6 +28,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Creates a DeleteCommand to delete the client at the specified {@code Index}
+     *
      * @param targetIndex index of client to be deleted
      */
     public DeleteCommand(Index targetIndex) {
