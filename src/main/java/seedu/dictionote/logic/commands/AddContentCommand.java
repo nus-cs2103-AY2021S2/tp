@@ -15,15 +15,14 @@ import seedu.dictionote.model.dictionary.Content;
 public class AddContentCommand extends Command {
     public static final String COMMAND_WORD = "addcontent";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds content to the dictionote book. "
-            + "Parameters: "
-            + PREFIX_WEEK + "WEEK "
-            + PREFIX_HEADER + "HEADER "
-            + PREFIX_MAINCONTENT + "MAINCONTENT "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds content to the dictionote book. \n\n"
+            + "Parameters: \n"
+            + PREFIX_WEEK + "TITLE \n"
+            + PREFIX_HEADER + "HEADER\n"
+            + PREFIX_MAINCONTENT + "MAINCONTENT \n\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_WEEK + "Week 1 "
             + PREFIX_HEADER + "OOP: Class and Objects\n"
-            + "W1.1a Paradigms → OOP → Introduction → What "
             + PREFIX_MAINCONTENT + "Object-Oriented Programming (OOP) is a programming paradigm.\n"
             + "A programming paradigm guides programmers to analyze programming problems, "
             + "and structure programming solutions, in a specific way.";
