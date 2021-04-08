@@ -10,13 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Description {
 
     public static final String MESSAGE_CONSTRAINTS = "Descriptions should only contain alphanumeric "
-            + "characters and spaces, and it should not be blank";
+            + "characters and spaces, and it should not be blank. Leading and trailing whitespaces will be trimmed.";
 
     /*
      * The first character of the description must not be a whitespace, otherwise
      * " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "\\S.*";
+    public static final String VALIDATION_REGEX = "[A-Za-z0-9][A-Za-z0-9 ]*";
 
     public final String value;
 
