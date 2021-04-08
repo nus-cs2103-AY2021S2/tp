@@ -31,7 +31,7 @@ imPoster is a desktop application for beginners of API development to easily gra
 
 - **New Feature**: Added a show command that allows the user to view the details of a saved endpoint.
 
-- **Enhancements to existing features**:
+- **Enhancements**:
 
   - Updated various custom command feedback messages in the result display.
   - Wrote additional tests for existing features to increase coverage.
@@ -40,12 +40,12 @@ imPoster is a desktop application for beginners of API development to easily gra
   - Fixed issues related to user input(such as the integer index) involved in various commands to ensure bugs are 
     caught and relevant error messages are provided.
 
-- **Project management**:
+#### Project management
 
   - Contributed to gathering of discussion topics and updating of meeting minutes in weekly team meetings.
   - Managed the `v1.3.1` product release on GitHub.
-  
-- **Documentation**:
+
+#### Documentation
 
   - User Guide:
     - Added the documentation for the features `send`, `run` and `help`.
@@ -57,7 +57,7 @@ imPoster is a desktop application for beginners of API development to easily gra
       (Architecture, UI component and Logic component).
     - Added implementation details of the `send` & `run` feature.
 
-- **Community**:
+#### Community
 
   - PRs reviewed (with non-trivial review comments):
     ([\#79](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/79), 
