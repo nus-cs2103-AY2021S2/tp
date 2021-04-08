@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_DATE_IN_PAST;
+import static seedu.address.commons.core.Messages.MESSAGE_ENTRY_START_DATE_IN_PAST;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
@@ -42,7 +42,7 @@ public class FreeCommandParser {
 
         LocalDateTime now = LocalDateTime.now();
         if (startDateTime.getDate().isBefore(now)) {
-            throw new ParseException(MESSAGE_DATE_IN_PAST);
+            throw new ParseException(MESSAGE_ENTRY_START_DATE_IN_PAST);
         }
 
         return new FreeCommand(new ListOccupyingEntryPredicate(startDateTime, endDateTime));
