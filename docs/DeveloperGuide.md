@@ -440,18 +440,94 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `CoLAB` and the **Actor** is the `user`, unless specified otherwise)
 
-* [UC1 - Add a contact](#uc1---add-a-contact)
-* [UC2 - Find a specific contact](#uc2---find-a-specific-contact)
-* [UC3 - Delete a contact](#uc3---delete-a-contact)
-* [UC4 - Purge all entries from the app](#uc4---purge-all-entries-from-the-app)
-* [UC5 - Adding or Modifying information about a contact](#uc5---adding-or-modifying-information-about-a-contact)
+* [UC1 - Add a project](#uc1---add-a-project)
+* [UC2 - Delete a project](#uc2---delete-a-project)
+* [UC3 - Add or Modify information about a project](#uc3---add-or-modify-information-about-a-project)
+* [UC4 - Add a contact](#uc4---add-a-contact)
+* [UC5 - Find a specific contact](#uc5---find-a-specific-contact)
+* [UC6 - Delete a contact](#uc6---delete-a-contact)
+* [UC7 - Add or Modify information about a contact](#uc7---add-or-modify-information-about-a-contact)
+* [UC30 - Purge all entries from the app](#uc30---purge-all-entries-from-the-app)
 
-#### UC1 - Add a contact
+#### UC1 - Add a project
 
 **MSS**
 
-1. User requests to add a contact
-2. CoLAB adds the contact
+1. User requests to add a project.
+2. CoLAB adds the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given name argument is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. User decides to undo the add action.
+
+* 2b1. CoLAB reverses the effects of the previous command.
+
+  Use case ends.
+
+#### UC2 - Delete a project
+
+**MSS**
+
+1. User requests to delete a specific project in the list.
+2. CoLAB deletes the contact.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list of contacts is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 2.
+
+* 4a. User decides to undo the delete action.
+
+* 4b1. CoLAB reverses the effects of the previous command.
+
+  Use case ends.
+
+#### UC3 - Adding or Modifying information about a contact
+
+**MSS**
+
+1. User requests to edit information about a contact.
+2. CoLAB updates entry with new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given arguments are invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. User decides to undo the update action.
+
+* 2b1. CoLAB reverses the effects of the previous command.
+
+  Use case ends.
+
+#### UC4 - Add a contact
+
+**MSS**
+
+1. User requests to add a contact.
+2. CoLAB adds the contact.
 
    Use case ends.
 
@@ -465,11 +541,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. User decides to undo the add action.
 
-* 2b1. CoLAB reverses the effects of the previous command
+* 2b1. CoLAB reverses the effects of the previous command.
 
   Use case ends.
 
-#### UC2 - Find a specific contact
+#### UC5 - Find a specific contact
 
 **MSS**
 
@@ -484,7 +560,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-#### UC3 - Delete a contact
+#### UC6 - Delete a contact
 
 **MSS**
 
@@ -509,28 +585,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 4a. User decides to undo the delete action.
 
-* 4b1. CoLAB reverses the effects of the previous command
+* 4b1. CoLAB reverses the effects of the previous command.
 
   Use case ends.
 
-#### UC4 - Purge all entries from the app
-
-**MSS**
-
-1. User requests to delete all entries from the app.
-2. CoLAB deletes all data from the app.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. User decides to undo the purge action.
-
-* 2b1. CoLAB reverses the effects of the previous command
-
-  Use case ends.
-
-#### UC5 - Adding or Modifying information about a contact
+#### UC7 - Adding or Modifying information about a contact
 
 **MSS**
 
@@ -549,7 +608,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. User decides to undo the update action.
 
-* 2b1. CoLAB reverses the effects of the previous command
+* 2b1. CoLAB reverses the effects of the previous command.
+
+  Use case ends.
+
+#### UC30 - Purge all entries from the app
+
+**MSS**
+
+1. User requests to delete all entries from the app.
+2. CoLAB deletes all data from the app.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User decides to undo the purge action.
+
+* 2b1. CoLAB reverses the effects of the previous command.
 
   Use case ends.
 
