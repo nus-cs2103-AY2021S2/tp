@@ -1,7 +1,5 @@
 package seedu.address.model.date;
 
-import seedu.address.model.person.Person;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
@@ -10,7 +8,6 @@ public class ImportantDate implements Comparable<ImportantDate> {
 
     private final Description description;
     private final Details details;
-
 
     /**
      * Constructs a {@code ImportantDate}.
@@ -35,19 +32,6 @@ public class ImportantDate implements Comparable<ImportantDate> {
     @Override
     public int compareTo(ImportantDate other) {
         return this.details.compareTo(other.details);
-    }
-
-    /**
-     * Returns true if both important dates have the same description.
-     * This defines a weaker notion of equality between two important dates.
-     */
-    public boolean isSameImportantDate(ImportantDate otherImportantDate) {
-        if (otherImportantDate == this) {
-            return true;
-        }
-
-        return otherImportantDate != null
-            && otherImportantDate.getDescription().equals(getDescription());
     }
 
     /**

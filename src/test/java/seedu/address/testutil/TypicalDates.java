@@ -1,13 +1,16 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE_DESCRIPTION_CEDAR_EXAM;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE_DESCRIPTION_RAFFLES_EXAM;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE_DETAILS_CEDAR_EXAM;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_IMPORTANT_DATE_DETAILS_RAFFLES_EXAM;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.DatesBook;
 import seedu.address.model.date.ImportantDate;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code ImportantDate} objects to be used in tests.
