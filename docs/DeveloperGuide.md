@@ -1177,12 +1177,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
    Use case ends.
 
-#### Checklist
-
-* Use period.
-* Correct numbering.
-* Working links.
-
 ### Non-Functional Requirements
 
 * Technical requirements:
