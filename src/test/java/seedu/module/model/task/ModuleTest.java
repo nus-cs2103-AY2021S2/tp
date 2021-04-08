@@ -1,5 +1,6 @@
 package seedu.module.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.testutil.Assert.assertThrows;
@@ -48,8 +49,42 @@ public class ModuleTest {
         Module firstModule = new Module("CS1101S");
         Module secondModule = new Module("CS1101S");
         Module thirdModule = new Module("CS2030");
+        String notModule = "CS1101S";
+
+        //EP: Same object
         assertTrue(firstModule.equals(firstModule));
+
+        //EP: Different object, same value
         assertTrue(firstModule.equals(secondModule));
+
+        //EP: Different object, different value
         assertFalse(firstModule.equals(thirdModule));
+
+        //EP: Different type
+        assertFalse(firstModule.equals(notModule));
+    }
+
+    @Test
+    public void compareTo() {
+        Module firstModule = new Module("CS1101S");
+        Module secondModule = new Module("CS1101S");
+        Module thirdModule = new Module("CS2030");
+
+        //EP: Same object
+        assertTrue(firstModule.compareTo(firstModule) == 0);
+
+        //EP: Different object, same value
+        assertTrue(firstModule.compareTo(secondModule) == 0);
+
+        //EP: Different object, different value
+        assertTrue(firstModule.compareTo(thirdModule) > 0);
+        assertTrue(thirdModule.compareTo(firstModule) < 0);
+    }
+
+    @Test
+    public void hashCodeTest() {
+        String firstModuleString = "CS1101S";
+        Module firstModule = new Module(firstModuleString);
+        assertEquals(firstModule.hashCode(), firstModuleString.hashCode());
     }
 }

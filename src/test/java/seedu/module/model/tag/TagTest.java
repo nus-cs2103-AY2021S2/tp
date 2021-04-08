@@ -49,18 +49,9 @@ public class TagTest {
 
     @Test
     public void hashCodeTest() {
+        String firstTagLowerCase = "firsttag";
         Tag firstTag = new Tag("FirstTag");
 
-        //EP: Same Tag object
-        assertEquals(firstTag.hashCode(), firstTag.hashCode());
-
-        //EP: Different Tag object, same lowercase name
-        Tag firstTagOther = new Tag("firstTag");
-        assertEquals(firstTag.hashCode(), firstTagOther.hashCode());
-
-        //EP: Different Tag object, different name
-        Tag secondTag = new Tag("SecondTag");
-        assertNotEquals(firstTag.hashCode(), secondTag.hashCode());
+        assertEquals(firstTag.hashCode(), firstTagLowerCase.hashCode());
     }
-
 }
