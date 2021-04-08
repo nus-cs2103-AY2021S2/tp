@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Priority implements Comparable<Priority> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Priority should be represented as an integer from 0 to 9";
+            "Priority should be represented as an integer from 0 to 9.";
     public static final String VALIDATION_REGEX = "^[0-9]$";
     public static final int DEFAULT_PRIORITY = 5;
 

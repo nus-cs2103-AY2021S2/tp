@@ -129,6 +129,14 @@ public class AddEventCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
+        public boolean isTaskListEmpty() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public boolean isEventListEmpty() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public void deleteTask(Task target) {
             throw new AssertionError("This method should not be called.");
         }

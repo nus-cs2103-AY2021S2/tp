@@ -20,17 +20,20 @@ public class DoneTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the task(s) identified by the index number(s) as complete.\n"
-            + "Parameters: INDEX1 [INDEX2] ...\n"
+            + "Parameters: INDEX1 [INDEX2]...\n"
             + "Example: " + COMMAND_WORD + " 1 2\n"
             + "Also, note that: \n"
             + "1. Index number is the index shown in the displayed task list.\n"
-            + "2. Index numbers must be non-zero integers and must not contain duplicates.\n"
-            + "3. Completed tasks cannot be marked as complete again.\n";
+            + "2. Index numbers must be non-zero positive integers and must not contain duplicates.\n"
+            + "3. Completed tasks cannot be marked as complete again.";
 
-    public static final String MESSAGE_DONE_TASK_SUCCESS = "Completed %1$d Task(s)";
+    public static final String MESSAGE_DONE_TASK_SUCCESS = "Completed %1$d Task(s).";
+    public static final String MESSAGE_TASKS_ALREADY_COMPLETE =
+            "Tasks with the following given indexes have already been marked as complete: ";
     public static final String MESSAGE_TASK_ALREADY_COMPLETE =
-            "Task(s) with the following given index(es) have already been marked as complete: ";
-    public static final String MESSAGE_INDEX_OUTOFRANGE = "The following given index(es) is/are invalid: ";
+            "Task with the following given index has already been marked as complete: ";
+    public static final String MESSAGE_INDEXES_OUTOFRANGE = "The following given indexes are invalid: ";
+    public static final String MESSAGE_INDEX_OUTOFRANGE = "The following given index is invalid: ";
 
     private final List<Index> targetIndexes;
     private List<Index> outOfRangeTargetIndexes = new ArrayList<>();
@@ -85,7 +88,13 @@ public class DoneTaskCommand extends Command {
     }
 
     private String getInvalidIndexesErrorMessage() {
-        return MESSAGE_INDEX_OUTOFRANGE + outOfRangeTargetIndexes.toString() + ".\n";
+        assert !outOfRangeTargetIndexes.isEmpty();
+
+        if (outOfRangeTargetIndexes.size() == 1) {
+            return MESSAGE_INDEX_OUTOFRANGE + outOfRangeTargetIndexes.toString() + ".\n";
+        } else {
+            return MESSAGE_INDEXES_OUTOFRANGE + outOfRangeTargetIndexes.toString() + ".\n";
+        }
     }
 
     private boolean areTasksAlreadyCompleted(List<Index> targetIndexes, List<Task> lastShownList) {
@@ -105,7 +114,13 @@ public class DoneTaskCommand extends Command {
     }
 
     private String getInvalidTasksErrorMessage() {
-        return MESSAGE_TASK_ALREADY_COMPLETE + invalidTargetTaskIndexes.toString() + ".\n";
+        assert !invalidTargetTaskIndexes.isEmpty();
+
+        if (invalidTargetTaskIndexes.size() > 1) {
+            return MESSAGE_TASKS_ALREADY_COMPLETE + invalidTargetTaskIndexes.toString() + ".\n";
+        } else {
+            return MESSAGE_TASK_ALREADY_COMPLETE + invalidTargetTaskIndexes.toString() + ".\n";
+        }
     }
 
     /**

@@ -498,6 +498,7 @@ It is largely similar to `SortTaskCommand`, with a some minor differences:
 
 The below activity diagram summarises what happens when `pin_task` is called.
 It can also be similarly extrapolated to apply to `unpin_task`.
+
 ![Activity Diagram of PinTaskCommand](images/PinTaskActivityDiagram.png)
 
 [Return to Table of Contents](#table-of-contents)  
@@ -613,10 +614,6 @@ The sequence diagram for `EditEventCommand` can be found below.
 
 ![Sequence Diagram of EditEvent Command](images/EditEventCommandSequenceDiagram.png)
 
-The following activity diagram summarises what happens when a user executes a SaveCommand:
-
-<img src="images/EditEventCommandActivityDiagram.png" width="450" />
-
 [Return to Table of Contents](#table-of-contents)  
 
 **Implementation of FindFreeTimeCommand**  
@@ -638,6 +635,58 @@ The sequence diagram for `FindFreeTimeCommand` can be found below.
 
 ![Sequence Diagram of FindFreeTimeCommand](images/FindFreeTimeCommandSequenceDiagram.png)
 
+The below activity diagram summarises what happens when `free_time` is called.
+
+![Activity Diagram of FindFreeTimeCommand](images/FindFreeTimeActivityDiagram.png)
+
+***Design Considerations for `FindFreeTimeCommand`***
+<table>
+    <tr>
+        <th> Alternative 1 (Chosen Implementation) </th>
+        <th> Alternative 2 </th>
+    </tr>
+    <tr>
+        <td> 
+            <ul>
+                <li>Several helper functions were implemented in UniqueEventList class</li>
+                <li> Pros:
+                    <ul>
+                        <li>Each function hanles a small part of logic</li>
+                        <li>Easier to detect bugs</li>
+                        <li>Better readability of code</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>Longer lines of code</li>
+                        <li>Affects other classes</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+        <td> 
+            <ul>
+                <li>Write methods in FindFreeTimeCommand class directly</li>
+                <li> Pros:
+                    <ul>
+                        <li>Straightforward implementation</li>
+                        <li>Less testing required due to less components</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>Strong dependency on Event class and UniqueEventList class</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<div markdown="block">
+
+We choose alternative 1 because it presents code in a clearer way. Breaking up long methods into shorter methods will improve
+readability of the code. Implementing codes under UniqueEventList also reduces dependency.
+
 [Return to Table of Contents](#table-of-contents)  
 
 **Implementation of ClearExpiredEventCommand**  
@@ -656,6 +705,7 @@ A success message `ClearExpiredEventCommand#MESSAGE_CLEAR_COMPLETED_TASK_SUCCESS
 The sequence diagram for `ClearExpiredEventCommand` can be found below.
 
 ![Sequence Diagram of Clear Command](images/ClearExpiredEventCommandSequenceDiagram.png)
+
 
 [Return to Table of Contents](#table-of-contents)  
 
@@ -694,42 +744,48 @@ The sequence diagram for `ClearExpiredEventCommand` can be found below.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
+#### Task Related
+
 | Priority | As a …​                            | I want to …​                                                        | So that …​                                                                |
 | -------- | ------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `* * *`  | SOC Student                           | Add a task to my schedule                                              | I can track my task better                                                   |
-| `* *`    | SOC Student                           | Allocate a priority score to a task                                    | I can prioritise my time better                                              |
-| `* *`    | SOC Student                           | Edit a task in my schedule                                             | I can have flexibility in my schedule                                        |
-| `* * *`  | SOC Student                           | Mark a task complete in my schedule                                    | I can track which tasks I have completed                                     |
 | `* * *`  | SOC Student                           | Delete a task from my schedule from my schedule                        | I can have flexibility in my schedule                                        |
+| `* * *`  | SOC Student                           | Edit tasks in my schedule                                              | I can have flexibility in my schedule                                        |
 | `* * *`  | SOC Student                           | View tasks in my schedule                                              | I can have a better sense of what will happen in the following days or weeks |
+| `* *`    | SOC Student                           | Mark a task complete in my schedule                                    | I can track which tasks I have completed                                     |
+| `* *`    | SOC Student                           | Undo a completed task in my schedule                                   | I undo the marking if it is done by mistake                                  |
 | `* *`    | SOC Student                           | Sort my tasks in my schedule in various orderings                      | I can prioritise my time better                                              |
-| `*`      | Forgetful SOC Student                 | Get reminders from SOChedule regarding task deadlines                  | I will not lose track of my tasks                                            |
-| `* *`    | SOC student under huge workload       | View my schedule to see my free time slots                             | I can allocate my time better and fill it up with more tasks                 |
-| `*`      | SOC Student                           | View the people that I need to work with for a specific event          | I can keep in touch with the person better                                   |
-| `* * *`  | SOC Student                           | Add an event (with the required information) to my schedule            | I can track my time better                                                   |
-| `* *`    | SOC Student                           | Add recurring events (with the required information) to my schedule    | I can plan ahead for my schedule                                             |
-| `*`      | SOC Student                           | Add a person that I have to work with to an event in my schedule       | I can track who I need to work with for an even                              |
-| `*`      | SOC Student                           | Add a meeting link to an event in my schedule                          | I can quickly join a online meeting                                          |
-| `* *`    | SOC Student                           | Edit event description in my schedule                                  | I can have flexibility in my schedule                                        |
-| `* *`    | SOC Student                           | Edit the event time in my schedule                                     | I can have flexibility in my schedule                                        |
+| `* *`    | SOC Student                           | Pin certain tasks in my schedule                                       | I can prioritise my time better                                              |
+| `* *`    | SOC Student                           | Unpin certain tasks in my schedule                                     | I can prioritise my time better                                              |
+| `*`      | SOC Student                           | View tasks with the deadline on current date                           | I can have a better sense of what tasks are due today                        |
+| `*`      | SOC Student                           | Search tasks by certain keywords                                       | I can view the details of the task that I want to find                       |
+| `*`      | SOC Student                           | Clear completed tasks                                                  | I can make my schedule cleaner                                               |
+| `*`      | SOC Student                           | Clear expired tasks                                                    | I can make my schedule cleaner                                               |
+| `*`      | SOC Student                           | Allocate a priority score to a task                                    | I can prioritise my time better                                              |
+| `*`      | SOC Student                           | Allocate a category to a task                                          | I can know what category my tasks belong to                                  |
+
+#### Event Related
+
+| Priority | As a …​                            | I want to …​                                                        | So that …​                                                                |
+| -------- | ------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `* * *`  | SOC Student                           | Add an event to my schedule                                            | I can track my events better                                                 |
 | `* * *`  | SOC Student                           | Delete an event from my schedule from my schedule                      | I can have flexibility in my schedule                                        |
-| `*`      | SOC Student                           | Remove the person I am working with for an event                       | I can track who I need to work with for an event                             |
+| `* * *`  | SOC Student                           | Edit events in my schedule                                             | I can have flexibility in my schedule                                        |
 | `* * *`  | SOC Student                           | View events in my schedule                                             | I can have a better sense of what will happen in the following days or weeks |
-| `* *`    | SOC Student                           | View events for today                                                  | I can have a better sense of what will happen in the following hours         |
-| `* *`    | SOC Student                           | Sort the tasks based on the deadline                                   | I can proceed with the task that is closer to the deadline                   |
-| `*`      | SOC Student                           | Get alerts for impending events                                        | I can prepare ahead of time for the event                                    |
-| `*`      | SOC Student                           | Add the schedule of what I want to do and what I really do             | I can reflect which part of the day being not productive                     |
-| `*`      | SOC Student                           | Set alert time frame for events                                        | I can prepare ahead of time                                                  |
-| `* *`    | SOC Student                           | Set colours to events                                                  | I can categorise my events                                                   |
-| `* *`    | SOC Student                           | Set colours to tasks                                                   | I can categorise my tasks                                                    |
-| `* *`    | SOC Student                           | highlight the events that are very important                           | I can differentiate the important tasks from the rest                        |
-| `*`      | SOC Student                           | record the progress of a habit user want to cultivate                  | I can cultivate a lot of good habits                                         |
-| `*`      | SOC Student                           | write a diary each day                                                 | I can record my life                                                         |
-| `*`      | SOC Student with many project modules | know who I am doing the task with                                      | it is easier to schedule meetings or discussions with my group mates         |
-| `*`      | SOC Student                           | keep track of the progress of each module                              | I can finish all tasks well and on time                                      |
-| `* *`    | SOC Student                           | categorise my tasks                                                    | I can group my tasks to have a clearer schedule                              |
-| `* *`    | SOC Student                           | find out the free time between events                                  | fill in other activities to achieve better time management                   |
-| `*`      | SOC Student taking several projects   | have a better sense on the project tasks assigned and the due date     | I can finish the tasks assigned on time                                      |
+| `*`      | SOC Student                           | View events that are happening today                                   | I can have a better sense of what events are happening today                 |
+| `*`      | SOC Student                           | Search events by certain keywords                                      | I can view the details of the event that I want to find                      |
+| `*`      | SOC Student                           | Clear expired events                                                   | I can make my schedule cleaner                                               |
+| `*`      | SOC Student                           | Allocate a priority score to an event                                  | I can prioritise my time better                                              |
+| `*`      | SOC Student                           | Allocate a category to an event                                        | I can know what category my events belong to                                 |
+
+#### Both Task and Event Related
+
+| Priority | As a …​                            | I want to …​                                                        | So that …​                                                                |
+| -------- | ------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `* *`    | SOC Student                           | Find tasks and events before or on a given date                        | I can keep track of my tasks and events better                               |
+| `* *`    | SOC Student                           | Find free time slots on a specific date                                | I can allocate my time better                                                |
+| `* *`    | SOC Student                           | Have a summary of task completion status and events in next 7 days     | I can keep track of my progress and plan ahead for my schedule               |
+| `*`      | SOC Student                           | Clear the entire schedule                                              | I can start adding tasks and events from fresh                               |
 
 *{More to be added}*
 
@@ -1017,15 +1073,40 @@ Use case ends.
 
 **Use case: UC21 - Finding free time slots**
 
-`<pending>`
+**MSS**
+
+1. User requests to find free time slots on a given date.
+2. SOChedule shows a list of free time slots on that date.
+   Use case ends.
+
+**Extensions**
+
+* 2a. SOChedule notifies that there is no free time slots.
+
+  Use case ends.
+
+
+* 3a. The given date is invalid.
+
+    * 3a1. SOChedule shows an error message indicating the invalidity of the date.
+
+      Use case ends.
 
 **Use case: UC22 - Getting a summary of SOChedule**
 
-`<pending>`
+**MSS**
+
+1. User requests to have a summary.
+2. SOChedule shows a list of different types of tasks and events happening in the next 7 days.
+   Use case ends.
 
 **Use case: UC23 - Clearing SOChedule**
 
-`<pending>`
+**MSS**
+
+1. User requests to clear the whole SOChedule.
+2. SOChedule clears all tasks and events stored.
+3. SOChedule shows an empty list of tasks and events.
 
 *{More to be added}*
 
