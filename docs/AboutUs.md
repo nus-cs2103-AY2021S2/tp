@@ -54,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/yaowei-soc.png" width="200px">
 
 [[github](https://github.com/yaowei-soc)]
-<!-- [[portfolio](team/johndoe.md)] -->
+[[portfolio](team/yaowei-soc)]
 
 * Role: Documentation
 * Responsibilities: Test
