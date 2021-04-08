@@ -4,8 +4,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE_POLICY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SHORTCUT_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SHORTCUT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
@@ -24,6 +27,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class BatchCommandParser implements Parser<BatchCommand> {
     public static final String INVALID_BATCH_COMMAND = "Invalid batch operation!\nOnly edit and delete operations "
             + "are supported.";
+    public static final String REPEATED_INDICES = "Input indices are repeated! Please ensure that all indices are "
+            + "different.";
     public static final String INVALID_EDIT_ARGUMENTS = "Invalid arguments for edit command!\nOnly "
             + "phone numbers, addresses, tags and insurance policies can be edited in batch.";
 
@@ -46,7 +51,7 @@ public class BatchCommandParser implements Parser<BatchCommand> {
             // Checks the validity of the Command that the user passed as input to the BatchCommand
             switch (inputCommand) {
             case EditCommand.COMMAND_WORD:
-                /* falls through */
+                /* fall through */
             case DeleteCommand.COMMAND_WORD:
                 break;
             default:
@@ -54,10 +59,11 @@ public class BatchCommandParser implements Parser<BatchCommand> {
             }
 
             // Tokenises and parses the user input
-            String inputIndicesAndArgs = splitCommandAndIndicesAndArgs[1].trim();
-            ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(inputIndicesAndArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                            PREFIX_ADDRESS, PREFIX_TAG, PREFIX_INSURANCE_POLICY);
+            String inputIndicesAndArgs = " " + splitCommandAndIndicesAndArgs[1].trim();
+            ArgumentMultimap argMultimap = ArgumentTokenizer
+                            .tokenize(inputIndicesAndArgs, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                            PREFIX_ADDRESS, PREFIX_TAG, PREFIX_INSURANCE_POLICY, PREFIX_MEETING,
+                            PREFIX_SHORTCUT_COMMAND, PREFIX_SHORTCUT_NAME);
 
             List<Index> listOfIndices = parseAndPrepareIndices(argMultimap);
 
@@ -78,12 +84,16 @@ public class BatchCommandParser implements Parser<BatchCommand> {
 
     private List<Index> parseAndPrepareIndices(ArgumentMultimap argMultimap) throws ParseException {
         String indices = argMultimap.getPreamble();
+        if (indices.length() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BatchCommand.MESSAGE_USAGE));
+        }
         List<Index> listOfIndices = ParserUtil.parseIndices(indices.trim());
 
         // Reverse sort the list so that upon deletion of clients, the same index can still be used since we deleted
         // from the back. No side effect for EditCommands.
         Collections.sort(listOfIndices);
         Collections.reverse(listOfIndices);
+
         return listOfIndices;
     }
 

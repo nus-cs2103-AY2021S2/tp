@@ -53,6 +53,11 @@ public class Index implements Comparable<Index> {
     }
 
     @Override
+    public int hashCode() {
+        return zeroBasedIndex;
+    }
+
+    @Override
     public int compareTo(Index o) {
         return Integer.compare(zeroBasedIndex, o.zeroBasedIndex);
     }
