@@ -48,20 +48,20 @@ public class SortAppointmentCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, SortAppointmentCommand.COMMAND_WORD + INVALID_SORTING_ORDER
+        assertParseFailure(parser, INVALID_SORTING_ORDER
                 + DATETIME_APPOINTMENT_SORTING_KEY, SortingOrder.MESSAGE_CONSTRAINTS); // invalid sorting order
-        assertParseFailure(parser, SortAppointmentCommand.COMMAND_WORD + DESC_SORTING_ORDER
+        assertParseFailure(parser, DESC_SORTING_ORDER
                 + INVALID_APPOINTMENT_SORTING_KEY,
                 AppointmentSortingKey.MESSAGE_CONSTRAINTS); // invalid appointment sorting key
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, SortAppointmentCommand.COMMAND_WORD + INVALID_SORTING_ORDER
+        assertParseFailure(parser, INVALID_SORTING_ORDER
                         + INVALID_APPOINTMENT_SORTING_KEY, SortingOrder.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        String userInput = SortAppointmentCommand.COMMAND_WORD + DESC_SORTING_ORDER + DATETIME_APPOINTMENT_SORTING_KEY;
+        String userInput = DESC_SORTING_ORDER + DATETIME_APPOINTMENT_SORTING_KEY;
         SortAppointmentDescriptor descriptor = new SortAppointmentDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_DESC)
                 .withAppointmentSortingKey(VALID_SORTING_KEY_APPOINTMENT_DATETIME).build();
@@ -72,7 +72,7 @@ public class SortAppointmentCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        String userInput = SortAppointmentCommand.COMMAND_WORD + DESC_SORTING_ORDER + DATETIME_APPOINTMENT_SORTING_KEY
+        String userInput = DESC_SORTING_ORDER + DATETIME_APPOINTMENT_SORTING_KEY
                 + DESC_SORTING_ORDER;
         SortAppointmentDescriptor descriptor = new SortAppointmentDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_DESC)
@@ -84,7 +84,7 @@ public class SortAppointmentCommandParserTest {
 
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
-        String userInput = SortAppointmentCommand.COMMAND_WORD + INVALID_SORTING_ORDER + DESC_SORTING_ORDER
+        String userInput = INVALID_SORTING_ORDER + DESC_SORTING_ORDER
                 + DATETIME_APPOINTMENT_SORTING_KEY;
         SortAppointmentDescriptor descriptor = new SortAppointmentDescriptorBuilder()
                 .withSortingOrder(VALID_SORTING_ORDER_DESC)
