@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import seedu.address.commons.core.AddressBookSettings;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
@@ -104,6 +105,27 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public AddressBookSettings getAddressBookSettings() {
+        return userPrefs.getAddressBookSettings();
+    }
+
+    @Override
+    public void setAddressBookSettings(AddressBookSettings addressBookSettings) {
+        requireNonNull(addressBookSettings);
+        userPrefs.setAddressBookSettings(addressBookSettings);
+    }
+
+    @Override
+    public Comparator<Contact> getAddressBookComparator() {
+        return userPrefs.getAddressBookComparator();
+    }
+
+    @Override
+    public void setAddressBookComparator(String comparator) {
+        userPrefs.setAddressBookComparator(comparator);
+    }
+
     //=========== AddressBook ================================================================================
 
     @Override
@@ -131,6 +153,7 @@ public class ModelManager implements Model {
     public void addContact(Contact contact) {
         addressBook.addContact(contact);
         updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+        orderContacts();
     }
 
     @Override
@@ -138,6 +161,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedContact);
 
         addressBook.setContact(target, editedContact);
+        orderContacts();
     }
 
     @Override
@@ -171,13 +195,19 @@ public class ModelManager implements Model {
     //=========== Sorted Contact List Accessors =============================================================
 
     @Override
-    public void sortContactList(Comparator<Contact> comparator) {
+    public void sortContactList(String comparator) {
         requireNonNull(comparator);
+        setAddressBookComparator(comparator);
 
-        ObservableList<Contact> fullContactList = addressBook.getContactList();
-        SortedList<Contact> sortedContacts = fullContactList.sorted(comparator);
+        orderContacts();
+    }
 
-        setContacts(sortedContacts);
+    @Override
+    public void orderContacts() {
+        ObservableList<Contact> contactList = addressBook.getContactList();
+        SortedList<Contact> sortedContactList = contactList.sorted(getAddressBookComparator());
+
+        setContacts(sortedContactList);
         filterContactList();
     }
 

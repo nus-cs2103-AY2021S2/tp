@@ -38,6 +38,7 @@ public class LogicManager implements Logic {
 
         parentPalParser = new ParentPalParser();
 
+        model.orderContacts();
         model.orderAppointments();
     }
 
