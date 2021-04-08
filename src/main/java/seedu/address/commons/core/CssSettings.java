@@ -4,20 +4,20 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class CssSettings implements Serializable {
-    private static final String DefaultCss = "MainWindow.fxml";
+    private static final String defaultCss = "MainWindow.fxml";
 
-    private final String NewCss;
+    private final String newCss;
 
     public CssSettings() {
-        this.NewCss = DefaultCss;
+        this.newCss = defaultCss;
     }
 
-    public CssSettings(String NewCss) {
-        this.NewCss = NewCss;
+    public CssSettings(String newCss) {
+        this.newCss = newCss;
     }
 
     public String getCssSettings() {
-        return NewCss;
+        return newCss;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class CssSettings implements Serializable {
 
         CssSettings o = (CssSettings) other;
 
-        return NewCss == o.NewCss;
+        return newCss == o.newCss;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class CssSettings implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Css : " + NewCss);
+        sb.append("Css : " + newCss);
         return sb.toString();
     }
 }
