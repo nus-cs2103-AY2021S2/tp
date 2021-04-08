@@ -145,7 +145,7 @@ This operation is exposed in the `Model` interface as `Model#addPerson(Person pe
 
 Given below is an example usage scenario and how the add person mechanism behaves at each step.
 
-Step 1: The user executes `add person pt/student …`. The LogicManager takes in the string command and calls `AddressBookParser#parseCommand(String userInput)`.
+Step 1: The user executes `add_person pt/student …`. The LogicManager takes in the string command and calls `AddressBookParser#parseCommand(String userInput)`.
 
 Step 2: The `parseCommand` method passes the user input to `AddPersonCommandParser#parse(String args)` which returns an AddPersonCommand object. This addPersonCommand object has a reference to a Person which could be either Student or Tutor
 
