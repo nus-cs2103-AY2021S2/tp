@@ -128,5 +128,4 @@ public interface Model {
      * Sets the user prefs' CSS settings.
      */
     void setCssSettings(CssSettings cssSettings);    
-
 }
