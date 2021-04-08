@@ -28,8 +28,8 @@
                 <Label fx:id="roomNumber" text="\$first" styleClass="cell_big_label" />
             </HBox>
             <FlowPane fx:id="tags" />
-            <Label fx:id="roomType" styleClass="cell_small_label" text="\$phone" />
-            <Label fx:id="isOccupied" styleClass="cell_small_label" text="\$address" />
+            <Label fx:id="roomType" styleClass="cell_small_label" text="\$roomType" />
+            <Label fx:id="isOccupied" styleClass="cell_small_label" text="\$isOccupied" />
         </VBox>
     </GridPane>
 </HBox>

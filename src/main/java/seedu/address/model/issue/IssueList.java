@@ -10,10 +10,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.issue.exceptions.DuplicateIssueException;
 import seedu.address.model.issue.exceptions.IssueNotFoundException;
+import seedu.address.model.room.Room;
 
 /**
  * A list of issues that does not allow nulls.
- *
+ * <p>
  * Supports a minimal set of list operations.
  */
 public class IssueList implements Iterable<Issue> {
@@ -100,6 +101,17 @@ public class IssueList implements Iterable<Issue> {
     }
 
     /**
+     * Checks if any issues have the given room associated with it
+     *
+     * @param target Room to check if it has issues associated with it.
+     * @return True if there are issues with the given room associated with it.
+     */
+    public boolean containsRoom(Room target) {
+        return internalList.stream().anyMatch(issue ->
+                issue.getRoomNumber().value.equals(target.getRoomNumber().roomNumber));
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Issue> asUnmodifiableObservableList() {
@@ -115,7 +127,7 @@ public class IssueList implements Iterable<Issue> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof IssueList // instanceof handles nulls
-                        && internalList.equals(((IssueList) other).internalList));
+                && internalList.equals(((IssueList) other).internalList));
     }
 
     @Override

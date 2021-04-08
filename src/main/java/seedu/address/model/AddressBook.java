@@ -3,8 +3,11 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Alias;
+import seedu.address.commons.core.AliasMapping;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueList;
 import seedu.address.model.resident.Name;
@@ -26,6 +29,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueRoomList rooms;
     private final UniqueResidentRoomList residentRooms;
     private final IssueList issues;
+    private final AliasMapping aliasMapping;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -38,6 +43,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         rooms = new UniqueRoomList();
         residentRooms = new UniqueResidentRoomList();
         issues = new IssueList();
+        aliasMapping = new AliasMapping();
     }
 
     public AddressBook() {
@@ -142,7 +148,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return rooms.contains(roomNumber);
     }
 
-
     /**
      * Adds a room to SunRez.
      * The room must not already exist in SunRez.
@@ -217,6 +222,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setRooms(newData.getRoomList());
         setResidentRooms(newData.getResidentRoomList());
         setIssues(newData.getIssueList());
+        setAliasMapping(newData.getAliasMapping());
     }
 
     //// issue-level operations
@@ -258,6 +264,16 @@ public class AddressBook implements ReadOnlyAddressBook {
         issues.remove(key);
     }
 
+    /**
+     * Checks if any issues have the given room associated with it
+     *
+     * @param target Room to check if it has issues associated with it.
+     * @return True if there are issues with the given room associated with it.
+     */
+    public boolean issuesContainRoom(Room target) {
+        return issues.containsRoom(target);
+    }
+
     //// util methods
 
     @Override
@@ -288,17 +304,106 @@ public class AddressBook implements ReadOnlyAddressBook {
         return residentRooms.asUnmodifiableObservableList();
     }
 
+    /**
+     * Returns the current alias mapping.
+     *
+     * @return The mapping.
+     */
+    public AliasMapping getAliasMapping() {
+        return this.aliasMapping;
+    }
+
+    /**
+     * Sets the current mapping to the specified mapping.
+     *
+     * @param aliasMapping The mapping.
+     * @throws NullPointerException If the input is null.
+     */
+    public void setAliasMapping(AliasMapping aliasMapping) {
+        requireNonNull(aliasMapping);
+        this.aliasMapping.setAliasMapping(aliasMapping);
+    }
+
+    /**
+     * Adds a user-defined alias to the current mapping.
+     *
+     * @param alias The alias to be added.
+     * @throws NullPointerException If the input is null.
+     */
+    public void addAlias(Alias alias) {
+        requireNonNull(alias);
+        this.aliasMapping.addAlias(alias);
+    }
+
+    /**
+     * Deletes a user-defined alias from the current mapping.
+     *
+     * @param aliasName The name of the alias to be deleted.
+     * @throws NullPointerException If the input is null.
+     */
+    public void deleteAlias(String aliasName) {
+        requireNonNull(aliasName);
+        this.aliasMapping.deleteAlias(aliasName);
+    }
+
+    /**
+     * Returns an Alias based on name.
+     *
+     * @param aliasName Name of the alias.
+     * @return The alias with the specified name.
+     * @throws NullPointerException If the input is null.
+     */
+    public Alias getAlias(String aliasName) {
+        requireNonNull(aliasName);
+        return this.aliasMapping.getAlias(aliasName);
+    }
+
+    /**
+     * Checks if the current mapping contains an alias based on name.
+     *
+     * @param aliasName Name of the alias.
+     * @return Whether the mapping contains the alias.
+     */
+    public boolean containsAlias(String aliasName) {
+        return this.aliasMapping.containsAlias(aliasName);
+    }
+
+    /**
+     * Checks if the alias name is a reserved keyword.
+     *
+     * @param aliasName Name of the alias.
+     * @return Whether the name is reserved.
+     * @throws NullPointerException If the input is null.
+     */
+    public boolean isReservedKeyword(String aliasName) {
+        requireNonNull(aliasName);
+        return this.aliasMapping.isReservedKeyword(aliasName);
+    }
+
+    /**
+     * Checks if the command word is recursive.
+     *
+     * @param commandWord The command word.
+     * @return Whether the command word is recursive.
+     * @throws NullPointerException If the input is null.
+     */
+    public boolean isRecursiveKeyword(String commandWord) {
+        requireNonNull(commandWord);
+        return this.aliasMapping.isRecursiveKeyword(commandWord);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                         && residents.equals(((AddressBook) other).residents)
                         && rooms.equals(((AddressBook) other).rooms)
-                        && issues.equals(((AddressBook) other).issues));
+                        && issues.equals(((AddressBook) other).issues)
+                        && aliasMapping.equals(((AddressBook) other).aliasMapping));
     }
 
     @Override
     public int hashCode() {
-        return residents.hashCode();
+        return Objects.hash(residents, rooms, residentRooms, issues, aliasMapping);
     }
 }

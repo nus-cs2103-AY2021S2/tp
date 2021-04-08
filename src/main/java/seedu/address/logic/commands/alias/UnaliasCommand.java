@@ -49,12 +49,13 @@ public class UnaliasCommand extends Command {
         requireNonNull(model);
 
         // if no alias with the specified name is found
-        if (!model.getUserPrefs().containsAlias(aliasName)) {
+        if (!model.getAliasMapping().containsAlias(aliasName)) {
             throw new CommandException(String.format(MESSAGE_FAILURE, aliasName));
         }
 
         //update model
         model.deleteAlias(aliasName);
+        model.commitAddressBook();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, aliasName));
     }

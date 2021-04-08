@@ -1,10 +1,11 @@
 //Solution below adapted from https://github.com/briyanii/main
 package seedu.address.commons.core;
 
-import static java.util.Objects.requireNonNull;
-
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import seedu.address.logic.commands.ClearCommand;
@@ -51,15 +52,21 @@ public class AliasMapping implements Serializable {
     }
 
     /**
-     * Creates an AliasMapping with a specified mapping.
-     * The mapping must not be null.
+     * Sets the mapping to the mapping of the specified AliasMapping object.
      *
-     * @param aliasMapping The specified mapping.
-     * @throws NullPointerException If the input is null.
+     * @param aliasMapping The specified AliasMapping object.
      */
-    private AliasMapping(AliasMapping aliasMapping) {
-        requireNonNull(aliasMapping);
+    public void setAliasMapping(AliasMapping aliasMapping) {
         this.mapping = new HashMap<>(aliasMapping.mapping);
+    }
+
+    /**
+     * Returns the map object.
+     *
+     * @return The map object.
+     */
+    public Map<String, Alias> getMapping() {
+        return this.mapping;
     }
 
     /**
@@ -194,10 +201,12 @@ public class AliasMapping implements Serializable {
         final String format = "%d:\t%s = %s\n";
         StringBuilder msg = new StringBuilder();
         int count = 0;
+        List<String> aliasByName = new ArrayList<>(mapping.keySet());
+        Collections.sort(aliasByName);
 
-        for (String key : mapping.keySet()) {
+        for (String aliasName : aliasByName) {
             count++;
-            msg.append(String.format(format, count, key, mapping.get(key).getCommand()));
+            msg.append(String.format(format, count, aliasName, mapping.get(aliasName).getCommand()));
         }
         return msg.toString();
     }

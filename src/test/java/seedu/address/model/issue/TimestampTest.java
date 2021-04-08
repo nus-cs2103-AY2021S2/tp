@@ -29,20 +29,23 @@ public class TimestampTest {
         assertFalse(Timestamp.isValidTimestamp("2021/12/31 23:59")); // 24-hour time
         assertFalse(Timestamp.isValidTimestamp("2021-12-31 23:59")); // - instead of /
         assertFalse(Timestamp.isValidTimestamp("2021/12/32 0:00pm")); // invalid midnight
-        assertFalse(Timestamp.isValidTimestamp("0000/1/1 0:00am")); // invalid year
-        assertFalse(Timestamp.isValidTimestamp("-9999/1/1 0:00am")); // invalid year
-        assertFalse(Timestamp.isValidTimestamp("2021/13/1 0:00am")); // invalid month
+        assertFalse(Timestamp.isValidTimestamp("0000/01/01 0:00am")); // invalid year
+        assertFalse(Timestamp.isValidTimestamp("-9999/01/01 0:00am")); // invalid year
+        assertFalse(Timestamp.isValidTimestamp("2021/13/01 0:00am")); // invalid month
+        assertFalse(Timestamp.isValidTimestamp("2021/1/01 0:00am")); // month not double digit
         assertFalse(Timestamp.isValidTimestamp("2021/12/32 11:59pm")); // invalid date
+        assertFalse(Timestamp.isValidTimestamp("2021/12/3 11:59pm")); // day not double digit
         assertFalse(Timestamp.isValidTimestamp("2021/12/32 000:00pm")); // invalid hour
-        assertFalse(Timestamp.isValidTimestamp("2021/12/32 0:000pm")); // invalid minute
+        assertFalse(Timestamp.isValidTimestamp("2021/12/32 0:00pm")); // hour not double digit
+        assertFalse(Timestamp.isValidTimestamp("2021/12/32 00:000pm")); // invalid minute
+        assertFalse(Timestamp.isValidTimestamp("2021/12/32 00:0pm")); // minute not double digit
 
         // valid timestamps
-        assertTrue(Timestamp.isValidTimestamp("2021/12/31 0:00am")); // midnight
-        assertTrue(Timestamp.isValidTimestamp("2021/12/31 0:00AM")); // AM capitalized
-        assertTrue(Timestamp.isValidTimestamp("2021/12/31 0:00Am")); // partially capitalized
-        assertTrue(Timestamp.isValidTimestamp("2021/12/31 0:00aM")); // partially capitalized
-        assertTrue(Timestamp.isValidTimestamp("2021/12/31 00:00am")); // double 00 in hour
+        assertTrue(Timestamp.isValidTimestamp("2021/12/31 12:00am")); // midnight
+        assertTrue(Timestamp.isValidTimestamp("2021/12/31 12:00AM")); // AM capitalized
+        assertTrue(Timestamp.isValidTimestamp("2021/12/31 12:00Am")); // partially capitalized
+        assertTrue(Timestamp.isValidTimestamp("2021/12/31 12:00aM")); // partially capitalized
         assertTrue(Timestamp.isValidTimestamp("2021/12/31 11:59pm")); // 11:59 pm
-        assertTrue(Timestamp.isValidTimestamp("0001/1/1 0:00am")); // earliest datetime
+        assertTrue(Timestamp.isValidTimestamp("0001/01/01 12:00am")); // earliest datetime
     }
 }

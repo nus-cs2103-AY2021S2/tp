@@ -6,7 +6,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
+import java.time.temporal.ChronoField;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
@@ -17,12 +20,24 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class Timestamp implements Comparable<Timestamp> {
 
-    public static final String TIMESTAMP_PATTERN = "yyyy/M/d h:mma";
+    public static final String TIMESTAMP_PATTERN = "yyyy/MM/dd hh:mma";
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(TIMESTAMP_PATTERN, DEFAULT_LOCALE);
+    public static final DateTimeFormatter FORMATTER = new DateTimeFormatterBuilder().appendPattern(TIMESTAMP_PATTERN)
+            .parseDefaulting(ChronoField.ERA, 1)
+            .toFormatter(DEFAULT_LOCALE)
+            .withResolverStyle(ResolverStyle.STRICT);
 
-    public static final String MESSAGE_CONSTRAINTS = "Timestamps should be in the format "
-            + TIMESTAMP_PATTERN + ", and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Timestamps should be of valid date and time in the format "
+            + TIMESTAMP_PATTERN + "\n\n"
+            + "yyyy - 4 digit year (e.g. 2021)\n"
+            + "MM - 2 digits month (e.g. 01, 05, 12)\n"
+            + "dd - 2 digits day (e.g. 01, 05, 31)\n"
+            + "hh - 2 digits hour (01-12) (midnight is 12:00am)\n"
+            + "mm - minutes (0-59)\n"
+            + "a - case-insensitive AM/PM\n"
+            + "Example: 2021/01/01 12:00am";
+
+    public static final String MESSAGE_INVALID_FUTURE = "Timestamps should not be in the future";
 
     private static final Logger logger = LogsCenter.getLogger(Timestamp.class);
 
