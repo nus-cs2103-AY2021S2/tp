@@ -51,62 +51,62 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' CHIM file path.
      */
-    Path getAddressBookFilePath();
+    Path getChimFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' CHIM file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setChimFilePath(Path chimFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces CHIM data with the data in {@code chim}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setChim(ReadOnlyChim chim);
 
     /**
-     * Returns the AddressBook
+     * Returns the Chim object.
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyChim getChim();
 
     /**
-     * Returns true if a customer with the same identity as {@code customer} exists in the address book.
+     * Returns true if a customer with the same identity as {@code customer} exists in CHIM.
      */
     boolean hasCustomer(Customer customer);
 
     /**
-     * Returns true if a customer with the {@code phone} exists in the address book.
+     * Returns true if a customer with the {@code phone} exists in CHIM.
      */
     boolean hasCustomerWithPhone(Phone phone);
 
     /**
-     * Returns a customer with the {@code phone} if exists in the address book.
+     * Returns a customer with the {@code phone} if exists in CHIM.
      */
     Customer getCustomerWithPhone(Phone phone);
 
     /**
-     * Returns a customer with the {@code id} if exists in the address book.
+     * Returns a customer with the {@code id} if exists in CHIM.
      */
     Customer getCustomerWithId(CustomerId id);
 
     /**
      * Deletes the given customer.
-     * The customer must exist in the address book.
+     * The customer must exist in CHIM.
      */
     void deleteCustomer(Customer target);
 
     /**
      * Adds the given customer.
-     * {@code customer} must not already exist in the address book.
+     * {@code customer} must not already exist in CHIM.
      */
     void addCustomer(Customer customer);
 
     /**
      * Replaces the given customer {@code target} with {@code editedCustomer}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in CHIM.
      * The customer identity of {@code editedCustomer} must not be the same as another existing customer in
-     * the address book.
+     * CHIM.
      */
     void setCustomer(Customer target, Customer editedCustomer);
 
@@ -116,62 +116,62 @@ public interface Model {
     ObservableList<Customer> getCompleteCustomerList();
 
     /**
-     * Returns true if a Order with the same identity as {@code order} exists in the address book.
+     * Returns true if a Order with the same identity as {@code order} exists in CHIM.
      */
     boolean hasOrder(Order order);
 
     /**
      * Deletes the given order.
-     * The order must exist in the address book.
+     * The order must exist in CHIM.
      */
     void deleteOrder(Order target);
 
     /**
      * Adds the given order.
-     * {@code order} must not already exist in the address book.
+     * {@code order} must not already exist in CHIM.
      */
     void addOrder(Order order);
 
     /**
      * Replaces the given order {@code target} with {@code editedOrder}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in CHIM.
      * The order identity of {@code editedOrder} must not be the same as another existing order in
-     * the address book.
+     * CHIM.
      */
     void setOrder(Order target, Order editedOrder);
 
     /**
-     * Returns a order with the {@code orderId} if exists in the address book.
+     * Returns a order with the {@code orderId} if exists in CHIM.
      */
     Order getOrderWithId(OrderId orderId);
 
     /**
-     * Returns true if a Cheese with the same identity as {@code cheese} exists in the address book.
+     * Returns true if a Cheese with the same identity as {@code cheese} exists in CHIM.
      */
     boolean hasCheese(Cheese cheese);
 
     /**
      * Deletes the given cheese.
-     * The cheese must exist in the address book.
+     * The cheese must exist in CHIM.
      */
     void deleteCheese(Cheese target);
 
     /**
      * Adds the given cheese.
-     * {@code cheese} must not already exist in the address book.
+     * {@code cheese} must not already exist in CHIM.
      */
     void addCheese(Cheese cheese);
 
     /**
      * Replaces the given cheese {@code target} with {@code editedCheese}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in CHIM.
      * The order identity of {@code editedCheese} must not be the same as another existing order in
-     * the address book.
+     * CHIM.
      */
     void setCheese(Cheese target, Cheese editedCheese);
 
     /**
-     * Returns a cheese with the {@code cheeseId} if exists in the address book.
+     * Returns a cheese with the {@code cheeseId} if exists in CHIM.
      */
     Cheese getCheeseWithId(CheeseId cheeseId);
 

@@ -13,13 +13,13 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_COMPLETED_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FILTERED_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_LAST_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_UNCOMPLETED_ORDER;
-import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModels.getTypicalChim;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditOrderCommand.EditOrderDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.model.Chim;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -28,7 +28,7 @@ import seedu.address.testutil.EditOrderDescriptorBuilder;
 import seedu.address.testutil.OrderBuilder;
 
 public class EditOrderCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalChim(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -48,7 +48,7 @@ public class EditOrderCommandTest {
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Chim(model.getChim()), new UserPrefs());
         expectedModel.setOrder(model.getFilteredOrderList().get(3), editedOrder);
         expectedModel.setPanelToOrderList();
 
@@ -72,7 +72,7 @@ public class EditOrderCommandTest {
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Chim(model.getChim()), new UserPrefs());
         expectedModel.setOrder(model.getFilteredOrderList().get(3), editedOrder);
         expectedModel.setPanelToOrderList();
 
@@ -98,7 +98,7 @@ public class EditOrderCommandTest {
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Chim(model.getChim()), new UserPrefs());
         expectedModel.setOrder(model.getFilteredOrderList().get(3), editedOrder);
         expectedModel.setPanelToOrderList();
 
@@ -115,7 +115,7 @@ public class EditOrderCommandTest {
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Chim(model.getChim()), new UserPrefs());
         expectedModel.setPanelToOrderList();
 
         assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
@@ -140,7 +140,7 @@ public class EditOrderCommandTest {
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Chim(model.getChim()), new UserPrefs());
         expectedModel.setOrder(model.getFilteredOrderList().get(0), editedOrder);
         expectedModel.setPanelToOrderList();
 
@@ -168,7 +168,7 @@ public class EditOrderCommandTest {
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Chim(model.getChim()), new UserPrefs());
         expectedModel.setOrder(model.getFilteredOrderList().get(0), editedOrder);
         expectedModel.setPanelToOrderList();
 

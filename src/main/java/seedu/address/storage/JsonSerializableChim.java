@@ -9,17 +9,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.Chim;
+import seedu.address.model.ReadOnlyChim;
 import seedu.address.model.cheese.Cheese;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.order.Order;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable Chim that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "chim")
+class JsonSerializableChim {
 
     public static final String MESSAGE_DUPLICATE_CUSTOMER = "Customers list contains duplicate customer(s).";
     public static final String MESSAGE_DUPLICATE_CHEESE = "Cheese list contains duplicate cheese(s).";
@@ -30,62 +30,62 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedOrder> orders = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given customers, cheeses and orders.
+     * Constructs a {@code JsonSerializableChim} with the given customers, cheeses and orders.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("customers") List<JsonAdaptedCustomer> customers,
-                                       @JsonProperty("cheeses") List<JsonAdaptedCheese> cheeses,
-                                       @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
+    public JsonSerializableChim(@JsonProperty("customers") List<JsonAdaptedCustomer> customers,
+                                @JsonProperty("cheeses") List<JsonAdaptedCheese> cheeses,
+                                @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
         this.customers.addAll(customers);
         this.cheeses.addAll(cheeses);
         this.orders.addAll(orders);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyChim} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableChim}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableChim(ReadOnlyChim source) {
         customers.addAll(source.getCustomerList().stream().map(JsonAdaptedCustomer::new).collect(Collectors.toList()));
         cheeses.addAll(source.getCheeseList().stream().map(JsonAdaptedCheese::new).collect(Collectors.toList()));
         orders.addAll(source.getOrderList().stream().map(JsonAdaptedOrder::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this CHIM into the model's {@code Chim} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public Chim toModelType() throws IllegalValueException {
+        Chim chim = new Chim();
         for (JsonAdaptedCustomer jsonAdaptedCustomer : customers) {
             Customer customer = jsonAdaptedCustomer.toModelType();
-            if (addressBook.hasCustomer(customer)) {
+            if (chim.hasCustomer(customer)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CUSTOMER);
             }
-            addressBook.addCustomer(customer);
+            chim.addCustomer(customer);
         }
 
         for (JsonAdaptedCheese jsonAdaptedCheese : cheeses) {
             Cheese cheese = jsonAdaptedCheese.toModelType();
-            if (addressBook.hasCheese(cheese)) {
+            if (chim.hasCheese(cheese)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CHEESE);
             }
-            addressBook.addCheese(cheese);
+            chim.addCheese(cheese);
         }
 
         for (JsonAdaptedOrder jsonAdaptedOrder : orders) {
             Order order = jsonAdaptedOrder.toModelType();
-            if (addressBook.hasOrder(order)) {
+            if (chim.hasOrder(order)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ORDER);
             }
-            addressBook.addOrder(order);
+            chim.addOrder(order);
         }
 
-        addressBook.checkAddressBook();
+        chim.checkChim();
 
-        return addressBook;
+        return chim;
     }
 
 }

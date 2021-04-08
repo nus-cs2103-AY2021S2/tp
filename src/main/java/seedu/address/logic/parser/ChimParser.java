@@ -32,7 +32,7 @@ import seedu.address.model.Model;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class ChimParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -41,7 +41,7 @@ public class AddressBookParser {
 
     private final Model model;
 
-    public AddressBookParser(Model model) {
+    public ChimParser(Model model) {
         this.model = model;
     }
 

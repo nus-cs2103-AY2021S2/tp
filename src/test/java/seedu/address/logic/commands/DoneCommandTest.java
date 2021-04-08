@@ -11,7 +11,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_INSUFFICENT_CHEESE_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_UNCOMPLETED_ORDER;
-import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModels.getTypicalChim;
 
 import java.time.LocalDateTime;
 
@@ -26,12 +26,12 @@ import seedu.address.model.order.Order;
 import seedu.address.testutil.OrderBuilder;
 
 public class DoneCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalChim(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Order order = model.getFilteredOrderList().get(INDEX_UNCOMPLETED_ORDER.getZeroBased());
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getChim(), new UserPrefs());
         Order updatedOrder = new OrderBuilder(order)
                 .withCompletedDate(LocalDateTime.now().format(TO_JSON_STRING_FORMATTER))
                 .withCheeses(expectedModel.getUnassignedCheeses(order.getCheeseType(), order.getQuantity()))
@@ -60,7 +60,7 @@ public class DoneCommandTest {
     public void execute_validIndexfilteredList_success() {
         showOrderAtIndex(model, INDEX_UNCOMPLETED_ORDER);
         Order order = model.getFilteredOrderList().get(INDEX_FIRST_ORDER.getZeroBased());
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getUserPrefs());
+        Model expectedModel = new ModelManager(model.getChim(), model.getUserPrefs());
         Order updatedOrder = new OrderBuilder(order)
                 .withCompletedDate(LocalDateTime.now().format(TO_JSON_STRING_FORMATTER))
                 .withCheeses(expectedModel.getUnassignedCheeses(order.getCheeseType(), order.getQuantity()))

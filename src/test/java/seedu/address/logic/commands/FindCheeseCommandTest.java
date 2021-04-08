@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CHEESE_ASSIGNED_STATUS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CHEESES;
-import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModels.getTypicalChim;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,8 +31,8 @@ public class FindCheeseCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalChim(), new UserPrefs());
+        expectedModel = new ModelManager(model.getChim(), new UserPrefs());
         expectedModel.setPanelToCheeseList();
     }
 

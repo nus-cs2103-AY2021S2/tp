@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showCustomerAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
-import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModels.getTypicalChim;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ public class ListCustomersCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalChim(), new UserPrefs());
+        expectedModel = new ModelManager(model.getChim(), new UserPrefs());
         expectedModel.setPanelToCustomerList();
     }
 

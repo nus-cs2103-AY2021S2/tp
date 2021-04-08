@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "Chim save file which contains the same Customer values as in TypicalCustomers#getTypicalCustomers()",
   "customers" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",

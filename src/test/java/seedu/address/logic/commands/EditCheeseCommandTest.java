@@ -13,13 +13,13 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CHEESE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_CHEESE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CHEESE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_CHEESE;
-import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModels.getTypicalChim;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
+import seedu.address.model.Chim;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -33,7 +33,7 @@ import seedu.address.testutil.EditCheeseDescriptorBuilder;
  */
 public class EditCheeseCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalChim(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -43,7 +43,7 @@ public class EditCheeseCommandTest {
 
         String expectedMessage = String.format(EditCheeseCommand.MESSAGE_EDIT_CHEESE_SUCCESS, editedCheese);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Chim(model.getChim()), new UserPrefs());
         expectedModel.setCheese(model.getFilteredCheeseList().get(2), editedCheese);
         expectedModel.setPanelToCheeseList();
 
@@ -63,7 +63,7 @@ public class EditCheeseCommandTest {
 
         String expectedMessage = String.format(EditCheeseCommand.MESSAGE_EDIT_CHEESE_SUCCESS, editedCheese);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Chim(model.getChim()), new UserPrefs());
         expectedModel.setCheese(model.getFilteredCheeseList().get(2), editedCheese);
         expectedModel.setPanelToCheeseList();
 
@@ -78,7 +78,7 @@ public class EditCheeseCommandTest {
 
         String expectedMessage = String.format(EditCheeseCommand.MESSAGE_EDIT_CHEESE_SUCCESS, editedCheese);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Chim(model.getChim()), new UserPrefs());
         expectedModel.setPanelToCheeseList();
 
         assertCommandSuccess(editCheeseCommand, model, expectedMessage, expectedModel);
@@ -97,7 +97,7 @@ public class EditCheeseCommandTest {
 
         String expectedMessage = String.format(EditCheeseCommand.MESSAGE_EDIT_CHEESE_SUCCESS, editedCheese);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Chim(model.getChim()), new UserPrefs());
         expectedModel.setCheese(model.getFilteredCheeseList().get(0), editedCheese);
         expectedModel.setPanelToCheeseList();
 
@@ -147,7 +147,7 @@ public class EditCheeseCommandTest {
         Index outOfBoundIndex = INDEX_FOURTH_CHEESE;
 
         // ensures that outOfBoundIndex is still in bounds of cheese list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCheeseList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getChim().getCheeseList().size());
 
         EditCheeseCommand.EditCheeseDescriptor descriptor = new EditCheeseDescriptorBuilder()
                 .withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_MOZZARELLA)).build();

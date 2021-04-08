@@ -74,7 +74,7 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(PanelToShow.CUSTOMER_LIST, 1000, 500, 300, 100));
-        userPrefs.setAddressBookFilePath(Paths.get("addressbook.json"));
+        userPrefs.setChimFilePath(Paths.get("chim.json"));
         return userPrefs;
     }
 

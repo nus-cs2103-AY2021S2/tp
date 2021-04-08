@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showCheeseAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CHEESE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CHEESE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_CHEESE;
-import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModels.getTypicalChim;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +25,7 @@ import seedu.address.model.util.predicate.FieldPredicate;
  * {@code DeleteCheeseCommand}.
  */
 public class DeleteCheeseCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalChim(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -35,7 +35,7 @@ public class DeleteCheeseCommandTest {
         String expectedMessage = String.format(DeleteCheeseCommand.MESSAGE_DELETE_CHEESE_SUCCESS,
                 cheeseToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getChim(), new UserPrefs());
         expectedModel.deleteCheese(cheeseToDelete);
         expectedModel.setPanelToCheeseList();
 
@@ -60,7 +60,7 @@ public class DeleteCheeseCommandTest {
         String expectedMessage = String.format(DeleteCheeseCommand.MESSAGE_DELETE_CHEESE_SUCCESS,
                 cheeseToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getChim(), new UserPrefs());
         expectedModel.deleteCheese(cheeseToDelete);
         showNoCheese(expectedModel);
         expectedModel.setPanelToCheeseList();
@@ -85,8 +85,8 @@ public class DeleteCheeseCommandTest {
         showCheeseAtIndex(model, INDEX_SECOND_CHEESE);
 
         Index outOfBoundIndex = INDEX_SECOND_CHEESE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCheeseList().size());
+        // ensures that outOfBoundIndex is still in bounds of CHIM's full cheeses list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getChim().getCheeseList().size());
 
         DeleteCheeseCommand deleteCheeseCommand = new DeleteCheeseCommand(outOfBoundIndex);
 

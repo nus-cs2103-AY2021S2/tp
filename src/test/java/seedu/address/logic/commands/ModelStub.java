@@ -6,7 +6,7 @@ import java.util.Set;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyChim;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.cheese.Cheese;
 import seedu.address.model.cheese.CheeseId;
@@ -44,12 +44,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getChimFilePath() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setChimFilePath(Path chimFilePath) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -59,12 +59,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook newData) {
+    public void setChim(ReadOnlyChim newData) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyChim getChim() {
         throw new AssertionError("This method should not be called.");
     }
 

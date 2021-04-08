@@ -20,7 +20,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.Chim;
 import seedu.address.model.Model;
 import seedu.address.model.cheese.Cheese;
 import seedu.address.model.cheese.CheeseType;
@@ -186,21 +186,20 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered customer list and selected customer in {@code actualModel} remain unchanged
+     * - the Chim object and the filtered customers list remain unchanged after execution.
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        Chim expectedChim = new Chim(actualModel.getChim());
         List<Customer> expectedFilteredList = new ArrayList<>(actualModel.getFilteredCustomerList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedChim, actualModel.getChim());
         assertEquals(expectedFilteredList, actualModel.getFilteredCustomerList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the customer at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered customers list to show only the customer at the given {@code targetIndex}.
      */
     public static void showCustomerAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredCustomerList().size());
@@ -213,8 +212,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the cheese at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered cheeses list to show only the cheese at the given {@code targetIndex}.
      */
     public static void showCheeseAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredCheeseList().size());
@@ -227,8 +225,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the order at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered order list to show only the order at the given {@code targetIndex}.
      */
     public static void showOrderAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredOrderList().size());

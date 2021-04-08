@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModels.getTypicalChim;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -32,14 +32,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalChim(), new UserPrefs());
     }
 
     @Test
     public void execute_newCustomer_success() {
         Customer validCustomer = new CustomerBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getChim(), new UserPrefs());
         expectedModel.addCustomer(validCustomer);
         expectedModel.setPanelToCustomerList();
 
@@ -49,7 +49,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateCustomer_throwsCommandException() {
-        Customer customerInList = model.getAddressBook().getCustomerList().get(0);
+        Customer customerInList = model.getChim().getCustomerList().get(0);
         assertCommandFailure(new AddCustomerCommand(customerInList), model,
                 AddCustomerCommand.MESSAGE_DUPLICATE_CUSTOMER);
     }
@@ -58,7 +58,7 @@ public class AddCommandIntegrationTest {
     public void execute_newCheese_success() {
         Cheese validCheese = new CheeseBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getChim(), new UserPrefs());
         expectedModel.addCheese(validCheese);
         expectedModel.setPanelToCheeseList();
 
@@ -72,7 +72,7 @@ public class AddCommandIntegrationTest {
         Cheese validCheese2 = new CheeseBuilder().build();
         Cheese validCheese3 = new CheeseBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getChim(), new UserPrefs());
         expectedModel.addCheese(validCheese1);
         expectedModel.addCheese(validCheese2);
         expectedModel.addCheese(validCheese3);
@@ -86,12 +86,12 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newOrderWithCustomerPresent_success() {
-        Phone customerPhoneInList = new Phone(model.getAddressBook().getCustomerList().get(0).getPhone().value);
+        Phone customerPhoneInList = new Phone(model.getChim().getCustomerList().get(0).getPhone().value);
 
         Order validOrder = new OrderBuilder(TypicalOrder.ORDER_CAMEMBERT)
                 .withCompletedDate(null).withOrderId(OrderIdStub.getNextId()).withCheeses(new HashSet<>()).build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getChim(), new UserPrefs());
         expectedModel.addOrder(validOrder);
         expectedModel.setPanelToOrderList();
 
@@ -106,7 +106,7 @@ public class AddCommandIntegrationTest {
                 .withCompletedDate(null).withCheeses(Set.of())
                 .withOrderId(OrderIdStub.getNextId()).build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getChim(), new UserPrefs());
         expectedModel.addOrder(validOrder);
         expectedModel.setPanelToOrderList();
 

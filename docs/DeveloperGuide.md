@@ -85,7 +85,7 @@ relationships with other classes.
 
 **API**: `Logic.java`
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `ChimParser` class to parse the user command.
 2. This results in a `Command` object which is executed by the `LogicManager`.
 3. The command execution can affect the `Model` (e.g. by adding customers, orders or cheeses).
 4. The result of the command execution is encapsulated as a `CommandResult`

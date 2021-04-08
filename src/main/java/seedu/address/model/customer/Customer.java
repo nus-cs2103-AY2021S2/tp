@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Customer in the address book.
+ * Represents a Customer in CHIM.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Customer {
@@ -69,8 +69,8 @@ public class Customer {
     }
 
     /**
-     * Returns true if both persons have the same phone.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both customers have the same phone.
+     * This defines a weaker notion of equality between two customers.
      */
     public boolean isSameCustomer(Customer otherCustomer) {
         if (otherCustomer == this) {
@@ -82,8 +82,8 @@ public class Customer {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both customers have the same identity and data fields.
+     * This defines a stronger notion of equality between two customers.
      */
     @Override
     public boolean equals(Object other) {

@@ -17,9 +17,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.CheeseBuilder;
 
-/**
- * Represents a Cheese in the address book.
- */
 public class CheeseTest {
     @Test
     public void constructor_null_throwsNullPointerException() {

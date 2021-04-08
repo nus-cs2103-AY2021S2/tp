@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
-import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModels.getTypicalChim;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +25,7 @@ import seedu.address.model.util.predicate.FieldPredicate;
  * {@code DeleteOrderCommand}.
  */
 public class DeleteOrderCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalChim(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -36,7 +36,7 @@ public class DeleteOrderCommandTest {
         String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS,
                 orderToDelete, name);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getChim(), new UserPrefs());
         expectedModel.deleteOrder(orderToDelete);
         expectedModel.setPanelToOrderList();
 
@@ -62,7 +62,7 @@ public class DeleteOrderCommandTest {
         String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS,
                 orderToDelete, name);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getChim(), new UserPrefs());
         expectedModel.deleteOrder(orderToDelete);
         showNoOrder(expectedModel);
         expectedModel.setPanelToOrderList();
@@ -75,8 +75,8 @@ public class DeleteOrderCommandTest {
         showOrderAtIndex(model, INDEX_FIRST_ORDER);
 
         Index outOfBoundIndex = INDEX_SECOND_ORDER;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getOrderList().size());
+        // ensures that outOfBoundIndex is still in bounds of CHIM's full order list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getChim().getOrderList().size());
 
         DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(outOfBoundIndex);
 

@@ -13,7 +13,7 @@ import static seedu.address.testutil.TypicalCustomers.BENSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CUSTOMER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_TYPICAL_CUSTOMER;
-import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModels.getTypicalChim;
 import static seedu.address.testutil.TypicalOrder.ORDER_CAMEMBERT;
 import static seedu.address.testutil.TypicalOrder.ORDER_CAMEMBERT_2;
 import static seedu.address.testutil.TypicalOrder.ORDER_FETA;
@@ -34,7 +34,7 @@ import seedu.address.model.util.predicate.FieldPredicate;
  */
 public class DeleteCustomerCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalChim(), new UserPrefs());
 
     @Test
     public void execute_validPhoneUnfilteredList_success() {
@@ -44,7 +44,7 @@ public class DeleteCustomerCommandTest {
         String expectedMessage = String.format(DeleteCustomerCommand.MESSAGE_DELETE_CUSTOMER_SUCCESS,
                 customerToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getChim(), new UserPrefs());
         expectedModel.deleteCustomer(customerToDelete);
         expectedModel.setPanelToCustomerList();
 
@@ -70,7 +70,7 @@ public class DeleteCustomerCommandTest {
         String expectedMessage = String.format(DeleteCustomerCommand.MESSAGE_DELETE_CUSTOMER_SUCCESS,
                 customerToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getChim(), new UserPrefs());
         expectedModel.deleteCustomer(customerToDelete);
         assertFalse(expectedModel.hasOrder(ORDER_CAMEMBERT));
         assertFalse(expectedModel.hasCheese(CAMEMBERT));
@@ -89,7 +89,7 @@ public class DeleteCustomerCommandTest {
         String expectedMessage = String.format(DeleteCustomerCommand.MESSAGE_DELETE_CUSTOMER_SUCCESS,
                 customerToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getChim(), new UserPrefs());
         expectedModel.deleteCustomer(customerToDelete);
         assertFalse(expectedModel.hasOrder(ORDER_FETA));
         assertFalse(expectedModel.hasOrder(ORDER_CAMEMBERT_2));

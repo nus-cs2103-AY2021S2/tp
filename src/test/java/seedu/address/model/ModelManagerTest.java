@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.GuiSettings.PanelToShow;
 import seedu.address.model.customer.predicates.CustomerNamePredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.ChimBuilder;
 
 public class ModelManagerTest {
 
@@ -27,7 +27,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new Chim(), new Chim(modelManager.getChim()));
     }
 
     @Test
@@ -38,14 +38,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setChimFilePath(Paths.get("chim/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(PanelToShow.CUSTOMER_LIST, 1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setChimFilePath(Paths.get("new/chim/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -62,15 +62,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setChimFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setChimFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+    public void setChimFilePath_validPath_setsChimFilePath() {
+        Path path = Paths.get("chim/file/path");
+        modelManager.setChimFilePath(path);
+        assertEquals(path, modelManager.getChimFilePath());
     }
 
     @Test
@@ -79,12 +79,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasCustomer_customerNotInAddressBook_returnsFalse() {
+    public void hasCustomer_customerNotInChim_returnsFalse() {
         assertFalse(modelManager.hasCustomer(ALICE));
     }
 
     @Test
-    public void hasCustomer_customerInAddressBook_returnsTrue() {
+    public void hasCustomer_customerInChim_returnsTrue() {
         modelManager.addCustomer(ALICE);
         assertTrue(modelManager.hasCustomer(ALICE));
     }
@@ -96,13 +96,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withCustomer(ALICE).withCustomer(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        Chim chim = new ChimBuilder().withCustomer(ALICE).withCustomer(BENSON).build();
+        Chim differentChim = new Chim();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(chim, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(chim, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,20 +114,20 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different CHIM -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentChim, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredCustomerList(new CustomerNamePredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(chim, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        differentUserPrefs.setChimFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(chim, differentUserPrefs)));
     }
 }

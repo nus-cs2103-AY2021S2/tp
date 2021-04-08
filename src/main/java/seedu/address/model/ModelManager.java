@@ -23,35 +23,35 @@ import seedu.address.model.util.FilteredSortedList;
 import seedu.address.model.util.predicate.FieldPredicate;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of CHIM's data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Chim chim;
     private final UserPrefs userPrefs;
     private final FilteredSortedList<Customer> filteredAndSortedCustomers;
     private final FilteredSortedList<Order> filteredAndSortedOrders;
     private final FilteredSortedList<Cheese> filteredAndSortedCheeses;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given chim and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyChim chim, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(chim, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with CHIM: " + chim + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.chim = new Chim(chim);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredAndSortedCustomers = new FilteredSortedList<>(this.addressBook.getCustomerList());
-        filteredAndSortedOrders = new FilteredSortedList<>(this.addressBook.getOrderList());
-        filteredAndSortedCheeses = new FilteredSortedList<>(this.addressBook.getCheeseList());
+        filteredAndSortedCustomers = new FilteredSortedList<>(this.chim.getCustomerList());
+        filteredAndSortedOrders = new FilteredSortedList<>(this.chim.getOrderList());
+        filteredAndSortedCheeses = new FilteredSortedList<>(this.chim.getCheeseList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Chim(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -79,26 +79,26 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getChimFilePath() {
+        return userPrefs.getChimFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setChimFilePath(Path chimFilePath) {
+        requireNonNull(chimFilePath);
+        userPrefs.setChimFilePath(chimFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Chim ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setChim(ReadOnlyChim chim) {
+        this.chim.resetData(chim);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyChim getChim() {
+        return chim;
     }
 
     //=========== Customer Operations ==========================================================================
@@ -106,35 +106,35 @@ public class ModelManager implements Model {
     @Override
     public boolean hasCustomer(Customer customer) {
         requireNonNull(customer);
-        return addressBook.hasCustomer(customer);
+        return chim.hasCustomer(customer);
     }
 
     @Override
     public boolean hasCustomerWithPhone(Phone phone) {
         requireNonNull(phone);
-        return addressBook.hasCustomerWithPhone(phone);
+        return chim.hasCustomerWithPhone(phone);
     }
 
     @Override
     public Customer getCustomerWithPhone(Phone phone) {
         requireNonNull(phone);
-        return addressBook.getCustomerWithPhone(phone);
+        return chim.getCustomerWithPhone(phone);
     }
 
     @Override
     public Customer getCustomerWithId(CustomerId id) {
         requireNonNull(id);
-        return addressBook.getCustomerWithId(id);
+        return chim.getCustomerWithId(id);
     }
 
     @Override
     public void deleteCustomer(Customer target) {
-        addressBook.deleteCustomer(target);
+        chim.deleteCustomer(target);
     }
 
     @Override
     public void addCustomer(Customer customer) {
-        addressBook.addCustomer(customer);
+        chim.addCustomer(customer);
         updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
@@ -142,12 +142,12 @@ public class ModelManager implements Model {
     public void setCustomer(Customer target, Customer editedCustomer) {
         requireAllNonNull(target, editedCustomer);
 
-        addressBook.setCustomer(target, editedCustomer);
+        chim.setCustomer(target, editedCustomer);
     }
 
     @Override
     public ObservableList<Customer> getCompleteCustomerList() {
-        return addressBook.getCustomerList();
+        return chim.getCustomerList();
     }
 
     //=========== Order Operations ==========================================================================
@@ -155,17 +155,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasOrder(Order order) {
         requireNonNull(order);
-        return addressBook.hasOrder(order);
+        return chim.hasOrder(order);
     }
 
     @Override
     public void deleteOrder(Order target) {
-        addressBook.deleteOrder(target);
+        chim.deleteOrder(target);
     }
 
     @Override
     public void addOrder(Order order) {
-        addressBook.addOrder(order);
+        chim.addOrder(order);
         updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
     }
 
@@ -173,13 +173,13 @@ public class ModelManager implements Model {
     public void setOrder(Order target, Order editedOrder) {
         requireAllNonNull(target, editedOrder);
 
-        addressBook.setOrder(target, editedOrder);
+        chim.setOrder(target, editedOrder);
     }
 
     @Override
     public Order getOrderWithId(OrderId orderId) {
         requireNonNull(orderId);
-        return addressBook.getOrderWithId(orderId);
+        return chim.getOrderWithId(orderId);
     }
 
     //=========== Cheese Operations ==========================================================================
@@ -187,17 +187,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasCheese(Cheese cheese) {
         requireNonNull(cheese);
-        return addressBook.hasCheese(cheese);
+        return chim.hasCheese(cheese);
     }
 
     @Override
     public void deleteCheese(Cheese target) {
-        addressBook.deleteCheese(target);
+        chim.deleteCheese(target);
     }
 
     @Override
     public void addCheese(Cheese cheese) {
-        addressBook.addCheese(cheese);
+        chim.addCheese(cheese);
         updateFilteredCheeseList(PREDICATE_SHOW_ALL_CHEESES);
     }
 
@@ -205,24 +205,24 @@ public class ModelManager implements Model {
     public void setCheese(Cheese target, Cheese editedCheese) {
         requireAllNonNull(target, editedCheese);
 
-        addressBook.setCheese(target, editedCheese);
+        chim.setCheese(target, editedCheese);
     }
 
     @Override
     public Cheese getCheeseWithId(CheeseId cheeseId) {
         requireNonNull(cheeseId);
 
-        return addressBook.getCheeseWithId(cheeseId);
+        return chim.getCheeseWithId(cheeseId);
     }
 
     @Override
     public Set<CheeseId> getUnassignedCheeses(CheeseType cheeseType, Quantity quantity) {
-        return addressBook.getUnassignedCheeses(cheeseType, quantity);
+        return chim.getUnassignedCheeses(cheeseType, quantity);
     }
 
     @Override
     public void updateCheesesStatus(Set<CheeseId> cheesesAssigned) {
-        addressBook.updateCheesesStatus(cheesesAssigned);
+        chim.updateCheesesStatus(cheesesAssigned);
     }
 
 
@@ -230,7 +230,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Customer} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedChim}
      */
     @Override
     public ObservableList<Customer> getFilteredCustomerList() {
@@ -239,7 +239,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedChim}
      */
     @Override
     public ObservableList<Order> getFilteredOrderList() {
@@ -270,7 +270,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Cheese} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedChim}
      */
     @Override
     public ObservableList<Cheese> getFilteredCheeseList() {
@@ -326,7 +326,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return chim.equals(other.chim)
                 && userPrefs.equals(other.userPrefs)
                 && filteredAndSortedCustomers.equals(other.filteredAndSortedCustomers)
                 && filteredAndSortedOrders.equals(other.filteredAndSortedOrders)

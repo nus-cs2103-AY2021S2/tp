@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyChim;
 import seedu.address.model.cheese.Cheese;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.order.Order;
@@ -27,24 +27,24 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Chim object.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getChim()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyChim getChim();
 
     /**
-     * Returns an unmodifiable view of the filtered list of persons
+     * Returns an unmodifiable view of the filtered list of customers.
      */
     ObservableList<Customer> getFilteredCustomerList();
 
     /**
-     * Returns an unmodifiable view of the filtered list of cheeses
+     * Returns an unmodifiable view of the filtered list of cheeses.
      */
     ObservableList<Cheese> getFilteredCheeseList();
 
     /**
-     * Returns an unmodifiable view of the filtered list of orders
+     * Returns an unmodifiable view of the filtered list of orders.
      */
     ObservableList<Order> getFilteredOrderList();
 
@@ -54,9 +54,9 @@ public interface Logic {
     ObservableList<Customer> getCompleteCustomerList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' CHIM file path.
      */
-    Path getAddressBookFilePath();
+    Path getChimFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

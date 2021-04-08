@@ -11,7 +11,7 @@ import static seedu.address.testutil.TypicalCheese.FETA;
 import static seedu.address.testutil.TypicalCheese.GOUDA;
 import static seedu.address.testutil.TypicalCustomers.ALICE;
 import static seedu.address.testutil.TypicalCustomers.BENSON;
-import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModels.getTypicalChim;
 import static seedu.address.testutil.TypicalOrder.ORDER_BRIE;
 import static seedu.address.testutil.TypicalOrder.ORDER_CAMEMBERT;
 import static seedu.address.testutil.TypicalOrder.ORDER_CAMEMBERT_2;
@@ -37,25 +37,25 @@ import seedu.address.testutil.CheeseBuilder;
 import seedu.address.testutil.CustomerBuilder;
 import seedu.address.testutil.OrderBuilder;
 
-public class AddressBookTest {
+public class ChimTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final Chim chim = new Chim();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getCustomerList());
+        assertEquals(Collections.emptyList(), chim.getCustomerList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> chim.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyChim_replacesData() {
+        Chim newData = getTypicalChim();
+        chim.resetData(newData);
+        assertEquals(newData, chim);
     }
 
     @Test
@@ -64,123 +64,123 @@ public class AddressBookTest {
         Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Customer> newCustomers = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newCustomers);
+        ChimStub newData = new ChimStub(newCustomers);
 
-        assertThrows(DuplicateCustomerException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateCustomerException.class, () -> chim.resetData(newData));
     }
 
     @Test
     public void hasCustomer_nullCustomer_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasCustomer(null));
+        assertThrows(NullPointerException.class, () -> chim.hasCustomer(null));
     }
 
     @Test
-    public void hasCustomer_customerNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasCustomer(ALICE));
+    public void hasCustomer_customerNotInChim_returnsFalse() {
+        assertFalse(chim.hasCustomer(ALICE));
     }
 
     @Test
-    public void hasCustomer_customerInAddressBook_returnsTrue() {
-        addressBook.addCustomer(ALICE);
-        assertTrue(addressBook.hasCustomer(ALICE));
+    public void hasCustomer_customerInChim_returnsTrue() {
+        chim.addCustomer(ALICE);
+        assertTrue(chim.hasCustomer(ALICE));
     }
 
     @Test
-    public void hasCustomer_customerWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addCustomer(ALICE);
+    public void hasCustomer_customerWithSameIdentityFieldsInChim_returnsTrue() {
+        chim.addCustomer(ALICE);
         Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasCustomer(editedAlice));
+        assertTrue(chim.hasCustomer(editedAlice));
     }
 
     @Test
     public void getCustomerList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getCustomerList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> chim.getCustomerList().remove(0));
     }
 
     @Test
-    public void checkAddressBook_addOrderWithoutCustomer_throwsIllegalArgumentException() {
-        addressBook.addOrder(ORDER_BRIE);
+    public void checkChim_addOrderWithoutCustomer_throwsIllegalArgumentException() {
+        chim.addOrder(ORDER_BRIE);
         assertThrows(IllegalArgumentException.class,
             String.format(
                 Messages.MESSAGE_INVALID_ORDER_CUSTOMER_ID,
                 ORDER_BRIE.getOrderId().value
-            ), () -> addressBook.checkAddressBook());
+            ), () -> chim.checkChim());
     }
 
     @Test
-    public void checkAddressBook_addOrderWithoutCheese_throwsIllegalArgumentException() {
-        addressBook.addCustomer(ALICE);
-        addressBook.addOrder(ORDER_CAMEMBERT);
+    public void checkChim_addOrderWithoutCheese_throwsIllegalArgumentException() {
+        chim.addCustomer(ALICE);
+        chim.addOrder(ORDER_CAMEMBERT);
         assertThrows(IllegalArgumentException.class,
             String.format(
                 Messages.MESSAGE_INVALID_ORDER_CHEESE_ID,
                 ORDER_CAMEMBERT.getOrderId().value
-            ), () -> addressBook.checkAddressBook());
+            ), () -> chim.checkChim());
     }
 
     @Test
-    public void checkAddressBook_addSameCheeseToMultipleOrder_throwsIllegalArgumentException() {
-        addressBook.addCustomer(ALICE);
-        addressBook.addCustomer(BENSON);
-        addressBook.addCheese(CAMEMBERT);
-        addressBook.addOrder(new OrderBuilder(ORDER_CAMEMBERT).withCheeses(Set.of(CAMEMBERT.getCheeseId())).build());
-        addressBook.addOrder(new OrderBuilder(ORDER_CAMEMBERT_2).withCheeses(Set.of(CAMEMBERT.getCheeseId())).build());
+    public void checkChim_addSameCheeseToMultipleOrder_throwsIllegalArgumentException() {
+        chim.addCustomer(ALICE);
+        chim.addCustomer(BENSON);
+        chim.addCheese(CAMEMBERT);
+        chim.addOrder(new OrderBuilder(ORDER_CAMEMBERT).withCheeses(Set.of(CAMEMBERT.getCheeseId())).build());
+        chim.addOrder(new OrderBuilder(ORDER_CAMEMBERT_2).withCheeses(Set.of(CAMEMBERT.getCheeseId())).build());
         assertThrows(IllegalArgumentException.class,
             String.format(
                 Messages.MESSAGE_INVALID_CHEESE_MULTIPLE_ORDER,
                 ORDER_CAMEMBERT_2.getOrderId().value,
                 CAMEMBERT.getCheeseId().value
-            ), () -> addressBook.checkAddressBook());
+            ), () -> chim.checkChim());
     }
 
     @Test
-    public void checkAddressBook_cheeseNotAssigned_throwsIllegalArgumentException() {
-        addressBook.addCustomer(BENSON);
-        addressBook.addCheese(new CheeseBuilder(FETA).withAssignStatus(false).build());
-        addressBook.addOrder(ORDER_FETA);
+    public void checkChim_cheeseNotAssigned_throwsIllegalArgumentException() {
+        chim.addCustomer(BENSON);
+        chim.addCheese(new CheeseBuilder(FETA).withAssignStatus(false).build());
+        chim.addOrder(ORDER_FETA);
         assertThrows(IllegalArgumentException.class,
             String.format(
                 Messages.MESSAGE_INVALID_CHEESE_NOT_ASSIGNED,
                 ORDER_FETA.getOrderId().value,
                 FETA.getCheeseId().value
-            ), () -> addressBook.checkAddressBook());
+            ), () -> chim.checkChim());
     }
 
     @Test
-    public void checkAddressBook_cheeseOrderTypeMismatch_throwsIllegalArgumentException() {
-        addressBook.addCustomer(BENSON);
-        addressBook.addCheese(new CheeseBuilder(GOUDA).withAssignStatus(true).build());
-        addressBook.addOrder(new OrderBuilder(ORDER_CAMEMBERT_2).withCheeses(Set.of(GOUDA.getCheeseId())).build());
+    public void checkChim_cheeseOrderTypeMismatch_throwsIllegalArgumentException() {
+        chim.addCustomer(BENSON);
+        chim.addCheese(new CheeseBuilder(GOUDA).withAssignStatus(true).build());
+        chim.addOrder(new OrderBuilder(ORDER_CAMEMBERT_2).withCheeses(Set.of(GOUDA.getCheeseId())).build());
         assertThrows(IllegalArgumentException.class,
             String.format(
                 Messages.MESSAGE_INVALID_ORDER_CHEESE_CHEESE_TYPE,
                 ORDER_CAMEMBERT_2.getOrderId().value,
                 GOUDA.getCheeseId().value
-            ), () -> addressBook.checkAddressBook());
+            ), () -> chim.checkChim());
     }
 
     @Test
-    public void checkAddressBook_invalidAssignedCheese_throwsIllegalArgumentException() {
-        addressBook.addCustomer(BENSON);
-        addressBook.addCheese(new CheeseBuilder(GOUDA).withAssignStatus(true).build());
-        addressBook.addOrder(ORDER_GOUDA);
+    public void checkChim_invalidAssignedCheese_throwsIllegalArgumentException() {
+        chim.addCustomer(BENSON);
+        chim.addCheese(new CheeseBuilder(GOUDA).withAssignStatus(true).build());
+        chim.addOrder(ORDER_GOUDA);
         assertThrows(IllegalArgumentException.class,
             String.format(
                 Messages.MESSAGE_INVALID_ASSIGNED_CHEESE,
                 GOUDA.getCheeseId().value
-            ), () -> addressBook.checkAddressBook());
+            ), () -> chim.checkChim());
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose customers list can violate interface constraints.
+     * A stub ReadOnlyChim whose customers list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class ChimStub implements ReadOnlyChim {
         private final ObservableList<Customer> customers = FXCollections.observableArrayList();
         private final ObservableList<Order> orders = FXCollections.observableArrayList();
         private final ObservableList<Cheese> cheeses = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Customer> customers) {
+        ChimStub(Collection<Customer> customers) {
             this.customers.setAll(customers);
         }
 

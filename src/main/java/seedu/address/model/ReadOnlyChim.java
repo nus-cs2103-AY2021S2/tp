@@ -6,13 +6,13 @@ import seedu.address.model.customer.Customer;
 import seedu.address.model.order.Order;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of CHIM's customers, orders and cheeses lists.
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyChim {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the customers list.
+     * This list will not contain any duplicate customers.
      */
     ObservableList<Customer> getCustomerList();
 

@@ -29,10 +29,10 @@ import seedu.address.model.order.Quantity;
 import seedu.address.model.order.UniqueOrderList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSameCustomer comparison)
+ * Wraps all data in CHIM.
+ * Duplicate customers, orders, or cheeses are not allowed.
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class Chim implements ReadOnlyChim {
 
     private final UniqueCustomerList customers;
     private final UniqueOrderList orders;
@@ -51,13 +51,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         cheeses = new UniqueCheeseList();
     }
 
-    public AddressBook() {
+    public Chim() {
     }
 
     /**
-     * Creates an AddressBook using the Customers, Orders and Cheeses in the {@code toBeCopied}
+     * Creates Chim using the Customers, Orders and Cheeses in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public Chim(ReadOnlyChim toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -89,9 +89,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Chim} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyChim newData) {
         requireNonNull(newData);
 
         setCustomers(newData.getCustomerList());
@@ -102,7 +102,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// order-level operations
 
     /**
-     * Returns true if a orders with the same identity as {@code orders} exists in the address book.
+     * Returns true if orders with the same identity as {@code orders} exists in CHIM.
      */
     public boolean hasOrder(Order order) {
         requireNonNull(order);
@@ -110,8 +110,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a order to the address book.
-     * The order must not already exist in the address book.
+     * Adds an order to CHIM.
+     * The order must not already exist in CHIM.
      */
     public void addOrder(Order o) {
         orders.add(o);
@@ -119,9 +119,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given order {@code target} in the list with {@code editedOrder}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in CHIM.
      * The order identity of {@code editedOrder} must not be the same as another existing order
-     * in the address book.
+     * in CHIM.
      */
     public void setOrder(Order target, Order editedOrder) {
         requireNonNull(editedOrder);
@@ -130,8 +130,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code Chim}.
+     * {@code key} must exist in CHIM.
      */
     public void deleteOrder(Order key) {
         orders.delete(key);
@@ -154,7 +154,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns a order with {@code orderId} if exists in the address book.
+     * Returns an order with {@code orderId} if exists in CHIM.
      */
     public Order getOrderWithId(OrderId orderId) {
         requireNonNull(orderId);
@@ -164,7 +164,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// customer-level operations
 
     /**
-     * Returns true if a customer with the same identity as {@code customer} exists in the address book.
+     * Returns true if a customer with the same identity as {@code customer} exists in CHIM.
      */
     public boolean hasCustomer(Customer customer) {
         requireNonNull(customer);
@@ -172,7 +172,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a customer with {@code phone} exists in the address book.
+     * Returns true if a customer with {@code phone} exists in CHIM.
      */
     public boolean hasCustomerWithPhone(Phone phone) {
         requireNonNull(phone);
@@ -180,7 +180,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns a customer with {@code phone} if exists in the address book.
+     * Returns a customer with {@code phone} if exists in CHIM.
      */
     public Customer getCustomerWithPhone(Phone phone) {
         requireNonNull(phone);
@@ -188,7 +188,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns a customer with {@code id} if exists in the address book.
+     * Returns a customer with {@code id} if exists in CHIM.
      */
     public Customer getCustomerWithId(CustomerId id) {
         requireNonNull(id);
@@ -197,8 +197,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
 
     /**
-     * Adds a customer to the address book.
-     * The customer must not already exist in the address book.
+     * Adds a customer to CHIM.
+     * The customer must not already exist in CHIM.
      */
     public void addCustomer(Customer p) {
         customers.add(p);
@@ -206,9 +206,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given customer {@code target} in the list with {@code editedCustomer}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in CHIM.
      * The customer identity of {@code editedCustomer} must not be the same as another existing customer
-     * in the address book.
+     * in CHIM.
      */
     public void setCustomer(Customer target, Customer editedCustomer) {
         requireNonNull(editedCustomer);
@@ -217,8 +217,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code Chim}.
+     * {@code key} must exist in CHIM.
      */
     public void deleteCustomer(Customer key) {
         customers.delete(key);
@@ -240,7 +240,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// cheese-level operations
 
     /**
-     * Returns true if a cheese with the same identity as {@code cheese} exists in the address book.
+     * Returns true if a cheese with the same identity as {@code cheese} exists in CHIM.
      */
     public boolean hasCheese(Cheese cheese) {
         requireNonNull(cheese);
@@ -248,8 +248,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a cheese to the address book.
-     * The cheese must not already exist in the address book.
+     * Adds a cheese to CHIM.
+     * The cheese must not already exist in CHIM.
      */
     public void addCheese(Cheese c) {
         cheeses.add(c);
@@ -257,9 +257,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given cheese {@code target} in the list with {@code editedCheese}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in CHIM.
      * The cheese identity of {@code editedCheese} must not be the same as another existing cheese
-     * in the address book.
+     * in CHIM.
      */
     public void setCheese(Cheese target, Cheese editedCheese) {
         requireNonNull(editedCheese);
@@ -268,15 +268,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code Chim}.
+     * {@code key} must exist in CHIM.
      */
     public void deleteCheese(Cheese key) {
         cheeses.delete(key);
     }
 
     /**
-     * Returns a cheese with {@code cheeseId} if exists in the address book.
+     * Returns a cheese with {@code cheeseId} if exists in CHIM.
      */
     public Cheese getCheeseWithId(CheeseId cheeseId) {
         requireNonNull(cheeseId);
@@ -292,10 +292,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Checks whether the address book's current state is valid
-     * Includes checking dependencies between models
+     * Checks whether CHIM's current state is valid.
+     * Includes checking dependencies between models.
      */
-    public void checkAddressBook() {
+    public void checkChim() {
         Set<CustomerId> customerIdSet = customers.asUnmodifiableObservableList().stream()
             .map(x -> x.getId()).collect(Collectors.toSet());
         Map<CheeseId, Cheese> cheeseIdMap = cheeses.asUnmodifiableObservableList().stream()
@@ -397,10 +397,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && customers.equals(((AddressBook) other).customers))
-                && cheeses.equals(((AddressBook) other).cheeses)
-                && orders.equals(((AddressBook) other).orders);
+                || (other instanceof Chim // instanceof handles nulls
+                && customers.equals(((Chim) other).customers))
+                && cheeses.equals(((Chim) other).cheeses)
+                && orders.equals(((Chim) other).orders);
     }
 
     @Override

@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.Chim;
+import seedu.address.model.ReadOnlyChim;
 import seedu.address.model.cheese.Cheese;
 import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.cheese.CheeseType;
@@ -24,7 +24,7 @@ import seedu.address.model.order.Quantity;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Chim} with sample data.
  */
 public class SampleDataUtil {
     public static final Customer[] SAMPLE_CUSTOMERS = new Customer[] {
@@ -85,19 +85,19 @@ public class SampleDataUtil {
         return SAMPLE_CHEESES;
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyChim getSampleChim() {
+        Chim sampleChim = new Chim();
         for (Customer sampleCustomer : getSampleCustomers()) {
-            sampleAb.addCustomer(sampleCustomer);
+            sampleChim.addCustomer(sampleCustomer);
         }
         for (Order sampleOrder : getSampleOrders()) {
-            sampleAb.addOrder(sampleOrder);
+            sampleChim.addOrder(sampleOrder);
         }
         for (Cheese sampleCheese : getSampleCheeses()) {
-            sampleAb.addCheese(sampleCheese);
+            sampleChim.addCheese(sampleCheese);
         }
-        sampleAb.checkAddressBook();
-        return sampleAb;
+        sampleChim.checkChim();
+        return sampleChim;
     }
 
     /**

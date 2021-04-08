@@ -12,13 +12,13 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showCustomerAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CUSTOMER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CUSTOMER;
-import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModels.getTypicalChim;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
+import seedu.address.model.Chim;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -31,7 +31,7 @@ import seedu.address.testutil.EditCustomerDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalChim(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -43,7 +43,7 @@ public class EditCommandTest {
         String expectedMessage =
             String.format(EditCustomerCommand.MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Chim(model.getChim()), new UserPrefs());
         expectedModel.setCustomer(model.getFilteredCustomerList().get(0), editedCustomer);
         expectedModel.setPanelToCustomerList();
 
@@ -66,7 +66,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCustomerCommand.MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Chim(model.getChim()), new UserPrefs());
         expectedModel.setCustomer(lastCustomer, editedCustomer);
         expectedModel.setPanelToCustomerList();
 
@@ -81,7 +81,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCustomerCommand.MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Chim(model.getChim()), new UserPrefs());
         expectedModel.setPanelToCustomerList();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -98,7 +98,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCustomerCommand.MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Chim(model.getChim()), new UserPrefs());
         expectedModel.setCustomer(model.getFilteredCustomerList().get(0), editedCustomer);
         expectedModel.setPanelToCustomerList();
 
@@ -119,8 +119,8 @@ public class EditCommandTest {
     public void execute_duplicateCustomerFilteredList_failure() {
         showCustomerAtIndex(model, INDEX_FIRST_CUSTOMER);
 
-        // edit customer in filtered list into a duplicate in address book
-        Customer customerInList = model.getAddressBook().getCustomerList().get(INDEX_SECOND_CUSTOMER.getZeroBased());
+        // edit customer in filtered list into a duplicate in CHIM
+        Customer customerInList = model.getChim().getCustomerList().get(INDEX_SECOND_CUSTOMER.getZeroBased());
         EditCustomerCommand editCommand = new EditCustomerCommand(INDEX_FIRST_CUSTOMER,
                 new EditCustomerDescriptorBuilder(customerInList).build());
 
@@ -138,15 +138,15 @@ public class EditCommandTest {
     }
 
     /**
-     * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * Test case where index is larger than the size of filtered list, but smaller than the
+     * number of customers in CHIM.
      */
     @Test
     public void execute_invalidCustomerIndexFilteredList_failure() {
         showCustomerAtIndex(model, INDEX_FIRST_CUSTOMER);
         Index outOfBoundIndex = INDEX_SECOND_CUSTOMER;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCustomerList().size());
+        // ensures that outOfBoundIndex is still in bounds of CHIM's full customers list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getChim().getCustomerList().size());
 
         EditCustomerCommand editCommand = new EditCustomerCommand(outOfBoundIndex,
                 new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB).build());

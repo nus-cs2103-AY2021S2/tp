@@ -15,7 +15,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_COMPLETION_STATU
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalModels.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModels.getTypicalChim;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -41,7 +41,7 @@ public class FindOrderCommandParserTest {
 
     @BeforeEach
     public void setUp() {
-        customerList = getTypicalAddressBook().getCustomerList();
+        customerList = getTypicalChim().getCustomerList();
         parser = new FindOrderCommandParser(customerList);
     }
 
