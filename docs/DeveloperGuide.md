@@ -629,7 +629,178 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-#### UC7 - Add a contact
+#### UC7 - Mark a todo in a project as done
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all todos under the project.
+3. User requests to mark a todo as done.
+4. CoLAB marks the given todo as done.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of todos is empty.
+
+  Use case ends.
+
+* 3a. The given arguments are invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the mark action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+#### UC8 - Add a deadline to a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all deadlines under the project.
+3. User requests to add a deadline to the project.
+4. CoLAB adds the project.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 3a. The given arguments are invalid.
+
+    * 2a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the add action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+#### UC9 - Delete a deadline from a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all deadlines under the project.
+3. User requests to delete a specific deadline in the list.
+4. CoLAB deletes the deadline.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of deadlines is empty.
+
+  Use case ends.
+
+* 3a. The given deadline index is invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the delete action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+#### UC10 - Add or modify information about a deadline in a project
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all deadlines under the project.
+3. User requests to edit information about a deadline.
+4. CoLAB updates the entry with new information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of deadlines is empty.
+
+  Use case ends.
+
+* 3a. The given arguments are invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the update action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+#### UC11 - Mark a deadline in a project as done
+
+**MSS**
+
+1. User switches to the project panel of a specific project.
+2. User lists all deadlines under the project.
+3. User requests to mark a deadline as done.
+4. CoLAB marks the given deadline as done.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given project index is invalid.
+
+    * 1a1. CoLAB shows an error message.
+
+      Use case resumes at step 1.
+
+* 2a. The list of deadlines is empty.
+
+  Use case ends.
+
+* 3a. The given arguments are invalid.
+
+    * 3a1. CoLAB shows an error message.
+
+      Use case resumes at step 3.
+
+* 4a. User decides to undo the mark action.
+
+    * 4a1. CoLAB reverses the effects of the previous command.
+
+      Use case ends.
+
+#### UC20 - Add a contact
 
 **MSS**
 
@@ -652,7 +823,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-#### UC8 - Find a specific contact
+#### UC21 - Find a specific contact
 
 **MSS**
 
@@ -667,7 +838,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   Use case ends.
 
-#### UC9 - Delete a contact
+#### UC22 - Delete a contact
 
 **MSS**
 
@@ -696,7 +867,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-#### UC10 - Add or Modify information about a contact
+#### UC23 - Add or Modify information about a contact
 
 **MSS**
 
@@ -719,7 +890,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Use case ends.
 
-#### UC30 - Purge all entries from the app
+#### UC24 - Purge all entries from the app
 
 **MSS**
 
