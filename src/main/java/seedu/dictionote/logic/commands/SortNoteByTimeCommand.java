@@ -32,7 +32,6 @@ public class SortNoteByTimeCommand extends Command {
         }
 
         model.sortNoteByTime();
-        model.updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
         return new CommandResult(MESSAGE_SORT_NOTE_SUCCESS, UiAction.OPEN, UiActionOption.NOTE_LIST);
     }
 

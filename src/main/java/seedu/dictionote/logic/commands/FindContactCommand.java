@@ -55,7 +55,6 @@ public class FindContactCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-
         // satisfy both name- and tag-matching.
         model.updateFilteredContactList(namePredicate.and(emailPredicate).and(tagsPredicate));
         return new CommandResult(
