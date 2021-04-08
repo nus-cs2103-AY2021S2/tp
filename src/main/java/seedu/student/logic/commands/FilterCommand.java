@@ -1,6 +1,8 @@
 package seedu.student.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
+import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENT_LISTS;
 
 import java.util.function.Predicate;
 
@@ -31,6 +33,7 @@ public class FilterCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
+        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT_LISTS, PREDICATE_SHOW_ALL_APPOINTMENTS);
         if (model.getFilteredStudentList().size() == 0) {
             return new CommandResult(
                     String.format(Messages.MESSAGE_NO_STUDENTS_ARE_LISTED, model.getFilteredStudentList().size()));

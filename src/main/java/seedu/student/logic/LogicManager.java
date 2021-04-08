@@ -18,6 +18,8 @@ import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.Student;
 import seedu.student.storage.Storage;
 
+import static seedu.student.model.Model.*;
+
 /**
  * The main LogicManager of the app.
  */
@@ -45,6 +47,15 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = studentBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
+
+        if(!(commandText.contains("find") || commandText.contains("filter"))){
+            model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT_LISTS, PREDICATE_SHOW_ALL_APPOINTMENTS);
+            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        }
+
+        if(commandText.contains("filter")){
+
+        }
 
         try {
             storage.saveStudentBook(model.getStudentBook());

@@ -16,6 +16,7 @@ public class SchoolResidence {
         public String toString() {
             return this == DOES_NOT_LIVE_ON_CAMPUS ? "DOES NOT LIVE ON CAMPUS" : super.toString();
         }
+
     }
 
     public static final List<ResidenceAbbreviation> LIST_RESIDENCES = Arrays.asList(
@@ -70,6 +71,21 @@ public class SchoolResidence {
         return Arrays.asList(residenceArray);
     }
 
+    /**
+     * Returns true if the given string is a residence in the enum.
+     *
+     * @param givenResidence the string to be checked.
+     * @return true if givenResidence is a valid residence, false otherwise.
+     */
+
+    public static Boolean isExist(String givenResidence) {
+        for(ResidenceAbbreviation residence : ResidenceAbbreviation.values()) {
+            if(givenResidence.equals(residence.name())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public String toString() {
