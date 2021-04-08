@@ -126,7 +126,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
          ```
-         customer add n/[NAME] p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS] (t/[TAG])
+         customer add n/[NAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] (t/[TAG])
          ```
         
         Example:
@@ -172,7 +172,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
         ```
-        customer edit [INDEX] (n/[NAME]) (p/[PHONE_NUMBER]) (e/[EMAIL]) (a/[ADDRESS]) (t/[TAG])
+        customer edit [INDEX] (n/[NAME]) (p/[PHONE]) (e/[EMAIL]) (a/[ADDRESS]) (t/[TAG])
         ```
         
         At least one of the fields in brackets must be present in the edit command.
@@ -342,7 +342,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         Creates an order and add it to the order list.  
         Format:
         ```
-        order add n/[CUSTOMER_INDEX] dt/[DELIVERY_DATETIME, DD-MM-YYYY HH:MM] d/[DISH_ID] q/[QUANTITY]...   
+        order add n/[CUSTOMER_ID] dt/[DELIVERY_DATETIME, DD-MM-YYYY HH:MM] d/[DISH_ID] q/[QUANTITY]...   
         ```
         Example:  
         ![OrderAddExample](images/order/OrderAddExample.png)  
@@ -373,7 +373,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
         ```
-        order edit [INDEX] (n/[CUSTOMER_INDEX]) (dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM)) (d/[DISH_ID] q/[QUANTITY]...)
+        order edit [INDEX] (n/[CUSTOMER_ID]) (dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM)) (d/[DISH_ID] q/[QUANTITY]...)
         ```
         
         At least one of the fields in brackets must be present in the edit command.

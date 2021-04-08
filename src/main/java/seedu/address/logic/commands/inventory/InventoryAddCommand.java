@@ -21,7 +21,7 @@ public class InventoryAddCommand extends Command {
     public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD
             + ": Adds an ingredient to the inventory. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
+            + PREFIX_NAME + "INGREDIENT_NAME "
             + PREFIX_QUANTITY + "QUANTITY\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "potato "
