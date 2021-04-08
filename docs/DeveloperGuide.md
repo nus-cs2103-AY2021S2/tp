@@ -387,7 +387,7 @@ For the user's convenience, there are 3 scenarios for recording food intake.
 Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
 2. Add `FoodIntake` using existing `Food` in the `UniqueFoodList` and update its nutrient values.<br/>
-Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME p/10 <at least 1 nutrient value>`
+Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME p/PROTEINS <at least 1 nutrient value>`
 
 3. Add `FoodIntake` using existing `Food` in the `UniqueFoodList` without updating its values.<br/>
 Example: `food_intake_add d/dd MMM yyy n/FOOD_NAME`
@@ -413,6 +413,10 @@ For example, if the original name is 'chocolate', and there are 3 `FoodIntake`s 
 [diagram]
 
 ### Delete Food Intake feature
+
+<img src="images/DeleteFoodIntakeActivityDiagram.png" width="523" />
+
+
 #### Description:
 The user can delete food intakes already added to the application by providing the food name, and date of intake. 
 
