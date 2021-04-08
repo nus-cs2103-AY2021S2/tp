@@ -8,15 +8,15 @@ import seedu.address.model.remark.Remark;
  * Tests that a {@code Property}'s {@code Remarks} matches the remark given.
  */
 public class PropertyRemarksPredicate implements Predicate<Property> {
-    private final Remark keywords;
+    private final String keywords;
 
     public PropertyRemarksPredicate(String keywords) throws IllegalArgumentException {
-        this.keywords = new Remark(keywords);
+        this.keywords = keywords.toLowerCase();
     }
 
     @Override
     public boolean test(Property property) {
-        return this.keywords.equals(property.getRemarks());
+        return property.getRemarks().remark.toLowerCase().contains(this.keywords);
     }
 
     @Override
