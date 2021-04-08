@@ -536,7 +536,7 @@ Deletes an existing alias from address book.
 
 ### List Alias: `alias list`
 
-Lists all aliases in the address book.
+Lists all alias(es) in the address book.
 
 **Format**: `alias list`
 
