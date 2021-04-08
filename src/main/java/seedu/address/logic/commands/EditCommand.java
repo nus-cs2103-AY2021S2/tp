@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.Optional;
@@ -32,7 +33,8 @@ public class EditCommand extends Command {
             + "Parameters: IDENTIFIER (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] " + " "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]" + " "
-            + "[" + PREFIX_PRIORITY + "PRIORITY]" + "\n"
+            + "[" + PREFIX_PRIORITY + "PRIORITY]" + " "
+            + "[" + PREFIX_STATUS + "STATUS]" + "\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Finish CS2030S Lab 1 "
             + PREFIX_PRIORITY + "high";
@@ -60,9 +62,12 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        // if no events
         if (model.getEventBook().getEventList().size() == 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_INDEX_NO_EVENTS);
         }
+
+        // check if identifier is too big or negative
 
         Optional<Event> optEventToEdit = model.getEventByIdentifier(identifier.getValue());
         Optional<Event> optEditedEvent = optEventToEdit
@@ -77,9 +82,13 @@ public class EditCommand extends Command {
         }
 
         Event eventToEdit = optEventToEdit
-                .orElseThrow(() -> new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER));
+                .orElseThrow(() -> new CommandException(
+                        String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER,
+                                identifier.getValue())));
         Event editedEvent = optEditedEvent
-                .orElseThrow(() -> new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER));
+                .orElseThrow(() -> new CommandException(
+                        String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER,
+                                identifier.getValue())));
 
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);

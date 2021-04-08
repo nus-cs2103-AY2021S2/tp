@@ -43,59 +43,42 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        // no index specified
-        assertParseFailure(parser, VALID_NAME_CS2030, ParserUtil.MESSAGE_INVALID_IDENTIFIER + "\n\n"
-                + MESSAGE_INVALID_FORMAT);
+        // String specified at index
+        assertParseFailure(parser, VALID_NAME_CS2030,
+                ParserUtil.MESSAGE_INVALID_IDENTIFIER);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
-        assertParseFailure(parser, "", ParserUtil.MESSAGE_INVALID_IDENTIFIER + "\n\n"
-                + MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "",
+                ParserUtil.MESSAGE_EMPTY_IDENTIFIER + EditCommand.MESSAGE_USAGE);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + EVENTNAME_DESC_CS2030, ParserUtil.MESSAGE_INVALID_IDENTIFIER + "\n\n"
-                + MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + EVENTNAME_DESC_CS2030,
+                ParserUtil.MESSAGE_NEGATIVE_OR_ZERO_IDENTIFIER);
 
         // zero index
-        assertParseFailure(parser, "0" + EVENTNAME_DESC_CS2030, ParserUtil.MESSAGE_INVALID_IDENTIFIER + "\n\n"
-                + MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + EVENTNAME_DESC_CS2030,
+                ParserUtil.MESSAGE_NEGATIVE_OR_ZERO_IDENTIFIER);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", ParserUtil.MESSAGE_INVALID_IDENTIFIER + "\n\n"
-                + MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string",
+                ParserUtil.MESSAGE_ADDITIONAL_ARTEFACTS + EditCommand.MESSAGE_USAGE);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", ParserUtil.MESSAGE_INVALID_IDENTIFIER + "\n\n"
-                + MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string",
+                ParserUtil.MESSAGE_ADDITIONAL_ARTEFACTS + EditCommand.MESSAGE_USAGE);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, EventName.MESSAGE_CONSTRAINTS); // invalid name
-        //assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        //assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        //assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
-        //assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
-
-        // invalid phone followed by valid email
-        //assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + VALID_DESCRIPTION_CS2030,
                 EventName.MESSAGE_CONSTRAINTS);
-
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
-        // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        //assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
-
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Person} being edited,
-        // parsing it together with a valid tag results in error
-        //assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        //assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        //assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         assertParseFailure(parser, "1" + INVALID_EVENTSTATUS_DESC, EventStatus.MESSAGE_CONSTRAINTS);
 

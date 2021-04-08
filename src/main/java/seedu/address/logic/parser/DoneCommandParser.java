@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.identifier.Identifier;
 import seedu.address.logic.commands.DoneCommand;
@@ -16,8 +15,12 @@ public class DoneCommandParser implements Parser<DoneCommand> {
             Identifier identifier = ParserUtil.parseIdentifier(userInput);
             return new DoneCommand(identifier);
         } catch (ParseException pe) {
-            throw new ParseException(pe.getMessage() + "\n\n"
-                    + String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE), pe);
+            if (pe.getMessage().equals(ParserUtil.MESSAGE_ADDITIONAL_ARTEFACTS)
+                    || pe.getMessage().equals(ParserUtil.MESSAGE_EMPTY_IDENTIFIER)) {
+                throw new ParseException(pe.getMessage()
+                        + DoneCommand.MESSAGE_USAGE);
+            }
+            throw new ParseException(pe.getMessage());
         }
     }
 }

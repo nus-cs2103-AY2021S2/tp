@@ -22,8 +22,8 @@ public class InProgressCommand extends Command {
             + PREFIX_NAME + "Household Chores" + " "
             + PREFIX_DESCRIPTION + "Clean my room and wash the dishes";
 
-    public static final String MESSAGE_SUCCESS = "New Event added with the Status of IN-PROGERSS: %1$s";
-    public static final String MESSAGE_DUPLICATE_EVENT = "An Event with the same NAME already exists in Focuris";
+    public static final String MESSAGE_SUCCESS = "New Event added with the Status of IN-PROGERSS: %1$s.";
+    public static final String MESSAGE_DUPLICATE_EVENT = "An Event with the same NAME already exists in Focuris.";
 
     private final Event toAdd;
 
