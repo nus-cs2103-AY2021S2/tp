@@ -556,37 +556,30 @@ The following are diet plans options that comes with DietLAH!.
 
 ### A1.1 Standard Ketogenic Diet
 
-The Standard Ketogenic Diet is a high-fat, low-carb weight-loss diet.
-It is designed in such a way that by reducing the intake of carbohydrates,
-the body is forced to burn its fat reserves for fuel thereby resulting in weight-loss.
+The Standard Ketogenic Diet is a high-fat, low-carb weight-loss diet. It is designed in such a way that by reducing the intake of carbohydrates, the body is forced to burn its fat reserves for fuel thereby resulting in weight-loss.
 
-The Standard Ketogenic Diet is suitable for individuals suffering from Type II Diabetes where
-excess carbohydrates would have been converted into glucose.
+The Standard Ketogenic Diet is suitable for individuals suffering from Type II Diabetes where excess carbohydrates would have been converted into glucose.
 
 **Classification:** `Weight Loss`
 **Composition:** `70% Fat` `10% Carbohydrates` `20% Proteins`
 
 ### A1.2 High-Protein Ketogenic Diet
 
-The High-Protein Ketogenic Diet is a variation of the Ketogenic Diet (high-fat, low-carb)
-which increases the protein intake. This variation is designed to help athletes and
-bodybuilders maintain their muscle mass whilst burning fat.
+The High-Protein Ketogenic Diet is a variation of the Ketogenic Diet (high-fat, low-carb) which increases the protein intake. This variation is designed to help athletes and bodybuilders maintain their muscle mass whilst burning fat.
 
 **Classification:** `Weight Loss`
 **Composition:** `60% Fat` `5% Carbohydrates` `35% Proteins`
 
 ### A1.3 Balanced Plan For Weight Gain
 
-This plan is aimed at individuals who are intending to gain healthy weight in a balanced manner.
-Some exercise coupled with this diet plan will allow individuals to gain some muscle steadily.
+This plan is aimed at individuals who are intending to gain healthy weight in a balanced manner. Some exercise coupled with this diet plan will allow individuals to gain some muscle steadily.
 
 **Classification:** `Weight Gain`
 **Composition:** `30% Fat` `35% Carbohydrates` `35% Proteins`
 
 ### A1.4 Clean Bulk
 
-The clean bulk is a process which bodybuilders use to gain lean muscle mass.
-The clean bulk emphasizes consuming healthy whole foods as compared to eating sugary and 
+The clean bulk is a process which bodybuilders use to gain lean muscle mass. The clean bulk emphasizes consuming healthy whole foods as compared to eating sugary and 
 processed foods to hit the calorie intake.
 
 **Classification:** `Weight Gain`
@@ -594,17 +587,14 @@ processed foods to hit the calorie intake.
 
 ### A1.5 High Carbohydrates Bulk
 
-This plan is intended for athletes who are involved in high intensity sports which require high energy consumption.
-As such, this plan prescribes a higher amount of carbohydrates to offset this need whilst ensuring the protein 
-intake is enough to promote muscle growth and in turn, healthy weight gain.
+This plan is intended for athletes who are involved in high intensity sports which require high energy consumption. As such, this plan prescribes a higher amount of carbohydrates to offset this need whilst ensuring the protein intake is enough to promote muscle growth and in turn, healthy weight gain.
 
 **Classification:** `Weight Gain`
 **Composition:** `15% Fat` `55% Carbohydrates` `30% Proteins`
 
 ### A1.6 Balanced Plan
 
-The perfect ying-yang. Eat healthy food and complete the calorie goal.
-Eat lots of fruits and vegetables, and base meals on higher fiber starchy carbohydrates.
+The perfect ying-yang. Eat healthy food and complete the calorie goal. Eat lots of fruits and vegetables, and base meals on higher fiber starchy carbohydrates.
 
 **Classification:** `Maintain Weight`
 **Composition:** `30% Fat` `40% Carbohydrates` `30% Proteins`
