@@ -11,6 +11,7 @@ import seedu.address.model.cheese.Cheese;
 import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.CustomerId;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderId;
@@ -83,6 +84,11 @@ public interface Model {
      * Returns a customer with the {@code phone} if exists in the address book.
      */
     Customer getCustomerWithPhone(Phone phone);
+
+    /**
+     * Returns a customer with the {@code id} if exists in the address book.
+     */
+    Customer getCustomerWithId(CustomerId id);
 
     /**
      * Deletes the given customer.

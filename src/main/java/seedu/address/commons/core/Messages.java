@@ -12,7 +12,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_CUSTOMER_DISPLAYED_PHONE =
             "The customer phone number provided is invalid.";
     public static final String MESSAGE_INVALID_ORDER_DISPLAYED_INDEX = "The order index provided is invalid.";
-    public static final String MESSAGE_INVALID_ORDER_INDEX = "The order index provided is invalid.";
     public static final String MESSAGE_INVALID_ORDER_COMPLETE = "The order index provided is already completed.";
     public static final String MESSAGE_ORDERS_FOUND_OVERVIEW = "%1$d orders with parameters of %2$s "
             + "has been found!";

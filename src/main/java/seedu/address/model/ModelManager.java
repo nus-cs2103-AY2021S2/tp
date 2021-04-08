@@ -14,6 +14,7 @@ import seedu.address.model.cheese.Cheese;
 import seedu.address.model.cheese.CheeseId;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.CustomerId;
 import seedu.address.model.customer.Phone;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderId;
@@ -118,6 +119,12 @@ public class ModelManager implements Model {
     public Customer getCustomerWithPhone(Phone phone) {
         requireNonNull(phone);
         return addressBook.getCustomerWithPhone(phone);
+    }
+
+    @Override
+    public Customer getCustomerWithId(CustomerId id) {
+        requireNonNull(id);
+        return addressBook.getCustomerWithId(id);
     }
 
     @Override
@@ -243,7 +250,7 @@ public class ModelManager implements Model {
     public int getFilteredOrderListIncompleteCount() {
         int c = 0;
         for (Order o : getFilteredOrderList()) {
-            if (o.isComplete()) {
+            if (!o.isComplete()) {
                 c++;
             }
         }
@@ -254,7 +261,7 @@ public class ModelManager implements Model {
     public int getFilteredCheeseListUnassignedCount() {
         int c = 0;
         for (Cheese cheese : getFilteredCheeseList()) {
-            if (cheese.isCheeseAssigned()) {
+            if (!cheese.isCheeseAssigned()) {
                 c++;
             }
         }

@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_CARL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -33,7 +34,7 @@ public class TypicalCustomers {
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends")
             .withId(CustomerIdStub.getNextId(2)).build();
-    public static final Customer CARL = new CustomerBuilder().withName("Carl Kurz").withPhone("95352563")
+    public static final Customer CARL = new CustomerBuilder().withName("Carl Kurz").withPhone(VALID_PHONE_CARL)
             .withEmail("heinz@example.com").withAddress("wall street")
             .withId(CustomerIdStub.getNextId(3)).build();
     public static final Customer DANIEL = new CustomerBuilder().withName("Daniel Meier").withPhone("87652533")
