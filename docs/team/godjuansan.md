@@ -10,7 +10,7 @@ title: Otto Alexander Sutianto Project Portfolio Page
 
 Here are my contributions to the project.
 
-* **New Feature**: Create, Read, Edit, and Delete Notes (together with jessen11).
+* **New Feature**: Create, Read, Edit, and Delete Notes (together with jessen11 (https://github.com/jessen11/)).
   * What it does: User can create, read, edit and delete notes.
   * Justification: In a note-taking application, it is very important to have all the basic features such as these 4 features.
   * Highlights: User can CRUD notes from CLI.
@@ -38,7 +38,7 @@ Here are my contributions to the project.
 **Code contributed**: [RepoSense link] (https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=w13&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=godjuansan&tabRepo=AY2021S2-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-  * Managed all of notes feature and divide tasks between myself and jessen11.
+  * Managed all of notes feature and divide tasks between myself and jessen11 (https://github.com/jessen11/).
   
 * **Documentation**:
   * User Guide:
