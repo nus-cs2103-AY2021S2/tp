@@ -30,7 +30,6 @@ import seedu.address.model.property.PropertyRemarksPredicate;
 import seedu.address.model.property.PropertyTagsPredicate;
 import seedu.address.model.property.PropertyTypePredicate;
 import seedu.address.model.property.client.Contact;
-import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 
 public class FindPropertyCommandParserTest {

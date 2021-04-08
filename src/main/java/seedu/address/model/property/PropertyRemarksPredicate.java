@@ -2,8 +2,6 @@ package seedu.address.model.property;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.remark.Remark;
-
 /**
  * Tests that a {@code Property}'s {@code Remarks} matches the remark given.
  */

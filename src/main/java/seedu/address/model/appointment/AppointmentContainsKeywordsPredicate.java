@@ -12,6 +12,9 @@ import seedu.address.commons.util.StringUtil;
 public class AppointmentContainsKeywordsPredicate implements Predicate<Appointment> {
     private final List<String> keywords;
 
+    /**
+     * Constructs {@code AppointmentContainsKeywordsPredicate}.
+     */
     public AppointmentContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = new ArrayList<>();
         keywords.forEach(s -> this.keywords.add(s.toLowerCase()));

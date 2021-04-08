@@ -1,8 +1,20 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.parseAppointmentDate;
+import static seedu.address.logic.parser.ParserUtil.parseAppointmentTime;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.FindAppointmentCommand;
-import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
@@ -12,36 +24,6 @@ import seedu.address.model.appointment.AppointmentRemarksPredicate;
 import seedu.address.model.appointment.AppointmentTimePredicate;
 import seedu.address.model.appointment.Date;
 import seedu.address.model.appointment.Time;
-import seedu.address.model.property.Deadline;
-import seedu.address.model.property.Property;
-import seedu.address.model.property.PropertyAddressPredicate;
-import seedu.address.model.property.PropertyClientContactPredicate;
-import seedu.address.model.property.PropertyClientEmailPredicate;
-import seedu.address.model.property.PropertyClientNamePredicate;
-import seedu.address.model.property.PropertyDeadlinePredicate;
-import seedu.address.model.property.PropertyNamePredicate;
-import seedu.address.model.property.PropertyPostalCodePredicate;
-import seedu.address.model.property.PropertyPredicateList;
-import seedu.address.model.property.PropertyPricePredicate;
-import seedu.address.model.property.PropertyRemarksPredicate;
-import seedu.address.model.property.PropertyTagsPredicate;
-import seedu.address.model.property.PropertyTypePredicate;
-import seedu.address.model.property.client.Contact;
-import seedu.address.model.remark.Remark;
-import seedu.address.model.tag.Tag;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.function.Predicate;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.ParserUtil.parseAppointmentDate;
-import static seedu.address.logic.parser.ParserUtil.parseAppointmentTime;
-import static seedu.address.logic.parser.ParserUtil.parsePropertyDeadline;
 
 public class FindAppointmentCommandParserTest {
 
