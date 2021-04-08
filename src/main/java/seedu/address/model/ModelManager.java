@@ -240,12 +240,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortEvents(String comparingVar) {
-        requireNonNull(comparingVar);
-        sochedule.sortEvents(comparingVar);
-    }
-
-    @Override
     public int getNumIncomingEvents() {
         return sochedule.getNumIncomingEvents();
     }

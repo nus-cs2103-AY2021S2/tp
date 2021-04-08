@@ -182,14 +182,6 @@ public interface Model {
     void setEvent(Event target, Event editedEvent);
 
     /**
-     * Sorts the contents of this list given {@code comparingVar}.
-     * {@code comparingVar} must be a valid parameter.
-     *
-     * @param comparingVar The value to be used for sorting.
-     */
-    void sortEvents(String comparingVar);
-
-    /**
      * Returns number of events happening in the next 7 days.
      */
     int getNumIncomingEvents();
