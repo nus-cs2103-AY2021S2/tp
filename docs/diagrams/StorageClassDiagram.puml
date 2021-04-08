@@ -12,6 +12,8 @@ Class StorageManager
 Class JsonUserPrefsStorage
 Class JsonSocheduleStorage
 
+Storage -|> UserPrefsStorage
+Storage -|> SocheduleStorage
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
 StorageManager o--> SocheduleStorage

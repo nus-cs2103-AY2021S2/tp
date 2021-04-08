@@ -8,7 +8,7 @@ import seedu.address.model.task.exceptions.InvalidTaskComparatorVariableExceptio
 
 public class TaskComparator implements Comparator<Task> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Sort Variable must be: \"name\", \"deadline\", \"priority\", \"completion\" ";
+            "Sort Variable must be: \"name\", \"deadline\", \"priority\", \"completion\".";
     public static final String VALIDATION_REGEX = "(name|deadline|priority|completion)";
 
     private static ArrayList<String> acceptedVar =

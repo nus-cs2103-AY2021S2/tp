@@ -8,7 +8,7 @@ import seedu.address.model.task.exceptions.InvalidEventComparatorVariableExcepti
 
 public class EventComparator implements Comparator<Event> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Sort Variable must be: \"name\", \"start_time\", \"end_time\", \"start_date\", \"end_date\" ";
+            "Sort Variable must be: \"name\", \"start_time\", \"end_time\", \"start_date\", \"end_date\".";
     public static final String VALIDATION_REGEX = "(name|start_time|end_time|start_date|end_date)";
 
     private static ArrayList<String> acceptedVar =

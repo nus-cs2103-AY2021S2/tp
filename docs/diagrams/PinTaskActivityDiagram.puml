@@ -1,0 +1,16 @@
+@startuml
+start
+:User executes `pin_task` command;
+
+if () then ([valid index])
+    :Fetch Task from SOChedule;
+    if () then ([task not pinned])
+        :Update PinnedStatus of Task;
+        :Sort TaskList;
+        :Update UI;
+    else([else])
+    endif
+else ([else])
+endif
+stop
+@enduml

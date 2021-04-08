@@ -17,7 +17,7 @@ public class Time implements Comparable<Time> {
     public static final DateTimeFormatter TIME_FORMATTER_STRICT = DateTimeFormatter.ISO_LOCAL_TIME;
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Time should be represented in 24-hour notation, in the format of HH:mm";
+            "Time should be represented in 24-hour notation, in the format of HH:mm.";
 
     public final LocalTime time;
 
