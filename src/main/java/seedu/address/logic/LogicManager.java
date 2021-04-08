@@ -135,7 +135,7 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Lesson> getSpecificLessonList(Person person) {
         model.filterThenSortLessonList(new LessonPersonPredicate(person), Lesson::compareTo);
-        return model.getTransformedLessonList();
+        return model.getTransformedLessonListForPerson();
     }
 
     @Override

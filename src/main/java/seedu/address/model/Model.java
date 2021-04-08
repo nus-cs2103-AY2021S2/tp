@@ -232,6 +232,9 @@ public interface Model {
     /** Returns an unmodifiable view of the transformed lesson list */
     ObservableList<Lesson> getTransformedLessonList();
 
+    /** Returns an unmodifiable view of the transformed lesson list for a person*/
+    ObservableList<Lesson> getTransformedLessonListForPerson();
+
     /** Filters the transformed lesson list by the given {@code predicate} then sorts the
      * transformed lesson list by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
