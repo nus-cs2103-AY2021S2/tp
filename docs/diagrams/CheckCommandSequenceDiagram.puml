@@ -94,11 +94,11 @@ activate ModelManager
 ModelManager -> LogicManager : mode
 deactivate ModelManager
 
-LogicManager -> MainWindow : visible
+LogicManager -> MainWindow : showAnswer
 deactivate LogicManager
 
 
-MainWindow -> MainWindow : updateCard(\nindex, visible)
+MainWindow -> MainWindow : \nupdateCard(\nindex, \nshowAnswer)
 activate MainWindow
 
 LogicManager -[hidden]-> LogicManager : result
