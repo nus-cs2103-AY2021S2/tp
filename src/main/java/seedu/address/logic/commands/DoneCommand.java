@@ -75,4 +75,11 @@ public class DoneCommand extends Command {
 
         return new Event(eventName, EventStatus.DONE, prio, desc, eventIdentifier.getValue());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DoneCommand // instanceof handles nulls
+                && targetIdentifier.equals(((DoneCommand) other).targetIdentifier)); // state check
+    }
 }

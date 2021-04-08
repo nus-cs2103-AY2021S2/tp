@@ -21,6 +21,9 @@ public class ParserUtilTest {
     private static final String VALID_PRIORITY = "HIGH";
     private static final String VALID_DESCRIPTION = "Assignment";
 
+    public static final Long INTEGER_MAX = Integer.toUnsignedLong(Integer.MAX_VALUE);
+    public static final Long LARGE_NUMBER = INTEGER_MAX + 2;
+
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
@@ -31,7 +34,7 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_IDENTIFIER, ()
-            -> ParserUtil.parseIdentifier(Long.toString(Integer.MAX_VALUE + 1)));
+            -> ParserUtil.parseIdentifier(Long.toString(LARGE_NUMBER)));
     }
 
     @Test

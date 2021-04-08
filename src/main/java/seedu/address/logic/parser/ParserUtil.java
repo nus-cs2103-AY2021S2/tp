@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 
 import seedu.address.commons.core.identifier.Identifier;
-import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Description;
 import seedu.address.model.event.EventName;
@@ -20,8 +19,8 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_IDENTIFIER = "Identifier is invalid. "
             + "Please ensure that your identifier:\n"
             + "1. Is a value lesser than 2,147,483,647 and greater than -2,147,483,648.\n"
-            + "2. Does not contain any non-numeric characters";
-    public static final String MESSAGE_NEGATIVE_IDENTIFIER = "Identifier should be non-zero and positive.";
+            + "2. Only contains numeric characters, e.g. 0 - 9.";
+    public static final String MESSAGE_NEGATIVE_OR_ZERO_IDENTIFIER = "Identifier should be non-zero and positive.";
     public static final String MESSAGE_ADDITIONAL_ARTEFACTS = "Identifier contains more than one value. "
             + "Please ensure your command matches with the guide: \n";
     public static final String MESSAGE_EMPTY_IDENTIFIER = "Identifier was not provided. "
@@ -34,6 +33,7 @@ public class ParserUtil {
      */
     public static Identifier parseIdentifier(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        System.out.println("Received: " + trimmedIndex);
         int identifierInt;
 
         // check that there's only one argument, if split by whitespace more than 1
@@ -53,7 +53,7 @@ public class ParserUtil {
         }
 
         if (identifierInt <= 0) {
-            throw new ParseException(MESSAGE_NEGATIVE_IDENTIFIER);
+            throw new ParseException(MESSAGE_NEGATIVE_OR_ZERO_IDENTIFIER);
         }
 
         return Identifier.fromIdentifier(identifierInt);
