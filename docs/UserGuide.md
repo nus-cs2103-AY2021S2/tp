@@ -37,6 +37,14 @@ MeetBuddy is a **desktop app for managing contacts and daily tasks, optimized fo
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Glossary 
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+--------------------------------------------------------------------------------------------------------------------
+
 
 ## Features
 
@@ -61,6 +69,13 @@ MeetBuddy is a **desktop app for managing contacts and daily tasks, optimized fo
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  
+* Note that for all date arguments, if the day is less than or equal to 31 and 
+there is no such day corresponding to the given month and year of the date, the program is smart enough to handle 
+ such cases and automatically corrects the date to the nearest valid end-of-month date. For example 
+`31-02-2021` will be auto-corrected to `28-02-2021` because there is no such date. 
+  But `32-02-2021` will not be autocorrected and the user will be prompted with an error message.
+
 
 </div>
 
