@@ -4,6 +4,9 @@ import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalEntities.HOON;
 import static dog.pawbook.testutil.TypicalEntities.IDA;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
+import static dog.pawbook.testutil.TypicalId.ID_EIGHTEEN;
+import static dog.pawbook.testutil.TypicalId.ID_ONE;
+import static dog.pawbook.testutil.TypicalId.ID_TWO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -72,8 +75,9 @@ public class JsonDatabaseStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addEntity(HOON);
-        original.removeEntity(1);
-        original.removeEntity(2);
+        original.removeEntity(ID_ONE); // owner
+        original.removeEntity(ID_TWO); // dog
+        original.removeEntity(ID_EIGHTEEN); // program that dog is enrolled in
         jsonDatabaseStorage.saveDatabase(original, filePath);
         readBack = jsonDatabaseStorage.readDatabase(filePath).get();
         assertEquals(original, new Database(readBack));
