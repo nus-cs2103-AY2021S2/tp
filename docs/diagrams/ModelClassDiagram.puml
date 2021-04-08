@@ -14,20 +14,27 @@ Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
+Class Quiz
+Class Mode
 
 Package Flashcard {
 Class Flashcard
 Class Question
 Class Answer
 Class UniqueFlashcardList
+Class Helper #FFFF
 }
+
 
 Package Tag {
 Class Tag
 }
+
+Package Score {
+Class Score
+Class UniqueScoreHistoryList
 }
-
-
+}
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
@@ -36,17 +43,24 @@ FlashcardBook .up.|> ReadOnlyFlashcardBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" FlashcardBook
+ModelManager o--down> "1" FlashcardBook
+ModelManager o--> "0...1" Quiz
+ModelManager o-right-> "1" Mode
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 FlashcardBook *--> "1" UniqueFlashcardList
 UniqueFlashcardList o--> "*" Flashcard
-Flashcard *--> Question
-Flashcard *--> Answer
-Flashcard *--> "*" Tag
+Flashcard *---> Question
+Flashcard *---> Answer
+Flashcard *--down-> "*" Tag
 
-Question -[hidden]right-> Answer
+FlashcardBook *--> "1" UniqueScoreHistoryList
+UniqueScoreHistoryList o--> "      *" Score
 
-ModelManager ----->" ~* filtered list" Flashcard
+ModelManager ---left--> "~* filtered list" Flashcard
+ModelManager ---left--> "~* filtered list" Score
+
+UniqueFlashcardList -[hidden]right-> Helper
+
 @enduml

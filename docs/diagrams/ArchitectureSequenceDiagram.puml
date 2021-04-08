@@ -13,6 +13,12 @@ activate ui UI_COLOR
 ui -[UI_COLOR]> logic : execute("learn")
 activate logic LOGIC_COLOR
 
+logic -[LOGIC_COLOR]> model : updateFilteredFlashcardList(predicate)
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> logic
+deactivate model
+
 logic -[LOGIC_COLOR]> model : switchModeLearn()
 activate model MODEL_COLOR
 

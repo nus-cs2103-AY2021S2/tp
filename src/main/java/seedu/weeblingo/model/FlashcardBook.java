@@ -7,7 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.flashcard.UniqueFlashcardList;
-import seedu.weeblingo.model.flashcard.UniqueScoreHistoryList;
+import seedu.weeblingo.model.score.UniqueScoreHistoryList;
 import seedu.weeblingo.model.score.Score;
 
 /**

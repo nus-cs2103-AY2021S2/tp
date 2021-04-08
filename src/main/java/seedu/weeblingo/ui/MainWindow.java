@@ -28,8 +28,6 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
-    private final ImageView teacherImage = new ImageView(
-            new Image(this.getClass().getResourceAsStream("/images/teacher.png")));
 
     private Stage primaryStage;
     private Logic logic;

@@ -3,8 +3,31 @@ layout: page
 title: Developer Guide
 ---
 Weeblingo is a desktop app for managing flashcards, **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface, users can learn Japanese at a comfortable pace with this application.
-* Table of Contents
-{:toc}
+
+# Table of Contents
+* [Setting Up](#setting-up-getting-started)
+* [Design](#design)
+  * [Architecture Overview](#architecture)
+  * [UI Component](#ui-component)
+  * [Logic Component](#logic-component)
+  * [Model Component](#model-component)
+  * [Storage Component](#storage-component)
+  * [Common Classes](#common-classes)
+* [Implementation](#implementation)
+  * [Tagging Flashcards](#implemented-tagging-flashcards)
+  * [Quiz Feature](#implemented-quiz-feature)
+    * [Starting a Session]
+    * [Checking User Attempt]
+    * [Quiz Scoring]
+  * [View Quiz Attempt Histories](#view-past-quiz-attempts)
+* [Documentation, Logging, Testing, Configuration, Dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+  * [Product Scope](#product-scope)
+  * [User Stories](#user-stories)
+  * [Use Cases](#use-cases)
+  * [NFRs](#non-functional-requirements)
+  * [Glossary](#glossary)
+* [Appendix: Instructions For Manual Testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,11 +47,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-T13-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -84,7 +107,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/logic/Logic.java)
 
 1. `Logic` uses the `WeeblingoParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -95,23 +118,21 @@ The `UI` component,
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("learn")` API call.
 
 ![Interactions Inside the Logic Component for the `learn` Command](images/LearnSequenceDiagram.png)
-note: [lifeline should end]
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `LearnCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-
-* stores the Weeblingo data.
-
+* stores the flashcard book data.
 * exposes an unmodifiable `ObservableList<Flashcard>` and `ObservableList<Score>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FlashcardBook`, which `Flashcard` references. This allows `FlashcardBook` to only require one `Tag` object per unique `Tag`, instead of each `Flashcard` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
@@ -131,7 +152,8 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.weeblingo.commons` package.
+Classes used by multiple components are in the [`seedu.weeblingo.commons`](https://github.com/AY2021S2-CS2103T-T13-1/tp/tree/master/src/main/java/seedu/weeblingo/commons) 
+package.
 
 --------------------------------------------------------------------------------------------------------------------
 

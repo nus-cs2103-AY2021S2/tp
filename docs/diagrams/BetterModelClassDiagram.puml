@@ -6,14 +6,16 @@ skinparam classBackgroundColor MODEL_COLOR
 
 FlashcardBook *-right-> "1" UniqueFlashcardList
 FlashcardBook *-right-> "1" UniqueTagList
+FlashcardBook *-down-> "1" UniqueScoreHistoryList
 UniqueTagList -[hidden]down- UniqueFlashcardList
 UniqueTagList -[hidden]down- UniqueFlashcardList
 
 UniqueTagList *-right-> "*" Tag
-UniqueFlashcardList o-right-> Flashcard
+UniqueFlashcardList o-right-> "*"Flashcard
 
 Flashcard -up-> "*" Tag
-
 Flashcard *--> Question
 Flashcard *--> Answer
+
+UniqueScoreHistoryList o-down-> "*"Score
 @enduml
