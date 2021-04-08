@@ -122,7 +122,12 @@ public class TypicalEntities {
     public static final Program GENERAL_KNOWLEDGE = new ProgramBuilder().withName("General Knowledge")
             .withSessions("27-08-2021 09:00").withDogs(10, 12, 14).withTags("Puppies").build();
 
-    // TODO: manually added dogs
+    // Manually added - Program's details found in {@code CommandTestUtil}
+    public static final Program OBEDIENCE_TRAINING = new ProgramBuilder().withName("Obedience Training")
+            .withSessions("01-01-2022 10:30").withTags("All").build();
+    public static final Program POTTY_TRAINING = new ProgramBuilder().withName("Potty Training")
+            .withSessions("03-02-2022 20:30").withTags("Puppies").build();
+
 
     private TypicalEntities() {} // prevents instantiation
 

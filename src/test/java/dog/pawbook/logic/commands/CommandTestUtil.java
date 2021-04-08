@@ -7,6 +7,7 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SESSION;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SEX;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static dog.pawbook.testutil.Assert.assertThrows;
@@ -39,6 +40,22 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
+    public static final String VALID_NAME_OBEDIENCE_TRAINING = "Obedience Training";
+    public static final String VALID_NAME_POTTY_TRAINING = "Potty Training";
+    public static final String VALID_SESSION_OBEDIENCE_TRAINING = "01-01-2022 10:30";
+    public static final String VALID_SESSION_POTTY_TRAINING = "03-02-2022 20:30";
+    public static final String VALID_TAG_PUPPIES = "Puppies";
+    public static final String VALID_TAG_ALL = "All";
+
+    public static final String NAME_DESC_OBEDIENCE_TRAINING = " " + PREFIX_NAME + VALID_NAME_OBEDIENCE_TRAINING;
+    public static final String NAME_DESC_POTTY_TRAINING = " " + PREFIX_NAME + VALID_NAME_POTTY_TRAINING;
+    public static final String SESSION_DESC_OBEDIENCE_TRAINING = " " + PREFIX_SESSION
+            + VALID_SESSION_OBEDIENCE_TRAINING;
+    public static final String SESSION_DESC_POTTY_TRAINING = " " + PREFIX_SESSION
+            + VALID_SESSION_POTTY_TRAINING;
+    public static final String TAG_DESC_PUPPIES = " " + PREFIX_TAG + VALID_TAG_PUPPIES;
+    public static final String TAG_DESC_ALL = " " + PREFIX_TAG + VALID_TAG_ALL;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
