@@ -10,15 +10,15 @@ import org.junit.jupiter.api.Test;
  */
 public class RegexUtilTest {
 
-    // Regex to be used during testing
-    private static final String regex = RegexUtil.REGEX_JAP_WORD;
-
     // -------------------------------- REGEX_JAP_WORD --------------------------------
     /**
      * Valid Jap words: only contains hiragana, katakana, and kanji
      */
     @Test
     public void regexJapWordValid() {
+        // regex to be used for testing
+        String regex = RegexUtil.REGEX_JAP_WORD;
+
         // normal hiragana
         assertTrue("あ".matches(regex));
         assertTrue("が".matches(regex));
@@ -50,6 +50,9 @@ public class RegexUtilTest {
      */
     @Test
     public void regexJapWordInvalid() {
+        // regex to be used for testing
+        String regex = RegexUtil.REGEX_JAP_WORD;
+
         // empty string / strings without content
         assertFalse("".matches(regex));
         assertFalse(" ".matches(regex));
@@ -81,11 +84,12 @@ public class RegexUtilTest {
     }
 
     // ---------------- Tests for REGEX_JAP_SENTENCE --------------------------------------
-    /*
+    /**
      * Valid Jap sentences: only contains hiragana, katakana, kanji, english letters, numbers punctuations and symbols.
      */
     @Test
     public void regexJapSentenceValid() {
+        // regex to be used for testing
         String regex = RegexUtil.REGEX_JAP_SENTENCE;
 
         assertTrue("猫になりたい。".matches(regex));
@@ -98,11 +102,12 @@ public class RegexUtilTest {
     }
 
     // ---------------- Tests for REGEX_JAP_SENTENCE --------------------------------------
-    /*
+    /**
      * Invalid Jap sentences: empty sentences, contain non-english & non-japanese & non-chinese characters
      */
     @Test
     public void regexJapSentenceInvalid() {
+        // regex to be used for testing
         String regex = RegexUtil.REGEX_JAP_SENTENCE;
 
         assertFalse("".matches(regex));
@@ -114,11 +119,12 @@ public class RegexUtilTest {
     }
 
     // ---------------- Tests for REGEX_ENG_WORD --------------------------------------
-    /*
+    /**
      * Both valid and invalid cases tests are here.
      */
     @Test
     public void regexEngWords() {
+        // regex to be used for testing
         String regex = RegexUtil.REGEX_ENG_WORDS;
 
         assertTrue("a".matches(regex));
@@ -135,11 +141,12 @@ public class RegexUtilTest {
     }
 
     // ---------------- Tests for REGEX_ENG_SENTENCE --------------------------------------
-    /*
+    /**
      * Both valid and invalid cases tests are here.
      */
     @Test
     public void regexEngSentence() {
+        // regex to be used for testing
         String regex = RegexUtil.REGEX_ENG_SENTENCE;
 
         assertTrue("a".matches(regex));
