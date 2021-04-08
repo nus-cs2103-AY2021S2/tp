@@ -8,7 +8,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":WeeblingoParser" as WeeblingoParser LOGIC_COLOR
 participant ":CheckCommandParser" as CheckCommandParser LOGIC_COLOR
-participant "c:CheckCommand" as CheckCommand LOGIC_COLOR
+participant ":CheckCommand" as CheckCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -16,13 +16,13 @@ box Model MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
 end box
 
-[-> MainWindow : executeCommand("check o")
+[-> MainWindow : executeCommand(\n"check o")
 activate MainWindow
 
 MainWindow -> LogicManager : execute("check o")
 activate LogicManager
 
-LogicManager -> WeeblingoParser : parseCommand("check o")
+LogicManager -> WeeblingoParser : parseCommand(\n"check o")
 activate WeeblingoParser
 
 create CheckCommandParser
@@ -39,16 +39,16 @@ create CheckCommand
 CheckCommandParser -> CheckCommand :
 activate CheckCommand
 
-CheckCommand --> CheckCommandParser : c
+CheckCommand --> CheckCommandParser :
 deactivate CheckCommand
 
-CheckCommandParser --> WeeblingoParser : c
+CheckCommandParser --> WeeblingoParser :
 deactivate CheckCommandParser
 
 CheckCommandParser -[hidden]-> WeeblingoParser
 destroy CheckCommandParser
 
-WeeblingoParser --> LogicManager : c
+WeeblingoParser --> LogicManager :
 deactivate WeeblingoParser
 
 LogicManager -> CheckCommand : execute(model)
@@ -98,7 +98,7 @@ LogicManager -> MainWindow : visible
 deactivate LogicManager
 
 
-MainWindow -> MainWindow : updateCard(index, visible)
+MainWindow -> MainWindow : updateCard(\nindex, visible)
 activate MainWindow
 
 LogicManager -[hidden]-> LogicManager : result

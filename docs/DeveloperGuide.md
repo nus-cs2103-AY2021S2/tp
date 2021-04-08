@@ -231,7 +231,7 @@ Depending on whether the user attempt is correct, `CheckCommand` will return an 
 inform the `MainWindow` if it is time to reveal the answer of current question.
 
 The following activity diagram summarizes the general workflow of `check` command:
-![CheckCommandActivityDiagram](images/CheckCommandActivityDiagram.png)
+<img src="images/CheckCommandActivityDiagram.png" width="450" />
 
 The following sequence diagram shows how the `check` command works:
 ![CheckCommandSequenceDiagram](images/CheckCommandSequenceDiagram.png)
