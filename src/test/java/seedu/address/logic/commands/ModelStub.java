@@ -77,11 +77,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void sortEvents(String comparingVar) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public int getNumIncomingEvents() {
         throw new AssertionError("This method should not be called.");
     }
