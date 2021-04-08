@@ -30,7 +30,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index needs to be an integer more than or equals to 1, "
             + "and within the range of list indices displayed on the screen.";
     public static final String MESSAGE_INDEX_IS_WORD = "Index should be an integer only!\nIf you meant to pass an "
-            + "input, please remember to put the identifier and the slash e.g. \"n/\" for name.";
+            + "input, please remember to put the correct identifier and the slash e.g. \"n/\" for name.";
     public static final String MESSAGE_INVALID_BATCH_INDICES = "Multiple indices are only allowed the batch command.\n"
             + "If you entered a batch command, please separate your indices with commas.";
 
