@@ -18,11 +18,8 @@ Given below are my contributions to the project.
     and `DOWN` arrow keys can be used to navigate command history (auto-filling the command box with previous successful
     commands).
   * **Justification**: Managing student housing records can involve a lot of repeated commands, or commands which differ
-    only slightly from one another; command history speeds up this repetitive task. When command history gets long,
-    navigation via arrow keys can be slow and tedious. Sometimes it is more efficient to simply list previous commands
-    with `history`, scroll down, then copy and paste a prior command. The optional `COUNT` parameter reduces clutter
-    when viewing command history. Finally, history is saved to a file, so users do not lose it when they close SunRez
-    for the day.
+    only slightly from one another; command history speeds up this repetitive aspect of housing management. History is 
+    saved to a file so that users do not lose it when they close SunRez for the day.
   * **Highlights**: This feature entailed in-depth knowledge of every component in SunRez: command text had to be
     intercepted in the Logic component, stored in the Model component and saved using the Storage component. The UI
     component had to be modified to support navigating command history, the implementation of which was a [design
@@ -62,8 +59,8 @@ Given below are my contributions to the project.
   * Added feature sections on `history`, `undo`, `redo`, `clear` and data transfer:
     [\#63](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/63),
     [\#128](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/128),
-    [\#160](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/160) and
-    [\#163](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/163).
+    [\#163](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/163) and
+    [\#160](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/160).
   * Various other fixes and formatting changes. The comprehensive list is
     [here](https://github.com/AY2021S2-CS2103-T14-1/tp/pulls?q=is%3Apr+author%3Abenedictkhoomw+ug).
 
@@ -91,7 +88,7 @@ Given below are my contributions to the project.
     [\#137](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/137),
     [\#156](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/156),
     [\#289](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/289);
-    and a comprehesive list of all PRs reviewed
+    and a comprehensive list of all PRs reviewed
     [here](https://github.com/AY2021S2-CS2103-T14-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Abenedictkhoomw+).
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/54),
     [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/207),
@@ -110,12 +107,13 @@ Given below are my contributions to the project.
   * Bug reports made for other teams (9/9 accepted): [PE-D](https://github.com/benedictkhoomw/ped/issues).
   
 * **Team Tasks**:
-  * Updated README and project website:
+  * Updated the README and project website:
     [\#13](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/13) and
     [\#153](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/153).
   * Updated various user-visible references of AddressBook to SunRez:
-    [\#83](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/83) and
-    [\#151](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/151).
+    [\#83](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/83),
+    [\#151](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/151) and
+    [\#281](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/281).
   * Enabled assertions: [\#101](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/101).
   * Created SunRez logo: [\#19](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/19).
   * Created [PE-D bug triage spreadsheet](https://docs.google.com/spreadsheets/d/1mXHfqkTdQwbmS0mEdQXIWZdkCLMxEFyW35C4lfsnoDY/edit?usp=sharing) and collated 33 PE-D issues.
