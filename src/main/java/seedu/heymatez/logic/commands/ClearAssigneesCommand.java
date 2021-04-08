@@ -34,6 +34,9 @@ public class ClearAssigneesCommand extends Command {
     public static final String MESSAGE_CLEARED_ASSIGNEES_SUCCESS = "Cleared all Members Assigned to Task: %1$s";
 
 
+    public static final String MESSAGE_ASSIGNEES_SET_IS_EMPTY = "There are no members assigned to this task, "
+            + "nothing to clear!";
+
     private final Index targetIndex;
 
     public ClearAssigneesCommand(Index targetIndex) {
@@ -55,6 +58,10 @@ public class ClearAssigneesCommand extends Command {
 
         Task taskToClear = lastShownList.get(targetIndex.getZeroBased());
         Task clearedTask = createModifiedTask(taskToClear);
+
+        if (!taskToClear.hasAnyAssignees()) {
+            return new CommandResult(MESSAGE_ASSIGNEES_SET_IS_EMPTY);
+        }
 
         model.setTask(taskToClear, clearedTask);
         model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);

@@ -31,15 +31,15 @@ public class EditMemberCommand extends Command {
             + "by the exact name (case-sensitive) used in the displayed members list. "
             + "Existing details will be overwritten by the input details.\n"
             + "Parameters: NAME_IN_LIST "
-            + "[" + PREFIX_NEW_NAME + " NEW_NAME] "
-            + "[" + PREFIX_PHONE + " NEW_PHONE] "
-            + "[" + PREFIX_EMAIL + " NEW_EMAIL] "
-            + "[" + PREFIX_ROLE + " NEW_ROLE] "
-            + "Example: " + COMMAND_WORD + " John "
-            + PREFIX_NEW_NAME + " John Lim "
-            + PREFIX_PHONE + " 91234567 "
-            + PREFIX_EMAIL + " john@example.com"
-            + PREFIX_ROLE + " Assistant treasurer";
+            + "[" + PREFIX_NEW_NAME + "NEW_NAME] "
+            + "[" + PREFIX_PHONE + "NEW_PHONE] "
+            + "[" + PREFIX_EMAIL + "NEW_EMAIL] "
+            + "[" + PREFIX_ROLE + "NEW_ROLE] "
+            + "Example: " + COMMAND_WORD + "John "
+            + PREFIX_NEW_NAME + "John Lim "
+            + PREFIX_PHONE + "91234567 "
+            + PREFIX_EMAIL + "john@example.com"
+            + PREFIX_ROLE + "Assistant treasurer";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Member: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

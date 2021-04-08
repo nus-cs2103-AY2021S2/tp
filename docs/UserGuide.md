@@ -72,7 +72,7 @@ to manage tasks which can be identified by their unique deadlines or priorities.
 
    * **`viewMembers`** : Lists all members.
 
-   * **`addTask`**`Proposal -d Write out detailed proposal plan for CCA timeline -b 2021-04-22` : Adds a task named `Proposal` to HEY MATEz.
+   * **`addTask`**`Proposal d/Write out detailed proposal plan for CCA timeline b/2021-04-22` : Adds a task named `Proposal` to HEY MATEz.
 
    * **`deleteTask`**`3` : Deletes the 3rd task shown in the current list.
 
@@ -92,20 +92,20 @@ to manage tasks which can be identified by their unique deadlines or priorities.
 **:bookmark_tabs: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addTask -n NAME`, `NAME` is a parameter which can be used as `addTask -n John Doe`.
+  e.g. in `addTask n/NAME`, `NAME` is a parameter which can be used as `addTask n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `-d DESCRIPTION [-p PRIORITY]` can be used as `-d Meeting -p high` or as `-d Meeting`.
+  e.g `d/DESCRIPTION [p/PRIORITY]` can be used as `d/Meeting p/high` or as `d/Meeting`.
     
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[-a ASSIGNEE]…​` can be used as ` ` (i.e. 0 times), `-a Duncan`, `-a Daniel -a Benson` etc.
+  e.g. `[a/ASSIGNEE]…​` can be used as ` ` (i.e. 0 times), `a/Duncan`, `a/Daniel a/Benson` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `-n NAME -p PHONE_NUMBER`, `-p PHONE_NUMBER -n NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
   
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `-p 12341234 -p 56785678`, only `-p 56785678` will be taken.
+  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
   
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -153,20 +153,20 @@ Example: `help`
 
 With new members joining the club, you can add a new member along with his/her contact number to the contact list.
 
-Format: `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]`
+Format: `addMember NAME p/PHONE_NUMBER e/EMAIL [r/ROLE]`
 
 * The field ROLE is optional.
 * NAME and ROLE fields can take on any values with alphanumeric characters.
 * PHONE field has to have a minimum length of 3 digits and maximum length of 15 digits.
-* If role field is not specified, person will be assigned a default role of member.
+* If ROLE field is not specified, person will be assigned a default role of member.
 
 Assumptions:
 * Every member in the CCA has a different name. An error will be prompted when you add a member with the same name but with
 a different phone number, email or role.
 
 Examples: 
-* `addMember Dylan -p 64529356 -e dylan@gmail.com`
-* `addMember Dylan -p 64529356 -e dylan@gmail.com -r President`
+* `addMember Dylan p/64529356 e/dylan@gmail.com`
+* `addMember Dylan p/64529356 e/dylan@gmail.com r/President`
 
 <a name="deleteMember"></a>
 ### 2. Delete Member: `deleteMember`
@@ -199,7 +199,7 @@ Examples:
 Club members may change their emails or phone numbers after a while. This feature allows you to edit the details of the 
 existing Member in the application with the name you specify.
 
-Format: `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-r NEW_ROLE]`
+Format: `editMember NAME_IN_LIST [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/NEW_ROLE]`
 
 * Edits the member at the specified NAME_IN_LIST.
 * The fields NEW_NAME, NEW_PHONE_NUMBER, NEW_EMAIL, NEW_ROLE are all optional.
@@ -209,9 +209,9 @@ Format: `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMA
 * NEW_NAME field can take on any values with alphanumeric characters.
 
 Examples: 
-* `editMember Alice -n Alice Tan`
-* `editMember Alice -n Alice Tan -p 98154155 -e aliceTan@gmail.com`
-* `editMember Alice -n Alice Tan -p 98154155 -e aliceTan@gmail.com -r Events head`
+* `editMember Alice n/Alice Tan`
+* `editMember Alice n/Alice Tan p/98154155 e/aliceTan@gmail.com`
+* `editMember Alice n/Alice Tan p/98154155 e/aliceTan@gmail.com r/Events head`
 
 <a name="findMember"></a>
 ### 5. Find Members by Keywords: `findMembers`
@@ -244,7 +244,7 @@ Examples:
 With new tasks that need to be completed within the club every week, you can add a task, with its description and 
 deadline to the list.
 
-Format: `addTask TITLE -d DESCRIPTION -b DEADLINE [-s STATUS] [-p PRIORITY] [-a ASSIGNEE]...`
+Format: `addTask TITLE d/DESCRIPTION b/DEADLINE [s/STATUS] [p/PRIORITY] [a/ASSIGNEE]...`
 
 * If you did not specify a value for STATUS, the Task will be assigned a default status value of **uncompleted**.
 * STATUS field can only take on the values **completed** or **uncompleted**.
@@ -257,8 +257,8 @@ A task can have any number of assignees (including 0). To add multiple assignees
 </div>
 
 Examples: 
-* `addTask CCA Timeline -d Plan semester's timeline -b 2021-04-04 -s completed -p high -a Rachel`
-* `addTask CCA Timeline -d Plan semester's timeline -b 2021-04-04 -a Rachel -a James`
+* `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 s/completed p/high -a Rachel`
+* `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 a/Rachel a/James`
 
 <a name="deleteTask"></a>
 ### 2. Delete Task: `deleteTask`
@@ -283,7 +283,7 @@ Examples:
 With ever-changing task requirements, you can edit a task at the task index that is specified with the new details 
 you key in.
 
-Format: `editTask INDEX [-n NEW_TITLE] [-d NEW_DESCRIPTION] [-b NEW_DEADLINE] [-s NEW_STATUS] [-p NEW_PRIORITY] [-a NEW_ASSIGNEE]...`
+Format: `editTask INDEX [n/NEW_TITLE] [d/NEW_DESCRIPTION] [b/NEW_DEADLINE] [s/NEW_STATUS] [p/NEW_PRIORITY] [a/NEW_ASSIGNEE]...`
 
 * Edits the Task at the specified index.
 * At least one of the optional fields must be provided.
@@ -296,9 +296,9 @@ Any number of assignees can be specified here (including 0).
 </div>
 
 Examples: 
-* `editTask 1 -n Plan meeting -d Plan board meeting`
-* `editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04`
-* `editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04 -a Samuel -a Christian`
+* `editTask 1 n/Plan meeting d/Plan board meeting`
+* `editTask 1 n/Plan meeting d/Plan board meeting b/2021-04-04`
+* `editTask 1 n/Plan meeting d/Plan board meeting b/2021-04-04 a/Samuel a/Christian`
     
 <a name="doneTask"></a>
 ### 5. Mark Task as Completed: `done`
@@ -456,16 +456,16 @@ Action | Format, Examples
 **Clear Data** | `clear`
 **Exit Program** | `exit`
 ||
-**Add Member** | `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]` <br> e.g., `addMember Dylan -p 64529356 -e dylan@gmail.com -r Member`
+**Add Member** | `addMember NAME p/PHONE_NUMBER e/EMAIL [r/ROLE]` <br> e.g., `addMember Dylan p/64529356 e/dylan@gmail.com r/Member`
 **Delete Member** | `deleteMember NAME` <br> e.g., `deleteMember Rachel`
 **View Members** | `viewMembers`<br> e.g., `viewMembers`
-**Edit Member** | `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-r ROLE]`<br> e.g.,`editMember Alice -e newAlice@gmail.com -r Events head`
+**Edit Member** | `editMember NAME_IN_LIST [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/ROLE]`<br> e.g.,`editMember Alice e/newAlice@gmail.com r/Events head`
 **Find Members by Keywords** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `findMembers Rachel 98562154 john@gmail.com`
 ||
-**Add Task** | `addTask TITLE -d DESCRIPTION -b DEADLINE [-s STATUS] [-p PRIORITY] [-a ASSIGNEE]` <br> e.g., Example: `addTask CCA Timeline -d Plan semester's timeline -b 2021-04-04 -s completed -p high -a Rachel`
+**Add Task** | `addTask TITLE d/DESCRIPTION b/DEADLINE [s/STATUS] [p/PRIORITY] [a/ASSIGNEE]` <br> e.g., Example: `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 s/completed p/high a/Rachel`
 **Delete Task** | `deleteTask INDEX` <br> e.g., `deleteTask 1`
 **View Tasks** | `viewTasks`<br> e.g., `viewTasks`
-**Edit Task** | `editTask INDEX [-n NEW_TITLE] [-d NEW_DESCRIPTION] [-b NEW_DEADLINE] [-s NEW_STATUS] [-p NEW_PRIORITY] [-a NEW_ASSIGNEE]`<br> e.g.,`editTask 1 -n Plan meeting -d Plan board meeting -b 2021-04-04`
+**Edit Task** | `editTask INDEX [n/NEW_TITLE] [d/NEW_DESCRIPTION] [b/NEW_DEADLINE] [s/NEW_STATUS] [p/NEW_PRIORITY] [a/NEW_ASSIGNEE]`<br> e.g.,`editTask 1 n/Plan meeting d/Plan board meeting b/2021-04-04`
 **Mark Task as Completed** | `done INDEX`<br> e.g., `done 1`
 **Mark Task as Uncompleted** | `undo INDEX`<br> e.g., `undo 1`
 **Find Tasks by Keywords** | `findTasks KEYWORD [MORE_KEYWORDS]`<br> e.g., `findTasks Meeting Proposal Draft`

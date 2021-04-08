@@ -105,6 +105,19 @@ public class Task {
     }
 
     /**
+     * Returns true if the set of assignees to this task is not empty.
+     * Returns false if the set of assignees to this task is empty.
+     *
+     * @return a boolean value.
+     */
+    public boolean hasAnyAssignees() {
+        if (assignees.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Returns an updated task with the assignee specified removed from the set of
      * assignees to this task.
      *
