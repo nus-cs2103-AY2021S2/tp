@@ -763,3 +763,4 @@ testers are expected to do more *exploratory* testing.
 ## Attribution
 
 Default image for profile icons retrieved from: https://vectorified.com/facebook-profile-icon#facebook-profile-icon-10.png
+Image for iScam icon from: https://www.flaticon.com/catkuro
