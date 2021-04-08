@@ -302,7 +302,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | User  | Delete outdated grade records                     | Remove past grades if they are no longer needed                    |
 | `* *`   | User  | List all grades                                   | See all existing academic records in my GradeBook      
 | `* *`   | User  | add_budget                                        | Add a personal budget to keep track of
-| `*`     | User  | delete_budget                                     | Delete an existing budget that I have an no longer need
+| `*`     | User  | delete_budget                                     | Delete an existing budget that I have and no longer need
 | `* *`   | User  | edit_budget                                       | Change an existing budget that I have   
 | `* *`   | User  | view_budget                                       | View an existing budget and cost of total appointments of user
 
