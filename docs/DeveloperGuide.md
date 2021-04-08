@@ -10,7 +10,7 @@ title: Developer Guide
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Please refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -42,7 +42,7 @@ It is responsible for,
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the App consists of four components:
 
 * [**`UI`**](#ui-component) The UI of the App.
 * [**`Logic`**](#logic-component) The command executor.
@@ -55,19 +55,12 @@ Each of the four components,
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
   API `interface` mentioned in the previous point).
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and
-exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
-
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
-
-**How the architecture components interact with each other**
-
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1`.
+The ***Sequence Diagram*** below shows how the components interact with each other for the scenario where the user issues
+the command `delete 5`.
 
 ![Sequence Diagram of the Architecture](images/ArchitectureSequenceDiagram.png)
 
-The sections below give more details of each component.
+**The sections below give more details of each component.**
 
 ### UI component
 
@@ -76,8 +69,8 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-W10-2/tp/blob/master/src/main/java/seedu/storemando/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
-, etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts `CommandBox`, `ResultDisplay`, `ItemListPanel`
+, `LocationListPanel` and `ReminderPanel`. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are
 in the `src/main/resources/view` folder. For example, the layout of
@@ -104,12 +97,16 @@ The `UI` component,
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
    help to the user.
    
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 5")` API
 calls respectively.
 
 ![Interactions Inside the Logic Component for the `delete` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a 
+limitation of PlantUML, the lifeline reaches the end of diagram.
+
 </div>
 
 ### Model component
@@ -171,7 +168,7 @@ From the diagram above:
 2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
 3. The `StoreMandoParser` parses the user input and identifies it as an `AddCommand` and instantiates `AddCommandParser`. 
 4. `StoreMandoParser` then invokes the `parse` method of `AddCommandParser` to further parse the arguments provided. In the `parse` method,
-   the `AddCommandParser` ensures that the input is of the correct format and identifies the input for item name, quantity, 
+   the `AddCommandParser` ensures that the input is of the correct format and identifies the input for the item name, quantity, 
    location, expiry date and tag(s).
 5. If all the arguments of the `add` command are valid, The `AddCommandParser` creates a new `Item` object, 
    and instantiates a new `AddCommand` object that contains the `Item` object. This `AddCommand` object will be
@@ -236,7 +233,7 @@ Step 5: The argument is passed to `EditCommandParser` to check if the user input
 
 Step 6: `EditCommandParser` creates `EditItemDescriptor` through `EditCommand`.
 
-Step 7: Based on the user input string, the `EditItemDescriptor` updates it's own attributes.
+Step 7: Based on the user input string, the `EditItemDescriptor` updates its own attributes.
 
 Step 8: `EditCommandParser` creates an `EditCommand` with the item index and `EditItemDescriptor`.
 
@@ -247,7 +244,7 @@ Step 10: `LogicManager` then calls the **execute** method of `EditCommand`.
 Step 11: `EditCommand` calls **getFilteredList** method to get the list of item from `Model`. It also calls the
 **createEditedItem** method to create the edited item.
 
-Step 12: From the index argument of `EditCommand`, it gets the targetted item from the list of items and set it to the
+Step 12: From the index argument of `EditCommand`, it gets the targeted item from the list of items and set it to the
 edit item.
 
 Step 13: `EditCommand` will create a `CommandResult` and pass to `LogicManager` with message containing the edited
@@ -363,8 +360,8 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Easy to implement.
     * Cons: The search is limited to matching names. If there are many items containing that keyword, the search may not be efficient.
 
-* **Alternative 2:** Find items in the current list that matches the keyword and an attribute e.g. tag.
-    * Pros: More efficiently retrieve the item needed.
+* **Alternative 2:** Find items in the current list that matches the keyword, and an attribute e.g. tag.
+    * Pros: Users would be able to retrieve a specific item more efficiently.
     * Cons: Users need to remember the items' attributes.
 
 _{more aspects and alternatives to be added}_
@@ -468,9 +465,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How `reminder` executes
 
-**Alternative 1 (current choice)** : provide integer as an input argument
+**Alternative 1 (current choice)** : provide an integer as an input argument
 * Pros: Faster to type as compared to date in a particular format.
-* Cons: More cases to consider when parsing the commmand.
+* Cons: More cases to consider when parsing the command.
 
 **Alternative 2** : provide a date in the format of YYYY-MM-DD as input
 * Pros: Easier to compare between items as the input date can be used to create an `expiryDate` object
@@ -571,13 +568,13 @@ The following activity diagram summarizes what happens when a user executes a cl
 ![ClearActivityDiagram](images/ClearLocationActivityDiagram.png)
 
 ### Help feature
-The help feature redirects the user to StoreMando's User Guide. If the user is connected to a internet access, StoreMando
-will redirect it's User Guide through opening another browser. Otherwise, it will have a pop out window with the User
+The help feature redirects the user to StoreMando's User Guide. If the device is connected to the Internet, StoreMando 
+will automatically open the User Guide in a new browser. Otherwise, it will have a pop out window with the User
 Guide link. This will save the user the hassle of locating the documentation. <br>
 The help command has the following format :`help`.
 
 :information_source: : Things to note
-- Even though the help command expects the user input to contains the `help` command keyword, it still allows users to
+- Even though the help command expects the user input to contain the `help` command keyword, it still allows users to
   append arguments. However, the arguments will not be parsed by StoreMando.
 
 #### Implementation
@@ -613,8 +610,8 @@ _{Explain here how the data archiving feature will be implemented}_
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
+* [Testing guide](Testing.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
@@ -885,21 +882,53 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
-       optimum.
+    1. Launch the jar file using the java -jar command rather than double-clicking (reason: to ensure the jar file is 
+       using the same java version that you verified above). Use double-clicking as a last resort.
+       If you are on Windows, use the DOS prompt, or the PowerShell (not the WSL terminal) to run the JAR file. The 
+       window size may not be optimum.
 
 1. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app using the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding an item
+
+1. Adding an item to the inventory
+
+    1. Prerequisites: Arguments are valid and compulsory parameters are provided. No duplicate item or similar item
+       exists in the list.
+
+    1. Test case: `add n/Apple l/table q/1`<br>
+       Expected: Item is added into the displayed list. Details of the added item shown in the status message.
+
+    1. Test case: `add n/Banana l/kitchen q/1 e/2020-10-10`<br>
+       Expected: Similar to previous.
+
+    1. Test case: `add `<br>
+       Expected: No item is added. Error details shown in the status message.
+
+    1. Other incorrect add commands to try: `add n/`, `add l/kitchen`, `...` (where compulsory fields are not
+       specified)<br>
+       Expected: Similar to previous.
+
+### Edit an item
+
+1. Editing an item in the inventory 
+
+    1. Prerequisites: There are items in the inventory.
+    
+    1. Test case: `edit 1 n/Apple`<br>
+       Expected: The name of the first item is edited to `Apple`. Details of the edited item shown in the status message.
+       
+    1. Test case: `edit 0 n/Apple`<br>
+       Expected: No item is edited. Error details shown in the status message.
 
 ### Deleting an item
 
-1. Deleting an item while all items are being shown
+1. Deleting an item from the inventory
 
     1. Prerequisites: List all household items using the `list` command. Multiple items in the list.
 
@@ -912,27 +941,71 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-### Adding an item
+### Finding an item
 
-1. Adding an item to StoreMando
+1. Finding an item in the inventory
 
-    1. Prerequisites: Arguments are valid and compulsory parameters are provided. No duplicate item or similar item
-       exists in the list.
+    1. Test case: `find banana`<br>
+       Expected: All items containing `banana` as a word in the name are shown.
 
-    1. Test case: `add n/Banana q/1 l/kitchen e/2020-10-10 `<br>
-       Expected: Item is added into the displayed list. Details of the added item shown in the status message.
+    1. Test case: `find */nana`<br>
+       Expected: All items containing `nana` as part of a word in the name are shown.
 
-    1. Test case: `add `<br>
-       Expected: No item is added. Error details shown in the status message.
+### Listing items
 
-    1. Other incorrect add commands to try: `add n/`, `add l/kitchen`, `...` (where compulsory fields are not
-       specified)<br>
-       Expected: Similar to previous.
+1. Listing all the items in the inventory
 
-### Saving data
+    1. Test case: `list`<br>
+       Expected: All items are being displayed.
 
-1. Dealing with missing/corrupted data files
+1. Listing items in a specific location
+   
+    1. Test case: `list l/Bedroom`<br>
+       Expected: All items with `Bedroom` as the location are being displayed.
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Listing items with a specific tag 
 
-1. _{ more test cases …​ }_
+    1. Test case: `list t/food`<br>
+       Expected: All items with `food` as the tag are being displayed.
+
+### Show items x days/weeks from expiry date
+
+1. Showing items x days from expiry date
+
+    1. Test case: `reminder 7 days`<br>
+       Expected: All items that have already expired or are expiring within the next 7 days are shown.
+
+1. Showing items x weeks from expiry date 
+
+    1. Test case: `reminder 7 weeks`<br>
+       Expected: All items that have already expired or are expiring within the next 7 weeks are shown.
+
+### Sorting items
+
+1. Sorting items in the inventory in terms of quantity.
+
+    1. Test case: `sort quantity asc`<br>
+       Expected: All the items are sorted in terms of quantity from least to most.
+
+    1. Test case: `sort quantity desc`<br>
+       Expected: All the items are sorted in terms of quantity from most to least.
+
+    1. Incorrect sort commands to try: `sort`, `sort quantity`<br>
+       Expected: Error details shown in the status message.
+
+1. Sorting items in the inventory in terms of expiry date.
+
+    1. Test case: `sort expirydate`<br>
+       Expected: All the items are sorted in chronological order of their expiry date.
+
+### Clearing items
+
+1. Clearing all the items in the inventory
+
+    1. Test case: `clear`<br>
+       Expected: All items are cleared from the inventory.
+
+1. Clearing all the items in a specific location 
+
+    1. Test case: `clear l/Bedroom`<br>
+       Expected: All items in the specified location are cleared.
