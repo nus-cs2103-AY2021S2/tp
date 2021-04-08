@@ -440,14 +440,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `CoLAB` and the **Actor** is the `user`, unless specified otherwise)
 
-* [UC1 - Add a project](#uc1---add-a-project)
-* [UC2 - Delete a project](#uc2---delete-a-project)
-* [UC3 - Add or modify information about a project](#uc3---add-or-modify-information-about-a-project)
-* [UC4 - Add a contact](#uc4---add-a-contact)
-* [UC5 - Find a specific contact](#uc5---find-a-specific-contact)
-* [UC6 - Delete a contact](#uc6---delete-a-contact)
-* [UC7 - Add or modify information about a contact](#uc7---add-or-modify-information-about-a-contact)
-* [UC30 - Purge all entries from the app](#uc30---purge-all-entries-from-the-app)
+<ul id="use-cases-toc"></ul>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+  const usecase_h4s = Array.prototype.slice.call(document.getElementsByTagName("h4")).filter(h => h.textContent.startsWith('UC'));
+  for (const usecase_h4 of usecase_h4s) {
+      const usecase_text = usecase_h4.textContent;
+      const usecase_link = '#' + usecase_h4.getAttribute('id');
+      const li = document.createElement('li');
+      li.innerHTML = `<a href="${usecase_link}">${usecase_text}</a>`;
+      document.getElementById('use-cases-toc').appendChild(li);
+  }
+});
+</script>
 
 #### UC1 - Add a project
 
