@@ -123,16 +123,16 @@ Examples:
 
 ### Delete a task: `delete`
 
-Deletes the task at the specified index.
+Deletes the task at the specified index under All Tasks 
 
 Format: `delete INDEX`
 
 * Index to be inserted must be positive, and
-* Index must be available on the list else an error will be thrown
+* Index must be available on the All Tasks list else an error will be thrown
 
 Example:
 
-* `delete 3` will delete the 3rd task on the list
+* `delete 3` will delete the 3rd task on the list of All Tasks
 * Using `list` to show all tasks, the user wants to delete the 2nd task. User use command `delete 2` to delete
   the 2nd task from the list.
 
@@ -167,7 +167,7 @@ Toggle the status of a task from finished to unfinished or from unfinished to fi
 
 Format: `done INDEX`
 
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed All Tasks list.
 * The index must be a positive integer 1, 2, 3, …​
 * Index must be available on the list else an error will be thrown
 
