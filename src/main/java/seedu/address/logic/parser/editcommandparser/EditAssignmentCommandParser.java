@@ -20,7 +20,6 @@ import seedu.address.model.module.Description;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
 
-
 /**
  * Parses input arguments and create a new EditAssignmentCommand object.
  */
