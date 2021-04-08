@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.dictionote.commons.core.Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.dictionote.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.dictionote.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
 import static seedu.dictionote.model.Model.PREDICATE_SHOW_ALL_NOTES;
 
 import java.time.LocalDateTime;
@@ -78,7 +77,7 @@ public class EditNoteCommand extends Command {
         }
 
         Note noteToEdit = lastShownList.get(index.getZeroBased());
-        if(editNoteDescriptor.getNote().get().getNote().equals("")){
+        if (editNoteDescriptor.getNote().get().getNote().equals("")) {
             editNoteDescriptor.setNote(noteToEdit);
         }
 

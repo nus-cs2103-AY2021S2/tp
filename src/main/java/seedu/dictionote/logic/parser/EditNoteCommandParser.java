@@ -48,12 +48,12 @@ public class EditNoteCommandParser implements Parser<EditNoteCommand> {
 
         if (argMultimap.getValue(PREFIX_CONTENT).isPresent()) {
             String content = argMultimap.getValue(PREFIX_CONTENT).get();
-            if (content.equals("")){
+            if (content.equals("")) {
                 throw new ParseException(EditNoteCommand.MESSAGE_EMPTY_NOTE);
             }
             editNoteDescriptor.setNote(ParserUtil.parseNote(content));
         }
-        else{
+        else {
             editNoteDescriptor.setNote(new Note(""));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editNoteDescriptor::setTags);
