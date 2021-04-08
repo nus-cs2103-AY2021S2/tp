@@ -157,13 +157,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void unblacklistPerson(Person target) {
-        if (target.getBlacklistStatus()) {
-            setPerson(target, target.toggleBlacklistStatus());
-        }
-    }
-
-    @Override
     public void toggleBlacklist(Person target) {
         setPerson(target, target.toggleBlacklistStatus());
     }
