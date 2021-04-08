@@ -132,9 +132,17 @@ command:
 
 
 ### View Feature
-#### Implementation
-The View feature allows the user to view a specified entry in a new window, allowing the user to carefully look through
-all the details of an entry.
+View: Allows the user to view a specified entry in a new window, allowing the user to carefully look through
+all the details of an entry. This feature is mainly used to read lengthy food reviews which cannot be shown on the Main UI window. - `view`
+
+The view feature is facilitated by:
+1. `Entry` class. `Entry` objects represent the specific entry to be viewed in a new window.
+2. `Command` class.   
+
+Given below is an example usage scenario:
+
+Step 1. The user launches THe Food Diary application. Data will be loaded from the storage to the application memory. 
+The `FoodDiary` 
 
 The mechanism works in such a way where after the user enters a command in the UI, the command will be passed into
  `MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in
@@ -145,7 +153,7 @@ The mechanism works in such a way where after the user enters a command in the U
 The following sequence diagram shows how the View feature works:
 ![View Sequence Diagram](images/ViewSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a view command:
+The following activity diagram summarizes what happens when a user executes the `view` command:
 ![View Activity Diagram](images/ViewActivityDiagram.png)
 
 
@@ -190,13 +198,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | User who would like to create custom category of food place      | Add the category of the place                    | I can have a specific view of certain places                           |
 | `* * *` | User who does not want to visit a place again                    | Remove the place                                 | reduce redundant food places in my list                           |
 | `* * *` | User who wants to remember food ratings | Give a rating on the overall food experience | I can gauge/ballpark the satisfaction level I get against other food experiences           |
-| `* * *` | User deciding to revisit a place | Expand all the reviews of an entry | Read all the reviews in a glance           |
+| `* * *` | User who wants to read lengthy reviews of an entry | Glance through reviews of an entry | Quickly arrive at a conclusion for a food place|
 | `* *`   | User frequently revisiting a place                          | Add multiple reviews to a single place           | Store all my food experiences with the place   |
 | `* *`   | User who wants to eat good food at an affordable price           | Search for places that match both the rating and price that I want | visit the best food places without overspending
 | `* * *`   | User who made a mistake in an entry           | Perform revisions and updates to the entry | keep accurate and up-to-date information of food places
-
-
-*{More to be added}*
 
 ### Use cases
 
@@ -329,6 +334,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Food diary detects invalid command from user.
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
+      
+      Use case resumes from step 2.
 
 * 2a. No entry found
     * 2a1. Food Diary tells user that no entry was found.
@@ -371,6 +378,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
     
 **UC10: Exit**
+
 **MSS**
 1. User exits.
 2. Food Diary closes and data is saved.
@@ -382,6 +390,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**UC11: Clear**
+
+**MSS**
+1. User requests to clear all entries.
+2. Food Diary clears all entries.
+
+**Extensions**:
+* 1a. Food diary detects invalid command from user.
+    * 1a1. Food Diary warns user about wrong syntax.
+    * 1a2. User enters correct syntax.
+
+      Use case resumes from step 2.
+    
 
 
 ### Non-Functional Requirements
