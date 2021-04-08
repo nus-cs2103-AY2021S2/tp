@@ -5,19 +5,18 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.meetings.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
 import seedu.address.model.meeting.*;
 import seedu.address.model.person.Person;
-import seedu.address.logic.commands.meetings.EditMeetingCommand.EditMeetingDescriptor;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static seedu.address.logic.parser.CliSyntax.*;
-
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
 public class AddPersonToMeetingConnectionCommand extends Command {
@@ -34,6 +33,7 @@ public class AddPersonToMeetingConnectionCommand extends Command {
 
     private static String MESSAGE_SUCCESS = "Successfully add persons related to the meeting! "
             + "The possible duplication of persons related is automatically removed.";
+    private static String MESSAGE_NO_PERSON_FOUND = "Please input the contact's index.";
     private final Index meetingIndex;
     private final Set<Index> personsIndexToAdd = new HashSet<>();
     /**
@@ -42,6 +42,7 @@ public class AddPersonToMeetingConnectionCommand extends Command {
      */
     public AddPersonToMeetingConnectionCommand(Index index, Set<Index> personsIndexToAdd) {
         requireNonNull(index);
+        requireNonNull(personsIndexToAdd);
         meetingIndex = index;
         this.personsIndexToAdd.addAll(personsIndexToAdd);
     }
@@ -86,6 +87,8 @@ public class AddPersonToMeetingConnectionCommand extends Command {
                 Person personToAddConnection = lastShownList.get(index.getZeroBased());
                 personsConnection.add(personToAddConnection);
             }
+        } else {
+            throw new CommandException(MESSAGE_NO_PERSON_FOUND);
         }
 
         for (Person allPersonToAddConnection : personsConnection) {
@@ -121,5 +124,13 @@ public class AddPersonToMeetingConnectionCommand extends Command {
 
         return new Meeting(updatedMeetingName, updatedStart,
                 updatedTerminate, updatedPriority, updatedDescription, updatedGroups);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddPersonToMeetingConnectionCommand // instanceof handles nulls
+                && meetingIndex.equals(((AddPersonToMeetingConnectionCommand) other).meetingIndex)
+                && personsIndexToAdd.equals(((AddPersonToMeetingConnectionCommand) other).personsIndexToAdd));
     }
 }
