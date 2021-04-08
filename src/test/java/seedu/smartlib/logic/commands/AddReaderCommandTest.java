@@ -23,6 +23,7 @@ import seedu.smartlib.model.ReadOnlyUserPrefs;
 import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
+import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
 import seedu.smartlib.testutil.ReaderBuilder;
@@ -138,6 +139,16 @@ public class AddReaderCommandTest {
             return null;
         }
 
+        /**
+         * Returns the Book with the specified ISBN.
+         *
+         * @param isbn
+         */
+        @Override
+        public ArrayList<Book> getBooksByIsbn(Isbn isbn) {
+            return null;
+        }
+
         @Override
         public Barcode getFirstAvailableBookBarcode(Name bookName) {
             return null;
@@ -170,6 +181,11 @@ public class AddReaderCommandTest {
 
         @Override
         public boolean hasBook(Name bookName) {
+            return false;
+        }
+
+        @Override
+        public boolean hasBook(Isbn isbn) {
             return false;
         }
 

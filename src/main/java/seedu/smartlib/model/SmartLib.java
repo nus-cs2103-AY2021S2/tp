@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
+import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.book.UniqueBookList;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.reader.UniqueReaderList;
@@ -307,6 +308,22 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     /**
+     * Returns true if a book with the same isbn as {@code isbn} exists in the registered book base.
+     *
+     * @param isbn Isbn of the book to be checked.
+     * @return true if a book with the same name as {@code bookName} exists in the registered book base, and false
+     * otherwise.
+     */
+    public boolean hasBook(Isbn isbn) {
+        requireNonNull(isbn);
+
+        ArrayList<Book> booksWithIsbn = getBooksByIsbn(isbn);
+        requireNonNull(booksWithIsbn);
+
+        return booksWithIsbn.size() > 0;
+    }
+
+    /**
      * Returns true if a book with the same barcode as {@code book} exists in the registered book base.
      *
      * @param barcode barcode of the book to be checked.
@@ -368,6 +385,23 @@ public class SmartLib implements ReadOnlySmartLib {
             }
         }
         return booksWithName;
+    }
+
+    /**
+     * Retrieves a list of Book objects whose name is specified by its ISBN.
+     *
+     * @param isbn Book's Isbn.
+     * @return list of Book objects, an empty list if there is no such book.
+     */
+    public ArrayList<Book> getBooksByIsbn(Isbn isbn) {
+        requireNonNull(isbn);
+        ArrayList<Book> booksWithIsbn = new ArrayList<>();
+        for (Book book : books) {
+            if (book.getIsbn().equals(isbn)) {
+                booksWithIsbn.add(book);
+            }
+        }
+        return booksWithIsbn;
     }
 
     /**
