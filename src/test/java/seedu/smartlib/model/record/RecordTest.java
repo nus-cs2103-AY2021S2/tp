@@ -25,131 +25,105 @@ public class RecordTest {
     @Test
     public void constructor_withDateBorrowedOnly() {
         // EP: valid params -> no exceptions thrown
-        assertDoesNotThrow(
-                () -> new Record(
+        assertDoesNotThrow(() -> new Record(
                         RECORD_A.getBookName(),
                         RECORD_A.getBookBarcode(),
                         RECORD_A.getReaderName(),
                         RECORD_A.getDateBorrowed()
-                )
-        );
+                ));
 
         // EP: null params -> throws NullPointerException
-        assertThrows(NullPointerException.class,
-                () -> new Record(
+        assertThrows(NullPointerException.class, () -> new Record(
                         new Name(null),
                         RECORD_A.getBookBarcode(),
                         RECORD_A.getReaderName(),
                         RECORD_A.getDateBorrowed()
-                )
-        );
-        assertThrows(NullPointerException.class,
-                () -> new Record(
+                ));
+        assertThrows(NullPointerException.class, () -> new Record(
                         RECORD_A.getBookName(),
                         RECORD_A.getBookBarcode(),
                         new Name(null),
                         RECORD_A.getDateBorrowed()
-                )
-        );
-        assertThrows(NullPointerException.class,
-                () -> new Record(
+                ));
+        assertThrows(NullPointerException.class, () -> new Record(
                         RECORD_A.getBookName(),
                         RECORD_A.getBookBarcode(),
                         RECORD_A.getReaderName(),
                         new DateBorrowed((LocalDateTime) null)
-                )
-        );
+                ));
     }
 
     @Test
     public void constructor_withDateReturnedOnly() {
         // EP: valid params -> no exceptions thrown
-        assertDoesNotThrow(
-                () -> new Record(
+        assertDoesNotThrow(() -> new Record(
                         RECORD_A.getBookName(),
                         RECORD_A.getBookBarcode(),
                         RECORD_A.getReaderName(),
                         new DateReturned(LocalDateTime.now())
-                )
-        );
+                ));
 
         // EP: null params -> throws NullPointerException
-        assertThrows(NullPointerException.class,
-                () -> new Record(
+        assertThrows(NullPointerException.class, () -> new Record(
                         new Name(null),
                         RECORD_A.getBookBarcode(),
                         RECORD_A.getReaderName(),
                         new DateReturned(LocalDateTime.now())
-                )
-        );
-        assertThrows(NullPointerException.class,
-                () -> new Record(
+                ));
+        assertThrows(NullPointerException.class, () -> new Record(
                         RECORD_A.getBookName(),
                         RECORD_A.getBookBarcode(),
                         new Name(null),
                         new DateReturned(LocalDateTime.now())
-                )
-        );
-        assertThrows(NullPointerException.class,
-                () -> new Record(
+                ));
+        assertThrows(NullPointerException.class, () -> new Record(
                         RECORD_A.getBookName(),
                         RECORD_A.getBookBarcode(),
                         RECORD_A.getReaderName(),
                         new DateReturned((LocalDateTime) null)
-                )
-        );
+                ));
     }
 
     @Test
     public void constructor_withDateBorrowedAndDateReturned() {
         // EP: valid params -> no exceptions thrown
-        assertDoesNotThrow(
-                () -> new Record(
+        assertDoesNotThrow(() -> new Record(
                         RECORD_A.getBookName(),
                         RECORD_A.getBookBarcode(),
                         RECORD_A.getReaderName(),
                         RECORD_A.getDateBorrowed(),
                         new DateReturned(LocalDateTime.now())
-                )
-        );
+                ));
 
         // EP: null params -> throws NullPointerException
-        assertThrows(NullPointerException.class,
-                () -> new Record(
+        assertThrows(NullPointerException.class, () -> new Record(
                         new Name(null),
                         RECORD_A.getBookBarcode(),
                         RECORD_A.getReaderName(),
                         RECORD_A.getDateBorrowed(),
                         new DateReturned(LocalDateTime.now())
-                )
-        );
-        assertThrows(NullPointerException.class,
-                () -> new Record(
+                ));
+        assertThrows(NullPointerException.class, () -> new Record(
                         RECORD_A.getBookName(),
                         RECORD_A.getBookBarcode(),
                         new Name(null),
                         RECORD_A.getDateBorrowed(),
                         new DateReturned(LocalDateTime.now())
-                )
-        );
-        assertThrows(NullPointerException.class,
-                () -> new Record(
+                ));
+        assertThrows(NullPointerException.class, () -> new Record(
                         RECORD_A.getBookName(),
                         RECORD_A.getBookBarcode(),
                         RECORD_A.getReaderName(),
                         new DateBorrowed((LocalDateTime) null),
                         new DateReturned(LocalDateTime.now())
-                )
-        );
-        assertThrows(NullPointerException.class,
-                () -> new Record(
+                ));
+        assertThrows(NullPointerException.class, () -> new Record(
                         RECORD_A.getBookName(),
                         RECORD_A.getBookBarcode(),
                         RECORD_A.getReaderName(),
                         RECORD_A.getDateBorrowed(),
                         new DateReturned((LocalDateTime) null)
-                )
-        );
+                ));
     }
 
     @Test
