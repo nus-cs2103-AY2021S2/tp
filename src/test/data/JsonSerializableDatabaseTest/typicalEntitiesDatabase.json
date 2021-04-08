@@ -1,5 +1,5 @@
 {
-  "_comment": "Database save file which contains the same Owner values as in TypicalOwners#getTypicalDatabase()",
+  "_comment": "Database save file which contains the same entity values as in TypicalEntities#getTypicalDatabase()",
   "entities" : [ {
     "type": "owner",
     "id": 1,
@@ -130,7 +130,7 @@
     "type" : "program",
     "id" : 15,
     "name" : "Active Listening",
-    "sessions" : "12-12-2021 18:00",
+    "sessions" : [ "12-12-2021 18:00" ],
     "tagged" : [ "Puppies" ],
     "enrolledDogs": [ ]
   }, {
@@ -144,7 +144,7 @@
     "type" : "program",
     "id" : 17,
     "name" : "Cooldown Session",
-    "sessions" : "10-10-2021 10:00",
+    "sessions" : [ "10-10-2021 10:00" ],
     "tagged" : [ "All" ],
     "enrolledDogs": [ ]
   }, {
@@ -157,8 +157,8 @@
   }, {
     "type" : "program",
     "id" : 19,
-    "name" : "ELEGANCE_TRAINING",
-    "sessions" : "08-11-2021 10:00",
+    "name" : "Elegance Training",
+    "sessions" : [ "08-11-2021 10:00" ],
     "tagged" : [ "All" ],
     "enrolledDogs": [ 4 ]
   }, {
