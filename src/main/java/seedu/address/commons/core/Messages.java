@@ -8,6 +8,8 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in FriendDex. Each person "
+            + "should have a unique name ignoring their letter case.";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_INVALID_ARGUMENT_FORMAT = "Invalid argument format! \n%1$s";
     public static final String MESSAGE_INVALID_INDEX_ARGUMENT = "The \"i/\" index provided is invalid";
@@ -36,4 +38,7 @@ public class Messages {
 
     // Tabs
     public static final String MESSAGE_INVALID_TAB = "To view this tab, use the following command instead: \n%1$s";
+
+    // Json data files
+    public static final String MESSAGE_DESERIALIZE_ERROR_DUMP_DATA = "Error deserializing %1$s. Dumping %1$s json data";
 }

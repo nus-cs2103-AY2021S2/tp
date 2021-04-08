@@ -1,10 +1,14 @@
 package seedu.address.storage;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DESERIALIZE_ERROR_DUMP_DATA;
+
 import java.time.LocalDate;
+import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.SpecialDate;
 
@@ -14,6 +18,8 @@ import seedu.address.model.person.SpecialDate;
 public class JsonAdaptedSpecialDate {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "A special date's %s field is missing!";
+
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedSpecialDate.class);
 
     private final LocalDate date;
     private final String description;
@@ -36,21 +42,36 @@ public class JsonAdaptedSpecialDate {
         description = source.getDescription();
     }
 
+    private IllegalValueException internalIllegalValueException(String message) {
+        logger.warning(String.format(MESSAGE_DESERIALIZE_ERROR_DUMP_DATA, "Special Date"));
+        logger.warning(this.toString());
+        return new IllegalValueException(message);
+    }
+
     /**
      * Converts this Jackson-friendly adapted event object into the model's {@code SpecialDate} object.
      */
     public SpecialDate toModelType() throws IllegalValueException {
         if (date == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "date"));
+            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "date"));
         }
 
         if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
+            throw internalIllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
         }
 
-        if (!SpecialDate.isValidSpecialDate(date, description)) {
-            throw new IllegalValueException(SpecialDate.MESSAGE_CONSTRAINTS);
+        String trimmedDescription = description.trim();
+        if (!SpecialDate.isValidSpecialDate(date, trimmedDescription)) {
+            throw internalIllegalValueException(SpecialDate.MESSAGE_CONSTRAINTS);
         }
-        return new SpecialDate(date, description);
+        return new SpecialDate(date, trimmedDescription);
+    }
+
+    @Override
+    public String toString() {
+        return "JsonAdaptedSpecialDate{"
+                + "date=" + date
+                + ", description='" + description + '\''
+                + "}";
     }
 }
