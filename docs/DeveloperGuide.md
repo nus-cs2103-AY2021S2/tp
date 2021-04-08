@@ -3,7 +3,7 @@ layout: page
 title: imPoster Developer Guide
 nav-text: Developer Guide
 ---
-<!--Remember to revert README! -->
+<!-- Remember to revert README! -->
 <p align="center">
   <img width="300px" src="images/imPosterDevGuide.png" >
 </p>
@@ -23,13 +23,13 @@ nav-text: Developer Guide
 ## **Introduction**
 imPoster is a desktop application for beginners of API development to quickly grasp the basics. 
 imPoster's simple and minimalistic style can help beginner API developers **explore** and **test** APIs, whether those **found online** or those that they have **built** themselves.
-imPoster is also highly optimised fast typists and can be fully operated through keyboard commands. </br>
+imPoster is also highly optimised fast typists and can be fully operated through keyboard commands. <br>
 
 This developer's guide assumes its readers to have a **basic understanding** of APIs. 
 For a basic definition of [what an API is](#what-is-an-api), an appendix has been provided for readers who may be unfamiliar with the concept.
-However, it is highly recommended for readers to refer to proper tutorial contents for the basics of APIs prior to developing the application. </br>
+However, it is highly recommended for readers to refer to proper tutorial contents for the basics of APIs prior to developing the application. <br>
 
-Readers are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application. </br>
+Readers are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application. <br>
 
 ## **Navigating this Developer Guide**
 
@@ -288,6 +288,8 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 The `run` command deploys a similar trick but for an endpoint specified directly within the command arguments.
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes a run command:
 <p align="center">
   <img alt="RunActivityDiagram" src="images/RunActivityDiagram.png" width="400px"/>
@@ -303,6 +305,8 @@ The following activity diagram summarizes what happens when a user executes a ru
 * **Alternative 2:** Individual command checks if the endpoint/url address is valid by itself.
     * Pros: Checking of url address validity right before execution will ensure proper request is processed.
     * Cons: Duplication of code across Send and Run commands.
+
+<div style="page-break-after: always;"></div>
 
 ### Request feature
 
@@ -344,6 +348,8 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes a `send` command for an endpoint with a `GET` request:
 <br/>
 <p align="center">
@@ -378,6 +384,8 @@ Step 1. The user launches the application and executes `toggle light` to change 
 
 Step 2. The `toggle` command returns a `CommandResult` that triggers the `updateTheme()` method within `MainWindow`. `MainWindow` then finds the relevant .css file containing all theme information and applies it to all elements it contains.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the toggle command works for the above example: 
 ![ToggleSequenceDiagram](images/ToggleSequenceDiagram.png)
 
@@ -386,6 +394,9 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 </div>
 
 ---
+
+<div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -805,14 +816,20 @@ Given below are instructions to test the app manually.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample endpoints. The window size may not be optimum.
+   1. Double-click the jar file. <br>
+      Expected: Shows the GUI with a set of sample endpoints. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
+
+1. Exiting the app
+   
+   1. With the app still open, enter `exit` in the command box or click on the close window button.<br>
+      Expected: App closes.
 
 1. _{ more test cases …​ }_
 
@@ -835,10 +852,31 @@ Given below are instructions to test the app manually.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Saving endpoints between sessions
+   
+   1. Launch the app.
+      
+   1. Save an endpoint with a valid `add` command. Confirm the endpoint has been saved by checking its existence at the end of the list of saved endpoints.
+      
+   1. Close the app.
+      
+   1. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The new endpoint is still present at the end of the list of saved endpoints. 
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Dealing with corrupted/missing data files
 
+   1. Prerequisite: Have opened and closed the application and confirmed that the files `preferences.json` and `data/imposter.json` have been created in the same directory that imPoster was run from.
+      
+   1. Manually edit any of the aforementioned files with any text editing software to break the JSON format. For example, removing the opening curly brace of the JSON file. Alternatively, you may delete these files.
+      
+   1. Re-launch the app by double-clicking the jar file.
+    
+   1. Test case: `data/imposter.json` was corrupted/deleted. <br>
+      Expected: The app should start with a list of saved endpoints (on the left) that is empty.
+      
+   1. Test case: `preferences.json` was corrupted/deleted. <br>
+      Expected: The app should start with the default theme, window size and location.
+      
 1. _{ more test cases …​ }_
 
 ## **Appendix I: Effort**
