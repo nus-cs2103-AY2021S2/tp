@@ -12,15 +12,21 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_OBEDIENCE_TRAINING;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_POTTY_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_OWNERID_15;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_OWNERID_17;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_OBEDIENCE_TRAINING;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_POTTY_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SEX_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SEX_BELL;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_ALL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_FRIENDLY;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_PUPPIES;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 
 import java.util.ArrayList;
@@ -73,6 +79,28 @@ public class TypicalEntities {
             .withDateOfBirth("21-08-2018").withBreed("Australian Shepherd").withOwnerID(11).build();
     public static final Dog GENIE = new DogBuilder().withName("Genie").withSex("male")
             .withDateOfBirth("29-05-2020").withBreed("Husky").withOwnerID(13).build();
+
+    // Programs
+    // With no dogs enrolled
+    public static final Program ACTIVE_LISTENING = new ProgramBuilder().withName("Active Listening")
+            .withSessions("12-12-2021 18:00").withTags("Puppies").build();
+    public static final Program BEHAVING = new ProgramBuilder().withName("Behaving")
+            .withSessions("11-11-2021 20:00").withTags("Puppies").build();
+    public static final Program COOLDOWN_SESSION = new ProgramBuilder().withName("Cooldown Session")
+            .withSessions("10-10-2021 10:00").withTags("All").build();
+
+    // With 1 dog enrolled
+    public static final Program DANCING = new ProgramBuilder().withName("Dancing")
+            .withSessions("09-12-2021 19:00").withDogs(2).withTags("Puppies").build();
+    public static final Program ELEGANCE_TRAINING = new ProgramBuilder().withName("Elegance Training")
+            .withSessions("08-11-2021 10:00").withDogs(4).withTags("All").build();
+
+    // With multiple dogs enrolled
+    public static final Program FOOD_TASTING = new ProgramBuilder().withName("Food Tasting")
+            .withSessions("09-08-2021 09:00").withDogs(6, 8).withTags("Puppies").build();
+    public static final Program GENERAL_KNOWLEDGE = new ProgramBuilder().withName("General Knowledge")
+            .withSessions("27-08-2021 09:00").withDogs(10, 12, 14).withTags("Puppies").build();
+
     // Manually added owners
     public static final Owner HOON = new OwnerBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").build();
@@ -84,6 +112,13 @@ public class TypicalEntities {
             .withDateOfBirth("13-07-2019").withBreed("Chihuahua").withOwnerID(13).build();
     public static final Dog INK = new DogBuilder().withName("Ink").withSex("male")
             .withDateOfBirth("09-09-2020").withBreed("Rottweiler").withOwnerID(14).build();
+
+    // Manually added programs
+    public static final Program HAPPY_PUPPY = new ProgramBuilder().withName("Happy Puppy")
+            .withSessions("05-11-2022 10:30").withTags("Puppies").build();
+    public static final Program INDEPENDENCE_TRAINING = new ProgramBuilder().withName("Independence Training")
+            .withSessions("03-03-2022 18:30").withTags("All").build();
+
 
     // Manually added - Owner's details found in {@code CommandTestUtil}
     public static final Owner AMY = new OwnerBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
@@ -100,33 +135,11 @@ public class TypicalEntities {
             .withDateOfBirth(VALID_DATEOFBIRTH_BELL).withBreed(VALID_BREED_BELL).withOwnerID(VALID_OWNERID_17)
             .withTags(VALID_TAG_QUIET, VALID_TAG_FRIENDLY).build();
 
-    // Programs
-    // With no dogs enrolled
-    public static final Program ACTIVE_LISTENING = new ProgramBuilder().withName("Active Listening")
-            .withSessions("12-12-2021 18:00").withTags("Puppies").build();
-    public static final Program BEHAVING = new ProgramBuilder().withName("Behaving")
-            .withSessions("11-11-2021 20:00").withTags("Puppies").build();
-    public static final Program COOLDOWN_SESSION = new ProgramBuilder().withName("Cooldown Session")
-            .withSessions("10-10-2021 10:00").withTags("All").build();
-
-    // With dogs enrolled
-    // 1 dog enrolled
-    public static final Program DANCING = new ProgramBuilder().withName("Dancing")
-            .withSessions("09-12-2021 19:00").withDogs(2).withTags("Puppies").build();
-    public static final Program ELEGANCE_TRAINING = new ProgramBuilder().withName("Elegance Training")
-            .withSessions("08-11-2021 10:00").withDogs(4).withTags("All").build();
-
-    // Multiple dogs enrolled
-    public static final Program FOOD_TASTING = new ProgramBuilder().withName("Food Tasting")
-            .withSessions("09-08-2021 09:00").withDogs(6, 8).withTags("Puppies").build();
-    public static final Program GENERAL_KNOWLEDGE = new ProgramBuilder().withName("General Knowledge")
-            .withSessions("27-08-2021 09:00").withDogs(10, 12, 14).withTags("Puppies").build();
-
-    // Manually added - Program's details found in {@code CommandTestUtil}
-    public static final Program OBEDIENCE_TRAINING = new ProgramBuilder().withName("Obedience Training")
-            .withSessions("01-01-2022 10:30").withTags("All").build();
-    public static final Program POTTY_TRAINING = new ProgramBuilder().withName("Potty Training")
-            .withSessions("03-02-2022 20:30").withTags("Puppies").build();
+    // Manually added - Programs's details found in {@code CommandTestUtil}
+    public static final Program OBEDIENCE_TRAINING = new ProgramBuilder().withName(VALID_NAME_OBEDIENCE_TRAINING)
+            .withSessions(VALID_SESSION_OBEDIENCE_TRAINING).withTags(VALID_TAG_ALL).build();
+    public static final Program POTTY_TRAINING = new ProgramBuilder().withName(VALID_NAME_POTTY_TRAINING)
+            .withSessions(VALID_SESSION_POTTY_TRAINING).withTags(VALID_TAG_PUPPIES).build();
 
 
     private TypicalEntities() {} // prevents instantiation
@@ -142,15 +155,11 @@ public class TypicalEntities {
         return db;
     }
 
-    /**
-     * Returns an {@code Database} with all the typical owners, dogs and programs
-     */
     public static Database getDatabaseWithPrograms() {
         Database db = new Database();
         for (Entity entity : getTypicalOwnersWithDog()) {
             db.addEntity(entity);
         }
-
         for (Program program : getTypicalPrograms()) {
             db.addEntity(program);
         }
