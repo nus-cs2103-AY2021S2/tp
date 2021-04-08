@@ -205,6 +205,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPotentialPerson(Person person) {
+        requireNonNull(person);
+        return addressBook.hasPotentialPerson(person);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

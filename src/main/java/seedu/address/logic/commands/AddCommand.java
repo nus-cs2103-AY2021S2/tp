@@ -51,7 +51,10 @@ public class AddCommand extends Command {
             + PREFIX_LESSON + "monday 1300";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in TutorsPet";
+    public static final String MESSAGE_DUPLICATE_PERSON = "%1$s already belongs to another student in TutorsPet. \n"
+            + "Please assign a unique phone number to student %2$s.";
+    public static final String MESSAGE_POTENTIAL_DUPLICATE = "This student %1$s already exists "
+            + "with a different phone number. \n" + "Do you wish to proceed? y/n";
     public static final String MESSAGE_DUPLICATE_LESSON = "You have a lesson at %1$s with %2$s. \n"
             + "Do you wish to proceed? y/n";
 
@@ -69,8 +72,17 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, toAdd.getPhone(), toAdd.getName()));
         }
+
+        if (!model.isSavedState()) {
+            if (model.hasPotentialPerson(toAdd)) {
+                model.setSavedState(true);
+                throw new CommandException(String.format(MESSAGE_POTENTIAL_DUPLICATE, toAdd.getName()));
+            }
+        }
+
+        model.setSavedState(false);
         if (!model.isSavedState()) {
             for (Lesson lesson : toAdd.getLessons()) {
                 if (model.hasLesson(lesson)) {
