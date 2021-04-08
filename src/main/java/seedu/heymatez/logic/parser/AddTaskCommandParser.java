@@ -1,6 +1,8 @@
 package seedu.heymatez.logic.parser;
 
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_PRIORITY;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_STATUS;
 import static seedu.heymatez.logic.parser.CliSyntax.PREFIX_ASSIGNEE;
 import static seedu.heymatez.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.heymatez.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -48,7 +50,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             try {
                 status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
             } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskStatus.MESSAGE_CONSTRAINTS),
+                throw new ParseException(MESSAGE_INVALID_TASK_STATUS + TaskStatus.MESSAGE_CONSTRAINTS,
                         pe);
             }
         }
@@ -59,7 +61,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             try {
                 priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
             } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Priority.MESSAGE_CONSTRAINTS),
+                throw new ParseException(MESSAGE_INVALID_TASK_PRIORITY + Priority.MESSAGE_CONSTRAINTS,
                         pe);
             }
         }
