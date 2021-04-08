@@ -249,6 +249,18 @@ to delete all the sample entries and start using your very own ClientBook.
          <ul><li><code>URL</code> part should not contain the <code>></code> character (not a valid website link if it contains <code>></code>)</li></ul> 
     </td>
   </tr>
+  <tr>
+    <td> Meeting </td>
+    <td> <code>m</code> </td>
+    <td> <ul><li>Optional</li></ul> 
+         <ul><li>Should be of the form <code>DATE START END PLACE</code></li></ul> 
+         <ul><li><code>DATE</code> part should be in <code>dd.MM.yyyy</code> format</li></ul>
+         <ul><li><code>START</code> and <code>END</code> parts should be in <code>HH:mm</code> format</li></ul>
+         <ul><li><code>END</code> of a meeting must be after <code>START</code> of the same meeting on the same <code>DATE</code></li></ul>
+         <ul><li><code>START</code> of a meeting cannot be the same as <code>END</code> of another meeting on the same <code>DATE</code></li></ul>
+         <ul><li><code>PLACE</code> should not be empty and can have space between characters</li></ul>
+    </td>
+  </tr>
 </table>
 
 [Return to Table of Contents](#table-of-contents)
@@ -504,8 +516,8 @@ If a parameter is expected only once in the command, but you specified it multip
 
 * Sorts the list of clients according to the specified `IDENTIFIER` and `DIRECTION`.
 * Only names of the clients and number of insurance policies can be sorted. 
-* The specified `IDENTIFIER` can be `-n` to sort by name alphabetically or `-i` to sort by number of insurance policies, but not both.
-* The specified `DIRECTION` can be `-asc` for ascending order or `-des` for descending order, but not both.
+* The specified `IDENTIFIER` can be `n` to sort by name alphabetically or `i` to sort by number of insurance policies, but not both.
+* The specified `DIRECTION` can be `asc` for ascending order or `des` for descending order, but not both.
 
 **Examples**:
 * Sort the current list of clients by number of insurance policies in **descending** order.
@@ -529,16 +541,11 @@ If a parameter is expected only once in the command, but you specified it multip
 * Schedules a meeting with the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed client list.
 * `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
-* `ACTION` can be `add` to add a meeting, `delete` to delete a meeting, `clear` to clear all meetings.
-* If `-ACTION` is empty, the default action is to add a meeting.
-* `DATE` must be in the `DD:MM:YYYY` format.
-* `START` and `END` must be in the `HH:MM` format.
-* `END` must be after `START` on the same `DATE`.
-* `END` of one meeting cannot be the same as `START` of another meeting on the same `DATE`.
-* Past meeting is allowed to be added for archive purposes.  
-* `PLACE` cannot be empty.
-* There is a check for clashes between meetings when adding a new meeting.
-* Meetings can be modified with the `edit` command, but there will be no check for clashes.
+* `ACTION` can be `add` to add a meeting, `delete` to delete a meeting, `clear` to clear all meetings of a client.
+* If `-ACTION` is empty, the default action for the command is to add a meeting.
+* Past meeting is allowed to be added for archive purposes.
+* There is a check for clashes between meetings when adding a new meeting with `meet` command.
+* Meetings can be modified with the `edit` command, but there will be no check for clashes between meetings.
 
 **Examples**:
 * Add a meeting and there are no clashes.
