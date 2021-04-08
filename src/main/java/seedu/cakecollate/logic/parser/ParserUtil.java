@@ -7,9 +7,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.commons.util.StringUtil;
+import seedu.cakecollate.logic.parser.exceptions.IndexOutOfBoundsException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.order.Address;
 import seedu.cakecollate.model.order.DeliveryDate;
@@ -40,6 +42,12 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        boolean allDigits = oneBasedIndex.chars().allMatch(Character::isDigit);
+        boolean lengthMoreThanTen = oneBasedIndex.length() > INTEGER_LENGTH;
+        boolean allDigitsAndLengthMoreThanTen = allDigits && lengthMoreThanTen;
+        if (allDigitsAndLengthMoreThanTen) {
+            throw new IndexOutOfBoundsException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
