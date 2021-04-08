@@ -1,6 +1,7 @@
 package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_TASK_LIST;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 
 import java.util.HashSet;
@@ -32,8 +33,6 @@ public class ClearAssigneesCommand extends Command {
 
     public static final String MESSAGE_CLEARED_ASSIGNEES_SUCCESS = "Cleared all Members Assigned to Task: %1$s";
 
-    public static final String MESSAGE_LIST_IS_EMPTY = "The task index specified is invalid as there "
-            + "are no displayed tasks in view!";
 
     private final Index targetIndex;
 
@@ -46,8 +45,8 @@ public class ClearAssigneesCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        if (lastShownList.size() == 0) {
-            throw new CommandException(MESSAGE_LIST_IS_EMPTY);
+        if (lastShownList.isEmpty()) {
+            return new CommandResult(MESSAGE_EMPTY_TASK_LIST);
         }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {

@@ -3,6 +3,7 @@ package seedu.heymatez.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_TASK_LIST;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.heymatez.testutil.TypicalTasks.HOMEWORK;
@@ -15,6 +16,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.heymatez.model.HeyMatez;
 import seedu.heymatez.model.Model;
 import seedu.heymatez.model.ModelManager;
 import seedu.heymatez.model.UserPrefs;
@@ -82,6 +84,17 @@ public class FindTasksBeforeCommandTest {
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(HOMEWORK), model.getFilteredTaskList());
+    }
+
+    @Test
+    public void execute_emptyFilteredList_success() {
+        HeyMatez heyMatez = new HeyMatez();
+        model = new ModelManager(heyMatez, new UserPrefs());
+        Model expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
+        DeadlineBeforeDatePredicate predicate = new DeadlineBeforeDatePredicate("2021-02-05");
+        FindTasksBeforeCommand findTasksCommand = new FindTasksBeforeCommand(predicate);
+        expectedModel.updateFilteredTaskList(predicate);
+        assertCommandSuccess(findTasksCommand, model, MESSAGE_EMPTY_TASK_LIST, expectedModel);
     }
 
 }

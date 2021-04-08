@@ -134,4 +134,6 @@ public interface Model {
     void updateFilteredTaskList(Predicate<Task> predicate);
 
     boolean checkAssignees(Task task);
+
+    boolean isTaskListEmpty();
 }

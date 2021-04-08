@@ -2,7 +2,7 @@ package seedu.heymatez.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.heymatez.logic.commands.ClearAssigneesCommand.MESSAGE_LIST_IS_EMPTY;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_TASK_LIST;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.heymatez.logic.commands.CommandTestUtil.showTaskAtIndex;
@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.heymatez.commons.core.Messages;
 import seedu.heymatez.commons.core.index.Index;
+import seedu.heymatez.model.HeyMatez;
 import seedu.heymatez.model.Model;
 import seedu.heymatez.model.ModelManager;
 import seedu.heymatez.model.UserPrefs;
@@ -95,7 +96,7 @@ public class ClearAssigneesCommandTest {
     }
 
     @Test
-    public void execute_emptyFilteredList_throwsCommandException() {
+    public void execute_invalidIndexFilteredList_throwsCommandException() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Index outOfBoundIndex = INDEX_SECOND_TASK;
@@ -108,14 +109,18 @@ public class ClearAssigneesCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showNoTask(model);
+    public void execute_emptyFilteredList_success() {
+        HeyMatez heyMatez = new HeyMatez();
+
+        model = new ModelManager(heyMatez, new UserPrefs());
+
+        Model expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
 
         Index givenIndex = INDEX_SECOND_TASK;
 
         ClearAssigneesCommand clearAssigneesCommand = new ClearAssigneesCommand(givenIndex);
 
-        assertCommandFailure(clearAssigneesCommand, model, MESSAGE_LIST_IS_EMPTY);
+        assertCommandSuccess(clearAssigneesCommand, model, MESSAGE_EMPTY_TASK_LIST, expectedModel);
     }
 
     /**

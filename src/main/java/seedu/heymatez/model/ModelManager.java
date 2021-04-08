@@ -158,6 +158,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isTaskListEmpty() {
+        return this.filteredTasks.isEmpty();
+    }
+
+    @Override
     public void removeAssignee(Person target) {
         heyMatez.removeAssignee(target.getName());
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);

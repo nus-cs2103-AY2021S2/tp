@@ -1,6 +1,7 @@
 package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_TASK_LIST;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 
 import seedu.heymatez.model.Model;
@@ -27,6 +28,9 @@ public class FindTasksCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        if (model.isTaskListEmpty()) {
+            return new CommandResult(MESSAGE_EMPTY_TASK_LIST);
+        }
         model.updateFilteredTaskList(predicate);
         return new CommandResult(
                 String.format(MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
