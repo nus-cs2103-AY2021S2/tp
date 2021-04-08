@@ -63,7 +63,7 @@ class ViewCommandTest {
     @Test
     public void execute_taskWithDateExists_taskFound() {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 1);
-        TaskHasSameDatePredicate predicate = new TaskHasSameDatePredicate(LocalDate.parse("2015-01-23"));
+        TaskHasSameDatePredicate predicate = new TaskHasSameDatePredicate(LocalDate.parse("2022-01-23"));
         ViewCommand command = new ViewCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

@@ -55,7 +55,8 @@ public class Task {
     }
 
     /**
-     * Check to see if the task has expired
+     * Check to see if the task has expired, and additionally changes its status to expired if the current date is
+     * past the task's Date
      */
 
     public boolean isTaskExpired() {
