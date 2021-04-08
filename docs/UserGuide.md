@@ -261,7 +261,7 @@ Format: `findnote c/NAME_KEYWORD... [t/TAG_KEYWORD]...`
 * Only the content and tags are searched.
 * Notes and tags will be matched if they contain the given keywords e.g. `c/CS` will match the note containing `CS2103T`
 * Notes matching at least one content keyword will be returned (i.e. OR search). e.g. `c/CS c/Important` will return `CS Midterm`, `Important stuff`
-* Notes matching all of the given tag keywords will be returned (i.e. AND search). e.g. `c/urgent` will return all notes that are tagged with `urgent`.
+* Notes matching all of the given tag keywords will be returned (i.e. AND search). e.g. `t/urgent` will return all notes that are tagged with `urgent`.
 
 Examples:
 

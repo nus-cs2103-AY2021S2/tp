@@ -27,6 +27,7 @@ public class AddNoteCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New note added: %1$s";
     public static final String MESSAGE_DUPLICATE_NOTE = "This note already exists in the dictionote book";
+    public static final String MESSAGE_NOTE_MUST_NOT_BE_EMPTY = "The content of a note should not be empty";
 
     private final Note toAdd;
 
