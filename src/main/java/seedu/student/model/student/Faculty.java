@@ -31,7 +31,7 @@ public class Faculty {
     }
 
     public static String getStringFaculties() {
-        return String.join(",", getFacultyAbbreviation());
+        return String.join(", ", getFacultyAbbreviation());
     }
 
     /**

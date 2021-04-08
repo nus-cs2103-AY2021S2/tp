@@ -13,7 +13,7 @@ import seedu.student.model.Model;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
-    public static final String MESSAGE_SUCCESS = "All students and appointments are listed";
+    public static final String MESSAGE_SUCCESS = "All students and appointments are listed.";
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
