@@ -9,6 +9,7 @@ import seedu.smartlib.commons.core.GuiSettings;
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
+import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
 
@@ -75,6 +76,11 @@ public interface Model {
      * Returns true if a book with the same name as {@code bookName} exists in the registered book base.
      */
     boolean hasBook(Name bookName);
+
+    /**
+     * Returns true if a book with the same isbn as {@code isbn} exists in the registered book base.
+     */
+    boolean hasBook(Isbn isbn);
 
     /**
      * Returns true if a book with the same barcode as {@code barcode} exists in the registered book base.
@@ -173,6 +179,11 @@ public interface Model {
      * Returns the Book with the specified barcode.
      */
     Book getBookByBarcode(Barcode barcode);
+
+    /**
+     * Returns the Book with the specified ISBN.
+     */
+    ArrayList<Book> getBooksByIsbn(Isbn isbn);
 
     /**
      * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
