@@ -1,7 +1,7 @@
 [![CI Status](https://github.com/AY2021S2-CS2103T-W15-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-W15-1/tp/actions)
 [![codecov](https://codecov.io/gh/AY2021S2-CS2103T-W15-1/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S2-CS2103T-W15-1/tp)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/Ui2.png)
 
 
 RemindMe is a desktop app for keeping track of student's assignments, events and exams,
