@@ -444,7 +444,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * [UC2 - Find a specific contact](#uc2---find-a-specific-contact)
 * [UC3 - Delete a contact](#uc3---delete-a-contact)
 * [UC4 - Purge all entries from the app](#uc4---purge-all-entries-from-the-app)
-* [UC5 - Adding or Modifying information about a contact](uc5---adding-or-modifying-information-about-a-contact)
+* [UC5 - Adding or Modifying information about a contact](#uc5---adding-or-modifying-information-about-a-contact)
 
 #### UC1 - Add a contact
 
