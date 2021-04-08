@@ -60,7 +60,9 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListAllCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListAllCommand.MESSAGE_SUCCESS, model);
+        if (model.hasAppointment() && model.hasProperty()) {
+            assertCommandSuccess(listCommand, ListAllCommand.MESSAGE_SUCCESS, model);
+        }
     }
 
     @Test
