@@ -106,11 +106,11 @@ Format: `remind`
 
 Edits the given fields of an existing residence (excludes bookings, see `editb` instead to edit bookings).
 
-Format: `edit INDEX [n/RESIDENCE_NAME] [a/ADDRESS] [c/VALID_CLEAN_STATUS] [t/TAG]`
+Format: `edit RESIDENCE_INDEX [n/RESIDENCE_NAME] [a/ADDRESS] [c/VALID_CLEAN_STATUS] [t/TAG]`
 
-* Edits the residence at the specified `INDEX`.
-* The index refers to the index number shown in the displayed residence list(i.e. **NOT** zero-indexed).
-* The index **must be a positive integer** 1, 2, 3, …​
+* Edits the residence at the specified `RESIDENCE_INDEX`.
+* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residence list(i.e. **NOT** zero-indexed, items start at index 1).
+* The `RESIDENCE_INDEX` **must be a positive integer** 1, 2, 3, …​
 * At least one field must be provided.
 * If this command is used to edit tags, all tags for this residence need to be specified.
 
@@ -140,11 +140,11 @@ Examples:
 
 Deletes the specified residence from the list of residences shown.
 
-Format: `delete INDEX`
+Format: `delete RESIDENCE_INDEX`
 
-* Deletes the residence at the specified `INDEX`.
-* The index refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed).
-* The index must be a **positive integer** 1, 2, 3, …​
+* Deletes the residence at the specified `RESIDENCE_INDEX`.
+* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed, items start at index 1).
+* The `RESIDENCE_INDEX` must be a **positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 3` deletes the 3rd residence in the list of residences shown.
@@ -153,11 +153,11 @@ Examples:
 
 Update Clean status of multiple residences at once.
 
-Format: `status clean INDEX1 INDEX2..` or `status unclean INDEX1 INDEX2..`
+Format: `status clean RESIDENCE_INDEX1 RESIDENCE_INDEX2..` or `status unclean RESIDENCE_INDEX1 RESIDENCE_INDEX2..`
 
-* Updates the clean status of the residences' with the specified `INDEX`.
-* The index refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed).
-* The index must be a **positive integer** 1, 2, 3, …​
+* Updates the clean status of the residences' with the specified `RESIDENCE_INDEX`.
+* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed, items start at index 1).
+* The `RESIDENCE_INDEX` must be a **positive integer** 1, 2, 3, …​
 * More than 1 residence indexes can be specified.
 * After updating, the residence list will sort automatically to show Unclean residences before the clean residences.
 
@@ -178,11 +178,15 @@ Adds a new booking to the specified residence.
 
 Format: `addb RESIDENCE_INDEX n/NAME_OF_TENANT p/PHONE_OF_TENANT s/START_DATE e/END_DATE`
 
-* Adds a booking to the residence at the specified `INDEX`.
-* The index refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed).
-* The index must be a **positive integer** 1, 2, 3, …​
-* The phone must only include numbers and must be at least 3 characters long. e.g `p/0999`
+* Adds a booking to the residence at the specified `RESIDENCE_INDEX`.
+* The `RESIDENCE_INDEX` refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed).
+* The `RESIDENCE_INDEX` must be a **positive integer** 1, 2, 3, …​
+* The phone must only include numbers and must be at least 3 characters long. e.g `p/999` `p/12345678`
 * The dates must follow the format DD-MM-YYYY. e.g `s/01-02-2021`
+* It is invalid to edit the `START_DATE` to be later than the `END_DATE`. Likewise, it is invalid to update the `END_DATE`
+  to be earlier than the `START_DATE`.
+* It is invalid to edit `START_DATE` or `END_DATE` such that it overlaps with dates of other bookings.
+* Existing values will be updated to the input values.
 
 Examples:
 * `addb 1 n/John p/91234567 s/01-01-2021 e/02-01-2021`
@@ -195,7 +199,7 @@ Deletes the specified booking from the specified residence.
 Format: `deleteb r/RESIDENCE_INDEX b/BOOKING_INDEX`
 
 * Deletes the booking at the specified `BOOKING_INDEX` from the residence at the specified `RESIDENCE_INDEX`
-* `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed).
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed, items start at index 1).
 * `RESIDENCE_INDEX` and `BOOKING_INDEX` must be **positive integer** 1, 2, 3, …​
 
 Examples:
@@ -207,8 +211,8 @@ Edits the specified booking from the specified residence.
 
 Format: `editb r/RESIDENCE_INDEX b/BOOKING_INDEX [n/TENANT_NAME] [p/PHONE] [s/START_DATE] [e/END_DATE]` 
 
-* `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed).
-* `RESIDENCE_INDEX` and `BOOKING_INDEX` must be **positive integer** (>0)
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed, items start at index 1).
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` must be **positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * It is invalid to edit the `START_DATE` to be later than the `END_DATE`. Likewise, it is invalid to update the `END_DATE`
 to be earlier than the `START_DATE`.
@@ -260,7 +264,7 @@ Action | Format, Examples
 **Delete Booking of Residence** | `deleteb r/RESIDENCE_INDEX b/BOOKING_INDEX`<br> e.g., `delete r/3 b/2`
 **Edit Residence** | `edit INDEX [n/RESIDENCE_NAME] [a/ADDRESS] [c/VALID_CLEAN_STATUS] [t/TAG]`<br> e.g.,`edit 2 c/n`
 **Edit Booking of Residence** | `editb r/RESIDENCE_INDEX b/BOOKING_INDEX [n/TENANT_NAME] [p/PHONE] [s/START_DATE] [e/END_DATE]` <br> e.g., `editb r/1 b/2 p/90069009 s/03-28-2021`
-**Update Multiple Clean Status** | `status clean/unclean INDEX1 INDEX2..`<br> e.g., `status clean 1 3`
+**Update Multiple Clean Status** | `status clean INDEX1 INDEX2..` or `status unclean INDEX1 INDEX2..`<br> e.g., `status clean 1 3`
 **Find Residence** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Heights`
 **Remind Residences with Upcoming Bookings** | `remind`
 **List All Residences** | `list`
