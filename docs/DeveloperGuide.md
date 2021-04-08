@@ -547,7 +547,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-*{More to be added}*
+* 2a. User decides to undo the update action.
+
+* 2b1. CoLAB reverses the effects of the previous command
+
+  Use case ends.
 
 ### Non-Functional Requirements
 
