@@ -73,6 +73,19 @@ Shows a list of available command
 Format: `listcommand`
 
 ### Dictionary Features
+This section will introduce to you the commands to be used in the Dictionary Panel.
+![dictionary](images/dictionary_panel.png)
+
+#### Listing all content : `listcontent`
+
+Shows a list of all contents in the Dictionary.
+
+* This command allows you to view the entire list of contents in the dictionary panel.
+* It will be useful to use this command in scenarios where the list in the panel had been trimmed by other commands such as `findcontent`, or when the dictionary panel is showing definitions instead of contents.
+
+Format: `listcontent`  
+This command will return you the content in the dictionary panel:
+![listcontent](images/list_content.png)
 
 #### Finding content in the Dictionary using keywords: `findcontent`
 
@@ -82,15 +95,31 @@ Format: `findcontent KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `programming` will match `PROGRAMMING` or `Programming`
 * The order of the keywords does not matter. e.g. `content some` will match `some content`
-* Only the content is searched, headers and week numbers are not included.
-* Only full words will be matched e.g. `prog` will not match `programming`
+* Only the content is searched, headers and titles are not included.
+  (the breakdown of the content is as follows):
+  ![content breakdown](images/contentbreakdown.png)
+  
+* Only full words will be matched e.g. `prog` will not match `programming`, `OOP` will also not return `(OOP)`
 * Contents matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `some different` will return `some content`, `different thing`
 
 Examples:
 * `findcontent programming` returns `Programming` and `PROGRAMMING LANGUAGE`
 * `findcontent some different` returns `some content`, `different thing`<br>
+* `findcontent program` will return the following 2 contents:
+  ![demo findcontent](images/find_content.png)
 
+
+#### Listing all definitions : `listdef`
+
+Shows a list of all the definitions in the Dictionary.
+
+* This command allows you to view the entire list of definitions in the dictionary panel.
+* It will be useful to use this command in scenarios where the list in the panel had been trimmed by other commands such as `finddef`, or when the dictionary panel is showing content instead of definitions.
+
+Format: `listdef`  
+This command will show you the list of definitions in the dictionary panel:
+  ![listdef](images/list_def.png)
 
 #### Finding definition in the Dictionary using keywords: `finddef`
 
@@ -107,7 +136,7 @@ Format: `finddef KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `finddef programming` returns `Programming Language` and `Object-Oriented Programming` <br>
-
+  ![finddef](images/find_def.png)
 
 #### Show a dictionary content : `showdc`
 
@@ -117,19 +146,32 @@ Format: `showdc INDEX​`
 
 * Shows the dictionary content at the specified `INDEX`.
 * The index refers to the index number shown in the displayed dictionary list. The index **must be a positive integer** 1, 2, 3, …​
+* If the list shown in the dictionary panel is the content's list, then the indexes will correspond to the content in the content list.   
+  E.g. in the contents list, show the content of index 1:
+  ![showdc content](images/showdc_content.png)
+* If the list shown in the dictionary panel is the definitions list, then the indexes will correspond to the content in the definitions list.  
+  E.g. in the definitions list, show the definition of index 1:
+  ![showdc defs](images/showdc_def.png)
+  
 
-#### Listing all content : `listcontent`
-
-Shows a list of all contents in the Dictionary.
-
-Format: `listcontent`
-
-#### Listing all definitions : `listdef`
+#### Copying content to a note: `copytonote`
 
 Shows a list of all the definitions in the Dictionary.
 
-Format: `listdef`
+* This command allows you to view the entire list of definitions in the dictionary panel.
+* Useful in scenarios when the list had previously been trimmed by other commands such as `finddef`, or when the dictionary panel is showing content instead of definitions.
 
+Format: `copytonote`
+
+Example: `copytonote 1`
+  ![copttonote](images/copytonote.png)  
+You will see that a new note with the details of the content at index 1 will be created in the note panel.  
+
+To view the note created, use the command `shownote` at the respective index, in this case index 6  
+`shownote 6`:
+  ![shownote for content](images/shownoteforcontent.png)  
+  
+To edit the note/carry out other commands, please view the detailed commands under the [Notes Features](#note-features).
 
 ### Note Features
 
@@ -589,7 +631,10 @@ Action | Format, Examples
 **Find definition** | `finddef KEYWORD [MORE_KEYWORDS]`
 **Show specific content** | `showdc INDEX`
 **List content** | `listcontent`
-**List Definitions** | `listdef`
+**List definitions** | `listdef`
+**Copy content to note** | `copytonote`
+**Add new definition** | `adddef tm/TERM d/DEFINITION`
+**Add new content** | `addcontent dt/TITLE h/HEADER mc/MAINCONTENT`
 ***Note Features*** | -
 **Add note** | `addnote c/CONTENT [t/TAG]…​`
 **Delete note** | `deletenote INDEX`
