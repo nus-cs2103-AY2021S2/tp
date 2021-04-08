@@ -46,6 +46,8 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
+        name.setWrapText(true);
+        name.setMaxWidth(500);
         birthday.setText("Birthday: " + person.getBirthday().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
