@@ -50,6 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jerardsoh.png" width="200px">
 
 [[github](http://github.com/jerardsoh)]
+[[portfolio](./team/jerardsoh.md)]
 
 - Role: Developer
 - Responsibilities: Storage

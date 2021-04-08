@@ -5,6 +5,8 @@ import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_CS20
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_CS2107;
 import static seedu.address.logic.commands.CommandTestUtil.EVENTNAME_DESC_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.EVENTNAME_DESC_CS2107;
+import static seedu.address.logic.commands.CommandTestUtil.EVENTPRIORITY_DESC_CS2030;
+import static seedu.address.logic.commands.CommandTestUtil.EVENTPRIORITY_DESC_CS2107;
 import static seedu.address.logic.commands.CommandTestUtil.EVENTSTATUS_DESC_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.EVENTSTATUS_DESC_CS2107;
 //import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
@@ -17,6 +19,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CS2
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2107;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_CS2030;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_CS2107;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_CS2107;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -91,11 +95,13 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Identifier targetIndex = IDENTIFIER_SECOND_EVENT;
         String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_CS2107 + EVENTNAME_DESC_CS2107
-                + EVENTSTATUS_DESC_CS2107;
+                + EVENTSTATUS_DESC_CS2107 + EVENTPRIORITY_DESC_CS2107;
 
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_CS2107)
                 .withDescription(VALID_DESCRIPTION_CS2107)
-                .withEventStatus(VALID_STATUS_CS2107).build();
+                .withEventStatus(VALID_STATUS_CS2107)
+                .withEventPriority(VALID_PRIORITY_CS2107)
+                .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -128,9 +134,15 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // eventStatus
+        // EventStatus
         userInput = targetIndex.getOneBased() + EVENTSTATUS_DESC_CS2030;
         descriptor = new EditEventDescriptorBuilder().withEventStatus(VALID_STATUS_CS2030).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EventPriority
+        userInput = targetIndex.getOneBased() + EVENTPRIORITY_DESC_CS2030;
+        descriptor = new EditEventDescriptorBuilder().withEventPriority(VALID_PRIORITY_CS2030).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

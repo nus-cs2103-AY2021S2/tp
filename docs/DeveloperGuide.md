@@ -40,7 +40,7 @@ The **_Architecture Diagram_** given above explains the high-level design of the
 
 ### **Overall Components**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -76,11 +76,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](diagrams/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EventListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W15-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -94,7 +94,7 @@ The `UI` component,
 ![Structure of the Logic Component](diagrams/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `EventBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -113,7 +113,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](diagrams/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
@@ -126,7 +126,7 @@ The `Model`,
 
 ![Structure of the Storage Component](diagrams/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W15-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 
