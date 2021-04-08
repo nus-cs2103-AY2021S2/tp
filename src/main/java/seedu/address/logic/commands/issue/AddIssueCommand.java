@@ -49,7 +49,10 @@ public class AddIssueCommand extends Command {
     private final Issue toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Issue}
+     * Creates an AddIssueCommand to add the specified {@code Issue}
+     *
+     * @param issue the issue to add
+     * @throws NullPointerException if {@code issue} is null
      */
     public AddIssueCommand(Issue issue) {
         requireNonNull(issue);

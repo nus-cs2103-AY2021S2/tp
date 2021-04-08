@@ -37,10 +37,14 @@ public class EditIssueCommandParser implements Parser<EditIssueCommand> {
      * Parses the given {@code String} of arguments in the context of the EditIssueCommand
      * and returns an EditIssueCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @param args the argument string
+     * @return {@code EditIssueCommand} with the specified arguments
+     * @throws ParseException       if the user input does not conform the expected format
+     * @throws NullPointerException if args is null
      */
     public EditIssueCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ROOM_NUMBER, PREFIX_DESCRIPTION,
                 PREFIX_TIMESTAMP, PREFIX_STATUS, PREFIX_CATEGORY, PREFIX_TAG);
 

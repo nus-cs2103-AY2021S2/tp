@@ -39,6 +39,7 @@ public class IssueList implements Iterable<Issue> {
      * The issue must not already exist in the list.
      */
     public void add(Issue toAdd) {
+        assert internalList != null;
         requireNonNull(toAdd);
 
         if (contains(toAdd)) {
@@ -57,6 +58,7 @@ public class IssueList implements Iterable<Issue> {
      * existing issue in the list.
      */
     public void setIssue(Issue target, Issue editedIssue) {
+        assert internalList != null;
         requireAllNonNull(target, editedIssue);
 
         int index = internalList.indexOf(target);
@@ -79,6 +81,7 @@ public class IssueList implements Iterable<Issue> {
      * The issue must exist in the list.
      */
     public void remove(Issue toRemove) {
+        assert internalList != null;
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             logger.warning("Failed to find target issue to be removed");
@@ -87,6 +90,7 @@ public class IssueList implements Iterable<Issue> {
     }
 
     public void setIssues(IssueList replacement) {
+        assert internalList != null;
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
         FXCollections.sort(internalList);
@@ -97,6 +101,7 @@ public class IssueList implements Iterable<Issue> {
      * {@code issues} must not contain duplicate issues.
      */
     public void setIssues(List<Issue> issues) {
+        assert internalList != null;
         requireAllNonNull(issues);
 
         if (!issuesAreUnique(issues)) {
@@ -115,6 +120,7 @@ public class IssueList implements Iterable<Issue> {
      * @return True if there are issues with the given room associated with it.
      */
     public boolean containsRoom(Room target) {
+        assert internalList != null;
         return internalList.stream()
                 .anyMatch(issue -> issue.getRoomNumber().value.equals(target.getRoomNumber().roomNumber));
     }
@@ -123,11 +129,13 @@ public class IssueList implements Iterable<Issue> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Issue> asUnmodifiableObservableList() {
+        assert internalUnmodifiableList != null;
         return internalUnmodifiableList;
     }
 
     @Override
     public Iterator<Issue> iterator() {
+        assert internalList != null;
         return internalList.iterator();
     }
 
@@ -140,6 +148,7 @@ public class IssueList implements Iterable<Issue> {
 
     @Override
     public int hashCode() {
+        assert internalList != null;
         return internalList.hashCode();
     }
 
@@ -147,6 +156,7 @@ public class IssueList implements Iterable<Issue> {
      * Returns true if {@code issues} contains only unique issues.
      */
     private boolean issuesAreUnique(List<Issue> issues) {
+        assert internalList != null;
         for (int i = 0; i < issues.size() - 1; i++) {
             for (int j = i + 1; j < issues.size(); j++) {
                 if (issues.get(i).equals(issues.get(j))) {

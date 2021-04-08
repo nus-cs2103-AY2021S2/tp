@@ -35,6 +35,11 @@ public class CloseIssueCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a CloseIssueCommand to close the specified issue at {@code targetIndex}
+     *
+     * @param targetIndex of the issue in the filtered issue list to close
+     */
     public CloseIssueCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -50,6 +55,7 @@ public class CloseIssueCommand extends Command {
         }
 
         Issue issueToClose = lastShownList.get(targetIndex.getZeroBased());
+        assert issueToClose != null;
 
         if (issueToClose.getStatus().value == IssueStatus.Closed) {
             logger.warning("Issue to close is already closed");

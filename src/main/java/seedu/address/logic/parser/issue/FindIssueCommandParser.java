@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.issue;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
@@ -22,9 +23,14 @@ public class FindIssueCommandParser implements Parser<FindIssueCommand> {
      * Parses the given {@code String} of arguments in the context of the FindIssueCommand
      * and returns a FindIssueCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @param args the argument string
+     * @return {@code FindIssueCommand} with the specified arguments
+     * @throws ParseException       if the user input does not conform the expected format
+     * @throws NullPointerException if args is null
      */
     public FindIssueCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             logger.warning("ifind was either given an empty keyword or a keyword with only whitespaces");

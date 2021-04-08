@@ -198,6 +198,8 @@ public class ParserUtil {
      * Parses a {@code String roomNumber} into a {@code RoomNumber}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param roomNumber string representing the roomNumber
+     * @return The parsed {@code RoomNumber}
      * @throws ParseException if the given {@code roomNumber} is invalid.
      */
     public static seedu.address.model.issue.RoomNumber parseIssueRoomNumber(String roomNumber) throws ParseException {
@@ -213,6 +215,8 @@ public class ParserUtil {
      * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param description string representing the description
+     * @return The parsed {@code Description}
      * @throws ParseException if the given {@code description} is invalid.
      */
     public static Description parseDescription(String description) throws ParseException {
@@ -228,6 +232,8 @@ public class ParserUtil {
      * Parses a {@code String timestamp} into a {@code Timestamp}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param timestamp string representing the timestamp
+     * @return The parsed {@code Timestamp}
      * @throws ParseException if the given {@code timestamp} is invalid.
      */
     public static Timestamp parseTimestamp(String timestamp) throws ParseException {
@@ -248,6 +254,8 @@ public class ParserUtil {
      * Parses a {@code String status} into a {@code Status}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param status string representing the status
+     * @return The parsed {@code Status}
      * @throws ParseException if the given {@code status} is invalid.
      */
     public static Status parseStatus(String status) throws ParseException {
@@ -263,6 +271,8 @@ public class ParserUtil {
      * Parses a {@code String category} into a {@code Category}.
      * Leading and trailing whitespaces will be trimmed.
      *
+     * @param category string representing the category
+     * @return The parsed {@code Category}
      * @throws ParseException if the given {@code category} is invalid.
      */
     public static Category parseCategory(String category) throws ParseException {

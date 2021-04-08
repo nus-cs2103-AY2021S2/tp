@@ -64,6 +64,9 @@ public class EditIssueCommand extends Command {
     private final EditIssueDescriptor editIssueDescriptor;
 
     /**
+     * Creates an EditIssueCommand to edit the specified issue at {@code targetIndex} to the new Issue described by
+     * {@code editIssueDescriptor}
+     *
      * @param index               of the issue in the filtered issue list to edit
      * @param editIssueDescriptor details to edit the issue with
      */
@@ -86,7 +89,9 @@ public class EditIssueCommand extends Command {
         }
 
         Issue issueToEdit = lastShownList.get(index.getZeroBased());
+        assert issueToEdit != null;
         Issue editedIssue = createEditedIssue(issueToEdit, editIssueDescriptor);
+        assert editedIssue != null;
 
         if (!model.hasRoom(new seedu.address.model.room.RoomNumber(editedIssue.getRoomNumber().value))) {
             logger.warning("Non existent room given to iadd command");
@@ -109,7 +114,8 @@ public class EditIssueCommand extends Command {
      * edited with {@code editIssueDescriptor}.
      */
     private static Issue createEditedIssue(Issue issueToEdit, EditIssueDescriptor editIssueDescriptor) {
-        assert issueToEdit != null;
+        requireNonNull(issueToEdit);
+        requireNonNull(editIssueDescriptor);
 
         RoomNumber updatedRoomNumber = editIssueDescriptor.getRoomNumber().orElse(issueToEdit.getRoomNumber());
         Description updatedDescription = editIssueDescriptor.getDescription()
@@ -161,6 +167,7 @@ public class EditIssueCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditIssueDescriptor(EditIssueDescriptor toCopy) {
+            requireNonNull(toCopy);
             setRoomNumber(toCopy.roomNumber);
             setDescription(toCopy.description);
             setTimestamp(toCopy.timestamp);
@@ -176,50 +183,86 @@ public class EditIssueCommand extends Command {
             return CollectionUtil.isAnyNonNull(roomNumber, description, timestamp, status, category, tags);
         }
 
-        public void setRoomNumber(RoomNumber name) {
-            this.roomNumber = name;
+        /**
+         * Sets {@code roomNumber} to this object's {@code roomNumber}.
+         */
+        public void setRoomNumber(RoomNumber roomNumber) {
+            this.roomNumber = roomNumber;
         }
 
+        /**
+         * Returns an immutable room number.
+         * Returns {@code Optional#empty()} if {@code roomNumber} is null.
+         *
+         * @return RoomNumber of the issue
+         */
         public Optional<RoomNumber> getRoomNumber() {
             return Optional.ofNullable(roomNumber);
         }
 
-        public void setDescription(Description phone) {
-            this.description = phone;
+        /**
+         * Sets {@code description} to this object's {@code description}.
+         */
+        public void setDescription(Description description) {
+            this.description = description;
         }
 
+        /**
+         * Returns an immutable description.
+         * Returns {@code Optional#empty()} if {@code description} is null.
+         *
+         * @return Description of the issue
+         */
         public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
         }
 
-        public void setTimestamp(Timestamp email) {
-            this.timestamp = email;
+        /**
+         * Sets {@code timestamp} to this object's {@code timestamp}.
+         */
+        public void setTimestamp(Timestamp timestamp) {
+            this.timestamp = timestamp;
         }
 
+        /**
+         * Returns an immutable timestamp.
+         * Returns {@code Optional#empty()} if {@code timestamp} is null.
+         *
+         * @return Timestamp of the issue
+         */
         public Optional<Timestamp> getTimestamp() {
             return Optional.ofNullable(timestamp);
         }
 
-        public void setStatus(Status address) {
-            this.status = address;
+        /**
+         * Sets {@code status} to this object's {@code status}.
+         */
+        public void setStatus(Status status) {
+            this.status = status;
         }
 
+        /**
+         * Returns an immutable status.
+         * Returns {@code Optional#empty()} if {@code status} is null.
+         *
+         * @return Status of the issue
+         */
         public Optional<Status> getStatus() {
             return Optional.ofNullable(status);
         }
 
         /**
          * Sets {@code category} to this object's {@code category}.
-         * A defensive copy of {@code category} is used internally.
          */
         public void setCategory(Category category) {
             this.category = category;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code category} is null.
+         * Returns an immutable status.
+         * Returns {@code Optional#empty()} if {@code status} is null.
+         *
+         * @return Category of the issue
          */
         public Optional<Category> getCategory() {
             return Optional.ofNullable(category);
@@ -242,6 +285,9 @@ public class EditIssueCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Checks if this EditIssueDescriptor is equal to another. Follows Issue's equals method.
+         */
         @Override
         public boolean equals(Object other) {
             // short circuit if same object

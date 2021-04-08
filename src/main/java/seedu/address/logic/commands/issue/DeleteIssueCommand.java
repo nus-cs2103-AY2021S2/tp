@@ -32,6 +32,11 @@ public class DeleteIssueCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteIssueCommand to delete the specified issue at {@code targetIndex}
+     *
+     * @param targetIndex of the issue in the filtered issue list to delete
+     */
     public DeleteIssueCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
@@ -47,6 +52,8 @@ public class DeleteIssueCommand extends Command {
         }
 
         Issue issueToDelete = lastShownList.get(targetIndex.getZeroBased());
+        assert issueToDelete != null;
+
         model.deleteIssue(issueToDelete);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_ISSUE_SUCCESS, issueToDelete));
