@@ -94,7 +94,7 @@ that you key in. Any success, error or warning messages will be displayed in thi
 
 Every item is made up of an item name, location and quantity. Expiry date and tags are optional. 
 
-Expiry date of an item will be shown in orange if the item is expiring in 3 days. Expiry date of an item will be shown
+Expiry date of an item will be shown in orange if the item is expiring within the next 3 days. Expiry date of an item will be shown
 in red if the item has expired.
 
 2 items are identical when they have the exact same name, location and expiry date.
