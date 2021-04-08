@@ -1,0 +1,77 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TutorTrackerParser" as TutorTrackerParser LOGIC_COLOR
+participant ":AddReminderCommandParser" as AddReminderCommandParser LOGIC_COLOR
+participant "a:AddReminderCommand" as AddReminderCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "r:Reminder" as Reminder LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add_reminder \nds/Pay Tuition Fee d/2021-4-11")
+activate LogicManager
+
+LogicManager -> TutorTrackerParser : parseCommand("add_reminder \nds/Pay Tuition Fee d/2021-4-11")
+activate TutorTrackerParser
+
+create AddReminderCommandParser
+TutorTrackerParser -> AddReminderCommandParser
+activate AddReminderCommandParser
+
+AddReminderCommandParser --> TutorTrackerParser
+deactivate AddReminderCommandParser
+
+TutorTrackerParser -> AddReminderCommandParser : parse("Pay Tuition Fee", "2021-4-11")
+activate AddReminderCommandParser
+
+create Reminder
+AddReminderCommandParser -> Reminder : Reminder("Pay Tuition Fee", "2021-4-11")
+activate Reminder
+
+Reminder --> AddReminderCommandParser : r
+deactivate Reminder
+
+create AddReminderCommand
+AddReminderCommandParser -> AddReminderCommand : AddReminderCommand(r)
+activate AddReminderCommand
+
+AddReminderCommand --> AddReminderCommandParser : a
+deactivate AddReminderCommand
+
+AddReminderCommandParser --> TutorTrackerParser : a
+deactivate AddReminderCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddReminderCommandParser -[hidden]-> TutorTrackerParser
+destroy AddReminderCommandParser
+
+TutorTrackerParser --> LogicManager : a
+deactivate TutorTrackerParser
+
+LogicManager -> AddReminderCommand : execute()
+activate AddReminderCommand
+
+AddReminderCommand -> Model : addReminder(r)
+activate Model
+
+Model --> AddReminderCommand
+deactivate Model
+
+create CommandResult
+AddReminderCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddReminderCommand
+deactivate CommandResult
+
+AddReminderCommand --> LogicManager : result
+deactivate AddReminderCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

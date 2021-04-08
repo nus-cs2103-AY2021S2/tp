@@ -1,0 +1,49 @@
+@startuml
+!include ../style.puml
+title Adding a Reminder
+
+start
+:User executes AddReminderCommand;
+
+if () then ([all required prefixes present])
+      :Parses the prefixes;
+
+      if () then ([all prefixes formatted correctly])
+      :Check if reminder date is before today;
+
+          if () then ([reminder date is before or equals today])
+          :Check if reminder already existed;
+
+              if () then ([time_From is before time_To])
+              :Add reminder to Reminder Tracker;
+              :Show success message;
+
+              else ([else])
+
+              :Shows a duplicate reminder
+              error message;
+
+              endif
+
+          else ([else])
+          :Shows an invalid datetime
+          error message;
+
+      endif
+
+      else ([else])
+
+      :Shows an error message on
+      invalid prefix format;
+
+      endif
+
+else ([else])
+    :Shows an invalid command error
+    and command format message;
+
+endif
+
+stop
+
+@enduml

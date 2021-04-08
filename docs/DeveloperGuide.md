@@ -23,10 +23,11 @@ The features of Tutor Tracker includes:
 - Viewing of tutors' profile
 - Adding a note to each tutor's profile
 - Exporting tutor's details  
-- Adding new tuition appointments
+- Adding, editing, deleting and viewing of tuition appointments
+- Adding, editing, deleting and viewing of tuition-related schedules
 - Filtering tutors by personal preference (i.e. availability, experiences, name, location, price, etc.)
-- Viewing upcoming tuition appointments
 - Adding, editing, deleting and listing grade records in GradeBook
+- Adding, editing, deleting and viewing of reminders
 
 The purpose of this Developer Guide is to help you understand the design and implementation of Tutor Tracker to get started on your contributions to Tutor Tracker.
 
@@ -152,7 +153,7 @@ These operations are exposed in the `Logic` interface by parsing respective `Fav
 Given below are example usage scenarios and how the favourite feature behaves at each step.
 
 ### [Proposed] Note Feature
-####Proposed Implementation
+#### Proposed Implementation
 The proposed note feature is to facilitate the user to keep track of his/her own note of different tutors.
 Additionally, it implements the following operations:
 * `Add note` - Add a note
@@ -163,7 +164,7 @@ Additionally, it implements the following operations:
 Given below are example usage scenarios and how the note feature behaves at each step.
 
 ### [Proposed] Grade Feature
-####Proposed Implementation
+#### Proposed Implementation
 The proposed grade feature is to facilitate the user to keep track of his/her
 own grades of different subjects for reference and future study plan, 
 which are internally stored as `GradeBook`. Additionally,
@@ -195,36 +196,148 @@ filter the lists of tutors and appointments.
 These filters would be shown in the UI along the top of the list of tutors and appointments, showing
 the active and inactive filters.
 
-### [Proposed] Schedule Feature
-####Proposed Implementation
-The proposed schedule feature is to facilitate the user to keep track of his/her
-own schedule, which are events that are closely related to tuition, i.e., tuition's homework deadline.
-The schedules are internally stored in `scheduleList`.
-Additionally,  it implements the following operations:
-* `Add a schedule` - Add a schedule to the user's schedules
-* `Delete a schedule` - Delete a schedule by schedule name
-* `Edit a schedule` - Edit a schedule by schedule name
+### Schedule Tracker
+Tutor Tracker's Schedule Tracker allows users to create schedules to track their ongoing or upcoming timed-sensitive tasks.
 
+#### Rationale
+As Tutor Tracker is an application to aid users to track their upcoming tuition appointments, we have also considered that users may also wish to keep track and manage other time-sensitive tuition-related tasks. 
+Examples are allocating time to finish their tuition homework or any other tuition-related tasks.
+With Schedule Tracker feature, users can now keep track and manage all tuition-related information on the same application instead of using multiple applications.
+
+#### Implementation
+
+A schedule is composed of a `title`, `description`, `schedule date`, `time from` and `time to`, which are used to identify a schedule uniquely.
+
+All the user's schedules are stored internally in the `scheduleList`.
+Schedule Tracker consist of the following operations that can be performed on schedule:
+* `Add a schedule` - Add a new schedule and store it in the user's `scheduleList`.
+* `Delete a schedule` - Delete a schedule by the index displayed in the `scheduleList`.
+* `Edit a schedule` - Edit a schedule (changing its attributes' value) by the index displayed in the `scheduleList`. 
+* `View schedules` - View the list of schedules that is happening on the queried date.
+* `List all schedules` - View all the schedules stored in the `scheduleList`.
+ 
 These operations are exposed in the `Logic` interface by parsing respective `AddScheduleCommand`,
-`DeleteScheduleCommand` and `EditScheduleCommand`.
+`DeleteScheduleCommand`, `EditScheduleCommand` and `ViewScheduleCommand`.
 
-Given below is example usage scenarios and how the schedule features behave.
+When the user enters the `add_schedule` command to add a new schedule, the user input command undergoes the same command parsing as described in
+[Logic component](#logic-component). 
 
-### [Proposed] Reminder Feature
-####Proposed Implementation
-The proposed reminder feature is to facilitate the user to keep track of his/her
-own events (`appointment` or `schedule`) in the form of reminders when he/she runs the application.
-The reminders are internally stored in `reminderList`.
-Additionally,  it implements the following operations:
-* `Add a reminder` - Add a reminder to the user's reminders
-* `Delete a reminder` - Delete a reminder by index
-* `Edit a reminder` - Edit a reminder by index
+Steps for the execution of the `AddScheduleCommand` (assuming that no errors are encountered):
+1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
+2. The `TutorTrackerParser` will then create a `AddScheduleCommandParser`.
+3. The `AddScheduleCommandParser` will then parse the inputs, and creates a `AddScheduleCommand`.
+4. The `AddScheduleCommand` will then validates the parameters and creates a `Schedule` object.
+5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `addSchedule()`, then create a `CommandResult` object and return the result.
+6. The `Ui` component will detect this change and update the GUI.
+
+![Sequence Diagram of Add Schedule](images/schedule/ScheduleSequenceDiagram.png)
+
+#### Design Consideration
+
+**Displaying Schedule in the GUI**
+
+|              | **Pros**   | **Cons** |
+| -------------|-------------| -----|
+| **Option 1** <br> Display schedules with appointments in the same list view. | Allows users to view everything in a single panel. | Users may have difficulty to differentiate appointments and schedule if not looked properly.|
+| **Option 2 (current choice)** <br> Display schedules in a separate tab from appointment. | Clear segregation between appointments and schedules. | May impose inconvenience as users have to switch tabs between appointments and schedules depending on their needs |
+
+Reason for choosing option 2:
+* As we do not wish to overwhelm the user with too much information to provide a better user experience, we decided that option 2 may be a better option.
+* Viewing appointments and schedules in the same panel is later proposed as a different solution in the Timeable Feature.
+
+The following activity diagram summarizes what happens when the `add_schedule` command is executed.
+
+![Activity Diagram of Add Schedule](images/schedule/ScheduleActivityDiagram.png)
+
+### Reminder Tracker
+Tutor Tracker's Reminder Tracker allows users to create reminders to help them track their ongoing or upcoming todos or non-time constraint tasks.
+
+#### Rationale
+As Tutor Tracker is an application to aid users to track their upcoming tuition appointments, we have also considered that users may also wish to keep track and manage tuition-related reminders.
+Reminders are date but not time-sensitive, users can add as many reminders as they wish on a certain day.
+
+#### Implementation
+A reminder is composed of `description` and `date`, which are used to identify a reminder uniquely.
+
+All the user's reminders are stored internally in the `reminderList`.
+Reminder Tracker consist of the following operations that can be performed on reminders:
+* `Add a reminder` - Add a new reminder and store it in the user's `reminderList`.
+* `Delete a reminder` - Delete a reminder by the index displayed in the `reminderList`.
+* `Edit a reminder` - Edit a reminder (changing its attributes' value) by the index displayed in the `reminderList`.
+* `List all reminders` - View all the reminders stored in the `reminderList`.
 
 These operations are exposed in the `Logic` interface by parsing respective `AddReminderCommand`,
 `DeleteReminderCommand` and `EditReminderCommand`.
 
+When the user enters the `add_schedule` command to add a new schedule, the user input command undergoes the same command parsing as described in
+[Logic component](#logic-component).
+
+Steps for the execution of the `AddReminderCommand` (assuming that no errors are encountered):
+1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
+2. The `TutorTrackerParser` will then create a `AddReminderCommandParser`.
+3. The `AddReminderCommandParser` will then parse the inputs, and creates a `AddReminderCommand`.
+4. The `AddReminderCommand` will then validates the parameters and creates a `Reminder` object.
+5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `addSchedule()`, then create a `CommandResult` object and return the result.
+6. The `Ui` component will detect this change and update the GUI.
+
+![Sequence Diagram of Add Reminder](images/reminder/ReminderSequenceDiagram.png)
+
+**Displaying Reminders in the GUI**
+
+|              | **Pros**   | **Cons** |
+| -------------|-------------| -----|
+| **Option 1** <br> A pop-up notification for reminder of the day. | User are notified of reminders without having specifically request for it. | Multiple pop-up notifications from the reminders could cause annoyance for the user. |
+| **Option 2 (current choice)** <br> Display reminders at the side of the main window. | User could see clearly the duration left for each task at a glance. | Reminders can be missed out if users are not aware of it. |
+
+Reason for choosing option 2:
+* Pop-up notifications can be intrusive and may cause latency when using the application.
+
+The following activity diagram summarizes what happens when the `add_reminder` command is executed.
+
+![Activity Diagram of Add Reminder](images/reminder/ReminderActivityDiagram.png)
+
+### Timetable Window
+Tutor Tracker's Timetable GUI allows users to view their appointments and schedules of a particular week in a graphical representation.
+
+#### Rationale
+As Tutor Tracker is an application to aid users in tracking their upcoming tuition appointments and schedules, our target users are secondary students.
+Like their school's timetable, we wish to present their personal tuition timetable to them.
+
+#### Implementation
+The current implementation of the timetable view makes use of the list of appointments and schedules from the ModelManager. 
+The schedule view will display appointments from Monday to Sunday using JavaFx's GridPane. 
+Each row would consist of all appointments & schedules of a specific day, and the duration of an appointment or schedule would correspond to the number of columns taken up by an event. 
+The date of an appointment will be indicated using the first column of the grid.
+
+When the user enters the `timetable` command to open the timetable window, the user input command undergoes the same command parsing as described in
+[Logic component](#logic-component).
+
+Steps for the execution of the `ViewTimeTableCommand` (assuming that no errors are encountered):
+1. When the `execute()` method of the `LogicManager` is called, the `TutorTrackerParser`'s `parseCommand()` method is called.
+2. The `TutorTrackerParser` will then create a `ViewTimeTableCommandParser`.
+3. The `ViewTimeTableCommandParser` will then parse the inputs, and creates a `ViewTimeTableCommand`.
+4. The `ViewTimeTableCommand` will then validates the parameters.
+5. Assuming that the above steps are all successful, the `LogicManager` will call the `ModelManager`'s `viewTimetable()`, then create a `CommandResult` object and return the result.
+6. The `Ui` component will detect that it is asking for the timetable window, and will open it as a separate window.
+
+![Sequence Diagram of View TimeTable](images/timetable/TimeTableWindowSequenceDiagram.png)
+
+**Displaying TimeTable in the GUI**
+
+|              | **Pros**   | **Cons** |
+| -------------|-------------| -----|
+| **Option 1** <br> A embedded timetable at the side of main window. | Users can view their timetable without having specifically request for it. | UI may be too cluttered due to amount of information on screen. |
+| **Option 2 (current choice)** <br> Displaying timetable as a separate window. | Visually cleaner and clearer as it is isolated from the other Tutor Tracker's Main Window. | Lower user experience as commands are required to open the timetable window. |
+
+Reason for choosing option 2:
+* To avoid overwhelming users with a huge amount of information, we strongly believe that opening a separate window is ideal.
+
+The following activity diagram summarizes what happens when the `timetable` command is executed.
+
+![Activity Diagram of View TimeTable](images/timetable/TimeTableWindowActivityDiagram.png)
+
 ### [Proposed] Budget Feature
-#### Proposed Implementaion
+#### Proposed Implementation
 The proposed budget feature is to facilitate the user to keep track of the total
 cost of all of his own appointments and whether it is within the budget he has set for
 himself. The budget is an optional feature, and can easily be added through
@@ -305,7 +418,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`     | User  | delete_budget                                     | Delete an existing budget that I have and no longer need
 | `* *`   | User  | edit_budget                                       | Change an existing budget that I have   
 | `* *`   | User  | view_budget                                       | View an existing budget and cost of total appointments of user
-
+| `* *`   | User | Add a schedule                                         | Keep track of tuition-related schedules                          |
+| `* *`   | User | View my schedules on a particular date               | Know what schedules do I have on a particular day                                      |
+| `* *`   | User | Delete a schedule                                    | Remove canceled schedules                                    |
+| `* *`   | User | Check my own schedule list                           | Know the timing of all my schedules in order                 |
+| `* *`   | Careless user  | Edit schedule details                       | Fix typos or add in details that I forgot to enter of the schedule |
+| `* *`   | Meticulous user  | View my timetable that consist of both appointments and schedules                       | Keep track of appointments and schedules happening on a particular week |
+| `* *`   | User | Add a reminder                                         | Keep track and manage personal reminders                          |
+| `* *`   | User | Delete a reminder                                    | Remove unnecessary reminders                                    |
+| `* *`   | User | Check my own reminder list                           | Know the dates of all my reminders in order                 |
+| `* *`   | Careless user  | Edit reminder details                       | Fix typos or add in details that I forgot to enter of the reminder |
 
 ### Use cases
 
@@ -683,6 +805,155 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
   * 2a1. TutorTracker flags out an error.
 
 <hr/>
+
+**Use Case UC0022: Add new schedule**
+
+**MSS**
+
+1.  User requests to add a schedule.
+2.  TutorTracker adds the schedule and displays the new schedule.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The title, description, date of schedule or start and end time is empty.
+    * 1a1. TutorTracker shows an error message.
+
+      Use case ends.
+
+* 1b. The given date or start and end time is invalid.
+    * 1b1. TutorTracker shows an error message.
+
+      Use case ends.
+
+<hr/>
+
+**Use Case UC0023: List all schedules**
+
+**MSS**
+
+1. User requests to view the list of schedules.
+2. TutorTracker displays the list of schedules to the user.
+
+   Use case ends.
+
+<hr/>
+
+**Use Case UC0024: View schedule**
+
+**MSS**
+
+1.  User requests to view the list of schedules.
+2.  TutorTracker displays the list of schedules to the user.
+3.  User requests to view schedules on a particular date.
+4.  TutorTracker displays the schedules happening on a particular date the user have requested for.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. TutorTracker shows a message that there are no schedules.
+
+  Use case ends.
+
+* 3a. The date is invalid.
+    * 3a1. TutorTracker shows an error message.
+
+  User case ends.
+
+<hr/>
+
+**Use Case UC0025: Delete a schedule**
+
+**MSS**
+
+1.  User requests to view the list of schedules.
+2.  TutorTracker displays the list of schedules to the user.
+3.  User requests to delete a specific schedule in the list by indicating the index shown.
+4.  TutorTracker deletes that specific schedule.
+
+**Extensions**
+
+* 3a. The index is out of bound.
+    * 3a1. TutorTracker shows an error message.
+
+  User case ends.
+
+<hr/>
+
+**Use Case UC0026: Add a new reminder**
+
+**MSS**
+
+1.  User requests to add a reminder.
+2.  TutorTracker adds the reminder and displays the new reminder.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The description or date of reminder is empty.
+    * 1a1. TutorTracker shows an error message.
+
+      Use case ends.
+
+* 1b. The given date is invalid.
+    * 1b1. TutorTracker shows an error message.
+
+      Use case ends.
+
+<hr/>
+
+**Use Case UC0027: List all reminders**
+
+**MSS**
+
+1. User requests to view the list of reminders.
+2. TutorTracker displays the list of reminders to the user.
+
+   Use case ends.
+
+<hr/>
+
+**Use Case UC0028: Delete a reminder**
+
+**MSS**
+
+1. User requests to view the list of reminders.
+2. TutorTracker displays the list of reminders to the user.
+3.  User requests to delete a specific reminder in the list by indicating the index shown.
+4.  TutorTracker deletes that specific reminder.
+
+**Extensions**
+
+* 3a. The index is out of bound.
+    * 3a1. TutorTracker shows an error message.
+
+  User case ends.
+
+<hr/>
+
+**Use Case UC0029: Open timetable window**
+
+**MSS**
+
+1. User requests to view timetable of a particular week by entering a date.
+2. TutorTracker open and displays the timetable window to user.
+
+**Extensions**
+
+* 1a. The date is empty.
+    * 1a1. TutorTracker set the default date is today.
+
+    User case resumes at step 2.
+
+* 1b. The given date is invalid.
+    * 1b1. TutorTracker shows an error message.
+
+      Use case ends.
+
+<hr/>
+
 
 *{More to be added}*
 
