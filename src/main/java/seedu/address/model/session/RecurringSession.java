@@ -7,6 +7,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
+
+import seedu.address.commons.core.index.Index;
 
 /**
  * Class that handles RecurringSession that extend Session.
@@ -244,7 +247,7 @@ public class RecurringSession extends Session {
     }
 
     /**
-     * Creates a new {@RecurringSession} with the new {@code newSessionDate}.
+     * Creates a new {@code RecurringSession} with the new {@code newSessionDate}.
      * @param newSessionDate the new session date.
      */
     public RecurringSession withStartDate(SessionDate newSessionDate) {
@@ -253,12 +256,59 @@ public class RecurringSession extends Session {
     }
 
     /**
-     * Creates a new {@RecurringSession} with the new {@code newLastSessionDate}.
+     * Creates a new {@code RecurringSession} with the new {@code newLastSessionDate}.
      * @param newLastSessionDate the new last session date.
      */
     public RecurringSession withLastSessionDate(SessionDate newLastSessionDate) {
         return new RecurringSession(getSessionDate(), getDuration(), getSubject(),
                 getFee(), getInterval(), newLastSessionDate);
+    }
+
+    /**
+     * Removes a single {@code Session} with {@code sessionDate}.
+     * Splits the remaining {@code RecurringSession} into two {@code RecurringSession}
+     */
+    public void removeSessionInRecurringSession(Index sessionIndex,
+                                                SessionDate sessionDate, List<Session> sessionList) {
+        // if session date is the start of the recurring session
+        if (getSessionDate().equals(sessionDate)) {
+            if (getLastSessionDate().equals(getSessionDate())) {
+                sessionList.remove(sessionIndex.getZeroBased());
+            } else {
+                SessionDate newStartDate = getSessionDate().addDays(getInterval().getValue());
+                if (newStartDate.equals(getLastSessionDate())) {
+                    sessionList.set(sessionIndex.getZeroBased(),
+                            new Session(newStartDate, getDuration(), getSubject(), getFee()));
+                } else {
+                    sessionList.set(sessionIndex.getZeroBased(), withStartDate(newStartDate));
+                }
+            }
+        // if session date is at the end of the recurring session
+        } else if (getLastSessionDate().equals(sessionDate)) {
+            SessionDate newEndDate = getLastSessionDate().minusDays(getInterval().getValue());
+            if (newEndDate.equals(getSessionDate())) {
+                sessionList.set(sessionIndex.getZeroBased(),
+                        new Session(newEndDate, getDuration(), getSubject(), getFee()));
+            } else {
+                sessionList.set(sessionIndex.getZeroBased(), withLastSessionDate(newEndDate));
+            }
+        } else {
+            SessionDate lastSessionDate = getLastSessionDate();
+            SessionDate firstSessionEndDate = sessionDate.minusDays(getInterval().getValue());
+            if (firstSessionEndDate.equals(getSessionDate())) {
+                sessionList.set(sessionIndex.getZeroBased(),
+                        new Session(firstSessionEndDate, getDuration(), getSubject(), getFee()));
+            } else {
+                sessionList.set(sessionIndex.getZeroBased(), withLastSessionDate(firstSessionEndDate));
+            }
+            SessionDate secondSessionStartDate = sessionDate.addDays(getInterval().getValue());
+            if (secondSessionStartDate.equals(lastSessionDate)) {
+                sessionList.add(new Session(secondSessionStartDate, getDuration(), getSubject(), getFee()));
+            } else {
+                sessionList.add(new RecurringSession(secondSessionStartDate, getDuration(), getSubject(), getFee(),
+                        getInterval(), lastSessionDate));
+            }
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -45,6 +46,7 @@ public class DeleteRecurringSessionCommand extends Command {
      * Creates an DeleteRecurringSessionCommand
      */
     public DeleteRecurringSessionCommand(Name studentName, Index targetIndex, SessionDate sessionDate) {
+        requireAllNonNull(studentName, targetIndex, sessionDate);
         this.studentName = studentName;
         this.targetIndex = targetIndex;
         this.sessionDate = sessionDate;
@@ -79,7 +81,7 @@ public class DeleteRecurringSessionCommand extends Command {
         }
 
 
-        model.deleteRecurringSession(studentName, targetIndex, sessionDate);
+        model.deleteSessionInRecurringSession(studentName, targetIndex, sessionDate);
         return new CommandResult(String.format(MESSAGE_DELETE_SESSION_OF_RECURRING_SESSION_SUCCESS,
                 sessionToDelete.toString()));
     }
