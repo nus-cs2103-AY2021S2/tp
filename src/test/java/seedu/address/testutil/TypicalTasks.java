@@ -10,8 +10,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDU
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDULE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 

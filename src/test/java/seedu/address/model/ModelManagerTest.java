@@ -3,18 +3,30 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.COMPARATOR_NATURAL_ORDERED_TAG_LIST;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static seedu.address.model.tag.UniqueTagListTestUtil.TAG_FRIEND;
+import static seedu.address.model.tag.UniqueTagListTestUtil.TAG_HUSBAND;
+import static seedu.address.model.tag.UniqueTagListTestUtil.TAG_VIM;
+import static seedu.address.model.tag.UniqueTagListTestUtil.TAG_YELLOW;
+import static seedu.address.model.tag.UniqueTagListTestUtil.TAG_ZOO;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.ALICE;
 import static seedu.address.testutil.TypicalTasks.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueTagListTestUtil;
 import seedu.address.model.task.predicates.TitleContainsKeywordsPredicate;
 import seedu.address.testutil.PlannerBuilder;
 
@@ -89,13 +101,75 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasTag_nullTag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTag(null));
+    }
+
+    @Test
+    public void hasTag_tagNotInPlanner_returnsFalse() {
+        assertFalse(modelManager.hasTag(TAG_HUSBAND));
+    }
+
+    @Test
+    public void hasTag_tagInPlanner_returnsTrue() {
+        modelManager.addTag(TAG_HUSBAND);
+        assertTrue(modelManager.hasTag(TAG_HUSBAND));
+    }
+
+    @Test
+    public void addTags_tagNotInOrder_maintainsSortedList() {
+        Set<Tag> setOfTags = UniqueTagListTestUtil.buildWithTags(TAG_VIM, TAG_ZOO, TAG_HUSBAND);
+        modelManager.addTagsIfAbsent(setOfTags);
+
+        List<Tag> expectedSortedList = new ArrayList<>();
+        expectedSortedList.add(TAG_HUSBAND);
+        expectedSortedList.add(TAG_VIM);
+        expectedSortedList.add(TAG_ZOO);
+        assertEquals(modelManager.getSortedTagList(), expectedSortedList);
+    }
+
+    @Test
+    public void setTags_tagNotInOrder_maintainsSortedList() {
+        Set<Tag> ogSetOfTags = UniqueTagListTestUtil.buildWithTags(TAG_FRIEND, TAG_YELLOW, TAG_VIM);
+        modelManager.addTagsIfAbsent(ogSetOfTags);
+        Set<Tag> oldSetOfTags = UniqueTagListTestUtil.buildWithTags(TAG_FRIEND, TAG_YELLOW);
+        Set<Tag> newSetOfTags = UniqueTagListTestUtil.buildWithTags(TAG_ZOO, TAG_HUSBAND);
+        modelManager.setTags(oldSetOfTags, newSetOfTags);
+
+        List<Tag> expectedSortedList = new ArrayList<>();
+        expectedSortedList.add(TAG_HUSBAND);
+        expectedSortedList.add(TAG_VIM);
+        expectedSortedList.add(TAG_ZOO);
+        assertEquals(modelManager.getSortedTagList(), expectedSortedList);
+    }
+
+    @Test
+    public void updateSortedTagList_unsortedList_returnsSortedList() {
+        Planner planner =
+                new PlannerBuilder().withTag(TAG_ZOO).withTag(TAG_FRIEND).withTag(TAG_HUSBAND).build();
+        UserPrefs userPrefs = new UserPrefs();
+        ModelManager unsortedModelManager = new ModelManager(planner, userPrefs);
+        unsortedModelManager.updateSortedTagList(COMPARATOR_NATURAL_ORDERED_TAG_LIST);
+
+        Set<Tag> setOfTags = UniqueTagListTestUtil.buildWithTags(TAG_FRIEND, TAG_HUSBAND, TAG_ZOO);
+        modelManager.addTagsIfAbsent(setOfTags);
+        assertEquals(modelManager, unsortedModelManager);
+    }
+
+    @Test
     public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTaskList().remove(0));
     }
 
     @Test
+    public void getSortedTagList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedTagList().remove(0));
+    }
+
+    @Test
     public void equals() {
-        Planner planner = new PlannerBuilder().withTask(ALICE).withTask(BENSON).build();
+        Planner planner =
+                new PlannerBuilder().withTask(ALICE).withTask(BENSON).withTag(TAG_FRIEND).withTag(TAG_HUSBAND).build();
         Planner differentPlanner = new Planner();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -123,6 +197,13 @@ public class ModelManagerTest {
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+
+        // different sortedTagList -> returns false
+        modelManager.updateSortedTagList(Comparator.reverseOrder());
+        assertFalse(modelManager.equals(new ModelManager(planner, userPrefs)));
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateSortedTagList(COMPARATOR_NATURAL_ORDERED_TAG_LIST);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

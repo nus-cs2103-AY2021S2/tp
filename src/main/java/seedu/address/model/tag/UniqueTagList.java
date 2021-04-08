@@ -155,15 +155,6 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * Provides the comparator which Tags in this list are being sorted with.
-     *
-     * @return Comparator that is used to sort the Tags.
-     */
-    public Comparator<Tag> getTagComparator() {
-        return Comparator.naturalOrder();
-    }
-
-    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Tag> asUnmodifiableObservableList() {

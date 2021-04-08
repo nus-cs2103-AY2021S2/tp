@@ -244,15 +244,6 @@ public class Planner implements ReadOnlyPlanner {
         tags.remove(key);
     }
 
-    /**
-     * Returns the comparator that specifies how Tags are being sorted in the TagList.
-     *
-     * @return Comparator that is used to sort the Tags.
-     */
-    public Comparator<Tag> getTagComparator() {
-        return tags.getTagComparator();
-    }
-
     //// viewing date operations
 
     /**

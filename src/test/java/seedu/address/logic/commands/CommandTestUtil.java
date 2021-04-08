@@ -19,6 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.Planner;
+import seedu.address.model.tag.UniqueTagListTestUtil;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.predicates.TitleContainsKeywordsPredicate;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
@@ -41,8 +42,6 @@ public class CommandTestUtil {
     public static final String VALID_STATUS_INDEX = "1000";
     public static final String VALID_DURATION_AMY = "12:30-13:30";
     public static final String VALID_DURATION_BOB = "12:30-13:30";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
 
     public static final String TITLE_DESC_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
     public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
@@ -58,8 +57,8 @@ public class CommandTestUtil {
     public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
     public static final String STATUS_DESC_AMY = " " + PREFIX_STATUS + VALID_STATUS_AMY;
     public static final String STATUS_DESC_BOB = " " + PREFIX_STATUS + VALID_STATUS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + UniqueTagListTestUtil.VALID_TAG_FRIEND;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + UniqueTagListTestUtil.VALID_TAG_HUSBAND;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in titles
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE
@@ -79,11 +78,11 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_AMY).withDuration(VALID_DURATION_AMY)
                 .withDate(VALID_DATE_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
-                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(UniqueTagListTestUtil.VALID_TAG_FRIEND).build();
         DESC_BOB = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_BOB).withDuration(VALID_DURATION_BOB)
                 .withDate(VALID_DATE_BOB).withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB)
                 .withDescription(VALID_DESCRIPTION_BOB).withStatus(VALID_STATUS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(UniqueTagListTestUtil.VALID_TAG_HUSBAND, UniqueTagListTestUtil.VALID_TAG_FRIEND).build();
     }
 
     /**
