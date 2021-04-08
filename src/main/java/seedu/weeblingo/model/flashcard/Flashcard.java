@@ -71,6 +71,23 @@ public class Flashcard {
     }
 
     /**
+     * Returns true if this flashcard has all of the tags specified, be it in the weeblingo tags or user tags.
+     * @param tags The specified tags to check for.
+     */
+    public boolean checkHasTags(Set<Tag> tags) {
+        if (tags.isEmpty()) {
+            return true;
+        }
+        boolean check = true;
+        Set<Tag> weeblingoTags = getWeeblingoTags();
+        Set<Tag> userTags = getUserTags();
+        for (Tag tag : tags) {
+            check = check && (weeblingoTags.contains(tag) || userTags.contains(tag));
+        }
+        return check;
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */

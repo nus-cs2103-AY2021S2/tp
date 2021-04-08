@@ -14,13 +14,21 @@ import seedu.weeblingo.model.flashcard.Answer;
 public class CheckCommand extends Command {
 
     public static final String COMMAND_WORD = "check";
-    public static final String CORRECT_ATTEMPT = "You answered correctly!\n";
+
+    public static final String CORRECT_ATTEMPT = "You answered this question correctly!\n";
+
     public static final String WRONG_ATTEMPT = " is incorrect.\n";
-    public static final String MESSAGE_HELPER = "Enter \"end\" to end the quiz "
-            + "and \"next\" to move to the next question.";
+
+    public static final String MESSAGE_HELPER = "Enter \"end\" to return to menu "
+            + "or \"next\" to move to the next question.";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": checks user answer for displayed flashcard.\n"
             + "Parameters: ATTEMPT\n"
             + "Example: " + COMMAND_WORD + " apple";
+
+    public static final String MULTIPLE_CHECKING_AFTER_SUCCESS = "You already got this question correct.\n"
+            + "Please enter \"next\" to go to the next question "
+            + "or \"end\" to return to menu. \n";
 
     private final Answer attempt;
 
@@ -36,14 +44,17 @@ public class CheckCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        try {
-            model.getCurrentFlashcard();
-        } catch (NullPointerException e) {
-            throw new CommandException(Messages.NO_QUIZ_ERROR_MESSAGE);
+
+        int currentMode = model.getCurrentMode();
+
+        if (currentMode == Mode.MODE_CHECK_SUCCESS) {
+            throw new CommandException(MULTIPLE_CHECKING_AFTER_SUCCESS);
         }
-        if (model.getCurrentMode() == Mode.MODE_CHECK_SUCCESS) {
-            throw new CommandException(Messages.MULTIPLE_CHECKING_AFTER_SUCCESS);
+
+        if (currentMode != Mode.MODE_QUIZ_SESSION) {
+            throw new CommandException(Messages.MESSAGE_NOT_IN_QUIZ_SESSION);
         }
+
         // Model::isCorrectAttempt() modifies the quiz statistic, FYI
         if (model.isCorrectAttempt(attempt)) {
             model.switchModeCheckSuccess();

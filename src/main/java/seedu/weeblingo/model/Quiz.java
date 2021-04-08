@@ -1,7 +1,11 @@
 package seedu.weeblingo.model;
 
+import static seedu.weeblingo.commons.core.Messages.MESSAGE_TAG_NOT_FOUND;
+import static seedu.weeblingo.logic.commands.StartCommand.MESSAGE_NUMBER_LARGER_THAN_DATABASE_FLASHCARDS_SIZE;
+
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -10,7 +14,6 @@ import java.util.Optional;
 import java.util.Queue;
 import java.util.Set;
 
-import seedu.weeblingo.logic.commands.StartCommand;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
@@ -22,14 +25,13 @@ import seedu.weeblingo.model.tag.Tag;
  */
 public class Quiz {
 
-    public static final String QUIZ_END_MESSAGE = "The Quiz is over! \n"
-            + "Enter \"end\" to end the quiz. \n";
-
     private static Queue<Flashcard> quizSessionQueue;
 
     private Flashcard currentQuiz;
     private int currentQuizIndex = 0;
     private Instant startTime;
+    private List<Flashcard> attemptedFlashcards = new ArrayList<>();
+    private List<Flashcard> correctlyAnsweredFlashcards = new ArrayList<>();
 
     // Support for storing the quiz attempt history
     private int numberOfQuestionsAttempted;
@@ -78,6 +80,7 @@ public class Quiz {
             return null;
         } else {
             currentQuiz = quizSessionQueue.poll();
+            attemptedFlashcards.add(currentQuiz);
             currentQuizIndex++;
             return currentQuiz;
         }
@@ -103,6 +106,7 @@ public class Quiz {
         boolean result = currentQuiz.getAnswer().equals(attempt);
         if (result) {
             numberOfQuestionsCorrect++;
+            correctlyAnsweredFlashcards.add(currentQuiz);
         }
         return result;
     }
@@ -127,13 +131,19 @@ public class Quiz {
 
         // Filter by tags if needed
         for (Flashcard f : flashcardsToProcess) {
-            if (f.getWeeblingoTags().containsAll(tags) || f.getUserTags().containsAll(tags)) {
+            if (f.checkHasTags(tags)) {
                 randomizedQueue.offer(f);
             }
         }
 
         if (randomizedQueue.isEmpty()) {
-            throw new CommandException(StartCommand.MESSAGE_TAG_NOT_FOUND);
+            throw new CommandException(MESSAGE_TAG_NOT_FOUND);
+        }
+
+        // Check if number of questions specified is larger than number of flashcards in database
+        if (numberOfQuestions > flashcardsToProcess.size()) {
+            throw new CommandException(MESSAGE_NUMBER_LARGER_THAN_DATABASE_FLASHCARDS_SIZE
+                    + flashcardsToProcess.size() + ".");
         }
 
         // Shorten to numberOfQuestions if needed
@@ -191,5 +201,13 @@ public class Quiz {
     public Score giveScore() {
         return Score.of(numberOfQuestionsAttempted, numberOfQuestionsCorrect,
                 optionalDurationString.orElse(getQuizSessionDuration()));
+    }
+
+    public List<Flashcard> getAttemptedFlashcards() {
+        return attemptedFlashcards;
+    }
+
+    public List<Flashcard> getCorrectlyAnsweredFlashcards() {
+        return correctlyAnsweredFlashcards;
     }
 }

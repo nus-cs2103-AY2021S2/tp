@@ -120,6 +120,10 @@ public class FlashcardBook implements ReadOnlyFlashcardBook {
         flashcards.remove(key);
     }
 
+    public int sizeOfFlashcardList() {
+        return flashcards.size();
+    }
+
     @Override
     public String toString() {
         return String.format("Flashcards: %d; Scores: %d",
@@ -136,6 +140,7 @@ public class FlashcardBook implements ReadOnlyFlashcardBook {
     public ObservableList<Score> getScoreHistoryList() {
         return scores.asUnmodifiableObservableList();
     }
+
 
     @Override
     public boolean equals(Object other) {
