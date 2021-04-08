@@ -397,12 +397,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | see the profile of a particular student           | get their information                                        |
 | `* * *`  | user                                       | remove a student's profile                        | keep track of only students that I teach                     |
 | `* * *`  | user                                       | edit the details of a student                     | keep track of up-to-date information                         |
-| `* * *`  | user                                       | add individual tuition sessions                   | keep track of my tuition sessions                            |
-| `* * *`  | user                                       | delete an individual tuition session              | update my tuition schedule                                   |
+| `* * *`  | busy user                                  | add an individual tuition sessions                | save time by creating multiple sessions in one command       |
+| `* * *`  | user                                       | add a recurring tuition session                   | keep track of my tuition sessions                            |
+| `* * *`  | user                                       | delete a particular tuition session               | update my tuition schedule                                   |
+| `* * *`  | user                                       | delete the entire recurring session               | update my tuition schedule                                   |
+| `* * *`  | user                                       | delete a single session from a recurring session  | take a break from lessons once in a while                    |
 | `* * *`  | user                                       | see a list of all the students profile and sessions|                                                             |
 | `* * *`  | user                                       | get all the emails of the parent of my students'  | email them reminders for payment                             |
 | `* * *`  | user                                       | calculate the monthly fees of a particular student| use the information when collecting monthly fees             |
 | `* * *`  | user                                       | get the monthly fees that I would have received for the past 3 months    | manage my finance better              |
+| `* * *`  | forgetful user                             | see a list of upcoming sessions                   | be aware of my teaching schedule for the next few days       |
+| `* * *`  | user teaching many lessons                 | see my schedule in a calendar view                | visual representation of my hectic schedules at a glance     |
 | `* *`    | new user                                   | get a list of commands of the application         | know at a glance what are the features of the application    |
 | `* *`    | potential user                             | see the app populated with sample data on the first run  | try using the features easily                         |
 | `* *`    | new user                                   | purge all current data                            | get rid of sample/current data I used for exploring the app  |
@@ -623,9 +628,17 @@ MSS:
 MSS:
 
 1. User toggles to the `Calendar` tab.
-2. TutorBuddy shows a calendar representation of the sessions, showing .
+2. TutorBuddy shows a calendar representation of the sessions, showing the schedule of the current week.
 
    Use case ends.
+
+Extensions:
+
+* 2a. User can toggle between the different weeks using the left and right button in the Calendar page.
+
+* 2b. User can toggle directly move to this week's schedule by clicking on the `Today` tab.
+
+  Use case ends.
 
 **Use case: UC0X - Show help**
 
