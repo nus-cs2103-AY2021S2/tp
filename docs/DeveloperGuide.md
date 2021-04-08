@@ -497,6 +497,8 @@ The following sections will explain how each of these information is collected b
 
 #### Active diet plan details
 
+<img src="images/DietPlanListClassDiagram.png" width="547" />
+
 This section of the progress report details information pertaining to the active diet plan. These information is retrieved from the respective `DietPlan` class of the active diet plan selected by the user.
 This includes the name of the diet plan, a brief description of the diet plan and the macronutrient requirements (in percentages).
 <br/>
