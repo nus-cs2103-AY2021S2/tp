@@ -131,6 +131,7 @@ The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -188,6 +189,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.flashback.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -430,8 +432,9 @@ Step 5. `FilterCommand#execute(Model model)` then calls
 `FilteredList<Flashcard> filteredFlashcards` field in `ModelManager`.
 
 Step 6. FlashBack is then updated with the new filtered flashcard list.
+<div style="page-break-after: always;"></div>
 
-The following sequence diagram shows how the filter operation works:
+The following sequence diagram shows how the filter operation works:<br><br>
 ![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">
@@ -439,8 +442,9 @@ The following sequence diagram shows how the filter operation works:
 :information_source: **Note:** The lifeline for `FilterCommandParser` and `FilterCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+<div style="page-break-after: always;"></div>
 
-The following activity diagram summarizes what happens when a user executes the filter command:
+The following activity diagram summarizes what happens when a user executes the filter command:<br><br>
 ![FilterActivityDiagram](images/FilterActivityDiagram.png)
 
 ### \[Implemented\] Alias feature
@@ -516,28 +520,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | long-time user                             | delete an old card             | remove some notes that I no longer need
 | `* * *`  | student                                    | view all my notes   | easily refer to all my study materials
 | `* * *`  | student                                    | view the question and answer of a specific card | check if I remember the concepts correctly
-| `* * * ` | careless user | modify the details of a flash card | avoid having to delete and add a new card when I wish to update card information
+| `* * * ` | careless user | modify the details of a flashcard | avoid having to delete and add a new card when I wish to update card information
 | `* *` | multi-discipline student | put my notes under different tags and categories | easily organize them
 | `* *`     | angry student   | undo/redo my actions| my emotion will not cloud my judgements
 | `* *` | student | review my own performance after each study session | know what to improve on
+| `* *`   | student | look at the statistics | focus on topics that I am not good at
 | `* *` | student | sort the cards based on priority | know which cards I should focus on
 | `* *` | long-time user | find what I need easily | search through the list of decks without doing it manually
 | `* *` | student studying many modules | Filter cards according to subjects | it is easier to learn|
 | `*`   | student | export a part of my materials | share it with others
 | `*`   | experienced user | define my own aliases for commands | use them faster
-| `*`   | chemistry/biology Student | use subscripts | see the chemical formula easier
 | `*`   | careless student | archive my notes | easily restore them
-| `*`   | student | look at the statistics | focus on topics that I am not good at
+
 
 ### Use cases
 
 (For all use cases below, the **System** is the `FlashBack` and the **Actor** is the `user`, unless specified
 otherwise) <br /><br />
-**Use case: UC01 - Add a flash card**
+**Use case: UC01 - Add a flashcard**
 
 **MSS**
 
-1. User requests to add a new flash card into the list.
+1. User requests to add a new flashcard into the list.
 2. FlashBack adds the new flashcard.
 
    Use case ends.
@@ -549,15 +553,16 @@ otherwise) <br /><br />
 
       Use case ends.
 
-**Use case: UC02 - Remove a flash card**
+**Use case: UC02 - Remove a flashcard**
 
 **MSS**
 
-1. FlashBack shows a list of flash cards
-2. User requests to delete a specific flash card from the list
-3. FlashBack deletes the specified flash card
+1. FlashBack shows a list of flashcards
+2. User requests to delete a specific flashcard from the list
+3. FlashBack deletes the specified flashcard
 
    Use case ends.
+<div style="page-break-after: always;"></div>
 
 **Extensions**
 
@@ -570,14 +575,14 @@ otherwise) <br /><br />
 
       Use case resumes at step 1.
 
-**Use case: UC03 - Edit a flash card**
+**Use case: UC03 - Edit a flashcard**
 
 **MSS**
 
-1. FlashBack shows a list of flash cards.
-2. User requests to edit a specific flash card on the list.
-3. User enters the details of updated flash card.
-4. FlashBack updates the flash card with the given details.
+1. FlashBack shows a list of flashcards.
+2. User requests to edit a specific flashcard on the list.
+3. User enters the details of updated flashcard.
+4. FlashBack updates the flashcard with the given details.
 
    Use case ends
 
@@ -592,12 +597,12 @@ otherwise) <br /><br />
 
       Use case resumes at step 1.
 
-* 3a. The updated flash card is a duplicate of an existing card.
+* 3a. The updated flashcard is a duplicate of an existing card.
     * 3a1. FlashBack shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: UC04 - View a flash card**
+**Use case: UC04 - View a flashcard**
 
 **MSS**
 
@@ -643,14 +648,15 @@ otherwise) <br /><br />
     
       Use case ends.
 
-**Use case: UC06 - List all flash cards**
+**Use case: UC06 - List all flashcards**
 
 **MSS**
 
-1. User requests to list all flash cards.
-1. FlashBack shows a list of flash cards.
+1. User requests to list all flashcards.
+1. FlashBack shows a list of flashcards.
 
    Use case ends.
+<div style="page-break-after: always;"></div>
 
 **Use case: UC07 - Undo an undoable command**
 
@@ -693,6 +699,8 @@ Use case ends.
 * 3b. User enters `h` command when the answer is currently hidden.
     * 3b1. FlashBack shows an error message <br>
     Use case resumes at step 3.
+<div style="page-break-after: always;"></div>
+
 * 3c. User enters `a` command when the answer is currently shown.
     * 3c1. FlashBack shows an error message <br>
     Use case resumes at step 3.
@@ -748,7 +756,7 @@ in step 1 and 2 of MSS
     * 1b1. FlashBack shows an error message.
     
     Use case ends.
-
+    
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -769,6 +777,7 @@ in step 1 and 2 of MSS
 * **Undoable Command**: A command that modifies the content of FlashBack
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -783,9 +792,7 @@ testers are expected to do more *exploratory* testing.
 </div>
 
 ### Launch and shutdown
-
 1. Initial launch
-
     1. Download the jar file and copy into an empty folder
 
     1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
@@ -812,7 +819,8 @@ testers are expected to do more *exploratory* testing.
     
     1. Test cases: `list` <br>
     Expected: `FlashcardListPanel` displays all flashcards stored in `flashback.json` file. The result display shows a message: `Listed all flashcards`.
-    
+<div style="page-break-after: always;"></div>
+
 ### Adding a flashcard
 1. Adding a flashcard with a specific question, answer, category, priority and tags(if possible).
     1. Prerequisites: Application is in main mode and running
@@ -837,6 +845,7 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case: `delete 2001` <br>
     Expected: No flashcard is deleted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `The flashcard index provided is invalid`
+<div style="page-break-after: always;"></div>
 
 ### Editing a flashcard
 
@@ -857,7 +866,7 @@ testers are expected to do more *exploratory* testing.
        `Low` priority, an error message will be displayed, and no modifications will be made to the flashcard.
        
     1. Test case: `edit 1 c/CompSci p/Mid t/sorting t/algorithms` <br>
-       Expected: The flash card identified by index 1 will be modified. Its category is changed to `CompSci`, the priority is changed to `Mid`.
+       Expected: The flashcard identified by index 1 will be modified. Its category is changed to `CompSci`, the priority is changed to `Mid`.
        and it now has tags `sorting` and `algorithms`. If the flashcard already has category `CompSci`, priority
        `Mid`, as well as tags `sorting` and `algorithms`, an error message will be displayed, and no modifications will be made to the flashcard.
 
@@ -876,6 +885,7 @@ testers are expected to do more *exploratory* testing.
        
     1. Test case: `find newton random`<br>
        Expected: The list will be updated, listing the flashcards that have either `newton` or `random` contained in any of its fields. The result display states the number of flashcards found.
+<div style="page-break-after: always;"></div>
 
 ### Filtering flashcards
 
@@ -904,6 +914,8 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `clear` <br>
        Expected: All flashcards shown in `FlashcardListPanel` are deleted. The result display shows the message: `FlashBack has been cleared!`.
     
+<div style="page-break-after: always;"></div>
+
 ### Viewing a flashcard
 
 1. Viewing a flashcard at a specific index.
@@ -926,6 +938,7 @@ testers are expected to do more *exploratory* testing.
     Expected: The display list will be updated to show flashcards sorted in ascending order of priority.
     1. Test case: `sort`
     Expected: No flashcards sorted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
+<div style="page-break-after: always;"></div>
 
 ### Review mode
 
@@ -987,7 +1000,7 @@ testers are expected to do more *exploratory* testing.
     
 ### Displaying statistics
 
-1. Displaying statistics of flash card(s) in FlashBack
+1. Displaying statistics of flashcard(s) in FlashBack
 
     1. Prerequisites: There must be at least one reviewed flashcard in the list.
     
@@ -996,7 +1009,7 @@ testers are expected to do more *exploratory* testing.
        The total review count, total correct count and overall correct rate is also displayed below the pie chart.
        
     1. Test case: `stats 1` <br>
-       Expected: The UI  will be updated to display a pie chart representing the correct rate of the flash card represented
+       Expected: The UI  will be updated to display a pie chart representing the correct rate of the flashcard represented
        by index 1 in the list. The review count, correct count and correct rate is also displayed below the pie chart. 
        
     1. Test case: `stats abc` <br>
@@ -1030,9 +1043,9 @@ testers are expected to do more *exploratory* testing.
     
     1. Prerequisites: The application is in Main Window.
     
-    1. Test case: `alias cmd/add al/a` <br>
-       Expected: The alias `a` will be mapped to `add`. Users will now be able to perform add command using `a`
-       The result display shows a message: `New alias added for "add" command: a`.
+    1. Test case: `alias cmd/view al/v` <br>
+       Expected: The alias `v` will be mapped to `view`. Users will now be able to perform `view` command using `v`
+       The result display shows a message: `New alias added for "view" command: v`.
     
     1. Test case: `alias cmd/add al/delete` <br>
        Expected: No alias is added, and the text in `CommandBox` turns red to indicate an error.
@@ -1043,6 +1056,7 @@ testers are expected to do more *exploratory* testing.
        The result display shows a message: `The command "cleaaar" does not exist in FlashBack.`.
 
 ------------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Effort**
 
