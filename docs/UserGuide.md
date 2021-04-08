@@ -76,9 +76,9 @@ To make browsing the user guide more pleasant for you, here are some of the symb
 Legend | Description
 -------|-------------
 `Inline code` | Commands and user input
-<span class="alert alert-inline alert-tip">💡 <strong>Tip</strong></span> | Tip - Extra information that may be useful
-<span class="alert alert-inline alert-note">✏️ <strong>Note</strong></span> | Note - Important things to take note of
-<span class="alert alert-inline alert-warning">⚠️ <strong>Warning</strong></span> | Warning - Be extra careful with these
+<span markdown="span" class="alert alert-success">💡 <strong>Tip</strong></span> | Tip - Extra information that may be useful
+<span markdown="span" class="alert alert-info">✏️ <strong>Note</strong></span> | Note - Important things to take note of
+<span markdown="span" class="alert alert-warning">⚠️ <strong>Warning</strong></span> | Warning - Be extra careful with these
 
 ## Quick start
 
@@ -140,7 +140,7 @@ When you first launch DietLAH!, you will be prompted to enter your particulars.
 
 DietLAH! uses this information to provide personalized recommendations based on your personal goals and current characteristics.
 
-<div class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
     ✏️ <strong>Note:</strong> You need to enter this command before all other commands will work!
 </div>
 
@@ -256,7 +256,7 @@ Save food items you frequently consume, so you don't have to re-enter them every
 
 **Example:** `food_add n/tomato c/10 f/10 p/10`
 
-<div class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> Food names must be unique.
 </div>
 
@@ -274,11 +274,11 @@ Update food items in your food list with new nutrition values.
 
 **Example:** `food_update n/tomato c/20 f/30 p/40`
 
-<div class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> Ensure that the food item exists in the application.
 </div>
 
-<div class="alert alert-tip">
+<div markdown="span" class="alert alert-success">
 💡 <strong>Tip:</strong> Not all nutrient fields are compulsory. Save time from having to re-enter data and only include fields you wish to update!
 </div>
 
@@ -310,7 +310,7 @@ Deletes the specified food item.
 
 **Example:** `food_delete n/tomato`
 
-<div class="alert alert-warning">
+<div markdown="span" class="alert alert-warning">
   ⚠️ <strong>Warning</strong> Deletion of a food item will not affect older food intake item records with similar name.
 </div>
 
@@ -324,7 +324,7 @@ Deletes the specified food item.
 
 For tracking your diet plan progress, you are encouraged to record your daily food intake. For your convenience, there are a few ways to input a food intake. Refer to the different scenarios outlined below!
 
-<div class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> If there are multiple food intakes with the same date and name, the food name will be <strong>automatically renamed</strong> to include a duplicate count for easy identification. This is because there can be multiple food intakes for the same food in the given day, and they may contain different nutrient values. <br/><br/>
 E.g. when you record two 'Chicken rice' in the food intake, they will appear as Chicken rice and Chicken rice #2 respectively.
 </div>
@@ -338,7 +338,7 @@ Record your food intake for the specified date with a new food item not currentl
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
 
-<div class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> At least one nutrient value is required to create new food item. If a particular nutrient value is not provided, it will be set to 0 by default.
 </div>
 
@@ -371,7 +371,7 @@ Record your food intake for the specified date using an existing food from your 
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
 
-<div class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> Any nutrient value(s) specified for an existing food item will be overwritten and updated in the food list for future use. Older food intake record(s) associated with the same food item will retain their original values.
 </div>
 
@@ -389,11 +389,11 @@ Update the nutrient value(s) of a previously entered food intake given the date 
 
 **Example:** `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
 
-<div class="alert alert-tip">
+<div markdown="span" class="alert alert-success">
   💡 <strong>Tip:</strong> Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged.
 </div>
 
-<div class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> At least one nutrient value is required.
 </div>
 
@@ -411,7 +411,7 @@ Delete a food intake record from the application.
 
 **Example:** `food_intake_delete d/31 Mar 2021 n/tomato`
 
-<div class="alert alert-warning">
+<div markdown="span" class="alert alert-warning">
   ⚠️ <strong>Warning</strong> After deletion of a food intake, if there are multiple food intake with the same name, their duplicate count will be reordered.
 </div>
 
@@ -461,7 +461,7 @@ Generates a progress report based on your current active diet plan. Your food in
 
 **Command Format:** `progress`
 
-<div class="alert alert-note">
+<div markdown="span" class="alert alert-primary">
   ✏️ <strong>Note:</strong> An active diet plan must be selected before running this command.
 </div>
 
