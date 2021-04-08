@@ -49,4 +49,23 @@ class DateTest {
         assertEquals(new Date("1999-04-13 23:59"), new Date("1999-04-13 23:59"));
         assertEquals(new Date("2021-01-09 09:30"), new Date("2021-01-09 09:30"));
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"2021-04-13 10:30", "2020-04-13 10:30", "2020-04-32 10:30", "2020-04-13 25:30",
+            "2020-04-13 29:30", "2020-04-13 19:30", "2020-04-13 22:30", "2020-04-13 09:70", "2020-02-31 10:30"})
+    public void isCorrectInputFormat_correctFormat_success(String input) {
+        assertTrue(Date.isCorrectInputFormat(input));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0001-02-29 10:30", "2021-02-29 10:30", "9999-02-29 23:59"})
+    public void isInvalidLeapYearDate_invalidLeapYearDate_success(String input) {
+        assertTrue(Date.isCorrectInputFormat(input));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0000-02-29 10:30", "2020-02-29 10:30", "2024-02-29 23:59"})
+    public void isInvalidLeapYearDate_validLeapYearDate_fail(String input) {
+        assertTrue(Date.isCorrectInputFormat(input));
+    }
 }
