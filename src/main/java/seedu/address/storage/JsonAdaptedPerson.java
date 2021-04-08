@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_DATE_BEFORE_BIRTHDAY;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -184,7 +185,7 @@ class JsonAdaptedPerson {
         }
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final List<SpecialDate> modelDates = new ArrayList<>();
+        final List<SpecialDate> rawModelDates = new ArrayList<>();
         for (JsonAdaptedSpecialDate date : dates) {
             SpecialDate dateModel = date.toModelType();
             LocalDate dateToCheck = dateModel.getDate();
@@ -194,10 +195,11 @@ class JsonAdaptedPerson {
                         errorMsgForEventBeforeBirthday(modelName, dateModel, "Special Date"));
             }
 
-            modelDates.add(dateModel);
+            rawModelDates.add(dateModel);
         }
 
-        final List<Meeting> modelMeetings = new ArrayList<>();
+        final List<Meeting> rawModelMeetings = new ArrayList<>();
+
         for (JsonAdaptedMeeting meeting : meetings) {
             Meeting modelMeeting = meeting.toModelType();
             LocalDate dateToCheck = modelMeeting.getDate();
@@ -207,8 +209,17 @@ class JsonAdaptedPerson {
                         errorMsgForEventBeforeBirthday(modelName, modelMeeting, "Meeting"));
             }
 
-            modelMeetings.add(modelMeeting);
+            rawModelMeetings.add(modelMeeting);
         }
+
+        // sort dates here as well in case JSON data is modified externally.
+        final List<SpecialDate> modelDates = rawModelDates.stream()
+                .sorted(Comparator.comparing(SpecialDate::getDate).reversed())
+                .collect(Collectors.toList());
+
+        final List<Meeting> modelMeetings = rawModelMeetings.stream()
+                .sorted(Comparator.comparing(Meeting::getDate).reversed())
+                .collect(Collectors.toList());
 
         return new Person(modelName, modelPhone, modelEmail, modelBirthday, modelGoal, modelAddress, modelPicture,
                 modelDebt, modelTags, modelDates, modelMeetings);
