@@ -73,7 +73,9 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
             List<String> date = argMultimap.getAllValues(PREFIX_DATE);
             List<Predicate<Appointment>> dateList = new ArrayList<>();
             try {
-                date.forEach(s -> dateList.add(new AppointmentDatePredicate(s)));
+                for (String s : date) {
+                    dateList.add(new AppointmentDatePredicate(parseAppointmentDate(s)));
+                }
             } catch (ParseException e) {
                 throw new ParseException("Wrong date format! \n"
                         + e.getMessage()

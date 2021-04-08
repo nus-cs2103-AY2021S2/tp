@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 public class AppointmentDatePredicate implements Predicate<Appointment> {
     private final Date date;
 
-    public AppointmentDatePredicate(String date) {
+    public AppointmentDatePredicate(Date date) {
         this.date = date;
     }
 
