@@ -34,7 +34,7 @@ You can reach me at the email `e0417962@u.nus.edu`
 
 <img src="images/md-fazil.png" width="200px">
 
-[[github](http://github.com/Md-Fazil)] [[portfolio](team/mohamedfazil.md)] You can reach me at the email `mohamedfazil@u.nus.edu`
+[[github](http://github.com/Md-Fazil)] [[portfolio](team/md-fazil.md)] You can reach me at the email `mohamedfazil@u.nus.edu`
 
 * Role: Developer
 * Responsibilities: In charge of documentation and integration. Git Expert.
@@ -44,7 +44,7 @@ You can reach me at the email `e0417962@u.nus.edu`
 <img src="images/kumsssss.png" width="200px">
 
 [[github](http://github.com/kumsssss)]
-[[portfolio](team/kumaran.md)]
+[[portfolio](team/kumsssss.md)]
 You can reach me at the email `e0407113@u.nus.edu`
 
 * Role: Developer
@@ -55,7 +55,7 @@ You can reach me at the email `e0407113@u.nus.edu`
 <img src="images/github-amanda.png" width="200px">
 
 [[github](http://github.com/github-amanda)]
-[[portfolio](team/amandaang.md)]
+[[portfolio](team/github-amanda.md)]
 You can reach me at the email `amandaang@u.nus.edu`
 
 * Roles: Developer
