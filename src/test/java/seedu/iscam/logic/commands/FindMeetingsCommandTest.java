@@ -56,7 +56,7 @@ public class FindMeetingsCommandTest {
 
     @Test
     public void execute_zeroKeywords_noMeetingFound() {
-        String expectedMessage = String.format(MESSAGE_MEETINGS_LISTED_OVERVIEW + "\n", 0);
+        String expectedMessage = String.format(MESSAGE_MEETINGS_LISTED_OVERVIEW, 0);
         MeetingContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindMeetingsCommand command = new FindMeetingsCommand(predicate);
         expectedModel.updateFilteredMeetingList(predicate);
@@ -66,8 +66,7 @@ public class FindMeetingsCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleMeetingsFound() {
-        String expectedMessage = String.format(MESSAGE_MEETINGS_LISTED_OVERVIEW + "\n" + FIONA_1
-                + "\n" + FIONA_2 + "\n", 2);
+        String expectedMessage = String.format(MESSAGE_MEETINGS_LISTED_OVERVIEW, 2);
         MeetingContainsKeywordsPredicate predicate = preparePredicate("Kunz");
         FindMeetingsCommand command = new FindMeetingsCommand(predicate);
         expectedModel.updateFilteredMeetingList(predicate);
