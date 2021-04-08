@@ -8,7 +8,7 @@ title: ModuleBook Level-3.5
 
 ![Ui](images/Ui.png)
 
-**ModuleBook3.5 is a desktop application for managing your tasks in an Easy, Seamless and Straightforward manner.** 
+**ModuleBook3.5 is a desktop application for managing your tasks in an *Easy, Seamless and Straightforward* manner.** 
 While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using ModuleBook3.5, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).

@@ -4,7 +4,7 @@ title: User Guide
 ---
 ModuleBook3.5 is the go-to tool for busy students/professionals who are confident that typing can save them time. 
 Using ModuleBook3.5, one can organise and keep track of tasks and their deadlines in an 
-Easy, Seamless and Straightforward manner, all without the need for consistent internet connection. 
+*Easy, Seamless and Straightforward* manner, all without the need for consistent internet connection. 
 Even if your online learning portal fails, you can still see your task details
 on ModuleBook3.5.
 
@@ -31,7 +31,7 @@ on ModuleBook3.5.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
-![add message](images/addCommand.png)
+![add message](images/Ui.png)
 1. At the top of the display is a toolbar to either exit the app (under `File`) 
    or access this user guide (under `Help`).
    
@@ -121,6 +121,10 @@ you may use a substitute module code based on the subject description.
   
 * For commands that take in an `INDEX`, only one index is to be supplied.<br>
   e.g. `delete 1` will work but `delete 1 3` (2 indices) will not.
+  
+* The `INDEX` starts from 1 and is taken relative to the list of tasks that is currently displayed.<br>
+  e.g. If you do `mod CS2101` and a task at position 4 is pushed up to position 1, the `INDEX` for this task
+  will be `1` for the next command.
 
 * For `MODULE`, the letters in module code should be upper-case.<br>
   e.g. `CS2103T` and not `cs2103t`.
@@ -222,10 +226,12 @@ Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORK
 
 * Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm set to 00:00)
 
+Tutorial Example:<br>
+`add n/Mix Green And Pink m/CS2101 d/Create the forbidden colour combination w/1 b/2021-04-15`
 
 ![add message](images/addCommand.png)
 
-Examples:
+Other Examples:
 * `add n/v1.2 TP m/CS2103T d/implement basic features b/2021-03-13 23:59 w/3 t/urgent`
 * `add n/practice sets m/CS3230 d/practice master's theorem a/2021-03-14 00:00 b/2021-03-15 00:00 w/1 r/weekly`
 
@@ -241,9 +247,12 @@ Format: `done INDEX`
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-![add message](images/doneCommand.png)
+Tutorial Example:<br>
+`done 2`
 
-Examples:
+![done message](images/doneCommand.png)
+
+Other Examples:
 * `list` followed by `done 2` marks the 2nd task as done in the ModuleBook3.5.
 * `find Quiz` followed by `done 1` marks the 1st task in the results of the `find` command as done.
 
@@ -260,7 +269,12 @@ Format: `notdone INDEX`
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Tutorial Example:<br>
+`notdone 2`
+
+![notdone message](images/notdoneCommand.png)
+
+Other Examples:
 * `list` followed by `notdone 2` marks the 2nd task as not done in the ModuleBook3.5.
 * `find Quiz` followed by `notdone 1` marks the 1st task in the results of the `find` command as not done.
 
@@ -276,16 +290,20 @@ Format: `tag INDEX t/TAG [t/MORETAGS]...​`
 * Attaches one or more tags to the task associated with INDEX. Tags can be used to identify related tasks.
 * If only `/t` is provided without preceding value, no tag will be added but MB3.5 will show you the existing tags
 associated to the task you tried to tag.
+  
+Tutorial Example:<br>
+`tag 3 t/Ethics t/Quiz`
 
 ![add message](images/tagCommand.png)
 
-Examples:
-* `tag 1 t/SoftwareEng`
+Other Examples:
+* `tag 1 t/SoftwareEng` adds `SoftwareEng` tag to task 1.
+* `tag 3 t/Participation` adds `Participation` tag to task 3.
 
 
 ### Search tasks with name of task: `find`
 
-Searches for tasks with a name of task  provided.
+Searches for tasks with a name of task provided.
 
 Application: Used to find a certain task that may be further down the list.
 
@@ -293,8 +311,10 @@ Format: `find KEYWORD`
 
 * Searches through ModuleBook3.5 for tasks whose names contain `KEYWORD`.
 
-Examples:
-* `find revise`
+Tutorial Example:<br>
+`find Green`
+
+![find message](images/findCommand.png)
 
 ### List out tasks : `list`
 
@@ -313,14 +333,16 @@ Searches for tasks with an associated tag. Tag is case-insensitive for your conv
 
 One Tag allowed. Tag provided must be alphanumerical.
 
-Application: Used to find tasks that are similar in nature.
+Application: Used to find tasks that tend to have the same tags due to similarities between them.
 
 Format: `findTag KEYWORD`
 
 * Searches through ModuleBook3.5 for tasks which have a tag named `KEYWORD`.
 
-Examples:
-* `findTag homework`
+Tutorial Example:<br>
+`findTag Ethics`
+
+![findTag message](images/findTagCommand.png)
 
 
 ### Search tasks associated to a Module: `mod`
@@ -333,10 +355,13 @@ Format: `mod MODULE`
 
 * Searches through ModuleBook3.5 for tasks which belong to `MODULE`.
 
+Tutorial Example:<br>
+`mod CS2103T`
+
 ![add message](images/findModuleCommand.png)
 
-Examples:
-* `mod CS3243`
+Other Examples:
+* `mod CS3243` lists out tasks associated with module CS3243.
 
 
 ### Delete tag of Task: `deleteTag`
@@ -351,8 +376,11 @@ Format: `deleteTag INDEX t/TAG`
   The index refers to the index number shown in the displayed task list. 
   The index must be a positive integer 1, 2, 3, …​
 
-Examples:
-* `deleteTag 1 t/homework`
+Tutorial Example:
+* `list` (You need to key this in first to see all tasks)
+* `deleteTag 3 t/Quiz`
+
+![deleteTag message](images/deleteTagCommand.png)
 
 
 ### Edit a task: `edit`
@@ -370,7 +398,12 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 * If you wish to include a start time for your task, the start time should not be later than deadline.
 * Editing tags through the `edit` command overrides all existing tags. If you wish to add or delete only certain tags, use `tag` and `deleteTag` commands instead.
 
+Tutorial Example:<br>
+`edit 1 n/Refactor tP code d/Make the code look neater b/2021-04-09`
+
 ![add message](images/editCommand.png)
+
+Notice how the colour of task 1 changed because you edited the deadline to be closer.
 
 Examples:
 *  `edit 1 d/Eat Biscuits` Edits the description of the 1st task to `Eat Biscuits`.
@@ -393,10 +426,11 @@ Format:  `sort` or `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/`
 *  `sort m/` Sorts the tasks by module code alphabetically in descending order.
 *  `sort t/` Sorts the tasks by number of tags in descending order.
 
+Tutorial Example:<br>
+`sort n/`
+
 ![add message](images/sortCommand.png)
 
-Examples:
-* `sort w/`
 
 ### Recur tasks: `recur`
 
@@ -414,10 +448,13 @@ Format: `recur INDEX r/RECURRENCE`
 * `RECURRENCE` should be left empty if the recurrence of a task needs to be removed.
    The prefix `r/` must still be used.
 
+Tutorial Example:<br>
+`recur 1 r/weekly`
+
 ![add message](images/recurCommand.png)
 
 
-Examples:
+Other Examples:
 * `recur 1 r/biweekly` Recurs the 1st task in ModuleBook3.5 every two weeks.
 * `recur 2 r/weekly` Recurs the 4th task in ModuleBook3.5 every week.
 * `recur 3 r/daily` Recurs the 3rd task in ModuleBook3.5 every day.
@@ -431,6 +468,14 @@ Application: Used to update deadlines based on recurrences. Also done automatica
 
 Format: `refresh`
 
+Tutorial Example:
+* `edit 1 b/2021-04-08` (Let's set this task to have a deadline that is past)
+* `refresh` 
+
+![refresh up-to-date message](images/refreshCommand.png)
+
+Note that you may get a new deadline for task 1 that is different from what is in the screenshot.
+
 ### Delete a task : `delete`
 
 Deletes the specified task from the module book.
@@ -443,7 +488,12 @@ Format: `delete INDEX`
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
+Tutorial Example:<br>
+`delete 2`
+
+![delete message](images/deleteCommand.png)
+
+Other Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the ModuleBook3.5.
 * `find CS2103T` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
@@ -454,6 +504,8 @@ Deletes all tasks from the module book.
 Application: Used to clear out module book after a school term ends.
 
 Format: `clear`
+
+![clear message](images/clearCommand.png)
 
 ### Close app: `exit`
 
