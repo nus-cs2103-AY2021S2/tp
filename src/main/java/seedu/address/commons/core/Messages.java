@@ -14,5 +14,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX = "The appointment index "
             + "provided is invalid";
     public static final String MESSAGE_MORE_THAN_ONE_SAME_PREFIX = "There should only be 1 option";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_RECEIVED_MORE_THAN_INDEX = "Preamble contains more than just index.";
 
 }

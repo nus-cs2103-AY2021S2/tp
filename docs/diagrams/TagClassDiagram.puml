@@ -1,0 +1,18 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class Contact {
+}
+
+Package Tag{
+Class Tag
+Class ChildTag
+}
+
+Contact *-right-> "*" Tag
+Tag <|-- ChildTag
+
+@enduml
