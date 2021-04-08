@@ -78,22 +78,21 @@ public class MainApp extends Application {
      * Initializes the content of ThemeManager with the theme in the GuiSetting of model.
      */
     private void initTheme() {
-        ThemeManager.init();
         if (model.getGuiSettings().getThemePath() == null) {
             logger.info("No theme specified. Applying default theme ...");
-            ThemeManager.setTheme(ThemeFactory.getDefaultTheme(), null);
+            ThemeManager.getInstance().setTheme(ThemeFactory.getDefaultTheme(), null);
         } else {
             logger.info("Loading theme " + model.getGuiSettings().getThemePath() + " ...");
             try {
                 Theme theme = ThemeFactory.load(model.getGuiSettings().getThemePath());
-                ThemeManager.setTheme(theme, model.getGuiSettings().getThemePath());
+                ThemeManager.getInstance().setTheme(theme, model.getGuiSettings().getThemePath());
                 return;
             } catch (DataConversionException | InvalidThemeException exception) {
                 logger.warning("Invalid " + model.getGuiSettings().getThemePath() + " theme supplied");
             } catch (IOException fileNotFoundException) {
                 logger.warning("Theme " + model.getGuiSettings().getThemePath() + " not found");
             }
-            ThemeManager.setTheme(ThemeFactory.getDefaultTheme(), model.getGuiSettings().getThemePath());
+            ThemeManager.getInstance().setTheme(ThemeFactory.getDefaultTheme(), model.getGuiSettings().getThemePath());
         }
     }
 
