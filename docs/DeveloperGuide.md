@@ -238,7 +238,7 @@ In the `ModelManager`, the `validate(masterPlan, currentSemester)` method refere
 ##### [Proposed] Validating using History object
 
 Currently validate checks each plan up to their semesters for the taken modules. This is rather slow since it has to loop through the modules. This can be done much faster using the `HashTable` which is provided by the `History` object. Although not currently a necessary feature since only a single user uses the application, this is a rather simple optimization that should be implemented.
-=======
+
 ### Info feature
 
 #### Implementation
