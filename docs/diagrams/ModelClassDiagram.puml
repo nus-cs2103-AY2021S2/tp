@@ -5,12 +5,10 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlySochedule <<Interface>>
-Interface Model <<Interface>>
-Interface ObservableList <<Interface>>
+Class "<<Interface>>\nReadOnlySochedule"
+Class "<<Interface>>\nModel"
+Class "<<Interface>>\nObservableList"
 Class Sochedule
-Class ReadOnlySochedule
-Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
@@ -43,12 +41,12 @@ Class Category
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ..> "<<Interface>>\nModel"
 
-Sochedule .up.|> ReadOnlySochedule
+Sochedule .up.|> "<<Interface>>\nReadOnlySochedule"
 
-ModelManager .up.|> Model
-Model .right.> ObservableList
+ModelManager .up.|> "<<Interface>>\nModel"
+"<<Interface>>\nModel" .right.> "<<Interface>>\nObservableList"
 ModelManager o--> "1" Sochedule
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
