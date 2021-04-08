@@ -18,7 +18,6 @@ import seedu.address.model.common.Category;
 import seedu.address.model.common.Date;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
-import seedu.address.model.event.EventComparator;
 import seedu.address.model.event.Time;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.TaskComparator;
@@ -28,9 +27,9 @@ import seedu.address.model.task.TaskComparator;
  */
 public class SocheduleParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero positive integer.\n";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not an integer greater than zero.\n";
     public static final String MESSAGE_INVALID_INDEXES =
-            "Some of the given index(es) are not non-zero positive integers.\n";
+            "Some of the given index(es) are not integers greater than zero.\n";
     public static final String MESSAGE_DUPLICATE_INDEXES = "Some of the given index(es) contain duplicates.\n";
 
     /**
@@ -230,18 +229,6 @@ public class SocheduleParserUtil {
         String trimmedVar = comparingVar.trim();
         if (!TaskComparator.isValidComparingVar(trimmedVar)) {
             throw new ParseException(TaskComparator.MESSAGE_CONSTRAINTS);
-        }
-        return trimmedVar;
-    }
-
-    /**
-     * Parses {@code String comparingVar} into a {@code String comparingVar}.
-     */
-    public static String parseEventComparingVar(String comparingVar) throws ParseException {
-        requireNonNull(comparingVar);
-        String trimmedVar = comparingVar.trim();
-        if (!EventComparator.isValidComparingVar(trimmedVar)) {
-            throw new ParseException(EventComparator.MESSAGE_CONSTRAINTS);
         }
         return trimmedVar;
     }

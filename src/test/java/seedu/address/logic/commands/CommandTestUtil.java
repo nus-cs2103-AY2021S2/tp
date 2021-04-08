@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,8 +37,8 @@ public class CommandTestUtil {
     // Task
     public static final String VALID_TASK_NAME_TASKONE = "Task One";
     public static final String VALID_TASK_NAME_TASKTWO = "Task Two";
-    public static final String VALID_TASK_DEADLINE_TASKONE = "2022-01-01";
-    public static final String VALID_TASK_DEADLINE_TASKTWO = "2022-01-02";
+    public static final String VALID_TASK_DEADLINE_TASKONE = LocalDate.now().plusMonths(3).toString();
+    public static final String VALID_TASK_DEADLINE_TASKTWO = LocalDate.now().plusMonths(4).toString();
     public static final String VALID_TASK_PRIORITY_TASKONE = "5";
     public static final String VALID_TASK_PRIORITY_TASKTWO = "6";
     public static final String VALID_TASK_CATEGORY_HOMEWORK = "Homework";
@@ -59,12 +60,12 @@ public class CommandTestUtil {
     // Event
     public static final String VALID_EVENT_NAME_EVENTONE = "Coding Interview";
     public static final String VALID_EVENT_NAME_EVENTTWO = "SoC FOP";
-    public static final String VALID_EVENT_STARTDATE_EVENTONE = "2021-03-22";
-    public static final String VALID_EVENT_STARTDATE_EVENTTWO = "2021-07-24";
+    public static final String VALID_EVENT_STARTDATE_EVENTONE = LocalDate.now().plusMonths(1).toString();
+    public static final String VALID_EVENT_STARTDATE_EVENTTWO = LocalDate.now().plusMonths(2).toString();
     public static final String VALID_EVENT_STARTTIME_EVENTONE = "13:00";
     public static final String VALID_EVENT_STARTTIME_EVENTTWO = "07:00";
-    public static final String VALID_EVENT_ENDDATE_EVENTONE = "2022-03-22";
-    public static final String VALID_EVENT_ENDDATE_EVENTTWO = "2022-07-31";
+    public static final String VALID_EVENT_ENDDATE_EVENTONE = LocalDate.now().plusMonths(1).toString();
+    public static final String VALID_EVENT_ENDDATE_EVENTTWO = LocalDate.now().plusMonths(2).plusDays(2).toString();
     public static final String VALID_EVENT_ENDTIME_EVENTONE = "15:00";
     public static final String VALID_EVENT_ENDTIME_EVENTTWO = "22:00";
     public static final String VALID_EVENT_CATEGORY_WORK = "Work";
@@ -102,9 +103,9 @@ public class CommandTestUtil {
     public static final String INVALID_ENDDATEPAST_DESC = " " + PREFIX_ENDDATE + "1998-01-02"; // not allowed in date
     public static final String INVALID_ENDTIME_DESC = " " + PREFIX_ENDTIME + "1@:05"; // not allowed in time
     // Dates
-    public static final String NO_FREE_TIME_DATE = "2021-03-16";
-    public static final String FREE_DATE = "2025-03-16";
-    public static final String EXAMPLE_DATE = "2025-03-17";
+    public static final String NO_FREE_TIME_DATE = LocalDate.now().plusMonths(1).plusDays(15).toString();
+    public static final String FREE_DATE = LocalDate.now().plusYears(3).plusMonths(2).plusDays(1).toString();
+    public static final String EXAMPLE_DATE = LocalDate.now().plusYears(3).plusMonths(2).plusDays(2).toString();
 
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

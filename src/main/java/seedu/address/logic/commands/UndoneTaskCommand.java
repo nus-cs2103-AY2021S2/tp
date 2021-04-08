@@ -25,9 +25,11 @@ public class UndoneTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the task identified by the index number as uncompleted.\n"
-            + "Index number is the index shown in the displayed task list.\n"
-            + "Parameters: INDEX (must be a positive integer and a valid index)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX\n"
+            + "Example: " + COMMAND_WORD + " 1\n"
+            + "Also note: \n"
+            + "1. Index number is the index shown in the displayed task list.\n"
+            + "2. Index must be an integer greater than zero.";
 
     public static final String MESSAGE_UNDONE_TASK_SUCCESS = "Undone Task: %1$s";
     public static final String MESSAGE_TASK_ALREADY_UNCOMPLETED = "This task has already been marked as uncompleted.";
