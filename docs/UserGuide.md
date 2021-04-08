@@ -386,7 +386,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
         ```
-        orders find n/[KEYWORD] (MORE KEYWORDS) d/[KEYWORD]
+        order find n/[KEYWORD] (MORE KEYWORDS) d/[KEYWORD]
         ```
         
         At least one prefix must be specified. If both are specified, both conditions will be checked.
