@@ -238,7 +238,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
         ```
-        menu add n/[NAME] p/[PRICE]  i/[INGREDIENT_INDEX] q/[INGREDIENT_AMOUNT]...
+        menu add [n/NAME] [p/PRICE] ([i/INGREDIENT_ID] [q/INGREDIENT_QUANTITY]...)
         ```
         
         At least one pair of ingredient index and amount must be present.
@@ -264,7 +264,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
         ```
-        menu edit [INDEX] ([n/NAME] [p/PRICE] [i/INGREDIENT_NUMBER] [q/INGREDIENT_QUANTITY]...)
+        menu edit [INDEX] ([n/NAME] [p/PRICE] [i/INGREDIENT_ID] [q/INGREDIENT_QUANTITY]...)
         ```
         
         At least one of the fields in brackets must be present in the edit command.
