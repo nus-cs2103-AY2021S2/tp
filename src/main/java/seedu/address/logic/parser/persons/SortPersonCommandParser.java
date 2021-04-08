@@ -30,9 +30,11 @@ public class SortPersonCommandParser implements Parser<SortPersonCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_SORT_BY, PREFIX_SORT_DIRECTION);
 
         try {
-            PersonSortOption option = PersonSortOption.valueOf(argMultimap.getValue(PREFIX_SORT_BY).get());
-            PersonSortDirection direction = PersonSortDirection.valueOf(argMultimap.getValue(PREFIX_SORT_DIRECTION).
-                    get());
+            String optionStringCaps = argMultimap.getValue(PREFIX_SORT_BY).get().toUpperCase();
+            String directionStringCaps = argMultimap.getValue(PREFIX_SORT_DIRECTION).get().toUpperCase();
+
+            PersonSortOption option = PersonSortOption.valueOf(optionStringCaps);
+            PersonSortDirection direction = PersonSortDirection.valueOf(directionStringCaps);
             return new SortPersonCommand(option, direction);
         } catch (Exception e) {
             throw new ParseException(SortPersonCommand.MESSAGE_USAGE);
