@@ -60,7 +60,10 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "%1$s already belongs to another student in TutorsPet. \n"
+            + "Please assign a unique phone number to student %2$s.";
+    public static final String MESSAGE_POTENTIAL_DUPLICATE = "This student name %1$s already exists "
+            + "with a different phone number. \n" + "Do you wish to proceed? y/n";
     public static final String MESSAGE_DUPLICATE_LESSON = "You have a lesson at %1$s with %2$s. \n"
             + "Do you wish to proceed? y/n";
 
@@ -95,6 +98,14 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        if (!model.isSavedState()) {
+            if (!personToEdit.isPotentialSamePerson(editedPerson) && model.hasPotentialPerson(editedPerson)) {
+                model.setSavedState(true);
+                throw new CommandException(String.format(MESSAGE_POTENTIAL_DUPLICATE, editedPerson.getName()));
+            }
+        }
+
+        model.setSavedState(false);
         if (editPersonDescriptor.isLessonEdited() && !model.isSavedState()) {
             for (Lesson lesson : editedPerson.getLessons()) {
                 if (personToEdit.getLessons().stream().anyMatch(lesson::isSameLesson)) {

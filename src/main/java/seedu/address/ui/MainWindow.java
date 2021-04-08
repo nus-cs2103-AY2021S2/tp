@@ -260,6 +260,9 @@ public class MainWindow extends UiPart<Stage> {
             if (e.getMessage().startsWith("You have a lesson at ")) {
                 commandBox.setWaitForNextInput(true);
             }
+            if (e.getMessage().startsWith("This student name ")) {
+                commandBox.setWaitForNextInput(true);
+            }
             throw e;
         }
     }

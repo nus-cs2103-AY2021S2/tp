@@ -54,6 +54,9 @@ public class CommandBox extends UiPart<Region> {
             if (e.getMessage().startsWith("You have a lesson at ")) {
                 previousUserInput = commandText;
             }
+            if (e.getMessage().startsWith("This student name ")) {
+                previousUserInput = commandText;
+            }
         }
     }
 
