@@ -310,7 +310,7 @@ The following sequence diagram shows how the delete operation works:
 
 ### FoodIntake Object
 
-<img src="images/FoodIntakeClassDiagram.png" width="126" />
+<img src="images/FoodIntakeClassDiagram.png" width="249" />
 
 The FoodIntake represents the date and food associated with a particular FoodIntake.
 
