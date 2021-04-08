@@ -32,7 +32,6 @@ public class EditExamCommandParser extends EditCommandParser implements Parser<E
     public EditExamCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_EXAM, PREFIX_DATE);
-
         if (!arePrefixesPresent(argMultimap, PREFIX_MODULE, PREFIX_EXAM, PREFIX_DATE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditExamCommand.MESSAGE_USAGE));

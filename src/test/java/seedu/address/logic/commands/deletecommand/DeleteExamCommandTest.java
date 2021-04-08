@@ -58,7 +58,7 @@ public class DeleteExamCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(moduleTarget.getExams().size() + 1);
 
         DeleteExamCommand deleteExamCommand = new DeleteExamCommand(title, outOfBoundIndex);
-        assertCommandFailure(deleteExamCommand, model, Messages.MESSAGE_INVALID_EXAM_DISPLAYED_INDEX);
+        assertCommandFailure(deleteExamCommand, model, DeleteExamCommand.MESSAGE_EMPTY_EXAMLIST);
     }
 
     @Test

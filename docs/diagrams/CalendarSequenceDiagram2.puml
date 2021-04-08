@@ -31,14 +31,17 @@ deactivate CalendarStorage
 
 CalendarStorage -> RemindMe : getFilteredPersonList()
 activate RemindMe
+RemindMe --> CalendarStorage
 deactivate RemindMe
 
 CalendarStorage -> RemindMe : getFilteredModuleList()
 activate RemindMe
+RemindMe --> CalendarStorage
 deactivate RemindMe
 
 CalendarStorage -> RemindMe : getFilteredEventList()
 activate RemindMe
+RemindMe --> CalendarStorage
 deactivate RemindMe
 
 CalendarStorage --> CalendarWindow

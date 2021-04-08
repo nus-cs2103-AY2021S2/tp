@@ -33,7 +33,7 @@ public class DeleteAssignmentCommandParser extends DeleteCommandParser implement
                 .orElseThrow(() -> new ParseException(
                         String.format(Title.MESSAGE_CONSTRAINTS, "Modules"))));
 
-        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_ASSIGNMENT).get());
+        Index index = ParserUtil.parseAssignmentIndex(argMultimap.getValue(PREFIX_ASSIGNMENT).get());
 
         return new DeleteAssignmentCommand(title, index);
     }

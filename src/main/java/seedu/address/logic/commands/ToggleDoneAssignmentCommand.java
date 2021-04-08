@@ -29,6 +29,8 @@ public class ToggleDoneAssignmentCommand extends Command {
             + PREFIX_MODULE + "CS2103T"
             + PREFIX_ASSIGNMENT + "1";
 
+    public static final String MESSAGE_EMPTY_ASSIGNMENTLIST = "Assignment List is empty";
+
     private final Title moduleTitle;
 
     private final Index assignmentIndex;
@@ -53,6 +55,9 @@ public class ToggleDoneAssignmentCommand extends Command {
         int indexOfModule = getIndex(lastShownList, moduleToCheck);
         Module moduleToGet = lastShownList.get(indexOfModule);
         AssignmentList assignmentList = moduleToGet.getAssignments();
+        if (assignmentList.size() == 0) {
+            throw new CommandException(MESSAGE_EMPTY_ASSIGNMENTLIST);
+        }
         if (assignmentIndex.getZeroBased() >= assignmentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
         }

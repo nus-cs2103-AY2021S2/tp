@@ -21,6 +21,7 @@ import seedu.address.model.module.Title;
 public class DeleteExamCommand extends DeleteCommand {
 
     public static final String MESSAGE_DELETE_EXAM_SUCCESS = "Deleted Exam: %1$s";
+    public static final String MESSAGE_EMPTY_EXAMLIST = "Exam list is empty";
 
     private final Title moduleTitle;
 
@@ -47,6 +48,9 @@ public class DeleteExamCommand extends DeleteCommand {
         int indexOfModule = getIndex(lastShownList, moduleToCheck);
         Module moduleToGet = lastShownList.get(indexOfModule);
         ExamList examList = moduleToGet.getExams();
+        if (examList.size() == 0) {
+            throw new CommandException(MESSAGE_EMPTY_EXAMLIST);
+        }
         if (examIndex.getZeroBased() >= examList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EXAM_DISPLAYED_INDEX);
         }

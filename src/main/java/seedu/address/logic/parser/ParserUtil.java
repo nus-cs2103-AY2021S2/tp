@@ -24,7 +24,9 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Input is not a non-zero unsigned integer";
+    public static final String MESSAGE_INVALID_INDEX_1 = "Input after the ";
+    public static final String MESSAGE_INVALID_INDEX_2 = " prefix is not a non-zero unsigned integer.";
     private static final String LOCAL_DATE_TIME_CONSTRAINT = "DATE-TIME should be DD/MM/YYYY HHmm";
 
     /**
@@ -39,6 +41,51 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
+
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseGeneralEventIndex(String oneBasedIndex) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX_1 + "g/"
+                    + MESSAGE_INVALID_INDEX_2);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseAssignmentIndex(String oneBasedIndex) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX_1 + "a/"
+                    + MESSAGE_INVALID_INDEX_2);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseExamIndex(String oneBasedIndex) throws ParseException {
+        String trimmedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX_1 + "e/"
+                    + MESSAGE_INVALID_INDEX_2);
+        }
+        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+
 
     /**
      * Parses a {@code String name} into a {@code Name}.
