@@ -11,7 +11,7 @@ import seedu.student.model.appointment.Appointment;
 import seedu.student.model.student.MatriculationNumber;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the student book.
  */
 public class AddAppointmentCommand extends Command {
 

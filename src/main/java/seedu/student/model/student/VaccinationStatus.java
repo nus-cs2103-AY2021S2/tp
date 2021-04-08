@@ -3,10 +3,6 @@ package seedu.student.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.student.commons.util.AppUtil.checkArgument;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
-
 public class VaccinationStatus {
 
     public enum VaccinationStatusAbbreviation {
@@ -53,18 +49,6 @@ public class VaccinationStatus {
         }
     }
 
-    public static List<String> getVaccinationStatusAbbreviation() {
-        ArrayList<String> vaccinationStatus = new ArrayList<>();
-
-        String[] statusArray = Stream.of(VaccinationStatus.VaccinationStatusAbbreviation.values())
-                .map(VaccinationStatus.VaccinationStatusAbbreviation::name).toArray(String[]::new);
-
-        for (int i = 0; i < statusArray.length; i++) {
-            vaccinationStatus.add(statusArray[i].toLowerCase());
-        }
-        return vaccinationStatus;
-    }
-
     @Override
     public String toString() {
         return status.toString();
@@ -77,8 +61,4 @@ public class VaccinationStatus {
                 && status == ((VaccinationStatus) other).status); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return status.hashCode();
-    }
 }
