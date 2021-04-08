@@ -35,8 +35,14 @@ class DeliveryStatusCommandTest {
         IndexList indexList = new IndexList(arrayFirstOrder);
         DeliveryStatusCommand deliveryStatusCommand = new DeliveryStatusCommand(indexList, new DeliveryStatus());
 
-        String expectedMessage = String.format(DeliveryStatusCommand.MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS,
-                String.format("\n%1$s", orderToUpdate));
+        String expectedMessage;
+        if (orderToUpdate.getDeliveryStatus().equals(new DeliveryStatus())) {
+            expectedMessage = String.format(DeliveryStatusCommand.MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS_SAME,
+                    String.format("\n%1$s", orderToUpdate));
+        } else {
+            expectedMessage = String.format(DeliveryStatusCommand.MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS_UPDATED,
+                    String.format("\n%1$s", orderToUpdate));
+        }
 
         ModelManager expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems());
         expectedModel.setOrder(expectedModel.getFilteredOrderList().get(0), orderToUpdate);
@@ -65,8 +71,14 @@ class DeliveryStatusCommandTest {
         IndexList indexList = new IndexList(arrayFirstOrder);
         DeliveryStatusCommand deliveryStatusCommand = new DeliveryStatusCommand(indexList, new DeliveryStatus());
 
-        String expectedMessage = String.format(DeliveryStatusCommand.MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS,
-                String.format("\n%1$s", orderToUpdate));
+        String expectedMessage;
+        if (orderToUpdate.getDeliveryStatus().equals(new DeliveryStatus())) {
+            expectedMessage = String.format(DeliveryStatusCommand.MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS_SAME,
+                    String.format("\n%1$s", orderToUpdate));
+        } else {
+            expectedMessage = String.format(DeliveryStatusCommand.MESSAGE_DELIVERY_STATUS_ORDER_SUCCESS_UPDATED,
+                    String.format("\n%1$s", orderToUpdate));
+        }
 
         ModelManager expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems());
         expectedModel.setOrder(expectedModel.getFilteredOrderList().get(0), orderToUpdate);

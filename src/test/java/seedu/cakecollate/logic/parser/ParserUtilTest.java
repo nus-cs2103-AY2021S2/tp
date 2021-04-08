@@ -13,6 +13,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.order.Address;
 import seedu.cakecollate.model.order.DeliveryDate;
@@ -46,12 +47,15 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10aaaaa111111111111a"));
     }
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX, ()
+            -> ParserUtil.parseIndex("111111111111111111111111111111111"));
     }
 
     @Test

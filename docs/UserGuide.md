@@ -284,50 +284,50 @@ Examples:
 
 Sets the delivery status of the specified order/orders from the CakeCollate database as `undelivered`.
 
-Format: `undelivered ID...`
+Format: `undelivered INDEXES...`
 
-* Sets the delivery status of the orders with the specified ids as `undelivered`.
-* The `ID` refers to the order `ID` number shown in the list of orders.
-* One or more ids can be entered.
-* The `ID` **must be valid**.
+* Sets the delivery status of the orders with the specified indexes as `undelivered`.
+* The `INDEX` refers to the order `INDEX` number shown in the list of orders.
+* One or more indexes can be entered.
+* The `INDEX` **must be valid**.
 
 Examples:
-* `list` followed by `undelivered 2` sets the delivery status of the orders with `ID` 2 from the 
+* `list` followed by `undelivered 2` sets the delivery status of the orders with `INDEX` 2 from the 
   CakeCollate database as `undelivered`.
-* `undelivered 2 3` sets the delivery status of the orders with ids 2 and 3 from the 
+* `undelivered 2 3` sets the delivery status of the orders with indexes 2 and 3 from the 
   CakeCollate database as `undelivered`.
 
 ###### Setting the delivery status of an order as delivered: `delivered`
 
 Sets the delivery status of the specified order/orders from the CakeCollate database as `delivered`.
 
-Format: `delivered ID...`
+Format: `delivered INDEXES...`
 
-* Sets the delivery status of the orders with the specified ids as `delivered`.
-* The `ID` refers to the order `ID` number shown in the list of orders.
-* One or more ids can be entered.
-* The `ID` **must be valid**.
+* Sets the delivery status of the orders with the specified indexes as `delivered`.
+* The `INDEX` refers to the order `INDEX` number shown in the list of orders.
+* One or more indexes can be entered.
+* The `INDEXES` **must be valid**.
 
 Examples:
-* `list` followed by `delivered 2` sets the delivery status of the orders with `ID` 2 from the
+* `list` followed by `delivered 2` sets the delivery status of the orders with `INDEX` 2 from the
   CakeCollate database as `delivered`.
-* `delivered 2 3` sets the delivery status of the orders with ids 2 and 3 from the CakeCollate database as `delivered`.
+* `delivered 2 3` sets the delivery status of the orders with indexes 2 and 3 from the CakeCollate database as `delivered`.
 
 ###### Setting the delivery status of an order as cancelled: `cancelled`
 
 Sets the delivery status of the specified order/orders from the CakeCollate database as `cancelled`.
 
-Format: `cancelled ID...`
+Format: `cancelled INDEXES...`
 
-* Sets the delivery status of the orders with the specified ids as cancelled.
-* The `ID` refers to the order `ID` number shown in the list of orders.
-* One or more ids can be entered.
-* The `ID` **must be valid**.
+* Sets the delivery status of the orders with the specified indexes as cancelled.
+* The `INDEX` refers to the order `INDEX` number shown in the list of orders.
+* One or more indexes can be entered.
+* The `INDEX` **must be valid**.
 
 Examples:
-* `list` followed by `cancelled 2` sets the delivery status of the orders with `ID` 2 from the
+* `list` followed by `cancelled 2` sets the delivery status of the orders with `INDEXE` 2 from the
   CakeCollate database as `cancelled`.
-* `cancelled 2 3` sets the delivery status of the orders with ids 2 and 3 from the CakeCollate database as `cancelled`.
+* `cancelled 2 3` sets the delivery status of the orders with indexes 2 and 3 from the CakeCollate database as `cancelled`.
 
 ##### Editing an order: `edit`
 
@@ -466,9 +466,9 @@ If your changes to the data file makes its format invalid, CakeCollate will disc
 
 #### Keyboard shortcuts you can use
 
-* Click the `up` arrow in the keyboard to traverse up the previously inputted commands if they exist. 
-* Click the `down` arrow in the keyboard to traverse down the previously inputted commands if they exist. 
-* Click the `Shift`Button followed by the `backspace` button on the keyboard to delete all the text in the conmand box in one go. 
+* Click the `Up` arrow in the keyboard to traverse up the previously inputted commands if they exist. 
+* Click the `Down` arrow in the keyboard to traverse down the previously inputted commands if they exist. 
+* Click the `Shift`Button followed by the `Backspace` button on the keyboard to delete all the text in the command box in one go. 
 
 --------------------------------------------------------------------------------------------------------------------
 

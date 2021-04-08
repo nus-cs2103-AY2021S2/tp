@@ -15,6 +15,7 @@ import java.time.format.ResolverStyle;
  */
 public class DeliveryDate implements Comparable<DeliveryDate> {
 
+    public static final String MESSAGE_EMPTY = "Delivery date cannot be blank.";
     public static final String MESSAGE_CONSTRAINTS_FORMAT =
             "Delivery date should be of the format dd/mm/yyyy, dd-mm-yyyy, "
             + "dd.mm.yyyy or dd MMM yyyy and adhere to the following constraints:\n"
