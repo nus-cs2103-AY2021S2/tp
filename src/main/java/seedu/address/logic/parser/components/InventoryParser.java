@@ -10,11 +10,13 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.inventory.InventoryAddCommand;
+import seedu.address.logic.commands.inventory.InventoryDecreaseCommand;
 import seedu.address.logic.commands.inventory.InventoryDeleteCommand;
 import seedu.address.logic.commands.inventory.InventoryEditCommand;
 import seedu.address.logic.commands.inventory.InventoryFindCommand;
 import seedu.address.logic.commands.inventory.InventoryListCommand;
 import seedu.address.logic.parser.commands.inventory.InventoryAddCommandParser;
+import seedu.address.logic.parser.commands.inventory.InventoryDecreaseCommandParser;
 import seedu.address.logic.parser.commands.inventory.InventoryDeleteCommandParser;
 import seedu.address.logic.parser.commands.inventory.InventoryEditCommandParser;
 import seedu.address.logic.parser.commands.inventory.InventoryFindCommandParser;
@@ -55,6 +57,9 @@ public class InventoryParser implements ComponentParser {
 
         case InventoryEditCommand.COMMAND_WORD:
             return new InventoryEditCommandParser().parse(arguments);
+
+        case InventoryDecreaseCommand.COMMAND_WORD:
+            return new InventoryDecreaseCommandParser().parse(arguments);
 
         case InventoryFindCommand.COMMAND_WORD:
             return new InventoryFindCommandParser().parse(arguments);

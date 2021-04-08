@@ -205,6 +205,13 @@ public interface Model {
     void setIngredient(Ingredient target, Ingredient editedIngredient);
 
     /**
+     * Decrease the ingredient quantity by given quantity
+     * @param target ingredient to be decreased
+     * @param decreaseQuantity the number to decrease the ingredient quantity
+     */
+    public void decreaseIngredient(Ingredient target, int decreaseQuantity);
+
+    /**
      * Decrease the ingredient quantity with the given {@code order}
      * @param order order added
      */
