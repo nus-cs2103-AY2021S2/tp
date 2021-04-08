@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":TaskifyParser" as AddressBookParser LOGIC_COLOR
+participant ":TaskifyParser" as TaskifyParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -20,10 +20,10 @@ LogicManager -> TaskifyParser : parseCommand("delete 1")
 activate TaskifyParser
 
 create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
+TaskifyParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> AddressBookParser
+DeleteCommandParser --> TaskifyParser
 deactivate DeleteCommandParser
 
 TaskifyParser -> DeleteCommandParser : parse("1")
