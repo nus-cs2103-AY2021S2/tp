@@ -1,11 +1,12 @@
+
 package seedu.student.model.student;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.student.commons.util.AppUtil.checkArgument;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.student.commons.util.AppUtil.checkArgument;
 
 public class VaccinationStatus {
 

@@ -30,8 +30,8 @@ public class FilterCommand extends Command {
             + "Vaccination Status - Parameters: " + vaccinationStatus + " (case-insensitive)" + "\n"
             + "Faculties - Parameters: " + faculties + " (case-sensitive)" + "\n"
             + "Residences - Parameters: " + residences + " (case-sensitive)" + "\n"
-            + "Please enter only one parameter." + " Examples: " + COMMAND_WORD + " vaccinated, " + COMMAND_WORD + " COM, "
-            + COMMAND_WORD + " PGPH " + "\n";
+            + "Please enter only one parameter." + " Examples: " + COMMAND_WORD + " vaccinated, "
+            + COMMAND_WORD + " COM, " + COMMAND_WORD + " PGPH " + "\n";
 
 
     private final Predicate<Student> predicate;
