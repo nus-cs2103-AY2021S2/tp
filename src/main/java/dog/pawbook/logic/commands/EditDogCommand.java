@@ -9,7 +9,6 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SEX;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
-import static java.util.Objects.requireNonNull;
 
 import java.util.HashSet;
 import java.util.Optional;
