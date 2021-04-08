@@ -47,6 +47,7 @@ public class ModelManager implements Model {
     private final ObservableList<ImportantDate> transformedImportantDates;
     private final ObservableList<Person> transformedPersons;
     private final ObservableList<Lesson> transformedLessons;
+    private final ObservableList<Lesson> transformedLessonsForPerson;
     private final FilteredList<Lesson> mondayLessons;
     private final FilteredList<Lesson> tuesdayLessons;
     private final FilteredList<Lesson> wednesdayLessons;
@@ -93,6 +94,7 @@ public class ModelManager implements Model {
         transformedImportantDates = FXCollections.observableArrayList(this.datesBook.getImportantDatesList());
         transformedPersons = FXCollections.observableArrayList(this.addressBook.getPersonList());
         transformedLessons = FXCollections.observableArrayList(this.lessonBook.getLessonList());
+        transformedLessonsForPerson = FXCollections.observableArrayList(this.lessonBook.getLessonList());;
 
         mondayLessons = new FilteredList<>(transformedLessons);
         tuesdayLessons = new FilteredList<>(transformedLessons);
@@ -640,13 +642,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Lesson> getTransformedLessonListForPerson() {
+        return transformedLessonsForPerson;
+    }
+
+
+    @Override
     public void filterThenSortLessonList(Predicate<Lesson> predicate, Comparator<Lesson> comparator)
             throws NullPointerException {
         requireNonNull(comparator);
         filteredLessons.setPredicate(predicate);
-        transformedLessons.setAll(filteredLessons);
-        SortedList<Lesson> newSortedLessons = transformedLessons.sorted(comparator);
+        transformedLessonsForPerson.setAll(filteredLessons);
+        SortedList<Lesson> newSortedLessons = transformedLessonsForPerson.sorted(comparator);
         newSortedLessons.setComparator(comparator);
-        transformedLessons.setAll(newSortedLessons);
+        transformedLessonsForPerson.setAll(newSortedLessons);
     }
 }
