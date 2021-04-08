@@ -76,8 +76,12 @@ public class ParserUtil {
     public static Double parseDouble(String doubleValue) throws ParseException {
         requireNonNull(doubleValue);
         String trimmedValue = doubleValue.trim();
+        int dotIndex = trimmedValue.indexOf(".");
         if (!trimmedValue.matches(Food.VALIDATION_POSITIVE_DOUBLE_REGEX)) {
             throw new ParseException(Food.MESSAGE_DIGIT_CONSTRAINTS);
+        }
+        if (trimmedValue.length() > dotIndex + 3) {
+            throw new ParseException(Food.MESSAGE_DECIMAL_PLACE_CONSTRAINTS);
         }
         return Double.valueOf(trimmedValue);
     }
