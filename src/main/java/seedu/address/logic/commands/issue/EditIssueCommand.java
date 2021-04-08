@@ -308,6 +308,9 @@ public class EditIssueCommand extends Command {
 
         /**
          * Checks if this EditIssueDescriptor is equal to another. Follows Issue's equals method.
+         *
+         * @param other The other issue.
+         * @return True if they are the equal.
          */
         @Override
         public boolean equals(Object other) {
