@@ -3,12 +3,11 @@ package seedu.iscam.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.iscam.commons.core.Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW;
 import static seedu.iscam.commons.core.Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
 import static seedu.iscam.testutil.TypicalMeetings.FIONA_1;
 import static seedu.iscam.testutil.TypicalMeetings.FIONA_2;
-import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
 import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
 
 import java.util.Arrays;
@@ -16,9 +15,9 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.iscam.model.meeting.MeetingContainsKeywordsPredicate;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
+import seedu.iscam.model.meeting.MeetingContainsKeywordsPredicate;
 import seedu.iscam.model.user.UserPrefs;
 
 /**

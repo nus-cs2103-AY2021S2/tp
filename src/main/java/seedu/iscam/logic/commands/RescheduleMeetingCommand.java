@@ -8,7 +8,6 @@ import seedu.iscam.commons.core.Messages;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
-import seedu.iscam.model.commons.Location;
 import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Meeting;
 

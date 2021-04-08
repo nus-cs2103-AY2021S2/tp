@@ -2,7 +2,7 @@ package seedu.iscam.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.iscam.logic.commands.CommandTestUtil.assertClientCommandFailure;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.iscam.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
@@ -44,7 +44,7 @@ public class ShowCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredClientList().size() + 1);
         ShowCommand showCommand = new ShowCommand(outOfBoundIndex);
 
-        assertCommandFailure(showCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertClientCommandFailure(showCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class ShowCommandTest {
 
         ShowCommand showCommand = new ShowCommand(outOfBoundIndex);
 
-        assertCommandFailure(showCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertClientCommandFailure(showCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     @Test

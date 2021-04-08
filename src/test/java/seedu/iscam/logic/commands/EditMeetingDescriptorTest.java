@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.iscam.logic.commands.CommandTestUtil.DESC_CLEO;
 import static seedu.iscam.logic.commands.CommandTestUtil.DESC_DAN;
+import static seedu.iscam.logic.commands.CommandTestUtil.VALID_CLIENT_NAME_DAN;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_DATETIME_DAN;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_DESCRIPTION_DAN;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_LOCATION_DAN;
-import static seedu.iscam.logic.commands.CommandTestUtil.VALID_CLIENT_NAME_DAN;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 
 import org.junit.jupiter.api.Test;

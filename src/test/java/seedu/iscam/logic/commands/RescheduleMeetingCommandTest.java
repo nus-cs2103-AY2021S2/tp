@@ -164,7 +164,8 @@ public class RescheduleMeetingCommandTest {
         assertTrue(relocateFirstCommand.equals(relocateFirstCommand));
 
         // same values -> returns true
-        RescheduleMeetingCommand relocateFirstCommandCopy = new RescheduleMeetingCommand(INDEX_FIRST_ITEM, dateTimeCleo);
+        RescheduleMeetingCommand relocateFirstCommandCopy = new RescheduleMeetingCommand(INDEX_FIRST_ITEM,
+                dateTimeCleo);
         assertTrue(relocateFirstCommand.equals(relocateFirstCommandCopy));
 
         // different types -> returns false

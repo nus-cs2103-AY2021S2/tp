@@ -5,13 +5,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.iscam.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
+import seedu.iscam.model.commons.Location;
+import seedu.iscam.model.commons.Name;
+import seedu.iscam.model.commons.Tag;
 import seedu.iscam.model.meeting.CompletionStatus;
 import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.meeting.Meeting;
-import seedu.iscam.model.commons.Location;
-import seedu.iscam.model.commons.Name;
-import seedu.iscam.model.commons.Tag;
+
 
 /**
  * A utility class to help with building EditMeetingDescriptor objects.

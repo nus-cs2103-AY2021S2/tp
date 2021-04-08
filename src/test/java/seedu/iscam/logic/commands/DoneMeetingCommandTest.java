@@ -1,7 +1,8 @@
 package seedu.iscam.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandFailure;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.iscam.logic.commands.CommandTestUtil.assertClientCommandFailure;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
@@ -39,7 +40,7 @@ class DoneMeetingCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredMeetingList().size() + 1);
         DoneMeetingCommand doneMeetingCommand = new DoneMeetingCommand(outOfBoundIndex);
 
-        assertCommandFailure(doneMeetingCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+        assertClientCommandFailure(doneMeetingCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
     }
 
     @Test
@@ -70,7 +71,7 @@ class DoneMeetingCommandTest {
         showSpecificMeeting(expectedModel, completedMeeting);
         DoneMeetingCommand doneMeetingCommand = new DoneMeetingCommand(INDEX_FIRST_ITEM);
 
-        assertCommandFailure(doneMeetingCommand, expectedModel, DoneMeetingCommand.MESSAGE_ALREADY_COMPLETE);
+        assertClientCommandFailure(doneMeetingCommand, expectedModel, DoneMeetingCommand.MESSAGE_ALREADY_COMPLETE);
     }
 
     @Test

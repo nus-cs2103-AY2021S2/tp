@@ -87,7 +87,7 @@ public class RelocateMeetingCommandTest {
 
         assertMeetingCommandFailure(relocateMeetingCommand, model, RelocateMeetingCommand.MESSAGE_DUPLICATE_LOCATION);
     }
-    
+
     @Test
     public void execute_invalidMeetingIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredMeetingList().size() + 1);

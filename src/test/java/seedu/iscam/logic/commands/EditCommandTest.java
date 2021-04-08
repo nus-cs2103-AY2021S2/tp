@@ -7,7 +7,7 @@ import static seedu.iscam.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.iscam.logic.commands.CommandTestUtil.assertClientCommandFailure;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.iscam.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
@@ -78,7 +78,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM, new EditClientDescriptor());
         Client editedClient = model.getFilteredClientList().get(INDEX_FIRST_ITEM.getZeroBased());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_NO_CHANGES);
+        assertClientCommandFailure(editCommand, model, EditCommand.MESSAGE_NO_CHANGES);
     }
 
     @Test
@@ -105,7 +105,7 @@ public class EditCommandTest {
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder(firstClient).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_ITEM, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CLIENT);
+        assertClientCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 
     @Test
@@ -117,7 +117,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM,
                 new EditClientDescriptorBuilder(clientInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CLIENT);
+        assertClientCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CLIENT);
     }
 
     @Test
@@ -126,7 +126,7 @@ public class EditCommandTest {
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertClientCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     /**
@@ -143,7 +143,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditClientDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertClientCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
     }
 
     @Test

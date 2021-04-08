@@ -13,7 +13,6 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.commons.core.index.Index;
@@ -54,8 +53,9 @@ public class AddMeetingCommandTest {
         AddMeetingCommand addCommand = new AddMeetingCommand(validMeeting);
         ModelStub modelStub = new ModelStubWithMeeting(validMeeting);
 
-        assertThrows(CommandException.class, AddMeetingCommand.MESSAGE_MEETING_CONFLICT,
-                () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddMeetingCommand.MESSAGE_MEETING_CONFLICT, () ->
+            addCommand.execute(modelStub)
+        );
     }
 
     @Test

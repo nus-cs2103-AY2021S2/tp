@@ -2,13 +2,13 @@ package seedu.iscam.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.iscam.logic.commands.CommandTestUtil.assertClientCommandFailure;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.iscam.logic.commands.CommandTestUtil.showMeetingAtIndex;
 import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
-import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
+import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -45,7 +45,7 @@ public class DeleteMeetingCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredMeetingList().size() + 1);
         DeleteMeetingCommand deleteCommand = new DeleteMeetingCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+        assertClientCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
     }
 
     @Test
@@ -75,7 +75,7 @@ public class DeleteMeetingCommandTest {
 
         DeleteMeetingCommand deleteCommand = new DeleteMeetingCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
+        assertClientCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
     }
 
     @Test

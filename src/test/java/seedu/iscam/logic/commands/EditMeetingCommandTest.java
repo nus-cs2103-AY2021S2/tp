@@ -8,16 +8,15 @@ import static seedu.iscam.logic.commands.CommandTestUtil.DESC_DAN;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_CLIENT_NAME_CLEO;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_CLIENT_NAME_DAN;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_DATETIME_DAN;
-import static seedu.iscam.logic.commands.CommandTestUtil.VALID_LOCATION_DAN;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_STATUS_CLEO;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
-import static seedu.iscam.logic.commands.CommandTestUtil.assertMeetingCommandFailure;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.iscam.logic.commands.CommandTestUtil.assertMeetingCommandFailure;
 import static seedu.iscam.logic.commands.CommandTestUtil.showMeetingAtIndex;
 import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
-import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
+import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,14 +25,13 @@ import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
-import seedu.iscam.model.commons.Location;
 import seedu.iscam.model.meeting.CompletionStatus;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.user.UserPrefs;
 import seedu.iscam.model.util.clientbook.ClientBook;
 import seedu.iscam.model.util.meetingbook.MeetingBook;
-import seedu.iscam.testutil.MeetingBuilder;
 import seedu.iscam.testutil.EditMeetingDescriptorBuilder;
+import seedu.iscam.testutil.MeetingBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditMeetingCommand.

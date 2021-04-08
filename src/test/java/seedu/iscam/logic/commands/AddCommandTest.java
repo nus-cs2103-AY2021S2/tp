@@ -24,7 +24,6 @@ import seedu.iscam.model.user.ReadOnlyUserPrefs;
 import seedu.iscam.model.util.clientbook.ClientBook;
 import seedu.iscam.model.util.clientbook.ObservableClient;
 import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
-import seedu.iscam.model.util.meetingbook.MeetingBook;
 import seedu.iscam.model.util.meetingbook.ObservableMeeting;
 import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
 import seedu.iscam.testutil.ClientBuilder;

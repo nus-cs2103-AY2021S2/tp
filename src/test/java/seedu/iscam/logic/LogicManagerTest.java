@@ -92,7 +92,7 @@ public class LogicManagerTest {
         ModelManager expectedModel = new ModelManager();
         expectedModel.addClient(expectedClient);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertClientCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
@@ -106,7 +106,7 @@ public class LogicManagerTest {
      * - the feedback message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
      *
-     * @see #assertCommandFailure(String, Class, String, Model)
+     * @see #assertClientCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
                                       Model expectedModel) throws CommandException, ParseException {
@@ -118,30 +118,30 @@ public class LogicManagerTest {
     /**
      * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
      *
-     * @see #assertCommandFailure(String, Class, String, Model)
+     * @see #assertClientCommandFailure(String, Class, String, Model)
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
-        assertCommandFailure(inputCommand, ParseException.class, expectedMessage);
+        assertClientCommandFailure(inputCommand, ParseException.class, expectedMessage);
     }
 
     /**
      * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
      *
-     * @see #assertCommandFailure(String, Class, String, Model)
+     * @see #assertClientCommandFailure(String, Class, String, Model)
      */
     private void assertCommandException(String inputCommand, String expectedMessage) {
-        assertCommandFailure(inputCommand, CommandException.class, expectedMessage);
+        assertClientCommandFailure(inputCommand, CommandException.class, expectedMessage);
     }
 
     /**
      * Executes the command, confirms that the exception is thrown and that the result message is correct.
      *
-     * @see #assertCommandFailure(String, Class, String, Model)
+     * @see #assertClientCommandFailure(String, Class, String, Model)
      */
-    private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
+    private void assertClientCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage) {
         Model expectedModel = new ModelManager(model.getClientBook(), model.getMeetingBook(), new UserPrefs());
-        assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
+        assertClientCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
     /**
@@ -152,7 +152,7 @@ public class LogicManagerTest {
      *
      * @see #assertCommandSuccess(String, String, Model)
      */
-    private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
+    private void assertClientCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
