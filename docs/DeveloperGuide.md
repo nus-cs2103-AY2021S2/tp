@@ -528,7 +528,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. The instructions are mainly laid out in alphabetical order of the command word (e.g. `add-group`) for ease of searching for specific features to test.
+The only exceptions are sections that test FriendDex in its entirety. These instructions will be at the top.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -553,7 +554,27 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+1. _{ more test cases …​ }_
+
+### Add a person: `add`
+
+### Adding a special date: `add-date`
+
+### Adding a friend group: `add-group`
+
+### Adding a meeting: `add-meeting`
+
+### Adding a profile picture: `add-picture`
+
+### Clearing all entries: `clear`
+
+### Deleting a person: `delete`
 
 1. Deleting a person while all persons are being shown
 
@@ -569,12 +590,32 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases …​ }
 
-### Saving data
+### Deleting a special date: `del-date`
 
-1. Dealing with missing/corrupted data files
+### Deleting a meeting: `del-meeting`
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Deleting a profile picture `del-picture`
 
-1. _{ more test cases …​ }_
+### Viewing full details: `details`
+
+### Editing a person: `edit`
+
+### Exiting the program: `exit`
+
+### Locating persons by name: `find`
+
+### Viewing help: `help`
+
+### Listing all persons: `list`
+
+### Setting meeting goal: `set-goal`
+
+### Subtracting Debt: `subract-debt`
+
+### Styling the application: `theme`
+
+### Viewing different details panel: `view`
+
+
