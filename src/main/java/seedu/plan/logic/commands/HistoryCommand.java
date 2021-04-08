@@ -1,6 +1,9 @@
 package seedu.plan.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.plan.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.plan.logic.parser.CliSyntax.PREFIX_PLAN_NUMBER;
+import static seedu.plan.logic.parser.CliSyntax.PREFIX_SEM_NUMBER;
 
 import seedu.plan.logic.commands.exceptions.CommandException;
 import seedu.plan.model.Model;
@@ -10,16 +13,14 @@ import seedu.plan.model.util.History;
  * Adds a plan to the address book.
  */
 public class HistoryCommand extends Command {
-
     public static final String COMMAND_WORD = "history";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the user a list of modules that they "
-            + "have completed up until before the current semester. "
-            + "\nNote that the current semester is the semester that was "
-            + "marked using the `semester current` command.";
-
     public static final String MESSAGE_SUCCESS = "History: %1$s";
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the user a list of modules that they "
+            + "have completed up until before the current semester of the master plan.\n"
+            + "Parameters: "
+            + "None\n"
+            + "The current semester is the semester that was marked using the `current s/SEM_NUM` command.\n"
+            + "The master plan is the plan that was marked using the `master p/PLAN_NUM` command.";
 
     /**
      * Outputs all completed semesters (up until but excluding the current semester) and modules of the

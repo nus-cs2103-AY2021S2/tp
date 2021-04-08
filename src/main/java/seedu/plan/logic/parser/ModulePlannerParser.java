@@ -80,7 +80,7 @@ public class ModulePlannerParser {
             return new MasterPlanCommandParser().parse(arguments);
 
         case HistoryCommand.COMMAND_WORD:
-            return new HistoryCommand();
+            return new HistoryCommandParser().parse(arguments);
 
         case ShowCommand.COMMAND_WORD:
             return new ShowCommandParser().parse(arguments);
