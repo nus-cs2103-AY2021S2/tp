@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_DESERIALIZE_ERROR_DUMP
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -264,8 +265,17 @@ class JsonAdaptedPerson {
         final Debt modelDebt = new Debt(trimmedDebt);
 
         final Set<Tag> modelTags = tagsToModelType();
-        final List<SpecialDate> modelDates = datesToModelType(modelBirthday, modelName);
-        final List<Meeting> modelMeetings = meetingsToModelType(modelBirthday, modelName);
+        final List<SpecialDate> rawModelDates = datesToModelType(modelBirthday, modelName);
+        final List<Meeting> rawModelMeetings = meetingsToModelType(modelBirthday, modelName);
+
+        // sort dates here as well in case JSON data is modified externally.
+        final List<SpecialDate> modelDates = rawModelDates.stream()
+                .sorted(Comparator.comparing(SpecialDate::getDate).reversed())
+                .collect(Collectors.toList());
+
+        final List<Meeting> modelMeetings = rawModelMeetings.stream()
+                .sorted(Comparator.comparing(Meeting::getDate).reversed())
+                .collect(Collectors.toList());
 
         return new Person(modelName, modelPhone, modelEmail, modelBirthday, modelGoal, modelAddress, modelPicture,
                 modelDebt, modelTags, modelDates, modelMeetings);
