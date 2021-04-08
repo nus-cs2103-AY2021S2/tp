@@ -15,7 +15,7 @@ public class Messages {
             + "provided is invalid";
     public static final String MESSAGE_MORE_THAN_ONE_SAME_PREFIX = "There should only be 1 option";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT =
-            "You already have an appointment with the same name/date in the address book.";
+            "You already have an appointment with the same name/date/address in the address book.";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_RECEIVED_MORE_THAN_INDEX = "Preamble contains more than just index.";
 
