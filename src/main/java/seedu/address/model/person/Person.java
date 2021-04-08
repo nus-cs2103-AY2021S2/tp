@@ -117,6 +117,10 @@ public class Person {
         return this.personType.isTutor();
     }
 
+    public boolean hasSession() {
+        return !this.sessions.isEmpty();
+    }
+
     /**
      * Adds a session to the list of sessions that this person is assigned to
      * @param session

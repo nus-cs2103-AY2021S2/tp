@@ -47,7 +47,7 @@ public class DeleteSessionCommand extends Command {
         }
 
         if (sessionToDelete.get().hasTutor() || sessionToDelete.get().hasStudent()) {
-            throw new CommandException((Messages.MESSAGE_CANNOT_DELETE));
+            throw new CommandException(Messages.MESSAGE_CANNOT_DELETE_SESSION);
         }
 
         model.deleteSession(sessionToDelete.get());
