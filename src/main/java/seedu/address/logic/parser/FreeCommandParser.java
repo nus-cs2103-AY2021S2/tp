@@ -1,6 +1,10 @@
 package seedu.address.logic.parser;
 
+<<<<<<< HEAD
 import static seedu.address.commons.core.Messages.MESSAGE_ENTRY_START_DATE_IN_PAST;
+=======
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_IN_PAST;
+>>>>>>> branch-free-command-test
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_RANGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
@@ -17,7 +21,7 @@ import seedu.address.model.entry.ListOccupyingEntryPredicate;
 /**
  * Parses input arguments and creates a new FreeCommand object
  */
-public class FreeCommandParser {
+public class FreeCommandParser implements Parser<FreeCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FreeCommand
