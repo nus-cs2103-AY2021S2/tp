@@ -36,6 +36,14 @@ public class TypicalTeachingAssistant {
     public static final Entry DO_STUFF = new EntryBuilder().withEntryName("Go do something important")
             .withStartDate("2021-02-04 09:00").withEndDate("2021-02-04 09:30").withTags("Important", "Stuff").build();
 
+    //Manually Added
+    public static final Entry REMEDIAL = new EntryBuilder().withEntryName("Remedial").withStartDate("2021-02-05 10:00")
+            .withEndDate("2021-02-05 12:00").withTags("Geography", "21A07").build();
+
+    public static final Entry CONSULTATION_MATH = new EntryBuilder().withEntryName("Consultation")
+            .withStartDate("2021-02-05 17:00").withEndDate("2021-02-05 18:00").withTags("Math", "Alice").build();
+
+    //===Person===
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
