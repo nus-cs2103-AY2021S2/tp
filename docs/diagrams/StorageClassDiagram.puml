@@ -7,24 +7,32 @@ skinparam classBackgroundColor STORAGE_COLOR
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
 Interface AddressBookStorage <<Interface>>
+Interface ShortcutLibraryStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
 Class JsonAddressBookStorage
+Class JsonShortcutLibraryStorage
 Class Authentication
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
 StorageManager o--> AddressBookStorage
+StorageManager o--> ShortcutLibraryStorage
 
 Storage -|> UserPrefsStorage
 Storage -|> AddressBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
+JsonAddressBookStorage .up.|> AddressBookStorage
+JsonShortcutLibraryStorage .left.|> ShortcutLibraryStorage
 
 JsonAddressBookStorage .down.> JsonSerializableAddressBook
 JsonSerializableAddressBook .right.> JsonAdaptedPerson
 JsonAdaptedPerson .right.> JsonAdaptedTag
 JsonAdaptedPerson .up.> JsonAdaptedInsurancePolicy
+JsonShortcutLibraryStorage .right.> JsonSerializableShortcutLibrary
+JsonSerializableShortcutLibrary .down.> JsonAdaptedShortcut
+
+ShortcutLibraryStorage -[hidden]left-> AddressBookStorage
 @enduml

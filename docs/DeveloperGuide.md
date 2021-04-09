@@ -188,6 +188,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
+* stores the shortcut library data.  
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -202,6 +203,7 @@ The `Model`,
 The `Storage` component,
 * can save `UserPref` objects in JSON format and read it back.
 * can save the address book data in JSON format and read it back.
+* can save the shortcut library data in JSON format and read it back.
 
 <br><br>
 
@@ -439,6 +441,51 @@ Below is a sequence diagram illustrating the flow of this entire process.
 
 The meet feature was designed such that there is a check for clashes so that the user would not need to worry for having 
 clashes between any meetings in ClientBook.
+
+<br>
+
+### Create a shortcut in ClientBook feature
+
+#### Motivation
+
+As an insurance agent, our target user is likely to always be meeting up with clients to discuss about their portfolios 
+and will like to have a faster way to use ClientBook to avoid wasting the clients' time. Having a shortcuts feature for 
+ClientBook will give the user a way to be more efficient during meetings with clients.
+
+#### Implementation
+
+A new command `AddShortcutCommand` was created. It extends the abstract class `Command`, overriding and implementing its
+`execute` method. When `AddShortcutCommand#execute()` is called, a shortcut is added to the shortcut library. When a 
+shortcut is added, there will be a check for any existing shortcuts with the same name.
+
+
+Below is an example usage scenario and how the information and data are passed around at each step.
+
+**Step 1.** The user types `addshortcut sn/aia sc/find i/aia` into the input box.
+
+**Step 2.** `MainWindow` receives the `commandText` (`addshortcut sn/aia sc/find i/aia`), which is then executed by 
+`LogicManager`.
+
+**Step 3.** `ClientBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return 
+a `AddShortcutCommand`, which would contain the name of the shortcut (in this case `aia`), followed by the command that 
+the name will be mapped to (in this case `find i/aia`).
+
+**Step 4.** `AddShortcutCommand`then executes, storing the shortcut in the shortcut library and returning a 
+`CommandResult`. This `CommandResult` contains the feedback string message which indicates to the user whether the 
+specified shortcut has been added successfully.
+
+**Step 5.** This `CommandResult` is passed back to `MainWindow` to be displayed to the user through the `ResultDisplay`.
+
+Below is a sequence diagram illustrating the flow of this entire process.
+
+<p align="center"><img src="images/ShortcutSequenceDiagram.png"></p>
+
+#### Design Considerations
+
+The shortcut feature was designed such that the shortcut library is stored separately from the address book in 
+`shortcutlibrary.json`. Hence, there is minimal dependency between existing components and components of the shortcuts 
+feature. It was also implemented in a way that there are checks performed for duplicate shortcuts and validity of the 
+commands mapped to the shortcuts.
 
 <br>
 
@@ -812,6 +859,99 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. User enters the incorrect current password that is used to lock ClientBook.
   
     * 1a1. ClientBook shows an error message. Use case resumes at step 1.
+    
+<br>
+
+**Use case 11: Delete a shortcut**
+
+**MSS**
+
+1.  User requests to delete a specific shortcut in the shortcut library.
+
+2.  ClientBook deletes the shortcut.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given shortcut name is invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
+<br>
+
+**Use case 12: Add a shortcut**
+
+**MSS**
+
+1.  User requests to add a shortcut.
+
+2.  ClientBook adds the shortcut.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The user input does not follow the format required.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
+<br>
+
+**Use case 13: List all shortcuts**
+
+**MSS**
+
+1.  User requests to list shortcuts.
+
+2.  ClientBook shows the shortcut library.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The shortcut library is empty.
+
+    * 1a1. ClientBook shows empty shortcut library message.
+
+      Use case ends.
+
+<br>
+
+**Use case 14: Edit a shortcut**
+
+**MSS**
+
+1.  User requests to edit a specific shortcut in the shortcut library.
+
+2.  ClientBook edits the shortcut.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given shortcut name is invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+    
+<br>
+
+**Use case 14: Clear the shortcut library**
+
+**MSS**
+
+1.  User requests to clear the shortcut library.
+
+2.  ClientBook clears the shortcut library.
+
+    Use case ends.
+
 
 ### Non-Functional Requirements
 
