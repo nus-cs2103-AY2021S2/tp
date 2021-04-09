@@ -6,7 +6,6 @@ import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.timeforwheels.logic.commands.exceptions.CommandException;
 import seedu.timeforwheels.model.Model;
