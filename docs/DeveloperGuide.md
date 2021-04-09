@@ -326,7 +326,7 @@ Note: Style of diagram to be updated.
 
 ### Appointment feature
 
-#### Proposed Implementation
+#### Implementation
 
 An appointment feature will be implemented in the next version of this application. It is a useful feature for parents to track any important appointments
 related to their children. For example, a parent teacher meeting or a birthday party at the house of their child's friend. 
