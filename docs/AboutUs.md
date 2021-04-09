@@ -14,7 +14,7 @@ You can reach us at the email `e0205114[at]comp.nus.edu.sg`
 <img src="images/drwala.png" width="200px">
 
 [[github](https://github.com/DrWala)]
-[[portfolio](team/azeem.md)]
+[[portfolio](team/drwala.md)]
 
 * Role: Developer
 * Responsibilities: Testing, Rooms feature
@@ -54,7 +54,7 @@ You can reach us at the email `e0205114[at]comp.nus.edu.sg`
 <img src="images/cnlinh.png" width="200px">
 
 [[github](https://github.com/cnlinh)]
-[[portfolio](team/linh.md)]
+[[portfolio](team/cnlinh.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Alias Feature

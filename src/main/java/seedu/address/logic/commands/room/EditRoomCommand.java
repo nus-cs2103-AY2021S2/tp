@@ -49,6 +49,8 @@ public class EditRoomCommand extends Command {
     public static final String MESSAGE_DUPLICATE_ROOM = "This room already exists in SunRez.";
     public static final String MESSAGE_ROOM_ALLOCATED_FAILURE =
             "The room has already been allocated to another resident. Please deallocate the room before editing.";
+    public static final String MESSAGE_ROOM_HAS_ISSUES = "This room still has issues assigned to it. Please delete all "
+            + "corresponding issues before editing the room.";
 
     private final Index index;
     private final EditRoomDescriptor editRoomDescriptor;
@@ -88,6 +90,10 @@ public class EditRoomCommand extends Command {
 
         if (model.hasEitherResidentRoom(new ResidentRoom(null, roomToEdit.getRoomNumber()))) {
             throw new CommandException(MESSAGE_ROOM_ALLOCATED_FAILURE);
+        }
+
+        if (model.issuesContainRoom(roomToEdit)) {
+            throw new CommandException(MESSAGE_ROOM_HAS_ISSUES);
         }
 
         model.setRoom(roomToEdit, editedRoom);

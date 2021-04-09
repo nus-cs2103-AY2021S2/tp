@@ -53,7 +53,7 @@ detail how contributors can read, create and edit these diagrams, as well as var
 
 #### How to read
 
-If you are unfamiliar with how to read UML diagrams, check out [this chapter](https://se-education.org/se-book/uml/index.html) 
+If you are unfamiliar with how to read UML diagrams, check out [this chapter](https://se-education.org/se-book/uml/index.html)
 of the free online SE-EDU textbook.
 
 <div markdown="span" class="alert alert-info">
@@ -67,8 +67,8 @@ the X to the end of the diagram.
 #### How to create and edit
 
 This project uses [PlantUML](https://plantuml.com/) to create diagrams in this document. These diagrams are generated
-from `.puml` files which can be found in the [diagrams](https://github.com/AY2021S2-CS2103-T14-1/tp/tree/master/docs/diagrams) 
-folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) 
+from `.puml` files which can be found in the [diagrams](https://github.com/AY2021S2-CS2103-T14-1/tp/tree/master/docs/diagrams)
+folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html)
 to learn how to create and edit diagrams.
 
 
@@ -80,11 +80,11 @@ to learn how to create and edit diagrams.
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview 
+The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview
 of each component.
 
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/Main.java) 
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/Main.java)
 and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -195,8 +195,8 @@ This section describes some noteworthy details on how certain features are imple
 The Resident family of features consist of the following features: Add Resident, Edit Resident, List Resident, Find Resident and Delete Resident.
 
 #### The Resident Class
-The Resident class consists of 5 fields, each of which contain their own methods to verify their respective input. 
-This allows for a low degree of coupling, and individual fields can change their input verification rules without affecting the other classes. 
+The Resident class consists of 5 fields, each of which contain their own methods to verify their respective input.
+This allows for a low degree of coupling, and individual fields can change their input verification rules without affecting the other classes.
 Similarly, the Resident class can expand to contain more fields without affecting existing fields too.
 
 Examples of verification functions in each of the fields include `Resident#isValidName()` etc.
@@ -209,7 +209,7 @@ The `Resident` objects are stored in a `UniqueResidentList` which is held by `Ad
 This section will detail the implementation of the Add Resident feature via the `radd` command,
 
 ##### Overview of Insertion Process
-The AddResidentCommand is triggered through the use of `radd` followed by valid parameters such as name, phone, etc. 
+The AddResidentCommand is triggered through the use of `radd` followed by valid parameters such as name, phone, etc.
 The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, a Resident object is constructed and added to the model and saved to the backing store. Upon successful insertion, a feedback message is displayed to the user.
 
 This process is summarised in the diagram below
@@ -223,7 +223,7 @@ The diagram below details how the user's command to add a resident propagates th
 
 ### Room Features
 
-The Room family of features consist of the following features: Add Room, Edit Room, List Rooms, Find Room and Delete Room. 
+The Room family of features consist of the following features: Add Room, Edit Room, List Rooms, Find Room and Delete Room.
 
 #### The Room Class
 The Room class consists of 4 fields, each of which contain their own methods to verify their respective input. This allows for a low degree of coupling, and individual fields can change their input verification rules without affecting the other classes. Similarly, the Room class can expand to contain more fields without affecting existing fields too.
@@ -253,8 +253,8 @@ The `Room` objects are stored in a `UniqueRoomList` which is held by `AddressBoo
 #### Add Room
 This section will detail the implementation of the Add Room feature via the `oadd` command,
 
-##### Overview of Insertion Process 
-The AddRoomCommand is triggered through the use of `oadd` followed by valid parameters such as room number, type, etc. The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, a Room object is constructed and added to the model and saved to the backing store. Upon successful insertion, a feedback message is displayed to the user. 
+##### Overview of Insertion Process
+The AddRoomCommand is triggered through the use of `oadd` followed by valid parameters such as room number, type, etc. The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, a Room object is constructed and added to the model and saved to the backing store. Upon successful insertion, a feedback message is displayed to the user.
 
 This process is summarised in the diagram below
 ![Adding a Room](images/room/AddRoomCommandActivityDiagram.png)
@@ -265,7 +265,7 @@ The `AddRoomCommand` inherits from the `Command` object and overrides the `execu
 The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implemetations of each `Command` object.
 
 ##### Detailed execution pathway
-The diagram below details how the user's command to add a room propagates through the system to eventually add a room. 
+The diagram below details how the user's command to add a room propagates through the system to eventually add a room.
 
 ![Adding a Room](images/room/AddRoomCommandSeqDiagram.png)
 
@@ -423,11 +423,11 @@ This section starts with an overview of the command history model then looks at 
 #### Implementation
 
 ##### Command History Overview
-SunRez command history is represented by a `CommandHistory`, stored in the `ModelManager`. A `CommandHistory` is 
+SunRez command history is represented by a `CommandHistory`, stored in the `ModelManager`. A `CommandHistory` is
 composed of zero or more `CommandHistoryEntry` objects, each representing a previously entered command. New entries
-can be appended to `CommandHistory`. `CommandHistory` implements the `ReadOnlyCommandHistory` interface, 
+can be appended to `CommandHistory`. `CommandHistory` implements the `ReadOnlyCommandHistory` interface,
 which provides a non-editable view of the implementing `CommandHistory`; this readonly view is used by other components
-that do not need to append to the command history. For example, the view history command reads it to display it - or a 
+that do not need to append to the command history. For example, the view history command reads it to display it - or a
 filtered portion of it - to the user.
 
 The following class diagram shows an overview of the command history subsystem and its relation to other components.
@@ -435,14 +435,14 @@ The following class diagram shows an overview of the command history subsystem a
 ![CommandHistoryModelClassDiagram](images/commandhistory/CmdHistModelClassDiagram.png)
 
 ##### How Command History is Updated
-`Logic#execute()` triggers the update. Only _after_ a command parses and executes successfully will that command's text 
+`Logic#execute()` triggers the update. Only _after_ a command parses and executes successfully will that command's text
 be appended to the command history via `Model#appendCommandHistoryEntry()`. If either parsing or execution fails,
-then `CommandHistory` will be unchanged. The following sequence diagram shows this process pictorially using the 
+then `CommandHistory` will be unchanged. The following sequence diagram shows this process pictorially using the
 example command `help`.
 
 ![CommandHistoryUpdateSequenceDiagram](images/commandhistory/CmdHistUpdateSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
+<div markdown="span" class="alert alert-info">:information_source:
 **Note:** In the sequence diagram above, `parseAndExecute()` is not an actual method; rather it is a simplification
 of a two-step process in the Logic component. The important thing to note is that `CommandHistory` is updated only
 _after_ a command is parsed and executed successfully by the Logic component.
@@ -454,29 +454,29 @@ SunRez allows the user to list the full command history, or a portion of it, thr
 `[COUNT]` is an optional integer that the user can specify to limit the number of most-recent entries to be listed.
 If `[COUNT]` is omitted, then the full command history is displayed.
 
-Viewing command history is implemented through `ViewHistoryCommand` and supported by `ReadOnlyCommandHistory`. 
-`ViewHistoryCommand#execute()` accesses command history through the view of a `ReadOnlyCommandHistory`, reads the 
-entries it needs to display, formats the entries into a message, then finally returns the message wrapped in 
+Viewing command history is implemented through `ViewHistoryCommand` and supported by `ReadOnlyCommandHistory`.
+`ViewHistoryCommand#execute()` accesses command history through the view of a `ReadOnlyCommandHistory`, reads the
+entries it needs to display, formats the entries into a message, then finally returns the message wrapped in
 a `CommandResult`, to be displayed to the user. The following sequence diagram illustrates the main interactions
-between `ViewHistoryCommand` and the Model component. It uses the example command of `history 5`. 
+between `ViewHistoryCommand` and the Model component. It uses the example command of `history 5`.
 
 ![ViewHistorySequenceDiagram](images/commandhistory/CmdHistViewHistorySequenceDiagram.png)
 
 ##### Navigate History
-The user navigates their command history via the UP and DOWN arrow keys. The UP and DOWN arrow keys respectively 
+The user navigates their command history via the UP and DOWN arrow keys. The UP and DOWN arrow keys respectively
 select the previous and next commands in history, if any.
 
-The UP and DOWN key press events are first handled by `CommandBox` in the UI component. `CommandBox` delegates the 
+The UP and DOWN key press events are first handled by `CommandBox` in the UI component. `CommandBox` delegates the
 logic of navigation and keeping track of state (which command we are selecting) to a `CommandHistorySelector`.
 The `CommandHistorySelector` is called via `#selectNext()` and `#selectPrevious()` which are expected
-to respectively return the next and previous commands in history since they were last called. Upon receiving the 
+to respectively return the next and previous commands in history since they were last called. Upon receiving the
 relevant commands from `CommandHistorySelector`, `CommandBox` will populate its text box with that command's text.
 The following sequence diagram shows the aforementioned relationships.
 
 ![AccessHistorySequenceDiagram](images/commandhistory/CmdHistAccessHistorySequenceDiagram.png)
 
 `CommandHistorySelector#selectLast()` can also be called to reset the selection to the most recent command in history.
-This is useful, for example, when a user has navigated to the middle of their command history then executes a new 
+This is useful, for example, when a user has navigated to the middle of their command history then executes a new
 command. At this point, we want navigation to start from the most recent command again - not where the user was
 before he/she executed a command.
 
@@ -484,18 +484,18 @@ Currently, SunRez uses a `SuppliedCommandHistorySelector` as its `CommandHistory
 a `Supplier<ReadOnlyCommandHistory>` to view SunRez command history whenever it is called to select a new entry.
 
 ##### Save/Load History
-SunRez automatically saves command history after each command execution, and loads command history (if any) upon app 
-start-up. The command history is saved in a plain-text file at `[JAR_file_location]/data/commandhistory.txt`. 
+SunRez automatically saves command history after each command execution, and loads command history (if any) upon app
+start-up. The command history is saved in a plain-text file at `[JAR_file_location]/data/commandhistory.txt`.
 
 Saving and loading is supported by `CommandHistoryStorage`, an interface that exposes read and write methods. SunRez
 currently uses an implementation of this interface called `PlainTextCommandHistoryStorage`, which serializes each
-command history entry as a single line of plain text in the command history file. The class structure is shown 
+command history entry as a single line of plain text in the command history file. The class structure is shown
 in the class diagram in the _Command History Overview_ subsection above.
 
 Command history is saved immediately after it is updated. Since command history is only updated after a successful
-command execution, this implies that only successful commands are saved. In order to save command history, 
-`CommandHistoryStorage` creates a serialized string from a `ReadOnlyCommandHistory` view of the command history, then 
-writes it to disk using `FileUtil#writeToFile()` as a helper. The following activity diagram shows a simplified flow 
+command execution, this implies that only successful commands are saved. In order to save command history,
+`CommandHistoryStorage` creates a serialized string from a `ReadOnlyCommandHistory` view of the command history, then
+writes it to disk using `FileUtil#writeToFile()` as a helper. The following activity diagram shows a simplified flow
 of the storage process from command execution to writing the command history to file.
 
 ![CommandHistoryStorageActivityDiagram](images/commandhistory/CommandHistoryStorageActivityDiagram.png)
@@ -507,21 +507,21 @@ of the storage process from command execution to writing the command history to 
 * **Alternative 1 (current choice):** Only record valid commands (commands which parse and execute successfully).
     * Pros:
         * Less cluttered command history.
-        * A User can still easily correct typos in a failed command because SunRez does not consume the input if it 
+        * A User can still easily correct typos in a failed command because SunRez does not consume the input if it
           fails to execute.
-    * Cons: 
+    * Cons:
         * Behaves less like a regular shell program, so the user might be expecting different behavior.
 
 * **Alternative 2:** Record all command text that the user tries to execute.
     * Pros:
         * Behaves more like a regular shell program.
-    * Cons: 
+    * Cons:
         * More cluttered command history.
         * Arguably does not help the user correct typos in failed commands (see Alternative 1: Pros).
 
 ##### Aspect: Should command history selection logic be in `CommandBox`?
 
-* **Alternative 1 (current choice):** No, abstract it out to an interface `CommandHistorySelector` with a backing 
+* **Alternative 1 (current choice):** No, abstract it out to an interface `CommandHistorySelector` with a backing
   implementation.
     * Pros:
         * Follows SRP because `CommandBox` is part of the UI component, but history selection is logic. If selection
@@ -621,12 +621,12 @@ Use case ends.
 
 * 1a. The resident's details are incorrectly formatted (e.g. phone number/email/year format does not conform, OR room number is invalid).
     * 1a1. SunRez displays an error stating which field is incorrectly formatted and requests the user to try again after fixing the stated error.
-    
+
         Use case ends.
-    
+
 * 2a. SunRez encounters an error while saving the content.
     * 2a1. SunRez shows an error message and requests the user to try their command again.
-    
+
         Use case ends.
 
 
@@ -642,7 +642,7 @@ Use case ends.
 **Extensions**
 
 * 2a. The list is empty.
-    
+
     Use case ends.
 
 
@@ -659,7 +659,7 @@ Use case ends.
 
 * 2a. There are no residents matching the keywords.
     * 2a1. An empty list is displayed.
-    
+
         Use case ends.
 
 ### UC-004 Edit a resident record
@@ -676,11 +676,11 @@ Use case ends.
 **Extensions**
 
 * 2a. The list of residents is empty.
-    
+
     Use case ends.
 * 3a. The resident's details are invalid (e.g phone number/email/year format does not conform).
     * 3a1. SunRez shows an error message stating which field is incorrectly formatted and requests the user to try again.
-    
+
         Use case resumes at step 2.
 
 
@@ -698,11 +698,11 @@ Use case ends.
 **Extensions**
 
 * 2a. The list of residents is empty.
-    
+
     Use case ends.
 * 3a. The specified resident does not exist.
     * 3a1. SunRez shows an error message.
-    
+
         Use case resumes at step 2.
 
 
@@ -745,8 +745,8 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The list of rooms is empty. 
-    
+* 2a. The list of rooms is empty.
+
     Use case ends.
 * 3a. The room's details are invalid (e.g. room number format is not valid).
     * 3a1. SunRez shows an error message stating which field is incorrectly formatted and requests the user to try again.
@@ -770,7 +770,7 @@ Use case ends.
 
 **Extensions**
 * 1a. The issue's details are invalid (e.g. invalid room number).
-    * 1a1. SunRez shows an error stating which field is incorrectly formatted and requests the user to try again after fixing the stated error. 
+    * 1a1. SunRez shows an error stating which field is incorrectly formatted and requests the user to try again after fixing the stated error.
 
         Use case ends.
 
@@ -797,11 +797,11 @@ Use case ends.
 **Extensions**
 
 * 2a. The list of issue is empty.
-    
+
     Use case ends.
 * 3a. The issue's details are invalid (e.g invalid room number).
     * 3a1. SunRez shows an error message stating which field is incorrectly formatted and requests the user to try again.
-    
+
         Use case resumes at step 2.
 
 
@@ -942,12 +942,12 @@ Use case ends.
 **Extensions**
 
 * 2a. Alias name is invalid.
-    * 2a1. SunRez shows an error message. 
+    * 2a1. SunRez shows an error message.
 
         Use case ends.
 
 * 3a. An alias with the same name exists.
-    * 3a1. SunRez overwrites the existing alias. 
+    * 3a1. SunRez overwrites the existing alias.
 
         Use case ends.
 
@@ -997,7 +997,7 @@ Use case ends.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a
 starting point for testers to work on; testers are expected to do more *exploratory* testing.
 
 </div>
@@ -1026,6 +1026,7 @@ starting point for testers to work on; testers are expected to do more *explorat
        Expected: The same command history (possibly with one extra `history` and/or `exit` command) is displayed.
 
 ### Resident Data
+
 1. Adding residents
     1. Prerequisites: There is no existing resident named `John Doe`. 
     2. Test case: `radd n/John Doe p/98765432 e/johnd@example.com y/1` <br>
@@ -1066,7 +1067,80 @@ starting point for testers to work on; testers are expected to do more *explorat
     2. Test case: `rfind KEYWORD` <br>
        Expected: Residents whose names have words fully matching `KEYWORD` are listed.
 
+### Issue
+
+1. Adding an issue
+
+    1. Prerequisites: Room `01-234` exists in SunRez.
+
+    2. Test case: `iadd r/01-234 d/Collapsed ceiling` <br>
+       Expected: A feedback message in the result box indicating the issue was successfully added. The issue should be visible in the issue panel.
+
+    3. Test case: `iadd r/01-234 d/Collapsed ceiling t/3000/01/01 12:00pm` or any timestamp in the future. <br>
+       Expected: An error message indicating that timestamps should not be in the future.
+
+    4. Test case:
+        * `iadd r/01-234 d/Collapsed ceiling t/2020/01/01 12:00pm s/pending c/Ceiling g/a` <br>
+        * `iadd r/01-234 d/Collapsed ceiling t/2020/01/01 12:00pm s/pending c/Ceiling g/b` <br>
+       Expected: An error message indicating that the issue already exists in SunRez as the issue to be added is exactly the same excluding tags.
+
+3. Finding issues
+
+    1. Prerequisites: Issues belonging to room `01-234` and `03-325` with descriptions `Broken table` and `Door broke in half` respectively.
+
+    2. Test case: `ifind 01` <br>
+       Expected: Issue panel should be filtered to show all rooms with `01` in their room number, description, or tag. This includes the `Broken table` issue for `01-234`.
+
+    3. Test case: `ifind broke` <br>
+       Expected: Issue panel should be filtered to show all rooms with `broke` (case insensitive) in their room number, description, or tag. This includes both issues stated in the prerequisites.
+
+    4. Test case: `ifind table door` <br>
+       Expected: Issue panel should be filtered to show all rooms with `broke` or `door` (both case insensitive) in their room number, description, or tag. This includes both issues stated in the prerequisites.
+
+    5. Test case: `ifind abcdefg` <br>
+       Expected: Issue panel should be filtered to show all rooms with `abcdefg` (case insensitive) in their room number, description, or tag. The issues in the prerequisite should not be in the panel.
+
+    6. Test case: `ifind` <br>
+       Expected: An error message indicating invalid command format.
+
+4. Editing issues
+
+    1. Prerequisites: There are only 2 issues: room `01-234` and `03-325` with descriptions `Broken table` and `Door broke in half` respectively listed in this order.
+
+    2. Test case: `iedit 1 d/Exploding cabinet` <br>
+       Expected: The first issue's description is changed from `Broken table` to `Exploding cabinet`.
+
+    3. Test case: `iedit 2 r/01-234` <br>
+       Expected: The second issue's room number is set to `01-234`.
+
+    4. Test case `iedit 2 r/99-999` <br>
+       Expected: An error message indicating no such room.
+
+    5. Other incorrect `iedit` commands to try: <br>
+        * `iedit x` with at least 1 valid parameter given and where `x` is either a non-positive number or not a number at all. E.g. `iedit -1 r/01-234` and `iedit a d/ABCDEF`. <br>
+          Expected: An error message indicating the type of error.
+        * `iedit x` with at least 1 invalid parameter given and where `x` is a valid index. <br>
+          Expected: An error message indicating the constraints of the invalid paramter.
+
+5. Closing issues
+
+    1. Prerequisites: There is at least 1 issue with status `Pending`.
+
+    2. Test case: `iclo x` where x is the index of a issue with status `Pending`. <br>
+       Expected: The issue's status is set to `Closed`.
+
+    3. Test case: `iclo x` where x is the index of a issue with status `Closed`. <br>
+       Expected: An error message indicating that the issue is already closed.
+
+6. Delete issues
+
+    1. Prerequisites: There is at least 1 issue.
+
+    2. Test case: `idel x` where x is valid index. <br>
+       Expected: The issue is deleted.
+
 ### Allocation and Deallocation
+
 1. Allocating residents to rooms
     1. Prerequisites: The first displayed resident and first displayed room are both unallocated.
     2. Test case: `alloc ri/1 oi/1` <br>
@@ -1184,6 +1258,3 @@ command history.
 
     5. Other tests to try: Perform several undoable commands, `undo` operations and `redo` operations.
        Expected: The `redo` operations undo the `undo` operations in reverse order.
-
-
-
