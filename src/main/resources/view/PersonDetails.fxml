@@ -53,15 +53,7 @@
                            <children>
                               <Label text="Name:" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
                               <Label text="Contact:" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                              <Label fx:id="studentEmail" styleClass="cell_big_label" text="\$studentEmail" translateY="15.0" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                                 <padding>
-                                    <Insets left="10.0" />
-                                 </padding>
-                              </Label>
-                              <Label fx:id="studentPhone" styleClass="cell_big_label" text="\$studentPhone" translateY="-15.0" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                              <Label fx:id="studentContact" styleClass="cell_big_label" text="\$studentContact" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
@@ -107,7 +99,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="school" styleClass="cell_big_label" text="\$school" translateY="15.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <Label fx:id="education" styleClass="cell_big_label" text="\$education" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
@@ -115,23 +107,7 @@
                               <Insets />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="level" styleClass="cell_big_label" text="\$level" translateY="-15.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </Label>
-                        <Label fx:id="guardianName" styleClass="cell_big_label" text="\$guardianName" translateY="-15.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
-                        <Label fx:id="guardianPhone" styleClass="cell_big_label" text="\$guardianNumber" translateY="15.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <Label fx:id="guardianContact" styleClass="cell_big_label" text="\$guardianContact" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
@@ -161,7 +137,7 @@
                         <Label text="Lesson" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                      </children>
                   </GridPane>
-                  <StackPane fx:id="lessonListPanelPlaceholder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="440.0" prefWidth="155.0" VBox.vgrow="ALWAYS" />
+                  <StackPane fx:id="lessonListPanelPlaceholder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="376.0" prefWidth="294.0" VBox.vgrow="ALWAYS" />
                </children>
                <HBox.margin>
                   <Insets left="10.0" right="15.0" />

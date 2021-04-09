@@ -122,8 +122,9 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 * `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional which can be added now with `add` command or later with `edit` command.
 
 * Education levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
-  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `graduated`.
-  They cover the education levels in Primary School, Secondary School and Junior College, when students are more likely to need private tution. 
+  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`.
+  They cover the education levels in Primary School, Secondary School and Junior College, when students are more likely to need private tution, 
+  as well as graduated students who are less likely to need private tuition.
   For more details, see the [Field Format Summary](#field-format-summary) below.
 
 * Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
@@ -187,8 +188,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 * Optional fields which were not available when a student's contact was initially saved in TutorsPet can be added in.
 
 * Education levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`,
-  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `graduated`.
-  They cover the education levels in Primary School, Secondary School and Junior College, when students are more likely to need private tution. 
+  `sec1`, `sec2`, `sec3`, `sec4`, `sec5`, `jc1`, `jc2`, `grad`.
+  They cover the education levels in Primary School, Secondary School and Junior College, when students are more likely to need private tution,
+  as well as graduated students who are less likely to need private tuition.
   For more details, see the [Field Format Summary](#field-format-summary) below.
 
 * When editing subjects or lessons, the existing subjects or lessons of the student will be removed i.e adding of subjects or lessons are not cumulative.
@@ -377,10 +379,10 @@ Format: `levelup ex/[INDEX]...`
 
 :bulb:**Tips:** <br>
 
-* Students who are `jc1` will advance to `graduated` when `levelup` is applied. Students will not 
-  advance any further if they are `graduated`.
+* Students who are `jc1` will advance to `grad` when `levelup` is applied. Students will not 
+  advance any further if they are `grad`.
   
-* If the `ex/` prefix is not used, all students will advance by one education level (unless they have `graduated`).
+* If the `ex/` prefix is not used, all students will advance by one education level (unless they have `grad`).
 Once `ex/` prefix is used, the index field cannot be left blank.
   
 * The index refers to the index number shown in the displayed student list. Indexes are used to 
@@ -393,9 +395,9 @@ Once `ex/` prefix is used, the index field cannot be left blank.
 </div>
 
 Examples:
-* `levelup` advances all students except `graduated` students by one level.
+* `levelup` advances all students except `grad` students by one level.
 * `levelup ex/3 4` advances all students by one level, excluding the 3rd and 4th student
-  in the list, as well as any students who have `graduated`.
+  in the list, as well as any students who have `grad`.
 
 ### Demoting all students: `leveldown`
 
@@ -412,7 +414,7 @@ Format: `leveldown ex/[INDEX]...`
 
 * Students who are `pri1` will not demote any further.
 
-* If the `ex/` prefix is not used, all students will advance by one education level (unless they have `graduated`).
+* If the `ex/` prefix is not used, all students will advance by one education level (unless they have `grad`).
   Once `ex/` prefix is used, the index field cannot be left blank.
   
 * The index refers to the index number shown in the displayed student list. Indexes are used to
@@ -541,7 +543,7 @@ Email                   | `e/`   | N        | Should be in the format of **local
 Address                 | `a/`   | N        | Any format
 Guardian's name         | `gn/`  | N        | Contains alphanumeric characters and spaces only
 Guardian's phone number | `gp/`  | N        | Contains numbers only; at least 3 digits long
-Education level         | `lv/`  | N        | Fixed format: <br>Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6` <br>Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`<br>Junior College: `jc1`, `jc2`<br>Post Junior College: `graduated`
+Education level         | `lv/`  | N        | Fixed format: <br>Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6` <br>Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`<br>Junior College: `jc1`, `jc2`<br>Post Junior College: `grad`
 Subject                 | `t/`   | N        | Can have any number of inputs (including 0)<br><br>Fixed format: <br> Languages: `cn`, `eng`<br>Mathematics & Sciences: `math`, `bio`, `chem`, `phys`, `sci`<br>Humanities: `econ`, `geo`, `hist`<br><br>Represents subjects Chinese, English, Mathematics, Biology, Chemistry, Physics, Science Economics, Geography and History in order of the above listing.
 Lesson                  | `le/`  | N        | Can have any number of inputs (including 0)<br><br>Consist of lesson day and lesson time:<br>Lesson day: `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `sunday`<br>Lesson time: In **HHmm** format e.g. **1300**
 
