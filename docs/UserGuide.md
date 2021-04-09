@@ -135,6 +135,62 @@ If `NAME_STRING` = `John p/ Tom`, the command keyed in could look like `radd p/[
 This will create the presence of 2 phone number parameters. In such a case, the latter value will be taken. 
 As `Tom` is not a valid phone number, it will be rejected.
 
+#### Interpreting errors
+
+In most cases, the error displayed should be relatively self-explanatory. This sub-section aims to clear up any ambiguity 
+you might encounter when dealing with invalid commands or errors. 
+
+We will break our explanation down into the following categories:
+- Incorrect formats
+- Parameters do not conform to required values
+- Commands that require an [`INDEX`] (e.g. `redit 1 n/John`)
+
+##### Incorrect formats
+This error typically shows a message along the following lines: `Invalid command format! [Information on how to use
+the command]`
+
+![Invalid command format](images/error-invalid-cmd-format.png)
+
+Typically this happens because the command does not match the required format. Check if you are missing any parameters.
+A special case of this takes place when the `INDEX` value is not a number.
+
+##### Parameters do not conform to required values
+This error typically shows a message along the following lines: `[Parameter name] must be [some condition]`. E.g. 
+`Room numbers should be formatted as such: XY-ABC, where XY can be any pair of digits except 00, and ABC can 
+be any 3 digits.`
+
+![Invalid param format](images/error-invalid-param-format.png)
+
+Typically this happens because the parameter provided does not match the required format. Check if your parameter conforms
+to the format stated under the [command parameters](#command-parameters) section. The error message usually gives some
+helpful information in resolving the error too.
+
+##### Commands that require an `INDEX`
+The bounds of the `INDEX` parameter is documented [below](#index). This section will explain how errors with the `INDEX`
+will be dealt with.
+
+- If you do not specify the `INDEX` (e.g. `rdel`): The app will inform you that the format is invalid, and display the 
+  format that should be used. This is a specific case of [incorrect formats](#incorrect-formats).
+  
+- If the `INDEX` is not an integer (e.g. `rdel abc`): The app will inform you that the format is invalid, and display the
+  format that should be used. This is also a specific case of [incorrect formats](#incorrect-formats), as the command 
+  expects a number but did not get one.
+
+- If the `INDEX` parameter is required alongside other parameters e.g. [`redit`](#edit-a-resident-record--redit), and
+  **only** an `INDEX` (be it valid or not) value is provided (e.g. `redit 1000` or `redit 1`): The app will inform you
+  that the format is invalid, and display the format that should be used. This is another specific case 
+  of [incorrect formats](#incorrect-formats), as the command compulsorily needs at least one of the optional parameters 
+  to be provided.
+  
+- If the `INDEX` is 0 or lesser (e.g. `rdel -5`): The app will inform you that `INDEX` should be a positive integer.
+
+![Index non positive](images/error-idx-non-positive.png)
+
+- If the `INDEX` is above the range of the collection specified (e.g. `rdel 100` but there are only 6 residents): The 
+  app will inform you that `INDEX` needs to be between 1 and the size of the collection in question.
+
+![Index out of range](images/error-idx-out-of-range.png)
+
 
 ### Command Parameters
 
@@ -287,7 +343,7 @@ Finds all rooms by room number or tag that contain any of the given keywords.
 
 Format: `ofind KEYWORD [MORE_KEYWORDS]`
 * The search matches any part of the room number. e.g. `10` will match `10-111` and `14-101`.
-* The search for tags matches any part of the tag and is NOT case-sensitive. e.g `mell`, `smell`, `smelly` or `room` 
+* The search for tags matches any part of the tag and is NOT case-sensitive. e.g. `mell`, `smell`, `smelly` or `room` 
   all work to match `smellyroom`. `s` will match both `smellyroom` and `SHN`.
 * The order of the keywords does not matter. e.g. `11- 10-` will match `10-100`, `10-101`, `11-100`, and `11-101`.
 * Only the room number and tags are searched.
@@ -316,7 +372,12 @@ Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
 * The occupancy status is not controllable through the `oedit` command.
 * Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. 
   See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
+* `oedit` will be blocked if there are issues tagged to the room. Run `idel` to [delete the issues](#delete-an-issue--idel) associated with the room before making further edits.
+    * This is done to prevent issues from being assigned to nonexistent rooms, by editing away a room's number after assigning an issue to it
 
+<div markdown="block" class="alert alert-info">
+:information_source: Room numbers are editable as renovation or re-numbering excercises may take place.
+</div>
 
 Parameters:
 * [`INDEX`](#index) The index of the room to edit.
@@ -411,7 +472,7 @@ Format: `ifind KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g. `broken` will match `Broken`.
 * The order of the keywords does not matter. e.g. `Broken light` will match `light broken`.
 * The search for tags and description matches any part of the tag and is NOT case-sensitive. 
-  e.g `high`, `HIGH` or `h` all work to match `High`. `H` will match both `Hot` and `High`.
+  e.g. `high`, `HIGH` or `h` all work to match `High`. `H` will match both `Hot` and `High`.
 * The search matches any part of the room number. e.g. `10` will match `10-111` and `14-101`.
 * Only the description, room number, and tags are searched.
 * Issues matching at least one keyword will be returned (i.e. OR search). 
