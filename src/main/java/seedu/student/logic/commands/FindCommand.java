@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.logging.Logger;
 
 import seedu.student.commons.core.LogsCenter;
-import seedu.student.commons.core.Messages;
 import seedu.student.model.Model;
 import seedu.student.model.ModelManager;
 import seedu.student.model.appointment.AppointmentContainsMatriculationNumberPredicate;
@@ -25,6 +24,17 @@ public class FindCommand extends Command {
             + "matriculation number matches the specified keywords (case-sensitive) and displays it.\n"
             + "Parameters: KEYWORD \n"
             + "Example: " + COMMAND_WORD + " A01234567R";
+
+    public static final String MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND =
+            "Found student with matriculation number %s \n"
+                    + "If they have an appointment, their appointment will also be listed.";
+
+    public static final String MESSAGE_NO_STUDENT_FOUND =
+            "No student with matriculation number %s was found. \n";
+
+    public static final String MESSAGE_NONEXISTENT_APPOINTMENT = "No appointment was found.";
+
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final StudentContainsMatriculationNumberPredicate predicate;
@@ -63,14 +73,14 @@ public class FindCommand extends Command {
             logger.info("Student with a matriculation number of " + predicate.getKeyword()
                     + "does not exist in VAX@NUS");
 
-            throw new MatriculationNumberDoesNotExistException(String.format(Messages.MESSAGE_NO_STUDENT_FOUND,
+            throw new MatriculationNumberDoesNotExistException(String.format(MESSAGE_NO_STUDENT_FOUND,
                     predicate.getKeyword()));
 
         } else if (filteredAppointmentListSize == 0) {
-            return new CommandResult(String.format(Messages.MESSAGE_NONEXISTENT_APPOINTMENT,
+            return new CommandResult(String.format(MESSAGE_NONEXISTENT_APPOINTMENT,
                     model.getFilteredStudentList().size()));
         } else {
-            return new CommandResult(String.format(Messages.MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
+            return new CommandResult(String.format(MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
                     predicate.getKeyword()));
         }
     }

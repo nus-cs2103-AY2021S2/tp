@@ -71,7 +71,7 @@ In addition, it is optional to include the following detail of a student:
 
 * School Residence, to determine if the student lives on campus. This will help NUS campus residences determine the proportion of vaccinated student residents using the `stats` command. 
 
-:information_source: **NOTE** If the School Residence of a student is not specified, the system will default to DOES_NOT_LIVE_ON_CAMPUS and assume that the student does not live on campus.
+:information_source: **NOTE:** If the School Residence of a student is not specified, the system will default to DOES_NOT_LIVE_ON_CAMPUS and assume that the student does not live on campus.
 
 > For a smooth user experience, please refer to the  please refer to the [Input Formats](#input-formats) section below for more information regarding input formats. That section explains which prefix should be used for each piece of information and how the information should be presented to the program. 
 
@@ -176,7 +176,8 @@ Sample Output for `stats PGPH`:
 
 Adds an appointment to Vax@NUS' records. 
 
-Appointments can be added for both unvaccinated and vaccinated students, as appointments can also entail follow-ups or check-ups in addition to vaccinations.
+* An appointment can only be added for a student without any existing appointment. This is to ensure that at any point of time a student doesn't have more than one appointment. This condition might be revised in future iterations of Vax@NUS to enable each student to have multiple appointments if needs be.
+* An appointment can be added for both unvaccinated and vaccinated students, as vaccinated students may require check-up and or a booster shot.
 
 Format: `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME`
 
@@ -286,7 +287,24 @@ Format: `exit`
 
 ### Saving the data
 
-Vax@NUS saves your current date in the hard disk automatically after any command. There is no need to save manually.
+Vax@NUS saves your current data into your computer automatically after any command. There is no need to save manually.
+
+:information_source: **NOTE:**  VAX@NUS will display our sample data file if no data file is found from your computer.
+
+### Editing the data
+
+VAX@NUS data is saved as a JSON file [JAR file location]/data/studentbook.json. Advanced users are welcome to update data directly by editing that data file.
+
+Editing a student's matriculation number through the JSON file is allowed, however, extra care must be taken to ensure data integrity. 
+
+If you change a student's matriculation number, you must also update the matriculation number for the corresponding student's appointment(s). 
+Failure to do so will result in an invalid data file format as the appointment does not belong to any student. 
+
+Please refer to the [Input Formats](#input-formats) section when editing the data file to conform to the required format.
+
+> :warning: **If your changes to the data file makes it an invalid format, VAX@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
+
+:information_source: **NOTE:** VAX@NUS will load an empty data file if you have cleared your data with the `clear` command right before exiting VAX@NUS.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -379,6 +397,7 @@ If unindicated, the `School Residence` field will default to `DOES NOT LIVE ON C
 * The duration of each appointment is fixed at 30 minutes.
 * No appointment should clash with any other appointments.
 * The student that the appointment is for must exist in the records.
+* [for v1.4 and earlier only] Any appointment is unique to a student. This is to say that no students should have more than one appointment at any point of time.
 
 -----------------------------------------------------------------------------------------------------------------
 ## Command Summary

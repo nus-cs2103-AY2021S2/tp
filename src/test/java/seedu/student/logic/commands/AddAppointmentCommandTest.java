@@ -51,6 +51,19 @@ public class AddAppointmentCommandTest {
     }
 
     @Test
+    public void execute_duplicateAppointment_throwsCommandException() {
+        Student validStudent = new StudentBuilder().build();
+        Appointment validAppointment = new AppointmentBuilder()
+                .withMatric(validStudent.getMatriculationNumber().toString()).build();
+
+        AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(validAppointment);
+        ModelStub modelStub = new ModelStubWithStudentAndAppointment(validStudent, validAppointment);
+
+        assertThrows(CommandException.class,
+                AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT, () -> addAppointmentCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
         Appointment appt1 = new AppointmentBuilder().withMatric("A1234567X").build();
         Appointment appt2 = new AppointmentBuilder().withMatric("A7654321Y").build();
