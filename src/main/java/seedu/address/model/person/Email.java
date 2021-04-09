@@ -16,7 +16,7 @@ public class Email {
             + "characters, excluding the parentheses, (" + SPECIAL_CHARACTERS + ").\n"
             + "2. This is followed by a '@' and then a label. "
             + "The label must: consist of alphanumeric character and be shorter than 63 characters. \n"
-            + "3. Multiple labels are allowed, provided that they are delimited by a single period"
+            + "3. Multiple labels are allowed, provided that they are delimited by a single period";
     private static final String VALIDATION_REGEX = "[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@"
             + "[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?"
             + "(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
