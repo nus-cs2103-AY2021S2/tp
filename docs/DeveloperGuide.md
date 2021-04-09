@@ -128,6 +128,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Implementation
+This section describes some noteworthy details on how certain features are implemented.
+
+### Unpool feature
+This feature allows users to remove a pool from the pool list through the specification of an index.
+
+Given below is the Sequence Diagram for interactions within the Logic component for the execute("unpool 1").
+![Interactions Inside the Logic Component for the `unpool 1` Command](images/UnpoolSequenceDiagram.png)
+
+From the diagram illustrated above:
+1. `LogicManager` has its `execute()` method called when a user enters the `"unpool 1"` command.
+1. `AddressBookParser` class is then instantiated, which subsequently instantiates `UnpoolCommandParser` class to help parse the user's command.
+1. `AddressBookParser` would then have its `parse()` method invoked to parse the value of the index `"1"` to `UnpoolCommandParser`.
+1. Given that the index `"1"` is a valid index, an `UnpoolCommand` object would be created and returned to `LogicManager`.
+1. `LogicManager` would subsequently invoke the `execute()` method of the `UnpoolCommand` which in turn invokes `deletePool()` method with an argument of `1`.
+1. This would update the model by deleting the specified pool, then the result of the command execution `CommandResult` would be created and returned back to `LogicManager`.
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
