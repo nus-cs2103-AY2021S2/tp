@@ -1,14 +1,14 @@
 ---
 layout: page
-title: PawBook 
+title: PawBook
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+[![CI Status](https://github.com/AY2021S2-CS2103T-T10-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![codecov](https://codecov.io/gh/AY2021S2-CS2103T-T10-1/tp/branch/master/graph/badge.svg?token=6D9NPVXEYL)](https://codecov.io/gh/AY2021S2-CS2103T-T10-1/tp)
 
 ![Ui](images/Ui.png)
 
-**PawBook is a desktop application to help dog schools manage their daily operations.** 
+**PawBook is a desktop application to help dog schools manage their daily operations.**
 While it has a GUI, user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using PawBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
