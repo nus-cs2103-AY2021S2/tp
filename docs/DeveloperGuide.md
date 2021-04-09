@@ -1068,6 +1068,34 @@ starting point for testers to work on; testers are expected to do more *explorat
     2. Test case: `rfind KEYWORD` <br>
        Expected: Residents whose names have words fully matching `KEYWORD` are listed.
 
+### Rooms
+
+1. Adding a room
+
+    1. Prerequisites: There are no rooms in SunRez, or the room with the number `10-999` does not exist in the system.
+
+    2. Test case: `oadd r/10-999 t/suite_ac` <br>
+       Expected: A feedback message in the result box indicating the room was successfully added. The room should also be visible in the room panel.
+
+    3. After step 2, key in `oadd r/10-999 t/suite_ac` <br>
+       Expected: An error message indicating the room `10-999` already exists in the system.
+
+    4. Test case: `oadd r/00-999 t/suite_ac` <br>
+       Expected: An error message indicating the value constraints for room number.
+
+1. Deleting a room
+
+    1. Prerequisites: The room with the number `10-999` must exist in the system and its index must be known.
+
+    2. Test case: `odel [index of room 10-999]` <br>
+       Expected: A feedback message in the result box indicating the room was successfully deleted. The room should no longer be visible in the room panel.
+
+    3. Test case: `odel -5` <br>
+       Expected: An error message indicating that the index must be a positive integer.
+
+    4. Test case: `odel abc` <br>
+       Expected: A message indicating the command format is invalid followed by proper usage instructions.
+       
 ### Issue
 
 1. Adding an issue
