@@ -21,8 +21,8 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Listing all tasks: [`list_task`](#listing-all-tasks-list_task)
 * Marking one or more tasks as done : [`done_task`](#marking-one-or-more-tasks-as-done-done_task)
 * Marking a task as uncompleted : [`undone_task`](#marking-a-task-as-uncompleted-undone_task)
-* Getting today's tasks: [`today_task`](#listing-all-tasks-today-today_task)
-* Finding tasks by name: [`find_task`](#finding-all-matching-tasks-find_task)
+* Getting today's tasks: [`today_task`](#getting-todays-tasks-today_task)
+* Finding tasks by name: [`find_task`](#finding-tasks-by-name-find_task)
 * Sorting all tasks: [`sort_task`](#sorting-all-tasks-sort_task)
 * Pinning a task: [`pin_task`](#pinning-a-task-pin_task)
 * Unpinning a task: [`unpin_task`](#unpinning-a-task-unpin_task)
@@ -34,8 +34,8 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Deleting an event: [`delete_event`](#deleting-an-event-delete_event)
 * Editing an event: [`edit_event`](#editing-an-event-edit_event)
 * Listing all events: [`list_event`](#listing-all-events-list_event)
-* Getting today's events: [`today_event`](#listing-all-events-today-today_event)
-* Finding events by name: [`find_event`](#finding-all-matching-events-find_event)
+* Getting today's events: [`today_event`](#getting-todays-events-today_event)
+* Finding events by name: [`find_event`](#finding-events-by-name-find_event)
 * Clearing expired events: [`clear_expired_event`](#clearing-expired-events-clear_expired_event)
 
 ### Commands Related to Both Task and Event
