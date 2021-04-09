@@ -123,22 +123,22 @@ public class EditCommandTest {
         assertCommandFailure(editCommand, model, expectedMessage);
     }
 
-    @Test
-    public void execute_filteredList_unexpiredSuccess() {
-        showItemAtIndex(model, INDEX_FIRST_ITEM);
-        Item itemInFilteredList = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
-        Item editedItem = new ItemBuilder(itemInFilteredList).withName(VALID_NAME_BANANA).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM,
-            new EditItemDescriptorBuilder().withName(VALID_NAME_BANANA).build());
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
-
-        Model expectedModel = new ModelManager(new StoreMando(model.getStoreMando()), new UserPrefs());
-        showItemAtIndex(expectedModel, INDEX_FIRST_ITEM);
-        expectedModel.setItem(model.getFilteredItemList().get(0), editedItem);
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
+    //    @Test
+    //    public void execute_filteredList_unexpiredSuccess() {
+    //        showItemAtIndex(model, INDEX_FIRST_ITEM);
+    //        Item itemInFilteredList = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
+    //        Item editedItem = new ItemBuilder(itemInFilteredList).withName(VALID_NAME_BANANA).build();
+    //        EditCommand editCommand = new EditCommand(INDEX_FIRST_ITEM,
+    //            new EditItemDescriptorBuilder().withName(VALID_NAME_BANANA).build());
+    //
+    //        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
+    //
+    //        Model expectedModel = new ModelManager(new StoreMando(model.getStoreMando()), new UserPrefs());
+    //        showItemAtIndex(expectedModel, INDEX_FIRST_ITEM);
+    //        expectedModel.setItem(model.getFilteredItemList().get(0), editedItem);
+    //
+    //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    //    }
 
     @Test
     public void execute_filteredList_expiredSuccess() {
