@@ -148,7 +148,8 @@ Format: `editcheese INDEX [t/CHEESE_TYPE] [d/MANUFACTURE_DATE] [e/EXPIRY_DATE]`
 * At least one of the optional fields must be provided to edit a cheese.
 * The specified `INDEX` must be a positive integer.
 * All dates must be given in these formats: `DD/MM/YYYY` or `YYYY-MM-DD` or `MMM DD YYYY`.
-* `EXPIRY_DATE` specified must occur after the `MANUFACTURE_DATE`.
+* The specified `MANUFACTURE_DATE` must be any date up to the current date, and not in the future.
+* The specified `EXPIRY_DATE` must occur after the `MANUFACTURE_DATE`.
 
 Example: `editcheese 1 t/Parmesan d/2021-03-12`
 
@@ -213,6 +214,7 @@ Format: `editorder INDEX [t/CHEESE_TYPE] [q/QUANTITY] [p/PHONE_NUMBER] [d/ORDER_
 * The specified `CHEESE_TYPE` need not belong to an existing cheese type in CHIM.
 * The specified `PHONE_NUMBER` must belong to an existing user.
 * The specified `ORDER_DATE` must be given in these formats: `DD/MM/YYYY` or `YYYY-MM-DD` or `MMM DD YYYY`.
+* The specified `ORDER_DATE` must be any date up to the current date, and not in the future.
 
 Example: `editorder 2 t/Parmesan q/2 p/61234567`
 
