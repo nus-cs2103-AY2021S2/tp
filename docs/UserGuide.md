@@ -174,7 +174,7 @@ Example:
 Adds a cheese to CHIM.
 
 Format: `addcheese t/CHEESE_TYPE q/QUANTITY [d/MANUFACTURE_DATE] [e/EXPIRY_DATE]`
-* The specified `QUANTITY` must be a positive integer.
+* The specified `QUANTITY` must be a positive integer and less than 1000.
 * All dates must be given in these formats: `DD/MM/YYYY` or `YYYY-MM-DD` or `MMM DD YYYY`.
 * The specified `MANUFACTURE_DATE` must be any date up to the current date, and not in the future.
 If `MANUFACTURE_DATE` is not specified, it will default to the current date.
@@ -417,6 +417,13 @@ If your changes to the data file makes its format invalid, CHIM will discard all
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CHIM home folder.
+
+**Q**: My result display turns white if the text is too long, how do I resolve it?<br>
+**A**: You may scroll down to view the content of the text. If it still does not appear correctly, you may consider using a shorter string.
+
+**Q**: Will my app work properly if it changes a timezone?<br>
+**A**: The app may not work as intended if the timezone changes. For example, cheeses may be allowed to be created at a future date when the timezone changes.
+       Hence, do ensure that the time on your computer running the application is consistent and does not change suddenly.
 
 --------------------------------------------------------------------------------------------------------------------
 

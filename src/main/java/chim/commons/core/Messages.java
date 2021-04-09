@@ -41,5 +41,7 @@ public class Messages {
             + "be before order %1$d completed date.";
     public static final String MESSAGE_INVALID_EXPIRY_DATE_COMPLETED_DATE = "Cheese %2$d's expiry date must be after "
             + "Order %1$d's completed date.";
+    public static final String MESSAGE_CHEESE_QUANTITY_EXCEED = "The specified cheese quantity has exceeded the allowed"
+            + " upper limit of 1000. You may add more cheeses using multiple transactions.";
 
 }

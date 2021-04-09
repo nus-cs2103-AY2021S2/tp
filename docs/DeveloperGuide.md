@@ -739,7 +739,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. Should be able to hold up to 1000 customers without a noticeable sluggishness in performance for typical usage.
 
-1. General queries (especially filter queries) should be completed within 10 seconds.
+1. General queries (especially filter queries) should be completed within 5 seconds.
 
 ### Glossary
 

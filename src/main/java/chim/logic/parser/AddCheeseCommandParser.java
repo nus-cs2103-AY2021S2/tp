@@ -1,5 +1,6 @@
 package chim.logic.parser;
 
+import static chim.commons.core.Messages.MESSAGE_CHEESE_QUANTITY_EXCEED;
 import static chim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static chim.logic.parser.CliSyntax.PREFIX_CHEESE_TYPE;
 import static chim.logic.parser.CliSyntax.PREFIX_EXPIRY_DATE;
@@ -20,6 +21,8 @@ import chim.model.cheese.ManufactureDate;
  */
 public class AddCheeseCommandParser implements Parser<AddCheeseCommand> {
 
+    public static final int UPPER_BOUND_LIMIT = 1000;
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCustomerCommand
      * and returns an AddCustomerCommand object for execution.
@@ -39,6 +42,10 @@ public class AddCheeseCommandParser implements Parser<AddCheeseCommand> {
         CheeseType cheeseType = ParserUtil.parseCheeseType(argMultimap.getValue(PREFIX_CHEESE_TYPE).get());
 
         int quantity = ParserUtil.parseInteger(argMultimap.getValue(PREFIX_QUANTITY).get());
+
+        if (quantity > UPPER_BOUND_LIMIT) {
+            throw new ParseException(MESSAGE_CHEESE_QUANTITY_EXCEED);
+        }
 
         ManufactureDate manufactureDate;
         if (argMultimap.getValue(PREFIX_MANUFACTURE_DATE).isPresent()) {
