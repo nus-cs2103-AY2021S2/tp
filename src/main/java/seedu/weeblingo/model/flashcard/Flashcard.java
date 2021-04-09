@@ -104,7 +104,8 @@ public class Flashcard {
         Flashcard otherFlashcard = (Flashcard) other;
         return otherFlashcard.getQuestion().equals(getQuestion())
                 && otherFlashcard.getAnswer().equals(getAnswer())
-                && otherFlashcard.getWeeblingoTags().equals(getWeeblingoTags());
+                && otherFlashcard.getWeeblingoTags().equals(getWeeblingoTags())
+                && otherFlashcard.getUserTags().equals(getUserTags());
     }
 
     @Override

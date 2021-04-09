@@ -28,9 +28,12 @@ import seedu.weeblingo.model.tag.Tag;
 public class CommandTestUtil {
 
     public static final String VALID_QUESTION_A = "あ";
-    public static final String VALID_QUESTION_B = "い";
+    public static final String VALID_QUESTION_I = "い";
     public static final String VALID_ANSWER_A = "a";
-    public static final String VALID_ANSWER_B = "i";
+    public static final String VALID_ANSWER_I = "i";
+    public static final String VALID_ANSWER_CAPS = "I";
+    public static final String INVALID_ANSWER_EMPTY = "";
+    public static final String INVALID_ANSWER_SYMBOL = "@#!!!";
     public static final String VALID_TAG_DIFFICULT = "difficult";
     public static final String VALID_TAG_EASY = "easy";
     public static final String VALID_START_INTEGER_MIN = "1";
@@ -43,12 +46,18 @@ public class CommandTestUtil {
     public static final String VALID_START_TAG_GOJUON = "gojuon";
     public static final String INVALID_START_TAG = "!@#$%";
     public static final String VALID_NONEXISTENT_TAG = "thisIsANonExistentTag";
+    public static final String VALID_TAG_INPUT = "1 t/easy";
+    public static final String VALID_TAG_INPUT_MULTIPLE = "1 t/difficult t/easy";
     public static final int VALID_START_INTEGER_GENERIC = 0;
     public static final Set<Tag> VALID_START_TAGS_SET_GENERIC = new HashSet<>();
     public static final Set<Tag> VALID_TAGS_SET_HIRAGANA = new HashSet<>(List.of(new Tag(VALID_START_TAG_HIRAGANA)));
     public static final Set<Tag> VALID_TAGS_SET_GOJUON = new HashSet<>(List.of(new Tag(VALID_START_TAG_GOJUON)));
     public static final Set<Tag> VALID_TAGS_SET_COMBINATION = new HashSet<>(
             List.of(new Tag(VALID_START_TAG_GOJUON), new Tag(VALID_START_TAG_HIRAGANA)));
+    public static final Set<Tag> VALID_TAGS_SET_EASY = new HashSet<>(List.of(new Tag(VALID_TAG_EASY)));
+    public static final Set<Tag> VALID_TAGS_SET_DIFFICULT = new HashSet<>(List.of(new Tag(VALID_TAG_DIFFICULT)));
+    public static final Set<Tag> VALID_TAGS_SET_EASY_AND_DIFFICULT = new HashSet<>(
+            List.of(new Tag(VALID_TAG_DIFFICULT), new Tag(VALID_TAG_EASY)));
     public static final Set<Tag> VALID_NONEXISTENT_TAGS_SET = new HashSet<>(List.of(new Tag(VALID_NONEXISTENT_TAG)));
 
     public static final String VALID_START_INTEGER_MIN_DESC = " " + PREFIX_START_NUMBER + VALID_START_INTEGER_MIN;
@@ -66,9 +75,9 @@ public class CommandTestUtil {
     public static final String VALID_NONEXISTENT_TAGS_SET_DESC = " " + PREFIX_TAG + VALID_NONEXISTENT_TAG;
 
     public static final String QUESTION_DESC_A = " " + PREFIX_QUESTION + VALID_QUESTION_A;
-    public static final String QUESTION_DESC_B = " " + PREFIX_QUESTION + VALID_QUESTION_B;
+    public static final String QUESTION_DESC_B = " " + PREFIX_QUESTION + VALID_QUESTION_I;
     public static final String ANSWER_DESC_A = " " + PREFIX_ANSWER + VALID_ANSWER_A;
-    public static final String ANSWER_DESC_B = " " + PREFIX_ANSWER + VALID_ANSWER_B;
+    public static final String ANSWER_DESC_B = " " + PREFIX_ANSWER + VALID_ANSWER_I;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_EASY;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_DIFFICULT;
 

@@ -1,4 +1,4 @@
-package seedu.weeblingo.model.flashcard;
+package seedu.weeblingo.model.score;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.weeblingo.commons.util.CollectionUtil.requireAllNonNull;
@@ -9,9 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.weeblingo.model.flashcard.exceptions.DuplicateAttemptScoreException;
-import seedu.weeblingo.model.flashcard.exceptions.DuplicateFlashcardException;
-import seedu.weeblingo.model.score.Score;
+import seedu.weeblingo.model.score.exceptions.DuplicateAttemptScoreException;
 
 
 /*
@@ -58,7 +56,7 @@ public class UniqueScoreHistoryList implements Iterable<Score> {
     public void setScores(List<Score> scores) {
         requireAllNonNull(scores);
         if (!scoresAreUnique(scores)) {
-            throw new DuplicateFlashcardException();
+            throw new DuplicateAttemptScoreException();
         }
         internalList.setAll(scores);
         Collections.sort(internalList);
@@ -79,7 +77,7 @@ public class UniqueScoreHistoryList implements Iterable<Score> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueFlashcardList // instanceof handles nulls
+                || (other instanceof UniqueScoreHistoryList // instanceof handles nulls
                 && internalList.equals(((UniqueScoreHistoryList) other).internalList));
     }
 

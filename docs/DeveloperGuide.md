@@ -3,12 +3,36 @@ layout: page
 title: Developer Guide
 ---
 Weeblingo is a desktop app for managing flashcards, **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface, users can learn Japanese at a comfortable pace with this application.
-* Table of Contents
-{:toc}
+
+# Table of Contents
+* [Setting Up](#setting-up-getting-started)
+* [Design](#design)
+  * [Architecture Overview](#architecture)
+  * [UI Component](#ui-component)
+  * [Logic Component](#logic-component)
+  * [Model Component](#model-component)
+  * [Storage Component](#storage-component)
+  * [Common Classes](#common-classes)
+* [Implementation](#implementation)
+  * [Tagging Flashcards](#implemented-tagging-flashcards)
+  * [Quiz Feature](#implemented-quiz-feature)
+    * [Entering Quiz Mode](#entering-quiz-mode)
+    * [Starting a Session](#starting-a-session)
+    * [Checking User Attempt](#checking-user-attempt)
+    * [Quiz Scoring](#quiz-scoring)
+  * [View Quiz Attempt Histories](#view-past-quiz-attempts)
+* [Documentation, Logging, Testing, Configuration, Dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+  * [Product Scope](#product-scope)
+  * [User Stories](#user-stories)
+  * [Use Cases](#use-cases)
+  * [NFRs](#non-functional-requirements)
+  * [Glossary](#glossary)
+* [Appendix: Instructions For Manual Testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **Setting Up, Getting Started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -24,11 +48,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-T13-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -52,13 +76,13 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `learn`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" width="600" />
 
 The sections below give more details of each component.
 
-### UI component
+### UI Component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -79,12 +103,12 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### Logic Component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/logic/Logic.java)
 
 1. `Logic` uses the `WeeblingoParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -95,23 +119,21 @@ The `UI` component,
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("learn")` API call.
 
 ![Interactions Inside the Logic Component for the `learn` Command](images/LearnSequenceDiagram.png)
-note: [lifeline should end]
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `LearnCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
-### Model component
+### Model Component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+<img src="images/ModelClassDiagram.png" width="550" />
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-
-* stores the Weeblingo data.
-
+* stores the flashcard book data.
 * exposes an unmodifiable `ObservableList<Flashcard>` and `ObservableList<Score>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FlashcardBook`, which `Flashcard` references. This allows `FlashcardBook` to only require one `Tag` object per unique `Tag`, instead of each `Flashcard` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
@@ -119,7 +141,7 @@ The `Model`,
 </div>
 
 
-### Storage component
+### Storage Component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -129,9 +151,10 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the flashcard book data (flashcards and scores) in json format and read it back.
 
-### Common classes
+### Common Classes
 
-Classes used by multiple components are in the `seedu.weeblingo.commons` package.
+Classes used by multiple components are in the [`seedu.weeblingo.commons`](https://github.com/AY2021S2-CS2103T-T13-1/tp/tree/master/src/main/java/seedu/weeblingo/commons) 
+package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -156,28 +179,30 @@ The following activity diagram summarizes what happens when a user adds a new ta
 ![NewTagActivityDiagram](images/NewTagActivityDiagram.png)
 
 The tags function ties together with the Start function of the application, as users can choose to start a quiz
-containing flashcards that have the same tag only (to be implemented...)
+containing flashcards that have the same tag only.
 
-### [Implemented] Quiz feature
+### [Implemented] Quiz Feature
 
-The quiz feature for users to test the vocabulary is facilitated by Model and Command. It does so by allowing a command
-to set model to quiz mode. When model is in quiz mode, it will take commands allowing users to attempt answering the quiz question,
-skip the flashcard or end the quiz session.
+The quiz feature for users to test the vocabulary is facilitated by `Model#Quiz`, `Model#Mode` and `Logic`. It does so by allowing a `Command`
+to set model to quiz mode. When model is in quiz mode, it will take commands allowing users to start a quiz session,
+attempt answering the quiz question or skip the flashcard.
 
-Following operations are implemeted
+`Model#Mode` implments the following operations:
+  * `switchModeQuiz()`: Sets model to quiz mode
+  * `switchModeQuizSession()`: Sets model to quiz session mode
+  * `switchModeCheckSuccess()`: Sets model to check success mode 
+  * `switchModeQuizSessionEnded()`: Sets model to quiz session ended mode
 
-  * `Weeblingo#quiz(Model)`: Enters quiz mode
-  * `Weeblingo#start(Model)`: Starts a quiz session
-  * `Weeblingo#check(Model)`: Checks if attempt is correct English definition of Japanese word shown on flashcard
-  * `Weeblingo#next(Model)`: Proceeds to next question in the quiz session
-  * `Weeblingo#end(Model)`: Ends the quiz session and returns to main menu
+`Model#Quiz` implments the following operations:
+  * `getRandomisedQueue()`: Generates randomised questions for the quiz session
+  * `getNextQuestion()`: Provides a question to be bested
+  * `isCorrectAttempt(Answer attempt)`: Checks if attempt is correct English definition of question shown on flashcard
 
-These operations are exposed in `Ui` through `Logic`. They are implemented by `QuizCommand`, `StartCommand`, `CheckCommand`,
-`NextCommand` and `EndCommand`.
+These operations are executed through `QuizCommand`, `StartCommand`, `CheckCommand` and `NextCommand` in the `Logic` class.
 
-Given below is an example usage scenario and how the quizzing mechanism behaves at each step.
+#### Entering Quiz Mode
 
-1. The quiz command is used to enter Quiz mode, allowing the user to start various quizzes from there.
+The `quiz` command is used to enter Quiz mode, allowing the user to start various quizzes from there.
 The following activity diagram summarizes what happens when a user enters the Quiz command:
 
 ![QuizActivityDiagram](images/QuizActivityDiagram.png)
@@ -186,9 +211,9 @@ The following sequence diagram shows how the Quiz command works:
 
 ![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
 
-=======
+#### Starting a Session
 
-2. The start command is used to start a quiz session, enabling users to define the number and categories of
+The `start` command is used to start a quiz session, enabling users to define the number and categories of
 questions they want to be tested on. The activity diagram below shows the flow of events when a user
 enters the start command.
 
@@ -198,16 +223,32 @@ Thr following sequence diagram shows the interactions that occur when the start 
 
 ![StartSequenceDiagram](images/StartSequenceDiagram.png)
 
-=======
+#### Checking User Attempt
 
-### \[Proposed\] Quiz Scoring
-*{To be updated}*
+The `check` command is used to check if user provided attempt is correct. This feature is implemented by creating an 
+instance of `CheckCommand` that can be executed on the `Model`. The `Model` will then invoke appropriate methods in `Quiz`.
+Depending on whether the user attempt is correct, `CheckCommand` will return an instance of `CommandResult` which will 
+inform the `MainWindow` if it is time to reveal the answer of current question.
 
-The user enters `check ATTEMPT` and the `WeeblingoParser#parse(String)` will parse input as an Answer
-into a CheckCommand. If the attempt is correct, the Ui will update to reveal the correct answer of current flashcard and the user score will increase.
-Else the user will be prompted to try again.
+The following activity diagram summarizes the general workflow of `check` command:
+<img src="images/CheckCommandActivityDiagram.png" width="450" />
 
-### View Past Quiz Attempts
+The following sequence diagram shows how the `check` command works:
+![CheckCommandSequenceDiagram](images/CheckCommandSequenceDiagram.png)
+
+#### Quiz Scoring
+
+The quiz can be scored for each individual quiz session. The scoring data will be written into the storage file
+after the quiz session is completed. A quiz session is complete if and only if the message indicating the end of
+quiz is displayed in the GUI window. The following activity diagrams summarize how the score is recorded generated
+along with each quiz session.
+
+![QuizScoringSequenceDiagram](images/QuizScoringSequenceDiagram-How_is_score_produced_with_quiz__.png)
+
+![QuizScoringSequenceDiagramRake](images/UserSeeQuestionDuringQuizActivityDiagram-User_sees_a_question_during_quiz__.png)
+
+
+#### View Past Quiz Attempts
 
 The view quiz history mechanism allows users to view their past attempts of quizzes. Each entry of quiz history is
 represented in a way similar how the flashcards are represented in the Weeblingo application.
@@ -220,7 +261,8 @@ for how `Score` is represented in *Model* component.
 The *UI* component, which originally only handles the display of flashcards,
 now needs to handle the display for scoring history as well.
 
-The following sequence diagram shows how the UI switches display from flashcards to score history and vice versa.
+The following sequence diagram shows how the UI switches display from flashcards to score history. The mechanism of
+switching UI display the other way around is similar. 
 
 ![HistoryUiSequenceDiagram](images/HistoryUiSequenceDiagram.png)
 
@@ -232,9 +274,10 @@ The following sequence diagram shows how the UI switches display from flashcards
     * Pros: Easy to implement.
     * Cons:
       * May have the overhead of writing similar code. For instance, `JsonAdaptedFlashcard` and `JsonAdaptedScore`.
+      * Changing the GUI display from flashcards to score history may be cumbersome.
       * Changing the UI display from flashcards to score history may be cumbersome.
 * **Alternative 2:** Let `Score` have inheritance relationship with `Flashcard`.
-    * Pros: Changing UI display is easy.
+    * Pros: Changing GUI display is easy.
     * Cons:
       * The design choice is not intuitive (`Score` does not seem to be a `Flashcard` and vice versa).
       * The overhead of maintaining the inheritance is non-trivial.
@@ -359,26 +402,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 <!-- Updated and maintained by [Yucheng](https://github.com/cheng20010201) -->
 1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  The product should be available for download and usage after each release.
+2.  The product should be available for downloads after each release on GitHub.
 3.  The product's size of the final Jar released should not exceed 100MB.
-4.  The product should be an offline application, which should work either with or without presence of internet
-    connection.
+4.  The product should be an offline application, which should work regardless of internet connection.
 5.  The product should allow one user to have different instances of the application running at the same time.
-6.  The product should be able to hold up to 2000 Japanese words without causing a delay in commands longer than 0.5 seconds.
-7.  The project should be open-sourced.
+6.  The product should be able to hold up to 2000 Japanese words without causing a delay in commands longer than
+    0.5 seconds.
+7.  The product should be open-sourced on GitHub.
 8.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) and
-    beginner typing speed for simple Japanese text (i.e. simple words and sentences) should be able to accomplish most
-    of the learning faster using commands than using the mouse.
-10. A user should find interacting with the user interface easy, even if he/she is relatively new to the application.
-11. Each command should be processed within 3 seconds.
-12. More to be added.
+    should be able to accomplish most of the learning faster using commands than using the mouse/GUI.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Question**: A Japanese character/word
-* **Answer**: The reading/definition of the Japanese given in the corresponding question
+* **Answer**: The pronunciation/translation of the Japanese word given in the corresponding question
 * **Flashcard**: An object that can display a question and its answer
+* **Quiz Session**: During a quiz session, flashcards with only question displayed will be shown one by one. 
+  Users may chooses to answer or skip the questions. Score and time spent will be recorded.
+* **Score**: Calculated during a quiz session. Calculated by: number of user correct attempts / number of user checks.
 
 --------------------------------------------------------------------------------------------------------------------
 

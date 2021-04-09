@@ -1,0 +1,13 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+repeat: User checks answer for displayed question;
+repeat while () is ([user input is incorrect and wants to try again])
+-> [else];
+:User goes to the next question;
+
+
+stop
+
+@enduml

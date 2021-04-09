@@ -11,7 +11,7 @@ import seedu.weeblingo.model.Model;
 import seedu.weeblingo.model.tag.Tag;
 
 /**
- * Enter flashcard quiz mode.
+ * Enters quiz mode.
  */
 public class QuizCommand extends Command {
 
