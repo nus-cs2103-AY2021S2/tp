@@ -19,9 +19,10 @@ public class ReminderCommand extends Command {
         + "Parameters: Days/Weeks (must be an integer) [TimeUnitKeyWord] (days/weeks (day/week accepted for -1/0/1)\n"
         + "Example: \n- " + COMMAND_WORD + " 3 days\n- " + COMMAND_WORD + " 1 week";
 
-    public static final String MESSAGE_SUCCESS_EXPIRING_ITEM = "Display all items that are expiring in %d %s or has "
-        + "already expired.";
-    public static final String MESSAGE_SUCCESS_EXPIRED_ITEM = "Display all items that has been expired for %d %s";
+    public static final String MESSAGE_SUCCESS_EXPIRING_ITEM = "Display all items that are expiring within %d %s or has"
+        + " already expired.";
+    public static final String MESSAGE_SUCCESS_EXPIRED_ITEM = "Display all items that has been expired for at least"
+        + " %d %s";
     public static final String MESSAGE_SUCCESS_EXPIRING_TODAY_ITEM = "Display all items that are expiring today or "
         + "has already expired.";
 
