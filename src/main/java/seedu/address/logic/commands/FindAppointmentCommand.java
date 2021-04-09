@@ -37,6 +37,13 @@ public class FindAppointmentCommand extends Command {
             + " - " + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_NAME + "\n"
             + " - " + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_DATE + "20/05";
 
+    public static final String MESSAGE_MISSING_FIND_APPOINTMENT_OPTION = "";
+    public static final String MESSAGE_MISSING_NAME_ARGS = "Please add some values to find appointments by name.";
+    public static final String MESSAGE_MISSING_CHILD_ARGS = "Please add some values to find appointments by child.";
+    public static final String MESSAGE_MISSING_ADDRESS_ARGS = "Please add some values to find appointments by address.";
+    public static final String MESSAGE_MISSING_DATE_ARGS = "Please add some values to find appointments by date.";
+    public static final String MESSAGE_MISSING_CONTACT_ARGS = "Please add some contact names to find by contacts.";
+
     private final Predicate<Appointment> predicate;
 
     /**
