@@ -16,8 +16,7 @@ public class CommandParserTestUtil {
      */
     public static <T extends Command> void assertParseSuccess(
             Parser<T> parser, String userInput,
-            Command expectedCommand)
-    {
+            Command expectedCommand) {
         try {
             Command command = parser.parse(userInput);
             assertEquals(expectedCommand, command);
@@ -33,8 +32,7 @@ public class CommandParserTestUtil {
     public static <T extends Command> void assertParseFailure(
             Parser<T> parser,
             String userInput,
-            String expectedMessage)
-    {
+            String expectedMessage) {
         try {
             parser.parse(userInput);
             throw new AssertionError("The expected ParseException was not thrown.");
