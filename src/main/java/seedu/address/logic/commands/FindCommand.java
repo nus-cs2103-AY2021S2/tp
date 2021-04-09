@@ -38,6 +38,21 @@ public class FindCommand extends Command {
             + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_TAG + " " + PREFIX_TAG + "math "
             + PREFIX_TAG + "science " + PREFIX_TAG + "primary";
 
+    public static final String MESSAGE_MISSING_FIND_OPTION = "Please provide one of the following options:\n"
+            + "Options:\n"
+            + " - " + OPTION_NAME + " (to find by name)\n"
+            + " - " + OPTION_ADDRESS + " (to find by address)\n"
+            + " - " + OPTION_PHONE + " (to find by phone)\n"
+            + " - " + OPTION_EMAIL + " (to find by email)\n"
+            + " - " + OPTION_TAG + " (to find by tags)\n"
+            + "If you wish to search by all fields, please leave out the 'o/'";
+    public static final String MESSAGE_MISSING_NAME_ARGS = "Please add some values to find contacts by name.";
+    public static final String MESSAGE_MISSING_ADDRESS_ARGS = "Please add some values to find contacts by address.";
+    public static final String MESSAGE_MISSING_PHONE_ARGS = "Please add some values to find contacts by phone number.";
+    public static final String MESSAGE_MISSING_EMAIL_ARGS = "Please add some values to find contacts by email.";
+    public static final String MESSAGE_MISSING_TAG_ARGS = "Please add some tags to find contacts by tags.";
+
+
     private final Predicate<Contact> predicate;
 
     /**

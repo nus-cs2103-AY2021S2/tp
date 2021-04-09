@@ -19,17 +19,11 @@ class HelpCommandParserTest {
         assertParseSuccess(parser, "find", new HelpCommand("find"));
     }
 
-    //    @Test
-    //    void parse_invalidCommandSpecified_failure() {
-    //        String expectedMessage = MESSAGE_UNKNOWN_COMMAND;
-    //
-    //        assertParseFailure(parser, "hello", expectedMessage);
-    //    }
-    //
-    //    @Test
-    //    void parse_multipleCommandsSpecified_failure() {
-    //        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE);
-    //
-    //        assertParseFailure(parser, "help find", expectedMessage);
-    //    }
+    @Test
+    void parse_multipleCommandsSpecified_success() {
+        assertParseSuccess(parser, "find exit", new HelpCommand("exit"));
+        assertParseSuccess(parser, "find find", new HelpCommand("find"));
+        assertParseSuccess(parser, "find exit find", new HelpCommand("find"));
+        assertParseSuccess(parser, "find exit find help", new HelpCommand("help"));
+    }
 }

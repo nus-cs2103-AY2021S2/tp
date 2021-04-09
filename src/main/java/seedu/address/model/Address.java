@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.parser.CliSyntax.PLACEHOLDER;
 
 /**
  * Represents a Contact's address in the address book.
@@ -16,7 +17,6 @@ public class Address {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
-    public static final String PLACEHOLDER = "NIL";
 
     public final String value;
 

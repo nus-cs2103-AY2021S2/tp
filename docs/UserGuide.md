@@ -65,8 +65,8 @@ If you can type fast, ParentPal can get your contact management tasks done faste
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
+  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 </div>
 
@@ -86,7 +86,8 @@ Shows information about available commands and how they can be used.
 Format: `help [COMMAND]`
 
 * If command is not specified, a summary of all available commands will be displayed, along with a link to access the full user guide.
-* If command is specified, detailed information about the command will be displayed. 
+* If command is specified, detailed information about the command will be displayed.
+* If multiple commands are specified, only the last command will be taken.
 
 Examples:
 * `help` Displays summary of all available commands.
@@ -175,6 +176,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* You can remove the optional fields (phone, email and address) by typing `p/`, `e/` or `a/` without specifying any phone, email or address after it.
 * When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
 * You can remove all the contact’s tags by typing `t/` or `tc/` without
     specifying any tags after it. Note: both regular Tags and ChildTags will be removed in both situations.
@@ -183,6 +185,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+*  `edit 4 e/` Edits to remove the email of the 4th contact in the displayed contact list.
 
 #### Finding contacts: `find`
 
@@ -214,10 +217,10 @@ Example: find o/tag t/first t/second
   
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li` when no exact matches are found
+* `find alex annie` returns `Alex Yeoh`, `Annie Li` when no exact matches are found
 
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
+  ![result for 'find alex annie'](images/findAlexAnnieResult.png)
+* `find o/phone 9927` return contacts whose phone number contains 9927 (partial matches will also be returned).
 
 
 #### Deleting a contact : `delete`
@@ -313,8 +316,20 @@ Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILDTAG]�
 * The index **must be a positive integer** 1, 2, 3, …​
 * `DATE` has to be in the format "`dd`/`MM`/`yyyy` `HH`:`mm`".
 
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+An appointment with the exact same name and date as an appointment that already exists in the appointment book cannot be added.
+</div>
+
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+ParentPal currently does not support checking for clashing appointments. Please make sure to check your availability before adding new appointments. This can be done with the help of findAppt by date.
+</div>
+
 Examples:
 * `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2 tc/amy`
+
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+You cannot add an appointment which has the same name, date, time and address as an existing appointment.
+</div>
 
 #### Deleting an appointment : `deleteAppt`
 
@@ -375,7 +390,8 @@ Currently available options for the `[OPTION]` field include:
   e.g. when 0 results are found, "0 Appointment(s) listed!" is displayed
 
 Examples:
-* `findAppt ptm` returns `PTM`
+* `findAppt ptm` returns appointments with any field containing `PTM`.
+* `findAppt o/contact annie` returns appointments with at least one contact whose name contains `annie`.
 
 #### Listing all appointments : `listAppt`
 

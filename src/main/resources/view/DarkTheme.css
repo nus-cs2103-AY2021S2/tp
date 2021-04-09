@@ -148,11 +148,6 @@
      -fx-border-top-width: 1px;
 }
 
-.status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-text-fill: white;
-}
-
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
@@ -162,23 +157,6 @@
 
 .result-display .label {
     -fx-text-fill: black !important;
-}
-
-.status-bar .label {
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-padding: 4px;
-    -fx-pref-height: 30px;
-}
-
-.status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 25%);
-    -fx-border-width: 1px;
-}
-
-.status-bar-with-border .label {
-    -fx-text-fill: white;
 }
 
 .grid-pane {
