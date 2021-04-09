@@ -36,6 +36,9 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteCommand with the {@link Index} of the task to be deleted.
+     */
     public DeleteCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;

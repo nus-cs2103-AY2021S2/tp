@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.logic.commands.exceptions.CommandException;
-import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.Task;
