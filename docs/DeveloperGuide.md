@@ -352,60 +352,38 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**:
 
 * makes relationship management easier for the user
-    * keeps track of personal relationship with users' friends
+* keeps track of personal relationship with users' friends
 * manages relationship faster than a mouse-driven app.
 
 ### User stories
 
 | Category            | As a/an...         | I can...                                                                               | So that...                                                          |
 |---------------------|--------------------|----------------------------------------------------------------------------------------|---------------------------------------------------------------------|
-| Birthdays           | Forgetful User     | Add a birthday to a contact                                                            | I can remember when that person's birthday is                       |
+| Grouping/tagging    | Orderly User       | Create new friend groups                                                               | I can filter my friends by groups                                   |
 |                     |                    |                                                                                        |                                                                     |
-| Grouping/tagging    | Forgetful User     | Tags to identify people with the same name                                             | I can easily differentiate between friends who has the same name.   |
-| Grouping/tagging    | Orderly User       | Create new friend groups                                                               | Customize my own categories of friends                              |
-| Grouping/tagging    | Orderly User       | Group my contacts by categories                                                        | I easily check contacts in a certain category                       |
+| Friend details      | Forgetful User     | Add a birthday to a contact                                                            | I can remember when that person's birthday is                       |
+| Friend details      | Forgetful User     | Track how much debt is owed by/to the person                                           | I can get my money back or settle my debts.                         |
+| Friend details      | Forgetful User     | Add a profile picture to the contact                                                   | I can remember how they look like                                   |
 |                     |                    |                                                                                        |                                                                     |
-| Friend details      | Forgetful User     | Track how much debt is owed by/to the person                                           | I can get my money back or pay the money back.                      |
-| Friend details      | User               | Store dietary habits/allergies on the contact                                          | I don't accidentally kill him when buying food for him              |
-|                     |                    |                                                                                        |                                                                     |
-| Customized UI       | User               | Choose between light/dark mode for the app                                             | It fits the aesthetics of my comptuer                               |
 | Customized UI       | Artsy User         | Customize the way the application looks                                                | It matches the aesthetics of my computer                            |
 |                     |                    |                                                                                        |                                                                     |
-| User Guide          | New User           | Easily access the user guide                                                           | I can understand how the app works easily                           |
-| User Guide          | New User           | Search for frequently asked question in the application                                | I can find help easily                                              |
-|                     |                    |                                                                                        |                                                                     |
-| Reminders           | Forgetful User     | Add reminders for special dates                                                        | I can remember my anniversary                                       |
-|                     |                    |                                                                                        |                                                                     |
-| Notes               | Forgetful User     | Takes notes on specific user                                                           | I can remember certain things                                       |
-|                     |                    |                                                                                        |                                                                     |
-| Calendar            | Visual User        | Have a calendar view of birthdays for the month                                        | I can plan my timetable ahead                                       |
-| Calendar            | New User           | See who are the friends I have not met in a long time                                  | I am reminded to meet them soon                                     |
-|                     |                    |                                                                                        |                                                                     |
-| UX                  | Expert User        | Perform most tasks with a single command                                               | I can save time                                                     |
-| UX                  | Non-Technical User | Have the option to use the mouse                                                       | I will not be overwhelmed by the CLI                                |
-| UX                  | New User           | Easily undo previous commands                                                          | I do not have to be afraid of making mistakes                       |
-|                     |                    |                                                                                        |                                                                     |
-| Storage/backup/data | Tech-Savvy User    | Export/import information from the application                                         | I can back up the data                                              |
-| Storage/backup/data | Tech-Savvy User    | Detect conflicts when importing information                                            | I can detect if there are any changes to the after exporting        |
-|                     |                    |                                                                                        |                                                                     |
-| Search              | Forgetful User     | See suggested commands as i type in the command bar                                    | I do not have to memorise all commands                              |
-| Search              | Tech-Savvy User    | Search for contacts via regex                                                          | I can find contacts easily                                          |
-| Search              | User               | Search for my contacts by name                                                         | I can find contacts easily                                          |
-| Search              | Intermediate User  | Sort search result on different things                                                 | I can find whatever I'm looking for easily                          |
-| Search              | Experienced User   | Write SQL like statements to search for things                                         | I can have full control over search                                 |
-|                     |                    |                                                                                        |                                                                     |
-| Profile             | Forgetful User     | Add a profile picture to the contact                                                   | I can remember how they look like                                   |
-|                     |                    |                                                                                        |                                                                     |
-| Relationship management   | Good friend        | Set a desired frequency for meeting each contact                                       | I am reminded to meet my friends either weekly, monthly, yearly etc |
-| Relationship management   | Forgetful friend   | Be reminded of who i should meet soon                                                  |                                                                     |
-| Relationship management   | Friend             | See upcoming dates (birthdays/special dates/due-to-meet)                               |                                                                     |
-|                     |                    |                                                                                        |                                                                     |
-| Dashboard           | User               | See upcoming birthdays at a glance                                                     | I know what to expect in the week to come                           |
-| Dashboard           | User               | See upcoming events at a glance                                                        |                                                                     |
-| Dashboard           | User               | See goals that will reach deadline                                                     |                                                                     |
-| Dashboard           | Friend             | See which friends I have to meet soon                                                  |                                                                     |
-|                     |                    |                                                                                        |                                                                     |
+| Special Dates       | Forgetful User     | Add reminders for special dates (special dates are events that occur yearly)           | I can remember my anniversary                                       |
+|                     |                    |                                                                                        |                                                                     |      
 | Friendship Journal  | User               | Record brief summary of last meeting with the other person (include last meeting date) | I know why we last met.                                             |
+|                     |                    |                                                                                        |                                                                     |
+| UX                  | Forgetful User     | See suggested commands as I type in the command bar                                    | I do not have to memorise all commands                              |
+|                     |                    |                                                                                        |                                                                     |
+| Search              | Tech-Savvy User    | Search for contacts via regex                                                          | I can find contacts easily                                          |
+|                     |                    |                                                                                        |                                                                     |
+| Relationship management   | Good friend        | Set a desired frequency (weekly. monthly, yearly) for meeting each contact       | I can set a goal on how frequent to meet my friends.                |
+| Relationship management   | Forgetful friend   | Be reminded of who I should meet soon                                            | I do not forget to meet my friends.                                 |
+| Relationship management   | Friend             | See upcoming dates (birthdays/ special dates)                                    | I can prepare myself before I meet them                             |
+|                     |                    |                                                                                        |                                                                     |
+| Dashboard           | User               | See upcoming birthdays at a glance                                                     | I can prepare myself for the week to come                           |
+| Dashboard           | User               | See upcoming special dates at a glance                                                 | "                                       "                           | 
+| Dashboard           | User               | See goals that will reach deadline                                                     | "                                       "                           |
+| Dashboard           | Friend             | See which friends I have to meet soon                                                  | "                                       "                           |
+|                     |                    |                                                                                        |                                                                     |
 
 ### Use cases
 
@@ -534,7 +512,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. The instructions are mainly laid out in alphabetical order of the command word (e.g. `add-group`) for ease of searching for specific features to test.
+The only exceptions are sections that test FriendDex in its entirety. These instructions will be at the top.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -559,7 +538,61 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+1. _{ more test cases …​ }_
+
+### Adding a person: `add`
+
+### Adding a special date: `add-date`
+
+### Adding a friend group: `add-group`
+
+### Adding a meeting: `add-meeting`
+
+Prerequisites: List all person using the `list` command. There is at least a person present in the list. 
+The first person on the list is born before 12-12-2020.
+
+1. Adding a meeting to an existing person
+    
+    1. Test case: `add-meeting 1 d/12-12-2020 t/1945 desc/sample desc` <br> 
+       Expected: Meeting is added to the first contact. A success message is shown in the status message.
+       
+    2. Test case: `add-meeting 0` (Invalid index) <br>
+       Expected: No meetings added. Error details shown in the status message.
+       
+    3. Other incorrect `add-meeting` commands to try: 
+        * `add-meeting x` (where x is larger than list size),
+        * `add-meeting 1 d/12-12-2020 t/1945` (missing `DESCRIPTION` argument, other arguments can also be left out),
+       Expected: Similar to previous
+   
+2. Adding a meeting with boundary time values. FriendDex will only allow adding of meetings that have already occurred. 
+
+    1. These arguments should be replaced with their proper datetime representation. 
+       `TODAY_DATE`: today's date in the format of dd-MM-yyyy, e.g. `04-04-2021`
+       `TIME_AFTER_NOW`: add a few minutes to the current time in the format of HHmm, e.g. `1230`
+       
+    2. Adding a meeting for today
+       Test case: `add-meeting 1 d/{TODAY_DATE} t/0000 desc/sample desc`.
+       Expected: Meeting is added to the first contact. A success message is shown in the status message. 
+       
+    3. Adding a meeting for today but has not occurred yet
+       Test case: `add-meeting 1 d/{TODAY_DATE} t/{TIME_AFTER_NOW} desc/sample desc`
+       Expected: No meetings added. Error details shown in the status message.
+
+    4. Adding a meeting that happens in the future
+       Test case: `add-meeting 1 d/12-12-2099 t/1945 desc/sample desc` <br> 
+       Expected: Similar to previous
+
+### Adding a profile picture: `add-picture`
+
+### Clearing all entries: `clear`
+
+### Deleting a person: `delete`
 
 1. Deleting a person while all persons are being shown
 
@@ -575,12 +608,32 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases …​ }
 
-### Saving data
+### Deleting a special date: `del-date`
 
-1. Dealing with missing/corrupted data files
+### Deleting a meeting: `del-meeting`
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Deleting a profile picture `del-picture`
 
-1. _{ more test cases …​ }_
+### Viewing full details: `details`
+
+### Editing a person: `edit`
+
+### Exiting the program: `exit`
+
+### Locating persons by name: `find`
+
+### Viewing help: `help`
+
+### Listing all persons: `list`
+
+### Setting meeting goal: `set-goal`
+
+### Subtracting Debt: `subtract-debt`
+
+### Styling the application: `theme`
+
+### Viewing different details panel: `view`
+
+
