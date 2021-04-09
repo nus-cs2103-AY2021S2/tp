@@ -413,12 +413,11 @@ Examples:
 Finds all appointments containing any of the specified keywords (case-insensitive) and/or with the given parameters. 
 
 Format:
-* `find appointment [n/NAME] [r/REMARKS] [d/DATE]* [t/TIME]*`
-* Note that all options marked with `*` are limited to one per query. 
+* `find appointment [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`
 
 Description:
-* There can be 1 or more options. Other than options marked with `*`, there can be multiple of 
-each option. 
+* There can be 1 or more options. 
+* If a same option is used multiple times, entries matching **either** will be returned as results. 
 * All text are case insensitive.
 
 Options: 
@@ -433,15 +432,11 @@ Options:
 * `[d/DATE]`
     
     Searches for properties with `[DATE]` as date. 
-    
-    Limited to one per query. 
-    
+        
 * `[t/TIME]`
     
     Searches for properties with `[TIME]` as time. 
     
-    Limited to one per query. 
-
 Examples:
 * `find appointment n/bob`
 * `find appointment n/alex d/25-12-2021`
@@ -454,7 +449,7 @@ Format:
 * `find client [KEYWORD]...`
 
 Description:
-* There can be 0 or more keywords. Keywords are case insensitive.
+* There can be 1 or more keywords. Keywords are case insensitive.
 
 ### 3.10 Clearing
 
