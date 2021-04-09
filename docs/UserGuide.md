@@ -316,7 +316,12 @@ Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
 * The occupancy status is not controllable through the `oedit` command.
 * Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. 
   See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
+* `oedit` will be blocked if there are issues tagged to the room. Run `idel` to [delete the issues](#delete-an-issue--idel) associated with the room before making further edits.
+    * This is done to prevent issues from being assigned to nonexistent rooms, by editing away a room's number after assigning an issue to it
 
+<div markdown="block" class="alert alert-info">
+:information_source: Room numbers are editable as renovation or re-numbering excercises may take place.
+</div>
 
 Parameters:
 * [INDEX](#index) The index of the room to edit.
