@@ -1,0 +1,47 @@
+@startuml
+!include style.puml
+mainframe "sd schedule command"
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "s:ScheduleCommand" as ScheduleCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+[-> LogicManager : execute(schedule)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(schedule)
+activate AddressBookParser
+
+create ScheduleCommand
+AddressBookParser -> ScheduleCommand
+activate ScheduleCommand
+
+ScheduleCommand --> AddressBookParser
+deactivate ScheduleCommand
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> ScheduleCommand : execute()
+activate ScheduleCommand
+
+ScheduleCommand -> ModelManager : updateFilteredLessonList()
+activate ModelManager
+
+ModelManager --> ScheduleCommand
+deactivate ModelManager
+
+ScheduleCommand --> LogicManager
+deactivate ScheduleCommand
+ScheduleCommand -[hidden]-> AddressBookParser
+destroy ScheduleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
