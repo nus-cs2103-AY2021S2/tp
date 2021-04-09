@@ -299,7 +299,7 @@ Application: Used to briefly indicate the nature of the task.
 Format: `tag INDEX t/TAG [t/MORETAGS]...​` 
 
 * Attaches one or more tags to the task associated with INDEX. Tags can be used to identify related tasks.
-* If only `/t` is provided without preceding value, no tag will be added but MB3.5 will show you the existing tags
+* If only `t/` is provided without preceding value, no tag will be added but MB3.5 will show you the existing tags
 associated to the task you tried to tag.
   
 Tutorial Example:<br>
