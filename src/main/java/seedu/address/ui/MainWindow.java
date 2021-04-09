@@ -191,12 +191,12 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void applyTheme() {
         this.getMainScene().getStylesheets().clear();
-        this.getMainScene().getStylesheets().add("file:///" + ThemeManager.getCssCacheUri());
+        this.getMainScene().getStylesheets().add("file:///" + ThemeManager.getInstance().getCssCacheUri());
     }
 
     private void updateGuiSettings() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-            (int) primaryStage.getX(), (int) primaryStage.getY(), ThemeManager.getThemePath());
+            (int) primaryStage.getX(), (int) primaryStage.getY(), ThemeManager.getInstance().getThemePath());
         logic.setGuiSettings(guiSettings);
     }
 

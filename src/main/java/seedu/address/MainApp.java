@@ -52,7 +52,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing FriendDex ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -78,22 +78,21 @@ public class MainApp extends Application {
      * Initializes the content of ThemeManager with the theme in the GuiSetting of model.
      */
     private void initTheme() {
-        ThemeManager.init();
         if (model.getGuiSettings().getThemePath() == null) {
             logger.info("No theme specified. Applying default theme ...");
-            ThemeManager.setTheme(ThemeFactory.getDefaultTheme(), null);
+            ThemeManager.getInstance().setTheme(ThemeFactory.getDefaultTheme(), null);
         } else {
             logger.info("Loading theme " + model.getGuiSettings().getThemePath() + " ...");
             try {
                 Theme theme = ThemeFactory.load(model.getGuiSettings().getThemePath());
-                ThemeManager.setTheme(theme, model.getGuiSettings().getThemePath());
+                ThemeManager.getInstance().setTheme(theme, model.getGuiSettings().getThemePath());
                 return;
             } catch (DataConversionException | InvalidThemeException exception) {
                 logger.warning("Invalid " + model.getGuiSettings().getThemePath() + " theme supplied");
             } catch (IOException fileNotFoundException) {
                 logger.warning("Theme " + model.getGuiSettings().getThemePath() + " not found");
             }
-            ThemeManager.setTheme(ThemeFactory.getDefaultTheme(), model.getGuiSettings().getThemePath());
+            ThemeManager.getInstance().setTheme(ThemeFactory.getDefaultTheme(), model.getGuiSettings().getThemePath());
         }
     }
 
@@ -108,14 +107,14 @@ public class MainApp extends Application {
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with a sample FriendDex");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty FriendDex");
             initialData = new AddressBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty FriendDex");
             initialData = new AddressBook();
         }
 
@@ -180,7 +179,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty FriendDex");
             initializedPrefs = new UserPrefs();
         }
 
@@ -196,13 +195,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting FriendDex " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping FriendDex ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

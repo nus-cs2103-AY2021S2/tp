@@ -40,7 +40,7 @@ public class UiManager implements Ui {
     private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
                                                String contentText) {
         final Alert alert = new Alert(type);
-        alert.getDialogPane().getStylesheets().add("file:///" + ThemeManager.getCssCacheUri());
+        alert.getDialogPane().getStylesheets().add("file:///" + ThemeManager.getInstance().getCssCacheUri());
         alert.initOwner(owner);
         alert.setTitle(title);
         alert.setHeaderText(headerText);

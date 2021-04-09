@@ -46,7 +46,15 @@ public class GroupHashMap {
      * Replace given person name with new name in all groups.
      */
     public void replacePerson(Name personToReplace, Name newPersonName) {
-        internalMap.values().stream().forEach(g -> g.setPersonName(personToReplace, newPersonName));
+        internalMap.values().forEach(g -> g.setPersonName(personToReplace, newPersonName));
+    }
+
+    /**
+     * Deletes given person from all groups in {@code internalMap}. All groups are guaranteed to contain no
+     * instance of the {@code person} with given {@code name} in this group.
+     */
+    public void deletePerson(Name personToDelete) {
+        internalMap.values().forEach(g -> g.deletePerson(personToDelete));
     }
 
     /**
