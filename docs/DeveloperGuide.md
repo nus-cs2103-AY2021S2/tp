@@ -578,29 +578,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a … | I want to … | So that I can…|
 | - | - | - | - |
-| `* * *` | new user | see usage instructions | refer to instructions if I forget how to use the app |
 | `* * *` | confused user | have a help command | learn how to use the application |
-| `* * *` | user | add a new person | |
-| `* * *` | user | add issues | |
-| `* * *` | user | see a list of pending tasks sorted by deadline | prioritise which to do |
-| `* * *` | user | search for tasks | |
+| `* * *` | user | add issues | track room issues and their status |
+| `* * *` | user | see a list of pending issues sorted by deadline | prioritise which issue to work on |
+| `* * *` | user | search for issues | find issues by their room number |
+| `* * *` | user | search for issues | find issues by their description |
 | `* * *` | user | close issues | focus on open issues |
-| `* * *` | user | update issues | |
-| `* * *` | user | remove issues | |
-| `* * *` | user | add residents | |
-| `* * *` | user | search for residents | |
+| `* * *` | user | update issues | ensure issues have the latest and correct information |
+| `* * *` | user | remove issues | not worry about issues that are no longer relevant |
+| `* * *` | user | add residents | track and manage residents who are staying or want to stay in the hostel |
+| `* * *` | user | search for residents | find a specific resident's information |
 | `* * *` | user | update resident details | ensure their information is up to date |
-| `* * *` | user | remove residents | |
-| `* * *` | user | add new rooms | |
+| `* * *` | user | remove residents | stop tracking residents who are not in the hostel or don't wish to stay anymore |
+| `* * *` | user | add new rooms | track and manage rooms in the hostel |
 | `* * *` | user | see a list of rooms with their statuses | know which rooms are available |
-| `* * *` | user | search for rooms | |
-| `* * *` | user | update room details | |
-| `* * *` | user | remove rooms | |
-| `* *` | user | see both available rooms and unassigned residents side by side | easily match residents to rooms |
+| `* * *` | user | search for rooms | find a specific room or rooms matching a specific criteria |
+| `* * *` | user | update room details | ensure a room's information is up to date |
+| `* * *` | user | remove rooms | stop tracking rooms which are not in the hostel |
+| `* * *` | user | allocate a resident to a room | ensure that a resident and room are linked |
+| `* * *` | user | deallocate a resident from a room | ensure that a resident who is no longer living in a room is not associated with it |
 | `* *` | careless user | undo previous commands | easily fix any errors I might make |
 | `* *` | careless user | redo previous commands | easily fix an erroneous undo |
-| `* * *` | user | allocate a resident to a room | |
-| `* * *` | user | deallocate a resident from a room | |
 | `* *` | power user | access my command history | efficiently repeat similar commands |
 | `* *` | power user | access command history from previous sessions | easily reuse commands from previous sessions |
 | `* *` | power user | create aliases for longer commands | shorten commands to be more efficient to type |
