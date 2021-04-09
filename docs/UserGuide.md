@@ -505,7 +505,7 @@ In this screenshot, the colour of task 1 changed because the new deadline is clo
 
 Other Examples:
 *  `edit 1 d/Finish User Guide` Edits the description of the 1st task to `Finish User Guide`.
-*  `edit 2 d/Finish User Guide b/2021-03-21 10:10:10` Edits the description of the 2nd task to be `Finish User Guide` and its deadline to date `2021-03-21 10:10:10`.
+*  `edit 2 d/Finish User Guide b/2021-03-21 10:10` Edits the description of the 2nd task to be `Finish User Guide` and its deadline to date `2021-03-21 10:10`.
 *  `edit 2 b/2021-03-25` Edits the deadline of the 3rd task to `2021-03-25`
 
 --------------------------------------------------------------------------------------------------------------------
