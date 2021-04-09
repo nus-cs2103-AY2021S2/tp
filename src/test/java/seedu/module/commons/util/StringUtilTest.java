@@ -51,6 +51,8 @@ public class StringUtilTest {
 
         // EP: invalid inputs. Generate assertion error
         assertThrows(AssertionError.class, () -> StringUtil.isNonZeroUnsignedInteger(""));
+        assertThrows(AssertionError.class, () -> StringUtil.isNonZeroUnsignedInteger("aaa"));
+        assertThrows(AssertionError.class, () -> StringUtil.isNonZeroUnsignedInteger("1 0"));
 
         // EP: zero
         assertFalse(StringUtil.isNonZeroUnsignedInteger("0"));
