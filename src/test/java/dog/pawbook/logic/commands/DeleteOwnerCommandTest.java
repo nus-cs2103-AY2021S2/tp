@@ -2,7 +2,9 @@ package dog.pawbook.logic.commands;
 
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static dog.pawbook.testutil.TypicalEntities.DANCING;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
+import static dog.pawbook.testutil.TypicalId.ID_EIGHTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_ONE;
 import static dog.pawbook.testutil.TypicalId.ID_TWO;
 import static java.util.stream.Collectors.toList;
@@ -18,7 +20,7 @@ import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.UserPrefs;
 import dog.pawbook.model.managedentity.Entity;
-import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.program.Program;
 import javafx.util.Pair;
 
 /**
@@ -38,14 +40,15 @@ public class DeleteOwnerCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         expectedModel.deleteEntity(ID_ONE);
-        expectedModel.deleteEntity(((Owner) entity).getDogIdSet().stream().findAny().get());
+        expectedModel.deleteEntity(ID_TWO);
+        expectedModel.setEntity(ID_EIGHTEEN, new Program(DANCING.getName(), DANCING.getSessions(), DANCING.getTags()));
 
         assertCommandSuccess(deleteOwnerCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIdUnfilteredList_throwsCommandException() {
-        List<Integer> indices = model.getFilteredEntityList().stream().map(Pair::getKey).sorted().collect(toList());
+        List<Integer> indices = model.getUnfilteredEntityList().stream().map(Pair::getKey).sorted().collect(toList());
         int outOfBoundId = indices.get(indices.size() - 1) + 1;
         DeleteOwnerCommand deleteOwnerCommand = new DeleteOwnerCommand(outOfBoundId);
 

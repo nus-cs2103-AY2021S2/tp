@@ -15,7 +15,7 @@ Given below are my contributions to the project.
   * In the process, I had to build `EnrolDropCommandParser` and `ProgramRegistrationCommand` to allow proper functioning of this command.
   * I worked with other members of the team who were working on the Enrol Command as these two commands were largely similar
   * An additional feature would be the allowing of dropping one dog from multiple programs, or dropping multiple dogs from one program, but not multiple dogs from multiple programs.
-  
+
 * **Code Refactoring**: Changed `UniqueOwnerList` to `UniqueEntityList`
   * Since Pawbook works with dogs and programs on top of just owners, we had to change the initial `AB3-AddressBook` to support all three entities.
   * Removed project-wide references and usage of variables linked to `UniqueOwnerList` and changed it to `UniqueEntityList` to fit with our project instead.
@@ -29,7 +29,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**: GUI Refactoring (in progress...)
   * Change the CSS such that the UI reflects the distinct Pawbook colours as presented in our initial UI Mockup.
-  
+
 * **Documentation**:
   * User Guide:
     * Contributed significant portions in Introduction, Purpose, Syntax, GUI Layout, Drop Command, Command Summary and Glossary.
