@@ -29,7 +29,7 @@ public class SampleDataUtil {
     private static LocalDate dateToday = LocalDate.now();
     private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("[dd/MM/yyyy]");
     private static final Request EMPTY_REQUEST = new Request("");
-    private static final Request NON_EMPTY_REQUEST_1 = new Request("No sugar, customer has diabetus.");
+    private static final Request NON_EMPTY_REQUEST_1 = new Request("No sugar, customer has diabetes.");
     private static final Request NON_EMPTY_REQUEST_2 = new Request("More sugar, spice and everything nice.");
 
     public static Order[] getSampleOrders() {

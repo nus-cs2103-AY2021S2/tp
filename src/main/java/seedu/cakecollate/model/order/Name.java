@@ -11,7 +11,7 @@ public class Name {
 
     public static final String MESSAGE_CONSTRAINTS = "Names should only contain alphanumeric characters and spaces.";
     public static final String MESSAGE_EMPTY = "Name cannot be blank.";
-    public static final String MESSAGE_OVERFLOW = "Name has a size limit of 80 characters.";
+    public static final String MESSAGE_OVERFLOW = "Name has a size limit of 70 characters.";
     /*
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.

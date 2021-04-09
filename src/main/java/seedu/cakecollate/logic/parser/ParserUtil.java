@@ -31,9 +31,10 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final int PHONE_LENGTH = 20;
     public static final int TAG_LENGTH = 30;
-
     public static final int INTEGER_LENGTH = 10;
-    public static final int NAME_LENGTH = 80;
+    public static final int NAME_LENGTH = 70;
+    public static final int ORDER_DESCRIPTION_LENGTH = 70;
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -160,6 +161,9 @@ public class ParserUtil {
     public static OrderDescription parseOrderDescription(String orderDescription) throws ParseException {
         requireNonNull(orderDescription);
         String trimmedOrderDescription = orderDescription.trim();
+        if (trimmedOrderDescription.length() > ORDER_DESCRIPTION_LENGTH) {
+            throw new ParseException(OrderDescription.MESSAGE_OVERFLOW);
+        }
         if (!OrderDescription.isValidOrderDescription(trimmedOrderDescription)) {
             throw new ParseException(OrderDescription.MESSAGE_CONSTRAINTS);
         }
