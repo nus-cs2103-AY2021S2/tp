@@ -266,9 +266,9 @@ Format: `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]`
   See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info. 
   
 Parameters:
-* [ROOM_NUMBER](#room_number) The room number of the room to add.
-* [ROOM_TYPE](#room_type) The type of the room being added.
-* [TAG](#tag) Optional tags that may be specified to assist in management of the room.
+* [`ROOM_NUMBER`](#room_number) The room number of the room to add.
+* [`ROOM_TYPE`](#room_type) The type of the room being added.
+* [`TAG`](#tag) Optional tags that may be specified to assist in management of the room.
 
 Example:
 * `oadd r/10-112 t/corridor_ac g/SHN` Adds a room numbered `10-112` of type `corridor_ac` with the tag `SHN`.
@@ -294,7 +294,7 @@ Format: `ofind KEYWORD [MORE_KEYWORDS]`
 * Rooms matching at least one keyword will be returned (i.e. OR search). e.g. `10 20` will return `10-100`, `11-120`.
 
 Parameters:
-* [KEYWORD](#keyword) The keyword to search for in the room list.
+* [`KEYWORD`](#keyword) The keyword to search for in the room list.
 
 Examples:
 * `ofind 10-` returns `10-100`, `10-101`, and `10-102`.
@@ -319,10 +319,10 @@ Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
 
 
 Parameters:
-* [INDEX](#index) The index of the room to edit.
-* [ROOM_NUMBER](#room_number) The room number to change the room identified by [INDEX](#index) to.
-* [ROOM_TYPE](#room_type) The room type to change the room identified by [INDEX](#index) to.
-* [TAG](#tag) Optional tags that may be updated for the room identified by [INDEX](#index).
+* [`INDEX`](#index) The index of the room to edit.
+* [`ROOM_NUMBER`](#room_number) The room number to change the room identified by [`INDEX`](#index) to.
+* [`ROOM_TYPE`](#room_type) The room type to change the room identified by [`INDEX`](#index) to.
+* [`TAG`](#tag) Optional tags that may be updated for the room identified by [`INDEX`](#index).
 
 Example:
 * `oedit 1 g/SHN g/Blue` Edits the 1st room's tags to `SHN` and `Blue`.
@@ -341,7 +341,7 @@ Format: `odel INDEX`
   See [delete an issue](#delete-an-issue--idel) for more info.
 
 Parameters:
-* [INDEX](#index) The index of the room to delete.
+* [`INDEX`](#index) The index of the room to delete.
 
 Example:
 * `odel 1` Deletes the 1st room in the room list.
