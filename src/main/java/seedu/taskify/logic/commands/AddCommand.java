@@ -29,7 +29,7 @@ public class AddCommand extends Command {
                                                        + PREFIX_DATE + "2021-04-13 10:30 "
                                                        + PREFIX_TAG + "CS2103T ";
 
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New task added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in Taskify";
 
     private final Task toAdd;

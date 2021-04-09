@@ -152,7 +152,7 @@
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
-    -fx-background-radius: 20;
+    -fx-background-radius: 15;
     -fx-font-size: 10pt;
     -fx-text-fill: black;
 }
@@ -316,7 +316,6 @@
 
 #cardPane {
     -fx-background-color: transparent;
-    -fx-padding: 2 0 2 0;
 }
 
 #commandTypeLabel {
@@ -342,9 +341,15 @@
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
-#welcomePanel, #upcomingTaskListPanel{
+#welcomePanel, #todaysTaskListPanel{
     -fx-background-color: #e8eff2;
     -fx-text-fill: black;
+    -fx-border-width: 0;
+}
+
+#taskListPanel, #uncompletedTaskListPanel, #completedTaskListPanel, #expiredTaskListPanel {
+    -fx-background-color: #e8eff2;
+    -fx-background-radius: 15 15 15 15;
     -fx-border-width: 0;
 }
 
@@ -364,7 +369,15 @@
 
 #resultDisplay .content {
     -fx-background-color: transparent, #e8eff2, transparent, #e8eff2;
-    -fx-background-radius: 20;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-padding: 5 5 5 5;
+}
+#resultDisplayPlaceholder{
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-padding: 5 5 5 5;
+
 }
 
 #tags {
@@ -375,7 +388,7 @@
 #tags .label {
     -fx-text-fill: white;
     -fx-background-color: #536dfe;
-    -fx-padding: 1 3 1 3;
+    -fx-padding: 3 3 3 3;
     -fx-border-radius: 15;
     -fx-background-radius: 15;
     -fx-font-size: 11;
@@ -390,11 +403,11 @@
     -fx-font-size: 11;
 }
 
-.notDone{
+.expired{
   -fx-background-color: #fc4503;
 }
 
-.inProgress{
+.uncompleted{
   -fx-background-color: #ebcf34;
 }
 
