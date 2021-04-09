@@ -69,7 +69,7 @@ Given below are my contributions to the project.
   * Added manual testing instructions for command history and undo/redo:
     [\#333](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/333).
   * Updated [logic component](https://ay2021s2-cs2103-t14-1.github.io/tp/DeveloperGuide.html#logic-component)
-    descriptions and diagrams: [\#TODO]().
+    descriptions and diagrams: [\#386](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/386).
   * Added implementation details and diagrams for command history:
     [\#109](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/109) and
     [\#317](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/317).
