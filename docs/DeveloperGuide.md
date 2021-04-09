@@ -538,6 +538,12 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Autocomplete
+
+1. Type `add` into the command bar
+   Expected: A list of commands with `add` in their command words show up.
+
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
