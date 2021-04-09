@@ -56,7 +56,7 @@ public class LogicManagerTest {
         JsonConnectionStorage jsonConnectionStorage = new JsonConnectionStorage(temporaryFolder.resolve("connections" +
                 ".json"));
         StorageManager storage = new StorageManager(addressBookStorage, meetingBookStorage,
-                noteBookStorage, userPrefsStorage,jsonConnectionStorage);
+                noteBookStorage, userPrefsStorage, jsonConnectionStorage);
         logic = new LogicManager(model, storage);
     }
 
