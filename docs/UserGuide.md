@@ -613,9 +613,11 @@ If the previous theme file supplied is not found or unreadable, then the default
 **Q**: What is a valid email format?<br>
 **A**: Email stored in FriendDex is a wilful violation of (RFC 5322)[https://tools.ietf.org/html/rfc5322]. The email
 allowed in FriendDex shall adhere to the following rules:
-* Emails shall have the format `local-part@domain`.
+* Emails shall have the format `local-part@label(.label)*`.
 * `local-part` contains at least one alphanumeric character with the following special characters <code>.!#$%&'*+\/=?^_`{|}~-</code>.
-* `domain` must start with an alphanumeric character.
+* This is followed by a `@` and then a `label`.
+* `label` should be shorter than 63 characters.
+* Multiple `label` are allowed, provided that they are delimited by a single period.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Troubleshooting Instructions
