@@ -143,7 +143,7 @@ you might encounter when dealing with invalid commands or errors.
 We will break our explanation down into the following categories:
 - Incorrect formats
 - Parameters do not conform to required values
-- Commands that require an [`INDEX`] (e.g `redit 1 n/John`)
+- Commands that require an [`INDEX`] (e.g. `redit 1 n/John`)
 
 ##### Incorrect formats
 This error typically shows a message along the following lines: `Invalid command format! [Information on how to use
@@ -155,7 +155,7 @@ Typically this happens because the command does not match the required format. C
 A special case of this takes place when the `INDEX` value is not a number.
 
 ##### Parameters do not conform to required values
-This error typically shows a message along the following lines: `[Parameter name] must be [some condition]`. E.g 
+This error typically shows a message along the following lines: `[Parameter name] must be [some condition]`. E.g. 
 `Room numbers should be formatted as such: XY-ABC, where XY can be any pair of digits except 00, and ABC can 
 be any 3 digits.`
 
@@ -167,26 +167,26 @@ helpful information in resolving the error too.
 
 ##### Commands that require an `INDEX`
 The bounds of the `INDEX` parameter is documented [below](#index). This section will explain how errors with the `INDEX`
-will be dealt with
+will be dealt with.
 
-- If you do not specify the `INDEX` (e.g `rdel`): The app will inform you that the format is invalid, and display the 
+- If you do not specify the `INDEX` (e.g. `rdel`): The app will inform you that the format is invalid, and display the 
   format that should be used. This is a specific case of [incorrect formats](#incorrect-formats).
   
-- If the `INDEX` is not an integer (e.g `rdel abc`): The app will inform you that the format is invalid, and display the
+- If the `INDEX` is not an integer (e.g. `rdel abc`): The app will inform you that the format is invalid, and display the
   format that should be used. This is also a specific case of [incorrect formats](#incorrect-formats), as the command 
   expects a number but did not get one.
 
-- If the `INDEX` parameter is required alongside other parameters e.g [`redit`](#edit-a-resident-record--redit), and
+- If the `INDEX` parameter is required alongside other parameters e.g. [`redit`](#edit-a-resident-record--redit), and
   **only** an `INDEX` (be it valid or not) value is provided (e.g. `redit 1000` or `redit 1`): The app will inform you
   that the format is invalid, and display the format that should be used. This is another specific case 
   of [incorrect formats](#incorrect-formats), as the command compulsorily needs at least one of the optional parameters 
   to be provided.
   
-- If the `INDEX` is 0 or lesser (e.g `rdel -5`): The app will inform you that `INDEX` should be a positive integer.
+- If the `INDEX` is 0 or lesser (e.g. `rdel -5`): The app will inform you that `INDEX` should be a positive integer.
 
 ![Index non positive](images/error-idx-non-positive.png)
 
-- If the `INDEX` is above the range of the collection specified (e.g `rdel 100` but there are only 10 residents): The 
+- If the `INDEX` is above the range of the collection specified (e.g. `rdel 100` but there are only 6 residents): The 
   app will inform you that `INDEX` needs to be between 1 and the size of the collection in question.
 
 ![Index out of range](images/error-idx-out-of-range.png)
@@ -343,7 +343,7 @@ Finds all rooms by room number or tag that contain any of the given keywords.
 
 Format: `ofind KEYWORD [MORE_KEYWORDS]`
 * The search matches any part of the room number. e.g. `10` will match `10-111` and `14-101`.
-* The search for tags matches any part of the tag and is NOT case-sensitive. e.g `mell`, `smell`, `smelly` or `room` 
+* The search for tags matches any part of the tag and is NOT case-sensitive. e.g. `mell`, `smell`, `smelly` or `room` 
   all work to match `smellyroom`. `s` will match both `smellyroom` and `SHN`.
 * The order of the keywords does not matter. e.g. `11- 10-` will match `10-100`, `10-101`, `11-100`, and `11-101`.
 * Only the room number and tags are searched.
@@ -467,7 +467,7 @@ Format: `ifind KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g. `broken` will match `Broken`.
 * The order of the keywords does not matter. e.g. `Broken light` will match `light broken`.
 * The search for tags and description matches any part of the tag and is NOT case-sensitive. 
-  e.g `high`, `HIGH` or `h` all work to match `High`. `H` will match both `Hot` and `High`.
+  e.g. `high`, `HIGH` or `h` all work to match `High`. `H` will match both `Hot` and `High`.
 * The search matches any part of the room number. e.g. `10` will match `10-111` and `14-101`.
 * Only the description, room number, and tags are searched.
 * Issues matching at least one keyword will be returned (i.e. OR search). 
