@@ -675,6 +675,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends.
+* 1b. System detects index in command to locate module is invalid.
+    * 1b1. System display module missing/invalid input error message.
+    <br> Use case ends. 
  
 ### Use Case: `UC09` - edit assignment
 
@@ -689,6 +692,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends. 
+* 1b. System detects index in command to locate assignment is invalid.
+    * 1b1. System display assignment missing/invalid input error message.
+    <br> Use case ends. 
         
 ### Use Case: `UC10` - edit exam
 
@@ -702,21 +708,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
-        <br> Use case ends.      
+        <br> Use case ends.
+* 1b. System detects index in command to locate exam is invalid.
+    * 1b1. System display exam missing/invalid input error message.
+    <br> Use case ends.      
     
-### Use Case: `UC11` - edit person and birthday
+### Use Case: `UC11` - edit person
 
 **MSS:**
 
-1. User enters command to edit the birthday of a person.
-2. System edits birthday and displays edited birthday info.
+1. User enters command to edit the person/birthday.
+2. System edits person and displays edited person info.
 <br> Use case ends.
    
 **Extensions:**
 
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
-        <br> Use case ends.     
+        <br> Use case ends.
+* 1b. System detects index in command to locate person is invalid.
+    * 1b1. System display person missing error message.
+    <br> Use case ends.      
 
 ### Use Case: `UC12` - edit general event
 
@@ -731,6 +743,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends. 
+* 1b. System detects index in command to locate event is invalid.
+    * 1b1. System display event missing/invalid input error message.
+    <br> Use case ends.
 
 ### Use Case: `UC13` - delete module
 
@@ -758,7 +773,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
-        <br> Use case ends. 
+        <br> Use case ends.
+* 1b. System detects index in command to locate assignment is invalid.
+    * 1b1. System display assignment missing/invalid input error message.
+    <br> Use case ends. 
         
 ### Use Case: `UC15` - delete exam
 
@@ -772,7 +790,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
-        <br> Use case ends.      
+        <br> Use case ends.
+* 1b. System detects index in command to locate exam is invalid.
+    * 1b1. System display exam missing/invalid input error message.
+    <br> Use case ends.      
     
 ### Use Case: `UC16` - delete person
 
@@ -786,7 +807,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
-        <br> Use case ends.     
+        <br> Use case ends. 
+* 1b. System detects index in command to locate person is invalid.
+    * 1b1. System display person missing/invalid input error message.
+    <br> Use case ends.    
 
 ### Use Case: `UC17` - delete general event
 
@@ -801,6 +825,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends. 
+* 1b. System detects index in command to locate event is invalid.
+    * 1b1. System display event missing/invalid input error message.
+    <br> Use case ends.
 
 ### Use Case: `UC18` - find module
 
@@ -871,6 +898,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
   * 1a1. System display formatting error message.
       <br> Use case ends.
+* 1b. System detects index in command to locate assignment is invalid.
+    * 1b1. System display assignment missing/invalid input error message.
+    <br> Use case ends.
 
 ### Use Case: `UC23` - clear App
 
