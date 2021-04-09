@@ -451,7 +451,7 @@ Format: `emailcontact INDEX [ni/NOTE_INDEX]`
 * If `ni/NOTE_INDEX` is provided, the contents of the note at `NOTE_INDEX` will be copied to the *body* field of the new message.
 * The application uses the user's default mailing application to provide email features.
 * The application **does not guarantee** the success of sending an email, as it is handled by the mailing application used.
-* The index refers to the index number shown in the displayed contacts list.
+* The index refers to the index number shown in the displayed contacts list or notes list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
