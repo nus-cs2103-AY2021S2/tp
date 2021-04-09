@@ -74,6 +74,10 @@ Displays the customers in CHIM.
 
 Format: `listcustomers`
 
+Example:
+
+![list_customers](images/ug_examples/ListCustomers.png)
+
 #### Adding a customer: `addcustomer`
 
 Adds a customer to CHIM.
@@ -81,6 +85,8 @@ Adds a customer to CHIM.
 Format: `addcustomer n/CUSTOMER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG…]​`
 
 Example: `addcustomer n/John Doe p/61234567 e/johndoe@gmail.com a/Blk 436 Serangoon Gardens St 26 #01-01`
+
+![add_customer_after](images/ug_examples/AddCustomerAfter.png)
 
 #### Editing a customer: `editcustomer`
 
@@ -91,6 +97,12 @@ Format: `editcustomer INDEX [n/CUSTOMER_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDR
 
 Example: `editcustomer 4 n/Jane Lim p/65558888`
 
+Before: <br>
+![edit_customer_before](images/ug_examples/EditCustomerBefore.png)
+
+After: <br>
+![edit_customer_after](images/ug_examples/EditCustomerAfter.png)
+
 #### Deleting a customer: `deletecustomer`
 
 Deletes a customer from the list of customers, using their phone number as an identifier.
@@ -100,6 +112,12 @@ If the customer has orders, their orders will be deleted by CHIM. Any cheeses as
 Format: `deletecustomer p/PHONE_NUMBER`
 
 Example: `deletecustomer p/61234567`
+
+Before: <br>
+![delete_customer_before](images/ug_examples/DeleteCustomerBefore.png)
+
+After: <br>
+![delete_customer_after](images/ug_examples/DeleteCustomerAfter.png)
 
 #### Finding customers: `findcustomer`
 
@@ -113,9 +131,14 @@ Format: `findcustomer [n/NAME_KEYWORDS…] [p/PHONE_KEYWORDS…] [e/EMAIL_KEYWOR
 e.g. `findcustomer n/Betty p/9123` will find a customer with the name `Betty` and a phone number with prefix `9123`.
 
 Examples:
+
 * `findcustomer n/char p/9321`
+
+![find_customer_1](images/ug_examples/FindCustomer1.png)
+
 * `findcustomer a/Geylang Serangoon`
 
+![find_customer_2](images/ug_examples/FindCustomer2.png)
 
 ### Features for Cheeses
 
@@ -124,6 +147,10 @@ Examples:
 Displays all cheeses in CHIM.
 
 Format: `listcheeses`
+
+Example:
+
+![list_cheeses](images/ug_examples/ListCheeses.png)
 
 #### Adding a cheese: `addcheese`
 
@@ -137,8 +164,14 @@ If `MANUFACTURE_DATE` is not specified, it will default to the current date.
 * The `EXPIRY_DATE` specified must occur after the `MANUFACTURE_DATE`.
 
 Examples:
+
 * `addcheese t/Gouda q/3`
+
+![add_cheese_after_1](images/ug_examples/AddCheeseAfter1.png)
+
 * `addcheese t/Parmesan q/2 d/2021-03-12 e/2021-05-12`
+
+![add_cheese_after_2](images/ug_examples/AddCheeseAfter2.png)
 
 #### Editing a cheese: `editcheese`
 
@@ -153,6 +186,14 @@ Format: `editcheese INDEX [t/CHEESE_TYPE] [d/MANUFACTURE_DATE] [e/EXPIRY_DATE]`
 
 Example: `editcheese 1 t/Parmesan d/2021-03-12`
 
+Before: <br>
+
+![edit_cheese_before](images/ug_examples/EditCheeseBefore.png)
+
+After: <br>
+
+![edit_cheese_after](images/ug_examples/EditCheeseAfter.png)
+
 #### Deleting a cheese from inventory: `deletecheese`
 
 Deletes a specified unassigned cheese from the inventory, identified by its index.
@@ -161,6 +202,14 @@ Format: `deletecheese CHEESE_INDEX`
 * The `CHEESE_INDEX` must be a positive integer.
 
 Example: `deletecheese 2`
+
+Before: <br>
+
+![delete_cheese_before](images/ug_examples/DeleteCheeseBefore.png)
+
+After: <br>
+
+![delete_cheese_after](images/ug_examples/DeleteCheeseAfter.png)
 
 #### Finding cheeses: `findcheese`
 
@@ -174,10 +223,18 @@ Format: `findcheese [t/CHEESE_TYPE_KEYWORDS…] [s/ASSIGNMENT_STATUS]`
 e.g. `findcheese t/Gouda s/assigned` will find a cheese with type `Gouda` and an `assigned` status.
 
 Examples:
-* `findcheese t/Brie Feta`
-* `findcheese s/unassigned`
-* `findcheese t/Gouda s/assigned`
 
+* `findcheese t/Brie Feta`
+
+![find_cheese_1](images/ug_examples/FindCheese1.png)
+
+* `findcheese s/unassigned`
+
+![find_cheese_2](images/ug_examples/FindCheese2.png)
+
+* `findcheese t/Gouda s/unassigned`
+
+![find_cheese_3](images/ug_examples/FindCheese3.png)
 
 ### Features for Orders
 
@@ -186,6 +243,8 @@ Examples:
 Displays all orders in CHIM.
 
 Format: `listorders`
+
+![list_orders](images/ug_examples/ListOrders.png)
 
 #### Adding an order: `addorder`
 
@@ -201,8 +260,14 @@ If an `ORDER_DATE` is not specified, it will default to the current date.
 * Duplicate orders can be created as the user may want to fulfil similar orders separately.
 
 Examples:
-* `addorder t/Parmesan q/2 p/61234567`
+
+* `addorder t/Parmesan q/2 p/99272758`
+
+![add_order_after_1](images/ug_examples/AddOrderAfter1.png)
+
 * `addorder t/Feta q/3 p/87438807 d/2021-01-15`
+
+![add_order_after_2](images/ug_examples/AddOrderAfter2.png)
 
 #### Editing an order: `editorder`
 
@@ -218,6 +283,14 @@ Format: `editorder INDEX [t/CHEESE_TYPE] [q/QUANTITY] [p/PHONE_NUMBER] [d/ORDER_
 
 Example: `editorder 2 t/Parmesan q/2 p/61234567`
 
+Before: <br>
+
+![edit_order_before](images/ug_examples/EditOrderBefore.png)
+
+After: <br>
+
+![edit_order_after](images/ug_examples/EditOrderAfter.png)
+
 #### Marking an order as complete: `done`
 
 Marks an incomplete order as complete from CHIM, identified by its index.
@@ -227,8 +300,15 @@ This assigns cheeses to the order.
 Format: `done ORDER_INDEX`
 * The `ORDER_INDEX` provided must be a positive integer.
 
-Example: `done 2`
-* Marks the second order in the list of orders as complete.
+Example: `done 2` - marks the second order in the list of orders as complete.
+
+Before: <br>
+
+![done_before](images/ug_examples/DoneBefore.png)
+
+After: <br>
+
+![done_before](images/ug_examples/DoneAfter.png)
 
 #### Deleting an order: `deleteorder`
 
@@ -240,6 +320,14 @@ Format: `deleteorder ORDER_INDEX`
 * The `ORDER_INDEX` provided must be a positive integer.
 
 Example: `deleteorder 2`
+
+Before: <br>
+
+![delete_order_before](images/ug_examples/DeleteOrderBefore.png)
+
+After: <br>
+
+![delete_order_after](images/ug_examples/DeleteOrderAfter.png)
 
 #### Finding orders: `findorder`
 
@@ -253,10 +341,18 @@ Format: `findorder [t/CHEESE_TYPE_KEYWORDS…] [n/CUSTOMER_NAME_KEYWORDS…] [p/
 e.g. `findorder t/Brie s/incomplete` will find an order with cheese type Brie and is incomplete.
 
 Examples:
-* `findorder t/Brie Feta s/incomplete`
-* `findorder n/Alice s/incomplete`
-* `findorder p/92280919`
 
+* `findorder t/Brie Feta s/incomplete`
+
+![find_order_1](images/ug_examples/FindOrder1.png)
+
+* `findorder n/bernice s/incomplete`
+
+![find_order_2](images/ug_examples/FindOrder2.png)
+  
+* `findorder p/93210283`
+
+![find_order_3](images/ug_examples/FindOrder3.png)
 
 ### Clearing all data in CHIM: `clear`
 
@@ -264,6 +360,13 @@ Clears all data in CHIM and save files.
 
 Format: `clear`
 
+Before: <br>
+
+![clear_before](images/ug_examples/ClearBefore.png)
+
+After: <br>
+
+![clear_after](images/ug_examples/ClearAfter.png)
 
 ### Exiting the program: `exit`
 
