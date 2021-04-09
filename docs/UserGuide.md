@@ -217,8 +217,7 @@ Examples:
 * `find alex annie` returns `Alex Yeoh`, `Annie Li` when no exact matches are found
 
   ![result for 'find alex annie'](images/findAlexAnnieResult.png)
-* `find o/phone 9817` return contacts whose phone number contains 9817, partial matches will also be returned
-
+* `find o/phone 9927` return contacts whose phone number contains 9927 (partial matches will also be returned).
 
 
 #### Deleting a contact : `delete`
@@ -365,7 +364,8 @@ Currently available options for the `[OPTION]` field include:
   e.g. when 0 results are found, "0 Appointment(s) listed!" is displayed
 
 Examples:
-* `findAppt ptm` returns `PTM`
+* `findAppt ptm` returns appointments with any field containing `PTM`.
+* `findAppt o/contact annie` returns appointments with at least one contact whose name contains `annie`.
 
 #### Listing all appointments : `listAppt`
 
