@@ -31,7 +31,7 @@ StoreMandoParser -> AddCommandParser : parse("n/apple q/2 l/kitchen")
 activate AddCommandParser
 
 create Item
-AddCommandParser -> Item :
+AddCommandParser -> Item
 activate Item
 Item --> AddCommandParser : item
 deactivate Item

@@ -146,12 +146,12 @@ Classes used by multiple components are in the `seedu.storemando.commons` packag
 
 ### Add Feature `add`
 
-The `add` feature allows users to add an item's details to the inventory. An item's details is made up of it's name,
-quantity, location, expiry date (optional), and tags (optional).
+The add feature allows users to add an item's details to the inventory. An item's details is made up of a name,
+quantity, location, expiry date, and tags.
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** 
-An item's name, quantity and location are compulsory fields that must be supplied by the user.
+An item's name, quantity and location are compulsory fields that must be supplied by the user. Expiry date and tags are optional.
 </div>
 
 #### Actual Implementation
@@ -176,8 +176,7 @@ From the diagram above:
    returned to `LogicManager` via `StoreMandoParser`.
 6. The `LogicManager` will then invoke the overridden `execute` method of the `AddCommand` object with `Model` as argument.   
 7. Subsequently, the `AddCommand` object will add the `Item` object to `Model`, and return a `CommandResult` object to `LogicManager`.
-8. This `CommandResult` will be returned at the end.
-
+8. This `CommandResult` will be returned at the end by `LogicManager`.
 
 The following activity diagram summarizes what happens when a user executes the `add` command:
 
@@ -199,18 +198,18 @@ The following activity diagram summarizes what happens when a user executes the 
 ##### Aspect: Identifying the addition of duplicate item
 * **Alternative 1 (current choice):** Compare item to be added and existing items in the inventory by **name, location 
   and expiry date**.
-    * Pros: Allows users to store the same products that may have been produced in different batches. This would also 
+    * **Pros**: Allows users to store the same products that may have been produced in different batches. This would also 
       help users identify and differentiate similar products by their expiry date.
-    * Cons: Items with the same name and location may be a potential source of confusion.
+    * **Cons**: Items with the same name and location may be a potential source of confusion.
+
 
 * **Alternative 2:** Compare item to be added and existing items in the inventory by **name and location** only.
-    * Pros: Allows users to clearly distinguish items with the same names by location. This would prevent confusion and
+    * **Pros**: Allows users to clearly distinguish items with the same names by location. This would prevent confusion and
       save users from going through the hassle of distinguishing items by expiry date.
-    * Cons: Users would not be able to store similar items that have different expiry dates as a result of being 
+    * **Cons**: Users would not be able to store similar items that have different expiry dates as a result of being 
       produced in different batches.
 
-
-
+      
 ### Edit feature
 The edit feature allows the user to edit an item's name, quantity, location, expiry date and tag. This will help the
 user to not delete and add back an item upon inputting an incorrect item. <br>
@@ -274,7 +273,7 @@ GUI proceeds to show it on the result display.
     
 ### Delete Feature `delete`
 
-The `delete` feature allows users to delete an item from the inventory by using the item's index in the displayed list.
+The delete feature allows users to delete an item from the inventory by using the item's index in the displayed list.
 
 #### Actual Implementation
 
@@ -294,10 +293,10 @@ From the diagram above:
    the `DeleteCommandParser` ensures that the input is of the correct format and identifies the input for the index of the item to be deleted.
 5. If the index specified by the user is valid, a new `DeleteCommand` instance will be
    created and returned to `LogicManager` via `StoreMandoParser`.
-6. The `LogicManager` will then invoke the overridden `execute` method of the `DeleteCommand` object with `model` as argument.
+6. The `LogicManager` will then invoke the overridden `execute` method of the `DeleteCommand` object with `Model` as the argument.
 7. Subsequently, the `DeleteCommand` object will invoke `deleteItem` method of `Model` with the index of the item to delete as the argument. It will then return 
-a `CommandResult` object to `LogicManager`
-8. This `CommandResult` will be returned at the end.
+a `CommandResult` object to `LogicManager`.
+8. This `CommandResult` will be returned at the end by `LogicManager`.
 
 The following activity diagram summarizes what happens when a user executes the `delete` command:
 
@@ -308,12 +307,12 @@ The following activity diagram summarizes what happens when a user executes the 
 ##### Aspect: How `delete` executes
 
 * **Alternative 1 (current choice):** Delete item by its index in the displayed list.
-    * Pros: Easy to implement.
-    * Cons: Requires user to scroll through the list to find the item and specify the index.
+    * **Pros**: Easy to implement.
+    * **Cons**: Requires user to scroll through the list to find the item and specify the index.
 
 * **Alternative 2:** Delete item by item name.
-    * Pros: Will be easier for the user especially when the list is huge.
-    * Cons: There are items with the same name but in different location, will cause confusion.
+    * **Pros**: Will be easier for the user especially when there are many items in the list.
+    * **Cons**: Items with the same name in different locations may cause confusion.
 
 ### Find Item `find KEYWORD [MORE_KEYWORDS]` or `find */KEYWORD [MORE_KEYWORDS]`
 
@@ -376,6 +375,7 @@ _{more aspects and alternatives to be added}_
 ### List Feature `list`
 
 The `list` feature allows users to list all items in the inventory based on the order they were added.
+
 The `list l/LOCATION` and `list t/TAG` features allow users to list all items in a specific location
 or with a specific tag respectively.
 
@@ -413,12 +413,13 @@ The following activity diagram summarizes what happens when a user executes the 
 ##### Aspect: How `list` executes
 
 * **Alternative 1 (current choice):** List the entire inventory in the order they were added.
-    * Pros: Easy to implement.
-    * Cons: Items in the same location may not be displayed together and may appear disorganised.
+    * **Pros**: Easy to implement.
+    * **Cons**: Items in the same location may not be displayed together and may appear disorganised.
+
 
 * **Alternative 2:** List the entire inventory categorised in their specific locations.
-    * Pros: More organised overview of all the items in the inventory.
-    * Cons: Difficult to implement.
+    * **Pros**: More organised overview of all the items in the inventory.
+    * **Cons**: Difficult to implement.
     
 
 ### Reminder Feature `reminder`
@@ -434,7 +435,9 @@ issues the command `reminder 1 week`:
 
 ![ReminderSequenceDiagram](images/ReminderWeeksSequenceDiagram.png)
 
-The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+<br>
+
+The sequence diagram below shows how the components interact with each other for the scenario where the user
 issues the command `reminder 3 days`:
 
 <br>
@@ -473,15 +476,16 @@ The following activity diagram summarizes what happens when a user executes a `r
 
 ##### Aspect: How `reminder` executes
 
-**Alternative 1 (current choice)** : provide an integer as an input argument
-* Pros: Faster to type as compared to date in a particular format.
-* Cons: More cases to consider when parsing the command.
+* **Alternative 1 (current choice)** : Provide an integer as an input argument
+    * **Pros**: Faster to type as compared to date in a particular format.
+    * **Cons**: More cases to consider when parsing the command.
 
-**Alternative 2** : provide a date in the format of YYYY-MM-DD as input
-* Pros: Easier to compare between items as the input date can be used to create an `expiryDate` object
-which can be used to compare with all the items' expiry dates.
-* Cons: When the user wants to find items that are already expired, it is easier to key in a number then to
-find a particular date and key it in. This is more taxing on the user.
+
+* **Alternative 2** : Provide a date in the format of YYYY-MM-DD as input
+    * **Pros**: Easier to compare between items as the input date can be used to create an `expiryDate` object
+    which can be used to compare with all the items' expiry dates.
+    * **Cons**: When the user wants to find items that are already expired, it is easier to key in a number then to
+    find a particular date and key it in. This is more taxing on the user.
 
 
 ### Sort Feature `sort`
