@@ -37,7 +37,6 @@ An image of our UI is shown below!
         - [Edit](#editing-a-contact)
         - [List](#listing-contacts)
         - [Delete](#deleting-a-contact)
-        - [Clear](#clearing-all-contacts)
     - [Entry](#adding-an-entry)
         - [Add](#adding-an-entry)
         - [Find](#finding-an-entry)
@@ -47,6 +46,7 @@ An image of our UI is shown below!
         - [Free](#checking-if-time-interval-is-free)
         - [Delete](#deleting-an-entry)
         - [Clear](#clearing-overdue-entries)
+    - [Clear](#clearing-all-data)
     - [Exiting](#exiting-the-program)
 - [Command Summary](#command-summary)
 
@@ -185,12 +185,6 @@ Example(s):
 
 * `delete 1`
 
-### Clearing all contacts
-
-Clears all entries from the address book.
-
-Format: `clear`
-
 ---
 
 ### Adding an entry
@@ -320,6 +314,12 @@ Format: `eclear`
 
 ---
 
+### Clearing all data
+
+Clears all contacts and entries from Teaching Assistant.
+
+Format: `clear`
+
 ### Exiting the program
 
 Exits the program.
@@ -335,25 +335,26 @@ Format: `exit`
 Action | Format
 ------- | ------------------
 **View all commands** | `help`
+**Clear** | `clear`
+**Exit** | `exit`
 
-### Address Book
+### Contacts
 
 Action | Format
 -------- | ------------------
 **Add** | `add n/NAME p/NUMBER e/EMAIL a/ADDRESS [t/TAG]`
-**Find and View (by name)** | `find KEYWORD [MORE_KEYWORDS]`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`
 **Filter tags** | `filter KEYWORD [MORE_KEYWORDS]`
 **Edit** | `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 **List** | `list`
 **Delete** | `delete INDEX`
-**Clear** | `clear`
 
 ### Entries
 
 Action | Format
 -------- | ------------------
 **Add** | `eadd n/NAME [sd/START DATE] ed/END DATE [t/TAG]`
-**Find and View (by name)** | `efind KEYWORD [MORE_KEYWORDS]`
+**Find** | `efind KEYWORD [MORE_KEYWORDS]`
 **Filter tags** | `efilter KEYWORD [MORE_KEYWORDS]`
 **List (by day/week)** | `elist [day/week]`
 **Check if free** | `free sd/START_DATE ed/END_DATE`
