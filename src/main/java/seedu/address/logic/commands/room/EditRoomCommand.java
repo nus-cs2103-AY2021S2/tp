@@ -40,6 +40,7 @@ public class EditRoomCommand extends Command {
             + "[" + PREFIX_ROOM_NUMBER + "ROOM_NUMBER] "
             + "[" + PREFIX_ROOM_TYPE + "TYPE] "
             + "[" + PREFIX_ROOM_TAG + "TAG]...\n"
+            + "At least one of the above optional parameters must be provided\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_ROOM_NUMBER + "12-100 ";
 

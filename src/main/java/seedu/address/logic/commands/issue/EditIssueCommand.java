@@ -47,6 +47,7 @@ public class EditIssueCommand extends Command {
             + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_CATEGORY + "CATEGORY]"
             + "[" + PREFIX_TAG + "TAG]\n"
+            + "At least one of the above optional parameters must be provided\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Broken window "
             + PREFIX_CATEGORY + "Window";
