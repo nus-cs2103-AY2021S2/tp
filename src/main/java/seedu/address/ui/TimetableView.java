@@ -21,6 +21,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.DateTimeUtil;
 import seedu.address.model.schedule.Schedulable;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Renders a timetable onto the UI. note that a timetable consists of columns which represent a day in the
  * schedule.
@@ -137,29 +139,52 @@ public class TimetableView extends UiPart<Region> {
     }
 
     public void setTimetablePlacementPolicy(TimetablePlacementPolicy policy) {
+        requireNonNull(policy);
         this.timetablePlacementPolicy = policy;
     }
 
     /**
-     * Clears old data and populates the view with new da
-     * @param obsList
+     * Clears old data and populates the view with new data from a list of schedulables
+     * @param schedulables
      */
 
-    public void populateWithData(ObservableList<? extends Schedulable> obsList) {
+    public void populateWithData(List<? extends Schedulable> schedulables) {
         resetColumns();
-        List<? extends Schedulable> processedList = obsList.stream()
-                .filter(timetablePlacementPolicy :: test)
-                .flatMap(timetablePlacementPolicy :: breakIntoDayUnits)
-                .collect(Collectors.toList());
-        for (Schedulable schedulable : processedList) {
-            double slotLength = timetablePlacementPolicy.getLengthOfSlot(schedulable);
-            String header = getHeader(schedulable);
+        List<? extends Schedulable> processedSchedulables = splitByDaysAndFilter(schedulables);
+        for (Schedulable schedulable : processedSchedulables) {
             Column col = timetablePlacementPolicy.getColumnPlacement(schedulable);
             double position = timetablePlacementPolicy.getVerticalPosition(schedulable);
-            TimetableSlot slotToAdd = new TimetableSlot(slotLength, header);
+            TimetableSlot slotToAdd = createTimetableSlot(schedulable);
             putIntoSlot(slotToAdd, col, position);
         }
     }
+
+    /**
+     * Splits each Schedulable in a list of Schedulables into parts, where each part can be scheduled on the same day
+     * in the timetable.(Placed in the same column).
+     * See {@link#timetablePlacementPolicy ::breakIntoDayUnits (Schedulable)}
+     * @return
+     */
+    private List<? extends Schedulable> splitByDaysAndFilter(List<? extends Schedulable> schedulables) {
+        return schedulables.stream()
+                .filter(timetablePlacementPolicy ::isWithinRange)
+                .flatMap(timetablePlacementPolicy :: breakIntoDayUnits)
+                .collect(Collectors.toList());
+    }
+
+
+
+    /**
+     * Returns a timetable slot of the appropriate dimensions and header to insert into the timetable.
+     * @param schedulable
+     * @return
+     */
+    public TimetableSlot createTimetableSlot(Schedulable schedulable) {
+        double slotLength = timetablePlacementPolicy.getLengthOfSlot(schedulable);
+        String header = getHeader(schedulable);
+        return new TimetableSlot(slotLength, header);
+    }
+
 
     /**
      * Given the schedulable object, returns a nice header consisting of the name, followed by the timestamp below

@@ -24,9 +24,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class Meeting implements Schedulable {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The start date time of a meeting should be strictly earlier than the terminate date time. A meeting "
-                    + "should be at least 15 minutes long. A meeting should be at most one week long. For example:"
-                    + "If the meeting starts on 15 August 7:00 am, it should be at note end later than 22 Aug 6:59am";
+            "The start date time of a meeting should be strictly earlier than the terminate date time.\nA meeting "
+                    + "should be at least 15 minutes long.\nA meeting should be at most one week long.\nFor example:"
+                    + "\nIf the meeting starts on 15 August 7:00 am, it should be not end later than 22 Aug 6:59am";
 
 
     // Identity fields
@@ -97,6 +97,7 @@ public class Meeting implements Schedulable {
                 && otherMeeting.getStart().equals(getStart())
                 && otherMeeting.getTerminate().equals(getTerminate());
     }
+
     /**
      * Returns true if a given date time for the meeting is valid. Note the meeting must be at
      * least 15 mins long and at most 7 days long.
