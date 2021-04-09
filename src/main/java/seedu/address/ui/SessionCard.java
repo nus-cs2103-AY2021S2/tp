@@ -46,7 +46,7 @@ public class SessionCard extends UiPart<Region> {
     public SessionCard(Session session, int displayedIndex) {
         super(FXML);
         this.session = session;
-        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("dd MMM YYYY");
+        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("dd MMM yyyy");
         String formattedStartTime = session.getSessionDate().getDateTime().format(dateTimeFormat);
 
         date.setText("Date: " + formattedStartTime);
