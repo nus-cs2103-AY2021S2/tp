@@ -290,7 +290,7 @@ Example(s):
 
 ### Clearing overdue entries
 
-Clears all entries that have dates after today's date.
+Clears all entries that have dates before today's date.
 
 Format: `eclear`
 
