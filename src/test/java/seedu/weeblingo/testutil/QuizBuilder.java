@@ -1,6 +1,7 @@
 package seedu.weeblingo.testutil;
 
-import java.util.ArrayList;
+import static seedu.weeblingo.testutil.TypicalFlashcards.getTypicalFlashcards;
+
 import java.util.HashSet;
 
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
@@ -13,7 +14,7 @@ public class QuizBuilder {
     private Quiz quiz;
 
     public QuizBuilder() throws CommandException {
-        quiz = new Quiz(new ArrayList<>(), 0, new HashSet<>());
+        quiz = new Quiz(getTypicalFlashcards(), 1, new HashSet<>());
     }
 
     public Quiz build() {

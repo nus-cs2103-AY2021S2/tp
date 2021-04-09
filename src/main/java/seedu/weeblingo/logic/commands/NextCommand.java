@@ -2,6 +2,9 @@ package seedu.weeblingo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import seedu.weeblingo.commons.core.LogsCenter;
 import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.Mode;
@@ -27,6 +30,8 @@ public class NextCommand extends Command {
     public static final String MESSAGE_QUIZ_END_ACTIONS = "Please enter \"quiz\" to return to quiz view, "
             + "\"start\" to start a new session, or \"end\" to return to menu.\n";
 
+    private static final Logger logger = LogsCenter.getLogger(CheckCommand.class);
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -39,6 +44,9 @@ public class NextCommand extends Command {
         if (currentMode != Mode.MODE_QUIZ_SESSION && currentMode != Mode.MODE_CHECK_SUCCESS) {
             throw new CommandException(Messages.MESSAGE_NOT_IN_QUIZ_SESSION);
         }
+
+        requireNonNull(model.getQuizInstance());
+        logger.info("Moving on to the next question in session");
 
         if (model.getNextFlashcard() == null) {
             String quizStatistics = model.getQuizStatisticString() + "\n";
