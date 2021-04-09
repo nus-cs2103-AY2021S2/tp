@@ -3,55 +3,66 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a Patient's date of birth in DocBob.
- * Guarantees: immutable; is valid if date of birth is valid as declared in {@link #isValidDateOfBirth(LocalDate)}
+ * Guarantees: immutable; is valid if date of birth is valid as declared in {@link #isValidDateOfBirth(String)}
  */
 public class DateOfBirth {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date of Birth must be in the form DDMMYYYY and be in the past";
+    public static final String MESSAGE_CONSTRAINTS = "Date of Birth must be in the form DDMMYYYY, "
+                                                    + "be in the past, "
+                                                    + "and be a valid date.";
 
-    public static final String PAST_DATE_CONSTRAINT = "Remember that the Date of Birth entered must be in the past";
-
-    public final LocalDate dateOfBirth;
+    public final String value;
 
     /**
      * Constructs a {@code DateOfBirth}.
      *
      * @param dateOfBirth A valid date of birth.
      */
-    public DateOfBirth(LocalDate dateOfBirth) {
+    public DateOfBirth(String dateOfBirth) {
         requireNonNull(dateOfBirth);
-        checkArgument(isValidDateOfBirth(dateOfBirth), PAST_DATE_CONSTRAINT);
-        this.dateOfBirth = dateOfBirth;
+        checkArgument(isValidDateOfBirth(dateOfBirth), MESSAGE_CONSTRAINTS);
+        this.value = dateOfBirth;
     }
 
     /**
-     * Returns true if a given date is a valid date of birth that is in the past.
+     * Returns true if a given date is a valid date of birth.
      */
-    public static boolean isValidDateOfBirth(LocalDate test) {
-        return test.isBefore(LocalDate.now());
+    public static boolean isValidDateOfBirth(String test) {
+        if (test.length() != 8) { //Return false if not in DDMMYYYY format
+            return false;
+        }
+        try { //If any exception is thrown here date is not in correct format
+            int day = Integer.parseInt(test.substring(0, 2));
+            int month = Integer.parseInt(test.substring(2, 4));
+            int year = Integer.parseInt(test.substring(4, 8));
+            LocalDate.of(year, month, day);
+        } catch (NumberFormatException | DateTimeException e) {
+            return false;
+        }
+        return true;
     }
 
 
     @Override
     public String toString() {
-        return dateOfBirth.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        return value.substring(0, 2) + "-" + value.substring(2, 4) + "-" + value.substring(4, 8);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DateOfBirth // instanceof handles nulls
-                && dateOfBirth.equals(((DateOfBirth) other).dateOfBirth)); // state check
+                && value.equals(((DateOfBirth) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return dateOfBirth.hashCode();
+        return value.hashCode();
     }
 
 }
