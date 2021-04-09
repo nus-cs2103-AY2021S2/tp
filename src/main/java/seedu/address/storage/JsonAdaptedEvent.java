@@ -128,10 +128,12 @@ class JsonAdaptedEvent {
         }
         final Time modelEndTime = new Time(endTime);
 
+        //is end date time valid check
         if (!new EventDateTimePastPredicate().test(modelEndDate, modelEndTime)) {
             throw new IllegalValueException(MESSAGE_PAST_EVENT_END_DATE_TIME);
         }
 
+        //is start date time before end date time check
         if (!new EventEndDateTimeValidPredicate(modelStartDate, modelStartTime)
                 .test(modelEndDate, modelEndTime)) {
             throw new IllegalValueException(MESSAGE_END_DATETIME_BEFORE_START_DATETIME);
