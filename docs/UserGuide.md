@@ -57,7 +57,7 @@
 
 Adds a patient to DocBob's patient list.  A patient has multiple types of information like name, phone number etc. The format below shows what information a patient can have. The information in square brackets ( [] ) are optional.
 
-Format: `add n/Name p/phoneNumber e/Email a/Address h/Height w/Weight [t/TAG]`
+Format: `add n/NAME p/PHONENUMBER e/EMAIL a/ADDRESS h/HEIGHT w/WEIGHT [t/TAG]`
 
 Example:
 * `add n/Shrek p/66666666 e/shrek@swampmail.com a/Swamp h/243cm w/94kg t/smelly`
@@ -295,8 +295,9 @@ If your changes to the data file makes its format invalid, docBob will discard a
 
 Terminology | Definition | Examples
 ------------|------------|----------
-**parameter(s)** | Any characteristic that can help in defining or classifying a particular system | How fast a car can go is a parameter for us to judge how good that car is.  In this case (DocBob), the words in UPPER_CASE are what we should key in 
-**index** | Index refers to the position of the patient in the patient list | If the patient list is {Alice,Bob,Charlie} then Alice's index is 1, Bob's is 2 and Charlie's is 3
+**Parameter** |  In the command format given, the words in `UPPER_CASE` are the parameters to be supplied by you.
+ | For the add command, the given format is: `add n/NAME p/PHONENUMBER e/EMAIL a/ADDRESS h/HEIGHT w/WEIGHT [t/TAG]`. Thus, `NAME`, `PHONENUMBER`, `EMAIL`, `ADDRESS`, `HEIGHT`, `WEIGHT` and `TAG` are the parameters to be keyed in by you. `TAG` is an optional parameter.
+**Index** | Index refers to the position of the patient in the patient list | If the order in which patients are displayed in the app is {Alice,Bob,Charlie} then Alice's index is 1, Bob's is 2, and Charlie's is 3.
 
 --------------------------------------------------------------------------------------------------------------------
 
