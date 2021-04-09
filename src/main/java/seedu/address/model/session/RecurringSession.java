@@ -265,51 +265,75 @@ public class RecurringSession extends Session {
     }
 
     /**
-     * Removes a single {@code Session} with {@code sessionDate}.
-     * Splits the remaining {@code RecurringSession} into two {@code RecurringSession}
+     * Removes a single {@code Session} with {@code sessionDate} from this {@code RecurringSession}
+     * that is in {@code sessionList} with an index of {@code sessionIndex}.
      */
     public void removeSessionInRecurringSession(Index sessionIndex,
                                                 SessionDate sessionDate, List<Session> sessionList) {
-        // if session date is the start of the recurring session
         if (getSessionDate().equals(sessionDate)) {
-            if (getLastSessionDate().equals(getSessionDate())) {
-                sessionList.remove(sessionIndex.getZeroBased());
-            } else {
-                SessionDate newStartDate = getSessionDate().addDays(getInterval().getValue());
-                if (newStartDate.equals(getLastSessionDate())) {
-                    sessionList.set(sessionIndex.getZeroBased(),
-                            new Session(newStartDate, getDuration(), getSubject(), getFee()));
-                } else {
-                    sessionList.set(sessionIndex.getZeroBased(), withStartDate(newStartDate));
-                }
-            }
-        // if session date is at the end of the recurring session
+            // if session date is the start of the recurring session
+            removeSessionAtStartOfRecurringSession(sessionIndex, sessionList);
+
         } else if (getLastSessionDate().equals(sessionDate)) {
-            SessionDate newEndDate = getLastSessionDate().minusDays(getInterval().getValue());
-            if (newEndDate.equals(getSessionDate())) {
-                sessionList.set(sessionIndex.getZeroBased(),
-                        new Session(newEndDate, getDuration(), getSubject(), getFee()));
-            } else {
-                sessionList.set(sessionIndex.getZeroBased(), withLastSessionDate(newEndDate));
-            }
+            // if session date is at the end of the recurring session
+            removeSessionAtEndOfRecurringSession(sessionIndex, sessionList);
         } else {
-            SessionDate lastSessionDate = getLastSessionDate();
-            SessionDate firstSessionEndDate = sessionDate.minusDays(getInterval().getValue());
-            if (firstSessionEndDate.equals(getSessionDate())) {
-                sessionList.set(sessionIndex.getZeroBased(),
-                        new Session(firstSessionEndDate, getDuration(), getSubject(), getFee()));
+            removeSessionInMiddleOfRecurringSession(sessionIndex, sessionDate, sessionList);
+        }
+    }
+
+    /**
+     * Removes a single {@code Session} with the same starting {@code SessionDate} as this {@code RecurringSession}.
+     */
+    public void removeSessionAtStartOfRecurringSession(Index sessionIndex, List<Session> sessionList) {
+        if (getLastSessionDate().equals(getSessionDate())) {
+            sessionList.remove(sessionIndex.getZeroBased());
+        } else {
+            SessionDate newStartDate = getSessionDate().addDays(getInterval().getValue());
+            if (newStartDate.equals(getLastSessionDate())) {
+                sessionList.set(sessionIndex.getZeroBased(), buildSessionOnDate(newStartDate));
             } else {
-                sessionList.set(sessionIndex.getZeroBased(), withLastSessionDate(firstSessionEndDate));
-            }
-            SessionDate secondSessionStartDate = sessionDate.addDays(getInterval().getValue());
-            if (secondSessionStartDate.equals(lastSessionDate)) {
-                sessionList.add(new Session(secondSessionStartDate, getDuration(), getSubject(), getFee()));
-            } else {
-                sessionList.add(new RecurringSession(secondSessionStartDate, getDuration(), getSubject(), getFee(),
-                        getInterval(), lastSessionDate));
+                sessionList.set(sessionIndex.getZeroBased(), withStartDate(newStartDate));
             }
         }
     }
+
+    /**
+     * Removes a single {@code Session} with the same ending {@code SessionDate} as this {@code RecurringSession}.
+     */
+    public void removeSessionAtEndOfRecurringSession(Index sessionIndex, List<Session> sessionList) {
+        SessionDate newEndDate = getLastSessionDate().minusDays(getInterval().getValue());
+        if (newEndDate.equals(getSessionDate())) {
+            sessionList.set(sessionIndex.getZeroBased(), buildSessionOnDate(newEndDate));
+        } else {
+            sessionList.set(sessionIndex.getZeroBased(), withLastSessionDate(newEndDate));
+        }
+    }
+
+    /**
+     * Removes a single {@code Session} in the middle of this {@code RecurringSession}.
+     * Splits the {@code RecurringSession} into two, one {@code RecurringSession}/{@code Session
+     * exclusively before {@code SessionDate}, and another exclusively after {@code SessionDate}.
+     */
+    public void removeSessionInMiddleOfRecurringSession(Index sessionIndex,
+                                                        SessionDate sessionDate, List<Session> sessionList) {
+        SessionDate lastSessionDate = getLastSessionDate();
+        SessionDate firstSessionEndDate = sessionDate.minusDays(getInterval().getValue());
+        if (firstSessionEndDate.equals(getSessionDate())) {
+            sessionList.set(sessionIndex.getZeroBased(), buildSessionOnDate(firstSessionEndDate));
+        } else {
+            sessionList.set(sessionIndex.getZeroBased(), withLastSessionDate(firstSessionEndDate));
+        }
+        SessionDate secondSessionStartDate = sessionDate.addDays(getInterval().getValue());
+        if (secondSessionStartDate.equals(lastSessionDate)) {
+            sessionList.add(buildSessionOnDate(secondSessionStartDate));
+        } else {
+            sessionList.add(new RecurringSession(secondSessionStartDate, getDuration(), getSubject(), getFee(),
+                    getInterval(), lastSessionDate));
+        }
+    }
+
+
 
     @Override
     public String toString() {

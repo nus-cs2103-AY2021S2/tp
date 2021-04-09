@@ -108,8 +108,8 @@ public class Student {
     }
 
     /**
-     * Sets the list of sessions
-     * @param sessions to be set to.
+     * Adds a number of sessions to the student.
+     * @param sessions to be added.
      */
     public void addSessions(Session...sessions) {
         requireNonNull(sessions);
