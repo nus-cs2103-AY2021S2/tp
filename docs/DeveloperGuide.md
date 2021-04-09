@@ -13,14 +13,14 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction 
+## **Introduction** 
 
 Pawbook is a desktop application for dog school managers to facilitate their bookkeeping of puppies and dogs in the 
 school, optimized for input via a **Command Line Interface (CLI)** which caters to fast-typers who prefer to use a 
 keyboard. You can navigate the application with ease and execute instructions by typing text-based commands in the 
 command box provided without ever having to reach for your mouse!
 
-## Purpose 
+## **Purpose** 
 
 This document  aims to serve as a guide for developers, testers and designers who are interested in working on Pawbook. 
 It describes both the design and architecture of Pawbook. 
