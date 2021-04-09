@@ -8,12 +8,17 @@ title: User Guide
 Taskify is a **desktop app for university students** who have a seemingly endless list of tasks to finish week 
 after week. Many students **struggle to track all their tasks in a systematic and efficient manner** and this is 
 where Taskify comes to the rescue! With Taskify, students can 
-**manage all their tasks (academics/personal/CCAs) 
+**manage all their tasks (academics/personal/CCA) 
 effectively and seamlessly** through a beautiful interface. <br><br>Taskify is optimized for use via a Command Line 
 Interface (CLI) while 
 still having the 
 benefits    
-of a Graphical User Interface (GUI). If you can type fast, Taskify can get your task management done faster than traditional GUI apps.
+of a Graphical User Interface (GUI). Simply put, a **CLI is just a text box where you type in 
+commands** so if you can type fast, Taskify can get 
+your 
+task management 
+done faster 
+than traditional GUI apps.
 
 
 
@@ -59,16 +64,17 @@ This user guide is to help you learn how to use Taskify to manage your tasks eff
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Finish Tutorial`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/Finish Tutorial t/CS2103T` or as `n/Finish Tutorial`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/Finish Tutorial t/CS2103T` or as `n/Finish Tutorial`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/CS2103T`, `t/ CS2103T t/Assignment` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/CS2103T`, `t/Assignment t/ CS2103T` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME desc/DESCRIPTION`, `desc/DESCRIPTION n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `n/Finish Tutorial n/Watch Lecture`, only `n/Finish Tutorial` will be taken.
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence 
+  of the parameter will be taken.<br>
+  e.g. if you specify `n/Finish Tutorial n/Watch Lecture`, only `n/Watch Lecture` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `sort` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -87,7 +93,7 @@ Format: `help`
 
 ### Adding a task : `add`
 
-Adds a task to Taskify.
+Adds a new task to Taskify.
 
 Format: `add n/NAME desc/DESCRIPTION [date/DATE] [t/TAG]…`
 
@@ -110,28 +116,30 @@ Examples:
 ### Listing all tasks : `list`
 
 View a list of all tasks in Taskify.
-
 Format: `list`
 
 
 ### Editing a task : `edit`
 
-Edits an existing task in Taskify.
+Edits an existing task in Taskify. Editing tasks allows you to keep track of any changes/updates to your schedule by 
+modifying the task data.
 
 Format: `edit INDEX [n/NAME] [desc/DESCRIPTION] [date/DATE] [s/STATUS] [t/TAG]…`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the task will be removed i.e. adding of tags is not cumulative.
 * You can remove all the task’s tags by typing `t/` without specifying any tags after it.
-* There are 3 Task statuses: `expired`, `uncompleted` and `completed`. However you can cannot directly modify task's status to `expired`
+* There are 3 Task statuses: `expired`, `uncompleted` and `completed`. However, you can cannot directly modify a 
+  task's status to `expired`
 
 Examples:
 *  `edit 1 desc/my typical description` Edits the description of the 1st task to be `my typical description`.
 *  `edit 2 n/Important Task t/` Edits the name of the 2nd task to be `Important Task` and clears all existing tags.
-* `edit 2 s/completed` sets the status of the 2nd task in the list to `completed`.
+*  `edit 2 s/completed` sets the status of the 2nd task in the list to `completed`.
 
 ### Deleting multiple tasks : `delete`
+
 
 Delete multiple tasks at once by either:
 1. Listing the indexes of the tasks to delete exhaustively
@@ -162,11 +170,12 @@ Delete multiple tasks at once by either:
 
 ### Locating a task by name : `find`
 
-Find tasks whose names contain any of the given keywords.
+Find tasks whose names contain any of the given keywords. This feature allows you to quickly find important tasks 
+without going through everything.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `cs2103t` will match `CS2103T`
+* The search is case-insensitive. e.g. `cs2103t` will match `CS2103T`
 * The order of the keywords does not matter. e.g. `Finish CS2103T Tutorial` will match `CS2103T Tutorial Finish`
 * Only the name of the task is searched.
 * Only full words will be matched e.g. `CS2103` will not match `CS2103T`
@@ -178,7 +187,8 @@ Examples:
 
 ### Searching for a task by tags : `tag-search`
 
-Find and list all tasks containing the same tag as the specified tag.
+Find and list all tasks containing the same tags. Searching via tags improves efficiency by 
+allowing you to quickly find all the tasks belonging to the same category of tags.
 
 Format: `tag-search TAG [MORE_TAGS]`
 
@@ -190,7 +200,7 @@ Examples:
 Find and list all tasks with the same date as the specified date.
 
 * The `DATE` format `yyyy-mm-dd`.
-* The `DATE` can also be specified as `today` or `tomorrow` to search for the current day's or the next day's task 
+* The `DATE` can also be specified as `today` or `tomorrow` to search for the current or next day's tasks
   easily.
 
 Format: `view DATE`
@@ -203,7 +213,8 @@ Examples:
 
 ### Sorting tasks by date : `sort`
 
-Sort tasks in ascending order of their dates.
+Sort tasks in ascending order of their dates. By sorting tasks you can easily see upcoming deadlines and decide 
+which tasks to prioritise!
 
 Format: `sort`
 
@@ -244,12 +255,22 @@ Format: `exit`
 **A**: Yes! Taskify is totally free to use.
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install Taskify by downloading the taskify.jar file in the other computer and replace the default data file it creates with the file that contains the data from your previous taskify home folder.
+**A**: Install Taskify by downloading the `taskify.jar` file in the other computer and replace the default data file it creates 
+(located at `[JAR file location]/data/taskify.json`) with the Taskify data file from your 
+previous computer.
 
 **Q**: Can I specify a status when adding a new task to Taskify?<br>
 **A**: All newly added tasks have an "uncompleted" status by default. However, you can change the status of a task using the`edit` command. <br>
 
 --------------------------------------------------------------------------------------------------------------------
+## Glossary
+Term | Explanation 
+--------|--------|
+**CCA** | Abbreviation for Co-curricular activities
+**CLI** | Abbreviation for Command Line Interface. The command line interface is an interface that accepts text input from users which is then processed and passed as commands to Taskify.
+**GUI** | Abbreviation for Graphical User Interface. The graphical user interface is a form of user interface that allows users to interact with Taskify through graphical icons.   
+**App** | Short form for application
+
 
 ## Command summary
 
