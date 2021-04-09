@@ -76,16 +76,16 @@ public class Level implements Comparable<Level> {
             return "Secondary 1";
 
         case "sec2":
-             return "Secondary 2";
+            return "Secondary 2";
 
         case "sec3":
-             return "Secondary 3";
+            return "Secondary 3";
 
         case "sec4":
-             return "Secondary 4";
+            return "Secondary 4";
 
         case "sec5":
-             return "Secondary 5";
+            return "Secondary 5";
 
         case "jc1":
             return "Junior College 1";
