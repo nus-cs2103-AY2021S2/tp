@@ -422,7 +422,7 @@ Similarly, when the user presses the down arrow key, there are two possible scen
   * Cons: Higher chance of errors in implementation, especially when it comes to addition of nodes.
 * **Alternative 2**: Use the `LinkedList` class provided by Java.
   * Pros: Easier implementation. Most operations have been provided by Java.
-  * Cons:  Need to devise a workaround to traverse the commands since the `ListIterator` places the cursor in between the elements.
+  * Cons: Need to devise a workaround to traverse the commands since the `ListIterator` places the cursor in between the elements.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -467,7 +467,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | find contacts by their attributes                    | minimize the time spent to find the contacts I need
 | `* * *`  | user                                       | specify preferred mode of contact                    | maximize chance of recipient seeing the information                     |
 | `* * *`  | user                                       | blacklist a contact                                  | reduce dissemination of information to people who do not want it        |
-| `* * *`  | user                                       | undo my operations                                   | minimize time spent to search on the contacts that I need.              |
+| `* * *`  | user                                       | undo my operations                                   | minimize time spent to search on the contacts that I need               |
 | `* * *`  | user                                       | collect specified details of all contacts            | avoid individually copying the details for each contact                 |
 | `* *`    | user with many contacts                    | assign each contact an additional optional remark    | remember contacts more accurately                                       |
 | `* *`    | user with many contacts                    | sort contacts by name                                | locate a contact easily                                                 |
