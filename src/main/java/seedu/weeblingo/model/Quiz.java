@@ -1,5 +1,6 @@
 package seedu.weeblingo.model;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.weeblingo.commons.core.Messages.MESSAGE_TAG_NOT_FOUND;
 import static seedu.weeblingo.logic.commands.StartCommand.MESSAGE_NUMBER_LARGER_THAN_DATABASE_FLASHCARDS_SIZE;
 
@@ -112,6 +113,9 @@ public class Quiz {
      */
     private Queue<Flashcard> getRandomizedQueue(Flashcard[] flashcardsReadFromDB,
             int numberOfQuestions, Set<Tag> tags) throws CommandException {
+        requireNonNull(flashcardsReadFromDB);
+        requireNonNull(numberOfQuestions);
+        requireNonNull(tags);
         List<Flashcard> flashcardsToProcess = Arrays.asList(flashcardsReadFromDB);
         Collections.shuffle(flashcardsToProcess);
         Queue<Flashcard> randomizedQueue = new LinkedList<>();
