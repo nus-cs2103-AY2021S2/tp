@@ -46,6 +46,7 @@ public class AddRoomCommand extends Command {
         requireNonNull(model);
 
         if (model.hasRoom(toAdd)) {
+            logger.warning("Duplicate room being added via oadd command");
             throw new CommandException(MESSAGE_DUPLICATE_ROOM);
         }
 

@@ -51,10 +51,14 @@ public class DeleteRoomCommand extends Command {
         Room roomToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         if (model.hasEitherResidentRoom(new ResidentRoom(null, roomToDelete.getRoomNumber()))) {
+            logger.warning(String.format("Room %s attempting to be deleted but there's a resident associated with it",
+                    roomToDelete.getRoomNumber()));
             throw new CommandException(MESSAGE_ROOM_ALLOCATED_FAILURE);
         }
 
         if (model.issuesContainRoom(roomToDelete)) {
+            logger.warning(String.format("Room %s attempting to be deleted but there are issues associated with it",
+                    roomToDelete.getRoomNumber()));
             throw new CommandException(MESSAGE_ROOM_HAS_ISSUES);
         }
 
