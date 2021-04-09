@@ -344,7 +344,7 @@ Description:
 Options:
 * `[n/NAME]`
 
-    Searches for properties with names matching `NAME`. 
+    Searches for properties with names containing `NAME`. 
 
 * `[pm/PRICE_UPPER_LIMIT]`
 
@@ -365,15 +365,15 @@ Options:
     
 * `[a/ADDRESS]`
     
-    Searches for properties with `[ADDRESS]` as address. 
+    Searches for properties containing `[ADDRESS]` in address. 
         
 * `[p/POSTAL_CODE]`
     
-    Searches for properties with `[POSTAL_CODE]` as postal code. 
+    Searches for properties containing `[POSTAL_CODE]` in postal code. 
         
 * `[d/DEADLINE]`
     
-    Searches for properties with `[DEADLINE]` as deadline. 
+    Searches for properties containing `[DEADLINE]` in deadline. 
         
 * `[r/REMARKS]` 
 
@@ -385,15 +385,15 @@ Options:
      
 * `[cc/CLIENT_CONTACT]`
 
-    Searches for properties whose clients' contact numbers match `[CLIENT_CONTACT]`. 
+    Searches for properties whose clients' contact numbers contains `[CLIENT_CONTACT]`. 
 
 * `[ce/CLIENT_EMAIL]` 
 
-    Searches for properties whose clients' emails match `[CLIENT_EMAIL]`. 
+    Searches for properties whose clients' emails contains `[CLIENT_EMAIL]`. 
 
 * `[tags/TAGS_SEPARATED_BY_COMMA]`
 
-    Searches for properties whose tags match `[TAGS_SEPARATED_BY_COMMA]`. `TAGS_SEPARATED_BY_COMMA` consists of 
+    Searches for properties whose tags contains tags in `[TAGS_SEPARATED_BY_COMMA]`. `TAGS_SEPARATED_BY_COMMA` consists of 
     all tags you wish to search for, all separated with comma. 
 
 
@@ -418,7 +418,7 @@ Description:
 Options: 
 * `[n/NAME]`
     
-    Searches for appointments with `[NAME]` in their names. 
+    Searches for appointments containing `[NAME]` in their names. 
     
 * `[r/REMARKS]` 
 
