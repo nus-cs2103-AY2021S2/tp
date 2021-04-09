@@ -210,7 +210,8 @@ The following activity diagram summarizes what happens when a user executes a bl
     * Pros: Able to directly set blacklist status without checking current status.
     * Cons: More commands to remember.
 
-### Finding persons by details feature
+
+### Find persons by other fields
 This feature is built on the current `find` command, which is used to be limited to only finding persons by names. With this change, the format of the `find` command is now modified to `find n/[NAME] t/[TAG] a/[ADDRESS] p/[PHONE] e/[EMAIL] b/[IS_BLACKLISTED] m/[MODE_OF_CONTACT]`.
 This command returns the persons with attributes that matches at least one of the attributes of interest (See User Guide for more details).
 Note that users are only required to provide at least one of the parameters to use this command. In other words, commands such as `find n/Alex` and `find t/autistic` are valid commands.
@@ -238,8 +239,48 @@ The following activity diagram shows what happens when `find` command is execute
     * Pros: Easier to debug as one command is meant for one criterion.
     * Cons: It is now not possible to combine both criteria together. More commands to remember. Due to similarity of the commands, they can be confused from one another.
 
+### Light Feature
+
+The light feature is implemented in the `LightCommand` class.
+The following is an example usage scenario.
+
+Step 1: The user executes `light` to switch the current theme to a light theme.
+The `UI` component then passes the string to the `LogicManager` class in `Logic` component.
+
+Step 2: The `Logic` component executes the command which changes the boolean light to true. This is passed back to the `UI` component.
+
+Step 3: The `UI` component loads the fxml file containing the light theme and is displayed back to the user.
+
+The following sequence diagram shows how the light command works:
+
+![LightSequenceDiagram](images/LightSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes the light command:
+
+![LightActivityDiagram](images/LightActivityDiagram.png)
+
+### Dark Feature
+
+The dark feature is implemented in the `DarkCommand` class.
+The following is an example usage scenario.
+
+Step 1: The user executes `dark` to switch the current theme to a dark theme.
+The `UI` component then passes the string to the `LogicManager` class in `Logic` component.
+
+Step 2: The `Logic` component executes the command which changes the boolean dark to true. This is passed back to the `UI` component.
+
+Step 3: The `UI` component loads the fxml file containing the dark theme and is displayed back to the user.
+
+The following sequence diagram shows how the dark command works:
+
+![DarkSequenceDiagram](images/DarkSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes the dark command:
+
+![DarkActivityDiagram](images/DarkActivityDiagram.png)
+
 ### Mode of Contact feature
-The mode of contact feature built on the current `AddCommand` class.
+The mode of contact feature is built on the current `AddCommand` class.
 The following is an example usage scenario.
 
 Step 1: The user executes `add n/Bob …/m email …` to add a new Person with the mode of contact as `email`.
@@ -291,7 +332,7 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 
 Step 1. The user launches the application for the first time. The `State` will be initialized with the initial `AddressBookCommandPair`. Since no command is executed, the command stored in the pair will be an empty string.
 
-![UndoRedoState0|](images/UndoRedoState0.png)
+![UndoRedoState0](images/UndoRedoState0.png)
 
 Step 2. The user executes `delete 5` command to delete the 5th person in the contact list. After execution, `State#addState()` is called, causing the modified state of the contact list after the `delete 5` command executes to be saved in the `addressBookStates`.
 
@@ -331,7 +372,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire contact list.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
@@ -340,46 +381,48 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-### Light Feature
+### Navigating previous commands
 
-The light feature is implemented in the `LightCommand` class.
-The following is an example usage scenario.
+#### Implementation
 
-Step 1: The user executes `light` to switch the current theme to a light theme.
-The `UI` component then passes the string to the `LogicManager` class in `Logic` component.
+The implementation of this feature is facilitated by `CommandList` class, which is a self-implemented linked list class.
+Whenever a command is executed, regardless of validity, a new node containing the command will be created and added into the linked list.
+The nodes in the linked list are implemented using `CommandNode` class, which keeps track of the following information:
 
-Step 2: The `Logic` component executes the command which changes the boolean light to true. This is passed back to the `UI` component.
+* Command executed
+* A reference to the previous `CommandNode` in the linked list.
+* A reference to the next `CommandNode` in the linked list.
 
-Step 3: The `UI` component loads the fxml file containing the light theme and is displayed back to the user.
+In addition, a `cursor` is introduced in `CommandList` class to help with navigation of the commands.
+The `cursor` keeps track of the current command while users are traversing through the commands using up and down arrow keys.
+Its position will be reset to the newly added `CommandNode`, which is the last node in the list, once a new command has been executed.
 
-The following sequence diagram shows how the light command works:
+When the user presses the up arrow key, there are two possible scenarios:
+* The `cursor` is at the first node in the list.
+  * Nothing happens.
+* The `cursor` is not at the first node in the list.
+  * The `cursor` is moved to the previous node and a new command is retrieved.
+    
+![NavPrevCommandsADUp](images/NavigatingPrevCommandsActivityDiagramUp.png)
 
-![LightSequenceDiagram](images/LightSequenceDiagram.png)
+Similarly, when the user presses the down arrow key, there are two possible scenarios:
+* The `cursor` is at the last node in the list.
+  * Nothing happens.
+* The `cursor` is not at the last node in the list.
+  * The `cursor` is moved to the next node and a new command is retrieved.
 
-The following activity diagram shows what happens when a user executes the light command:
+![NavPrevCommandsADUp](images/NavigatingPrevCommandsActivityDiagramDown.png)
 
-![LightActivityDiagram](images/LightActivityDiagram.png)
+#### Design considerations
 
-### Dark Feature
+#### Aspect: Data structure used to model the list of commands
 
-The dark feature is implemented in the `DarkCommand` class.
-The following is an example usage scenario.
-
-Step 1: The user executes `dark` to switch the current theme to a dark theme.
-The `UI` component then passes the string to the `LogicManager` class in `Logic` component.
-
-Step 2: The `Logic` component executes the command which changes the boolean dark to true. This is passed back to the `UI` component.
-
-Step 3: The `UI` component loads the fxml file containing the dark theme and is displayed back to the user.
-
-The following sequence diagram shows how the dark command works:
-
-![DarkSequenceDiagram](images/DarkSequenceDiagram.png)
-
-The following activity diagram shows what happens when a user executes the dark command:
-
-![DarkActivityDiagram](images/DarkActivityDiagram.png)
-
+* **Alternative 1 (Current choice)**: Use a self-implemented linked list.
+  * Pros: More control on the implementation. Cursor lies on the element themselves.
+  * Cons: Higher chance of errors in implementation, especially when it comes to addition of nodes.
+* **Alternative 2**: Use the `LinkedList` class provided by Java.
+  * Pros: Easier implementation. Most operations have been provided by Java.
+  * Cons: Need to devise a workaround to traverse the commands since the `ListIterator` places the cursor in between the elements.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -421,17 +464,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions                               | refer to instructions when I forget how to use the App                  |
 | `* * *`  | user                                       | add a new contact                                    |                                                                         |
 | `* * *`  | user                                       | delete a contact                                     | remove entries that I no longer need                                    |
-| `* * *`  | user                                       | find a contact by name                               | locate details of contacts without having to go through the entire list |
-| `* * *`  | user                                       | filter contacts by tag                               | minimize chance of sending emails to the wrong recipient                |
-| `* * *`  | user                                       | find contacts by their address                       | group the contact list by the places they live and thus ease the process of sending information to those who prefer receiving information by mail.
+| `* * *`  | user                                       | find contacts by their attributes                    | minimize the time spent to find the contacts I need
 | `* * *`  | user                                       | specify preferred mode of contact                    | maximize chance of recipient seeing the information                     |
 | `* * *`  | user                                       | blacklist a contact                                  | reduce dissemination of information to people who do not want it        |
-| `* * *`  | user                                       | undo my operations                                   |                                                                         |
+| `* * *`  | user                                       | undo my operations                                   | minimize time spent to search on the contacts that I need               |
 | `* * *`  | user                                       | collect specified details of all contacts            | avoid individually copying the details for each contact                 |
-| `* *`    | user                                       | hide private contact details                         | minimize chance of someone else seeing them by accident                 |
 | `* *`    | user with many contacts                    | assign each contact an additional optional remark    | remember contacts more accurately                                       |
 | `* *`    | user with many contacts                    | sort contacts by name                                | locate a contact easily                                                 |
-| `* *`    | user                                       | review my previous commands                          | simply modify them instead of retyping the commands, especially for the commands with longer parameters list.
+| `* *`    | user                                       | review my previous commands                          | simply modify them instead of retyping the commands, especially for the commands with longer parameters list
 | `* *`    | user                                       | change between light and dark mode                   | have less strain on my eyes.
 
 ### Use cases
@@ -598,7 +638,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -673,3 +712,40 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect find commands to try: `find n/`, `find t/`, `...` <br>
        Expected: Similar to previous.
+
+### Undo previous operations
+1. Undo previous operations.
+   1. Prerequisite: List all persons using the `list` command. Multiple contacts in the list.
+   1. Test case: execute `add n/Andy p/81234567 e/andy@example.com a/somewhere over the rainbow, Singapore 069420` followed by `undo`. <br>
+      Expected: `Andy` is no longer in the contact list after `undo` is executed. Command that is undone is shown in the status message.
+   1. Test case: execute `blacklist 2`, `find b/true` and `undo` in this order.<br>
+      Expected: The second contact in the list is no longer blacklisted. Command that is undone (i.e. `blacklist 2`) is shown in the status message.
+
+1. Attempt to undo when no changes are done to the contact list.<br>
+   1. Prerequisite: No commands have been executed before executing the following test cases.
+   1. Test case: `undo`<br>
+      Expected: An error stating there is nothing to undo is shown in the status message.
+   1. Test case: execute `light` and `undo` in this order.<br>
+      Expected: Similar to previous.
+
+### Navigating through commands
+1. Navigating to previous commands.
+   1. Test case: Execute `light`, `edit 1 n/Name`, `find n/Name` in this order and press up arrow key three times. <br>
+      Expected: The commands above are shown in the command box in the reverse order, i.e. `find n/Name`, `edit 1 n/Name1` and finally `light`.
+1. Navigating to later commands.
+   1. Prerequisite: Retain the same setting as in Test case 1.i.
+   1. Test case: Press down arrow key.<br>
+      Expected: The command `edit 1 n/Name` is shown.
+   1. Test case: Press down arrow key again.<br>
+      Expected: The command `find n/Name` is shown.
+   1. Test case: Press down arrow key again.<br>
+      Expected: The command `find n/Name` is shown again since this is the last command executed.
+1. Attempt to navigate the commands when there are no commands executed.
+   1. Test case: Press up arrow key.<br>
+      Expected: Nothing is shown in the command box.
+   1. Test case: Press down arrow key.<br>
+      Expected: Similar to previous.
+1. Attempt to navigate later commands after executing a command.
+   1. Test case: Execute any command and press down arrow key.<br>
+      Expected: Nothing is shown in the command box.
+      
