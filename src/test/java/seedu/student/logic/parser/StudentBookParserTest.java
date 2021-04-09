@@ -75,7 +75,7 @@ public class StudentBookParserTest {
         String keywords = "vaccinated";
         FilterCommand command = (FilterCommand) parser.parseCommand(
                 FilterCommand.COMMAND_WORD + " " + keywords);
-        assertEquals(new FilterCommand(new VaccinationStatusContainsKeywords(keywords)), command);
+        assertEquals(new FilterCommand(new VaccinationStatusContainsKeywords(keywords), keywords), command);
     }
 
     @Test

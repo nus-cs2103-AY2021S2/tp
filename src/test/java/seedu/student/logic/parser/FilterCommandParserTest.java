@@ -25,24 +25,24 @@ public class FilterCommandParserTest {
     public void parse_validArgs_returnsFilterCommandByVaccinationStatus() {
         // no leading and trailing whitespaces
         FilterCommand expectedFilterCommandByVaccinationStatus =
-                new FilterCommand(new VaccinationStatusContainsKeywords("unvaccinated"));
+                new FilterCommand(new VaccinationStatusContainsKeywords("unvaccinated"), "unvaccinated");
         assertParseSuccess(parser, "unvaccinated", expectedFilterCommandByVaccinationStatus);
 
         FilterCommand secondExpectedVaccinatedFilterCommandByVaccinationStatus =
-                new FilterCommand(new VaccinationStatusContainsKeywords("vaccinated"));
+                new FilterCommand(new VaccinationStatusContainsKeywords("vaccinated"), "vaccinated");
         assertParseSuccess(parser, "vaccinated", secondExpectedVaccinatedFilterCommandByVaccinationStatus);
 
         FilterCommand thirdExpectedVaccinatedFilterCommandByVaccinationStatus =
-                new FilterCommand(new VaccinationStatusContainsKeywords("VACCINATED"));
+                new FilterCommand(new VaccinationStatusContainsKeywords("VACCINATED"), "VACCINATED");
         assertParseSuccess(parser, "VACCINATED", thirdExpectedVaccinatedFilterCommandByVaccinationStatus);
 
         FilterCommand fourthExpectedVaccinatedFilterCommandByVaccinationStatus =
-                new FilterCommand(new VaccinationStatusContainsKeywords("vaccinateD"));
+                new FilterCommand(new VaccinationStatusContainsKeywords("vaccinateD"),"vaccinateD");
         assertParseSuccess(parser, "vaccinateD", fourthExpectedVaccinatedFilterCommandByVaccinationStatus);
 
 
         FilterCommand fiveExpectedVaccinatedFilterCommandByVaccinationStatus =
-                new FilterCommand(new VaccinationStatusContainsKeywords("Vaccinated"));
+                new FilterCommand(new VaccinationStatusContainsKeywords("Vaccinated"), "Vaccinated");
         assertParseSuccess(parser, "Vaccinated", fiveExpectedVaccinatedFilterCommandByVaccinationStatus);
 
         // multiple whitespaces between keywords
@@ -53,7 +53,7 @@ public class FilterCommandParserTest {
     public void parse_validArgs_returnsFilterCommandByFaculty() {
         // no leading and trailing whitespaces
         FilterCommand expectedFilterCommandByFaculty =
-                new FilterCommand(new FacultyContainsKeywords("MED"));
+                new FilterCommand(new FacultyContainsKeywords("MED"), "MED");
         assertParseSuccess(parser, "MED", expectedFilterCommandByFaculty);
 
         // multiple whitespaces between keywords
@@ -64,7 +64,7 @@ public class FilterCommandParserTest {
     public void parse_validArgs_returnsFilterCommandBySchoolResidence() {
         // no leading and trailing whitespaces
         FilterCommand expectedFilterCommandBySchoolResidence =
-                new FilterCommand(new SchoolResidenceContainsKeywords("CAPT"));
+                new FilterCommand(new SchoolResidenceContainsKeywords("CAPT"), "CAPT");
         assertParseSuccess(parser, "CAPT", expectedFilterCommandBySchoolResidence);
 
         // multiple whitespaces between keywords
