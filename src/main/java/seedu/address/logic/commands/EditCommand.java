@@ -60,6 +60,9 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_NAME_LESSON = "The student name %1$s already exists "
+            + "with a different phone number. \n" + "And You have a lesson at %2$s with %3$s. \n"
+            + "Do you wish to proceed? y/n";
     public static final String MESSAGE_DUPLICATE_PERSON = "%1$s already belongs to another student in TutorsPet. \n"
             + "Please assign a unique phone number to student %2$s.";
     public static final String MESSAGE_POTENTIAL_DUPLICATE = "This student name %1$s already exists "
@@ -99,6 +102,21 @@ public class EditCommand extends Command {
                     editedPerson.getPhone(), editedPerson.getName()));
         }
 
+        if (editPersonDescriptor.isLessonEdited() && !model.isSavedState()) {
+            for (Lesson lesson : editedPerson.getLessons()) {
+                if (personToEdit.getLessons().stream().anyMatch(lesson::isSameLesson)) {
+                    continue;
+                }
+                if (!personToEdit.isPotentialSamePerson(editedPerson) && model.hasPotentialPerson(editedPerson)
+                        && model.hasLesson(lesson) && !(model.getLesson(lesson).getNumberOfPerson() == 1
+                        && model.getLesson(lesson).containsPerson(personToEdit))) {
+                    model.setSavedState(true);
+                    throw new CommandException(String.format(MESSAGE_DUPLICATE_NAME_LESSON, editedPerson.getName(),
+                            lesson.formatString(), model.getLesson(lesson).getPersonInString()));
+                }
+            }
+        }
+
         if (!model.isSavedState()) {
             if (!personToEdit.isPotentialSamePerson(editedPerson) && model.hasPotentialPerson(editedPerson)) {
                 model.setSavedState(true);
@@ -106,7 +124,6 @@ public class EditCommand extends Command {
             }
         }
 
-        model.setSavedState(false);
         if (editPersonDescriptor.isLessonEdited() && !model.isSavedState()) {
             for (Lesson lesson : editedPerson.getLessons()) {
                 if (personToEdit.getLessons().stream().anyMatch(lesson::isSameLesson)) {

@@ -51,6 +51,9 @@ public class CommandBox extends UiPart<Region> {
             commandExecutor.execute(commandText);
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+            if (e.getMessage().startsWith("The student name ")) {
+                previousUserInput = commandText;
+            }
             if (e.getMessage().startsWith("You have a lesson at ")) {
                 previousUserInput = commandText;
             }
