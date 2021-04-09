@@ -16,7 +16,8 @@ on ModuleBook3.5.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
-1. This user guide is best read at a zoom level of 125% on your browser.
+1. This user guide is best read at a zoom level of 125% on your browser. 
+   For viewing images in greater clarity, you may need to use 150% zoom or above.
 
 1. ModuleBook3.5 can run on a computer installed with a major operating system (e.g. Windows/Mac/Linux) and Java 11.
 
