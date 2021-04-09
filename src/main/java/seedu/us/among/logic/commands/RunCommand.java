@@ -31,6 +31,8 @@ public class RunCommand extends Command {
             + PREFIX_ADDRESS + " ADDRESS "
             + PREFIX_DATA + " DATA "
             + "[" + PREFIX_HEADER + " HEADER]\n"
+            + "Use the help command for more information (an shorthand for run command is also"
+            + " explained in the user guide).\n\n"
             + "Example: "
             + MESSAGE_API_EXAMPLE;
 
