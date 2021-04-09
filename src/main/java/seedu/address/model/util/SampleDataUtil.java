@@ -53,7 +53,7 @@ public class SampleDataUtil {
                     new Favourite("false")),
             new Contact(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan1999@example.com"),
                 new Address(), irfanTags, new TimeAdded("2021-03-21 06:55:45.11"), new Favourite("true")),
-            new Contact(new Name("Sharon Lee"), new Phone("99272758"), new Email("sharon_lee@example.com"),
+            new Contact(new Name("Sharon Lee"), new Phone("99272777"), new Email("sharon_lee@example.com"),
                     new Address(), sharonTags, new TimeAdded("2021-03-21 06:55:43.11"),
                     new Favourite("false")),
         };
