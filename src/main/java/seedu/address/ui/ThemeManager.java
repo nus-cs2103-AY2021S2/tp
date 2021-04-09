@@ -8,9 +8,13 @@ import java.io.IOException;
 import seedu.address.commons.util.FileUtil;
 
 /**
- * Class for managing the theme of the application. Stores data on what theme is currently being applied.
+ * Class for managing the theme of the application. Stores data on what theme is currently being applied. Note
+ * that this class is a singleton and any instance of the application will be associated with one ThemeManager
+ * instance.
  */
 public class ThemeManager {
+
+    private static ThemeManager instance;
 
     /**
      * Template of the css used by the application.
@@ -20,23 +24,38 @@ public class ThemeManager {
     /**
      * Current theme used by the application
      */
-    private static Theme theme = null;
+    private Theme theme = null;
     /**
      * Path of the current theme
      */
-    private static String themePath = null;
+    private String themePath = null;
     /**
      * Path of the css file currently in use
      */
-    private static String cssCacheUri = null;
+    private String cssCacheUri = null;
+
+    private ThemeManager() {
+        this.theme = ThemeFactory.getDefaultTheme();
+        this.cssCacheUri = getNewCssCacheUri(this.theme);
+    }
 
     /**
      * Gets the theme currently in use by the application.
      *
      * @return The theme currently in use by the application.
      */
-    public static Theme getTheme() {
-        return ThemeManager.theme;
+    public Theme getTheme() {
+        return theme;
+    }
+
+    /**
+     * Returns the ThemeManager associated with the current application instance.
+     */
+    public static ThemeManager getInstance() {
+        if (instance == null) {
+            instance = new ThemeManager();
+        }
+        return instance;
     }
 
     /**
@@ -44,16 +63,8 @@ public class ThemeManager {
      *
      * @return Path of the JSON theme file currently being applied.
      */
-    public static String getThemePath() {
+    public String getThemePath() {
         return themePath;
-    }
-
-    /**
-     * Initialized the variables in ThemeManager.
-     */
-    public static void init() {
-        ThemeManager.theme = ThemeFactory.getDefaultTheme();
-        ThemeManager.cssCacheUri = getNewCssCacheUri(ThemeManager.theme);
     }
 
     /**
@@ -62,17 +73,17 @@ public class ThemeManager {
      * @param newTheme  The new theme to be used.
      * @param themePath The path of the new theme to be used.
      */
-    public static void setTheme(Theme newTheme, String themePath) {
-        ThemeManager.theme = newTheme;
-        ThemeManager.themePath = themePath;
+    public void setTheme(Theme newTheme, String themePath) {
+        this.theme = newTheme;
+        this.themePath = themePath;
         String newCssCache = getNewCssCacheUri(newTheme);
         if (newCssCache != null) {
-            ThemeManager.cssCacheUri = getNewCssCacheUri(newTheme);
+            this.cssCacheUri = getNewCssCacheUri(newTheme);
         }
     }
 
-    public static String getCssCacheUri() {
-        return ThemeManager.cssCacheUri;
+    public String getCssCacheUri() {
+        return cssCacheUri;
     }
 
     /**
