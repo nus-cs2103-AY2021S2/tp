@@ -50,11 +50,17 @@ An image of our UI is shown below!
 
 ## Quick Start
 
-1. Ensure you have Java 11 installed in your computer.
+1. Ensure you have Java 11 installed in your computer. You may install it [here](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html).
 1. Download the latest `teachingAssistant.jar` [here](https://github.com/AY2021S2-CS2103T-W13-4/tp/releases).
 1. Copy the file to the folder you want to use as the *home folder* for your Teaching Assistant.
 1. Double-click the file to start the app. The GUI similar to the image above should appear.
-1. Try out some of the commands below.
+1. Type the command in the command box and press Enter to execute it.
+   Some example commands you can try:
+   * **`list`**: Lists all contacts in Teaching Assistant.
+   * **`add n/Danny p/98765432 e/danny@email.com`**: Adds a contact named `Danny` to Teaching Assistant.
+   * **`efind consultation 1`**: Finds an entry named `consultation 1' in Teaching Assistant.
+   * **`exit`**: Exits the app.
+1. Refer to the [Features](#features) below for details of each command.
 
 ---
 
@@ -65,7 +71,8 @@ An image of our UI is shown below!
 * Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add n/NAME`, `NAME` is a parameter which
   can be used as `add n/John Doe`.
 * Items in the square brackets are optional. Users can choose to leave the field empty.
-* For `[t/Tag]` and `[MORE_KEYWORDS]`, 0 or more of such arguments can be specified.
+* Items with `...` after them can be used multiple times including zero times. e.g. `[t/TAG]...` can be used as `  ` 
+  (i.e. 0 times), t/friend, t/friend t/family etc.
 * Parameters can be in any order. e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also
   acceptable.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
@@ -77,7 +84,7 @@ An image of our UI is shown below!
 
 ### Viewing help
 
-Shows a message with all the commands.
+Shows a message explaining how to access the help page.
 
 Format: `help`
 
@@ -85,11 +92,13 @@ Format: `help`
 
 ### Adding a contact
 
-Adds a person's information into the address book.
+Adds a person's information into Teaching Assistant.
 
-Format: `add n/NAME p/NUMBER e/EMAIL a/ADDRESS [t/TAG]`
+Format: `add n/NAME p/NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 
-* A person can have any number of tags (including 0).
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A person can have any number of tags (including 0).
+</div>
 
 Example(s):
 
@@ -100,7 +109,7 @@ Example(s):
 
 Finds an existing contact by name in the address book.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 * Only names are searched.
 * The search is case-insensitive e.g. `amy` will match `Amy`.
@@ -117,7 +126,7 @@ Example(s):
 
 Filters all persons that have the tags of the specified keywords and displays them as a list with index numbers.
 
-Format: `filter KEYWORD [MORE_KEYWORDS]`
+Format: `filter KEYWORD [MORE_KEYWORDS]...`
 
 * Only tags are searched.
 * The filtering is case-insensitive e.g. `CS2100` will match `cs2100`.
@@ -136,7 +145,7 @@ Example(s):
 
 Edits an existing contact in the address book specified by name.
 
-Format: `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
+Format: `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
 * `NAME` provided must be the full `NAME` of the contact to be edited e.g. If the contact is `Alex Yeoh`, to edit
   it, `Alex Yeoh` must be provided as `NAME`.
@@ -184,7 +193,7 @@ Format: `clear`
 
 Adds a new entry into the entry list.
 
-Format: `eadd n/NAME [sd/START DATE] ed/END DATE [t/TAG]`
+Format: `eadd n/NAME [sd/START DATE] ed/END DATE [t/TAG]...`
 
 * `START DATE` and `END DATE` are in the format `yyyy-mm-dd hh:mm`.
 * `START DATE` should be before `END DATE`.
@@ -201,7 +210,7 @@ Example(s):
 
 Finds all entries whose name contain any of the specified keywords and displays them as a list.
 
-Format: `efind KEYWORD [MORE_KEYWORDS]`
+Format: `efind KEYWORD [MORE_KEYWORDS]...`
 
 * Only names are searched.
 * The search is case-insensitive e.g. `meeting` will match `Meeting`.
@@ -218,7 +227,7 @@ Example(s):
 
 Filters all entries that have the tags of the specified keywords and displays them as a list.
 
-Format: `efilter KEYWORD [MORE_KEYWORDS]`
+Format: `efilter KEYWORD [MORE_KEYWORDS]...`
 
 * Only tags are searched.
 * The filtering is case-insensitive e.g. `CS2100` will match `cs2100`.
