@@ -8,6 +8,9 @@ import static seedu.address.testutil.alias.AliasUtil.VALID_ALIAS_1;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.AliasMapping;
+
 public class AliasTest {
 
     public static final String VALID_ALIAS_NAME = "valid";

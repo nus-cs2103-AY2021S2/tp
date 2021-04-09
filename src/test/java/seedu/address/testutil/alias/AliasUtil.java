@@ -1,7 +1,5 @@
 package seedu.address.testutil.alias;
 
-import seedu.address.commons.core.Alias;
-import seedu.address.commons.core.AliasMapping;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -30,6 +28,8 @@ import seedu.address.logic.commands.room.FindRoomCommand;
 import seedu.address.logic.commands.room.ListRoomCommand;
 import seedu.address.logic.commands.undoredo.RedoCommand;
 import seedu.address.logic.commands.undoredo.UndoCommand;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.AliasMapping;
 
 /**
  * A utility class for Alias.

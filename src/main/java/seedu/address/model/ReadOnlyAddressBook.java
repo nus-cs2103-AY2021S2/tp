@@ -1,8 +1,8 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.Alias;
-import seedu.address.commons.core.AliasMapping;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.AliasMapping;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.residentroom.ResidentRoom;

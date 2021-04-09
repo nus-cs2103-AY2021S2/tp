@@ -13,8 +13,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Alias;
 import seedu.address.logic.commands.alias.AliasCommand;
+import seedu.address.model.alias.Alias;
 
 public class AliasCommandParserTest {
     private final AliasCommandParser parser = new AliasCommandParser();
