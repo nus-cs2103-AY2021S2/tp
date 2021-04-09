@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added a new command which allows user to display client's policies in a pop-up window.
     * What it does: Allows the user to view all the policies in a separate window, where they can then click a "Copy URL" button to easily retrieve the policy's URL (if any). 
     * Justification: This feature improves the product significantly because a user can easily retrieve the URL of a policy document, and enter it into a web browser to view the policy document.
-    * Highlights: The implementation of this enhancement was exiciting, as it involved the use of external libraries like JavaFX to design a graphical interface using FXML. 
+    * Highlights: The implementation of this enhancement was exciting, as it involved the use of external libraries like JavaFX to design a graphical interface using FXML. 
       On top of that, the graphical user interface had to be integrated with the main code base which is written in Java. 
 <br><br>
 * **New Feature**: Added a new command which allows user to edit or delete clients' details in batch.
@@ -33,9 +33,9 @@ Given below are my contributions to the project.
     * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
 <br><br>
 * **Enhancements to existing features**:
-    * Wrote tests to ensure correctness of implemented `policy` (Pull request [\#51](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/51)
+    * Wrote tests to ensure correctness of implemented `policy` (Pull request [\#51](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/51))
       and `batch` (Pull requests [\#98](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/98), 
-      [\#101](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/101))) commands.
+      [\#101](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/101)) commands.
     * Corrected existing bugs from the original upstream repository (Pull request [\#183](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/183))
 <br><br>
 * **Documentation**:
