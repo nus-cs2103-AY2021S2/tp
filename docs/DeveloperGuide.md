@@ -603,12 +603,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a … | I want to … | So that I can…|
 | - | - | - | - |
 | `* * *` | confused user | have a help command | learn how to use the application |
-| `* * *` | user | add issues | track associated issues with rooms and their status|
+| `* * *` | user | add issues | track room issues and their status |
 | `* * *` | user | see a list of pending issues sorted by deadline | prioritise which issue to work on |
 | `* * *` | user | search for issues | find a specific issue and get its information |
 | `* * *` | user | search for issues | find issues matching a specific criteria |
 | `* * *` | user | close issues | focus on open issues |
-| `* * *` | user | update issues | ensure it has the latest and correct information |
+| `* * *` | user | update issues | ensure issues have the latest and correct information |
 | `* * *` | user | remove issues | not worry about issues that are no longer relevant |
 | `* * *` | user | add residents | track and manage residents who are staying or want to stay in the hostel |
 | `* * *` | user | search for residents | find a specific resident's information |
@@ -619,7 +619,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | user | search for rooms | find a specific room or rooms matching a specific criteria |
 | `* * *` | user | update room details | ensure a room's information is up to date |
 | `* * *` | user | remove rooms | stop tracking rooms which are not in the hostel |
-| `* *` | user | see both available rooms and unassigned residents side by side | easily match residents to rooms |
 | `* * *` | user | allocate a resident to a room | ensure that a resident and room are linked |
 | `* * *` | user | deallocate a resident from a room | ensure that a resident who is no longer living in a room is not associated with it |
 | `* *` | careless user | undo previous commands | easily fix any errors I might make |
