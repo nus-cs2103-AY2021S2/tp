@@ -295,8 +295,7 @@ If your changes to the data file makes its format invalid, docBob will discard a
 
 Terminology | Definition | Examples
 ------------|------------|----------
-**Parameter** |  In the command format given, the words in `UPPER_CASE` are the parameters to be supplied by you.
- | For the add command, the given format is: `add n/NAME p/PHONENUMBER e/EMAIL a/ADDRESS h/HEIGHT w/WEIGHT [t/TAG]`. Thus, `NAME`, `PHONENUMBER`, `EMAIL`, `ADDRESS`, `HEIGHT`, `WEIGHT` and `TAG` are the parameters to be keyed in by you. `TAG` is an optional parameter.
+**Parameter** |  In the command format given, the words in `UPPER_CASE` are the parameters to be supplied by you. | For the add command, the given format is: `add n/NAME p/PHONENUMBER e/EMAIL a/ADDRESS h/HEIGHT w/WEIGHT [t/TAG]`. Thus, `NAME`, `PHONENUMBER`, `EMAIL`, `ADDRESS`, `HEIGHT`, `WEIGHT` and `TAG` are the parameters to be keyed in by you. `TAG` is an optional parameter.
 **Index** | Index refers to the position of the patient in the patient list | If the order in which patients are displayed in the app is {Alice,Bob,Charlie} then Alice's index is 1, Bob's is 2, and Charlie's is 3.
 
 --------------------------------------------------------------------------------------------------------------------
