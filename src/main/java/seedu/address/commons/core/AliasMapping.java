@@ -85,6 +85,7 @@ public class AliasMapping implements Serializable {
      * @param alias The alias object to be added.
      */
     public void addAlias(Alias alias) {
+        assert alias != null;
         mapping.put(alias.getAliasName(), alias);
     }
 
@@ -94,6 +95,8 @@ public class AliasMapping implements Serializable {
      * @param aliasName The name of the alias to be deleted.
      */
     public void deleteAlias(String aliasName) {
+        assert aliasName != null;
+        assert mapping.containsKey(aliasName);
         mapping.remove(aliasName);
     }
 
@@ -174,6 +177,7 @@ public class AliasMapping implements Serializable {
      * @return Size of the current mapping.
      */
     public int size() {
+        assert mapping != null;
         return mapping.size();
     }
 

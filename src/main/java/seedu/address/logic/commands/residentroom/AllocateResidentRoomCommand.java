@@ -24,10 +24,11 @@ import seedu.address.model.room.Room;
 public class AllocateResidentRoomCommand extends Command {
     public static final String COMMAND_WORD = "alloc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Allocates a resident to a room in SunRez. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Allocates a resident to a room in SunRez"
+            + " identified by a resident index and room index displayed in the resident and room lists respectively. \n"
             + "Parameters: "
             + PREFIX_RESIDENT_INDEX + "INDEX "
-            + PREFIX_ROOM_INDEX + "INDEX \n"
+            + PREFIX_ROOM_INDEX + "INDEX (both indices must be positive integers)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_RESIDENT_INDEX + "1 "
             + PREFIX_ROOM_INDEX + "2";
@@ -54,11 +55,22 @@ public class AllocateResidentRoomCommand extends Command {
         List<Resident> lastShownResidentList = model.getFilteredResidentList();
         List<Room> lastShownRoomList = model.getFilteredRoomList();
 
-        if (targetResidentIndex.getZeroBased() >= lastShownResidentList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+        if (lastShownResidentList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_RESIDENTS);
         }
+
+        if (lastShownRoomList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_ROOMS);
+        }
+
+        if (targetResidentIndex.getZeroBased() >= lastShownResidentList.size()) {
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX, lastShownResidentList.size()));
+        }
+
         if (targetRoomIndex.getZeroBased() >= lastShownRoomList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX, lastShownRoomList.size()));
         }
 
         Resident residentToAllocate = lastShownResidentList.get(targetResidentIndex.getZeroBased());
