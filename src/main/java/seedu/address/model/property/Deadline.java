@@ -18,6 +18,8 @@ public class Deadline implements Comparable<Deadline> {
     public static final String MESSAGE_INVALID_DATE = "Invalid deadline entered.\n"
             + "Please ensure that the deadline date entered is valid";
 
+    public static final String MESSAGE_DEADLINE_OVER = "Deadline is already over!!!";
+
     private static final String VALIDATION_REGEX = "\\d{2}-\\d{2}-\\d{4}";
 
     public final LocalDate deadline;
@@ -40,6 +42,10 @@ public class Deadline implements Comparable<Deadline> {
      */
     public static boolean isValidDeadline(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public boolean isOver() {
+        return deadline.compareTo(LocalDate.now()) < 0;
     }
 
     @Override

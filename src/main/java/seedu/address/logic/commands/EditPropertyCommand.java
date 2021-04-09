@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
+import static seedu.address.model.property.Deadline.MESSAGE_DEADLINE_OVER;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -56,7 +57,7 @@ public class EditPropertyCommand extends Command {
             + "[" + PREFIX_CLIENT_CONTACT + "CLIENT_CONTACT] "
             + "[" + PREFIX_CLIENT_EMAIL + "CLIENT_EMAIL] "
             + "[" + PREFIX_CLIENT_ASKING_PRICE + "CLIENT_ASKING_PRICE] "
-            + "[" + PREFIX_TAGS + "TAGS...]\n"
+            + "[" + PREFIX_TAGS + "TAGS_SEPARATED_BY_COMMAS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Mayfair "
             + PREFIX_TYPE + "Condo "
@@ -71,7 +72,8 @@ public class EditPropertyCommand extends Command {
             + PREFIX_TAGS + "Urgent, 4 bedrooms";
 
     public static final String MESSAGE_SUCCESS = "Edited property: %1$s";
-    public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in the app";
+    public static final String MESSAGE_DUPLICATE_PROPERTY =
+            "Another property with the same address and postal code already exists in the app";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
@@ -94,6 +96,13 @@ public class EditPropertyCommand extends Command {
 
         if (index.getZeroBased() >= model.getPropertyListSize()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
+        }
+
+        if (editPropertyDescriptor.getDeadline().isPresent()) {
+            Deadline deadline = editPropertyDescriptor.getDeadline().get();
+            if (deadline.isOver()) {
+                throw new CommandException(MESSAGE_DEADLINE_OVER);
+            }
         }
 
         Property propertyToEdit = model.getProperty(index.getZeroBased());

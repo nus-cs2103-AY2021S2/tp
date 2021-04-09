@@ -124,11 +124,19 @@ Adds a property to the app.
 Format: `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]​`
 
 Description:
+* Each property has a unique pair of address and postal code.
+  * No two properties with the exact same address and postal code can exist in the app at the same time.
+* The format for specifying a deadline date is `DD-MM-YYYY`.
+* Postal codes should have a minimum of 5 digits and a maximum of 10 digits.
+* Client's contact number should have a minimum of 7 digits and a maximum of 15 digits.
 * There can be multiple tags but different tags should be separated with a comma. <br> e.g. `tags/TAGS_SEPARATED_BY_COMMAS` can be used as `tags/Freehold`, `tags/Freehold, 5 bedrooms`, `tags/Freehold, 5 bedrooms, Near MRT` etc.
 
-Examples:
-* `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021`
-* `add property n/Mayfair t/Condo a/1 Jurong East Street 32 p/609477 d/31-12-2021 r/Urgent to sell cn/Alice cc/91234567 ce/alice@gmail.com ca/$800,000 tags/4 bedrooms, No need for renovation`
+Examples & Output:
+* `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021`
+
+![Example property added](images/ExampleAddProperty.png)
+
+* `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`
 
 #### 3.2.2 Adding an appointment: `add appointment`
 
@@ -137,10 +145,16 @@ Adds an appointment to the app.
 Format: `add appointment n/NAME r/REMARKS d/DATE t/TIME​`
 
 Description:
-* All fields are compulsory.
-
+* Each appointment has a unique pair of date and time.
+  * No two appointments with the exact same meeting date and time can exist in the app at the same time.
+* The format for specifying a date is `DD-MM-YYYY`.
+* The format for specifying a time is `HHMM` (in 24-hour clock).
+   
 Examples:
-* `add appointment n/Meet Alex r/At M Hotel d/17-2-2021 t/1500`
+* `add appointment n/Meet Jacob for dinner r/At Lot One's food court d/19-04-2021 t/1930`
+
+![Example property added](images/ExampleAddAppointment.png)
+
 * `add appointment n/Celebrate CNY with Pauline r/Her house d/01-02-2022 t/1900`
 
 ### 3.3 Editing

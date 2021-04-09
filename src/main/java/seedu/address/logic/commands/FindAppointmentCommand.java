@@ -16,8 +16,9 @@ public class FindAppointmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments that match the criteria "
             + "given by the specified keywords (case-insensitive) indicated by the given parameters, and displays "
             + "them as a list with index numbers.\n"
-            + "Parameters: [n/NAME] [r/REMARKS] [d/DATE]* [t/TIME]*\n"
-            + "Note that all parameters marked with * are limited to only 1 in each query. \n"
+            + "Parameters: [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]\n"
+            + "When more than 1 of the same parameter is used, appointments that match EITHER of the keywords will "
+            + "be displayed. \n"
             + "All keywords without a parameter tag will be ignored. \n"
             + "Example: " + COMMAND_WORD + " n/charlie\n"
             + COMMAND_WORD + " r/meet on 25th d/25-11-21";
