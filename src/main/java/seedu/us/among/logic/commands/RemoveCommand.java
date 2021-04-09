@@ -21,6 +21,7 @@ public class RemoveCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes an existing endpoint using its displayed index from the endpoint list.\n"
             + "Parameters: INDEX\n"
+            + "Use the help command for more information.\n\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_REMOVE_ENDPOINT_SUCCESS = "Remove endpoint: %1$s";

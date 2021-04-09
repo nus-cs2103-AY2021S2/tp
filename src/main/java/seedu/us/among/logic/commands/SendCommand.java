@@ -27,6 +27,7 @@ public class SendCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Calls an API using the displayed index from the endpoint list.\n"
             + "Parameters: INDEX\n"
+            + "Use the help command for more information.\n\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     private static final Logger logger = LogsCenter.getLogger(SendCommand.class);
