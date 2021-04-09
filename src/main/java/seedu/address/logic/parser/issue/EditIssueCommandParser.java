@@ -13,7 +13,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.issue.EditIssueCommand;
 import seedu.address.logic.commands.issue.EditIssueCommand.EditIssueDescriptor;
@@ -25,18 +27,24 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new EditIssueCommand object
+ * Parses input arguments and creates a new EditIssueCommand object.
  */
 public class EditIssueCommandParser implements Parser<EditIssueCommand> {
+
+    private final Logger logger = LogsCenter.getLogger(EditIssueCommandParser.class);
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditIssueCommand
      * and returns an EditIssueCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @param args The argument string.
+     * @return {@code EditIssueCommand} with the specified arguments.
+     * @throws ParseException       If the user input does not conform the expected format.
+     * @throws NullPointerException If args is null.
      */
     public EditIssueCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ROOM_NUMBER, PREFIX_DESCRIPTION,
                 PREFIX_TIMESTAMP, PREFIX_STATUS, PREFIX_CATEGORY, PREFIX_TAG);
 
@@ -45,6 +53,7 @@ public class EditIssueCommandParser implements Parser<EditIssueCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalArgumentException iex) {
+            logger.warning("Failed to parse preamble for index to be edited for iedit command");
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditIssueCommand.MESSAGE_USAGE), iex);
         }
@@ -71,6 +80,7 @@ public class EditIssueCommandParser implements Parser<EditIssueCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editIssueDescriptor::setTags);
 
         if (!editIssueDescriptor.isAnyFieldEdited()) {
+            logger.warning("iedit command did not edit any field for targeted issue");
             throw new ParseException(EditIssueCommand.MESSAGE_NOT_EDITED);
         }
 

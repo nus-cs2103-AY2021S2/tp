@@ -32,8 +32,8 @@ public class DescriptionTest {
         assertTrue(Description.isValidDescription("1")); // single digit
         assertTrue(Description.isValidDescription("fdasf1212")); // alphanumberical
         assertTrue(Description.isValidDescription("jk23l1 j32k1 k2k21l df")); // alphanumerical with spaces
-        // [a-zA-Z0-9], special characters, and space
+        // All valid characters
         assertTrue(Description.isValidDescription(
-                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUWXYZ1234567890~!@#$%^&*()_+`-=[];',./{}:\"<>?\\| "));
+                "ABCDEFGHIJKLMNOPQRSTUWXYZabcdefghijklmnopqrstuvwxyz1234567890 "));
     }
 }

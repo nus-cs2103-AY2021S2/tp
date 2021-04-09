@@ -8,6 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -32,7 +35,7 @@ public class AddIssueCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ROOM_NUMBER + "10-100 "
             + PREFIX_DESCRIPTION + "Broken light "
-            + PREFIX_TIMESTAMP + "2020/01/12 3:30pm "
+            + PREFIX_TIMESTAMP + "2020/01/12 03:30pm "
             + PREFIX_STATUS + "pending "
             + PREFIX_CATEGORY + "furniture "
             + PREFIX_TAG + "HIGH";
@@ -41,25 +44,40 @@ public class AddIssueCommand extends Command {
     public static final String MESSAGE_NO_SUCH_ROOM = "There is no such room";
     public static final String MESSAGE_DUPLICATE_ISSUE = "This issue already exists in SunRez";
 
+    private final Logger logger = LogsCenter.getLogger(AddIssueCommand.class);
+
     private final Issue toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Issue}
+     * Creates an AddIssueCommand to add the specified {@code issue}.
+     *
+     * @param issue The issue to add.
+     * @throws NullPointerException If {@code issue} is null.
      */
     public AddIssueCommand(Issue issue) {
         requireNonNull(issue);
         toAdd = issue;
     }
 
+    /**
+     * Executes an AddIssuecommand to add an issue.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return Result of command execution.
+     * @throws CommandException     If {@code model} is invalid.
+     * @throws NullPointerException If the {@code model} is null.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasRoom(new seedu.address.model.room.RoomNumber(toAdd.getRoomNumber().value))) {
+            logger.warning("Non existent room given to iadd command");
             throw new CommandException(MESSAGE_NO_SUCH_ROOM);
         }
 
         if (model.hasIssue(toAdd)) {
+            logger.warning("Duplicate issue given to iadd command");
             throw new CommandException(MESSAGE_DUPLICATE_ISSUE);
         }
 
