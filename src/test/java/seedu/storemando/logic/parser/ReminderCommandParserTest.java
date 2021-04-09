@@ -31,7 +31,8 @@ public class ReminderCommandParserTest {
     @Test
     public void parse_validArgs_returnsReminderCommand() {
         long twoWeeksInDays = 14;
-        ReminderCommand expectedReminderCommand = new ReminderCommand(new ItemExpiringPredicate(twoWeeksInDays));
+        ReminderCommand expectedReminderCommand = new ReminderCommand(new ItemExpiringPredicate(twoWeeksInDays),
+            2, "weeks");
         assertParseSuccess(parser, "2 weeks", expectedReminderCommand);
 
         long negativeThreeDays = -3;
@@ -45,12 +46,14 @@ public class ReminderCommandParserTest {
         long zeroDays = 0;
         assertParseSuccess(parser, "0 day", new ReminderCommand(new ItemExpiringPredicate(zeroDays)));
         assertParseSuccess(parser, "0 days", new ReminderCommand(new ItemExpiringPredicate(zeroDays)));
+
     }
 
     @Test
     public void parse_validArgsWithMultipleWhitespace_returnsReminderCommand() {
         long twoWeeksInDays = 14;
-        ReminderCommand expectedReminderCommand = new ReminderCommand(new ItemExpiringPredicate(twoWeeksInDays));
+        ReminderCommand expectedReminderCommand = new ReminderCommand(new ItemExpiringPredicate(twoWeeksInDays),
+            2, "weeks");
 
         assertParseSuccess(parser, "2 weeks \t \n \t", expectedReminderCommand);
         assertParseSuccess(parser, "\t \n \t 2 weeks", expectedReminderCommand);
