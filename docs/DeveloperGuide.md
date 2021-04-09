@@ -2,6 +2,17 @@
 layout: page
 title: Developer Guide
 ---
+
+RemindMe Developer Guide
+---
+RemindMe is a reminder application that features a combination of a list and a calendar. RemindMe makes use of both 
+Graphical User Interface(GUI) and Command Line Input(CLI). The target users for RemindMe are National University of 
+Singapore(NUS) School of Computing (SOC) students. SOC students can enjoy the benefits of CLI and GUI, which is not 
+common in reminder applications in the current market. Users can use RemindMe to store their modules, assignments, exams, 
+contacts and general events. RemindMe aims to reorganise students' hectic lives and solve specific needs of SOC students.
+
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 
 * **[1. Setting up, getting started](#1-setting-up-getting-started)**
@@ -102,12 +113,9 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete m/CS2103 a/1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("clear m/")` API call.
 
-![Interactions Inside the Logic Component for the `delete m/CS2103 a/1` Command](images/DeleteFeatureSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+![Interactions Inside the Logic Component for the `clear m/` Command](images/ClearFeatureSequenceDiagram.png)
 
 ### 2.4 Model component
 
@@ -230,7 +238,8 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 <br>
 <br>
 
-**Step 3:** In `FindCommandParser#parseCommand`, your input will be tokenized using `ArgumentTokenizer`. `ArgumentTokenizer` uses your input, then searches for the prefixes and returns the `ArgumentMultimap`.
+**Step 3:** In `FindCommandParser#parseCommand`, your input will be tokenized using `ArgumentTokenizer`. 
+`ArgumentTokenizer` uses your input, then searches for the prefixes and returns the `ArgumentMultimap`.
 <br>
 <br>
 
@@ -239,20 +248,23 @@ Given below is an example usage scenario and how the find mechanism behaves at e
     Module: `m/`: `FindModuleCommandPaser`
     Person: `n/`: `FindPersonCommandParser`
     General Event: `g/`: `FindGeneralEventParser`  
-    if it is an unknown prefix, `parseCommand` will throw a ParseException and returns a `FindMessageUsage`. Since the input is `m/`, `FindModuleCommandPaser` will be returned.
-
+    if it is an unknown prefix, `parseCommand` will throw a ParseException and returns a `FindMessageUsage`. 
+    Since the input is `m/`, `FindModuleCommandPaser` will be returned.
 <br>
 
-**Step 5:** In `FindModuleCommandPaser`, `FindModuleCommandPaser#parse` is called. Again `ArgumentMultimap` is created using `ArgumentTokenizer` but only with `Module` prefix: `m/`. The class diagram shows the Parser class diagram when passing your input into the appropriate `FindModuleCommand`.  
+**Step 5:** In `FindModuleCommandPaser`, `FindModuleCommandPaser#parse` is called. Again `ArgumentMultimap` is created 
+using `ArgumentTokenizer` but only with `Module` prefix: `m/`. The class diagram shows the Parser class diagram when 
+passing your input into the appropriate `FindModuleCommand`.  
 <br>
-<br>
-
-![FindCommandParserClassDiagram](images/FindCommandParserClassDiagram.png)
 <br>
 
 **Step 6:** The `parse` method does a few checks:
 
-* If there isn't the `PREFIX`: `m/` present, or the preamble of the `PREFIX` is not empty, or your search input after the `PREFIX` is whitespaces, then `parse` method will throw `ParseException` and returns a `FindMessageUsage` for `Module`.
+* If there isn't the `PREFIX`: 
+    * `m/` present, or 
+    * the preamble of the `PREFIX` is not empty, or 
+    * your search input after the `PREFIX` is whitespaces, 
+  * then `parse` method will throw `ParseException` and returns a `FindMessageUsage` for `Module`.
 * Else your inputs is split into individual keywords, and contained as a `List of keywords`.
 <br>
 <br>
@@ -262,17 +274,26 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 <br>
 
 **Step 8:** `FindModuleCommand` is executed:
-    
 * Using the `predicate`, the `Model#updateFilteredModuleList` is called with `predicate` as input.
-* Using the `FilteredList<Module>#setPredicate` returns the filtered list of modules with titles matching to any of the `keywords` as a `CommandResult`.
+* Using the `FilteredList<Module>#setPredicate` returns the filtered list of modules with titles matching to any of the 
+  `keywords` as a `CommandResult`.
+<br>
 <br>
 
-**Step 9:** The `CommandResult` is logged in the `logger` and using `resultDisplay#setFeedacktoUser`, returning `resultDisplay`. Using `resultDisplay#setText` shows the `CommandResult` in the `GUI`.
+**Step 9:** The `CommandResult` is logged in the `logger` and using `resultDisplay#setFeedacktoUser`, returning 
+`resultDisplay`. Using `resultDisplay#setText` shows the `CommandResult` in the `GUI`.
 <br>
 <br>
-<br>
+
 The following sequence diagram shows how the find operation works:
-![FindSequenceDiagram](images/FindSequenceDiagram.png)  
+![FindSequenceDiagram](images/findcommand/FindSequenceDiagram.png)<br>
+*[Find Sequence Diagram for `find m/CS2101`]*
+
+The following activity diagram summarizes what happens when a user executes a `find m/CS2101` command:<br>
+![FindActivityDiagram](images/findcommand/FindActivityDiagram.png)<br>
+*[Find Activity Diagram for `find m/CS2101`]*
+<br>
+<br>
 
 ### 3.3 Delete Assignment
 
@@ -508,7 +529,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                 | I want to …​                | So that I can…​                                                     |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see instructions help page     | refer to help page when I forget how to use the App |
-| `* * *`  | user                                       | exit the App                   | |
+| `* * *`  | user                                       | exit the App                   | use other applications on my computer |
 | `* * *`  | student taking a module                    | add module                     | keep track of the module exams, assignments |
 | `* * *`  | student having assignments                 | add assignments to module      | keep track of the assignment deadline |
 | `* * *`  | student having exams                       | add exams to module            | keep track of the exam start time |
@@ -519,15 +540,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student                                    | edit a exam                    | can adjust schedule when there is a change of plan |
 | `* * *`  | user                                       | edit a person and birthday     | fine tune person name and birthday according |
 | `* * *`  | user                                       | edit a general event           | adjust schedule when there is a change of plan |
-| `* * *`  | student                                    | delete a module                | |
-| `* * *`  | student                                    | delete a assignment            | |
-| `* * *`  | student                                    | delete a exam                  | |
-| `* * *`  | user                                       | delete a person and birthday   | |
-| `* * *`  | user                                       | delete a general event         | |
+| `* * *`  | student                                    | delete a module                | I can remove a module I do not require |
+| `* * *`  | student                                    | delete a assignment            | I can remove an assignment once it's done |
+| `* * *`  | student                                    | delete a exam                  | I can remove an exam after I completed it |
+| `* * *`  | user                                       | delete a person and birthday   | I can remove a person I am no longer close to |
+| `* * *`  | user                                       | delete a general event         | I can remove an event that is already over |
 | `* * `   | student                                    | find a module                  | quickly locate details for module |
 | `* * `   | user                                       | find a person                  | quickly locate details for person |
 | `* * `   | user                                       | find a general event           | quickly locate details for event |
-| `* * `   | user                                       | see all entries after finding command | |
+| `* * `   | user                                       | see all entries after finding command | I can have a big picture of all my entries |
 | `* * `   | student                                    | mark my assignments as done    | identify if assignments are done or not |
 | `* * `   | user                                       | clear App                      | quickly delete all details in App |
 | `* * `   | student                                    | clear modules                  | quickly delete all details for modules |
@@ -994,12 +1015,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Module**: A school module consisting of module name/module id. 
-* **Examination**: Consists of a start time and date which it occurs on under a relevant module.
-* **Event**: Consists of a start time and date which it occurs on.
-* **Assignment**: Consists of a deadline under a relevant module.
-* **GUI**: Graphic User Interface, the visible interface the user sees for the application.
+Term | Meaning
+---|---
+**Mainstream OS** | Windows, Linux, Unix, OS-X.
+**Module** | A school module consisting of module name/module id. 
+**Examination** | Consists of a start time and date which it occurs on under a relevant module.
+**Event** | Consists of a start time and date which it occurs on.
+**Assignment** | Consists of a deadline under a relevant module.
+**GUI** | Graphic User Interface, the visible interface the user sees for the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
