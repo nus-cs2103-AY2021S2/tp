@@ -3,7 +3,10 @@ package seedu.address.logic.commands.alias;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.logging.Logger;
+
 import seedu.address.commons.core.Alias;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -28,6 +31,8 @@ public class AliasCommand extends Command {
 
     public static final String MESSAGE_RECURSIVE =
             "Recursive alias is not allowed";
+
+    private final Logger logger = LogsCenter.getLogger(AliasCommand.class);
 
     private final Alias alias;
 
@@ -57,16 +62,22 @@ public class AliasCommand extends Command {
 
         // if the command word is a reserved keyword
         String aliasName = alias.getAliasName();
+        assert aliasName != null;
+
         if (model.getAliasMapping().isReservedKeyword(aliasName)) {
+            logger.warning("Reserved keyword for alias name given");
             throw new CommandException(String.format(MESSAGE_RESERVED_KEYWORD, aliasName));
         }
         boolean isExisting = model.getAliasMapping().containsAlias(aliasName);
 
         // if the command word is recursive keyword
         String commandWord = alias.getCommand().stripLeading().split("\\s+")[0];
+        assert commandWord != null;
+
         if (commandWord.equals(aliasName)
                 || commandWord.equals(COMMAND_WORD)
                 || model.getAliasMapping().isRecursiveKeyword(commandWord)) {
+            logger.warning("Recursive alias given");
             throw new CommandException(MESSAGE_RECURSIVE);
         }
 

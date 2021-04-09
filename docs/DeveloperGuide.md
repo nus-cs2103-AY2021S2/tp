@@ -13,15 +13,80 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+**SunRez** is a desktop app designed for college residential staff to efficiently manage student housing services. It
+features a Graphical User Interface (GUI) but is optimized for use via a Command Line Interface (CLI).
+
+**SunRez** has the following features:
+* Keeps track of maintenance issues
+* Keeps track of student records
+* Keeps track of room records
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Who should read this guide?**
+
+This Developer Guide (DG) specifies the architecture, design, implementation, requirements and manual test cases for
+SunRez, as well as key design decisions and considerations.
+
+It is intended for developers, QA testers, and anyone who may wish to contribute to the development of SunRez (or
+learn from it).
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **About this guide**
+
+### AddressBook
+
+SunRez was built from an open-source starter project called [Address Book](https://se-education.org/addressbook-level3/).
+Thus, for legacy reasons many internal components of SunRez have traces of AddressBook. For example, namespaces in the
+project start with `seedu.address`, and the primary data class of the Model component is named `AddressBook`. A future
+refactoring to rename all aspects of SunRez is planned, but until then, developer-facing parts of SunRez will contain
+traces of Address Book. That said, user-facing aspects of SunRez (UI, file names, etc.) should be free of references
+to Address Book.
+
+### Diagrams
+
+This guide uses UML diagrams to better illustrate certain design ideas and structures. The following sub-sections
+detail how contributors can read, create and edit these diagrams, as well as various things to note about the diagrams.
+
+#### How to read
+
+If you are unfamiliar with how to read UML diagrams, check out [this chapter](https://se-education.org/se-book/uml/index.html)
+of the free online SE-EDU textbook.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note about sequence diagrams:** <br>
+
+Some sequence diagrams in this guide have an X on the lifeline of an object to indicate its deletion. These should be
+located at the end of the lifeline. However, due to a limitation of PlantUML, an object's lifeline will extend past
+the X to the end of the diagram.
+</div>
+
+#### How to create and edit
+
+This project uses [PlantUML](https://plantuml.com/) to create diagrams in this document. These diagrams are generated
+from `.puml` files which can be found in the [diagrams](https://github.com/AY2021S2-CS2103-T14-1/tp/tree/master/docs/diagrams)
+folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html)
+to learn how to create and edit diagrams.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Design**
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview
+of each component.
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -111,11 +176,11 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the SunRez data in json format and read it back.
 
 ### Common classes
 
@@ -131,8 +196,8 @@ This section describes some noteworthy details on how certain features are imple
 The Resident family of features consist of the following features: Add Resident, Edit Resident, List Resident, Find Resident and Delete Resident.
 
 #### The Resident Class
-The Resident class consists of 5 fields, each of which contain their own methods to verify their respective input. 
-This allows for a low degree of coupling, and individual fields can change their input verification rules without affecting the other classes. 
+The Resident class consists of 5 fields, each of which contain their own methods to verify their respective input.
+This allows for a low degree of coupling, and individual fields can change their input verification rules without affecting the other classes.
 Similarly, the Resident class can expand to contain more fields without affecting existing fields too.
 
 Examples of verification functions in each of the fields include `Resident#isValidName()` etc.
@@ -145,7 +210,7 @@ The `Resident` objects are stored in a `UniqueResidentList` which is held by `Ad
 This section will detail the implementation of the Add Resident feature via the `radd` command,
 
 ##### Overview of Insertion Process
-The AddResidentCommand is triggered through the use of `radd` followed by valid parameters such as name, phone, etc. 
+The AddResidentCommand is triggered through the use of `radd` followed by valid parameters such as name, phone, etc.
 The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, a Resident object is constructed and added to the model and saved to the backing store. Upon successful insertion, a feedback message is displayed to the user.
 
 This process is summarised in the diagram below
@@ -159,7 +224,7 @@ The diagram below details how the user's command to add a resident propagates th
 
 ### Room Features
 
-The Room family of features consist of the following features: Add Room, Edit Room, List Rooms, Find Room and Delete Room. 
+The Room family of features consist of the following features: Add Room, Edit Room, List Rooms, Find Room and Delete Room.
 
 #### The Room Class
 The Room class consists of 4 fields, each of which contain their own methods to verify their respective input. This allows for a low degree of coupling, and individual fields can change their input verification rules without affecting the other classes. Similarly, the Room class can expand to contain more fields without affecting existing fields too.
@@ -189,8 +254,8 @@ The `Room` objects are stored in a `UniqueRoomList` which is held by `AddressBoo
 #### Add Room
 This section will detail the implementation of the Add Room feature via the `oadd` command,
 
-##### Overview of Insertion Process 
-The AddRoomCommand is triggered through the use of `oadd` followed by valid parameters such as room number, type, etc. The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, a Room object is constructed and added to the model and saved to the backing store. Upon successful insertion, a feedback message is displayed to the user. 
+##### Overview of Insertion Process
+The AddRoomCommand is triggered through the use of `oadd` followed by valid parameters such as room number, type, etc. The entire command string must then be parsed to extract the parameters that were inserted, and if they are all valid, a Room object is constructed and added to the model and saved to the backing store. Upon successful insertion, a feedback message is displayed to the user.
 
 This process is summarised in the diagram below
 ![Adding a Room](images/room/AddRoomCommandActivityDiagram.png)
@@ -201,7 +266,7 @@ The `AddRoomCommand` inherits from the `Command` object and overrides the `execu
 The inheritance from `Command` allows `Logic` to deal with and manipulate polymorphic `Command` objects without dealing with the specific implemetations of each `Command` object.
 
 ##### Detailed execution pathway
-The diagram below details how the user's command to add a room propagates through the system to eventually add a room. 
+The diagram below details how the user's command to add a room propagates through the system to eventually add a room.
 
 ![Adding a Room](images/room/AddRoomCommandSeqDiagram.png)
 
@@ -312,21 +377,25 @@ The diagram below details how the user's command to add an issue propagates thro
 The `Alias` feature allows users to define a shortcut for a longer command that is often used. The longer command can then be executed by entering the alias instead of the full or partial command.
 
 #### Implementation
-User-defined `Alias` is stored in `AliasMapping` within `UserPrefs`. `AliasMapping` internally uses `HashMap<String, Alias>` to store the mapping between the name of an `Alias` object and itself. With `AliasMapping` included in `UserPrefs`, `UserPrefs` supports the following methods:
+User-defined `Alias` is stored in `AliasMapping` within `AddressBook`. `AliasMapping` internally uses `HashMap<String, Alias>` to store the mapping between the name of an `Alias` object and the object itself. The class diagram of `AliasMapping` and `Alias` is shown below:
 
-* `UserPrefs#getAliasMapping()` — Returns the current `AliasMapping`.
+![AliasMappingClassDiagram](images/alias/AliasMappingClassDiagram.png)
 
-* `UserPrefs#setAliasMapping(AliasMapping aliasMappings)` — Sets the current mapping to the specified mapping.
+With `AliasMapping` included in `AddressBook`, `AddressBook` supports the following methods:
 
-* `UserPrefs#addAlias(Alias alias)` — Adds a user-defined `Alias` to the current mapping.
+* `AddressBook#getAliasMapping()` — Returns the current `AliasMapping`.
 
-* `UserPrefs#getAlias(String aliasName)` — Returns an `Alias` based on alias name.
+* `AddressBook#setAliasMapping(AliasMapping aliasMapping)` — Sets the current mapping to the specified mapping.
 
-* `UserPrefs#containsAlias(String aliasName)` — Checks if the current mapping contains an `Alias` based on alias name.
+* `AddressBook#addAlias(Alias alias)` — Adds a user-defined `Alias` to the current mapping.
 
-* `UserPrefs#isReservedKeyword(String aliasName)` — Checks if the alias name is a reserved keyword. This prevents users from using existing commands as alias name.
+* `AddressBook#getAlias(String aliasName)` — Returns an `Alias` based on alias name.
 
-* `UserPrefs#isRecursiveKeyword(String commandWord)` — Checks if the command word is a recursive keyword. This prevents users from chaining aliases.
+* `AddressBook#containsAlias(String aliasName)` — Checks if the current mapping contains an `Alias` based on alias name.
+
+* `AddressBook#isReservedKeyword(String aliasName)` — Checks if the alias name is a reserved keyword. This prevents users from using existing commands as alias name.
+
+* `AddressBook#isRecursiveKeyword(String commandWord)` — Checks if the command word is a recursive keyword. This prevents users from chaining aliases.
 
 #### Alias creation
 User can create a new `Alias` via the `AliasCommand`. The sequence diagram below describes how an `Alias` is created.
@@ -334,7 +403,6 @@ User can create a new `Alias` via the `AliasCommand`. The sequence diagram below
 ![AliasCreationSequenceDiagram](images/alias/AliasCreationSequenceDiagram.png)
 
 #### Alias execution
-
 When a user executes a new command, `AddressBookParser` will follow these steps:
 
 1. If the input begins with an existing command word, parse it as one of those pre-defined command.
@@ -359,11 +427,11 @@ This section starts with an overview of the command history model then looks at 
 #### Implementation
 
 ##### Command History Overview
-SunRez command history is represented by a `CommandHistory`, stored in the `ModelManager`. A `CommandHistory` is 
+SunRez command history is represented by a `CommandHistory`, stored in the `ModelManager`. A `CommandHistory` is
 composed of zero or more `CommandHistoryEntry` objects, each representing a previously entered command. New entries
-can be appended to `CommandHistory`. `CommandHistory` implements the `ReadOnlyCommandHistory` interface, 
+can be appended to `CommandHistory`. `CommandHistory` implements the `ReadOnlyCommandHistory` interface,
 which provides a non-editable view of the implementing `CommandHistory`; this readonly view is used by other components
-that do not need to append to the command history. For example, the view history command reads it to display it - or a 
+that do not need to append to the command history. For example, the view history command reads it to display it - or a
 filtered portion of it - to the user.
 
 The following class diagram shows an overview of the command history subsystem and its relation to other components.
@@ -371,14 +439,14 @@ The following class diagram shows an overview of the command history subsystem a
 ![CommandHistoryModelClassDiagram](images/commandhistory/CmdHistModelClassDiagram.png)
 
 ##### How Command History is Updated
-`Logic#execute()` triggers the update. Only _after_ a command parses and executes successfully will that command's text 
+`Logic#execute()` triggers the update. Only _after_ a command parses and executes successfully will that command's text
 be appended to the command history via `Model#appendCommandHistoryEntry()`. If either parsing or execution fails,
-then `CommandHistory` will be unchanged. The following sequence diagram shows this process pictorially using the 
+then `CommandHistory` will be unchanged. The following sequence diagram shows this process pictorially using the
 example command `help`.
 
 ![CommandHistoryUpdateSequenceDiagram](images/commandhistory/CmdHistUpdateSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
+<div markdown="span" class="alert alert-info">:information_source:
 **Note:** In the sequence diagram above, `parseAndExecute()` is not an actual method; rather it is a simplification
 of a two-step process in the Logic component. The important thing to note is that `CommandHistory` is updated only
 _after_ a command is parsed and executed successfully by the Logic component.
@@ -390,29 +458,29 @@ SunRez allows the user to list the full command history, or a portion of it, thr
 `[COUNT]` is an optional integer that the user can specify to limit the number of most-recent entries to be listed.
 If `[COUNT]` is omitted, then the full command history is displayed.
 
-Viewing command history is implemented through `ViewHistoryCommand` and supported by `ReadOnlyCommandHistory`. 
-`ViewHistoryCommand#execute()` accesses command history through the view of a `ReadOnlyCommandHistory`, reads the 
-entries it needs to display, formats the entries into a message, then finally returns the message wrapped in 
+Viewing command history is implemented through `ViewHistoryCommand` and supported by `ReadOnlyCommandHistory`.
+`ViewHistoryCommand#execute()` accesses command history through the view of a `ReadOnlyCommandHistory`, reads the
+entries it needs to display, formats the entries into a message, then finally returns the message wrapped in
 a `CommandResult`, to be displayed to the user. The following sequence diagram illustrates the main interactions
-between `ViewHistoryCommand` and the Model component. It uses the example command of `history 5`. 
+between `ViewHistoryCommand` and the Model component. It uses the example command of `history 5`.
 
 ![ViewHistorySequenceDiagram](images/commandhistory/CmdHistViewHistorySequenceDiagram.png)
 
 ##### Navigate History
-The user navigates their command history via the UP and DOWN arrow keys. The UP and DOWN arrow keys respectively 
+The user navigates their command history via the UP and DOWN arrow keys. The UP and DOWN arrow keys respectively
 select the previous and next commands in history, if any.
 
-The UP and DOWN key press events are first handled by `CommandBox` in the UI component. `CommandBox` delegates the 
+The UP and DOWN key press events are first handled by `CommandBox` in the UI component. `CommandBox` delegates the
 logic of navigation and keeping track of state (which command we are selecting) to a `CommandHistorySelector`.
 The `CommandHistorySelector` is called via `#selectNext()` and `#selectPrevious()` which are expected
-to respectively return the next and previous commands in history since they were last called. Upon receiving the 
+to respectively return the next and previous commands in history since they were last called. Upon receiving the
 relevant commands from `CommandHistorySelector`, `CommandBox` will populate its text box with that command's text.
 The following sequence diagram shows the aforementioned relationships.
 
 ![AccessHistorySequenceDiagram](images/commandhistory/CmdHistAccessHistorySequenceDiagram.png)
 
 `CommandHistorySelector#selectLast()` can also be called to reset the selection to the most recent command in history.
-This is useful, for example, when a user has navigated to the middle of their command history then executes a new 
+This is useful, for example, when a user has navigated to the middle of their command history then executes a new
 command. At this point, we want navigation to start from the most recent command again - not where the user was
 before he/she executed a command.
 
@@ -420,18 +488,18 @@ Currently, SunRez uses a `SuppliedCommandHistorySelector` as its `CommandHistory
 a `Supplier<ReadOnlyCommandHistory>` to view SunRez command history whenever it is called to select a new entry.
 
 ##### Save/Load History
-SunRez automatically saves command history after each command execution, and loads command history (if any) upon app 
-start-up. The command history is saved in a plain-text file at `[JAR_file_location]/data/commandhistory.txt`. 
+SunRez automatically saves command history after each command execution, and loads command history (if any) upon app
+start-up. The command history is saved in a plain-text file at `[JAR_file_location]/data/commandhistory.txt`.
 
 Saving and loading is supported by `CommandHistoryStorage`, an interface that exposes read and write methods. SunRez
 currently uses an implementation of this interface called `PlainTextCommandHistoryStorage`, which serializes each
-command history entry as a single line of plain text in the command history file. The class structure is shown 
+command history entry as a single line of plain text in the command history file. The class structure is shown
 in the class diagram in the _Command History Overview_ subsection above.
 
 Command history is saved immediately after it is updated. Since command history is only updated after a successful
-command execution, this implies that only successful commands are saved. In order to save command history, 
-`CommandHistoryStorage` creates a serialized string from a `ReadOnlyCommandHistory` view of the command history, then 
-writes it to disk using `FileUtil#writeToFile()` as a helper. The following activity diagram shows a simplified flow 
+command execution, this implies that only successful commands are saved. In order to save command history,
+`CommandHistoryStorage` creates a serialized string from a `ReadOnlyCommandHistory` view of the command history, then
+writes it to disk using `FileUtil#writeToFile()` as a helper. The following activity diagram shows a simplified flow
 of the storage process from command execution to writing the command history to file.
 
 ![CommandHistoryStorageActivityDiagram](images/commandhistory/CommandHistoryStorageActivityDiagram.png)
@@ -443,21 +511,21 @@ of the storage process from command execution to writing the command history to 
 * **Alternative 1 (current choice):** Only record valid commands (commands which parse and execute successfully).
     * Pros:
         * Less cluttered command history.
-        * A User can still easily correct typos in a failed command because SunRez does not consume the input if it 
+        * A User can still easily correct typos in a failed command because SunRez does not consume the input if it
           fails to execute.
-    * Cons: 
+    * Cons:
         * Behaves less like a regular shell program, so the user might be expecting different behavior.
 
 * **Alternative 2:** Record all command text that the user tries to execute.
     * Pros:
         * Behaves more like a regular shell program.
-    * Cons: 
+    * Cons:
         * More cluttered command history.
         * Arguably does not help the user correct typos in failed commands (see Alternative 1: Pros).
 
 ##### Aspect: Should command history selection logic be in `CommandBox`?
 
-* **Alternative 1 (current choice):** No, abstract it out to an interface `CommandHistorySelector` with a backing 
+* **Alternative 1 (current choice):** No, abstract it out to an interface `CommandHistorySelector` with a backing
   implementation.
     * Pros:
         * Follows SRP because `CommandBox` is part of the UI component, but history selection is logic. If selection
@@ -475,91 +543,6 @@ of the storage process from command execution to writing the command history to 
         * Harder to unit test because selection logic is bundled with UI.
         * Pollutes a UI component with details of logic. If we wish to change the selection logic in future but not
           the UI, `CommandBox` will still need to change.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -596,32 +579,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a … | I want to … | So that I can…|
 | - | - | - | - |
-| `* * *` | new user | see usage instructions | refer to instructions if I forget how to use the app |
 | `* * *` | confused user | have a help command | learn how to use the application |
-| `* * *` | user | add a new person | |
-| `* * *` | user | add issues | |
-| `* * *` | user | see a list of pending tasks sorted by deadline | prioritise which to do |
-| `* * *` | user | search for tasks | |
+| `* * *` | user | add issues | track room issues and their status |
+| `* * *` | user | see a list of pending issues sorted by deadline | prioritise which issue to work on |
+| `* * *` | user | search for issues | find issues by their room number |
+| `* * *` | user | search for issues | find issues by their description |
 | `* * *` | user | close issues | focus on open issues |
-| `* * *` | user | update issues | |
-| `* * *` | user | remove issues | |
-| `* * *` | user | add residents | |
-| `* * *` | user | search for residents | |
+| `* * *` | user | update issues | ensure issues have the latest and correct information |
+| `* * *` | user | remove issues | not worry about issues that are no longer relevant |
+| `* * *` | user | add residents | track and manage residents who are staying or want to stay in the hostel |
+| `* * *` | user | search for residents | find a specific resident's information |
 | `* * *` | user | update resident details | ensure their information is up to date |
-| `* * *` | user | remove residents | |
-| `* * *` | user | add new rooms | |
+| `* * *` | user | remove residents | stop tracking residents who are not in the hostel or don't wish to stay anymore |
+| `* * *` | user | add new rooms | track and manage rooms in the hostel |
 | `* * *` | user | see a list of rooms with their statuses | know which rooms are available |
-| `* * *` | user | search for rooms | |
-| `* * *` | user | update room details | |
-| `* * *` | user | remove rooms | |
-| `* *` | user | see both available rooms and unassigned residents side by side | easily match residents to rooms |
+| `* * *` | user | search for rooms | find a specific room or rooms matching a specific criteria |
+| `* * *` | user | update room details | ensure a room's information is up to date |
+| `* * *` | user | remove rooms | stop tracking rooms which are not in the hostel |
+| `* * *` | user | allocate a resident to a room | ensure that a resident and room are linked |
+| `* * *` | user | deallocate a resident from a room | ensure that a resident who is no longer living in a room is not associated with it |
 | `* *` | careless user | undo previous commands | easily fix any errors I might make |
 | `* *` | careless user | redo previous commands | easily fix an erroneous undo |
-| `* * *` | user | allocate a resident to a room | |
-| `* * *` | user | deallocate a resident from a room | |
 | `* *` | power user | access my command history | efficiently repeat similar commands |
 | `* *` | power user | access command history from previous sessions | easily reuse commands from previous sessions |
-| `* *` | power user | create aliases for longer commands | avoid typing the same command multiple times |
+| `* *` | power user | create aliases for longer commands | shorten commands to be more efficient to type |
 | `* *` | power user | delete aliases that are no longer needed | avoid triggering the wrong command |
 
 ## Use cases
@@ -642,15 +623,12 @@ Use case ends.
 
 * 1a. The resident's details are incorrectly formatted (e.g. phone number/email/year format does not conform, OR room number is invalid).
     * 1a1. SunRez displays an error stating which field is incorrectly formatted and requests the user to try again after fixing the stated error.
-    
+
         Use case ends.
-* 1b. The resident's phone number or email are in use by an existing resident.
-    * 1b1. SunRez displays an error stating which field is already in use and requests the user to try again after fixing the stated error.
-    
-        Use case ends.
+
 * 2a. SunRez encounters an error while saving the content.
     * 2a1. SunRez shows an error message and requests the user to try their command again.
-    
+
         Use case ends.
 
 
@@ -666,7 +644,7 @@ Use case ends.
 **Extensions**
 
 * 2a. The list is empty.
-    
+
     Use case ends.
 
 
@@ -683,7 +661,7 @@ Use case ends.
 
 * 2a. There are no residents matching the keywords.
     * 2a1. An empty list is displayed.
-    
+
         Use case ends.
 
 ### UC-004 Edit a resident record
@@ -700,11 +678,11 @@ Use case ends.
 **Extensions**
 
 * 2a. The list of residents is empty.
-    
+
     Use case ends.
-* 3a. The resident's details are invalid (e.g phone number/email/dob format does not conform, OR room number is invalid).
+* 3a. The resident's details are invalid (e.g phone number/email/year format does not conform).
     * 3a1. SunRez shows an error message stating which field is incorrectly formatted and requests the user to try again.
-    
+
         Use case resumes at step 2.
 
 
@@ -722,11 +700,11 @@ Use case ends.
 **Extensions**
 
 * 2a. The list of residents is empty.
-    
+
     Use case ends.
 * 3a. The specified resident does not exist.
     * 3a1. SunRez shows an error message.
-    
+
         Use case resumes at step 2.
 
 
@@ -769,8 +747,8 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The list of rooms is empty. 
-    
+* 2a. The list of rooms is empty.
+
     Use case ends.
 * 3a. The room's details are invalid (e.g. room number format is not valid).
     * 3a1. SunRez shows an error message stating which field is incorrectly formatted and requests the user to try again.
@@ -794,7 +772,7 @@ Use case ends.
 
 **Extensions**
 * 1a. The issue's details are invalid (e.g. invalid room number).
-    * 1a1. SunRez shows an error stating which field is incorrectly formatted and requests the user to try again after fixing the stated error. 
+    * 1a1. SunRez shows an error stating which field is incorrectly formatted and requests the user to try again after fixing the stated error.
 
         Use case ends.
 
@@ -821,11 +799,11 @@ Use case ends.
 **Extensions**
 
 * 2a. The list of issue is empty.
-    
+
     Use case ends.
 * 3a. The issue's details are invalid (e.g invalid room number).
     * 3a1. SunRez shows an error message stating which field is incorrectly formatted and requests the user to try again.
-    
+
         Use case resumes at step 2.
 
 
@@ -890,19 +868,24 @@ Use case ends.
 
 **MSS**
 
-1. User requests to list unassigned residents and unallocated rooms.
-2. SunRez displays unassigned residents and unallocated rooms side-by-side.
-3. User requests to allocate a room to a resident.
-4. SunRez allocates the room and saves the changes.
+1. User requests to list unassigned residents.
+2. SunRez displays unassigned residents.
+3. User requests to allocate a resident to a room.
+4. SunRez allocates the resident to the room and saves the changes.
 
 **Extensions**
 
-* 2a. There are no unassigned residents or unassigned.
+* 2a. There are no unassigned residents.
     
     Use case ends.
-* 3a. The given index is invalid.
-    * 3a1. SunRez shows an error message.
+* 3a. The given resident or room does not exist.
+    * 3a1. SunRez shows an error message.   
+      
+        Use case resumes at step 2.
 
+* 3b. The given resident or room have already been assigned.
+    * 3b1. SunRez shows an error message. 
+      
         Use case resumes at step 2.
 
 
@@ -910,21 +893,25 @@ Use case ends.
 
 **MSS**
 
-1. User requests to list room allocations.
-2. SunRez displays rooms, each with its corresponding allocated resident.
-3. User requests to deallocate a room based on the index from the list displayed in step 2.
-4. SunRez deallocates the room and saves the changes.
+1. User requests to list the residents.
+2. SunRez displays residents, each with its corresponding allocated room, if any.
+3. User requests to deallocate a resident from its room.
+4. SunRez deallocates the resident from its room and saves the changes.
 
 **Extensions**
 
-* 2a. There are no unassigned residents or unassigned.
+* 2a. There are no assigned residents.
 
-    Use case ends.
-* 3a. The given index is invalid.
+  Use case ends.
+* 3a. The given resident does not exist.
     * 3a1. SunRez shows an error message.
 
-        Use case resumes at step 2.
+      Use case resumes at step 2.
 
+* 3b. The given resident does not have an existing allocation.
+    * 3b1. SunRez shows an error message.
+        
+        Use Case resumes at step 2.
 
 ### UC-021 Access Command History
 
@@ -957,12 +944,12 @@ Use case ends.
 **Extensions**
 
 * 2a. Alias name is invalid.
-    * 2a1. SunRez shows an error message. 
+    * 2a1. SunRez shows an error message.
 
         Use case ends.
 
 * 3a. An alias with the same name exists.
-    * 3a1. SunRez overwrites the existing alias. 
+    * 3a1. SunRez overwrites the existing alias.
 
         Use case ends.
 
@@ -986,17 +973,17 @@ Use case ends.
 ## Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 records (residents, rooms and issues) without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. Should be able to hold up to 1000 records (residents, rooms and issues) without more than 1 second of lag for
+   typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+   be able to accomplish most of the tasks faster using commands than using the mouse.
 4. A user should be able to learn the basic commands within half an hour of initial usage.
 5. Should work without the internet.
 6. Should be a highly portable to enable transfer between different computers with different OS.
-7. Executable program should occupy less than 20MB on the computer.
+7. The executable program (excluding data files) should occupy less than 20 MB of disk space on the computer.
 8. Should not require an installer.
 9. The data should not be stored in a Database Management System (DBMS).
 10. Should not depend on any remote server.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -1012,8 +999,8 @@ Use case ends.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a
+starting point for testers to work on; testers are expected to do more *exploratory* testing.
 
 </div>
 
@@ -1021,24 +1008,280 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy it into an empty folder.
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    2. Double-click the jar file. <br>
+       Expected: Shows the SunRez user interface with a set of sample data. The window size may not be optimum.
 
 2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file. <br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases … }_
+3. Saving command history
 
+    1. Enter a few successful commands in SunRez. Then check the command history with `history`. Close the window.
 
-### Saving data
+    2. Re-launch the app by double-clicking the jar file. Check the command history again with `history`. <br>
+       Expected: The same command history (possibly with one extra `history` and/or `exit` command) is displayed.
 
-1. Dealing with missing/corrupted data files
+### Resident Data
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Adding residents
+    1. Prerequisites: There is no existing resident named `John Doe`. 
+    2. Test case: `radd n/John Doe p/98765432 e/johnd@example.com y/1` <br>
+       Expected: Resident is added.
+    3. Incorrect `radd` commands to try. <br>
+       `radd n/John 123 p/98765432 e/johnd@example.com y/1`, where name is wrong. <br>
+       `radd n/John Doe p/9876abcd e/johnd@example.com y/1`, where phone number is wrong. <br>
+       `radd n/John Doe p/98765432 e/johndexample.com y/1`, where email is wrong. <br>
+       `radd n/John Doe p/98765432 e/johnd@example.com y/7`, where year is wrong. <br>
+       Expected: An error message indicating the problem is shown, and how to rectify it.
+2. Editing residents
+    1. Prerequisites: There is at least 1 resident displayed and no existing resident named `Jane Doe` <br>
+    1. Test case: `redit 1 n/Jane Doe` <br>
+       Expected: Resident in first index is edited.
+    2. Incorrect `redit` commands to try. <br>
+       `redit ab n/Jane Doe`, where index is wrong. <br>
+       `redit X n/Jane Doe`, where X is an index that is out of bounds. <br>
+       `redit 1 n/John 122`, where name format is wrong. <br>
+       Expected: An error message indicating the problem is shown, and how to rectify it.
+3. Deleting residents
+    1. Prerequisites: There is at least 1 resident displayed and the resident is not allocated to any room. <br>
+    2. Test case: `rdel 1` <br>
+       Expected: Resident in first index is deleted.
+    3. Incorrect `rdel` commands to try. <br>
+       `rdel 0`, where index is wrong. <br>
+       `rdel X`, where X is an index that is out of bounds. <br>
+       Expected: An error message indicating the problem is shown, and how to rectify it.
+4. Listing residents
+    1. Prerequisites: There are residents to be listed. <br>
+    2. Test case: `rlist` <br>
+       Expected: All residents are listed.
+5. Listing unallocated residents
+    1. Prerequisites: At least 1 resident exists and the resident is unallocated to a room. <br>
+    2. Test case: `rulist` <br>
+       Expected: All unallocated residents are listed.
+6. Finding residents
+    1. Prerequisites: There are a few residents. <br>
+    2. Test case: `rfind KEYWORD` <br>
+       Expected: Residents whose names have words fully matching `KEYWORD` are listed.
 
-2. _{ more test cases … }_
+### Issue
+
+1. Adding an issue
+
+    1. Prerequisites: Room `01-234` exists in SunRez.
+
+    2. Test case: `iadd r/01-234 d/Collapsed ceiling` <br>
+       Expected: A feedback message in the result box indicating the issue was successfully added. The issue should be visible in the issue panel.
+
+    3. Test case: `iadd r/01-234 d/Collapsed ceiling t/3000/01/01 12:00pm` or any timestamp in the future. <br>
+       Expected: An error message indicating that timestamps should not be in the future.
+
+    4. Test case:
+        * `iadd r/01-234 d/Collapsed ceiling t/2020/01/01 12:00pm s/pending c/Ceiling g/a` <br>
+        * `iadd r/01-234 d/Collapsed ceiling t/2020/01/01 12:00pm s/pending c/Ceiling g/b` <br>
+       Expected: An error message indicating that the issue already exists in SunRez as the issue to be added is exactly the same excluding tags.
+
+3. Finding issues
+
+    1. Prerequisites: Issues belonging to room `01-234` and `03-325` with descriptions `Broken table` and `Door broke in half` respectively.
+
+    2. Test case: `ifind 01` <br>
+       Expected: Issue panel should be filtered to show all rooms with `01` in their room number, description, or tag. This includes the `Broken table` issue for `01-234`.
+
+    3. Test case: `ifind broke` <br>
+       Expected: Issue panel should be filtered to show all rooms with `broke` (case insensitive) in their room number, description, or tag. This includes both issues stated in the prerequisites.
+
+    4. Test case: `ifind table door` <br>
+       Expected: Issue panel should be filtered to show all rooms with `broke` or `door` (both case insensitive) in their room number, description, or tag. This includes both issues stated in the prerequisites.
+
+    5. Test case: `ifind abcdefg` <br>
+       Expected: Issue panel should be filtered to show all rooms with `abcdefg` (case insensitive) in their room number, description, or tag. The issues in the prerequisite should not be in the panel.
+
+    6. Test case: `ifind` <br>
+       Expected: An error message indicating invalid command format.
+
+4. Editing issues
+
+    1. Prerequisites: There are only 2 issues: room `01-234` and `03-325` with descriptions `Broken table` and `Door broke in half` respectively listed in this order.
+
+    2. Test case: `iedit 1 d/Exploding cabinet` <br>
+       Expected: The first issue's description is changed from `Broken table` to `Exploding cabinet`.
+
+    3. Test case: `iedit 2 r/01-234` <br>
+       Expected: The second issue's room number is set to `01-234`.
+
+    4. Test case `iedit 2 r/99-999` <br>
+       Expected: An error message indicating no such room.
+
+    5. Other incorrect `iedit` commands to try: <br>
+        * `iedit x` with at least 1 valid parameter given and where `x` is either a non-positive number or not a number at all. E.g. `iedit -1 r/01-234` and `iedit a d/ABCDEF`. <br>
+          Expected: An error message indicating the type of error.
+        * `iedit x` with at least 1 invalid parameter given and where `x` is a valid index. <br>
+          Expected: An error message indicating the constraints of the invalid paramter.
+
+5. Closing issues
+
+    1. Prerequisites: There is at least 1 issue with status `Pending`.
+
+    2. Test case: `iclo x` where x is the index of a issue with status `Pending`. <br>
+       Expected: The issue's status is set to `Closed`.
+
+    3. Test case: `iclo x` where x is the index of a issue with status `Closed`. <br>
+       Expected: An error message indicating that the issue is already closed.
+
+6. Delete issues
+
+    1. Prerequisites: There is at least 1 issue.
+
+    2. Test case: `idel x` where x is valid index. <br>
+       Expected: The issue is deleted.
+
+### Allocation and Deallocation
+
+1. Allocating residents to rooms
+    1. Prerequisites: The first displayed resident and first displayed room are both unallocated.
+    2. Test case: `alloc ri/1 oi/1` <br>
+       Expected: 1st resident is allocated to the 1st room displayed in the list.
+2. Deallocating residents
+    1. Prerequisites: The first displayed resident is allocated. <br>
+    2. Test case: `dealloc 1` <br>
+       Expected: 1st resident is deallocated from the room.
+
+### Command history
+
+1. Viewing command history
+
+    1. Prerequisites: There are fewer than 1000 successful commands in command history.
+
+    2. Test case: `history` <br>
+       Expected: All previous successful commands are displayed, or a message indicating that there are no commands
+       in history (if command history is empty).
+
+    3. Test case: `history 1000` <br>
+       Expected: An error message is shown indicating that there are fewer than 1000 successful commands in command
+       history.
+
+    4. Other incorrect `history` commands to try: `history x` where `x` is either a non-positive number or not a number
+       at all. E.g. `history -1` and `history asd`. <br>
+       Expected: An error message indicating the problem is shown.
+
+2. Accessing command history
+
+    1. Prerequisites: There are at least 2 successful commands in command history, and the command box is in focus
+       (if it is not, simply click on the command box).
+
+    2. Press the `UP` arrow key on the keyboard. <br>
+       Expected: The command box is filled with the text of the most recent successful command.
+
+    3. After step 2, press the `UP` arrow key again. <br>
+       Expected: The command box is filled with the text of the next most recent successful command.
+
+    4. After step 3, press the `DOWN` arrow key. <br>
+       Expected: The command box is filled with the same command text as in step 2.
+
+    5. After step 4, press the `DOWN` arrow key. <br>
+       Expected: The command box is emptied.
+
+    6. Other tests to try: press the `UP` and `DOWN` arrow keys any number of times in any order.
+       Expected: `UP` fills the command box with the next oldest command and `DOWN` fills the command box with the next
+       most recent command. When the oldest command is reached, it should remain in the command box even if `UP` is
+       pressed again.
+
+### Undo/Redo
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: _Undoable_ command:**<br>
+An undoable command is one which modifies the data of SunRez.
+
+e.g. `radd`, `redit`, `idel`, `clear`, etc.
+
+**:information_source: Shortcuts to undo:**<br>
+1. **GUI:** Select `Edit` -> `Undo` in the menu at the top of SunRez.
+2. **Keyboard:** Press `CTRL+Z` (Windows, Linux) or `CMD+Z` (Mac).
+
+These behave as if you entered `undo` in the command box and hit `ENTER`; an `undo` command will be registered in
+command history.
+
+**:information_source: Shortcuts to redo:**<br>
+1. **GUI:** Select `Edit` -> `Redo` in the menu at the top of SunRez.
+2. **Keyboard:** Press `CTRL+SHIFT+Z` (Windows, Linux) or `CMD+SHIFT+Z` (Mac).
+
+These behave as if you entered `redo` in the command box and hit `ENTER`; a `redo` command will be registered in
+command history.
+</div>
+
+1. Undoing an undoable command
+
+    1. Prerequisites: There are at least 2 residents visible in the resident list.
+
+    2. Test case: `rdel 1` then `undo` <br>
+       Expected: The deleted resident is restored.
+
+    3. Test case: `rdel 1` twice, then `undo` twice <br>
+       Expected: The two deleted residents are restored in the reverse order of their deletion.
+
+    4. Other tests to try: Chain more undoable commands and `undo` operations in various orders.
+       Expected: Undo undoes the commands from most recent to least recent.
+
+2. Undoing a non-undoable command
+
+    1. Prerequisites: No undoable commands have been executed prior. The easiest way to set this up is to close
+       and re-open SunRez. Also, there is at least 1 resident visible in the resident list.
+
+    2. Test case: `rlist` then `undo` <br>
+       Expected: An error message is shown, indicating that there are no undoable commands to undo.
+
+    3. Test case: `rdel 1` then `rlist` then `undo` <br>
+       Expected: The resident deleted by `rdel 1` is restored. Undo is effectively ignoring `rlist`.
+
+    4. Other tests to try: Perform several non-undoable commands interspersed with undoable commands. Then try
+       performing some `undo` operations. <br>
+       Expected: The undoable commands are undone from most recent to least recent, and the non-undoable commands
+       are ignored by `undo`.
+
+3. Redoing an undo
+    1. Prerequisites: There are at least 2 residents visible in the resident list.
+
+    2. Test case: `rdel 1` then `undo` then `redo` <br>
+       Expected: The deleted resident is restored by `undo` then re-deleted by `redo`.
+
+    3. Test case: `rdel 1` twice, then `undo` twice, then `redo` twice <br>
+       Expected: The residents restored by the `undo` operations are re-deleted in the same order that they were
+       deleted in.
+
+    4. Test case: `rdel 1` then `undo` then `rdel 1` then `redo` <br>
+       Expected: An error message is shown, indicating that redo cannot be performed.
+       
+    5. Other tests to try: Perform several undoable commands, `undo` operations and `redo` operations.
+       Expected: The `redo` operations undo the `undo` operations in reverse order.
+
+### Alias
+
+1. Adding a user-defined alias
+
+    1. Prerequisites: None.
+
+    1. Test case: `alias a/h cmd/help` <br>
+       Expected: A new alias with the name `h` that is short for the command `help` is added. A message describing successful addition is shown.
+
+    1. Test case: `alias a/iedit cmd/iedit 1 d/Broken window c/Window` <br>
+       Expected: No alias is added. An error message about reserved keyword being used as alias name is shown.
+
+    1. Test case: `alias a/short cmd/short` <br>
+       Expected: No alias is added. An error message about recursive alias being added is shown.
+
+2. Deleting a user-defined alias
+
+    1. Prerequisites: The alias with the name `h` that is short for the command `help` must exist in the system.
+
+    1. Test case: `unalias a/h` <br>
+       Expected: The alias with the name `h` is deleted. A message describing successful deletion is shown.
+
+    1. Test case: `unalias a/name` <br>
+       Expected: No alias is deleted. An error message about alias not found is shown.

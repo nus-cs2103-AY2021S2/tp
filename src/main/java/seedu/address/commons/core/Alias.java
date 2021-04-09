@@ -23,14 +23,6 @@ public class Alias implements Serializable {
     private final String command;
 
     /**
-     * Creates an empty Alias object.
-     */
-    public Alias() {
-        this.aliasName = null;
-        this.command = null;
-    }
-
-    /**
      * Creates an Alias object.
      * All fields should not be null.
      *
@@ -68,10 +60,12 @@ public class Alias implements Serializable {
     }
 
     public String getAliasName() {
+        assert aliasName != null;
         return aliasName;
     }
 
     public String getCommand() {
+        assert aliasName != null;
         return command;
     }
 

@@ -16,6 +16,14 @@ public class ListIssueCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all issues";
 
+    /**
+     * Executes an ListIssueCommand that displays all issues.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return Result of command execution.
+     * @throws CommandException     If {@code model} is invalid.
+     * @throws NullPointerException If the {@code model} is null.
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

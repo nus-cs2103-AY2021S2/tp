@@ -44,7 +44,8 @@ public class DeleteResidentCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredResidentList().size() + 1);
         DeleteResidentCommand deleteResidentCommand = new DeleteResidentCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteResidentCommand, model, Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteResidentCommand, model, String.format(
+                Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX, model.getFilteredResidentList().size()));
     }
 
     @Test
@@ -73,7 +74,8 @@ public class DeleteResidentCommandTest {
 
         DeleteResidentCommand deleteResidentCommand = new DeleteResidentCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteResidentCommand, model, Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteResidentCommand, model, String.format(
+                Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX, model.getFilteredResidentList().size()));
     }
 
     @Test

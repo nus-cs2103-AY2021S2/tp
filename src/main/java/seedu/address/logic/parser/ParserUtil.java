@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX_PREAMBLE;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -29,7 +30,10 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX_RANGE =
+            MESSAGE_INVALID_INDEX_PREAMBLE + "Index should be a positive integer.";
+    public static final String MESSAGE_INVALID_INDEX_TYPE =
+            MESSAGE_INVALID_INDEX_PREAMBLE + "Index is not an integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -37,10 +41,17 @@ public class ParserUtil {
      *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    public static Index parseIndex(String oneBasedIndex) throws ParseException, IllegalArgumentException {
         String trimmedIndex = oneBasedIndex.trim();
+
+        // If its flat out NOT a number, throw illegal arg ex
+        if (!StringUtil.isInteger(trimmedIndex)) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_INDEX_TYPE);
+        }
+
+        // If its <= 0, throw parse ex
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_INDEX_RANGE);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
@@ -198,7 +209,9 @@ public class ParserUtil {
      * Parses a {@code String roomNumber} into a {@code RoomNumber}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code roomNumber} is invalid.
+     * @param roomNumber String representing the roomNumber.
+     * @return The parsed {@code RoomNumber}.
+     * @throws ParseException If the given {@code roomNumber} is invalid.
      */
     public static seedu.address.model.issue.RoomNumber parseIssueRoomNumber(String roomNumber) throws ParseException {
         requireNonNull(roomNumber);
@@ -213,7 +226,9 @@ public class ParserUtil {
      * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code description} is invalid.
+     * @param description String representing the description.
+     * @return The parsed {@code Description}.
+     * @throws ParseException If the given {@code description} is invalid.
      */
     public static Description parseDescription(String description) throws ParseException {
         requireNonNull(description);
@@ -228,7 +243,9 @@ public class ParserUtil {
      * Parses a {@code String timestamp} into a {@code Timestamp}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code timestamp} is invalid.
+     * @param timestamp String representing the timestamp.
+     * @return The parsed {@code Timestamp}.
+     * @throws ParseException If the given {@code timestamp} is invalid.
      */
     public static Timestamp parseTimestamp(String timestamp) throws ParseException {
         requireNonNull(timestamp);
@@ -248,7 +265,9 @@ public class ParserUtil {
      * Parses a {@code String status} into a {@code Status}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code status} is invalid.
+     * @param status String representing the status.
+     * @return The parsed {@code Status}.
+     * @throws ParseException If the given {@code status} is invalid.
      */
     public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
@@ -263,7 +282,9 @@ public class ParserUtil {
      * Parses a {@code String category} into a {@code Category}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code category} is invalid.
+     * @param category String representing the category.
+     * @return The parsed {@code Category}.
+     * @throws ParseException If the given {@code category} is invalid.
      */
     public static Category parseCategory(String category) throws ParseException {
         if (category == null) {

@@ -2,6 +2,9 @@ package seedu.address.logic.commands.room;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -19,6 +22,7 @@ public class FindRoomCommand extends Command {
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " 12-345 01-001";
+    private static final Logger logger = LogsCenter.getLogger(FindRoomCommand.class);
 
     private final RoomNumberOrTagsContainsKeywordsPredicate predicate;
 
@@ -29,7 +33,11 @@ public class FindRoomCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        assert predicate != null;
+
         model.updateFilteredRoomList(predicate);
+
+        logger.info("FindRoomCommand successfully updated the model");
         return new CommandResult(
                 String.format(Messages.MESSAGE_ROOMS_LISTED_OVERVIEW, model.getFilteredRoomList().size()));
     }

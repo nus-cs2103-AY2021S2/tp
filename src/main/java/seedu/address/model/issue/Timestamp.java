@@ -16,7 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 
 /**
  * Represents an issue's timestamp in SunRez. Guarantees: immutable; is valid as
- * declared in {@link #isValidTimestamp(String)}
+ * declared in {@link #isValidTimestamp(String)}.
  */
 public class Timestamp implements Comparable<Timestamp> {
 
@@ -30,10 +30,10 @@ public class Timestamp implements Comparable<Timestamp> {
     public static final String MESSAGE_CONSTRAINTS = "Timestamps should be of valid date and time in the format "
             + TIMESTAMP_PATTERN + "\n\n"
             + "yyyy - 4 digit year (e.g. 2021)\n"
-            + "MM - 2 digits month (e.g. 01, 05, 12)\n"
-            + "dd - 2 digits day (e.g. 01, 05, 31)\n"
-            + "hh - 2 digits hour (01-12) (midnight is 12:00am)\n"
-            + "mm - minutes (0-59)\n"
+            + "MM - 2 digit month (e.g. 01, 05, 12)\n"
+            + "dd - 2 digit day (e.g. 01, 05, 31)\n"
+            + "hh - 2 digit hour (01-12) (midnight is 12:00am)\n"
+            + "mm - 2 digit minutes (00-59)\n"
             + "a - case-insensitive AM/PM\n"
             + "Example: 2021/01/01 12:00am";
 
@@ -64,6 +64,9 @@ public class Timestamp implements Comparable<Timestamp> {
 
     /**
      * Returns true if a given string is a valid timestamp.
+     *
+     * @param test String to check.
+     * @return True if test is valid.
      */
     public static boolean isValidTimestamp(String test) {
         try {

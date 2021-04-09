@@ -5,15 +5,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an issue's room number in SunRez. Guarantees: immutable; is valid
- * as declared in {@link #isValidRoomNumber(String)}
+ * as declared in {@link #isValidRoomNumber(String)}.
  */
 public class RoomNumber {
 
-    public static final String MESSAGE_CONSTRAINTS = "Room numbers be of the format ##-###[-a] "
-            + "where # is a number and 'a' is an alphabet.";
+    public static final String MESSAGE_CONSTRAINTS = seedu.address.model.room.RoomNumber.MESSAGE_CONSTRAINTS;
 
-    // The room number follows the format ##-###[-a]
-    public static final String VALIDATION_REGEX = "[0-9]{2}-[0-9]{3}(-[A-F])*";
+    public static final String VALIDATION_REGEX = seedu.address.model.room.RoomNumber.VALIDATION_REGEX;
 
     public final String value;
 
@@ -30,6 +28,9 @@ public class RoomNumber {
 
     /**
      * Returns true if a given string is a valid room number.
+     *
+     * @param test String to check.
+     * @return True if test is valid.
      */
     public static boolean isValidRoomNumber(String test) {
         return test.matches(VALIDATION_REGEX);

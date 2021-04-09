@@ -35,9 +35,9 @@ public class EditResidentCommandParser implements Parser<EditResidentCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
+        } catch (IllegalArgumentException iex) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                EditResidentCommand.MESSAGE_USAGE), pe);
+                EditResidentCommand.MESSAGE_USAGE), iex);
         }
 
         EditResidentDescriptor editResidentDescriptor = new EditResidentDescriptor();
