@@ -12,9 +12,12 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Patient;
 import seedu.address.testutil.PersonBuilder;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.*;
 
 public class ViewPatientCommandTest {
@@ -62,5 +65,27 @@ public class ViewPatientCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.selectPatient(patientToView);
         assertCommandSuccess(viewPatientCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+        ViewPatientCommand viewPatientFirstCommand = new ViewPatientCommand(INDEX_FIRST_PERSON);
+        ViewPatientCommand viewPatientSecondCommand = new ViewPatientCommand(INDEX_SECOND_PERSON);
+
+        // same object -> returns true
+        assertTrue(viewPatientFirstCommand.equals(viewPatientFirstCommand));
+
+        // same values -> returns true
+        ViewPatientCommand viewPatientFirstCommandCopy = new ViewPatientCommand(INDEX_FIRST_PERSON);
+        assertTrue(viewPatientFirstCommand.equals(viewPatientFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(viewPatientFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(viewPatientFirstCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(viewPatientFirstCommand.equals(viewPatientSecondCommand));
     }
 }

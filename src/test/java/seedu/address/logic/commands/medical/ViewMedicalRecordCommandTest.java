@@ -82,6 +82,26 @@ class ViewMedicalRecordCommandTest {
                 patientToView.getName().fullName);
         assertCommandSuccess(viewMedicalRecordCommand, model, expectedMessage, expectedModel);
     }
-    
 
+    @Test
+    public void equals() {
+        ViewMedicalRecordCommand viewMrecFirstCommand = new ViewMedicalRecordCommand(INDEX_FIRST_PERSON);
+        ViewMedicalRecordCommand viewMrecSecondCommand = new ViewMedicalRecordCommand(INDEX_SECOND_PERSON);
+
+        // same object -> returns true
+        assertTrue(viewMrecFirstCommand.equals(viewMrecFirstCommand));
+
+        // same values -> returns true
+        ViewMedicalRecordCommand viewMrecFirstCommandCopy = new ViewMedicalRecordCommand(INDEX_FIRST_PERSON);
+        assertTrue(viewMrecFirstCommand.equals(viewMrecFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(viewMrecFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(viewMrecFirstCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(viewMrecFirstCommand.equals(viewMrecSecondCommand));
+    }
 }

@@ -8,6 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Patient;
@@ -50,5 +51,12 @@ public class ViewPatientCommand extends Command {
         model.selectPatient(patientToView);
         return new CommandResult(String.format(MESSAGE_SUCCESS, patientToView.getName()),
                             false, false, patientToView, null, null, null, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewPatientCommand // instanceof handles nulls
+                && index.equals(((ViewPatientCommand) other).index)); // state check
     }
 }
