@@ -21,7 +21,6 @@ public class Appointment implements Comparable<Appointment> {
             + " assumed.";
 
     private Patient patient;
-    private String zoomMeetingUrl;
     private LocalDateTime date;
 
     /**
@@ -39,10 +38,6 @@ public class Appointment implements Comparable<Appointment> {
         requireAllNonNull(patient, date);
         this.patient = patient;
         this.date = date;
-    }
-
-    public String getZoomMeetingUrl() {
-        return zoomMeetingUrl;
     }
 
     public LocalDateTime getDate() {

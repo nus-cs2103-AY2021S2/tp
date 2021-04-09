@@ -75,38 +75,39 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
      */
     boolean hasPerson(Patient patient);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given patient.
+     * The patient must exist in the address book.
      */
     void deletePerson(Patient target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given patient.
+     * {@code patient} must not already exist in the address book.
      */
     void addPerson(Patient patient);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given patient {@code target} with {@code editedPatient}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The patient identity of {@code editedPatient} must not be the same as another existing patient
+     * in the address book.
      */
     void setPerson(Patient target, Patient editedPatient);
 
     /**
-     * Archives the given person.
-     * {@code person} must not already exist in the archives of address book.
+     * Archives the given patient.
+     * {@code patient} must not already exist in the archives of address book.
      */
     void archivePerson(Patient patient);
 
     /**
-     * Unarchives the given person.
-     * {@code person} must not already exist in the address book.
+     * Unarchives the given patient.
+     * {@code patient} must not already exist in the address book.
      */
     void unarchivePerson(Patient patient);
 
