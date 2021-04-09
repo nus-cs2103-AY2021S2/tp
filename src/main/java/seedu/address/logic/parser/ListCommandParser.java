@@ -28,8 +28,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         } else if (isListEverything) {
             return new ListCommand(true);
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ListCommand.INVALID_INPUT));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.INVALID_INPUT));
         }
     }
 }

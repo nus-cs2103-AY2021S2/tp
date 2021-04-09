@@ -78,7 +78,7 @@ public class UniqueTagList implements Iterable<Tag> {
     /**
      * Checks if there are tasks with the tag and removes the equivalent tag from the list if there are no more tasks
      * with this tag.
-     * The tag must exist in the list.
+     * The tag must exist in the list. Map that counts tags is updated.
      *
      * @param toRemove Tag to remove.
      */
@@ -115,6 +115,7 @@ public class UniqueTagList implements Iterable<Tag> {
      * {@code target} must exist in the list.
      * The tag identities of {@code editedTags} must not be the same as other existing tags in the list.
      * If any target and editedTag are equal, there will be no change.
+     * Map that counts tags is updated.
      *
      * @param target    Set of Tags to be replaced.
      * @param editedTag Set of Tags to replace.
@@ -131,9 +132,6 @@ public class UniqueTagList implements Iterable<Tag> {
         }
 
         for (Tag newTag : editedTag) {
-            if (contains(newTag)) {
-                continue;
-            }
             add(newTag);
         }
     }
@@ -141,6 +139,7 @@ public class UniqueTagList implements Iterable<Tag> {
     /**
      * Replaces the contents of this list with {@code tags}.
      * {@code tags} must not contain duplicate tags.
+     * Map that counts tags is not updated.
      *
      * @param tags List of tags that is to be set in this internal list.
      */
@@ -152,7 +151,7 @@ public class UniqueTagList implements Iterable<Tag> {
 
         internalList.setAll(tags);
 
-        logger.info("Tag Count: " + mapOfTagCount);
+        //logger.info("Tag Count: " + mapOfTagCount);
     }
 
     /**

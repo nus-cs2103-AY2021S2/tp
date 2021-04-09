@@ -15,6 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.conditions.IndexManager;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.AttributeManager;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.attributes.Date;
 import seedu.address.model.task.attributes.Description;
@@ -82,9 +83,9 @@ public class SnoozeCommand extends Command {
     }
 
     private void enforceNonEmptyDate(Task taskToSnooze) throws CommandException {
-        if (taskToSnooze.isEmptyDate()) {
+        AttributeManager attributeManager = new AttributeManager(taskToSnooze);
+        if (attributeManager.isEmptyDate()) {
             logger.log(Level.INFO, "The task selected has no date attribute.\n" + MESSAGE_USAGE);
-
             throw new CommandException("The task selected has no date attribute.\n" + MESSAGE_USAGE);
         }
     }

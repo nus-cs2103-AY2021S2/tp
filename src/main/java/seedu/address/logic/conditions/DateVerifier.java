@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.task.AttributeManager;
 import seedu.address.model.task.Task;
 
 public class DateVerifier {
@@ -21,7 +22,7 @@ public class DateVerifier {
      * @throws CommandException
      */
     public static void checkInvalidDateRange(Task task) throws CommandException {
-        if (task.hasInvalidDateRange()) {
+        if (new AttributeManager(task).hasInvalidDateRange()) {
             logger.info("Invalid date detected: " + MESSAGE_INVALID_DATE_RANGE);
 
             throw new CommandException(MESSAGE_INVALID_DATE_RANGE);
@@ -35,7 +36,7 @@ public class DateVerifier {
      * @throws CommandException
      */
     public static void checkForExpiredDate(Task task) throws CommandException {
-        if (task.hasExpired()) {
+        if (new AttributeManager(task).hasExpired()) {
             logger.info("Invalid date detected: " + INVALID_END_DATE);
             throw new CommandException(INVALID_END_DATE);
         }
