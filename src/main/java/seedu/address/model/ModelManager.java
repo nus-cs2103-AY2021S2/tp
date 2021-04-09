@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.group.GroupHashMap.DEFAULT_GROUP_NAME;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -118,7 +119,6 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         updateUpcomingDates();
     }
 
@@ -140,13 +140,13 @@ public class ModelManager implements Model {
     @Override
     public boolean hasGroup(Group group) {
         requireNonNull(group);
-        return addressBook.hasGroup(group);
+        return addressBook.hasGroupName(group.getName());
     }
 
     @Override
     public void deleteGroup(Group target) {
         if (currentGroup.isSameGroup(target)) {
-            setCurrentGroup(null);
+            setCurrentGroup(DEFAULT_GROUP_NAME);
         }
         addressBook.removeGroup(target);
     }
@@ -160,6 +160,12 @@ public class ModelManager implements Model {
     @Override
     public void setCurrentGroup(Group currentGroup) {
         this.currentGroup = currentGroup;
+    }
+
+    @Override
+    public void setCurrentGroup(Name currentGroupName) {
+        this.currentGroup = groupMap.get(currentGroupName);
+        this.setGroup(currentGroupName, currentGroup);
     }
 
     @Override
