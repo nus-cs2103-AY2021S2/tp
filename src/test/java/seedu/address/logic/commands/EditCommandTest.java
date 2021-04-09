@@ -1,10 +1,5 @@
 package seedu.address.logic.commands;
 
-//import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.logic.commands.CommandTestUtil.DESC_RESIDENCE1;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_CLEAN_TAG;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_RESIDENCE1;
