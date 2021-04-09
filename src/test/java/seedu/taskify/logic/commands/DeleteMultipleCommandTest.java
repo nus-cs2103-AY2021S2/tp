@@ -26,7 +26,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.taskify.commons.core.Messages;
 import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.ModelManager;

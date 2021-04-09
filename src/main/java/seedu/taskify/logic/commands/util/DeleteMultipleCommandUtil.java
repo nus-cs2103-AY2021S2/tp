@@ -49,6 +49,11 @@ public class DeleteMultipleCommandUtil {
         return !hasOnlyOneArgument;
     }
 
+    /**
+     * Checks if user is trying to delete tasks using an index range
+     * @param input user's input other than the command word
+     * @return true if the user is deleting using an index range
+     */
     public static boolean isDeletingTasksByRange(String input) {
         input = reduceWhitespaces(input);
         String regex = "^(?<firstNum>[0-9]+)-(?<secondNum>[0-9]+)$";
@@ -123,7 +128,8 @@ public class DeleteMultipleCommandUtil {
     /**
      * Helper method for #{@code extractStringArgumentsIntoIndexes}
      */
-    private static String[] extractIndexesAsStringFromRange(String lowerBound, String upperBound) throws ParseException {
+    private static String[] extractIndexesAsStringFromRange(String lowerBound, String upperBound)
+            throws ParseException {
         String leadingZeroesRegex = "0+[1-9]*";
         boolean isFirstIndexInvalid = lowerBound.matches(leadingZeroesRegex);
         boolean isSecondIndexInvalid = upperBound.matches(leadingZeroesRegex);
