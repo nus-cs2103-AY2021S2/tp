@@ -80,8 +80,6 @@ public class LogicManagerTest {
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
-        //todo edit PRICE_DESC_BOB here if needed
-
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + ADDRESS_DESC_AMY + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + PRICE_DESC_AMY;
