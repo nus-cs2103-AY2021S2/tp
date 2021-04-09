@@ -567,24 +567,24 @@ The first person on the list is born before 12-12-2020.
        
     3. Other incorrect `add-meeting` commands to try: 
         * `add-meeting x` (where x is larger than list size),
-        * `add-meeting 1 d/12-12-2020 t/1945` (missing `DESCRIPTION` argument, other arguments can also be left out),
-       Expected: Similar to previous
-   
+        * `add-meeting 1 d/12-12-2020 t/1945` (missing `DESCRIPTION` argument, other arguments can also be left out) <br>
+        * Expected for incorrect commands: Similar to previous <br><br>
+
 2. Adding a meeting with boundary time values. FriendDex will only allow adding of meetings that have already occurred. 
 
-    1. These arguments should be replaced with their proper datetime representation. 
-       `TODAY_DATE`: today's date in the format of dd-MM-yyyy, e.g. `04-04-2021`
-       `TIME_AFTER_NOW`: add a few minutes to the current time in the format of HHmm, e.g. `1230`
+    1. These arguments should be replaced with their proper datetime representation.
+        * `TODAY_DATE` - today's date in the format of dd-MM-yyyy, e.g. `04-04-2021`
+        * `TIME_AFTER_NOW` - add a few minutes to the current time in the format of HHmm, e.g. `1230` <br><br>
        
-    2. Adding a meeting for today
-       Test case: `add-meeting 1 d/{TODAY_DATE} t/0000 desc/sample desc`.
+    2. Adding a meeting for today <br>
+       Test case: `add-meeting 1 d/{TODAY_DATE} t/0000 desc/sample desc`. <br>
        Expected: Meeting is added to the first contact. A success message is shown in the status message. 
        
-    3. Adding a meeting for today but has not occurred yet
-       Test case: `add-meeting 1 d/{TODAY_DATE} t/{TIME_AFTER_NOW} desc/sample desc`
+    3. Adding a meeting for today but has not occurred yet <br>
+       Test case: `add-meeting 1 d/{TODAY_DATE} t/{TIME_AFTER_NOW} desc/sample desc` <br>
        Expected: No meetings added. Error details shown in the status message.
 
-    4. Adding a meeting that happens in the future
+    4. Adding a meeting that happens in the future <br>
        Test case: `add-meeting 1 d/12-12-2099 t/1945 desc/sample desc` <br> 
        Expected: Similar to previous
 
@@ -596,22 +596,21 @@ List all persons using the `list` command. There is at least a person present in
 1. Adding a picture to an existing person
    
     1. These arguments should be replaced with the correct details.
-       `PICTURE_FILE_PATH`: the file path of the sample picture, e.g. `Users/bob/Desktop/picture.jpg` for macOS
-       `INVALID_FILE_PATH`: any invalid file path, e.g. `asdf123` 
-       `FILE_PATH_WITH_WRONG_FILE_EXTENSION`: a valid file path that points to an actual file that is not an image, e.g. `Users/bob/Desktop/hello_world.txt` assuming that the actual file `hello_world.txt` exists  
+        * `PICTURE_FILE_PATH` - the file path of the sample picture, e.g. `Users/bob/Desktop/picture.jpg` for macOS
+        * `INVALID_FILE_PATH` - any invalid file path, e.g. `asdf123`
+        * `FILE_PATH_WITH_WRONG_FILE_EXTENSION` - a valid file path that points to an actual file but is not an image (Refer to UG `add-picture` command for a list of valid file extensions) <br><br>
        
-    1. Test case: `add-picture 1 {PICTURE_FILE_PATH}` <br>
-       Expected: A picture is attached to the first contact. A success message is shown in the status message. The picture can also be viewed in the  
-       results display beside the details of the first contact.
+    2. Test case: `add-picture 1 {PICTURE_FILE_PATH}` <br>
+       Expected: A picture is attached to the first contact and a success message is shown in the status message. The picture added is shown in the results display beside the details of the first contact.
 
-    2. Test case: `add-picture 0` (Invalid index) <br>
+    3. Test case: `add-picture 0` <br>
        Expected: No picture added. Error details shown in the status message.
 
-    3. Other incorrect `add-picture` commands to try: 
+    4. Other incorrect `add-picture` commands to try: 
        * `add-picture x` (where x is larger than the list size).
        * `add-picture 1 {INVALID_FILE_PATH}`
-       * `add-picture 1 {FILE_PATH_WITH_WRONG_FILE_EXTENSION}` (Refer to UG `add-picture` command for list of valid extensions)  
-       Expected: Similar to previous
+       * `add-picture 1 {FILE_PATH_WITH_WRONG_FILE_EXTENSION}`
+       * Expected for incorrect commands: Similar to previous
          
 ### Clearing all entries: `clear`
 
@@ -637,9 +636,33 @@ List all persons using the `list` command. There is at least a person present in
 
 ### Deleting a meeting: `del-meeting`
 
+Prerequisites: List all persons using the `list` command. There is at least a person present in the list. The first person should have a meeting already added.  
 
+1. Deleting a meeting
+
+    1. Test case: `del-meeting 1 i/1` <br>
+       Expected: The first meeting is removed from the first contact. View the full details of the first contact to verify.
+
+    2. Test case: `del-meeting 1 i/0` <br>
+       Expected: No meeting is deleted from the first contact. Error details shown in the status message.  
+       
+    3. Other incorrect commands to try: `del-meeting`, `del-meeting 1 i/x` (where x is larger than the number of meetings the first contact has) <br>
+       Expected: Similar to previous
 
 ### Deleting a profile picture `del-picture`
+
+Prerequisites: List all persons using the `list` command. There is at least a person present in the list. The first person should have a picture added.
+
+1. Deleting a meeting
+
+    1. Test case: `del-picture 1` <br>
+       Expected: The picture is deleted from the first person. There should not be a picture shown beside the first person's details in the results display. 
+       
+    2. Test case: `del-meeting 0` <br>
+       Expected: No picture is deleted. Error details shown in the status message.
+
+    3. Other incorrect commands to try: `del-picture`, `del-meeting x` (where x is larger than the person list size) <br>
+       Expected: Similar to previous
 
 ### Viewing full details: `details`
 
