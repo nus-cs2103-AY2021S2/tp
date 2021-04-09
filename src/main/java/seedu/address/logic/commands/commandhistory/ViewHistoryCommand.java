@@ -26,7 +26,7 @@ public class ViewHistoryCommand extends Command {
             + "Valid range: %d to %d (inclusive)";
 
     public static final String MESSAGE_INVALID_COUNT = "The provided COUNT is invalid. "
-            + "It should be a positive integer";
+            + "It should be a positive integer.";
 
     public static final String MESSAGE_EMPTY_HISTORY = "No successful commands have been entered yet.";
 
