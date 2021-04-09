@@ -262,17 +262,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                        | delete an appointment                    | remove appointments that have expired or on behalf of the patient   |
 | `* * *`  | user                                        | find an appointment by specific fields   | locate details of relevant appointments without having to go through the entire list |
 | `* * *`  | user                                        | edit an appointment by specific fields   | update the appointment information without having to delete and add a new appointment |
-| `* * *`  | user                                        | list all appointments                    | see all the appointments or reset the appointment filters           |
 | `* * *`  | user                                        | add a new patient                        |                                                                     |
 | `* * *`  | user                                        | delete a patient                         | remove patients who on longer have appointments                     |
 | `* * *`  | user                                        | find a patient  by specific fields       | locate details of relevant patients without having to go through the entire list |
 | `* * *`  | user                                        | edit a patient  by specific fields       | update the patient information without having to delete and add a new patient |
-| `* * *`  | user                                        | list all patients                        | see all the patients or reset the patient filters                   |
 | `* * *`  | user                                        | add a new doctor                         |                                                                     |
 | `* * *`  | user                                        | delete a doctor                          | remove doctors who on longer work for the clinic                    |
 | `* * *`  | user                                        | find a doctor by specific fields         |  locate details of relevant doctors without having to go through the entire list |
 | `* * *`  | user                                        | edit a doctor  by specific fields        | update the doctor information without having to delete and add a new doctor |
+| `* * *`  | user                                        | list all appointments                    | see all the appointments or reset the appointment filters           |
+| `* * *`  | user                                        | list all patients                        | see all the patients or reset the patient filters                   |
 | `* * *`  | user                                        | list all doctors                         | see all the doctors or reset the doctors filters                    |
+| `* *`    | user                                        | clear all appointments                   | clear the appointment list without having to delete appointments one by one |
+| `* *`    | user                                        | clear all patients                       | clear the patient list without having to delete appointments one by one     |
+| `* *`    | user                                        | clear all doctors                        | clear the doctor list without having to delete appointments one by one     |
 | `* *`    | user                                        | lookup previous records of an appointment| fill in missing information where ommitted by the appointment       |
 | `* *`    | user                                        | lookup previous records of a patient     | fill in missing information where ommitted by the patient           |
 | `* *`    | user                                        | lookup previous records of a doctor      | fill in missing information where ommitted by the doctor            |
