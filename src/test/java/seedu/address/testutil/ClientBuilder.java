@@ -73,6 +73,38 @@ public class ClientBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Client} that we are building to have no name.
+     */
+    public ClientBuilder withNoClientName() {
+        clientName = null;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Client} that we are building to have no contact.
+     */
+    public ClientBuilder withNoClientContact() {
+        clientContact = null;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Client} that we are building to have no email.
+     */
+    public ClientBuilder withNoClientEmail() {
+        clientEmail = null;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Client} that we are building to have no asking price.
+     */
+    public ClientBuilder withNoClientAskingPrice() {
+        clientAskingPrice = null;
+        return this;
+    }
+
     public Client build() {
         return new Client(clientName, clientContact, clientEmail, clientAskingPrice);
     }
