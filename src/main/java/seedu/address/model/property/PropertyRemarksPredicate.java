@@ -8,6 +8,10 @@ import java.util.function.Predicate;
 public class PropertyRemarksPredicate implements Predicate<Property> {
     private final String keywords;
 
+    /**
+     * Constructs a {@code PropertyRemarksPredicate} with a keyword.
+     * @throws IllegalArgumentException when keyword is empty.
+     */
     public PropertyRemarksPredicate(String keywords) throws IllegalArgumentException {
         if (keywords.trim().isEmpty()) {
             throw new IllegalArgumentException("Remark keywords cannot be empty. ");

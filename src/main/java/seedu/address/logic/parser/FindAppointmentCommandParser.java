@@ -57,7 +57,8 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
                 throw new ParseException("n/ used but no keywords found! \n"
                         + e.getMessage()
                         + "\n"
-                        + FindAppointmentCommand.MESSAGE_USAGE);            }
+                        + FindAppointmentCommand.MESSAGE_USAGE);
+            }
             orPredicates.add(new AppointmentPredicateList(nameList));
         }
 

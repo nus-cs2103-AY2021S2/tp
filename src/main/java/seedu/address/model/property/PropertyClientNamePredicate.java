@@ -12,11 +12,15 @@ import seedu.address.commons.util.StringUtil;
 public class PropertyClientNamePredicate implements Predicate<Property> {
     private final List<String> keywords;
 
+    /**
+     * Constructs a {@code PropertyClientNamePredicate} given a keyword.
+     * @throws IllegalArgumentException when keyword is empty.
+     */
     public PropertyClientNamePredicate(List<String> keywords) throws IllegalArgumentException {
         this.keywords = new ArrayList<>();
         for (String s : keywords) {
             if (s.trim().isEmpty()) {
-                throw  new IllegalArgumentException("Client name given is empty. ");
+                throw new IllegalArgumentException("Client name given is empty. ");
             }
             this.keywords.add(s);
         }

@@ -6,9 +6,6 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 /**
  * Tests that a {@code Property}'s {@code Name} matches any of the keywords given.
  */
@@ -17,6 +14,7 @@ public class PropertyNamePredicate implements Predicate<Property> {
 
     /**
      * Constructs a {@code PropertyNamePredicate}
+     * @throws IllegalArgumentException when keyword is empty.
      */
     public PropertyNamePredicate(List<String> names) throws IllegalArgumentException {
         this.keywords = new ArrayList<>();
