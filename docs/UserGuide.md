@@ -77,8 +77,6 @@ First time using the app? Or want to refresh your handling of the app? Simply lo
 Commands for this tutorial are arranged in the sequential order of this User Guide and are accompanied by screenshots.
 </div>
 
---------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
 
 ## Supported Module Codes
@@ -112,11 +110,6 @@ ST2131 | Probability
     
 If your module code does not appear in the above table, 
 you may use a substitute module code based on the subject description.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:**
-First time using the app? Or want to refresh your handling of the app? Simply look out for these boxes.
-Commands for this tutorial are arranged in the sequential order of this User Guide and are accompanied by screenshots.
-</div>
 
 --------------------------------------------------------------------------------------------------------------------
   
