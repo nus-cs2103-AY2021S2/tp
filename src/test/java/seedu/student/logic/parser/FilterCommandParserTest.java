@@ -37,7 +37,7 @@ public class FilterCommandParserTest {
         assertParseSuccess(parser, "VACCINATED", thirdExpectedVaccinatedFilterCommandByVaccinationStatus);
 
         FilterCommand fourthExpectedVaccinatedFilterCommandByVaccinationStatus =
-                new FilterCommand(new VaccinationStatusContainsKeywords("vaccinateD"),"vaccinateD");
+                new FilterCommand(new VaccinationStatusContainsKeywords("vaccinateD"), "vaccinateD");
         assertParseSuccess(parser, "vaccinateD", fourthExpectedVaccinatedFilterCommandByVaccinationStatus);
 
 
