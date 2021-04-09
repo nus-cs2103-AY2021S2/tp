@@ -25,7 +25,7 @@ import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.StatusType;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various Parser classes.
  */
 public class ParserUtil {
 
@@ -146,6 +146,12 @@ public class ParserUtil {
         requireNonNull(date);
         String trimmedDate = date.trim();
         if (!Date.isValidDate(trimmedDate)) {
+            if (Date.isInvalidLeapYearDate(trimmedDate)) {
+                throw new ParseException(Date.NOT_LEAP_YEAR_ERROR);
+            }
+            if (Date.isCorrectInputFormat(trimmedDate)) {
+                throw new ParseException(Date.CORRECT_FORMAT_BUT_INVALID_DATE);
+            }
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
         return new Date(trimmedDate);

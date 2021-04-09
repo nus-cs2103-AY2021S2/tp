@@ -55,12 +55,13 @@ public class Task {
     }
 
     /**
-     * Check to see if the task has expired
+     * Check to see if the task has expired, and additionally changes its status to expired if the current date is
+     * past the task's Date
      */
 
     public boolean isTaskExpired() {
         LocalDateTime timeNow = LocalDateTime.now();
-        if (this.date.getLocateDateTime().isBefore(timeNow)) {
+        if (this.date.getLocalDateTime().isBefore(timeNow)) {
             this.status = new Status(StatusType.EXPIRED);
             return true;
         }
@@ -100,8 +101,7 @@ public class Task {
             return true;
         }
 
-        return otherTask != null
-                       && otherTask.getName().equals(getName());
+        return otherTask != null && this.equals(otherTask);
     }
 
     /**
@@ -121,7 +121,6 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getName().equals(getName())
                        && otherTask.getDescription().equals(getDescription())
-                       && otherTask.getStatus().equals(getStatus())
                        && otherTask.getDate().equals(getDate())
                        && otherTask.getTags().equals(getTags());
     }
@@ -135,17 +134,18 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Description: ")
-                .append(getDescription())
-                .append("; Status: ")
-                .append(getStatus())
-                .append("; Date: ")
+        builder.append("Name: ")
+                .append(getName() + "\n")
+                .append("- Description: ")
+                .append(getDescription() + "\n")
+                .append("- Status: ")
+                .append(getStatus() + "\n")
+                .append("- Date: ")
                 .append(getDate());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("\n" + "- Tags: ");
             tags.forEach(builder::append);
         }
         return builder.toString();

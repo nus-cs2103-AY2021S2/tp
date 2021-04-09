@@ -20,9 +20,12 @@ import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CS2
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_NAME_CS2103T_IP;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_CS2103T_TP;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_DEBUGGING;
+import static seedu.taskify.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.taskify.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.taskify.logic.parser.EditCommandParser.MESSAGE_EDIT_STATUS_TO_EXPIRED;
+import static seedu.taskify.model.task.Status.EXPIRED_VALID_INPUT;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_THIRD_TASK;
@@ -188,6 +191,16 @@ public class EditCommandParserTest {
         descriptor = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_CS2103T_TP).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_editStatusToExpired_throwsParseException() {
+        String inputToEditStatusToExpired = INDEX_FIRST_TASK.getOneBased() + " " + PREFIX_STATUS + EXPIRED_VALID_INPUT;
+        assertParseFailure(parser, inputToEditStatusToExpired, MESSAGE_EDIT_STATUS_TO_EXPIRED);
+
+        String longerInputToEditStatusToExpired =
+                INDEX_FIRST_TASK.getOneBased() + NAME_DESC_CS2103T_IP + inputToEditStatusToExpired;
+        assertParseFailure(parser, longerInputToEditStatusToExpired, MESSAGE_EDIT_STATUS_TO_EXPIRED);
     }
 
     @Test

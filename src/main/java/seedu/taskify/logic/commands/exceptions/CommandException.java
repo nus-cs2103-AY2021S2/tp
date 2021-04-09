@@ -1,5 +1,7 @@
 package seedu.taskify.logic.commands.exceptions;
 
+import seedu.taskify.logic.commands.Command;
+
 /**
  * Represents an error which occurs during execution of a {@link Command}.
  */

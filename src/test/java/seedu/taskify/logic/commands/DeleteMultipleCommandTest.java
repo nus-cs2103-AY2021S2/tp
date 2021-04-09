@@ -1,11 +1,12 @@
 package seedu.taskify.logic.commands;
 
-/*
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taskify.logic.commands.CommandTestUtil.showTasksAtIndexes;
+import static seedu.taskify.logic.commands.DeleteMultipleCommand.MESSAGE_NO_TASKS_OF_GIVEN_STATUS;
+import static seedu.taskify.testutil.Assert.assertThrows;
 import static seedu.taskify.testutil.TypicalIndexes.INDEXES_FIRST_TO_THIRD_TASK;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_SECOND_TASK;
@@ -30,7 +31,7 @@ import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.StatusType;
 import seedu.taskify.model.task.Task;
 
- */
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -38,11 +39,11 @@ import seedu.taskify.model.task.Task;
  */
 public class DeleteMultipleCommandTest {
 
-    /*
+
     private static final String MESSAGE_DELETE_FIRST_TO_THIRD_TASK_SUCCESS =
-            "Deleted Tasks: " + TASK_1.toString() + TASK_2.toString() + TASK_3.toString();
+            "Deleted Tasks: \n" + TASK_1.toString() + "\n\n" + TASK_2.toString() + "\n\n" + TASK_3.toString() + "\n\n";
     private static final String MESSAGE_DELETE_COMPLETED_TASKS_SUCCESS =
-            "Deleted Tasks: " + TASK_3.toString() + TASK_5.toString();
+            "Deleted Tasks: \n" + TASK_3.toString() + "\n\n" + TASK_5.toString() + "\n\n";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -61,6 +62,16 @@ public class DeleteMultipleCommandTest {
         }
     }
 
+
+    @Test
+    public void constructor_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteMultipleCommand((List<Index>) null));
+    }
+
+    @Test
+    public void overloadedConstructor_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteMultipleCommand((Status) null));
+    }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -126,13 +137,19 @@ public class DeleteMultipleCommandTest {
         tasksToDelete.add(TASK_5);
 
         DeleteMultipleCommand deleteMulCommand = new DeleteMultipleCommand(new Status(StatusType.COMPLETED));
-
         String expectedMessage = MESSAGE_DELETE_COMPLETED_TASKS_SUCCESS;
-
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         deleteTasksFromModel(expectedModel, tasksToDelete);
 
         assertCommandSuccess(deleteMulCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_deleteByStatusButNoSuchTasks_throwsCommandException() {
+        showTasksAtIndexes(model, INDEXES_FIRST_TO_THIRD_TASK); // none of these tasks are expired
+        DeleteMultipleCommand deleteMulCommand = new DeleteMultipleCommand(new Status(StatusType.EXPIRED));
+
+        assertCommandFailure(deleteMulCommand, model, MESSAGE_NO_TASKS_OF_GIVEN_STATUS);
     }
 
 
@@ -171,12 +188,10 @@ public class DeleteMultipleCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-
-    /*
     private void showNoTask(Model model) {
         model.updateFilteredTaskList(p -> false);
 
         assertTrue(model.getFilteredTaskList().isEmpty());
     }
-     */
+
 }
