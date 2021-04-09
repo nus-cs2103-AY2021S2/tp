@@ -373,6 +373,9 @@ Format: `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 A contact can have any number of tags (including 0)
 </div>
 
+* Contacts may share names, addresses, and tags.
+* Contacts **must not** share phone numbers or emails, as they are considered unique to each contact.
+
 Examples:
 * `addcontact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addcontact n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
