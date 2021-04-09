@@ -53,8 +53,6 @@ public class AddCommandParserTest {
         Passenger expectedPassenger = new PassengerBuilder(BOB)
                 .withTags(VALID_TAG_FRIEND).withPrice(VALID_PRICE_BOB).build();
 
-        //todo edit PRICE_DESC_BOB here if needed
-
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
                 + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB + TAG_DESC_FRIEND,
@@ -96,8 +94,6 @@ public class AddCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-        //todo edit PRICE_DESC_BOB here if needed
-
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + ADDRESS_DESC_BOB
                         + TRIPDAY_DESC_FRIDAY + TRIPTIME_DESC_EVENING + PRICE_DESC_BOB, expectedMessage);
@@ -129,8 +125,6 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-
-        //todo edit PRICE_DESC_BOB here if needed
 
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + ADDRESS_DESC_BOB + TRIPDAY_DESC_FRIDAY

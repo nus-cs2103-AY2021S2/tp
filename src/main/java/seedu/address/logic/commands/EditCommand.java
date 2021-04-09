@@ -104,14 +104,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPassengerDescriptor.getTags().orElse(passengerToEdit.getTags());
         TripDay updatedTripDay = editPassengerDescriptor.getTripDay().orElse(passengerToEdit.getTripDay());
         TripTime updatedTripTime = editPassengerDescriptor.getTripTime().orElse(passengerToEdit.getTripTime());
-
-        // TODO find a better way to do this section
-        Optional<Price> updatedPrice;
-        if (editPassengerDescriptor.getTripTime().isPresent()) {
-            updatedPrice = editPassengerDescriptor.getPrice();
-        } else {
-            updatedPrice = passengerToEdit.getPrice();
-        }
+        Optional<Price> updatedPrice = editPassengerDescriptor.getPrice().or(passengerToEdit::getPrice);
 
         return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, updatedPrice,
                 updatedTags);
