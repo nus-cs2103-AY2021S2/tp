@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.pool.PooledPassengerContainsKeywordsPredicate;
 
 /**
  * A utility class for test cases.
@@ -51,5 +53,12 @@ public class TestUtil {
      */
     public static Passenger getPassenger(Model model, Index index) {
         return model.getFilteredPassengerList().get(index.getZeroBased());
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     */
+    public static PooledPassengerContainsKeywordsPredicate prepareNamePredicate(String userInput) {
+        return new PooledPassengerContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
