@@ -31,9 +31,6 @@ public class HelpWindow extends UiPart<Stage> {
             + "\n\n List all students and appointments : list"
             + "\n\n Exit Program: exit";
 
-
-
-
     public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-w10-4.github.io/tp/UserGuide.html";
 
     public static final String HELP_MESSAGE = DIVIDER + "\n" + "Do refer to our user guide: " + USERGUIDE_URL
