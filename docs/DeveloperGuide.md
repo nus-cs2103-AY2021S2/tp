@@ -982,24 +982,55 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### Launch
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the latest [jar](https://github.com/AY2021S2-CS2103T-W15-1/tp/releases) file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI for RemdindMe.
 
-1. Saving window preferences
+   3. Test the following commands according to the flow.
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+### Testing commands
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+**Testing Person commands**
+   1. Add a person. Test case: `add n/Benson b/30/09/1997 t/friends`. Benson will be added into the contacts list.
+   
+   2. Edit a person. Test case: `edit 1 n/Benson b/30/09/1997`. Benson will be updated in the contacts list.
+      
+**Testing Module commands**
+   1. Add a module. Test case: `add m/CS1101`. CS1101 will be added into the module list.
+   
+   2. Edit a module. Test case: `edit 1 m/CS1101S`. CS1101 will be renamed to CS1101S in module list.
+   
+   3. One can explore adding assignments/exams by referring to the [user guide](https://ay2021s2-cs2103t-w15-1.github.io/tp/UserGuide.html#table-of-contents).
+   
+**Testing General Event commands**
+   1. Add a general event. Test case: `add g/School contest on/10/10/2021 1200`. School contest will be added into the event list. 
+   
+   2. Edit a general event. Test case: `edit 1 on/01/04/2021 1200` School contest date will be edited in the event list.
+   
+**Testing finding command**
+   1. Find the person. Test case: `find n/Benson`. Benson will be shown in the contact list.
+   
+   2. Find modules. Test case: `find m/CS1101S` CS1101S will be shown in the module list.
+   
+   3. Find event. Test case: `find g/School contest`. School contest will be shown in the event list.
+   
+**Testing Calendar**
+   1. Try opening the calendar. Test case: `calendar`. A calendar window (GUI) will pop up.
+   
+   2. Try clicking the `<` `>` `today` buttons to see if the calendar moves.
+   
+   3. Click on a date with events to see event for the day on the left panel of the calendar window (GUI).
+   
+**Test delete commands**
+   1. Delete a person. Test case: `delete 1`. Benson will be deleted from the contacts list.
 
-1. _{ more test cases …​ }_
+   2. Delete a module. Test case: `delete m/CS1101S`. CS1101S will be deleted from the contacts list.
 
-
+   3. Delete a event. Test case: `delete g/1` School contest will be deleted from the event list.
 
 ### Saving data
 
