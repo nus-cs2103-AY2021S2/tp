@@ -445,9 +445,10 @@ Format: `deletecontact INDEX`
 
 Opens a new window to send an email to the specified contact from the contacts list.
 
-Format: `emailcontact INDEX`
+Format: `emailcontact INDEX [ni/NOTE_INDEX]`
 
 * Opens a new message composition window with the *to* field containing the email address of the contact at the specified `INDEX`.
+* If `ni/NOTE_INDEX` is provided, the contents of the note at `NOTE_INDEX` will be copied to the *body* field of the new message.
 * The application uses the user's default mailing application to provide email features.
 * The application **does not guarantee** the success of sending an email, as it is handled by the mailing application used.
 * The index refers to the index number shown in the displayed contacts list.
@@ -457,6 +458,7 @@ Examples:
 * `listcontact` followed by `emailcontact 2` opens a new message composition window targeting the 2nd contact in the contacts list.
 * `findcontact n/Alice` followed by `emailcontact 1` opens a new message composition window targeting the 1st contact in the results of the `findcontact` command.
 * `listcontact` followed by `emailcontact 3 ni/1` opens a new message composition window targeting `Charlotte Oliveiro` with the body containing `CS2103T exam is coming.`. <br>
+    * This example uses Microsoft Outlook as a mailing application on a Windows 10 machine. 
   ![result for 'emailcontact 3 ni/1'](images/ContactEmailContact.png) <br>
   ![Outlook window for 'emailcontact 3 ni/1'](images/ContactEmailContactOutlook.png) 
 
