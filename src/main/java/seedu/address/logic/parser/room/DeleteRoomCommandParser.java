@@ -23,6 +23,7 @@ public class DeleteRoomCommandParser implements Parser<DeleteRoomCommand> {
 
         try {
             Index index = ParserUtil.parseIndex(userInput);
+            assert index != null;
             return new DeleteRoomCommand(index);
         } catch (IllegalArgumentException iex) {
             throw new ParseException(

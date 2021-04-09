@@ -41,6 +41,7 @@ public class EditRoomCommandParser implements Parser<EditRoomCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            assert index != null;
         } catch (IllegalArgumentException iex) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditRoomCommand.MESSAGE_USAGE), iex);
