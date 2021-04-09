@@ -29,9 +29,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for Macronutrients Tracker section and updated table of contents (PRs #132, #123, #97, #95)
+        * Added documentation for Macronutrients Tracker section and updated table of contents (PRs [\#132](https://github.com/AY2021S2-CS2103T-T12-2/tp/pull/132),[\#123](https://github.com/AY2021S2-CS2103T-T12-2/tp/pull/123),[\#97](https://github.com/AY2021S2-CS2103T-T12-2/tp/pull/97),[\#95](https://github.com/AY2021S2-CS2103T-T12-2/tp/pull/95))
     * Developer Guide:
-        * Added explanation of design decisions when implementing the operations of the food item feature. Editted the UML diagrams (Logic Class Diagram, Architecture Sequence Diagram, UI class Diagram, Delete Sequence Diagram) from the old address book to a new one that fits DietLAH! implementation. (PRs #139, #107)
+        * Added explanation of design decisions when implementing the operations of the food item feature. Editted the UML diagrams (Logic Class Diagram, Architecture Sequence Diagram, UI class Diagram, Delete Sequence Diagram) from the old address book to a new one that fits DietLAH! implementation. (PRs[\#139](https://github.com/AY2021S2-CS2103T-T12-2/tp/pull/139),[\#107](https://github.com/AY2021S2-CS2103T-T12-2/tp/pull/107))
 
 * **Contributions to team-based tasks**:
   * Set up of issues for user stories
