@@ -783,7 +783,7 @@ the `user`, unless specified otherwise)
 
 ## **Appendix D: Non-Functional Requirements**
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above
+1.  Should work on any [mainstream OS](#glossary-OS) as long as it has Java `11` or above
     installed.
 2.  Should be able to hold up to 1000 API endpoints without a noticeable
     sluggishness in performance for typical usage.
@@ -791,7 +791,7 @@ the `user`, unless specified otherwise)
     code, not system admin commands) should be able to accomplish most of the
     tasks faster using commands than using the mouse.
 4.  Should feel simple and easy to use as compared to existing
-    solutions such as [Postman](https://www.postman.com/).
+    solutions such as [Postman](#glossary-postman).
 5.  Should be able to provide a proper response even if a call to an API
     endpoint fails due to third-party unavailability.
 6.  Should not crash or throw unexpected errors when internet connection is
@@ -801,11 +801,23 @@ the `user`, unless specified otherwise)
 
 ## **Appendix E: Glossary**
 
-- **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **API endpoint/Endpoint**: The point of entry in a communication channel for two
-  systems to interact
-- **API Call/Call**: A process where information is transferred, processed and a response is returned
-- **Postman**: An existing API client for developers
+
+| Term                                         | Description                                               |
+| -------------------------------------------- | --------------------------------------------------------- |
+| **Mainstream OS** | <a name="glossary-OS"></a> Windows, Linux, Unix, OS-X  |
+| **API** | <a name="glossary-api"></a> API is short for **Application Programming Interface** and allows two systems to interact with each other  |
+| **Call** | <a name="glossary-call"></a> A call to an API endpoint refers to the process of sending a [request to the server and then receiving a response](#83-what-are-requests-and-responses)          |
+| **Endpoint** | <a name="glossary-endpoint"></a> The communication point of a system that allows it to interact with another system, commonly accessed through a URL |
+| **Request** | A process in which information is sent out to an endpoint through one of the [request methods](#84-request-methods) (a more detailed explanation can be found [here](#83-what-are-requests-and-responses)) |
+| **Response** | The information obtained from an endpoint after a request is sent to it (a more detailed explanation can be found [here](#83-what-are-requests-and-responses)) |
+| **Parameter**   | Information passed in as part of a command with its type identified by a prefix (e.g. `METHOD`) |
+| **Prefix**   | Characters used to identify the following parameter (e.g. `-x` is the prefix for the parameter `METHOD`) |
+| **JSON** | JSON is short for **JavaScript Object Notation** which is a lightweight format for data storage (a more detailed explanation can be found [here](#85-json-format)) |
+| **Protocol** | <a name="glossary-protocol"></a> A protocol is a system of rules that define how data is exchanged within or between systems |
+| **Postman** | <a name="glossary-postman"></a> An existing API client for developers. See more [here](https://www.postman.com/) |
+
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix F: Developer Workflow**
  

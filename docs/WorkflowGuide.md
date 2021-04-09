@@ -14,17 +14,18 @@ nav-text: Workflow Guide
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Forking Workflow](#forking-workflow)
-- [Issues](#issues)
-- [Pull Requests](#pull-requests-pr)
-- [Reviews](#reviews)
-- [Unfinished Work](#unfinished-work)
-- [Pre commit githook](#pre-commit-githook)
+- [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Forking Workflow](#forking-workflow)
+  - [Issues](#issues)
+  - [Pull Requests (PR)](#pull-requests-pr)
+  - [Reviews](#reviews)
+  - [Unfinished Work](#unfinished-work)
+  - [Pre commit githook](#pre-commit-githook)
 
 ### Introduction
 
-imPoster Workflow Guide documents the team's agreed upon standardisation of
+imPoster Workflow Guide documents the team's agreed upon standardization of
 workflow practices to adhere to in the development of the project.
 
 ### Forking Workflow
@@ -78,11 +79,12 @@ format:
 - PRs will need to pass all CI checks and require approval of at least one
   reviewer before merging
 - PRs will be merged by the PR author after an approval from a reviewer
+- PRs may be merged by the reviewer if given the PR authors permission.
 
 ### Reviews
 
 Reviews may be done by any members of the team except for the PR author. An
-approval will be given only when the PR is deemed fully ready to be merged.
+approval will be given only when the PR is deemed fully ready to be merged. Reviewers may give comments on how to improve the code but not edit the PR authors branch directly.
 
 ### Unfinished Work
 
