@@ -9,6 +9,10 @@ Are you a JC/Secondary school teacher, having troubles keeping track of all your
 students' contacts? No worries! Our application, _Teaching Assistant_ will provide an all-in-one platform for you to
 organise your entries (tasks and schedules) and contacts!
 
+We target JC/Secondary school teachers as they are the teachers who have a greater need to contact their students
+compared to primary school schools, yet do not have a standardised platform for communication unlike teachers
+in tertiary schools.
+
 _Teaching Assistant_ mainly uses a Command Line Interface (CLI). This means that a user can use the application by
 typing into a Command Box. For users who type fast, they can use this application more efficiently than other
 applications that heavily use Graphical User Interface (GUI), where a user uses the application by interacting with
