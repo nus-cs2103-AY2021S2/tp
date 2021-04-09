@@ -60,7 +60,8 @@ Color | Time to deadline
 
 * The pie chart is used to show workload distribution.
    1. The color of pie chart is randomly assigned.
-   2. The workload of each module is counted using the tasks of such module inclunding those that are already done and those that are not finished yet.
+   2. The workload of each module is counted by summing up the workload counts of all tasks for the module 
+      including those that are already done as well as those that are not finished yet.
     
 * You can rate a task's expected workload using the following mapping:
 
@@ -200,7 +201,7 @@ t/ | TAG |
 
 ## Command list
 
-All commands are ordered in a sequential manner. Do give them a try!
+All commands are ordered sequentially. Do give them a try!
 
 * **`list`** : List out tasks
 
