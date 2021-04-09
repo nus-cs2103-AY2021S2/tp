@@ -27,6 +27,7 @@ public class DeleteMultipleCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1" + " 3" + " 5";
 
     public static final String MESSAGE_SWITCH_TO_HOME = "Switch back to home page to delete!";
+    public static final String MESSAGE_NO_TASKS_OF_GIVEN_STATUS = "There are no tasks with the given status!";
 
     private final List<Index> targetIndexes;
     private final Optional<Status> statusOfTasksToDelete;
@@ -37,6 +38,7 @@ public class DeleteMultipleCommand extends Command {
      * @param targetIndexes the {@link Index}s of the tasks to delete
      */
     public DeleteMultipleCommand(List<Index> targetIndexes) {
+        requireNonNull(targetIndexes);
         this.targetIndexes = targetIndexes;
         this.statusOfTasksToDelete = Optional.empty();
         this.toDeleteByStatus = false;
@@ -70,8 +72,11 @@ public class DeleteMultipleCommand extends Command {
             tasksToDelete = getTasksToDelete(lastShownList);
         }
 
-        deleteTasks(model, tasksToDelete);
+        if (tasksToDelete.isEmpty()) {
+            throw new CommandException(MESSAGE_NO_TASKS_OF_GIVEN_STATUS);
+        }
 
+        deleteTasks(model, tasksToDelete);
         return new CommandResult(generateSuccessMessage(tasksToDelete));
     }
 
