@@ -124,7 +124,11 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 **Purpose:** Edits any selected attribute of the delivery entry except the remark.
 
-**Note** 
+**Prefix:** `n/`, `p/`, `a/`, `e/`, `t/`, `d/`
+
+**Attribute:** Enter information based on the format of the attribute specified.
+
+**Note:** 
   * You can edit multiple attributes.
   * Remark can be edited separately through the remark command.
   * INDEX refers to the number shown in front of each delivery
@@ -176,19 +180,19 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 ![Ui](images/DoneCommand.png)
 
 
-### Finding deliveries using keywords matching any attribute: `find <KEYWORDS>`
+### Finding deliveries using keywords matching any attribute: `find KEYWORDS`
 **Attributes:** Name, Telephone Number, Address, Date, Remark, Done, Email
-
-**Notes:**
- * It is worth noting that you have to key in a full `KEYWORD` to retrieve a result.
-   That is, say you want to find `Alex Yeoh`, then typing `find Al` would not return a result,
-   but `find Alex` or `find Yeoh` will. So, avoid keying in incomplete keywords.
- * Incomplete keywords disabled in order to reduce the number of unnecessary search results which
-   defeats the purpose of the app.
 
 **Purpose** Find deliveries that match certain attribute
 
-**Format** `find <KEYWORDS>`
+**Notes:**
+* It is worth noting that you have to key in a full `KEYWORD` to retrieve a result.
+  That is, if you want to find `Alex Yeoh`, then typing `find Al` would not return a result,
+  but `find Alex` or `find Yeoh` will. So, avoid keying in incomplete keywords.
+* Incomplete keywords are disabled in order to reduce the number of unnecessary search results which
+  may defeat the aim of the feature.
+  
+**Format** `find KEYWORDS`
 
 * One of the following results will show:
   * Deliveries matching the keywords
