@@ -2,7 +2,6 @@ package seedu.smartlib.model.record;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_HARRY;
 import static seedu.smartlib.testutil.Assert.assertThrows;
 import static seedu.smartlib.testutil.TypicalModels.RECORD_A;
 
