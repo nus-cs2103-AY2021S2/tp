@@ -435,7 +435,8 @@ Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 
 * `STUDENT_NAME` should match the exact student’s name in TutorBuddy
 * `MONTH` should be a positive integer between 1 and 12 inclusive
-* `YEAR` should be a positive integer between 1970 and 2037 inclusive
+* `YEAR` should be a positive integer between 1970 and 2037 inclusive, in consideration of the
+  [2038 problem](https://en.wikipedia.org/wiki/Year_2038_problem)
 
 Example:
 * `fee n/John Doe m/1 y/2021` returns John Doe monthly fee for January 2021
