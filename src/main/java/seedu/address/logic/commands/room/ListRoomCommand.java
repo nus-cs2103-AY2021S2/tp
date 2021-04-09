@@ -18,7 +18,7 @@ public class ListRoomCommand extends Command {
     public static final String COMMAND_WORD = "olist";
 
     public static final String MESSAGE_SUCCESS = "Listed all rooms";
-    private static final Logger logger = LogsCenter.getLogger(AddRoomCommand.class);
+    private static final Logger logger = LogsCenter.getLogger(ListRoomCommand.class);
 
 
     @Override
