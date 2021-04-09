@@ -26,4 +26,14 @@ public class ListEntryFormatPredicate implements Predicate<Entry> {
             return true;
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        return (other instanceof ListEntryFormatPredicate)
+                && ((ListEntryFormatPredicate) other).keyword.equals(keyword);
+    }
 }

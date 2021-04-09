@@ -9,7 +9,7 @@ import seedu.address.model.entry.ListEntryFormatPredicate;
 /**
  * Parses input arguments and creates a new ListEntryCommand object
  */
-public class ListEntryCommandParser {
+public class ListEntryCommandParser implements Parser<ListEntryCommand> {
 
     /**
      * Parses the give {@code String} of arguments in the context of the ListEntryCommand

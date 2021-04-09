@@ -19,6 +19,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryNameContainsKeywordsPredicate;
+import seedu.address.model.entry.ListEntryFormatPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -84,6 +85,10 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+
+    public static final ListEntryFormatPredicate ALL_PREDICATE = new ListEntryFormatPredicate("");
+    public static final ListEntryFormatPredicate DAY_PREDICATE = new ListEntryFormatPredicate("day");
+    public static final ListEntryFormatPredicate WEEK_PREDICATE = new ListEntryFormatPredicate("week");
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -163,4 +168,5 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredEntryList().size());
     }
+
 }
