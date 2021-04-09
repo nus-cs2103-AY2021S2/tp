@@ -6,5 +6,5 @@ repeat
 repeat while () is ([has next person])
 -> [else];
 :Display results;
-end
+stop
 @enduml
