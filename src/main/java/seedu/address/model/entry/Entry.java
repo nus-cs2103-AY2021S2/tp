@@ -133,7 +133,6 @@ public class Entry {
                 && otherEntry.getEndDate().equals(getEndDate())
                 && otherEntry.getTags().equals(getTags());
     }
-    
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
