@@ -31,7 +31,7 @@ public class DeleteCommand extends Command {
 
 
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task\n: %1$s";
     public static final String MESSAGE_SWITCH_TO_HOME = "Switch back to home page to delete!";
 
     private final Index targetIndex;

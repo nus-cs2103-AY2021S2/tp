@@ -136,16 +136,16 @@ public class Task {
         final StringBuilder builder = new StringBuilder();
         builder.append("Name: ")
                 .append(getName() + "\n")
-                .append("; Description: ")
+                .append("- Description: ")
                 .append(getDescription() + "\n")
-                .append("; Status: ")
+                .append("- Status: ")
                 .append(getStatus() + "\n")
-                .append("; Date: ")
+                .append("- Date: ")
                 .append(getDate());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("\n" + "; Tags: ");
+            builder.append("\n" + "- Tags: ");
             tags.forEach(builder::append);
         }
         return builder.toString();
