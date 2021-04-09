@@ -94,6 +94,8 @@ public class CommandTestUtil {
             + VALID_SCHEDULE_TIME_TO_ONE;
     public static final String VALID_SCHEDULE_DESCRIPTION_ONE = "Chapter 5 Page 841";
 
+    public static final String VALID_SCHEDULE_DATE_FOUR = "2021-06-24";
+
     public static final String VALID_SCHEDULE_TITLE_TWO = "Science Homework";
     public static final String VALID_SCHEDULE_DESCRIPTION_TWO = "Chapter 3 Page 21";
     public static final String VALID_SCHEDULE_DATE_TWO = "2021-05-27";
@@ -120,6 +122,7 @@ public class CommandTestUtil {
     public static final String DATE_DESC_ONE = " " + PREFIX_DATE + VALID_SCHEDULE_DATE_ONE;
     public static final String DATE_DESC_TWO = " " + PREFIX_DATE + VALID_SCHEDULE_DATE_TWO;
     public static final String DATE_DESC_THREE = " " + PREFIX_DATE + VALID_SCHEDULE_DATE_THREE;
+    public static final String DATE_DESC_FOUR = " " + PREFIX_DATE + VALID_SCHEDULE_DATE_FOUR;
     public static final String TIME_FROM_DESC_ONE = " " + PREFIX_TIME_FROM + VALID_SCHEDULE_TIME_FROM_ONE;
     public static final String TIME_FROM_DESC_TWO = " " + PREFIX_TIME_FROM + VALID_SCHEDULE_TIME_FROM_TWO;
     public static final String TIME_FROM_DESC_THREE = " " + PREFIX_TIME_FROM + VALID_SCHEDULE_TIME_FROM_THREE;
@@ -149,6 +152,7 @@ public class CommandTestUtil {
     public static final String REMINDER_DATE_DESC_ONE = " " + PREFIX_DATE + VALID_REMINDER_DATE_ONE;
     public static final String REMINDER_DATE_DESC_TWO = " " + PREFIX_DATE + VALID_REMINDER_DATE_TWO;
     public static final String REMINDER_DATE_DESC_THREE = " " + PREFIX_DATE + VALID_REMINDER_DATE_THREE;
+    public static final String REMINDER_DESC_DESC_FOUR = " " + PREFIX_DESCRIPTION + "Math Tuition Payment Due";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

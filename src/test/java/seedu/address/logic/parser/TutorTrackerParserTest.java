@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_ONE;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_FOUR;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_DESC_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.REMINDER_DATE_DESC_ONE;
-import static seedu.address.logic.commands.CommandTestUtil.REMINDER_DESC_DESC_ONE;
+import static seedu.address.logic.commands.CommandTestUtil.REMINDER_DESC_DESC_FOUR;
 import static seedu.address.logic.commands.CommandTestUtil.TIME_FROM_DESC_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.TIME_TO_DESC_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_ONE;
@@ -156,7 +156,7 @@ public class TutorTrackerParserTest {
     public void parseCommand_addSchedule() throws Exception {
         Schedule schedule = new ScheduleBuilder().build();
         AddScheduleCommand command = (AddScheduleCommand) parser.parseCommand(
-                AddScheduleCommand.COMMAND_WORD + TITLE_DESC_ONE + DESC_DESC_ONE + DATE_DESC_ONE
+                AddScheduleCommand.COMMAND_WORD + TITLE_DESC_ONE + DESC_DESC_ONE + DATE_DESC_FOUR
                         + TIME_FROM_DESC_ONE + TIME_TO_DESC_ONE);
         assertEquals(new AddScheduleCommand(schedule), command);
     }
@@ -173,7 +173,7 @@ public class TutorTrackerParserTest {
         Schedule schedule = new ScheduleBuilder().build();
         EditScheduleCommand.EditScheduleDescriptor descriptor = new EditScheduleDescriptorBuilder(schedule).build();
         EditScheduleCommand command = (EditScheduleCommand) parser.parseCommand(EditScheduleCommand.COMMAND_WORD
-                + " " + INDEX_FIRST_PERSON.getOneBased() + " " + TITLE_DESC_ONE + DESC_DESC_ONE + DATE_DESC_ONE
+                + " " + INDEX_FIRST_PERSON.getOneBased() + " " + TITLE_DESC_ONE + DESC_DESC_ONE + DATE_DESC_FOUR
                 + TIME_FROM_DESC_ONE + TIME_TO_DESC_ONE);
         assertEquals(new EditScheduleCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
@@ -195,7 +195,7 @@ public class TutorTrackerParserTest {
     public void parseCommand_addReminder() throws Exception {
         Reminder reminder = new ReminderBuilder().build();
         AddReminderCommand command = (AddReminderCommand) parser.parseCommand(
-                AddReminderCommand.COMMAND_WORD + REMINDER_DESC_DESC_ONE + REMINDER_DATE_DESC_ONE);
+                AddReminderCommand.COMMAND_WORD + REMINDER_DESC_DESC_FOUR + REMINDER_DATE_DESC_ONE);
         assertEquals(new AddReminderCommand(reminder), command);
     }
 
@@ -211,7 +211,7 @@ public class TutorTrackerParserTest {
         Reminder reminder = new ReminderBuilder().build();
         EditReminderCommand.EditReminderDescriptor descriptor = new EditReminderDescriptorBuilder(reminder).build();
         EditReminderCommand command = (EditReminderCommand) parser.parseCommand(EditReminderCommand.COMMAND_WORD
-                + " " + INDEX_FIRST_PERSON.getOneBased() + " " + REMINDER_DESC_DESC_ONE + REMINDER_DATE_DESC_ONE);
+                + " " + INDEX_FIRST_PERSON.getOneBased() + " " + REMINDER_DESC_DESC_FOUR + REMINDER_DATE_DESC_ONE);
         assertEquals(new EditReminderCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 

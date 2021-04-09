@@ -9,7 +9,7 @@ import seedu.address.model.reminder.ReminderDate;
  */
 public class ReminderBuilder {
 
-    public static final String DEFAULT_DESCRIPTION = "Maths Tuition Payment Due";
+    public static final String DEFAULT_DESCRIPTION = "Math Tuition Payment Due";
     public static final String DEFAULT_REMINDERDATE = "2021-06-01";
 
     private Description description;
