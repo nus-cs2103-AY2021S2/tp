@@ -411,6 +411,7 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 * If you wish to include a start time for your task, the start time should not be later than deadline.
 * Editing tags through the `edit` command overrides all existing tags. 
   If you wish to add or delete only certain tags, use `tag` and `deleteTag` commands instead.
+* `edit INDEX t/` is provided as a mean to clear all tags for a task, you cannot add tags while clear other tags. For example, `edit 1 t/ t/tag`.
 
 Tutorial Example:<br>
 `edit 1 n/Refactor tP code d/Make the code look neater b/2021-04-09`
