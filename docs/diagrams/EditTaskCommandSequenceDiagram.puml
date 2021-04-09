@@ -5,57 +5,49 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
 participant ":EditTaskCommandParser" as EditTaskCommandParser LOGIC_COLOR
-participant "s:EditTaskCommand" as EditTaskCommand LOGIC_COLOR
-participant "s:EditTaskDescriptor" as EditTaskDescriptor LOGIC_COLOR
-participant "CommandResult" as CommandResult LOGIC_COLOR
+participant "e:EditTaskCommand" as EditTaskCommand LOGIC_COLOR
+participant "ed:EditTaskDescriptor" as EditTaskDescriptor LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : parse(edit_task args)
+[-> LogicManager : parse("edit_task 1 n/t1")
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(edit_task args)
+LogicManager -> SocheduleParser : parseCommand("edit_task 1 n/t1")
 activate SocheduleParser
 
-SocheduleParser -> EditTaskCommandParser: parse(args)
+SocheduleParser -> EditTaskCommandParser: parse("1 n/t1")
 activate EditTaskCommandParser
 
 create EditTaskDescriptor
 EditTaskCommandParser -> EditTaskDescriptor
 activate EditTaskDescriptor
-EditTaskCommandParser <--EditTaskDescriptor : s
+EditTaskCommandParser <--EditTaskDescriptor : ed
 deactivate EditTaskDescriptor
 
 create EditTaskCommand
 EditTaskCommandParser -> EditTaskCommand
 activate EditTaskCommand
-EditTaskCommandParser <--EditTaskCommand : s
+EditTaskCommandParser <--EditTaskCommand : e
 deactivate EditTaskCommand
 
-SocheduleParser <--EditTaskCommandParser : s
+SocheduleParser <--EditTaskCommandParser : e
 deactivate EditTaskCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 EditTaskCommandParser -[hidden]->[
 destroy EditTaskCommandParser
 
-LogicManager <-- SocheduleParser : s
+LogicManager <-- SocheduleParser : e
 deactivate SocheduleParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-SocheduleParser -[hidden]->[
-destroy SocheduleParser
 
 LogicManager -> EditTaskCommand : execute()
 activate EditTaskCommand
 
-EditTaskCommand -> Model : getFilteredTaskList()
-activate Model
-EditTaskCommand <-- Model
-deactivate Model
-
-EditTaskCommand -> EditTaskCommand : createEditedTask(taskToEdit, editTaskDescriptor)
+EditTaskCommand -> EditTaskCommand : createEditedTask(taskToEdit, ed)
 activate EditTaskCommand
 EditTaskCommand <-- EditTaskCommand
 deactivate EditTaskCommand
@@ -77,11 +69,8 @@ activate CommandResult
 EditTaskCommand <-- CommandResult
 deactivate CommandResult
 
-LogicManager <-- EditTaskCommand
+LogicManager <-- EditTaskCommand : result
 deactivate EditTaskCommand
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-EditTaskCommand -[hidden]->[
-destroy EditTaskCommand
 
-[<-- LogicManager : CommandResult
+[<-- LogicManager :
 @enduml
