@@ -63,7 +63,7 @@ public class EditDogCommandTest {
     }
 
     @Test
-    public void execute_ownerIdSpecified_success() {
+    public void execute_someFieldsSpecified_success() {
         Dog toEditDog = (Dog) model.getEntity(ID_TWO);
 
         DogBuilder dogInList = new DogBuilder(toEditDog);
@@ -84,7 +84,7 @@ public class EditDogCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecified_success() throws CommandException {
+    public void execute_ownerIdSpecified_success() throws CommandException {
         Dog toEditDog = (Dog) model.getEntity(ID_TWO);
 
         DogBuilder dogInList = new DogBuilder(toEditDog);
