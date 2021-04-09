@@ -12,6 +12,19 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Introduction 
+
+Pawbook is a desktop application for dog school managers to facilitate their bookkeeping of puppies and dogs in the 
+school, optimized for input via a **Command Line Interface (CLI)** which caters to fast-typers who prefer to use a 
+keyboard. You can navigate the application with ease and execute instructions by typing text-based commands in the 
+command box provided without ever having to reach for your mouse!
+
+## Purpose 
+
+This document  aims to serve as a guide for developers, testers and designers who are interested in working on Pawbook. 
+It describes both the design and architecture of Pawbook. 
+
 ## **Target User Profile**
 
 The target user profile are dog school managers that own and manage the daily operations of the dog schools. They
@@ -76,9 +89,13 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
+### Sequence Diagram of the four components 
+
+![Structure of the UI Component](images/ComponentSequenceDiagram.png)
+
 ### UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram.png 
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-T10-1/tp/blob/master/src/main/java/dog/pawbook/ui/Ui.java)
@@ -121,7 +138,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the pawbook database data.
 * exposes an unmodifiable `ObservableList<Entity>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -140,7 +157,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the pawbook database data in json format and read it back.
 
 ### Common classes
 
@@ -426,7 +443,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the app manually. These instructions should be complemented with the user
+guide for comprehensive testing. The state of the application is assumed to contain the sample data from when the 
+application is first launched.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -447,25 +466,343 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+      
+1. For the sake of all manual testing, we will be using the preset typical entities loaded from Pawbook database.
+      
+### Add Command 
 
-1. _{ more test cases …​ }_
+1. Adding a dog
 
-### Deleting an owner
+    1. Prerequisites: Pawbook is launched and running.
 
+    1. Test case: `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active` <br>
+       Expected: If database does not already contain a Bruce, a successful command result should show.
+
+    1. Test case: `add dog o/1 b/Chihuahua d/12-02-2019 n/Bruce s/Male t/playful t/active` <br>
+       Expected: Similar to previous.
+
+    1. Test case : `add dog o/1 b/Chihuahua d/12-02-2019 n/Bruce t/playful t/active` <br>
+       Expected: Missing parameters, status message indicates invalid command format.
+
+1. Adding an owner 
+
+    1. Prerequisites: Pawbook is launched and running. 
+    
+    1. Test case: `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney` <br>
+        Expected: If database does not already contain a John Doe, a successful command result should show. 
+       
+    1. Test case: `add owner n/John Doe a/311, Clementi Ave 2, #02-25 e/johnd@example.com p/98765432  t/friends t/owesMoney` <br>
+        Expected: Similar to previous.
+       
+    1.  Test case : `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney` <br>
+        Expected: Missing parameter, status message indicates invalid command format.
+        
+1. Adding a program 
+
+    1. Prerequisites: Pawbook is launched and running.
+
+    1. Test case: `add program n/Obedience Training s/01-02-2021 18:00 t/puppies` <br>
+       Expected: If database does not already contain a Bruce, a successful command result should show.
+       
+    1. Test case: `add program s/01-02-2021 n/Obedience Training 18:00 t/puppies` <br>
+       Expected: Similar to previous.
+
+    1. Test case : `add program n/Obedience Training t/puppies` <br>
+       Expected: Missing parameters, status message indicates invalid command format.
+        
+### Delete Command
 1. Deleting an owner while all owners are being shown
 
-   1. Prerequisites: List all owners using the `list` command. Multiple owners in the list.
+    1. Prerequisites: List all owners using the `list owner` command. Multiple owners in the list.
 
-   1. Test case: `delete owner 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete owner 1`<br>
+       Expected: Owner with ID 1 is deleted from the list. All the dogs belonging to the first owner is also deleted. 
+       Details of the deleted contact shown in the status message. Timestamp in the status bar is updated. 
 
-   1. Test case: `delete owner 0`<br>
-      Expected: No owner is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete owner 0`<br>
+       Expected: No owner is deleted. Error details shown in the status message. Status bar remains the same.
+       
+    1. Test case: `delete owner 2`<br> 
+       Expected: No owner is deleted as ID 2 is not an owner. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete commands to try: `delete owner`, `delete owner x`, `delete owner -x` (where x is larger than list size or negative)<br>
+       Expected: Similar to previous.
+       
+1. Deleting a dog while all dogs are being shown 
+
+    1. Prerequisites: List all dogs using the `list dog` command. Multiple dogs in the list. 
+    
+    1. Test case: `delete dog 2`<br> 
+       Expected: Dog with ID 2 is deleted from the list. The dogs will also be removed from all programs they were previously
+       enrolled in.
+
+   1. Test case: `delete dog 0`<br>
+      Expected: No dog is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `delete dog 1`<br>
+      Expected: No owner is deleted as ID 1 is not a dog. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `delete dog`, `delete dog x`, `delete dog -x` (where x is larger than list size or negative)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting a program while all programs are being shown
+
+    1. Prerequisites: List all programs using the `list program` command. Multiple programs in the list.
+
+    1. Test case: `delete program 3`<br>
+       Expected: Program with ID 3 is deleted from the list. The dogs that were enrolled in the program will no longer be enrolled in that program. 
+       
+    1. Test case: `delete program 0`<br>
+       Expected: No program is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Test case: `delete program 1`<br>
+       Expected: No owner is deleted as ID 1 is not a dog. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `delete program`, `delete program x`, `delete program -x` (where x is larger than list size or negative)<br>
+       Expected: Similar to previous.
+       
+### Edit Command
+
+1. Pre-requisites
+
+    1. Start with an empty database by deleting all entities.
+
+    1. Add a sample owner with `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`. Ensure John Doe has ID 1.
+
+    1. Add a sample dog with `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`
+
+    1. Add a sample program with `add program n/Obedience Training s/01-02-2021 18:00 t/puppies`
+    
+    1. Add another sample owner with `add owner n/James Bond p/90139122 e/jamesbond@example.com a/322, Clementi Ave 2, #02-25 t/friends t/owesMoney` Ensure James Bond has ID 4. 
+
+1. Editing a dog
+
+    1. Test case: `edit dog 2 n/Milo` 
+       Expected: Successfully renamed Bruce to Milo. 
+       
+    1. Test case: `edit dog 2 n/Bruce o/4`
+       Expected: Successfully renamed Milo to Bruce and changed owner from John Doe to James Bond. 
+       
+    1. Test case: `edit dog 3 n/Milo o/4`
+       Expected: Error status message shown, indicating dog ID provided is invalid. 
+
+1. Editing an owner 
+
+    1. Test case: `edit owner 1 p/91234567`
+       Expected: Successfully changes John Doe's number. 
+
+    1. Test case: `edit owner 1 p/97538642 e/ilovedogs@sample.com`
+       Expected: Successfully changed John Doe's number and updated his email.
+
+    1. Test case: `edit owner 3 n/Keith`
+       Expected: Error status message shown, indicating owner ID provided is invalid.
+
+1. Editing a program 
+
+    1. Test case: `edit program 3 n/Kennel Training`
+       Expected: Successfully renamed Obedience Training to Kennel Training. 
+
+    1. Test case: `edit program 3 n/Kennel Training s/01-02-2021 17:00`
+       Expected: Successfully renamed Obedience Training to Kennel Training and changes the session date to 1700 from 1800. 
+
+    1. Test case: `edit program 4 n/Kennel Training s/01-02-2021 17:00`
+       Expected: Error status message shown, indicating program ID provided is invalid.
+
+### Find Command 
+
+1. Find valid entities
+
+    1. Prerequisites: Application is running. List being shown does not matter. 
+
+    1. Test case: `Find Carl`<br>
+       Expected: Carl with ID 5 is shown on the display list. Status message says "1 entity listed!"
+
+    1. Test case: `Find Car`<br>
+       Expected: Similar to previous. 
+
+    1. Test case: `Find Car`<br>
+       Expected: Similar to previous. 
+
+    1. Test case: `find carl`<br>
+       Expected: Similar to previous  
+       
+    1. Test case: `find Elsa Flora Genie` <br>
+       Expected: Else, Flora and Genie are displayed on the list. Status messages says: "3 entities listed!"
+       
+1. Finding invalid entities
+
+    1. Test case: `find InvalidName`<br>
+       Expected: Zero entities listed. 
+       
+    1. Test case: `find 12345` <br>
+       Expected: Zero entities listed. 
+       
+### List Command
+
+1. Listing dogs 
+
+    1. Test case: `list dog`<br>
+       Expected: All the dogs in the school listed. 
+
+1. Listing owners
+
+    1. Test case: `list owner`<br>
+       Expected: All the owners in the school listed.
+
+1. Listing program
+
+    1. Test case: `list program`<br>
+       Expected: All the programs in the school listed.
+
+1. Invalid List commands
+
+    1. Test case: `list` <br>
+       Expected: Error message indicates unknown entity, shows supported entities.
+       
+    1. Test case: `list invalidEntity` <br>
+       Expected: Similar to previous. 
+       
+### View Command 
+
+1. Pre-requisites
+
+    1. Start with an empty database by deleting all entities. 
+    
+    1. Add a sample owner with `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`. Ensure John Doe has ID 1. 
+    
+    1. Add a sample dog with `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`
+
+    1. Add a sample program with `add program n/Obedience Training s/01-02-2021 18:00 t/puppies`
+    
+    1. Enrol Bruce into Obedience Training with `enrol d/2 p/3`
+    
+    1. Ensure that Bruce is successfully added to the Obedience Training program. 
+    
+1. Viewing owner 
+
+    1. Test case: `view 1`
+       Expected: John's and Bruce's contacts are listed. John Doe's contact is at the top, followed by Bruce.
+       
+1. Viewing dog 
+    
+    1. Test case: `view 2`
+       Expected: John, Bruce and Obedience Training program is listed. Bruce's contact is at the top, followed by John, 
+        followed by Obedience Training. 
+
+1. Viewing program
+
+    1. Test case: `view 3`
+       Expected: Bruce and Obedience Training program is listed. Obedience training details are at the top, followed by Bruce's details. 
+       
+1. Invalid view ID 
+
+    1. Test case: `view 4`
+       Expected: Error status message is provided, indicating invalid ID. 
+       
+    1. Test case: 'view -1'
+       Expected: Similar to previous. 
+
+### Schedule Command 
+
+1. Pre-requisites 
+
+    1. Start with an empty database by deleting all entities. 
+
+    1. Add a sample program with `add program n/Obedience Training 1 s/[TODAY'S DATE] 18:00 t/puppies`. Fill in today's
+      date in the `[TODAY'S DATE]` field.
+
+    1. Add a sample program with `add program n/Obedience Training 2 s/01-02-2021 18:00 t/puppies`
+    
+    1. Ensure that sample programs are successfully added. 
+
+1. Viewing schedules on a valid day 
+
+    1. Test case: `schedule` <br>
+       Expected: Successful status message, shows the sample Obedience Training 1 happening today.
+
+    1. Test case: `schedule 01-02-2021` <br>
+       Expected: Successful status message, shows the sample Obedience Training 1 happening on 01-02-2021. 
+       
+    
+1. Viewing schedules on an invalid day 
+
+    1. Test case: `schedule 31-02-2021`
+       Expected: Error status message thrown, indicating day of the month does not exist.
+       
+    1. Test case: `schedule 031-02-2021`
+       Expected: Error status message thrown, indicating that date format should be in dd-MM-yyyy format. 
+       
+### Enrol Command 
+
+1. Pre-requisites
+
+    1. Start with an empty database by deleting all entities.
+
+    1. Add a sample owner with `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`. Ensure John Doe has ID 1.
+
+    1. Add a sample dog with `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`
+
+    1. Add a sample program with `add program n/Obedience Training s/01-02-2021 18:00 t/puppies`
+    
+1. Enrol valid dog into valid program 
+
+    1. Test case: `enrol d/2 p/3` <br>
+       Expected:Bruce is successfully added to the Obedience Training program.
+       
+1. Enrol valid dog into invalid program 
+
+    1. Test case: `enrol d/2 p/4` <br>
+       Expected: Error status message stating program ID is invalid.  
+
+1. Enrol invalid dog into valid program 
+
+    1. Test case:  `enrol d/3 p/3` <br>
+       Expected: Error status message stating dog ID is invalid.
+       
+1. Invalid enrol command 
+
+    1. Test case: `enrol invalidCommand`
+       Expected: Error status message indicating wrong command format.  
+
+### Drop Command 
+
+1. Pre-requisites
+
+    1. Start with an empty database by deleting all entities.
+
+    1. Add a sample owner with `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`. Ensure John Doe has ID 1.
+
+    1. Add a sample dog with `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`. Ensure Bruce has ID 2.
+
+    1. Add a sample program with `add program n/Obedience Training s/01-02-2021 18:00 t/puppies` Ensure Obedience Training has ID 3.
+
+1. Drop valid dog from valid program
+
+    1. Test case: `drop d/2 p/3` <br>
+       Expected:Bruce is successfully dropped from Obedience Training program.
+
+1. Drop valid dog into invalid program
+
+    1. Test case: `drop d/2 p/4` <br>
+       Expected: Error status message stating program ID is invalid.
+
+1. Drop invalid dog into valid program
+
+    1. Test case:  `drop d/3 p/3` <br>
+       Expected: Error status message stating dog ID is invalid.
+
+1. Invalid drop command
+
+    1. Test case: `drop invalidCommand`
+       Expected: Error status message indicating wrong command format.
+       
+### Help Command
+1. Test case: `help` 
+   Opens a pop-up window that shows the command summary and
+
+### Exit Command
+1. Test case: `exit` 
+    1. Expected: The program should exit and close.
 
 ### Saving data
 
