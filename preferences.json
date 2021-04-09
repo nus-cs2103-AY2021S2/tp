@@ -1,10 +1,10 @@
 {
   "guiSettings" : {
-    "windowWidth" : 2576.0,
-    "windowHeight" : 1416.0,
+    "windowWidth" : 1732.0,
+    "windowHeight" : 1008.0,
     "windowCoordinates" : {
-      "x" : -8,
-      "y" : -8
+      "x" : 323,
+      "y" : 313
     }
   },
   "addressBookFilePath" : "data\\tutorbuddy.json"
