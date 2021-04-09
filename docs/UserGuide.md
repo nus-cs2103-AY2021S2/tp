@@ -93,14 +93,14 @@ Prefix: `n/`
   E.g. `Alex Yeoh`, `Johnathan9`, `Charlotte the 5th`
 * It cannot be longer than 70 characters.
 * It cannot be empty.
-<br><br>
+
 ##### `PHONE_NUMBER`
 The phone number of the customer who has placed the order.<br>
 Prefix: `p/`
 * It can only contain numbers.
 * It should be at least 3 digits long.
 * It cannot be longer than 20 digits.
-<br><br>
+
 ##### `EMAIL`
 The email of the customer who has placed the order.<br>
 Prefix: `e/`
@@ -112,13 +112,13 @@ Prefix: `e/`
   * start and end with alphabetical or numerical characters
   * contain alphabetical or numerical characters, a period `.` or a hyphen `-` for the characters in between, if any.<br>
   E.g. `sample-domain.com`
-<br><br>
+
 ##### `ADDRESS`
 The address of the customer who has placed the order.<br>
 Prefix: `a/`
 * It can contain any characters.
 * It cannot be empty.
-<br><br>
+
 ##### `DELIVERY_DATE`
 The delivery date for the order.<br>
 Prefix: `d/`
@@ -135,20 +135,20 @@ Prefix: `d/`
 :information_source: You do not have to worry about losing track of overdue orders.<br>
 
 **:exclamation: For advanced users:** You will be able to enter a past delivery date into the save file `cakecollate.json`. As such, you are recommended to add/edit a delivery date through the application itself.
-<br><br>
+
 ##### `ORDER_DESCRIPTION`
 The order description for the order.<br>
 Prefix: `o/`
 * Each order description cannot be longer than 70 characters.
 * It cannot be empty.<br>
   E.g. `Durian Cake`
-<br><br>
+
 ##### `ORDER_ITEM_INDEXES`
 The order item index of the order item table for the order.<br>
 Prefix: `oi/`
 * This refers to indexes of the order item table in the [order item box](#221-sections-of-the-ui).
 * This can be used with or as a replacement for `ORDER_DESCRIPTION`, given the order item in the table matches the order description you want to add/edit.
-<br><br>
+
 ##### `TAG`
 The tags you can add to an order.<br>
 Prefix: `t/`
@@ -157,7 +157,7 @@ Prefix: `t/`
 * There is no specific usage for `TAG`.
   * Use it as a tag for the customer. E.g. `friend`, `fussy`, `important`
   * Use it as a tag for the order. E.g. `urgent`, `complicated`
-<br><br>
+
 ##### `REQUEST`
 The request or notes you can add to an order.<br>
 Prefix: `r/`
