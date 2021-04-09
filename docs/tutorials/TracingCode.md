@@ -103,14 +103,14 @@ Try to jot down what happens inside the component and where the execution transf
 
         CommandResult commandResult;
         //Parse user input from String to a Command
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = taskifyParser.parseCommand(commandText);
         //Executes the Command and stores the result
         commandResult = command.execute(model);
 
         try {
             //We can deduce that the previous line of code modifies model in some way
             // since it's being stored here.
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveTaskify(model.getTaskify());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -201,12 +201,12 @@ Try to jot down what happens inside the component and where the execution transf
 
    ``` java
    /**
-    * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+    * Converts a given {@code ReadOnlyTaskify} into this class for Jackson use.
     *
     * @param source future changes to this will not affect the created
-    * {@code JsonSerializableAddressBook}.
+    * {@code JsonSerializableTaskify}.
     */
-   public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+   public JsonSerializableTaskify(ReadOnlyTaskify source) {
        tasks.addAll(
            source.getPersonList()
                  .stream()

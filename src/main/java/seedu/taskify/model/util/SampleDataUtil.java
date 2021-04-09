@@ -41,7 +41,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyTaskify getSampleAddressBook() {
+    public static ReadOnlyTaskify getSampleTaskifyData() {
         Taskify sampleAb = new Taskify();
         for (Task sampleTask : getSampleTasks()) {
             sampleAb.addTask(sampleTask);

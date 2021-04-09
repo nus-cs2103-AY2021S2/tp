@@ -7,7 +7,7 @@ import static seedu.taskify.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taskify.testutil.TypicalTasks.TASK_2;
 import static seedu.taskify.testutil.TypicalTasks.TASK_4;
-import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.taskify.testutil.TypicalTasks.getTypicalTaskify;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -23,8 +23,8 @@ import seedu.taskify.model.task.predicates.TagContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code TagSearchCommand}.
  */
 public class TagSearchCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTaskify(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTaskify(), new UserPrefs());
 
     @Test
     public void equals() {

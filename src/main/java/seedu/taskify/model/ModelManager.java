@@ -74,25 +74,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTaskifyFilePath() {
+        return userPrefs.getTaskifyFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path taskifyFilePath) {
+    public void setTaskifyFilePath(Path taskifyFilePath) {
         requireNonNull(taskifyFilePath);
-        userPrefs.setAddressBookFilePath(taskifyFilePath);
+        userPrefs.setTaskifyFilePath(taskifyFilePath);
     }
 
     //=========== TaskifyParser ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyTaskify taskify) {
+    public void setTaskifyData(ReadOnlyTaskify taskify) {
         this.taskify.resetData(taskify);
     }
 
     @Override
-    public ReadOnlyTaskify getAddressBook() {
+    public ReadOnlyTaskify getTaskify() {
         return taskify;
     }
 
@@ -130,7 +130,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedTaskify}
      */
     @Override
     public ObservableList<Task> getFilteredTaskList() {
