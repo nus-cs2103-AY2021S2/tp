@@ -46,7 +46,7 @@ public class OrderEditCommandParser {
 
         OrderEditCommand.EditOrderDescriptor editOrderDescriptor = new OrderEditCommand.EditOrderDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editOrderDescriptor.setCustomerId(Integer.parseInt(argMultimap.getValue(PREFIX_NAME).get()));
+            editOrderDescriptor.setCustomerId(ParserUtil.parseNonNegativeInt(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
             editOrderDescriptor.setDateTime(
@@ -56,14 +56,13 @@ public class OrderEditCommandParser {
                 && argMultimap.getValue(PREFIX_QUANTITY).isPresent()) {
             List<String> editedDishNumbers = argMultimap.getAllValues(PREFIX_DISH);
             List<String> editedDishQuantities = argMultimap.getAllValues(PREFIX_QUANTITY);
+            ParserUtil.validateListLengths(editedDishNumbers, editedDishQuantities);
 
-            List<Pair<Integer, Integer>> editedDishIdsQuantityList = new ArrayList<>();
-
-            // TODO: abstract out to parser, add size check
+            List<Pair<Index, Integer>> editedDishIdsQuantityList = new ArrayList<>();
             for (int i = 0; i < editedDishNumbers.size(); i++) {
-                Pair<Integer, Integer> editedDishComponent =
-                        new Pair<>(Integer.parseInt(editedDishNumbers.get(i)),
-                                Integer.parseInt(editedDishQuantities.get(i)));
+                Pair<Index, Integer> editedDishComponent =
+                        new Pair<>(ParserUtil.parseIndex(editedDishNumbers.get(i)),
+                                ParserUtil.parseNonNegativeInt(editedDishQuantities.get(i)));
                 editedDishIdsQuantityList.add(editedDishComponent);
             }
 

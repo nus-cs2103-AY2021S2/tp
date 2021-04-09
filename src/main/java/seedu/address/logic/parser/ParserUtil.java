@@ -17,11 +17,55 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class ParserUtil {
 
+    // ========== ERROR MESSAGES ==========
+
+    public static final String MESSAGE_INVALID_NAME = "Invalid name specified.";
+    public static final String MESSAGE_INVALID_PHONE = "Invalid phone number specified.";
+    public static final String MESSAGE_INVALID_EMAIL = "Invalid email address specified.";
+    public static final String MESSAGE_INVALID_ADDRESS = "Invalid address specified.";
+    public static final String MESSAGE_INVALID_INGREDIENT = "Invalid ingredient name specified.";
+    public static final String MESSAGE_INVALID_DISH = "Invalid dish name specified.";
+
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_POSITIVE_INT = "Not a valid positive integer.";
-    public static final String MESSAGE_INVALID_POSITIVE_DOUBLE = "Not a valid positive double.";
+    public static final String MESSAGE_INVALID_NONNEGATIVE_INT = "Non-negative integer must be specified.";
+    public static final String MESSAGE_INVALID_PRICE = "Price must be a non-negative double.";
+
     public static final String MESSAGE_NO_KEYWORD = "No keyword specified.";
     public static final String MESSAGE_NO_KEYWORDS = "No keywords specified.";
+    public static final String MESSAGE_MISMATCHED_LISTS = "Argument lists are different lengths.";
+
+    // ========== REGEXES ==========
+
+    // Name validation: name cannot start with whitespace, or " " can be a valid name.
+    public static final String VALID_NAME_REGEX = "[^ ].*";
+
+    // Phone validation: must contain numerical characters only.
+    public static final String VALID_PHONE_REGEX = "[0-9]*";
+
+    // Email address validation: must conform to the form local-part@domain
+    // Assumes IP addresses are not used as domain portion
+    private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
+    // Local part contains alphanumeric characters and special characters
+    private static final String LOCAL_PART_REGEX = "^[\\w" + SPECIAL_CHARACTERS + "]+";
+    // Domain's first character can be word characters, except underscore
+    private static final String DOMAIN_FIRST_CHARACTER_REGEX = "[^\\W_]";
+    // Domain's middle characters can be alphanumeric characters, period, and hyphen
+    private static final String DOMAIN_MIDDLE_REGEX = "[a-zA-Z0-9.-]*";
+    // Domain's last character must be word characters, except underscore
+    private static final String DOMAIN_LAST_CHARACTER_REGEX = "[^\\W_]$";
+    public static final String VALID_EMAIL_REGEX = LOCAL_PART_REGEX + "@"
+            + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
+
+    // Address validation: address cannot start with whitespace, or " " can be a valid address.
+    public static final String VALID_ADDRESS_REGEX = "[^ ].*";
+
+    // Ingredient name validation: ingredient name cannot start with whitespace, or " " can be a valid ingredient name.
+    public static final String VALID_INGREDIENT_REGEX = "[^ ].*";
+
+    // Dish name validation: dish name cannot start with whitespace, or " " can be a valid dish name.
+    public static final String VALID_DISH_REGEX = "[^ ].*";
+
+    // ========== GENERAL ==========
 
     /**
      * Parse non-negative integer from String.
@@ -30,25 +74,13 @@ public class ParserUtil {
     public static Integer parseNonNegativeInt(String toParse) throws ParseException {
         String trimmedToParse = toParse.trim();
         if (!StringUtil.isNonNegativeInt(trimmedToParse)) {
-            throw new ParseException(MESSAGE_INVALID_POSITIVE_INT);
+            throw new ParseException(MESSAGE_INVALID_NONNEGATIVE_INT);
         }
         return Integer.valueOf(trimmedToParse);
     }
 
     /**
-     * Parse non-negative double from String.
-     * @throws ParseException if specified string is not a positive double.
-     */
-    public static Integer parseNonNegativeDouble(String toParse) throws ParseException {
-        String trimmedToParse = toParse.trim();
-        if (!StringUtil.isNonNegativeDouble(trimmedToParse)) {
-            throw new ParseException(MESSAGE_INVALID_POSITIVE_DOUBLE);
-        }
-        return Integer.valueOf(trimmedToParse);
-    }
-
-    /**
-     * Parse single keyword
+     * Parses a single keyword.
      * @throws ParseException if specified string is empty.
      */
     public static String parseKeyword(String keyword) throws ParseException {
@@ -60,7 +92,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parse space separated keywords
+     * Parses space-separated keywords.
      * @throws ParseException if specified string is empty.
      */
     public static List<String> parseKeywords(String keywords) throws ParseException {
@@ -72,8 +104,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -84,6 +116,24 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    public static void validateListLengths(List listA, List listB) throws ParseException {
+        requireNonNull(listA);
+        requireNonNull(listB);
+        if (listA.size() != listB.size()) {
+            throw new ParseException(MESSAGE_MISMATCHED_LISTS);
+        }
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    // ========== PERSON ==========
+
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
@@ -93,6 +143,9 @@ public class ParserUtil {
     public static String parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
+        if (!trimmedName.matches(VALID_NAME_REGEX)) {
+            throw new ParseException(MESSAGE_INVALID_NAME);
+        }
         return trimmedName;
     }
 
@@ -105,6 +158,9 @@ public class ParserUtil {
     public static String parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
+        if (!trimmedPhone.matches(VALID_PHONE_REGEX)) {
+            throw new ParseException(MESSAGE_INVALID_PHONE);
+        }
         return trimmedPhone;
     }
 
@@ -117,6 +173,9 @@ public class ParserUtil {
     public static String parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
+        if (!trimmedAddress.matches(VALID_ADDRESS_REGEX)) {
+            throw new ParseException(MESSAGE_INVALID_ADDRESS);
+        }
         return trimmedAddress;
     }
 
@@ -128,7 +187,12 @@ public class ParserUtil {
      */
     public static String parseEmail(String email) throws ParseException {
         requireNonNull(email);
-        String trimmedEmail = email.trim();
+
+        // Convert email to lowercase, just in case
+        String trimmedEmail = email.toLowerCase().trim();
+        if (!trimmedEmail.matches(VALID_EMAIL_REGEX)) {
+            throw new ParseException(MESSAGE_INVALID_EMAIL);
+        }
         return trimmedEmail;
     }
 
@@ -152,11 +216,52 @@ public class ParserUtil {
         return new ArrayList<>(tags);
     }
 
+    // ========== INGREDIENT ==========
+
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
+     * Parses a {@code String ingredientName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code ingredientName} is invalid.
      */
-    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    public static String parseIngredientName(String ingredientName) throws ParseException {
+        requireNonNull(ingredientName);
+        String trimmedIngredientName = ingredientName.trim();
+        if (!trimmedIngredientName.matches(VALID_INGREDIENT_REGEX)) {
+            throw new ParseException(MESSAGE_INVALID_INGREDIENT);
+        }
+        return trimmedIngredientName;
     }
+
+    // ========== DISH ==========
+
+    /**
+     * Parses a {@code String dishName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dishName} is invalid.
+     */
+    public static String parseDishName(String dishName) throws ParseException {
+        requireNonNull(dishName);
+        String trimmedDishName = dishName.trim();
+        if (!trimmedDishName.matches(VALID_DISH_REGEX)) {
+            throw new ParseException(MESSAGE_INVALID_DISH);
+        }
+        return trimmedDishName;
+    }
+
+
+    /**
+     * Parse non-negative double from String.
+     * @throws ParseException if specified string is not a positive double.
+     */
+    public static Double parsePrice(String price) throws ParseException {
+        String trimmedToParse = price.trim();
+        if (!StringUtil.isNonNegativeDouble(trimmedToParse)) {
+            throw new ParseException(MESSAGE_INVALID_PRICE);
+        }
+        return Double.valueOf(trimmedToParse);
+    }
+
+
 }

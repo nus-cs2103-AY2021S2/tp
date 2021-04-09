@@ -41,23 +41,22 @@ public class MenuEditCommandParser {
 
         MenuEditCommand.EditDishDescriptor editDishDescriptor = new MenuEditCommand.EditDishDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editDishDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editDishDescriptor.setName(ParserUtil.parseDishName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PRICE).isPresent()) {
-            editDishDescriptor.setPrice(Double.parseDouble(argMultimap.getValue(PREFIX_PRICE).get()));
+            editDishDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
         }
         if (argMultimap.getValue(PREFIX_INGREDIENT).isPresent()
                 && argMultimap.getValue(PREFIX_QUANTITY).isPresent()) {
             List<String> editedIngredientNumbers = argMultimap.getAllValues(PREFIX_INGREDIENT);
             List<String> editedIngredientQuantities = argMultimap.getAllValues(PREFIX_QUANTITY);
+            ParserUtil.validateListLengths(editedIngredientNumbers, editedIngredientQuantities);
 
-            List<Pair<Integer, Integer>> editedIngredientIdsQuantityList = new ArrayList<>();
-
-            // TODO: abstract out to parser, add size check
+            List<Pair<Index, Integer>> editedIngredientIdsQuantityList = new ArrayList<>();
             for (int i = 0; i < editedIngredientNumbers.size(); i++) {
-                Pair<Integer, Integer> editedDishComponent =
-                        new Pair<>(Integer.parseInt(editedIngredientNumbers.get(i)),
-                                Integer.parseInt(editedIngredientQuantities.get(i)));
+                Pair<Index, Integer> editedDishComponent =
+                        new Pair<>(ParserUtil.parseIndex(editedIngredientNumbers.get(i)),
+                                ParserUtil.parseNonNegativeInt(editedIngredientQuantities.get(i)));
                 editedIngredientIdsQuantityList.add(editedDishComponent);
             }
 

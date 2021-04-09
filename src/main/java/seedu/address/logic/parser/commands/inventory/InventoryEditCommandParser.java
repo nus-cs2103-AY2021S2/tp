@@ -36,10 +36,12 @@ public class InventoryEditCommandParser {
         InventoryEditCommand.EditIngredientDescriptor editIngredientDescriptor =
                 new InventoryEditCommand.EditIngredientDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editIngredientDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            editIngredientDescriptor.setName(
+                    ParserUtil.parseIngredientName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_QUANTITY).isPresent()) {
-            editIngredientDescriptor.setQuantity(Integer.parseInt(argMultimap.getValue(PREFIX_QUANTITY).get()));
+            editIngredientDescriptor.setQuantity(
+                    ParserUtil.parseNonNegativeInt(argMultimap.getValue(PREFIX_QUANTITY).get()));
         }
 
         if (!editIngredientDescriptor.isAnyFieldEdited()) {
