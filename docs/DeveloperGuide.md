@@ -649,7 +649,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | forgetful user with many items | find an item quickly using its name | locate them easily |
 | `* *` | user who has many items in the storeroom | view all items in the storeroom | keep track of exactly what I have | 
 | `* *` | user who keeps track of my guests' favourites | view all items tagged with "guests" | better prepare the items when hosting my guests |
-| `* *` | forgetful user | be aware of my expiring items | replace them before it is expired or discard them if they have expired |
 | `* *` | grocery buyer of the household | sort my items in terms of increasing quantity | stock up items that are running low on quantity |
 | `* *` | user who does not like wastage | sort my items in terms of decreasing quantity | use up items that are high in quantity first |
 | `* *` | user who does not like to waste food | sort my food items in terms of expiry date | consume food that is expiring first |
@@ -682,6 +681,12 @@ otherwise)
 * 1b. Duplicate item exists in the inventory.
 
     * 1b1. StoreMando shows an error message.
+
+      Use case resumes at step 1.
+    
+* 1c. User inputs a number smaller than 0 or larger than 1,000,000.
+
+    * 1c1. StoreMando shows an error message.
 
       Use case resumes at step 1.
 
@@ -737,6 +742,12 @@ otherwise)
 * 1b. The new details keyed in by the user is the same as the existing details of the item.
 
     * 1b1. StoreMando shows an error message.
+
+      Use case resumes at step 1.
+
+* 1c. User inputs a number smaller than 0 or larger than 1,000,000.
+
+    * 1c1. StoreMando shows an error message.
 
       Use case resumes at step 1.
     
@@ -857,20 +868,27 @@ Use case ends.
     * Result should appear within 0.3 seconds after user keys in a command.
 2. **Reliability**
     * Should be able to hold up to 1000 line items in the house without any sluggish performance for typical usage.
+    * Should be able to detect and inform users of duplicate items (i.e. same name, location and expiry date) and prevent users from adding them.
+    * Should be able to detect and inform users of expired items when being added to the inventory.
 3. **Portability**
     * Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 4. **Usability**
     * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
       be able to accomplish most of the tasks faster by typing rather than using the mouse.
+    * A user should be able to use all functionalities of the application without needing to use a mouse to navigate.
     * StoreMando should work with or without Internet connection.
-
+5. **Security**
+    * Users that request to delete any item from the inventory will have that item permanently removed from memory.
+    
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **StoreMando**: Name of the application
 * **CLI**: Command Line Interface
 * **GUI**: Graphical User Interface
+* **User**: Any member under the same household
 * **Inventory**: List of all items stored in StoreMando
+* **Tag**: A miscellaneous piece of information that the user associates the item with, that isn't captured by the other fields but is good to have.
 
 --------------------------------------------------------------------------------------------------------------------
 
