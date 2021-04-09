@@ -96,14 +96,15 @@ Adds a person's information into Teaching Assistant.
 
 Format: `add n/NAME p/NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0).
+<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
+A person can have any number of tags (including 0).<br/>
+A contact can be tagged to an entry to easily filter for contacts related an entry.
 </div>
 
 Example(s):
 
-* `add n/Danny p/98765432 e/danny@email.com a/311, Clementi Ave 2, #02-25`
-* `add n/Amy p/12345678 e/amy@email.com a/311, Clementi Ave 2, #02-25 t/Friend t/OwesMoney`
+* `add n/Danny p/98765432 e/danny@email.com t/consultation 1`
+* `add n/Amy p/12345678 e/amy@email.com t/Colleague t/OwesMoney t/meeting 1`
 
 ### Finding a contact
 
