@@ -84,6 +84,10 @@ public class ParserUtil {
         if (trimmedValue.length() > dotIndex + DOUBLE_DECIMAL_LIMIT && dotIndex != -1) {
             throw new ParseException(Food.MESSAGE_DECIMAL_PLACE_CONSTRAINTS);
         }
+        Double result = Double.valueOf(trimmedValue);
+        if (result > Food.NUTRIENTS_LIMIT) {
+            throw new ParseException(Food.MESSAGE_DIGIT_MAX_LIMIT);
+        }
         return Double.valueOf(trimmedValue);
     }
 

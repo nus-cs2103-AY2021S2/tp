@@ -7,6 +7,7 @@ public class Food {
 
     public static final double PROTEIN_AND_CARBOS_MULTIPLIER = 4; //Conversion to KCAL
     public static final double FAT_MULTIPLIER = 9; //Conversion to KCAL
+    public static final double NUTRIENTS_LIMIT = 1000;
     public static final String VALIDATION_WHITESPACE_REGEX = "[^\\s].*";
     public static final String VALIDATION_CHAR_REGEX = "[a-zA-Z0-9\\s]*";
     public static final String VALIDATION_CHAR_REGEX_IMPORT = "[a-zA-Z0-9# ]*";
@@ -16,6 +17,8 @@ public class Food {
     public static final String MESSAGE_DECIMAL_PLACE_CONSTRAINTS = "Nutrients value can be entered up to 2 decimal "
             + "places. Please round your value to the nearest value.";
     public static final String MESSAGE_DIGIT_CONSTRAINTS = "Double value input can only be positive and at least 0.";
+    public static final String MESSAGE_DIGIT_MAX_LIMIT = "The maximum value for a nutrient is 1000g. Please enter "
+            + "a value greater than 0 and lesser than 1000.";
 
 
     private String name;
