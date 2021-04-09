@@ -11,31 +11,31 @@ and it has a GUI created with JavaFX. It is written in Java, and has about 12 kL
 
 Given below are my contributions to the project.
 
-* ### Major contributions:\
+* ### Major contributions:
     * #### Implemented multiple deletion of tasks
         * What it does: Allows users to delete more than one task with one command, by providing multiple individual 
-          indices, giving an index range, or by providing a status of which all tasks that have it will be deleted.\
+          indices, giving an index range, or by providing a status of which all tasks that have it will be deleted.
           
         * Justification: This feature makes deletion of tasks much faster for the user. Users would want to delete all 
           completed tasks to declutter Taskify, or delete select tasks in Taskify without having to delete them one by
-          one.\
+          one.
           
         * Highlights: The implementation involved rigorous testing because it was easy to mess up the rather complex 
           regular expressions that accepts different types of input for the delete command. It was a little challenging
-          to reorganise the new code into their different classes to try to obey SLAP and SRP.\
+          to reorganise the new code into their different classes to try to obey SLAP and SRP.
           
         * Relevant PRs: [\#65](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/65), [\#158](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/158),
           [\#160](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/160), [\#155](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/155),
           [\#165](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/165), [\#172](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/172)  
           
     * #### Implemented the Date class
-        * What it does: An essential field in a Task, used for deadlines.\
+        * What it does: An essential field in a Task, used for deadlines.
         
         * Justification: A task tracker without the ability to keep track of deadlines is not helpful at all. By adding 
-          the Date class, tasks can now have a deadline.\
+          the Date class, tasks can now have a deadline.
           
         * Highlights: Minor changes to logic in many classes. Checking if a string is valid to be parsed as a Date was 
-          slightly challenging at first.\
+          slightly challenging at first.
           
         * Relevant PRs: [\#33](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/33)
     
