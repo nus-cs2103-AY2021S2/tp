@@ -11,7 +11,7 @@ import java.util.Objects;
 public class BookingTime {
     private final LocalDate start;
     private final LocalDate end;
-    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-uuuu");
 
     /**
      * initialize a booking Time

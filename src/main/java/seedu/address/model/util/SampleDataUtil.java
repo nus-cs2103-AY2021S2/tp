@@ -26,7 +26,7 @@ public class SampleDataUtil {
         BookingList bookingListA = new BookingList();
         BookingList bookingListB = new BookingList();
 
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MM-uuuu");
         LocalDate startA = LocalDate.parse("27-03-2021", dateFormat);
         LocalDate endA = LocalDate.parse("02-04-2021", dateFormat);
         LocalDate startB = LocalDate.parse("10-04-2021", dateFormat);
