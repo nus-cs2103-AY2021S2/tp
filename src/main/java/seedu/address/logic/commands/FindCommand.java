@@ -45,7 +45,7 @@ public class FindCommand extends Command {
             + " - " + OPTION_PHONE + " (to find by phone)\n"
             + " - " + OPTION_EMAIL + " (to find by email)\n"
             + " - " + OPTION_TAG + " (to find by tags)\n"
-            + "If you wish to search by all fields, please leave out the 'o/'";;
+            + "If you wish to search by all fields, please leave out the ' o/ '";;
     public static final String MESSAGE_MISSING_NAME_ARGS = "Please add some values to find contacts by name.";
     public static final String MESSAGE_MISSING_ADDRESS_ARGS = "Please add some values to find contacts by address.";
     public static final String MESSAGE_MISSING_PHONE_ARGS = "Please add some values to find contacts by phone number.";

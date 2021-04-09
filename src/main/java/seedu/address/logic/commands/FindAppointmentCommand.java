@@ -44,7 +44,7 @@ public class FindAppointmentCommand extends Command {
             + " - " + OPTION_ADDRESS + " (to find by address)\n"
             + " - " + OPTION_DATE + " (to find by date)\n"
             + " - " + OPTION_CONTACT + " (to find by contacts)\n"
-            + "If you wish to search by all fields, please leave out the 'o/'";
+            + "If you wish to search by all fields, please leave out the ' o/ '.";
     public static final String MESSAGE_MISSING_NAME_ARGS = "Please add some values to find appointments by name.";
     public static final String MESSAGE_MISSING_CHILD_ARGS = "Please add some values to find appointments by child.";
     public static final String MESSAGE_MISSING_ADDRESS_ARGS = "Please add some values to find appointments by address.";
