@@ -3,13 +3,11 @@ package seedu.address.model.common;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.tag.Filterable;
-
 /**
  * Represents a {@code String} Title variable.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
-public class Title implements Filterable {
+public class Title {
     public static final String MESSAGE_CONSTRAINTS =
             "Title should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -54,10 +52,5 @@ public class Title implements Filterable {
     @Override
     public int hashCode() {
         return value.hashCode();
-    }
-
-    @Override
-    public boolean filter(String s) {
-        return value.contains(s);
     }
 }

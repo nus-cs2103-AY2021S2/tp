@@ -7,8 +7,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.common.Description;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDate;
-import seedu.address.model.tutor.Address;
-
 
 public class JsonAdaptedReminder {
 
@@ -48,7 +46,7 @@ public class JsonAdaptedReminder {
                     Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(description)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
         final Description modelDescription = new Description(description);
 

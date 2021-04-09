@@ -27,7 +27,7 @@ public class DateTimeValidationUtil {
      * Checks if the {@code AppointmentDateTime} entered fulfills the constraints.
      * @throws CommandException
      */
-    public static void validateDateTime(Model model, Event... events) throws CommandException {
+    public static boolean validateDateTime(Model model, Event... events) throws CommandException {
         requireAllNonNull(model, events);
 
         Event toAdd;
@@ -55,7 +55,7 @@ public class DateTimeValidationUtil {
         }
 
         /* TIME_FROM and TIME_NOW must be in the future */
-        if (toAdd.getTimeFrom().isBeforeNow() && toAdd.getTimeTo().isBeforeNow()) {
+        if (toAdd.getTimeFrom().isBeforeNow() || toAdd.getTimeTo().isBeforeNow()) {
             throw new CommandException(MESSAGE_INVALID_DATE);
         }
 
@@ -98,5 +98,6 @@ public class DateTimeValidationUtil {
                 throw new CommandException(MESSAGE_DATE_CLASH);
             }
         }
+        return true;
     }
 }

@@ -3,13 +3,11 @@ package seedu.address.model.common;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.tag.Filterable;
-
 /**
  * Represents a {@code String} Description variable.
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
-public class Description implements Filterable {
+public class Description {
     public static final String MESSAGE_CONSTRAINTS =
             "Description can take any values, and it should not be blank";
 
@@ -54,10 +52,5 @@ public class Description implements Filterable {
     @Override
     public int hashCode() {
         return value.hashCode();
-    }
-
-    @Override
-    public boolean filter(String s) {
-        return value.contains(s);
     }
 }

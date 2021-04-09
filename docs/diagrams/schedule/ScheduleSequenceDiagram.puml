@@ -1,0 +1,77 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TutorTrackerParser" as TutorTrackerParser LOGIC_COLOR
+participant ":AddScheduleCommandParser" as AddScheduleCommandParser LOGIC_COLOR
+participant "a:AddScheduleCommand" as AddScheduleCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "s:Schedule" as Schedule LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add_schedule t/Maths Homework \nds/Page 101 d/2021-4-11 \nfr/10:00 AM to/12:00 PM")
+activate LogicManager
+
+LogicManager -> TutorTrackerParser : parseCommand("add_schedule t/Maths Homework \nds/Page 101 d/2021-4-11 \nfr/10:00 AM to/12:00 PM")
+activate TutorTrackerParser
+
+create AddScheduleCommandParser
+TutorTrackerParser -> AddScheduleCommandParser
+activate AddScheduleCommandParser
+
+AddScheduleCommandParser --> TutorTrackerParser
+deactivate AddScheduleCommandParser
+
+TutorTrackerParser -> AddScheduleCommandParser : parse("Maths Homework", "2021-4-11 10:00 AM", \n"2021-4-11 12:00 PM", "Page 101")
+activate AddScheduleCommandParser
+
+create Schedule
+AddScheduleCommandParser -> Schedule : Schedule("Maths Homework", "2021-4-11 10:00 AM", "2021-4-11 12:00 PM", "Page 101")
+activate Schedule
+
+Schedule --> AddScheduleCommandParser : s
+deactivate Schedule
+
+create AddScheduleCommand
+AddScheduleCommandParser -> AddScheduleCommand : AddScheduleCommand(s)
+activate AddScheduleCommand
+
+AddScheduleCommand --> AddScheduleCommandParser : a
+deactivate AddScheduleCommand
+
+AddScheduleCommandParser --> TutorTrackerParser : a
+deactivate AddScheduleCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddScheduleCommandParser -[hidden]-> TutorTrackerParser
+destroy AddScheduleCommandParser
+
+TutorTrackerParser --> LogicManager : a
+deactivate TutorTrackerParser
+
+LogicManager -> AddScheduleCommand : execute()
+activate AddScheduleCommand
+
+AddScheduleCommand -> Model : addSchedule(s)
+activate Model
+
+Model --> AddScheduleCommand
+deactivate Model
+
+create CommandResult
+AddScheduleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddScheduleCommand
+deactivate CommandResult
+
+AddScheduleCommand --> LogicManager : result
+deactivate AddScheduleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

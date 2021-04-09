@@ -2,13 +2,12 @@ package seedu.address.model.tutor;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.tag.Filterable;
 
 /**
  * Represents a Person's email in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
-public class Email implements Filterable {
+public class Email {
 
     private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
@@ -64,10 +63,5 @@ public class Email implements Filterable {
     @Override
     public int hashCode() {
         return value.hashCode();
-    }
-
-    @Override
-    public boolean filter(String s) {
-        return value.contains(s);
     }
 }
