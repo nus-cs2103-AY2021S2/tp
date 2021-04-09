@@ -24,6 +24,14 @@ import seedu.cakecollate.model.order.Phone;
 import seedu.cakecollate.model.tag.Tag;
 
 public class ParserUtilTest {
+
+    private static final String OVERFLOW_NAME =
+            "REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE";
+    private static final String OVERFLOW_PHONE = "999999999999999999999999999999999999";
+    private static final String OVERFLOW_TAGS = "THIS TAG IS TOO LOOOOOOOOOOOOOONG";
+    private static final String OVERFLOW_ORDER_DESCRIPTION =
+            "THIS ORDERDESCRIPTION IS TOO LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG";
+
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
@@ -78,6 +86,11 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseName_overflowInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(OVERFLOW_NAME));
+    }
+
+    @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
         Name expectedName = new Name(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
@@ -111,6 +124,11 @@ public class ParserUtilTest {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    }
+
+    @Test
+    public void parsePhone_overflowInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(OVERFLOW_PHONE));
     }
 
     @Test
@@ -170,6 +188,11 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseOrderDescription_overflowInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrderDescription(OVERFLOW_ORDER_DESCRIPTION));
+    }
+
+    @Test
     public void parseOrderDescription_validValue_returnsOrderDescription() throws ParseException {
         OrderDescription expectedOrderDescription = new OrderDescription(VALID_ORDER_DESC_1);
         assertEquals(expectedOrderDescription, ParserUtil.parseOrderDescription(VALID_ORDER_DESC_1));
@@ -207,6 +230,11 @@ public class ParserUtilTest {
     @Test
     public void parseTag_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    }
+
+    @Test
+    public void parseTag_overflowInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(OVERFLOW_TAGS));
     }
 
     @Test
