@@ -8,7 +8,8 @@ import java.math.BigDecimal;
 /**
  * Debt stores a float that should be up to only 2 decimal places.
  * The user can only input in positive floats but the program is allowed to store negative floats.
- * A negative debt would indicate that the Person owes money to the user.
+ * A negative debt would indicate that the user owes money to the person.
+ * Debt value should be in range from -999999999999 to 999999999999
  */
 public class Debt {
 
@@ -51,6 +52,15 @@ public class Debt {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    /**
+     * Check whether the given debt is out of the range stipulated
+     * @param debt
+     * @return boolean which indicate if debt is within range stipulated.
+     */
+    public static boolean isDebtOutOfRange(Debt debt) {
+        return !(debt.value.compareTo(MAX_DEBT.value) != 1 && debt.value.compareTo(MIN_DEBT.value) != -1);
     }
 
     /**

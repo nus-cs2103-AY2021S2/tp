@@ -59,15 +59,13 @@ public class ChangeDebtCommand extends Command {
         Debt newDebt;
         if (isAdd) {
             newDebt = Debt.add(currentDebt, debt);
-            if (newDebt.compareTo(MAX_DEBT) == 1) {
-                throw new CommandException(MESSAGE_OUT_OF_RANGE);
-            }
         } else {
             newDebt = Debt.subtract(currentDebt, debt);
-            if (newDebt.compareTo(MIN_DEBT) == -1) {
-                throw new CommandException(MESSAGE_OUT_OF_RANGE);
-            }
         }
+        if (Debt.isDebtOutOfRange(newDebt)) {
+            throw new CommandException(MESSAGE_OUT_OF_RANGE);
+        }
+
         editedPerson = personToEdit.withDebt(newDebt);
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList();
