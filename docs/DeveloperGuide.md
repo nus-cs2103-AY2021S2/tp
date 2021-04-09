@@ -164,7 +164,7 @@ Classes used by multiple components are in the `seedu.us.among.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-### Endpoint Components
+### Endpoint components
 * Change/Add classes in the Endpoint package to encapsulate an API endpoint.
 #### Implementation
 ![Structure of the Model Component](images/EndpointClassDiagram.png)
@@ -800,7 +800,6 @@ the `user`, unless specified otherwise)
     API call without crashing or throwing unexpected errors.
 
 ## **Appendix E: Glossary**
-
 
 | Term                                         | Description                                               |
 | -------------------------------------------- | --------------------------------------------------------- |
