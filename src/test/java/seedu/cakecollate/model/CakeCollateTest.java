@@ -46,8 +46,7 @@ public class CakeCollateTest {
     @Test
     public void resetData_withDuplicateOrders_throwsDuplicateOrderException() {
         // Two orders with the same identity fields
-        Order editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Order editedAlice = new OrderBuilder(ALICE).build();
         List<Order> newOrders = Arrays.asList(ALICE, editedAlice);
         CakeCollateStub newData = new CakeCollateStub(newOrders);
 
@@ -71,11 +70,11 @@ public class CakeCollateTest {
     }
 
     @Test
-    public void hasOrder_orderWithSameIdentityFieldsInCakeCollate_returnsTrue() {
+    public void hasOrder_orderWithDifferentIdentityFieldsInCakeCollate_returnsFalse() {
         cakeCollate.addOrder(ALICE);
         Order editedAlice = new OrderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(cakeCollate.hasOrder(editedAlice));
+        assertFalse(cakeCollate.hasOrder(editedAlice));
     }
 
     @Test

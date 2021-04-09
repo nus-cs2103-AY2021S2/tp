@@ -77,7 +77,6 @@ public class OrderUtil {
         }
         descriptor.getDeliveryDate()
                 .ifPresent(deliveryDate -> sb.append(PREFIX_DATE).append(deliveryDate.toString()).append(" "));
-        System.out.println(sb.toString());
         return sb.toString();
     }
 }

@@ -22,8 +22,13 @@ public class CommandBox extends UiPart<Region> {
     private final CommandExecutor commandExecutor;
     private ArrayList<String> userInputs = new ArrayList<>();
     private int userInputsIndex = 0;
+
     private boolean firstDecrementAfterUserInput = true;
+
     private boolean isShiftEntered = false;
+
+    private boolean firstUpEntered = true;
+    private String firstUpEnteredString = "";
 
     @FXML
     private TextField commandTextField;
@@ -84,8 +89,14 @@ public class CommandBox extends UiPart<Region> {
         userInputs.add(input);
         incrementUserInputsIndex();
         userInputsIndex = userInputs.size() - 1;
-        firstDecrementAfterUserInput = true;
+        updateVariablesOnNewCommand();
         positionCaretInTheEnd();
+    }
+
+    private void updateVariablesOnNewCommand() {
+        firstDecrementAfterUserInput = true;
+        firstUpEntered = true;
+        firstUpEnteredString = "";
     }
 
     /**
@@ -127,9 +138,15 @@ public class CommandBox extends UiPart<Region> {
      * @return Optional of the previous string if it exists.
      */
     public Optional<String> getPreviousInput() {
+        if (firstUpEntered) {
+            firstUpEnteredString = getTextInCommandTextField();
+            firstUpEntered = false;
+        } else if (userInputsIndex == userInputs.size()) {
+            firstUpEnteredString = getTextInCommandTextField();
+        }
+
         decrementUserInputsIndex();
-        Optional<String> previous = Optional.ofNullable(input());
-        return previous;
+        return Optional.ofNullable(input());
     }
 
     /**
@@ -138,8 +155,7 @@ public class CommandBox extends UiPart<Region> {
      */
     public Optional<String> getNextInput() {
         incrementUserInputsIndex();
-        Optional<String> next = Optional.ofNullable(input());
-        return next;
+        return Optional.ofNullable(input());
     }
 
     /**
@@ -151,6 +167,11 @@ public class CommandBox extends UiPart<Region> {
         if (userInputsIndex > -1 && userInputsIndex < userInputs.size()) {
             output = userInputs.get(userInputsIndex);
         }
+
+        if (userInputsIndex == userInputs.size()) {
+            output = firstUpEnteredString;
+        }
+
         return output;
     }
 
@@ -158,7 +179,7 @@ public class CommandBox extends UiPart<Region> {
      * Increments the index that the user input history points to if a future user input exists.
      */
     private void incrementUserInputsIndex() {
-        if (userInputsIndex + 1 < userInputs.size() && userInputsIndex < userInputs.size()) {
+        if (userInputsIndex + 1 <= userInputs.size() && userInputsIndex <= userInputs.size()) {
             userInputsIndex++;
         }
     }

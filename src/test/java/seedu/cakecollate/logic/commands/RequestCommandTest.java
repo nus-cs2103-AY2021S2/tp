@@ -30,6 +30,7 @@ import seedu.cakecollate.testutil.TypicalOrderItems;
 public class RequestCommandTest {
 
     private static final String REQUEST_STUB = "Some request";
+    private static final String REQUEST_STUB_EMPTY = "";
 
     private Model model = new ModelManager(getTypicalCakeCollate(), new UserPrefs(),
             TypicalOrderItems.getTypicalOrderItemsModel());
@@ -38,7 +39,9 @@ public class RequestCommandTest {
     public void execute_addRequestUnfilteredList_success() {
         Order firstOrder = model.getFilteredOrderList().get(INDEX_FIRST_ORDER.getZeroBased());
         Order editedOrder = new OrderBuilder(firstOrder).withRequest(REQUEST_STUB).build();
-
+        editedOrder = new OrderBuilder(editedOrder).withRequest(REQUEST_STUB_EMPTY).build();
+        editedOrder = new OrderBuilder(editedOrder).withRequest(REQUEST_STUB_EMPTY).build();
+        editedOrder = new OrderBuilder(editedOrder).withRequest(REQUEST_STUB).build();
         RequestCommand requestCommand = new RequestCommand(INDEX_FIRST_ORDER,
                 new Request(editedOrder.getRequest().toString()));
 

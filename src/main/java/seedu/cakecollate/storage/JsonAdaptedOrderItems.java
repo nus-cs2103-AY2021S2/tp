@@ -47,3 +47,4 @@ public class JsonAdaptedOrderItems {
         return new OrderItem(typeName);
     }
 }
+

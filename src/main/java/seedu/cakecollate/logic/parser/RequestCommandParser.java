@@ -7,6 +7,7 @@ import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_REQUEST;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.exceptions.IllegalValueException;
 import seedu.cakecollate.logic.commands.RequestCommand;
+import seedu.cakecollate.logic.parser.exceptions.IndexOutOfBoundsException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.order.Request;
 
@@ -25,6 +26,8 @@ public class RequestCommandParser implements Parser<RequestCommand> {
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (IndexOutOfBoundsException pe) {
+            throw new IndexOutOfBoundsException(pe.getMessage());
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     RequestCommand.MESSAGE_USAGE), ive);

@@ -222,6 +222,11 @@ public class AddCommandTest {
         public ReadOnlyOrderItems getOrderItems() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setOrderItems(ReadOnlyOrderItems orderItems) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

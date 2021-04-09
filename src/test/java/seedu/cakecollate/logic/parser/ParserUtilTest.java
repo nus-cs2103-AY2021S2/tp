@@ -13,6 +13,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.order.Address;
 import seedu.cakecollate.model.order.DeliveryDate;
@@ -23,6 +24,14 @@ import seedu.cakecollate.model.order.Phone;
 import seedu.cakecollate.model.tag.Tag;
 
 public class ParserUtilTest {
+
+    private static final String OVERFLOW_NAME =
+            "REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE";
+    private static final String OVERFLOW_PHONE = "999999999999999999999999999999999999";
+    private static final String OVERFLOW_TAGS = "THIS TAG IS TOO LOOOOOOOOOOOOOONG";
+    private static final String OVERFLOW_ORDER_DESCRIPTION =
+            "THIS ORDERDESCRIPTION IS TOO LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOONG";
+
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
@@ -46,12 +55,15 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10aaaaa111111111111a"));
     }
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX, ()
+            -> ParserUtil.parseIndex("111111111111111111111111111111111"));
     }
 
     @Test
@@ -71,6 +83,11 @@ public class ParserUtilTest {
     @Test
     public void parseName_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
+    }
+
+    @Test
+    public void parseName_overflowInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(OVERFLOW_NAME));
     }
 
     @Test
@@ -107,6 +124,11 @@ public class ParserUtilTest {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    }
+
+    @Test
+    public void parsePhone_overflowInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(OVERFLOW_PHONE));
     }
 
     @Test
@@ -166,6 +188,11 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseOrderDescription_overflowInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOrderDescription(OVERFLOW_ORDER_DESCRIPTION));
+    }
+
+    @Test
     public void parseOrderDescription_validValue_returnsOrderDescription() throws ParseException {
         OrderDescription expectedOrderDescription = new OrderDescription(VALID_ORDER_DESC_1);
         assertEquals(expectedOrderDescription, ParserUtil.parseOrderDescription(VALID_ORDER_DESC_1));
@@ -203,6 +230,11 @@ public class ParserUtilTest {
     @Test
     public void parseTag_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    }
+
+    @Test
+    public void parseTag_overflowInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(OVERFLOW_TAGS));
     }
 
     @Test
