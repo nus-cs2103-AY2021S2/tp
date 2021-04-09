@@ -362,6 +362,166 @@ The activity diagram shows the workflow when a `search` command is executed:
     * Pros: Allows for a more general search which searches through all the contact's details. Easier to implement, less prone to errors.
     * Cons: Less accurate search result due to nature of contact details. 
       For example a student's name and a guardian's name might be the same.
+      
+### Add important date feature
+
+#### Implementation
+
+The add important date mechanism is facilitated by `AddDateCommand` and `AddDateCommandParser`.
+
+`AddDateCommand` extends `Command` and implements the following operation:
+
+* `AddDateCommand#execute()` — adds the important date consisting of description and details if both are valid, and returns a new
+  `CommandResult` with a success message.
+
+`AddDateCommandParser` implements the `Parser` interface and implements the following operation:
+
+* `AddDateCommandParser#parse()`  —  parses the user's input and returns a `AddDateCommand` if the command format
+  is valid
+
+Given below is an example usage scenario and how the add important date mechanism behaves at each step.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+Description of an important date must be unique, and if description entered by user matches the description of an existing
+important date, it will be considered a duplicate and cannot be added into TutorsPet. 
+</div>
+
+Step 1. The user executes `add-date d/math exam dt/2022-03-03 0800` command to add a new important date with a description
+`math exam` and details `2022-03-03 0800` into TutorsPet.
+
+Step 2. The user input is parsed by `AddressBookParser`, which passes the command's argument to `AddDateCommandParser`.
+
+Step 3. `AddDateCommandParser` creates a new `ImportantDate` object for the new important date and returns a new `AddDateCommand`
+if the argument is valid. Otherwise, a `ParseException` is thrown.
+
+Step 4. `LogicManager` then calls `AddDateCommand#execute()`.
+
+Step 5. `AddDateCommand#execute()` checks if the important date represented by the `ImportantDate`object exists.
+If the important date does not exist, it gets added and a new `CommandResult` is returned.
+Otherwise, a `CommandException` is thrown.
+
+Step 6. If the add important date command has been successfully executed, the success message will be displayed.
+
+#### Sequence Diagram
+
+The sequence diagram below shows how the add important date feature works:
+![Sequence Diagram for Add Important Date Command](images/AddImportantDateSequenceDiagram.png)
+
+#### Activity Diagram
+
+The activity diagram shows the workflow when an add important date command is executed:
+![Activity Diagram for Add Important Date Command](images/AddImportantDateActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to allow important dates with the same description but different details
+
+* **Alternative 1 (current choice):** Important dates with the same description are considered to be duplicates.
+    * Pros: Each important date is unique, user will not be confused by dates with the same description but different details.
+    * Cons: User might want to add in an important date with the same description but different details due to the recurring
+      nature of the event that is associated with the date. User will then have to change the description for it to be added in.
+
+* **Alternative 2:** Important dates with the same description but different details can be added in. 
+    * Pros: More convenient for the user as it allows user to input recurring important dates in advance, with the same description.
+    * Cons: May cause confusion if date with the same description is added by accident by the user.
+
+### Delete important date feature
+
+#### Implementation
+The delete important date mechanism is facilitated by `DeleteDateCommand` and `DeleteDateCommandParser`.
+
+`DeleteDateCommand` extends `Command` and implements the following operation:
+
+* `DeleteDateCommand#execute()` — deletes the important date at the given index if the index is valid, and returns a new
+  `CommandResult` with a success message.
+
+`DeleteDateCommandParser` implements the `Parser` interface and implements the following operation:
+
+* `DeleteDateCommandParser#parse()`  —  parses the user's input and returns a `DeleteDateCommand` if the command format
+  is valid
+
+Given below is an example usage scenario and how the delete important date mechanism behaves at each step.
+
+Step 1. The user executes `delete-date 1` command to delete the 1st important date in TutorsPet, according to the date and time of the important date.
+
+Step 2. The user input is parsed by `AddressBookParser`, which passes the command's argument to `DeleteDateCommandParser`.
+
+Step 3. `DeleteDateCommandParser` returns a new `DeleteDateCommand` if the argument is valid. Otherwise, a `ParseException` is thrown.
+
+Step 4. `LogicManager` then calls `DeleteDateCommand#execute()`.
+
+Step 5. `DeleteDateCommand#execute()` checks if the important date specified exists. If the important date exists, it gets deleted and
+a new `CommandResult` is returned. Otherwise a `CommandException` is thrown.
+
+Step 6. If the delete important date command has been successfully executed, the success message will be displayed.
+
+#### Sequence Diagram
+
+The sequence diagram below shows how the delete feature works:
+![Sequence Diagram for Delete Important Date Command](images/DeleteImportantDateSequenceDiagram.png)
+
+#### Activity Diagram
+
+The activity diagram shows the workflow when a delete command is executed:
+![Activity Diagram for Delete Important Date Command](images/DeleteImportantDateActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to delete the important date based on the order it has been input in or according to the order the dates are displayed in, which is sorted by details (time and date).
+
+* **Alternative 1 (current choice):** Deletes important date based on the order it is displayed in. 
+    * Pros: It is easier for the user to find and delete the correct important date by just scrolling through the list. 
+    * Cons: User will have to scroll through the list multiple times to obtain the correct index if user wants to delete multiple important dates that have been added in consecutively.
+
+* **Alternative 2:** Deletes important date based on the order it was added in.
+    * Pros: User can easily delete dates that have been added in consecutively. 
+    * Cons: The index displayed next to each of the dates in the important dates list must correspond to the sequence it has been added in. 
+      A separate command will have to be implemented in order to show the user the important dates sorted according to details (time and date).
+
+### List important dates feature
+
+#### Implementation
+The list important dates mechanism is facilitated by `ImportantDatesCommand`.
+
+`ImportantDatesCommand` extends `Command` and implements the following operation:
+
+* `ImportantDatesCommand#execute()` — lists the important dates stored in TutorsPet sorted according to the details (time and date), and returns a new
+  `CommandResult` with a success message.
+
+
+Given below is an example usage scenario and how the list important dates mechanism behaves at each step.
+
+Step 1. The user executes `list-date` command to view a list of important dates in TutorsPet.
+
+Step 2. The user input is parsed by `AddressBookParser`, which returns a new `ImportantDatesCommand`. 
+
+Step 3. `LogicManager` then calls `ImportantDatesCommand#execute()`.
+
+Step 4. `ImportantDatesCommand#execute()` calls `Model#updateSortedImportantDatesList()` and returns a new `CommandResult`.
+
+Step 5. If the list important dates command has been successfully executed, the success message will be displayed.
+
+#### Sequence Diagram
+
+The sequence diagram below shows how the list important dates feature works:
+![Sequence Diagram for List Important Dates Command](images/ListImportantDatesSequenceDiagram.png)
+
+#### Activity Diagram
+
+The activity diagram shows the workflow when a list important dates command is executed:
+![Activity Diagram for List Important Dates Command](images/ListImportantDatesActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to display the list according to the sequence the important dates have been added in or sorted according to the details of the important dates.
+
+* **Alternative 1 (current choice):** Displays the important dates after sorting.
+    * Pros: Users can get an overview of the order in which these dates will be happening. 
+    * Cons: To be added.
+
+* **Alternative 2:** Displays the important dates based on the order they have been added in.
+    * Pros: To be added.
+    * Cons: A separate command will have to be implemented in order to show the user the important dates displayed according to time and date.
 
 ### Schedule feature
 
