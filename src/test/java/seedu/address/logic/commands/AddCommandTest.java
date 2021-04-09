@@ -230,6 +230,8 @@ public class AddCommandTest {
         public boolean canRedoTaskTracker() {
             throw new AssertionError("This method should not be called.");
         }
+
+
     }
 
     /**
