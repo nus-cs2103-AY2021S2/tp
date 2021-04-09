@@ -588,7 +588,6 @@ _Non-functional requirements specify the constraints under which App-Ointment is
 * **Appointment Schedule**: The list of appointments maintained in App-Ointment, arranged by appointment datetime.
 * **Patient Records**: The list of patients maintained in App-Ointment.
 * **Doctor Records**: The list of doctors maintained in App-Ointment.
-* **Appointment Records**: The list of Appointment maintained in App-Ointment.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 *{More to be added}*
