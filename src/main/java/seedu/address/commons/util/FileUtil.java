@@ -42,6 +42,15 @@ public class FileUtil {
     }
 
     /**
+     * Deletes the original file and creates a new file in its place.
+     * @throws IOException if the file or directory cannot be created.
+     */
+    public static void createRegardless(Path file) throws IOException {
+        Files.deleteIfExists(file);
+        createFile(file);
+    }
+
+    /**
      * Creates a file if it does not exist along with its missing parent directories.
      */
     public static void createFile(Path file) throws IOException {
@@ -80,4 +89,24 @@ public class FileUtil {
         Files.write(file, content.getBytes(CHARSET));
     }
 
+    /**
+     * Sets file to be writable.
+     */
+    public static void unlockFile(Path file) {
+        file.toFile().setWritable(true, false);
+    }
+
+    /**
+     * Sets file to be unwritable.
+     */
+    public static void lockFile(Path file) {
+        file.toFile().setWritable(false);
+    }
+
+    /**
+     * Sets file to be readonly.
+     */
+    public static void readOnly(Path file) {
+        file.toFile().setReadOnly();
+    }
 }

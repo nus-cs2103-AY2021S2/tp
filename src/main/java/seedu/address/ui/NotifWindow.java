@@ -16,8 +16,6 @@ public class NotifWindow extends Alert {
         getDialogPane().getStylesheets().add("view/DarkTheme.css");
         setTitle("Notification");
         setHeaderText("Welcome to Link.me!");
-        setResizable(true);
-        getDialogPane().setMinWidth(400);
         initOwner(owner);
     }
 
@@ -26,6 +24,5 @@ public class NotifWindow extends Alert {
      */
     public void setMessage(String message) {
         setContentText(message);
-        getDialogPane().autosize();
     }
 }

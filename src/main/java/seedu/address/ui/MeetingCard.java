@@ -42,9 +42,12 @@ public class MeetingCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText("Meet " + person.getName().fullName);
+        name.setText("Meeting with " + person.getName().fullName);
+        name.setWrapText(true);
         dateTime.setText(person.getMeeting().map(Meeting::getDateTime).orElseThrow());
+        dateTime.setWrapText(true);
         description.setText(person.getMeeting().map(Meeting::getDescription).orElseThrow());
+        description.setWrapText(true);
     }
 
     @Override

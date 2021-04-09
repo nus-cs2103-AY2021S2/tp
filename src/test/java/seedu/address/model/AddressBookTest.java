@@ -94,7 +94,7 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withMeeting(MEETING_DESC_PRANK).build();
         Person editedBob = new PersonBuilder(BOB).withMeeting(MEETING_DESC_CLASH_PRANK).build();
         addressBook.addPerson(editedAlice);
-        assertEquals(addressBook.clash(editedBob), editedAlice.getMeeting());
+        assertEquals(addressBook.clash(editedBob), Optional.of(editedAlice));
         assertEquals(addressBook.clash(ALICE), Optional.empty());
         assertEquals(addressBook.clash(BOB), Optional.empty());
 

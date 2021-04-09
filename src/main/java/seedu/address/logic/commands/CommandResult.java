@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 import java.util.Optional;
 
+import seedu.address.model.person.Person;
+
 
 /**
  * Represents the result of a command execution.
@@ -19,8 +21,8 @@ public class CommandResult {
     /** Notifications information should be shown to the user. */
     private final boolean showNotif;
 
-    /** Notes that should be shown to the user. */
-    private final Optional<String> notes;
+    /** Person with notes that should be shown to the user. */
+    private final Optional<Person> personWithNotes;
 
     /** The application should exit. */
     private final boolean exit;
@@ -29,11 +31,11 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showNotif,
-                         Optional<String> notes, boolean exit) {
+                         Optional<Person> personWithNotes, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showNotif = showNotif;
-        this.notes = notes;
+        this.personWithNotes = personWithNotes;
         this.exit = exit;
     }
 
@@ -58,11 +60,11 @@ public class CommandResult {
     }
 
     public boolean isShowNote() {
-        return (!notes.isEmpty());
+        return (personWithNotes.isPresent());
     }
 
-    public String getNotes() {
-        return this.notes.get();
+    public Person getPersonWithNotes() {
+        return this.personWithNotes.get();
     }
 
     public boolean isExit() {
@@ -84,13 +86,13 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && showNotif == otherCommandResult.showNotif
-                && notes.equals(otherCommandResult.notes)
+                && personWithNotes.equals(otherCommandResult.personWithNotes)
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, showNotif, notes, exit);
+        return Objects.hash(feedbackToUser, showHelp, showNotif, personWithNotes, exit);
     }
 
 }

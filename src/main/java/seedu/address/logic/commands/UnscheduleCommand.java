@@ -58,7 +58,7 @@ public class UnscheduleCommand extends Command {
             return new CommandResult(MESSAGE_UNSCHEDULE_EXPIRED_SUCCESS);
         }
         if (targetIndex.getZeroBased() >= meetingList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
         Person personToSchedule = meetingList.get(targetIndex.getZeroBased());
         Person updatedPerson = personToSchedule.setMeeting(Optional.empty());

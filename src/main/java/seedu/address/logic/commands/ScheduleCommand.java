@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,12 +26,16 @@ public class ScheduleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Schedules a meeting with the person identified by the "
             + "index number used in the displayed person list.\n"
+            + "Scheduled meeting must not be in the past."
             + "Parameters: INDEX (must be a positive integer)\n"
             + PREFIX_MEETING + "MEETING_DESCRIPTION @ yyyy-mm-dd HH:MM\n"
             + "Example: " + COMMAND_WORD + " 1 m/ Insurance Plan @ 2021-03-05 14:50";
 
-    public static final String MESSAGE_SCHEDULE_PERSON_SUCCESS = "Scheduled Meeting with Person: %1$s at %2$s";
-    public static final String MESSAGE_SCHEDULE_CONFLICT_FAILURE = "Scheduling Conflict in Found at this Meeting: %1$s";
+    public static final String MESSAGE_SCHEDULE_PERSON_SUCCESS = "Scheduled meeting with person %1$s at %2$s";
+    public static final String MESSAGE_SCHEDULE_CONFLICT_FAILURE =
+            "Scheduling conflict found at this meeting %1$s with %2$s";
+    public static final String MESSAGE_SCHEDULE_PAST_FAILURE =
+            "Scheduled meeting cannot be in the past. The current time is %1$s.";
 
     private final Index targetIndex;
 
@@ -52,12 +58,19 @@ public class ScheduleCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        if (meeting.dateTime.isBefore(LocalDateTime.now())) {
+            throw new CommandException(String.format(MESSAGE_SCHEDULE_PAST_FAILURE,
+                    LocalDateTime.now().format(DateTimeFormatter.ofPattern("uuuu-MM-dd hh:mm a"))));
+        }
+
         Person personToSchedule = lastShownList.get(targetIndex.getZeroBased());
         Person updatedPerson = personToSchedule.setMeeting(Optional.of(meeting));
         if (!personToSchedule.getMeeting().equals(meeting)) {
             Optional<String> errorMsg = model
                     .clash(updatedPerson)
-                    .map(meeting -> String.format(MESSAGE_SCHEDULE_CONFLICT_FAILURE, meeting.original));
+                    .map(person ->
+                            String.format(MESSAGE_SCHEDULE_CONFLICT_FAILURE,
+                                    person.getMeeting().get().original, person.getName().fullName));
             if (errorMsg.isPresent()) {
                 throw new CommandException(errorMsg.get());
             }
