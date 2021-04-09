@@ -11,19 +11,19 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
 Class StatusBarFooter
 Class CommandBox
-Class CalendarWindow
-Class CalendarBox
-Class DisplayPanel
-Class EventListPanel
-Class EventCard
 Class ReminderWindow
-Class ModuleListPanel
-Class ModuleCard
+package panels {
 }
+package calendar{
+
+}
+
+package cards {
+}
+}
+
 
 package Model <<Rectangle>> {
 Class HiddenModel #FFFFFF
@@ -42,47 +42,40 @@ MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> StatusBarFooter
-MainWindow *-down-> DisplayPanel
-MainWindow *-down-> CalendarWindow
-MainWindow *-down-> ReminderWindow
+MainWindow *-down-> panels
+MainWindow -down-> calendar
+MainWindow --> ReminderWindow
 
 
-DisplayPanel -down-> ModuleListPanel
-DisplayPanel -down-> EventListPanel
-DisplayPanel -down-> PersonListPanel
-ModuleListPanel -down-> ModuleCard
-EventListPanel -down-> EventCard
-PersonListPanel -down-> PersonCard
-CalendarWindow -down-> CalendarBox
+panels --|> UiPart
+
+
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+
 StatusBarFooter --|> UiPart
 ReminderWindow --|> UiPart
-CalendarBox --|> UiPart
-CalendarWindow --|> UiPart
-DisplayPanel --|> UiPart
-EventListPanel --|> UiPart
-EventCard --|> UiPart
-ModuleCard --|> UiPart
-ModuleListPanel --|> UiPart
+cards --|> UiPart
+calendar --|> UiPart
 
 HelpWindow -down-|> UiPart
 
-PersonCard ..> Model
-ModuleCard ..> Model
-EventCard ..> Model
+cards .left.> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
+panels -down-> cards
 
-PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
-
+calendar -[hidden]left- cards
+calendar -[hidden]left- ReminderWindow
 MainWindow -[hidden]-|> UiPart
+ReminderWindow -[hidden]right- panels
+ReminderWindow -[hidden]right- calendar
+panels -[hidden]left- HelpWindow
+
 @enduml
