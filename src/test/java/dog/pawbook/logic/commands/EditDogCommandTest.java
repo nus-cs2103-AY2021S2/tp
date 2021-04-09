@@ -14,6 +14,7 @@ import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import dog.pawbook.model.managedentity.owner.Owner;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.commons.core.Messages;
@@ -28,6 +29,9 @@ import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.testutil.DogBuilder;
 import dog.pawbook.testutil.EditDogDescriptorBuilder;
 import javafx.util.Pair;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditDogCommand.
@@ -89,6 +93,13 @@ public class EditDogCommandTest {
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
         expectedModel.setEntity(ID_TWO, editedDog);
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_TWO));
+
+        Owner toEditOwner = (Owner) model.getEntity(ID_ONE);
+        Set<Integer> newDogIdSet = new HashSet<>(toEditOwner.getDogIdSet());
+        newDogIdSet.remove(ID_TWO);
+        model.setEntity(ID_ONE, new Owner(toEditOwner.getName(), toEditOwner.getPhone(), toEditOwner.getEmail(),
+                toEditOwner.getAddress(), toEditOwner.getTags(), newDogIdSet));
+
 
         assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
     }*/
