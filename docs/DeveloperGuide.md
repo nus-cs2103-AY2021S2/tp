@@ -540,9 +540,10 @@ testers are expected to do more *exploratory* testing.
 
 ### Autocomplete
 
-1. Type `add` into the command bar
+1. Type `add` into the command bar<br>
    Expected: A list of commands with `add` in their command words show up.
-
+   
+2. Navigate with the up/down arrow keys and press `enter` to verify if the word selected will be entered automatically into the command bar. 
 
 ### Saving data
 
@@ -620,6 +621,17 @@ List all persons using the `list` command. There is at least a person present in
          
 ### Clearing all entries: `clear`
 
+Prerequisites: List all persons using the `list` command. There is at least a person present in the list.
+
+1. Clearing all data
+    
+    1. Test case: `clear`
+       Expected: All persons deleted from the app.
+       
+    2. Close the application.
+    
+    3. Reopen the application and observe that there is no data left in the application.
+    
 ### Deleting a person: `delete`
 
 1. Deleting a person while all persons are being shown
@@ -679,6 +691,8 @@ Prerequisites: List all persons using the `list` command. There is at least a pe
 ### Locating persons by name: `find`
 
 ### Viewing help: `help`
+
+1. Execute the `help` command. A new window will be opened with the URL to the UG guide.     
 
 ### Listing all persons: `list`
 
