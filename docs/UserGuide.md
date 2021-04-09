@@ -80,7 +80,7 @@ Command Box | This is where you type all the commands.
 Result Display | This is where the result of your input to the command box is displayed.
 View Pane | This is where the output for `view` and `stats` command is displayed.
 Flashcard List | This is where all the flashcards are displayed to user.
-Main mode | This is the first window when you open the app. Most of the command is executed here.
+Main mode | This is the first window when you open the app. Most of the commands are executed here.
 Review mode | This is where you can review all your flashcards. You can enter this mode by typing `review` in the Command Box of the Main mode.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -105,7 +105,7 @@ Review mode | This is where you can review all your flashcards. You can enter th
 * Parameters can be in any order. <br>
   e.g. If the command specifies `q/QUESTION a/ANSWER`, `a/ANSWER q/QUESTION` is also acceptable.<br>
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `undo`, `exit` and `clear`)
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `undo`, `redo`, `exit` and `clear`)
   will be ignored. <br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -113,7 +113,8 @@ Review mode | This is where you can review all your flashcards. You can enter th
   e.g. `q/` is not the same as `Q/`.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken. <br>
-  e.g. If you specify `c/Geography c/History`, only `c/History` will be taken.
+  e.g. If you specify `c/Geography c/History`, only `c/History` will be taken. <br>
+  e.g. If you specify `-a -d`, only `-d` will be taken.
   
 * For commands that accepts `INDEX` parameter (e.g. `edit`, `view`, `delete`, and `stats`):
     * The index refers to the index number shown in the displayed flashcard list.
@@ -137,7 +138,7 @@ Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br>
 <div markdown="span" class="alert alert-primary">:memo: **Note:** <br>
 The `TAG` is optional when adding a new flashcard.<br>
 Tag(s) should be alphanumeric, and there should not be any spacing between characters.<br>
-Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`.
+Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`, case-sensitive.
 </div>
 <div style="page-break-after: always;"></div>
 
@@ -157,7 +158,7 @@ Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY] [p/NEW PRIO
 * At least 1 updated card field must be provided for modification.
 * If the tag field is specified in the command, all existing tag(s) will be removed and replaced by the new tag(s).
 * New tag(s) should be alphanumeric, and there should not be any spacing between characters.
-* New priority can only be "Low", "Mid" or "High", case-sensitive.
+* New priority can only be `Low`, `Mid` or `High`, case-sensitive.
 
 Examples:
 
@@ -313,7 +314,7 @@ Examples:
 ![UiClearAfterUndoAfterRedo](./images/UiClearAfterUndoAfterRedo.png) <br>
 
 ### Sorting all flashcards: `sort`
-Sorts all flashcards according to a given option.
+Sorts all flashcards in display according to a given option.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Note:** You can only sort by `priority` or `question`.
@@ -323,10 +324,10 @@ Sorts all flashcards according to a given option.
 Format: `sort OPTION ORDER` <br>
 Examples:
 
-`sort priority -a` will sort the flashcards by ascending priority. <br>
-`sort priority -d` will sort the flashcards by descending priority. <br>
-`sort question -a` will sort the flashcards by ascending question. <br>
-`sort question -d` will sort the flashcards by descending question. <br>
+`sort priority -a` will sort the flashcards by ascending priority (Low to High). <br>
+`sort priority -d` will sort the flashcards by descending priority (High to Low). <br>
+`sort question -a` will sort the flashcards by question in ascending alphabetical order. <br>
+`sort question -d` will sort the flashcards by question in descending alphabetical order. <br>
 <div style="page-break-after: always;"></div>
 
 Before sort command is executed. <br><br>
@@ -336,7 +337,7 @@ After `sort priority -a` command is executed. <br><br>
 <div style="page-break-after: always;"></div>
 
 ### Entering review mode: `review`
-Reviews the current list of flashcards.<br>
+Reviews list of flashcards that is in display.<br>
 When the user enters `review` in the command box, this new window will appear. <br><br>
 ![UiReviewMode](./images/UiReviewModeNoAnswer.png) <br><br>
 Format: `review`
@@ -376,7 +377,7 @@ Examples:
 ![UiStats](./images/UiStatsNoIndex.png) <br>
 
 ### Adding an alias: `alias`
-Define an alias for a command in FlashBack.
+Defines an alias for a command in FlashBack.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Note:** You can only add alias for Main mode commands.
@@ -526,7 +527,7 @@ Action | Format, Examples
 **Sort** | `sort OPTION ORDER` <br> e.g. `sort priority -a`
 **Review** | `review`
 **Statistics** | `stats [INDEX]` <br> e.g. `stats 4`, `stats`
-**Alias** | `alias cmd/COMMAND al/ALIAS` <br> e.g. `alias cmd/add al/a`, `alias cmd/delete al/d`
+**Alias** | `alias cmd/COMMAND al/ALIAS` <br> e.g. `alias cmd/view al/v`, `alias cmd/delete al/d`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
