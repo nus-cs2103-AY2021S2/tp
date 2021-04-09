@@ -5,13 +5,17 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.DetailsPanelTab;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonEvent;
 import seedu.address.model.person.PersonStreak;
 
+import java.util.logging.Logger;
+
 public class DetailsPanel extends UiPart<Region> {
 
     private static final String FXML = "DetailsPanel.fxml";
+    private static final Logger logger = LogsCenter.getLogger(DetailsPanel.class);
 
     private final PersonDetailsTab personDetailsTab;
     private final UpcomingEventsTab upcomingEventsTab;
@@ -42,6 +46,8 @@ public class DetailsPanel extends UiPart<Region> {
      * @param tab A {@code DetailsPanelTab} enum representing the tab to toggle to.
      */
     public void toggleTab(DetailsPanelTab tab) {
+        logger.info("Switching to the " + tab + " tab");
+
         switch (tab) {
         case PERSON_DETAILS:
             tabPlaceholder.getChildren().setAll(personDetailsTab.getRoot());
