@@ -653,7 +653,7 @@ person on the list is born before 12-12-2020.
     2. Test case: `find p/`<br>
        Expected: All contacts will be listed. A success message is shown to the user.
 
-    2. Test case: `find p/.*`<br>
+    2. Test case: `find .* p/`<br>
        Expected: All contacts will be listed. A success message is shown to the user.
 
     2. Test case: `find alex p/`<br>
