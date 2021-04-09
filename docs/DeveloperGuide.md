@@ -440,21 +440,28 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low
 (unlikely to have) - `*`
 
-| Priority | As a …​               | I want to …​                              | So that I can…​                                                 |
+| Priority | As a …​               | I want to …​                              | So that I can…​                  |
 | -------- | --------------------- | ----------------------------------------- | --------------------------------------------------------------- |
-| `* * *`  | new user              | view a quick description of APIs          | quickly review the concepts of APIs                             |
-| `* * *`  | long time user        | test my APIs on the fly                   | run API tests anytime                                           |
+| `* * *`  | new user              | view a quick description of APIs          | quickly review the basic concepts of APIs                             |
+| `* * *`  | long time user        | test API endpoints without saving them                  | have a quick way to verify if an API is working                                           |
 | `* * *`  | long time user        | quickly load my previous APIs             | save time and not have to type them all out again               |
-| `* * *`  | experienced developer | test out my API multiple times repeatedly | know if my API can cope under significant traffic               |
-| `* * *`  | new API developer     | clear error messages                      | quickly learn where I went wrong                                |
-| `* * *`  | API tester            | a focused simple design                   | quickly validate the state of an endpoint                       |
-| `* * *`  | new user              | have an optional features walkthrough     | have a broad overview of functionalities                        |
-| `* * *`  | moderate user         | find/locate saved API endpoints           | can easily view the information for the endpoint of my interest |
-| `*`      | experienced developer | export my saved API endpoints             | can easily port or integrate the data with other platforms      |
-| `*`      | expert user           | have API recommendations                  | help to optimise or are more suited for my product              |
-| `*`      | moderate user         | learn to optimise my usage                | can have a faster and smoother workflow                         |
+| `* * *`  | new API developer     | view clear error messages                      | quickly learn what went wrong                                |
+| `* * *`  | API tester            | a simple user interface                   | quickly validate the state of an endpoint                       |
+| `* * *`  | new user              | view a table of command summary    | have a broad overview of available functionalities                        |
+| `* * *`  | moderate user         | find/locate saved API endpoints           | easily view the details of a particular endpoint |
+| `* * *`  | API developer         | cancel my API call if it takes too long           | proceed to verfiy the errors or work on another API request |
+| `* * *`  | API developer         | organize my APIs by categories           | easily find the ones that I want to test |
+| `* * *`  | beginner API developer         | call up APIs that I have just used           | quickly verify the output again after fixing bugs  |
+| `* *`  | API developer         | see a loading spinner when making an API call           | clearly know when an API call is still in-progress or when an error has occurred |
+| `* *`  | moderate user              | be able to change the application theme          | make the user interface more comfortably suit my visual needs                             |
+| `* *`      | long time developer | have shortcuts to certain commands that I frequently use             | save time typing certain commands      |
+| `*`      | experienced developer | export my saved API endpoints             | easily port or integrate the data with other platforms      |
+| `*`      | expert user           | have analysis reports of my usage                  | identify trends and consolidate my API testing progress              |
+| `*`      | moderate user         | get tips on how to optimise my usage                | can have a faster and smoother workflow                         |
+| `*`  | experienced developer | send out multiple requests to an API endpoint concurrently | test if the API can cope under significant traffic               |
+| `*`  | expert user | store my API data in the cloud | use the tester across multiple workstations               |
+| `*`  | moderate user | generate bug report for the API under test | share and request bug fixes from the developers               |
 
-_{More to be added}_
 
 ## **Appendix C: Use Cases**
 
