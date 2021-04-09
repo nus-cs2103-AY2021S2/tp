@@ -122,7 +122,7 @@ Commands for this tutorial are arranged in the sequential order of this User Gui
 * Words in `UPPER_CASE` are parameters to be supplied by you.<br>
   e.g. in `add d/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `add d/DESCRIPTION`.
 
-* Parameters in square brackets are optional. Parameters without square brackets are compulsory. <br>
+* Parameters in square brackets are optional. Parameters without square brackets are compulsory. If you wish to include any of the optional field, you need to follow its format.<br>
   e.g. `d/DESCRIPTION [t/TAG]` can be used as `d/CS3243 Assignment4 t/Minimax` or as `d/CS3243 Assignment4`.
   
 * For commands that take in an `INDEX`, only one index is to be supplied.<br>
@@ -336,7 +336,7 @@ Application: Used to briefly indicate the nature of the task.
 Format: `tag INDEX t/TAG [t/MORETAGS]...​` 
 
 * Attaches one or more tags to the task associated with INDEX. Tags can be used to identify related tasks.
-* If only `/t` is provided without preceding value, no tag will be added but MB3.5 will show you the existing tags
+* If only `t/` is provided without preceding value, no tag will be added but MB3.5 will show you the existing tags
 associated to the task you tried to tag.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
@@ -466,6 +466,7 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 * If you wish to include a start time for your task, the start time should not be later than deadline.
 * Editing tags through the `edit` command overrides all existing tags. 
   If you wish to add or delete only certain tags, use `tag` and `deleteTag` commands instead.
+* `edit INDEX t/` is provided as a mean to clear all tags for a task, you cannot add tags while clear other tags. For example, `edit 1 t/ t/tag`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `edit 1 n/Refactor tP code d/Make the code look neater b/2021-04-10`
