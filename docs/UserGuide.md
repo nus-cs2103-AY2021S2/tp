@@ -116,7 +116,7 @@ you may use a substitute module code based on the subject description.
 * Words in `UPPER_CASE` are parameters to be supplied by you.<br>
   e.g. in `add d/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `add d/DESCRIPTION`.
 
-* Parameters in square brackets are optional. Parameters without square brackets are compulsory. <br>
+* Parameters in square brackets are optional. Parameters without square brackets are compulsory. If you wish to include any of the optional field, you need to follow its format.<br>
   e.g. `d/DESCRIPTION [t/TAG]` can be used as `d/CS3243 Assignment4 t/Minimax` or as `d/CS3243 Assignment4`.
   
 * For commands that take in an `INDEX`, only one index is to be supplied.<br>
@@ -228,8 +228,6 @@ Adds a task to ModuleBook3.5. All newly added tasks are not done by default.
 Application: Used to add new tasks for tracking purposes.
 
 Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORKLOAD [r/RECURRENCE] [t/TAG]…​`
-
-* If you wish to include any of the optional field, you need to follow its format.
 
 * If you wish to include a start time for your task, the start time should not be later than deadline.
 
