@@ -40,7 +40,7 @@ Commands for this tutorial are arranged in the sequential order of this User Gui
 <div style="page-break-after: always;"></div>
 
 ## Features
-<img src="images/UiAnnotated.png" width="700">
+<img src="images/UiAnnotated.png" width="720">
 
 * At the top of the display is a toolbar to either exit the app (under `File`) 
    or access this user guide (under `Help`).
