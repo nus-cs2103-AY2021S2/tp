@@ -606,35 +606,35 @@ Prerequisites: List all person using the `list` command. There is at least a per
 
     1. Prerequisites: List contains the default data included in FriendDex.
     
-    1. Test case: `find alex`<br>
+    2. Test case: `find alex`<br>
        Expected: All contact with the token `alex` will be listed. A success message is shown to the user.
        
-    1. Test case: `find yeoh li yu`<br>
+    3. Test case: `find yeoh li yu`<br>
        Expected: All contact with name containing at least one token from the set of tokens `yeoh`, `li`, `yu` will 
        be listed. A success message is shown to the user.
        
-    1. Test case: `find` (Invalid format)<br>
+    4. Test case: `find` (Invalid format)<br>
        Expected: Listed contacts are not updated. Error details shown in the status message.
 
 2. Finding contacts wth pattern matching
 
-    2. Prerequisites: List contains the default data included in FriendDex.
+    1. Prerequisites: List contains the default data included in FriendDex.
     
     2. Test case: `find p/`<br>
        Expected: All contacts will be listed. A success message is shown to the user.
 
-    2. Test case: `find .* p/`<br>
+    3. Test case: `find .* p/`<br>
        Expected: All contacts will be listed. A success message is shown to the user.
 
-    2. Test case: `find alex p/`<br>
+    4. Test case: `find alex p/`<br>
        Expected: All contacts with names containing substring `alex` regardless of case will be listed. A success 
        message is shown to the user.
        
-    2. Test case: `find ^a.*h p/`<br>
+    5. Test case: `find ^a.*h p/`<br>
        Expected: All contacts with names that starts with `a` and ends with `h` regardless of case will be listed. A 
        success message is show to the user.
 
-    2. Test case: `find [ p/` (Invalid argument)<br>
+    6. Test case: `find [ p/` (Invalid argument)<br>
        Expected: Listed contacts are not updated. Error details shown in the status message.
 
 ### Viewing help: `help`
@@ -648,44 +648,44 @@ Prerequisites: List all person using the `list` command. There is at least a per
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. everyone in FriendDex has
        their goal set to `NONE`.
 
-    1. Test case: `set-goal 1 f/w`<br>
+    2. Test case: `set-goal 1 f/w`<br>
        Expected: A weekly goal will be set for the first contact in the list. A success message will be shown to the
        user. Goal information in various panels will be updated. Streaks for that contact will be shown when switched to
        the streaks tab.
 
-    1. Test case: `set-goal 0 f/w` (Invalid index)<br>
+    3. Test case: `set-goal 0 f/w` (Invalid index)<br>
        Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
        information.
 
-    1. Test case: `set-goal 1 f/asdfg` (Invalid argument)<br>
+    4. Test case: `set-goal 1 f/asdfg` (Invalid argument)<br>
        Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
        information.
        
-    1. Test case: `set-goal f/w` (Invalid format)<br>
+    5. Test case: `set-goal f/w` (Invalid format)<br>
        Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
        information.
 
-    1. Test case: `set-goal 1` (Invalid format)<br>
+    6. Test case: `set-goal 1` (Invalid format)<br>
        Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
        information.
 
 2. Removing a relationship goal for a particular contact:
 
-    2. Prerequisites: List all persons using the `list` command. Contact at index 1 has a relationship goal set.
+    1. Prerequisites: List all persons using the `list` command. Contact at index 1 has a relationship goal set.
 
     2. Test case: `set-goal 1 f/n`<br>
        Expected: Goal will be removed from the first contact in the list. A success message will be shown to the user.
        Goal information in various panels will be updated. Streaks for that contact will no longer be shown when
        switching to the streaks tab.
 
-    2. Test case: `set-goal 0 f/n` (Invalid index)<br>
+    3. Test case: `set-goal 0 f/n` (Invalid index)<br>
        Expected: Goals for no one is removed. Error details shown in the status message. No updates to FriendDex
        information.
 
-    2. Test case: `set-goal 1 f/asdfg` (Invalid argument)<br>
+    4. Test case: `set-goal 1 f/asdfg` (Invalid argument)<br>
        Expected: Goals for no one is removed. Error details shown in the status message. No updates to FriendDex
        information.
-    2. Test case: `set-goal 1` (Invalid format)<br>
+    5. Test case: `set-goal 1` (Invalid format)<br>
        Expected: Goals for no one is removed. Error details shown in the status message. No updates to FriendDex
        information.
 
@@ -693,7 +693,6 @@ Prerequisites: List all person using the `list` command. There is at least a per
 
 ### Styling the application: `theme`
 
-<<<<<<< HEAD
 1. Applying a predefined theme
 
     1. Test case: `theme @monokai`<br>
@@ -707,39 +706,39 @@ Prerequisites: List all person using the `list` command. There is at least a per
 
 2. Applying a user defined theme
 
-    2. Test case: `theme monokai.json`, where `monokai.json` is a valid theme file<br>
+    1. Test case: `theme monokai.json`, where `monokai.json` is a valid theme file<br>
        Expected: Theme of the application changes. A success message will be shown.
 
     2. Test case: `theme invalid.json`, where `invalid.json` is a theme file containing invalid values (Invalid data)
        <br>
        Expected: Nothing happens. Error details shown in the status message.
 
-    2. Test case: `theme not_found.json`, where `not_found.json` does not exist (Invalid data)<br>
+    3. Test case: `theme not_found.json`, where `not_found.json` does not exist (Invalid data)<br>
        Expected: Nothing happens. Error details shown in the status message.
 
 3. Automatically applying predefined theme across instances
 
-    3. Test case: `theme @pulp`.
+    1. Test case: `theme @pulp`.
     
-    3. Close the application.
-    
-    3. Relaunch the application. Observe that the theme of the application persists.
+        1. Close the application.
+        
+        2. Relaunch the application. Observe that the theme of the application persists.
 
 4. Automatically applying user defined theme across instances
 
-    4. Test case: Applying valid theme with no external modification `theme some_theme.json`.
+    1. Test case: Applying valid theme with no external modification `theme some_theme.json`.
 
-    4. Close the application.
+        1. Close the application.
        
-    4. Reopen the application. Observe that the theme of the application persists.
+        2. Reopen the application. Observe that the theme of the application persists.
     
-    4. Test case: Applying valid theme with external modification `theme some_theme.json`.
-    
-    4. Close the application.
-    
-    4. Delete `some_theme.json`.
-    
-    4. Relaunch the application. Observe that the default theme is applied to the application.
+    2. Test case: Applying valid theme with external modification `theme some_theme.json`.
+        
+        1. Close the application.
+           
+        2. Delete `some_theme.json`.
+        
+        3. Relaunch the application. Observe that the default theme is applied to the application.
 
 ### Viewing a different tab on the details panel: `view`
 
