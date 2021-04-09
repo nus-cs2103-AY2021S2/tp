@@ -7,7 +7,7 @@ title: Yue Yang's Project Portfolio Page
 
 ## Project: GreenMileageEfforts
 
-GreenMileageEfforts (GME) is a platform that helps drivers and passengers of any IT company quickly arrange carpooling in order to lower their carbon footprint. The platform follows that of a command-line interface (CLI) such that power users that are familiar can efficiently navigate the program.
+GreenMileageEfforts (GME) is a platform that helps the HR executive of any company quickly arrange carpooling among its employees in order to lower the carbon footprint of the company.
 
 Given below are my contributions to the project.
 
