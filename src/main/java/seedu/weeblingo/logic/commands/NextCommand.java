@@ -47,7 +47,7 @@ public class NextCommand extends Command {
             String correctAttempts = model.getCorrectAttemptsIndexes().toString() + "\n";
             model.switchModeQuizSessionEnded();
             return new CommandResult(MESSAGE_QUIZ_ENDED
-                    + quizStatistics + MESSAGE_CORRECT_ATTEMPTS_HELPER +  correctAttempts);
+                    + quizStatistics + MESSAGE_CORRECT_ATTEMPTS_HELPER + correctAttempts);
         }
 
         model.switchModeQuizSession();
