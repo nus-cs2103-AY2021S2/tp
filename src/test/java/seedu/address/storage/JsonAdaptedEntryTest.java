@@ -1,20 +1,20 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.entry.Entry;
-import seedu.address.model.entry.EntryDate;
-import seedu.address.model.entry.EntryName;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.storage.JsonAdaptedEntry.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEntries.CONSULTATION;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedEntry.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEntries.CONSULTATION;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.entry.EntryDate;
+import seedu.address.model.entry.EntryName;
 
 public class JsonAdaptedEntryTest {
 
@@ -32,11 +32,11 @@ public class JsonAdaptedEntryTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
-//    @Test //Not the same object??
-//    public void toModelType_validEntryDetails_returnsEntry() throws Exception {
-//        JsonAdaptedEntry entry = new JsonAdaptedEntry(CONSULTATION);
-//        assertEquals(CONSULTATION, entry.toModelType());
-//    }
+    @Test
+    public void toModelType_validEntryDetails_returnsEntry() throws Exception {
+        JsonAdaptedEntry entry = new JsonAdaptedEntry(CONSULTATION);
+        assertEquals(CONSULTATION, entry.toModelType());
+    }
 
     @Test
     public void toModelType_invalidEntryName_throwsIllegalValueException() {
