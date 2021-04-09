@@ -14,9 +14,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 ## **Target User Profile**
 
-The target user profile are dog school managers that own and manage the daily operations of the dog schools. They 
-handle a wide range of operations such as keeping track of the dogs under their care, arranging classes and taking care 
-of the dogs on a daily basis. They need a systematic way of maintaining their handle on the operations of their school 
+The target user profile are dog school managers that own and manage the daily operations of the dog schools. They
+handle a wide range of operations such as keeping track of the dogs under their care, arranging classes and taking care
+of the dogs on a daily basis. They need a systematic way of maintaining their handle on the operations of their school
 at all times.
 
 ## **Value Proposition**
@@ -163,7 +163,7 @@ Example: `add owner n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]..`
 
 The actual execution of these commands are largely the same and can be easily reimplemented to include more verification to the data if necessary, e.g. verifying that the owner ID refers to an actual owner instead of taking in an arbitrary number.
 
-In order to generate the respective commands, the raw input needs to be parsed first. It is required that the user provide a second keyword right after the `add`/`delete` command keyword to indicate the correct entity type to be added. Using this information, the arguments can be forwarded to the correct parser from within `PawbookParser` to be further processed. 
+In order to generate the respective commands, the raw input needs to be parsed first. It is required that the user provide a second keyword right after the `add`/`delete` command keyword to indicate the correct entity type to be added. Using this information, the arguments can be forwarded to the correct parser from within `PawbookParser` to be further processed.
 
 Given below is an example usage scenario and how the add command behaves at each step.
 
@@ -187,32 +187,32 @@ Below is an example activitiy diagram for a valid view command from the user.
 
 ![EditActivityDiagram](images/EditActivityDiagram.png)
 
-### Find feature 
-Pawbook allows the users to `find` an entity based on keyword searches. The `find` function entertains multiple keyword 
-searches and reveals the entire list of commands that match one or more of the results. 
+### Find feature
+Pawbook allows the users to `find` an entity based on keyword searches. The `find` function entertains multiple keyword
+searches and reveals the entire list of commands that match one or more of the results.
 
-When the user enters a valid command with the keyword searches, the arguments are parsed by the `FindCommmandParser` that 
-converts the string of arguments into a list, that is subsequently passed on to a `NameContainsKeywordsPredicate` instance 
-that uses the list of keywords to find the search results based on the supplied keywords. 
+When the user enters a valid command with the keyword searches, the arguments are parsed by the `FindCommmandParser` that
+converts the string of arguments into a list, that is subsequently passed on to a `NameContainsKeywordsPredicate` instance
+that uses the list of keywords to find the search results based on the supplied keywords.
 
-This predicate is passed into the `ModelManager`'s `updateFilteredEntityList()` method and subsequently generates the 
-CommandResult instance that is then passed on in the LogicManager. 
+This predicate is passed into the `ModelManager`'s `updateFilteredEntityList()` method and subsequently generates the
+CommandResult instance that is then passed on in the LogicManager.
 
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
-### View feature 
-Pawbook allows the user to `view` an entity and all its related entities. For instance, the user may want to `view` all the dogs of one particular owner or all the dogs enrolled in a program. By entering the correct view command with the correct identification number, the entire list will be generated. 
+### View feature
+Pawbook allows the user to `view` an entity and all its related entities. For instance, the user may want to `view` all the dogs of one particular owner or all the dogs enrolled in a program. By entering the correct view command with the correct identification number, the entire list will be generated.
 
 When the user enters a valid command with the target entity ID, the ViewCommandParser will firstly parse the command and store the ID as an integer that is then passed on to as a parameter into the constructor method of a new ViewCommand instance.
 
-Subsequently, once the new `ViewCommand` instance has been created, in its execute method, it will retrieve the entity via the ID that was passed in, from the `ModelManager`. With a handle on the target entity now, we build a list consisting of the entity IDs that are to be shown as search results. 
+Subsequently, once the new `ViewCommand` instance has been created, in its execute method, it will retrieve the entity via the ID that was passed in, from the `ModelManager`. With a handle on the target entity now, we build a list consisting of the entity IDs that are to be shown as search results.
 
-Based on the class type of the target entity, we will reveal the search results accordingly. If the target entity is a `Dog`, then we will show the relevant owner profile. If the target entity is a `Owner`, then we will list out all of the owner's dogs. Similar to owner, for `Program`, we will reveal the full list of dogs enrolled in that program. 
+Based on the class type of the target entity, we will reveal the search results accordingly. If the target entity is a `Dog`, then we will show the relevant owner profile. If the target entity is a `Owner`, then we will list out all of the owner's dogs. Similar to owner, for `Program`, we will reveal the full list of dogs enrolled in that program.
 
 This list is subsequently passed on to the `RelatedEntityPredicate` that will later be used in the ModelManager's `updatefilteredEntityList())` method to finally reveal the search results.
 
 
-Below is an example activitiy diagram for a valid view command from the user. 
+Below is an example activitiy diagram for a valid view command from the user.
 
 ![ViewActivityDiagram](images/ViewActivityDiagram.png)
 
@@ -228,9 +228,9 @@ Below is an example activity diagram for a valid drop command from the user.
 #### Alternate implementations
 
 ### Enrol feature
-Pawbook supports the enrolling of specific dogs into specific programs. 
+Pawbook supports the enrolling of specific dogs into specific programs.
 
-In order to enrol a dog into a program, the raw input needs to be parsed first. It is required that the user provides 2 parameters, namely `dogId` and `programId`. These inputs have the prefix `/d` and `/p`, and is followed by an integer. Using this information, the arguments will be forwarded to the `EnrolCommandParser` from within `PawbookParser`, which converts the String input to int. 
+In order to enrol a dog into a program, the raw input needs to be parsed first. It is required that the user provides 2 parameters, namely `dogId` and `programId`. These inputs have the prefix `/d` and `/p`, and is followed by an integer. Using this information, the arguments will be forwarded to the `EnrolCommandParser` from within `PawbookParser`, which converts the String input to int.
 
 Below is an example activity diagram for a valid enrol command from the user.
 

@@ -1,7 +1,7 @@
 package dog.pawbook.testutil;
 
 import dog.pawbook.model.Database;
-import dog.pawbook.model.managedentity.owner.Owner;
+import dog.pawbook.model.managedentity.Entity;
 
 /**
  * A utility class to help with building Database objects.
@@ -23,8 +23,8 @@ public class DatabaseBuilder {
     /**
      * Adds a new {@code Owner} to the {@code Database} that we are building.
      */
-    public DatabaseBuilder withOwner(Owner owner) {
-        database.addEntity(owner);
+    public DatabaseBuilder withEntity(Entity entity) {
+        database.addEntity(entity);
         return this;
     }
 

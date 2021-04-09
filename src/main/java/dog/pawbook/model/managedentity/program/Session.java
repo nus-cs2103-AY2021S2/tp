@@ -13,7 +13,7 @@ import java.time.format.DateTimeParseException;
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class Session {
-    public static final String DATETIME_FORMAT = "d-M-yyyy HH:mm";
+    public static final String DATETIME_FORMAT = "dd-MM-yyyy HH:mm";
     public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern(DATETIME_FORMAT);
     public static final String MESSAGE_CONSTRAINTS = "The date and time of a Session should be in the "
             + DATETIME_FORMAT + " format.";

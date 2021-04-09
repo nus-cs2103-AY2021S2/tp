@@ -7,6 +7,7 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SESSION;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SEX;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static dog.pawbook.testutil.Assert.assertThrows;
@@ -53,16 +54,17 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_ASHER = "Asher";
     public static final String VALID_NAME_BELL = "Bell";
-    public static final String VALID_SEX_ASHER = "male";
-    public static final String VALID_SEX_BELL = "female";
-    public static final String VALID_DATEOFBIRTH_ASHER = "16-4-2020";
-    public static final String VALID_DATEOFBIRTH_BELL = "15-4-2020";
+    public static final String VALID_SEX_ASHER = "female";
+    public static final String VALID_SEX_BELL = "male";
+    public static final String VALID_DATEOFBIRTH_ASHER = "16-04-2020";
+    public static final String VALID_DATEOFBIRTH_BELL = "15-04-2020";
     public static final String VALID_BREED_ASHER = "Corgi";
     public static final String VALID_BREED_BELL = "Greyhound";
-    public static final int VALID_OWNERID_9 = 9;
-    public static final int VALID_OWNERID_10 = 10;
+    public static final int VALID_OWNERID_15 = 15;
+    public static final int VALID_OWNERID_17 = 17;
     public static final String VALID_TAG_FRIENDLY = "friendly";
     public static final String VALID_TAG_QUIET = "quiet";
+    public static final String VALID_ENTITY_ID = "1";
 
     public static final String NAME_DESC_ASHER = " " + PREFIX_NAME + VALID_NAME_ASHER;
     public static final String NAME_DESC_BELL = " " + PREFIX_NAME + VALID_NAME_BELL;
@@ -72,10 +74,26 @@ public class CommandTestUtil {
     public static final String BREED_DESC_BELL = " " + PREFIX_BREED + VALID_BREED_BELL;
     public static final String DATEOFBIRTH_DESC_ASHER = " " + PREFIX_DOB + VALID_DATEOFBIRTH_ASHER;
     public static final String DATEOFBIRTH_DESC_BELL = " " + PREFIX_DOB + VALID_DATEOFBIRTH_BELL;
-    public static final String OWNERID_DESC_9 = " " + PREFIX_OWNERID + VALID_OWNERID_9;
-    public static final String OWNERID_DESC_10 = " " + PREFIX_OWNERID + VALID_OWNERID_10;
+    public static final String OWNERID_DESC_15 = " " + PREFIX_OWNERID + VALID_OWNERID_15;
+    public static final String OWNERID_DESC_17 = " " + PREFIX_OWNERID + VALID_OWNERID_17;
     public static final String TAG_DESC_FRIENDLY = " " + PREFIX_TAG + VALID_TAG_FRIENDLY;
     public static final String TAG_DESC_QUIET = " " + PREFIX_TAG + VALID_TAG_QUIET;
+
+    public static final String VALID_NAME_OBEDIENCE_TRAINING = "Obedience Training";
+    public static final String VALID_NAME_POTTY_TRAINING = "Potty Training";
+    public static final String VALID_SESSION_OBEDIENCE_TRAINING = "01-01-2022 10:30";
+    public static final String VALID_SESSION_POTTY_TRAINING = "03-02-2022 20:30";
+    public static final String VALID_TAG_PUPPIES = "Puppies";
+    public static final String VALID_TAG_ALL = "All";
+
+    public static final String NAME_DESC_OBEDIENCE_TRAINING = " " + PREFIX_NAME + VALID_NAME_OBEDIENCE_TRAINING;
+    public static final String NAME_DESC_POTTY_TRAINING = " " + PREFIX_NAME + VALID_NAME_POTTY_TRAINING;
+    public static final String SESSION_DESC_OBEDIENCE_TRAINING = " " + PREFIX_SESSION
+            + VALID_SESSION_OBEDIENCE_TRAINING;
+    public static final String SESSION_DESC_POTTY_TRAINING = " " + PREFIX_SESSION
+            + VALID_SESSION_POTTY_TRAINING;
+    public static final String TAG_DESC_PUPPIES = " " + PREFIX_TAG + VALID_TAG_PUPPIES;
+    public static final String TAG_DESC_ALL = " " + PREFIX_TAG + VALID_TAG_ALL;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -83,7 +101,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_SEX_DESC = " " + PREFIX_SEX + "Male1"; // '1' not allowed in sex
-    public static final String INVALID_DATEOFBIRTH_DESC = " " + PREFIX_DOB + "a-a-2020"; // 'a' not
+    public static final String INVALID_DATEOFBIRTH_DESC = " " + PREFIX_DOB + "aa-aa-2020"; // 'a' not
     // allowed in dates of birth
     public static final String INVALID_BREED_DESC = " " + PREFIX_BREED + "poodle!"; // '!' not allowed for breed
     public static final String INVALID_OWNERID_DESC = " " + PREFIX_OWNERID; // empty ownerID not allowed
@@ -93,6 +111,14 @@ public class CommandTestUtil {
 
     public static final EditOwnerCommand.EditOwnerDescriptor DESC_AMY;
     public static final EditOwnerCommand.EditOwnerDescriptor DESC_BOB;
+
+    public static final String INVALID_EMPTY_STRING = "";
+    public static final String INVALID_NEGATIVE_ID_STRING = "-1";
+    public static final String INVALID_UNKNOWN_ID_STRING = "dummy";
+    public static final String INVALID_OUT_OF_BOUNDS_ID_STRING = String.valueOf(Integer.MAX_VALUE);
+
+    public static final int INVALID_OUT_OF_BOUNDS_ID_INTEGER = Integer.MAX_VALUE;
+    public static final int INVALID_NEGATIVE_ID_INTEGER = -1;
 
     static {
         DESC_AMY = new EditOwnerDescriptorBuilder().withName(VALID_NAME_AMY)

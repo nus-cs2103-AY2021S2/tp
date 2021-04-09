@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import dog.pawbook.ui.UG?>
-<?import javafx.collections.FXCollections?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.Scene?>
-<?import javafx.scene.text.Font?>
-<?import javafx.stage.Stage?>
+<?import dog.pawbook.ui.*?>
+<?import java.net.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.stage.*?>
+
 <fx:root resizable="false" title="HelpWindow" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/help_icon.png" />
@@ -24,10 +19,10 @@
     <scene>
         <Scene>
             <stylesheets>
-                <URL value="@DarkTheme.css" />
+                <URL value="@PawbookTheme.css" />
                 <URL value="@Extensions.css" />
             </stylesheets>
-            <GridPane prefHeight="380" prefWidth="590.0">
+            <GridPane maxHeight="700" maxWidth="630" minHeight="380" minWidth="700.0">
                 <HBox alignment="BASELINE_RIGHT" GridPane.rowIndex="0">
                     <opaqueInsets>
                         <Insets bottom="10.0" left="8.0" right="12.0" top="5.0" />
@@ -56,32 +51,34 @@
                     <font>
                         <Font size="27.0" />
                     </font></Label>
-                <TableView fx:id="tableView" prefHeight="320.0" prefWidth="590.0" GridPane.rowIndex="3">
+                <TableView fx:id="tableView" prefHeight="380.0" prefWidth="590.0" GridPane.rowIndex="3">
                     <columns>
-                        <TableColumn prefWidth="80.0" text="Action">
+                        <TableColumn text="Action">
                             <cellValueFactory><PropertyValueFactory property="action" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="495.0" text="Format">
-                            <cellValueFactory><PropertyValueFactory property="format"  />
+                        <TableColumn prefWidth="700.0" text="Format">
+                            <cellValueFactory><PropertyValueFactory property="format" />
                             </cellValueFactory>
                         </TableColumn>
                     </columns>
                     <items>
                         <FXCollections fx:factory="observableArrayList">
+                            <UG action="Add Dog" format="add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]..." />
+                            <UG action="Add Owner" format="add owner n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]..." />
+                            <UG action="Add Program" format="add program n/PROGRAM_NAME [s/DATE_OF_SESSION]... [t/TAG]..." />
+                            <UG action="Delete" format="delete dog DOG_ID | owner OWNER_ID | program PROGRAM_ID" />
+                            <UG action="Edit Dog" format="edit dog DOG_ID [n/DOG_NAME] [b/BREED] [d/DATE_OF_BIRTH] [s/SEX] [o/OWNER_ID] [t/TAG]..." />
+                            <UG action="Edit Owner" format="edit owner OWNER_ID [n/OWNER_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]..." />
+                            <UG action="Edit Program" format="edit program PROGRAM_ID [n/PROGRAM_NAME] [s/DATE_OF_SESSION]... [t/TAG]..." />
+                            <UG action="Enrol" format="enrol d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID [p/PROGRAM_ID]..." />
+                            <UG action="Drop" format="drop d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID [p/PROGRAM_ID]..." />
+                            <UG action="Schedule" format="schedule [DATE]" />
+                            <UG action="List" format="list dog | owner | program" />
+                            <UG action="Find" format="find KEYWORD [MORE_KEYWORDS]..." />
+                            <UG action="View" format="view ENTITY_ID" />
                             <UG action="Help" format="help" />
                             <UG action="Exit" format="exit" />
-                            <UG action="Add Owner" format="add owner n/OWNERNAME p/PHONE e/EMAIL a/ADDRESS [t/TAG].../"/>
-                            <UG action="Add Dog" format="add dog n/DOGNAME b/BREED d/DATEOFBIRTH s/SEX o/OWNERID [t/TAG]…"/>
-                            <UG action="Add Program" format="add program n/NAME [s/DATEOFSESSION]... [t/TAG]..."/>
-                            <UG action="Edit" format="edit owner n/OWNERNAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]..." />
-                            <UG action="Edit Dog" format="edit dog n/DOGNAME b/BREED d/DATEOFBIRTH s/SEX o/OWNERID [t/TAG]..." />
-                            <UG action="Edit Program" format="edit program n/NAME [s/DATEOFSESSION]... [t/TAG]..." />
-                            <UG action="Enrol" format="d/DOGID p/PROGRAMID" />
-                            <UG action="Drop" format="drop d/DOGID p/PROGRAMID" />
-                            <UG action="Find" format="find KEYWORD [MORE_KEYWORDS]…" />
-                            <UG action="List" format="list" />
-                            <UG action="View" format="view IDNUMBER" />
                         </FXCollections>
                     </items>
                 </TableView>

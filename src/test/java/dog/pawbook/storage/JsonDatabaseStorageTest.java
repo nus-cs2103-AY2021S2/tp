@@ -1,18 +1,18 @@
 package dog.pawbook.storage;
 
 import static dog.pawbook.testutil.Assert.assertThrows;
-import static dog.pawbook.testutil.TypicalOwners.ALICE;
-import static dog.pawbook.testutil.TypicalOwners.HOON;
-import static dog.pawbook.testutil.TypicalOwners.IDA;
-import static dog.pawbook.testutil.TypicalOwners.getTypicalDatabase;
-import static java.util.stream.Collectors.toList;
+import static dog.pawbook.testutil.TypicalEntities.HOON;
+import static dog.pawbook.testutil.TypicalEntities.IDA;
+import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
+import static dog.pawbook.testutil.TypicalId.ID_EIGHTEEN;
+import static dog.pawbook.testutil.TypicalId.ID_ONE;
+import static dog.pawbook.testutil.TypicalId.ID_TWO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -20,8 +20,6 @@ import org.junit.jupiter.api.io.TempDir;
 import dog.pawbook.commons.exceptions.DataConversionException;
 import dog.pawbook.model.Database;
 import dog.pawbook.model.ReadOnlyDatabase;
-import dog.pawbook.model.managedentity.Entity;
-import javafx.util.Pair;
 
 public class JsonDatabaseStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonDatabaseStorageTest");
@@ -77,11 +75,9 @@ public class JsonDatabaseStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addEntity(HOON);
-        List<Pair<Integer, Entity>> targets = original.getEntityList().stream()
-                .filter(p -> p.getValue().equals(ALICE))
-                .collect(toList());
-        int aliceId = targets.get(0).getKey();
-        original.removeEntity(aliceId);
+        original.removeEntity(ID_ONE); // owner
+        original.removeEntity(ID_TWO); // dog
+        original.removeEntity(ID_EIGHTEEN); // program that dog is enrolled in
         jsonDatabaseStorage.saveDatabase(original, filePath);
         readBack = jsonDatabaseStorage.readDatabase(filePath).get();
         assertEquals(original, new Database(readBack));

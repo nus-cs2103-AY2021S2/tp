@@ -1,10 +1,9 @@
 package dog.pawbook.logic.commands;
 
-import static dog.pawbook.model.Model.COMPARATOR_ID_ASCENDING_ORDER;
-import static dog.pawbook.model.Model.PREDICATE_SHOW_ALL_ENTITIES;
+import static dog.pawbook.commons.core.Messages.MESSAGE_ID_MISMATCH_FORMAT;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ID_FORMAT;
+import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
-
-import java.util.NoSuchElementException;
 
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
@@ -13,7 +12,7 @@ import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.model.managedentity.program.Program;
 
-public abstract class DeleteCommand extends Command {
+public abstract class DeleteCommand<T extends Entity> extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE =
@@ -27,37 +26,34 @@ public abstract class DeleteCommand extends Command {
 
     protected final Integer targetId;
 
+    private final Class<T> cls;
+
     /**
      * Create a new Delete command.
      */
-    public DeleteCommand(Integer id) {
-        requireNonNull(id);
+    public DeleteCommand(Integer id, Class<T> entityClass) {
+        requireAllNonNull(id, entityClass);
         this.targetId = id;
+        this.cls = entityClass;
     }
 
     /**
-     * Attempt to find the entity to be deleted.
+     * Attempt to find the entity to be deleted and convert it to {@code T}.
      */
-    protected Entity getEntityToDelete(Model model) throws CommandException {
-        Entity entityToDelete;
-        try {
-            entityToDelete = model.getFilteredEntityList().stream()
-                    .filter(p -> p.getKey().equals(targetId))
-                    .findFirst().orElseThrow()
-                    .getValue();
-        } catch (NoSuchElementException e) {
-            throw new CommandException(getInvalidIdMessage());
+    protected T getEntityToDelete(Model model) throws CommandException {
+        requireNonNull(model);
+
+        if (!model.hasEntity(targetId)) {
+            throw new CommandException(String.format(MESSAGE_INVALID_ID_FORMAT, getEntityWord()));
         }
-        return entityToDelete;
+
+        Entity entityToDelete = model.getEntity(targetId);
+        if (!cls.isInstance(entityToDelete)) {
+            throw new CommandException(String.format(MESSAGE_ID_MISMATCH_FORMAT, getEntityWord()));
+        }
+
+        return cls.cast(entityToDelete);
     }
 
-    /**
-     * Updates the filtered list and sorts it in the desired order.
-     */
-    protected final void filteredListShowAllAscendingId(Model model) {
-        model.updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
-        model.sortEntities(COMPARATOR_ID_ASCENDING_ORDER);
-    }
-
-    protected abstract String getInvalidIdMessage();
+    protected abstract String getEntityWord();
 }

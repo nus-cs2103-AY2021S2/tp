@@ -2,15 +2,12 @@ package dog.pawbook.model.managedentity.program;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
-import static java.util.stream.Collectors.toList;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.Vector;
@@ -29,7 +26,7 @@ public class Program extends Entity {
 
     // Data fields
     private final Set<Session> sessionSet = new HashSet<>();
-    private final Set<Integer> dogidSet = new HashSet<>();
+    private final Set<Integer> dogIdSet = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -48,7 +45,7 @@ public class Program extends Entity {
         super(name, tags);
         requireAllNonNull(name, tags);
         this.sessionSet.addAll(sessionSet);
-        this.dogidSet.addAll(dogIDs);
+        this.dogIdSet.addAll(dogIDs);
     }
 
     public Name getName() {
@@ -64,16 +61,25 @@ public class Program extends Entity {
     }
 
     public Set<Integer> getDogIdSet() {
-        return Collections.unmodifiableSet(dogidSet);
+        return Collections.unmodifiableSet(dogIdSet);
     }
 
     public Set<Session> getSessions() {
         return Collections.unmodifiableSet(sessionSet);
     }
 
+    @Override
+    public boolean isSameAs(Entity otherEntity) {
+        if (!(otherEntity instanceof Program)) {
+            return false;
+        }
+
+        return super.isSameAs(otherEntity);
+    }
+
     /**
-     * Returns true if both owners have the same identity and data fields.
-     * This defines a stronger notion of equality between two owners.
+     * Returns true if both programs have the same identity and data fields.
+     * This defines a stronger notion of equality between two programs.
      */
     @Override
     public boolean equals(Object other) {
@@ -94,7 +100,7 @@ public class Program extends Entity {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, sessionSet, dogidSet, tags);
+        return Objects.hash(name, sessionSet, dogIdSet, tags);
     }
 
     @Override
@@ -119,23 +125,21 @@ public class Program extends Entity {
      */
     @Override
     public Collection<Integer> getRelatedEntityIds() {
-        return new ArrayList<>(dogidSet);
+        return new ArrayList<>(dogIdSet);
     }
 
     @Override
     public Collection<String> getOtherPropertiesAsString() {
         Collection<String> properties = new Vector<>();
 
-        List<Session> upcomingSessions = sessionSet.stream()
-                .filter(session -> LocalDateTime.now().isBefore(session.dateTime)).collect(toList());
-        if (upcomingSessions.size() > 0) {
-            properties.add(upcomingSessions.stream()
-                    .sorted(Comparator.comparing(session -> session.dateTime))
-                    .map(session -> session.value)
-                    .collect(Collectors.joining(", ", "Upcoming timeslot(s): ", "")));
-        }
-        if (!dogidSet.isEmpty()) {
-            properties.add(dogidSet.stream()
+        String timeslots = sessionSet.stream()
+                .sorted(Comparator.comparing(session -> session.dateTime))
+                .map(session -> session.value)
+                .collect(Collectors.joining(", "));
+        properties.add("Timeslot(s): " + timeslots);
+
+        if (!dogIdSet.isEmpty()) {
+            properties.add(dogIdSet.stream()
                     .sorted()
                     .map(String::valueOf)
                     .collect(Collectors.joining(", ", "Participating Dog ID(s): ", "")));

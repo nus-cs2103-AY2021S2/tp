@@ -11,6 +11,7 @@ import dog.pawbook.model.managedentity.owner.Address;
 import dog.pawbook.model.managedentity.owner.Email;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.model.managedentity.owner.Phone;
+import dog.pawbook.model.managedentity.program.Session;
 import dog.pawbook.model.managedentity.tag.Tag;
 
 /**
@@ -64,4 +65,12 @@ public class SampleDataUtil {
         return Arrays.stream(ids).collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a session set containing the list of strings given.
+     */
+    public static Set<Session> getSessionSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Session::new)
+                .collect(Collectors.toSet());
+    }
 }

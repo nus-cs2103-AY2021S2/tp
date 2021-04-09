@@ -5,10 +5,12 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static dog.pawbook.testutil.Assert.assertThrows;
-import static dog.pawbook.testutil.TypicalOwners.ALICE;
-import static dog.pawbook.testutil.TypicalOwners.BOB;
+import static dog.pawbook.testutil.TypicalEntities.ALICE;
+import static dog.pawbook.testutil.TypicalEntities.APPLE;
+import static dog.pawbook.testutil.TypicalEntities.BOB;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -19,71 +21,109 @@ import dog.pawbook.testutil.OwnerBuilder;
 public class OwnerTest {
 
     @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Owner owner = new OwnerBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> owner.getTags().remove(0));
+    public void isSameAs() {
+        // same object -> returns true
+        assertTrue(ALICE.isSameAs(ALICE));
+
+        // different entity type -> return false
+        assertFalse(ALICE.isSameAs(APPLE));
+
+        // null -> returns false
+        assertFalse(ALICE.isSameAs(null));
+
+        // same name and phone, all other attributes different -> returns true
+        Owner editedAlice = new OwnerBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).withDogs().build();
+        assertTrue(ALICE.isSameAs(editedAlice));
+
+        // same name and email, all other attributes different -> returns true
+        editedAlice = new OwnerBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).withDogs().build();
+        assertTrue(ALICE.isSameAs(editedAlice));
+
+        // same phone and email, all other attributes different -> returns false
+        editedAlice = new OwnerBuilder(ALICE).withName(VALID_NAME_BOB)
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).withDogs().build();
+        assertFalse(ALICE.isSameAs(editedAlice));
+
+        // different name, all other attributes same -> returns false
+        editedAlice = new OwnerBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        assertFalse(ALICE.isSameAs(editedAlice));
+
+        // name differs in case, all other attributes same -> returns false
+        Owner editedBob = new OwnerBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        assertFalse(BOB.isSameAs(editedBob));
+
+        // name has trailing spaces, all other attributes same -> returns false
+        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
+        editedBob = new OwnerBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        assertFalse(BOB.isSameAs(editedBob));
     }
 
     @Test
     public void getName() {
-        assertTrue(ALICE.getName().equals(new Name("Alice Pauline")));
-        assertTrue(BOB.getName().equals(new Name("Bob Choo")));
+        assertEquals(new Name("Alice Pauline"), ALICE.getName());
+        assertEquals(new Name("Bob Choo"), BOB.getName());
     }
 
     @Test
     public void getPhone() {
-        assertTrue(ALICE.getPhone().equals(new Phone("94351253")));
-        assertTrue(BOB.getPhone().equals(new Phone("22222222")));
+        assertEquals(new Phone("94351253"), ALICE.getPhone());
+        assertEquals(new Phone("22222222"), BOB.getPhone());
     }
 
     @Test
     public void getEmail() {
-        assertTrue(ALICE.getEmail().equals(new Email("alice@example.com")));
-        assertTrue(BOB.getEmail().equals(new Email("bob@example.com")));
+        assertEquals(new Email("alice@example.com"), ALICE.getEmail());
+        assertEquals(new Email("bob@example.com"), BOB.getEmail());
     }
 
     @Test
     public void getAddress() {
-        assertTrue(ALICE.getAddress().equals(new Address("123, Jurong West Ave 6, #08-111")));
-        assertTrue(BOB.getAddress().equals(new Address("Block 123, Bobby Street 3")));
+        assertEquals(new Address("123, Jurong West Ave 6, #08-111"), ALICE.getAddress());
+        assertEquals(new Address("Block 123, Bobby Street 3"), BOB.getAddress());
     }
 
     @Test
     public void equals() {
         // same values -> returns true
         Owner aliceCopy = new OwnerBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        assertEquals(aliceCopy, ALICE);
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertEquals(ALICE, ALICE);
+
+        // different entity type -> return false
+        assertNotEquals(ALICE, APPLE);
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertNotEquals(ALICE, null);
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertNotEquals(ALICE, 5);
 
         // different owner -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertNotEquals(BOB, ALICE);
 
         // different name -> returns false
         Owner editedAlice = new OwnerBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        assertNotEquals(editedAlice, ALICE);
 
         // different phone -> returns false
         editedAlice = new OwnerBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        assertNotEquals(editedAlice, ALICE);
 
         // different email -> returns false
         editedAlice = new OwnerBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        assertNotEquals(editedAlice, ALICE);
 
         // different address -> returns false
         editedAlice = new OwnerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        assertNotEquals(editedAlice, ALICE);
 
         // different tags -> returns false
         editedAlice = new OwnerBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        assertNotEquals(editedAlice, ALICE);
     }
+
 }

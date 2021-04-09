@@ -12,7 +12,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/charleslee01.png" width="200px">
 
 [[github](https://github.com/CharlesLee01)]
-[[portfolio](team/charleslee.md)]
+[[portfolio](team/charleslee01.md)]
 
 * Role: Developer
 * Responsibilities: Add command
@@ -31,7 +31,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/kouyk.png" width="200px">
 
-[[github](http://github.com/kouyk)] [[portfolio](team/yongkang.md)]
+[[github](http://github.com/kouyk)] [[portfolio](team/kouyk.md)]
 
 * Role: Developer
 * Responsibilities: Data
@@ -41,7 +41,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/shaelynl.png" width="200px">
 
 [[github](http://github.com/shaelynl)]
-[[portfolio](team/shaelynlam.md)]
+[[portfolio](team/shaelynl.md)]
 
 * Role: Developer
 * Responsibilities: Help command
@@ -51,7 +51,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/wei-yutong.png" width="200px">
 
 [[github](http://github.com/wei-yutong)]
-[[portfolio](team/weiyutong.md)]
+[[portfolio](team/wei-yutong.md)]
 
 * Role: Developer
 * Responsibilities: Exit Command

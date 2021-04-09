@@ -1,6 +1,8 @@
+//@@author ZhangAnli
 package dog.pawbook.logic.commands;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW;
+import static dog.pawbook.commons.core.Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW_FOR_ONE;
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ENTITY_ID;
 import static java.util.Objects.requireNonNull;
 
@@ -29,9 +31,19 @@ public class ViewCommand extends Command {
             + "Parameters: [ID]...\n"
             + "Example: " + COMMAND_WORD + " 1";
 
+    public static final String MESSAGE_SUCCESS_FORMAT = "Viewing!";
+
     private final int targetEntityId;
 
+    /**
+     * Constructs a View Command object.
+     *
+     * @param targetEntityId of the searched entity.
+     */
     public ViewCommand(int targetEntityId) {
+        // Check that targetEntityId is not invalid.
+        assert (targetEntityId > 0);
+
         this.targetEntityId = targetEntityId;
     }
 
@@ -57,10 +69,18 @@ public class ViewCommand extends Command {
                 .collect(Collectors.toList());
         targetIdList.addAll(enrolledPrograms);
 
+        assert(!targetIdList.isEmpty());
+
         model.updateFilteredEntityList(new IdMatchPredicate(targetIdList));
         model.sortEntities(new ViewCommandComparator(targetEntity.getClass()));
 
-        return new CommandResult(String.format(MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
+        if (model.getFilteredEntityList().size() == 1) {
+            return new CommandResult(String.format(
+                    MESSAGE_ENTITIES_LISTED_OVERVIEW_FOR_ONE, model.getFilteredEntityList().size()));
+        } else {
+            return new CommandResult(String.format(
+                    MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
+        }
     }
 
     @Override

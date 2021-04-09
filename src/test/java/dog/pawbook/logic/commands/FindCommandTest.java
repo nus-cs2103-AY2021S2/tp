@@ -2,17 +2,18 @@ package dog.pawbook.logic.commands;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static dog.pawbook.testutil.TypicalOwners.CARL;
-import static dog.pawbook.testutil.TypicalOwners.ELLE;
-import static dog.pawbook.testutil.TypicalOwners.FIONA;
-import static dog.pawbook.testutil.TypicalOwners.getTypicalDatabase;
+import static dog.pawbook.testutil.TypicalEntities.CARL;
+import static dog.pawbook.testutil.TypicalEntities.ELLE;
+import static dog.pawbook.testutil.TypicalEntities.FIONA;
+import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
+import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -74,10 +75,9 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredEntityList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        ArrayList<Entity> testList = new ArrayList<Entity>();
-        for (Pair pair: model.getFilteredEntityList()) {
-            testList.add((Entity) pair.getValue());
-        }
+        List<Entity> testList = model.getFilteredEntityList().stream()
+                .map(Pair::getValue)
+                .collect(toList());
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), testList);
     }
 

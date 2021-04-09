@@ -1,5 +1,6 @@
 package dog.pawbook.logic.parser;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ID_GENERAL;
 import static dog.pawbook.model.managedentity.dog.DateOfBirth.DATE_FORMAT;
 import static dog.pawbook.model.managedentity.dog.DateOfBirth.DATE_FORMATTER;
 import static dog.pawbook.model.managedentity.program.Session.DATETIME_FORMATTER;
@@ -27,6 +28,8 @@ import dog.pawbook.model.managedentity.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
+
+    private static final String MESSAGE_INVALID_DAY_OF_THE_MONTH = "Day of the month does not exist!";
 
     /**
      * Parses a {@code String name} into a {@code Name}.
@@ -110,12 +113,20 @@ public class ParserUtil {
      */
     public static LocalDate parseDate(String dateString) throws ParseException {
         requireNonNull(dateString);
+
+        String trimmedDateString = dateString.trim();
+
         LocalDate date;
         try {
-            date = LocalDate.parse(dateString.trim(), DATE_FORMATTER);
+            date = LocalDate.parse(trimmedDateString, DATE_FORMATTER);
         } catch (DateTimeParseException d) {
             throw new ParseException("Date should be in the " + DATE_FORMAT + " format");
         }
+
+        if (!date.format(DATE_FORMATTER).equals(trimmedDateString)) {
+            throw new ParseException("Day of the month does not exist!");
+        }
+
         return date;
     }
 
@@ -131,6 +142,10 @@ public class ParserUtil {
         try {
             localDate = parseDate(dob.trim());
         } catch (ParseException pe) {
+            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+
+        if (localDate.isAfter(LocalDate.now())) {
             throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
 
@@ -186,11 +201,11 @@ public class ParserUtil {
      */
     public static int parseId(String id) throws ParseException {
         requireNonNull(id);
-        String trimmedOwnerId = id.trim();
+        String trimmedId = id.trim();
         try {
-            return Integer.parseInt(trimmedOwnerId);
+            return Integer.parseUnsignedInt(trimmedId);
         } catch (NumberFormatException e) {
-            throw new ParseException("ID must be a positive integer!");
+            throw new ParseException(MESSAGE_INVALID_ID_GENERAL);
         }
     }
 
@@ -218,6 +233,10 @@ public class ParserUtil {
             throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
         LocalDateTime localDateTime = LocalDateTime.parse(trimmedDateTime, DATETIME_FORMATTER);
+
+        if (!localDateTime.format(DATETIME_FORMATTER).equals(trimmedDateTime)) {
+            throw new ParseException(MESSAGE_INVALID_DAY_OF_THE_MONTH);
+        }
         return new Session(localDateTime);
     }
 

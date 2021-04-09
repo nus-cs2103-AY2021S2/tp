@@ -1,3 +1,4 @@
+//@@author ZhangAnli
 package dog.pawbook.logic.commands;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW;
@@ -22,7 +23,14 @@ public class FindCommand extends Command {
 
     private final NameContainsKeywordsPredicate predicate;
 
+    /**
+     * Constructs a Find Command object.
+     *
+     * @param predicate that checks if entity name contains any keywords.
+     */
     public FindCommand(NameContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
+
         this.predicate = predicate;
     }
 

@@ -20,12 +20,12 @@ public class Dog extends Entity {
     public static final String ENTITY_WORD = "dog";
 
     //Identity Fields
+    private final Integer ownerID;
+
+    // Data fields
     private final Breed breed;
     private final DateOfBirth dob;
     private final Sex sex;
-
-    // Data fields
-    private final Integer ownerID;
 
     /**
      * Every field must be present and not null.
@@ -68,10 +68,25 @@ public class Dog extends Entity {
         return Collections.unmodifiableSet(tags);
     }
 
+    @Override
+    public boolean isSameAs(Entity otherEntity) {
+        if (otherEntity == this) {
+            return true;
+        }
+
+        if (!(otherEntity instanceof Dog)) {
+            return false;
+        }
+
+        Dog otherDog = (Dog) otherEntity;
+
+        return super.isSameAs(otherEntity)
+                && otherDog.getOwnerId().equals(getOwnerId());
+    }
 
     /**
-     * Returns true if both owners have the same identity and data fields.
-     * This defines a stronger notion of equality between two owners.
+     * Returns true if both dogs have the same identity and data fields.
+     * This defines a stronger notion of equality between two dogs.
      */
     @Override
     public boolean equals(Object other) {

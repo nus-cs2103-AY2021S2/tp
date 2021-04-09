@@ -1,3 +1,4 @@
+//@@author ZhangAnli
 package dog.pawbook.logic.parser;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -27,6 +28,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
         String[] nameKeywords = trimmedArgs.split("\\s+");
         List<String> keywords = Arrays.asList(nameKeywords);
+
         return new FindCommand(new NameContainsKeywordsPredicate(keywords));
     }
 

@@ -2,9 +2,9 @@ package dog.pawbook.logic.parser;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static dog.pawbook.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static dog.pawbook.commons.core.Messages.MESSAGE_UNKNOWN_ENTITY;
 import static dog.pawbook.testutil.Assert.assertThrows;
-import static dog.pawbook.testutil.TypicalIndexes.ID_FIRST_DOG;
-import static dog.pawbook.testutil.TypicalIndexes.ID_FIRST_OWNER;
+import static dog.pawbook.testutil.TypicalId.ID_ONE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -33,6 +33,7 @@ import dog.pawbook.testutil.DogUtil;
 import dog.pawbook.testutil.EditOwnerDescriptorBuilder;
 import dog.pawbook.testutil.OwnerBuilder;
 import dog.pawbook.testutil.OwnerUtil;
+import dog.pawbook.testutil.TypicalId;
 
 public class PawbookParserTest {
 
@@ -55,15 +56,15 @@ public class PawbookParserTest {
     @Test
     public void parseCommand_deleteOwner() throws Exception {
         DeleteOwnerCommand command = (DeleteOwnerCommand) parser.parseCommand(
-                DeleteOwnerCommand.COMMAND_WORD + " " + Owner.ENTITY_WORD + " " + ID_FIRST_OWNER);
-        assertEquals(new DeleteOwnerCommand(ID_FIRST_OWNER), command);
+                DeleteOwnerCommand.COMMAND_WORD + " " + Owner.ENTITY_WORD + " " + TypicalId.ID_ONE);
+        assertEquals(new DeleteOwnerCommand(ID_ONE), command);
     }
 
     @Test
     public void parseCommand_deleteDog() throws Exception {
         DeleteDogCommand command = (DeleteDogCommand) parser.parseCommand(
-                DeleteDogCommand.COMMAND_WORD + " " + Dog.ENTITY_WORD + " " + ID_FIRST_DOG);
-        assertEquals(new DeleteDogCommand(ID_FIRST_DOG), command);
+                DeleteDogCommand.COMMAND_WORD + " " + Dog.ENTITY_WORD + " " + ID_ONE);
+        assertEquals(new DeleteDogCommand(ID_ONE), command);
     }
 
     @Test
@@ -71,8 +72,8 @@ public class PawbookParserTest {
         Owner owner = new OwnerBuilder().build();
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder(owner).build();
         EditOwnerCommand command = (EditOwnerCommand) parser.parseCommand(EditOwnerCommand.COMMAND_WORD + " "
-                + Owner.ENTITY_WORD + " " + ID_FIRST_OWNER + " " + OwnerUtil.getEditOwnerDescriptorDetails(descriptor));
-        assertEquals(new EditOwnerCommand(ID_FIRST_OWNER, descriptor), command);
+                + Owner.ENTITY_WORD + " " + ID_ONE + " " + OwnerUtil.getEditOwnerDescriptorDetails(descriptor));
+        assertEquals(new EditOwnerCommand(ID_ONE, descriptor), command);
     }
 
     @Test
@@ -97,7 +98,7 @@ public class PawbookParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_ENTITY, () -> parser.parseCommand(ListCommand.COMMAND_WORD));
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Owner.ENTITY_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Dog.ENTITY_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " " + Program.ENTITY_WORD) instanceof ListCommand);

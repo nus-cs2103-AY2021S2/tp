@@ -1,6 +1,5 @@
 package dog.pawbook.logic.commands;
 
-import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_DOG_ID;
 import static dog.pawbook.logic.commands.CommandUtil.disconnectFromOwner;
 import static dog.pawbook.model.managedentity.dog.Dog.ENTITY_WORD;
 import static java.util.Objects.requireNonNull;
@@ -19,7 +18,7 @@ import javafx.util.Pair;
 /**
  * Deletes a owner identified using it's displayed index from the database.
  */
-public class DeleteDogCommand extends DeleteCommand {
+public class DeleteDogCommand extends DeleteCommand<Dog> {
 
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Deletes the dog identified by ID.\n"
@@ -28,22 +27,15 @@ public class DeleteDogCommand extends DeleteCommand {
 
     public static final String MESSAGE_SUCCESS = String.format(MESSAGE_DELETE_SUCCESS_FORMAT, ENTITY_WORD);
 
-    public DeleteDogCommand(Integer targetIndex) {
-        super(targetIndex);
+    public DeleteDogCommand(Integer targetId) {
+        super(targetId, Dog.class);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Entity entityToDelete = getEntityToDelete(model);
-
-        // if the id exists but doesn't belong to dog means it is invalid
-        if (!(entityToDelete instanceof Dog)) {
-            throw new CommandException(MESSAGE_INVALID_DOG_ID);
-        }
-
-        Dog dogToDelete = (Dog) entityToDelete;
+        Dog dogToDelete = getEntityToDelete(model);
         int ownerId = dogToDelete.getOwnerId();
 
         // delete the ID of the dog from the owner first
@@ -54,8 +46,6 @@ public class DeleteDogCommand extends DeleteCommand {
 
         // then actually delete the dog
         model.deleteEntity(targetId);
-
-        filteredListShowAllAscendingId(model);
 
         return new CommandResult(MESSAGE_SUCCESS + dogToDelete);
     }
@@ -78,14 +68,14 @@ public class DeleteDogCommand extends DeleteCommand {
     }
 
     @Override
-    protected String getInvalidIdMessage() {
-        return MESSAGE_INVALID_DOG_ID;
-    }
-
-    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteDogCommand // instanceof handles nulls
-                && targetId.equals(((DeleteDogCommand) other).targetId)); // state check
+                    && targetId.equals(((DeleteDogCommand) other).targetId)); // state check
+    }
+
+    @Override
+    protected String getEntityWord() {
+        return ENTITY_WORD;
     }
 }
