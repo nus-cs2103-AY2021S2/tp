@@ -11,13 +11,17 @@ increase work productivity for delivery drivers by simplifying the delivery mana
     * Quick Start
     * Features
         * Viewing help
-        * Add delivery points
-        * Delete delivery points
-        * List all delivery points
-        * Mark delivery as Done
-        * Find delivery using keyword matching a certain criteria  
+        * Add a delivery task
+        * Edit a delivery task
+        * Add a remark to a delivery task
+        * Delete a delivery task
+        * Clear all delivery tasks
+        * List all delivery tasks
+        * Mark delivery task as done
+        * Find delivery task using keyword matching any attribute  
         * Statistics of delivery workflow
-        * View completed deliveries
+        * View completed delivery tasks
+        * View uncompleted delivery tasks
         * Exit application
 
 --------------------------------------------------------------------------------------------------------------------
@@ -40,7 +44,7 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
     * **`list`** : Lists all delivery points
 
-    * **`add`**`a/John street, block 123, #01-01` : Adds a delivery point called `John street, block 123, #01-01` to the
+    * **`add`**`n/Johnathan Tan p/98723456 a/108 Bishan street, block 123, #01-01 e/johnathan@gmail.com d/2021-05-05` : Adds a delivery with address `108 Bishan street, block 123, #01-01` to the
       Delivery list.
 
     * **`delete`**`3` : Deletes the 3rd delivery point shown in the current list.
@@ -94,19 +98,7 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 ![Ui](images/HelpCommand.png)
 
-### Viewing all delivery points : `list`
-
-**Purpose:** Shows all the delivery points
-
-**Format:** `list`
-
-**Examples:**
-
-* `list` - Lists all the delivery points
-
-![Ui](images/ListCommand.png)
-
-### Adding a delivery point: `add`
+### Add a delivery tasks: `add`
 
 **Purpose:** Adds a delivery task to the delivery list.
 
@@ -120,7 +112,7 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 ![Ui](images/AddCommand.png)
 
 
-### Editing a delivery task: `edit INDEX PREFIX/ATTRIBUTE`
+### Edit a delivery task: `edit INDEX PREFIX/ATTRIBUTE`
 
 **Purpose:** Edits any selected attribute of the delivery entry except the remark.
 
@@ -145,8 +137,20 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 ![Ui](images/EditMultipleAttribute.png)
 
+### Add a remark to a delivery tasks: `add`
 
-### Deleting a delivery task : `delete`
+**Purpose:** Adds a remark to a delivery task in the delivery list.
+
+**Format:** `remark TASK NUMBER r/REMARK`
+
+**Examples:**
+
+* `remark 1 r/needs utensils
+  `
+
+![Ui](images/RemarkCommand.png)
+
+### Delete a delivery task : `delete`
 
 **Purpose:** Deletes the delivery task from the delivery list.
 
@@ -162,7 +166,31 @@ increase work productivity for delivery drivers by simplifying the delivery mana
   
 ![Ui](images/DeleteCommand.png)
 
-### Mark a delivery as done : `done`
+### List all delivery tasks : `list`
+
+**Purpose:** Shows all the delivery points
+
+**Format:** `list`
+
+**Examples:**
+
+* `list` - Lists all the delivery points
+
+![Ui](images/ListCommand.png)
+
+### Clear all delivery tasks : `list`
+
+**Purpose:** Clear all the delivery tasks
+
+**Format:** `clear`
+
+**Examples:**
+
+* `clear` - Clears all the delivery tasks in the delivery list
+
+![Ui](images/ClearCommand.png)
+
+### Mark delivery task as done : `done`
 
 **Purpose:** Set a delivery task in the delivery list to done or not done
 
@@ -180,7 +208,7 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 ![Ui](images/DoneCommand.png)
 
 
-### Finding deliveries using keywords matching any attribute: `find KEYWORDS`
+### Find deliveries using keywords matching any attribute: `find KEYWORDS`
 **Attributes:** Name, Telephone Number, Address, Date, Remark, Done, Email
 
 **Purpose** Find deliveries that match certain attribute
@@ -257,7 +285,7 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 * `stats` - outputs the calculated figures as shown below
 
-### View completed deliveries : `completed`
+### View completed delivery tasks: `completed`
 
 **Purpose:** Filter out the completed deliveries in the delivery list
 
@@ -269,7 +297,19 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 ![Ui](images/CompletedCommand.png)
 
-### Exiting the program : `exit`
+### View uncompleted delivery tasks: `uncompleted`
+
+**Purpose:** Filter out the uncompleted deliveries in the delivery list
+
+**Format:** `uncompleted`
+
+**Example:**
+
+* `uncompleted` - outputs the list of uncompleted deliveries
+
+![Ui](images/UncompletedCommand.png)
+
+### Exit application : `exit`
 
 **Purpose:** Exits the program.
 
@@ -294,13 +334,17 @@ the data of your previous AddressBook home folder.
 Action | Format,<br> Example(s)
 --------|------------------
 **Help** | `help`<br> e.g., `help`
-**Add** | `add a/ADDRESS d/DATETIME` <br> e.g., `add a/123, Clementi Rd, 1234665 d/01-02-2021`
+**Add** | `add n/NAME p/PHONE a/ADDRESS e/EMAIL d/DATETIME` <br> e.g., `add n/Johnathan p/98723456 a/123, Clementi Rd, 1234665 e/johnathan@gmail.com d/01-02-2021`
+**Edit** | `edit INDEX n/NAME`, `p/PHONE`, `a/ADDRESS`, `e/EMAIL`, `t/TAG`, `d/DATE `<br> e.g.,`edit 1 a/102 Bishan Street`
+**Remark** | `remark INDEX r/REMARK`<br> e.g.,`remark 1 r/needs untensils`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Clear** | `clear`<br> e.g., `clear`
 **List** | `list`<br> e.g., `list`
 **Done** | `done INDEX`<br> e.g., `done 2`
 **Find** | `find <keyword>` e.g., `find alex`
 **Stats** | `stats` <br> e.g., `stats`
 **Completed** | `completed` <br> e.g., `completed`
+**Uncompleted** | `uncompleted` <br> e.g., `uncompleted`
 **Exit** | `exit`<br> e.g., `exit`
 
 
