@@ -14,11 +14,12 @@ Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
-Class UniqueEntityList
 
 Package "Managed Entity" {
+Class UniqueEntityList
 abstract Class Entity
 Class Name
+
 
 Package Owner {
 Class Owner
@@ -36,12 +37,13 @@ Class Sex
 
 Package Program {
 Class Program
-Class Time
+Class Session
 }
 
 Package Tag {
 Class Tag
 }
+
 }
 }
 
@@ -56,14 +58,14 @@ ModelManager o--> "1" Database
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-Database *--> "1" UniqueEntityList
+Database *-> "1" UniqueEntityList
 UniqueEntityList o--> "*" Entity
-Entity ^-- Owner
-Entity ^-- Dog
-Entity ^-- Program
+Entity ^--- Program
+Entity ^--- Owner
+Entity ^--- Dog
 
-Entity *-left-> Name
-Entity *-> "*" Tag
+Entity *-> Name
+Entity *--> "*" Tag
 
 Owner *--> Phone
 Owner *--> Email
@@ -73,13 +75,14 @@ Dog *--> Breed
 Dog *--> DateOfBirth
 Dog *--> Sex
 
-Program *--> Time
+Program *--> "*" Session
 
+Tag -[hidden]right-> Name
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 Sex -[hidden]right-> Breed
 Breed -[hidden]right-> DateOfBirth
 
-ModelManager --->" ~* filtered list" Entity
+ModelManager ------>"~* filtered list" Entity
 @enduml
