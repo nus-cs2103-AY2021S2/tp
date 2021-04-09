@@ -397,7 +397,7 @@ Adds an issue to the housing management system.
 Format: `iadd r/ROOM_NUMBER d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
 
 Parameters:
-* [`ROOM_NUMBER`](#room_number) The room number of the issue to be added. Room number must exists in SunRez.
+* [`ROOM_NUMBER`](#room_number) The room number of the issue to be added. Room number must exist in SunRez.
 * [`DESCRIPTION`](#description) The description of the issue to be added.
 * [`TIMESTAMP`](#timestamp) Optional timestamp of the issue to be added, defaults to the current time.
 * [`STATUS`](#status) Optional status of the issue to be added, defaults to `Pending`.
@@ -454,7 +454,7 @@ Format: `iedit INDEX [r/ROOM_NUMBER] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c
 
 Parameters:
 * [`INDEX`](#index) The index of the issue to edit.
-* [`ROOM_NUMBER`](#room_number) The room number to change the issue identified by [`INDEX`](#index) to. Room number must exists in SunRez.
+* [`ROOM_NUMBER`](#room_number) The room number to change the issue identified by [`INDEX`](#index) to. Room number must exist in SunRez.
 * [`DESCRIPTION`](#description) The description to change the issue identified by [`INDEX`](#index) to.
 * [`TIMESTAMP`](#timestamp) The timestamp to change the issue identified by
 * [`STATUS`](#status) The status to change the issue identified by [`INDEX`](#index) to.
