@@ -27,15 +27,15 @@ public class TypicalCustomers {
     public static final Customer ALICE = new CustomerBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withRemark("Busy")
-            .withTags("friends").build();
+            .withTags("liquid").build();
     public static final Customer BENSON = new CustomerBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withRemark("Very Busy")
-            .withTags("owesMoney", "friends").build();
+            .withTags("hot", "fragile").build();
     public static final Customer CARL = new CustomerBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Customer DANIEL = new CustomerBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
+            .withEmail("cornelia@example.com").withAddress("10th street").withTags("heavy").build();
     public static final Customer ELLE = new CustomerBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
     public static final Customer FIONA = new CustomerBuilder().withName("Fiona Kunz").withPhone("9482427")
