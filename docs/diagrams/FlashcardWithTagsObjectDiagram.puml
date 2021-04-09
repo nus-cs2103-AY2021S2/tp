@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-WeeblingoBook *-right-> "1" UniqueFlashcardList
+FlashcardBook *-right-> "1" UniqueFlashcardList
 
 UniqueFlashcardList o-right-> Flashcard
 

@@ -164,7 +164,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### [Implemented] Tagging Flashcards
 
-The tagging mechanism allows users to add tags to flashcards of their choice while in the _Learn Mode_
+The tagging mechanism allows users to add tags to flashcards of their choice while in the Learn Mode
 of the Weeblingo application. Each flashcard has a set of default tags which cannot be edited, followed by
 any unique user added tags.
 
@@ -174,13 +174,13 @@ The following activity diagram summarizes what happens when a user adds a new ta
 
 ![NewTagActivityDiagram](images/NewTagActivityDiagram.png)
 
-The tags function ties together with the Start function of the application, as users can choose to start a quiz
-containing flashcards that have the same tag only.
+The tags function ties together with the Start, Learn and Quiz function of the application,
+as users can choose to start a quiz, enter Start Mode or enter Learn Mode with a filtered set of flashcards.
 
 ### [Implemented] Deleting Tags from Flashcards
 
 This mechanism works with the above flashcard tagging feature to allow users to customise tags for their flashcards
-while in the _Learn Mode_ of the Weeblingo application. 
+while in the Learn Mode of the Weeblingo application. 
 
 The following sequence diagram summarises how the DeleteTagCommand works:
 ![QuizSequenceDiagram](images/DeleteTagSequenceDiagram.png)
