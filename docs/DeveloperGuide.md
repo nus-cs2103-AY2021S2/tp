@@ -311,8 +311,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student                                    | delete a task from the list                   | remove the tasks I have completed or don't want anymore                           |
 | `* *`    | meticulous student                         | mark a task as done                           | keep track of tasks that I have completed                                         |
 | `* *`    | student                                    | mark a task as undone                         | keep track of tasks that I've yet to complete or need to make edits to            |
-| `*`      | student                                    | tag tasks                                     | filter through my tasks easily and focus on the similar ones with the same tags   |
-| `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task                                         |
+| `*`      | meticulous student                         | tag tasks                                     | filter through my tasks easily and focus on the similar ones with the same tags   |
 | `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task     
 | `*`      | user with many tasks in the module book    | search for tasks by their name                | find the task quickly from the large list
 | `*`      | user with many tasks in the module book    | search for tasks by module code               | list down all the tasks from the same module clearly
@@ -629,11 +628,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
       
       
-**Use case 12: Sorts tasks by Deadline**
+**Use case 12: Sorts tasks by a criterion**
 
 **MSS**
 
-1.  User request to sorts tasks by deadline.
+1.  User selects a criterion request to sorts tasks.
 
 2.  ModuleBook3.5 sorts the tasks in descending order of urgency and display them.
 
@@ -644,6 +643,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. Invalid format for the sort command.
 
     * 2a1. ModuleBook3.5 shows an error message with the correct format for sort and example.
+
+      Use case resumes at step 2.
+* 2b. User selects a wrong criterion.
+    * 2a1. ModuleBook3.5 shows an error message with the valid criterion for sort and example.
 
       Use case resumes at step 2.
     
