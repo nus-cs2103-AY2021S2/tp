@@ -9,9 +9,9 @@ import static seedu.weeblingo.logic.parser.CommandParserTestUtil.assertParseFail
 import static seedu.weeblingo.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.weeblingo.logic.commands.CheckCommand;
 import seedu.weeblingo.model.flashcard.Answer;
-
 
 public class CheckCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT = String.format(
