@@ -224,13 +224,19 @@ To achieve the best possible experience, avoid adding excessively long text to C
 ##### `ROLE`
 
 * The role associated with a groupmate in a project.
-* Roles should consist of alphanumeric characters, hyphens and underscores.
+* Roles should:
+  * Consist of alphanumeric characters, hyphens and underscores.
+  * Be at least 2-character long.
+  * If there are hyphens or underscores, they should not be at the start or end of the role string
 
 ##### `TAG`
 
 * The tag associated with a contact.
 * The `TAG` parameter can only be used for contacts. It cannot be used for projects.
-* Tags should consist of alphanumeric characters.
+* Tags should:
+    * Consist of alphanumeric characters, hyphens and underscores.
+    * Be at least 2-character long.
+    * If there are hyphens or underscores, they should not be at the start or end of the tag string
 
 ##### `TIME`
 
