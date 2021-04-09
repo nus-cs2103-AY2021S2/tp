@@ -17,10 +17,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability for the app to understand different components
     * What it does: Allows user to type is the same commands but different components.  
       The different components are:  
-      - Customer
-      - Menu 
-      - Order 
-      - Inventory  
+      - `Customer` `Menu` `Order` `Inventory`  
         
       Example:  
       `customer add` and `menu add` both uses the `add` command but it belongs to different components.  
@@ -30,10 +27,7 @@ Given below are my contributions to the project.
     
 * **New Feature**: Added a new column to the GUI to view customer list with other components side by side.
     * What it does: Allows user to view customer list on the left column of the GUI together with any other components on the right column of the GUI.  
-      The right column will only be affected by `menu list`, `order list` or `ìnventory list` only.  
-
-      Example: `customer list` on the left column while `menu list` on the right column
-      ![Ui](../images/Ui.png)
+      The right column will only be affected by `menu list`, `order list` or `ìnventory list` only.
     * Justification: This feature improves the user-friendliness of the app for the user to view 2 lists at a time to minimise navigating to different component list back and forth.
     * Highlights: The tabs below the right column is also clickable with the same functionality.
 
@@ -42,20 +36,14 @@ Given below are my contributions to the project.
       - Automatically decrease ingredient quantity when an order contains a dishes that needs that ingredient is added.
       - Similarly, it will automatically increase the ingredient if the order is deleted.
     * Justification: This will ensure the correct amount of ingredients that are stored in the inventory.
-
-* **New Feature**: Added the ability for the app to understand `-f` flag in `delete` commands.
-    * What it does: Allows user to force delete `customer`, `dish` or `ingredient` if the object is associated the to other components.
-    * Credits : The implementation of the force delete logic is done by [Marcus](team/kangtinglee.md). I only added the ability to understand
-    the `-f` flag to the Parser.
       
 * **Enhancements to existing features**:
     * Personalised the GUI color scheme for JJIMY (Pull requests [\#123](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/123))
     
 * **Documentation**:
     * General:
-        * Complete overhaul of the User Guide and Developer Guide Design (Pull requests [\#150](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/150))
-            * Drop-down
-            * Dark mode
+        * Complete overhaul of the User Guide and Developer Guide UI (Pull requests [\#150](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/150))
+            * Drop-down lists and Dark mode
             * Color code commands from different components
     * User Guide:
         * Added the documentation for feature `Help` and `Exit`. (Pull requests [\#144](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/144))
@@ -63,10 +51,9 @@ Given below are my contributions to the project.
             *  Standardised the parameter of command format. 
             *  Updated `order add`, `order find`, `order edit`, `menu add`, `menu edit` formatting.
             *  Added 't' tag to customer add format
-            *  Added '-f' explanation for both menu delete and inventory delete
-            *  Added '-a' explanation for menu list
+            *  Added '-f' and '-a' explanation
     * Developer Guide:
-        * Added implementation details of the different `component` parser (Pull requests [\#87](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/87))
+        * Added implementation details and UML Diagram of the different `component` parser (Pull requests [\#87](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/87))
     
 * **Team-Based Task**:
     * Setting up the GitHub team organisation and repository.
