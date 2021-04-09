@@ -9,7 +9,7 @@ nav-text: Developer Guide
 </p>
 
 <h1 class="post-title">{{ page.title | escape }}</h1>
-<h3 class="post-subtitle">v1.4</h3>
+<h3 class="post-subtitle">v1.4b</h3>
 
 <div style="page-break-after: always;"></div>
 ## Table of Contents
@@ -421,7 +421,7 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 **Value proposition**:
 
-- beautify and highlight key matrix of API responses
+- beautify and highlight key metrics of API responses
 - shortcuts to execute common API testing tasks
 - able to save APIs for repeated execution and continuous debugging
 - relevant prompts and comprehensive supporting documentations
@@ -449,7 +449,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low
 | `* * *`  | API tester            | a simple user interface                   | quickly validate the state of an endpoint                       |
 | `* * *`  | new user              | view a table of command summary    | have a broad overview of available functionalities                        |
 | `* * *`  | moderate user         | find/locate saved API endpoints           | easily view the details of a particular endpoint |
-| `* * *`  | API developer         | cancel my API call if it takes too long           | proceed to verfiy the errors or work on another API request |
+| `* * *`  | API developer         | cancel my API call if it takes too long           | proceed to verify the errors or work on another API request |
 | `* * *`  | API developer         | organize my APIs by categories           | easily find the ones that I want to test |
 | `* * *`  | beginner API developer         | call up APIs that I have just used           | quickly verify the output again after fixing bugs  |
 | `* *`  | API developer         | see a loading spinner when making an API call           | clearly know when an API call is still in-progress or when an error has occurred |

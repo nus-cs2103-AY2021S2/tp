@@ -8,7 +8,7 @@ title: imPoster
 </p>
 
 <h1 class="post-title">{{ page.title | escape }}</h1>
-<h3 class="post-subtitle">v1.4</h3>
+<h3 class="post-subtitle">v1.4b</h3>
 
 <div style="page-break-after: always;"></div>
 
