@@ -109,6 +109,8 @@ public interface Model {
      */
     void setCurrentGroup(Group currentGroup);
 
+    void setCurrentGroup(Name currentGroupName);
+
     /**
      * Returns a predicate that filters {@code Person}s to include only those in {@code currentGroup}
      */

@@ -53,6 +53,14 @@ public class Group {
         persons.add(p.getName());
     }
 
+    public void addPersonName(Name personName) {
+        persons.add(personName);
+    }
+
+    public void removePersonName(Name personName) {
+        persons.remove(personName);
+    }
+
     public void setPerson(Person personToEdit, Person editedPerson) {
         if (persons.contains(personToEdit.getName())) {
             persons.remove(personToEdit.getName());

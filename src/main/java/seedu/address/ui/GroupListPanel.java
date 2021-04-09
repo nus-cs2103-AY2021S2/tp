@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.model.group.GroupHashMap.DEFAULT_GROUP_NAME;
+
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -29,6 +31,10 @@ public class GroupListPanel extends UiPart<Region> {
     public GroupListPanel(ObservableMap<Name, Group> groupMap) {
         super(FXML);
 
+        Platform.runLater(() -> {
+            groupListView.getSelectionModel().select(DEFAULT_GROUP_NAME);
+        });
+
         //Prevent mouse selection
         groupListView.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
             @Override
@@ -51,6 +57,7 @@ public class GroupListPanel extends UiPart<Region> {
                 groupListView.scrollTo(change.getKey());
             });
         });
+
         groupListView.setCellFactory(listView -> new GroupListPanel.GroupListViewCell());
     }
 
