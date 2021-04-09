@@ -1,6 +1,7 @@
 package seedu.us.among.logic.parser;
 
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -30,7 +31,8 @@ public class RemoveCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT_NAN);
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                RemoveCommand.MESSAGE_USAGE + "\n"));
         assertParseFailure(parser, "a", MESSAGE_INVALID_FORMAT_NAN);
         assertParseFailure(parser, "1000000000000000000", MESSAGE_INVALID_FORMAT_NAN); // overflow
         assertParseFailure(parser, "-99999999999999999", MESSAGE_INVALID_FORMAT_NAN); // underflow

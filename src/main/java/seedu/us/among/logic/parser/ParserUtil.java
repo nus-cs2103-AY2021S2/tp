@@ -1,6 +1,7 @@
 package seedu.us.among.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_INDEX;
 
 import java.util.Collection;
@@ -30,9 +31,11 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero
      *                        unsigned integer).
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    public static Index parseIndex(String oneBasedIndex, String commandUsage) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+        if (trimmedIndex.equals("")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, commandUsage));
+        } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
