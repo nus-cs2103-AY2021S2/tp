@@ -89,7 +89,7 @@ public class JsonAdaptedEntryTest {
     @Test
     public void toModelType_invalidDateRange_throwsIllegalValueException() {
         JsonAdaptedEntry entry =
-                new JsonAdaptedEntry(VALID_ENTRY_NAME, INVALID_START_DATE_PAIR, INVALID_END_DATE_PAIR, VALID_TAGS);
+                new JsonAdaptedEntry(VALID_ENTRY_NAME, VALID_END_DATE, VALID_START_DATE, VALID_TAGS);
         String expectedMessage = Messages.MESSAGE_INVALID_DATE_RANGE;
         assertThrows(IllegalValueException.class, expectedMessage, entry::toModelType);
     }

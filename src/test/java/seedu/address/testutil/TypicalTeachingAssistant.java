@@ -22,26 +22,26 @@ import seedu.address.model.person.Person;
 public class TypicalTeachingAssistant {
 
     public static final Entry CONSULTATION = new EntryBuilder().withEntryName("Consultation")
-            .withStartDate("2021-02-01 13:00").withEndDate("2021-02-01 14:30").withTags("History").build();
+            .withStartDate("2022-02-01 13:00").withEndDate("2022-02-01 14:30").withTags("History").build();
 
     public static final Entry CLASS_MEETING = new EntryBuilder().withEntryName("Class Meeting")
-            .withStartDate("2021-02-01 15:00").withEndDate("2021-02-01 16:30").withTags("21S07").build();
+            .withStartDate("2022-02-01 15:00").withEndDate("2022-02-01 16:30").withTags("21S07").build();
 
     public static final Entry EXTRA_CLASS = new EntryBuilder().withEntryName("Extra class")
-            .withStartDate("2021-02-02 17:00").withEndDate("2021-02-02 18:30").withTags("Math").build();
+            .withStartDate("2022-02-02 17:00").withEndDate("2022-02-02 18:30").withTags("Math").build();
 
     public static final Entry SHORT_QUIZ = new EntryBuilder().withEntryName("Short Geo Quiz")
-            .withStartDate("2021-02-02 14:30").withEndDate("2021-02-02 15:15").withTags("Geography", "21A01").build();
+            .withStartDate("2022-02-02 14:30").withEndDate("2022-02-02 15:15").withTags("Geography", "21A01").build();
 
     public static final Entry DO_STUFF = new EntryBuilder().withEntryName("Go do something important")
-            .withStartDate("2021-02-04 09:00").withEndDate("2021-02-04 09:30").withTags("Important", "Stuff").build();
+            .withStartDate("2022-02-04 09:00").withEndDate("2022-02-04 09:30").withTags("Important", "Stuff").build();
 
     //Manually Added
-    public static final Entry REMEDIAL = new EntryBuilder().withEntryName("Remedial").withStartDate("2021-02-05 10:00")
-            .withEndDate("2021-02-05 12:00").withTags("Geography", "21A07").build();
+    public static final Entry REMEDIAL = new EntryBuilder().withEntryName("Remedial").withStartDate("2022-02-05 10:00")
+            .withEndDate("2022-02-05 12:00").withTags("Geography", "21A07").build();
 
     public static final Entry CONSULTATION_MATH = new EntryBuilder().withEntryName("Consultation")
-            .withStartDate("2021-02-05 17:00").withEndDate("2021-02-05 18:00").withTags("Math", "Alice").build();
+            .withStartDate("2022-02-05 17:00").withEndDate("2022-02-05 18:00").withTags("Math", "Alice").build();
 
     //===Person===
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
