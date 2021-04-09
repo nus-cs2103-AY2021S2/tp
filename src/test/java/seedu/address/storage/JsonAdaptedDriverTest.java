@@ -1,6 +1,8 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_NO_PREFIX;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_NO_PREFIX;
 import static seedu.address.storage.JsonAdaptedDriver.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDrivers.DRIVER_BENSON;
@@ -14,9 +16,6 @@ import seedu.address.model.person.driver.Driver;
 import seedu.address.testutil.DriverBuilder;
 
 public class JsonAdaptedDriverTest {
-    private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-
     private static final String VALID_NAME = DRIVER_BENSON.getName().toString();
     private static final String VALID_PHONE = DRIVER_BENSON.getPhone().toString();
 
@@ -36,7 +35,7 @@ public class JsonAdaptedDriverTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedDriver driver =
-                new JsonAdaptedDriver(INVALID_NAME, VALID_PHONE);
+                new JsonAdaptedDriver(INVALID_NAME_NO_PREFIX, VALID_PHONE);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, driver::toModelType);
     }
@@ -51,7 +50,7 @@ public class JsonAdaptedDriverTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedDriver driver =
-                new JsonAdaptedDriver(VALID_NAME, INVALID_PHONE);
+                new JsonAdaptedDriver(VALID_NAME, INVALID_PHONE_NO_PREFIX);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, driver::toModelType);
     }

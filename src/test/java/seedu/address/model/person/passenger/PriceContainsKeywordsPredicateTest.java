@@ -2,6 +2,8 @@ package seedu.address.model.person.passenger;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +13,8 @@ public class PriceContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
-        Double firstPredicatePrice = 2.34;
-        Double secondPredicatePrice = 10.50;
+        Double firstPredicatePrice = VALID_PRICE_AMY;
+        Double secondPredicatePrice = VALID_PRICE_BOB;
 
         PriceContainsKeywordsPredicate firstPredicate = new PriceContainsKeywordsPredicate(firstPredicatePrice);
         PriceContainsKeywordsPredicate secondPredicate = new PriceContainsKeywordsPredicate(secondPredicatePrice);
@@ -37,21 +39,21 @@ public class PriceContainsKeywordsPredicateTest {
     @Test
     public void test_passengerHasPrice() {
         // Passenger price equals to Predicate
-        PriceContainsKeywordsPredicate predicate = new PriceContainsKeywordsPredicate(Double.parseDouble("2.34"));
-        assertTrue(predicate.test(new PassengerBuilder().withPrice(2.34).build()));
+        PriceContainsKeywordsPredicate predicate = new PriceContainsKeywordsPredicate(VALID_PRICE_AMY);
+        assertTrue(predicate.test(new PassengerBuilder().withPrice(VALID_PRICE_AMY).build()));
 
         // Passenger price bigger than Predicate
-        predicate = new PriceContainsKeywordsPredicate(Double.parseDouble("2.34"));
-        assertTrue(predicate.test(new PassengerBuilder().withPrice(2.68).build()));
+        predicate = new PriceContainsKeywordsPredicate(VALID_PRICE_AMY);
+        assertTrue(predicate.test(new PassengerBuilder().withPrice(VALID_PRICE_BOB).build()));
 
         // Passenger price smaller than Predicate
-        predicate = new PriceContainsKeywordsPredicate(Double.parseDouble("2.34"));
-        assertFalse(predicate.test(new PassengerBuilder().withPrice(2.0).build()));
+        predicate = new PriceContainsKeywordsPredicate(VALID_PRICE_BOB);
+        assertFalse(predicate.test(new PassengerBuilder().withPrice(VALID_PRICE_AMY).build()));
     }
 
     @Test
     public void test_passengerWithoutPrice_returnsFalse() {
-        PriceContainsKeywordsPredicate predicate = new PriceContainsKeywordsPredicate(Double.parseDouble("2.34"));
+        PriceContainsKeywordsPredicate predicate = new PriceContainsKeywordsPredicate(VALID_PRICE_AMY);
         assertFalse(predicate.test(new PassengerBuilder().build()));
     }
 }
