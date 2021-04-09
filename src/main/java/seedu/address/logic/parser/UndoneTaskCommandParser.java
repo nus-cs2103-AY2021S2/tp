@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UndoneTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -19,7 +21,7 @@ public class UndoneTaskCommandParser implements Parser<UndoneTaskCommand> {
             return new UndoneTaskCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(pe.getMessage() + "%1$s", UndoneTaskCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UndoneTaskCommand.MESSAGE_USAGE), pe);
         }
     }
 }

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_PAST_DEADLINE;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,6 +17,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.common.Category;
 import seedu.address.model.common.Date;
+import seedu.address.model.common.DatePastPredicate;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
 import seedu.address.model.event.Time;
@@ -163,6 +165,33 @@ public class SocheduleParserUtil {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
         return new Date(trimmedDate);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDeadlineForEdit(String date) throws ParseException {
+        requireNonNull(date);
+        Date editedDeadline = parseDate(date);
+        if (!isUpdatedDeadlineValid(editedDeadline)) {
+            throw new ParseException(MESSAGE_PAST_DEADLINE);
+        }
+
+        return editedDeadline;
+    }
+
+
+    /**
+     * Returns true if updated deadline is today or after today; otherwise, false.
+     *
+     * @param updatedDeadline updated deadline, an Date object
+     * @return true if updated deadline is today or after today; otherwise, false
+     */
+    private static boolean isUpdatedDeadlineValid(Date updatedDeadline) {
+        return new DatePastPredicate().test(updatedDeadline);
     }
 
     /**

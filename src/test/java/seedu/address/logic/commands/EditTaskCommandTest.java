@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_TASKONE;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_TASKTWO;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PAST_DEADLINE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DEADLINE_TASKTWO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_TASKTWO;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_PRIORITY_TASKTWO;
@@ -136,17 +135,6 @@ public class EditTaskCommandTest {
                 new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_TASKTWO).build());
 
         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_editTaskDeadlineToExpiredDeadline_failure() {
-        Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
-
-        EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
-                .withDeadline(INVALID_PAST_DEADLINE).build();
-        EditTaskCommand editTaskCommand = new EditTaskCommand(indexLastTask, descriptor);
-
-        assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_PAST_DEADLINE);
     }
 
     @Test
