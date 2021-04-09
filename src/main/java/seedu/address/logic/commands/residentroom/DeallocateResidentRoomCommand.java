@@ -24,8 +24,9 @@ import seedu.address.model.room.RoomNumber;
 public class DeallocateResidentRoomCommand extends Command {
     public static final String COMMAND_WORD = "dealloc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deallocates a resident from a room in SunRez. "
-            + "Parameters: INDEX (must be positive integer)\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deallocates a resident from a room in SunRez "
+            + "identified by the index number used in the displayed resident list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Deallocation made: %1$s";
