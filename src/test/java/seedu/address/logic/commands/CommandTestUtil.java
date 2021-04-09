@@ -92,8 +92,8 @@ public class CommandTestUtil {
     // For testing appointments
     public static final String VALID_NAME_MEET_ALEX = "Meet Alex";
     public static final String VALID_NAME_MEET_BOB = "Meet Bob";
-    public static final String VALID_REMARK_MEET_ALEX = "To celebrate Christmas at Fullerton Hotel";
-    public static final String VALID_REMARK_MEET_BOB = "At his house";
+    public static final String VALID_REMARK_MEET_ALEX = "Bring him around Bishan to look at the properties";
+    public static final String VALID_REMARK_MEET_BOB = "To meet with interested client for viewing of his house";
     public static final String VALID_DATE_MEET_ALEX = "25-12-2021";
     public static final LocalDate VALID_DATE_LOCALDATE_MEET_ALEX = LocalDate.parse(VALID_DATE_MEET_ALEX,
         DateTimeFormat.INPUT_DATE_FORMAT);
