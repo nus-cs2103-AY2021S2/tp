@@ -126,5 +126,4 @@ public class PolicyCommandTest {
         // different person -> returns false
         assertFalse(policyFirstCommand.equals(policySecondCommand));
     }
-
 }
