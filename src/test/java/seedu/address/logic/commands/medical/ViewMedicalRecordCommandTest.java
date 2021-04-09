@@ -87,7 +87,8 @@ class ViewMedicalRecordCommandTest {
         model.selectPatient(patientToView);
         ViewMedicalRecordCommand viewMedicalRecordCommand = new ViewMedicalRecordCommand(INDEX_FIRST_PERSON);
         String expectedMessage = String.format(ViewMedicalRecordCommand.MESSAGE_SUCCESS,
-                patientToView.getName().fullName);
+                                    INDEX_FIRST_PERSON.getOneBased(), patientToView.getName(),
+                                    patientToView.getRecords().get(INDEX_FIRST_PERSON.getZeroBased()).getDateDisplay());
         assertCommandSuccess(viewMedicalRecordCommand, model, expectedMessage, expectedModel);
     }
 
