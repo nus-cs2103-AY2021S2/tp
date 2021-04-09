@@ -156,7 +156,7 @@ Many SunRez commands use various parameters. Their formats, constraints and rati
 | <a id="room_type"></a> `ROOM_TYPE` | `t/` | `oadd` `oedit` | Room type of a room.{::nomarkdown} <ul><li> Must be one of the following strings: <code>corridor_ac</code>, <code>corridor_non_ac</code>, <code>suite_ac</code>, <code>suite_non_ac</code>. </li><li> Strings are not case-sensitive. </li></ul>{:/} |
 | <a id="status"></a> `STATUS` | `s/` | `iadd` `iedit` | The status of an issue.{::nomarkdown} <ul><li> Must of one of the following strings: <code>PENDING</code>, <code>CLOSED</code>. </li><li> Short forms are available: <code>P</code> for <code>PENDING</code>, <code>C</code> for <code>CLOSED</code>. </li><li> Strings are not case-sensitive. </li></ul>{:/} |
 | <a id="tag"></a> `TAG` | `g/` | `oadd` `oedit` `iadd` `iedit` | The tag associated with a room or issue.{::nomarkdown} <ul><li> Tags must be non-blank and alphanumeric (spaces are not allowed). </li><li> Tags are limited to 25 characters. </li><li> Tags are case-sensitive: e.g. <code>SHN</code>,<code>shn</code> and <code>Shn</code> are each considered separate tags. </li><li> Insertion order of tags does not guarantee display order in any part of the user interface. </li><li> Duplicate tags will be accepted as input, but only one instance will be recorded. </li><li> For the best experience, we recommend keeping tags short and having fewer than 20 of them per entry. There is no theoretical limit to the number of tags an entry can have, but SunRez may slow down or run into unexpected problems for a huge number of tags. </li></ul>{:/} |
-| <a id="timestamp"></a> `TIMESTAMP` | `t/` | `iadd` `iedit` | The timestamp for which the issue occurred.{::nomarkdown} <ul><li> Must be in the format: <code>yyyy/MM/dd hh:mma</code>. </li><li> <code>yyyy</code> - 4 digit year (e.g. <code>2021</code>). </li><li> <code>MM</code> - 2 digit month (e.g. <code>01</code>, <code>05</code>, <code>12</code>). </li><li> <code>dd</code> - 2 digit day (e.g. <code>01</code>, <code>05</code>, <code>31</code>). </li><li> <code>hh</code> - 2 digit hour (<code>01</code>-<code>12</code>) (midnight is <code>12:00am</code>). </li><li> <code>mm</code> - 2 digit minutes (<code>00</code>-<code>59</code>). </li><li> <code>a</code> - case-insensitive AM/PM. </li><li> Example: <code>2021/01/01 12:00am</code>. </li></ul>{:/} |
+| <a id="timestamp"></a> `TIMESTAMP` | `t/` | `iadd` `iedit` | The timestamp for which the issue occurred.{::nomarkdown} <ul><li> Must not be in the future. </li><li> Must be in the format: <code>yyyy/MM/dd hh:mma</code>. </li><li> <code>yyyy</code> - 4 digit year (e.g. <code>2021</code>). </li><li> <code>MM</code> - 2 digit month (e.g. <code>01</code>, <code>05</code>, <code>12</code>). </li><li> <code>dd</code> - 2 digit day (e.g. <code>01</code>, <code>05</code>, <code>31</code>). </li><li> <code>hh</code> - 2 digit hour (<code>01</code>-<code>12</code>) (midnight is <code>12:00am</code>). </li><li> <code>mm</code> - 2 digit minutes (<code>00</code>-<code>59</code>). </li><li> <code>a</code> - case-insensitive AM/PM. </li><li> Example: <code>2021/01/01 12:00am</code>. </li></ul>{:/} |
 | <a id="year"></a> `YEAR` | `y/` | `radd` `redit` | The year of study of a resident.{::nomarkdown} <ul><li> Must be a single digit numeric character from 1 to 5 inclusive. </li></ul>{:/} |
 
 --------------------------------------------------------------------------------------------------------------------
@@ -397,7 +397,7 @@ Adds an issue to the housing management system.
 Format: `iadd r/ROOM_NUMBER d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
 
 Parameters:
-* [`ROOM_NUMBER`](#room_number) The room number of the issue to be added.
+* [`ROOM_NUMBER`](#room_number) The room number of the issue to be added. Room number must exists in SunRez.
 * [`DESCRIPTION`](#description) The description of the issue to be added.
 * [`TIMESTAMP`](#timestamp) Optional timestamp of the issue to be added, defaults to the current time.
 * [`STATUS`](#status) Optional status of the issue to be added, defaults to `Pending`.
@@ -454,7 +454,7 @@ Format: `iedit INDEX [r/ROOM_NUMBER] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c
 
 Parameters:
 * [`INDEX`](#index) The index of the issue to edit.
-* [`ROOM_NUMBER`](#room_number) The room number to change the issue identified by [`INDEX`](#index) to.
+* [`ROOM_NUMBER`](#room_number) The room number to change the issue identified by [`INDEX`](#index) to. Room number must exists in SunRez.
 * [`DESCRIPTION`](#description) The description to change the issue identified by [`INDEX`](#index) to.
 * [`TIMESTAMP`](#timestamp) The timestamp to change the issue identified by
 * [`STATUS`](#status) The status to change the issue identified by [`INDEX`](#index) to.
