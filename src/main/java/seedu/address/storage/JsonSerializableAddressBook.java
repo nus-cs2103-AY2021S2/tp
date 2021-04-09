@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.model.group.GroupHashMap.DEFAULT_GROUP_NAME;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,9 +45,8 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        groups.addAll(source.getGroupMap().entrySet().stream().map(x->x.getValue())
+        groups.addAll(source.getGroupMap().entrySet().stream().map(x -> x.getValue())
                 .map(JsonAdaptedGroup::new).collect(Collectors.toList()));
-
     }
 
     /**
@@ -74,10 +75,12 @@ class JsonSerializableAddressBook {
             }
 
             Group group = jsonAdaptedGroup.toModelType(addressBook.getPersonList());
-            if (addressBook.hasGroup(group)) {
+            if (!group.getName().equals(DEFAULT_GROUP_NAME) && addressBook.hasGroupName(group.getName())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATES_IN_GROUPS);
             }
-            addressBook.addGroup(group);
+            if (!group.getName().equals(DEFAULT_GROUP_NAME)) {
+                addressBook.addGroup(group);
+            }
         }
 
         return addressBook;
