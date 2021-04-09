@@ -45,9 +45,9 @@ public class ListCommandTest {
     }
 
     @Test
-    public void execute_listPrograms_showEmptyList() {
+    public void execute_listPrograms_success() {
         expectedModel.updateFilteredEntityList(IS_PROGRAM_PREDICATE);
         assertCommandSuccess(new ListCommand(IS_PROGRAM_PREDICATE, Program.ENTITY_WORD), model,
-                String.format(ListCommand.MESSAGE_NO_ENTITY_AVAILABLE, Program.ENTITY_WORD), expectedModel);
+                String.format(ListCommand.MESSAGE_SUCCESS_FORMAT, Program.ENTITY_WORD), expectedModel);
     }
 }

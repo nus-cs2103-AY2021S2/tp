@@ -1,5 +1,5 @@
 {
-  "_comment": "Database save file which contains the same Owner values as in TypicalOwners#getTypicalDatabase()",
+  "_comment": "Database save file which contains the same entity values as in TypicalEntities#getTypicalDatabase()",
   "entities" : [ {
     "type": "owner",
     "id": 1,
@@ -126,5 +126,54 @@
     "sex" : "male",
     "ownerId" : 13,
     "tagged" : [ ]
-  } ]
+  }, {
+    "type" : "program",
+    "id" : 15,
+    "name" : "Active Listening",
+    "sessions" : [ "12-12-2021 18:00" ],
+    "tagged" : [ "Puppies" ],
+    "enrolledDogs": [ ]
+  }, {
+    "type" : "program",
+    "id" : 16,
+    "name" : "Behaving",
+    "sessions" : [ "11-11-2021 20:00" ],
+    "tagged" : [ "Puppies" ],
+    "enrolledDogs" : [ ]
+  }, {
+    "type" : "program",
+    "id" : 17,
+    "name" : "Cooldown Session",
+    "sessions" : [ "10-10-2021 10:00" ],
+    "tagged" : [ "All" ],
+    "enrolledDogs": [ ]
+  }, {
+    "type" : "program",
+    "id" : 18,
+    "name" : "Dancing",
+    "sessions" : [ "09-12-2021 19:00" ],
+    "tagged" : [ "Puppies" ],
+    "enrolledDogs" : [ 2 ]
+  }, {
+    "type" : "program",
+    "id" : 19,
+    "name" : "Elegance Training",
+    "sessions" : [ "08-11-2021 10:00" ],
+    "tagged" : [ "All" ],
+    "enrolledDogs": [ 4 ]
+  }, {
+    "type" : "program",
+    "id" : 20,
+    "name" : "Food Tasting",
+    "sessions" : [ "09-08-2021 09:00" ],
+    "tagged" : [ "Puppies" ],
+    "enrolledDogs" : [ 6, 8 ]
+  }, {
+    "type" : "program",
+    "id" : 21,
+    "name" : "General Knowledge",
+    "sessions" : [ "27-08-2021 09:00" ],
+    "tagged" : [ "Puppies" ],
+    "enrolledDogs" : [ 10, 12, 14 ]
+  }]
 }

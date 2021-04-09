@@ -7,6 +7,7 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SESSION;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SEX;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 import static dog.pawbook.testutil.Assert.assertThrows;
@@ -78,6 +79,22 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIENDLY = " " + PREFIX_TAG + VALID_TAG_FRIENDLY;
     public static final String TAG_DESC_QUIET = " " + PREFIX_TAG + VALID_TAG_QUIET;
 
+    public static final String VALID_NAME_OBEDIENCE_TRAINING = "Obedience Training";
+    public static final String VALID_NAME_POTTY_TRAINING = "Potty Training";
+    public static final String VALID_SESSION_OBEDIENCE_TRAINING = "01-01-2022 10:30";
+    public static final String VALID_SESSION_POTTY_TRAINING = "03-02-2022 20:30";
+    public static final String VALID_TAG_PUPPIES = "Puppies";
+    public static final String VALID_TAG_ALL = "All";
+
+    public static final String NAME_DESC_OBEDIENCE_TRAINING = " " + PREFIX_NAME + VALID_NAME_OBEDIENCE_TRAINING;
+    public static final String NAME_DESC_POTTY_TRAINING = " " + PREFIX_NAME + VALID_NAME_POTTY_TRAINING;
+    public static final String SESSION_DESC_OBEDIENCE_TRAINING = " " + PREFIX_SESSION
+            + VALID_SESSION_OBEDIENCE_TRAINING;
+    public static final String SESSION_DESC_POTTY_TRAINING = " " + PREFIX_SESSION
+            + VALID_SESSION_POTTY_TRAINING;
+    public static final String TAG_DESC_PUPPIES = " " + PREFIX_TAG + VALID_TAG_PUPPIES;
+    public static final String TAG_DESC_ALL = " " + PREFIX_TAG + VALID_TAG_ALL;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -102,8 +119,6 @@ public class CommandTestUtil {
 
     public static final int INVALID_OUT_OF_BOUNDS_ID_INTEGER = Integer.MAX_VALUE;
     public static final int INVALID_NEGATIVE_ID_INTEGER = -1;
-
-
 
     static {
         DESC_AMY = new EditOwnerDescriptorBuilder().withName(VALID_NAME_AMY)
