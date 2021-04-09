@@ -12,7 +12,8 @@ import seedu.address.model.name.CommonName;
 public class ResidenceName extends CommonName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Residence Names should only contain alphanumeric characters spaces and '@', and it should not be blank";
+            "Residence Names should only contain 1 or more alphanumeric characters, 0 or more spaces, and "
+            + "\n0 or more '@'. Residence Names should not be blank.";
 
     /*
      * The first character of the Residence's name must not be a whitespace,

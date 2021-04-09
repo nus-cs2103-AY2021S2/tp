@@ -41,8 +41,8 @@ public class EditBookingCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_BOOKING_START_DATE + "START_DATE] "
             + "[" + PREFIX_BOOKING_END_DATE + "END_DATE]\n"
-            + "Example: " + COMMAND_WORD + PREFIX_RESIDENCE + " 1 "
-            + PREFIX_BOOKING + " 1"
+            + "Example: " + COMMAND_WORD + PREFIX_RESIDENCE + "1 "
+            + PREFIX_BOOKING + "1 "
             + PREFIX_BOOKING_START_DATE + "01-01-2020";
 
     public static final String MESSAGE_EDIT_BOOKING_SUCCESS = "Edited Booking: %1$s";

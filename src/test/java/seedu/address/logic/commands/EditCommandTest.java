@@ -5,12 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 //import static seedu.address.logic.commands.CommandTestUtil.DESC_RESIDENCE1;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_CLEAN_TAG;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_RESIDENCE1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE1;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_UNCLEAN_TAG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_UNCLEAN_TAG;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showResidenceAtIndex;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESIDENCES;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RESIDENCE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_RESIDENCE;
 import static seedu.address.testutil.TypicalResidences.getTypicalResidenceTracker;
@@ -22,11 +25,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditResidenceDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-//import seedu.address.model.ResidenceTracker;
+import seedu.address.model.ResidenceTracker;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.residence.Residence;
 import seedu.address.testutil.EditResidenceDescriptorBuilder;
-//import seedu.address.testutil.ResidenceBuilder;
+import seedu.address.testutil.ResidenceBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -35,28 +38,28 @@ public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalResidenceTracker(), new UserPrefs());
 
-    /*@Test
+    @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Residence editedResidence = new ResidenceBuilder().build();
         EditResidenceDescriptor descriptor = new EditResidenceDescriptorBuilder(editedResidence).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_RESIDENCE, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RESIDENCE_SUCCESS, editedResidence);
-
         Model expectedModel = new ModelManager(new ResidenceTracker(model.getResidenceTracker()), new UserPrefs());
         expectedModel.setResidence(model.getFilteredResidenceList().get(0), editedResidence);
+        expectedModel.updateFilteredResidenceList(PREDICATE_SHOW_ALL_RESIDENCES);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastResidence = Index.fromOneBased(model.getFilteredResidenceList().size());
         Residence lastResidence = model.getFilteredResidenceList().get(indexLastResidence.getZeroBased());
 
         ResidenceBuilder residenceInList = new ResidenceBuilder(lastResidence);
         Residence editedResidence = residenceInList.withName(VALID_NAME_RESIDENCE1)
-                .withCleanStatusTags(VALID_CLEAN_TAG).build();
+                .withCleanStatusTag(VALID_UNCLEAN_TAG).build();
 
         EditResidenceDescriptor descriptor = new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1)
                 .withCleanStatusTag(VALID_UNCLEAN_TAG).build();
@@ -68,11 +71,12 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new ResidenceTracker(model.getResidenceTracker()), new UserPrefs());
         expectedModel.setResidence(lastResidence, editedResidence);
+        expectedModel.updateFilteredResidenceList(PREDICATE_SHOW_ALL_RESIDENCES);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_RESIDENCE, new EditResidenceDescriptor());
         Residence editedResidence = model.getFilteredResidenceList().get(INDEX_FIRST_RESIDENCE.getZeroBased());
@@ -80,11 +84,12 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RESIDENCE_SUCCESS, editedResidence);
 
         Model expectedModel = new ModelManager(new ResidenceTracker(model.getResidenceTracker()), new UserPrefs());
+        expectedModel.updateFilteredResidenceList(PREDICATE_SHOW_ALL_RESIDENCES);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void execute_filteredList_success() {
         showResidenceAtIndex(model, INDEX_FIRST_RESIDENCE);
 
@@ -98,9 +103,10 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new ResidenceTracker(model.getResidenceTracker()), new UserPrefs());
         expectedModel.setResidence(model.getFilteredResidenceList().get(0), editedResidence);
+        expectedModel.updateFilteredResidenceList(PREDICATE_SHOW_ALL_RESIDENCES);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }*/
+    }
 
     @Test
     public void execute_duplicateResidenceUnfilteredList_failure() {

@@ -133,6 +133,47 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Remind feature
+
+#### Implementation
+
+The proposed mechanism is facilitated by the `logic` component described above. It filters the displayed `Residence` list to show those with bookings starting in the next 7 days. It makes use of the following new method in `Residence`.
+
+* `Residence#hasUpcomingBooking()` — Returns true if the `Residence` has a booking starting in the next 7 days.
+
+These operations make use of the `Model` interface's `Model#updateFilteredResidenceList(Predicate<Residence> predicate)` method and `Model` has a new public static `Predicate` named `PREDICATE_UPCOMING_BOOKED_RESIDENCES`.
+
+Given below is an example usage scenario and how the reminder filtering mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `ResidenceTracker` will be initialized with the initial residence tracker state.
+
+Step 2. The user executes `addb 2 n/New Tenant p/098 ...` command to add a booking that starts within the next 7 days to the 2nd residence in the residence tracker. The `addb` command calls `Residence#addBooking(Booking booking)`, which replaces the 2nd residence with the new `Residence` after the command execution.
+
+Step 3. The user executes `remind` to list all residences with upcoming bookings. The `remind` command also calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing a filtered list of `Residence`s to be displayed which includes the 2nd residence from the previous list displayed.
+
+Step 4. Any successful execution of commands `add(b)`, `edit(b)`, `delete(b)` or `list` will return to the previous display of the full residence list.
+
+### Status feature
+
+#### Implementation
+
+The proposed mechanism is facilitated by the `logic` component described above. It updates clean status of multiple `Residences` at one time. It makes use of the following new method.
+
+* `StausCommand#createUpdatedResidence()` —  Create updated residence with the required clean status and the same other data.
+* `StausCommandParser#paser()` —  Manage the status command input, return a status command with required clean status and target residence index list.
+
+These operations make use of the `Model` interface's `Model#updateFilteredResidenceList(Predicate<Residence> predicate)` method to update the order of residence list, and `Model#setResidence()` to update the residence in the residence list. 
+
+Given below is an example usage scenario and how the `status` filtering mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `ResidenceTracker` will be initialized with the initial residence tracker state.
+
+Step 2. The user executes two or more input`add n/NAME a/ADDRESS c/y ...` command to add multiple residence with the same clean status "CLEAN". The `add` command calls `addResidence()` which checks and adds new residence to the end of unique residence list where "UNCLEAN" residences is in front of "CLEAN" residences. 
+
+Step 3. The user executes `status unclean 4 5` to update the forth and fifth residences' clean status to "UNCLEAN". The `status` command also calls `Model#updateFilteredResidenceList(Predicate<Residence> predicate)`, causing an ordered list of `Residence`s to be displayed.
+
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

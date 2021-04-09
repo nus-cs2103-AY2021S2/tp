@@ -47,7 +47,10 @@
                             <children>
                         <ScrollPane fx:id="bookingListScrollPane" fitToWidth="true" minHeight="95.0" prefHeight="95.0" prefWidth="275.0" translateY="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
                            <content>
-                                          <FlowPane fx:id="bookingListPane" />
+                                          <FlowPane fx:id="bookingListPane">
+                                 <children>
+                                    <VBox fx:id="bookingListVBox" />
+                                 </children></FlowPane>
                            </content>
                         </ScrollPane>
                             </children>

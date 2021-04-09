@@ -31,7 +31,7 @@ public class AddBookingCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_BOOKING_START_DATE + "START_DATE "
             + PREFIX_BOOKING_END_DATE + "END_DATE \n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Sandy "
             + PREFIX_PHONE + "87654321 "
             + PREFIX_BOOKING_START_DATE + "09-08-2021 "

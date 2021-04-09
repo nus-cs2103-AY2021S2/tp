@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE;
 
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditBookingCommand;
 import seedu.address.logic.commands.EditBookingCommand.EditBookingDescriptor;
@@ -28,16 +30,19 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_RESIDENCE, PREFIX_BOOKING,
                         PREFIX_NAME, PREFIX_PHONE, PREFIX_BOOKING_START_DATE, PREFIX_BOOKING_END_DATE);
 
-        Index residenceIndex;
-        Index bookingIndex;
-
-        try {
-            residenceIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_RESIDENCE).get());
-            bookingIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_BOOKING).get());
-        } catch (ParseException | RuntimeException ex) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditBookingCommand.MESSAGE_USAGE), ex);
+        if (!arePrefixesPresent(argMultimap, PREFIX_RESIDENCE, PREFIX_BOOKING)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBookingCommand.MESSAGE_USAGE));
         }
+
+        if (argMultimap.getValue(PREFIX_RESIDENCE).get().isEmpty()
+                || argMultimap.getValue(PREFIX_BOOKING).get().isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBookingCommand.MESSAGE_USAGE));
+        }
+
+        Index residenceIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_RESIDENCE).get());
+        Index bookingIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_BOOKING).get());
 
         EditBookingDescriptor editBookingDescriptor = new EditBookingDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -63,5 +68,13 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
         }
 
         return new EditBookingCommand(residenceIndex, bookingIndex, editBookingDescriptor);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }

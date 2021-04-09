@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.StatusCommand.MESSAGE_NO_RESIDENCE;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class StatusCommandParser implements Parser<StatusCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatusCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_NO_RESIDENCE, StatusCommand.MESSAGE_USAGE));
         }
 
         String[] keyword = trimmedArgs.split("\\s+");
