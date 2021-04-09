@@ -65,13 +65,6 @@ public class FindAppointmentCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noAppointmentsFound() {
-        AppointmentContainsKeywordsPredicate predicate = new AppointmentContainsKeywordsPredicate(
-                Collections.singletonList(" "));
-        assertThrows(IllegalArgumentException.class, () -> expectedModel.updateFilteredAppointmentList(predicate));
-    }
-
-    @Test
     public void execute_oneResult() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 1);
         AppointmentContainsKeywordsPredicate predicate =
