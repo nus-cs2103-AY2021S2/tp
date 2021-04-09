@@ -110,7 +110,7 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 **Purpose:** Adds a delivery task to the delivery list.
 
-**Format:** `add n/NAME p/PHONE a/ADDRESS e/EMAIL d/DATETIME`
+**Format:** `add n/NAME p/PHONE a/ADDRESS e/EMAIL d/DATE`
 
 **Examples:**
 
@@ -118,6 +118,33 @@ increase work productivity for delivery drivers by simplifying the delivery mana
   `
   
 ![Ui](images/AddCommand.png)
+
+
+### Editing a delivery task: `edit INDEX PREFIX/ATTRIBUTE`
+
+**Purpose:** Edits any selected attribute of the delivery entry except the remark.
+
+**Prefix:** `n/`, `p/`, `a/`, `e/`, `t/`, `d/`
+
+**Attribute:** Enter information based on the format of the attribute specified.
+
+**Note:** 
+  * You can edit multiple attributes.
+  * Remark can be edited separately through the remark command.
+  * INDEX refers to the number shown in front of each delivery
+
+**Format:** `edit INDEX PREFIX/ATTRIBUTE`
+
+**Examples:**
+
+* `edit 8 n/Joshua`
+
+![Ui](images/EditSingleAttribute.png)
+
+* `edit 8 a/Clementi Road d/2021-10-01`
+
+![Ui](images/EditMultipleAttribute.png)
+
 
 ### Deleting a delivery task : `delete`
 
@@ -152,12 +179,20 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 ![Ui](images/DoneCommand.png)
 
-### Finding deliveries using keyword matching a certain criteria: `find <keyword>`
-**Criteria**: Name, Telephone Number, Address, Date
 
-**Purpose** Find deliveries that match certain criteria
+### Finding deliveries using keywords matching any attribute: `find KEYWORDS`
+**Attributes:** Name, Telephone Number, Address, Date, Remark, Done, Email
 
-**Format** `find <keywords>`
+**Purpose** Find deliveries that match certain attribute
+
+**Notes:**
+* It is worth noting that you have to key in a full `KEYWORD` to retrieve a result.
+  That is, if you want to find `Alex Yeoh`, then typing `find Al` would not return a result,
+  but `find Alex` or `find Yeoh` will. So, avoid keying in incomplete keywords.
+* Incomplete keywords are disabled in order to reduce the number of unnecessary search results which
+  may defeat the aim of the feature.
+  
+**Format** `find KEYWORDS`
 
 * One of the following results will show:
   * Deliveries matching the keywords
