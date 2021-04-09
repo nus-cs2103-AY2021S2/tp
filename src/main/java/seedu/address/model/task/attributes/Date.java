@@ -20,8 +20,8 @@ public class Date implements Attribute {
     public static final String FIELD_NAME = "Date";
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Date should be in the format dd/mm/yyyy and should be "
-                    + "a valid date after today eg. 12/08/2021";
+            "Date should be in the format dd/mm/yyyy. For example, 1 July 2021 should be "
+                    + "expressed as 01/07/2021, not 1/7/2021.";
     public static final String MESSAGE_CONSTRAINTS_INVALID_DATE =
             "Date should not be before today";
 
