@@ -30,7 +30,6 @@ import seedu.address.model.property.PropertyRemarksPredicate;
 import seedu.address.model.property.PropertyTagsPredicate;
 import seedu.address.model.property.PropertyTypePredicate;
 import seedu.address.model.property.client.Contact;
-import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 
 public class FindPropertyCommandParserTest {
@@ -164,15 +163,6 @@ public class FindPropertyCommandParserTest {
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
 
         assertParseSuccess(parser, " r/this is a remark", expected);
-    }
-
-    @Test
-    public void invalidRemarksTest() {
-        String expected = "r/ used but no remarks found! \n"
-                + Remark.MESSAGE_CONSTRAINTS
-                + "\n"
-                + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " r/ ", expected);
     }
 
     @Test
