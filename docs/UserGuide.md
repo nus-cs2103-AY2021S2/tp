@@ -2,8 +2,25 @@
 layout: page
 title: User Guide
 ---
-## User Guide
+## Table of Contents
+* [Introduction](#introduction)
+* [Feature List](#feature-list)
+  * [General Commands](#general-commands)
+  * [Task-Specific Commands](#task-specific-commands)
+  * [Event-Specific Commands](#event-specific-commands)
+  * [Commands Related to Both Task and Event](#commands-related-to-both-task-and-event)
+* [Public Parameters for Tasks and Events](#public-parameters-for-tasks-and-events)
+  * [Common to both Task and Event](#common-to-both-task-and-event)
+  * [Task-Specific](#task-specific)
+  * [Event-Specific](#event-specific)
+* [Quick start](#quick-start)
+* [Features](#features)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
 
+
+
+## Introduction
 SOChedule is a one-stop solution for NUS School of Computing (SoC) students to manage their tasks and events effectively.
 Targeted at users who can type fast and prefer typing to mouse input, SOChedule is optimized for use via a Command Line Interface (CLI) 
 while still having the benefits of a Graphical User Interface (GUI).
@@ -21,8 +38,8 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Listing all tasks: [`list_task`](#listing-all-tasks-list_task)
 * Marking one or more tasks as done : [`done_task`](#marking-one-or-more-tasks-as-done-done_task)
 * Marking a task as uncompleted : [`undone_task`](#marking-a-task-as-uncompleted-undone_task)
-* Getting today's tasks: [`today_task`](#listing-all-tasks-today-today_task)
-* Finding tasks by name: [`find_task`](#finding-all-matching-tasks-find_task)
+* Getting today's tasks: [`today_task`](#getting-todays-tasks-today_task)
+* Finding tasks by name: [`find_task`](#finding-tasks-by-name-find_task)
 * Sorting all tasks: [`sort_task`](#sorting-all-tasks-sort_task)
 * Pinning a task: [`pin_task`](#pinning-a-task-pin_task)
 * Unpinning a task: [`unpin_task`](#unpinning-a-task-unpin_task)
@@ -34,8 +51,8 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Deleting an event: [`delete_event`](#deleting-an-event-delete_event)
 * Editing an event: [`edit_event`](#editing-an-event-edit_event)
 * Listing all events: [`list_event`](#listing-all-events-list_event)
-* Getting today's events: [`today_event`](#listing-all-events-today-today_event)
-* Finding events by name: [`find_event`](#finding-all-matching-events-find_event)
+* Getting today's events: [`today_event`](#getting-todays-events-today_event)
+* Finding events by name: [`find_event`](#finding-events-by-name-find_event)
 * Clearing expired events: [`clear_expired_event`](#clearing-expired-events-clear_expired_event)
 
 ### Commands Related to Both Task and Event
@@ -43,6 +60,8 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Finding free time slots: [`free_time`](#finding-free-time-slots-free_time)
 * Summarising tasks and events completion status: [`summary`](#summarising-tasks-and-events-statistics-summary)
 * Clearing Sochedule: [`clear`](#clearing-sochedule-clear)
+
+[Return to Table of Contents](#table-of-contents)
 
 ## Public Parameters for Tasks and Events
 As listed below are the attributes to be specified for Tasks and Events. All parameters are mandatory unless otherwise stated.
@@ -168,6 +187,8 @@ As listed below are the attributes to be specified for Tasks and Events. All par
     </tr>
 </table>
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -194,6 +215,8 @@ As listed below are the attributes to be specified for Tasks and Events. All par
 
 1. Refer to the [Features](#features) below for details of each command.
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -218,6 +241,8 @@ As listed below are the attributes to be specified for Tasks and Events. All par
   e.g. if the command specifies `list_task 123`, it will be interpreted as `list_task`.
 
 </div>
+
+[Return to Table of Contents](#table-of-contents)
 
 ### Viewing help: `help`
 Shows a message explaining how to access the help page.
@@ -621,6 +646,7 @@ Exits the program.
 
 [Return to Feature List](#feature-list)
 
+[Return to Table of Contents](#table-of-contents)
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -632,6 +658,8 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Download the JAR file onto the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SOChedule home folder (this is contained within the `/data` folder in the same location as your SOChedule.jar.
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -681,3 +709,5 @@ Action | Format, Examples
 **Find Schedule** | `find_schedule DATE` <br>e.g., `find_schedule 2021-06-01`
 **Clear Schedule** | `clear`
 **Summary** | `summary`
+
+[Return to Table of Contents](#table-of-contents)
