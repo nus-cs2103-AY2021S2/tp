@@ -43,6 +43,8 @@ public class CommandTestUtil {
     public static final String VALID_START_TAG_GOJUON = "gojuon";
     public static final String INVALID_START_TAG = "!@#$%";
     public static final String VALID_NONEXISTENT_TAG = "thisIsANonExistentTag";
+    public static final String VALID_TAG_INPUT = "1 t/easy";
+    public static final String VALID_TAG_INPUT_MULTIPLE = "1 t/difficult t/easy";
     public static final int VALID_START_INTEGER_GENERIC = 0;
     public static final Set<Tag> VALID_START_TAGS_SET_GENERIC = new HashSet<>();
     public static final Set<Tag> VALID_TAGS_SET_HIRAGANA = new HashSet<>(List.of(new Tag(VALID_START_TAG_HIRAGANA)));
