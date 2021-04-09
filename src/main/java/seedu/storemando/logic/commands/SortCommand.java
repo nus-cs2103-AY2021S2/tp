@@ -15,12 +15,6 @@ public abstract class SortCommand extends Command {
         + "2. " + COMMAND_WORD + " quantity desc\n"
         + "3. " + COMMAND_WORD + " expirydate";
 
-    public static final String MESSAGE_SUCCESS_QUANTITY_ASC = "Sorted all items based on their quantity in an"
-        + " ascending order.";
-    public static final String MESSAGE_SUCCESS_QUANTITY_DESC = "Sorted all items based on their quantity in a"
-        + " descending order.";
-    public static final String MESSAGE_SUCCESS_EXPIRYDATE_ASC = "Sorted all items based on their expiry date in an"
-        + " ascending order.";
     public static final String MESSAGE_NO_ITEMS_TO_SORT = "Empty list cannot be sorted";
 
 

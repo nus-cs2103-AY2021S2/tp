@@ -10,6 +10,8 @@ import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.ItemComparatorByExpiryDate;
 
 public class SortExpiryDateCommand extends SortCommand {
+    public static final String MESSAGE_SUCCESS_EXPIRYDATE_ASC = "Sorted all items based on their expiry date in an"
+        + " chronological order.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

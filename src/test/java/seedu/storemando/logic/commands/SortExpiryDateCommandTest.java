@@ -25,7 +25,7 @@ class SortExpiryDateCommandTest {
         expectedModel.setStoreMando(getTypicalStoreMandoSortedByExpiryDate());
 
         assertCommandSuccess(new SortExpiryDateCommand(), model,
-            SortCommand.MESSAGE_SUCCESS_EXPIRYDATE_ASC, expectedModel);
+            SortExpiryDateCommand.MESSAGE_SUCCESS_EXPIRYDATE_ASC, expectedModel);
     }
 
     @Test
@@ -42,7 +42,7 @@ class SortExpiryDateCommandTest {
         Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByExpiryDate(), new UserPrefs());
 
         assertCommandSuccess(new SortExpiryDateCommand(), model,
-            SortCommand.MESSAGE_SUCCESS_EXPIRYDATE_ASC, expectedModel);
+            SortExpiryDateCommand.MESSAGE_SUCCESS_EXPIRYDATE_ASC, expectedModel);
     }
 
     @Test
@@ -51,7 +51,7 @@ class SortExpiryDateCommandTest {
         Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByExpiryDate(), new UserPrefs());
 
         assertCommandSuccess(new SortExpiryDateCommand(), model,
-            SortCommand.MESSAGE_SUCCESS_EXPIRYDATE_ASC, expectedModel);
+            SortExpiryDateCommand.MESSAGE_SUCCESS_EXPIRYDATE_ASC, expectedModel);
     }
 
     @Test
