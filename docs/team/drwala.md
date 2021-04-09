@@ -24,7 +24,8 @@ Given below are my contributions to the project.
   * Managed release `v1.4` on GitHub
 
 * **Enhancements to existing features**:
-  * Updated how command parsing deals with invalid inputs to present clearer messages to the user.
+  * Updated how command parsing deals with invalid inputs to present clearer messages to the user. [\#330](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/330)
+      * This was challenging to do as it was cross-command, and required a heavy refactoring of the `Parser`'s interaction with all commands that use the `INDEX`
   * Wrote additional tests for command parsing to support the change
 
 * **Documentation**:
@@ -36,6 +37,7 @@ Given below are my contributions to the project.
     * Added explanation of how the Room class works, and fits in to the broader SunRez system:  [\#115](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/115)
     * Added implementation details of the `AddRoomCommand` command: [\#115](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/115)
     * Wrote use cases UC-006 - UC-010
+    * Added manual testing instructions for the Room commands [\#371](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/371)
 
 * **Team tasks**:
   * Assisted in planning and implementation of forking workflow, including the norms the group will agree to
