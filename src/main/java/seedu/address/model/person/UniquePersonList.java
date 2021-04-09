@@ -119,7 +119,11 @@ public class UniquePersonList implements Iterable<Person> {
                 })
                 .sorted(Comparator.comparing(Pair::getValue))
                 .forEach(pair -> {
-                    if (pair.getValue() >= 0 && pair.getValue() < 14) {
+                    if (pair.getValue() == 0) {
+                        sb.append(String.format("It's %s's birthday today!!\n", pair.getKey().getName().fullName));
+                    } else if (pair.getValue() == 1) {
+                        sb.append(String.format("%s's birthday is tomorrow.\n", pair.getKey().getName().fullName));
+                    } else if (pair.getValue() >= 2 && pair.getValue() <= 14) {
                         sb.append(String.format(template, pair.getKey().getName().fullName, pair.getValue()));
                     }
                 });

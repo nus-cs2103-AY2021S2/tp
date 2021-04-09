@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -97,7 +96,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Optional<Meeting> clash(Person person) {
+    public Optional<Person> clash(Person person) {
         requireNonNull(person);
         return addressBook.clash(person);
     }

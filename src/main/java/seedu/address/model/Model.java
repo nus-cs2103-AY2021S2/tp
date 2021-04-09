@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -62,7 +61,7 @@ public interface Model {
     /**
      * Returns true if a person's meeting time clashes with another meeting in the address book.
      */
-    Optional<Meeting> clash(Person person);
+    Optional<Person> clash(Person person);
 
     /**
      * Deletes the given person.

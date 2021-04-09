@@ -106,7 +106,7 @@ public class UnscheduleCommandTest {
     public void execute_nonEmptyAddressBook_throwCommandException() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         assertCommandFailure(new UnscheduleCommand(INDEX_FIRST_PERSON, false, false), model,
-                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
     }
 
     @Test

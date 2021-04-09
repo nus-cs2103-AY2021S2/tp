@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import seedu.address.model.person.Person;
 
 /**
  * Window that shows notes.
@@ -15,15 +16,14 @@ public class NotesWindow extends Alert {
         super(AlertType.INFORMATION);
         getDialogPane().getStylesheets().add("view/DarkTheme.css");
         setTitle("Notes");
-        setResizable(true);
         initOwner(owner);
     }
 
     /**
      * Sets the displayed message to the notes.
      */
-    public void setMessage(String message) {
-        setContentText(message);
-        getDialogPane().autosize();
+    public void setMessage(Person personWithNotes) {
+        setHeaderText(String.format("Notes for %s:", personWithNotes.getName()));
+        setContentText(personWithNotes.getNotesString());
     }
 }
