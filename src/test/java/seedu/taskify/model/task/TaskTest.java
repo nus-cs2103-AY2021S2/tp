@@ -81,9 +81,7 @@ public class TaskTest {
         editedAlice = new TaskBuilder(TASK_1).withDescription(VALID_DESCRIPTION_CS2103T_TP).build();
         assertFalse(TASK_1.equals(editedAlice));
 
-        // different tags -> returns false
-        editedAlice = new TaskBuilder(TASK_1).withTags(VALID_TAG_CS2103T_TP).build();
-        assertFalse(TASK_1.equals(editedAlice));
+
 
     }
 }
