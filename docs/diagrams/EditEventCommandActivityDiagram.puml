@@ -7,37 +7,23 @@ start
 
 if () then ([index valid])
     :Fetch the event to be edited;
-    if () then ([end date time provided])
-        if () then ([end date time not past])
-        else ([else])
-            :Show error to user
-            (end date time past);
-            stop
-        endif
+
+
+    if () then ([no field provided])
+
     else ([else])
-    endif
-        :Create edited event;
-else ([else])
-:Show error to user
-   (invalid index);
-stop
-endif
-if () then ([edited event same
-as event to be edit])
-:Show error to user
-(no field changed);
-stop
-else ([else])
-
-if () then ([edited event same
+        if () then ([end date time provided
+AND end date time past])
+        else ([else])
+            :Create edited event;
+            if () then ([edited event same
 as any existing events])
-:Show error to user
-(duplicated event);
-stop
+            else ([else])
+            :Replace with edited event;
+            endif
+        endif
+    endif
 else ([else])
-
-:Replace with edited event;
-endif
 endif
 stop
 @enduml

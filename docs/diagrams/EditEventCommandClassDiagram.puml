@@ -1,0 +1,26 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+Interface Parser <<Interface>>
+Class SocheduleParser
+Class EditEventCommandParser
+Class EditEventCommandParserDescriptor
+Class SocheduleParserUtil
+Class EditEventCommand
+
+Class HiddenOutside #FFFFFF
+
+HiddenOutside ..> SocheduleParser
+SocheduleParser .left.> EditEventCommandParser: creates >
+
+EditEventCommandParser ..> EditEventCommand : creates >
+EditEventCommandParser .left.> SocheduleParserUtil
+EditEventCommandParser ..> EditEventCommandParserDescriptor : creates >
+EditEventCommandParser .up.|> Parser
+
+EditEventCommand -->"1" EditEventCommandParserDescriptor
+
+@enduml

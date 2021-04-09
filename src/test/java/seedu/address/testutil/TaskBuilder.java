@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DEADLINE_TASKONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_TASKONE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_PRIORITY_TASKONE;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,13 +15,14 @@ import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
 
+
 /**
  * A utility class to help with building Task objects.
  */
 public class TaskBuilder {
-    public static final String DEFAULT_NAME = "Do this do that";
-    public static final String DEFAULT_DATE = "2022-01-01";
-    public static final String DEFAULT_PRIORITY = "5";
+    public static final String DEFAULT_NAME = VALID_TASK_NAME_TASKONE;
+    public static final String DEFAULT_DATE = VALID_TASK_DEADLINE_TASKONE;
+    public static final String DEFAULT_PRIORITY = VALID_TASK_PRIORITY_TASKONE;
 
     private Name name;
     private Date deadline;
@@ -89,5 +94,14 @@ public class TaskBuilder {
 
     public Task build() {
         return new Task(name, deadline, priority, categories, tags);
+    }
+
+    /**
+     * Builds the task with completion status set as complete.
+     */
+    public Task buildCompletedTask() {
+        Task newTask = build();
+        newTask.markTaskAsDone();
+        return newTask;
     }
 }
