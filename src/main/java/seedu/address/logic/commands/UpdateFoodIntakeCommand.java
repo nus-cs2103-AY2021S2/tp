@@ -79,8 +79,8 @@ public class UpdateFoodIntakeCommand extends Command {
                 Double.parseDouble(this.proteins));
         model.updateFoodIntake(index, newFoodIntake);
 
-        String updateFoodIntakeList = model.getFoodIntakeList().getFoodIntakeListByDate(this.date);
-        return new CommandResult(MESSAGE_SUCCESS + " " + this.name + "\n\n" + updateFoodIntakeList);
+        String updatedFoodIntakeList = model.getFoodIntakeList().getFoodIntakeListByDate(this.date);
+        return new CommandResult(MESSAGE_SUCCESS + " " + this.name + "\n\n" + updatedFoodIntakeList);
     }
 
     /**
