@@ -33,11 +33,11 @@ public class TypicalStudents {
 
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline").withMatric("A3456789D")
             .withFaculty("COM").withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withVacStatus("not vaccinated").withMedDetails("shellfish allergy")
+            .withPhone("94351253").withVacStatus("unvaccinated").withMedDetails("shellfish allergy")
             .withSchoolRes("RVRC").build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier").withMatric("A4567890E")
             .withFaculty("DNUS").withSchoolRes("RVRC").withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432").withVacStatus("not vaccinated").withMedDetails("none")
+            .withEmail("johnd@example.com").withPhone("98765432").withVacStatus("unvaccinated").withMedDetails("none")
             .build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withMatric("A5678901F")
             .withFaculty("USP").withPhone("95352563").withSchoolRes("USP").withEmail("heinz@example.com")
@@ -47,13 +47,13 @@ public class TypicalStudents {
             .withAddress("10th street").withMedDetails("pollen allergy").withVacStatus("vaccinated").build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withFaculty("BIZ")
             .withPhone("9482224").withSchoolRes("RVRC").withMatric("A7890123H").withEmail("werner@example.com")
-            .withVacStatus("not vaccinated").withMedDetails("none").withAddress("michegan ave").build();
+            .withVacStatus("unvaccinated").withMedDetails("none").withAddress("michegan ave").build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withFaculty("ENG")
             .withPhone("9482427").withSchoolRes("RVRC").withMatric("A8901234I").withEmail("lydia@example.com")
             .withVacStatus("vaccinated").withMedDetails("bee sting allergy").withAddress("little tokyo").build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best").withFaculty("MED")
             .withPhone("9482442").withSchoolRes("RVRC").withMatric("A9012345J").withEmail("anna@example.com")
-            .withVacStatus("not vaccinated").withMedDetails("none").withAddress("4th street").build();
+            .withVacStatus("unvaccinated").withMedDetails("none").withAddress("4th street").build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -79,7 +79,7 @@ public class TypicalStudents {
     private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code StudentBook} with all the typical persons.
+     * Returns an {@code StudentBook} with all the typical students.
      */
     public static StudentBook getTypicalStudentBook() {
         StudentBook ab = new StudentBook();

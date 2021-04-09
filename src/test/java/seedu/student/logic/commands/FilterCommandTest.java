@@ -4,9 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.student.commons.core.Messages.MESSAGE_NO_STUDENTS_ARE_LISTED;
+import static seedu.student.commons.core.Messages.MESSAGE_STUDENTS_ARE_LISTED;
 import static seedu.student.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.student.testutil.TypicalStudents.ALICE;
+import static seedu.student.testutil.TypicalStudents.BENSON;
+import static seedu.student.testutil.TypicalStudents.DANIEL;
+import static seedu.student.testutil.TypicalStudents.ELLE;
+import static seedu.student.testutil.TypicalStudents.FIONA;
+import static seedu.student.testutil.TypicalStudents.GEORGE;
 import static seedu.student.testutil.TypicalStudents.getTypicalStudentBook;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
@@ -91,31 +99,63 @@ public class FilterCommandTest {
 
     @Test
     public void execute_zeroKeywords_noStudentFoundFilterByVaccinationStatus() {
+
         String expectedMessage = String.format(MESSAGE_NO_STUDENTS_ARE_LISTED, 0);
+
+        //Filter by Vaccination status
+
         VaccinationStatusContainsKeywords vaccinationPredicate = new VaccinationStatusContainsKeywords("");
-        FilterCommand command = new FilterCommand(vaccinationPredicate);
+        FilterCommand filterStatusCommand = new FilterCommand(vaccinationPredicate);
         expectedModel.updateFilteredStudentList(vaccinationPredicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(filterStatusCommand, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredStudentList());
-    }
 
-    @Test
-    public void execute_zeroKeywords_noStudentFoundFilterByFaculty() {
-        String expectedMessage = String.format(MESSAGE_NO_STUDENTS_ARE_LISTED, 0);
-        FacultyContainsKeywords facultyPredicate = new FacultyContainsKeywords("");
-        FilterCommand command = new FilterCommand(facultyPredicate);
+        //Filter by Faculty
+
+        FacultyContainsKeywords facultyPredicate = new FacultyContainsKeywords("FASS");
+        FilterCommand filterFacultyCommand = new FilterCommand(facultyPredicate);
         expectedModel.updateFilteredStudentList(facultyPredicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(filterFacultyCommand, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredStudentList());
+
+        //Filter by School Residence
+
+        SchoolResidenceContainsKeywords schoolResidencePredicate = new
+                SchoolResidenceContainsKeywords("DOES_NOT_LIVE_ON_CAMPUS");
+        FilterCommand filterResidenceCommand = new FilterCommand(schoolResidencePredicate);
+        expectedModel.updateFilteredStudentList(schoolResidencePredicate);
+        assertCommandSuccess(filterResidenceCommand, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredStudentList());
+
     }
 
     @Test
-    public void execute_zeroKeywords_noStudentFoundFilterBySchoolResidence() {
-        String expectedMessage = String.format(MESSAGE_NO_STUDENTS_ARE_LISTED, 0);
-        SchoolResidenceContainsKeywords schoolResidencePredicate = new SchoolResidenceContainsKeywords("");
+    public void execute_oneKeyword_multipleStudentFound() {
+
+        String expectedMessage = String.format(MESSAGE_STUDENTS_ARE_LISTED, 0);
+
+        //Filter by Vaccination status
+
+        VaccinationStatusContainsKeywords vaccinationPredicate = new VaccinationStatusContainsKeywords("unvaccinated");
+        FilterCommand filterStatusCommand = new FilterCommand(vaccinationPredicate);
+        expectedModel.updateFilteredStudentList(vaccinationPredicate);
+        assertCommandSuccess(filterStatusCommand, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, ELLE, GEORGE), model.getFilteredStudentList());
+
+        //Filter by Faculty
+
+        FacultyContainsKeywords facultyPredicate = new FacultyContainsKeywords("BIZ");
+        FilterCommand filterFacultyCommand = new FilterCommand(facultyPredicate);
+        expectedModel.updateFilteredStudentList(facultyPredicate);
+        assertCommandSuccess(filterFacultyCommand, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ELLE), model.getFilteredStudentList());
+
+        //Filter by School Residence
+
+        SchoolResidenceContainsKeywords schoolResidencePredicate = new SchoolResidenceContainsKeywords("RVRC");
         FilterCommand command = new FilterCommand(schoolResidencePredicate);
         expectedModel.updateFilteredStudentList(schoolResidencePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredStudentList());
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredStudentList());
     }
 }
