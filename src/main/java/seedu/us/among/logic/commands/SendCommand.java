@@ -25,7 +25,7 @@ public class SendCommand extends Command {
 
     public static final String COMMAND_WORD = "send";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Calls a saved API endpoint using the displayed index from the saved endpoints list.\n"
+            + ": Calls an API using the displayed index from the endpoint list.\n"
             + "Parameters: INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 

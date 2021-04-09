@@ -19,8 +19,8 @@ public class ShowCommand extends Command {
 
     public static final String COMMAND_WORD = "show";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the details of an existing API endpoint "
-            + "identified using its displayed index from the saved endpoint list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the details of an existing endpoint "
+            + "using its displayed index from the endpoint list.\n"
             + "Parameters: INDEX\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 

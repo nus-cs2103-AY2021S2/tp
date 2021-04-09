@@ -19,7 +19,7 @@ public class RemoveCommand extends Command {
     public static final String COMMAND_WORD = "remove";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes an existing API endpoint identified using its displayed index from the saved endpoint list.\n"
+            + ": Removes an existing endpoint using its displayed index from the endpoint list.\n"
             + "Parameters: INDEX\n"
             + "Example: " + COMMAND_WORD + " 1";
 

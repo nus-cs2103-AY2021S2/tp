@@ -35,32 +35,24 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_API_EXAMPLE_1 = "1. "
-            + COMMAND_WORD + " " + " 1 "
-            + PREFIX_METHOD + " GET "
-            + PREFIX_ADDRESS + " http://localhost:3000/ "
-            + PREFIX_DATA + " {\"some\": \"new data\"}\n";
-
-    public static final String MESSAGE_API_EXAMPLE_2 = "2. "
-            + COMMAND_WORD + " " + " 1 "
-            + PREFIX_HEADER + " \"key1: newvalue1\" "
-            + PREFIX_HEADER + " \"key2: newvalue2\" "
-            + PREFIX_TAG + " search "
+    public static final String MESSAGE_API_EXAMPLE = COMMAND_WORD + " 1 "
+            + PREFIX_METHOD + " POST "
+            + PREFIX_ADDRESS + " https://reqres.in/api/v1/ "
+            + PREFIX_DATA + " {\"name\": \"tom\", \"job\": \"cook\"} "
+            + PREFIX_HEADER + " \"key: value\" "
             + PREFIX_TAG + " important\n";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Calls a saved API endpoint using the "
-            + "displayed index from the saved endpoints list.\n"
-            + "Parameters: INDEX "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an endpoint using the "
+            + "displayed index from the endpoint list.\n"
+            + "Parameters: "
             + PREFIX_METHOD + " METHOD "
             + PREFIX_ADDRESS + " ADDRESS "
             + PREFIX_DATA + " DATA "
             + "[" + PREFIX_HEADER + " HEADER] "
             + "[" + PREFIX_TAG + " TAG]\n"
-            + "Only INDEX is compulsory, all other parameters are optional, but least "
-            + "one endpoint parameter must be provided.\n\n"
-            + "Examples: \n"
-            + MESSAGE_API_EXAMPLE_1
-            + MESSAGE_API_EXAMPLE_2;
+            + "Use the help command for more information.\n\n"
+            + "Example: "
+            + MESSAGE_API_EXAMPLE;
 
     public static final String MESSAGE_EDIT_ENDPOINT_SUCCESS = "Edited endpoint:\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one parameter to edit must be provided.";
@@ -89,8 +81,7 @@ public class EditCommand extends Command {
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_ERROR,
-                    Messages.MESSAGE_INDEX_NOT_WITHIN_LIST,
-                    EditCommand.MESSAGE_USAGE));
+                    Messages.MESSAGE_INDEX_NOT_WITHIN_LIST));
             //throw new CommandException(Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
         }
 

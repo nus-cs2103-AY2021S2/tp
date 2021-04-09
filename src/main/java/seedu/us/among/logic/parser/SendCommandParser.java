@@ -21,7 +21,7 @@ public class SendCommandParser implements Parser<SendCommand> {
      */
     public SendCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            Index index = ParserUtil.parseIndex(args, SendCommand.MESSAGE_USAGE);
             return new SendCommand(index);
         } catch (ParseException pe) {
             logger.warning(StringUtil.getDetails(pe));

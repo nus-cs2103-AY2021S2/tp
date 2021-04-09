@@ -1,6 +1,7 @@
 package seedu.us.among.logic.parser;
 
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.us.among.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -24,8 +25,10 @@ public class SendCommandParserTest {
 
     @Test
     public void parse_emptyArgs_returnsSendCommand() {
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT_NAN);
-        assertParseFailure(parser, " ", MESSAGE_INVALID_FORMAT_NAN);
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                SendCommand.MESSAGE_USAGE + "\n"));
+        assertParseFailure(parser, " ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                SendCommand.MESSAGE_USAGE + "\n"));
     }
 
     @Test
