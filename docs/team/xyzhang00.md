@@ -26,6 +26,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Refactored code to match our application (Pull request [#59](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/59))
   * Refactored code to fix OOP principles violations resulted from lack of understanding of code base during early project (Pull request [#77](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/77/files))
+  * Wrote additional tests for existing features (Pull request [#189](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/189))
 
 * **Documentation**:
   * User Guide: 

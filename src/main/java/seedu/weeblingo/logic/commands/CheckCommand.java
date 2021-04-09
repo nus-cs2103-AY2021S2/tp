@@ -2,6 +2,9 @@ package seedu.weeblingo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import seedu.weeblingo.commons.core.LogsCenter;
 import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.Mode;
@@ -30,6 +33,8 @@ public class CheckCommand extends Command {
             + "Please enter \"next\" to go to the next question "
             + "or \"end\" to return to menu. \n";
 
+    private static final Logger logger = LogsCenter.getLogger(CheckCommand.class);
+
     private final Answer attempt;
 
     /**
@@ -54,6 +59,9 @@ public class CheckCommand extends Command {
         if (currentMode != Mode.MODE_QUIZ_SESSION) {
             throw new CommandException(Messages.MESSAGE_NOT_IN_QUIZ_SESSION);
         }
+
+        requireNonNull(model.getQuizInstance());
+        logger.info("Verifying user attempt: " + attempt.toString());
 
         // Model::isCorrectAnswer() modifies the quiz statistic, FYI
         if (model.isCorrectAnswer(attempt)) {
