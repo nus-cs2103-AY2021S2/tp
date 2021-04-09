@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=zoom&zA=ssoonwee&zR=AY2021S2-CS2103T-T12-2%2Ftp%5Bmaster%5D&zACS=223.78225352112676&zS=2021-02-19&zFS=&zU=2021-04-09&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
-* **New Feature**: Implemented Food model
+* **New Feature**: Implemented Food model.
     * What it does: Provides the base model of the Food that allows storage of nutrients' value inside a food item object. 
     * Justification: Allows for OOP-oriented storage of other features such as Food_Intake that needs to store the food item(s) per day and calculate the daily conusmption.
    
@@ -29,9 +29,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for Macronutrients Tracker section and updated table of contents
+        * Added documentation for Macronutrients Tracker section and updated table of contents (PRs #132, #123, #97, #95)
     * Developer Guide:
-        * Added explanation of design decisions when implementing the operations of the food item feature. Editted the UML diagrams (Logic Class Diagram, Architecture Sequence Diagram, UI class Diagram, Delete Sequence Diagram) from the old address book to a new one that fits DietLAH! implementation.
+        * Added explanation of design decisions when implementing the operations of the food item feature. Editted the UML diagrams (Logic Class Diagram, Architecture Sequence Diagram, UI class Diagram, Delete Sequence Diagram) from the old address book to a new one that fits DietLAH! implementation. (PRs #139, #107)
 
 * **Contributions to team-based tasks**:
   * Set up of issues for user stories
