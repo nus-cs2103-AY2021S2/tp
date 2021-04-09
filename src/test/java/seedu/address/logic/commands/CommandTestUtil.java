@@ -137,11 +137,11 @@ public class CommandTestUtil {
     public static final String INVALID_DESC_DESC = " " + PREFIX_DESCRIPTION; // empty string not allowed for description
 
     public static final String VALID_REMINDER_DESC_ONE = "Maths Tuition Payment Due";
-    public static final String VALID_REMINDER_DATE_ONE = "2021-05-01";
+    public static final String VALID_REMINDER_DATE_ONE = "2021-06-01";
     public static final String VALID_REMINDER_DESC_TWO = "Science Tuition Payment Due";
-    public static final String VALID_REMINDER_DATE_TWO = "2021-05-05";
+    public static final String VALID_REMINDER_DATE_TWO = "2021-06-05";
     public static final String VALID_REMINDER_DESC_THREE = "English Tuition Payment Due";
-    public static final String VALID_REMINDER_DATE_THREE = "2021-05-06";
+    public static final String VALID_REMINDER_DATE_THREE = "2021-06-06";
 
     public static final String REMINDER_DESC_DESC_ONE = " " + PREFIX_DESCRIPTION + VALID_REMINDER_DESC_ONE;
     public static final String REMINDER_DESC_DESC_TWO = " " + PREFIX_DESCRIPTION + VALID_REMINDER_DESC_TWO;

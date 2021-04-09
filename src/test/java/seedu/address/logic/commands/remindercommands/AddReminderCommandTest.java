@@ -24,7 +24,6 @@ public class AddReminderCommandTest {
     @Test
     public void execute_alreadyHasReminder() {
         AddReminderCommand addReminderCommand = new AddReminderCommand(firstReminder);
-        System.out.println(firstReminder);
         assertCommandFailure(addReminderCommand, model, MESSAGE_DUPLICATE_REMINDER);
     }
 
