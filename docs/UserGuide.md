@@ -86,12 +86,12 @@ Shows information about available commands and how they can be used.
 Format: `help [COMMAND]`
 
 * If command is not specified, a summary of all available commands will be displayed, along with a link to access the full user guide.
-* If command is specified, summarised information about the specified command will be displayed. 
+* If command is specified, detailed information about the command will be displayed.
 * If multiple commands are specified, only the last command will be taken.
 
 Examples:
 * `help` Displays summary of all available commands.
-* `help find` Displays summarised information about the find command.
+* `help find` Displays detailed information about the find command.
 
 #### Exiting the program : `exit`
 
