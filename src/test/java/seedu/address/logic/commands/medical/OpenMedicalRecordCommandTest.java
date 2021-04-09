@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -20,7 +19,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.*;
 
-public class ViewPatientCommandTest {
+public class OpenMedicalRecordCommandTest {
     private Model model;
     private Model expectedModel;
 
@@ -45,46 +44,48 @@ public class ViewPatientCommandTest {
         model.addPerson(newGeorge);
         model.addPerson(newHoon);
         model.addPerson(newIda);
+        //expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        ViewPatientCommand viewPatientCommand = new ViewPatientCommand(outOfBoundIndex);
+        OpenMedicalRecordCommand openMedicalRecordCommand = new OpenMedicalRecordCommand(outOfBoundIndex);
 
-        assertCommandFailure(viewPatientCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(openMedicalRecordCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Patient patientToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        ViewPatientCommand viewPatientCommand = new ViewPatientCommand(INDEX_FIRST_PERSON);
-        String expectedMessage = String.format(ViewPatientCommand.MESSAGE_SUCCESS, patientToView.getName().fullName);
+        Patient patientToCreateRecord = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        OpenMedicalRecordCommand openMedicalRecordCommand = new OpenMedicalRecordCommand(INDEX_FIRST_PERSON);
+        String expectedMessage = String.format(OpenMedicalRecordCommand.MESSAGE_SUCCESS,
+                                                patientToCreateRecord.getName().fullName);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.selectPatient(patientToView);
-        assertCommandSuccess(viewPatientCommand, model, expectedMessage, expectedModel);
+        expectedModel.selectPatient(patientToCreateRecord);
+        assertCommandSuccess(openMedicalRecordCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void equals() {
-        ViewPatientCommand viewPatientFirstCommand = new ViewPatientCommand(INDEX_FIRST_PERSON);
-        ViewPatientCommand viewPatientSecondCommand = new ViewPatientCommand(INDEX_SECOND_PERSON);
+        OpenMedicalRecordCommand openMedicalRecordFirstCommand = new OpenMedicalRecordCommand(INDEX_FIRST_PERSON);
+        OpenMedicalRecordCommand openMedicalRecordSecondCommand = new OpenMedicalRecordCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
-        assertTrue(viewPatientFirstCommand.equals(viewPatientFirstCommand));
+        assertTrue(openMedicalRecordFirstCommand.equals(openMedicalRecordFirstCommand));
 
         // same values -> returns true
-        ViewPatientCommand viewPatientFirstCommandCopy = new ViewPatientCommand(INDEX_FIRST_PERSON);
-        assertTrue(viewPatientFirstCommand.equals(viewPatientFirstCommandCopy));
+        OpenMedicalRecordCommand openMedicalRecordFirstCommandCopy = new OpenMedicalRecordCommand(INDEX_FIRST_PERSON);
+        assertTrue(openMedicalRecordFirstCommand.equals(openMedicalRecordFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(viewPatientFirstCommand.equals(1));
+        assertFalse(openMedicalRecordFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(viewPatientFirstCommand.equals(null));
+        assertFalse(openMedicalRecordFirstCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(viewPatientFirstCommand.equals(viewPatientSecondCommand));
+        assertFalse(openMedicalRecordFirstCommand.equals(openMedicalRecordSecondCommand));
     }
 }

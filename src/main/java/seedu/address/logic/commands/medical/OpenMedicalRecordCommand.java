@@ -8,6 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Patient;
@@ -44,5 +45,12 @@ public class OpenMedicalRecordCommand extends Command {
         model.selectPatient(patient);
         return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()), false, true,
                 patient, null, null, null, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof OpenMedicalRecordCommand // instanceof handles nulls
+                && index.equals(((OpenMedicalRecordCommand) other).index)); // state check
     }
 }
