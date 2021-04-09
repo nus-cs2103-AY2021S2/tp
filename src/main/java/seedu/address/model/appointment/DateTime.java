@@ -14,10 +14,10 @@ import java.time.format.DateTimeParseException;
 public class DateTime {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-    public static final String MESSAGE_INVALID_DATETIME = "Date or time is not valid.\n" +
-            "Day of date should be between 1 - 28/29/30/31, depending on the month.\n" +
-            "Month of date should be between 1 - 12.\n" +
-            "Time should be between 00:00 - 23:59.";
+    public static final String MESSAGE_INVALID_DATETIME = "Date or time is not valid.\n"
+            + "Day of date should be between 1 - 28/29/30/31, depending on the month.\n"
+            + "Month of date should be between 1 - 12.\n"
+            + "Time should be between 00:00 - 23:59.";
     public static final String MESSAGE_INVALID_FORMAT = "DateTime should be of format dd/MM/yyyy HH:mm";
     public static final String MESSAGE_BLANK = "Date should not be blank";
     public static final String MESSAGE_PAST_CURRENT = "Date should not be a date that has already past";
@@ -94,7 +94,7 @@ public class DateTime {
         LocalDateTime d = LocalDateTime.parse(test, DATE_TIME_FORMATTER);
         if (d.isAfter(LocalDateTime.now())) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
