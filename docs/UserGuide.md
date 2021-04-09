@@ -93,7 +93,7 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extra keywords inputted for commands that do not require parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -105,14 +105,6 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
-### Viewing schedule : `schedule`
-
-Shows a weekly schedule that displays lessons for the week.
-
-![schedule popup](images/scheduleWindow.png)
-
-Format: `schedule`
 
 ### Adding a contact: `add`
 
@@ -142,13 +134,23 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 
 * A student’s contact can have any number of subjects (including 0). 
   
-* A student’s contact can have any number of lessons (including 0)
+* A student’s contact can have any number of lessons (including 0).
 
 * Lessons should only consist of the lesson day and time e.g. `Monday 1300`
   
 * Lesson day must take on one of the values: **Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday**.
 
 * Lesson time must be in **HHmm** format e.g. **1300**
+
+* If the student name to be added already exists in TutorsPet, a warning
+`This student name Alex Yeoh already exists with a different phone number. Do you wish to proceed? y/n` will be shown.
+  and users will have to enter either `y` (yes) or `n` (no) accordingly. If `y` is entered, the contact will be added.
+  If `n` is entered, the contact would not be added.
+  
+* If the lesson day and time to be added already exists in TutorsPet, a warning 
+  `You have a lesson at [lesson day and time] with [student(s)]. Do you wish to proceed? y/n` will be shown
+  and users will have to enter either `y` (yes) or `n` (no) accordingly. If `y` is entered, the contact will be added.
+  If `n` is entered, the contact would not be added.
 
 </div>
 
@@ -161,12 +163,6 @@ Examples:
 * `add n/John Doe p/98612341`
 * `add n/Alice Tan p/98765432 s/Abc Secondary School e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789`
 * `add n/Bob Lee p/87654321 s/Def Secondary School e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/math le/monday 1300`
-
-### Listing all contacts : `list`
-
-Shows a list of all student contacts in TutorsPet. Each student's name, phone number, subjects and lessons are displayed.
-
-Format: `list`
 
 ### Editing a contact : `edit`
 
@@ -207,6 +203,16 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
   subjects which students are more likely to need private tuition.
   For more details, see the [Field Format Summary](#field-format-summary) below.
 
+* If the student name to be edited already exists in TutorsPet, a warning
+  `This student name Alex Yeoh already exists with a different phone number. Do you wish to proceed? y/n` will be shown.
+  and users will have to enter either `y` (yes) or `n` (no) accordingly. If `y` is entered, the contact will be added.
+  If `n` is entered, the contact would not be added.
+
+* If the lesson day and time to be edited already exists in TutorsPet, a warning
+  `You have a lesson at [lesson day and time] with [student(s)]. Do you wish to proceed? y/n` will be shown
+  and users will have to enter either `y` (yes) or `n` (no) accordingly. If `y` is entered, the contact will be added.
+  If `n` is entered, the contact would not be added.
+
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -218,6 +224,52 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing subjects.
 *  `edit 1 le/monday 1300 le/tuesday 1400` Edits the 1st student's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
+
+### Viewing a contact details: `detail`
+
+View the full details of the specified student's contact from TutorsPet.
+The specified student's name, school, phone number, email, address, guardian name and guardian's phone number will
+be displayed.
+
+Format: `detail INDEX`
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb:**Tips:** <br>
+
+* Views the contact at the specified `INDEX`.
+
+* The index refers to the index number shown in the displayed student list.
+
+* The index **must be a positive integer** ranging from 1 to 2147483647.
+
+</div>
+
+Examples:
+* `list` followed by `detail 2` views the details of the 2nd student in TutorsPet.
+* `search n/Betsy` followed by `detail 1` views the details of the 1st student in the results of the `search` command.
+
+### Deleting a contact : `delete`
+
+Permanently deletes the specified student's contact from TutorsPet.
+
+Format: `delete INDEX`
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb:**Tips:** <br>
+
+* Deletes the contact at the specified `INDEX`.
+
+* The index refers to the index number shown in the displayed student list.
+
+* The index **must be a positive integer** ranging from 1 to 2147483647.
+
+</div>
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd student in TutorsPet.
+* `search n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `search` command.
 
 ### Searching for a contact: `search`
 
@@ -237,14 +289,14 @@ Prefix | Searching Criteria
 
 * At least one prefix must be used.
   
-* Any number of prefixes can be used concurrently.
+* Each prefix should only be used at most once for each search. 
+  
+* All 3 types of prefix can be used concurrently.
   
 * The search is case-insensitive. E.g. `TAN` will match `Tan`.
   
 * The order of the keywords does not matter. E.g. `n/Tan Alice` will match `Alice Tan`.
-  
-* Name, school and subjects can be searched according to the prefix.
-  
+   
 * Only full words will be matched e.g. `Ta` will not match `Tan`.
   
 * Contacts matching at least one keyword will be returned. 
@@ -297,6 +349,20 @@ Examples:
   of the week.
 * `sort n/ s/` sorts students by the alphabetical orders of their names.
 * `sort t/` sorts students by subjects alphabetically in the order of `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, ignoring the extra words.
+
+### Listing all contacts : `list`
+
+Shows a list of all student contacts in TutorsPet. Each student's name, phone number, subjects and lessons are displayed.
+
+Format: `list`
+
+### Viewing schedule : `schedule`
+
+Shows a weekly schedule that displays lessons for the week.
+
+Format: `schedule`
+
+![schedule popup](images/scheduleWindow.png)
 
 ### Advancing all students: `levelup`
 
@@ -362,54 +428,7 @@ Examples:
 * `leveldown` demotes all students except `pri1` students by one level.
 * `levelup ex/2 5` demotes all students by one level, excluding the 3rd and 4th student
   in the list, as well as any students who are `pri1`.
-
-
-### Viewing a contact details: `detail`
-
-View the full details of the specified student's contact from TutorsPet.
-The specified student's name, school, phone number, email, address, guardian name and guardian's phone number will
-be displayed. 
-
-Format: `detail INDEX`
-
-<div markdown="block" class="alert alert-primary">
-
-:bulb:**Tips:** <br>
-
-* Views the contact at the specified `INDEX`.
-
-* The index refers to the index number shown in the displayed student list.
-
-* The index **must be a positive integer** ranging from 1 to 2147483647.
-
-</div>
-
-Examples:
-* `list` followed by `detail 2` views the details of the 2nd student in TutorsPet.
-* `search n/Betsy` followed by `detail 1` views the details of the 1st student in the results of the `search` command.
-
-### Deleting a contact : `delete`
-
-Permanently deletes the specified student's contact from TutorsPet.
-
-Format: `delete INDEX`
-
-<div markdown="block" class="alert alert-primary">
-
-:bulb:**Tips:** <br>
-
-* Deletes the contact at the specified `INDEX`.
   
-* The index refers to the index number shown in the displayed student list.
-  
-* The index **must be a positive integer** ranging from 1 to 2147483647. 
-
-</div>
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd student in TutorsPet.
-* `search n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `search` command.
-
 ### Adding an important date: `add-date`
 
 Adds an important date to TutorsPet.
