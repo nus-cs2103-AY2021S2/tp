@@ -4,53 +4,65 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
+note as n1
+We omit specific details of models
+Resident, Room, Issue, CommandHistory
+and Alias as they are explained in
+greater detail in their specific sections.
+end note
+
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
-Interface Model <<Interface>>
-Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
-Class Model
-Class ModelManager
-Class UserPrefs
-Class ReadOnlyUserPrefs
+    Interface ReadOnlyAddressBook <<Interface>>
+    Interface Model <<Interface>>
+    Interface ObservableList <<Interface>>
+    Class AddressBook
+    Class StatefulAddressBook
+    Class ReadOnlyAddressBook
+    Class Model
+    Class ModelManager
+    Class UserPrefs
+    Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+    Package Resident {
+        Class UniqueResidentList
+    }
+    Package Room {
+        Class UniqueRoomList
+    }
+    Package Issue {
+        Class IssueList
+    }
+    Package Alias {
+        Class AliasMapping
+    }
+    Package CommandHistory {
+        Class CommandHistory
+    }
 }
-
-Package Tag {
-Class Tag
-}
-}
-
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Model
+HiddenOutside ...> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+StatefulAddressBook -left-|> AddressBook
+AddressBook .left.|> ReadOnlyAddressBook
+StatefulAddressBook -up-> "1..*" ReadOnlyAddressBook
+
 
 ModelManager .up.|> Model
-Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+Model .left.> ObservableList
+ModelManager *-left-> "1" StatefulAddressBook
+ModelManager o-right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ModelManager *---down->" ~* filtered list" UniqueResidentList
+ModelManager *---down->" ~* filtered list" UniqueRoomList
+ModelManager *---down->" ~* filtered list" IssueList
+ModelManager *---down-> CommandHistory
+ModelManager *---down-> AliasMapping
 
-ModelManager ----->" ~* filtered list" Person
+Resident -[hidden]right> Room
+Room -[hidden]right> Issue
+
+
+
 @enduml
