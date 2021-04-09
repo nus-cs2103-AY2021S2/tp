@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
 import static seedu.address.commons.core.Messages.MESSAGE_END_DATETIME_BEFORE_START_DATETIME;
-import static seedu.address.commons.core.Messages.MESSAGE_PAST_EVENT_END_DATE_TIME;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -18,7 +17,6 @@ import seedu.address.model.common.Date;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.EventDateTimePastPredicate;
 import seedu.address.model.event.EventEndDateTimeValidPredicate;
 import seedu.address.model.event.Time;
 
@@ -127,11 +125,6 @@ class JsonAdaptedEvent {
             throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
         final Time modelEndTime = new Time(endTime);
-
-        //is end date time valid check
-        if (!new EventDateTimePastPredicate().test(modelEndDate, modelEndTime)) {
-            throw new IllegalValueException(MESSAGE_PAST_EVENT_END_DATE_TIME);
-        }
 
         //is start date time before end date time check
         if (!new EventEndDateTimeValidPredicate(modelStartDate, modelStartTime)

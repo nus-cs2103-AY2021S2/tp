@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import static seedu.address.commons.core.Messages.MESSAGE_PAST_DEADLINE;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -14,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.common.Category;
 import seedu.address.model.common.Date;
-import seedu.address.model.common.DatePastPredicate;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
 import seedu.address.model.task.CompletionStatus;
@@ -124,10 +121,6 @@ class JsonAdaptedTask {
         }
         final CompletionStatus modelCompletionStatus = new CompletionStatus(completionStatus);
 
-        //is deadline past today check
-        if (!new DatePastPredicate().test(modelDeadline)) {
-            throw new IllegalValueException(MESSAGE_PAST_DEADLINE);
-        }
         if (pinnedStatus == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     PinnedStatus.class.getSimpleName()));
