@@ -11,13 +11,17 @@ increase work productivity for delivery drivers by simplifying the delivery mana
     * Quick Start
     * Features
         * Viewing help
-        * Add delivery points
-        * Delete delivery points
-        * List all delivery points
-        * Mark delivery as Done
-        * Find delivery using keyword matching a certain criteria  
+        * Add a delivery task
+        * Edit a delivery task
+        * Add a remark to a delivery task
+        * Delete a delivery task
+        * Clear all delivery tasks
+        * List all delivery tasks
+        * Mark delivery task as done
+        * Find delivery task using keyword matching any attribute  
         * Statistics of delivery workflow
-        * View completed deliveries
+        * View completed delivery tasks
+        * View uncompleted delivery tasks
         * Exit application
 
 --------------------------------------------------------------------------------------------------------------------
@@ -40,7 +44,7 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
     * **`list`** : Lists all delivery points
 
-    * **`add`**`a/John street, block 123, #01-01` : Adds a delivery point called `John street, block 123, #01-01` to the
+    * **`add`**`n/Johnathan Tan p/98723456 a/108 Bishan street, block 123, #01-01 e/johnathan@gmail.com d/2021-05-05` : Adds a delivery with address `108 Bishan street, block 123, #01-01` to the
       Delivery list.
 
     * **`delete`**`3` : Deletes the 3rd delivery point shown in the current list.
@@ -94,7 +98,75 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 ![Ui](images/HelpCommand.png)
 
-### Viewing all delivery points : `list`
+### Add a delivery tasks: `add`
+
+**Purpose:** Adds a delivery task to the delivery list.
+
+**Format:** `add n/NAME p/PHONE a/ADDRESS e/EMAIL d/DATE`
+
+**Examples:**
+
+* `add n/Mark p/92841234 a/20 Watten Estate e/mark1998@gmail.com d/2021-02-02
+  `
+  
+![Ui](images/AddCommand.png)
+
+
+### Edit a delivery task: `edit INDEX PREFIX/ATTRIBUTE`
+
+**Purpose:** Edits any selected attribute of the delivery entry except the remark.
+
+**Prefix:** `n/`, `p/`, `a/`, `e/`, `t/`, `d/`
+
+**Attribute:** Enter information based on the format of the attribute specified.
+
+**Note:** 
+  * You can edit multiple attributes.
+  * Remark can be edited separately through the remark command.
+  * INDEX refers to the number shown in front of each delivery
+
+**Format:** `edit INDEX PREFIX/ATTRIBUTE`
+
+**Examples:**
+
+* `edit 8 n/Joshua`
+
+![Ui](images/EditSingleAttribute.png)
+
+* `edit 8 a/Clementi Road d/2021-10-01`
+
+![Ui](images/EditMultipleAttribute.png)
+
+### Add a remark to a delivery tasks: `add`
+
+**Purpose:** Adds a remark to a delivery task in the delivery list.
+
+**Format:** `remark TASK NUMBER r/REMARK`
+
+**Examples:**
+
+* `remark 1 r/needs utensils
+  `
+
+![Ui](images/RemarkCommand.png)
+
+### Delete a delivery task : `delete`
+
+**Purpose:** Deletes the delivery task from the delivery list.
+
+**Format:** `delete TASK NUMBER``
+
+* Deletes a delivery task from the list.
+* The TASK NUMBER refers to the number shown in the displayed delivery list.
+* The index must be a positive number 1, 2, 3,
+
+**Examples:**
+
+* `delete 2` - delete 2 will delete the second delivery task in the delivery list.
+  
+![Ui](images/DeleteCommand.png)
+
+### List all delivery tasks : `list`
 
 **Purpose:** Shows all the delivery points
 
@@ -106,57 +178,49 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 ![Ui](images/ListCommand.png)
 
-### Adding a delivery point: `add`
+### Clear all delivery tasks : `list`
 
-**Purpose:** Adds a delivery task to the delivery list.
+**Purpose:** Clear all the delivery tasks
 
-**Format:** `add n/NAME p/PHONE a/ADDRESS e/EMAIL d/DATETIME`
-
-**Examples:**
-
-* `add n/Mark p/92841234 a/20 Watten Estate e/mark1998@gmail.com d/2021-02-02
-  `
-  
-![Ui](images/AddCommand.png)
-
-### Deleting a delivery task : `delete`
-
-**Purpose:** Deletes the specified delivery location from the delivery list.
-
-**Format:** `delete INDEX`
-
-* Deletes the delivery at the specified INDEX.
-* The index refers to the index number shown in the displayed delivery list.
-* The index must be a positive integer 1, 2, 3,
+**Format:** `clear`
 
 **Examples:**
 
-* `delete 2` - delete 2 will delete the second delivery location in the delivery list.
-  
-![Ui](images/DeleteCommand.png)
+* `clear` - Clears all the delivery tasks in the delivery list
 
-### Mark a delivery as done : `done`
+![Ui](images/ClearCommand.png)
 
-**Purpose:** Set a delivery task in the delivery list to done
+### Mark delivery task as done : `done`
 
-**Format:** `done INDEX`
+**Purpose:** Set a delivery task in the delivery list to done or not done
 
-* Sets the delivery at the specified INDEX to done.
-* The index refers to the index number shown in the displayed delivery list.
-* The index must be a positive integer 1, 2, 3,
+**Format:** `done TASK NUMBER`
+
+* Sets the delivery task as done [✓].
+* The TASK NUMBER refers to the number shown in the displayed delivery list.
+* The TASK NUMBER must be a positive number such as 1, 2, 3
+* If the delivery task is already marked as done [✓], running this command will mark it as not done [X]
 
 **Example:**
 
-* `done 2` - done 2 will set the second delivery location in the delivery list as done.
+* `done 2` - done 2 will set the second delivery task in the delivery list as done.
 
 ![Ui](images/DoneCommand.png)
 
-### Finding deliveries using keyword matching a certain criteria: `find <keyword>`
-**Criteria**: Name, Telephone Number, Address, Date
 
-**Purpose** Find deliveries that match certain criteria
+### Find deliveries using keywords matching any attribute: `find KEYWORDS`
+**Attributes:** Name, Telephone Number, Address, Date, Remark, Done, Email
 
-**Format** `find <keywords>`
+**Purpose** Find deliveries that match certain attribute
+
+**Notes:**
+* It is worth noting that you have to key in a full `KEYWORD` to retrieve a result.
+  That is, if you want to find `Alex Yeoh`, then typing `find Al` would not return a result,
+  but `find Alex` or `find Yeoh` will. So, avoid keying in incomplete keywords.
+* Incomplete keywords are disabled in order to reduce the number of unnecessary search results which
+  may defeat the aim of the feature.
+  
+**Format** `find KEYWORDS`
 
 * One of the following results will show:
   * Deliveries matching the keywords
@@ -189,20 +253,39 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 ### Statistics of delivery workflow : `stats`
 
-**Purpose:** Get a summary of your current delivery workflow
+**Purpose:** Get a summary report of the current delivery workflow
 
 **Format:** `stats`
 
-* The following statistics will be calculated and shown on the screen:
+* The following data will be calculated and shown on the screen:
   * Deliveries Done, Deliveries Not Done, Deliveries Due, Deliveries Not Due
-  * Fragile Deliveries , Liquid Deliveries, Hot Deliveries, Tagless Deliveries
-
-
+  * Fragile Deliveries , Liquid Deliveries, Food Deliveries, Hot Deliveries
+  * Cold Deliveries , Heavy Deliveries, Bulky Deliveries, Urgent Deliveries
+  * Other Deliveries
+  * `Deliveries Done` are Deliveries that have been marked done
+  * `Deliveries Not Done` are Deliveries that have not been marked as done
+  * `Deliveries Due` are Deliveries that have exceeded their delivery date and are still marked as not done
+  * `Deliveries Not Due` are Deliveries that have not yet exceeded their delivery date and are marked as not done
+  * `Fragile Deliveries` are Deliveries with tags marked as fragile
+  * `Liquid Deliveries` are Deliveries with tags marked as liquid
+  * `Food Deliveries` are Deliveries with tags marked as food
+  * `Hot Deliveries` are Deliveries with tags marked as hot
+  * `Cold Deliveries` are Deliveries with tags marked as cold
+  * `Heavy Deliveries` are Deliveries with tags marked as heavy
+  * `Bulky Deliveries` are Deliveries with tags marked as bulky
+  * `Urgent Deliveries` are Deliveries with tags marked as urgent
+  * `Other Deliveries` are Deliveries without any tags 
+  
+  
+**How to interpret the displayed data:**
+ * `Deliveries Done : 5 ( 83.33% )` means 5 and 83.33% of the deliveries in the list are marked as done 
+ * `Deliveries Due: 1 ( 16.67% )` means 1 and 16.67% of the deliveries in the list are due 
+  
 **Example:**
 
-* `stats` - outputs the statistics
+* `stats` - outputs the calculated figures as shown below
 
-### View completed deliveries : `completed`
+### View completed delivery tasks: `completed`
 
 **Purpose:** Filter out the completed deliveries in the delivery list
 
@@ -214,7 +297,19 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 ![Ui](images/CompletedCommand.png)
 
-### Exiting the program : `exit`
+### View uncompleted delivery tasks: `uncompleted`
+
+**Purpose:** Filter out the uncompleted deliveries in the delivery list
+
+**Format:** `uncompleted`
+
+**Example:**
+
+* `uncompleted` - outputs the list of uncompleted deliveries
+
+![Ui](images/UncompletedCommand.png)
+
+### Exit application : `exit`
 
 **Purpose:** Exits the program.
 
@@ -239,13 +334,17 @@ the data of your previous AddressBook home folder.
 Action | Format,<br> Example(s)
 --------|------------------
 **Help** | `help`<br> e.g., `help`
-**Add** | `add a/ADDRESS d/DATETIME` <br> e.g., `add a/123, Clementi Rd, 1234665 d/01-02-2021`
+**Add** | `add n/NAME p/PHONE a/ADDRESS e/EMAIL d/DATETIME` <br> e.g., `add n/Johnathan p/98723456 a/123, Clementi Rd, 1234665 e/johnathan@gmail.com d/01-02-2021`
+**Edit** | `edit INDEX n/NAME`, `p/PHONE`, `a/ADDRESS`, `e/EMAIL`, `t/TAG`, `d/DATE `<br> e.g.,`edit 1 a/102 Bishan Street`
+**Remark** | `remark INDEX r/REMARK`<br> e.g.,`remark 1 r/needs untensils`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Clear** | `clear`<br> e.g., `clear`
 **List** | `list`<br> e.g., `list`
 **Done** | `done INDEX`<br> e.g., `done 2`
 **Find** | `find <keyword>` e.g., `find alex`
 **Stats** | `stats` <br> e.g., `stats`
 **Completed** | `completed` <br> e.g., `completed`
+**Uncompleted** | `uncompleted` <br> e.g., `uncompleted`
 **Exit** | `exit`<br> e.g., `exit`
 
 
