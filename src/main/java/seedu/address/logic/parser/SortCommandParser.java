@@ -6,15 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
-import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.predicate.NameSchoolAndSubjectContainsKeywordsPredicate;
-import seedu.address.model.subject.Subject;
-
-import java.util.Arrays;
-import java.util.List;
-
 
 /**
  * Parses input arguments and creates a new SortCommand object

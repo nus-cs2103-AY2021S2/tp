@@ -74,8 +74,8 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.filterThenSortPersonList(predicate, comparator);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, prefixString) +
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getTransformedPersonList().size()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, prefixString)
+                + String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getTransformedPersonList().size()));
     }
 
     @Override
