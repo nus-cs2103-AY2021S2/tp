@@ -86,11 +86,11 @@ Shows information about available commands and how they can be used.
 Format: `help [COMMAND]`
 
 * If command is not specified, a summary of all available commands will be displayed, along with a link to access the full user guide.
-* If command is specified, detailed information about the command will be displayed. 
+* If command is specified, summarised information about the specified command will be displayed.
 
 Examples:
 * `help` Displays summary of all available commands.
-* `help find` Displays detailed information about the find command.
+* `help find` Displays summarised information about the find command.
 
 #### Exiting the program : `exit`
 
@@ -203,12 +203,12 @@ you are searching for. Also, please note that only exact matches will be returne
 Example: find o/tag t/first t/second
 </div>
 
-* The search is case-insensitive. e.g `alex` will match `ALEX`
-* The order of the keywords does not matter. e.g. `john doe` will match `doe john`
-* Incomplete words will also be matched e.g. `Ale` will match `Alex`
+* The search is case-insensitive. e.g `alex` will match `ALEX`.
+* The order of the keywords does not matter. e.g. `john doe` will match `doe john`.
+* Incomplete words will also be matched e.g. `Ale` will match `Alex`.
 * Contacts with any field matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Alex David` will return `Alex Yeoh`, `David Li`
-* If *n* contacts can be found, message “*n* Contact(s) listed!” will be displayed
+* If *n* contacts can be found, message “*n* Contact(s) listed!” will be displayed.
   e.g. when 0 results are found, "0 Contact(s) listed!" is displayed
 
 Examples:
@@ -302,6 +302,14 @@ Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]... [tc/CHILDTAG]...`
 Examples:
 * `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2 ct/amy`
 
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+An appointment with the exact same name and date as an appointment that already exists in the appointment book cannot be added.
+</div>
+
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+ParentPal currently does not support checking for clashing appointments. Please make sure to check your availability before adding new appointments. This can be done with the help of findAppt by date.
+</div>
+
 #### Deleting an appointment : `deleteAppt`
 
 Deletes the specified appointment from the appointment book.
@@ -352,13 +360,13 @@ Currently available options for the `[OPTION]` field include:
 * `date` Find by date of appointment
 * `contact` Find by name of the contacts involved in the appointment
 
-* The search is case-insensitive. e.g `ptm` will match `PTM`
-* The order of the keywords does not matter. e.g. `Teacher meeting` will match `Meeting teacher`
-* Incomplete words will also be matched e.g. `PT` will match `PTM`
+* The search is case-insensitive. e.g `ptm` will match `PTM`.
+* The order of the keywords does not matter. e.g. `Teacher meeting` will match `Meeting teacher`.
+* Incomplete words will also be matched e.g. `PT` will match `PTM`.
 * Appointments with any field matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Teacher meeting` will return `Speak to ballet teacher`, `PSG meeting`
-* If *n* appointments can be found, message “*n* Appointment(s) listed!” will be displayed
-  e.g. when 0 results are found, "0 Appointment(s) listed!" is displayed.
+* If *n* appointments can be found, message “*n* Appointment(s) listed!” will be displayed.
+  e.g. when 0 results are found, "0 Appointment(s) listed!" is displayed
 
 #### Listing all appointments : `listAppt`
 

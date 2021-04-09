@@ -86,11 +86,11 @@ Shows information about available commands and how they can be used.
 Format: `help [COMMAND]`
 
 * If command is not specified, a summary of all available commands will be displayed, along with a link to access the full user guide.
-* If command is specified, detailed information about the command will be displayed. 
+* If command is specified, summarised information about the specified command will be displayed. 
 
 Examples:
 * `help` Displays summary of all available commands.
-* `help find` Displays detailed information about the find command.
+* `help find` Displays summarised information about the find command.
 
 #### Exiting the program : `exit`
 
@@ -312,6 +312,14 @@ Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILDTAG]�
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `DATE` has to be in the format "`dd`/`MM`/`yyyy` `HH`:`mm`".
+
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+An appointment with the exact same name and date as an appointment that already exists in the appointment book cannot be added.
+</div>
+
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+ParentPal currently does not support checking for clashing appointments. Please make sure to check your availability before adding new appointments. This can be done with the help of findAppt by date.
+</div>
 
 Examples:
 * `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2 tc/amy`
