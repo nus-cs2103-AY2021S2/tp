@@ -185,19 +185,32 @@ Examples:
 
 #### Locating contacts by name: `find`
 
-Finds contacts whose names contain any of the given keywords.
+Find contacts based on the given option. If no option specified, all of a contact's
+fields will be searched and any keyword matches in any one of the fields will return that contact.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [o/OPTION] KEYWORD [MORE_KEYWORDS]…​`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Incomplete words will also be matched e.g. `Han` will match `Hans`
-* contacts matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* If *n* contacts can be found, message “*n* contacts listed!” will be displayed
-  e.g. when 0 results, "0 contacts listed!" is displayed
-  
+Currently available options for the `[OPTION]` field include:
+* `name` Find by name of the contact
+* `address` Find by address of the contact
+* `phone` Find by phone of the contact
+* `email` Find by email of the contact
+* `tag` Find by tags of the contact (only exact tags will be matched)
+
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+When using the <code>tag</code> option <code>t/</code> needs to be placed in front of the tag 
+you are searching for. Also, please note that only exact matches will be returned for find by tag.<br>
+Example: find o/tag t/first t/second
+</div>
+
+* The search is case-insensitive. e.g `alex` will match `ALEX`
+* The order of the keywords does not matter. e.g. `john doe` will match `doe john`
+* Incomplete words will also be matched e.g. `Ale` will match `Alex`
+* Contacts with any field matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Alex David` will return `Alex Yeoh`, `David Li`
+* If *n* contacts can be found, message “*n* Contact(s) listed!” will be displayed
+  e.g. when 0 results are found, "0 Contact(s) listed!" is displayed
+
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li` when no exact matches are found
@@ -327,21 +340,25 @@ on the contact list.
 
 #### Finding appointments by name: `findAppt`
 
-Finds appointments whose names contain any of the given keywords.
+Find appointments based on the given option. If no option specified, all of an appointment's
+fields will be searched and any keyword matches in any one of the fields will return that appointment.
 
-Format: `findAppt KEYWORD [MORE_KEYWORDS]...`
+Format: `findAppt [o/OPTION] KEYWORD [MORE_KEYWORDS]…​`
+
+Currently available options for the `[OPTION]` field include:
+* `name` Find by the name of the appointment
+* `child` Find by the child that the appointment is tagged to
+* `address` Find by address of the appointment
+* `date` Find by date of appointment
+* `contact` Find by name of the contacts involved in the appointment
 
 * The search is case-insensitive. e.g `ptm` will match `PTM`
 * The order of the keywords does not matter. e.g. `Teacher meeting` will match `Meeting teacher`
-* Only the name is searched.
 * Incomplete words will also be matched e.g. `PT` will match `PTM`
-* Contacts matching at least one keyword will be returned (i.e. `OR` search).
+* Appointments with any field matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Teacher meeting` will return `Speak to ballet teacher`, `PSG meeting`
-* If *n* appointments can be found, message “*n* appointments listed!” will be displayed
-  e.g. when 0 results, "0 appointments listed!" is displayed
-
-Examples:
-* `findAppt ptm` returns `PTM`
+* If *n* appointments can be found, message “*n* Appointment(s) listed!” will be displayed
+  e.g. when 0 results are found, "0 Appointment(s) listed!" is displayed.
 
 #### Listing all appointments : `listAppt`
 
