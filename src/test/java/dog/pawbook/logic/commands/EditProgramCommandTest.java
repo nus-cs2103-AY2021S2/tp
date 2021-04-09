@@ -118,7 +118,7 @@ public class EditProgramCommandTest {
         // different types -> returns false
         assertFalse(standardCommand.equals(new HelpCommand()));
 
-        // different index -> returns false
+        // different id -> returns false
         assertFalse(standardCommand.equals(new EditProgramCommand(ID_TWO, DESC_OBEDIENCE_TRAINING)));
 
         // different descriptor -> returns false

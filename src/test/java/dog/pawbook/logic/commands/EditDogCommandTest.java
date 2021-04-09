@@ -9,6 +9,7 @@ import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 import static dog.pawbook.testutil.TypicalId.ID_ONE;
+import static dog.pawbook.testutil.TypicalId.ID_THREE;
 import static dog.pawbook.testutil.TypicalId.ID_TWO;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -48,11 +49,12 @@ public class EditDogCommandTest {
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
         expectedModel.setEntity(firstIdEntity.getKey(), editedDog);
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(firstIdEntity.getKey()));
+
         assertCommandSuccess(editDogCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_someFieldsSpecified_success() {
+    public void execute_ownerIdSpecified_success() {
         Dog toEditDog = (Dog) model.getEntity(ID_TWO);
 
         DogBuilder dogInList = new DogBuilder(toEditDog);
@@ -71,6 +73,26 @@ public class EditDogCommandTest {
 
         assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
     }
+
+    /*@Test
+    public void execute_someFieldsSpecified_success() {
+        Dog toEditDog = (Dog) model.getEntity(ID_TWO);
+
+        DogBuilder dogInList = new DogBuilder(toEditDog);
+        Dog editedDog = dogInList.withOwnerID(ID_THREE).build();
+
+        EditDogCommand.EditDogDescriptor descriptor = new EditDogDescriptorBuilder()
+                .withOwnerId(ID_THREE).build();
+        EditDogCommand editEntityCommand = new EditDogCommand(ID_TWO, descriptor);
+
+        String expectedMessage = String.format(EditDogCommand.MESSAGE_EDIT_DOG_SUCCESS, editedDog);
+
+        Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
+        expectedModel.setEntity(ID_TWO, editedDog);
+        expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_TWO));
+
+        assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
+    }*/
 
     @Test
     public void execute_noFieldSpecified_success() {
@@ -113,7 +135,7 @@ public class EditDogCommandTest {
         // different types -> returns false
         assertFalse(standardCommand.equals(new HelpCommand()));
 
-        // different index -> returns false
+        // different id -> returns false
         assertFalse(standardCommand.equals(new EditDogCommand(ID_TWO, DESC_ASHER)));
 
         // different descriptor -> returns false

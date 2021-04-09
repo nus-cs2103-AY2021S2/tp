@@ -9,6 +9,7 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SEX;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
+import static java.util.Objects.requireNonNull;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -19,6 +20,7 @@ import dog.pawbook.commons.util.CollectionUtil;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.IdMatchPredicate;
 import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.model.managedentity.dog.Breed;
 import dog.pawbook.model.managedentity.dog.DateOfBirth;
@@ -50,6 +52,37 @@ public class EditDogCommand extends EditEntityCommand {
      */
     public EditDogCommand(Integer id, EditDogDescriptor editDogDescriptor) {
         super(id, editDogDescriptor);
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+
+        if (!model.hasEntity(id)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DOG_ID);
+        }
+        Entity targetEntity = model.getEntity(id);
+
+        if (!(targetEntity instanceof Dog)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DOG_ID);
+        }
+        Dog targetDog = (Dog) targetEntity;
+        Dog editedDog = createEditedEntity(targetEntity, editEntityDescriptor);
+
+        if (!targetDog.equals(editedDog) && model.hasEntity(editedDog)) {
+            throw new CommandException(getDuplicateEntityMessage());
+        }
+
+        // special handling of Owner ID change
+        int originalOwnerId = targetDog.getOwnerId();
+        int editedOwnerId = editedDog.getOwnerId();
+        if (originalOwnerId != editedOwnerId) {
+            changeOwner(model, originalOwnerId, editedOwnerId);
+        }
+
+        model.setEntity(id, editedDog);
+        model.updateFilteredEntityList(new IdMatchPredicate(id));
+        return new CommandResult(getSuccessMessage(editedDog));
     }
 
     private void changeOwner(Model model, int originalOwnerId, int editedOwnerId) throws CommandException {

@@ -53,22 +53,22 @@ public class EditDogCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        // no index specified
+        // no id specified
         assertParseFailure(parser, VALID_NAME_ASHER, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditDogCommand.MESSAGE_NOT_EDITED);
 
-        // no index and no field specified
+        // no id and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
-        // negative index
+        // negative id
         assertParseFailure(parser, "-5" + NAME_DESC_ASHER, MESSAGE_INVALID_FORMAT);
 
-        // zero index
+        // zero id
         assertParseFailure(parser, "0" + NAME_DESC_ASHER, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
@@ -94,7 +94,7 @@ public class EditDogCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + BREED_DESC_BELL + INVALID_BREED_DESC, Breed.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Owner} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Dog} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, "1" + TAG_DESC_FRIENDLY + TAG_DESC_QUIET + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + TAG_DESC_FRIENDLY + TAG_EMPTY + TAG_DESC_QUIET, Tag.MESSAGE_CONSTRAINTS);
@@ -108,11 +108,12 @@ public class EditDogCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Integer targetId = ID_TWO;
-        String userInput = targetId + BREED_DESC_ASHER + TAG_DESC_FRIENDLY
+        String userInput = targetId + BREED_DESC_ASHER + TAG_DESC_FRIENDLY + OWNERID_DESC_15
                 + DATEOFBIRTH_DESC_ASHER + SEX_DESC_ASHER + NAME_DESC_ASHER + TAG_DESC_QUIET;
 
         EditDogDescriptor descriptor = new EditDogDescriptorBuilder().withName(VALID_NAME_ASHER)
                 .withBreed(VALID_BREED_ASHER).withDob(VALID_DATEOFBIRTH_ASHER).withSex(VALID_SEX_ASHER)
+                .withOwnerId(VALID_OWNERID_15)
                 .withTags(VALID_TAG_FRIENDLY, VALID_TAG_QUIET).build();
         EditDogCommand expectedCommand = new EditDogCommand(targetId, descriptor);
 
@@ -155,6 +156,12 @@ public class EditDogCommandParserTest {
         // sex
         userInput = targetId + SEX_DESC_ASHER;
         descriptor = new EditDogDescriptorBuilder().withSex(VALID_SEX_ASHER).build();
+        expectedCommand = new EditDogCommand(targetId, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // ownerId
+        userInput = targetId + OWNERID_DESC_15;
+        descriptor = new EditDogDescriptorBuilder().withOwnerId(VALID_OWNERID_15).build();
         expectedCommand = new EditDogCommand(targetId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

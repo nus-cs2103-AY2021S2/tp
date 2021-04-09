@@ -114,6 +114,7 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
     public static final String TAG_EMPTY = " " + PREFIX_TAG;
+    public static final String SESSION_EMPTY = " " + PREFIX_SESSION;
 
     public static final EditOwnerDescriptor DESC_AMY;
     public static final EditOwnerDescriptor DESC_BOB;

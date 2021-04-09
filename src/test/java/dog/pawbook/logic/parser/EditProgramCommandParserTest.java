@@ -11,6 +11,7 @@ import static dog.pawbook.logic.commands.CommandTestUtil.SESSION_DESC_POTTY_TRAI
 import static dog.pawbook.logic.commands.CommandTestUtil.TAG_DESC_ALL;
 import static dog.pawbook.logic.commands.CommandTestUtil.TAG_DESC_PUPPIES;
 import static dog.pawbook.logic.commands.CommandTestUtil.TAG_EMPTY;
+import static dog.pawbook.logic.commands.CommandTestUtil.SESSION_EMPTY;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_OBEDIENCE_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_POTTY_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_OBEDIENCE_TRAINING;
@@ -41,22 +42,22 @@ public class EditProgramCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        // no index specified
+        // no id specified
         assertParseFailure(parser, VALID_NAME_OBEDIENCE_TRAINING, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditProgramCommand.MESSAGE_NOT_EDITED);
 
-        // no index and no field specified
+        // no id and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
-        // negative index
+        // negative id
         assertParseFailure(parser, "-5" + NAME_DESC_OBEDIENCE_TRAINING, MESSAGE_INVALID_FORMAT);
 
-        // zero index
+        // zero id
         assertParseFailure(parser, "0" + NAME_DESC_OBEDIENCE_TRAINING, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
@@ -80,7 +81,7 @@ public class EditProgramCommandParserTest {
         assertParseFailure(parser, "1" + SESSION_DESC_OBEDIENCE_TRAINING + INVALID_SESSION_DESC,
                 Session.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Owner} being edited,
+        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Program} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, "1" + TAG_DESC_ALL + TAG_DESC_PUPPIES + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + TAG_DESC_ALL + TAG_EMPTY + TAG_DESC_PUPPIES, Tag.MESSAGE_CONSTRAINTS);
@@ -142,12 +143,24 @@ public class EditProgramCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Integer targetId = ID_ONE;
-        String userInput = targetId + TAG_DESC_PUPPIES + TAG_DESC_ALL + TAG_DESC_ALL + TAG_DESC_PUPPIES
-                + SESSION_DESC_POTTY_TRAINING + SESSION_DESC_POTTY_TRAINING + TAG_DESC_PUPPIES;
+        String userInput = targetId + TAG_DESC_PUPPIES + SESSION_DESC_OBEDIENCE_TRAINING + TAG_DESC_ALL
+                + TAG_DESC_ALL + TAG_DESC_PUPPIES + SESSION_DESC_POTTY_TRAINING
+                + SESSION_DESC_POTTY_TRAINING + TAG_DESC_PUPPIES + SESSION_DESC_OBEDIENCE_TRAINING;
 
         EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder()
-                .withSessions(VALID_SESSION_POTTY_TRAINING)
+                .withSessions(VALID_SESSION_POTTY_TRAINING, VALID_SESSION_OBEDIENCE_TRAINING)
                 .withTags(VALID_TAG_ALL, VALID_TAG_PUPPIES).build();
+        EditProgramCommand expectedCommand = new EditProgramCommand(targetId, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_resetSessions_success() {
+        Integer targetId = ID_THREE;
+        String userInput = targetId + SESSION_EMPTY;
+
+        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder().withSessions().build();
         EditProgramCommand expectedCommand = new EditProgramCommand(targetId, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
