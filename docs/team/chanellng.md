@@ -40,8 +40,8 @@ Given below are my contributions to the project.
   * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Wrote additional tests for all added features to increase coverage (Pull requests [\#68](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/68), [\#69](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/69),  [\#70](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/70) , [\#168](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/168)) :
-    * delete session, edit session, view session , list (persons, sessions, students, tutors)
+  * Wrote additional tests for all added features to increase coverage (Pull requests [\#68](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/68), [\#69](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/69),  [\#70](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/70) , [\#168](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/168) , [\#187](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/187)) :
+    * session ID, sessionIdPredicate, delete session, edit session, view session , list (persons, sessions, students, tutors)
   * Updated the list command to be able to view all persons, all students, all tutors and all sessions. (Pull Request [\#70](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/70))
   * Updated the clear command to clear the whole list of persons and sessions. (Pull Request [\#164](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/164))
   * Updated the Ui on a consistent basis:
