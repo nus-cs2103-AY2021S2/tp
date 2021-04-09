@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-GreenMileageEfforts (GME) is a platform that helps drivers and passengers of any IT company quickly arrange carpooling in order to lower their carbon footprint. The platform follows that of a command-line interface (CLI) such that power users that are familiar can efficiently navigate the program.
+GreenMileageEfforts (GME) is a platform that helps the HR executive of any company quickly arrange carpooling among its employees in order to lower the carbon footprint of the company.
 
 * Table of Contents
 {:toc}
@@ -13,9 +13,9 @@ GreenMileageEfforts (GME) is a platform that helps drivers and passengers of any
 # 1. Introduction
 
 ## 1.1 About Green Mileage Efforts
-Green Mileage Efforts(GME) is a holistic carpooling management solution designed to help corporations reduce their carbon footprint. The GME system allows for the simple creation and management of groups of employees looking to carpool to and from their office. Through the GME system, users can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of the arranged carpooling groups for easy management.
+Green Mileage Efforts(GME) is an efficient carpooling management solution designed to help corporations reduce their carbon footprint. The GME system allows for the simple creation and management of weekly carpooling groups of employees looking to carpool to and from their office. These [pools](#6-glossary) of employees can then carpool from the office regularly on the specified days and times every week. Through the GME system, users can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of the arranged carpooling groups for easy management.
 
-GME is a platform that follows a Command-Line Interface (CLI) such that power users that are familiar can efficiently navigate the program.
+GME is a platform that follows a [Command-Line Interface (CLI)](#6-glossary) such that power users that are familiar can efficiently navigate the program.
 
 ## 1.2 Navigating the User Guide
 For help regarding the set up of GME, refer to the [“Quick Start"](#2-quick-start-) section.
@@ -76,7 +76,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 ### 3.1.1 Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -118,9 +118,11 @@ Adds a new passenger in the GME terminal.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the pool command:**<br>
+**:information_source: Notes about the add command:**<br>
 * [TripDay](#6-glossary) is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
 * [TripTime](#6-glossary) is required to be in the 24-hour format. e.g. `0530` or `2359` 
+* The tripday and triptime specified are intended as weekly specifications for the day and time that the passenger intends to carpool every week.
+* As the current iteration of GME(v1.4) is still only a minimum viable product, every passenger can only specify one day and one time a week for when they intend to carpool.
 </div>
 
 **Examples:**
@@ -234,7 +236,7 @@ Selects passengers from the current view in the bottom left pane of the GME term
 
 ### 3.3.2 Removing pools: `unpool`
 
-Removes the pool specified by an index from the GME terminal.
+Removes the [pool](#6-glossary) specified by an index from the GME terminal.
 
 **Format:** `unpool INDEX`
 
@@ -242,8 +244,8 @@ Removes the pool specified by an index from the GME terminal.
 
 **:information_source: Notes about the unpool command:**<br>
 
-* Removes the pool at the specified `INDEX`.
-* The index refers to the index number shown in the current displayed pool list.
+* Removes the [pool](#6-glossary) at the specified `INDEX`.
+* The index refers to the index number shown in the current displayed [pools](#6-glossary) list.
 * The index **must be a positive integer** 1, 2, 3, …​
 </div>
 
@@ -252,7 +254,7 @@ Removes the pool specified by an index from the GME terminal.
 
 ### 3.3.3 Filtering pools: `findPool`
 
-Filtering pools where the name of the pool's passengers contain any of the given keywords.
+Filtering pools where the name of the [pool's](#6-glossary) passengers contain any of the given keywords.
 
 **Format:** `findPool n/KEYWORD [n/KEYWORD n/KEYWORD ...]`
 
@@ -300,8 +302,9 @@ Action | Format, Examples
 
 Term used | Meaning
 --------|------------------
-Pool | A group of employees carpooling together. Consists of one driver and at least one passenger.
+Pool | A group of employees carpooling together. Consists of one driver and at least one passenger. The pools generated for a specifc day and time are the same every week unless reorganised by the user. 
 Passenger | An employee carpooling with at least one driver.
-TripDay | Day of intended carpooling trip 
-TripTime | Time of intended carpooling trip 
+TripDay | Day of the intended carpooling trip.  
+TripTime | Time of the intended carpooling trip.
 Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
+Command Line Interface (CLI) | An interface that relies primarily on text input and little to no point and click UI elements exist
