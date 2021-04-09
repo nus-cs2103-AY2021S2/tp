@@ -1,6 +1,7 @@
 package seedu.us.among.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.us.among.commons.core.Messages.MESSAGE_USE_HELP;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_DATA;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
@@ -18,30 +19,22 @@ import seedu.us.among.model.endpoint.Response;
 public class RunCommand extends Command {
 
     public static final String COMMAND_WORD = "run";
-    public static final String MESSAGE_API_EXAMPLE_1 = "1. "
-            + COMMAND_WORD + " "
-            + PREFIX_METHOD + " POST "
-            + PREFIX_ADDRESS + " https://reqres.in/api/users "
-            + PREFIX_DATA + " {\"name\": \"tester\", \"job\": \"have fun\"} "
-            + PREFIX_HEADER + " \"Content-Type: application/json\"\n";
-
-    public static final String MESSAGE_API_EXAMPLE_2 = "2. "
-            + COMMAND_WORD + " "
-            + PREFIX_METHOD + " GET "
-            + PREFIX_ADDRESS + " https://api.data.gov.sg/v1/environment/air-temperature\n";
+    public static final String MESSAGE_API_EXAMPLE = COMMAND_WORD + " "
+            + PREFIX_METHOD + " PUT "
+            + PREFIX_ADDRESS + " https://reqres.in/api/users/2 "
+            + PREFIX_DATA + " {\"name\": \"steve\", \"job\": \"lawyer\"} "
+            + PREFIX_HEADER + " \"key: value\"\n ";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Runs an API request without saving it to the API endpoint list.\n\n"
+            + ": Calls an API without saving it to the endpoint list.\n"
             + "Parameters: "
             + PREFIX_METHOD + " METHOD "
             + PREFIX_ADDRESS + " ADDRESS "
             + PREFIX_DATA + " DATA "
             + "[" + PREFIX_HEADER + " HEADER]\n"
-            + "Compulsory parameters: METHOD, ADDRESS\n"
-            + "Optional parameters: DATA, HEADER(s)\n\n"
-            + "Examples:\n"
-            + MESSAGE_API_EXAMPLE_1
-            + MESSAGE_API_EXAMPLE_2;
+            + MESSAGE_USE_HELP + "\n\n"
+            + "Example: "
+            + MESSAGE_API_EXAMPLE;
 
     private final Endpoint toRun;
 

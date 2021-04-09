@@ -1,6 +1,7 @@
 package seedu.us.among.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.us.among.commons.core.Messages.MESSAGE_USE_HELP;
 
 import java.util.function.Predicate;
 
@@ -16,19 +17,11 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE_1 = COMMAND_WORD + ": Find endpoints containing the search word/s through "
-            + "all fields.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds endpoints using keywords.\n"
             + "Parameters: [KEYWORD]\n"
-            + "All parameters are optional, but least one parameter to edit must be provided.\n"
-            + "Example: " + COMMAND_WORD + " GET github";
-
-    public static final String MESSAGE_USAGE_2 = COMMAND_WORD + " (precise search)" + ": Find endpoints containing the "
-            + "search word/s based on the prefix.\n"
-            + "Parameters: -x [METHOD] -u [URL] -d [DATA] -h [HEADER] -t [TAG]\n"
-            + "All parameters are optional, but least one parameter to edit must be provided.\n"
-            + "Example: " + COMMAND_WORD + " -x GET -u google";
-
-    public static final String MESSAGE_USAGE = MESSAGE_USAGE_1 + "\n\n" + MESSAGE_USAGE_2;
+            + MESSAGE_USE_HELP + "\n\n"
+            + "Example: " + COMMAND_WORD + " transport github";
 
     private final Predicate<Endpoint> predicate;
 

@@ -23,7 +23,7 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
      */
     public RemoveCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
+            Index index = ParserUtil.parseIndex(args, RemoveCommand.MESSAGE_USAGE);
             return new RemoveCommand(index);
         } catch (ParseException pe) {
             logger.warning(StringUtil.getDetails(pe));
