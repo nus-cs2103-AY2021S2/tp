@@ -1065,7 +1065,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `odel -5` <br>
        Expected: An error message indicating that the index must be a non-zero unsigned integer.
     
-    3. Test case: `odel abc` <br>
+    4. Test case: `odel abc` <br>
        Expected: A message indicating the command format is invalid followed by proper usage instructions.
 
 
