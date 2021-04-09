@@ -140,7 +140,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the pawbook database data in json format and read it back.
+* can save the Pawbook Database data in json format and read it back.
 
 ### Common classes
 
