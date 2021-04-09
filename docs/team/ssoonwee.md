@@ -19,8 +19,8 @@ Given below are my contributions to the project.
     * What it does: Users are able to use `food_add` command to add food item with their respective nutrients' value into a unique food list. The `food_update` command can be used to update food item with their new nutrients' value into the food list; The `food_delete` command can be used to delete the food item from the list. Subsequently, the `food_list` command can be used to list all food items from the food list.
     * Justification: This feature allow users to reference their food items from the food list storage, managed via the above commands, to aid in their daily food intake tracking.
  
-* **New Feature**: Implemented parser support for `food_intake_add`, `food_intake_delete`, `food_intake_query` commands with Jason.
-    * What it does: Users are able to use `food_intake_add` command to add a food intake with a food item for a specific day. The `food_intake_delete` command can be used to delete a specific food intake item for a specific day. The `food_intake_query` command can be used to query all the food intake within a day or over a period of time.
+* **New Feature**: Implemented parser support for `food_intake_add`, `food_intake_update`, `food_intake_delete`, `food_intake_query` commands with Jason.
+    * What it does: Users are able to use `food_intake_add` command to add a food intake with a food item for a specific day. The `food_intake_update` command can be used to update the specific food intake item for the day with a different nutrient value(s). The `food_intake_delete` command can be used to delete a specific food intake item for a specific day.The `food_intake_query` command can be used to query all the food intake within a day or over a period of time.
     * Justification: This feature allows users to track their food intake for the day, which will then help to calculate the nutrients consumption for the day to see how far are they from the planned progress of the specific diet plans daily requirements.
 
 * **Project management**:
