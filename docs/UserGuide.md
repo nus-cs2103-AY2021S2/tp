@@ -188,7 +188,6 @@ Examples:
 * `addAppt i/A1234567X d/2021-12-13 ts/13:00`
 * `addAppt i/A7654321J d/2021-12-13 ts/14:00`
 
-
 | Before        | 
 | ------------- |
 |![AddApptBefore](images/AddApptBefore.png)
@@ -235,7 +234,15 @@ Format: `deleteAppt MATRICULATION_NUMBER`
   the matriculation number or appointment is not found.
 
 Examples:
-* `deleteAppt A7654321J` deletes Betsy Crowe's appointments from the records, provided she had an appointment scheduled previously.
+* `deleteAppt A1234567X` deletes John Doe's appointments from the records, provided he had an appointment scheduled previously.
+
+| Before        | 
+| ------------- |
+|![DeleteApptBefore](images/deleteApptBefore.png)
+
+| After        | 
+| ------------- |
+|![DeleteApptAfter](images/deleteApptAfter.png)|
 
 ### Viewing statistics for appointments: `statsAppt`
 Displays the number of upcoming and previous appointments within 1 week from the current day, including the current day.
