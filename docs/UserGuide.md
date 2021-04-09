@@ -287,6 +287,17 @@ are advanced and know how to manipulate the storage files, you can do so if you 
 a certain format for each data field, thus if you modified the data wrongly, the app will use the fallback option, which
 is to load the storage file with built-in default flashcards and tags.
 
+**Q**: Why can't I delete some tags?<br>
+**A**: Default tags are provided by the application to aid in the learning process and guide you along the way. You can,
+however, add your own tags to any flashcard. The deletion of tags exists is to complement this user tagging function, 
+in case you have a change of mind or typed any tag wrongly.
+
+**Q**: I just want to do a short quiz! Is there any way to do that?<br>
+**A**: There are multiple ways to set up a shorter quiz session: one would be to start with a selected number of
+questions, and let the application randomise some questions for you. The other option could be to tag questions you
+would like to be tested on; starting with these tags will give you a quiz session with only these selected flashcards.
+A combination of the above two options is also possible.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary

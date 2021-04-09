@@ -162,14 +162,10 @@ package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
 ### [Implemented] Tagging Flashcards
 
 The tagging mechanism allows users to add tags to flashcards of their choice while in the _Learn Mode_
-of the WeebLingo application. Each flashcard has a set of default tags which cannot be edited, followed by
+of the Weeblingo application. Each flashcard has a set of default tags which cannot be edited, followed by
 any unique user added tags.
 
 ![Structure of the Flashcard with tags](images/FlashcardWithTagsObjectDiagram.png)
@@ -180,6 +176,16 @@ The following activity diagram summarizes what happens when a user adds a new ta
 
 The tags function ties together with the Start function of the application, as users can choose to start a quiz
 containing flashcards that have the same tag only.
+
+### [Implemented] Deleting Tags from Flashcards
+
+This mechanism works with the above flashcard tagging feature to allow users to customise tags for their flashcards
+while in the _Learn Mode_ of the Weeblingo application. 
+
+The following sequence diagram summarises how the DeleteTagCommand works:
+![QuizSequenceDiagram](images/DeleteTagSequenceDiagram.png)
+
+Default tags cannot be deleted by this command and will throw an error if the user attempts to do so.
 
 ### [Implemented] Quiz Feature
 
