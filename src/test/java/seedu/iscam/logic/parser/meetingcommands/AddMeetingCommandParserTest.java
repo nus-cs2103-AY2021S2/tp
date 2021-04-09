@@ -48,7 +48,6 @@ class AddMeetingCommandParserTest {
         Meeting expectedMeeting = new MeetingBuilder(CLEO).withTags(VALID_TAG_PREMIUM)
                 .withStatus("incomplete").build();
 
-        // TODO: Check if users are supposed to be able to set completion status with "/s"
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + CLIENT_NAME_DESC_CLEO
                 + DATETIME_DESC_CLEO + LOCATION_DESC_CLEO + DESCRIPTION_DESC_CLEO
