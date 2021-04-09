@@ -224,23 +224,19 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePosition_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePosition("10 a"));
+    public void parsePosition_invalidInput_returnzero() {
+        assertEquals(0, ParserUtil.parsePosition("10 a"));
     }
 
     @Test
-    public void parsePosition_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_POSITION, ()
-            -> ParserUtil.parsePosition(Long.toString(Integer.MAX_VALUE + 1)));
+    public void parsePosition_outOfRangeInput_returnzero() {
 
-        assertThrows(ParseException.class, MESSAGE_INVALID_POSITION, ()
-            -> ParserUtil.parsePosition(Long.toString(10)));
+        int invalidRange[] = {-1,0,10,11};
 
-        assertThrows(ParseException.class, MESSAGE_INVALID_POSITION, ()
-            -> ParserUtil.parsePosition(Long.toString(0)));
-
-        assertThrows(ParseException.class, MESSAGE_INVALID_POSITION, ()
-            -> ParserUtil.parsePosition(Long.toString(-1)));
+        for(int i = 0; i < invalidRange.length; i++) {
+            String optionWithWhitespace = WHITESPACE + invalidRange[i] + WHITESPACE;
+            assertEquals(0, ParserUtil.parsePosition(optionWithWhitespace));
+        }
     }
 
     @Test
