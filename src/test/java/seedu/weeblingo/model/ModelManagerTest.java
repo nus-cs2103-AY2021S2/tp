@@ -1,14 +1,22 @@
 package seedu.weeblingo.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
+import static seedu.weeblingo.testutil.TypicalFlashcards.A_CARD;
+import static seedu.weeblingo.testutil.TypicalFlashcards.I_CARD;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.weeblingo.commons.core.GuiSettings;
+import seedu.weeblingo.model.flashcard.QuestionContainsKeywordsPredicate;
+import seedu.weeblingo.testutil.FlashcardBookBuilder;
 
 public class ModelManagerTest {
 
@@ -29,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setFlashcardsFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setFlashcardsFilePath(Paths.get("weeblingo/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setFlashcardsFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setFlashcardsFilePath(Paths.get("new/weeblingo/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -53,13 +61,13 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setFlashcardBookFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setFlashcardBookFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
+    public void setFlashcardBookFilePath_validPath_setsFlashcardBookFilePath() {
+        Path path = Paths.get("weeblingo/book/file/path");
         modelManager.setFlashcardBookFilePath(path);
         assertEquals(path, modelManager.getFlashcardBookFilePath());
     }
@@ -69,16 +77,16 @@ public class ModelManagerTest {
         assertThrows(NullPointerException.class, () -> modelManager.hasFlashcard(null));
     }
 
-    //    @Test
-    //    public void hasFlashcard_flashcardNotInAddressBook_returnsFalse() {
-    //        assertFalse(modelManager.hasFlashcard(ALICE));
-    //    }
+    @Test
+    public void hasFlashcard_flashcardNotInFlashcardBook_returnsFalse() {
+        assertFalse(modelManager.hasFlashcard(A_CARD));
+    }
 
-    //    @Test
-    //    public void hasFlashcard_flashcardInAddressBook_returnsTrue() {
-    //        modelManager.addFlashcard(ALICE);
-    //        assertTrue(modelManager.hasFlashcard(ALICE));
-    //    }
+    @Test
+    public void hasFlashcard_flashcardInFlashcardBook_returnsTrue() {
+        modelManager.addFlashcard(A_CARD);
+        assertTrue(modelManager.hasFlashcard(A_CARD));
+    }
 
     @Test
     public void getFilteredFlashcardList_modifyList_throwsUnsupportedOperationException() {
@@ -86,40 +94,40 @@ public class ModelManagerTest {
             -> modelManager.getFilteredFlashcardList().remove(0));
     }
 
-    //    @Test
-    //    public void equals() {
-    //        FlashcardBook addressBook = new FlashcardBookBuilder().withFlashcard(ALICE).withFlashcard(BENSON).build();
-    //        FlashcardBook differentAddressBook = new FlashcardBook();
-    //        UserPrefs userPrefs = new UserPrefs();
-    //
-    //        // same values -> returns true
-    //        modelManager = new ModelManager(addressBook, userPrefs);
-    //        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
-    //        assertTrue(modelManager.equals(modelManagerCopy));
-    //
-    //        // same object -> returns true
-    //        assertTrue(modelManager.equals(modelManager));
-    //
-    //        // null -> returns false
-    //        assertFalse(modelManager.equals(null));
-    //
-    //        // different types -> returns false
-    //        assertFalse(modelManager.equals(5));
-    //
-    //        // different addressBook -> returns false
-    //        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
-    //
-    //        // different filteredList -> returns false
-    //        String[] keywords = ALICE.getQuestion().value.split("\\s+");
-    //        modelManager.updateFilteredFlashcardList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
-    //        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
-    //
-    //        // resets modelManager to initial state for upcoming tests
-    //        modelManager.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-    //
-    //        // different userPrefs -> returns false
-    //        UserPrefs differentUserPrefs = new UserPrefs();
-    //        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-    //        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
-    //    }
+    @Test
+    public void equals() {
+        FlashcardBook flashcardBook = new FlashcardBookBuilder().withFlashcard(A_CARD).withFlashcard(I_CARD).build();
+        FlashcardBook differentAddressBook = new FlashcardBook();
+        UserPrefs userPrefs = new UserPrefs();
+
+        // same values -> returns true
+        modelManager = new ModelManager(flashcardBook, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(flashcardBook, userPrefs);
+        assertTrue(modelManager.equals(modelManagerCopy));
+
+        // same object -> returns true
+        assertTrue(modelManager.equals(modelManager));
+
+        // null -> returns false
+        assertFalse(modelManager.equals(null));
+
+        // different types -> returns false
+        assertFalse(modelManager.equals(5));
+
+        // different addressBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+
+        // different filteredList -> returns false
+        String[] keywords = A_CARD.getQuestion().value.split("\\s+");
+        modelManager.updateFilteredFlashcardList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(flashcardBook, userPrefs)));
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
+
+        // different userPrefs -> returns false
+        UserPrefs differentUserPrefs = new UserPrefs();
+        differentUserPrefs.setFlashcardsFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(flashcardBook, differentUserPrefs)));
+    }
 }

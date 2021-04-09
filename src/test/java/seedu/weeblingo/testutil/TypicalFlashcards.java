@@ -1,9 +1,9 @@
 package seedu.weeblingo.testutil;
 
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_A;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_B;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_I;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_A;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_B;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_I;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_DIFFICULT;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_EASY;
 
@@ -44,7 +44,7 @@ public class TypicalFlashcards {
     public static final Flashcard AMY = new FlashcardBuilder()
             .withQuestion(VALID_QUESTION_A).withAnswer(VALID_ANSWER_A).withTags(VALID_TAG_EASY).build();
     public static final Flashcard BOB = new FlashcardBuilder()
-            .withQuestion(VALID_QUESTION_B).withAnswer(VALID_ANSWER_B).withTags(VALID_TAG_DIFFICULT, VALID_TAG_EASY)
+            .withQuestion(VALID_QUESTION_I).withAnswer(VALID_ANSWER_I).withTags(VALID_TAG_DIFFICULT, VALID_TAG_EASY)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
