@@ -458,14 +458,14 @@ testers are expected to do more *exploratory* testing.
 
     1. Adding a person with only required fields. <br>
        Test case: `add n/John Doe p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends`. <br>
-       Expected: The person gets added to FriendDex with the provided information. The Friend Panel gets lists all
-       contacts in FriendDex. A success message is shown in the status message.
+       Expected: The person gets added to FriendDex with the provided information. The Friend Panel gets updated and
+       lists all contacts in FriendDex. A success message is shown in the status message.
 
     2. Adding a person with tags. <br>
        Test case: `add n/John Doe p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends t/owesMoney`
        . <br>
-       Expected: The person gets added to FriendDex with the provided information. The Friend Panel gets lists all
-       contacts in FriendDex. A success message is shown in the status message.
+       Expected: The person gets added to FriendDex with the provided information. The Friend Panel gets updated and
+       lists all contacts in FriendDex. A success message is shown in the status message.
 
     3. Adding a duplicate person. <br>
         * Prerequisite: A person with the name `john doe` must already be in FriendDex. <br>
@@ -477,12 +477,12 @@ testers are expected to do more *exploratory* testing.
        Expected: No new contact will be added to FriendDex. Error details shown in the status message.
 
     5. Adding a person with invalid email. <br>
-       Test case: `add n/John Doe p/98765432 e/john👦@example.com a/PGPH block 21 b/01-01-1998 t/friends`. <br>
+       Test case: `add n/John Doe p/98765432 e/john@.example.com a/PGPH block 21 b/01-01-1998 t/friends`. <br>
        Expected: No new contact will be added to FriendDex. Error details and email specification shown in status
        message.
 
     6. Adding a person with invalid name. <br>
-       Test case: `add n/👦 p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends t/owesMoney`. <br>
+       Test case: `add n/ジョン p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends t/owesMoney`. <br>
        Expected: No new contact will be added to FriendDex. Error details and name format shown in the status message.
 
 ### Adding a special date: `add-date`
