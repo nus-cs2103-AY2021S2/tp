@@ -50,7 +50,7 @@ StatefulAddressBook -up-> "1..*" ReadOnlyAddressBook
 ModelManager .up.|> Model
 Model .left.> ObservableList
 ModelManager *-left-> "1" StatefulAddressBook
-ModelManager o-right-> "1" UserPrefs
+ModelManager *-right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 
