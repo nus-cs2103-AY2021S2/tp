@@ -146,6 +146,7 @@ Examples:
 * `filter COM` 
 * `filter RVRC` 
 
+![filter](images/filter.png)
 ### Viewing statistics for student population: `stats`
 
 Displays percentage of vaccinated students in the specified faculty/school residence, whole of NUS, or a list of percentages of vaccinated students in every Faculty and School Residence. 
