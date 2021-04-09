@@ -359,7 +359,7 @@ Examples:
 
 ### Contact Features
 
-For the following contact features, irrelevant panels of the user interface were closed (see ).
+For the following contact features, irrelevant panels of the user interface were closed (see [Closing UI Panel](./UserGuide.md#closing-ui-panel-close) below). <br>
 Thus, assume the following as the current state of Dictionote:
 ![result for 'findcontact t/colleagues n/yu'](images/ContactInitialState.png)
 
@@ -419,6 +419,7 @@ Format: `findcontact [n/NAME_KEYWORD]... [e/EMAIL_KEYWORD]... [t/TAG_KEYWORD]...
 
 Examples:
 * `findcontact n/John` returns `john` and `John Doe`
+* `findcontact n/jack e/@email.net t/friends t/university` returns all contacts containing `Jack` in their name, `@email.net` in their email, and both `Friends` and `University` as part of their tags.
 * `findcontact n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'findcontact n/alex n/david'](images/ContactFindContact1.png)
 * `findcontact t/colleagues t/friends` returns `Bernice Yu` <br>
