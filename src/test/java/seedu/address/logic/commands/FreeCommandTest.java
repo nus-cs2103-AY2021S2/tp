@@ -30,10 +30,10 @@ public class FreeCommandTest {
 
     @Test
     public void equals() {
-        EntryDate firstStartDate = new EntryDate("2021-02-01 13:00");
-        EntryDate firstEndDate = new EntryDate("2021-02-01 15:30");
-        EntryDate secondStartDate = new EntryDate("2021-02-02 14:00");
-        EntryDate secondEndDate = new EntryDate("2021-02-02 15:00");
+        EntryDate firstStartDate = new EntryDate("2022-02-01 13:00");
+        EntryDate firstEndDate = new EntryDate("2022-02-01 15:30");
+        EntryDate secondStartDate = new EntryDate("2022-02-02 14:00");
+        EntryDate secondEndDate = new EntryDate("2022-02-02 15:00");
         ListOccupyingEntryPredicate firstPredicate =
                 new ListOccupyingEntryPredicate(firstStartDate, firstEndDate);
         ListOccupyingEntryPredicate secondPredicate =
@@ -62,7 +62,7 @@ public class FreeCommandTest {
     @Test
     public void execute_intervalNotOccupied_freeMessageShown() {
         String expectedMessage = MESSAGE_FREE;
-        ListOccupyingEntryPredicate predicate = preparePredicate("2021-02-03 13:00", "2021-02-03 15:30");
+        ListOccupyingEntryPredicate predicate = preparePredicate("2022-02-03 13:00", "2022-02-03 15:30");
         FreeCommand command = new FreeCommand(predicate);
         expectedModel.updateFilteredEntryList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -72,7 +72,7 @@ public class FreeCommandTest {
     @Test
     public void execute_intervalOccupied_notFreeMessageShown() {
         String expectedMessage = MESSAGE_NOT_FREE;
-        ListOccupyingEntryPredicate predicate = preparePredicate("2021-02-01 13:00", "2021-02-01 15:30");
+        ListOccupyingEntryPredicate predicate = preparePredicate("2022-02-01 13:00", "2022-02-01 15:30");
         FreeCommand command = new FreeCommand(predicate);
         expectedModel.updateFilteredEntryList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
