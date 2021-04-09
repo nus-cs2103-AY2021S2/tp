@@ -78,7 +78,7 @@ class JsonSerializableStudentBook {
                 throw new IllegalValueException(MESSAGE_CLASHING_APPOINTMENT);
             }
 
-            if(studentBook.hasAppointment(appointment)){
+            if (studentBook.hasAppointment(appointment)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATED_APPOINTMENT);
             }
 
