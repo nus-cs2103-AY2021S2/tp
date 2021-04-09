@@ -300,6 +300,10 @@ Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... 
 * When editing tags/categories, the existing tags/categories of the task will be removed i.e. adding of tags/categories is not cumulative.
 * You can remove all the task’s tags by typing `t/` without specifying any tags after it.
   Similarly, you can remove all the task’s categories by typing `c/` without specifying any categories after it.
+* When editing tags, the order of tags given in the input and the order of tags shown in the UI can be different. 
+  For example, in input `edit_task 1 t/tag1 t/tag2`, `t/tag1` is before `t/tag2`, 
+  but `tag2` may appear in the UI before `tag1`, then `tag1` on the right of `tag2`. 
+  The ordering is not guaranteed and this is intended behaviour.
 
 Examples:
 * `edit_task 1 n/editedTaskName` edits the name of the first task (if present in SOChedule) to be `editedTaskName`.
