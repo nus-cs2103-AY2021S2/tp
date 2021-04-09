@@ -9,6 +9,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX_TYPE;
+import static seedu.address.logic.parser.residentroom.AllocateResidentRoomCommandParser.MESSAGE_RESIDENT_INDEX_IS_BELOW_RANGE_PREFIX;
+import static seedu.address.logic.parser.residentroom.AllocateResidentRoomCommandParser.MESSAGE_ROOM_INDEX_IS_BELOW_RANGE_PREFIX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
@@ -61,11 +64,11 @@ public class AllocateResidentRoomParserTest {
     public void parse_invalidValue_failure() {
         // invalid resident index
         assertParseFailure(parser, INVALID_RESIDENT_INDEX_DESC + VALID_ROOM_INDEX_DESC,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllocateResidentRoomCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_RESIDENT_INDEX_IS_BELOW_RANGE_PREFIX, MESSAGE_INVALID_INDEX_TYPE));
 
         // invalid room index
         assertParseFailure(parser, VALID_RESIDENT_INDEX_DESC + INVALID_ROOM_INDEX_DESC,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllocateResidentRoomCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_ROOM_INDEX_IS_BELOW_RANGE_PREFIX, MESSAGE_INVALID_INDEX_TYPE));
 
         // two invalid values, invalid command error
         assertParseFailure(parser, INVALID_NAME_DESC + INVALID_ROOM_DESC,

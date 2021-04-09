@@ -52,9 +52,10 @@ public class EditIssueCommandParser implements Parser<EditIssueCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
+        } catch (IllegalArgumentException iex) {
             logger.warning("Failed to parse preamble for index to be edited for iedit command");
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditIssueCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditIssueCommand.MESSAGE_USAGE), iex);
         }
 
         EditIssueDescriptor editIssueDescriptor = new EditIssueDescriptor();

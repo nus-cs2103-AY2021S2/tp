@@ -24,7 +24,7 @@ You can reach us at the email `e0205114[at]comp.nus.edu.sg`
 <img src="images/benedictkhoomw.png" width="200px">
 
 [[github](https://github.com/benedictkhoomw)]
-[[portfolio](team/benedict.md)]
+[[portfolio](team/benedictkhoomw.md)]
 
 * Role: Developer
 * Responsibilities: Documentation, Undo/Redo Feature, Command History Feature
@@ -44,7 +44,7 @@ You can reach us at the email `e0205114[at]comp.nus.edu.sg`
 <img src="images/stein414.png" width="200px">
 
 [[github](https://github.com/stein414)]
-[[portfolio](team/ian.md)]
+[[portfolio](team/stein414.md)]
 
 * Role: Developer, VS Code Expert
 * Responsibilities: Code Quality, Issue Feature

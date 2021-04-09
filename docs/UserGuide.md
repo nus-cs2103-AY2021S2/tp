@@ -145,7 +145,7 @@ Many SunRez commands use various parameters. Their formats, constraints and rati
 | <a id="alias_name"></a> `ALIAS_NAME` | `a/` | `alias` `unalias` | The name of an alias.{::nomarkdown}<ul><li> Must be alphanumeric. </li><li> Must not be empty. </li><li> Must not be a reserved keyword i.e. names of other system commands. </li></ul>{:/} |
 | <a id="category"></a> `CATEGORY` | `c/` | `iadd` `iedit`| DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
 | <a id="command"></a> `COMMAND` | `cmd/`| `alias` | The command that an alias is short for.{::nomarkdown}  <ul><li> Must not be empty. </li><li> Must not be recursive i.e. contains another alias name. </li></ul>{:/} |
-| <a id="count"></a> `COUNT` | - | `history` | The number of command history entries wanted.{::nomarkdown} <ul><li> Must be a positive integer: 1, 2, 3, ... </li><li> Must be at most the total number of entries in command history. </li></ul>{:/} |
+| <a id="count"></a> `COUNT` | - | `history` | The number of command history entries wanted.{::nomarkdown} <ul><li> Must be a positive integer: 1, 2, 3, ... </li><li> Must be at most the total number of entries in command history. </li><li>Exception: if command history is empty then <code>COUNT</code> can be greater than the number of entries in command history (that is, it can be a positive integer). SunRez will simply indicate that command history is empty.</li></ul>{:/} |
 | <a id="description"></a> `DESCRIPTION` | `d/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
 | <a id="email"></a> `EMAIL` | `e/` | `radd` `redit` | The email of a resident.{::nomarkdown} <ul><li> Format: local-part@domain. </li><li> Local-part should only contain alphanumeric characters, and these special characters, excluding the parenthesis (!#$%&'*+/=?&#96;{&#124;}~^.-). </li><li> Must contain @. </li><li> Domain must be at least 2 characters long, start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any. </li><li> e.g. e0123456@u.nus.edu </li></ul>{:/} |
 | <a id="index"></a> `INDEX` | - | `redit` `rdel` `oedit` `odel` `iedit` `iclo` `idel` `alloc` `dealloc`| The index number shown in the displayed list.{::nomarkdown} <ul><li> Must be a positive integer: 1, 2, 3, ... </li></ul>{:/} |
@@ -266,9 +266,9 @@ Format: `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]`
   See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info. 
   
 Parameters:
-* [ROOM_NUMBER](#room_number) The room number of the room to add.
-* [ROOM_TYPE](#room_type) The type of the room being added.
-* [TAG](#tag) Optional tags that may be specified to assist in management of the room.
+* [`ROOM_NUMBER`](#room_number) The room number of the room to add.
+* [`ROOM_TYPE`](#room_type) The type of the room being added.
+* [`TAG`](#tag) Optional tags that may be specified to assist in management of the room.
 
 Example:
 * `oadd r/10-112 t/corridor_ac g/SHN` Adds a room numbered `10-112` of type `corridor_ac` with the tag `SHN`.
@@ -294,7 +294,7 @@ Format: `ofind KEYWORD [MORE_KEYWORDS]`
 * Rooms matching at least one keyword will be returned (i.e. OR search). e.g. `10 20` will return `10-100`, `11-120`.
 
 Parameters:
-* [KEYWORD](#keyword) The keyword to search for in the room list.
+* [`KEYWORD`](#keyword) The keyword to search for in the room list.
 
 Examples:
 * `ofind 10-` returns `10-100`, `10-101`, and `10-102`.
@@ -319,10 +319,10 @@ Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
 
 
 Parameters:
-* [INDEX](#index) The index of the room to edit.
-* [ROOM_NUMBER](#room_number) The room number to change the room identified by [INDEX](#index) to.
-* [ROOM_TYPE](#room_type) The room type to change the room identified by [INDEX](#index) to.
-* [TAG](#tag) Optional tags that may be updated for the room identified by [INDEX](#index).
+* [`INDEX`](#index) The index of the room to edit.
+* [`ROOM_NUMBER`](#room_number) The room number to change the room identified by [`INDEX`](#index) to.
+* [`ROOM_TYPE`](#room_type) The room type to change the room identified by [`INDEX`](#index) to.
+* [`TAG`](#tag) Optional tags that may be updated for the room identified by [`INDEX`](#index).
 
 Example:
 * `oedit 1 g/SHN g/Blue` Edits the 1st room's tags to `SHN` and `Blue`.
@@ -341,7 +341,7 @@ Format: `odel INDEX`
   See [delete an issue](#delete-an-issue--idel) for more info.
 
 Parameters:
-* [INDEX](#index) The index of the room to delete.
+* [`INDEX`](#index) The index of the room to delete.
 
 Example:
 * `odel 1` Deletes the 1st room in the room list.

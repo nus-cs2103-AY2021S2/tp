@@ -44,7 +44,8 @@ public class DeleteIssueCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredIssueList().size() + 1);
         DeleteIssueCommand deleteIssueCommand = new DeleteIssueCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteIssueCommand, model, Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX);
+        assertCommandFailure(deleteIssueCommand, model, String.format(
+                Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX, model.getFilteredIssueList().size()));
     }
 
     @Test
@@ -73,7 +74,8 @@ public class DeleteIssueCommandTest {
 
         DeleteIssueCommand deleteIssueCommand = new DeleteIssueCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteIssueCommand, model, Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX);
+        assertCommandFailure(deleteIssueCommand, model, String.format(
+                Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX, model.getFilteredIssueList().size()));
     }
 
     @Test
