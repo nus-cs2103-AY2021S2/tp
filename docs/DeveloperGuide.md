@@ -133,6 +133,34 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+###Add Person feature
+
+The add person feature allows the user to add either a student or a tutor to EZManage
+
+The add person feature is facilitated by `UniquePersonList`. This list is stored internally in `AddressBook` as persons.
+
+`UniquePersonList` has a method called `addPerson(Person p)` which adds a Person to its list of Person. This person could be a Tutor or a Student depending on its personType attribute.
+
+This operation is exposed in the `Model` interface as `Model#addPerson(Person person)`
+
+Given below is an example usage scenario and how the add person mechanism behaves at each step.
+
+Step 1: The user executes `add_person pt/student …`. The LogicManager takes in the string command and calls `AddressBookParser#parseCommand(String userInput)`.
+
+Step 2: The `parseCommand` method passes the user input to `AddPersonCommandParser#parse(String args)` which returns an AddPersonCommand object. This addPersonCommand object has a reference to a Person which could be either Student or Tutor
+
+Step 3: The LogicManager then executes the AddPersonCommand which calls the `Model#addPerson(Person person)` method.
+
+Step 4: The `Model` adds the new Person to `UniquePersonList` in `AddressBook` and returns a CommandResult
+
+Step 5: The `CommandResult` is then displayed on the UI
+
+The sequence for the example scenario can be found below:
+
+![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
+
+
+
 ### Add session feature
 
 #### Current Implementation
@@ -158,9 +186,28 @@ Step 5: The `CommandResult` is then displayed on the UI.
 The sequence for the example scenario can be found below:
 
 ![AddSessionSequenceDiagram](images/AddSessionSequenceDiagram.png)
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddSessionCommandParser` and `AddSessionCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+### assign person feature
+The assign feature is able to assign `sessionId` to the list of sessions in a Person. This person can either be a Student or a Tutor. 
+
+Likewise, `studentId` and `tutorId` will be assigned to the list of students and tutor attribute of a session respectively.
+
+Given below is  an example usage scenario and how the assign command behaves at each step.
+
+Step 1 : The user executes `assign s/1 t/1 c/1` command to assign student `s/1` and tutor `t/1` to session `c/1`The LogicManager takes in the user input the calls `AddressBookParser#parseCommand(String userInput)`
+
+Step 2: The `AddressBookParser` then calls `AssignCommandParser.parse(String args)` that returns a `AssignCommand`. This `AssignCommand` will be return back to LogicManager
+
+Step 3: `LogicManager` then calls `AssignCommand#execute()`. In this method, `ÀssignCommand` calls internal methods `getStudents()` and `getTutor()`to check if provided studentId and tutorId are valid inputs. Once checked, `AssignCommand` calls internal methods `assignTutor()` and `assignStudents` which updates the provided student, tutor and session in both `UniquePersonList` and `SessionList`.
+
+Step 4: A `CommandResult` is returned 
+
+Step 5: The `CommandResult` is then displayed on the UI.
+
+The sequence for the example scenario can be found below:
+![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
 
 ### Unassign person feature
 The unassign feature utilises defensive programming to ensure that the `tutor` and `students` attributes of the session correspond with those persons' `sessions` attribute.
@@ -220,6 +267,37 @@ The sequence for the example scenario can be found below:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePersonCommandParser` and `DeletePersonCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+### View person feature
+
+#### Current Implementation
+The view person feature requires the `personID` of the student or tutor, and 
+displays the relevant information belonging to the person under that specified ID.
+As the user enters the command word `view_person`, the `ViewCommandParser` will verify
+if a `personID` has been provided, and an error is thrown if otherwise. With the given `personID`, 
+a `PersonIdPredicate` will be created, and subsequently a `ViewPersonCommmand` object will be created. <br>
+
+The `ViewPersonCommand` class inherits from the `Command` abstract class, and it implements the `execute()`
+class where it will use the `PersonIdPredicate` to update the model with the filtered list. <br>
+
+Given below is an example usage scenario and how the view person merchanism behaves at each step. <br>
+
+Step 1. The user launches the application and executes `view_person s/1` command to view student with personID `s/1`. <br>
+
+Step 2. The `parseCommand` method under `AddressBookParser` class passes the user input to `ViewCommandParser`. <br>
+
+Step 3. The `ViewCommandParser` verifies that a valid `personID` has been provided and throw an exception if otherwise.
+The parser then return a `ViewPersonCommand` object using the `PersonIdPredicate` created from the `personID`. <br>
+
+Step 4. The `LogicManager` then executes the `ViewPersonCommand`. <br>
+
+Step 5. The `VierPersonCommand` updates the model by calling `Model#updateFilteredPersonList` using the `PersonIdPredicate` created previously.
+
+Step 6. A `CommandResult` object is returned and displayed on the UI.
+
+The following activity diagram illustrates what happens when a user executes a view person command:
+
+![ViewPersonActivityDiagram](images/ViewPersonActivityDiagram.png)
 
 ### Delete session feature
 
