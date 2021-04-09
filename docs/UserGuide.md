@@ -386,7 +386,7 @@ Example:
 
 ##### Deleting a tuition session: `delete_session`
 
-Deletes the specified tuition session from TutorBuddy.
+Deletes the specified tuition session (Either an individiual session or the entire recurring session) from TutorBuddy.
 
 Format: `delete_session n/STUDENT_NAME i/SESSION_INDEX`
 
@@ -400,7 +400,7 @@ Format: `delete_session n/STUDENT_NAME i/SESSION_INDEX`
 </div>
 
 Example:
-* `delete_session n/John Doe i/1` deletes John Doe's **first** session
+* `delete_session n/John Doe i/1` deletes John Doe's **first** session based on the session list in the Tuition page
 
 ##### Deleting a recurring tuition session: `delete_rec_session`
 
