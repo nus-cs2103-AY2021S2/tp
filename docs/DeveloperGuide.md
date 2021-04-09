@@ -14,14 +14,14 @@ title: Developer Guide
    3.6  [Common Classes](#36-common-classes)<br>
 1. [Implementation](#4-implementation)<br>
    4.1 [SOChedule](#41-sochedule)<br>
-       4.1.1 [Overview](#411-overview)<br>
-       4.1.2 [Implementation of SOChedule-level Commands](#412-implementation)<br>
+   &nbsp;&nbsp;4.1.1 [Overview](#411-overview)<br>
+   &nbsp;&nbsp;4.1.2 [Implementation of SOChedule-level Commands](#412-implementation)<br>
    4.2 [Task](#42-task)<br>
-       4.1.1 [Overview](#421-overview)<br>
-       4.1.2 [Implementation of Task-level Commands](#422-implementation)<br>
+   &nbsp;&nbsp;4.2.1 [Overview](#421-overview)<br>
+   &nbsp;&nbsp;4.2.2 [Implementation of Task-level Commands](#422-implementation)<br>
    4.3 [Event](#43-event)<br>
-       4.1.1 [Overview](#431-overview)<br>
-       4.1.2 [Implementation of Event-level Commands](#432-implementation)<br>
+   &nbsp;&nbsp;4.3.1 [Overview](#431-overview)<br>
+   &nbsp;&nbsp;4.3.2 [Implementation of Event-level Commands](#432-implementation)<br>
 1. [Planned Features](#5-documentation-logging-testing-configuration-dev-ops)<br>
 1. [Appendix](#appendix)<br>
    A1. [Product Scope](#a1-product-scope)<br>
@@ -596,7 +596,10 @@ The sequence diagram for `DeleteEventCommand` can be found below.
 **Implementation of EditEventCommand**  
 The following is a detailed explanation on how EditEventCommand is implemented.
 
-**Step 1**: User executes `Edit_event Index` command to Edit the event at the given index.
+The `edit_event` feature was implemented with a static class `EditEventDescriptor` introduced.
+<img src="images/EditEventCommandClassDiagram.png" width="550" />
+
+**Step 1**: User executes `edit_event Index` command to Edit the event at the given index.
 An `EditEventParser` object is created, and the `EditEventParser#parse(String args)` method is called.
 The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
 An `EditEventDescriptor` object is created, and it contains all the field an Event needed. 
@@ -615,6 +618,11 @@ The UI will also update as the underlying event list has been modified.
 The sequence diagram for `EditEventCommand` can be found below.
 
 ![Sequence Diagram of EditEvent Command](images/EditEventCommandSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes a EditEventCommand:
+(For brevity, "Show error" actions are omitted.)
+
+<img src="images/EditEventCommandActivityDiagram.png" width="250" />
 
 [Return to Table of Contents](#table-of-contents)  
 
@@ -1141,22 +1149,13 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### A7. Launch and shutdown
-
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
+   
+   1. For testing purposes, a sample `sochedule.json` is provided [here](https://raw.githubusercontent.com/AY2021S2-CS2103-W16-1/tp/master/https://github.com/AY2021S2-CS2103-W16-1/tp/tree/master/src/test/data/sochedule.json). Place this file in a directory named `data`. `data` should be in the same relative path as `SOChedule.jar`.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample data.
 
 ### Deleting a task (Not in use yet)
 
@@ -1175,10 +1174,175 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### A8. Saving data
+### Sorting the task list
 
-1. Dealing with missing/corrupted data files
+1. Sorting the task list
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty.
+
+    1. Test case: `sort_task priority`<br>
+       Expected: "Sorted Tasks" to appear in status bar. Task list is now sorted by priority (highest priority to lowest priority). Pinned tasks remain on top, but also sorted by priority.
+
+    1. Test case: `sort_task 123`<br>
+       Expected: This is an invalid input. "Invalid command format!" to appear in status bar. Task list remains unchanged.
+
+    1. Other valid parameters to test: `name`, `completion` and `deadline`.
 
 1. _{ more test cases …​ }_
+
+### Pinning a task
+
+1. Pinning a task while all tasks are being shown
+
+    1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty.
+
+    1. Test case: `pin_task 3` (Assuming there are 3 tasks in task list)<br>
+       Expected: "Pinned Task" to appear in status bar. Third task is now on top of the task list, with a pin icon beside its name.
+
+   1. Test case: `pin_task 0`<br>
+      Expected: This is an invalid input. "Invalid command format!" to appear in status bar. No task is pinned and task list remains unchanged.
+   
+   1. Test case: `pin_task 1` (Assuming Task 1 is already pinned<br>
+      Expected: This is an invalid input. "This task is already pinned." to appear in status bar. Task list remains unchanged.
+
+   1. Test case: `pin_task 999` (Assuming there are less than 999 tasks in task list<br>
+      Expected: This is an out-of-bounds input. "The task at this index does not exist." to appear in status bar. No task is pinned and task list remains unchanged.
+
+    1. Other incorrect delete commands to try: `pin_task`, `pin_task x` (where x is larger than the list size)<br>
+       Expected: Similar to previous cases.
+
+1. _{ more test cases …​ }_
+
+### Unpinning a task
+
+1. Unpinning a task while all tasks are being shown
+
+    1. Prerequisites: List all tasks using the `list_task` command. Multiple tasks in the list. At least one task in pinned.
+
+    1. Test case: `unpin_task 1` (Assuming Task 1 is pinned) <br>
+       Expected: "Unpinned Task" to appear in status bar. First task may or may not be at the top of task list. For that task, pin icon beside its name is removed.
+
+   1. Test case: `unpin_task 0`<br>
+      Expected: This is an invalid input. "Invalid command format!" to appear in status bar. Task list remains unchanged.
+
+   1. Test case: `unpin_task 3` (Assuming Task 3 exists and is not pinned<br>
+      Expected: This is an invalid input. "This task is not pinned to begin with." to appear in status bar. Task list remains unchanged.
+
+   1. Test case: `unpin_task 999` (Assuming there are less than 999 tasks in task list<br>
+      Expected: This is an out-of-bounds input. "The task at this index does not exist." to appear in status bar. No task is pinned and task list remains unchanged.
+
+   1. Other incorrect delete commands to try: `unpin_task`, `unpin_task x` (where x is larger than the list size)<br>
+      Expected: Similar to previous cases.
+
+1. _{ more test cases …​ }_
+
+
+### Clearing completed tasks
+
+1. Clearing completed tasks
+
+   1. Test case: `clear_completed_task`<br>
+      Expected: Tasks marked as done are cleared from the list. Success message `Completed tasks (if any) have been cleared!` 
+      will always be shown in the status message, regardless of whether there is any completed task or not.   
+
+
+### Clearing expired tasks
+
+1. Clearing expired tasks
+
+   1. Test case: `clear_expired_task`<br>
+      Expected: Tasks with past deadlines are cleared from the list. Success message `Expired tasks (if any) have been cleared!` 
+      will always be shown in the status message, regardless of whether there is any expired task or not. 
+      
+### Adding an event
+
+1. Adding an event
+
+    1. Prerequisites: No duplicates events with the same ISBN exists.
+    
+    1. Test case: `add_event n/CS2103 meeting sd/2022-05-27 st/15:00 ed/2022-05-27 et/17:00`
+           Expected: Event successfully added, detailed information shown in the status bar.
+           
+    1. Test case: `add_event n/1 Year Anniversary sd/2021-03-14 st/08:00 ed/2022-03-17 et/21:00`
+                  Expected: Event successfully added, detailed information shown in the status bar.
+                  
+    1. Test case: `add_event n/Inter College Game sd/2000-03-23 st/12:00 ed/2000-03-23 et/14:00`
+                  Expected: No event is deleted, since end date time is past. Detailed error message shown in the status bar.              
+                  
+    1. Other incorrect commands to try: `add_event`, `add_event n/Meeting 1`, etc.
+    
+### Deleting an event
+
+1. Deleting an event 
+
+   1. Prerequisites: List all events using the `list` command. At least one event in the list.
+
+   1. Test case: `delete_event 1`<br>
+      Expected: First event is deleted from the list. Details of the deleted event shown in the status message.
+
+   1. Test case: `delete_event 50` (50 is larger than the list size) <br> 
+      Expected: No event is deleted. Error message `The event index provided is invalid.` shown in the status message.
+      
+   1. Test case: `delete_event -1`<br> 
+      Expected: No event is deleted. Error message `Index should be an integer greater then 0.` shown in the status message.
+
+   1. Other incorrect delete commands to try: `delete_event`, `delete_event x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+      
+      
+### Editing an event
+
+1. Editing an event
+
+    1. Prerequisites: There are events in the list.
+
+    1. Test case: `edit_event 1 t/`
+       Expected: Clearing all the tags of the first event in the list. 
+           
+    1. Test case: `edit_event 1 n/editedEventName`
+       Expected: The name of the first event in the list is changed to `editedEventName`.
+               
+    1. Other incorrect commands to try: `edit_event`, `edit_event n/editedEventName`, etc.
+
+
+### Clearing expired events
+
+1. Clearing expired events
+
+   1. Test case: `clear_expired_event`<br>
+      Expected: Events with past end date time are cleared from the list. Success message `Expired events (if any) have been cleared!` 
+      will always be shown in the status message, regardless of whether there is any expired event or not.
+
+### Finding free time slots
+
+1. Finding free time slots
+
+    1. Test case: `free_time 2021-06-10`<br>
+       Expected: Displays a list of free time slots on 2021-06-10. Success message `Found free time slots on 2021-04-27:` 
+       will be shown if free time slots were found.
+            
+       1. if there are available free time slots, a list of free time slots will be displayed after the success message.
+       2. if there are no events happening on the day, `The entire day is free!` will be displayed after the sucess message.
+       3. if no free time slots were found, `There is no free time in the day!` will be displayed.
+
+### Getting a summary of SOChedule
+
+1. Getting a summary of SOChedule
+
+    1. Test case: `summary`<br>
+       Expected: Displays a summary for SOChedule. Success message `Summary:`, followed by detailed about `Task`,
+       and details about `Event`.
+
+### Clearing SOChedule
+
+1. Clearing SOChedule
+
+    1. Test case: `clear`<br>
+       Expected: All Tasks and Events in SOChedule are cleared. Success message `Sochedule has been cleared!`
+       will always be shown in the status message, regardless of whether there is any Task or Event.
+       
+### A8. Saving data
+
+1. Dealing with missing/corrupted/missing data files
+
+   1. SOChedule will re-initialise and provide an empty Task list and Event list.

@@ -2,8 +2,25 @@
 layout: page
 title: User Guide
 ---
-## User Guide
+## Table of Contents
+* [Introduction](#introduction)
+* [Feature List](#feature-list)
+  * [General Commands](#general-commands)
+  * [Task-Specific Commands](#task-specific-commands)
+  * [Event-Specific Commands](#event-specific-commands)
+  * [Commands Related to Both Task and Event](#commands-related-to-both-task-and-event)
+* [Public Parameters for Tasks and Events](#public-parameters-for-tasks-and-events)
+  * [Common to both Task and Event](#common-to-both-task-and-event)
+  * [Task-Specific](#task-specific)
+  * [Event-Specific](#event-specific)
+* [Quick start](#quick-start)
+* [Features](#features)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
 
+
+
+## Introduction
 SOChedule is a one-stop solution for NUS School of Computing (SoC) students to manage their tasks and events effectively.
 Targeted at users who can type fast and prefer typing to mouse input, SOChedule is optimized for use via a Command Line Interface (CLI) 
 while still having the benefits of a Graphical User Interface (GUI).
@@ -21,8 +38,8 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Listing all tasks: [`list_task`](#listing-all-tasks-list_task)
 * Marking one or more tasks as done : [`done_task`](#marking-one-or-more-tasks-as-done-done_task)
 * Marking a task as uncompleted : [`undone_task`](#marking-a-task-as-uncompleted-undone_task)
-* Getting today's tasks: [`today_task`](#listing-all-tasks-today-today_task)
-* Finding tasks by name: [`find_task`](#finding-all-matching-tasks-find_task)
+* Getting today's tasks: [`today_task`](#getting-todays-tasks-today_task)
+* Finding tasks by name: [`find_task`](#finding-tasks-by-name-find_task)
 * Sorting all tasks: [`sort_task`](#sorting-all-tasks-sort_task)
 * Pinning a task: [`pin_task`](#pinning-a-task-pin_task)
 * Unpinning a task: [`unpin_task`](#unpinning-a-task-unpin_task)
@@ -34,8 +51,8 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Deleting an event: [`delete_event`](#deleting-an-event-delete_event)
 * Editing an event: [`edit_event`](#editing-an-event-edit_event)
 * Listing all events: [`list_event`](#listing-all-events-list_event)
-* Getting today's events: [`today_event`](#listing-all-events-today-today_event)
-* Finding events by name: [`find_event`](#finding-all-matching-events-find_event)
+* Getting today's events: [`today_event`](#getting-todays-events-today_event)
+* Finding events by name: [`find_event`](#finding-events-by-name-find_event)
 * Clearing expired events: [`clear_expired_event`](#clearing-expired-events-clear_expired_event)
 
 ### Commands Related to Both Task and Event
@@ -43,6 +60,8 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Finding free time slots: [`free_time`](#finding-free-time-slots-free_time)
 * Summarising tasks and events completion status: [`summary`](#summarising-tasks-and-events-statistics-summary)
 * Clearing Sochedule: [`clear`](#clearing-sochedule-clear)
+
+[Return to Table of Contents](#table-of-contents)
 
 ## Public Parameters for Tasks and Events
 As listed below are the attributes to be specified for Tasks and Events. All parameters are mandatory unless otherwise stated.
@@ -168,13 +187,15 @@ As listed below are the attributes to be specified for Tasks and Events. All par
     </tr>
 </table>
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `SOChedule.jar` from [here](https://github.com/AY2021S2-CS2103-W16-1/tp/releases/download/v1.3.1/SOChedule.jar).
+1. Download the latest `SOChedule.jar` from [here](https://github.com/AY2021S2-CS2103-W16-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your SOChedule.
 
@@ -193,6 +214,8 @@ As listed below are the attributes to be specified for Tasks and Events. All par
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -218,6 +241,8 @@ As listed below are the attributes to be specified for Tasks and Events. All par
   e.g. if the command specifies `list_task 123`, it will be interpreted as `list_task`.
 
 </div>
+
+[Return to Table of Contents](#table-of-contents)
 
 ### Viewing help: `help`
 Shows a message explaining how to access the help page.
@@ -261,10 +286,17 @@ Examples:
 Edits an **existing and uncompleted** task in the task list.
 
 Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...`
-* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
-* You can only edit the details of an uncompleted task.
-* At least one of the optional fields must be provided.
+* Edits the task at the specified `INDEX`. 
+  The index refers to the index number shown in the displayed task list. 
+  The index must be an **integer larger than zero**. A valid example can be `1`.
+* You can only edit an **existing and uncompleted** task.
+* **At least one** of the optional fields must be provided.
+* The `DEADLINE` provided cannot be earlier than today.
 * Existing values will be updated to the input values.
+* If the index provided is a negative integer or zero, an error message indicating invalid command format will be returned.
+* If the index provided is larger than `2147483647`(i.e. larger than the maximum value of `Integer` object in Java),
+  it is not a valid integer in our definition.
+  Thus, an error message indicating invalid command format will be returned.
 * When editing tags/categories, the existing tags/categories of the task will be removed i.e. adding of tags/categories is not cumulative.
 * You can remove all the task’s tags by typing `t/` without specifying any tags after it.
   Similarly, you can remove all the task’s categories by typing `c/` without specifying any categories after it.
@@ -288,14 +320,19 @@ Format: `list_task`
 Marks one or more task from the task list as completed.
 
 Format: `done_task INDEX1 [INDEX2] ...`
-* Marks the task(s) at the specified INDEX(es) as complete.
-* When multiple indexes are provided, they should be separated by a whitespace, e.g. `1 2`.
-* All specified tasks must be uncompleted and existing before calling this command.
-* The index refers to the index number shown in the displayed task list.
-* The index must be a positive and valid integer 1, 2, 3, ...
+* Marks the task(s) at the specified INDEX(es) as complete. 
+  The index refers to the index number shown in the displayed task list.
+  The index must be an **integer larger than zero**. A valid example can be `1`.
+* When multiple indexes are provided, they need to be separated by a whitespace, e.g. `1 2`.
+* All specified tasks must be **uncompleted and existing** before calling this command.
+* If more than 1 indexes are provided, these indexes **cannot contain duplicates**. 
+  Otherwise, an error message indicating invalid command format will be returned.
+* If the index provided is a negative integer or zero, an error message indicating invalid command format will be returned. 
+* If the index provided is larger than `2147483647`(i.e. larger than the maximum value of `Integer` object in Java), 
+  it is not a valid integer in our definition. 
+  Thus, an error message indicating invalid command format will be returned.
 
 Examples:
-* `done_task 1` marks the first task in the task list as completed.
 * `done_task 1 2` marks the first and second task in the task list as completed.
 
 [Return to Feature List](#feature-list)
@@ -306,9 +343,13 @@ Marks a completed task from the task list as uncompleted.
 
 Format: `undone_task INDEX`
 * Marks the task at the specified INDEX as uncompleted.
+  The index refers to the index number shown in the displayed task list.
+  The index must be an **integer larger than zero**. A valid example can be `1`.
 * The specified task must be completed before calling this command.
-* The index refers to the index number shown in the displayed task list.
-* The index must be a positive and valid integer 1, 2, 3, ...
+* If the index provided is a negative integer or zero, an error message indicating invalid command format will be returned.
+* If the index provided is larger than `2147483647`(i.e. larger than the maximum value of `Integer` object in Java),
+  it is not a valid integer in our definition.
+  Thus, an error message indicating invalid command format will be returned.
 
 Examples:
 * `undone_task 1` marks the first task in the task list as uncompleted.
@@ -413,6 +454,8 @@ Examples:
 Clear tasks marked as completed from the task list.
 
 Format: `clear_completed_task`
+* If there's no completed task in the list (or even no any task in the list), this command is still able to be executed
+and return success message `Completed tasks (if any) have been cleared!` (In this case, no task is cleared since no task is completed.)
 
 #### Illustration of usage of `clear_completed_task`:
 ![Example of usage of `clear_completed_task`](images/ClearCompletedTaskUsage.png)
@@ -426,6 +469,8 @@ Clear tasks with past deadlines from the task list.
 Format: `clear_expired_task`
 * For a task to be considered expired, the task should have past deadline compare to the local date on the user's computer, 
 hence changing of date on a computer could affect the judgement of expiration.
+* If there's no expired task in the list (or even no any task in the list), this command is still able to be executed
+and return success message `Expired tasks (if any) have been cleared!` (In this case, no task is cleared since no task is expired.)
 
 #### Illustration of usage of `clear_expired_task`:
 ![Example of usage of `clear_expired_task`](images/ClearExpiredTaskUsage.png)
@@ -536,6 +581,8 @@ Clears events with past end date time from the event list.
 Format: `clear_expired_event`
 * For an event to be considered expired, the event should have past end date time compare to the local time on the user's computer, 
 hence changing of timing on a computer could affect the judgement of expiration.
+* If there's no expired event in the list (or even no any event in the list), this command is still able to be executed
+and return success message `Expired events (if any) have been cleared!` (In this case, no event is cleared since no event is expired.)
 
 #### Illustration of usage of `clear_expired_event`:
 ![Example of usage of `clear_expired_event`](images/ClearExpiredEventUsage.png)
@@ -544,20 +591,23 @@ hence changing of timing on a computer could affect the judgement of expiration.
 
 
 ### Finding tasks and events before or on a given date: `find_schedule`
-Finds tasks and events before or on the specified date from the event list.
+Finds uncompleted tasks that are due before or on the specified date 
+and events that are ongoing given the specified date.
 
 Format: `find_schedule DATE`
-* Tasks refer to **uncompleted tasks** with deadlines before or on the specified date
-* Events refer to events with start date before or on the specified date and end date after or on the specified date, 
-  i.e., `event start date <= given date <= event end date`
-* Date entered must be a valid date and in the format of `YYYY-MM-DD`, e.g. `2021-04-01`
-* Only one single date can be entered. If more than one dates are supplied, program will return an error message
-  indicating invalid date.
+* Tasks to be found here are uncompleted tasks with deadlines before or on the specified date.
+* Events to be found here are events with start date before or on the specified date and end date after or on the specified date, 
+  i.e., `event start date <= given date <= event end date`.
+* Date entered must be a valid date and in the format of `YYYY-MM-DD`, e.g. `2021-04-01`. 
+  It can be a date that is earlier than today.
+* Only one single date can be entered. 
+  If more than one dates are supplied, program will return an error message indicating invalid date format. 
+  If no date is given, an error message indicating invalid command format will be returned.
 * After running `find_schedule`, if you wish to view all existing tasks and all existing events, 
   please use the `list_task` and `list_event` respectively.
 
 Examples:
-* `find_schedule 2021-06-01` finds all existing uncompleted tasks with deadlines 
+* `find_schedule 2021-06-01` finds all existing uncompleted tasks with deadlines before or on the specified date
   and all existing events with start date before or on the specified date and end date after or on 
   before or on `1st June 2021`.
 
@@ -574,10 +624,14 @@ Format: `free_time DATE`
   indicating invalid date.
 
 Examples:
-* `free_time 2021-06-01` finds all free time slots on the given date `1st June 2021`.
+* `free_time 2021-04-10` finds all free time slots on the given date `10th April 2021`.
+
+#### Illustration of usage of `free_time`:
+![Example of usage of `free_time`](images/FindFreeTimeExample.png)
+
+* There is only one event on 2021-04-10 (highlighted in red box).
 
 [Return to Feature List](#feature-list)
-
 
 ### Summarising tasks and events statistics: `summary`
 Displays a summary of tasks completion status and events upcoming in the next 7 days.
@@ -590,6 +644,9 @@ Format: `summary`
   i.e., `completionStatus is INCOMPLETE` and `deadline is after current date`
 * **Events upcoming in the next 7 days** refer to events that are going to happen in the next 7 days. Events that are happening today are not included.
 
+#### Illustration of usage of `summary`:
+![Example of usage of `summary`](images/SummaryExample.png)
+
 [Return to Feature List](#feature-list)
 
 
@@ -598,6 +655,9 @@ Clears all tasks and events in the SOChedule's task list and event list.
 
 Format: `clear`
 
+#### Illustration of usage of `clear`:
+![Example of usage of `clear`](images/ClearExample.png)
+
 [Return to Feature List](#feature-list)
 
 ### Exiting the program: `exit`
@@ -605,6 +665,7 @@ Exits the program.
 
 [Return to Feature List](#feature-list)
 
+[Return to Table of Contents](#table-of-contents)
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -616,6 +677,8 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Download the JAR file onto the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SOChedule home folder (this is contained within the `/data` folder in the same location as your SOChedule.jar.
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -665,3 +728,5 @@ Action | Format, Examples
 **Find Schedule** | `find_schedule DATE` <br>e.g., `find_schedule 2021-06-01`
 **Clear Schedule** | `clear`
 **Summary** | `summary`
+
+[Return to Table of Contents](#table-of-contents)

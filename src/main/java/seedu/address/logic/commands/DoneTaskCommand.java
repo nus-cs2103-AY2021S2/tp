@@ -24,16 +24,19 @@ public class DoneTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 2\n"
             + "Also, note that: \n"
             + "1. Index number is the index shown in the displayed task list.\n"
-            + "2. Index numbers must be non-zero positive integers and must not contain duplicates.\n"
-            + "3. Completed tasks cannot be marked as complete again.";
+            + "2. Index numbers must be valid integers larger than zero.\n"
+            + "3. Index numbers must not contain duplicates.\n"
+            + "4. Completed tasks cannot be marked as complete again.";
 
     public static final String MESSAGE_DONE_TASK_SUCCESS = "Completed %1$d Task(s).";
     public static final String MESSAGE_TASKS_ALREADY_COMPLETE =
             "Tasks with the following given indexes have already been marked as complete: ";
     public static final String MESSAGE_TASK_ALREADY_COMPLETE =
             "Task with the following given index has already been marked as complete: ";
-    public static final String MESSAGE_INDEXES_OUTOFRANGE = "The following given indexes are invalid: ";
-    public static final String MESSAGE_INDEX_OUTOFRANGE = "The following given index is invalid: ";
+    public static final String MESSAGE_INDEXES_OUTOFRANGE =
+            "Tasks with the following given index do not exist: ";
+    public static final String MESSAGE_INDEX_OUTOFRANGE =
+            "Task with the following given index does not exist: ";
 
     private final List<Index> targetIndexes;
     private List<Index> outOfRangeTargetIndexes = new ArrayList<>();

@@ -61,6 +61,7 @@ public class MainApp extends Application {
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);
+        model.sortTasksDefault();
 
         logic = new LogicManager(model, storage);
 
