@@ -13,7 +13,7 @@ GreenMileageEfforts (GME) is a platform that helps the HR executive of any compa
 # 1. Introduction
 
 ## 1.1 About Green Mileage Efforts
-Green Mileage Efforts(GME) is an effecient carpooling management solution designed to help corporations reduce their carbon footprint. The GME system allows for the simple creation and management of weekly carpooling groups of employees looking to carpool to and from their office. These [pools](#6-glossary) of employees can then carpool from the office regularly on the specified days and times every week. Through the GME system, users can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of the arranged carpooling groups for easy management.
+Green Mileage Efforts(GME) is an efficient carpooling management solution designed to help corporations reduce their carbon footprint. The GME system allows for the simple creation and management of weekly carpooling groups of employees looking to carpool to and from their office. These [pools](#6-glossary) of employees can then carpool from the office regularly on the specified days and times every week. Through the GME system, users can find employees based on their carpooling preferences and quickly group them with drivers. The system also maintains a database of the arranged carpooling groups for easy management.
 
 GME is a platform that follows a [Command-Line Interface (CLI)](#6-glossary) such that power users that are familiar can efficiently navigate the program.
 
@@ -310,6 +310,6 @@ Term used | Meaning
 Pool | A group of employees carpooling together. Consists of one driver and at least one passenger. The pools generated for a specifc day and time are the same every week unless reorganised by the user. 
 Passenger | An employee carpooling with at least one driver.
 TripDay | Day of the intended carpooling trip.  
-TripTime | Time of intended carpooling trip 
+TripTime | Time of the intended carpooling trip.
 Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
 Command Line Interface (CLI) | An interface that relies primarily on text input and little to no point and click UI elements exist
