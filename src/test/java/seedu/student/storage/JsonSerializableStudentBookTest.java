@@ -22,6 +22,8 @@ public class JsonSerializableStudentBookTest {
     private static final Path DUPLICATE_JSON_KEY_FILE = TEST_DATA_FOLDER.resolve("duplicateStudentsStudentBook.json");
     private static final Path NO_STUDENT_FOR_APPOINTMENT_FILE = TEST_DATA_FOLDER
             .resolve("invalidAppointmentStudentBook.json");
+    private static final Path INVALID_APPOINTMENT_FILE = TEST_DATA_FOLDER
+            .resolve("invalidAppointmentTimeStudentBook.json");
     private static final Path INVALID_APPOINTMENT_TIME_FILE = TEST_DATA_FOLDER
             .resolve("invalidAppointmentTimeStudentBook.json");
     private static final Path INVALID_APPOINTMENT_OVERLAP_FILE = TEST_DATA_FOLDER
