@@ -96,37 +96,6 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Initializes a ModelManager with the given addressBook, meetingBOok and userPrefs
-     */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyMeetingBook meetingBook,
-                        ReadOnlyNoteBook noteBook, ReadOnlyUserPrefs userPrefs) {
-        super();
-        requireAllNonNull(addressBook, userPrefs);
-
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
-        this.meetingBook = new MeetingBook(meetingBook);
-        this.sortedBeforeFilterMeetings = new SortedList<>(this.meetingBook.getMeetingList());
-        this.filteredMeetings = new FilteredList<>(sortedBeforeFilterMeetings);
-
-        this.addressBook = new AddressBook(addressBook);
-        this.userPrefs = new UserPrefs(userPrefs);
-        this.sortedBeforeFilterPersons = new SortedList<>(this.addressBook.getPersonList());
-        filteredPersons = new FilteredList<>(sortedBeforeFilterPersons);
-        // TODO: Modify the signature of ModelManager so that we can add connection inside it.
-        this.connection = new PersonMeetingConnection();
-        this.reminderBook = new ReminderBook(this.meetingBook);
-
-        //================== Note ==================================================================
-        this.noteBook = new NoteBook(noteBook);
-        this.filteredNotes = new FilteredList<>(this.noteBook.getNoteList());
-
-        //================== Timetable ==================================================================
-        //default initializes to current localdate
-        timetablePrefs = new TimetablePrefs(LocalDate.now());
-    }
-
-    /**
      * Initializes a ModelManager with the given addressBook, meetingBook, userPrefs and PersonMeetingConnection
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyMeetingBook meetingBook,
@@ -161,7 +130,7 @@ public class ModelManager implements Model {
 
 
     public ModelManager() {
-        this(new AddressBook(), new MeetingBook(), new NoteBook(), new UserPrefs());
+        this(new AddressBook(), new MeetingBook(), new NoteBook(), new UserPrefs(), new PersonMeetingConnection());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -231,7 +200,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 

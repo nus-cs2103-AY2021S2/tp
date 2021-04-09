@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.meetingbook;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,6 +17,7 @@ import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Priority;
+import seedu.address.storage.addressbook.JsonAdaptedGroup;
 
 
 /**

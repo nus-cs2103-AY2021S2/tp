@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.notebook;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,7 +11,7 @@ import seedu.address.model.note.Note;
 /**
  * Jackson-friendly version of {@link Note}.
  */
-class JsonAdaptedNote {
+public class JsonAdaptedNote {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Note's %s field is missing!";
 

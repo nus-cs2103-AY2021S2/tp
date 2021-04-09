@@ -10,6 +10,9 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.note.ReadOnlyNoteBook;
 import seedu.address.model.person.ReadOnlyAddressBook;
+import seedu.address.storage.addressbook.AddressBookStorage;
+import seedu.address.storage.meetingbook.MeetingBookStorage;
+import seedu.address.storage.notebook.NoteBookStorage;
 
 /**
  * API of the Storage component

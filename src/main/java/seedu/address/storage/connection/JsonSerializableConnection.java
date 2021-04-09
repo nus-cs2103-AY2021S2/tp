@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.connection;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,6 +10,7 @@ import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.storage.connection.JsonAdaptedPersonMeetingConnection;
 
 import java.util.ArrayList;
 import java.util.HashMap;

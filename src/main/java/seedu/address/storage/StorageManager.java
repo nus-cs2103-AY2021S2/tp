@@ -12,6 +12,10 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.note.ReadOnlyNoteBook;
 import seedu.address.model.person.ReadOnlyAddressBook;
+import seedu.address.storage.addressbook.AddressBookStorage;
+import seedu.address.storage.connection.JsonConnectionStorage;
+import seedu.address.storage.meetingbook.MeetingBookStorage;
+import seedu.address.storage.notebook.NoteBookStorage;
 
 /**
  * Manages storage of AddressBook and MeetingBook data in local storage.
@@ -23,18 +27,21 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
     private MeetingBookStorage meetingBookStorage;
     private NoteBookStorage noteBookStorage;
+    private JsonConnectionStorage jsonConnectionStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage},
      * {@code meetingBookStorage}, {@code noteBookStorage} and {@code UserPrefStorage}
      */
     public StorageManager(AddressBookStorage addressBookStorage, MeetingBookStorage meetingBookStorage,
-                          NoteBookStorage noteBookStorage, UserPrefsStorage userPrefsStorage) {
+                          NoteBookStorage noteBookStorage, UserPrefsStorage userPrefsStorage,
+                          JsonConnectionStorage jsonConnectionStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.meetingBookStorage = meetingBookStorage;
         this.noteBookStorage = noteBookStorage;
+        this.jsonConnectionStorage = jsonConnectionStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -142,5 +149,9 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         noteBookStorage.saveNoteBook(noteBook, filePath);
     }
+
+    //===================== Person-Meeting Connection ===========================================================
+
+    ff
 
 }

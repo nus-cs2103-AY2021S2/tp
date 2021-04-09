@@ -14,6 +14,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.ReadOnlyAddressBook;
+import seedu.address.storage.addressbook.JsonAddressBookStorage;
+import seedu.address.storage.meetingbook.JsonMeetingBookStorage;
+import seedu.address.storage.notebook.JsonNoteBookStorage;
 
 public class StorageManagerTest {
 

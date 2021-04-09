@@ -26,13 +26,13 @@ import seedu.address.model.note.ReadOnlyNoteBook;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonMeetingBookStorage;
-import seedu.address.storage.JsonNoteBookStorage;
+import seedu.address.storage.addressbook.AddressBookStorage;
+import seedu.address.storage.addressbook.JsonAddressBookStorage;
+import seedu.address.storage.meetingbook.JsonMeetingBookStorage;
+import seedu.address.storage.notebook.JsonNoteBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.MeetingBookStorage;
-import seedu.address.storage.NoteBookStorage;
+import seedu.address.storage.meetingbook.MeetingBookStorage;
+import seedu.address.storage.notebook.NoteBookStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -137,6 +137,9 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty NoteBook");
             initialDataNoteBook = new NoteBook();
         }
+
+        //=============== Establish Connection ========================================================================
+
 
         return new ModelManager(initialDataAddressBook, initialDataMeetingBook, initialDataNoteBook, userPrefs);
     }
