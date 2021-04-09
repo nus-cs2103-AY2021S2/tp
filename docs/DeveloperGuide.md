@@ -221,6 +221,37 @@ The sequence for the example scenario can be found below:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePersonCommandParser` and `DeletePersonCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+### View person feature
+
+#### Current Implementation
+The view person feature requires the `personID` of the student or tutor, and 
+displays the relevant information belonging to the person under that specified ID.
+As the user enters the command word `view_person`, the `ViewCommandParser` will verify
+if a `personID` has been provided, and an error is thrown if otherwise. With the given `personID`, 
+a `PersonIdPredicate` will be created, and subsequently a `ViewPersonCommmand` object will be created. <br>
+
+The `ViewPersonCommand` class inherits from the `Command` abstract class, and it implements the `execute()`
+class where it will use the `PersonIdPredicate` to update the model with the filtered list. <br>
+
+Given below is an example usage scenario and how the view person merchanism behaves at each step. <br>
+
+Step 1. The user launches the application and executes `view_person s/1` command to view student with personID `s/1`. <br>
+
+Step 2. The `parseCommand` method under `AddressBookParser` class passes the user input to `ViewCommandParser`. <br>
+
+Step 3. The `ViewCommandParser` verifies that a valid `personID` has been provided and throw an exception if otherwise.
+The parser then return a `ViewPersonCommand` object using the `PersonIdPredicate` created from the `personID`. <br>
+
+Step 4. The `LogicManager` then executes the `ViewPersonCommand`. <br>
+
+Step 5. The `VierPersonCommand` updates the model by calling `Model#updateFilteredPersonList` using the `PersonIdPredicate` created previously.
+
+Step 6. A `CommandResult` object is returned and displayed on the UI.
+
+The following activity diagram illustrates what happens when a user executes a view person command:
+
+![ViewPersonActivityDiagram](images/ViewPersonActivityDiagram.png)
+
 ### Delete session feature
 
 #### Current Implementation
