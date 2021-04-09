@@ -24,8 +24,9 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_TASK = "Task list contains duplicate task(s)";
-    private static final String MESSAGE_DUPLICATE_SCHEDULE = "Schedule list contains duplicate schedule(s)";
-    private static final String MESSAGE_DUPLICATE_ENTRY = "Entry List contains duplicate entry(s)";
+    public static final String MESSAGE_DUPLICATE_SCHEDULE = "Schedule list contains duplicate schedule(s)";
+    public static final String MESSAGE_DUPLICATE_ENTRY = "Entry List contains duplicate entry(s)";
+    public static final String MESSAGE_OVERLAPPING_ENTRY = "Entry List contains entries with overlapping dates";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
@@ -93,6 +94,10 @@ class JsonSerializableAddressBook {
             Entry entry = jsonAdaptedEntry.toModelType();
             if (addressBook.hasEntry(entry)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ENTRY);
+            }
+
+            if (addressBook.isOverlappingEntry(entry)) {
+                throw new IllegalValueException(MESSAGE_OVERLAPPING_ENTRY);
             }
             addressBook.addEntry(entry);
         }
