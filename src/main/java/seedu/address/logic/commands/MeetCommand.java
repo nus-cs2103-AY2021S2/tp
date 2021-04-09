@@ -37,9 +37,11 @@ public class MeetCommand extends Command {
             + "END must be after START on the same DATE.\n"
             + "Example: " + COMMAND_WORD + " 3 -add 18.05.2021 15:00 18:00 MRT";
     public static final String MESSAGE_INVALID_DATE =
-            "DATE in meeting should be in dd.MM.yyyy format and should be valid";
+            "DATE in meeting should be in dd.MM.yyyy format and should be valid.\n"
+            + "Example: 18.05.2021";
     public static final String MESSAGE_INVALID_TIME =
-            "START and END in meeting should be in HH:mm format and END must be after START on the same DATE";
+            "START and END in meeting should be in HH:mm format and END must be after START on the same DATE.\n"
+            + "Example: 15:00 18:00";
 
     public static final String MESSAGE_CLASHING_MEETING = "The meeting clashes with \n%1$s";
     public static final String MESSAGE_ADD_MEETING = "The meeting is added to the client %1$s";
