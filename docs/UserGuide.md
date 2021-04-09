@@ -78,16 +78,17 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
 
 Commands have this general format:
 ```
-component command /prefix input -flag
+component command /prefix [input] -flag
 ```
 
 - `component` - list to apply the command to (e.g. `customer`, `menu`)
 - `command` - command to run (e.g. `list`, `add`)
-- `/prefix input` - specify details (e.g. `n/Thomas Tan`)
+- `/prefix [input]` - specify details (e.g. `n/Thomas Tan`)
 - `-flag` - change behavior (e.g. `-f`)
 
-Only one command can be executed at a time and any words after a valid command is entered will be ignored.
+Optional parts of the command will be wrapped in round brackets.
 
+Only one command can be executed at a time and any words after a valid command is entered will be ignored.
 
 
 <a name="general"></a>
@@ -266,10 +267,10 @@ Only one command can be executed at a time and any words after a valid command i
         
         Format:
         ```
-        menu add [n/NAME] [p/PRICE] ([i/INGREDIENT_ID] [q/INGREDIENT_QUANTITY]...)
+        menu add n/[NAME] p/[PRICE] i/[INGREDIENT_ID] q/[INGREDIENT_QUANTITY] (i/[INGREDIENT_ID] q/[INGREDIENT QUANTITY])...
         ```
         
-        At least one pair of ingredient index and amount must be present.
+        Ingredient ID and quantity must come in pairs. At least one pair must be specified, but more can be added.
 
         </details>
         
@@ -310,10 +311,10 @@ Only one command can be executed at a time and any words after a valid command i
         
         Format:
         ```
-        menu edit [INDEX] ([n/NAME] [p/PRICE] [i/INGREDIENT_ID] [q/INGREDIENT_QUANTITY]...)
+        menu edit [INDEX] (n/[NAME] p/[PRICE] i/[INGREDIENT_ID] [q/INGREDIENT_QUANTITY]...)
         ```
         
-        At least one of the fields in brackets must be present in the edit command.
+        At least one of the fields in round brackets must be specified.
         
         </details>
         
