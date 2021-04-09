@@ -71,6 +71,7 @@ public class ReminderCommandParserTest {
 
         // integer provided greater than maximum integer
         assertParseFailure(parser, "2140928140124 days", ReminderCommand.MESSAGE_INCORRECT_INTEGER);
+        assertParseFailure(parser, "-28347923847102 weeks", ReminderCommand.MESSAGE_INCORRECT_INTEGER);
     }
 
 }
