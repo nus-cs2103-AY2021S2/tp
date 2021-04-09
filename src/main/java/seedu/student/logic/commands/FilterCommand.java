@@ -19,6 +19,8 @@ import seedu.student.model.student.VaccinationStatus;
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
+    public static final String MESSAGE_NO_STUDENTS_ARE_LISTED = "No %s students exist in VAX@NUS's record.";
+    public static final String MESSAGE_STUDENTS_ARE_LISTED = "All %s students listed.";
 
     private static String vaccinationStatus = VaccinationStatus.getStringVaccinationStatus();
     private static String faculties = Faculty.getStringFaculties();
@@ -32,11 +34,15 @@ public class FilterCommand extends Command {
             + "Please enter only one parameter." + " Examples: " + COMMAND_WORD + " vaccinated, "
             + COMMAND_WORD + " COM, " + COMMAND_WORD + " PGPH " + "\n";
 
-    public static final String MESSAGE_STUDENTS_ARE_LISTED = "All %s students listed.";
-    public static final String MESSAGE_NO_STUDENTS_ARE_LISTED = "No %s students exist in VAX@NUS's record.";
-    private String input;
-
     private final Predicate<Student> predicate;
+    private final String input;
+
+
+    /**
+     * Constructor
+     * @param predicate
+     * @param input the filter input given by the user
+     */
 
     public FilterCommand(Predicate<Student> predicate, String input) {
         this.predicate = predicate;
