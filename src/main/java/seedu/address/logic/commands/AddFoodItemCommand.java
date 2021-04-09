@@ -41,6 +41,8 @@ public class AddFoodItemCommand extends Command {
         }
 
         model.addFoodItem(temporaryFood);
-        return new CommandResult(MESSAGE_SUCCESS + temporaryFood + ") into food list.");
+        String foodItemResult = model.listFoodItem();
+        return new CommandResult(MESSAGE_SUCCESS + temporaryFood + ") into food list.\n"
+                + "Here are all the food items: \n" + foodItemResult);
     }
 }

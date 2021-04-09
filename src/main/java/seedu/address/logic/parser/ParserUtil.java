@@ -30,6 +30,7 @@ import seedu.address.model.user.IdealWeight;
  */
 public class ParserUtil {
 
+    public static final double DOUBLE_DECIMAL_LIMIT = 3;
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
@@ -76,8 +77,16 @@ public class ParserUtil {
     public static Double parseDouble(String doubleValue) throws ParseException {
         requireNonNull(doubleValue);
         String trimmedValue = doubleValue.trim();
+        int dotIndex = trimmedValue.indexOf(".");
         if (!trimmedValue.matches(Food.VALIDATION_POSITIVE_DOUBLE_REGEX)) {
             throw new ParseException(Food.MESSAGE_DIGIT_CONSTRAINTS);
+        }
+        if (trimmedValue.length() > dotIndex + DOUBLE_DECIMAL_LIMIT && dotIndex != -1) {
+            throw new ParseException(Food.MESSAGE_DECIMAL_PLACE_CONSTRAINTS);
+        }
+        Double result = Double.valueOf(trimmedValue);
+        if (result > Food.NUTRIENTS_LIMIT) {
+            throw new ParseException(Food.MESSAGE_DIGIT_MAX_LIMIT);
         }
         return Double.valueOf(trimmedValue);
     }
@@ -140,8 +149,12 @@ public class ParserUtil {
     public static double parseWeightAndHeight(String weightHeightString) throws ParseException {
         requireNonNull(weightHeightString);
         String trimmedWeightHeight = weightHeightString.trim();
+        int dotIndex = trimmedWeightHeight.indexOf(".");
         if (!Bmi.isValidWeightOrHeight(trimmedWeightHeight)) {
             throw new ParseException(Bmi.MESSAGE_CONSTRAINTS);
+        }
+        if (trimmedWeightHeight.length() > dotIndex + DOUBLE_DECIMAL_LIMIT && dotIndex != -1) {
+            throw new ParseException(Food.MESSAGE_DECIMAL_PLACE_CONSTRAINTS);
         }
 
         return Double.parseDouble(trimmedWeightHeight);
@@ -172,10 +185,13 @@ public class ParserUtil {
     public static double parseIdealWeight(String idealWeightString) throws ParseException {
         requireNonNull(idealWeightString);
         String trimmedWeight = idealWeightString.trim();
+        int dotIndex = trimmedWeight.indexOf(".");
         if (!IdealWeight.isValidIdealWeight(trimmedWeight)) {
             throw new ParseException(IdealWeight.MESSAGE_CONSTRAINTS);
         }
-
+        if (trimmedWeight.length() > dotIndex + DOUBLE_DECIMAL_LIMIT && dotIndex != -1) {
+            throw new ParseException(Food.MESSAGE_DECIMAL_PLACE_CONSTRAINTS);
+        }
         return Double.parseDouble(trimmedWeight);
     }
 

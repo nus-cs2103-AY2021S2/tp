@@ -45,8 +45,8 @@ public class AddFoodItemCommandTest {
 
         CommandResult commandResult = new AddFoodItemCommand(validFood).execute(modelStub);
 
-        assertEquals(AddFoodItemCommand.MESSAGE_SUCCESS + validFood + ") into food list.",
-                commandResult.getFeedbackToUser());
+        assertEquals(AddFoodItemCommand.MESSAGE_SUCCESS + validFood + ") into food list.\n"
+                + "Here are all the food items: \n" + modelStub.listFoodItem(), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validFood), modelStub.foodsAdded);
     }
 
@@ -278,6 +278,17 @@ public class AddFoodItemCommandTest {
         public void addFoodItem(Food food) {
             requireNonNull(food);
             foodsAdded.add(food);
+        }
+
+        @Override
+        public String listFoodItem() {
+            StringBuilder stringBuilder = new StringBuilder();
+            int counter = 1; //Used for for-loop counter indicator.
+            for (Food food : this.foodsAdded) {
+                stringBuilder.append(counter + ". " + food.toString() + "\n");
+                counter++;
+            }
+            return stringBuilder.toString();
         }
 
         @Override
