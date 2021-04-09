@@ -33,10 +33,10 @@ Given below are my contributions to the project.
     * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
 <br><br>
 * **Enhancements to existing features**:
-    * Wrote tests to ensure correctness of implemented `policy` and `batch` commands.
-    * Identified and corrected 
-    * // Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-    * // Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+    * Wrote tests to ensure correctness of implemented `policy` (Pull request [\#51](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/51)
+      and `batch` (Pull requests [\#98](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/98), 
+      [\#101](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/101))) commands.
+    * Corrected existing bugs from the original upstream repository (Pull request [\#183](https://github.com/AY2021S2-CS2103T-W15-2/tp/pull/183))
 <br><br>
 * **Documentation**:
     * User Guide:
