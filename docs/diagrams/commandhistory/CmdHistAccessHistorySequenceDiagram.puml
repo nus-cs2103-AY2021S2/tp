@@ -1,0 +1,33 @@
+@startuml
+!include ../style.puml
+
+Actor User as user USER_COLOR
+Participant ":CommandBox" as ui UI_COLOR
+Participant ":CommandHistorySelector" as selector LOGIC_COLOR
+Participant ":ReadOnlyCommandHistory" as cmdHist MODEL_COLOR
+
+user -[USER_COLOR]> ui : press UP arrow
+activate ui UI_COLOR
+
+ui -[UI_COLOR]> selector : selectPrevious()
+activate selector LOGIC_COLOR
+
+selector -[LOGIC_COLOR]> selector : update state
+activate selector LOGIC_COLOR
+
+selector --[LOGIC_COLOR]> selector
+deactivate selector
+
+selector -[LOGIC_COLOR]> cmdHist : get(previous)
+activate cmdHist MODEL_COLOR
+
+cmdHist --[MODEL_COLOR]> selector : command entry
+deactivate cmdHist
+
+selector --[LOGIC_COLOR]> ui : command entry
+deactivate selector
+
+ui --[UI_COLOR]> user : display\n command entry
+deactivate ui UI_COLOR
+
+@enduml

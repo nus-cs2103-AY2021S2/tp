@@ -1,5 +1,9 @@
 package seedu.address.ui;
 
+import static seedu.address.ui.KeyboardShortcuts.HELP_SHORTCUT;
+import static seedu.address.ui.KeyboardShortcuts.REDO_SHORTCUT;
+import static seedu.address.ui.KeyboardShortcuts.UNDO_SHORTCUT;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -15,6 +19,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.undoredo.RedoCommand;
+import seedu.address.logic.commands.undoredo.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -31,7 +37,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private ResidentListPanel residentListPanel;
+    private RoomListPanel roomListPanel;
+    private IssueListPanel issueListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,13 +50,25 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane residentListPanelPlaceholder;
+
+    @FXML
+    private StackPane roomListPanelPlaceholder;
+
+    @FXML
+    private StackPane issueListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private MenuItem undoMenuItem;
+
+    @FXML
+    private MenuItem redoMenuItem;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +86,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        updateUndoRedoMenus();
     }
 
     public Stage getPrimaryStage() {
@@ -73,11 +95,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(helpMenuItem, HELP_SHORTCUT);
+        setAccelerator(undoMenuItem, UNDO_SHORTCUT);
+        setAccelerator(redoMenuItem, REDO_SHORTCUT);
     }
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -110,8 +135,14 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        residentListPanel = new ResidentListPanel(logic.getFilteredResidentList());
+        residentListPanelPlaceholder.getChildren().add(residentListPanel.getRoot());
+
+        roomListPanel = new RoomListPanel(logic.getFilteredRoomList());
+        roomListPanelPlaceholder.getChildren().add(roomListPanel.getRoot());
+
+        issueListPanel = new IssueListPanel(logic.getFilteredIssueList());
+        issueListPanelPlaceholder.getChildren().add(issueListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -119,7 +150,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, logic.getCommandHistorySelector());
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -152,6 +183,30 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Executes an undo command.
+     */
+    @FXML
+    private void handleUndo() {
+        try {
+            executeCommand(UndoCommand.COMMAND_WORD);
+        } catch (ParseException | CommandException e) {
+            // Handled by {@code executeCommand}
+        }
+    }
+
+    /**
+     * Executes a redo command.
+     */
+    @FXML
+    private void handleRedo() {
+        try {
+            executeCommand(RedoCommand.COMMAND_WORD);
+        } catch (ParseException | CommandException e) {
+            // Handled by {@code executeCommand}
+        }
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -163,8 +218,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public ResidentListPanel getResidentListPanel() {
+        return residentListPanel;
     }
 
     /**
@@ -186,11 +241,21 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            updateUndoRedoMenus();
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Enables or disables the undo and redo menu items based on the logic's state.
+     */
+    private void updateUndoRedoMenus() {
+        undoMenuItem.setDisable(!logic.canUndoAddressBook());
+        redoMenuItem.setDisable(!logic.canRedoAddressBook());
     }
 }

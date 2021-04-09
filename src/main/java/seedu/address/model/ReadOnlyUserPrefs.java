@@ -13,4 +13,10 @@ public interface ReadOnlyUserPrefs {
 
     Path getAddressBookFilePath();
 
+    //=========== CommandHistory ====================================================
+
+    /**
+     * Returns file path to command history data.
+     */
+    Path getCommandHistoryFilePath();
 }

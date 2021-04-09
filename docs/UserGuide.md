@@ -3,10 +3,19 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
 * Table of Contents
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Introduction
+**SunRez** is a desktop app designed for college residential staff to efficiently manage student housing services. It 
+features a Graphical User Interface (GUI) but is optimized for use via a Command Line Interface (CLI).
+
+**SunRez** has the following features:
+* Keeps track of maintenance issues
+* Keeps track of student records
+* Keeps track of room records
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,168 +23,684 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `sunrez.jar` from [here](https://github.com/AY2021S2-CS2103-T14-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your SunRez.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. A GUI like the one pictured below should appear in a few seconds.
+   Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type a command in the command box and press Enter to execute it.
+   e.g. typing `help` and pressing Enter will open the help window.<br>
+
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+    * `rlist`: Lists all residents.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * `radd n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2`:
+      Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, a 2nd year student.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * `rdel 3`: Deletes the 3rd resident shown in the current resident list.
 
-   * **`clear`** : Deletes all contacts.
+    * `exit`: Exits the app.
 
-   * **`exit`** : Exits the app.
+6. Refer to the [Features](#features) below for details of each command.
 
-1. Refer to the [Features](#features) below for details of each command.
+--------------------------------------------------------------------------------------------------------------------
+
+## SunRez User Interface (UI)
+The following image shows the different parts of the SunRez application window:
+
+![Ui Layout](images/UiLayout.png)
+
+### Using the UI
+
+SunRez is optimized for fast typists, so most input to SunRez takes the form of commands. To execute a command, 
+simply type it into the **Command Box** then press `ENTER` on the keyboard. The result (or an error message) will be
+displayed in the **Result Box** following a command execution. Details about specific commands can be found in the 
+[features](#features) section.
+
+An error message may be shown for various reasons. Most commonly, one is shown if a command cannot be parsed (that is,
+if SunRez cannot understand the format of your command) or if a command has been given parameters which are out of
+the acceptable range. In the following sections, more information is given about acceptable 
+[command formats](#command-format), [command parameters](#command-parameters), and the 
+[command parsing process](#command-parsing). 
+
+### Command Format
+
+Commands in this user guide follow this format:
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `radd n/NAME ...`, `NAME` is a parameter which can be used as `radd n/John Doe ...`.
+
+* Items in square brackets are optional.<br>
+  e.g. `d/DESCRIPTION [t/TIMESTAMP]` can be used as `d/Broken chair t/2020/3/23 11:59pm` or as `d/Broken chair`.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence 
+  of the parameter will be taken.<br>
+  e.g. if you specify `n/John Doe n/Jane Doe`, only `n/Jane Doe` will be taken.
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `ilist`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  
+### Command Parsing
+
+#### Repeated parameters
+All commands in SunRez default to taking the latest occurrence of a duplicate parameter **except [tags](#tag)**. 
+For example, if you key in this command:
+
+`radd n/John Doe n/Timmy Tan p/91234567 e/e0123456@u.nus.edu y/3`
+
+The resident's name will take the **later** occurrence of name and create a resident named "Timmy Tan".
+
+On the other hand, **all** [tags](#tag) specified will be taken. 
+
+For instance, `radd n/John Doe n/Timmy Tan p/91234567 e/e0123456@u.nus.edu y/3 g/tag_one g/tag_two g/tag_three` will 
+create a resident with tags `tag_one`, `tag_two` and `tag_three`.
+
+
+#### Interpreting parameter values
+Commands in SunRez have a pre-set parameter list they accept. The value for the parameter will be all characters 
+until the next occurrence of a parameter prefix for the command.
+For example, if you key in this command:
+
+`radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3`
+
+The resident's name will be all characters that follows `n/` until just before the start of `p/`, including the space. 
+Most commands, however, trim leading and trailing spaces.
+
+Let us break this down further and assume `radd` only takes in 2 parameters for the purposes of explanation. 
+We can break the command down as follows:
+
+`radd n/[NAME_STRING] p/[PHONE_NUM_STRING]`
+
+A user can enter a `NAME_STRING` that consists of anything, including text that contains prefix-like strings such as `s/`. 
+For example, a user could enter `John s/o Tom`. 
+However, as `s/` is not a valid prefix for the `radd` command, the command parser will treat `John s/o Tom` as the 
+value for the name parameter. 
+
+
+The validation for the `Name` parameter will process `John s/o Tom` and may reject it based on the stated validation rules.
+However, a known limitation of this approach is that parameter values containing valid parameter prefixes will cause issues. 
+
+Let us take a look at another example:
+
+If `NAME_STRING` = `John p/ Tom`, the command keyed in could look like `radd p/[VALID_PHONE_NUM] n/John p/ Tom` 
+(Remember that prefix order does not matter.) 
+
+This will create the presence of 2 phone number parameters. In such a case, the latter value will be taken. 
+As `Tom` is not a valid phone number, it will be rejected.
+
+#### Interpreting errors
+
+In most cases, the error displayed should be relatively self-explanatory. This sub-section aims to clear up any ambiguity 
+you might encounter when dealing with invalid commands or errors. 
+
+We will break our explanation down into the following categories:
+- Incorrect formats
+- Parameters do not conform to required values
+- Commands that require an [`INDEX`] (e.g. `redit 1 n/John`)
+
+##### Incorrect formats
+This error typically shows a message along the following lines: `Invalid command format! [Information on how to use
+the command]`
+
+![Invalid command format](images/error-invalid-cmd-format.png)
+
+Typically this happens because the command does not match the required format. Check if you are missing any parameters.
+A special case of this takes place when the `INDEX` value is not a number.
+
+##### Parameters do not conform to required values
+This error typically shows a message along the following lines: `[Parameter name] must be [some condition]`. E.g. 
+`Room numbers should be formatted as such: XY-ABC, where XY can be any pair of digits except 00, and ABC can 
+be any 3 digits.`
+
+![Invalid param format](images/error-invalid-param-format.png)
+
+Typically this happens because the parameter provided does not match the required format. Check if your parameter conforms
+to the format stated under the [command parameters](#command-parameters) section. The error message usually gives some
+helpful information in resolving the error too.
+
+##### Commands that require an `INDEX`
+The bounds of the `INDEX` parameter is documented [below](#index). This section will explain how errors with the `INDEX`
+will be dealt with.
+
+- If you do not specify the `INDEX` (e.g. `rdel`): The app will inform you that the format is invalid, and display the 
+  format that should be used. This is a specific case of [incorrect formats](#incorrect-formats).
+  
+- If the `INDEX` is not an integer (e.g. `rdel abc`): The app will inform you that the format is invalid, and display the
+  format that should be used. This is also a specific case of [incorrect formats](#incorrect-formats), as the command 
+  expects a number but did not get one.
+
+- If the `INDEX` parameter is required alongside other parameters e.g. [`redit`](#edit-a-resident-record--redit), and
+  **only** an `INDEX` (be it valid or not) value is provided (e.g. `redit 1000` or `redit 1`): The app will inform you
+  that the format is invalid, and display the format that should be used. This is another specific case 
+  of [incorrect formats](#incorrect-formats), as the command compulsorily needs at least one of the optional parameters 
+  to be provided.
+  
+- If the `INDEX` is 0 or lesser (e.g. `rdel -5`): The app will inform you that `INDEX` should be a positive integer.
+
+![Index non positive](images/error-idx-non-positive.png)
+
+- If the `INDEX` is above the range of the collection specified (e.g. `rdel 100` but there are only 6 residents): The 
+  app will inform you that `INDEX` needs to be between 1 and the size of the collection in question.
+
+![Index out of range](images/error-idx-out-of-range.png)
+
+
+### Command Parameters
+
+Many SunRez commands use various parameters. Their formats, constraints and rationale are provided in this subsection.
+
+| Parameter | Prefix | Applicable to | Description |
+|---|---|---|---|
+| <a id="alias_name"></a> `ALIAS_NAME` | `a/` | `alias` `unalias` | The name of an alias.{::nomarkdown}<ul><li> Must be alphanumeric. </li><li> Must not be empty. </li><li> Must not be a reserved keyword i.e. names of other system commands. </li></ul>{:/} |
+| <a id="category"></a> `CATEGORY` | `c/` | `iadd` `iedit`| DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
+| <a id="command"></a> `COMMAND` | `cmd/`| `alias` | The command that an alias is short for.{::nomarkdown}  <ul><li> Must not be empty. </li><li> Must not be recursive i.e. contains another alias name. </li></ul>{:/} |
+| <a id="count"></a> `COUNT` | - | `history` | The number of command history entries wanted.{::nomarkdown} <ul><li> Must be a positive integer: 1, 2, 3, ... </li><li> Must be at most the total number of entries in command history. </li><li>Exception: if command history is empty then <code>COUNT</code> can be greater than the number of entries in command history (that is, it can be a positive integer). SunRez will simply indicate that command history is empty.</li></ul>{:/} |
+| <a id="description"></a> `DESCRIPTION` | `d/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
+| <a id="email"></a> `EMAIL` | `e/` | `radd` `redit` | The email of a resident.{::nomarkdown} <ul><li> Format: local-part@domain. </li><li> Local-part should only contain alphanumeric characters, and these special characters, excluding the parenthesis (!#$%&'*+/=?&#96;{&#124;}~^.-). </li><li> Must contain @. </li><li> Domain must be at least 2 characters long, start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any. </li><li> e.g. e0123456@u.nus.edu </li></ul>{:/} |
+| <a id="index"></a> `INDEX` | - | `redit` `rdel` `oedit` `odel` `iedit` `iclo` `idel` `alloc` `dealloc`| The index number shown in the displayed list.{::nomarkdown} <ul><li> Must be a positive integer: 1, 2, 3, ... </li></ul>{:/} |
+| <a id="keyword"></a> `KEYWORD` | - | `rfind` `ofind` `ifind` | A keyword used in the various find commands.{::nomarkdown} <ul><li> Format: Single word consisting of any character except spaces. </li><li> For best usage: Use English characters only. </li></ul>{:/} |
+| <a id="name"></a> `NAME` | `n/` | `radd` `redit` | The identifier of a resident.{::nomarkdown} <ul><li> Accepts only alphabetic characters and spaces. </li><li> Must not be blank. </li><li> Must be unique. </li></ul>{:/} |
+| <a id="phone_number"></a> `PHONE_NUMBER` | `p/` | `radd` `redit` | The phone number of a resident.{::nomarkdown} <ul><li> Must contain only numbers. </li><li> Must be at least 3 digits long. </li></ul>{:/} |
+| <a id="room_number"></a> `ROOM_NUMBER` | `r/` | `oadd` `oedit` `iadd` `iedit` | Room number for a room.{::nomarkdown} <ul><li> Format: <code>XY-ABC</code>, where XY can be any pair of digits except 00, and ABC can be any 3 digits. <ul><li> Valid examples: 01-000, 11-100, 12-345. </li><li> Invalid examples: 00-000, 00-100. </li></ul> </li><li> Room numbers are unique within SunRez. </li><li> We disallow floor numbers being 00. However, unit numbers can be 000. </li></ul>{:/} |
+| <a id="room_type"></a> `ROOM_TYPE` | `t/` | `oadd` `oedit` | Room type of a room.{::nomarkdown} <ul><li> Must be one of the following strings: <code>corridor_ac</code>, <code>corridor_non_ac</code>, <code>suite_ac</code>, <code>suite_non_ac</code>. </li><li> Strings are not case-sensitive. </li></ul>{:/} |
+| <a id="status"></a> `STATUS` | `s/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
+| <a id="tag"></a> `TAG` | `g/` | `oadd` `oedit` `iadd` `iedit` | The tag associated with a room or issue.{::nomarkdown} <ul><li> Tags must be non-blank and alphanumeric (spaces are not allowed). </li><li> Tags are limited to 25 characters. </li><li> Tags are case-sensitive: e.g. <code>SHN</code>,<code>shn</code> and <code>Shn</code> are each considered separate tags. </li><li> Insertion order of tags does not guarantee display order in any part of the user interface. </li><li> Duplicate tags will be accepted as input, but only one instance will be recorded. </li><li> For the best experience, we recommend keeping tags short and having fewer than 20 of them per entry. There is no theoretical limit to the number of tags an entry can have, but SunRez may slow down or run into unexpected problems for a huge number of tags. </li></ul>{:/} |
+| <a id="timestamp"></a> `TIMESTAMP` | `t/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
+| <a id="year"></a> `YEAR` | `y/` | `radd` `redit` | The year of study of a resident.{::nomarkdown} <ul><li> Must be a single digit numeric character from 1 to 5 inclusive. </li></ul>{:/} |
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+This section contains the details on SunRez commands and features. 
 
-**:information_source: Notes about the command format:**<br>
+### Resident Management
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+#### Add a resident : `radd`
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+Adds a resident to the housing management system.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+Format: `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR`
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+Parameters:
+* [NAME](#name) The name of the resident.
+* [PHONE_NUMBER](#phone_number) The phone number of the resident.
+* [EMAIL](#email) The email of the resident.
+* [YEAR](#year) The year of the resident.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+Examples:
+* `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3` 
+  Adds a resident named `John Doe` with phone number `91234567`, email `e0123456@u.nus.edu`, and as a 3rd year student, 
+  without any room allocated.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+#### List all residents : `rlist`
+
+Shows a list of all residents in the system sorted by alphabetical order.
+
+Format: `rlist`
+
+
+#### Find residents : `rfind`
+
+Finds residents whose names contain any of the given keywords.
+
+Format: `rfind KEYWORD [MORE_KEYWORDS]`
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`.
+* Residents matching at least one keyword will be returned (i.e. OR search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+
+Examples:
+* `rfind john` returns `john` and `John Doe`.
+* `rfind alex david` returns `Alex Yeoh`, and `David Li`.
+
+
+#### Edit a resident record : `redit`
+
+Edits the existing resident record at a specified index.
+
+Format: `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR]`
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* `redit` will be blocked if the resident has an active room allocation. Run `dealloc` before making further edits.
+  See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
+
+Parameters:
+* [INDEX](#index) The index of the displayed resident.
+* [NAME](#name) The name of the resident.
+* [PHONE_NUMBER](#phone_number) The phone number of the resident.
+* [EMAIL](#email) The email of the resident.
+* [YEAR](#year) The year of the resident.
+
+Example:
+* `redit 1 p/91234567 e/e0123456@u.nus.edu` Edits the phone number and email address of the 1st resident to 
+  be `91234567` and `e0123456@u.nus.edu` respectively.
+
+
+#### Delete a resident : `rdel`
+
+Deletes the resident record at a specified index.
+
+Format: `rdel INDEX`
+*  A resident allocated to a room cannot be deleted until it is first deallocated. Run `dealloc` commmand before deletion.
+   See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
+
+Parameters:
+* [INDEX](#index) The index of the displayed resident.
+
+Example:
+* `rdel 1` deletes the 1st resident in the resident list.
+
+### Room Management
+
+<div markdown="block" class="alert alert-secondary">
+:thinking: Why do room commands start with `o`?<br>
+:point_right: Room commands are prefixed with `o` as `r` is taken up by Resident commands. `o` is the second character in R**o**om. 
 </div>
 
-### Viewing help : `help`
+<div markdown="block" class="alert alert-info">
+**:information_source: Rooms are always sorted in ascending order by room number in all views.**
+</div>
 
-Shows a message explaning how to access the help page.
+#### Add a room : `oadd`
 
-![help message](images/helpMessage.png)
+Adds a room to the housing management system.
+
+Format: `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]`
+* Room is initialised with default occupancy status of "No".
+* The occupancy status cannot be defaulted to "Yes" during room addition.
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. 
+  See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info. 
+  
+Parameters:
+* [`ROOM_NUMBER`](#room_number) The room number of the room to add.
+* [`ROOM_TYPE`](#room_type) The type of the room being added.
+* [`TAG`](#tag) Optional tags that may be specified to assist in management of the room.
+
+Example:
+* `oadd r/10-112 t/corridor_ac g/SHN` Adds a room numbered `10-112` of type `corridor_ac` with the tag `SHN`.
+
+
+#### List all rooms : `olist`
+
+Shows a list of all rooms in the system sorted by room number.
+
+Format: `olist`
+
+
+#### Find rooms : `ofind`
+
+Finds all rooms by room number or tag that contain any of the given keywords.
+
+Format: `ofind KEYWORD [MORE_KEYWORDS]`
+* The search matches any part of the room number. e.g. `10` will match `10-111` and `14-101`.
+* The search for tags matches any part of the tag and is NOT case-sensitive. e.g. `mell`, `smell`, `smelly` or `room` 
+  all work to match `smellyroom`. `s` will match both `smellyroom` and `SHN`.
+* The order of the keywords does not matter. e.g. `11- 10-` will match `10-100`, `10-101`, `11-100`, and `11-101`.
+* Only the room number and tags are searched.
+* Rooms matching at least one keyword will be returned (i.e. OR search). e.g. `10 20` will return `10-100`, `11-120`.
+
+Parameters:
+* [`KEYWORD`](#keyword) The keyword to search for in the room list.
+
+Examples:
+* `ofind 10-` returns `10-100`, `10-101`, and `10-102`.
+* `ofind 10- 15-` returns `10-100`, `10-101`, `15-100`, and`15-101`.
+* `ofind 10` returns `09-100`, `09-110`, `10-100`, and `10-101`.
+* `ofind s` returns `SHN` and `smellyroom`.
+* `ofind 1 s` returns `10-100` and `SHN`.
+
+
+#### Edit a room record : `oedit`
+
+Edits the existing room record at a specified index.
+
+Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
+* `INDEX` refers to the index number shown in the displayed room list. `INDEX` **must be a positive integer 1, 2, 3, …**.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* `oedit` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before making further edits.
+* The occupancy status is not controllable through the `oedit` command.
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. 
+  See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
+* `oedit` will be blocked if there are issues tagged to the room. Run `idel` to [delete the issues](#delete-an-issue--idel) associated with the room before making further edits.
+    * This is done to prevent issues from being assigned to nonexistent rooms, by editing away a room's number after assigning an issue to it
+
+<div markdown="block" class="alert alert-info">
+:information_source: Room numbers are editable as renovation or re-numbering excercises may take place.
+</div>
+
+Parameters:
+* [`INDEX`](#index) The index of the room to edit.
+* [`ROOM_NUMBER`](#room_number) The room number to change the room identified by [`INDEX`](#index) to.
+* [`ROOM_TYPE`](#room_type) The room type to change the room identified by [`INDEX`](#index) to.
+* [`TAG`](#tag) Optional tags that may be updated for the room identified by [`INDEX`](#index).
+
+Example:
+* `oedit 1 g/SHN g/Blue` Edits the 1st room's tags to `SHN` and `Blue`.
+
+
+#### Delete a room : `odel`
+
+Deletes the room at a specified index.
+
+Format: `odel INDEX`
+* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
+* `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room. 
+  See [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
+* `odel` will be blocked if the there are issues associated with the room. 
+  Run `idel` to delete all issues associated the room before attempting to delete the room. 
+  See [delete an issue](#delete-an-issue--idel) for more info.
+
+Parameters:
+* [`INDEX`](#index) The index of the room to delete.
+
+Example:
+* `odel 1` Deletes the 1st room in the room list.
+
+### Room Allocation/Deallocation
+
+#### List all unallocated residents : `rulist`
+
+Shows a list of all unallocated residents in the system sorted by alphabetical order.
+
+Format: `rulist`
+
+#### Allocate resident to room : `alloc`
+Allocates an existing resident to an existing room.
+
+Format: `alloc ri/RESIDENT_INDEX oi/ROOM_INDEX`
+* Both fields must be provided.
+
+Parameters:
+* [RESIDENT_INDEX](#index) The index of the displayed resident.
+* [ROOM_INDEX](#index) The index of the displayed room.
+
+Note that RESIDENT_INDEX and ROOM_INDEX both conform to [INDEX](#index). 
+
+Example:
+* `alloc ri/1 oi/2` Allocates the 1st resident in the resident list to the 2nd room in the room list.
+
+#### Deallocate resident from room : `dealloc`
+Deallocates an existing resident from an existing room.
+
+Format: `dealloc INDEX`
+* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
+* The resident at the `INDEX` must already be allocated.
+
+Parameters:
+* [INDEX](#index) The index of the displayed resident.
+
+
+Example:
+* `dealloc 1` Deallocates the 1st resident in the resident list from its allocated room.
+
+### Issue Management
+
+#### Add an open issue : `iadd`
+
+Adds an issue to the housing management system.
+
+Format: `iadd r/ROOM_NUMBER d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
+
+Example:
+* `iadd r/10-100 d/Broken light c/Furniture` 
+  Creates an issue for room number `10-100` with description `Broken light` under the category `Furniture`.
+
+
+#### List all issues : `ilist`
+
+Shows a list of all issues in the system sorted by their timestamp.
+
+Format: `ilist`
+
+
+#### Find issues : `ifind`
+
+Finds all issues that contain any of the given keywords in the description, room number or tags.
+
+Format: `ifind KEYWORD [MORE_KEYWORDS]`
+* The search is case-insensitive. e.g. `broken` will match `Broken`.
+* The order of the keywords does not matter. e.g. `Broken light` will match `light broken`.
+* The search for tags and description matches any part of the tag and is NOT case-sensitive. 
+  e.g. `high`, `HIGH` or `h` all work to match `High`. `H` will match both `Hot` and `High`.
+* The search matches any part of the room number. e.g. `10` will match `10-111` and `14-101`.
+* Only the description, room number, and tags are searched.
+* Issues matching at least one keyword will be returned (i.e. OR search). 
+  e.g. `Broken window` will return `Broken light`, `Dirty window`, and `Broken window`.
+
+Examples:
+* `ifind chair` returns `Broken chair` and `Chair missing wheel`.
+* `ifind wardrobe table` returns `Wardrobe door broke`, `Table unstable`, and `Table stuck in wardrobe`.
+* `ifind 1 s` returns room number `10-100`, description `Table unstable` and tag `Insect` as they all either contain `1` or the string `s`.
+
+
+#### Edit an issue record : `iedit`
+
+Edits the existing issue record at a specified index.
+
+Format: `iedit INDEX [r/ROOM_NUMBER] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
+* `INDEX` refers to the index number shown in the displayed issue list. `INDEX` **must be a positive integer 1, 2, 3, …**.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+Example:
+* `iedit 1 r/20-109 s/Closed` Edits the room number and status of the 1st issue to be `20-109` and `Closed` respectively.
+
+
+#### Close an issue : `iclo`
+
+Marks as closed the issue at a specified index.
+
+Format: `iclo INDEX`
+* `INDEX` refers to the index number shown in the displayed issue list. `INDEX` **must be a positive integer 1, 2, 3, …**.
+
+Example:
+* `iclo 1` Closes the 1st issue.
+
+
+#### Delete an issue : `idel`
+
+Deletes the issue at a specified index.
+
+Format: `idel INDEX`
+* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
+
+Example:
+* `idel 1` Deletes the 1st issue.
+
+### General
+
+#### Show help : `help`
+
+Shows a message explaining how to access the help page.
 
 Format: `help`
 
+#### Delete all data : `clear`
 
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all persons : `list`
-
-Shows a list of all persons in the address book.
-
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
+Deletes all rooms, residents and issues in SunRez.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+#### Undo previous command : `undo`
+
+Restores SunRez to its state before an _undoable_ command was executed.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: _Undoable_ command:**<br>
+An undoable command is one which modifies the data of SunRez.
+
+e.g. `radd`, `redit`, `idel`, `clear`, etc.
+</div>
+
+Format: `undo`
+
+Examples:
+* `rdel 1` <br>
+  `undo` Undoes the `rdel 1` command.
+
+* `iedit 1 r/20-109 s/Closed` <br>
+  `clear` <br>
+  `undo` Undoes the `clear` command. <br>
+  `undo` Undoes the `iedit 1 r/20-109 s/Closed` command.
+
+* `history 5` <br>
+  `undo` Fails because `history 5` did not modify SunRez's data.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Shortcuts to undo:**<br>
+1. **GUI:** Select `Edit` -> `Undo` in the menu at the top of SunRez.
+2. **Keyboard:** Press `CTRL+Z` (Windows, Linux) or `CMD+Z` (Mac).
+
+These behave as if you entered `undo` in the command box and hit `ENTER`; an `undo` command will be registered in
+command history.
+</div>
+
+#### Redo previously undone command: `redo`
+
+Reverses the previous undo operation.
+
+Format: `redo`
+
+Examples:
+* `rdel 1` <br>
+  `undo` Undoes the `rdel 1` command.
+  `redo` Redoes the `rdel 1` command.
+
+* `rdel 1` <br>
+  `redo` Fails because there are no previous `undo` commands.
+
+* `iedit 1 r/20-109 s/Closed` <br>
+  `clear` <br>
+  `undo` Undoes the `clear` command. <br>
+  `undo` Undoes the `iedit 1 r/20-109 s/Closed` command. <br>
+  `redo` Redoes the `iedit 1 r/20-109 s/Closed` command. <br>
+  `redo` Redoes the `clear` command.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Shortcuts to redo:**<br>
+1. **GUI:** Select `Edit` -> `Redo` in the menu at the top of SunRez.
+2. **Keyboard:** Press `CTRL+SHIFT+Z` (Windows, Linux) or `CMD+SHIFT+Z` (Mac).
+
+These behave as if you entered `redo` in the command box and hit `ENTER`; a `redo` command will be registered in
+command history.
+</div>
+
+#### Add an alias : `alias`
+
+Adds a user-defined alias, which represents a shortcut to a longer command.
+
+Format: `alias a/ALIAS_NAME cmd/COMMAND`
+* Parameters must be in this exact order.
+* Any parameters after `cmd/` will be parsed as part of the command.
+
+Parameters:
+* [`ALIAS_NAME`](#alias_name) The name of the alias to be added.
+* [`COMMAND`](#command) The command that the alias is short for.
+
+Examples:
+* `alias a/ol cmd/olist` Adds the `ol` alias which is a shortcut for `olist` command.
+* `alias a/fNemo cmd/rfind Nemo` Adds the `fNemo` alias which is a shortcut for `rfind Nemo` command.
+
+#### Delete an alias : `unalias`
+
+Deletes a previously defined alias.
+
+Format: `unalias a/ALIAS_NAME`
+
+Parameters:
+* [`ALIAS_NAME`](#alias_name) The name of the alias to be deleted.
+
+Example:
+* `unalias a/findBob` Deletes the `findBob` alias, provided that the alias was previously added.
+
+#### List all aliases : `aliases`
+
+Shows a list of current aliases in the system sorted by names in alphabetical order.
+
+Format: `aliases`
+
+#### View command history : `history`
+
+Displays the user's valid command history, sorted from most to least recent.
+
+Format: `history [COUNT]`
+* Displays the `COUNT` most recent command entries, if `COUNT` is specified. Otherwise, displays all command entries.
+
+Parameters:
+* [`COUNT`](#count) The number of most recent command entries to display.
+
+Examples:
+* `history` Displays all command entries.
+* `history 5` Displays the 5 most recent command entries.
+
+#### Access command history
+
+Previous successful commands can be accessed via the UP and DOWN arrow keys on the keyboard. 
+UP selects the previous command. DOWN selects the next command.
+
+Example usage:
+1. Enter some commands as per normal.
+1. Make sure the command box is in focus (e.g. click on it).
+1. Press the UP arrow key on your keyboard.
+1. SunRez should display the most recent successful command in the command box.
+    * Hit ENTER to run that command again.
+    * Alternatively, select other commands via the UP and DOWN arrow keys.
+
+#### Exit the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### SunRez Data Files
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+SunRez main application data and command history are saved in the hard disk automatically after any command
+that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Undo/redo history
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Undo/redo history is not saved to the hard disk, so it will be lost when SunRez is exited.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+#### Edit the data files
+
+* SunRez main application data is saved as a JSON file `[JAR_file_location]/data/sunrez.json`.
+* SunRez command history is saved as a plain-text file `[JAR_file_location]/data/commandhistory.txt`.
+    * Each command history entry is a single line in the file.
+    * The entire command history can be cleared by simply deleting the contents of the command history file.
+
+Advanced users are welcome to edit these files directly.
+
+<div markdown="span" class="alert alert-warning">
+**Caution**: <br>
+If your changes to the data file makes its format invalid, SunRez will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+### How do I transfer my data to another computer?
+* On the computer with your data, do the following:
+    1. Navigate to where SunRez is installed: the location of `sunrez.jar`.
+    1. Copy the following files to your other computer: `preferences.json`, `data/commandhistory.txt`, 
+       `data/sunrez.json`
+* Then, on your other computer, do the following:
+    1. Download SunRez (`sunrez.jar`) and place it in a suitable folder.
+    1. Paste the files from earlier in this folder. If prompted to replace existing files, do so.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -183,10 +708,31 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Show help** | `help`
+**Add a resident** | `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR` <br> e.g. `radd n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2`
+**List all residents** | `rlist`
+**List all unallocated residents** | `rulist`
+**Find residents** | `rfind KEYWORD [MORE_KEYWORDS]` <br> e.g. `rfind bob bobby`
+**Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
+**Delete a resident** |  `rdel INDEX` <br> e.g. `rdel 1`
+**Add a room** |  `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]` <br> e.g. `oadd r/17-101 t/corridor_ac g/SHN`
+**List all rooms** |  `olist`
+**Find rooms** |  `ofind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ofind 10- 15-`
+**Edit a room record** |  `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]` <br> e.g. `oedit 1 g/SHN`
+**Delete a room** | `odel INDEX` <br> e.g. `odel 1`
+**Allocate a Resident to Room** | `alloc ri/RESIDENT_INDEX oi/ROOM_INDEX` <br> e.g. `alloc ri/1 oi/2`
+**Deallocate a Resident from Room** | `dealloc INDEX` <br> e.g. `dealloc 1`
+**Add an open issue** | `iadd r/ROOM_NUMBER d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture g/HIGH`
+**List all issues** | `ilist`
+**Find issues** | `ifind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ifind wardrobe table`
+**Edit an issue record** | `iedit INDEX [r/ROOM_NUMBER] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iedit 1 r/20-109 s/Closed`
+**Close an issue** | `iclo INDEX` <br> e.g. `iclo 1`
+**Delete an issue** | `idel INDEX` <br> e.g. `idel 1`
+**View command history** | `history [COUNT]` <br> e.g. `history 5`
+**Undo previous command** | `undo` <br> `CTRL+Z`/`CMD+Z` (keyboard shortcuts)
+**Redo previously undone command** | `redo` <br> `CTRL+SHIFT+Z`/`CMD+SHIFT+Z` (keyboard shortcuts)
+**Add an alias** | `alias a/ALIAS_NAME cmd/COMMAND` <br> e.g. `alias a/il cmd/ilist`
+**Delete an alias** | `unalias a/ALIAS_NAME` <br> e.g. `unalias a/findBob`
+**List all aliases** | `aliases`
+**Delete all data** | `clear`
+**Exit the app** | `exit`

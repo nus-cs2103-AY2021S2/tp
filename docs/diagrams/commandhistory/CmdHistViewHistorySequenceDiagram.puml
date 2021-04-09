@@ -1,0 +1,44 @@
+@startuml
+!include ../style.puml
+
+
+skinParam DefaultFontSize 18
+skinParam ParticipantFontSize 20
+
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":ViewHistoryCommand" as cmd LOGIC_COLOR
+Participant "model:Model" as model MODEL_COLOR
+Participant "hist:ReadOnlyCommandHistory" as cmdHist MODEL_COLOR
+
+-[UI_COLOR]> logic : execute("history 5")
+activate logic LOGIC_COLOR
+
+note left: Parsing details\n omitted
+logic -[LOGIC_COLOR]> cmd ** : ViewHistoryCommand(5)
+activate cmd LOGIC_COLOR
+
+cmd --[LOGIC_COLOR]> logic
+deactivate cmd
+
+logic -[LOGIC_COLOR]> cmd : execute(model)
+activate cmd LOGIC_COLOR
+
+cmd -[LOGIC_COLOR]> model : getCommandHistory()
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> cmd : hist
+deactivate model MODEL_COLOR
+
+loop until each entry to be listed has been read
+    cmd -[LOGIC_COLOR]> cmdHist : get(i)
+    activate cmdHist MODEL_COLOR
+    cmd <[MODEL_COLOR]-- cmdHist : ith entry
+    deactivate cmdHist
+end
+
+cmd --[LOGIC_COLOR]> logic : cmdHistoryMsg
+deactivate cmd
+
+<-[LOGIC_COLOR]- logic : cmdHistoryMsg
+
+@enduml

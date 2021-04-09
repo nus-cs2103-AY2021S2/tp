@@ -1,0 +1,15 @@
+{
+  "residents": [ {
+    "name": "Valid Resident",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "year": "1",
+    "room": "Room unallocated"
+  }, {
+    "name": "Resident With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "year": "1",
+    "room": "Room unallocated"
+  } ]
+}

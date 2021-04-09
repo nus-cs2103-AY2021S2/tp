@@ -5,55 +5,56 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `e0205114[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Azeem Vasanwala
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/drwala.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/DrWala)]
+[[portfolio](team/drwala.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Testing, Rooms feature
 
-### Jane Doe
+### Benedict Khoo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/benedictkhoomw.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/benedictkhoomw)]
+[[portfolio](team/benedictkhoomw.md)]
+
+* Role: Developer
+* Responsibilities: Documentation, Undo/Redo Feature, Command History Feature
+
+### Colin Tan
+
+<img src="images/colintkn.png" width="200px">
+
+[[github](https://github.com/colintkn)]
+[[portfolio](team/colin.md)]
+
+* Role: Developer
+* Responsibilities: Integration, Resident Feature
+
+### Ian Soo
+
+<img src="images/stein414.png" width="200px">
+
+[[github](https://github.com/stein414)]
+[[portfolio](team/stein414.md)]
+
+* Role: Developer, VS Code Expert
+* Responsibilities: Code Quality, Issue Feature
+
+### Linh
+
+<img src="images/cnlinh.png" width="200px">
+
+[[github](https://github.com/cnlinh)]
+[[portfolio](team/cnlinh.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Responsibilities: Alias Feature

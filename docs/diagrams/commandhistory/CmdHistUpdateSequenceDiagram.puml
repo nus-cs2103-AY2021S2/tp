@@ -1,0 +1,33 @@
+@startuml
+!include ../style.puml
+
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":Model" as model MODEL_COLOR
+Participant ":CommandHistory" as cmdHist MODEL_COLOR
+
+-[UI_COLOR]> logic : execute("help")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> logic : parseAndExecute("help")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]-> logic
+deactivate logic
+
+logic -[LOGIC_COLOR]> model : appendCommandHistoryEntry("help")
+note right: A command is only recorded\n in history if it parses and\n executes successfully
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]> cmdHist : appendEntry("help")
+activate cmdHist MODEL_COLOR
+
+model <-[MODEL_COLOR]- cmdHist
+deactivate cmdHist
+
+model -[MODEL_COLOR]-> logic
+deactivate model
+
+<-[LOGIC_COLOR]- logic
+deactivate logic
+
+@enduml

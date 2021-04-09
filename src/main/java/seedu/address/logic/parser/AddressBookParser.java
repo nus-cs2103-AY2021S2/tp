@@ -6,16 +6,56 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.commons.core.Alias;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.alias.AliasCommand;
+import seedu.address.logic.commands.alias.ListAliasCommand;
+import seedu.address.logic.commands.alias.UnaliasCommand;
+import seedu.address.logic.commands.commandhistory.ViewHistoryCommand;
+import seedu.address.logic.commands.issue.AddIssueCommand;
+import seedu.address.logic.commands.issue.CloseIssueCommand;
+import seedu.address.logic.commands.issue.DeleteIssueCommand;
+import seedu.address.logic.commands.issue.EditIssueCommand;
+import seedu.address.logic.commands.issue.FindIssueCommand;
+import seedu.address.logic.commands.issue.ListIssueCommand;
+import seedu.address.logic.commands.resident.AddResidentCommand;
+import seedu.address.logic.commands.resident.DeleteResidentCommand;
+import seedu.address.logic.commands.resident.EditResidentCommand;
+import seedu.address.logic.commands.resident.FindResidentCommand;
+import seedu.address.logic.commands.resident.ListResidentCommand;
+import seedu.address.logic.commands.resident.ListUnallocatedResidentsCommand;
+import seedu.address.logic.commands.residentroom.AllocateResidentRoomCommand;
+import seedu.address.logic.commands.residentroom.DeallocateResidentRoomCommand;
+import seedu.address.logic.commands.room.AddRoomCommand;
+import seedu.address.logic.commands.room.DeleteRoomCommand;
+import seedu.address.logic.commands.room.EditRoomCommand;
+import seedu.address.logic.commands.room.FindRoomCommand;
+import seedu.address.logic.commands.room.ListRoomCommand;
+import seedu.address.logic.commands.undoredo.RedoCommand;
+import seedu.address.logic.commands.undoredo.UndoCommand;
+import seedu.address.logic.parser.alias.AliasCommandParser;
+import seedu.address.logic.parser.alias.UnaliasCommandParser;
+import seedu.address.logic.parser.commandhistory.ViewHistoryCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.issue.AddIssueCommandParser;
+import seedu.address.logic.parser.issue.CloseIssueCommandParser;
+import seedu.address.logic.parser.issue.DeleteIssueCommandParser;
+import seedu.address.logic.parser.issue.EditIssueCommandParser;
+import seedu.address.logic.parser.issue.FindIssueCommandParser;
+import seedu.address.logic.parser.resident.AddResidentCommandParser;
+import seedu.address.logic.parser.resident.DeleteResidentCommandParser;
+import seedu.address.logic.parser.resident.EditResidentCommandParser;
+import seedu.address.logic.parser.resident.FindResidentCommandParser;
+import seedu.address.logic.parser.residentroom.AllocateResidentRoomCommandParser;
+import seedu.address.logic.parser.residentroom.DeallocateResidentRoomCommandParser;
+import seedu.address.logic.parser.room.AddRoomCommandParser;
+import seedu.address.logic.parser.room.DeleteRoomCommandParser;
+import seedu.address.logic.parser.room.EditRoomCommandParser;
+import seedu.address.logic.parser.room.FindRoomCommandParser;
+import seedu.address.model.ReadOnlyAddressBook;
 
 /**
  * Parses user input.
@@ -30,11 +70,12 @@ public class AddressBookParser {
     /**
      * Parses user input into command for execution.
      *
-     * @param userInput full user input string
-     * @return the command based on the user input
-     * @throws ParseException if the user input does not conform the expected format
+     * @param userInput Full user input string.
+     * @param addressBook Current address book.
+     * @return The command based on the user input.
+     * @throws ParseException If the user input does not conform the expected format.
      */
-    public Command parseCommand(String userInput) throws ParseException {
+    public Command parseCommand(String userInput, ReadOnlyAddressBook addressBook) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -44,23 +85,71 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        // ====== Resident Commands ======
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case AddResidentCommand.COMMAND_WORD:
+            return new AddResidentCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case ListResidentCommand.COMMAND_WORD:
+            return new ListResidentCommand();
 
+        case FindResidentCommand.COMMAND_WORD:
+            return new FindResidentCommandParser().parse(arguments);
+
+        case EditResidentCommand.COMMAND_WORD:
+            return new EditResidentCommandParser().parse(arguments);
+
+        case DeleteResidentCommand.COMMAND_WORD:
+            return new DeleteResidentCommandParser().parse(arguments);
+
+        case ListUnallocatedResidentsCommand.COMMAND_WORD:
+            return new ListUnallocatedResidentsCommand();
+
+        // ====== Room Commands ======
+        case AddRoomCommand.COMMAND_WORD:
+            return new AddRoomCommandParser().parse(arguments);
+
+        case FindRoomCommand.COMMAND_WORD:
+            return new FindRoomCommandParser().parse(arguments);
+
+        case ListRoomCommand.COMMAND_WORD:
+            return new ListRoomCommand();
+
+        case EditRoomCommand.COMMAND_WORD:
+            return new EditRoomCommandParser().parse(arguments);
+
+        case DeleteRoomCommand.COMMAND_WORD:
+            return new DeleteRoomCommandParser().parse(arguments);
+
+        // ====== ResidentRoom Commands ======
+        case AllocateResidentRoomCommand.COMMAND_WORD:
+            return new AllocateResidentRoomCommandParser().parse(arguments);
+
+        case DeallocateResidentRoomCommand.COMMAND_WORD:
+            return new DeallocateResidentRoomCommandParser().parse(arguments);
+
+        // ====== Issue Commands ======
+        case AddIssueCommand.COMMAND_WORD:
+            return new AddIssueCommandParser().parse(arguments);
+
+        case ListIssueCommand.COMMAND_WORD:
+            return new ListIssueCommand();
+
+        case FindIssueCommand.COMMAND_WORD:
+            return new FindIssueCommandParser().parse(arguments);
+
+        case EditIssueCommand.COMMAND_WORD:
+            return new EditIssueCommandParser().parse(arguments);
+
+        case DeleteIssueCommand.COMMAND_WORD:
+            return new DeleteIssueCommandParser().parse(arguments);
+
+        case CloseIssueCommand.COMMAND_WORD:
+            return new CloseIssueCommandParser().parse(arguments);
+
+        // ====== System Commands ======
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -68,9 +157,31 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case ViewHistoryCommand.COMMAND_WORD:
+            return new ViewHistoryCommandParser().parse(arguments);
+
+        // ====== Alias Commands ======
+        case AliasCommand.COMMAND_WORD:
+            return new AliasCommandParser().parse(arguments);
+
+        case UnaliasCommand.COMMAND_WORD:
+            return new UnaliasCommandParser().parse(arguments);
+
+        case ListAliasCommand.COMMAND_WORD:
+            return new ListAliasCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
         default:
+            if (addressBook.getAliasMapping().containsAlias(commandWord)) {
+                Alias alias = addressBook.getAliasMapping().getAlias(commandWord);
+                return parseCommand(alias.getCommand() + " " + arguments, addressBook);
+            }
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

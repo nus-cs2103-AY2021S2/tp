@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Check if Room exists;
+if () then ([Room exists])
+    :Check if Resident exists;
+    if () then ([Resident exists])
+        : Check if Resident or Room is already allocated;
+        if () then ([Resident and room not allocated])
+            : Set the room number in Resident;
+            : Set the occupancy as 'Y' in Room;
+            stop
+        else ([else])
+            stop
+    endif
+    else ([else])
+        stop
+   endif
+
+else ([else])
+    stop
+@enduml

@@ -11,19 +11,28 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
-
-    /** The application should exit. */
-    private final boolean exit;
+    /**
+     * Help information should be shown to the user.
+     */
+    private final boolean shouldShowHelp;
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * The application should exit.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    private final boolean shouldExit;
+
+    /**
+     * Constructs a simpler CommandResult which assumes that the command is neither a resident nor room command.
+     * The command therefore can only be a help or exit command.
+     *
+     * @param feedbackToUser Feedback string to return to user.
+     * @param shouldShowHelp Indication if command is a help command.
+     * @param shouldExit Indication if command is an exit command.
+     */
+    public CommandResult(String feedbackToUser, boolean shouldShowHelp, boolean shouldExit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
+        this.shouldShowHelp = shouldShowHelp;
+        this.shouldExit = shouldExit;
     }
 
     /**
@@ -39,11 +48,11 @@ public class CommandResult {
     }
 
     public boolean isShowHelp() {
-        return showHelp;
+        return shouldShowHelp;
     }
 
     public boolean isExit() {
-        return exit;
+        return shouldExit;
     }
 
     @Override
@@ -59,13 +68,13 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && shouldShowHelp == otherCommandResult.shouldShowHelp
+                && shouldExit == otherCommandResult.shouldExit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, shouldShowHelp, shouldExit);
     }
 
 }

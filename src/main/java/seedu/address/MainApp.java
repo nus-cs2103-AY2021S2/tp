@@ -21,6 +21,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.commandhistory.CommandHistory;
+import seedu.address.model.commandhistory.ReadOnlyCommandHistory;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -28,6 +30,8 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.commandhistory.CommandHistoryStorage;
+import seedu.address.storage.commandhistory.PlainTextCommandHistoryStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -48,7 +52,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing SunRez ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -57,7 +61,9 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        CommandHistoryStorage commandHistoryStorage = new PlainTextCommandHistoryStorage(
+                userPrefs.getCommandHistoryFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, commandHistoryStorage);
 
         initLogging(config);
 
@@ -69,9 +75,14 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
+     * Returns a {@code ModelManager} with the data from {@code storage}'s address book, {@code storage}'s
+     * command history, and {@code userPrefs}. <br>
+     *
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book. <br>
+     *
+     * An empty command history will be used if {@code storage}'s command history is not found or if errors occur
+     * when reading {@code storage}'s command history.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
@@ -79,18 +90,31 @@ public class MainApp extends Application {
         try {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with a sample data file.");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty data file.");
             initialData = new AddressBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty data file.");
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        ReadOnlyCommandHistory initialCommandHistory;
+        try {
+            Optional<ReadOnlyCommandHistory> commandHistoryOptional = storage.readCommandHistory();
+            if (commandHistoryOptional.isEmpty()) {
+                logger.info("Command history file not found. Will be starting with an empty CommandHistory.");
+            }
+            initialCommandHistory = commandHistoryOptional.orElse(new CommandHistory());
+        } catch (IOException e) {
+            logger.warning("Problem while reading from command history file. "
+                    + "Will be starting with an empty CommandHistory.");
+            initialCommandHistory = new CommandHistory();
+        }
+
+        return new ModelManager(initialData, userPrefs, initialCommandHistory);
     }
 
     private void initLogging(Config config) {
@@ -124,7 +148,7 @@ public class MainApp extends Application {
             initializedConfig = new Config();
         }
 
-        //Update config file in case it was missing to begin with or there are new/unused fields
+        // Update config file in case it was missing to begin with or there are new/unused fields
         try {
             ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);
         } catch (IOException e) {
@@ -151,11 +175,11 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty data file.");
             initializedPrefs = new UserPrefs();
         }
 
-        //Update prefs file in case it was missing to begin with or there are new/unused fields
+        // Update prefs file in case it was missing to begin with or there are new/unused fields
         try {
             storage.saveUserPrefs(initializedPrefs);
         } catch (IOException e) {
@@ -167,13 +191,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting SunRez " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping SunRez ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

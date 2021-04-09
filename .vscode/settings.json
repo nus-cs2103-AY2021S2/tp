@@ -1,0 +1,19 @@
+{
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "java.checkstyle.version": "8.29",
+    "java.checkstyle.configuration": "${workspaceFolder}/config/checkstyle/checkstyle.xml",
+    "java.checkstyle.properties": {
+        "config_loc": "${workspaceFolder}/config/checkstyle"
+    },
+    "java.codeGeneration.hashCodeEquals.useInstanceof": true,
+    "java.completion.importOrder": [
+        "java",
+        "javax",
+        "com",
+        "org"
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.format.settings.url": "https://gist.githubusercontent.com/stein212/1eb6ed21d06c4a79d54a5a2cb074539b/raw/a2ff1d152a1bafd1b5000988724aa4400738abde/eclipse-formatter.xml",
+}

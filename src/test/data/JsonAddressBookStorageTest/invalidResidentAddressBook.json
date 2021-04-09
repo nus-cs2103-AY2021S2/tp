@@ -1,0 +1,9 @@
+{
+  "residents": [ {
+    "name": "Resident with invalid name field: Ha!ns Mu@ster",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "year": "1",
+    "room": "Room unallocated"
+  } ]
+}
