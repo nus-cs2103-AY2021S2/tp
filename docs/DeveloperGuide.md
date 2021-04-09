@@ -411,21 +411,25 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 **Target user profile**:
 
-- has a need to test a significant number of APIs
 - prefers a quick means of testing APIs
-- can type fast
-- prefers typing to mouse interactions
-- is reasonably comfortable with APIs
+- can type fast and prefer typing to mouse interactions
+- is a beginner in API development
 - is keen to develop software products that involve APIs
 - requires testing of APIs in projects or work-related tasks
+- needs to learn and interact with APIs
+- prefers a portable and lightweight application
 
 **Value proposition**:
 
-- beautify response
-- save requests for quick execution again
-- general analysis/recommendation system based on certain metrics
+- beautify and highlight key matrix of API responses
+- shortcuts to execute common API testing tasks
+- able to save APIs for repeated execution and continuous debugging
+- relevant prompts and comprehensive supporting documentations
 - no need to create any account
 - simple and easy to get started
+- clutter free user interface
+- one-step download and light on system resources
+- optimised for keyboard navigation and shortcuts 
 - unintrusive
 - great user experience
 
