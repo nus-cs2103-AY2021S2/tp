@@ -470,13 +470,11 @@ The following are the 5 region where the user can manipulate
 #### Opening and Closing UI Panel
 
 ##### Opening UI Panel: `open`
+Dictionote will open the UI Panel you've chosen. When you open the panel, it is set to be visible.
 
+Format: `open OPTION`
 
-Open selected UI Panel.
-
-Format: `open Option`
-
-* The following `Option` are supported
+* The following `OPTION` are supported
     * `-a`: All panel
     * `-c`: Contact panel
     * `-d`: Both dictionary list panel and dictionary content panel
@@ -489,17 +487,16 @@ Format: `open Option`
 
 Examples:
 * `open -c`
-    * show contact panel
+    * The Contact Panel will be visible to the user
 * `open -a`
-    * show all panel
+    * All panel will be visible to the user
 
 ##### Closing UI Panel: `close`
+Dictionote will close the UI Panel you've chosen. The panel is set to be invisible when closed.
 
-Close selected UI Panel.
+Format: `close OPTION`
 
-Format: `close Option`
-
-* The following `Option` are supported
+* The following `OPTION` are supported
     * `-a`: All panel
     * `-c`: Contact panel
     * `-d`: Both dictionary list panel and dictionary content panel
@@ -512,9 +509,9 @@ Format: `close Option`
 
 Examples:
 * `close -c`
-    * close contact panel
+    * The contact panel will be invisible to the user
 * `close -a`
-    * close all panel
+    * All panel will be invisible to the user
 
 #### Setting UI Divider Position
 Dictionote allows the user to manipulate the divider between the region via command.
@@ -527,15 +524,23 @@ in either horizontally or vertically mode.
 
 ![Ui Divider Configuration](images/UiDividerConfig.png)
 
+The following is the meaning of the suffix found in `setdivider` command
+* m - Main
+* d - Dictionary
+* n - Note
+* c - Contact
+
+
 ##### Set contact divider position: `setdividerc`
 
 Sets the position of the contact divider.
 The contact divider is the divider separating the contact and others user interface.
+When the divider position changes, Contact Panel become visible.
 
-Format: `setdividerc Position`
+Format: `setdividerc POSITION`
 
-* The `Position` **must be a between 1 to 9** (inclusive)
-* The `Position` **must be a positive integer** 1, 2, 3, …​
+* The `POSITION` **must be a between 1 to 9** (inclusive)
+* The `POSITION` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `setdividerc 8`
@@ -544,11 +549,13 @@ Examples:
 
 Sets the position of the dictionary divider.
 The dictionary divider is the divider separating the dictionary list and dictionary content.
+When the divider position changes,
+both the Dictionary List Panel and the Dictionary Content Panel become visible.
 
-Format: `setdividerd Position`
+Format: `setdividerd POSITION`
 
-* The `Position` **must be a between 1 to 9** (inclusive)
-* The `Position` **must be a positive integer** 1, 2, 3, …​
+* The `POSITION` **must be a between 1 to 9** (inclusive)
+* The `POSITION` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `setdividerd 5`
@@ -557,11 +564,13 @@ Examples:
 
 Sets the position of the note divider.
 The note divider is the divider separating the note list and note content.
+When the divider position changes,
+both the Note List Panel and the Note Content Panel become visible.
 
-Format: `setdividern Position`
+Format: `setdividern POSITION`
 
-* The `Position` **must be a between 1 to 9** (inclusive)
-* The `Position` **must be a positive integer** 1, 2, 3, …​
+* The `POSITION` **must be a between 1 to 9** (inclusive)
+* The `POSITION` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `setdividern 6`
@@ -570,11 +579,13 @@ Examples:
 
 Sets the position of the main divider.
 The main divider is the divider separating the note and dictionary.
+When the divider position changes,
+both the Note List Panel and the Dictionary List Panel become visible.
 
-Format: `setdividerm Position`
+Format: `setdividerm POSITION`
 
-* The `Position` **must be a between 1 to 9** (inclusive)
-* The `Position` **must be a positive integer** 1, 2, 3, …​
+* The `POSITION` **must be a between 1 to 9** (inclusive)
+* The `POSITION` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `setdividerm 3`
@@ -585,11 +596,18 @@ The following are the 2 divider where the user can manipulate
 
 ![Ui Orientation](images/UiOrientation.png)
 
+The following is the meaning of the suffix found in `toggledivider` command
+* d - Dictionary
+* n - Note
+
+
 ##### Toggle dictionary divider orientation: `toggledividerd`
 
-Toggle the orientation of the dictionary divider.
+Toggle the orientation of the dictionary divider. 
 If the current orientation of the dictionary divider on horizontal,
 it will be changed to vertical and vice versa.
+When the orientation changes, 
+both the Dictionary List Panel and the Dictionary Content Panel become visible.
 
 Format: `toggledividerd`
 
@@ -601,6 +619,8 @@ Examples:
 Toggle the orientation of the note divider.
 If the current orientation of the note divider horizontal,
 it will be changed to vertical and vice versa.
+When the orientation changes,
+both the Note List Panel and the Note Content Panel become visible.
 
 Format: `toggledividern`
 
@@ -618,11 +638,12 @@ Format: `exit`
 
 #### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Dictionote data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 #### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Dictionote data are saved as a JSON file at directory `[JAR file location]/data/`. 
+Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
@@ -635,6 +656,10 @@ _Details coming soon ..._
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+
+**My data is missing after I edited my JSON file.**
+* When an invalid JSON file is detected, Dictionote discards all data and starts over with an empty data file. 
+* Please use a JSON editor software to check that the format is still valid after you've edited it.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -652,7 +677,7 @@ Action | Format, Examples
 ***Dictionary Features*** | -
 **Find content** | `findcontent KEYWORD [MORE_KEYWORDS]`
 **Find definition** | `finddef KEYWORD [MORE_KEYWORDS]`
-**Show specific content** | `showdc INDEX`
+**Show specific content** | `showdc INDEX` <br> e.g., `showdc 1`
 **List content** | `listcontent`
 **List definitions** | `listdef`
 **Copy content to note** | `copytonote`
@@ -665,11 +690,11 @@ Action | Format, Examples
 **Mark note as undone** | `markasundonenote INDEX`
 **Mark all notes as undone** | `markallasundonenote`
 **Edit note** | `editnote INDEX c/CONTEXT [t/TAG]…​`
-**Show note** | `shownote`
+**Show note** | `shownote INDEX` <br> e.g., `shownote 1`
 **List all notes** | `listnote`
 **Sort all notes** | `sortnote`
 **Find notes using keywords** | `findnote c/NAME_KEYWORD…​ [t/TAG_KEYWORD]…​`
-**Edit note in edit mode** | `editmodenote`
+**Edit note in edit mode** | `editmode`
 **Quit edit mode** | `quit`
 **Save changes to note** | `save`
 ***Contact Features*** | -
@@ -682,11 +707,11 @@ Action | Format, Examples
 **Sort contacts by most-frequent** | `mostfreqcontact`
 **Clear contacts list** | `clearcontact`
 ***UI Features*** | -
-**Open UI panel** | `open Option` <br> e.g., `open -c`
-**Close UI panel** | `close Option` <br> e.g., `close -c`
-**Set contact divider position** | `setdividerc POSITION`
-**Set dictionary divider position** | `setdividerd POSITION`
-**Set note divider position** | `setdividern POSITION`
-**Set main divider position** | `setdividerm POSITION`
+**Open UI panel** | `open OPTION` <br> e.g., `open -c`
+**Close UI panel** | `close OPTION` <br> e.g., `close -c`
+**Set contact divider position** | `setdividerc POSITION` <br> e.g., `setdividerc 3`
+**Set dictionary divider position** | `setdividerd POSITION` <br> e.g., `setdividerd 3`
+**Set note divider position** | `setdividern POSITION` <br> e.g., `setdividern 3`
+**Set main divider position** | `setdividerm POSITION` <br> e.g., `setdividerm 5`
 **Toggle dictionary divider orientation** | `toggledividerd`
 **Toggle note divider orientation** | `toggledividern`
