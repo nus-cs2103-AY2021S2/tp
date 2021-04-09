@@ -50,14 +50,14 @@ public class ListCommandTest {
         LocationContainsKeywordsPredicate secondPredicate =
             new LocationContainsKeywordsPredicate(Arrays.asList("second"));
 
-        ListCommand findFirstCommand = new ListCommand(firstPredicate);
-        ListCommand findSecondCommand = new ListCommand(secondPredicate);
+        ListCommand findFirstCommand = new ListCommand(firstPredicate, Arrays.asList("first"));
+        ListCommand findSecondCommand = new ListCommand(secondPredicate, Arrays.asList("second"));
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        ListCommand findFirstCommandCopy = new ListCommand(firstPredicate);
+        ListCommand findFirstCommandCopy = new ListCommand(firstPredicate, Arrays.asList("first"));
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false

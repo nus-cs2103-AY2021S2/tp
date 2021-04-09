@@ -32,7 +32,8 @@ public class ListCommandParserTest {
     public void parse_validLocationArgs_returnsListCommand() {
         String[] locationKeyword = {"kitchen"};
         ListCommand expectedListCommand =
-            new ListCommand(new LocationContainsKeywordsPredicate(Arrays.asList(locationKeyword)));
+            new ListCommand(new LocationContainsKeywordsPredicate(Arrays.asList(locationKeyword)),
+                Arrays.asList(locationKeyword));
         assertParseSuccess(parser, " l/kitchen", expectedListCommand);
     }
 
@@ -40,7 +41,7 @@ public class ListCommandParserTest {
     public void parse_validTagArgs_returnsListCommand() {
         String[] tagKeyword = {"favourite"};
         ListCommand expectedListCommand =
-            new ListCommand(new TagContainsKeywordsPredicate(Arrays.asList(tagKeyword)));
+            new ListCommand(new TagContainsKeywordsPredicate(Arrays.asList(tagKeyword)), Arrays.asList(tagKeyword));
         assertParseSuccess(parser, " t/favourite", expectedListCommand);
     }
 

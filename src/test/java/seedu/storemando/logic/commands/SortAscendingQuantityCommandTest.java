@@ -25,7 +25,7 @@ class SortAscendingQuantityCommandTest {
         expectedModel.setStoreMando(getTypicalStoreMandoSortedByIncreasingQuantity());
 
         assertCommandSuccess(new SortAscendingQuantityCommand(), model,
-            SortCommand.MESSAGE_SUCCESS, expectedModel);
+            SortAscendingQuantityCommand.MESSAGE_SUCCESS_QUANTITY_ASC, expectedModel);
     }
 
     @Test
@@ -42,7 +42,7 @@ class SortAscendingQuantityCommandTest {
         Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByIncreasingQuantity(), new UserPrefs());
 
         assertCommandSuccess(new SortAscendingQuantityCommand(), model,
-            SortCommand.MESSAGE_SUCCESS, expectedModel);
+            SortAscendingQuantityCommand.MESSAGE_SUCCESS_QUANTITY_ASC, expectedModel);
     }
 
     @Test
@@ -51,7 +51,7 @@ class SortAscendingQuantityCommandTest {
         Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByIncreasingQuantity(), new UserPrefs());
 
         assertCommandSuccess(new SortAscendingQuantityCommand(), model,
-            SortCommand.MESSAGE_SUCCESS, expectedModel);
+            SortAscendingQuantityCommand.MESSAGE_SUCCESS_QUANTITY_ASC, expectedModel);
     }
 
     @Test
