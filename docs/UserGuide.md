@@ -74,6 +74,22 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
 <details open>
 <summary class="dropdown-1">Features</summary>
 
+### Usage
+
+Commands have this general format:
+```
+component command /prefix input -flag
+```
+
+- `component` - list to apply the command to (e.g. `customer`, `menu`)
+- `command` - command to run (e.g. `list`, `add`)
+- `/prefix input` - specify details (e.g. `n/Thomas Tan`)
+- `-flag` - change behavior (e.g. `-f`)
+
+Only one command can be executed at a time and any words after a valid command is entered will be ignored.
+
+
+
 <a name="general"></a>
 - <details open>
     <summary class="dropdown-2">General</summary>
