@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.group.GroupHashMap.DEFAULT_GROUP_NAME;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -20,7 +21,8 @@ public class ClearCommand extends Command {
         model.setAddressBook(new AddressBook());
         model.updateUpcomingDates();
         model.updateDetailedPerson(null);
-        model.setCurrentGroup(null);
+        model.setCurrentGroup(DEFAULT_GROUP_NAME);
+        model.updateFilteredPersonList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

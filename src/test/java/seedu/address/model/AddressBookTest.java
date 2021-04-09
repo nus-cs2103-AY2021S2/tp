@@ -77,6 +77,15 @@ public class AddressBookTest {
     }
 
     @Test
+    public void deletePerson_withValidPerson_returnsTrue() {
+        AddressBook expectedAddressBook = new AddressBook();
+        addressBook.addPerson(ALICE);
+        addressBook.removePerson(ALICE);
+
+        assertTrue(addressBook.equals(expectedAddressBook));
+    }
+
+    @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
