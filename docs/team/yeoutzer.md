@@ -42,7 +42,7 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Added anchor links in the table of contents.[#61](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/61)
-        * Added the documentation for the features `list`, `find`, and `filters`.[#24](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/24), [#61](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/61), [#83](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/83/files)
+        * Added the documentation for the features `list`, `find`, and `filters`.[#24](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/24), [#61](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/61), [#83](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/83)
     * Developer Guide:
         * Added anchor links in the table of contents.[#89](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/89)
         * Added implementation details for `filter` feature with sequence and activity diagram.[#89](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/89)
