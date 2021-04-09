@@ -74,7 +74,7 @@ public class FilterEntryCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywordsOrSearch_noEntryFound() {
+    public void execute_multipleKeywordsAndSearch_noEntryFound() {
         String expectedMessage = String.format(MESSAGE_ENTRIES_LISTED_OVERVIEW, 0);
         EntryTagsContainKeywordsPredicate predicate = preparePredicate("History Math"); // case insensitive
         FilterEntryCommand command = new FilterEntryCommand(predicate);
