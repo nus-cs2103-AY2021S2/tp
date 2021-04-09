@@ -10,10 +10,10 @@ import seedu.address.model.schedule.Schedule;
  */
 public class ScheduleBuilder {
 
-    public static final String DEFAULT_TITLE = "Maths Tuition Homework";
-    public static final String DEFAULT_DESCRIPTION = "Chapter 5 to 6";
+    public static final String DEFAULT_TITLE = "Maths Homework";
+    public static final String DEFAULT_DESCRIPTION = "Chapter 5 Page 841";
     public static final String DEFAULT_TIMEFROM = "2021-05-24 12:00PM";
-    public static final String DEFAULT_TIMETO = "2021-05-24 1:00PM";
+    public static final String DEFAULT_TIMETO = "2021-05-24 2:00PM";
 
     private Title title;
     private Description description;

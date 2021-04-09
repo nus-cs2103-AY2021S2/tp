@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import java.time.LocalDate;
 
-import seedu.address.logic.commands.eventcommands.ViewEventCommand;
 import seedu.address.logic.commands.eventcommands.ViewTimeTableCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
