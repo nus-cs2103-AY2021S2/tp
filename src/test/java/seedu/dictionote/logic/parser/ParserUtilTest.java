@@ -223,12 +223,12 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePosition_invalidInput_returnzero() {
+    public void parsePosition_invalidInput_returnZero() {
         assertEquals(0, ParserUtil.parsePosition("10 a"));
     }
 
     @Test
-    public void parsePosition_outOfRangeInput_returnzero() {
+    public void parsePosition_outOfRangeInput_returnZero() {
 
         int[] invalidRange = {-1, 0, 10, 11};
 
