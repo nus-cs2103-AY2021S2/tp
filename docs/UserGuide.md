@@ -147,6 +147,7 @@ Further description on how to add/modify these fields are provided in the [Featu
 Your friend's name, so you don't have those embarrassing moments where you forget their name.
 
 This field is what uniquely identifies each friend in FriendDex.
+Names are case-insensitive in FriendDex. This means that FriendDex interprets "John Doe" and "JoHn DoE" as the same name.
 
 ### Phone Number
 
@@ -159,6 +160,7 @@ This field should only contain numbers and should at least be 3 digits long.
 Your friend's home address so that you don't have to remember their address whenever you want to hang out with them.
 
 This field can take any values, but it should not be blank.
+It is okay for two friends to share the same address.
 
 ### Birthday
 
@@ -170,8 +172,8 @@ This field should follow the following date format: `dd-MM-yyyy` e.g `01-01-2020
 
 The amount of debt you owe to your friend so that you can pay back your dues. 
 
-A positive amount of debt would mean that you owe your friend the specified amount.
-A negative amount of debt would mean that your friend owe you the specified amount instead.
+A positive amount of debt would mean that your friend owe you the specified amount
+A negative amount of debt would mean that you owe your friend the specified amount instead.
 
 Whenever a friend is added, the debt is automatically 0. The range of this debt is from -999,999,999,999 to 999,999,999,999.
 
