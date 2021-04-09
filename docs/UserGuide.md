@@ -311,10 +311,10 @@ SpamEZ data are saved in the hard disk automatically after any command that chan
 ### Editing the data file
 
 SpamEZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
-Do not update data directly by editing that data file as it may result in unintended behaviors.
+Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If you edit the data file and make its format invalid, SpamEZ will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, SpamEZ will discard all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
