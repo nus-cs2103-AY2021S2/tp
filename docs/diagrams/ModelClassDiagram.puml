@@ -21,7 +21,6 @@ Class Address
 Class Name
 Class Phone
 Class UniquePassengerList
-Class Price
 Class Driver
 }
 
@@ -54,16 +53,15 @@ AddressBook *--> "1" UniquePassengerList
 AddressBook *--> "1" UniquePoolList
 
 UniquePassengerList o--> "*" Passenger
-Passenger *---> Name
+Passenger *--> Name
 Passenger *--> Phone
 Passenger *--> Address
 Passenger *--> TripDay
 Passenger *--> TripTime
-Passenger *--> "0..1" Price
 Passenger *--> "*" Tag
 
-Driver *--> "*" Name
-Driver *---> "*" Phone
+Driver *--> Name
+Driver *---> Phone
 
 UniquePoolList o--> "*" Pool
 Pool *--> Driver
@@ -75,5 +73,7 @@ Pool *--> "*" Tag
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 
-ModelManager ----->" ~* filtered list" Passenger
+ModelManager ---->" * filtered pool" Pool
+ModelManager ---->"~* filtered passenger" Passenger
+
 @enduml
