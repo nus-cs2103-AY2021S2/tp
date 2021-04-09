@@ -5,7 +5,9 @@ import static seedu.weeblingo.model.Mode.MODE_LEARN;
 
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.weeblingo.commons.core.LogsCenter;
 import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.commons.core.index.Index;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
@@ -33,6 +35,8 @@ public class TagCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_TAG = "Duplicate tags are not allowed.";
 
+    private static final Logger logger = LogsCenter.getLogger(TagCommand.class);
+
     private Index index;
 
     private Set<Tag> tags;
@@ -44,6 +48,8 @@ public class TagCommand extends Command {
      * @param tags The tags to be added.
      */
     public TagCommand(Index index, Set<Tag> tags) {
+        requireNonNull(index);
+        requireNonNull(tags);
         this.index = index;
         this.tags = tags;
     }
@@ -76,6 +82,8 @@ public class TagCommand extends Command {
                 throw new CommandException(MESSAGE_DUPLICATE_TAG);
             }
         }
+
+        logger.info("Adding tag(s) " + tags.toString() + " to flashcard at index " + index.getOneBased());
 
         model.setFlashcard(flashcardToTag, taggedFlashcard);
         return new CommandResult(MESSAGE_SUCCESS, false, false);
