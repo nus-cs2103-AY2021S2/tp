@@ -23,7 +23,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to edit a session.
   * What it does: Allows the user to edit an existing session in EZManage.
   * Justification: This feature improves the product significantly because a user can easily manage the information of sessions and gives users the flexibility to easily alter a session's information after creation should details like the sessions's subject, day, timeslot or tags be outdated.
-  * Highlights: To avoid potential day or timeslot clashes of a session's enrolled students and assigned tutor when editing a session, a user can only edit a session's day and timeslot if the session has no students and no tutor assigned. A user will have to unassign all students and tutor before being able to edit the session's time-related information. This enhancement affects existing commands and commands to be added in future. 
+  * Highlights: To avoid potential day or timeslot clashes of a session's enrolled students and assigned tutor when editing a session, a user can only edit a session's day and timeslot if the session has no students and no tutor assigned. A user will have to unassign all students and tutor before being able to edit the session's time-related information. 
   * Credits: AddressBook Level 3
 
 * **New Feature**: Added the ability to have an individual view of a specific session.
@@ -38,8 +38,8 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Wrote additional tests for all added features to increase coverage (Pull requests [\#68](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/68), [\#69](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/69),  [\#70](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/70) , [\#168](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/168) , [\#187](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/187)) :
-    * session ID, sessionIdPredicate, delete session, edit session, view session , list (persons, sessions, students, tutors)
-  * Updated the list command to be able to view all persons, all students, all tutors and all sessions. (Pull Request [\#70](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/70))
+    * session ID, sessionIdPredicate, delete session, edit session, view session , list 
+  * Updated the list command to be able to view all persons, students, tutors and sessions. (Pull Request [\#70](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/70))
   * Updated the clear command to clear the whole list of persons and sessions. (Pull Request [\#164](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/164))
   * Updated the Ui on a consistent basis:
     * Addition of Ui view for the commands such as the split pane view for view commands. (Pull requests [\#70](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/70) , [\#74](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/74) , [\#91](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/91))
