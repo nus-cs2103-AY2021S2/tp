@@ -1,10 +1,7 @@
 package seedu.dictionote.testutil;
 
-import seedu.dictionote.model.Dictionary;
 import seedu.dictionote.model.dictionary.DisplayableContent;
-import seedu.dictionote.model.note.Note;
 import seedu.dictionote.ui.DictionaryContentConfig;
-import seedu.dictionote.ui.NoteContentConfig;
 
 /**
  * A utility class containing a arrau of {@code UiActionOption} objects to be used in tests.

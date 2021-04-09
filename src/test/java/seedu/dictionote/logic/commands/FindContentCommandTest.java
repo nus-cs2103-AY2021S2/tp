@@ -20,7 +20,6 @@ import seedu.dictionote.model.UserPrefs;
 import seedu.dictionote.model.dictionary.ContentContainsKeywordsPredicate;
 import seedu.dictionote.testutil.TypicalContent;
 import seedu.dictionote.testutil.TypicalDictionaryContentConfig;
-import seedu.dictionote.testutil.TypicalNoteContentConfig;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindContentCommand}.
