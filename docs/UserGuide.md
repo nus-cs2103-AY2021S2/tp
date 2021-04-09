@@ -37,11 +37,11 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 # 2. Quick start <a name = "quickstart"></a>
 
-1. Ensure you have Java 11 or above installed in your computer
-2. Download the latest `GreenMileageEfforts.jar` from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases)
+1. Ensure you have Java 11 or above installed in your computer.
+2. Download the latest `GreenMileageEfforts.jar` from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases).
 3. Copy the file to the folder you want to use as the *home* folder for your **GreenMileageEfforts**.
 4. Double click the file to start the app.
-5. Type the command in the command box and press `Enter` to execute it
+5. Type the command in the command box and press `Enter` to execute it.
 6. Refer to the [Features](#3-features-) below for the details on each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -165,21 +165,21 @@ Finds passengers whose names contain any of the given keywords.
 
 **:information_source: Notes about the find command:**<br>
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Only **one type of prefix** can be specified
-* More than 1 keyword can be specified for a single prefix
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* Only full words will be matched e.g. `Han` will not match `Hans`.
+* Only **one type of prefix** can be specified.
+* More than 1 keyword can be specified for a single prefix.
 * Keywords separated by space will require both keywords to be matched.
-  e.g. `Hans Yang` will only return `Hans Gruber Yang` instead of `Bo Yang`
-* Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`, price `pr/`, day `d/` and time `t/`
-* `all` prefix for searching across names, addresses, tags and phone numbers quickly 
+  e.g. `Hans Yang` will only return `Hans Gruber Yang` instead of `Bo Yang`.
+* Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`, price `pr/`, day `d/` and time `t/`.
+* `all` prefix for searching across names, addresses, tags and phone numbers quickly.
 </div>
 
 **Examples:**
-* `find n/John` returns `john` and `John Doe`
-* `find a/serangoon` returns `Bernice Yu`, `David Li`<br>
+* `find n/John` returns `john` and `John Doe`.
+* `find a/serangoon` returns `Bernice Yu`, `David Li`<br>.
   ![result for 'find serangoon'](images/findAddress.png)
-* `find d/Monday d/Tuesday` returns `Alex Yeoh`, `Irfan Ibrahim` and `Roy Balakrishnan`
+* `find d/Monday d/Tuesday` returns `Alex Yeoh`, `Irfan Ibrahim` and `Roy Balakrishnan`.
   ![result for 'find d/Monday d/Tuesday'](images/findCommandExampleDay.png)
 
 ### 3.2.5 Deleting passengers: `delete`
@@ -217,14 +217,14 @@ Selects passengers from the current view in the bottom left pane of the GME term
 
 **:information_source: Notes about the pool command:**<br>
 
-* [TripDay](#6-glossary) is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
-* [TripTime](#6-glossary) is required to be in the 24-hour format. e.g. `0530` or `2359`
+* [TripDay](#6-glossary) is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`.
+* [TripTime](#6-glossary) is required to be in the 24-hour format. e.g. `0530` or `2359`.
 * Here, c/ stands for commuter, i.e. someone to be pooled with a driver.
 * GME will not allow you to `delete` a passenger that is assigned to a Pool.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The order of the passengers' index does not matter
-* You must select at least 1 person to pool with one command
+* The order of the passengers' index does not matter.
+* You must select at least 1 person to pool with one command.
 </div>
 
 **Examples**:
@@ -260,8 +260,8 @@ Filtering pools where the name of the pool's passengers contain any of the given
 
 **:information_source: Notes about the findPool command:**<br>
 
-* The search is case-insensitive. e.g `alex` will match `Alex`
-* Only full words will be matched e.g. `alex` will not match `Alexis`
+* The search is case-insensitive. e.g `alex` will match `Alex`.
+* Only full words will be matched e.g. `alex` will not match `Alexis`.
 </div>
 
 **Examples:**
@@ -286,7 +286,7 @@ Action | Format, Examples
 **add** | `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [tag/TAG tag/TAG ...]` <br> e.g., `add n/Jenny Talia p/91234567 a/Yishun Avenue 4 d/FRIDAY t/1800 tag/female`
 **list** | `list` 
 **edit** | `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG tag/TAG ...]` <br> e.g., `edit 8 a/Changi Airport d/SATURDAY`
-**delete** | `delete INDEX`<br> e.g.,`delete 3`
+**delete** | `delete INDEX [INDEX INDEX...]`<br> e.g.,`delete 1 3`
 **pool** | `pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [c/INDEX c/INDEX ...]`<br> e.g., `drive n/Ben p/91234567 c/2 c/3 c/4`
 **unpool** | `unpool INDEX`<br> e.g, `unpool 3`
 **find** | `find a/ADDRESS` or `find n/NAME` or `find p/PHONE NUMBER` or `find tag/TAG` <br> e.g., `find tag/female`
