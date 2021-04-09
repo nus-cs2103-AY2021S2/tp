@@ -37,7 +37,7 @@ public class JsonAdaptedFlashcardTest {
 
 
     @Test
-    public void toModelType_invalidQuestion_throwsIllegalValueException() throws IllegalValueException {
+    public void toModelType_invalidQuestion_throwsIllegalValueException() {
         JsonAdaptedFlashcard flashcard =
                 new JsonAdaptedFlashcard(INVALID_QUESTION, VALID_ANSWER, VALID_TAGS, EMPTY_USER_TAGS);
         String expectedMessage = Question.MESSAGE_CONSTRAINTS;
