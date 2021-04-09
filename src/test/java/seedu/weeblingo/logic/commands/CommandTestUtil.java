@@ -31,6 +31,9 @@ public class CommandTestUtil {
     public static final String VALID_QUESTION_I = "い";
     public static final String VALID_ANSWER_A = "a";
     public static final String VALID_ANSWER_I = "i";
+    public static final String VALID_ANSWER_CAPS = "I";
+    public static final String INVALID_ANSWER_EMPTY = "";
+    public static final String INVALID_ANSWER_SYMBOL = "@#!!!";
     public static final String VALID_TAG_DIFFICULT = "difficult";
     public static final String VALID_TAG_EASY = "easy";
     public static final String VALID_START_INTEGER_MIN = "1";
