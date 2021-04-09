@@ -117,11 +117,11 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the SunRez data in json format and read it back.
 
 ### Common classes
 
@@ -318,21 +318,25 @@ The diagram below details how the user's command to add an issue propagates thro
 The `Alias` feature allows users to define a shortcut for a longer command that is often used. The longer command can then be executed by entering the alias instead of the full or partial command.
 
 #### Implementation
-User-defined `Alias` is stored in `AliasMapping` within `UserPrefs`. `AliasMapping` internally uses `HashMap<String, Alias>` to store the mapping between the name of an `Alias` object and itself. With `AliasMapping` included in `UserPrefs`, `UserPrefs` supports the following methods:
+User-defined `Alias` is stored in `AliasMapping` within `AddressBook`. `AliasMapping` internally uses `HashMap<String, Alias>` to store the mapping between the name of an `Alias` object and itself. The class diagram of `AliasMapping` and `Alias` is shown below:
 
-* `UserPrefs#getAliasMapping()` — Returns the current `AliasMapping`.
+![AliasMappingClassDiagram](images/alias/AliasMappingClassDiagram.png)
 
-* `UserPrefs#setAliasMapping(AliasMapping aliasMappings)` — Sets the current mapping to the specified mapping.
+With `AliasMapping` included in `AddressBook`, `AddressBook` supports the following methods:
 
-* `UserPrefs#addAlias(Alias alias)` — Adds a user-defined `Alias` to the current mapping.
+* `AddressBook#getAliasMapping()` — Returns the current `AliasMapping`.
 
-* `UserPrefs#getAlias(String aliasName)` — Returns an `Alias` based on alias name.
+* `AddressBook#setAliasMapping(AliasMapping aliasMapping)` — Sets the current mapping to the specified mapping.
 
-* `UserPrefs#containsAlias(String aliasName)` — Checks if the current mapping contains an `Alias` based on alias name.
+* `AddressBook#addAlias(Alias alias)` — Adds a user-defined `Alias` to the current mapping.
 
-* `UserPrefs#isReservedKeyword(String aliasName)` — Checks if the alias name is a reserved keyword. This prevents users from using existing commands as alias name.
+* `AddressBook#getAlias(String aliasName)` — Returns an `Alias` based on alias name.
 
-* `UserPrefs#isRecursiveKeyword(String commandWord)` — Checks if the command word is a recursive keyword. This prevents users from chaining aliases.
+* `AddressBook#containsAlias(String aliasName)` — Checks if the current mapping contains an `Alias` based on alias name.
+
+* `AddressBook#isReservedKeyword(String aliasName)` — Checks if the alias name is a reserved keyword. This prevents users from using existing commands as alias name.
+
+* `AddressBook#isRecursiveKeyword(String commandWord)` — Checks if the command word is a recursive keyword. This prevents users from chaining aliases.
 
 #### Alias creation
 User can create a new `Alias` via the `AliasCommand`. The sequence diagram below describes how an `Alias` is created.
@@ -340,7 +344,6 @@ User can create a new `Alias` via the `AliasCommand`. The sequence diagram below
 ![AliasCreationSequenceDiagram](images/alias/AliasCreationSequenceDiagram.png)
 
 #### Alias execution
-
 When a user executes a new command, `AddressBookParser` will follow these steps:
 
 1. If the input begins with an existing command word, parse it as one of those pre-defined command.
@@ -1048,3 +1051,29 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases … }_
+
+### Alias
+
+1. Adding a user-defined alias
+   
+    1. Prerequisites: None.
+       
+    1. Test case: `alias a/h cmd/help` <br>
+       Expected: A new alias with the name `h` that is short for the command `help` is added. A message describing successful addition is shown.
+    
+    1. Test case: `alias a/iedit cmd/iedit 1 d/Broken window c/Window` <br>
+       Expected: No alias is added. An error message about reserved keyword being used as alias name is shown.
+    
+    1. Test case: `alias a/short cmd/short` <br>
+       Expected: No alias is added. An error message about recursive alias being added is shown.
+
+2. Deleting a user-defined alias
+    
+    1. Prerequisites: The alias with the name `h` that is short for the command `help` must exist in the system.
+    
+    1. Test case: `unalias a/h` <br>
+       Expected: The alias with the name `h` is deleted. A message describing successful deletion is shown.
+    
+    1. Test case: `unalias a/name` <br>
+       Expected: No alias is deleted. An error message about alias not found is shown.
+       
