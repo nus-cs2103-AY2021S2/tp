@@ -46,9 +46,21 @@ public class DropCommandTest {
         assertThrows(NullPointerException.class, () -> new DropCommand(null, null));
     }
 
+    public Program removeOneDogFromOneProgram(int dogId, int programId) {
+        Program editedProgram = (Program) expectedModel.getEntity(programId);
+
+        HashSet<Integer> updatedDroppedDogs = new HashSet<>(editedProgram.getDogIdSet());
+        updatedDroppedDogs.remove(dogId);
+
+        expectedModel.setEntity(programId, new Program(editedProgram.getName(),
+                editedProgram.getSessions(), editedProgram.getTags(), updatedDroppedDogs));
+
+        return editedProgram;
+    }
+
     @Test
     public void execute_dropOneDogOneProgram_success() {
-        Program editedProgram = (Program) expectedModel.getEntity(ID_EIGHTEEN);
+        Program editedProgram = removeOneDogFromOneProgram(ID_TWO, ID_EIGHTEEN);
 
         Set<Integer> dogIdSet = editedProgram.getDogIdSet();
         Set<Integer> programIdSet = new HashSet<>();
@@ -56,13 +68,6 @@ public class DropCommandTest {
 
         DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
         String expectedMessage = String.format(DropCommand.MESSAGE_SUCCESS_FORMAT, ID_TWO, ID_EIGHTEEN);
-
-        HashSet<Integer> updatedDroppedDogs = new HashSet<>(editedProgram.getDogIdSet());
-        updatedDroppedDogs.remove(ID_TWO);
-
-        expectedModel.setEntity(ID_EIGHTEEN, new Program(editedProgram.getName(),
-                editedProgram.getSessions(), editedProgram.getTags(), updatedDroppedDogs));
-
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(programIdSet));
 
         assertCommandSuccess(dropCommand, model, expectedMessage, expectedModel);
@@ -70,8 +75,8 @@ public class DropCommandTest {
 
     @Test
     public void execute_dropOneDogManyPrograms_success() {
-        Program editedProgramNineteen = (Program) expectedModel.getEntity(ID_NINETEEN);
-        Program editedProgramTwenty = (Program) expectedModel.getEntity(ID_TWENTY);
+        removeOneDogFromOneProgram(ID_FOUR, ID_NINETEEN);
+        removeOneDogFromOneProgram(ID_FOUR, ID_TWENTY);
 
         Set<Integer> dogIdSet = new HashSet<>();
         dogIdSet.add(ID_FOUR);
@@ -85,19 +90,6 @@ public class DropCommandTest {
                 programIdSet.stream()
                         .map(String::valueOf)
                         .collect(Collectors.joining(", ")));
-
-        HashSet<Integer> updatedDroppedDogsNineteen = new HashSet<>(editedProgramNineteen.getDogIdSet());
-        updatedDroppedDogsNineteen.remove(ID_FOUR);
-
-        expectedModel.setEntity(ID_NINETEEN, new Program(editedProgramNineteen.getName(),
-                editedProgramNineteen.getSessions(), editedProgramNineteen.getTags(), updatedDroppedDogsNineteen));
-
-        HashSet<Integer> updatedDroppedDogsTwenty = new HashSet<>(editedProgramTwenty.getDogIdSet());
-        updatedDroppedDogsTwenty.remove(ID_FOUR);
-
-        expectedModel.setEntity(ID_TWENTY, new Program(editedProgramTwenty.getName(),
-                editedProgramTwenty.getSessions(), editedProgramTwenty.getTags(), updatedDroppedDogsTwenty));
-
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(programIdSet));
 
         assertCommandSuccess(dropCommand, model, expectedMessage, expectedModel);
@@ -108,6 +100,7 @@ public class DropCommandTest {
         Program editedProgram = (Program) expectedModel.getEntity(ID_TWENTY);
 
         Set<Integer> dogIdSet = editedProgram.getDogIdSet();
+        dogIdSet.stream().forEach(x -> removeOneDogFromOneProgram(x, ID_TWENTY));
         Set<Integer> programIdSet = new HashSet<>();
         programIdSet.add(ID_TWENTY);
 
@@ -117,13 +110,6 @@ public class DropCommandTest {
                         .map(String::valueOf)
                         .collect(Collectors.joining(", ")),
                 ID_TWENTY);
-
-        HashSet<Integer> updateDroppedDogs = new HashSet<>(editedProgram.getDogIdSet());
-        updateDroppedDogs.removeAll(dogIdSet);
-
-        expectedModel.setEntity(ID_TWENTY, new Program(editedProgram.getName(),
-                editedProgram.getSessions(), editedProgram.getTags(), updateDroppedDogs));
-
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(programIdSet));
 
         assertCommandSuccess(dropCommand, model, expectedMessage, expectedModel);
@@ -131,30 +117,17 @@ public class DropCommandTest {
 
     @Test
     public void execute_dropManyDogsManyPrograms_failure() {
-        Program editedProgramTwenty = (Program) expectedModel.getEntity(ID_TWENTY);
-        Program editedProgramTwentyOne = (Program) expectedModel.getEntity(ID_TWENTY_ONE);
+        Program editedProgramTwenty = removeOneDogFromOneProgram(ID_FOUR, ID_TWENTY);
+        Program editedProgramTwentyOne = removeOneDogFromOneProgram(ID_EIGHT, ID_TWENTY_ONE);
 
-        Set<Integer> dogIdSet1 = editedProgramTwenty.getDogIdSet();
-        Set<Integer> dogIdSet2 = editedProgramTwentyOne.getDogIdSet();
+        Set<Integer> dogIdSetTwenty = editedProgramTwenty.getDogIdSet();
+        Set<Integer> dogIdSetTwentyOne = editedProgramTwentyOne.getDogIdSet();
         Set<Integer> dogIdSet = new HashSet<>();
-        dogIdSet.addAll(dogIdSet1);
-        dogIdSet.addAll(dogIdSet2);
+        dogIdSet.addAll(dogIdSetTwenty);
+        dogIdSet.addAll(dogIdSetTwentyOne);
         List<Integer> programIdList = Arrays.asList(ID_TWENTY, ID_TWENTY_ONE);
         Set<Integer> programIdSet = new HashSet<>(programIdList);
         programIdSet.addAll(programIdList);
-
-        HashSet<Integer> updatedDroppedDogsTwenty = new HashSet<>(editedProgramTwenty.getDogIdSet());
-        updatedDroppedDogsTwenty.remove(ID_FOUR);
-
-        expectedModel.setEntity(ID_TWENTY, new Program(editedProgramTwenty.getName(),
-                editedProgramTwenty.getSessions(), editedProgramTwenty.getTags(), updatedDroppedDogsTwenty));
-
-        HashSet<Integer> updatedDroppedDogsTwentyOne = new HashSet<>(editedProgramTwentyOne.getDogIdSet());
-        updatedDroppedDogsTwentyOne.remove(ID_EIGHT);
-
-        expectedModel.setEntity(ID_TWENTY_ONE, new Program(editedProgramTwentyOne.getName(),
-                editedProgramTwentyOne.getSessions(), editedProgramTwentyOne.getTags(), updatedDroppedDogsTwentyOne));
-
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(programIdSet));
 
         DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
@@ -164,19 +137,12 @@ public class DropCommandTest {
 
     @Test
     public void execute_dropUnenrolledDog_throwsCommandException() {
-        Program editedProgram = (Program) expectedModel.getEntity(ID_EIGHTEEN);
+        removeOneDogFromOneProgram(ID_FOUR, ID_EIGHTEEN);
 
         Set<Integer> dogIdSet = new HashSet<>();
         dogIdSet.add(ID_FOUR);
         Set<Integer> programIdSet = new HashSet<>();
         programIdSet.add(ID_EIGHTEEN);
-
-        HashSet<Integer> updatedDroppedDogs = new HashSet<>(editedProgram.getDogIdSet());
-        updatedDroppedDogs.remove(ID_FOUR);
-
-        expectedModel.setEntity(ID_EIGHTEEN, new Program(editedProgram.getName(),
-                editedProgram.getSessions(), editedProgram.getTags(), updatedDroppedDogs));
-
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(programIdSet));
 
         DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
@@ -192,11 +158,9 @@ public class DropCommandTest {
         dogIdSet.addAll(editedProgram.getDogIdSet());
         dogIdSet.add(ID_TWO);
         dogIdSet.add(ID_TEN);
+        dogIdSet.stream().forEach(x -> removeOneDogFromOneProgram(x, ID_TWENTY));
         Set<Integer> programIdSet = new HashSet<>();
         programIdSet.add(ID_TWENTY);
-
-        HashSet<Integer> updatedDroppedDogs = new HashSet<>(editedProgram.getDogIdSet());
-        updatedDroppedDogs.removeAll(dogIdSet);
 
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(programIdSet));
 
@@ -207,33 +171,15 @@ public class DropCommandTest {
 
     @Test
     public void execute_dropUnenrolledDogFromMultiplePrograms_throwsCommandException() {
-        Program editedProgramNineteen = (Program) expectedModel.getEntity(ID_NINETEEN);
-        Program editedProgramTwenty = (Program) expectedModel.getEntity(ID_TWENTY);
-        Program editedProgramTwentyOne = (Program) expectedModel.getEntity(ID_TWENTY_ONE);
+        removeOneDogFromOneProgram(ID_FOUR, ID_NINETEEN);
+        removeOneDogFromOneProgram(ID_FOUR, ID_TWENTY);
+        removeOneDogFromOneProgram(ID_FOUR, ID_TWENTY_ONE);
 
         Set<Integer> dogIdSet = new HashSet<>();
         dogIdSet.add(ID_FOUR);
         List<Integer> programIdList = Arrays.asList(ID_NINETEEN, ID_TWENTY, ID_TWENTY_ONE);
         Set<Integer> programIdSet = new HashSet<>(programIdList);
         programIdSet.addAll(programIdList);
-
-        HashSet<Integer> updatedDroppedDogsNineteen = new HashSet<>(editedProgramNineteen.getDogIdSet());
-        updatedDroppedDogsNineteen.remove(ID_FOUR);
-
-        expectedModel.setEntity(ID_NINETEEN, new Program(editedProgramNineteen.getName(),
-                editedProgramNineteen.getSessions(), editedProgramNineteen.getTags(), updatedDroppedDogsNineteen));
-
-        HashSet<Integer> updatedDroppedDogsTwenty = new HashSet<>(editedProgramTwenty.getDogIdSet());
-        updatedDroppedDogsTwenty.remove(ID_FOUR);
-
-        expectedModel.setEntity(ID_TWENTY, new Program(editedProgramTwenty.getName(),
-                editedProgramTwenty.getSessions(), editedProgramTwenty.getTags(), updatedDroppedDogsTwenty));
-
-        HashSet<Integer> updatedDroppedDogsTwentyOne = new HashSet<>(editedProgramTwentyOne.getDogIdSet());
-        updatedDroppedDogsTwentyOne.remove(ID_FOUR);
-
-        expectedModel.setEntity(ID_TWENTY_ONE, new Program(editedProgramTwentyOne.getName(),
-                editedProgramTwentyOne.getSessions(), editedProgramTwentyOne.getTags(), updatedDroppedDogsTwentyOne));
 
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(programIdSet));
 
