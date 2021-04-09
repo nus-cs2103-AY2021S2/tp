@@ -56,7 +56,7 @@ public class ViewHistoryCommandTest {
         final int tooBigCount = typicalModel.getCommandHistory().size() + 1;
         ViewHistoryCommand historyCommand = new ViewHistoryCommand(tooBigCount);
 
-        String expectedMessage = String.format(ViewHistoryCommand.MESSAGE_INVALID_COUNT,
+        String expectedMessage = String.format(ViewHistoryCommand.MESSAGE_COUNT_OUT_OF_RANGE,
                 1, typicalModel.getCommandHistory().size());
 
         assertCommandFailure(historyCommand, typicalModel, expectedMessage);

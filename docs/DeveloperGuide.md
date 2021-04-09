@@ -623,10 +623,7 @@ Use case ends.
     * 1a1. SunRez displays an error stating which field is incorrectly formatted and requests the user to try again after fixing the stated error.
     
         Use case ends.
-* 1b. The resident's phone number or email are in use by an existing resident.
-    * 1b1. SunRez displays an error stating which field is already in use and requests the user to try again after fixing the stated error.
     
-        Use case ends.
 * 2a. SunRez encounters an error while saving the content.
     * 2a1. SunRez shows an error message and requests the user to try their command again.
     
@@ -681,7 +678,7 @@ Use case ends.
 * 2a. The list of residents is empty.
     
     Use case ends.
-* 3a. The resident's details are invalid (e.g phone number/email/dob format does not conform, OR room number is invalid).
+* 3a. The resident's details are invalid (e.g phone number/email/year format does not conform).
     * 3a1. SunRez shows an error message stating which field is incorrectly formatted and requests the user to try again.
     
         Use case resumes at step 2.
@@ -869,19 +866,24 @@ Use case ends.
 
 **MSS**
 
-1. User requests to list unassigned residents and unallocated rooms.
-2. SunRez displays unassigned residents and unallocated rooms side-by-side.
-3. User requests to allocate a room to a resident.
-4. SunRez allocates the room and saves the changes.
+1. User requests to list unassigned residents.
+2. SunRez displays unassigned residents.
+3. User requests to allocate a resident to a room.
+4. SunRez allocates the resident to the room and saves the changes.
 
 **Extensions**
 
-* 2a. There are no unassigned residents or unassigned.
+* 2a. There are no unassigned residents.
     
     Use case ends.
-* 3a. The given index is invalid.
-    * 3a1. SunRez shows an error message.
+* 3a. The given resident or room does not exist.
+    * 3a1. SunRez shows an error message.   
+      
+        Use case resumes at step 2.
 
+* 3b. The given resident or room have already been assigned.
+    * 3b1. SunRez shows an error message. 
+      
         Use case resumes at step 2.
 
 
@@ -889,21 +891,25 @@ Use case ends.
 
 **MSS**
 
-1. User requests to list room allocations.
-2. SunRez displays rooms, each with its corresponding allocated resident.
-3. User requests to deallocate a room based on the index from the list displayed in step 2.
-4. SunRez deallocates the room and saves the changes.
+1. User requests to list the residents.
+2. SunRez displays residents, each with its corresponding allocated room, if any.
+3. User requests to deallocate a resident from its room.
+4. SunRez deallocates the resident from its room and saves the changes.
 
 **Extensions**
 
-* 2a. There are no unassigned residents or unassigned.
+* 2a. There are no assigned residents.
 
-    Use case ends.
-* 3a. The given index is invalid.
+  Use case ends.
+* 3a. The given resident does not exist.
     * 3a1. SunRez shows an error message.
 
-        Use case resumes at step 2.
+      Use case resumes at step 2.
 
+* 3b. The given resident does not have an existing allocation.
+    * 3b1. SunRez shows an error message.
+        
+        Use Case resumes at step 2.
 
 ### UC-021 Access Command History
 
@@ -1019,6 +1025,57 @@ starting point for testers to work on; testers are expected to do more *explorat
     2. Re-launch the app by double-clicking the jar file. Check the command history again with `history`. <br>
        Expected: The same command history (possibly with one extra `history` and/or `exit` command) is displayed.
 
+### Resident Data
+1. Adding residents
+    1. Prerequisites: There is no existing resident named `John Doe`. 
+    2. Test case: `radd n/John Doe p/98765432 e/johnd@example.com y/1` <br>
+       Expected: Resident is added.
+    3. Incorrect `radd` commands to try. <br>
+       `radd n/John 123 p/98765432 e/johnd@example.com y/1`, where name is wrong. <br>
+       `radd n/John Doe p/9876abcd e/johnd@example.com y/1`, where phone number is wrong. <br>
+       `radd n/John Doe p/98765432 e/johndexample.com y/1`, where email is wrong. <br>
+       `radd n/John Doe p/98765432 e/johnd@example.com y/7`, where year is wrong. <br>
+       Expected: An error message indicating the problem is shown, and how to rectify it.
+2. Editing residents
+    1. Prerequisites: There is at least 1 resident displayed and no existing resident named `Jane Doe` <br>
+    1. Test case: `redit 1 n/Jane Doe` <br>
+       Expected: Resident in first index is edited.
+    2. Incorrect `redit` commands to try. <br>
+       `redit ab n/Jane Doe`, where index is wrong. <br>
+       `redit X n/Jane Doe`, where X is an index that is out of bounds. <br>
+       `redit 1 n/John 122`, where name format is wrong. <br>
+       Expected: An error message indicating the problem is shown, and how to rectify it.
+3. Deleting residents
+    1. Prerequisites: There is at least 1 resident displayed and the resident is not allocated to any room. <br>
+    2. Test case: `rdel 1` <br>
+       Expected: Resident in first index is deleted.
+    3. Incorrect `rdel` commands to try. <br>
+       `rdel 0`, where index is wrong. <br>
+       `rdel X`, where X is an index that is out of bounds. <br>
+       Expected: An error message indicating the problem is shown, and how to rectify it.
+4. Listing residents
+    1. Prerequisites: There are residents to be listed. <br>
+    2. Test case: `rlist` <br>
+       Expected: All residents are listed.
+5. Listing unallocated residents
+    1. Prerequisites: At least 1 resident exists and the resident is unallocated to a room. <br>
+    2. Test case: `rulist` <br>
+       Expected: All unallocated residents are listed.
+6. Finding residents
+    1. Prerequisites: There are a few residents. <br>
+    2. Test case: `rfind KEYWORD` <br>
+       Expected: Residents whose names have words fully matching `KEYWORD` are listed.
+
+### Allocation and Deallocation
+1. Allocating residents to rooms
+    1. Prerequisites: The first displayed resident and first displayed room are both unallocated.
+    2. Test case: `alloc ri/1 oi/1` <br>
+       Expected: 1st resident is allocated to the 1st room displayed in the list.
+2. Deallocating residents
+    1. Prerequisites: The first displayed resident is allocated. <br>
+    2. Test case: `dealloc 1` <br>
+       Expected: 1st resident is deallocated from the room.
+
 ### Command history
 
 1. Viewing command history
@@ -1113,7 +1170,6 @@ command history.
        are ignored by `undo`.
 
 3. Redoing an undo
-
     1. Prerequisites: There are at least 2 residents visible in the resident list.
 
     2. Test case: `rdel 1` then `undo` then `redo` <br>
@@ -1128,3 +1184,6 @@ command history.
 
     5. Other tests to try: Perform several undoable commands, `undo` operations and `redo` operations.
        Expected: The `redo` operations undo the `undo` operations in reverse order.
+
+
+
