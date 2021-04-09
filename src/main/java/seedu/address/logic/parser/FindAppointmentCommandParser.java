@@ -44,12 +44,15 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         }
 
         List<Predicate<Appointment>> predicates = new ArrayList<>();
+        List<AppointmentPredicateList> orPredicates = new ArrayList<>();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            List<Predicate<Appointment>> nameList = new ArrayList<>();
             argMultimap.getAllValues(PREFIX_NAME)
                 .forEach(s -> {
-                    predicates.add(new AppointmentContainsKeywordsPredicate(Arrays.asList(s.split("\\s+"))));
+                    nameList.add(new AppointmentContainsKeywordsPredicate(Arrays.asList(s.split("\\s+"))));
                 });
+            orPredicates.add(new AppointmentPredicateList(nameList));
         }
 
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
@@ -68,36 +71,36 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
 
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             List<String> date = argMultimap.getAllValues(PREFIX_DATE);
-            if (date.size() > 1) {
-                throw new ParseException("Too many dates! Please only use 1 date. \n"
-                        + FindAppointmentCommand.MESSAGE_USAGE);
-            }
+            List<Predicate<Appointment>> dateList = new ArrayList<>();
             try {
-                predicates.add(new AppointmentDatePredicate(parseAppointmentDate(date.get(0))));
+                for (String s : date) {
+                    dateList.add(new AppointmentDatePredicate(parseAppointmentDate(s)));
+                }
             } catch (ParseException e) {
                 throw new ParseException("Wrong date format! \n"
                         + e.getMessage()
                         + "\n"
                         + FindAppointmentCommand.MESSAGE_USAGE);
             }
+            orPredicates.add(new AppointmentPredicateList(dateList));
         }
 
         if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
             List<String> time = argMultimap.getAllValues(PREFIX_TIME);
-            if (time.size() > 1) {
-                throw new ParseException("Too many timings! Please only use 1 time. \n"
-                        + FindAppointmentCommand.MESSAGE_USAGE);
-            }
+            List<Predicate<Appointment>> timeList = new ArrayList<>();
             try {
-                predicates.add(new AppointmentTimePredicate(parseAppointmentTime(time.get(0))));
+                for (String s : time) {
+                    timeList.add(new AppointmentTimePredicate(parseAppointmentTime(s)));
+                }
             } catch (ParseException e) {
                 throw new ParseException("Wrong time format! \n"
                         + e.getMessage()
                         + "\n"
                         + FindAppointmentCommand.MESSAGE_USAGE);
             }
+            orPredicates.add(new AppointmentPredicateList(timeList));
         }
-        return new FindAppointmentCommand(new AppointmentPredicateList(predicates));
+        return new FindAppointmentCommand(new AppointmentPredicateList(predicates, orPredicates));
     }
 
     private boolean checkMultiMap(ArgumentMultimap args) {

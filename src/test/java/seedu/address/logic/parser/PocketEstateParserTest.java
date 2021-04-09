@@ -51,9 +51,11 @@ public class PocketEstateParserTest {
         FindAppointmentCommand command = (FindAppointmentCommand) parser.parseCommand(
                 FindAppointmentCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindAppointmentCommand(new AppointmentPredicateList(
-                Arrays.asList(new AppointmentContainsKeywordsPredicate(Collections.singletonList("foo")),
-                        new AppointmentRemarksPredicate("bar")))), command);
+        FindAppointmentCommand newCommand = new FindAppointmentCommand(new AppointmentPredicateList(
+                Arrays.asList(new AppointmentRemarksPredicate("bar")),
+                                Arrays.asList(new AppointmentPredicateList(Collections.singletonList(
+                                        new AppointmentContainsKeywordsPredicate(Collections.singletonList("foo")))))));
+        assertEquals(newCommand, command);
     }
 
     @Test
