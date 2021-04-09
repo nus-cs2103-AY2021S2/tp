@@ -7,7 +7,7 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_PROGRAM_A
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_DOGS;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
+import static dog.pawbook.testutil.TypicalEntities.getDatabaseWithPrograms;
 import static dog.pawbook.testutil.TypicalId.ID_FIFTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_ONE;
 import static dog.pawbook.testutil.TypicalId.ID_TWO;
@@ -35,7 +35,7 @@ import javafx.util.Pair;
  */
 public class EditProgramCommandTest {
 
-    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
+    private Model model = new ModelManager(getDatabaseWithPrograms(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecified_success() {

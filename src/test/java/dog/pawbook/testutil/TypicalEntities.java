@@ -127,25 +127,39 @@ public class TypicalEntities {
     private TypicalEntities() {} // prevents instantiation
 
     /**
-     * Returns an {@code Database} with all the typical owners and dogs
+     * Returns an {@code Database} with all the typical owners and dogs.
      */
     public static Database getTypicalDatabase() {
         Database db = new Database();
-        for (Entity entity : getTypicalEntities()) {
+        for (Entity entity : getTypicalOwnersWithDog()) {
             db.addEntity(entity);
         }
         return db;
     }
 
-    public static List<Entity> getTypicalEntities() {
+    /**
+     * Returns an {@code Database} with all the typical owners, dogs and programs.
+     */
+    public static Database getDatabaseWithPrograms() {
+        Database db = new Database();
+        for (Entity entity : getTypicalOwnersWithDog()) {
+            db.addEntity(entity);
+        }
+
+        for (Program program : getTypicalPrograms()) {
+            db.addEntity(program);
+        }
+        return db;
+    }
+
+    public static List<Entity> getTypicalOwnersWithDog() {
         return new ArrayList<>(Arrays.asList(ALICE, APPLE,
                 BENSON, BUBBLES,
                 CARL, CARSON,
                 DANIEL, DUKE,
                 ELLE, ELSA,
                 FIONA, FLORA,
-                GEORGE, GENIE,
-                ACTIVE_LISTENING));
+                GEORGE, GENIE));
     }
 
     public static List<Program> getTypicalPrograms() {
