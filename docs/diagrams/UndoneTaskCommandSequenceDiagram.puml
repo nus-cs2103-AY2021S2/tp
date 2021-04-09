@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
 participant ":UndoneTaskCommandParser" as UndoneTaskCommandParser LOGIC_COLOR
-participant ":UndoneTaskCommand" as UndoneTaskCommand LOGIC_COLOR
+participant "u:UndoneTaskCommand" as UndoneTaskCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,28 +13,28 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : parse(undone_task INDEX)
+[-> LogicManager : parse("undone_task 1")
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(undone_task INDEX)
+LogicManager -> SocheduleParser : parseCommand("undone_task 1")
 activate SocheduleParser
 
-SocheduleParser -> UndoneTaskCommandParser: parse(INDEX)
+SocheduleParser -> UndoneTaskCommandParser: parse("1")
 activate UndoneTaskCommandParser
 
 create UndoneTaskCommand
 UndoneTaskCommandParser -> UndoneTaskCommand
 activate UndoneTaskCommand
-UndoneTaskCommandParser <--UndoneTaskCommand :
+UndoneTaskCommandParser <--UndoneTaskCommand : u
 deactivate UndoneTaskCommand
 
-SocheduleParser <--UndoneTaskCommandParser : command
+SocheduleParser <--UndoneTaskCommandParser : u
 deactivate UndoneTaskCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 UndoneTaskCommandParser -[hidden]->[
 destroy UndoneTaskCommandParser
 
-LogicManager <-- SocheduleParser : command
+LogicManager <-- SocheduleParser : u
 deactivate SocheduleParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 SocheduleParser -[hidden]->[
@@ -63,5 +63,5 @@ deactivate UndoneTaskCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 UndoneTaskCommand -[hidden]->[
 
-[<-- LogicManager : commandResult
+[<-- LogicManager :
 @enduml
