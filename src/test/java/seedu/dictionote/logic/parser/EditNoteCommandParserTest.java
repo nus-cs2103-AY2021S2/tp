@@ -67,7 +67,7 @@ public class EditNoteCommandParserTest {
         Index targetIndex = INDEX_FIRST_NOTE;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditNoteDescriptor descriptor = new EditNoteDescriptorBuilder().withTags().build();
+        EditNoteDescriptor descriptor = new EditNoteDescriptorBuilder().withTags().withNote("").build();
         EditNoteCommand expectedCommand = new EditNoteCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
