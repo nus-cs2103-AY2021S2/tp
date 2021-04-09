@@ -14,6 +14,8 @@ import static seedu.address.testutil.TypicalContacts.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -25,6 +27,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.predicate.NameContainsKeywordsPredicate;
 import seedu.address.testutil.ContactBuilder;
 import seedu.address.testutil.EditContactDescriptorBuilder;
 
@@ -89,7 +92,12 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showContactAtIndex(model, INDEX_FIRST_CONTACT);
+        String firstContactName = model.getFilteredContactList().get(0).getName().toString();
+        String firstContactFirstName = firstContactName.split(" ")[0]; // get first name of first contact
+        ArrayList<String> findTerms = new ArrayList<>();
+
+        findTerms.add(firstContactFirstName);
+        model.updateFilteredContactList(new NameContainsKeywordsPredicate(findTerms)); // find contacts w findTerms
 
         Contact contactInFilteredList = model.getFilteredContactList().get(INDEX_FIRST_CONTACT.getZeroBased());
         Contact editedContact = new ContactBuilder(contactInFilteredList).withName(VALID_NAME_BOB).build();
@@ -101,6 +109,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new AppointmentBook(),
                 new UserPrefs());
         expectedModel.setContact(model.getFilteredContactList().get(0), editedContact);
+        expectedModel.updateFilteredContactList(new NameContainsKeywordsPredicate(findTerms));
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
