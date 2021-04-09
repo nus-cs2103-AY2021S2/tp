@@ -60,8 +60,8 @@ An image of our UI is shown below!
 1. Double-click the file to start the app. The GUI similar to the image above should appear.
 1. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
-   * **`list`**: Lists all contacts in Teaching Assistant.
-   * **`add n/Danny p/98765432 e/danny@email.com`**: Adds a contact named `Danny` to Teaching Assistant.
+   * **`clist`**: Lists all contacts in Teaching Assistant.
+   * **`cadd n/Danny p/98765432 e/danny@email.com`**: Adds a contact named `Danny` to Teaching Assistant.
    * **`efind consultation 1`**: Finds an entry named `consultation 1' in Teaching Assistant.
    * **`exit`**: Exits the app.
 1. Refer to the [Features](#features) below for details of each command.
@@ -72,8 +72,8 @@ An image of our UI is shown below!
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add n/NAME`, `NAME` is a parameter which
-  can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `cadd n/NAME`, `NAME` is a parameter which
+  can be used as `cadd n/John Doe`.
 * Items in the square brackets are optional. Users can choose to leave the field empty.
 * Items with `...` after them can be used multiple times including zero times. e.g. `[t/TAG]...` can be used as `  ` 
   (i.e. 0 times), t/friend, t/friend t/family etc.
@@ -96,25 +96,25 @@ Format: `help`
 
 ### Adding a contact
 
-Adds a person's information into Teaching Assistant.
+Adds a contact into Teaching Assistant.
 
-Format: `add n/NAME p/NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+Format: `cadd n/NAME p/NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tips:**
-A person can have any number of tags (including 0).<br/>
+A contact can have any number of tags (including 0).<br/>
 A contact can be tagged to an entry to easily filter for contacts related an entry.
 </div>
 
 Example(s):
 
-* `add n/Danny p/98765432 e/danny@email.com t/consultation 1`
-* `add n/Amy p/12345678 e/amy@email.com t/Colleague t/OwesMoney t/meeting 1`
+* `cadd n/Danny p/98765432 e/danny@email.com t/consultation 1`
+* `cadd n/Amy p/12345678 e/amy@email.com t/Colleague t/OwesMoney t/meeting 1`
 
 ### Finding a contact
 
-Finds an existing contact by name in the address book.
+Finds all contacts whose name contain all of the specified keywords and displays them as a list.
 
-Format: `find KEYWORD [MORE_KEYWORDS]...`
+Format: `cfind KEYWORD [MORE_KEYWORDS]...`
 
 * Only names are searched.
 * The search is case-insensitive e.g. `amy` will match `Amy`.
@@ -124,14 +124,14 @@ Format: `find KEYWORD [MORE_KEYWORDS]...`
 
 Example(s):
 
-* `find John` returns `john` and `John Doe`
-* `find alex yeoh` returns only `Alex Yeoh`
+* `cfind John` returns `john` and `John Doe`
+* `cfind alex yeoh` returns only `Alex Yeoh`
 
 ### Filter contact tags
 
-Filters all persons that have the tags of the specified keywords and displays them as a list with index numbers.
+Filters all contacts that have the tags of the specified keywords and displays them as a list with index numbers.
 
-Format: `filter KEYWORD [MORE_KEYWORDS]...`
+Format: `cfilter KEYWORD [MORE_KEYWORDS]...`
 
 * Only tags are searched.
 * The filtering is case-insensitive e.g. `CS2100` will match `cs2100`.
@@ -143,8 +143,8 @@ Format: `filter KEYWORD [MORE_KEYWORDS]...`
 
 Example(s):
 
-* `filter student english`
-* `filter colleagues`
+* `cfilter student english`
+* `cfilter colleagues`
 
 ### Editing a contact
 
@@ -168,45 +168,43 @@ Example(s):
 
 ### Listing contacts
 
-Lists all the contacts in the address book.
+Lists all the contacts in Teaching Assistant.
 
-Format: `list`
+Format: `clist`
 
 ### Deleting a contact
 
-Deletes an existing contact with the specified index in the address book.
+Deletes an existing contact with the specified index in Teaching Assistant.
 
-Format: `delete INDEX`
+Format: `cdelete INDEX`
 
 * `INDEX` refers to the index number shown in the displayed person list.
 * `INDEX` must be a positive integer 1, 2, 3, ...
 
 Example(s):
 
-* `delete 1`
+* `cdelete 1`
 
 ---
 
 ### Adding an entry
 
-Adds a new entry into the entry list.
+Adds a new entry into Teaching Assistant.
 
-Format: `eadd n/NAME [sd/START DATE] ed/END DATE [t/TAG]...`
+Format: `eadd n/NAME sd/START_DATE ed/END_DATE [t/TAG]...`
 
-* `START DATE` and `END DATE` are in the format `yyyy-mm-dd hh:mm`.
+* `START DATE` and `END DATE` are in the format `yyyy-mm-dd HH:MM`.
 * `START DATE` should be before `END DATE`.
 * Entries cannot overlap. i.e. Entries with overlapping timings will not be added.
-* `START DATE` is optional so that if the entry is a task with only a due date, it can be specified with only an end
-  date.
 
 Example(s):
 
 * `eadd n/meeting sd/2021-02-15 21:00 ed/2021-02-15 23:00`
-* `eadd n/consultation ed/2021-02-15 23:00 t/consultation`
+* `eadd n/consultation sd/2021-02-15 22:00 ed/2021-02-15 23:00 t/consultation`
 
 ### Finding an entry
 
-Finds all entries whose name contain any of the specified keywords and displays them as a list.
+Finds all entries whose name contain all of the specified keywords and displays them as a list.
 
 Format: `efind KEYWORD [MORE_KEYWORDS]...`
 
@@ -262,13 +260,14 @@ Example(s):
 
 ### Listing entries
 
-Lists all entries by displaying them as a list sorted by date. Entries can also be listed by day/week.
+Lists all entries in Teaching Assistant by displaying them as a list sorted by date. Entries can also be listed by day/week.
 
-Format: `elist [day/week]`
+Format: `elist [FORMAT]`
 
 * No argument: listing all entries
-* Day: listing entries for today
-* Week: listing entries for the next 7 days
+* `FORMAT` is only restricted to the following cases
+    * `day`: listing entries for today
+    * `week`: listing entries for the next 7 days
 
 Example(s):
 
@@ -283,7 +282,7 @@ interval will be shown in the entries list.
 
 Format: `free sd/START_DATE ed/END_DATE`
 
-* `START DATE` and `END DATE` are in the format `yyyy-mm-dd hh:mm`.
+* `START DATE` and `END DATE` are in the format `yyyy-mm-dd HH:MM`.
 * `START DATE` should be before `END DATE`.
 
 Example(s):
@@ -294,17 +293,16 @@ Example(s):
 
 ### Deleting an entry
 
-Deletes an existing entry with the specified name in the entries list.
+Deletes an existing entry with the specified index in Teaching Assistant.
 
-Format: `edelete NAME`
+Format: `edelete INDEX`
 
-* The delete is case-insensitive e.g. `meeting` will match `Meeting`.
-* Entries matching at least one keyword will be considered for deletion. However only the first occurrence of the entry
-  will be deleted.
+* `INDEX` refers to the index number shown in the displayed person list.
+* `INDEX` must be a positive integer 1, 2, 3, ...
 
 Example(s):
 
-* `edelete meeting`
+* `edelete 1`
 
 ### Clearing overdue entries
 
