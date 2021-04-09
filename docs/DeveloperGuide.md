@@ -13,21 +13,79 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+**SunRez** is a desktop app designed for college residential staff to efficiently manage student housing services. It
+features a Graphical User Interface (GUI) but is optimized for use via a Command Line Interface (CLI).
+
+**SunRez** has the following features:
+* Keeps track of maintenance issues
+* Keeps track of student records
+* Keeps track of room records
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Who should read this guide?**
+
+This Developer Guide (DG) specifies the architecture, design, implementation, requirements and manual test cases for
+SunRez, as well as key design decisions and considerations.
+
+It is intended for developers, QA testers, and anyone who may wish to contribute to the development of SunRez (or
+learn from it).
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **About this guide**
+
+### AddressBook
+
+SunRez was built from an open-source starter project called [Address Book](https://se-education.org/addressbook-level3/).
+Thus, for legacy reasons many internal components of SunRez have traces of AddressBook. For example, namespaces in the
+project start with `seedu.address`, and the primary data class of the Model component is named `AddressBook`. A future
+refactoring to rename all aspects of SunRez is planned, but until then, developer-facing parts of SunRez will contain
+traces of Address Book. That said, user-facing aspects of SunRez (UI, file names, etc.) should be free of references
+to Address Book.
+
+### Diagrams
+
+This guide uses UML diagrams to better illustrate certain design ideas and structures. The following sub-sections
+detail how contributors can read, create and edit these diagrams, as well as various things to note about the diagrams.
+
+#### How to read
+
+If you are unfamiliar with how to read UML diagrams, check out [this chapter](https://se-education.org/se-book/uml/index.html) 
+of the free online SE-EDU textbook.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note about sequence diagrams:** <br>
+
+Some sequence diagrams in this guide have an X on the lifeline of an object to indicate its deletion. These should be
+located at the end of the lifeline. However, due to a limitation of PlantUML, an object's lifeline will extend past
+the X to the end of the diagram.
+</div>
+
+#### How to create and edit
+
+This project uses [PlantUML](https://plantuml.com/) to create diagrams in this document. These diagrams are generated
+from `.puml` files which can be found in the [diagrams](https://github.com/AY2021S2-CS2103-T14-1/tp/tree/master/docs/diagrams) 
+folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) 
+to learn how to create and edit diagrams.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Design**
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview 
+of each component.
 
-<div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
-</div>
-
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/Main.java) 
+and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
