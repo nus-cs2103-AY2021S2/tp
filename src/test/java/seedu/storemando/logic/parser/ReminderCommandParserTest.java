@@ -36,16 +36,21 @@ public class ReminderCommandParserTest {
         assertParseSuccess(parser, "2 weeks", expectedReminderCommand);
 
         long negativeThreeDays = -3;
-        ReminderCommand expectedReminderCommand2 = new ReminderCommand(new ItemExpiringPredicate(negativeThreeDays));
+        ReminderCommand expectedReminderCommand2 = new ReminderCommand(new ItemExpiringPredicate(negativeThreeDays),
+            -3, "days");
         assertParseSuccess(parser, "-3 days", expectedReminderCommand2);
 
         long oneWeekInDays = 7;
-        assertParseSuccess(parser, "1 week", new ReminderCommand(new ItemExpiringPredicate(oneWeekInDays)));
-        assertParseSuccess(parser, "1 weeks", new ReminderCommand(new ItemExpiringPredicate(oneWeekInDays)));
+        assertParseSuccess(parser, "1 week", new ReminderCommand(new ItemExpiringPredicate(oneWeekInDays),
+            1, "week"));
+        assertParseSuccess(parser, "1 weeks", new ReminderCommand(new ItemExpiringPredicate(oneWeekInDays),
+            1, "week"));
 
         long zeroDays = 0;
-        assertParseSuccess(parser, "0 day", new ReminderCommand(new ItemExpiringPredicate(zeroDays)));
-        assertParseSuccess(parser, "0 days", new ReminderCommand(new ItemExpiringPredicate(zeroDays)));
+        assertParseSuccess(parser, "0 day", new ReminderCommand(new ItemExpiringPredicate(zeroDays),
+            0, "day"));
+        assertParseSuccess(parser, "0 days", new ReminderCommand(new ItemExpiringPredicate(zeroDays),
+            0, "days"));
 
     }
 
