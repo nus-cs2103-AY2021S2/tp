@@ -387,26 +387,30 @@ The schedule mechanism is facilitated by `ScheduleCommand`, `MainWindow` and `Sc
 
 Given below is an example usage scenario and how the schedule mechanism behaves at each step.
 
-Step 1. The user executes `schedule` command to open up the schedule window.
+Step 1. All lessons are stored in an `ObservableList` named `internalList`. There are additional seven separate `ObservableList` for lessons
+for each day of the week, which are sorted by day and time. For example `transformedMondayList` and `transformedSundayList`.
 
-Step 2. `MainWindow#executeCommand()` calls `LogicManager#execute()` to execute the given command. It first calls `AddressBookParser#parseCommand()` 
-which returns a new `ScheduleCommand`.
+Step 2. The user executes `add n/Mary p/98765432 le/monday 1000` command to add in a student contact whose lesson
+is on `monday 1000`. The `add` command calls `Model#addPersonToLesson()` which adds the lessons to the `internalList`,
+and updates the `transformedMondayList`.
 
-Step 3. `LogicManager#execute()` then continues and calls `ScheduleCommand#execute()` which returns a new 
-`CommandResult` whose `showSchedule` boolean value is set to `true`.
+Step 3. The user executes `delete 2` command to delete the 2nd person in TutorsPet. The `delete` command calls
+`Model#removePersonFromLesson()` which removes the lesson from the `internalList` if the contact to be deleted is the
+only person in that lesson. If the lesson to be removed is on a `Tuesday`, `transformedTuesdayList` will be updated accordingly.
 
-Step 4. The `CommandResult` is returned to `MainWindow#executeCommand()` which continues, and checks the value of `showSchedule`.
-If `showSchedule` is `true`, `MainWindow#handleSchedule()` is called.
+Step 4. The user now wants to look at the schedule and hence executes `schedule` command to open up the schedule window.
+The `schedule` command will return a new `CommandResult` whose `showSchedule` boolean value is set to `true`. 
+`MainWindow#executeCommand()` then checks the value of `showSchedule`, and since it is `true`, 
+`MainWindow#handleSchedule()` is called to open the schedule window. `ScheduleWindow#show()` is called, which will
+create a `LessonListPanel` for each day, each containing the `ObservableList` of lessons for that day.
 
-Step 5. `MainWindow#handleSchedule()` will then call `ScheduleWindow#show()` which will create a `LessonListPanel` for each day,
-each containing an `ObservableList` of lessons for that day.
-
-Step 6. Each `LessonListPanel` will then be added to the corresponding `StackPane`, and the schedule window will then be opened.
-
-#### Sequence Diagram
 The sequence diagram below shows how the `schedule` feature works:
 
 ![Sequence Diagram for Schedule Command](images/ScheduleSequenceDiagram.png)
+
+Step 5. The user then executes `detail 1` command that does not modify the `internalList` or the seven separate `ObservableList`
+of lessons for each day of the week. The `detail` command instead modifies another `ObservableList`. Thus, the schedule
+window continues to display the correct list of lessons for each day.
 
 #### Design consideration:
 
