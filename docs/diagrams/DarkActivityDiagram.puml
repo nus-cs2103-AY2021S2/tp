@@ -1,0 +1,9 @@
+@startuml
+start
+:User executes dark command;
+if () then ([not in dark mode])
+    :Change to dark mode;
+else ([else])
+endif
+stop
+@enduml
