@@ -26,7 +26,7 @@ public class TagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add one or multiple tags to task identified "
             + "by the index number used in the last task listing.\n"
-            + "If you entered 't/' without any preceding value, no new tag will be added. \n"
+            + "If you entered 't/' without any value, no new tag will be added. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_TAG + "TAG "
             + "[" + PREFIX_TAG + "TAG]...\n"

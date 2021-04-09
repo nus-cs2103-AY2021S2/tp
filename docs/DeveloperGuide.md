@@ -331,7 +331,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 2.  ModuleBook3.5 presents tasks in list form.
 
- **Extensions**
+**Extensions**
 * 2a. The list is empty.
     Use case ends.
     
