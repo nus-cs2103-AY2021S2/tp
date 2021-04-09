@@ -12,6 +12,7 @@ import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_SEX_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.OWNERID_DESC_15;
+import static dog.pawbook.logic.commands.CommandTestUtil.OWNERID_DESC_17;
 import static dog.pawbook.logic.commands.CommandTestUtil.SEX_DESC_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.SEX_DESC_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.TAG_DESC_FRIENDLY;
@@ -175,7 +176,7 @@ public class EditDogCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Integer targetId = ID_ONE;
-        String userInput = targetId + BREED_DESC_ASHER + DATEOFBIRTH_DESC_ASHER + SEX_DESC_ASHER + OWNERID_DESC_15
+        String userInput = targetId + BREED_DESC_ASHER + DATEOFBIRTH_DESC_ASHER + SEX_DESC_ASHER + OWNERID_DESC_17
                 + TAG_DESC_FRIENDLY + DATEOFBIRTH_DESC_ASHER + SEX_DESC_ASHER + BREED_DESC_ASHER + TAG_DESC_FRIENDLY
                 + BREED_DESC_BELL + DATEOFBIRTH_DESC_BELL + SEX_DESC_BELL + TAG_DESC_QUIET + OWNERID_DESC_15;
 

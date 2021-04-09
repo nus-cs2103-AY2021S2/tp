@@ -7,13 +7,16 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_FRIENDLY;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static dog.pawbook.logic.commands.CommandUtil.disconnectFromOwner;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 import static dog.pawbook.testutil.TypicalId.ID_ONE;
+import static dog.pawbook.testutil.TypicalId.ID_THREE;
 import static dog.pawbook.testutil.TypicalId.ID_TWO;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.managedentity.owner.Owner;
 import org.junit.jupiter.api.Test;
 
@@ -77,8 +80,8 @@ public class EditDogCommandTest {
         assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
     }
 
-    /*@Test
-    public void execute_someFieldsSpecified_success() {
+    @Test
+    public void execute_someFieldsSpecified_success() throws CommandException {
         Dog toEditDog = (Dog) model.getEntity(ID_TWO);
 
         DogBuilder dogInList = new DogBuilder(toEditDog);
@@ -94,6 +97,7 @@ public class EditDogCommandTest {
         expectedModel.setEntity(ID_TWO, editedDog);
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_TWO));
 
+
         Owner toEditOwner = (Owner) model.getEntity(ID_ONE);
         Set<Integer> newDogIdSet = new HashSet<>(toEditOwner.getDogIdSet());
         newDogIdSet.remove(ID_TWO);
@@ -101,8 +105,31 @@ public class EditDogCommandTest {
                 toEditOwner.getAddress(), toEditOwner.getTags(), newDogIdSet));
 
 
+        int originalOwnerId = toEditDog.getOwnerId();
+        int editedOwnerId = editedDog.getOwnerId();
+
+        if (!model.hasEntity(editedOwnerId)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_OWNER_ID);
+        }
+        Entity entity = model.getEntity(editedOwnerId);
+        if (!(entity instanceof Owner)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_OWNER_ID);
+        }
+        Owner newOwner = (Owner) entity;
+
+        // delete the ID of the dog from the owner first
+        disconnectFromOwner(model, originalOwnerId, ID_TWO);
+
+        // transfer to the new owner
+        Set<Integer> editedDogIdSet = new HashSet<>(newOwner.getDogIdSet());
+        editedDogIdSet.add(ID_TWO);
+
+        Owner editedOwner = new Owner(newOwner.getName(), newOwner.getPhone(), newOwner.getEmail(),
+                newOwner.getAddress(), newOwner.getTags(), editedDogIdSet);
+        model.setEntity(editedOwnerId, editedOwner);
+
         assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
-    }*/
+    }
 
     @Test
     public void execute_noFieldSpecified_success() {
