@@ -34,14 +34,13 @@ public class EditAppointmentCommand extends Command {
             + "[" + PREFIX_REMARK + "REMARK] "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_TIME + "TIME]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "Meet Alex "
-            + PREFIX_REMARK + "at M hotel "
-            + PREFIX_DATE + "17-02-2021 "
+            + "Example: " + COMMAND_WORD + " 3 "
+            + PREFIX_DATE + "21-07-2021 "
             + PREFIX_TIME + "1500";
 
     public static final String MESSAGE_SUCCESS = "Edited appointment: %1$s";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the app";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT =
+            "Another appointment with the same date and time already exists in the app";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
