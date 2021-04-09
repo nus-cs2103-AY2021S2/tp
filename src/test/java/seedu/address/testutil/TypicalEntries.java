@@ -24,6 +24,12 @@ public class TypicalEntries {
     public static final Entry DO_STUFF = new EntryBuilder().withEntryName("Go do something important")
             .withStartDate("2021-02-04 09:00").withEndDate("2021-02-04 09:30").withTags("Important", "Stuff").build();
 
+    public static final Entry NON_OVERDUE_ENTRY = new EntryBuilder().withEntryName("This entry will not be overdue")
+            .withStartDate("2030-02-04 09:00").withEndDate("2030-02-04 09:30").withTags("Important", "Stuff").build();
+
+    public static final Entry OVERDUE_ENTRY = new EntryBuilder().withEntryName("This entry is overdue")
+            .withStartDate("2010-02-04 09:00").withEndDate("2010-02-04 09:30").withTags("Important", "Stuff").build();
+
     private TypicalEntries() {} // prevents instantiation
 
     public static AddressBook getTypicalEntriesList() {
