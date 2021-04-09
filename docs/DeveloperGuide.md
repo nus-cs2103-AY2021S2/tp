@@ -863,24 +863,70 @@ Given below are instructions to test the app manually.
 
 1. _{ more test cases …​ }_
 
+### Edit an endpoint
 
+1. Edit an endpoint
+   
+    1. Prerequisites: List all endpoints using the `list` command. There exists at least 1 endpoint in the list, and there are less than 100 endpoints.
+    
+    1. Test case: `edit 1 -x get`<br>
+       Expected: The method of the endpoint at index 1 is changed to `GET` and any existing response is cleared.
+
+    1. Test case: `edit 1 -u https://sg.yahoo.com/?p=us` <br>
+       Expected: The url address of the endpoint at index 1 is changed to `https://sg.yahoo.com/?p=us` and any existing response is cleared.
+
+    1. Test case: `edit 1 -d` <br>
+       Expected: Any existing data of the endpoint at index 1 are removed and any existing response is cleared.
+       
+    1. Test case: `edit 1 -t` <br>
+       Expected: Any existing tags of the endpoint at index 1 are removed and any existing response is cleared.
+
+    1. Test case: `edit 1 -h` <br>
+       Expected: Any existing headers of the endpoint at index 1 are removed and any existing response is cleared.
+       
+    1. Test case: `edit 1 -x POST -u https://reqres.in/api/users -d {"name": "john doe", "job": "developer"} -t common -t important` <br>
+       Expected: The method of the endpoint at index 1 is change to `POST`, its url addresss is changed to `https://reqres.in/api/users`, its data is changed to `{"name": "john doe", "job": "developer"}` and its tags are changed to `common` and `important` and any existing response is cleared.
+
+    1. Test case: `edit` <br>
+       Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Invalid command format!...`
+
+    1. Test case: `edit 0` <br>
+       Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `An index must be specified...` <br>
+       Other incorrect remove commands to try: `edit x` (where x is a number that is less than or equal to zero or greater than the maximum integer size).
+
+    1. Test case: `edit 10` <br>
+       Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `At least one parameter to edit must be provided.` <br>
+       Other incorrect remove commands to try: `edit x` (where x is larger than the list size, and is a positive integer that is less than the maximum integer size).
+
+    1. Test case: `edit 1 -x abc` <br>
+       Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Methods only consists...`
+
+    1. Test case: `edit 1 -d abc` <br>
+       Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Data must be...`
+
+    1. Test case: `edit 1 -h abc` <br>
+       Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Headers should be...`
+       
 
 ### Remove an endpoint
 
 1. Remove an endpoint while all endpoints are being shown
 
-   1. Prerequisites: List all endpoints using the `list` command. Multiple endpoints in the list.
+   1. Prerequisites: List all endpoints using the `list` command. There exists multiple endpoints in the list, and there are less than 100 endpoints.
 
    1. Test case: `remove 1`<br>
       Expected: First endpoint is deleted from the list. Details of the deleted endpoint shown in the result display.
 
+   1. Test case: `remove`<br>
+      Expected: No endpoint is deleted. Error details shown in the result display, with a result message saying `Invalid command format!...`
+
    1. Test case: `remove 0`<br>
-      Expected: No endpoint is deleted. Error details shown in the result display.
-
-   1. Other incorrect delete commands to try: `remove`, `remove x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+      Expected: No endpoint is deleted. Error details shown in the result display, with a result message saying `An index must be specified...`
+      Other incorrect remove commands to try: `remove x` (where x is a number that is less than or equal to zero or greater than the maximum integer size).
+      
+   1. Test case: `remove 100`<br>
+      Expected: No endpoint is deleted. Error details shown in the result display, with a result message saying `Index provided is not within...`
+      Other incorrect remove commands to try: `remove x` (where x is larger than the list size, and is a positive integer that is less than the maximum integer size). <br>
 
 ### Saving data
 
