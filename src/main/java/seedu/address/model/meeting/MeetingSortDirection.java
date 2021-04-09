@@ -6,7 +6,10 @@ public enum MeetingSortDirection {
 
     private final String sortString;
 
-    MeetingSortDirection(String sortString) {this.sortString = sortString;}
-
-    public String getValue() { return sortString; }
+    MeetingSortDirection(String sortString) {
+        this.sortString = sortString;
+    }
+    public String getValue() {
+        return sortString;
+    }
 }

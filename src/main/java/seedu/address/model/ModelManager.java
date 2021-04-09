@@ -83,10 +83,13 @@ public class ModelManager implements Model {
         this.sortedBeforeFilterPersons = new SortedList<>(this.addressBook.getPersonList());
         filteredPersons = new FilteredList<>(sortedBeforeFilterPersons);
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
-        this.connection = new PersonMeetingConnection();
         this.reminderBook = new ReminderBook(this.meetingBook);
 
-        //================== Timetable ==================================================================
+        //============ Set Connection ===========================================================
+        this.connection = new PersonMeetingConnection();
+        this.meetingBook.setPersonToMeetingConnections(connection);
+
+        //================== Note ==================================================================
         this.noteBook = new NoteBook();
         this.filteredNotes = new FilteredList<>(this.noteBook.getNoteList());
 
@@ -115,8 +118,11 @@ public class ModelManager implements Model {
         this.sortedBeforeFilterPersons = new SortedList<>(this.addressBook.getPersonList());
         filteredPersons = new FilteredList<>(sortedBeforeFilterPersons);
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
-        this.connection = connection;
         this.reminderBook = new ReminderBook(this.meetingBook);
+
+        //============ Set Connection ===========================================================
+        this.connection = connection;
+        this.meetingBook.setPersonToMeetingConnections(connection);
 
         //================== Note ==================================================================
         this.noteBook = new NoteBook(noteBook);
