@@ -29,11 +29,17 @@ public class ViewPatientBox extends UiPart<Region> {
 
     // labels
     @FXML
+    private Label dateOfBirthLabel;
+    @FXML
+    private Label genderLabel;
+    @FXML
     private Label phoneLabel;
     @FXML
     private Label addressLabel;
     @FXML
     private Label emailLabel;
+    @FXML
+    private Label bloodTypeLabel;
     @FXML
     private Label heightLabel;
     @FXML
@@ -53,11 +59,17 @@ public class ViewPatientBox extends UiPart<Region> {
     @FXML
     private Text name;
     @FXML
+    private Label dateOfBirth;
+    @FXML
+    private Label gender;
+    @FXML
     private Label phone;
     @FXML
     private Label address;
     @FXML
     private Label email;
+    @FXML
+    private Label bloodType;
     @FXML
     private Label height;
     @FXML
@@ -77,9 +89,12 @@ public class ViewPatientBox extends UiPart<Region> {
         this.patient = patient;
         setLabels();
         name.setText(patient.getName().fullName);
+        dateOfBirth.setText(patient.getDateOfBirth().toString());
+        gender.setText(patient.getGender().value);
         phone.setText(patient.getPhone().value);
         address.setText(patient.getAddress().value);
         email.setText(patient.getEmail().value);
+        bloodType.setText(patient.getBloodType().value);
         height.setText(patient.getHeight().value);
         weight.setText(patient.getWeight().value);
 
@@ -131,9 +146,12 @@ public class ViewPatientBox extends UiPart<Region> {
     }
 
     private void setLabels() {
+        dateOfBirthLabel.setText("DoB: ");
+        genderLabel.setText("Gender: ");
         phoneLabel.setText("Phone: ");
         addressLabel.setText("Address: ");
         emailLabel.setText("Email: ");
+        bloodTypeLabel.setText("Blood Type: ");
         heightLabel.setText("Height: ");
         weightLabel.setText("Weight: ");
         appointmentLabel.setText("Appointments");
