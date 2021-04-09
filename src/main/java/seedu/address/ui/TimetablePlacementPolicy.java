@@ -2,13 +2,11 @@ package seedu.address.ui;
 
 import seedu.address.model.schedule.Schedulable;
 import seedu.address.model.schedule.SchedulableUtil;
-import seedu.address.model.schedule.SimplePeriod;
 
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -37,12 +35,13 @@ public class TimetablePlacementPolicy {
 
     public static final double TIMETABLE_DISPLAY_SIZE = 5760;
 
+    private static int startHour = 7;
+    private static int startMinute = 0;
+
 
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
 
-    private static int startHour = 7;
-    private static int startMinute = 0;
 
     /**
      * Takes in a startDate that it should be used as a reference point. Initializes the start and end times
@@ -139,10 +138,14 @@ public class TimetablePlacementPolicy {
     }
 
     /**
-     * Breaks the Schedulable object into continuous units that lie within each day. For example, if a
-     * Schedulable object spans across several columns, it will be broken down into individual parts
-     * to schedule in each column. Furthermore, if the schedulable units
-     * outside outside the time range, it will be filtered out.
+     * Splits a schedulable that overlaps across several days into parts which lie within one day. Each day is treated
+     * as a timeframe from  time (startHour:startMinute) to the next day (startHour:startMinute). For example in the
+     * case when startHour = 7, startMinute = 0, the day starts from 7 am to 7 am the next day.
+     * If a Schedulable object overlaps across several days, for example a schedulable
+     * that goes from 7 am to 5 pm the next day will be split into two schedulables, one from 7am to 6.599999 am, and
+     * one from the next day 7am to 5pm. Then all the schedulables which lie outside outside the time range of this
+     * timetable ( which spans 7 days), will be filtered out. The method retursn the resulting stream of broken down
+     * schedulables.
      * @param schedulable
      * @return
      */
