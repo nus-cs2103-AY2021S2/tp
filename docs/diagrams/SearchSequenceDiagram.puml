@@ -11,7 +11,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":NameSchoolAndTagContainsKeywordsPredicate" as NameSchoolAndTagContainsKeywordsPredicate MODEL_COLOR
+participant ":NameSchoolAndSubjectContainsKeywordsPredicate" as NameSchoolAndSubjectContainsKeywordsPredicate MODEL_COLOR
 end box
 
 [-> LogicManager : execute("search n/alice s/woodlands t/math")
@@ -30,21 +30,15 @@ deactivate SearchCommandParser
 AddressBookParser -> SearchCommandParser : parse("n/alice s/woodlands t/math")
 activate SearchCommandParser
 
-SearchCommandParser -> SearchCommandParser : extractKeywordsAsArray(argMultimap, prefix)
-activate SearchCommandParser
+create NameSchoolAndSubjectContainsKeywordsPredicate
+SearchCommandParser -> NameSchoolAndSubjectContainsKeywordsPredicate
+activate NameSchoolAndSubjectContainsKeywordsPredicate
 
-SearchCommandParser --> SearchCommandParser
-deactivate SearchCommandParser
-
-create NameSchoolAndTagContainsKeywordsPredicate
-SearchCommandParser -> NameSchoolAndTagContainsKeywordsPredicate : new NameSchoolAndTagContainsKeywordsPredicate(nameKeywordsList, schoolKeywordsList, tagKeywordsList)
-activate NameSchoolAndTagContainsKeywordsPredicate
-
-NameSchoolAndTagContainsKeywordsPredicate --> SearchCommandParser : p
-deactivate NameSchoolAndTagContainsKeywordsPredicate
+NameSchoolAndSubjectContainsKeywordsPredicate --> SearchCommandParser : p
+deactivate NameSchoolAndSubjectContainsKeywordsPredicate
 
 create SearchCommand
-SearchCommandParser -> SearchCommand : new SearchCommand(p)
+SearchCommandParser -> SearchCommand
 activate SearchCommand
 
 SearchCommand --> SearchCommandParser : s
