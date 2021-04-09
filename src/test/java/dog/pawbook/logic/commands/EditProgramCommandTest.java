@@ -1,13 +1,13 @@
 package dog.pawbook.logic.commands;
 
-import static dog.pawbook.logic.commands.CommandTestUtil.DESC_PROGRAM_A;
-import static dog.pawbook.logic.commands.CommandTestUtil.DESC_PROGRAM_B;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_PROGRAM_A;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_PROGRAM_A;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_DOGS;
+import static dog.pawbook.logic.commands.CommandTestUtil.DESC_OBEDIENCE_TRAINING;
+import static dog.pawbook.logic.commands.CommandTestUtil.DESC_POTTY_TRAINING;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_OBEDIENCE_TRAINING;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_OBEDIENCE_TRAINING;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_ALL;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static dog.pawbook.testutil.TypicalEntities.getDatabaseWithPrograms;
+import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 import static dog.pawbook.testutil.TypicalId.ID_FIFTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_ONE;
 import static dog.pawbook.testutil.TypicalId.ID_TWO;
@@ -35,7 +35,7 @@ import javafx.util.Pair;
  */
 public class EditProgramCommandTest {
 
-    private Model model = new ModelManager(getDatabaseWithPrograms(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecified_success() {
@@ -57,11 +57,13 @@ public class EditProgramCommandTest {
     public void execute_someFieldsSpecified_success() {
         Program toEditProgram = (Program) model.getEntity(ID_FIFTEEN);
         ProgramBuilder programInList = new ProgramBuilder(toEditProgram);
-        Program editedProgram = programInList.withName(VALID_NAME_PROGRAM_A).withSessions(VALID_SESSION_PROGRAM_A)
-                .withTags(VALID_TAG_DOGS).build();
+        Program editedProgram = programInList.withName(VALID_NAME_OBEDIENCE_TRAINING)
+                .withSessions(VALID_SESSION_OBEDIENCE_TRAINING)
+                .withTags(VALID_TAG_ALL).build();
 
-        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder().withName(VALID_NAME_PROGRAM_A)
-                .withSessions(VALID_SESSION_PROGRAM_A).withTags(VALID_TAG_DOGS).build();
+        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder().withName(VALID_NAME_OBEDIENCE_TRAINING)
+                .withSessions(VALID_SESSION_OBEDIENCE_TRAINING)
+                .withTags(VALID_TAG_ALL).build();
         EditProgramCommand editEntityCommand = new EditProgramCommand(ID_FIFTEEN, descriptor);
 
         String expectedMessage = String.format(EditProgramCommand.MESSAGE_EDIT_PROGRAM_SUCCESS, editedProgram);
@@ -91,7 +93,8 @@ public class EditProgramCommandTest {
     public void execute_invalidProgramId_failure() {
         Integer outOfBoundId = model.getUnfilteredEntityList().stream()
                 .map(Pair::getKey).sorted().collect(toList()).get(model.getUnfilteredEntityList().size() - 1) + 1;
-        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder().withName(VALID_NAME_PROGRAM_A).build();
+        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder()
+                .withName(VALID_NAME_OBEDIENCE_TRAINING).build();
         EditProgramCommand editEntityCommand = new EditProgramCommand(outOfBoundId, descriptor);
 
         assertCommandFailure(editEntityCommand, model, Messages.MESSAGE_INVALID_PROGRAM_ID);
@@ -99,10 +102,10 @@ public class EditProgramCommandTest {
 
     @Test
     public void equals() {
-        final EditProgramCommand standardCommand = new EditProgramCommand(ID_ONE, DESC_PROGRAM_A);
+        final EditProgramCommand standardCommand = new EditProgramCommand(ID_ONE, DESC_OBEDIENCE_TRAINING);
 
         // same values -> returns true
-        EditProgramDescriptor copyDescriptor = new EditProgramDescriptor(DESC_PROGRAM_A);
+        EditProgramDescriptor copyDescriptor = new EditProgramDescriptor(DESC_OBEDIENCE_TRAINING);
         EditProgramCommand commandWithSameValues = new EditProgramCommand(ID_ONE, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -116,9 +119,9 @@ public class EditProgramCommandTest {
         assertFalse(standardCommand.equals(new HelpCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditProgramCommand(ID_TWO, DESC_PROGRAM_A)));
+        assertFalse(standardCommand.equals(new EditProgramCommand(ID_TWO, DESC_OBEDIENCE_TRAINING)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditProgramCommand(ID_ONE, DESC_PROGRAM_B)));
+        assertFalse(standardCommand.equals(new EditProgramCommand(ID_ONE, DESC_POTTY_TRAINING)));
     }
 }

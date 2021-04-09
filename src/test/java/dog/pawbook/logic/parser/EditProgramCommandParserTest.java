@@ -4,18 +4,18 @@ import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_SESSION_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_PROGRAM1;
-import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_PROGRAM2;
-import static dog.pawbook.logic.commands.CommandTestUtil.SESSION_DESC_PROGRAM1;
-import static dog.pawbook.logic.commands.CommandTestUtil.SESSION_DESC_PROGRAM2;
-import static dog.pawbook.logic.commands.CommandTestUtil.TAG_DESC_DOGS;
+import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_OBEDIENCE_TRAINING;
+import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_POTTY_TRAINING;
+import static dog.pawbook.logic.commands.CommandTestUtil.SESSION_DESC_OBEDIENCE_TRAINING;
+import static dog.pawbook.logic.commands.CommandTestUtil.SESSION_DESC_POTTY_TRAINING;
+import static dog.pawbook.logic.commands.CommandTestUtil.TAG_DESC_ALL;
 import static dog.pawbook.logic.commands.CommandTestUtil.TAG_DESC_PUPPIES;
 import static dog.pawbook.logic.commands.CommandTestUtil.TAG_EMPTY;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_PROGRAM_A;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_PROGRAM_B;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_PROGRAM_A;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_PROGRAM_B;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_DOGS;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_OBEDIENCE_TRAINING;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_POTTY_TRAINING;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_OBEDIENCE_TRAINING;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_POTTY_TRAINING;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_ALL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_PUPPIES;
 import static dog.pawbook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static dog.pawbook.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -42,7 +42,7 @@ public class EditProgramCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_PROGRAM_A, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NAME_OBEDIENCE_TRAINING, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditProgramCommand.MESSAGE_NOT_EDITED);
@@ -54,10 +54,10 @@ public class EditProgramCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_PROGRAM1, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_OBEDIENCE_TRAINING, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_PROGRAM1, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_OBEDIENCE_TRAINING, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -73,30 +73,32 @@ public class EditProgramCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid name followed by valid session
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + SESSION_DESC_PROGRAM1, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + SESSION_DESC_OBEDIENCE_TRAINING, Name.MESSAGE_CONSTRAINTS);
 
         // valid session followed by invalid session. The test case for invalid session followed by valid session
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + SESSION_DESC_PROGRAM1 + INVALID_SESSION_DESC, Session.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + SESSION_DESC_OBEDIENCE_TRAINING + INVALID_SESSION_DESC,
+                Session.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Owner} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_DOGS + TAG_DESC_PUPPIES + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_DOGS + TAG_EMPTY + TAG_DESC_PUPPIES, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_DOGS + TAG_DESC_PUPPIES, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_ALL + TAG_DESC_PUPPIES + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_ALL + TAG_EMPTY + TAG_DESC_PUPPIES, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_ALL + TAG_DESC_PUPPIES, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_SESSION_DESC + VALID_TAG_DOGS,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_SESSION_DESC + VALID_TAG_ALL,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Integer targetId = ID_TWO;
-        String userInput = targetId + TAG_DESC_DOGS + SESSION_DESC_PROGRAM1 + NAME_DESC_PROGRAM1 + TAG_DESC_PUPPIES;
+        String userInput = targetId + TAG_DESC_ALL + SESSION_DESC_OBEDIENCE_TRAINING
+                + NAME_DESC_OBEDIENCE_TRAINING + TAG_DESC_PUPPIES;
 
-        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder().withName(VALID_NAME_PROGRAM_A)
-                .withSessions(VALID_SESSION_PROGRAM_A).withTags(VALID_TAG_DOGS, VALID_TAG_PUPPIES).build();
+        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder().withName(VALID_NAME_OBEDIENCE_TRAINING)
+                .withSessions(VALID_SESSION_OBEDIENCE_TRAINING).withTags(VALID_TAG_ALL, VALID_TAG_PUPPIES).build();
         EditProgramCommand expectedCommand = new EditProgramCommand(targetId, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -105,10 +107,10 @@ public class EditProgramCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Integer targetId = ID_ONE;
-        String userInput = targetId + SESSION_DESC_PROGRAM1 + NAME_DESC_PROGRAM2;
+        String userInput = targetId + SESSION_DESC_OBEDIENCE_TRAINING + NAME_DESC_POTTY_TRAINING;
 
-        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder().withName(VALID_NAME_PROGRAM_B)
-                .withSessions(VALID_SESSION_PROGRAM_A).build();
+        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder().withName(VALID_NAME_POTTY_TRAINING)
+                .withSessions(VALID_SESSION_OBEDIENCE_TRAINING).build();
         EditProgramCommand expectedCommand = new EditProgramCommand(targetId, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -118,20 +120,21 @@ public class EditProgramCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         Integer targetId = ID_THREE;
-        String userInput = targetId + NAME_DESC_PROGRAM1;
-        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder().withName(VALID_NAME_PROGRAM_A).build();
+        String userInput = targetId + NAME_DESC_OBEDIENCE_TRAINING;
+        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder()
+                .withName(VALID_NAME_OBEDIENCE_TRAINING).build();
         EditProgramCommand expectedCommand = new EditProgramCommand(targetId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // sessions
-        userInput = targetId + SESSION_DESC_PROGRAM1;
-        descriptor = new EditProgramDescriptorBuilder().withSessions(VALID_SESSION_PROGRAM_A).build();
+        userInput = targetId + SESSION_DESC_OBEDIENCE_TRAINING;
+        descriptor = new EditProgramDescriptorBuilder().withSessions(VALID_SESSION_OBEDIENCE_TRAINING).build();
         expectedCommand = new EditProgramCommand(targetId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetId + TAG_DESC_DOGS;
-        descriptor = new EditProgramDescriptorBuilder().withTags(VALID_TAG_DOGS).build();
+        userInput = targetId + TAG_DESC_ALL;
+        descriptor = new EditProgramDescriptorBuilder().withTags(VALID_TAG_ALL).build();
         expectedCommand = new EditProgramCommand(targetId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -139,11 +142,12 @@ public class EditProgramCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Integer targetId = ID_ONE;
-        String userInput = targetId + TAG_DESC_PUPPIES + TAG_DESC_DOGS + TAG_DESC_DOGS + TAG_DESC_PUPPIES
-                + SESSION_DESC_PROGRAM2 + SESSION_DESC_PROGRAM2 + TAG_DESC_PUPPIES;
+        String userInput = targetId + TAG_DESC_PUPPIES + TAG_DESC_ALL + TAG_DESC_ALL + TAG_DESC_PUPPIES
+                + SESSION_DESC_POTTY_TRAINING + SESSION_DESC_POTTY_TRAINING + TAG_DESC_PUPPIES;
 
-        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder().withSessions(VALID_SESSION_PROGRAM_B)
-                .withTags(VALID_TAG_DOGS, VALID_TAG_PUPPIES).build();
+        EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder()
+                .withSessions(VALID_SESSION_POTTY_TRAINING)
+                .withTags(VALID_TAG_ALL, VALID_TAG_PUPPIES).build();
         EditProgramCommand expectedCommand = new EditProgramCommand(targetId, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
