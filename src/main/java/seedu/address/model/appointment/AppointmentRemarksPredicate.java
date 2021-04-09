@@ -9,6 +9,9 @@ public class AppointmentRemarksPredicate implements Predicate<Appointment> {
     private final String keywords;
 
     public AppointmentRemarksPredicate(String keywords) throws IllegalArgumentException {
+        if (keywords.trim().isEmpty()) {
+            throw new IllegalArgumentException("Remark given is empty. ");
+        }
         this.keywords = keywords.toLowerCase();
     }
 
