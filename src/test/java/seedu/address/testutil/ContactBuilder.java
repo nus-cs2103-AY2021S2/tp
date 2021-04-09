@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Name;
-import seedu.address.model.contact.Phone;
+import seedu.address.model.contact.ContactEmail;
+import seedu.address.model.contact.ContactName;
+import seedu.address.model.contact.ContactPhone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -18,74 +18,66 @@ public class ContactBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private Name name;
-    private Phone phone;
-    private Email email;
+    private ContactName name;
+    private ContactPhone contactPhone;
+    private ContactEmail email;
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code contactBuilder} with the default details.
+     * Creates a {@code ContactBuilder} with the default details.
      */
     public ContactBuilder() {
-        name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        name = new ContactName(DEFAULT_NAME);
+        contactPhone = new ContactPhone(DEFAULT_PHONE);
+        email = new ContactEmail(DEFAULT_EMAIL);
         tags = new HashSet<>();
     }
 
     /**
-     * Initializes the contactBuilder with the data of {@code contactToCopy}.
+     * Initializes the ContactBuilder with the data of {@code contactToCopy}.
      */
     public ContactBuilder(Contact contactToCopy) {
         name = contactToCopy.getName();
-        phone = contactToCopy.getPhone();
+        contactPhone = contactToCopy.getPhone();
         email = contactToCopy.getEmail();
         tags = new HashSet<>(contactToCopy.getTags());
     }
 
     /**
-     * Sets the {@code Name} of the {@code contact} that we are building.
+     * Sets the contact's name as the given string.
      */
     public ContactBuilder withName(String name) {
-        this.name = new Name(name);
+        this.name = new ContactName(name);
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code contact} that we are building.
+     * Sets the contact's phone as the given string.
+     */
+    public ContactBuilder withPhone(String phone) {
+        this.contactPhone = new ContactPhone(phone);
+        return this;
+    }
+
+    /**
+     * Sets the contact's email as the given string.
+     */
+    public ContactBuilder withEmail(String email) {
+        this.email = new ContactEmail(email);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and sets it as the contact's tags.
      */
     public ContactBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
-    /**
-     * Sets the {@code Address} of the {@code contact} that we are building.
-     */
-    public ContactBuilder withAddress(String address) {
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code contact} that we are building.
-     */
-    public ContactBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code contact} that we are building.
-     */
-    public ContactBuilder withEmail(String email) {
-        this.email = new Email(email);
-        return this;
-    }
-
     public Contact build() {
-        return new Contact(name, phone, email, tags);
+        return new Contact(name, contactPhone, email, tags);
     }
 
 }
