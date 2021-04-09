@@ -23,17 +23,14 @@ import seedu.address.testutil.TypicalTasks;
 
 public class JsonSerializableSocheduleTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableSocheduleTest");
-    private static final Path TYPICAL_SOCHEDULE = TEST_DATA_FOLDER.resolve("typicalSochedule.json");
 
-    private static final Path ONLY_TASK_FILE = TEST_DATA_FOLDER.resolve("noEventTypicalSochedule.json");
     private static final Path INVALID_TASK_FILE = TEST_DATA_FOLDER.resolve("invalidTaskSochedule.json");
     private static final Path DUPLICATE_TASK_FILE = TEST_DATA_FOLDER.resolve("duplicateTaskSochedule.json");
-    private static final Path TYPICAL_TASKS = TEST_DATA_FOLDER.resolve("typicalTaskSochedule.json");
+    private static final Path TYPICAL_TASKS = TEST_DATA_FOLDER.resolve("../sandbox/typicalTaskSochedule.json");
 
-    private static final Path ONLY_EVENT_FILE = TEST_DATA_FOLDER.resolve("noTaskTypicalSochedule.json");
     private static final Path INVALID_EVENT_FILE = TEST_DATA_FOLDER.resolve("invalidEventSochedule.json");
     private static final Path DUPLICATE_EVENT_FILE = TEST_DATA_FOLDER.resolve("duplicateEventSochedule.json");
-    private static final Path TYPICAL_EVENTS = TEST_DATA_FOLDER.resolve("typicalEventSochedule.json");
+    private static final Path TYPICAL_EVENTS = TEST_DATA_FOLDER.resolve("../sandbox/typicalEventSochedule.json");
     private static final Path INVALID_EVENT_SCHEDULING_FILE =
             TEST_DATA_FOLDER.resolve("invalidEventSchedulingSochedule.json");
 
