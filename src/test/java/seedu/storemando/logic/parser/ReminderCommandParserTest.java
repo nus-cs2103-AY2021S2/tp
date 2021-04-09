@@ -23,6 +23,9 @@ public class ReminderCommandParserTest {
     public void parse_invalidSingleArg_throwsParseException() {
         assertParseFailure(parser, "3",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "-1 dayweek",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -34,6 +37,14 @@ public class ReminderCommandParserTest {
         long threeDays = 3;
         ReminderCommand expectedReminderCommand2 = new ReminderCommand(new ItemExpiringPredicate(threeDays));
         assertParseSuccess(parser, "3 days", expectedReminderCommand2);
+
+        long oneWeekInDays = 7;
+        assertParseSuccess(parser,"1 week", new ReminderCommand(new ItemExpiringPredicate(oneWeekInDays)));
+        assertParseSuccess(parser,"1 weeks", new ReminderCommand(new ItemExpiringPredicate(oneWeekInDays)));
+
+        long zeroDays = 0;
+        assertParseSuccess(parser, "0 day", new ReminderCommand(new ItemExpiringPredicate(zeroDays)));
+        assertParseSuccess(parser,"0 days", new ReminderCommand(new ItemExpiringPredicate(zeroDays)));
     }
 
     @Test
@@ -61,4 +72,5 @@ public class ReminderCommandParserTest {
         // integer provided greater than maximum integer
         assertParseFailure(parser, "2140928140124 days", ReminderCommand.MESSAGE_INCORRECT_INTEGER);
     }
+
 }
