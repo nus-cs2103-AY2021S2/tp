@@ -43,9 +43,9 @@ public class JsonAdaptedEntry {
      * Converts a gievn {@code Entry} into this class for Jackson use.
      */
     public JsonAdaptedEntry(Entry source) {
-        entryName = source.getEntryName().toString();
-        startDate = source.startTimestamp();
-        endDate = source.endTimestamp();
+        entryName = source.getEntryName().name;
+        startDate = source.getOriginalStartDate().toString();
+        endDate = source.getOriginalEndDate().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
