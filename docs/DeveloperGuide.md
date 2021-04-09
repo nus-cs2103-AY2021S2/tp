@@ -401,13 +401,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | busy user                                  | add recurring tuition sessions                    | save time by creating multiple sessions in one command       |
 | `* * *`  | user                                       | delete a particular tuition session               | update my tuition schedule                                   |
 | `* * *`  | user                                       | delete the entire recurring session               | update my tuition schedule                                   |
-| `* * *`  | user                                       | delete a single session from a recurring session  | take a break from lessons once in a while                    |
+| `* * *`  | user                                       | delete a single session from a recurring session  | update cancelled tuition session                             |
 | `* * *`  | user                                       | see a list of all the students profile and sessions|                                                             |
 | `* * *`  | user                                       | get all the emails of the parent of my students'  | email them reminders for payment                             |
 | `* * *`  | user                                       | calculate the monthly fees of a particular student| use the information when collecting monthly fees             |
 | `* * *`  | user                                       | get the monthly fees that I would have received for the past 3 months    | manage my finance better              |
 | `* * *`  | forgetful user                             | see a list of upcoming sessions                   | be aware of my teaching schedule for the next few days       |
-| `* * *`  | user teaching many lessons                 | see my schedule in a calendar view                | have a visual representation of my hectic schedules at a glance  |
+| `* * *`  | user teaching many lessons                 | see my schedule in a calendar view                | have an overview of my hectic schedules at a glance          |
 | `* *`    | new user                                   | get a list of commands of the application         | know at a glance what are the features of the application    |
 | `* *`    | potential user                             | see the app populated with sample data on the first run  | try using the features easily                         |
 | `* *`    | new user                                   | purge all current data                            | get rid of sample/current data I used for exploring the app  |
@@ -636,7 +636,7 @@ Extensions:
 
 * 2a. User can toggle between the different weeks using the left and right button in the Calendar page.
 
-* 2b. User can toggle directly move to this week's schedule by clicking on the `Today` tab.
+* 2b. User can toggle directly move to this week's schedule by clicking on the `Today` button.
 
   Use case ends.
 
