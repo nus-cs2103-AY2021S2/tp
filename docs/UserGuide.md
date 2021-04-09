@@ -93,7 +93,7 @@ Format: `help`
 
 ### Adding a task : `add`
 
-Adds a task to Taskify.
+Adds a new task to Taskify.
 
 Format: `add n/NAME desc/DESCRIPTION [date/DATE] [t/TAG]…`
 
@@ -116,13 +116,13 @@ Examples:
 ### Listing all tasks : `list`
 
 View a list of all tasks in Taskify.
-
 Format: `list`
 
 
 ### Editing a task : `edit`
 
-Edits an existing task in Taskify.
+Edits an existing task in Taskify. Editing tasks allows you to keep track of any changes/updates to your schedule by 
+modifying the task data.
 
 Format: `edit INDEX [n/NAME] [desc/DESCRIPTION] [date/DATE] [s/STATUS] [t/TAG]…`
 
@@ -139,6 +139,7 @@ Examples:
 *  `edit 2 s/completed` sets the status of the 2nd task in the list to `completed`.
 
 ### Deleting multiple tasks : `delete`
+
 
 Delete multiple tasks at once by either:
 1. Listing the indexes of the tasks to delete exhaustively
@@ -169,7 +170,8 @@ Delete multiple tasks at once by either:
 
 ### Locating a task by name : `find`
 
-Find tasks whose names contain any of the given keywords.
+Find tasks whose names contain any of the given keywords. This feature allows you to quickly find important tasks 
+without going through everything.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -185,7 +187,8 @@ Examples:
 
 ### Searching for a task by tags : `tag-search`
 
-Find and list all tasks containing the same tag as the specified tag.
+Find and list all tasks containing the same tags. Searching via tags improves efficiency by 
+allowing you to quickly find all the tasks belonging to the same category of tags.
 
 Format: `tag-search TAG [MORE_TAGS]`
 
@@ -210,7 +213,8 @@ Examples:
 
 ### Sorting tasks by date : `sort`
 
-Sort tasks in ascending order of their dates.
+Sort tasks in ascending order of their dates. By sorting tasks you can easily see upcoming deadlines and decide 
+which tasks to prioritise!
 
 Format: `sort`
 
