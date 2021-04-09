@@ -38,7 +38,7 @@ An image of our UI is shown below!
         - [Add](#adding-an-entry)
         - [Find](#finding-an-entry)
         - [Filter](#filter-entry-tags)
-        - [Edit](#editing-a-contact)
+        - [Edit](#editing-an-entry)
         - [List](#listing-entries)
         - [Free](#checking-if-time-interval-is-free)
         - [Delete](#deleting-an-entry)
@@ -143,24 +143,23 @@ Example(s):
 
 ### Editing a contact
 
-Edits an existing contact in the address book specified by name.
+Edits an existing contact with the specified index in Teaching Assistant.
 
-Format: `edit NAME [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+Format: `cedit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
-* `NAME` provided must be the full `NAME` of the contact to be edited e.g. If the contact is `Alex Yeoh`, to edit
-  it, `Alex Yeoh` must be provided as `NAME`.
-* `NAME` is case-sensitive so `Alex` will not match `alex`.
+* `INDEX` refers to the index numer shown in the displayed entry list.
+* `INDEX` must be a positive integer 1,2,3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing t/ without specifying any tags after it.
+* When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
+* You can remove all the contact’s tags by typing t/ without specifying any tags after it.
 
 Example(s):
 
-* `edit Alex Yeoh p/91234567 e/alexyeoh@example.com` Edits the phone number and email address of `Alex Yeoh` to
-  be `91234567` and `alexyeoh@example.com` respectively.
-* `edit Bernice Yu n/Bernice Yu Xiao Ling t/` Edits the name of `Bernice Yu` to be `Bernice Yu Xiao Ling` and clears all
-  existing tags.
+* `cedit 1 p/91234567 e/alexyeoh@example.com` Edits the phone number and email address of the contact corresponding to 
+  index 1 and to `p/91234567` and `alexyeoh@example.com` respectively.
+* `cedit 1 n/Bernice Yu Xiao Ling t/` Edits the name of the contact corresponding to index 1 to be `Bernice Yu Xiao Ling` 
+  and clears all existing tags.
 
 ### Listing contacts
 
@@ -241,6 +240,25 @@ Example(s):
 
 * `efilter CS2103T`
 * `efilter CS2100 Meeting`
+
+### Editing an entry
+
+Edits an existing entry with the specified index in Teaching Assistant.
+
+Format: `eedit INDEX [n/NAME] [sd/START_DATE] [ed/END_DATE] [t/TAG]...`
+
+* `INDEX` refers to the index numer shown in the displayed entry list.
+* `INDEX` must be a positive integer 1,2,3, ...
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the entry will be removed i.e. adding of tags is not cumulative.
+* You can remove all the entry’s tags by typing t/ without specifying any tags after it.
+
+Example(s):
+
+* `eedit 1 sd/2021-05-03 13:00 ed/2021-05-03 14:00` Edits the start and end dates of the entry corresponding to index 1 to
+  be `2021-05-03 13:00` and `2021-05-03 14:00` respectively.
+* `eedit 1 t/` Edits the entry corresponding to index 1 by clearing all existing tags.
 
 ### Listing entries
 
