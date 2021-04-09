@@ -31,34 +31,36 @@ public class DoneTaskCommandParserTest {
     }
 
     @Test
-    @Disabled
     public void parse_duplicateArgs_throwsParseException() {
-        assertParseFailure(parser, "1 1", MESSAGE_DUPLICATE_INDEXES);
+        assertParseFailure(parser, "1 1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneTaskCommand.MESSAGE_USAGE));
     }
 
     @Test
-    @Disabled
     public void parse_invalidArg_throwsParseException() {
         assertParseFailure(parser, "a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneTaskCommand.MESSAGE_USAGE));
     }
 
     @Test
-    @Disabled
     public void parse_noArg_throwsParseException() {
         assertParseFailure(parser, "",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneTaskCommand.MESSAGE_USAGE));
     }
 
     @Test
-    @Disabled
     public void parse_invalidArgNegativeIndex_throwsParseException() {
         assertParseFailure(parser, "-1",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneTaskCommand.MESSAGE_USAGE));
     }
 
     @Test
-    @Disabled
+    public void parse_invalidArgOverflowedIntegerIndex_throwsParseException() {
+        assertParseFailure(parser, "2147483648",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneTaskCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "1 a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneTaskCommand.MESSAGE_USAGE));
