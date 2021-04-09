@@ -408,6 +408,9 @@ The sequence diagram below shows how the `schedule` feature works:
 
 ![Sequence Diagram for Schedule Command](images/ScheduleSequenceDiagram.png)
 
+![Sequence Diagram for Ref Schedule Command](images/ScheduleCommandSequenceDiagram.png)
+
+
 Step 5. The user then executes `detail 1` command that does not modify the `internalList` or the seven separate `ObservableList`
 of lessons for each day of the week. The `detail` command instead modifies another `ObservableList`. Thus, the schedule
 window continues to display the correct list of lessons for each day.
