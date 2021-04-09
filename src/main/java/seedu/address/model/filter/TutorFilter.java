@@ -93,8 +93,8 @@ public class TutorFilter implements Predicate<Tutor> {
 
         this.subjectNameFilters = new InclusiveFilterSet<>(subjectNameFilters);
         this.subjectLevelFilters = new InclusiveFilterSet<>(subjectLevelFilters);
-        this.subjectRateFilters = new InclusiveFilterSet<>(subjectRateFilters);
-        this.subjectExperienceFilters = new InclusiveFilterSet<>(subjectExperienceFilters);
+        this.subjectRateFilters = new ExclusiveFilterSet<>(subjectRateFilters);
+        this.subjectExperienceFilters = new ExclusiveFilterSet<>(subjectExperienceFilters);
         this.subjectQualificationFilters = new InclusiveFilterSet<>(subjectQualificationFilters);
 
         buildStringList();
