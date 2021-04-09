@@ -214,9 +214,10 @@ Example: find o/tag t/first t/second
   
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li` when no exact matches are found
+* `find alex annie` returns `Alex Yeoh`, `Annie Li` when no exact matches are found
 
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex annie'](images/findAlexAnnieResult.png)
+* `find o/phone 9817` return contacts whose phone number contains 9817, partial matches will also be returned
 
 
 
