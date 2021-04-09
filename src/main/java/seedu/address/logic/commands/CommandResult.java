@@ -46,6 +46,35 @@ public class CommandResult {
         return exit;
     }
 
+    public boolean isViewPerson() {
+        return feedbackToUser.equals(ViewPersonCommand.MESSAGE_SUCCESS);
+    }
+
+    public boolean isViewSession() {
+        return feedbackToUser.equals(ViewSessionCommand.MESSAGE_SUCCESS);
+    }
+
+    public boolean isAddSession() {
+        return feedbackToUser.contains(AddSessionCommand.MESSAGE_SUCCESS);
+    }
+
+    public boolean isEditSession() {
+        return feedbackToUser.contains(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS);
+    }
+
+    public boolean isDeleteSession() {
+        return feedbackToUser.contains(DeleteSessionCommand.MESSAGE_DELETE_SESSION_SUCCESS);
+    }
+
+    /**
+     * Checks if feedback is equivalent to either feedback for listing empty session list or for non-empty session list.
+     */
+    public boolean isListSession() {
+        boolean nonEmptySessionList = feedbackToUser.equals(ListCommand.MESSAGE_SUCCESS_SESSIONS);
+        boolean emptySessionList = feedbackToUser.equals(ListCommand.MESSAGE_EMPTY_SESSION_LIST);
+        return nonEmptySessionList || emptySessionList;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

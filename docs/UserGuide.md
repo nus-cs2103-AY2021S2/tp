@@ -28,7 +28,7 @@ EzManage is a **desktop app for managing students, tutors and classes, optimized
 
    * **`add_person`**`tp/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student named `John Doe` to the Contact List.
 
-   * **`delete_person`**`t/3` : Deletes the tutor with the ID `t/3` from the Contact list.
+   * **`delete_person`**`t/1` : Deletes the tutor with the ID `t/1` from the Contact list.
      
    * **`assign`** : `assign s/3 t/2 c/1` Assigns student(s) or tutor to a specific class.
 
@@ -106,7 +106,7 @@ Examples:
 
 Adds a session to the address book.
 
-Format: `add_session d/DAY t/TIMESLOT s/SUBJECT [tag/TAG] …
+Format: `add_session d/DAY t/TIMESLOT su/SUBJECT [tag/TAG] …
 `
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -116,9 +116,11 @@ A session can have any number of tags (including 0)
 * A new session will have a unique session ID assigned after creation. 
 * DAY should match the format of a valid day in the week.
 * TIMESLOT should be in the format `HH:MM to HH:MM` and the end time should only be after the start time.
+* DAY and SUBJECT will be capitalised when displayed but do not have to be capitalised in the input
+* Note that while persons added to EZManage must be unique, there can be duplicates of sessions to accomidate multiple sessions of the same subject occurring at once
 
 Examples:
-* `add_session d/Saturday ts/13:00 to 15:00 s/Math tag/Hard`
+* `add_session d/Saturday ts/13:00 to 15:00 su/Math tag/Hard`
 
 ### Listing all persons : `list`
 
@@ -221,12 +223,12 @@ Examples:
 
 ### Editing a session : `edit_session`
 
-Edits an existing session in the address book.
+Edits an existing session in EZManage.
 
-Format: `edit_session c/ID [d/DAY] [ts/TIMESLOT] [s/SUBJECT] [tag/TAG]…​`
+Format: `edit_session c/ID [d/DAY] [ts/TIMESLOT] [su/SUBJECT] [tag/TAG]…​`
 
 * Edits the session with the specified session ID. The session ID can be found from the displayed session list. 
-* The session ID has to be a valid session ID i.e. the session has to exist in the Address Book.
+* The session ID has to be a valid session ID i.e. the session has to exist in EZManage.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * DAY should match the format of a valid day in the week.
@@ -236,7 +238,7 @@ Format: `edit_session c/ID [d/DAY] [ts/TIMESLOT] [s/SUBJECT] [tag/TAG]…​`
 * Unassign students/tutor should be called before editing any session’s timeslot or day.
 
 Examples:
-*  `edit_session c/1 d/Monday s/Biology` Edits the day and subject of the session c/1 to be `Monday` and `Biology` respectively.
+*  `edit_session c/1 d/Monday su/Biology` Edits the day and subject of the session c/1 to be `Monday` and `Biology` respectively.
 *  `edit_session c/2 ts/12:00 to 13:00 tag/haha` Edits the timeslot and tag of the session c/2 to be `12:00 to 13:00` and `haha` respectively.
 
 ### Locating persons by name: `find`
@@ -283,7 +285,7 @@ Examples:
 
 ### Deleting a session : `delete_session`
 
-Deletes the specified session from the address book.
+Deletes the specified session from EZManage.
 
 Format: `delete_session c/ID`
 
@@ -291,7 +293,7 @@ Format: `delete_session c/ID`
 * The c/ID refers to the session ID shown in the displayed session list.
 
 Examples:
-* `delete_session c/2` deletes the session with session ID c/2 in the address book.
+* `delete_session c/1` deletes the session with session ID c/1 in the address book.
 
 ### Assigning student(s)/tutor to session:`assign`
 
@@ -317,7 +319,7 @@ Assigns a student or multiple student and/or a tutor to a specific class
 
 A class must always be provided, either student or tutor can be optional.
 
-### Unassigning people from a session : `assign`
+### Unassigning people from a session : `unassign`
 
 Unassigns the specified people from a session.
 
@@ -335,7 +337,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the list of students, tutors and classes.
+Clears all entries from the list of students, tutors and sessions.
 
 Format: `clear`
 
@@ -374,10 +376,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | For Person:`add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​` <br> e.g., `add_person tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br><br> For Session: `add_session d/DAY ts/TIMESLOT s/SUBJECT [tag/TAG]…​` <br> e.g. `add_session d/Saturday ts/13:00 to 15:00 s/Math` 
+**Add** | For Person:`add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​` <br> e.g., `add_person tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br><br> For Session: `add_session d/DAY ts/TIMESLOT su/SUBJECT [tag/TAG]…​` <br> e.g. `add_session d/Saturday ts/13:00 to 15:00 s/Math` 
 **Clear** | `clear`
 **Delete** | For Student: <br> `delete_person s/ID`<br> e.g., `delete_person s/22` <br><br> For Tutor: <br> `delete_person t/ID`<br> e.g., `delete_person t/8`<br><br> For Session:<br>`delete_session c/ID` <br> e.g., `delete_session c/9`
-**Edit** | For Student: <br> `edit_person s/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person s/2 n/Betsy Crower tag/` <br><br> For Tutor: <br> `edit_person t/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person t/1 p/88888888 e/sarahwong@example.com` <br><br> For Session: <br> `edit_session c/ID [d/DAY] [ts/TIMESLOT] [s/SUBJECT] [tag/TAG]…​`<br> e.g.,`edit_session c/1 d/Monday s/Biology` <br> e.g. `edit_session c/2 d/Saturday ts/13:00 to 15:00 tag/Hard` 
+**Edit** | For Student: <br> `edit_person s/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person s/2 n/Betsy Crower tag/` <br><br> For Tutor: <br> `edit_person t/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person t/1 p/88888888 e/sarahwong@example.com` <br><br> For Session: <br> `edit_session c/ID [d/DAY] [ts/TIMESLOT] [su/SUBJECT] [tag/TAG]…​`<br> e.g.,`edit_session c/1 d/Monday s/Biology` <br> e.g. `edit_session c/2 d/Saturday ts/13:00 to 15:00 tag/Hard` 
 **Assign** | `assign [s/ID]… [t/ID] c/ID`<br> e.g., `assign s/1 s/2 t/1 c/1`
 **Unassign** | `unassign [s/ID]… [t/ID] c/ID`<br> e.g., `unassign s/1 s/2 t/1 c/1`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`

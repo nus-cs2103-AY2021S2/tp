@@ -86,11 +86,11 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete_person s/3")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete_person s/3` Command](images/DeletePersonSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePersonCommandParser` and `DeletePersonCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
@@ -155,9 +155,12 @@ Step 4: The `Model` adds the new session to `sessions` in `AddressBook` and retu
 
 Step 5: The `CommandResult` is then displayed on the UI.
 
-The sequence for the example scenerio can be found below:
+The sequence for the example scenario can be found below:
 
 ![AddSessionSequenceDiagram](images/AddSessionSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddSessionCommandParser` and `AddSessionCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Unassign person feature
 The unassign feature utilises defensive programming to ensure that the `tutor` and `students` attributes of the session correspond with those persons' `sessions` attribute.
@@ -174,9 +177,12 @@ Step 4: The `UnassignCommand` calls the `Person#removeSession(SessionID session)
 
 Step 5: A `CommandResult` object is returned and displayed on the UI.
 
-The sequence for the example scenerio can be found below:
+The sequence for the example scenario can be found below:
 
 ![UnassignSequenceDiagram](images/UnassignSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnassignCommandParser` and `UnassignCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Delete person feature
 
@@ -208,9 +214,12 @@ Step 6: The `Model` removes the specified person from `persons` in `AddressBook`
 
 Step 7: The `commandResult` is then displayed on the UI.
 
-The sequence for the example scenerio can be found below:
+The sequence for the example scenario can be found below:
 
 ![DeletePersonSequenceDiagram](images/DeletePersonSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePersonCommandParser` and `DeletePersonCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### View person feature
 
@@ -242,6 +251,70 @@ Step 6. A `CommandResult` object is returned and displayed on the UI.
 The following activity diagram illustrates what happens when a user executes a view person command:
 
 ![ViewPersonActivityDiagram](images/ViewPersonActivityDiagram.png)
+
+### Delete session feature
+
+#### Current Implementation
+
+The delete session feature is facilitated by `SessionList`. It is stored internally in `AddressBook` as `sessions`. It implements the following relevant operations:
+
+* `SessionList#remove(Session toRemove)` - Removes the given session from the current list of sessions.
+
+This operation is exposed in the `Model` interface as `Model#deleteSession(Session sessionToDelete)`.
+
+Given below is an example usage scenario and how the delete session mechanism behaves at each step.
+
+Step 1: The user launches the application for the first time. The `AddressBook` will contain a `SessionList`.
+
+Step 2: The user executes `delete_session c/1` command to remove the specified session. The `LogicManager` calls `AddressBookParser#parseCommand(String userInput)`.
+
+Step 3: The `parseCommand` method passes the user input to `DeleteSessionCommandParser#parse(String args)` which returns a `DeleteSessionCommand` object.
+
+Step 4: The `LogicManager` then executes the `DeleteSessionCommand` which calls the `Model#deleteSession(Session sessionToDelete)` method.
+
+Step 5: The `Model` calls `AddressBook#removeSession(Session key)`.
+
+Step 6: The `Model` removes the specified session from `sessions` in `AddressBook` and returns a `CommandResult`.
+
+Step 7: A `CommandResult` object is returned and displayed on the UI.
+
+The sequence for the example scenario can be found below:
+
+![DeleteSessionSequenceDiagram](images/DeleteSessionSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteSessionCommandParser` and `DeleteSessionCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+### Edit session feature
+
+#### Current Implementation
+
+The edit session feature is facilitated by `SessionList`. It is stored internally in `AddressBook` as `sessions`. It implements the following relevant operations:
+
+* `SessionList#setSession(Session target, Session editedSession)` — Replaces the target session in the current list of sessions with the edited session.
+
+This operation is exposed in the `Model` interface as `Model#setSession(Session sessionToEdit, Session editedSession)`.
+
+Given below is an example usage scenario and how the edit session mechanism behaves at each step.
+
+Step 1: The user executes `edit_session c/2 d/Monday ts/12:00 to 13:00` command to edit the specified session. The `LogicManager` calls `AddressBookParser#parseCommand(String userInput)`.
+
+Step 2: The `parseCommand` method passes the user input to `EditSessionCommandParser#parse(String args)`.
+
+Step 3: An `EditSessionDescriptor` object is created and used to return an `EditSessionCommand` object.
+
+Step 4: The `LogicManager` then executes the `EditSessionCommand` which calls the `Model#setSession(Session sessionToEdit, Session editedSession)` method.
+
+Step 5: The `Model` replaces the specified session `sessionToEdit` in `sessions` in `AddressBook` with the edited session `editedSession` and returns a `CommandResult`.
+
+Step 6: The `CommandResult` is then displayed on the UI.
+
+The sequence for the example scenario can be found below:
+
+![EditSessionSequenceDiagram](images/EditSessionSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditSessionCommandParser`, `EditSessionCommand` and `EditSessionDescriptor` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -499,56 +572,48 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person
 
    1. Prerequisites: Know a valid person ID.
 
-   1. Test case: `delete s/1`<br>
+   1. Test case: `delete_person s/1`<br>
       Assumption: `s/1` is a valid person ID. <br>
       Expected: Person with the ID `s/1` is deleted from the person list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete t/0`<br>
+   1. Test case: `delete_person t/0`<br>
       Assumption: `t/0` is an invalid person ID. <br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is an invalid person ID)<br>
+   1. Other incorrect delete commands to try: `delete_person`, `delete_person x`, `...` (where x is an invalid person ID)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Viewing a person
 1. Viewing a person
     1. Prerequisites: there is at least 1 person in the list, 
-       and his/her personID is known to the tester.
+       and his/her person ID is known to the tester.
     1. Test case: `view_person s/1` <br>
-        Assumption: `s/1` is a valid personID <br>
-       Expected: details of person with personID `s/1` is displayed on the left pane, 
+        Assumption: `s/1` is a valid person ID <br>
+       Expected: details of person with person ID `s/1` is displayed on the left pane, 
        and his/her associated sessions are displayed on the right
        
     1. Test case: `view_person s/0` <br>
-        Assumption: `s/0` is an invalid personID since personID starts from 1 <br>
+        Assumption: `s/0` is an invalid person ID since person ID starts from 1 <br>
        Expected: Error message is shown, no person/session is displayed
-       
-2. _{ more test cases …​ }_
 
 ### Viewing a session
 1. Viewing a session
     1. Prerequisites: there is at least 1 session in the list,
-       and the sessionID is known to the tester.
+       and the session ID is known to the tester.
     1. Test case: `view_session c/1` <br>
-       Assumption: `c/1` is a valid sessionID <br>
-       Expected: details of the session with sessionID `c/1` is displayed on the left pane,
+       Assumption: `c/1` is a valid session ID <br>
+       Expected: details of the session with session ID `c/1` is displayed on the left pane,
        and the students in the session are displayed on the right
 
     1. Test case: `view_session c/0` <br>
-       Assumption: `c/0` is an invalid sessionID since sessionID starts from 1 <br>
+       Assumption: `c/0` is an invalid sessionID since session ID starts from 1 <br>
        Expected: Error message is shown, no person/session is displayed
-
-2. _{ more test cases …​ }_
 
 ### Saving data
 

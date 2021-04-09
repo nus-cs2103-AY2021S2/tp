@@ -33,8 +33,7 @@ public class ViewPersonCommandTest {
     }
 
     @Test
-    public void execute_viewPerson_throwCommandException() {
-        expectedModel.updateFilteredPersonList(new PersonIdPredicate(new PersonId("t/-1")));
+    public void execute_viewPerson_showNotFoundMessage() {
         assertCommandFailure(new ViewPersonCommand(new PersonIdPredicate(new PersonId("t/-1"))),
                 model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
