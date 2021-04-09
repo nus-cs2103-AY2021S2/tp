@@ -2,8 +2,25 @@
 layout: page
 title: User Guide
 ---
-## User Guide
+## Table of Contents
+* [Introduction](#introduction)
+* [Feature List](#feature-list)
+  * [General Commands](#general-commands)
+  * [Task-Specific Commands](#task-specific-commands)
+  * [Event-Specific Commands](#event-specific-commands)
+  * [Commands Related to Both Task and Event](#commands-related-to-both-task-and-event)
+* [Public Parameters for Tasks and Events](#public-parameters-for-tasks-and-events)
+  * [Common to both Task and Event](#common-to-both-task-and-event)
+  * [Task-Specific](#task-specific)
+  * [Event-Specific](#event-specific)
+* [Quick start](#quick-start)
+* [Features](#features)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
 
+
+
+## Introduction
 SOChedule is a one-stop solution for NUS School of Computing (SoC) students to manage their tasks and events effectively.
 Targeted at users who can type fast and prefer typing to mouse input, SOChedule is optimized for use via a Command Line Interface (CLI) 
 while still having the benefits of a Graphical User Interface (GUI).
@@ -43,6 +60,8 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Finding free time slots: [`free_time`](#finding-free-time-slots-free_time)
 * Summarising tasks and events completion status: [`summary`](#summarising-tasks-and-events-statistics-summary)
 * Clearing Sochedule: [`clear`](#clearing-sochedule-clear)
+
+[Return to Table of Contents](#table-of-contents)
 
 ## Public Parameters for Tasks and Events
 As listed below are the attributes to be specified for Tasks and Events. All parameters are mandatory unless otherwise stated.
@@ -168,6 +187,8 @@ As listed below are the attributes to be specified for Tasks and Events. All par
     </tr>
 </table>
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -194,6 +215,8 @@ As listed below are the attributes to be specified for Tasks and Events. All par
 
 1. Refer to the [Features](#features) below for details of each command.
 
+[Return to Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -218,6 +241,8 @@ As listed below are the attributes to be specified for Tasks and Events. All par
   e.g. if the command specifies `list_task 123`, it will be interpreted as `list_task`.
 
 </div>
+
+[Return to Table of Contents](#table-of-contents)
 
 ### Viewing help: `help`
 Shows a message explaining how to access the help page.
@@ -611,6 +636,7 @@ Exits the program.
 
 [Return to Feature List](#feature-list)
 
+[Return to Table of Contents](#table-of-contents)
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -622,6 +648,8 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Download the JAR file onto the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SOChedule home folder (this is contained within the `/data` folder in the same location as your SOChedule.jar.
+
+[Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -671,3 +699,5 @@ Action | Format, Examples
 **Find Schedule** | `find_schedule DATE` <br>e.g., `find_schedule 2021-06-01`
 **Clear Schedule** | `clear`
 **Summary** | `summary`
+
+[Return to Table of Contents](#table-of-contents)
