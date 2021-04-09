@@ -365,13 +365,13 @@ _{Explain here how the data archiving feature will be implemented}_
 |                     |                    |                                                                                        |                                                                     |      
 | Friendship Journal  | User               | Record brief summary of last meeting with the other person (include last meeting date) | I know why we last met.                                             |
 |                     |                    |                                                                                        |                                                                     |
-| UX                  | Forgetful User     | See suggested commands as i type in the command bar                                    | I do not have to memorise all commands                              |
+| UX                  | Forgetful User     | See suggested commands as I type in the command bar                                    | I do not have to memorise all commands                              |
 |                     |                    |                                                                                        |                                                                     |
 | Search              | Tech-Savvy User    | Search for contacts via regex                                                          | I can find contacts easily                                          |
 |                     |                    |                                                                                        |                                                                     |
 | Relationship management   | Good friend        | Set a desired frequency (weekly. monthly, yearly) for meeting each contact       | I can set a goal on how frequent to meet my friends.                |
-| Relationship management   | Forgetful friend   | Be reminded of who i should meet soon                                            | I do not forget to meet my friends.                                 |
-| Relationship management   | Friend             | See upcoming dates (birthdays/ special dates)                                    | I can prepare myself before I meet them/                            |
+| Relationship management   | Forgetful friend   | Be reminded of who I should meet soon                                            | I do not forget to meet my friends.                                 |
+| Relationship management   | Friend             | See upcoming dates (birthdays/ special dates)                                    | I can prepare myself before I meet them                             |
 |                     |                    |                                                                                        |                                                                     |
 | Dashboard           | User               | See upcoming birthdays at a glance                                                     | I can prepare myself for the week to come                           |
 | Dashboard           | User               | See upcoming special dates at a glance                                                 | "                                       "                           | 
@@ -540,7 +540,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Add a person: `add`
+### Adding a person: `add`
 
 ### Adding a special date: `add-date`
 
@@ -624,7 +624,7 @@ The first person on the list is born before 12-12-2020.
 
 ### Setting meeting goal: `set-goal`
 
-### Subtracting Debt: `subract-debt`
+### Subtracting Debt: `subtract-debt`
 
 ### Styling the application: `theme`
 
