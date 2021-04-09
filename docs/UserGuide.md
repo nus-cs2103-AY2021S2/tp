@@ -326,12 +326,12 @@ Sorts the student contacts list by name, school, subjects or lessons.
 
 Format: `sort PREFIX`
   
-Prefix | Sorting Criteria 
------- | -----------------
-`n/`   | Name             
-`s/`   | School           
-`t/`   | Subject          
-`le/`  | Lesson           
+Prefix | Sorting Criteria | Details
+------ | -----------------|--------
+`n/`   | Name             |Alphabetical order
+`s/`   | School           |Alphabetical order
+`t/`   | Subject          |Alphabetical order of the first subjects<br>in their lists
+`le/`  | Lesson           |Chronological order of the first lessons<br>in their lists
 
 <div markdown="block" class="alert alert-primary">
 
@@ -340,7 +340,7 @@ Prefix | Sorting Criteria
 * There are four sorting criteria available, represented by the prefixes `n/`, `s/`, `t/`, and 
   `le/`. They represent sorting by name, school, subjects or lessons respectively.
   
-* If multiple sorting prefixes are listed out, the list will be sorted by the **first** prefix listed.
+* If multiple sorting prefixes are listed out, the list will be sorted by the **last** prefix listed.
   
 * Any extra words typed will be ignored.
 
@@ -349,9 +349,8 @@ Prefix | Sorting Criteria
 Examples:
 * `sort le/` sorts students based on the chronological order of their respective earliest lesson 
   of the week.
-* `sort n/ s/` sorts students by the alphabetical orders of their names.
-* `sort t/` sorts students by subjects alphabetically in the order of `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, ignoring the extra words.
-
+* `sort n/ s/` sorts students by the alphabetical orders of their schools, and ignores the name prefix.
+* `sort t/` sorts students based on the alphabetical order of their first subject 
 ### Listing all contacts : `list`
 
 Shows a list of all student contacts in TutorsPet. Each student's name, phone number, subjects and lessons are displayed.
@@ -371,7 +370,7 @@ Format: `schedule`
 Advances the education level of all the student contacts by one grade by default, unless the student is excluded.
 This feature can be used to do a mass update all the student's levels at the start of the school year.
 
-If only some students' levels need to be changed, [edit](#editing-a-contact-:-edit) can be used instead.
+If only some students' levels need to be changed, [edit](#editing-a-contact) can be used instead.
 
 Format: `levelup ex/[INDEX]...`
 
@@ -379,7 +378,10 @@ Format: `levelup ex/[INDEX]...`
 
 :bulb:**Tips:** <br>
 
-* Students who are `jc1` will advance to `grad` when `levelup` is applied. Students will not 
+* Students who are `sec4` will automatically advance to `sec5` when `levelup` is applied. If students 
+  are part of the express course, `levelup` can be applied again to advance them to `jc1`.
+
+* Students who are `jc2` will advance to `grad` when `levelup` is applied. Students will not 
   advance any further if they are `grad`.
   
 * If the `ex/` prefix is not used, all students will advance by one education level (unless they have `grad`).
@@ -390,7 +392,7 @@ Once `ex/` prefix is used, the index field cannot be left blank.
 
 * The index **must be a positive integer** ranging from 1 to 2147483647.
 
-* Multiple indexes can be taken in, including no indexes. Indexes must be separated by spaces.
+* Multiple indexes can be taken in. Indexes must be separated by spaces.
 
 </div>
 
@@ -404,13 +406,16 @@ Examples:
 Demotes the education level of all the student contacts by one grade by default, unless the student is excluded.
 This feature can be used to do a mass undo of `levelup` or indicate retainees. 
 
-If only some students' levels need to be changed, [edit](#editing-a-contact-:-edit) can be used instead.
+If only some students' levels need to be changed, [edit](#editing-a-contact) can be used instead.
 
 Format: `leveldown ex/[INDEX]...`
 
 <div markdown="block" class="alert alert-primary">
 
 :bulb:**Tips:** <br>
+
+* Students who are `jc1` will automatically demote to `sec5` when `leveldown` is applied. If students
+  are part of the express course, `leveldown` can be applied again to demote them to `sec4`.
 
 * Students who are `pri1` will not demote any further.
 
@@ -422,7 +427,7 @@ Format: `leveldown ex/[INDEX]...`
 
 * The index **must be a positive integer** ranging from 1 to 2147483647.
 
-* Multiple indexes can be taken in, including no indexes. Indexes must be separated by spaces.
+* Multiple indexes can be taken in. Indexes must be separated by spaces.
 
 </div>
 

@@ -6,8 +6,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
+import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.predicate.NameSchoolAndSubjectContainsKeywordsPredicate;
+import seedu.address.model.subject.Subject;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -21,9 +27,10 @@ public class SortCommandParser implements Parser<SortCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortCommand parse(String args) throws ParseException {
+
         Prefix firstPrefix;
         try {
-            firstPrefix = ArgumentTokenizer.getFirstPrefix(
+            firstPrefix = ArgumentTokenizer.getLastPrefix(
                     args, PREFIX_NAME, PREFIX_SCHOOL, PREFIX_SUBJECT, PREFIX_LESSON);
         } catch (ParseException pe) {
             throw new ParseException(
@@ -31,5 +38,6 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
 
         return new SortCommand(firstPrefix);
+
     }
 }
