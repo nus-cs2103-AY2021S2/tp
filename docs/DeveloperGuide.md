@@ -733,6 +733,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
+1. Should work on any mainstream OS as long as it has Java 11 or above installed.
+
+1. Should be able to recover latest state of CHIM (before the command that causes the crash was executed) if the application crashes.
+
+1. Should be able to hold up to 1000 customers without a noticeable sluggishness in performance for typical usage.
+
+1. General queries (especially filter queries) should be completed within 10 seconds.
+
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X

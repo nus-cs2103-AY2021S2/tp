@@ -66,9 +66,19 @@ public class DoneCommand extends Command {
      * Creates and returns a {@code order} with the details of {@code orderToUpdate}
      * Only the CompletedDate is updated to current time
      */
-    public static Order createDoneOrder(Order orderToUpdate, Set<CheeseId> unassignedCheeses, Model model) {
+    public static Order createDoneOrder(Order orderToUpdate, Set<CheeseId> unassignedCheeses, Model model)
+        throws CommandException {
         CompletedDate completedDate = new CompletedDate(LocalDateTime.now().format(TO_JSON_STRING_FORMATTER));
-        return new Order(orderToUpdate, completedDate, unassignedCheeses);
+
+        Order retOrder;
+
+        try {
+            retOrder = new Order(orderToUpdate, completedDate, unassignedCheeses);
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(e.getMessage());
+        }
+
+        return retOrder;
     }
 
     @Override
