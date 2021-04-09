@@ -216,6 +216,7 @@ Format: `dueIn [day/NUMBER_OF_DAYS OR week/NUMBER_OF_WEEKS]`
 * `NUMBER_OF_DAYS` & `NUMBER_OF_WEEKS` must be a positive integer
 * If both `day/` & `week/` are given, an error will be thrown.
 * Tasks shown are tasks with deadlines starting from today's date.
+* The limit for dueIn is until 31-12-2099.
 
 Example:
 
