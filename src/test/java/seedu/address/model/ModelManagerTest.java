@@ -17,6 +17,7 @@ import static seedu.address.testutil.TypicalTasks.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -176,6 +177,32 @@ public class ModelManagerTest {
     @Test
     public void getSortedTagList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedTagList().remove(0));
+    }
+
+    @Test
+    public void setCalendarDate_nullValue_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setCalendarDate(null));
+    }
+
+    @Test
+    public void setCalendarDate_validDate_success() {
+        LocalDate validDate = LocalDate.of(2020, 1, 1);
+        modelManager.setCalendarDate(validDate);
+
+        ObservableCalendarDate expectedDate =
+                new ObservableCalendarDate(LocalDate.of(2020, 1, 1));
+        assertEquals(expectedDate, modelManager.getCalendarDate());
+    }
+
+    @Test
+    public void resetCalendarDate_success() {
+        LocalDate validDate = LocalDate.now();
+        modelManager.setCalendarDate(validDate);
+        modelManager.resetCalendarDate();
+
+        ObservableCalendarDate expectedDate =
+                new ObservableCalendarDate(LocalDate.now());
+        assertEquals(expectedDate, modelManager.getCalendarDate());
     }
 
     @Test

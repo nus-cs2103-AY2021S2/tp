@@ -255,6 +255,7 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     public void setCalendarDate(LocalDate date) {
+        requireNonNull(date);
         calendarDate.set(date);
     }
 

@@ -1,8 +1,10 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.Observable;
 import seedu.address.commons.Observer;
@@ -12,7 +14,7 @@ import seedu.address.commons.Observer;
  */
 public class ObservableCalendarDate implements Observable<LocalDate> {
     private LocalDate date;
-    private List<Observer> observers = new ArrayList<>();
+    private final ArrayList<Observer> observers = new ArrayList<>();
 
     /**
      * Creates an observable date that notifies its observers on changes.
@@ -20,7 +22,11 @@ public class ObservableCalendarDate implements Observable<LocalDate> {
      * @param date Date to be set.
      */
     public ObservableCalendarDate(LocalDate date) {
-        this.date = date;
+        if (date == null) {
+            this.date = LocalDate.now();
+        } else {
+            this.date = date;
+        }
     }
 
     /**
@@ -46,13 +52,36 @@ public class ObservableCalendarDate implements Observable<LocalDate> {
         return date;
     }
 
+    /**
+     * Adds an observer to this observable's list. Throws NullPointerException if argument is null.
+     *
+     * @param observer Object implementing the Observer interface.
+     */
     public void addObserver(Observer observer) {
+        requireNonNull(observer);
         observers.add(observer);
     }
 
-    private void notifyAllObservers() {
+    protected void notifyAllObservers() {
         for (Observer observer : observers) {
             observer.update();
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+        ObservableCalendarDate otherDate = (ObservableCalendarDate) other;
+        return date.equals(otherDate.date) && observers.equals(otherDate.observers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(date, observers);
     }
 }

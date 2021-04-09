@@ -15,6 +15,7 @@ import static seedu.address.testutil.TypicalTasks.ALICE;
 import static seedu.address.testutil.TypicalTasks.getTypicalPlanner;
 import static seedu.address.testutil.TypicalTasks.getTypicalTags;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -141,6 +142,32 @@ public class PlannerTest {
         expectedList.add(TAG_HUSBAND);
         UniqueTagList expectedUniqueTagList = UniqueTagListTestUtil.buildWithTags(expectedList);
         assertEquals(planner.getUniqueTagListObject(), expectedUniqueTagList);
+    }
+
+    @Test
+    public void setCalendarDate_nullValue_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> planner.setCalendarDate(null));
+    }
+
+    @Test
+    public void setCalendarDate_validDate_success() {
+        LocalDate validDate = LocalDate.of(2020, 1, 1);
+        planner.setCalendarDate(validDate);
+
+        ObservableCalendarDate expectedDate =
+                new ObservableCalendarDate(LocalDate.of(2020, 1, 1));
+        assertEquals(expectedDate, planner.getCalendarDate());
+    }
+
+    @Test
+    public void resetCalendarDate_success() {
+        LocalDate validDate = LocalDate.now();
+        planner.setCalendarDate(validDate);
+        planner.resetCalendarDate();
+
+        ObservableCalendarDate expectedDate =
+                new ObservableCalendarDate(LocalDate.now());
+        assertEquals(expectedDate, planner.getCalendarDate());
     }
 
     @Test
