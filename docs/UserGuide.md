@@ -76,7 +76,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 ### 3.1.1 Viewing help : `help`
 
-Shows a message explianing how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
