@@ -27,14 +27,15 @@ public class DeleteBookingCommandParser implements Parser<DeleteBookingCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteBookingCommand.MESSAGE_USAGE));
         }
 
-        try {
-            Index residenceIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_RESIDENCE).get());
-            Index bookingIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_BOOKING).get());
-            return new DeleteBookingCommand(residenceIndex, bookingIndex);
-        } catch (ParseException pe) {
+        if (argMultimap.getValue(PREFIX_RESIDENCE).get().isEmpty()
+                || argMultimap.getValue(PREFIX_BOOKING).get().isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteBookingCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteBookingCommand.MESSAGE_USAGE));
         }
+
+        Index residenceIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_RESIDENCE).get());
+        Index bookingIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_BOOKING).get());
+        return new DeleteBookingCommand(residenceIndex, bookingIndex);
     }
 
     /**

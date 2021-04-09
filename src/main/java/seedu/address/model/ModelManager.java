@@ -129,6 +129,7 @@ public class ModelManager implements Model {
     public void updateFilteredResidenceList(Predicate<Residence> predicate) {
         requireNonNull(predicate);
         filteredResidences.setPredicate(predicate);
+        logger.fine("Sorting filtered residence list");
         residenceTracker.sortResidenceList();
     }
 
