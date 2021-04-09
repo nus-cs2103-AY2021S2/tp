@@ -135,7 +135,7 @@ public class Passenger extends Person {
                 .append("; Pool Time: ")
                 .append(getTripTime());
         getPrice().ifPresent(
-            x -> builder.append("; Price: ").append(x)
+            price -> builder.append("; Price: ").append(price)
         );
 
         Set<Tag> tags = getTags();
