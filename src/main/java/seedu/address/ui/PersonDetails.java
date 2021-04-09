@@ -76,7 +76,7 @@ public class PersonDetails extends UiPart<Region> {
             school.setText("");
         }
         if (person.getLevel().isPresent()) {
-            level.setText(person.getLevel().get().getLevel());
+            level.setText(person.getLevel().get().getFullLevel());
         } else {
             level.setText("");
         }

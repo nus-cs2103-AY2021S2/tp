@@ -304,7 +304,7 @@ The activity diagram shows the workflow when a delete command is executed:
 
 #### Implementation
 
-The search mechanism is facilitated by `SearchCommand`, `SearchCommandParser` and `NameAndSchoolContainsKeywordsPredicate`.
+The search mechanism is facilitated by `SearchCommand`, `SearchCommandParser` and `NameSchoolAndSubjectContainsKeywordsPredicate`.
 
 `SearchCommand` extends `Command` and contains a `Predicate`. It implements the following operation:
 
@@ -313,29 +313,29 @@ The search mechanism is facilitated by `SearchCommand`, `SearchCommandParser` an
 
 `SearchCommandParser` implements the `Parser` interface and implements the following operation:
 
-* `SearchCommandParser#parse()`  —  parses the user's input and returns a new `SearchCommand` with a new `NameSchoolAndTagContainsKeywordsPredicate` as argument if the command format is valid.
+* `SearchCommandParser#parse()`  —  parses the user's input and returns a new `SearchCommand` with a new `NameSchoolAndSubjectContainsKeywordsPredicate` as argument if the command format is valid.
 * `SearchCommandParser#extractKeywordsAsArray()`  —  extracts the keywords following a prefix that is passed as parameter into an array.
 
-`NameSchoolAndTagContainsKeywordsPredicate` implements the `Predicate` interface and contains 3 `List` of keywords: name, school and tag. It implements the following operations:
+`NameSchoolAndTagContainsKeywordsPredicate` implements the `Predicate` interface and contains 3 `List` of keywords: name, school and subject. It implements the following operations:
 
-* `NameSchoolAndTagContainsKeywordsPredicate#test()`  —  tests if the name, school and tag keywords matches the name, school and tag of the student contacts respectively, and returns true if matches.
-* `NameSchoolAndTagContainsKeywordsPredicate#testByTag()`  —  tests if the tag keywords matches the tag of the student.
-* `NameSchoolAndTagContainsKeywordsPredicate#testBySchool()`  —  tests if the school keywords matches the school of the student.
-* `NameSchoolAndTagContainsKeywordsPredicate#testByName()`  —  tests if the name keywords matches the name of the student.
+* `NameSchoolAndSubjectContainsKeywordsPredicate#test()`  —  tests if the name, school and tag keywords matches the name, school and subjects of the student contacts respectively, and returns true if matches.
+* `NameSchoolAndSubjectContainsKeywordsPredicate#testBySubject()`  —  tests if the subject keywords matches the subjects of the student.
+* `NameSchoolAndSubjectContainsKeywordsPredicate#testBySchool()`  —  tests if the school keywords matches the school of the student.
+* `NameSchoolAndSubjectContainsKeywordsPredicate#testByName()`  —  tests if the name keywords matches the name of the student.
 
 Given below is an example usage scenario and how the search mechanism behaves at each step.
 
-Step 1. The user executes `search n/alice t/math` command to search for students with the name `alice` or with the tag `math`, both case insensitive.
+Step 1. The user executes `search n/alice t/math` command to search for students with the name `alice` or with the subject `math`, both case insensitive.
 
 Step 2. `LogicManager#execute()` is called to execute the given command. It first calls `AddressBookParser#parseCommand()` which passes the command’s argument `SearchCommandParser#parse()` to parse the `search` command.
 
-Step 3. `SearchCommandParser#parse()` calls `SearchCommandParser#extractKeywordsAsArray()` to obtain the name, school and tag keywords in separate `List`.
-A new `NameSchoolAndTagContainsKeywordsPredicate` is created using the 3 keyword lists, and is passed into the `SearchCommand` constructor as the argument.
+Step 3. `SearchCommandParser#parse()` calls `SearchCommandParser#extractKeywordsAsArray()` to obtain the name, school and subject keywords in separate `List`.
+A new `NameSchoolAndSubjectContainsKeywordsPredicate` is created using the 3 keyword lists, and is passed into the `SearchCommand` constructor as the argument.
 The new `SearchCommand` is then returned if the argument is valid with the correct prefixes. Otherwise, a `ParseException` is thrown.
 
 Step 4. After the new `SearchCommand` is returned, the `LogicManager#execute()` continues and calls `SearchCommand#execute()`.
 
-Step 5. `SearchCommand#execute()`  filters the filtered person list by passing the `NameSchoolAndTagContainsKeywordsPredicate` argument into `Model#updateFilteredPersonList()`.
+Step 5. `SearchCommand#execute()`  filters the filtered person list by passing the `NameSchoolAndSubjectContainsKeywordsPredicate` argument into `Model#updateFilteredPersonList()`.
 The updated filtered person list with the search results will then be displayed.
 
 Step 6. If the `search` command has been successfully executed, a message will be displayed indicating the number of person listed.
@@ -522,6 +522,65 @@ The activity diagram shows the workflow when a list important dates command is e
 * **Alternative 2:** Displays the important dates based on the order they have been added in.
     * Pros: To be added.
     * Cons: A separate command will have to be implemented in order to show the user the important dates displayed according to time and date.
+
+### Schedule feature
+
+#### Implementation
+
+The schedule mechanism is facilitated by `ScheduleCommand`, `MainWindow` and `ScheduleWindow`.
+
+`ScheduleCommand` extends `Command`. It implements the following operation:
+
+* `ScheduleCommand#execute()`  —  displays all of the student contacts in TutorsPet.
+  Returns a new `CommandResult` with boolean value of `showSchedule` set as `true`.
+  
+`MainWindow` extends `UiPart<Stage>`. It implements the following relevant operations:
+
+* `MainWindow#executeCommand()`   —  calls `LogicManager#execute()` to execute user command.
+* `MainWindow#handleSchedule()`  —  calls `ScheduleWindow#show()` to open a new schedule window if it is not opened yet. 
+  Otherwise, call `ScheduleWindow#focus()` to focus on the already opened schedule window.
+  
+`ScheduleWindow` extends `UiPart<Stage>`. It implements the following relevant operations:
+
+* `ScheduleWindow#show()`  —  adds all lessons in TutorsPet to the schedule UI, and opens up a new schedule window.
+* `ScheduleWindow#focus()`  —  focuses on already opened schedule window.
+
+Given below is an example usage scenario and how the schedule mechanism behaves at each step.
+
+Step 1. The user executes `schedule` command to open up the schedule window.
+
+Step 2. `MainWindow#executeCommand()` calls `LogicManager#execute()` to execute the given command. It first calls `AddressBookParser#parseCommand()` 
+which returns a new `ScheduleCommand`.
+
+Step 3. `LogicManager#execute()` then continues and calls `ScheduleCommand#execute()` which returns a new 
+`CommandResult` whose `showSchedule` boolean value is set to `true`.
+
+Step 4. The `CommandResult` is returned to `MainWindow#executeCommand()` which continues, and checks the value of `showSchedule`.
+If `showSchedule` is `true`, `MainWindow#handleSchedule()` is called.
+
+Step 5. `MainWindow#handleSchedule()` will then call `ScheduleWindow#show()` which will create a `LessonListPanel` for each day,
+each containing an `ObservableList` of lessons for that day.
+
+Step 6. Each `LessonListPanel` will then be added to the corresponding `StackPane`, and the schedule window will then be opened.
+
+#### Sequence Diagram
+The sequence diagram below shows how the `schedule` feature works:
+
+![Sequence Diagram for Schedule Command](images/ScheduleSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to use a separate ObservableList for each day of the week.
+
+* **Alternative 1 (current choice):** Use a separate ObservableList for each day.
+    * Pros: Results in real time update of schedule.
+    * Cons: Takes up more space, more tedious to manage since there are seven different lists.
+
+* **Alternative 2:** Use only one ObservableList
+    * Pros: Less prone to errors, easier to manage.
+    * Cons: Schedule will not be updated in real time. 
+    For example, when schedule window is opened and user adds or edits a contact, the change will not be reflected 
+      real time on the opened schedule window. It is only reflected when the schedule window is closed and reopened.
 
 ### \[Proposed\] Undo/redo feature
 
