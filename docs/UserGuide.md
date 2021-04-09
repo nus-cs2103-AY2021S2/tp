@@ -49,7 +49,7 @@ in workload management.
 
    * **`mk`**`n/eat dinner` : Makes a task titled `eat dinner` to the planner.
 
-   * **`rmt`**`3` : Deletes the 3rd task shown in the current planner.
+   * **`rmt`**`3` : Removes the 3rd task shown in the current planner.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -106,7 +106,8 @@ A label attached to a task for easy grouping and searching of tasks. Your tag sh
 ### Status: `st/`
 Reflects the current status of your task. Status can only be either 'done' or 'not done'.
 
-:information_source:   Your task's status will be set to 'not done' by default.
+:information_source:  Your task's status will be set to 'not done' by default.
+:information_source:  Every task must have a status.
 
 
 ## Constraints
@@ -158,17 +159,17 @@ searching for tasks.
 ### View Commands : `help`
 
 Displays a list of commonly used possible commands along with each of their formats respectively 
-so that you can refer to commands conveniently whenever you forgot about these commands.
-  * Only a few main commands will be displayed to avoid information overload for first time and forgetful users.
+so that you can refer to commands conveniently whenever you forget about them.
+  * Only a few main commands will be displayed to avoid information overload for first-time and forgetful users.
   * Users can read the User Guide for detailed information on all the commands.
 
 Format: `help`
 
 ### Making a task: `mk`
 
-Makes a task to the planner. <br>
-Task with the same title cannot be added to the planner
-so that you will not have to worry about adding duplicate task by accident.
+Makes a task and adds it into the planner. <br>
+Tasks with the same title cannot be added to the planner
+so that you do not have to worry about adding duplicate tasks by accident.
 
 Format: `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION]
 [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…`
@@ -381,7 +382,7 @@ Examples:
 
 Removes an existing field from a task in the planner
 so that you can remove certain details from the task directly
-and not go through the hassle of removing the task and adding the same task with lesser fields again.
+without having to go through the hassle of removing the task and adding the same task with lesser fields again.
 
 Format: `rmf INDEX FIELD`
 
@@ -407,7 +408,7 @@ Format: `count INDEX`
 * Counts the number of days until the date of the task at `INDEX`.
 * The index refers to the index number shown in the displayed planner.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The task at index must have a date, otherwise countdown cannot be done.
+* The task at the index must have a date, otherwise countdown cannot be done.
 
 Examples: 
 * `ls` followed by `count 4` displays the number of days left to the 4th task in the planner.
@@ -505,8 +506,8 @@ Action | Format, Examples
 --------|------------------
 **Make** | `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br> e.g.,`mk n/eat dinner t/important`
 **Clear** | `clear`
-**Delete Task** | `rmt INDEX`<br> e.g., `rmt 3`
-**Delete Field** | `rmf INDEX FIELD`<br> e.g., `rmf 1 d/`
+**Remove Task** | `rmt INDEX`<br> e.g., `rmt 3`
+**Remove Field** | `rmf INDEX FIELD`<br> e.g., `rmf 1 d/`
 **Edit** | `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find CS2103 team project` <br><br>`find [t/TAG] `<br>  e.g., `find t/CS2103` <br><br> `find [d/DESCRIPTION] ` <br> e.g., `find d/CS2103 milestone postmortem`
 **Countdown** | `count INDEX` <br> e.g., `count 2`
