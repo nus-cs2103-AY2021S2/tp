@@ -66,8 +66,10 @@ public class ParserUtil {
         String[] indexListSplit = oneBasedIndexList.trim().split(" ");
         IndexList indexList = new IndexList(new ArrayList<>());
         for (String index: indexListSplit) {
-            Index parsedIndex = parseIndex(index);
-            indexList.add(parsedIndex);
+            if ((!index.equals(" ")) && (!index.equals(""))) {
+                Index parsedIndex = parseIndex(index.trim());
+                indexList.add(parsedIndex);
+            }
         }
         indexList.sortList();
         return indexList;
