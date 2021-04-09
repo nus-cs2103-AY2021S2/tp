@@ -19,24 +19,19 @@ public class IncompleteRecordTest {
     public void constructor_withDateBorrowed() {
         // EP: valid params -> no exceptions thrown
         assertDoesNotThrow(() -> new IncompleteRecord(
-                        RECORD_A.getBookName(),
+                        RECORD_A.getBookBarcode(),
                         RECORD_A.getReaderName(),
                         RECORD_A.getDateBorrowed()
                 ));
 
         // EP: null params -> throws NullPointerException
         assertThrows(NullPointerException.class, () -> new IncompleteRecord(
-                        new Name(null),
-                        RECORD_A.getReaderName(),
-                        RECORD_A.getDateBorrowed()
-                ));
-        assertThrows(NullPointerException.class, () -> new IncompleteRecord(
-                        RECORD_A.getBookName(),
+                        RECORD_A.getBookBarcode(),
                         new Name(null),
                         RECORD_A.getDateBorrowed()
                 ));
         assertThrows(NullPointerException.class, () -> new IncompleteRecord(
-                        RECORD_A.getBookName(),
+                        RECORD_A.getBookBarcode(),
                         RECORD_A.getReaderName(),
                         new DateBorrowed((LocalDateTime) null)
                 ));
@@ -55,16 +50,6 @@ public class IncompleteRecordTest {
                         RECORD_A.getBookBarcode(),
                         new DateReturned((LocalDateTime) null)
                 ));
-    }
-
-    @Test
-    public void getBookName() {
-        IncompleteRecord incompleteRecord = new IncompleteRecord(
-                RECORD_A.getBookName(),
-                RECORD_A.getReaderName(),
-                RECORD_A.getDateBorrowed()
-        );
-        assertEquals(new Name(VALID_NAME_HARRY), incompleteRecord.getBookName());
     }
 
     @Test
