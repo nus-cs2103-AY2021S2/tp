@@ -27,7 +27,12 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index needs to be an integer more than or equals to 1, "
+            + "and within the range of list indices displayed on the screen.";
+    public static final String MESSAGE_INDEX_IS_WORD = "Index should be an integer only!\nIf you meant to pass an "
+            + "input, please remember to put the correct identifier and the slash e.g. \"n/\" for name.";
+    public static final String MESSAGE_INVALID_BATCH_INDICES = "Multiple indices are only allowed the batch command.\n"
+            + "If you entered a batch command, please separate your indices with commas.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -36,9 +41,22 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+        String[] splitBySpace = trimmedIndex.split(" ");
+
+        for (int i = 0; i < splitBySpace.length; i++) {
+            if (!StringUtil.isNumbersOnly(splitBySpace[i])) {
+                throw new ParseException(MESSAGE_INDEX_IS_WORD);
+            }
+
+            if (!StringUtil.isNonZeroUnsignedInteger(splitBySpace[i])) {
+                throw new ParseException(MESSAGE_INVALID_INDEX);
+            }
         }
+
+        if (splitBySpace.length > 1) {
+            throw new ParseException(MESSAGE_INVALID_BATCH_INDICES);
+        }
+
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
@@ -62,11 +80,12 @@ public class ParserUtil {
     }
     /**
      * Parses {@code oneBasedIndices} and adds to a {@code List<Index>}. Leading and trailing whitespaces
-     * will be trimmed.
+     * will be trimmed. If there are duplicate inputs, a {@code ParseException} will be thrown.
      *
      * @param oneBasedIndices comma separated indices input by the user
      * @return {@code List<Index>}.
-     * @throws ParseException if any of the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if any of the specified index is invalid (not non-zero unsigned integer), or if there are
+     * duplicate input indices.
      */
     public static List<Index> parseIndices(String oneBasedIndices) throws ParseException {
         String[] splitByComma = oneBasedIndices.split(",");
@@ -74,8 +93,22 @@ public class ParserUtil {
             splitByComma[i] = splitByComma[i].trim();
         }
         List<Index> listOfIndices = new ArrayList<>();
+        Set<Index> setOfIndices = new HashSet<>();
         for (String index : splitByComma) {
-            listOfIndices.add(parseIndex(index));
+            Index parsedIndex;
+
+            try {
+                parsedIndex = parseIndex(index);
+            } catch (ParseException e) {
+                throw new ParseException(e.getLocalizedMessage());
+            }
+
+            if (setOfIndices.contains(parsedIndex)) {
+                throw new ParseException(BatchCommandParser.REPEATED_INDICES);
+            }
+
+            listOfIndices.add(parsedIndex);
+            setOfIndices.add(parsedIndex);
         }
         return listOfIndices;
     }
@@ -229,11 +262,14 @@ public class ParserUtil {
      */
     public static List<InsurancePolicy> parsePolicies(Collection<String> policies) throws ParseException {
         requireNonNull(policies);
-        final List<InsurancePolicy> policyList = new ArrayList<>();
+        final Set<InsurancePolicy> policySet = new HashSet<>();
         for (String policy : policies) {
             requireNonNull(policy);
-            policyList.add(parsePolicy(policy));
+            InsurancePolicy parsedPolicy = parsePolicy(policy);
+            policySet.add(parsedPolicy);
         }
+        final List<InsurancePolicy> policyList = new ArrayList<>();
+        policyList.addAll(policySet);
         return policyList;
     }
     /**
