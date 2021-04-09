@@ -96,6 +96,37 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Initializes a ModelManager with the given meetingBook and userPrefs. AddressBook will be set to default.
+     */
+    public ModelManager(ReadOnlyMeetingBook meetingBook, ReadOnlyUserPrefs userPrefs) {
+        super();
+        requireAllNonNull(meetingBook, userPrefs);
+
+        logger.fine("Initializing with meeting book: " + meetingBook + " and user prefs " + userPrefs);
+
+        this.addressBook = new AddressBook();
+        this.sortedBeforeFilterPersons = new SortedList<>(this.addressBook.getPersonList());
+        this.filteredPersons = new FilteredList<Person>(sortedBeforeFilterPersons);
+
+        this.meetingBook = new MeetingBook(meetingBook);
+        this.userPrefs = new UserPrefs(userPrefs);
+        this.sortedBeforeFilterMeetings = new SortedList<>(this.meetingBook.getMeetingList());
+        filteredMeetings = new FilteredList<>(sortedBeforeFilterMeetings);
+
+        // TODO: Modify the signature of ModelManager so that we can add connection inside it.
+        this.connection = new PersonMeetingConnection();
+        this.reminderBook = new ReminderBook(this.meetingBook);
+
+        //================== Timetable ==================================================================
+        this.noteBook = new NoteBook();
+        this.filteredNotes = new FilteredList<>(this.noteBook.getNoteList());
+
+        //================== Timetable ==================================================================
+        //default initializes to current localdate
+        timetablePrefs = new TimetablePrefs(LocalDate.now());
+    }
+
+    /**
      * Initializes a ModelManager with the given addressBook, meetingBOok and userPrefs
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyMeetingBook meetingBook,
