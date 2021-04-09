@@ -18,6 +18,7 @@ import seedu.address.model.property.Deadline;
 import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Type;
 import seedu.address.model.remark.Remark;
+import seedu.address.testutil.PropertyBuilder;
 
 public class JsonAdaptedPropertyTest {
     @Test
@@ -37,15 +38,7 @@ public class JsonAdaptedPropertyTest {
     @Test
     public void invalidNoNameCreateTest() {
         JsonAdaptedProperty adaptedPropertyNoName =
-                new JsonAdaptedProperty(null,
-                        WOODLANDS_CRESCENT.getPropertyType().toString(),
-                        WOODLANDS_CRESCENT.getAddress().toString(),
-                        "",
-                        WOODLANDS_CRESCENT.getPostalCode().toString(),
-                        WOODLANDS_CRESCENT.getDeadline().toString(),
-                        null,
-                        WOODLANDS_CRESCENT.getTags().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()),
-                        null);
+                new JsonAdaptedProperty(new PropertyBuilder().withName(null).build());
         IllegalValueException thrown = assertThrows(IllegalValueException.class, adaptedPropertyNoName::toModelType);
         assertEquals(thrown.getMessage(),
                 String.format(JsonAdaptedProperty.MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
