@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalTasks.getTypicalTaskTracker;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Logic;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.TaskTracker;
@@ -18,7 +17,6 @@ import seedu.address.model.person.Task;
 public class UndoCommandTest {
     private Model model = new ModelManager(getTypicalTaskTracker(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalTaskTracker(), new UserPrefs());
-    private Logic logic;
 
 
     @Test
