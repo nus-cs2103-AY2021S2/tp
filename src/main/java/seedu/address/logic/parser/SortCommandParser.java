@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-
 /**
  * Parses input arguments and creates a new SortCommand object
  */
@@ -21,9 +20,10 @@ public class SortCommandParser implements Parser<SortCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortCommand parse(String args) throws ParseException {
+
         Prefix firstPrefix;
         try {
-            firstPrefix = ArgumentTokenizer.getFirstPrefix(
+            firstPrefix = ArgumentTokenizer.getLastPrefix(
                     args, PREFIX_NAME, PREFIX_SCHOOL, PREFIX_SUBJECT, PREFIX_LESSON);
         } catch (ParseException pe) {
             throw new ParseException(
@@ -31,5 +31,6 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
 
         return new SortCommand(firstPrefix);
+
     }
 }

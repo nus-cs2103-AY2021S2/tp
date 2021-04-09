@@ -38,11 +38,13 @@ public class SortCommand extends Command {
             + "OR [" + PREFIX_LESSON + "]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_SCHOOL;
 
-    public static final String MESSAGE_SUCCESS = "Sorted all students by lesson day and time";
+    public static final String MESSAGE_SUCCESS = "Sorted students by %1$s. ";
 
     private final Prefix prefix;
+    private final String prefixString;
     private final Comparator<Person> comparator;
     private final Predicate<Person> predicate;
+
 
     /**
      * Creates a SortCommand object that has a specific {@code Predicate} and {@code comparator}.
@@ -50,15 +52,19 @@ public class SortCommand extends Command {
     public SortCommand(Prefix prefix) {
         this.prefix = prefix;
         if (prefix.equals(PREFIX_NAME)) {
+            this.prefixString = "name";
             this.comparator = new PersonNameComparator();
             this.predicate = new HasNamePredicate();
         } else if (prefix.equals(PREFIX_SCHOOL)) {
+            this.prefixString = "school";
             this.comparator = new PersonSchoolComparator();
             this.predicate = new HasSchoolPredicate();
         } else if (prefix.equals(PREFIX_SUBJECT)) {
+            this.prefixString = "subject";
             this.comparator = new PersonSubjectComparator();
             this.predicate = new HasSubjectPredicate();
         } else {
+            this.prefixString = "lesson";
             this.comparator = new PersonLessonComparator();
             this.predicate = new HasLessonPredicate();
         }
@@ -68,8 +74,8 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.filterThenSortPersonList(predicate, comparator);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getTransformedPersonList().size()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, prefixString)
+                + String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getTransformedPersonList().size()));
     }
 
     @Override
