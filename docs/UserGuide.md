@@ -14,7 +14,7 @@
 1. Download the latest `docbob.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-1/tp/releases).
 
 1. Double-click the file to start the app. ![img_1.png](img_1.png)
-   > **First Startup**: DocBob comes with some sample patient data. Try out the example commands below with the sample data and when you are ready, use the `clear` command to remove all sample data and start adding your own data!
+   > **First Startup**: DocBob comes with some sample patient data. Try out the example commands below with the sample data and when you are ready, use the `clear` command to remove all sample data and start adding your own patients!
 
 1. Execute commands by typing them in the command box and pressing **Enter** to execute them. See [Features](#features) for details of each command.<br>
    Example commands:
@@ -57,7 +57,7 @@
 
 Adds a patient to DocBob's patient list.  A patient has multiple types of information like name, phone number etc. The format below shows what information a patient can have. The information in square brackets ( [] ) are optional.
 
-Format: `add n/Name p/phoneNumber e/Email a/Address h/Height w/Weight [t/TAG]`
+Format: `add n/NAME p/PHONENUMBER e/EMAIL a/ADDRESS h/HEIGHT w/WEIGHT [t/TAG]`
 
 Example:
 * `add n/Shrek p/66666666 e/shrek@swampmail.com a/Swamp h/243cm w/94kg t/smelly`
@@ -66,9 +66,12 @@ Output:
 
 `New patient added: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
 
+> **Tip**: You can always change these information later on using the `edit` command!
+
+
 ### Listing out all patients : `list`
 
-Shows the main list of all your patients' information, with their next scheduled appointment beside their name.
+Shows a list of all your patients, with their next scheduled appointment beside their name.
 
 Format: `list`
 
@@ -108,7 +111,7 @@ Output:
 
 ### Locating patient by name : `find`
 
-Finds patients whose names contain any of the given keywords.
+Finds patients whose names contain any of the given keywords, and displays an overview of information of the first patient found.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -125,7 +128,7 @@ Examples:
 
 ### Editing a patient information : `edit`
 
-Edits an existing patient in the list.
+Edits the information of an existing patient in DocBob's patient list.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [h/HEIGHT] [w/WEIGHT] [t/TAG]…​`
 
@@ -142,7 +145,7 @@ Examples:
 
 ### Adding an appointment to a patient : `appt`
 
-Adds a scheduled upcoming appointment to DocBob's list.  An appointment can be added to a patient.  This appointment is specified by it's date and time.  And the patient is identified by their index.  So basically, we can add an appointment (of a date and time) to a patient (identified by index).
+Adds a scheduled upcoming appointment to a patient in DocBob's list. The appointment is specified by its date and time, where the year is optional(assumed to be the current year if not specified). The patient is identified by their index number shown in the display patient's list.
 
 Format: `appt INDEX d/DATE`
 where INDEX must be a positive integer (1,2,3,...)
@@ -157,7 +160,7 @@ Output:
 
 ### Listing out your upcoming appointments : `listappt`
 
-Shows a list of all your upcoming appointments with the patients in DocBob's contact list, sorted by nearest date and time.
+Shows all your patients with appointments, how many appointments you have, and a list of all your upcoming appointments sorted by nearest date and time.
 
 Format: `listappt`
 
@@ -165,19 +168,11 @@ Example: `listappt`
 
 Output: 
 
-`Hey Doc, here are your upcoming appointments!`<br> 
-`Thu, 25 Mar, 14:00 - Bernice Yu`<br>
-`Fri, 11 Jun, 14:00 - David Li`<br>
-`Thu, 11 Nov, 12:00 - Alex Yeoh`<br>
-`Thu, 11 Nov, 12:00 - Roy Balakrishnan`<br>
-`Sun, 12 Dec, 12:00 - Alex Yeoh`<br>
-`Sun, 12 Dec, 12:12 - Charlotte Oliveiro`<br>
-
 ![image](https://user-images.githubusercontent.com/59093518/113469628-a2536b00-9481-11eb-95e0-19607d43db7c.png)
 
 ### Create a new medical record for a patient : `mrec`
 
-Opens an editor for you to write a custom medical report for the patient, identified by the index number shown in the displayed patient list.
+Opens an editor for you to write a custom medical report for the patient, identified by the index number shown in the displayed patient list. You can add multiple sections using the **New Section** button. Once done, click the **Save Record** button to save it for future viewing with the `vrec` command.
 
 Format : `mrec INDEX`
 where INDEX must be a positive integer (1,2,3,...)
@@ -188,6 +183,9 @@ Examples:
 Output:
 
 ![image](https://user-images.githubusercontent.com/48408342/113468956-34f10b80-947c-11eb-9ccf-ec15e2fde260.png)
+
+> **Tip**: You can still edit a medical record with `vrec` within a day of the creation of the record, should you need to change some details.
+
 
 ### View a patient's preexisting medical record : `vrec`
 
@@ -203,9 +201,12 @@ Output:
 
 ![image](https://user-images.githubusercontent.com/59093518/113469578-2f49f480-9481-11eb-9d42-46d6260417a8.png)
 
+> **Tip**: Make sure you have selected the patient whose medical record you want to view first, using `view`. If the selected patient has no medical records to view, you can create a new one using `mrec`!
+
+
 ### Archiving a patient : `archive`
 
-Archives a patient from DocBob's patient list, identified by the index number shown in the displayed patient list.
+Archives a patient from DocBob's patient list, identified by the index number shown in the displayed patient list. The patient is then added to the archive list.
 
 Format : `archive INDEX`
 where INDEX must be a positive integer (1,2,3,...)
@@ -217,7 +218,8 @@ Example:
 
 Output:
 
-`Archived Person: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
+![image](https://user-images.githubusercontent.com/48408342/114153711-30cc5e80-9952-11eb-8dbf-b2eeb74d36b2.png)
+
 
 ### Listing out all archived patients : `archivelist`
 
@@ -227,23 +229,23 @@ Format: `archivelist`
 
 ### Unarchiving a patient : `unarchive`
 
-Unarchives a patient from DocBob's archived patient list, identified by the index number shown in the displayed archived patient list.
+Unarchives a patient from DocBob's archived patient list, identified by the index number shown in the displayed archived patient list. The patient is added back to DocBob's main patient list.
 
 Format : `unarchive INDEX`
 where INDEX must be a positive integer (1,2,3,...)
 
-* Remember to be on the archive list when archiving a patient using the `archivelist` command.
-
 Example:
-* `unarchive 1`
+* `unarchive 3`
 
 Output:
 
-`Unarchived Person: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
+![image](https://user-images.githubusercontent.com/48408342/114153912-6d985580-9952-11eb-8c4f-408bdbb0a82d.png)
+
+> **Tip**: Make sure you are on the archive list(using the `archivelist` command) before trying to unarchiving a patient!
 
 ### Clearing all entries : `clear`
 
-Clears all entries from DocBob.
+Clears all patients from DocBob.
 
 Format: `clear`
 
@@ -265,7 +267,7 @@ Example: `help`
 Output:
 
 DocBob will open up a help window with command information.
-![image](https://user-images.githubusercontent.com/48408342/112743708-35952800-8fcc-11eb-9d1a-a7d5b52aac73.png)
+![image](https://user-images.githubusercontent.com/48408342/114154515-121a9780-9953-11eb-9dfc-52e0d1202539.png)
 
 ### Saving the data
 
@@ -293,8 +295,8 @@ If your changes to the data file makes its format invalid, docBob will discard a
 
 Terminology | Definition | Examples
 ------------|------------|----------
-**parameter(s)** | Any characteristic that can help in defining or classifying a particular system | How fast a car can go is a parameter for us to judge how good that car is.  In this case (DocBob), the words in UPPER_CASE are what we should key in 
-**index** | Index refers to the position of the patient in the patient list | If the patient list is {Alice,Bob,Charlie} then Alice's index is 1, Bob's is 2 and Charlie's is 3
+**Parameter** |  In the command format given, the words in `UPPER_CASE` are the parameters to be supplied by you. | For the add command, the given format is: `add n/NAME p/PHONENUMBER e/EMAIL a/ADDRESS h/HEIGHT w/WEIGHT [t/TAG]`. Thus, `NAME`, `PHONENUMBER`, `EMAIL`, `ADDRESS`, `HEIGHT`, `WEIGHT` and `TAG` are the parameters to be keyed in by you. `TAG` is an optional parameter.
+**Index** | Index refers to the position of the patient in the patient list | If the order in which patients are displayed in the app is {Alice,Bob,Charlie} then Alice's index is 1, Bob's is 2, and Charlie's is 3.
 
 --------------------------------------------------------------------------------------------------------------------
 
