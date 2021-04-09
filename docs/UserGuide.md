@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-**Dictionote** is a desktop application that helps CS2103T students in finding information about the module's materials and writing notes about them. It is optimised for Command Line Interface (CLI) users so that searching and writing operations can be done quickly by typing in commands.
+**Dictionote** is a desktop application that helps CS2103T students in finding information about the module's materials, writing notes about them, and sharing these notes with others. It is optimised for Command Line Interface (CLI) users so that searching and writing operations can be done quickly by typing in commands.
 
 * Table of Contents
 {:toc}
@@ -359,6 +359,10 @@ Examples:
 
 ### Contact Features
 
+For the following contact features, irrelevant panels of the user interface were closed (see ).
+Thus, assume the following as the current state of Dictionote:
+![result for 'findcontact t/colleagues n/yu'](images/ContactInitialState.png)
+
 #### Adding a contact: `addcontact`
 
 Adds a contact to the contacts list.
@@ -416,8 +420,11 @@ Format: `findcontact [n/NAME_KEYWORD]... [e/EMAIL_KEYWORD]... [t/TAG_KEYWORD]...
 Examples:
 * `findcontact n/John` returns `john` and `John Doe`
 * `findcontact n/alex n/david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-* (More examples to be added...)
+  ![result for 'findcontact n/alex n/david'](images/ContactFindContact1.png)
+* `findcontact t/colleagues t/friends` returns `Bernice Yu` <br>
+  ![result for 'findcontact t/colleagues n/yu'](images/ContactFindContact2.png)
+* `findcontact t/colleagues n/roy` returns `Roy Balakrishnan` <br>
+  ![result for 'findcontact t/colleagues n/yu'](images/ContactFindContact3.png)
 
 #### Deleting a contact : `deletecontact`
 
@@ -444,6 +451,9 @@ Format: `emailcontact INDEX`
 Examples:
 * `listcontact` followed by `emailcontact 2` opens a new message composition window targeting the 2nd contact in the contacts list.
 * `findcontact n/Alice` followed by `emailcontact 1` opens a new message composition window targeting the 1st contact in the results of the `findcontact` command.
+* `listcontact` followed by `emailcontact 3 ni/1` opens a new message composition window targeting `Charlotte Oliveiro` with the body containing `CS2103T exam is coming.`. <br>
+  ![result for 'emailcontact 3 ni/1'](images/ContactEmailContact.png) <br>
+  ![Outlook window for 'emailcontact 3 ni/1'](images/ContactEmailContactOutlook.png) 
 
 #### Sorting the contacts list by most frequently-contacted: `mostfreqcontact`
 
@@ -451,8 +461,19 @@ Sorts the contacts list in descending order based on the number of email sending
 
 Format: `mostfreqcontact`
 
-* Each sucessful execution of `emailcommand` will be counted as an email sending attempt, regardless of whether an email was actually sent or not.
+
+* This command sorts the entire contacts list, including the contacts that did not match the latest `findcontact` query.
+* Each successful execution of `emailcommand` will be counted as an email sending attempt, regardless of whether an email was actually sent or not.
 * The ordering of the contacts list after sorting will replace the original ordering. (i.e., the sorted ordering is stored by Dictionote)
+
+Example:
+* Assume the following:
+    * Five emails were sent to `Charlotte Oliveiro`.
+    * Four emails were sent to `David Li`.
+    * Two emails were sent to `Bernice Yu`.
+    * One email was sent to `Alex Yeoh`.
+* `mostfreqcontact` results in the following: <br>
+  ![result for 'mostfreqcontact'](images/ContactMostFreqContact.png)
 
 #### Clearing the contacts list : `clearcontact`
 
