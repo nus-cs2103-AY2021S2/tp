@@ -13,21 +13,79 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+**SunRez** is a desktop app designed for college residential staff to efficiently manage student housing services. It
+features a Graphical User Interface (GUI) but is optimized for use via a Command Line Interface (CLI).
+
+**SunRez** has the following features:
+* Keeps track of maintenance issues
+* Keeps track of student records
+* Keeps track of room records
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Who should read this guide?**
+
+This Developer Guide (DG) specifies the architecture, design, implementation, requirements and manual test cases for
+SunRez, as well as key design decisions and considerations.
+
+It is intended for developers, QA testers, and anyone who may wish to contribute to the development of SunRez (or
+learn from it).
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **About this guide**
+
+### AddressBook
+
+SunRez was built from an open-source starter project called [Address Book](https://se-education.org/addressbook-level3/).
+Thus, for legacy reasons many internal components of SunRez have traces of AddressBook. For example, namespaces in the
+project start with `seedu.address`, and the primary data class of the Model component is named `AddressBook`. A future
+refactoring to rename all aspects of SunRez is planned, but until then, developer-facing parts of SunRez will contain
+traces of Address Book. That said, user-facing aspects of SunRez (UI, file names, etc.) should be free of references
+to Address Book.
+
+### Diagrams
+
+This guide uses UML diagrams to better illustrate certain design ideas and structures. The following sub-sections
+detail how contributors can read, create and edit these diagrams, as well as various things to note about the diagrams.
+
+#### How to read
+
+If you are unfamiliar with how to read UML diagrams, check out [this chapter](https://se-education.org/se-book/uml/index.html) 
+of the free online SE-EDU textbook.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note about sequence diagrams:** <br>
+
+Some sequence diagrams in this guide have an X on the lifeline of an object to indicate its deletion. These should be
+located at the end of the lifeline. However, due to a limitation of PlantUML, an object's lifeline will extend past
+the X to the end of the diagram.
+</div>
+
+#### How to create and edit
+
+This project uses [PlantUML](https://plantuml.com/) to create diagrams in this document. These diagrams are generated
+from `.puml` files which can be found in the [diagrams](https://github.com/AY2021S2-CS2103-T14-1/tp/tree/master/docs/diagrams) 
+folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) 
+to learn how to create and edit diagrams.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Design**
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview 
+of each component.
 
-<div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
-</div>
-
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/Main.java) 
+and [`MainApp`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -485,91 +543,6 @@ of the storage process from command execution to writing the command history to 
         * Pollutes a UI component with details of logic. If we wish to change the selection logic in future but not
           the UI, `CommandBox` will still need to change.
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -995,17 +968,17 @@ Use case ends.
 ## Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 records (residents, rooms and issues) without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. Should be able to hold up to 1000 records (residents, rooms and issues) without more than 1 second of lag for
+   typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+   be able to accomplish most of the tasks faster using commands than using the mouse.
 4. A user should be able to learn the basic commands within half an hour of initial usage.
 5. Should work without the internet.
 6. Should be a highly portable to enable transfer between different computers with different OS.
-7. Executable program should occupy less than 20MB on the computer.
+7. The executable program (excluding data files) should occupy less than 20 MB of disk space on the computer.
 8. Should not require an installer.
 9. The data should not be stored in a Database Management System (DBMS).
 10. Should not depend on any remote server.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -1021,8 +994,8 @@ Use case ends.
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a 
+starting point for testers to work on; testers are expected to do more *exploratory* testing.
 
 </div>
 
@@ -1030,50 +1003,156 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy it into an empty folder.
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    2. Double-click the jar file. <br>
+       Expected: Shows the SunRez user interface with a set of sample data. The window size may not be optimum.
 
 2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file. <br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases … }_
+3. Saving command history
 
+    1. Enter a few successful commands in SunRez. Then check the command history with `history`. Close the window.
 
-### Saving data
+    2. Re-launch the app by double-clicking the jar file. Check the command history again with `history`. <br>
+       Expected: The same command history (possibly with one extra `history` and/or `exit` command) is displayed.
 
-1. Dealing with missing/corrupted data files
+### Command history
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Viewing command history
 
-2. _{ more test cases … }_
+    1. Prerequisites: There are fewer than 1000 successful commands in command history.
+
+    2. Test case: `history` <br>
+       Expected: All previous successful commands are displayed, or a message indicating that there are no commands
+       in history (if command history is empty).
+
+    3. Test case: `history 1000` <br>
+       Expected: An error message is shown indicating that there are fewer than 1000 successful commands in command
+       history.
+
+    4. Other incorrect `history` commands to try: `history x` where `x` is either a non-positive number or not a number
+       at all. E.g. `history -1` and `history asd`. <br>
+       Expected: An error message indicating the problem is shown.
+
+2. Accessing command history
+
+    1. Prerequisites: There are at least 2 successful commands in command history, and the command box is in focus
+       (if it is not, simply click on the command box).
+
+    2. Press the `UP` arrow key on the keyboard. <br>
+       Expected: The command box is filled with the text of the most recent successful command.
+
+    3. After step 2, press the `UP` arrow key again. <br>
+       Expected: The command box is filled with the text of the next most recent successful command.
+
+    4. After step 3, press the `DOWN` arrow key. <br>
+       Expected: The command box is filled with the same command text as in step 2.
+
+    5. After step 4, press the `DOWN` arrow key. <br>
+       Expected: The command box is emptied.
+
+    6. Other tests to try: press the `UP` and `DOWN` arrow keys any number of times in any order.
+       Expected: `UP` fills the command box with the next oldest command and `DOWN` fills the command box with the next
+       most recent command. When the oldest command is reached, it should remain in the command box even if `UP` is
+       pressed again.
+
+### Undo/Redo
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: _Undoable_ command:**<br>
+An undoable command is one which modifies the data of SunRez.
+
+e.g. `radd`, `redit`, `idel`, `clear`, etc.
+
+**:information_source: Shortcuts to undo:**<br>
+1. **GUI:** Select `Edit` -> `Undo` in the menu at the top of SunRez.
+2. **Keyboard:** Press `CTRL+Z` (Windows, Linux) or `CMD+Z` (Mac).
+
+These behave as if you entered `undo` in the command box and hit `ENTER`; an `undo` command will be registered in
+command history.
+
+**:information_source: Shortcuts to redo:**<br>
+1. **GUI:** Select `Edit` -> `Redo` in the menu at the top of SunRez.
+2. **Keyboard:** Press `CTRL+SHIFT+Z` (Windows, Linux) or `CMD+SHIFT+Z` (Mac).
+
+These behave as if you entered `redo` in the command box and hit `ENTER`; a `redo` command will be registered in
+command history.
+</div>
+
+1. Undoing an undoable command
+
+    1. Prerequisites: There are at least 2 residents visible in the resident list.
+
+    2. Test case: `rdel 1` then `undo` <br>
+       Expected: The deleted resident is restored.
+
+    3. Test case: `rdel 1` twice, then `undo` twice <br>
+       Expected: The two deleted residents are restored in the reverse order of their deletion.
+
+    4. Other tests to try: Chain more undoable commands and `undo` operations in various orders.
+       Expected: Undo undoes the commands from most recent to least recent.
+
+2. Undoing a non-undoable command
+
+    1. Prerequisites: No undoable commands have been executed prior. The easiest way to set this up is to close
+       and re-open SunRez. Also, there is at least 1 resident visible in the resident list.
+
+    2. Test case: `rlist` then `undo` <br>
+       Expected: An error message is shown, indicating that there are no undoable commands to undo.
+
+    3. Test case: `rdel 1` then `rlist` then `undo` <br>
+       Expected: The resident deleted by `rdel 1` is restored. Undo is effectively ignoring `rlist`.
+
+    4. Other tests to try: Perform several non-undoable commands interspersed with undoable commands. Then try
+       performing some `undo` operations. <br>
+       Expected: The undoable commands are undone from most recent to least recent, and the non-undoable commands
+       are ignored by `undo`.
+
+3. Redoing an undo
+
+    1. Prerequisites: There are at least 2 residents visible in the resident list.
+
+    2. Test case: `rdel 1` then `undo` then `redo` <br>
+       Expected: The deleted resident is restored by `undo` then re-deleted by `redo`.
+
+    3. Test case: `rdel 1` twice, then `undo` twice, then `redo` twice <br>
+       Expected: The residents restored by the `undo` operations are re-deleted in the same order that they were
+       deleted in.
+
+    4. Test case: `rdel 1` then `undo` then `rdel 1` then `redo` <br>
+       Expected: An error message is shown, indicating that redo cannot be performed.
+       
+    5. Other tests to try: Perform several undoable commands, `undo` operations and `redo` operations.
+       Expected: The `redo` operations undo the `undo` operations in reverse order.
 
 ### Alias
 
 1. Adding a user-defined alias
-   
+
     1. Prerequisites: None.
-       
+
     1. Test case: `alias a/h cmd/help` <br>
        Expected: A new alias with the name `h` that is short for the command `help` is added. A message describing successful addition is shown.
-    
+
     1. Test case: `alias a/iedit cmd/iedit 1 d/Broken window c/Window` <br>
        Expected: No alias is added. An error message about reserved keyword being used as alias name is shown.
-    
+
     1. Test case: `alias a/short cmd/short` <br>
        Expected: No alias is added. An error message about recursive alias being added is shown.
 
 2. Deleting a user-defined alias
-    
+
     1. Prerequisites: The alias with the name `h` that is short for the command `help` must exist in the system.
-    
+
     1. Test case: `unalias a/h` <br>
        Expected: The alias with the name `h` is deleted. A message describing successful deletion is shown.
-    
+
     1. Test case: `unalias a/name` <br>
        Expected: No alias is deleted. An error message about alias not found is shown.
-       
