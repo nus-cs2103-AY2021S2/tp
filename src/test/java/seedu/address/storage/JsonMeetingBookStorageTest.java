@@ -17,6 +17,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.storage.meetingbook.JsonMeetingBookStorage;
 
 
 public class JsonMeetingBookStorageTest {

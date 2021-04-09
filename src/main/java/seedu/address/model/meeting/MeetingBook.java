@@ -2,6 +2,7 @@ package seedu.address.model.meeting;
 
 
 import javafx.collections.ObservableList;
+import seedu.address.model.connection.PersonMeetingConnection;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -48,7 +49,6 @@ public class MeetingBook implements ReadOnlyMeetingBook {
      */
     public void resetData(ReadOnlyMeetingBook newData) {
         requireNonNull(newData);
-
         setMeetings(newData.getMeetingList());
     }
 
@@ -133,6 +133,19 @@ public class MeetingBook implements ReadOnlyMeetingBook {
 
     public Optional<Meeting> getMeetingAtInstant(LocalDateTime localDateTime) {
         return meetings.getMeetingAtInstant(localDateTime);
+    }
+
+    //================== Set Connections ==================================================================
+
+    /**
+     * Sets all the meetings in the meeting book to refer to a person meeting Connection.
+     * @param personMeetingConnection
+     */
+
+    public void setPersonToMeetingConnections(PersonMeetingConnection personMeetingConnection) {
+        for (Meeting meeting : meetings) {
+            meeting.setPersonMeetingConnection(personMeetingConnection);
+        }
     }
 
 

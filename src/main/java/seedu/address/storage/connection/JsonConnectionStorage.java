@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.connection;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
@@ -7,7 +7,10 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.meeting.MeetingBook;
+import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.person.AddressBook;
+import seedu.address.model.person.ReadOnlyAddressBook;
+import seedu.address.storage.addressbook.JsonAddressBookStorage;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -16,7 +19,7 @@ import java.util.logging.Logger;
 
 import static java.util.Objects.requireNonNull;
 
-public class JsonConnectionStorage {
+public class JsonConnectionStorage implements ConnectionStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
     private Path filePath;
@@ -29,17 +32,20 @@ public class JsonConnectionStorage {
         return filePath;
     }
 
-    public Optional<PersonMeetingConnection> readConnection(MeetingBook meetingBook, AddressBook addressBook) throws DataConversionException {
+    public Optional<PersonMeetingConnection> readConnection(ReadOnlyMeetingBook meetingBook,
+                                                            ReadOnlyAddressBook addressBook)
+            throws DataConversionException {
         return readConnection(filePath, meetingBook, addressBook);
     }
 
     /**
-     * Similar to {@link #readConnection(MeetingBook, AddressBook)}}.
+     * Similar to {@link #readConnection(ReadOnlyMeetingBook, ReadOnlyAddressBook)}}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<PersonMeetingConnection> readConnection(Path filePath, MeetingBook meetingBook, AddressBook addressBook) throws DataConversionException {
+    public Optional<PersonMeetingConnection> readConnection(Path filePath, ReadOnlyMeetingBook meetingBook,
+                                                            ReadOnlyAddressBook addressBook) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableConnection> jsonConnection = JsonUtil.readJsonFile(

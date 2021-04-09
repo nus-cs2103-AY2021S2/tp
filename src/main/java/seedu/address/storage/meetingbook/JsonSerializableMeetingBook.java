@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.meetingbook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +12,13 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.storage.meetingbook.JsonAdaptedMeeting;
 
 /**
  * An Immutable MeetingBook that is serializable to JSON format.
  */
 @JsonRootName(value = "meetingbook")
-class JsonSerializableMeetingBook {
+public class JsonSerializableMeetingBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Meetings List contains duplicate meeting(s).";
 

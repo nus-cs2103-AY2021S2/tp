@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.addressbook;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -9,7 +9,7 @@ import seedu.address.model.group.Group;
 /**
  * Jackson-friendly version of {@link Group}.
  */
-class JsonAdaptedGroup {
+public class JsonAdaptedGroup {
 
     private final String groupName;
 

@@ -12,4 +12,10 @@ public interface ReadOnlyMeetingBook {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Meeting> getMeetingList();
+
+    /**
+     * Returns a meeting by its name and start time.
+     */
+    public Meeting getMeetingByNameAndStartTime(MeetingName name, DateTime start);
+
 }
