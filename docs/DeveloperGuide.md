@@ -179,7 +179,7 @@ The following activity diagram summarizes what happens when a user adds a new ta
 ![NewTagActivityDiagram](images/NewTagActivityDiagram.png)
 
 The tags function ties together with the Start function of the application, as users can choose to start a quiz
-containing flashcards that have the same tag only (to be implemented...)
+containing flashcards that have the same tag only.
 
 ### [Implemented] Quiz Feature
 
@@ -418,6 +418,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Question**: A Japanese character/word
 * **Answer**: The pronunciation/translation of the Japanese word given in the corresponding question
 * **Flashcard**: An object that can display a question and its answer
+* **Quiz Session**: During a quiz session, flashcards with only question displayed will be shown one by one. 
+  Users may chooses to answer or skip the questions. Score and time spent will be recorded.
+* **Score**: Calculated during a quiz session. Calculated by: number of user correct attempts / number of user checks.
 
 --------------------------------------------------------------------------------------------------------------------
 

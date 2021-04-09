@@ -6,6 +6,9 @@ import seedu.weeblingo.logic.commands.CheckCommand;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
 import seedu.weeblingo.model.flashcard.Answer;
 
+/**
+ * Parses input arguments and creates a new CheckCommand object
+ */
 public class CheckCommandParser implements Parser<CheckCommand> {
 
     /**

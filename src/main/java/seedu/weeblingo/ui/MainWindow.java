@@ -192,8 +192,8 @@ public class MainWindow extends UiPart<Stage> {
 
             changePlaceHolderContent(logic.isShowingHistory());
 
-            flashcardListPanelPlaceholder.setVisible(logic.showCards());
-            flashcardListPanel.updateCard(logic.getCurrentIndex(), logic.showAnswer());
+            flashcardListPanelPlaceholder.setVisible(logic.isPanelVisible());
+            flashcardListPanel.updateCard(logic.getCurrentIndex(), logic.isAnswerVisible());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

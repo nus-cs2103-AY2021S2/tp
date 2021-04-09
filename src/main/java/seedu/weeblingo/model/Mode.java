@@ -56,6 +56,10 @@ public class Mode {
         return modeCopy;
     }
 
+    /**
+     * Checks if current mode is one of the existing modes
+     * @return True if current mode of model is one of the defined modes above
+     */
     public boolean isValidMode() {
         return currentMode == MODE_MENU || currentMode == MODE_QUIZ || currentMode == MODE_LEARN
                 || currentMode == MODE_QUIZ_SESSION || currentMode == MODE_CHECK_SUCCESS || currentMode == MODE_HISTORY

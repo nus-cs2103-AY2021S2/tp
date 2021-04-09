@@ -92,7 +92,7 @@ public class Quiz {
      * @param attempt The answer to check.
      * @return True if the attempt is correct; false otherwise. Statistics of the quiz will be updated as well.
      */
-    public boolean isCorrectAttempt(Answer attempt) {
+    public boolean isCorrectAnswer(Answer attempt) {
         numberOfQuestionsAttempted++;
         boolean result = currentQuiz.getAnswer().equals(attempt);
         if (result) {
@@ -100,10 +100,6 @@ public class Quiz {
             correctlyAnsweredFlashcards.add(currentQuiz);
         }
         return result;
-    }
-
-    public Queue<Flashcard> getQuizSessionQueue() {
-        return quizSessionQueue;
     }
 
     /**
@@ -198,7 +194,17 @@ public class Quiz {
         return attemptedFlashcards;
     }
 
+    /**
+     * Gets the list of flashcards the user answered correctly in this quiz session.
+     */
     public List<Flashcard> getCorrectlyAnsweredFlashcards() {
         return correctlyAnsweredFlashcards;
+    }
+
+    /**
+     * Gets the queue of flashcards to be tested.
+     */
+    public Queue<Flashcard> getQuizSessionQueue() {
+        return quizSessionQueue;
     }
 }
