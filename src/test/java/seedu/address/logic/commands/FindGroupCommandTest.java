@@ -73,7 +73,7 @@ public class FindGroupCommandTest {
     @Test
     public void execute_wrongKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        GroupContainsKeywordsPredicate predicate = preparePredicate("test");
+        GroupContainsKeywordsPredicate predicate = preparePredicate("isWithinRange");
         FindGroupCommand command = new FindGroupCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -81,7 +81,7 @@ public class FindGroupCommandTest {
     }
 
     /**
-     * Correctly returns all people in the specified group - first test
+     * Correctly returns all people in the specified group - first isWithinRange
      */
     @Test
     public void execute_multipleGroupsFoundFirst() {
@@ -94,7 +94,7 @@ public class FindGroupCommandTest {
     }
 
     /**
-     * Correctly returns all people in the specified group - second test
+     * Correctly returns all people in the specified group - second isWithinRange
      */
     @Test
     public void execute_multipleGroupsFoundSecond() {

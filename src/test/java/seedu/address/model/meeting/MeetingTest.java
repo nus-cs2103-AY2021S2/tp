@@ -18,7 +18,7 @@ class MeetingTest {
     private static final DateTime START = new DateTime("2021-03-11 15:04");
     private static final DateTime TERMINATE = new DateTime("2021-03-11 16:04");
     private static final Priority PRIORITY = new Priority("4");
-    private static final Description DESCRIPTION = new Description("This is the time skinnychenpi write this test.");
+    private static final Description DESCRIPTION = new Description("This is the time skinnychenpi write this isWithinRange.");
     private static final Group GROUP = new Group("MeetingTest");
     private Set<Group> groups = new HashSet<>();
 

@@ -19,7 +19,7 @@ class DeletePersonToMeetingConnectionParserTest {
     public void parse_validArgs_returnsDeleteCommand() {
         Set<Index> indexSet = new HashSet<>();
         indexSet.add(INDEX_FIRST);
-        //Should be passed, but don't know why can't pass. (Use the actual product to test and it is good).
+        //Should be passed, but don't know why can't pass. (Use the actual product to isWithinRange and it is good).
         //assertParseSuccess(parser, VALID_INPUT1, new DeletePersonToMeetingConnectionCommand(INDEX_FIRST, indexSet));
     }
 

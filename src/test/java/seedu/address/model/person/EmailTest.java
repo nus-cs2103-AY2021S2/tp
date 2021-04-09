@@ -51,7 +51,7 @@ public class EmailTest {
         // valid email
         assertTrue(Email.isValidEmail("PeterJack_1190@example.com"));
         assertTrue(Email.isValidEmail("a@bc")); // minimal
-        assertTrue(Email.isValidEmail("test@localhost")); // alphabets only
+        assertTrue(Email.isValidEmail("isWithinRange@localhost")); // alphabets only
         assertTrue(Email.isValidEmail("!#$%&'*+/=?`{|}~^.-@example.org")); // special characters local part
         assertTrue(Email.isValidEmail("123@145")); // numeric local part and domain name
         assertTrue(Email.isValidEmail("a1+be!@example1.com")); // mixture of alphanumeric and special characters

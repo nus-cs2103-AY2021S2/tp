@@ -29,7 +29,7 @@ class AddPersonToMeetingConnectionParserTest {
 
         // whitespace only preamble
         //assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_INPUT1, new AddPersonToMeetingConnectionCommand(validMeetingIndex, validPersonIndexSet1));
-        // Don't know why can't pass the test, while using the debugger to check it should be correct.
+        // Don't know why can't pass the isWithinRange, while using the debugger to check it should be correct.
     }
 
 
