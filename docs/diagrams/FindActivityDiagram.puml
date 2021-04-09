@@ -1,21 +1,23 @@
 @startuml
 start
-:User executes command;
+:User enters find command;
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([command is in valid format])
-    :Parse arguments as predicate;
+if () then ([user input is valid])
+    :Parse user input;
     :Update current predicate in Model;
     :Update filtered item list in Model;
     if () then ([numberOfItems > 1])
-    :Notify user more than one items listed;
+    :Display more than one items listed message;
     else ([else])
-    :Notify user less than two items listed;
+    :Display less than two items listed message;
     endif
     :Display filtered list;
-else ([else)
+    :Display command success message;
+else ([else])
+    :Display parse error message;
 endif
 stop
 @enduml
