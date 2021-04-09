@@ -184,6 +184,9 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/19-01-1998`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com b/19-03-1998 a/Newgate Prison p/1234567 t/criminal`
 
+See also:
+* [What is a valid email format?](#faq)
+
 ### Adding a special date : `add-date`
 
 Adds a special date for an existing person in FriendDex.
@@ -607,6 +610,12 @@ If the previous theme file supplied is not found or unreadable, then the default
 **Q**: Where can I find more themes?<br>
 **A**: Certain online tools such as [terminal.sexy](https://terminal.sexy) can be used to generate the required `json` file.
 
+**Q**: What is a valid email format?<br>
+**A**: Email stored in FriendDex is a wilful violation of (RFC 5322)[https://tools.ietf.org/html/rfc5322]. The email
+allowed in FriendDex shall adhere to the following rules:
+* Emails shall have the format `local-part@domain`.
+* `local-part` contains at least one alphanumeric character with the following special characters <code>.!#$%&'*+\/=?^_`{|}~-</code>.
+* `domain` must start with an alphanumeric character.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Troubleshooting Instructions
