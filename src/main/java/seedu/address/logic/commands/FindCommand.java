@@ -24,7 +24,7 @@ public class FindCommand extends Command {
             + "dresscodes or descriptions contain any of the specified\n"
             + "keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: n/KEYWORD [MORE_KEYWORDS] or s/KEYWORD [MORE_KEYWORDS] ... for each attribute\n"
-            + "Example: " + COMMAND_WORD + " n/alice bob charlie";
+            + "Example: " + COMMAND_WORD + " n/worn out jeans";
 
     private final AttributesContainsKeywordsPredicate predicates;
 

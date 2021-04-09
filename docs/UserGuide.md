@@ -199,12 +199,19 @@ Format: `find [n/NAMES] [s/SIZES] [c/COLOURS] [r/DRESSCODES] [t/TYPES] [d/DESCRI
 
 **:bulb: Tips:** <br>
 * At least one of the optional bracketed fields must be provided.
+* A set of keywords (search phrase) can be used for finding.
+* At least one keyword in a search phrase should be complete.
+* Keywords are not case-sensitive.
 * The list of all garments with matching attributes will be shown.<br><br>
 </div>
 Example:
 
 * `find n/worn out jeans`<br>
   Returns all garments whose name has at least one of the words in the search phrase, "worn out jeans".
+* `find n/wOrN OUt Jeans`<br>
+  Returns all garments as the previous example, as search phrase need not be case-sensitive
+* `find n/worn ou jea`<br>
+  Returns all garments as the previous example, as at least `worn` keyword is complete.
 * `find c/white s/36 23`<br>
   Returns all garments that are white and are either sized 36 or 23.
 <br><br>
@@ -315,7 +322,7 @@ A: Tell us about your issue [here](https://github.com/AY2021S2-CS2103T-T12-1/tp)
 | **Deleting a Garment**              | `delete INDEX`<br> Eg. `delete 4`                                                                                               |
 | **Editing a Garment**               | `edit INDEX [n/NAME] [s/SIZE] [c/COLOUR] [r/DRESSCODE] [t/TYPE] [d/DESCRIPTION]...`<br>                                         |
 | **Listing all Garments**            | `list`                                                                                                                          |
-| **Finding Garments**                | `find t/TYPE`<br> Eg. find `t/Office`                                                                                           |
+| **Finding Garments**                | `find t/TYPE`<br> Eg. find `t/upper`                                                                                           |
 | **Matching a Garment**              | `match INDEX` <br> Eg., `match 1`                                                                                               |
 | **Viewing a Garment set**           | `view INDEX INDEX INDEX` <br> Eg., `view 1 2 3`                                                                                 |
 | **Selecting a Garment**             | `select INDEX` <br> Eg., `select 1`                                                                                             |
