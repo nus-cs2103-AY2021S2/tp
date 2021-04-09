@@ -6,15 +6,18 @@ skinparam classBackgroundColor UI_COLOR
 
 package UI <<Rectangle>>{
 Interface Ui <<Interface>>
-Class "{abstract}\nUiPart" as UiPart
+Class "     {abstract}     \n         UiPart         " as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PassengerListPanel
+Class FilteredPassengerListPanel
 Class PassengerCard
 Class StatusBarFooter
 Class CommandBox
+Class PoolListPanel
+Class PoolCard
+Class LabelWithIcon
 }
 
 package Model <<Rectangle>> {
@@ -33,28 +36,40 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PassengerListPanel
+MainWindow *-down-> FilteredPassengerListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> PoolListPanel
 
-PassengerListPanel -down-> PassengerCard
+FilteredPassengerListPanel -down-> PassengerCard
+
+PoolListPanel -down-> PoolCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PassengerListPanel --|> UiPart
-PassengerCard --|> UiPart
+FilteredPassengerListPanel ---|> UiPart
+PoolListPanel ----|> UiPart
+PassengerCard ---|> UiPart
+PoolCard ----|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
+LabelWithIcon --|> UiPart
 
-PassengerCard ..> Model
+PoolCard ..right..> Model
+PassengerCard .down..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PassengerListPanel -[hidden]left- HelpWindow
+PoolCard *-down-> LabelWithIcon
+PassengerCard *-down-> LabelWithIcon
+
+FilteredPassengerListPanel -[hidden]left- HelpWindow
+PoolCard -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+PoolCard -[hidden]left- PassengerCard
 
 MainWindow -[hidden]-|> UiPart
 @enduml
