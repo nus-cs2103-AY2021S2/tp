@@ -554,7 +554,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a meeting: `add-meeting`
 
-Prerequisites: List all person using the `list` command. There is at least a person present in the list. 
+Prerequisites: List all persons using the `list` command. There is at least a person present in the list. 
 The first person on the list is born before 12-12-2020.
 
 1. Adding a meeting to an existing person
@@ -590,6 +590,29 @@ The first person on the list is born before 12-12-2020.
 
 ### Adding a profile picture: `add-picture`
 
+Prerequisites: Download the sample picture [here](https://github.com/AY2021S2-CS2103T-W14-1/tp/raw/master/src/test/data/PictureTest/picture.jpg). 
+List all persons using the `list` command. There is at least a person present in the list.  
+
+1. Adding a picture to an existing person
+   
+    1. These arguments should be replaced with the correct details.
+       `PICTURE_FILE_PATH`: the file path of the sample picture, e.g. `Users/bob/Desktop/picture.jpg` for macOS
+       `INVALID_FILE_PATH`: any invalid file path, e.g. `asdf123` 
+       `FILE_PATH_WITH_WRONG_FILE_EXTENSION`: a valid file path that points to an actual file that is not an image, e.g. `Users/bob/Desktop/hello_world.txt` assuming that the actual file `hello_world.txt` exists  
+       
+    1. Test case: `add-picture 1 {PICTURE_FILE_PATH}` <br>
+       Expected: A picture is attached to the first contact. A success message is shown in the status message. The picture can also be viewed in the  
+       results display beside the details of the first contact.
+
+    2. Test case: `add-picture 0` (Invalid index) <br>
+       Expected: No picture added. Error details shown in the status message.
+
+    3. Other incorrect `add-picture` commands to try: 
+       * `add-picture x` (where x is larger than the list size).
+       * `add-picture 1 {INVALID_FILE_PATH}`
+       * `add-picture 1 {FILE_PATH_WITH_WRONG_FILE_EXTENSION}` (Refer to UG `add-picture` command for list of valid extensions)  
+       Expected: Similar to previous
+         
 ### Clearing all entries: `clear`
 
 ### Deleting a person: `delete`
@@ -598,14 +621,14 @@ The first person on the list is born before 12-12-2020.
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `delete 1`<br>
+    2. Test case: `delete 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
        Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
+    3. Test case: `delete 0`<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 1. _{ more test cases …​ }
@@ -613,6 +636,8 @@ The first person on the list is born before 12-12-2020.
 ### Deleting a special date: `del-date`
 
 ### Deleting a meeting: `del-meeting`
+
+
 
 ### Deleting a profile picture `del-picture`
 
