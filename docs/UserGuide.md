@@ -360,7 +360,7 @@ Examples:
 ### Contact Features
 
 For the following contact features, irrelevant panels of the user interface were closed (see [Closing UI Panel](./UserGuide.md#closing-ui-panel-close) below). <br>
-Thus, assume the following as the current state of Dictionote:
+Thus, for the upcoming examples, assume the following as the current state of Dictionote:
 ![result for 'findcontact t/colleagues n/yu'](images/ContactInitialState.png)
 
 #### Adding a contact: `addcontact`
