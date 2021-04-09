@@ -91,7 +91,7 @@ The name of the customer who has placed the order.<br>
 Prefix: `n/`
 * It can contain alphabetical characters, numbers and spaces.<br>
   E.g. `Alex Yeoh`, `Johnathan9`, `Charlotte the 5th`
-* It cannot be longer than 80 characters.
+* It cannot be longer than 70 characters.
 * It cannot be empty.
 <br><br>
 ##### `PHONE_NUMBER`
