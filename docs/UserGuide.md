@@ -93,7 +93,7 @@ This table outlines all the available prefixes that can be used for the `add` an
 
 Add a task to the list.
 
-Format: `add mc/MODULE_CODE n/TASK_NAME d/DEADLINE_DATE t/DEADLINE_TIME w/WEIGHTAGE [pt/TAGS] [ptag/PRIORITY_TAG]`
+Format: `add mc/MODULE_CODE n/TASK_NAME d/DEADLINE_DATE t/DEADLINE_TIME w/WEIGHTAGE [ptag/PRIORITY_TAG] [pt/TAGS]...`
 
 Example:
 
