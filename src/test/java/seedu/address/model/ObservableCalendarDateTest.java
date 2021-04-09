@@ -73,13 +73,18 @@ class ObservableCalendarDateTest {
         assertTrue(ocd.equals(ocdCopy));
 
         // different observer list -> returns false
-        assertTrue(ocd.equals(new ObservableCalendarDate(LocalDate.now())));
+        assertFalse(ocd.equals(new ObservableCalendarDate(LocalDate.now())));
     }
 
     private static class ObserverStub implements Observer {
         @Override
         public void update() {
             ObservableCalendarDateTest.observerCount++;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return true;
         }
     }
 }

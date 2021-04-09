@@ -95,24 +95,6 @@ public class AddCommandParserTest {
         // missing title prefix
         assertParseFailure(parser, VALID_TITLE_BOB + DATE_DESC_BOB + DURATION_DESC_BOB
                 + RECURRINGSCHEDULE_DESC_BOB + DESCRIPTION_DESC_BOB, expectedMessage);
-
-        /*
-        // missing date prefix
-        assertParseFailure(parser, TITLE_DESC_BOB + VALID_DATE_BOB + RECURRINGSCHEDULE_DESC_BOB
-            + DESCRIPTION_DESC_BOB, expectedMessage);
-
-        // missing recurring schedule prefix
-        assertParseFailure(parser, TITLE_DESC_BOB + DATE_DESC_BOB + VALID_RECURRINGSCHEDULE_BOB
-            + DESCRIPTION_DESC_BOB, expectedMessage);
-
-        // missing description prefix
-        assertParseFailure(parser, TITLE_DESC_BOB + DATE_DESC_BOB + RECURRINGSCHEDULE_DESC_BOB
-            + VALID_DESCRIPTION_BOB, expectedMessage);
-
-        // all prefixes missing
-        assertParseFailure(parser, VALID_TITLE_BOB + VALID_DATE_BOB + VALID_RECURRINGSCHEDULE_BOB
-            + VALID_DESCRIPTION_BOB, expectedMessage);
-        */
     }
 
     @Test
@@ -140,13 +122,6 @@ public class AddCommandParserTest {
         // invalid tag
         assertParseFailure(parser, TITLE_DESC_BOB + DATE_DESC_BOB + DURATION_DESC_BOB + RECURRINGSCHEDULE_DESC_BOB
                 + DESCRIPTION_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
-
-        // description is no longer invalid as it accepts anything
-        /*
-        // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_TITLE_DESC + DATE_DESC_BOB + DURATION_DESC_BOB + EMAIL_DESC_BOB
-                        + INVALID_DESCRIPTION_DESC, Title.MESSAGE_CONSTRAINTS);
-         */
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + TITLE_DESC_BOB + DATE_DESC_BOB + DURATION_DESC_BOB
