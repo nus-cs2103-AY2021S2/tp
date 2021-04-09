@@ -79,6 +79,21 @@ public class Group {
         persons = editedPersonSet;
     }
 
+    /**
+     * Deletes the given person from this {@code group}. The group object is guaranteed to have no
+     * instance of the given {@code person} in this group. If person cannot be found this method
+     * does nothing and no exceptions will be thrown.
+     *
+     * @param personNameToDelete The name of the person to delete.
+     */
+    public void deletePerson(Name personNameToDelete) {
+        persons.remove(personNameToDelete);
+    }
+
+    public boolean isEmpty() {
+        return persons.isEmpty();
+    }
+
     @Override
     public String toString() {
         return groupName.toString();

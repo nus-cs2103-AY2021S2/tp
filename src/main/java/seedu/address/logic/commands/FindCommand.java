@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PATTERN;
-import static seedu.address.model.group.GroupHashMap.DEFAULT_GROUP_NAME;
 
 import java.util.function.Predicate;
 
