@@ -40,7 +40,8 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because a user can conveniently search what tasks has been assigned to a particular member.
   
   * Highlights: The implementation was challenging as I had to think of a way to check which tasks have been assigned to a particular member. After considering the current software architecture,
-  I made a decision to implement a predicate, TaskContainsAssigneePredicate, which retrieves the assignees of a task and check if the name specified in the command exists as an assignee.
+  I made a decision to implement a predicate, TaskContainsAssigneePredicate. When the Task List is updated with the predicate, the predicate calls the `hasAssignee` method of the Task class to check 
+  if the name specified in the command exists as an assignee and updates the Task List accordingly. 
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=zoom&zA=zatkiller&zR=AY2021S2-CS2103T-W14-3%2Ftp%5Bmaster%5D&zACS=233.65598705501617&zS=2021-02-19&zFS=&zU=2021-04-05&zMG=undefined&zFTF=commit&zFGS=groupByRepos&zFR=false)
 

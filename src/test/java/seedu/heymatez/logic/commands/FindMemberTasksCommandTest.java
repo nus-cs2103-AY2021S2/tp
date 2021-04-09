@@ -2,6 +2,7 @@ package seedu.heymatez.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.heymatez.logic.commands.CommandTestUtil.VALID_ASSIGNEE_MARATHON;
 import static seedu.heymatez.logic.commands.CommandTestUtil.VALID_ASSIGNEE_MEETING;
@@ -50,6 +51,12 @@ public class FindMemberTasksCommandTest {
 
         // different person -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
+    }
+
+    @Test
+    public void execute_zeroKeywords_illegalArgumentException() {
+        TaskContainsAssigneePredicate predicate = preparePredicate(" ");
+        assertThrows(IllegalArgumentException.class, () -> expectedModel.updateFilteredTaskList(predicate));
     }
 
     @Test

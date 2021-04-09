@@ -413,10 +413,11 @@ This feature allows you to find all tasks assigned to a single Member.
 
 Format: `findTasksFor NAME`
 
-* The search suing NAME is case-insensitive. e.g. `david li` will match with `David Li`.
-
+* The search using NAME is case-sensitive. e.g. `David Li` will only match with `David Li`.
+* NAME must match an entire member's name exactly in order for the tasks assigned to that member to be found. 
+  
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
-The NAME specified can only belong to 1 Member while a NAME that does not exist in the Member List will return 0 tasks listed
+A NAME that does not exist in the Member List will return no tasks listed
 </div>
 
 Examples: 
