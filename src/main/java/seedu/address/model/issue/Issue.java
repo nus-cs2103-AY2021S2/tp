@@ -100,9 +100,9 @@ public class Issue implements Comparable<Issue> {
         Issue otherIssue = (Issue) other;
         return otherIssue.getRoomNumber().equals(getRoomNumber())
                 && otherIssue.getDescription().equals(getDescription())
-                && otherIssue.getTimestamp().equals(getTimestamp()) && otherIssue.getStatus().equals(getStatus())
-                && otherIssue.getCategory().equals(getCategory())
-                && otherIssue.getTags().equals(getTags());
+                && otherIssue.getTimestamp().equals(getTimestamp())
+                && otherIssue.getStatus().equals(getStatus())
+                && otherIssue.getCategory().equals(getCategory());
     }
 
     @Override
