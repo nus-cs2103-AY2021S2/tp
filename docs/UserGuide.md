@@ -203,7 +203,7 @@ Every command explanation has a screenshot to give an idea of the expected messa
 
 #### 4.2.1 Add an API endpoint: <span class="main-command">add</span>
 
-**Description:** Add an API endpoint to the API endpoint list.
+**Description:** Have a new endpoint in mind? Add an API endpoint to the API endpoint list!
 
 **Format:** <span class="main-command">add</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span> <span class="optional-param">[-t TAG]</span>
 
@@ -221,7 +221,7 @@ If you are only using an endpoint once, consider the convenient option of using 
 
 #### 4.2.2 Edit an API endpoint: <span class="main-command">edit</span>
 
-**Description:** Edit the API endpoint at the specified index shown in the API endpoint list **(at least one optional argument must be provided)**.
+**Description:** Need to modify at endpoint? Edit an API endpoint at the specified index shown in the API endpoint list **(at least one optional argument must be provided!)**.
 
 **Format:** <span class="main-command">edit</span> <span class="compulsory-param">INDEX</span> <span class="optional-param">-x METHOD</span> <span class="optional-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span> <span class="optional-param">[-t TAG]</span>
 
@@ -233,7 +233,7 @@ If you are only using an endpoint once, consider the convenient option of using 
 
 #### 4.2.3 Show an API endpoint: <span class="main-command">show</span>
 
-**Description:** Show the details of the API endpoint at the specified index shown in the API endpoint list.
+**Description:** Need more details on an endpoint? Peek at the details of an API endpoint at the specified index shown in the API endpoint list!
 
 **Format:** <span class="main-command">show</span> <span class="compulsory-param">INDEX</span>
 
@@ -247,7 +247,7 @@ If you are only using an endpoint once, consider the convenient option of using 
 
 #### 4.2.4 Remove an API endpoint: <span class="main-command">remove</span>
 
-**Description:** Remove the API endpoint at the specified index shown in the API endpoint list.
+**Description:** Looking to clear off unused endpoints? Remove the API endpoint at the specified index shown in the API endpoint list!
 
 **Format:** <span class="main-command">remove</span> <span class="compulsory-param">INDEX</span>
 
@@ -259,8 +259,7 @@ If you are only using an endpoint once, consider the convenient option of using 
 
 #### 4.2.5 List all saved API endpoints: <span class="main-command">list</span>
 
-**Description:** Show a list of all API endpoints in the API endpoint list. If there are no endpoints in the API 
-endpoint list, nothing will show up on the endpoint list panel.
+**Description:** Wish to admire all your endpoints? Display a list of all API endpoints in the API endpoint list!
 
 **Format:** <span class="main-command">list</span>
 
@@ -272,7 +271,7 @@ endpoint list, nothing will show up on the endpoint list panel.
 
 #### 4.2.6 Clear all saved API endpoints: <span class="main-command">clear</span>
 
-**Description:** Clear all API endpoints in the API endpoint list.
+**Description:** Planning to start all over? Clear all API endpoints in the API endpoint list!
 
 **Format:** <span class="main-command">clear</span>
 
@@ -290,7 +289,7 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
 
 #### 4.2.7 Find a saved API endpoint: <span class="main-command">find</span>
 
-**Description (General Search):** Find endpoints containing the search word/s through all fields **(requires at least one keyword)**.
+**Description (General Search):** Looking for an endpoint across all parameters? Find endpoints containing the search word(s)! **(requires at least one keyword)**.
 
 **Format (General Search):** <span class="main-command">find</span> <span class="optional-param">[KEYWORD]</span>
 
@@ -300,7 +299,7 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
   <img width="450px" src="images/commands/find1.png" >
 </p>
 
-**Description (Precise Search):** Find endpoints containing the search word(s) based on the [prefix](#prefix-table) **(requires at least one keyword)** Note the following 2 points:
+**Description (Precise Search):** Looking for an endpoint in specific parameters? Find endpoints containing the search word(s)! based on the [prefix](#prefix-table) **(requires at least one keyword)** Note the following 2 points:
 - Searches **within a single [prefix](#prefix-table)** will perform an **OR** search across the search terms and all endpoints matching either keywords will be returned.
 - Searches **across multiple [prefixes](#prefix-table)** will preform an **AND** search and only endpoints matching all keywords will be returned.
 
@@ -329,7 +328,7 @@ class="optional-param">-u reqres</span> (match **GET OR POST** in Method **and**
 
 #### 4.2.8 Call an API endpoint directly without saving: <span class="main-command">run</span>
 
-**Description:** [Call](#glossary-call) an API endpoint directly (without saving) **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
+**Description:** Want to quickly test out an endpoint? [Call](#glossary-call) an API endpoint directly without saving! **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
 **Format:** <span class="main-command">run</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span>
 
@@ -339,8 +338,7 @@ class="optional-param">-u reqres</span> (match **GET OR POST** in Method **and**
   <img width="450px" src="images/commands/run.png" >
 </p>
 
-**Description (Shortcut):** [Call](#glossary-call) an API endpoint directly (without saving) to send a GET 
-request that does not specify any data or header **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + 
+**Description (Shortcut):** Interested in a shorthand command? [Call](#glossary-call) an API endpoint directly without saving to send a GET request that does not specify any data or header! **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + 
 <kbd>d</kbd>)**.
 
 **Format (Shortcut):** <span class="main-command">run</span> <span class="compulsory-param">URL</span>
@@ -360,7 +358,7 @@ do not require any input data or header. Note that this feature is only meant fo
 
 #### 4.2.9 Call a saved API endpoint: <span class="main-command">send</span>
 
-**Description:** [Call](#glossary-call) an API endpoint from the API endpoint list **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
+**Description:** Want to test out a saved endpoint? [Call](#glossary-call) an API endpoint from the API endpoint list! **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
 **Format:** <span class="main-command">send</span> <span class="compulsory-param">INDEX</span>
 
