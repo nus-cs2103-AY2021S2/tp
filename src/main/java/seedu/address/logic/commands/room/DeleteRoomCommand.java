@@ -44,8 +44,13 @@ public class DeleteRoomCommand extends Command {
         requireNonNull(model);
         List<Room> lastShownList = model.getFilteredRoomList();
 
+        if (lastShownList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_ROOMS);
+        }
+
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX, lastShownList.size()));
         }
 
         Room roomToDelete = lastShownList.get(targetIndex.getZeroBased());

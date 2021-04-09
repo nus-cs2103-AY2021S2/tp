@@ -44,7 +44,8 @@ public class CloseIssueCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredIssueList().size() + 1);
         CloseIssueCommand closeIssueCommand = new CloseIssueCommand(outOfBoundIndex);
 
-        assertCommandFailure(closeIssueCommand, model, Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX);
+        assertCommandFailure(closeIssueCommand, model, String.format(
+                Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX, model.getFilteredIssueList().size()));
     }
 
     @Test
@@ -73,7 +74,8 @@ public class CloseIssueCommandTest {
 
         CloseIssueCommand closeIssueCommand = new CloseIssueCommand(outOfBoundIndex);
 
-        assertCommandFailure(closeIssueCommand, model, Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX);
+        assertCommandFailure(closeIssueCommand, model, String.format(
+                Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX, model.getFilteredIssueList().size()));
     }
 
     @Test

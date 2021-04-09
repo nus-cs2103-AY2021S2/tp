@@ -128,7 +128,8 @@ public class EditResidentCommandTest {
                 .withName(VALID_NAME_BOB).build();
         EditResidentCommand editResidentCommand = new EditResidentCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editResidentCommand, model, Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+        assertCommandFailure(editResidentCommand, model, String.format(
+                Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX, model.getFilteredResidentList().size()));
     }
 
     /**
@@ -145,7 +146,8 @@ public class EditResidentCommandTest {
         EditResidentCommand editResidentCommand = new EditResidentCommand(outOfBoundIndex,
                 new EditResidentDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editResidentCommand, model, Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+        assertCommandFailure(editResidentCommand, model, String.format(
+                Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX, model.getFilteredResidentList().size()));
     }
 
     @Test

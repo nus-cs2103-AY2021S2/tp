@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.room;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_TYPE;
@@ -37,9 +38,15 @@ public class EditRoomCommandParser implements Parser<EditRoomCommand> {
                 ArgumentTokenizer.tokenize(userInput, PREFIX_ROOM_NUMBER, PREFIX_ROOM_TYPE, PREFIX_ROOM_TAG);
 
         Index index;
-        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
-        assert index != null;
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            assert index != null;
+        } catch (IllegalArgumentException iex) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditRoomCommand.MESSAGE_USAGE), iex);
+        }
+
 
         EditRoomDescriptor editRoomDescriptor = new EditRoomDescriptor();
         if (argMultimap.getValue(PREFIX_ROOM_NUMBER).isPresent()) {
