@@ -51,6 +51,53 @@ public class Level implements Comparable<Level> {
         return level;
     }
 
+    public String getFullLevel() {
+        switch (level) {
+
+        case "pri1":
+            return "Primary 1";
+
+        case "pri2":
+            return "Primary 2";
+
+        case "pri3":
+            return "Primary 3";
+
+        case "pri4":
+            return "Primary 4";
+
+        case "pri5":
+            return "Primary 5";
+
+        case "pri6":
+            return "Primary 6";
+
+        case "sec1":
+            return "Secondary 1";
+
+        case "sec2":
+            return "Secondary 2";
+
+        case "sec3":
+            return "Secondary 3";
+
+        case "sec4":
+            return "Secondary 4";
+
+        case "sec5":
+            return "Secondary 5";
+
+        case "jc1":
+            return "Junior College 1";
+
+        case "jc2":
+            return "Junior College 2";
+
+        default:
+            return "Graduated";
+        }
+    }
+
     public int getLevelIndex() {
         return levelIndex;
     }
