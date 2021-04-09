@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete-field 2 t/")
+[-> LogicManager : execute("rmf 2 t/")
 activate LogicManager
 
-LogicManager -> PlannerParser : parseCommand("delete-field 2 t/")
+LogicManager -> PlannerParser : parseCommand("rmf 2 t/")
 activate PlannerParser
 
 create DeleteFieldCommandParser

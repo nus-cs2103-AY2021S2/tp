@@ -179,11 +179,11 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `ls`. Commands that do not modify the address book, such as `ls`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `mk n/Project …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -203,8 +203,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `rmt`, just save the task being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### Viewing list of tags in the tags panel
 
@@ -355,8 +353,8 @@ or just use a single command `find` in addition with command line prefix to perf
 
 A task in the planner's task list can contain multiple fields. Some of these fields can be removed without deleting
 the entire task, while other fields are compulsory and cannot be removed. 
-- Removable fields: `Deadline`, `RecurringSchedule`, `Description`, `Tag`, `Duration`
-- Non-removable fields: `Title`, `Status` 
+- Removable fields: `Date`, `RecurringSchedule`, `Description`, `Tags`, `Duration`
+- Non-removable fields: `Title`, `Status`
 
 An example of how a user might use this command is shown in the activity diagram below.
 
@@ -366,11 +364,18 @@ The following sequence diagram shows how the delete field command works internal
 
 ![DeleteFieldSequenceDiagram](images/DeleteFieldSequenceDiagram.png)
 
-Alternatives: 
-1) Delete field by setting it to an empty string. (Current choice) 
+Something noteworthy would be the fact that `Duration` cannot exist alone and must exist with either `Date` OR `RecurringSchedule`.
+As this approach creates a new task with the same attributes and replaces it with the existing task in the planner, when a user tries
+to remove the `Date`/`RecurringSchedule` field without removing the `Duration` first, an error will be thrown. 
+
+####Aspect: How removing a task executes
+
+####Alternatives 1 (current choice): Remove field by setting it to an empty string.  
+
 This approach was chosen as it is easy to implement, and not too much of refactoring of code is needed.
-   
-2) Delete field by setting it to null. 
+
+####Alternatives 2: Remove field by setting it to null. 
+
 This approach was not chosen as it would require more refactoring of code - if anything is missed out, 
 it will result in undesirable runtime exceptions.
 
@@ -390,20 +395,19 @@ it will result in undesirable runtime exceptions.
 **Target user profile**:
 
 * Mainly NUS computing students
-* has a need to manage a significant number of task, most of which has deadlines
-* For computing students, task at hand may take longer than expected
-* Might have many last minute task.
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Users have a need to manage a significant number of task, most of which has deadlines
+* For target users, task at hand may take longer than expected
+* Users might have many last minute tasks
+* Users prefer desktop applications over other types of devices
+* Users are able to type quickly
+* Users prefer typing over mouse interactions
+* User is reasonably comfortable with using CLI applications
 
 **Value proposition**:
-* Manage tasks faster than a typical mouse/GUI driven app
-* A quick way to view all tasks due on a specified day
-* Able to quickly search for an available timing for a particular task
+* Ability to manage tasks faster than with a typical mouse/GUI driven app
+* A quick way to view all tasks due on a specific day
 * Organising tasks according to projects/modules/date so that users can view these tasks with different filters
-* Able to adjust and edit tasks according to user needs
+* Ability to edit tasks according to user needs
 
 
 ### User stories
@@ -747,19 +751,19 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Deleting a task
+### Removing a task
 
-1. Deleting a task while all tasks are being shown
+1. Removing a task while all tasks are being shown
 
    1. Prerequisites: List all existing tasks using the `ls` command. Multiple tasks in the list.
 
    1. Test case: `rmt 1`<br>
-      Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
+      Expected: First task is deleted from the list. Details of the removed task shown in the status message.
 
    1. Test case: `rmt 0`<br>
-      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No task is removed. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `rmt`, `rmt x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect remove commands to try: `rmt`, `rmt x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Saving data
