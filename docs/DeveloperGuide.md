@@ -1063,7 +1063,7 @@ testers are expected to do more *exploratory* testing.
        Expected: A feedback message in the result box indicating the room was successfully deleted. The room should no longer be visible in the room panel.
 
     3. Test case: `odel -5` <br>
-       Expected: An error message indicating that the index must be a non-zero unsigned integer.
+       Expected: An error message indicating that the index must be a positive integer.
     
     4. Test case: `odel abc` <br>
        Expected: A message indicating the command format is invalid followed by proper usage instructions.
