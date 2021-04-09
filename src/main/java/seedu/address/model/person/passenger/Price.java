@@ -21,7 +21,6 @@ public class Price {
      * @param price A valid price.
      */
     public Price(double price) {
-        requireNonNull(price);
         checkArgument(isValidPrice(Double.toString(price)), MESSAGE_CONSTRAINTS);
         value = price;
     }

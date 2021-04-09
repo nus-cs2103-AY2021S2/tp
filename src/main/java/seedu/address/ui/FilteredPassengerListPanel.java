@@ -27,7 +27,7 @@ public class FilteredPassengerListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Passenger} using a {@code PassengerCard}.
      */
-    class FreePassengerListViewCell extends ListCell<Passenger> {
+    static class FreePassengerListViewCell extends ListCell<Passenger> {
         @Override
         protected void updateItem(Passenger passenger, boolean empty) {
             super.updateItem(passenger, empty);

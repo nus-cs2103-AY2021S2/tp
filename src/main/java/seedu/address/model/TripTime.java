@@ -35,9 +35,8 @@ public class TripTime {
     public long compareMinutes(TripTime otherTripTime) {
         requireNonNull(otherTripTime);
         long timeDifference = ChronoUnit.MINUTES.between(this.value, otherTripTime.value);
-        long absoluteTimeDifference = Math.abs(timeDifference);
 
-        return absoluteTimeDifference;
+        return Math.abs(timeDifference);
     }
 
     @Override

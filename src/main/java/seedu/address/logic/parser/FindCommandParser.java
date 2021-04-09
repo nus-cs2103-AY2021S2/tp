@@ -137,7 +137,6 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<String> outputList = new ArrayList<>();
 
         for (String s : argumentMultimap.getAllValues(prefix)) {
-            String argument = "";
             switch (prefix.toString()) {
             case PREFIX_NAME_STRING:
                 argument = ParserUtil.parseName(s).toString();

@@ -28,7 +28,7 @@ public class PoolListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Passenger} using a {@code PassengerCard}.
      */
-    class PoolListViewCell extends ListCell<Pool> {
+    static class PoolListViewCell extends ListCell<Pool> {
         @Override
         protected void updateItem(Pool pool, boolean empty) {
             super.updateItem(pool, empty);

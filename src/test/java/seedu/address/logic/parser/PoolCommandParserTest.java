@@ -133,9 +133,9 @@ public class PoolCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
                 + TRIPTIME_DESC_MORNING + VALID_COMMUTER_1, expectedMessage);
 
-//        // missing one commuter prefix
-//        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
-//                + TRIPTIME_DESC_MORNING + COMMUTER_DESC_1 + VALID_COMMUTER_2, expectedMessage);
+        //        // missing one commuter prefix
+        //        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
+        //                + TRIPTIME_DESC_MORNING + COMMUTER_DESC_1 + VALID_COMMUTER_2, expectedMessage);
 
         // missing all commuter prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
