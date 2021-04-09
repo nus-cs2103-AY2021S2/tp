@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.module.commons.core.index.Index;
+import seedu.module.commons.exceptions.IllegalIntegerException;
 import seedu.module.logic.commands.DoneCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
 
@@ -28,6 +29,8 @@ public class DoneCommandParser implements Parser<DoneCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE), pe);
+        } catch (IllegalIntegerException iie) {
+            throw new ParseException(iie.getMessage());
         }
 
         return new DoneCommand(index);

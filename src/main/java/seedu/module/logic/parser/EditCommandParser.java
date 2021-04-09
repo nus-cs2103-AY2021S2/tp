@@ -18,6 +18,7 @@ import java.util.Set;
 
 import seedu.module.commons.core.index.Index;
 import seedu.module.commons.core.optionalfield.OptionalField;
+import seedu.module.commons.exceptions.IllegalIntegerException;
 import seedu.module.logic.commands.EditCommand;
 import seedu.module.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.module.logic.parser.exceptions.ParseException;
@@ -47,6 +48,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        } catch (IllegalIntegerException iie) {
+            throw new ParseException(iie.getMessage());
         }
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();

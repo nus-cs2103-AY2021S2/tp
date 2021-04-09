@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.module.commons.core.index.Index;
+import seedu.module.commons.exceptions.IllegalIntegerException;
 import seedu.module.commons.exceptions.IllegalValueException;
 import seedu.module.logic.commands.Command;
 import seedu.module.logic.commands.TagCommand;
@@ -37,6 +38,8 @@ public class TagCommandParser implements Parser {
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     TagCommand.MESSAGE_USAGE), ive);
+        } catch (IllegalIntegerException iie) {
+            throw new ParseException(iie.getMessage());
         }
 
         TagCommand tagCommand = new TagCommand(index);
