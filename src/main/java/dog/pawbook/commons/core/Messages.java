@@ -20,7 +20,7 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_PROGRAM = String.format(MESSAGE_DUPLICATE_ENTITY_FORMAT,
             Program.ENTITY_WORD);
 
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s.";
+    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
 
     public static final String MESSAGE_INVALID_ID_GENERAL =
             String.format("ID must be a positive integer not exceeding %s!", Integer.MAX_VALUE);
