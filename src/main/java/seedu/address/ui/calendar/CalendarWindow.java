@@ -23,6 +23,8 @@ import seedu.address.ui.calendar.schedule.UpcomingSchedule;
  * Represents the calendar window for the GUI.
  */
 public class CalendarWindow extends UiPart<Stage> {
+    //Solution below adapted from
+    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/CalendarView.java
     private static final Logger logger = LogsCenter.getLogger(CalendarWindow.class);
     private static final String FXML = "CalendarWindow.fxml";
     private static final int FIRST_ROW = 0;
@@ -241,7 +243,7 @@ public class CalendarWindow extends UiPart<Stage> {
 
     // @@author banchiang-reused
     // Reused from
-    // https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
+    // https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/CalendarView.java
     // with no modifications.
     /**
      * Finds the number of days in a month given the year and month.
@@ -276,7 +278,7 @@ public class CalendarWindow extends UiPart<Stage> {
 
 
     //Solution below adapted from
-    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
+    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/CalendarView.java
     /**
      * Sets the monthYear Label's content.
      */
@@ -290,7 +292,7 @@ public class CalendarWindow extends UiPart<Stage> {
     }
 
     //Solution below adapted from
-    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
+    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/CalendarView.java
     /**
      * Refreshes the calendar view, the right side of the {@code CalendarWindow} GUI.
      */
@@ -308,7 +310,7 @@ public class CalendarWindow extends UiPart<Stage> {
     }
 
     //Solution below adapted from
-    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
+    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/CalendarView.java
     /**
      * Initialises calendar to previous month data when the prev button is clicked.
      */
@@ -320,7 +322,7 @@ public class CalendarWindow extends UiPart<Stage> {
     }
 
     //Solution below adapted from
-    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
+    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/CalendarView.java
     /**
      * Initialises calendar to next month data when the next button is clicked.
      */
@@ -332,7 +334,7 @@ public class CalendarWindow extends UiPart<Stage> {
     }
 
     //Solution below adapted from
-    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
+    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/CalendarView.java
     /**
      * Initialises calendar to current month of today's date.
      */
@@ -343,7 +345,7 @@ public class CalendarWindow extends UiPart<Stage> {
     }
 
     //Solution below adapted from
-    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
+    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/CalendarView.java
     /**
      * Refreshes the calendar view along with the upcoming schedule view.
      */

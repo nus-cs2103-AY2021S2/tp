@@ -6,7 +6,8 @@
 <?import javafx.scene.text.Font?>
 
 <!--
-FXML Adapted from AY2021S1-CS2103T-F12-2/tp (https://github.com/AY2021S1-CS2103T-F12-2/tp)
+@@author banchiang-reused
+FXML reused from (https://github.com/AY2021S1-CS2103T-F12-2/tp) with minor modifications
 -->
 <VBox fx:id="eventHolder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="315.0" style="-fx-border-color: #00a3cc; -fx-border-width: 0 0 0 3; -fx-background-color: rgba(204, 245, 255, 0.5) rgba(204, 245, 255, 0.7);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
@@ -28,3 +29,4 @@ FXML Adapted from AY2021S1-CS2103T-F12-2/tp (https://github.com/AY2021S1-CS2103T
         <Insets left="10.0" />
     </padding>
 </VBox>
+<!-- @@author -->
