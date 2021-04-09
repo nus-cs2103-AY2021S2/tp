@@ -16,12 +16,14 @@ import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import dog.pawbook.logic.commands.exceptions.CommandException;
-import dog.pawbook.model.managedentity.owner.Owner;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.commons.core.Messages;
 import dog.pawbook.logic.commands.EditDogCommand.EditDogDescriptor;
+import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Database;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
@@ -29,12 +31,13 @@ import dog.pawbook.model.UserPrefs;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.IdMatchPredicate;
 import dog.pawbook.model.managedentity.dog.Dog;
+import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.testutil.DogBuilder;
 import dog.pawbook.testutil.EditDogDescriptorBuilder;
 import javafx.util.Pair;
 
-import java.util.HashSet;
-import java.util.Set;
+
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditDogCommand.
