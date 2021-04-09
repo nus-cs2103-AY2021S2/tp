@@ -3,7 +3,6 @@ layout: page
 title: Chanell Ng 's Project Portfolio Page
 ---
 
-
 ## Project: EZManage
 
 EZManage - EZManage is a desktop address book application used for the management of a tuition centre's sessions, students and tutors. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
@@ -13,12 +12,12 @@ Given below are my contributions to the project.
 **New Feature**: Added session ID. 
 * What it does: Allows the user to identify a particular session using a unique ID given to each session when the session is first created and added into EzManage.
 * Justification: This feature improves the product significantly because the user can easily locate a specific session using the unique session ID. This feature is important because all the other session-related features in EzManage will utilize this session ID.
-* Highlights: A session ID of a session is always unique and unmodifiable once given to a session. The uniqueness of the session IDs allows for efficient management of all the sessions. This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives.
+* Highlights: A session ID of a session is always unique and unmodifiable once given to a session. The uniqueness of the session IDs allows for efficient management of all the sessions. 
   
 * **New Feature**: Added the ability to delete a session.
   * What it does: Allows the user to delete an existing session in EZManage using the session's unique session ID.
   * Justification: This feature improves the product significantly because a user can easily manage the list of sessions and allows the app to provide a convenient way to remove sessions when mistakenly added or when a specific session is no longer needed.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. 
+  * Highlights: A session can only be deleted if the given session ID is valid and session exists in EZManage.
   * Credits: AddressBook Level 3
 
 * **New Feature**: Added the ability to edit a session.
@@ -35,7 +34,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=chanellNg&tabRepo=AY2021S2-CS2103-W16-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-  * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
+  * Managed releases `v1.3` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
   * Wrote additional tests for all added features to increase coverage (Pull requests [\#68](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/68), [\#69](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/69),  [\#70](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/70) , [\#168](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/168) , [\#187](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/187)) :
@@ -43,8 +42,7 @@ Given below are my contributions to the project.
   * Updated the list command to be able to view all persons, all students, all tutors and all sessions. (Pull Request [\#70](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/70))
   * Updated the clear command to clear the whole list of persons and sessions. (Pull Request [\#164](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/164))
   * Updated the Ui on a consistent basis:
-    * Addition of Ui view for the commands. (Pull requests [\#74](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/74) , [\#91](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/91)) 
-    * Addition of split pane view for view commands. (Pull request [\#70](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/70))
+    * Addition of Ui view for the commands such as the split pane view for view commands. (Pull requests [\#70](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/70) , [\#74](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/74) , [\#91](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/91))
     * Resolved Ui issues such as when certain sets of commands are called, switching of panes, truncated fields etc. (Pull requests [\#76](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/76) , [\#161](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/161))
 
 * **Documentation**:
