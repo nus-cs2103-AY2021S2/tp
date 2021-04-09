@@ -87,6 +87,7 @@ Format: `help [COMMAND]`
 
 * If command is not specified, a summary of all available commands will be displayed, along with a link to access the full user guide.
 * If command is specified, summarised information about the specified command will be displayed. 
+* If multiple commands are specified, only the last command will be taken.
 
 Examples:
 * `help` Displays summary of all available commands.
