@@ -18,7 +18,7 @@ public class Food {
             + "places. Please round your value to the nearest value.";
     public static final String MESSAGE_DIGIT_CONSTRAINTS = "Double value input can only be positive and at least 0.";
     public static final String MESSAGE_DIGIT_MAX_LIMIT = "The maximum value for a nutrient is 1000g. Please enter "
-            + "a value greater than 0 and lesser than 1000.";
+            + "a value from 0 to 1000, both inclusive.";
 
 
     private String name;
