@@ -13,7 +13,11 @@ effectively and seamlessly** through a beautiful interface. <br><br>Taskify is o
 Interface (CLI) while 
 still having the 
 benefits    
-of a Graphical User Interface (GUI). If you can type fast, Taskify can get your task management done faster 
+of a Graphical User Interface (GUI). Simply put, a **CLI is just a text box where you type in 
+commands** so if you can type fast, Taskify can get 
+your 
+task management 
+done faster 
 than traditional GUI apps.
 
 
