@@ -284,7 +284,6 @@ Please refer to the [Input Formats](#input-formats) section when editing the dat
 > :warning: **If your changes to the data file makes it an invalid format, VAX@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
 
 :information_source: **NOTE:** VAX@NUS will load an empty data file if you have cleared your data with the `clear` command right before exiting VAX@NUS.
-Additionally, VAX@NUS is unable to detect changes in the matriculation number if it is edited directly from our data file.
 
 --------------------------------------------------------------------------------------------------------------------
 
