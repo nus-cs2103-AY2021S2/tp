@@ -27,8 +27,8 @@ public class PassengerListBuilder {
     }
 
     /**
-     * Adds default passengers to the PassengerBuilder set
-     * @return
+     * Adds default passengers to the PassengerBuilder set.
+     * @return a {@link PassengerListBuilder} with the default passengers.
      */
     public PassengerListBuilder withDefaultPassengers() {
         passengers.add(TypicalPassengers.ALICE);
