@@ -625,6 +625,38 @@ person on the list is born before 12-12-2020.
 
 ### Locating persons by name: `find`
 
+1. Finding contacts with naive string search
+
+    1. Prerequisites: List contains the default data included in FriendDex.
+    
+    1. Test case: `find alex`<br>
+       Expected: All contact with the token `alex` will be listed. A success message is shown to the user.
+       
+    1. Test case: `find yeoh, li, yu`<br>
+       Expected: All contact with name containing at least one token from the set of tokens `yeoh`, `li`, `yu` will 
+       be listed. A success message is shown to the user.
+       
+    1. Test case: `find`<br>
+       Expected: Listed contacts are not updated. Error details shown in the status message.
+
+2. Finding contacts wth pattern matching
+
+    2. Prerequisites: List contains the default data included in FriendDex.
+    
+    2. Test case: `find p/`<br>
+       Expected: All contacts will be listed. A success message is shown to the user.
+
+    2. Test case: `find p/.*`<br>
+       Expected: All contacts will be listed. A success message is shown to the user.
+
+    2. Test case: `find alex p/`<br>
+       Expected: All contacts with names containing substring `alex` regardless of case will be listed. A success 
+       message is shown to the user.
+       
+    2. Test case: `find ^a.*h p/`<br>
+       Expected: All contacts with names that starts with `a` and ends with `h` regardless of case will be listed. A 
+       success message is show to the user.
+
 ### Viewing help: `help`
 
 ### Listing all persons: `list`
