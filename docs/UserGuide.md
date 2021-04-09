@@ -150,7 +150,7 @@ Example: `help`
 <a name="addMember"></a>
 ### 1. Add Member: `addMember`
 
-With new members joining the club, you can add a new member along with his/her contact number to the contact list.
+With new members joining the club, you can add a new member along with his/her contact number and email to the contact list.
 
 Format: `addMember NAME p/PHONE_NUMBER e/EMAIL [r/ROLE]`
 
@@ -158,6 +158,7 @@ Format: `addMember NAME p/PHONE_NUMBER e/EMAIL [r/ROLE]`
 * NAME and ROLE fields can take on any values with alphanumeric characters.
 * PHONE field has to have a minimum length of 3 digits and maximum length of 15 digits.
 * If ROLE field is not specified, person will be assigned a default role of member.
+* EMAIL field must be valid with a local-part followed by '@' and then the domain name.
 
 Assumptions:
 * Every member in the CCA has a different name. An error will be prompted when you add a member with the same name but with
@@ -254,7 +255,7 @@ Format: `addTask TITLE d/DESCRIPTION b/DEADLINE [s/STATUS] [p/PRIORITY] [a/ASSIG
 * ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex     Yeoh" are not the same assignee.
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
-A task can have any number of assignees (including 0). To add multiple assignees, simply use multiple assignees prefix. 
+A task can have any number of assignees (including 0). To add multiple assignees, simply use multiple assignee prefixes. 
 </div>
 
 Examples: 
@@ -350,7 +351,7 @@ This feature allows you to find all tasks with deadlines before the date you hav
 Format: `findBefore DATE`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The date specified must follow the format `YYYY-MM-DD`.
+The date specified must follow the format `YYYY-MM-DD`and be a valid date in the calendar.
 </div>
 
 Examples: 
