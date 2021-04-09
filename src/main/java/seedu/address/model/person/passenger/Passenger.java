@@ -133,9 +133,10 @@ public class Passenger extends Person {
                 .append("; Pool Day: ")
                 .append(getTripDay())
                 .append("; Pool Time: ")
-                .append(getTripTime())
-                .append("; Price: ")
-                .append(getPrice());
+                .append(getTripTime());
+        getPrice().ifPresent(
+            x -> builder.append("; Price: ").append(x)
+        );
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
