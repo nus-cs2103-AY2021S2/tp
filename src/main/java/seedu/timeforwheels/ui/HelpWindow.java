@@ -27,7 +27,7 @@ public class HelpWindow extends UiPart<Stage> {
             "Statistics of delivery workdlow - stats \n" +
             "View completed delivery tasks - completed \n" +
             "View uncompleted delivery tasks - uncompleted \n" +
-            "  For more detailed examples, please refer to our user guide: " + USERGUIDE_URL;
+            "For more detailed examples, please refer to our user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
