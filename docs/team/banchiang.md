@@ -53,4 +53,5 @@ Given below are my contributions to the project
         * Added documentation of user stories and use cases (Pull request [\#318](https://github.com/AY2021S2-CS2103T-W15-1/tp/pull/318)))
         
 * **Community**:
-    * Highlighted CI build macos-latest crashing in github (Issue [\#281](https://github.com/nus-cs2103-AY2021S2/forum/issues/281)) 
+    * Highlighted CI build macos-latest crashing in github (Issue [\#281](https://github.com/nus-cs2103-AY2021S2/forum/issues/281))
+ 
