@@ -3,7 +3,6 @@ package seedu.dictionote.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.dictionote.logic.parser.ParserUtil.MESSAGE_INVALID_POSITION;
 import static seedu.dictionote.testutil.Assert.assertThrows;
 import static seedu.dictionote.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.dictionote.testutil.TypicalUiActions.EXPECTED_UI_OPTION;
@@ -231,9 +230,9 @@ public class ParserUtilTest {
     @Test
     public void parsePosition_outOfRangeInput_returnzero() {
 
-        int invalidRange[] = {-1,0,10,11};
+        int[] invalidRange = {-1, 0, 10, 11};
 
-        for(int i = 0; i < invalidRange.length; i++) {
+        for (int i = 0; i < invalidRange.length; i++) {
             String optionWithWhitespace = WHITESPACE + invalidRange[i] + WHITESPACE;
             assertEquals(0, ParserUtil.parsePosition(optionWithWhitespace));
         }

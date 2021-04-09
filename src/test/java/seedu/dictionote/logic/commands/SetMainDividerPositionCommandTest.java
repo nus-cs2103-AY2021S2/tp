@@ -46,7 +46,7 @@ public class SetMainDividerPositionCommandTest {
     public void execute_setDividerPosition_invalid() {
         int[] invalidPosition = {Integer.MIN_VALUE, -1, 0 , 10, 11, Integer.MAX_VALUE};
 
-        for(int i = 0; i < invalidPosition.length; i++) {
+        for (int i = 0; i < invalidPosition.length; i++) {
             assertCommandFailure(new SetMainDividerPositionCommand(invalidPosition[i]), model,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetMainDividerPositionCommand.MESSAGE_USAGE));
         }
