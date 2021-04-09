@@ -407,9 +407,9 @@
 }
 
 #bookingListScrollPane .viewport {
-    -fx-background-image:url(/images/background.png);
-    -fx-background-repeat:no-repeat ;
-    -fx-background-size:100% 100%;
+    -fx-background-image: url(/images/background.png);
+    -fx-background-repeat: no-repeat ;
+    -fx-background-size: 100% 100%;
     -fx-background-attachment: fixed;
 }
 
@@ -418,4 +418,12 @@
 }
 #bookingListScrollPane .scroll-bar:horizontal .thumb {
     -fx-background-color: #fffef2;
+}
+
+#tagsScrollPane .viewport {
+    -fx-background-color: transparent;
+}
+
+#tagsScrollPane {
+    -fx-background-color: transparent;
 }
