@@ -82,21 +82,19 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIENDLY = " " + PREFIX_TAG + VALID_TAG_FRIENDLY;
     public static final String TAG_DESC_QUIET = " " + PREFIX_TAG + VALID_TAG_QUIET;
 
-    public static final String VALID_NAME_OBEDIENCE_TRAINING = "Obedience Training";
-    public static final String VALID_NAME_POTTY_TRAINING = "Potty Training";
-    public static final String VALID_SESSION_OBEDIENCE_TRAINING = "01-01-2022 10:30";
-    public static final String VALID_SESSION_POTTY_TRAINING = "03-02-2022 20:30";
-    public static final String VALID_TAG_PUPPIES = "Puppies";
-    public static final String VALID_TAG_ALL = "All";
+    public static final String VALID_NAME_PROGRAM_A = "Obedience Training";
+    public static final String VALID_NAME_PROGRAM_B = "Endurance Training";
+    public static final String VALID_SESSION_PROGRAM_A = "01-02-2021 18:00";
+    public static final String VALID_SESSION_PROGRAM_B = "12-12-2012 16:00";
+    public static final String VALID_TAG_PUPPIES = "puppies";
+    public static final String VALID_TAG_DOGS = "dogs";
 
-    public static final String NAME_DESC_OBEDIENCE_TRAINING = " " + PREFIX_NAME + VALID_NAME_OBEDIENCE_TRAINING;
-    public static final String NAME_DESC_POTTY_TRAINING = " " + PREFIX_NAME + VALID_NAME_POTTY_TRAINING;
-    public static final String SESSION_DESC_OBEDIENCE_TRAINING = " " + PREFIX_SESSION
-            + VALID_SESSION_OBEDIENCE_TRAINING;
-    public static final String SESSION_DESC_POTTY_TRAINING = " " + PREFIX_SESSION
-            + VALID_SESSION_POTTY_TRAINING;
-    public static final String TAG_DESC_PUPPIES = " " + PREFIX_TAG + VALID_TAG_PUPPIES;
-    public static final String TAG_DESC_ALL = " " + PREFIX_TAG + VALID_TAG_ALL;
+    public static final String NAME_DESC_PROGRAM1 = " " + PREFIX_NAME + VALID_NAME_PROGRAM_A;
+    public static final String NAME_DESC_PROGRAM2 = " " + PREFIX_NAME + VALID_NAME_PROGRAM_B;
+    public static final String SESSION_DESC_PROGRAM1 = " " + PREFIX_SESSION + VALID_SESSION_PROGRAM_A;
+    public static final String SESSION_DESC_PROGRAM2 = " " + PREFIX_SESSION + VALID_SESSION_PROGRAM_B;
+    public static final String TAG_DESC_PUPPIES = " " + PREFIX_TAG + "puppies";
+    public static final String TAG_DESC_DOGS = " " + PREFIX_TAG + "dogs";
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -119,8 +117,8 @@ public class CommandTestUtil {
     public static final EditOwnerDescriptor DESC_BOB;
     public static final EditDogDescriptor DESC_ASHER;
     public static final EditDogDescriptor DESC_BELL;
-    public static final EditProgramDescriptor DESC_OBEDIENCE_TRAINING;
-    public static final EditProgramDescriptor DESC_POTTY_TRAINING;
+    public static final EditProgramDescriptor DESC_PROGRAM_A;
+    public static final EditProgramDescriptor DESC_PROGRAM_B;
 
     public static final String INVALID_EMPTY_STRING = "";
     public static final String INVALID_NEGATIVE_ID_STRING = "-1";
@@ -149,10 +147,10 @@ public class CommandTestUtil {
     }
 
     static {
-        DESC_OBEDIENCE_TRAINING = new EditProgramDescriptorBuilder().withName(VALID_NAME_OBEDIENCE_TRAINING)
-                .withSessions(VALID_SESSION_OBEDIENCE_TRAINING).withTags(VALID_TAG_PUPPIES).build();
-        DESC_POTTY_TRAINING = new EditProgramDescriptorBuilder().withName(VALID_NAME_POTTY_TRAINING)
-                .withSessions(VALID_SESSION_POTTY_TRAINING).withTags(VALID_TAG_ALL).build();
+        DESC_PROGRAM_A = new EditProgramDescriptorBuilder().withName(VALID_NAME_PROGRAM_A)
+                .withSessions(VALID_SESSION_PROGRAM_A).withTags(VALID_TAG_PUPPIES).build();
+        DESC_PROGRAM_B = new EditProgramDescriptorBuilder().withName(VALID_NAME_PROGRAM_B)
+                .withSessions(VALID_SESSION_PROGRAM_B).withTags(VALID_TAG_DOGS).build();
     }
 
     /**

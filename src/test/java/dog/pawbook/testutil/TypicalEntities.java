@@ -134,6 +134,18 @@ public class TypicalEntities {
         for (Entity entity : getTypicalOwnersWithDog()) {
             db.addEntity(entity);
         }
+        return db;
+    }
+
+    /**
+     * Returns an {@code Database} with all the typical owners, dogs and programs.
+     */
+    public static Database getDatabaseWithPrograms() {
+        Database db = new Database();
+        for (Entity entity : getTypicalOwnersWithDog()) {
+            db.addEntity(entity);
+        }
+
         for (Program program : getTypicalPrograms()) {
             db.addEntity(program);
         }
