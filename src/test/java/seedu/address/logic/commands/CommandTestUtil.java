@@ -34,7 +34,7 @@ public class CommandTestUtil {
     public static final String VALID_CODE_BOB = "CS2040";
     public static final String VALID_WEIGHTAGE_AMY = "25%";
     public static final String VALID_WEIGHTAGE_BOB = "50%";
-    public static final String VALID_DATE_AMY = "10-10-2020";
+    public static final String VALID_DATE_AMY = "10-10-2022";
     public static final String VALID_DATE_BOB = "03-05-2022";
     public static final String VALID_TIME_AMY = "10:10";
     public static final String VALID_TIME_BOB = "23:59";
@@ -62,7 +62,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_CODE_DESC = " " + PREFIX_CODE + "CT2340"; // 'CT' not allowed in code
-    public static final String INVALID_DATE_DESC = " " + PREFIX_DEADLINE_DATE + "31:12:2020"; // Must in DD-MM-YYYY
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DEADLINE_DATE + "31:12:2022"; // Must in DD-MM-YYYY
     public static final String INVALID_TIME_DESC = " " + PREFIX_DEADLINE_TIME + "10-10"; // Must in HH:MM
     // non-digits not allowed in weightage
     public static final String INVALID_WEIGHTAGE_DESC_NAN = " " + PREFIX_WEIGHTAGE + "asd%";

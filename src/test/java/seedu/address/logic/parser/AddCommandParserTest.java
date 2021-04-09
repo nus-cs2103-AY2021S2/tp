@@ -95,7 +95,7 @@ public class AddCommandParserTest {
         // zero tags
         // remarks are empty by default
 
-        Task expectedTask = new TaskBuilder(AMY).withWeightage(25).withDeadlineDate("10-10-2020").withDeadlineTime("10"
+        Task expectedTask = new TaskBuilder(AMY).withWeightage(25).withDeadlineDate("10-10-2022").withDeadlineTime("10"
             + ":10")
             .withStatus("").withNotes("").withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + CODE_DESC_AMY + WEIGHTAGE_DESC_AMY + DATE_DESC_AMY + TIME_DESC_AMY,

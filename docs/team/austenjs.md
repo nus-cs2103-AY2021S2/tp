@@ -6,7 +6,7 @@ While it has a GUI, most of the user interactions happen using a CLI (Command Li
 #Summary Of Contributions
 
 ## Code Contributed
-You can see my contribution [here](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/#breakdown=true&search=austenjs).
+You can see my contribution [here](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=austenjs&tabRepo=AY2021S2-CS2103-T14-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false).
 
 ##Enhancements implemented
 I implemented 3 main features:

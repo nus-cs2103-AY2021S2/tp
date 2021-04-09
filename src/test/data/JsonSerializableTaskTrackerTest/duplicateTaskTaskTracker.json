@@ -2,7 +2,7 @@
   "tasks": [ {
     "taskName" : "Weekly Quiz",
     "moduleCode" : "CS2103",
-    "deadlineDate" : "10-04-2020",
+    "deadlineDate" : "10-04-2022",
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 0,
@@ -11,7 +11,7 @@
   }, {
     "taskName" : "Weekly Quiz",
     "moduleCode" : "CS2103",
-    "deadlineDate" : "10-04-2020",
+    "deadlineDate" : "10-04-2022",
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 0,
