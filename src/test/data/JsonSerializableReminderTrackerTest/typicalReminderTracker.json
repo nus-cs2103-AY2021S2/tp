@@ -1,0 +1,10 @@
+{
+  "reminders" : [ {
+    "description" : "Maths Tuition Payment Due",
+    "reminderDate" : "2021-06-01"
+  },
+    {
+      "description": "Science Tuition Payment Due",
+      "reminderDate": "2021-06-05"
+    }]
+}

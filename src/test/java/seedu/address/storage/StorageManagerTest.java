@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
+import static seedu.address.testutil.TypicalReminders.getTypicalReminderTracker;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 
@@ -21,6 +22,8 @@ import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.TutorBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.reminder.ReadOnlyReminderTracker;
+import seedu.address.model.reminder.ReminderTracker;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.ScheduleTracker;
 
@@ -99,6 +102,14 @@ public class StorageManagerTest {
     }
 
     @Test
+    public void reminderTrackerReadSave() throws Exception {
+        ReminderTracker original = getTypicalReminderTracker();
+        storageManager.saveReminderTracker(original);
+        ReadOnlyReminderTracker retrieved = storageManager.readReminderTracker().get();
+        assertEquals(original, new ReminderTracker(retrieved));
+    }
+
+    @Test
     public void gradeBookReadSave() throws Exception {
         GradeBook original = getTypicalGradeBook();
         storageManager.saveGradeBook(original);
@@ -121,4 +132,8 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getScheduleTrackerFilePath());
     }
 
+    @Test
+    public void getReminderTrackerFilePath() {
+        assertNotNull(storageManager.getReminderTrackerFilePath());
+    }
 }
