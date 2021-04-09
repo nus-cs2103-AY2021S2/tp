@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.logic.commands.exceptions.CommandException;
+import seedu.taskify.logic.parser.exceptions.ParseException;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.Task;
@@ -27,6 +28,7 @@ public class DeleteMultipleCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1" + " 3" + " 5";
 
     public static final String MESSAGE_SWITCH_TO_HOME = "Switch back to home page to delete!";
+    public static final String MESSAGE_NO_TASKS_OF_GIVEN_STATUS = "There are no tasks with the given status!";
 
     private final List<Index> targetIndexes;
     private final Optional<Status> statusOfTasksToDelete;
@@ -71,8 +73,11 @@ public class DeleteMultipleCommand extends Command {
             tasksToDelete = getTasksToDelete(lastShownList);
         }
 
-        deleteTasks(model, tasksToDelete);
+        if (tasksToDelete.isEmpty()) {
+            throw new CommandException(MESSAGE_NO_TASKS_OF_GIVEN_STATUS);
+        }
 
+        deleteTasks(model, tasksToDelete);
         return new CommandResult(generateSuccessMessage(tasksToDelete));
     }
 

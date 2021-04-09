@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taskify.logic.commands.CommandTestUtil.showTasksAtIndexes;
+import static seedu.taskify.logic.commands.DeleteMultipleCommand.MESSAGE_NO_TASKS_OF_GIVEN_STATUS;
 import static seedu.taskify.testutil.Assert.assertThrows;
 import static seedu.taskify.testutil.TypicalIndexes.INDEXES_FIRST_TO_THIRD_TASK;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_FIRST_TASK;
@@ -136,13 +137,19 @@ public class DeleteMultipleCommandTest {
         tasksToDelete.add(TASK_5);
 
         DeleteMultipleCommand deleteMulCommand = new DeleteMultipleCommand(new Status(StatusType.COMPLETED));
-
         String expectedMessage = MESSAGE_DELETE_COMPLETED_TASKS_SUCCESS;
-
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         deleteTasksFromModel(expectedModel, tasksToDelete);
 
         assertCommandSuccess(deleteMulCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_deleteByStatusButNoSuchTasks_throwsCommandException() {
+        showTasksAtIndexes(model, INDEXES_FIRST_TO_THIRD_TASK); // none of these tasks are expired
+        DeleteMultipleCommand deleteMulCommand = new DeleteMultipleCommand(new Status(StatusType.EXPIRED));
+
+        assertCommandFailure(deleteMulCommand, model, MESSAGE_NO_TASKS_OF_GIVEN_STATUS);
     }
 
 
