@@ -64,7 +64,10 @@ public class DateTime {
             return true;
         } catch (DateTimeParseException e) {
             if (e.getMessage().contains("Invalid value")) {
+                //DateTimeParseException already handles certain cases where values of day/month/time are invalid
+                //and it returns a message with the words "Invalid value" in it
                 //to let this error be caught by isValidDateTime instead
+                //return true
                 return true;
             }
             return false;
