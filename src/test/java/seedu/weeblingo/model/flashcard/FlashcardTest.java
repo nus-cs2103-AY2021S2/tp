@@ -2,8 +2,8 @@ package seedu.weeblingo.model.flashcard;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_B;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_B;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_I;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_I;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_DIFFICULT;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
 import static seedu.weeblingo.testutil.TypicalFlashcards.A_CARD;
@@ -30,7 +30,7 @@ public class FlashcardTest {
         assertFalse(A_CARD.isSameFlashcard(null));
 
         // different question, all other attributes same -> returns false
-        Flashcard editedFlashcardQuestion = new FlashcardBuilder(A_CARD).withQuestion(VALID_QUESTION_B).build();
+        Flashcard editedFlashcardQuestion = new FlashcardBuilder(A_CARD).withQuestion(VALID_QUESTION_I).build();
         assertFalse(A_CARD.isSameFlashcard(editedFlashcardQuestion));
     }
 
@@ -53,11 +53,11 @@ public class FlashcardTest {
         assertFalse(A_CARD.equals(I_CARD));
 
         // different question -> returns false
-        Flashcard editedFlashcardA = new FlashcardBuilder(A_CARD).withQuestion(VALID_QUESTION_B).build();
+        Flashcard editedFlashcardA = new FlashcardBuilder(A_CARD).withQuestion(VALID_QUESTION_I).build();
         assertFalse(A_CARD.equals(editedFlashcardA));
 
         // different answer -> returns false
-        editedFlashcardA = new FlashcardBuilder(A_CARD).withAnswer(VALID_ANSWER_B).build();
+        editedFlashcardA = new FlashcardBuilder(A_CARD).withAnswer(VALID_ANSWER_I).build();
         assertFalse(A_CARD.equals(editedFlashcardA));
 
         // different default tags -> returns false

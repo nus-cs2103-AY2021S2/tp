@@ -1,4 +1,4 @@
-package seedu.weeblingo.model.flashcard.exceptions;
+package seedu.weeblingo.model.score.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Scores (attempt scores)
