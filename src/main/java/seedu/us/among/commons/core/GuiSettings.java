@@ -13,8 +13,8 @@ public class GuiSettings implements Serializable {
     public static final String DEFAULT_THEME = "dark";
     private static String loadedTheme;
 
-    private static final double DEFAULT_HEIGHT = 600;
-    private static final double DEFAULT_WIDTH = 740;
+    private static final double DEFAULT_HEIGHT = 750;
+    private static final double DEFAULT_WIDTH = 1100;
 
     private final double windowWidth;
     private final double windowHeight;

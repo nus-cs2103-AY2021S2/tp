@@ -7,7 +7,7 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_COMMAND_ERROR = "Error: %1$s\n%2$s";
+    public static final String MESSAGE_INVALID_COMMAND_ERROR = "%1$s\n%2$s";
     public static final String MESSAGE_INDEX_NOT_WITHIN_LIST =
              "Index provided is not within the saved endpoint list.\n";
     public static final String MESSAGE_INVALID_INDEX = "Either no index has been provided or "

@@ -3,7 +3,7 @@ layout: page
 title: imPoster Developer Guide
 nav-text: Developer Guide
 ---
-<!--Remember to revert README! -->
+<!-- Remember to revert README! -->
 <p align="center">
   <img width="300px" src="images/imPosterDevGuide.png" >
 </p>
@@ -23,17 +23,14 @@ nav-text: Developer Guide
 ## **Introduction**
 imPoster is a desktop application for beginners of API development to quickly grasp the basics. 
 imPoster's simple and minimalistic style can help beginner API developers **explore** and **test** APIs, whether those **found online** or those that they have **built** themselves.
-imPoster is also highly optimised fast typists and can be fully operated through keyboard commands.
-
+imPoster is also highly optimised fast typists and can be fully operated through keyboard commands. <br>
 
 This developer's guide assumes its readers to have a **basic understanding** of APIs. 
 For a basic definition of [what an API is](#what-is-an-api), an appendix has been provided for readers who may be unfamiliar with the concept.
-However, it is highly recommended for readers to refer to proper tutorial contents for the basics of APIs prior to developing the application.
+However, it is highly recommended for readers to refer to proper tutorial contents for the basics of APIs prior to developing the application. <br>
 
+Readers are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application. <br>
 
-Readers are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application.
-
-* to-do brief description and some navigation tips about the developer guide as to what was similarly done in the user guide.
 ## **Navigating this Developer Guide**
 
 Before diving into the rest of the contents in our developer guide, the following are a few important syntaxes to take note of to facilitate your reading:
@@ -53,9 +50,7 @@ Before diving into the rest of the contents in our developer guide, the followin
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
-**`Main`** has two classes called [`Main`](https://github.
-com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/Main.java) and [`ImPoster`](https://github.
-com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/ImPoster.java). They are responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/Main.java) and [`ImPoster`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/ImPoster.java). They are responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -81,28 +76,25 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user 
-issues the command `send 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `remove 1`.
 
-![Architecture_Sequence_Diagram](images/ArchitectureSequenceDiagram.png)
+<img src="images/ArchitectureSequenceDiagramRemove.png" width="600" />
 
 The sections below give more details of each component.
 
 <div style="page-break-after: always;"></div>
 
 ### UI component
+
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EndpointListPanel`, 
-`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EndpointListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that 
-are in the `src/main/resources/view` folder. For example, the layout of the 
-[`MainWindow`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/ui/MainWindow.java) 
-is specified in 
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the 
+[`MainWindow`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/ui/MainWindow.java) is specified in 
 [`MainWindow.fxml`](https://https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
@@ -118,15 +110,13 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/logic/Logic.java)
 
-1. Logic first uses the `ImposterParser` class to parse a user's input, through the `parseCommand` method.
-2. Depending on the Command, the user's input could be parsed by that command's specific parser. (e.g `AddCommandParser`) 
-3. This causes a `Command` object to be created, which is executed by the `LogicManager`through the `execute` method.
-4. The execution of Command can create, alter, retrieve or execute an `Endpoint` Object, or change the `EndpointList`. (eg. add, edit, find, show, run, send)
-5. What occured in the execution is encapsulated in a `CommandResult`, which is then passed to `UI` component, which displays to user infomation about what has occured.
+1. `Logic` uses the `ImposterParser` class to parse the user command
+2. This results in a `Command` object which is executed by the `LogicManager`.
+3. The command execution can affect the `Model` (e.g. adding a endpoint).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-<div style="page-break-after: always;"></div>
-
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("remove 1")` API call.
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/RemoveSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -141,9 +131,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the Endpoint List data.
-* exposes an unmodifiable `ObservableList<Endpoint>` that can be 'observed' e.g. the UI can be bound to this list so 
-  that the UI automatically updates when the data in the list change.
+* stores the Endpoint List Data.
+* exposes an unmodifiable `ObservableList<Endpoint>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model
@@ -163,6 +152,7 @@ require one `Tag` object per unique `Tag`, instead of each `Endpoint` needing th
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the Endpoint List data in json format and read it back.
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.us.among.commons` package.
@@ -298,6 +288,8 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 The `run` command deploys a similar trick but for an endpoint specified directly within the command arguments.
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes a run command:
 <p align="center">
   <img alt="RunActivityDiagram" src="images/RunActivityDiagram.png" width="400px"/>
@@ -313,6 +305,8 @@ The following activity diagram summarizes what happens when a user executes a ru
 * **Alternative 2:** Individual command checks if the endpoint/url address is valid by itself.
     * Pros: Checking of url address validity right before execution will ensure proper request is processed.
     * Cons: Duplication of code across Send and Run commands.
+
+<div style="page-break-after: always;"></div>
 
 ### Request feature
 
@@ -354,6 +348,8 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes a `send` command for an endpoint with a `GET` request:
 <br/>
 <p align="center">
@@ -388,6 +384,8 @@ Step 1. The user launches the application and executes `toggle light` to change 
 
 Step 2. The `toggle` command returns a `CommandResult` that triggers the `updateTheme()` method within `MainWindow`. `MainWindow` then finds the relevant .css file containing all theme information and applies it to all elements it contains.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the toggle command works for the above example: 
 ![ToggleSequenceDiagram](images/ToggleSequenceDiagram.png)
 
@@ -396,6 +394,9 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 </div>
 
 ---
+
+<div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -815,14 +816,20 @@ Given below are instructions to test the app manually.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample endpoints. The window size may not be optimum.
+   1. Double-click the jar file. <br>
+      Expected: Shows the GUI with a set of sample endpoints. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
+
+1. Exiting the app
+   
+   1. With the app still open, enter `exit` in the command box or click on the close window button.<br>
+      Expected: App closes.
 
 1. _{ more test cases …​ }_
 
@@ -845,10 +852,31 @@ Given below are instructions to test the app manually.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Saving endpoints between sessions
+   
+   1. Launch the app.
+      
+   1. Save an endpoint with a valid `add` command. Confirm the endpoint has been saved by checking its existence at the end of the list of saved endpoints.
+      
+   1. Close the app.
+      
+   1. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The new endpoint is still present at the end of the list of saved endpoints. 
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Dealing with corrupted/missing data files
 
+   1. Prerequisite: Have opened and closed the application and confirmed that the files `preferences.json` and `data/imposter.json` have been created in the same directory that imPoster was run from.
+      
+   1. Manually edit any of the aforementioned files with any text editing software to break the JSON format. For example, removing the opening curly brace of the JSON file. Alternatively, you may delete these files.
+      
+   1. Re-launch the app by double-clicking the jar file.
+    
+   1. Test case: `data/imposter.json` was corrupted/deleted. <br>
+      Expected: The app should start with a list of saved endpoints (on the left) that is empty.
+      
+   1. Test case: `preferences.json` was corrupted/deleted. <br>
+      Expected: The app should start with the default theme, window size and location.
+      
 1. _{ more test cases …​ }_
 
 ## **Appendix I: Effort**

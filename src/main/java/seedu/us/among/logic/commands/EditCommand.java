@@ -48,9 +48,8 @@ public class EditCommand extends Command {
             + PREFIX_TAG + " search "
             + PREFIX_TAG + " important\n";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of an existing API endpoint "
-            + "identified using its displayed index from the API endpoint list. "
-            + "Existing values will be overwritten by the input values.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Calls a saved API endpoint using the "
+            + "displayed index from the saved endpoints list.\n"
             + "Parameters: INDEX "
             + PREFIX_METHOD + " METHOD "
             + PREFIX_ADDRESS + " ADDRESS "
