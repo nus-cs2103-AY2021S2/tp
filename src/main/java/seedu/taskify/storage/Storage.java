@@ -21,12 +21,12 @@ public interface Storage extends TaskifyStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getTaskifyFilePath();
 
     @Override
-    Optional<ReadOnlyTaskify> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTaskify> readTaskifyData() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyTaskify taskify) throws IOException;
+    void saveTaskifyData(ReadOnlyTaskify taskify) throws IOException;
 
 }

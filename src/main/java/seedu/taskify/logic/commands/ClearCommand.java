@@ -18,7 +18,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new Taskify());
+        model.setTaskifyData(new Taskify());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

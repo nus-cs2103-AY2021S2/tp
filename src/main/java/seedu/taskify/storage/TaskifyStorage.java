@@ -16,7 +16,7 @@ public interface TaskifyStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getTaskifyFilePath();
 
     /**
      * Returns TaskifyParser data as a {@link ReadOnlyTaskify}.
@@ -24,23 +24,23 @@ public interface TaskifyStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyTaskify> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTaskify> readTaskifyData() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getTaskifyFilePath()
      */
-    Optional<ReadOnlyTaskify> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyTaskify> readTaskifyData(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyTaskify} to the storage.
      * @param taskify cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyTaskify taskify) throws IOException;
+    void saveTaskifyData(ReadOnlyTaskify taskify) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyTaskify)
+     * @see #saveTaskifyData(ReadOnlyTaskify)
      */
-    void saveAddressBook(ReadOnlyTaskify taskify, Path filePath) throws IOException;
+    void saveTaskifyData(ReadOnlyTaskify taskify, Path filePath) throws IOException;
 
 }
