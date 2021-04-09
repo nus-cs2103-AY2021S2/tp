@@ -53,6 +53,15 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_taskInvalidTime_throwsCommandException() {
+        Task invalidTask = new TaskBuilder().withStartTime(TaskBuilder.LATER_STARTTIME).build();
+        AddCommand addCommand = new AddCommand(invalidTask);
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
+
+        assertThrows(CommandException.class, Task.INVALID_START_TIME, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
         Task alice = new TaskBuilder().withName("Alice").build();
         Task bob = new TaskBuilder().withName("Bob").build();

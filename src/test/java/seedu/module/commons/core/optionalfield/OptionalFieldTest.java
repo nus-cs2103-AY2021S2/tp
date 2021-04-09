@@ -1,5 +1,6 @@
 package seedu.module.commons.core.optionalfield;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -33,5 +34,14 @@ class OptionalFieldTest {
         OptionalField<String> testObjectSame = new OptionalField<>("one");
         assertTrue(testObjectOne.equals(testObjectSame));
 
+    }
+
+    @Test
+    void toStringTest() {
+        OptionalField<String> testObjectNull = new OptionalField<>(null);
+        OptionalField<String> testObjectOne = new OptionalField<>("one");
+
+        assertEquals(testObjectNull.toString(), OptionalField.FIELD_IS_NULL);
+        assertEquals(testObjectOne.toString(), "one");
     }
 }

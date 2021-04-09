@@ -121,6 +121,8 @@ class SortCommandTest {
 
     @Test
     public void equals() {
+        assertEquals(tagSortCommand, tagSortCommand);
+
         assertEquals(tagSortCommand, new SortCommand(new Task.TagComparator()));
 
         assertEquals(nameSortCommand, new SortCommand(new Task.NameComparator()));
@@ -132,6 +134,8 @@ class SortCommandTest {
         assertEquals(moduleSortCommand, new SortCommand(new Task.ModuleComparator()));
 
         assertEquals(workloadSortCommand, new SortCommand(new Task.WorkloadComparator()));
+
+        assertNotEquals(tagSortCommand, "Not a SortCommand");
 
         assertNotEquals(nameSortCommand, new SortCommand(new Task.TagComparator()));
 

@@ -2,6 +2,7 @@ package seedu.module.logic.parser;
 
 import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.module.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.module.logic.commands.CommandTestUtil.TAG_DESC_HIGH;
 import static seedu.module.logic.commands.CommandTestUtil.TAG_DESC_LOW;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIGH;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
@@ -40,10 +41,10 @@ class TagCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + VALID_TAG_PRIORITY_HIGH, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + TAG_DESC_HIGH, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // zero index
-        assertParseFailure(parser, "0" + VALID_TAG_PRIORITY_HIGH, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + TAG_DESC_HIGH, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // empty tag
         assertParseFailure(parser, "1" + PREFIX_TAG, MESSAGE_INVALID_FORMAT);
