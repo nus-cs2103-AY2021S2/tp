@@ -36,7 +36,7 @@ public class EditOwnerDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditOwnerDescriptor editedAmy = (EditOwnerDescriptor) new EditOwnerDescriptorBuilder(DESC_AMY)
+        EditOwnerDescriptor editedAmy = new EditOwnerDescriptorBuilder(DESC_AMY)
                 .withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
@@ -53,7 +53,7 @@ public class EditOwnerDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = (EditOwnerDescriptor) new EditOwnerDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditOwnerDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }
