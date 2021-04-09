@@ -159,6 +159,11 @@ public class NextCommandTest {
         }
 
         @Override
+        public Flashcard getNextFlashcard() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public int getCurrentIndex() {
             throw new AssertionError("This method should not be called.");
         }
