@@ -11,6 +11,7 @@ public class Messages {
     public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Deleted Entry: %1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_DATE_RANGE = "The start date must be strictly before the end date!";
+    public static final String MESSAGE_CONTACTS_LISTED_OVERVIEW = "%1$d contacts listed!";
     public static final String MESSAGE_ENTRIES_LISTED_OVERVIEW = "%1$d entries listed!";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_SCHEDULES_LISTED_OVERVIEW = "%1$d schedules listed!";

@@ -120,6 +120,9 @@ public class TypicalTeachingAssistant {
         for (Contact contact : getTypicalContacts()) {
             ab.addContact(contact);
         }
+        for (Person person : getTypicalPersons()) {
+            ab.addPerson(person);
+        }
         for (Entry entry : getTypicalEntries()) {
             ab.addEntry(entry);
         }
