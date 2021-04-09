@@ -12,11 +12,14 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to record meetings with friends and to delete them.
   * Justification: This feature provides a way for users to input meeting data into FriendDex so users can view their past meetings if they forget them.
-  * Highlights: It was challenging manipulating and validating date/time inputs from users.  
+  * Highlights: It was challenging manipulating and validating date/time inputs from users. 
+  * Elaboration: Dates are used extensively throughout FriendDex (e.g. birthdays, special dates and calculating goal deadlines). I ended up creating a `DateUtil` class to standardise 
+  the format for date inputs. All commands that take date inputs will use the util class to parse dates.         
   
 * **New Feature**: Added the ability to add profile pictures to friends and to delete them.
   * Justification: This feature provides a way to attach a picture with a friend so users can remember how their friends look.
   * Highlights: This feature required interactions with file system APIs to do validation and copying of image files into the data directory.
+  * Elaboration: 
   
 * **New feature**: Added autocomplete for commands
   * Justification: This feature improves the product because a user does not have to remember the commands available for execution.
