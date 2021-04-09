@@ -274,7 +274,7 @@ Examples:
 ![Find](images/find.png)
 ### Viewing help : `help`
 
-Display a pop-up window showing a list of important commands and a link to our User Guide. 
+Display a pop-up window showing a list of commonly used commands and a link to our User Guide. 
 
 Format: `help`
 
