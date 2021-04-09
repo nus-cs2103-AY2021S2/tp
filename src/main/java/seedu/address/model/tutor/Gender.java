@@ -2,13 +2,12 @@ package seedu.address.model.tutor;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.tag.Filterable;
 
 /**
  * Represents a Person's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
  */
-public class Gender implements Filterable {
+public class Gender {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Genders should be male or female";
@@ -56,10 +55,5 @@ public class Gender implements Filterable {
     @Override
     public int hashCode() {
         return personGender.hashCode();
-    }
-
-    @Override
-    public boolean filter(String s) {
-        return personGender.contains(s);
     }
 }

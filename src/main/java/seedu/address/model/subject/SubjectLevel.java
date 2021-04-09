@@ -3,13 +3,12 @@ package seedu.address.model.subject;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.tag.Filterable;
 
 /**
  * Represents a Subject's education level in Tutor Tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidLevel(String)}
  */
-public class SubjectLevel implements Filterable {
+public class SubjectLevel {
     public static final String MESSAGE_CONSTRAINTS =
             "Subject level should only contain alphanumeric characters and spaces, and it should not be blank";
 
@@ -54,10 +53,5 @@ public class SubjectLevel implements Filterable {
     @Override
     public int hashCode() {
         return level.hashCode();
-    }
-
-    @Override
-    public boolean filter(String s) {
-        return level.contains(s);
     }
 }

@@ -4,13 +4,12 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.tag.Filterable;
 
 /**
  * Represents a subject that a tutor offers.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class TutorSubject implements Filterable {
+public class TutorSubject {
     public static final String MESSAGE_CONSTRAINTS =
             "Each TutorSubject must contain name, level, rate, experience and qualification";
     private final SubjectName name;
@@ -93,16 +92,5 @@ public class TutorSubject implements Filterable {
                 .append(getQualification());
 
         return builder.toString();
-    }
-
-    @Override
-    public boolean filter(String s) {
-        boolean disjunction = false;
-        disjunction = disjunction || name.filter(s);
-        disjunction = disjunction || level.filter(s);
-        disjunction = disjunction || rate.filter(s);
-        disjunction = disjunction || experience.filter(s);
-        disjunction = disjunction || qualification.filter(s);
-        return disjunction;
     }
 }

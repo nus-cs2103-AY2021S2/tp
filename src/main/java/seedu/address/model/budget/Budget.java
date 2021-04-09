@@ -5,11 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Objects;
 
-import seedu.address.model.tag.Filterable;
-
-
-
-public class Budget implements Filterable {
+public class Budget {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Budget should only be an integer, and it should be at least 1 digit long";
@@ -80,9 +76,4 @@ public class Budget implements Filterable {
     public int hashCode() {
         return Objects.hash(value, totalCost);
     }
-
-    public boolean filter(String s) {
-        return value.equals(Integer.parseInt(s));
-    }
-
 }

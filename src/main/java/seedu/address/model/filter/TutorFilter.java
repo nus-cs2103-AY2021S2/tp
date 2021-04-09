@@ -2,12 +2,9 @@ package seedu.address.model.filter;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,30 +21,21 @@ import seedu.address.model.tutor.Name;
 import seedu.address.model.tutor.Phone;
 import seedu.address.model.tutor.Tutor;
 
+/**
+ * TutorFilter that contains all tutor filters active in the application.
+ */
 public class TutorFilter implements Predicate<Tutor> {
-    private final Set<Predicate<Name>> nameFilters;
-    private final Set<Predicate<Gender>> genderFilters;
-    private final Set<Predicate<Phone>> phoneFilters;
-    private final Set<Predicate<Email>> emailFilters;
-    private final Set<Predicate<Address>> addressFilters;
+    private final FilterSet<Name> nameFilters;
+    private final FilterSet<Gender> genderFilters;
+    private final FilterSet<Phone> phoneFilters;
+    private final FilterSet<Email> emailFilters;
+    private final FilterSet<Address> addressFilters;
 
-    private final Set<Predicate<SubjectName>> subjectNameFilters;
-    private final Set<Predicate<SubjectLevel>> subjectLevelFilters;
-    private final Set<Predicate<SubjectRate>> subjectRateFilters;
-    private final Set<Predicate<SubjectExperience>> subjectExperienceFilters;
-    private final Set<Predicate<SubjectQualification>> subjectQualificationFilters;
-
-    private Predicate<Name> composedNameFilter;
-    private Predicate<Gender> composedGenderFilter;
-    private Predicate<Phone> composedPhoneFilter;
-    private Predicate<Email> composedEmailFilter;
-    private Predicate<Address> composedAddressFilter;
-
-    private Predicate<SubjectName> composedSubjectNameFilter;
-    private Predicate<SubjectLevel> composedSubjectLevelFilter;
-    private Predicate<SubjectRate> composedSubjectRateFilter;
-    private Predicate<SubjectExperience> composedSubjectExperienceFilter;
-    private Predicate<SubjectQualification> composedSubjectQualificationFilter;
+    private final FilterSet<SubjectName> subjectNameFilters;
+    private final FilterSet<SubjectLevel> subjectLevelFilters;
+    private final FilterSet<SubjectRate> subjectRateFilters;
+    private final FilterSet<SubjectExperience> subjectExperienceFilters;
+    private final FilterSet<SubjectQualification> subjectQualificationFilters;
 
     private final ObservableList<String> stringList = FXCollections.observableArrayList();
     private final ObservableList<String> unmodifiableStringList =
@@ -57,19 +45,18 @@ public class TutorFilter implements Predicate<Tutor> {
      * Constructs an empty {@code PersonFilter} that shows all people by default.
      */
     public TutorFilter() {
-        this.nameFilters = new LinkedHashSet<>();
-        this.genderFilters = new LinkedHashSet<>();
-        this.phoneFilters = new LinkedHashSet<>();
-        this.emailFilters = new LinkedHashSet<>();
-        this.addressFilters = new LinkedHashSet<>();
+        this.nameFilters = new InclusiveFilterSet<>();
+        this.genderFilters = new InclusiveFilterSet<>();
+        this.phoneFilters = new InclusiveFilterSet<>();
+        this.emailFilters = new InclusiveFilterSet<>();
+        this.addressFilters = new InclusiveFilterSet<>();
 
-        this.subjectNameFilters = new LinkedHashSet<>();
-        this.subjectLevelFilters = new LinkedHashSet<>();
-        this.subjectRateFilters = new LinkedHashSet<>();
-        this.subjectExperienceFilters = new LinkedHashSet<>();
-        this.subjectQualificationFilters = new LinkedHashSet<>();
+        this.subjectNameFilters = new InclusiveFilterSet<>();
+        this.subjectLevelFilters = new InclusiveFilterSet<>();
+        this.subjectRateFilters = new ExclusiveFilterSet<>();
+        this.subjectExperienceFilters = new ExclusiveFilterSet<>();
+        this.subjectQualificationFilters = new InclusiveFilterSet<>();
 
-        composeFilters();
         buildStringList();
     }
 
@@ -98,19 +85,18 @@ public class TutorFilter implements Predicate<Tutor> {
                 subjectExperienceFilters,
                 subjectQualificationFilters);
 
-        this.nameFilters = nameFilters;
-        this.genderFilters = genderFilters;
-        this.phoneFilters = phoneFilters;
-        this.emailFilters = emailFilters;
-        this.addressFilters = addressFilters;
+        this.nameFilters = new InclusiveFilterSet<>(nameFilters);
+        this.genderFilters = new InclusiveFilterSet<>(genderFilters);
+        this.phoneFilters = new InclusiveFilterSet<>(phoneFilters);
+        this.emailFilters = new InclusiveFilterSet<>(emailFilters);
+        this.addressFilters = new InclusiveFilterSet<>(addressFilters);
 
-        this.subjectNameFilters = subjectNameFilters;
-        this.subjectLevelFilters = subjectLevelFilters;
-        this.subjectRateFilters = subjectRateFilters;
-        this.subjectExperienceFilters = subjectExperienceFilters;
-        this.subjectQualificationFilters = subjectQualificationFilters;
+        this.subjectNameFilters = new InclusiveFilterSet<>(subjectNameFilters);
+        this.subjectLevelFilters = new InclusiveFilterSet<>(subjectLevelFilters);
+        this.subjectRateFilters = new ExclusiveFilterSet<>(subjectRateFilters);
+        this.subjectExperienceFilters = new ExclusiveFilterSet<>(subjectExperienceFilters);
+        this.subjectQualificationFilters = new InclusiveFilterSet<>(subjectQualificationFilters);
 
-        composeFilters();
         buildStringList();
     }
 
@@ -118,32 +104,32 @@ public class TutorFilter implements Predicate<Tutor> {
      * Checks if person filter contains any of the filters from another person filter.
      */
     public boolean hasAny(TutorFilter tutorFilter) {
-        return !Collections.disjoint(this.nameFilters, tutorFilter.nameFilters)
-                || !Collections.disjoint(this.genderFilters, tutorFilter.genderFilters)
-                || !Collections.disjoint(this.phoneFilters, tutorFilter.phoneFilters)
-                || !Collections.disjoint(this.emailFilters, tutorFilter.emailFilters)
-                || !Collections.disjoint(this.addressFilters, tutorFilter.addressFilters)
-                || !Collections.disjoint(this.subjectNameFilters, tutorFilter.subjectNameFilters)
-                || !Collections.disjoint(this.subjectLevelFilters, tutorFilter.subjectLevelFilters)
-                || !Collections.disjoint(this.subjectRateFilters, tutorFilter.subjectRateFilters)
-                || !Collections.disjoint(this.subjectExperienceFilters, tutorFilter.subjectExperienceFilters)
-                || !Collections.disjoint(this.subjectQualificationFilters, tutorFilter.subjectQualificationFilters);
+        return nameFilters.hasAny(tutorFilter.nameFilters)
+                || genderFilters.hasAny(tutorFilter.genderFilters)
+                || phoneFilters.hasAny(tutorFilter.phoneFilters)
+                || emailFilters.hasAny(tutorFilter.emailFilters)
+                || addressFilters.hasAny(tutorFilter.addressFilters)
+                || subjectNameFilters.hasAny(tutorFilter.subjectNameFilters)
+                || subjectLevelFilters.hasAny(tutorFilter.subjectLevelFilters)
+                || subjectRateFilters.hasAny(tutorFilter.subjectRateFilters)
+                || subjectExperienceFilters.hasAny(tutorFilter.subjectExperienceFilters)
+                || subjectQualificationFilters.hasAny(tutorFilter.subjectQualificationFilters);
     }
 
     /**
      * Checks if person filter contains all of the filters from another person filter.
      */
     public boolean hasAll(TutorFilter tutorFilter) {
-        return this.nameFilters.containsAll(tutorFilter.nameFilters)
-                && this.genderFilters.containsAll(tutorFilter.genderFilters)
-                && this.phoneFilters.containsAll(tutorFilter.phoneFilters)
-                && this.emailFilters.containsAll(tutorFilter.emailFilters)
-                && this.addressFilters.containsAll(tutorFilter.addressFilters)
-                && this.subjectNameFilters.containsAll(tutorFilter.subjectNameFilters)
-                && this.subjectLevelFilters.containsAll(tutorFilter.subjectLevelFilters)
-                && this.subjectRateFilters.containsAll(tutorFilter.subjectRateFilters)
-                && this.subjectExperienceFilters.containsAll(tutorFilter.subjectExperienceFilters)
-                && this.subjectQualificationFilters.containsAll(tutorFilter.subjectQualificationFilters);
+        return nameFilters.hasAll(tutorFilter.nameFilters)
+                && genderFilters.hasAll(tutorFilter.genderFilters)
+                && phoneFilters.hasAll(tutorFilter.phoneFilters)
+                && emailFilters.hasAll(tutorFilter.emailFilters)
+                && addressFilters.hasAll(tutorFilter.addressFilters)
+                && subjectNameFilters.hasAll(tutorFilter.subjectNameFilters)
+                && subjectLevelFilters.hasAll(tutorFilter.subjectLevelFilters)
+                && subjectRateFilters.hasAll(tutorFilter.subjectRateFilters)
+                && subjectExperienceFilters.hasAll(tutorFilter.subjectExperienceFilters)
+                && subjectQualificationFilters.hasAll(tutorFilter.subjectQualificationFilters);
     }
 
     /**
@@ -162,7 +148,6 @@ public class TutorFilter implements Predicate<Tutor> {
         subjectExperienceFilters.addAll(tutorFilter.subjectExperienceFilters);
         subjectQualificationFilters.addAll(tutorFilter.subjectQualificationFilters);
 
-        composeFilters();
         buildStringList();
         return this;
     }
@@ -183,7 +168,6 @@ public class TutorFilter implements Predicate<Tutor> {
         subjectExperienceFilters.removeAll(tutorFilter.subjectExperienceFilters);
         subjectQualificationFilters.removeAll(tutorFilter.subjectQualificationFilters);
 
-        composeFilters();
         buildStringList();
         return this;
     }
@@ -238,11 +222,11 @@ public class TutorFilter implements Predicate<Tutor> {
         }
 
         boolean isFiltered = true;
-        isFiltered = isFiltered && composedNameFilter.test(tutor.getName());
-        isFiltered = isFiltered && composedGenderFilter.test(tutor.getGender());
-        isFiltered = isFiltered && composedPhoneFilter.test(tutor.getPhone());
-        isFiltered = isFiltered && composedEmailFilter.test(tutor.getEmail());
-        isFiltered = isFiltered && composedAddressFilter.test(tutor.getAddress());
+        isFiltered = isFiltered && nameFilters.test(tutor.getName());
+        isFiltered = isFiltered && genderFilters.test(tutor.getGender());
+        isFiltered = isFiltered && phoneFilters.test(tutor.getPhone());
+        isFiltered = isFiltered && emailFilters.test(tutor.getEmail());
+        isFiltered = isFiltered && addressFilters.test(tutor.getAddress());
 
         boolean isAnySubjectFiltered = false;
         if (tutor.getSubjectList().asUnmodifiableObservableList().isEmpty()) {
@@ -251,12 +235,11 @@ public class TutorFilter implements Predicate<Tutor> {
 
         for (TutorSubject subject : tutor.getSubjectList()) {
             boolean isSubjectFiltered = true;
-            isSubjectFiltered = isSubjectFiltered && composedSubjectNameFilter.test(subject.getName());
-            isSubjectFiltered = isSubjectFiltered && composedSubjectLevelFilter.test(subject.getLevel());
-            isSubjectFiltered = isSubjectFiltered && composedSubjectRateFilter.test(subject.getRate());
-            isSubjectFiltered = isSubjectFiltered && composedSubjectExperienceFilter.test(subject.getExperience());
-            isSubjectFiltered = isSubjectFiltered && composedSubjectQualificationFilter.test(
-                    subject.getQualification());
+            isSubjectFiltered = isSubjectFiltered && subjectNameFilters.test(subject.getName());
+            isSubjectFiltered = isSubjectFiltered && subjectLevelFilters.test(subject.getLevel());
+            isSubjectFiltered = isSubjectFiltered && subjectRateFilters.test(subject.getRate());
+            isSubjectFiltered = isSubjectFiltered && subjectExperienceFilters.test(subject.getExperience());
+            isSubjectFiltered = isSubjectFiltered && subjectQualificationFilters.test(subject.getQualification());
             isAnySubjectFiltered = isAnySubjectFiltered || isSubjectFiltered;
         }
         isFiltered = isFiltered && isAnySubjectFiltered;
@@ -264,60 +247,18 @@ public class TutorFilter implements Predicate<Tutor> {
         return isFiltered;
     }
 
-    private void composeFilters() {
-        this.composedNameFilter = nameFilters.stream()
-                .reduce((x, y) -> x.or(y))
-                .orElse(x -> true);
-
-        this.composedGenderFilter = genderFilters.stream()
-                .reduce((x, y) -> x.or(y))
-                .orElse(x -> true);
-
-        this.composedPhoneFilter = phoneFilters.stream()
-                .reduce((x, y) -> x.or(y))
-                .orElse(x -> true);
-
-        this.composedEmailFilter = emailFilters.stream()
-                .reduce((x, y) -> x.or(y))
-                .orElse(x -> true);
-
-        this.composedAddressFilter = addressFilters.stream()
-                .reduce((x, y) -> x.or(y))
-                .orElse(x -> true);
-
-        this.composedSubjectNameFilter = subjectNameFilters.stream()
-                .reduce((x, y) -> x.or(y))
-                .orElse(x -> true);
-
-        this.composedSubjectLevelFilter = subjectLevelFilters.stream()
-                .reduce((x, y) -> x.or(y))
-                .orElse(x -> true);
-
-        this.composedSubjectRateFilter = subjectRateFilters.stream()
-                .reduce((x, y) -> x.and(y))
-                .orElse(x -> true);
-
-        this.composedSubjectExperienceFilter = subjectExperienceFilters.stream()
-                .reduce((x, y) -> x.and(y))
-                .orElse(x -> true);
-
-        this.composedSubjectQualificationFilter = subjectQualificationFilters.stream()
-                .reduce((x, y) -> x.or(y))
-                .orElse(x -> true);
-    }
-
     private void buildStringList() {
         stringList.clear();
 
-        stringList.addAll(nameFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
-        stringList.addAll(genderFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
-        stringList.addAll(phoneFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
-        stringList.addAll(emailFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
-        stringList.addAll(addressFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
-        stringList.addAll(subjectNameFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
-        stringList.addAll(subjectLevelFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
-        stringList.addAll(subjectRateFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
-        stringList.addAll(subjectExperienceFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
-        stringList.addAll(subjectQualificationFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
+        stringList.addAll(nameFilters.toStringList());
+        stringList.addAll(genderFilters.toStringList());
+        stringList.addAll(phoneFilters.toStringList());
+        stringList.addAll(emailFilters.toStringList());
+        stringList.addAll(addressFilters.toStringList());
+        stringList.addAll(subjectNameFilters.toStringList());
+        stringList.addAll(subjectLevelFilters.toStringList());
+        stringList.addAll(subjectRateFilters.toStringList());
+        stringList.addAll(subjectExperienceFilters.toStringList());
+        stringList.addAll(subjectQualificationFilters.toStringList());
     }
 }

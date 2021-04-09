@@ -1,12 +1,11 @@
 package seedu.address.model.tutor;
 
-import seedu.address.model.tag.Filterable;
 
 /**
  * Represents the notes of the tutor in Tutor Tracker
  */
 
-public class Notes implements Filterable {
+public class Notes {
 
     public static final String MESSAGE_CONSTRAINTS = "Notes can take any values";
 
@@ -63,11 +62,6 @@ public class Notes implements Filterable {
     @Override
     public int hashCode() {
         return value.hashCode();
-    }
-
-    @Override
-    public boolean filter(String s) {
-        return value.contains(s);
     }
 }
 

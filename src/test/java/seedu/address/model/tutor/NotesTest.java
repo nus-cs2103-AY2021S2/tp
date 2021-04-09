@@ -27,21 +27,4 @@ class NotesTest {
 
         assertEquals(notesString, notes.toString());
     }
-
-    @Test
-    void filter_true() {
-        String notesString = "i like avocados";
-        Notes notes = new Notes(notesString);
-
-        assertTrue(notes.filter("avocados"));
-    }
-
-    @Test
-    void filter_false() {
-        String notesString = "i like avocados";
-        Notes notes = new Notes(notesString);
-
-        assertFalse(notes.filter("banana"));
-    }
 }
-
