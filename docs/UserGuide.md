@@ -262,7 +262,10 @@ Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORK
 
 * Recurrence should be either "daily", "weekly" or "biweekly".
 
-* Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm set to 00:00)
+* Enter the time you wish to complete your task in any of these formats: 
+  * yyyy-MM-dd HH:mm:ss
+  * yyyy-MM-dd HH:mm (ss set to 0)
+  * yyyy-MM-dd (HH:mm:ss set to 00:00:00)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:**
 Now, key in the following commands in this order:<br>
@@ -478,8 +481,8 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 In this screenshot, the colour of task 1 changed because the new deadline is closer.
 
 Examples:
-*  `edit 1 d/Eat Biscuits` Edits the description of the 1st task to `Eat Biscuits`.
-*  `edit 2 d/Eat Biscuits b/2021-03-21 10:10` Edits the description of the 2nd task to be `Eat Biscuits` and its deadline to date `2021-03-21 10:10`.
+*  `edit 1 d/Finish User Guide` Edits the description of the 1st task to `Finish User Guide`.
+*  `edit 2 d/Finish User Guide b/2021-03-21 10:10:10` Edits the description of the 2nd task to be `Finish User Guide` and its deadline to date `2021-03-21 10:10:10`.
 *  `edit 2 b/2021-03-25` Edits the deadline of the 3rd task to `2021-03-25`
 
 <div style="page-break-after: always;"></div>
@@ -633,7 +636,7 @@ Action | Format, Examples
 **find** | `find KEYWORD`<br> e.g. `find Assignment`
 **findTag** | `findTag KEYWORD`<br> e.g. `find Assignment`
 **mod** | `mod MODULE`<br> e.g. `mod CS2103T`
-**edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g. `edit 2 d/Eat Biscuits b/2021-03-21 10:10`
+**edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g. `edit 2 d/Finish User Guide b/2021-03-21 10:10:10`
 **recur** | `recur INDEX r/RECURRENCE`<br> e.g. `recur 1 r/biweekly`
 **refresh** | `refresh`
 **sort** | `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` <br> e.g. `sort b/`
