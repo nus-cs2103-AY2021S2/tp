@@ -6,10 +6,7 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface HeliBookStorage <<Interface>>
-
-note "Interface with generic methods,\npreviously named AddressBookStorage" as N1
-N1 .up. HeliBookStorage
+Interface AddressBookStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
@@ -18,11 +15,14 @@ Class JsonAppointmentBookStorage
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
-StorageManager o--> HeliBookStorage
+StorageManager o--> AddressBookStorage
+
+Storage -|> UserPrefsStorage
+Storage -|> AddressBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAppointmentBookStorage .left.|> HeliBookStorage
-JsonAddressBookStorage .right.|> HeliBookStorage
+JsonAppointmentBookStorage .left.|> AddressBookStorage
+JsonAddressBookStorage .right.|> AddressBookStorage
 JsonAppointmentBookStorage .down.> JsonSerializableAppointmentBookStorage
 JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
 JsonSerializableAppointmentBookStorage .down.> JsonSerializableAppointment
