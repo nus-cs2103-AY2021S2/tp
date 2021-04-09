@@ -2,6 +2,16 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_OPTION;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_OPTION;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_OPTION_ARGS;
+import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_ADDRESS_ARGS;
+import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_EMAIL_ARGS;
+import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_FIND_OPTION;
+import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_NAME_ARGS;
+import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_PHONE_ARGS;
+import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_TAG_ARGS;
+import static seedu.address.logic.commands.FindCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.OPTION_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.OPTION_NAME;
@@ -25,6 +35,7 @@ import seedu.address.model.contact.predicate.PhoneContainsKeywordsPredicate;
 import seedu.address.model.contact.predicate.TagsMatchKeywordPredicate;
 import seedu.address.model.tag.Tag;
 
+
 /**
  * Parses input arguments and creates a new FindCommand object
  */
@@ -40,13 +51,18 @@ public class FindCommandParser implements Parser<FindCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
         if (trimmedArgs.contains(PREFIX_OPTION.getPrefix())) {
             // get everything after PREFIX_OPTION
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OPTION);
             Optional<String> argsString = argMultimap.getValue(PREFIX_OPTION);
             String unboxedArgsString = argsString.get();
+            if (unboxedArgsString.trim().isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_MISSING_OPTION, MESSAGE_MISSING_FIND_OPTION)
+                );
+            }
             return parseFindOptions(unboxedArgsString);
         } else { // find by all fields
             return parseFindAll(trimmedArgs);
@@ -58,11 +74,15 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @param unboxedArgsString for the rest of the args after {@code o/}
      * @return {@code FindCommand}
      */
-    public FindCommand parseFindOptions(String unboxedArgsString) throws ParseException {
+    private FindCommand parseFindOptions(String unboxedArgsString) throws ParseException {
         // split args into option and remaining optionArgs
         String[] optionArgsArray = unboxedArgsString.split("\\s+", 2);
         String option = optionArgsArray[0];
+        if (optionArgsArray.length == 1) { //if no option args provided
+            handleMissingFindOptionsArgsExceptions(option);
+        }
         String optionArgs = optionArgsArray[1];
+
         // get keywords
         List<String> keywords = Arrays.asList(optionArgs.split("\\s+"));
         switch (option) {
@@ -81,7 +101,40 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new TagsMatchKeywordPredicate(tagSet));
         default:
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_OPTION, MESSAGE_USAGE));
+        }
+    }
+
+    /**
+     * Handles exceptions
+     * @param option
+     * @throws ParseException
+     */
+    private void handleMissingFindOptionsArgsExceptions(String option) throws ParseException {
+        switch (option) {
+        case OPTION_NAME: // find by name
+            throw new ParseException(
+                    String.format(MESSAGE_MISSING_OPTION_ARGS, MESSAGE_MISSING_NAME_ARGS)
+            );
+        case OPTION_ADDRESS: // find by address
+            throw new ParseException(
+                    String.format(MESSAGE_MISSING_OPTION_ARGS, MESSAGE_MISSING_ADDRESS_ARGS)
+            );
+        case OPTION_PHONE: // find by phone
+            throw new ParseException(
+                    String.format(MESSAGE_MISSING_OPTION_ARGS, MESSAGE_MISSING_PHONE_ARGS)
+            );
+        case OPTION_EMAIL: // find by email
+            throw new ParseException(
+                    String.format(MESSAGE_MISSING_OPTION_ARGS, MESSAGE_MISSING_EMAIL_ARGS)
+            );
+        case OPTION_TAG: // find by tags
+            throw new ParseException(
+                    String.format(MESSAGE_MISSING_OPTION_ARGS, MESSAGE_MISSING_TAG_ARGS)
+            );
+        default:
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_OPTION, MESSAGE_USAGE));
         }
     }
 
@@ -90,7 +143,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @param trimmedArgs args without trailing whitespace
      * @return {@code FindCommand}
      */
-    public FindCommand parseFindAll(String trimmedArgs) {
+    private FindCommand parseFindAll(String trimmedArgs) {
         String[] keywords = trimmedArgs.split("\\s+");
         assert keywords.length > 0 : "FindCommand keywords are empty";
         return new FindCommand(new AnyContainsKeywordsPredicate(Arrays.asList(keywords)));

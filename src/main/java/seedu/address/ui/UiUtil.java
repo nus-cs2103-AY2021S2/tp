@@ -41,7 +41,7 @@ public class UiUtil {
         public int compare(Tag tag1, Tag tag2) {
             if (tag1 instanceof ChildTag) {
                 if (tag2 instanceof ChildTag) {
-                    return String.CASE_INSENSITIVE_ORDER.compare(tag1.tagName, tag2.tagName);
+                    return tag1.tagName.compareToIgnoreCase(tag2.tagName);
                 } else {
                     return -1;
                 }
@@ -49,7 +49,7 @@ public class UiUtil {
                 if (tag2 instanceof ChildTag) {
                     return 1;
                 } else {
-                    return String.CASE_INSENSITIVE_ORDER.compare(tag1.tagName, tag2.tagName);
+                    return tag1.tagName.compareToIgnoreCase(tag2.tagName);
                 }
             }
         }

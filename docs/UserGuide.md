@@ -175,6 +175,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* You can remove the optional fields (phone, email and address) by typing `p/`, `e/` or `a/` without specifying any phone, email or address after it.
 * When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
 * You can remove all the contact’s tags by typing `t/` or `tc/` without
     specifying any tags after it. Note: both regular Tags and ChildTags will be removed in both situations.
@@ -183,6 +184,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+*  `edit 4 e/` Edits to remove the email of the 4th contact in the displayed contact list.
 
 #### Finding contacts: `find`
 
@@ -214,10 +216,10 @@ Example: find o/tag t/first t/second
   
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li` when no exact matches are found
+* `find alex annie` returns `Alex Yeoh`, `Annie Li` when no exact matches are found
 
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
+  ![result for 'find alex annie'](images/findAlexAnnieResult.png)
+* `find o/phone 9927` return contacts whose phone number contains 9927 (partial matches will also be returned).
 
 
 #### Deleting a contact : `delete`
@@ -316,6 +318,10 @@ Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILDTAG]�
 Examples:
 * `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2 tc/amy`
 
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+You cannot add an appointment which has the same name, date, time and address as an existing appointment.
+</div>
+
 #### Deleting an appointment : `deleteAppt`
 
 Deletes the specified appointment from the appointment book.
@@ -375,7 +381,8 @@ Currently available options for the `[OPTION]` field include:
   e.g. when 0 results are found, "0 Appointment(s) listed!" is displayed
 
 Examples:
-* `findAppt ptm` returns `PTM`
+* `findAppt ptm` returns appointments with any field containing `PTM`.
+* `findAppt o/contact annie` returns appointments with at least one contact whose name contains `annie`.
 
 #### Listing all appointments : `listAppt`
 
