@@ -1076,7 +1076,7 @@ starting point for testers to work on; testers are expected to do more *explorat
     2. Test case: `iadd r/01-234 d/Collapsed ceiling` <br>
        Expected: A feedback message in the result box indicating the issue was successfully added. The issue should be visible in the issue panel.
 
-    3. Test case: `iadd r/01-234 d/Collapsed ceiling t/3000/01/01 12:00pm` or any timestamp in the future <br>
+    3. Test case: `iadd r/01-234 d/Collapsed ceiling t/3000/01/01 12:00pm` or any timestamp in the future. <br>
        Expected: An error message indicating that timestamps should not be in the future.
 
     4. Test case:
@@ -1086,7 +1086,7 @@ starting point for testers to work on; testers are expected to do more *explorat
 
 3. Finding issues
 
-    1. Prerequisites: Issues belonging to room `01-234` and `03-325` with descriptions `Broken table` and `Door broke in half` respectively
+    1. Prerequisites: Issues belonging to room `01-234` and `03-325` with descriptions `Broken table` and `Door broke in half` respectively.
 
     2. Test case: `ifind 01` <br>
        Expected: Issue panel should be filtered to show all rooms with `01` in their room number, description, or tag. This includes the `Broken table` issue for `01-234`.
@@ -1126,17 +1126,17 @@ starting point for testers to work on; testers are expected to do more *explorat
 
     1. Prerequisites: There is at least 1 issue with status `Pending`.
 
-    2. Test case: `iclo x` where x is the index of a issue with status `Pending` <br>
+    2. Test case: `iclo x` where x is the index of a issue with status `Pending`. <br>
        Expected: The issue's status is set to `Closed`.
 
-    3. Test case: `iclo x` where x is the index of a issue with status `Closed` <br>
+    3. Test case: `iclo x` where x is the index of a issue with status `Closed`. <br>
        Expected: An error message indicating that the issue is already closed.
 
 6. Delete issues
 
     1. Prerequisites: There is at least 1 issue.
 
-    2. Test case: `idel x` where x is valid index<br>
+    2. Test case: `idel x` where x is valid index. <br>
        Expected: The issue is deleted.
 
 ### Allocation and Deallocation
