@@ -22,7 +22,7 @@ public class AddEntryCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entry to the list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + "[" + PREFIX_START_DATE + "START DATE] "
+            + PREFIX_START_DATE + "START DATE "
             + PREFIX_END_DATE + "END DATE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "

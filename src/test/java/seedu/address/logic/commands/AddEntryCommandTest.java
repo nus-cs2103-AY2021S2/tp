@@ -27,7 +27,7 @@ public class AddEntryCommandTest {
     private Model model = new ModelManager(getTypicalEntriesList(), new UserPrefs());
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullArgument_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddEntryCommand(null));
     }
 

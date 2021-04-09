@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -29,25 +28,19 @@ public class AddEntryCommandParser implements Parser<AddEntryCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddEntryCommand parse(String args) throws ParseException {
-        EntryDate startDate;
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_END_DATE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_START_DATE, PREFIX_END_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEntryCommand.MESSAGE_USAGE));
         }
 
         EntryName entryName = ParserUtil.parseEntryName(argMultimap.getValue(PREFIX_NAME).get());
+        EntryDate startDate = ParserUtil.parseEntryDate(argMultimap.getValue(PREFIX_START_DATE).get());
         EntryDate endDate = ParserUtil.parseEntryDate(argMultimap.getValue(PREFIX_END_DATE).get());
 
-        try {
-            startDate = ParserUtil.parseEntryDate(argMultimap.getValue(PREFIX_START_DATE).get());
-        } catch (NoSuchElementException e) {
-            startDate = endDate;
-        }
-
-        if (startDate.isAfter(endDate)) {
+        if (!startDate.isBefore(endDate)) {
             throw new ParseException(MESSAGE_INVALID_DATE_RANGE);
         }
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

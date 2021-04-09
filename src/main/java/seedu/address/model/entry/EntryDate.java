@@ -51,6 +51,13 @@ public class EntryDate {
         return value.isAfter(other.getDate());
     }
 
+    /**
+     * Returns true if this entryDate is before the specified entryDate.
+     */
+    public boolean isBefore(EntryDate other) {
+        return value.isBefore(other.getDate());
+    }
+
     public LocalDateTime getDate() {
         return value;
     }
