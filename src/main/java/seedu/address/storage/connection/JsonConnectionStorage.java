@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 import static java.util.Objects.requireNonNull;
 
-public class JsonConnectionStorage {
+public class JsonConnectionStorage implements ConnectionStorage {
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
     private Path filePath;
@@ -30,7 +30,8 @@ public class JsonConnectionStorage {
         return filePath;
     }
 
-    public Optional<PersonMeetingConnection> readConnection(MeetingBook meetingBook, AddressBook addressBook) throws DataConversionException {
+    public Optional<PersonMeetingConnection> readConnection(MeetingBook meetingBook, AddressBook addressBook)
+            throws DataConversionException {
         return readConnection(filePath, meetingBook, addressBook);
     }
 
@@ -40,7 +41,8 @@ public class JsonConnectionStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<PersonMeetingConnection> readConnection(Path filePath, MeetingBook meetingBook, AddressBook addressBook) throws DataConversionException {
+    public Optional<PersonMeetingConnection> readConnection(Path filePath, MeetingBook meetingBook,
+                                                            AddressBook addressBook) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableConnection> jsonConnection = JsonUtil.readJsonFile(
