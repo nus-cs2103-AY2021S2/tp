@@ -20,8 +20,10 @@ public class JsonSerializableAddressBookTest {
     private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
     private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonAddressBook.json");
     private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
-    private static final Path TYPICAL_TEACHING_ASSISTANT_FILE = TEST_DATA_FOLDER
-                                                                .resolve("typicalTeachingAssistant.json");
+    private static final Path TYPICAL_TEACHING_ASSISTANT_FILE = TEST_DATA_FOLDER.resolve(
+                                                                    "typicalTeachingAssistant.json");
+    private static final Path OVERLAPPING_ENTRY_FILE = TEST_DATA_FOLDER.resolve(
+                                                                    "overlappingEntryTeachingAssistant.json");
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
@@ -56,4 +58,11 @@ public class JsonSerializableAddressBookTest {
         assertEquals(addressBookFromFile, typicalTeachingAssistant);
     }
 
+    @Test
+    public void toModelType_overlappingEntries_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(OVERLAPPING_ENTRY_FILE,
+                JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_OVERLAPPING_ENTRY,
+                dataFromFile::toModelType);
+    }
 }
