@@ -375,7 +375,7 @@ to similar methods for AddressBook.
 
 ##### Storage Component
 
-![AppointmentWithStorageClassDiagram](images/AppointmentWithStorageClassDiagram.png)
+![AppointmentWithStorageClassDiagram](images/AppointmentWithStorageClassDiagramUpdated.png)
 
 ### \[Proposed\] Undo/redo feature
 
