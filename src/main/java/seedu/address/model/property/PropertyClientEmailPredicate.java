@@ -13,8 +13,11 @@ public class PropertyClientEmailPredicate implements Predicate<Property> {
     /**
      * Constructs a PropertyClientEmailPredicate.
      */
-    public PropertyClientEmailPredicate(String email) throws NullPointerException {
+    public PropertyClientEmailPredicate(String email) throws IllegalArgumentException {
         requireNonNull(email);
+        if (email.trim().isEmpty()) {
+            throw new IllegalArgumentException("Email given is empty. ");
+        }
         this.email = email;
     }
 

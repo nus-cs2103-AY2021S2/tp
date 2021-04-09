@@ -9,12 +9,15 @@ public class PropertyRemarksPredicate implements Predicate<Property> {
     private final String keywords;
 
     public PropertyRemarksPredicate(String keywords) throws IllegalArgumentException {
+        if (keywords.trim().isEmpty()) {
+            throw new IllegalArgumentException("Remark keywords cannot be empty. ");
+        }
         this.keywords = keywords.toLowerCase();
     }
 
     @Override
     public boolean test(Property property) {
-        return property.getRemarks().remark.toLowerCase().contains(this.keywords);
+        return property.getRemarks() != null && property.getRemarks().remark.toLowerCase().contains(this.keywords);
     }
 
     @Override
