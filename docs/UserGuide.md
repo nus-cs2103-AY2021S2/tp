@@ -40,7 +40,7 @@ Commands for this tutorial are arranged in the sequential order of this User Gui
 <div style="page-break-after: always;"></div>
 
 ## Features
-<img src="images/UiAnnotated.png" width="720">
+<img src="images/UiAnnotated.png" width="730px">
 
 * At the top of the display is a toolbar to either exit the app (under `File`) 
    or access this user guide (under `Help`).
@@ -259,7 +259,7 @@ For this tutorial, let's start by clearing out any existing tasks. Type:<br>
 `clear` in the command line and press `ENTER` on your keyboard.
 </div>
 
-<img src="images/clearCommand.png" width="700">
+<img src="images/clearCommand.png" width="730px">
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -290,7 +290,7 @@ Now, key in the following commands in this order:<br>
 Note that your tasks may have a different colour from the one in the screenshots.
 </div>
 
-<img src="images/addCommand.png" width="700">
+<img src="images/addCommand.png" width="730px">
 
 Other Examples:
 * `add n/v1.2 TP m/CS2103T d/implement basic features b/2021-03-13 23:59 w/3 t/urgent`
@@ -316,7 +316,7 @@ Format: `done INDEX`
 `done 2`
 </div>
 
-<img src="images/doneCommand.png" width="700">
+<img src="images/doneCommand.png" width="730px">
 
 Other Examples:
 * `list` followed by `done 2` marks the 2nd task as done in the ModuleBook3.5.
@@ -342,7 +342,7 @@ Format: `notdone INDEX`
 `notdone 2`
 </div>
 
-<img src="images/notdoneCommand.png" width="700">
+<img src="images/notdoneCommand.png" width="730px">
 
 Other Examples:
 * `list` followed by `notdone 2` marks the 2nd task as not done in the ModuleBook3.5.
@@ -367,7 +367,7 @@ Format: `tag INDEX t/TAG [t/MORETAGS]...​`
 `tag 3 t/Ethics t/Quiz`
 </div>
 
-<img src="images/tagCommand.png" width="700">
+<img src="images/tagCommand.png" width=730px">
 
 Other Examples:
 * `tag 1 t/SoftwareEng` adds `SoftwareEng` tag to task 1.
@@ -394,7 +394,7 @@ Format: `find KEYWORD`
 but rather, tasks that have the word "Green" in their names.)
 </div>
 
-<img src="images/findCommand.png" width="700">
+<img src="images/findCommand.png" width="730px">
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -412,7 +412,7 @@ Format: `list`
 `list`
 </div>
 
-<img src="images/listCommand.png" width="700">
+<img src="images/listCommand.png" width="730px">
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -435,7 +435,7 @@ Format: `findTag KEYWORD`
 `findTag ethics` (To demonstrate that finding tags is case-insensitive.)
 </div>
 
-<img src="images/findTagCommand.png" width="700">
+<img src="images/findTagCommand.png" width="730px">
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -457,7 +457,7 @@ Format: `mod MODULE`
 this command still works.)
 </div>
 
-<img src="images/findModuleCommand.png" width="700">
+<img src="images/findModuleCommand.png" width="730px">
 
 Other Examples:
 * `mod CS3243` lists out tasks associated with module CS3243.
@@ -484,7 +484,7 @@ Format: `deleteTag INDEX t/TAG`
 2. `deleteTag 3 t/Quiz`
 </div>
 
-<img src="images/deleteTagCommand.png" width="700">
+<img src="images/deleteTagCommand.png" width="730px">
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -511,7 +511,7 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 `edit 1 n/Refactor tP code d/Make the code look neater b/2021-04-10`
 </div>
 
-<img src="images/editCommand.png" width="700">
+<img src="images/editCommand.png" width="730px">
 
 In this screenshot, the colour of task 1 changed because the new deadline is closer.
 
@@ -543,7 +543,7 @@ Format:  `sort` or `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/`
 `sort n/`
 </div>
 
-<img src="images/sortCommand.png" width="700">
+<img src="images/sortCommand.png" width="730px">
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -569,7 +569,7 @@ Format: `recur INDEX r/RECURRENCE`
 `recur 1 r/weekly`
 </div>
 
-<img src="images/recurCommand.png" width="700">
+<img src="images/recurCommand.png" width="730px">
 
 Other Examples:
 * `recur 1 r/biweekly` Recurs the 1st task in ModuleBook3.5 every two weeks.
@@ -591,7 +591,7 @@ Format: `refresh`
 2. `refresh` 
 </div>
 
-<img src="images/refreshCommand.png" width="700">
+<img src="images/refreshCommand.png" width="730px">
 
 Note that you may get a new deadline for task 1 that is different from what is in the screenshot.
 
@@ -615,7 +615,7 @@ Format: `delete INDEX`
 `delete 2`
 </div>
 
-<img src="images/deleteCommand.png" width="700">
+<img src="images/deleteCommand.png" width="730px">
 
 Other Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the ModuleBook3.5.
