@@ -13,12 +13,12 @@ public class IncompleteRecord extends Record {
     /**
      * Creates a borrowing record.
      *
-     * @param bookName     name of the book that is borrowed.
+     * @param barcode  barcode of the book that is borrowed.
      * @param readerName   reader who borrowed the book.
      * @param dateBorrowed borrow date of the book.
      */
-    public IncompleteRecord(Name bookName, Name readerName, DateBorrowed dateBorrowed) {
-        super(bookName, new Barcode(Barcode.TEMP_BARCODE_VALUE), readerName, dateBorrowed);
+    public IncompleteRecord(Barcode barcode, Name readerName, DateBorrowed dateBorrowed) {
+        super(Book.TEMP_BOOKNAME, barcode, readerName, dateBorrowed);
     }
 
     /**
@@ -38,6 +38,15 @@ public class IncompleteRecord extends Record {
      */
     public Name getBookName() {
         return this.bookName;
+    }
+
+    /**
+     * Returns the reader name associated with this incomplete borrow record.
+     *
+     * @return the reader name associated with this incomplete borrow record.
+     */
+    public Name getReaderName() {
+        return this.readerName;
     }
 
     /**
