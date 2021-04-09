@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.ViewDayCommand;
 import seedu.address.model.task.attributes.Date;
 import seedu.address.model.task.predicates.TaskOnDatePredicate;
