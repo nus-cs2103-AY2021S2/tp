@@ -10,9 +10,9 @@ EZManage - EZManage is a desktop address book application used for the managemen
 Given below are my contributions to the project.
 
 * **New Feature**: Added session ID. 
-* What it does: Allows the user to identify a particular session using a unique ID given to each session when the session is first created and added into EzManage.
-* Justification: This feature improves the product significantly because the user can easily locate a specific session using the unique session ID. This feature is important because all the other session-related features in EzManage will utilize this session ID.
-* Highlights: A session ID of a session is always unique and unmodifiable once given to a session. The uniqueness of the session IDs allows for efficient management of all the sessions. 
+  * What it does: Allows the user to identify a particular session using a unique ID given to each session when the session is first created and added into EzManage.
+  * Justification: This feature improves the product significantly because the user can easily locate a specific session using the unique session ID. This feature is important because all the other session-related features in EzManage will utilize this session ID.
+  * Highlights: A session ID of a session is always unique and unmodifiable once given to a session. The uniqueness of the session IDs allows for efficient management of all the sessions. 
   
 * **New Feature**: Added the ability to delete a session.
   * What it does: Allows the user to delete an existing session in EZManage using the session's unique session ID.
