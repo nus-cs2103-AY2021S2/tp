@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Patient;
 
 /**
- * Archives a Person in DocBob.
+ * Archives a Patient in DocBob.
  */
 public class ArchiveCommand extends Command {
 
@@ -25,7 +25,7 @@ public class ArchiveCommand extends Command {
     public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "Archived patient: %1$s\n"
             + "The patient has been stored in the archives.";
 
-    public static final String MESSAGE_ALREADY_ARCHIVED_PERSON = "This person is already in your archives.\n";
+    public static final String MESSAGE_ALREADY_ARCHIVED_PERSON = "This patient is already in your archives.\n";
 
     private final Index targetIndex;
 

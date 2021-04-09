@@ -5,6 +5,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PATIENTS;
 
 import seedu.address.model.Model;
 
+/**
+ * Lists all archived patients in DocBob to the user.
+ */
 public class ArchiveListCommand extends Command {
 
     public static final String COMMAND_WORD = "archivelist";
