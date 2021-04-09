@@ -23,7 +23,7 @@ class SampleDataUtilTest {
         List<Task> sampleTasks = Arrays.asList(TASK_1, editedSampleTask);
         TaskifyStub sampleTaskify = new TaskifyStub(sampleTasks);
 
-        assertNotEquals(sampleTaskify, SampleDataUtil.getSampleTaskifyData());
+        assertNotEquals(sampleTaskify.getTaskList(), SampleDataUtil.getSampleTaskifyData().getTaskList());
     }
 
     /**
