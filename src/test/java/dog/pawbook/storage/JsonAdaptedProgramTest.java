@@ -9,16 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import dog.pawbook.model.managedentity.program.Program;
-import dog.pawbook.model.managedentity.program.Session;
 import org.junit.jupiter.api.Test;
 
 import dog.pawbook.commons.exceptions.IllegalValueException;
 import dog.pawbook.model.managedentity.Name;
-import dog.pawbook.model.managedentity.owner.Address;
-import dog.pawbook.model.managedentity.owner.Email;
-import dog.pawbook.model.managedentity.owner.Owner;
-import dog.pawbook.model.managedentity.owner.Phone;
+import dog.pawbook.model.managedentity.program.Program;
+import dog.pawbook.model.managedentity.program.Session;
 import javafx.util.Pair;
 
 public class JsonAdaptedProgramTest {
