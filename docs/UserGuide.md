@@ -320,9 +320,9 @@ Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
 
 Parameters:
 * [`INDEX`](#index) The index of the room to edit.
-* [`ROOM_NUMBER`](#room_number) The room number to change the room identified by [INDEX](#index) to.
-* [`ROOM_TYPE`](#room_type) The room type to change the room identified by [INDEX](#index) to.
-* [`TAG`](#tag) Optional tags that may be updated for the room identified by [INDEX](#index).
+* [`ROOM_NUMBER`](#room_number) The room number to change the room identified by [`INDEX`](#index) to.
+* [`ROOM_TYPE`](#room_type) The room type to change the room identified by [`INDEX`](#index) to.
+* [`TAG`](#tag) Optional tags that may be updated for the room identified by [`INDEX`](#index).
 
 Example:
 * `oedit 1 g/SHN g/Blue` Edits the 1st room's tags to `SHN` and `Blue`.
