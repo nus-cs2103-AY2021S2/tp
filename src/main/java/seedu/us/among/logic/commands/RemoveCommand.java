@@ -44,7 +44,8 @@ public class RemoveCommand extends Command {
 
         Endpoint endpointToRemove = lastShownList.get(targetIndex.getZeroBased());
         model.removeEndpoint(endpointToRemove);
-        return new CommandResult(String.format(MESSAGE_REMOVE_ENDPOINT_SUCCESS, endpointToRemove));
+        return new CommandResult(String.format(
+                MESSAGE_REMOVE_ENDPOINT_SUCCESS, endpointToRemove), endpointToRemove, false);
     }
 
     @Override

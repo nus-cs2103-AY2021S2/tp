@@ -831,7 +831,6 @@ the `user`, unless specified otherwise)
 
 ## **Appendix E: Glossary**
 
-
 | Term                                         | Description                                               |
 | -------------------------------------------- | --------------------------------------------------------- |
 | **Mainstream OS** | <a name="glossary-OS"></a> Windows, Linux, Unix, OS-X  |

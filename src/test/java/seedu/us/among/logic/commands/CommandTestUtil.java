@@ -137,6 +137,23 @@ public class CommandTestUtil {
 
     /**
      * Convenience wrapper to
+     * {@link #assertRemoveCommandSuccess(Command, Model, CommandResult, Model, Endpoint)} that
+     * takes a string {@code expectedMessage}.
+     */
+    public static void assertRemoveCommandSuccess(Command command, Model actualModel, String expectedMessage,
+            Model expectedModel) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            String resultString = result.getFeedbackToUser();
+            assertEquals(expectedMessage, resultString);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException | RequestException | AbortRequestException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Convenience wrapper to
      * {@link #assertCommandSuccess(Command, Model, CommandResult, Model)} that
      * takes a string {@code expectedMessage}.
      */
