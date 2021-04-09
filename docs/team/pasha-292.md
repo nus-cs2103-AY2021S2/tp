@@ -11,11 +11,25 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=pasha&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&tabAuthor=pasha-292&tabRepo=AY2021S2-CS2103T-W10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
-  [Repository Link](https://github.com/pasha-292/tp)
+* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=pasha&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&tabAuthor=pasha-292&tabRepo=AY2021S2-CS2103T-W10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
+* **Repository Link**:  [Repository Link](https://github.com/pasha-292/tp)
 
 * **Project management**:
     * Managed releases `v1.1` - `v1.4` (3 releases) on GitHub
+    * Released `v1.1` and `v1.3` on GitHub.
+* **Features**:
+   * Add the date feature to TimesForWheels to take into account the delivery date.(PRs: 
+     [#35](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/35), 
+     [#47](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/47))
+   * Change the find feature to enable finding by all customer attributes.(PRs:
+     [#35](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/35),
+     [#47](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/47),
+     [#63](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/63)) 
+
+* **Tests**:
+   * Add Date Tests to check if dates are valid. (PR: [#35](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/35))
+   * Update AttributesContainsPredicateTest. (PR: [#35](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/35))
+    
 
 * **Enhancement to existing features**:
 
@@ -49,4 +63,14 @@ Given below are my contributions to the project.
 1. Commented on the following PRs: [#50](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/50)
    , [#52](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/52)
    , [#54](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/54).
+   
+2. Issues: 
+   [#71](https://github.com/AY2021S2-CS2103T-W10-3/tp/issues/71),
+   [#72](https://github.com/AY2021S2-CS2103T-W10-3/tp/issues/72),
+   [#80](https://github.com/AY2021S2-CS2103T-W10-3/tp/issues/80),
+   [#81](https://github.com/AY2021S2-CS2103T-W10-3/tp/issues/81),
+   [#88](https://github.com/AY2021S2-CS2103T-W10-3/tp/issues/88),
+   [#92](https://github.com/AY2021S2-CS2103T-W10-3/tp/issues/92),
+   [#99](https://github.com/AY2021S2-CS2103T-W10-3/tp/issues/99),
+   [#104](https://github.com/AY2021S2-CS2103T-W10-3/tp/issues/104) 
    
