@@ -59,20 +59,12 @@ public class EditPropertyCommand extends Command {
             + "[" + PREFIX_CLIENT_ASKING_PRICE + "CLIENT_ASKING_PRICE] "
             + "[" + PREFIX_TAGS + "TAGS_SEPARATED_BY_COMMAS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "Mayfair "
-            + PREFIX_TYPE + "Condo "
-            + PREFIX_ADDRESS + "1 Jurong East Street 32 "
-            + PREFIX_POSTAL + "609477 "
-            + PREFIX_DEADLINE + "31-12-2021 "
             + PREFIX_REMARK + "Urgent to sell "
-            + PREFIX_CLIENT_NAME + "Alice "
-            + PREFIX_CLIENT_CONTACT + "91234567 "
-            + PREFIX_CLIENT_EMAIL + "alice@gmail.com "
-            + PREFIX_CLIENT_ASKING_PRICE + "$800,000 "
-            + PREFIX_TAGS + "Urgent, 4 bedrooms";
+            + PREFIX_CLIENT_CONTACT + "96011846 ";
 
     public static final String MESSAGE_SUCCESS = "Edited property: %1$s";
-    public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in the app";
+    public static final String MESSAGE_DUPLICATE_PROPERTY =
+            "Another property with the same address and postal code already exists in the app";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
