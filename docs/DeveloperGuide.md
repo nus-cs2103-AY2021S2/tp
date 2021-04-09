@@ -1191,7 +1191,6 @@ testers are expected to do more *exploratory* testing.
       will always be shown in the status message, regardless of whether there is any expired task or not. 
 
       
-
 ### Adding an event
 
 1. Adding an event
