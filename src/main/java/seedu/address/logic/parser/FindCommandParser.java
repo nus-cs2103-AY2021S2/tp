@@ -7,6 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_MISSING_OPTION;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_OPTION_ARGS;
 import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_ADDRESS_ARGS;
 import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_EMAIL_ARGS;
+import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_FIND_OPTION;
 import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_NAME_ARGS;
 import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_PHONE_ARGS;
 import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_TAG_ARGS;
@@ -58,7 +59,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             String unboxedArgsString = argsString.get();
             if (unboxedArgsString.trim().isEmpty()) {
                 throw new ParseException(
-                        String.format(MESSAGE_MISSING_OPTION, MESSAGE_USAGE)
+                        String.format(MESSAGE_MISSING_OPTION, MESSAGE_MISSING_FIND_OPTION)
                 );
             }
             return parseFindOptions(unboxedArgsString);

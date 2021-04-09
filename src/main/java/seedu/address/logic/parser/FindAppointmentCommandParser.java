@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.FindAppointmentCommand.MESSAGE_MISSIN
 import static seedu.address.logic.commands.FindAppointmentCommand.MESSAGE_MISSING_CHILD_ARGS;
 import static seedu.address.logic.commands.FindAppointmentCommand.MESSAGE_MISSING_CONTACT_ARGS;
 import static seedu.address.logic.commands.FindAppointmentCommand.MESSAGE_MISSING_DATE_ARGS;
+import static seedu.address.logic.commands.FindAppointmentCommand.MESSAGE_MISSING_FIND_APPOINTMENT_OPTION;
 import static seedu.address.logic.commands.FindAppointmentCommand.MESSAGE_MISSING_NAME_ARGS;
 import static seedu.address.logic.commands.FindAppointmentCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_ADDRESS;
@@ -52,7 +53,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
             String unboxedArgsString = argsString.get();
             if (unboxedArgsString.trim().isEmpty()) { // option prefix present but option not present
                 throw new ParseException(
-                        String.format(MESSAGE_MISSING_OPTION, MESSAGE_USAGE)
+                        String.format(MESSAGE_MISSING_OPTION, MESSAGE_MISSING_FIND_APPOINTMENT_OPTION)
                 );
             }
 
