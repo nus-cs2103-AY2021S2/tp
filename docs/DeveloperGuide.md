@@ -164,7 +164,7 @@ Classes used by multiple components are in the `seedu.us.among.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-### Endpoint Components
+### Endpoint components
 * Change/Add classes in the Endpoint package to encapsulate an API endpoint.
 #### Implementation
 ![Structure of the Model Component](images/EndpointClassDiagram.png)
@@ -186,11 +186,6 @@ An `Endpoint` contains the following attributes:
 * `Data` can be empty, as some API calls do not send any data to the server
 * Before an API call is made, the `Response` object will be empty
 * Only when a Request#executeTimed(request) is called will a `Response` contain information about the API call response
-
-<div style="page-break-after: always;"></div>
-
-The following activity diagram summarizes how an endpoint is created when a user executes an add command:
-![AddActivityDiagram](images/AddActivityDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -833,19 +828,21 @@ Given below are instructions to test the app manually.
 
 1. _{ more test cases …​ }_
 
-### Deleting an endpoint
 
-1. Deleting an endpoint while all endpoints are being shown
+
+### Remove an endpoint
+
+1. Remove an endpoint while all endpoints are being shown
 
    1. Prerequisites: List all endpoints using the `list` command. Multiple endpoints in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `remove 1`<br>
       Expected: First endpoint is deleted from the list. Details of the deleted endpoint shown in the result display.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `remove 0`<br>
       Expected: No endpoint is deleted. Error details shown in the result display.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `remove`, `remove x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
