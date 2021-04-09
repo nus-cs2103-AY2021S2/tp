@@ -83,10 +83,6 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### Sequence Diagram of the four components 
-
-![Structure of the UI Component](images/ComponentSequenceDiagram.png)
-
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
