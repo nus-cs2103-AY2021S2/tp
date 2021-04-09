@@ -320,7 +320,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2a2.** App-Ointment suggest user to update patient information through an `edit-patient` command instead.<br>
     Use case ends.<br>
 
-### UC03: Add an appointment
+### UC03: Add a doctor
+**MSS**
+1. User <u>enters the `add-doctor` command and corresponding subcommands (UC01)</u>
+2. App-Ointment adds a new doctor to the doctor records.
+
+**Extensions**
+* **1a.** App-Ointment detects an invalid subcommand format.
+    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
+      Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
+      Use case resumes from step 2.
+
+* **2a.** App-Ointment detects that a doctor with the same name exists in the doctor records.
+    * **2a1.** App-Ointment warns user about the duplicate doctor.<br>
+    * **2a2.** App-Ointment suggest user to update doctor information through an `edit-doctor` command instead.<br>
+      Use case ends.<br>
+
+### UC04: Add an appointment
 **MSS**
 1. User <u>enters the `add-appt` command and corresponding subcommands (UC01)</u>
 2. App-Ointment adds a new appointment to the appointment schedule.
@@ -341,7 +357,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2b2.** App-Ointment suggest user to either change existing appointment details through an `edit-appt` command, before adding the new appointment again, or change the new appointment details.<br>
     Use case ends.<br>
 
-### UC04: List all patients
+### UC05: List all patients
 **MSS**
 1. User <u>enters the `list-patient` command (UC01)</u>
 2. App-Ointment displays all patients.
@@ -351,7 +367,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2a1.** App-Ointment informs user that there are no patients to display.<br>
     Use case ends.
 
-### UC05: List all appointments
+### UC06: List all doctors
+**MSS**
+1. User <u>enters the `list-doctor` command (UC01)</u>
+2. App-Ointment displays all doctors.
+
+**Extensions**
+* **2a.** There are no doctors to display.
+    * **2a1.** App-Ointment informs user that there are no doctors to display.<br>
+      Use case ends.
+
+
+### UC07: List all appointments
 **MSS**
 1. User <u>enters the `list-appt` command (UC01)</u>
 2. App-Ointment displays all appointments.
@@ -361,7 +388,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2a1.** App-Ointment informs user that there are no appointments to display.<br>
     Use case ends.
 
-### UC06: Edit a patient
+### UC08: Edit a patient
 **MSS**
 1. User <u>enters the `edit-patient` command and corresponding subcommands (UC01)</u>
 2. App-Ointment changes the details of the patient.
@@ -381,8 +408,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 2a1 is repeated until the index entered is correct/free from errors.
       Use case resumes from step 2.
 
+### UC09: Edit a doctor
+**MSS**
+1. User <u>enters the `edit-doctor` command and corresponding subcommands (UC01)</u>
+2. App-Ointment changes the details of the doctor.
 
-### UC07: Edit an appointment
+**Extensions**
+* **1a.** App-Ointment detects an invalid subcommand format.
+    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
+      Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
+      Use case resumes from step 2.
+
+* **1b.** The currently displayed list of doctors is empty.
+    * **1b1.** App-Ointment prompts user that there are no doctors in the current display.<br>
+      Use case ends.
+
+* **2a.** The index out of the bounds of the displayed list of doctors.
+    * **2a1.** App-Ointment warns user that the index is out of bounds and displays the bounds of the displayed list of doctors.<br>
+      Steps 2a1 is repeated until the index entered is correct/free from errors.
+      Use case resumes from step 2.
+
+* **2b.** App-Ointment detects an existing doctor having conflict with the new doctor.
+    * **2b1.** App-Ointment warns user about the conflicting doctor.<br>
+    * **2b2.** App-Ointment suggest user to either change the other existing appointment details through a separate `edit-doctor` command, before editing the current doctor again, or change the edit details of the current doctor.<br>
+      Use case ends.
+
+
+### UC10: Edit an appointment
 **MSS**
 1. User <u>enters the `edit-appt` command and corresponding subcommands (UC01)</u>
 2. App-Ointment changes the details of the appointment.
@@ -407,7 +459,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2b2.** App-Ointment suggest user to either change the other existing appointment details through a separate `edit-appt` command, before editing the current appointment again, or change the edit details of the current appointment.<br>
     Use case ends.
 
-### UC08: Find appointments by search fields
+### UC11: Find appointments by search fields
 **MSS**
 1. User <u>enters the `find` command and corresponding subcommands (UC01)</u>
 2. App-Ointment changes the displayed list of appointments to fit.
@@ -422,7 +474,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2a1.** App-Ointment informs user that there are no appointments to display.<br>
     Use case ends.
 
-### UC09: Delete a patient
+### UC12: Find doctors by search fields
+**MSS**
+1. User <u>enters the `find` command and corresponding subcommands (UC01)</u>
+2. App-Ointment changes the displayed list of doctors to fit.
+
+**Extensions**
+* **1a.** System detects an invalid subcommand format.
+    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
+      Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
+      Use case resumes from step 2.
+
+* **2a.** There are no doctors to display.
+    * **2a1.** App-Ointment informs user that there are no doctors to display.<br>
+      Use case ends.
+
+### UC13: Delete a patient
 **MSS**
 1. User <u>enters the `delete-patient` command and corresponding subcommands (UC01)</u>
 2. App-Ointment removes the patient from the patient records.
@@ -446,7 +513,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * **2b1.** App-Ointment warns user about the associated appointments, prompts user to use force delete and displays the expected subcommand format.<br>
     Use case ends.
 
-### UC10: Delete an appointment
+### UC14: Delete a doctor
+**MSS**
+1. User <u>enters the `delete-doctor` command and corresponding subcommands (UC01)</u>
+2. App-Ointment removes the patient from the doctor records.
+
+**Extensions**
+* **1a.** App-Ointment detects an invalid subcommand format.
+    * **1a1.** App-Ointment prompts user that syntax is incorrect and displays the expected format.<br>
+      Steps 1a1 is repeated until the subcommand entered is correct/free from errors.
+      Use case resumes from step 2.
+
+* **1b.** The currently displayed list of patients is empty.
+    * **1b1.** App-Ointment prompts user that there are no doctors in the current display.<br>
+      Use case ends.
+
+* **2a.** The index out of the bounds of the displayed list of doctors.
+    * **2a1.** App-Ointment warns user that the index is out of bounds and displays the bounds of the displayed list of doctors.<br>
+      Steps 2a1 is repeated until the index entered is correct/free from errors.
+      Use case resumes from step 2.
+
+* **2b.** App-Ointment detects at least 1 appointment associated with the doctor identified by the index number used in the displayed list of doctors.<br>
+    * **2b1.** App-Ointment warns user about the associated doctors, prompts user to use force delete and displays the expected subcommand format.<br>
+      Use case ends.
+
+### UC15: Delete an appointment
 **MSS**
 1. User <u>enters the `delete-appt` command and corresponding subcommands (UC01)</u>
 2. App-Ointment removes the appointment from the appointment schedule
@@ -497,6 +588,7 @@ _Non-functional requirements specify the constraints under which App-Ointment is
 * **Appointment Schedule**: The list of appointments maintained in App-Ointment, arranged by appointment datetime.
 * **Patient Records**: The list of patients maintained in App-Ointment.
 * **Doctor Records**: The list of doctors maintained in App-Ointment.
+* **Appointment Records**: The list of Appointment maintained in App-Ointment.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 *{More to be added}*
