@@ -56,7 +56,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        TaskifyStorage taskifyStorage = new JsonTaskifyStorage(userPrefs.getAddressBookFilePath());
+        TaskifyStorage taskifyStorage = new JsonTaskifyStorage(userPrefs.getTaskifyFilePath());
         storage = new StorageManager(taskifyStorage, userPrefsStorage);
 
         initLogging(config);
@@ -77,11 +77,11 @@ public class MainApp extends Application {
         Optional<ReadOnlyTaskify> taskifyOptional;
         ReadOnlyTaskify initialData;
         try {
-            taskifyOptional = storage.readAddressBook();
+            taskifyOptional = storage.readTaskifyData();
             if (!taskifyOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample TaskifyParser");
             }
-            initialData = taskifyOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = taskifyOptional.orElseGet(SampleDataUtil::getSampleTaskifyData);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty TaskifyParser");
             initialData = new Taskify();

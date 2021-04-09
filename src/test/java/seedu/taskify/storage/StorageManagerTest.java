@@ -2,7 +2,7 @@ package seedu.taskify.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.taskify.testutil.TypicalTasks.getTypicalTaskify;
 
 import java.nio.file.Path;
 
@@ -54,15 +54,15 @@ public class StorageManagerTest {
          * {@link JsonTaskifyStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonTaskifyParserStorageTest} class.
          */
-        Taskify original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyTaskify retrieved = storageManager.readAddressBook().get();
+        Taskify original = getTypicalTaskify();
+        storageManager.saveTaskifyData(original);
+        ReadOnlyTaskify retrieved = storageManager.readTaskifyData().get();
         assertEquals(original, new Taskify(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getTaskifyFilePath() {
+        assertNotNull(storageManager.getTaskifyFilePath());
     }
 
 }

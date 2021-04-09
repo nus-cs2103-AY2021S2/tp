@@ -65,7 +65,7 @@ public class TypicalTasks {
     /**
      * Returns an {@code TaskifyParser} with all the typical tasks.
      */
-    public static Taskify getTypicalAddressBook() {
+    public static Taskify getTypicalTaskify() {
         Taskify ab = new Taskify();
         for (Task task : getTypicalTasks()) {
             ab.addTask(task);

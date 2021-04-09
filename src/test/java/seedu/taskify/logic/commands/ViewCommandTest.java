@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taskify.testutil.TypicalTasks.TASK_2;
-import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.taskify.testutil.TypicalTasks.getTypicalTaskify;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -20,8 +20,8 @@ import seedu.taskify.model.UserPrefs;
 import seedu.taskify.model.task.predicates.TaskHasSameDatePredicate;
 
 class ViewCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTaskify(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTaskify(), new UserPrefs());
 
     @Test
     public void equals() {
