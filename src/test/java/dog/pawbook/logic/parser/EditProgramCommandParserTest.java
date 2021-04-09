@@ -8,10 +8,10 @@ import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_OBEDIENCE_TRA
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_POTTY_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.SESSION_DESC_OBEDIENCE_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.SESSION_DESC_POTTY_TRAINING;
+import static dog.pawbook.logic.commands.CommandTestUtil.SESSION_EMPTY;
 import static dog.pawbook.logic.commands.CommandTestUtil.TAG_DESC_ALL;
 import static dog.pawbook.logic.commands.CommandTestUtil.TAG_DESC_PUPPIES;
 import static dog.pawbook.logic.commands.CommandTestUtil.TAG_EMPTY;
-import static dog.pawbook.logic.commands.CommandTestUtil.SESSION_EMPTY;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_OBEDIENCE_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_POTTY_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_OBEDIENCE_TRAINING;
