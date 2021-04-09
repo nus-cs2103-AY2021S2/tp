@@ -5,9 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INDEXES_LIST_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.INDEX_LIST_ONE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.SocheduleParserUtil.MESSAGE_DUPLICATE_INDEXES;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DoneTaskCommand;
