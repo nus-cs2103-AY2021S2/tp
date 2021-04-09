@@ -312,7 +312,7 @@ public class RecurringSession extends Session {
 
     /**
      * Removes a single {@code Session} in the middle of this {@code RecurringSession}.
-     * Splits the {@code RecurringSession} into two, one {@code RecurringSession}/{@code Session
+     * Splits the {@code RecurringSession} into two, one {@code RecurringSession}/{@code Session}
      * exclusively before {@code SessionDate}, and another exclusively after {@code SessionDate}.
      */
     public void removeSessionInMiddleOfRecurringSession(Index sessionIndex,
