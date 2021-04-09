@@ -24,23 +24,23 @@ import seedu.address.model.person.Weight;
 
 public class JsonAdaptedPatientTest {
     private static final String INVALID_NAME = "R@chel";
-    public static final String INVALID_DOB = "30022020";
-    public static final String INVALID_GENDER = "X";
+    private static final String INVALID_DOB = "30022020";
+    private static final String INVALID_GENDER = "X";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    public static final String INVALID_BLOODTYPE = "O";
+    private static final String INVALID_BLOODTYPE = "O";
     private static final String INVALID_HEIGHT = "169mm";
     private static final String INVALID_WEIGHT = "200g";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
-    public static final String VALID_DOB = BENSON.getDateOfBirth().value;
-    public static final String VALID_GENDER = BENSON.getGender().toString();
+    private static final String VALID_DOB = BENSON.getDateOfBirth().value;
+    private static final String VALID_GENDER = BENSON.getGender().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    public static final String VALID_BLOODTYPE = BENSON.getBloodType().toString();
+    private static final String VALID_BLOODTYPE = BENSON.getBloodType().toString();
     private static final String VALID_HEIGHT = BENSON.getHeight().toString();
     private static final String VALID_WEIGHT = BENSON.getWeight().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
@@ -169,7 +169,7 @@ public class JsonAdaptedPatientTest {
 
     @Test
     public void toModelType_nullBloodType_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_DOB, VALID_GENDER, null,
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_DOB, VALID_GENDER, VALID_PHONE,
                 VALID_EMAIL, VALID_ADDRESS, null, VALID_HEIGHT, VALID_WEIGHT, false,
                 VALID_TAGS, null, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, BloodType.class.getSimpleName());

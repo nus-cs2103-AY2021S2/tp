@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -71,7 +70,7 @@ public class Patient implements Comparable<Patient> {
                    Set<Tag> tags, List<Appointment>appointments) {
         requireAllNonNull(name, dateOfBirth, gender, phone, email, address, bloodType, height, weight, tags);
         this.name = name;
-        this.dateOfBirth =dateOfBirth;
+        this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.phone = phone;
         this.email = email;
