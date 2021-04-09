@@ -942,7 +942,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 <br>
 
-**Use case 14: Clear the shortcut library**
+**Use case 15: Clear the shortcut library**
 
 **MSS**
 
