@@ -9,8 +9,11 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.connection.PersonMeetingConnection;
+import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.note.ReadOnlyNoteBook;
+import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.storage.addressbook.AddressBookStorage;
 import seedu.address.storage.connection.JsonConnectionStorage;
@@ -151,7 +154,33 @@ public class StorageManager implements Storage {
     }
 
     //===================== Person-Meeting Connection ===========================================================
+    @Override
+    public Path getConnectionFilePath() {
+        return jsonConnectionStorage.getConnectionFilePath();
+    }
 
-    ff
+    @Override
+    public Optional<PersonMeetingConnection> readConnection(MeetingBook meetingBook, AddressBook addressBook)
+            throws DataConversionException, IOException {
+        return readConnection(jsonConnectionStorage.getConnectionFilePath(), meetingBook, addressBook);
+    }
+
+    @Override
+    public Optional<PersonMeetingConnection> readConnection(Path filePath, MeetingBook meetingBook,
+                                                            AddressBook addressBook)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return jsonConnectionStorage.readConnection(filePath, meetingBook, addressBook);
+    }
+
+    @Override
+    public void saveConnection(PersonMeetingConnection personMeetingConnection) throws IOException {
+        saveConnection(personMeetingConnection, jsonConnectionStorage.getConnectionFilePath());
+    }
+    @Override
+    public void saveConnection(PersonMeetingConnection personMeetingConnection, Path filePath) throws IOException {
+        logger.fine("Attempting to write data to file: " + filePath);
+        jsonConnectionStorage.saveConnection(personMeetingConnection, filePath);
+    }
 
 }

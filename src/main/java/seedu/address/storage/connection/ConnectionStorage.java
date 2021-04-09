@@ -26,7 +26,8 @@ public interface ConnectionStorage {
      * @throws IOException if there was any problem when reading from the storage.
      */
     public Optional<PersonMeetingConnection> readConnection(MeetingBook meetingBook,
-                                                            AddressBook addressBook) throws DataConversionException;
+                                                            AddressBook addressBook)
+            throws DataConversionException, IOException;
 
     /**
      * Returns the person and meeting connection from a specified file path.
@@ -35,7 +36,8 @@ public interface ConnectionStorage {
      * @throws DataConversionException if the file is not of the correct format.
      */
     public Optional<PersonMeetingConnection> readConnection(Path filePath, MeetingBook meetingBook,
-                                                            AddressBook addressBook) throws DataConversionException;
+                                                            AddressBook addressBook)
+            throws DataConversionException, IOException;
 
     /**
      * Saves the PersonMeeting connection into storage.
