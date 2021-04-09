@@ -1,0 +1,52 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+participant ":MainWindow" as MainWindow LOGIC_COLOR
+participant ":ResultDisplay" as ResultDisplay LOGIC_COLOR
+
+autonumber
+
+-> MainWindow ++ : processResult(CommandResult)
+MainWindow -> ResultDisplay : setFeedbackToUser(CommandResult.getFeedbackToUser())
+activate ResultDisplay
+MainWindow <-- ResultDisplay--
+alt commandResult.isShowViewBox()
+    MainWindow -> MainWindow : handlePatientViewBox(commandResult.getPatient())
+else commandResult.isShowHelp()
+    MainWindow -> MainWindow : handleHelp()
+else commandResult.isShowEdit()
+    MainWindow -> MainWindow : handleEdit(commandResult.getPatient(), commandResult.getMedicalRecord())
+else commandResult.isShowAppointments()
+    MainWindow -> MainWindow : handleAppointmentsList(commandResult.getAppointments());
+else commandResult.isDisplayMessage()
+    MainWindow -> MainWindow : handleDisplayMessage(commandResult.getDisplayMessage());
+else commandResult.isExit()
+    MainWindow -> MainWindow : handleExit()
+end
+@enduml
+
+
+        if (commandResult.isShowHelp()) {
+            handleHelp();
+        }
+
+        if (commandResult.isShowEdit()) {
+            handleEdit(commandResult.getPatient(), commandResult.getMedicalRecord());
+        }
+
+        if (commandResult.isShowViewBox()) {
+            handlePatientViewBox(commandResult.getPatient());
+        }
+
+        if (commandResult.showAppointments()) {
+            handleAppointmentsList(commandResult.getAppointments());
+        }
+
+        if (commandResult.isDisplayMessage()) {
+            handleDisplayMessage(commandResult.getDisplayMessage());
+        }
+
+        if (commandResult.isExit()) {
+            handleExit();
+        }
