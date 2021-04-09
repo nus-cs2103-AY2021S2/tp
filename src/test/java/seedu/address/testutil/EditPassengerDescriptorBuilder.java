@@ -41,14 +41,7 @@ public class EditPassengerDescriptorBuilder {
         descriptor.setPhone(passenger.getPhone());
         descriptor.setAddress(passenger.getAddress());
         descriptor.setTags(passenger.getTags());
-
-        // TODO very hacky thing because of optional price
-        Price price;
-        if (passenger.getPrice().isPresent()) {
-            price = passenger.getPrice().get();
-        } else {
-            price = null;
-        }
+        descriptor.setPrice(passenger.getPrice().orElse(null));
     }
 
     /**
