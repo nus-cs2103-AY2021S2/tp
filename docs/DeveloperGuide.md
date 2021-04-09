@@ -918,8 +918,8 @@ Given below are instructions to test the app manually.
     1. Test case: `edit 1 -h` <br>
        Expected: Any existing headers of the endpoint at index 1 are removed and any existing response is cleared.
        
-    1. Test case: `edit 1 -x POST -u https://reqres.in/api/users -d {\"name\": \"john doe\", \"job\": \"developer\"} -t common -t important` <br>
-       Expected: The method of the endpoint at index 1 is change to `POST`, its url addresss is changed to `https://reqres.in/api/users`, its data is changed to `{\"name\": \"john doe\", \"job\": \"developer\"}` and its tags are changed to `common` and `important` and any existing response is cleared.
+    1. Test case: `edit 1 -x POST -u https://reqres.in/api/users -d {"name": "john doe", "job": "developer"} -t common -t important` <br>
+       Expected: The method of the endpoint at index 1 is change to `POST`, its url addresss is changed to `https://reqres.in/api/users`, its data is changed to `{"name": "john doe", "job": "developer"}` and its tags are changed to `common` and `important` and any existing response is cleared.
 
     1. Test case: `edit` <br>
        Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Invalid command format!...`
@@ -1005,7 +1005,7 @@ Given below are instructions to test the app manually.
     1. Test case: `run https://google.com` <br>
        Expected: Endpoint is called successfully. Details of the response is shown in the result display.
 
-    1. Test case: `run -x POST -u https://reqres.in/api/users -d {\"name\": \"john doe\", \"job\": \"developer\"}` <br>
+    1. Test case: `run -x POST -u https://reqres.in/api/users -d {"name": "john doe", "job": "developer"}` <br>
        Expected: Endpoint is called successfully. Details of the response is shown in the result display..
 
     1. Test case: `run` <br>
