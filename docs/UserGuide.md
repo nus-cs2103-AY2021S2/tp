@@ -216,12 +216,13 @@ Format: `efind KEYWORD [MORE_KEYWORDS]...`
 * The search is case-insensitive e.g. `meeting` will match `Meeting`.
 * The order of the keywords does not matter. e.g. `teaching assistant` will match `assistant teaching`.
 * Only full words will be matched e.g. `meeting` will not match `meetings`.
-* Entries matching at least one keyword will be returned (i.e. OR search). E.g. `Assignment` will return `Assignment 1`
-  , `Assignment 2`.
+* Only entries matching all keywords will be returned (i.e. AND search). E.g. `assignment 1` will only return
+  `assignment 1`.
 
 Example(s):
 
-* `efind assignment 2`
+* `efind assignment` returns `assignment 1` and `assignment 2`
+* `efind assignment 2` returns only `assignment 2`
 
 ### Filter entry tags
 
