@@ -31,6 +31,9 @@ Note the following symbols and formatting used in this document:
 
 <div markdown="block" class="alert alert-info">
 
+`list n/Close Friends` <br>
+This grey highlight, also known as markup, is used to distinguish parts of the document from normal text. For example, it can be used to indicate the syntax of commands.
+
 :information_source: **Notes:**<br>
 
 * This block is used for detailing information about formatting, handling exceptional cases or special keywords used in the corresponding section.
