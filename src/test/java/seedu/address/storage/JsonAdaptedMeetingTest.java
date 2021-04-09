@@ -18,6 +18,8 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Priority;
 import seedu.address.model.person.PersonName;
+import seedu.address.storage.addressbook.JsonAdaptedGroup;
+import seedu.address.storage.meetingbook.JsonAdaptedMeeting;
 
 
 public class JsonAdaptedMeetingTest {

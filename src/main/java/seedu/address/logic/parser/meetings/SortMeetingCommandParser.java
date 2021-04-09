@@ -27,9 +27,11 @@ public class SortMeetingCommandParser implements Parser<SortMeetingCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_SORT_BY, PREFIX_SORT_DIRECTION);
 
         try {
-            MeetingSortOption option = MeetingSortOption.valueOf(argMultimap.getValue(PREFIX_SORT_BY).get());
-            MeetingSortDirection direction = MeetingSortDirection.valueOf(argMultimap.getValue(PREFIX_SORT_DIRECTION).
-                    get());
+            String optionStringCaps = argMultimap.getValue(PREFIX_SORT_BY).get().toUpperCase();
+            String directionStringCaps = argMultimap.getValue(PREFIX_SORT_DIRECTION).get().toUpperCase();
+
+            MeetingSortOption option = MeetingSortOption.valueOf(optionStringCaps);
+            MeetingSortDirection direction = MeetingSortDirection.valueOf(directionStringCaps);
             return new SortMeetingCommand(option, direction);
         } catch (Exception e) {
             throw new ParseException(SortMeetingCommand.MESSAGE_USAGE);

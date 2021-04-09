@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.addressbook;
 
 import static java.util.Objects.requireNonNull;
 
@@ -44,7 +44,6 @@ public class JsonAddressBookStorage implements AddressBookStorage {
      */
     public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
-
         Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableAddressBook.class);
         if (!jsonAddressBook.isPresent()) {

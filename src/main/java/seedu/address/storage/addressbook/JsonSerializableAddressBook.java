@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.addressbook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +12,13 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
+import seedu.address.storage.addressbook.JsonAdaptedPerson;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+public class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
