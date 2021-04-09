@@ -1,12 +1,12 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PERSON_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PERSON_ID_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PERSON_ID_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PERSON_ID_BOB;
+
+import org.junit.jupiter.api.Test;
 
 public class PersonIdTest {
 
