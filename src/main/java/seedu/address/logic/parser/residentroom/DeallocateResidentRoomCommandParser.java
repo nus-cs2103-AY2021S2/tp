@@ -22,9 +22,9 @@ public class DeallocateResidentRoomCommandParser implements Parser<DeallocateRes
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeallocateResidentRoomCommand(index);
-        } catch (ParseException pe) {
+        } catch (IllegalArgumentException iex) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeallocateResidentRoomCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeallocateResidentRoomCommand.MESSAGE_USAGE), iex);
         }
     }
 

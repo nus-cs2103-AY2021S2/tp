@@ -142,7 +142,8 @@ public class EditRoomCommandTest {
                 .build();
 
         EditRoomCommand editRoomCommand = new EditRoomCommand(outOfBoundIndex, descriptor);
-        assertCommandFailure(editRoomCommand, model, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+        assertCommandFailure(editRoomCommand, model, String.format(
+                Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX, model.getFilteredRoomList().size()));
     }
 
     /**
@@ -162,7 +163,8 @@ public class EditRoomCommandTest {
                 .build();
         EditRoomCommand editRoomCommand = new EditRoomCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editRoomCommand, model, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+        assertCommandFailure(editRoomCommand, model, String.format(
+                Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX, model.getFilteredRoomList().size()));
     }
 
     @Test

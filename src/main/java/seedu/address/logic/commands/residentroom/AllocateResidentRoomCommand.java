@@ -55,11 +55,22 @@ public class AllocateResidentRoomCommand extends Command {
         List<Resident> lastShownResidentList = model.getFilteredResidentList();
         List<Room> lastShownRoomList = model.getFilteredRoomList();
 
-        if (targetResidentIndex.getZeroBased() >= lastShownResidentList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+        if (lastShownResidentList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_RESIDENTS);
         }
+
+        if (lastShownRoomList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_ROOMS);
+        }
+
+        if (targetResidentIndex.getZeroBased() >= lastShownResidentList.size()) {
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX, lastShownResidentList.size()));
+        }
+
         if (targetRoomIndex.getZeroBased() >= lastShownRoomList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX, lastShownRoomList.size()));
         }
 
         Resident residentToAllocate = lastShownResidentList.get(targetResidentIndex.getZeroBased());
