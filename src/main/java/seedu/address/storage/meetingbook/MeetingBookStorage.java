@@ -1,5 +1,5 @@
 
-package seedu.address.storage;
+package seedu.address.storage.meetingbook;
 
 import java.io.IOException;
 import java.nio.file.Path;

@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
-MeetBuddy is a **desktop app for managing contacts and daily tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, MeetBuddy can get your contact management as well as task management done faster than traditional GUI apps.
+MeetBuddy is a **desktop app for managing contacts and daily meetings, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, MeetBuddy can get your contacts and meetings management done faster than traditional GUI apps. In addition, MeetBuddy is meant for users to organise their meetups
+with friends, family, or work colleagues. It provides a better user experience for users who have alot of contacts having online Gravatar accounts, where there is automatic syncing of
+their profile pictures. 
+
 
 * Table of Contents
 {:toc}
@@ -34,9 +38,17 @@ MeetBuddy is a **desktop app for managing contacts and daily tasks, optimized fo
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below (after glossary) for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Glossary 
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+--------------------------------------------------------------------------------------------------------------------
+
 
 ## Features
 
@@ -61,6 +73,13 @@ MeetBuddy is a **desktop app for managing contacts and daily tasks, optimized fo
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  
+* Note that for all date arguments, if the day is less than or equal to 31 and 
+there is no such day corresponding to the given month and year of the date, the program is smart enough to handle 
+ such cases and automatically corrects the date to the nearest valid end-of-month date. For example 
+`31-02-2021` will be auto-corrected to `28-02-2021` because there is no such date. 
+  But `32-02-2021` will not be autocorrected and the user will be prompted with an error message.
+
 
 </div>
 
@@ -194,21 +213,22 @@ Examples
  * Note that you can scroll to view more slots.
  
  
-### Set timetable date : `setTimetable`
+### Set Timetable date : `setTimetable`
  
  Sets a timetable to start on a specified date. Updates the display accordingly.
  
  Format: 'setTimetable DATE'
  
  * DATE must be a string strictly following the format `YYYY-mm-dd`
+ * If no date is specified, for example `setTimetable` without DATE parameter is keyed in, it will default set to
+ today's current date.
  
  
 ### Profile picture:
 
-Gets the image of contacts from Gravatar. If contact does not have a gravatar account linked to 
-the email address, the what will be shown is a unique robo-hashed image obtained from email.
-There is no need to use any commands, the profile picture will be shown after updating/ adding contact
-If there is a problem establishing connection to the server, a default blue circle icon will be displayed
+Instantly updates your contacts with their Gravatar profile picture, if your contact has their email linked
+to their gravatar account. The profile picture will be automatically displayed upon adding the contact.
+If there is a problem obtaining the image, a default blue circle icon will be displayed
 instead.
 
 ### Clearing all entries : `clear`
@@ -240,16 +260,17 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ### Adding a meeting: `addm`
 
-Adds a meeting to MeetBuddy. Note that meetings must be of minimum length of 15 mins
-and maximum length of 7 days. For example a meeting cannot be 15 March 16:00 - 22 March 16:00,
-but can be from 15 March 16:00 - 22 march 15:59.
+Adds a meeting to MeetBuddy. 
 
-Format: `addm n/NAME st/TIME ed/TIME des/DESCRIPTIONS pr/PRIORITY [p/PERSON RELATED]… [g/GROUP]…​`
+Format: `addm n/NAME st/TIME ed/TIME [des/DESCRIPTIONS] [pr/PRIORITY] [p/PERSON RELATED INDEX]… [g/GROUP]…​`
+* Note that meetings must be of minimum length of 15 mins and maximum length of 7 days. For example a meeting cannot be 15 March 16:00 - 22 March 16:00, but can be from 15 March 16:00 - 22 march 15:59.
+* Priority should be an integer from 1 to 5. If the priority is not specified, it will be automatically set as 1.
+* Description can be empty.
+* A meeting can have any number of groups (including 0).
+* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A meeting can have any number of groups.(including 0)
-It will add all the persons belong to that group into the person related field.
-</div>
+Examples:
+* `addm n/CS2103 Lecture st/2021-03-12 14:00 ed/2021-03-12 16:00 desc/Week 7 pr/3 g/lectures g/SoC p/1 p/2` 
 
 ### Listing all meetings : `listm`
 
@@ -261,17 +282,18 @@ Format: `listm`
 
 Edits an existing meeting in the meeting book.
 
-Format: `editm INDEX n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...​`
+Format: `editm INDEX n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [p/PERSON RELATED INDEX] [g/GROUP]...​`
 
 * Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index **must be a positive integer** 1, 2, 3, …​
 * Existing values will be updated to the input values.
+* When editing person related, the existing related contacts will be removed. You must specify the index correctly.  
 * When editing groups, the existing groups in the meeting will be removed i.e adding of groups is not cumulative.
 * You can remove all the meeting’s groups by typing `g/` without specifying any groups after it.
 
 Examples:
 *  `editm 1 n/CS2103 Lecture g/SOC g/friends` Edits the name of the 1st meeting to be `CS2103 Lecture`, and its groups to be `SOC` and `friends`.
 *  `editm 2 n/CS2106 Lab g/` Edits the name of the 2nd meeting to be `CS2106 Lab` and clears all existing groups in the meeting.
-
+*  `editm 2 n/CS2106 Lab p/1` Edits the name of the 2nd meeting to be `CS2106 Lab` and change the contacts related field to the first person in your contact list (If he/she exists).
 ### Deleting a meeting: `deletem`
 
 Deletes a meeting in the meeting book.
@@ -284,6 +306,33 @@ Format: `deletem INDEX`
 
 Examples:
 * `listm` followed by `delete 2` deletes the 2nd meeting in the meeting book.
+
+### Adding persons related for a meeting: `addptm`
+
+Adds persons related to a meeting in MeetBuddy.
+
+Format: `addptm INDEX p/PERSON RELATED INDEX1 p/PERSON RELATED INDEX2… ​`
+* The index refers to the meeting index, and it **must be a positive integer** 1, 2, 3, …​
+* The user must input at least one person related index field.
+* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
+
+Examples:
+* `addptm 1 p/1 p/2 p/2` Adds the person on index 1 and 2 into the contacts related field in meeting 1.
+
+### Deleting a meeting: `deletepfm`
+
+Deletes persons related from a meeting in MeetBuddy.
+
+Format: `deletepfm INDEX p/PERSON RELATED INDEX1 p/PERSON RELATED INDEX2… ​`
+* The index refers to the meeting index, and it **must be a positive integer** 1, 2, 3, …​
+* The user must input at least one person related index field.
+* Person Related Index refers to the index of the contact list shown in the GUI. The index should be an integer and not out of bounds. If duplicated person index is in the input, the program will automatically remove the duplication.
+* The related persons that the user wants to delete must exist in the contacts related field. 
+
+
+Examples:
+* `deletepfm 1 p/1 p/2 p/2` Deletes the person on index 1 and 2 from the contacts related field in meeting 1.
+
 
 ### Sorting of meetings : `sortm`
 
@@ -330,4 +379,6 @@ Action | Format, Examples
 **List** | `list`, `listm`, `listp`
 **Sort** | `sortp by/FIELD d/DIRECTION` <br>  `sortm by/FIELD d/DIRECTION`
 **Help** | `help`
-**SetTimtable**| `setTimetable DATE`
+**SetTimetable**| `setTimetable DATE`
+**AddPersonRelatedToAMeeting**|`addptm INDEX p/PERSON RELATED INDEX1 p/PERSON RELATED INDEX2… ​`
+**DeletePersonRelatedFromAMeeting**|`deletepfm INDEX p/PERSON RELATED INDEX1 p/PERSON RELATED INDEX2… ​`

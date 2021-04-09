@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.notebook;
 
 import java.io.IOException;
 import java.nio.file.Path;

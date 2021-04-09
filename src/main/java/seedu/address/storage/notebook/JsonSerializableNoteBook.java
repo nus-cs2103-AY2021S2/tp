@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.notebook;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +12,13 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.note.Note;
 import seedu.address.model.note.NoteBook;
 import seedu.address.model.note.ReadOnlyNoteBook;
+import seedu.address.storage.notebook.JsonAdaptedNote;
 
 /**
  * An Immutable NoteBook that is serializable to JSON format.
  */
 @JsonRootName(value = "notebook")
-class JsonSerializableNoteBook {
+public class JsonSerializableNoteBook {
 
     public static final String MESSAGE_DUPLICATE_NOTE = "Notes list contains duplicate note(s).";
 

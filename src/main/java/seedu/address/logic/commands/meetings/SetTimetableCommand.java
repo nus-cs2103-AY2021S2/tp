@@ -13,9 +13,9 @@ import static java.util.Objects.requireNonNull;
 
 public class SetTimetableCommand extends Command {
     public static final String COMMAND_WORD = "setTimetable";
-    public static final String MESSAGE_USAGE = ": Sets a starting date for the timetable."
-            + "If no date is specified, it will set the starting date to be today's date."
-            + "Parameters: (DATE must be in the format YYYY-mm-dd)."
+    public static final String MESSAGE_USAGE = "setTimetable : Sets a starting date for the timetable."
+            + " If no date is specified, it will set the starting date to be today's date."
+            + " Parameters: (DATE must be in the format YYYY-mm-dd)."
             + "\n"
             + "Example Usage: "
             + "setTimetable 2021-03-21";

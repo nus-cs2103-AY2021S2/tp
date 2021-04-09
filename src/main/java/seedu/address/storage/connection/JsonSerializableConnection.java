@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.connection;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,9 +7,12 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingBook;
+import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.ReadOnlyAddressBook;
+import seedu.address.storage.connection.JsonAdaptedPersonMeetingConnection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,7 +53,7 @@ public class JsonSerializableConnection {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public PersonMeetingConnection toModelType(MeetingBook meetingBook, AddressBook addressBook) throws IllegalValueException {
+    public PersonMeetingConnection toModelType(ReadOnlyMeetingBook meetingBook, ReadOnlyAddressBook addressBook) throws IllegalValueException {
         PersonMeetingConnection connection = new PersonMeetingConnection();
         for (JsonAdaptedPersonMeetingConnection jsonAdaptedPersonMeetingConnection : connections) {
             connection = jsonAdaptedPersonMeetingConnection.toModelType(addressBook, meetingBook, connection);
