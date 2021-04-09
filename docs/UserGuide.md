@@ -374,7 +374,7 @@ Action | Format, Examples
 **Add** | `add n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP]…​` <br> e.g., `add n/James Ho ph/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 g/CS2106 g/badminton` <br> <br> `addm n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...[p/INDEX OF PERSON RELATED]...​` <br> e.g., `addm n/CS2103 Lecture st/2021-03-12 14:00 ed/2021-03-12 16:00 desc/Week 7 pr/3 g/lectures g/SoC p/1 p/2`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3` <br> <br> `deletem INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [ph/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GROUP]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` <br> <br> `editm n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...[p/INDEX OF PERSON RELATED]...​`<br> e.g.,`edit 2 n/CS2103 Lecture`
+**Edit** | `edit INDEX [n/NAME] [ph/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GROUP]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` <br> <br> `editm n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...[p/INDEX OF PERSON RELATED]...​`<br> e.g.,`editm 2 n/CS2103 Lecture`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` <br> <br> `findg KEYWORD [MORE_KEYWORDS]`<br> e.g., `findg badminton` <br>
 **List** | `list`, `listm`, `listp`
 **Sort** | `sortp by/FIELD d/DIRECTION` <br>  `sortm by/FIELD d/DIRECTION`
