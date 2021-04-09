@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+
+:User executes command;
+
+:RemindMeParser parses input;
+
+if () then ([user input is valid])
+
+  :TitleContainsKeywordsPredicate is
+  created using user inputs;
+
+  :FindModuleCommand is created
+  with TitleContainsKeywordsPredicate;
+
+  :ResultDisplay is created when
+  FindModuleCommand is executed;
+
+else ([user input is invalid])])
+
+  :ResultDisplay is created
+  with the error message;
+
+endif
+
+:resultDisplay is shown in GUI to user;
+
+stop
+
+@enduml
