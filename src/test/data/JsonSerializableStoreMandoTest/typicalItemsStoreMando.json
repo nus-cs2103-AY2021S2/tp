@@ -4,7 +4,7 @@
     {
       "name": "Apples",
       "quantity": "9",
-      "expiryDate": "2021-04-08",
+      "expiryDate": "2021-07-01",
       "location": "Kitchen Basket",
       "tagged": [
         "Expiring"
@@ -13,7 +13,7 @@
     {
       "name": "Bread",
       "quantity": "1",
-      "expiryDate": "2021-04-08",
+      "expiryDate": "2021-07-01",
       "location": "Dining Table",
       "tagged": [
         "Expiring",
