@@ -30,4 +30,5 @@ public class Messages {
             + "- Server error\n"
             + "- Internet connection\n"
             + "- Invalid command format\n";
+    public static final String MESSAGE_USE_HELP = "Use the help command for more information.";
 }

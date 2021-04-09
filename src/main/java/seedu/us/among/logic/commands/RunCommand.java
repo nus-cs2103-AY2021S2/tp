@@ -1,6 +1,7 @@
 package seedu.us.among.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.us.among.commons.core.Messages.MESSAGE_USE_HELP;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_DATA;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
@@ -31,8 +32,8 @@ public class RunCommand extends Command {
             + PREFIX_ADDRESS + " ADDRESS "
             + PREFIX_DATA + " DATA "
             + "[" + PREFIX_HEADER + " HEADER]\n"
-            + "Use the help command for more information (an shorthand for run command is also"
-            + " explained in the user guide).\n\n"
+            + MESSAGE_USE_HELP + " A shorthand for run command is also"
+            + " explained in the user guide.\n\n"
             + "Example: "
             + MESSAGE_API_EXAMPLE;
 

@@ -2,6 +2,7 @@ package seedu.us.among.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
+import static seedu.us.among.commons.core.Messages.MESSAGE_USE_HELP;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_DATA;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
@@ -50,7 +51,7 @@ public class EditCommand extends Command {
             + PREFIX_DATA + " DATA "
             + "[" + PREFIX_HEADER + " HEADER] "
             + "[" + PREFIX_TAG + " TAG]\n"
-            + "Use the help command for more information.\n\n"
+            + MESSAGE_USE_HELP + "\n\n"
             + "Example: "
             + MESSAGE_API_EXAMPLE;
 

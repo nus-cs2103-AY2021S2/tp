@@ -1,6 +1,7 @@
 package seedu.us.among.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.us.among.commons.core.Messages.MESSAGE_USE_HELP;
 
 import java.util.function.Predicate;
 
@@ -19,7 +20,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds endpoints using keywords.\n"
             + "Parameters: [KEYWORD]\n"
-            + "Use the help command for more information (an option for more precise search is also"
+            + MESSAGE_USE_HELP + " An option for more precise search is also"
             + " explained in the user guide).\n\n"
             + "Example: " + COMMAND_WORD + " transport github";
 

@@ -2,6 +2,7 @@ package seedu.us.among.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
+import static seedu.us.among.commons.core.Messages.MESSAGE_USE_HELP;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ShowCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the details of an existing endpoint "
             + "using its displayed index from the endpoint list.\n"
             + "Parameters: INDEX\n"
-            + "Use the help command for more information.\n\n"
+            + MESSAGE_USE_HELP + "\n\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
     private final Index index;
