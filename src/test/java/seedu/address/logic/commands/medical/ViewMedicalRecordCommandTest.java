@@ -1,7 +1,10 @@
 package seedu.address.logic.commands.medical;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -64,7 +68,7 @@ class ViewMedicalRecordCommandTest {
         assertCommandFailure(viewMedicalRecordCommand, model, Messages.MESSAGE_INVALID_MEDICAL_RECORD_INDEX);
     }
     @Test
-    public void execute_validMedicalRecordIndexFilteredList_success() {
+    public void execute_validMedicalRecordIndexUnFilteredList_success() {
         Patient patientToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         LocalDateTime dateTime = LocalDateTime.of(2021, 12, 12, 18, 00);
         Section section = new Section("test");
@@ -78,6 +82,6 @@ class ViewMedicalRecordCommandTest {
                 patientToView.getName().fullName);
         assertCommandSuccess(viewMedicalRecordCommand, model, expectedMessage, expectedModel);
     }
-
+    
 
 }
