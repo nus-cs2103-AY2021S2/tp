@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.math.BigDecimal;
+
 /**
  * Debt stores a float that should be up to only 2 decimal places.
  * The user can only input in positive floats but the program is allowed to store negative floats.
@@ -10,10 +12,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Debt {
 
-    public static final String MESSAGE_CONSTRAINTS = "Debt given should be a positive float and "
-            + "should only be up 2 decimal places.";
+    public static final Debt MAX_DEBT = new Debt(new BigDecimal("999999999999"));
+    public static final Debt MIN_DEBT = new Debt(new BigDecimal("-999999999999"));
+    public static final String MESSAGE_CONSTRAINTS = "Debt given should be a positive float,"
+            + "should only be up 2 decimal places and is smaller than " + MAX_DEBT;
 
-    public final Float value;
+    public final BigDecimal value;
     /**
      * Constructs a {@code Debt}
      * @param debt a valid debt
@@ -21,23 +25,16 @@ public class Debt {
     public Debt(String debt) {
         requireNonNull(debt);
         checkArgument(isValidDebt(debt), MESSAGE_CONSTRAINTS);
-        value = Float.valueOf(debt);
+        value = new BigDecimal(debt);
     }
 
     /**
      * Constructs a {@code Debt}.
-     * For testing purposes only.
      * @param debt
      */
-    protected Debt(Float debt) {
+    protected Debt(BigDecimal debt) {
         requireNonNull(debt);
         value = debt;
-    }
-
-    private static int getPrecision(Float debt) {
-        String debtString = debt.toString();
-        int decimalIndex = debtString.indexOf(".");
-        return debtString.length() - decimalIndex - 1;
     }
 
     /**
@@ -47,8 +44,10 @@ public class Debt {
      */
     public static boolean isValidDebt(String debt) {
         try {
-            Float debtFloat = Float.valueOf(debt);
-            return getPrecision(debtFloat) <= 2;
+            BigDecimal debtNumber = new BigDecimal(debt);
+            return debtNumber.scale() <= 2
+                    && debtNumber.compareTo(MAX_DEBT.value) != 1
+                    && debtNumber.compareTo(MIN_DEBT.value) != -1;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -63,7 +62,7 @@ public class Debt {
     public static Debt add(Debt first, Debt second) {
         requireNonNull(first);
         requireNonNull(second);
-        return new Debt(first.value + second.value);
+        return new Debt(first.value.add(second.value));
     }
 
     /**
@@ -75,7 +74,16 @@ public class Debt {
     public static Debt subtract(Debt first, Debt second) {
         requireNonNull(first);
         requireNonNull(second);
-        return new Debt(first.value - second.value);
+        return new Debt(first.value.subtract(second.value));
+    }
+
+    /**
+     * Compares this Debt with the specified debt.
+     * @param debt value to which this Debt is being compared to
+     * @return -1, 0 or 1 if this Debt is smaller than, equal to or greater than debt respectively
+     */
+    public int compareTo(Debt debt) {
+        return this.value.compareTo(debt.value);
     }
 
     public String toUi() {

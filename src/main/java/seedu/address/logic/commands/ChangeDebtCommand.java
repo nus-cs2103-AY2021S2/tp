@@ -1,5 +1,8 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.model.person.Debt.MAX_DEBT;
+import static seedu.address.model.person.Debt.MIN_DEBT;
+
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -21,7 +24,9 @@ public class ChangeDebtCommand extends Command {
             COMMAND_WORD_SUBTRACT);
     public static final String MESSAGE_ADD_DEBT_SUCCESS = "Added %1$s to %2$s debt";
     public static final String MESSAGE_SUBTRACT_DEBT_SUCCESS = "Subtracted %1$s to %2$s debt";
-    private static final String MESSAGE_USAGE = "%1$s: Adds the specified debt to the person identified"
+    public static final String MESSAGE_OUT_OF_RANGE = "New Debt will be out of range. Please ensure you have "
+            + "keyed in the correct amount where the new Debt is between " + MAX_DEBT + " to " + MIN_DEBT;
+    private static final String MESSAGE_USAGE = "%1$s: Adds/Subtracts the specified debt to the person identified"
             + " by the index number used in the last person listing. \n"
             + "Parameters: INDEX (must be a positive integer) DEBT \n"
             + "Example: %1$s 1 10.50";
@@ -49,12 +54,21 @@ public class ChangeDebtCommand extends Command {
         }
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Debt currentDebt = personToEdit.getDebt();
+
         Person editedPerson;
+        Debt newDebt;
         if (isAdd) {
-            editedPerson = personToEdit.withDebt(Debt.add(currentDebt, debt));
+            newDebt = Debt.add(currentDebt, debt);
+            if (newDebt.compareTo(MAX_DEBT) == 1) {
+                throw new CommandException(MESSAGE_OUT_OF_RANGE);
+            }
         } else {
-            editedPerson = personToEdit.withDebt(Debt.subtract(currentDebt, debt));
+            newDebt = Debt.subtract(currentDebt, debt);
+            if (newDebt.compareTo(MIN_DEBT) == -1) {
+                throw new CommandException(MESSAGE_OUT_OF_RANGE);
+            }
         }
+        editedPerson = personToEdit.withDebt(newDebt);
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList();
         if (isAdd) {
