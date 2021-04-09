@@ -17,13 +17,14 @@ Given below are my contributions to the project.
         * Justification: This feature makes it much easier for the user to categorise and filter out tasks belonging to a
           certain category. By tagging tasks with relevant keywords, the user can later retrieve all the tasks from 
           the same
-          cateogory really quickly instead of manually looking through all the tasks.
-        * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+          category really quickly instead of manually looking through all the tasks.
+        * Highlights: The implementation involved some changes to existing logic and addition of commands and test 
+          cases.
         * Relevant PRs: [\#36](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/36)
     * #### UI Design and Enhancement
-      * What it does: Designed and enhanced the UI to make it more seamless and user friendly, while also being 
+      * What it does: Designed and enhanced the UI to make it more seamless and user-friendly, while also being 
         simple and functional.
-      * Justification: A great user interface is essential to the user expereince and will help in user retention 
+      * Justification: A great user interface is essential to the user experience and will help in user retention 
         and overall motivation to use the app.
       * Highlights: The UI design involved getting feedback from multiple user. The color scheme and layout of the 
         UI was designed to be simple and intuitive. The implementation of the tab feature was quite challenging and 
@@ -40,7 +41,7 @@ Given below are my contributions to the project.
     * Managed the issue tracker and milestones v1.1 - v1.4 (4 milestones) on GitHub.
 
 * **Enhancements to existing features**:
-    * Reafactored AB3 code to be adapted for Taskify (Pull requests 
+    * Refactored AB3 code to be adapted for Taskify (Pull requests 
       [\#31](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/31))
     * Wrote additional tests for existing features to increase coverage.
 
@@ -55,7 +56,8 @@ Given below are my contributions to the project.
     * PRs reviewed (with non-trivial review comments): [\#37](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/37), 
       [\#40](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/40), [\#54](https://github.com/AY2021S2-CS2103T-W14-4/tp/pull/54)
     * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/135#issuecomment-778904556), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/58#issuecomment-768852735))
-    * Reported bugs and suggestions for other teams in the class (examples: [11 bugs/suggesions in ped](https://github.com/noelmathewisaac/ped/issues))
+    * Reported bugs and suggestions for other teams in the class (examples: [11 bugs/suggestions in ped]
+      (https://github.com/noelmathewisaac/ped/issues))
  
 
 * **Tools**:
