@@ -201,8 +201,6 @@ t/ | TAG |
 
 ## Command list
 
-All commands are ordered sequentially. Do give them a try!
-
 * **`list`** : List out tasks
 
 * **`add`** : Add a task
