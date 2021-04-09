@@ -903,7 +903,7 @@ Use case ends.
 * 2a. There are no unassigned residents.
     
     Use case ends.
-* 3a. The given resident or room do not exist.
+* 3a. The given resident or room does not exist.
     * 3a1. SunRez shows an error message.   
       
         Use case resumes at step 2.
@@ -919,7 +919,7 @@ Use case ends.
 **MSS**
 
 1. User requests to list the residents.
-2. SunRez displays residents, each with its corresponding allocated room.
+2. SunRez displays residents, each with its corresponding allocated room, if any.
 3. User requests to deallocate a resident from a room based on the index from the list displayed in step 2.
 4. SunRez deallocates the resident from room and saves the changes.
 
@@ -928,7 +928,7 @@ Use case ends.
 * 2a. There are no assigned residents.
 
   Use case ends.
-* 3a. The given resident is does not exist.
+* 3a. The given resident does not exist.
     * 3a1. SunRez shows an error message.
 
       Use case resumes at step 2.
