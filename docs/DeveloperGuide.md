@@ -289,7 +289,7 @@ The following sequence diagram shows how the find operation works:
 ![FindSequenceDiagram](images/findcommand/FindSequenceDiagram.png)<br>
 *[Find Sequence Diagram for `find m/CS2101`]*
 
-The following activity diagram summarizes what happens when a user executes a `find m/CS2101` command:
+The following activity diagram summarizes what happens when a user executes a `find m/CS2101` command:<br>
 ![FindActivityDiagram](images/findcommand/FindActivityDiagram.png)<br>
 *[Find Activity Diagram for `find m/CS2101`]*
 <br>
