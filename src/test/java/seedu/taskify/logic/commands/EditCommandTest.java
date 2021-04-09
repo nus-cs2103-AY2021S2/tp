@@ -68,6 +68,9 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new Taskify(model.getAddressBook()), new UserPrefs());
+        System.out.println(expectedModel.getFilteredTaskList());
+        System.out.println("The last task is " + lastTask);
+        System.out.println("The edited task is " + editedTask);
         expectedModel.setTask(lastTask, editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
