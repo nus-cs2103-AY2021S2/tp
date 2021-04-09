@@ -742,7 +742,7 @@ person on the list is born before 12-12-2020.
        <br>
        Expected: Nothing happens. Error details shown in the status message.
 
-    2. Test case: `theme not_found.json`, where `invalid.json` does not exist (Invalid data)<br>
+    2. Test case: `theme not_found.json`, where `not_found.json` does not exist (Invalid data)<br>
        Expected: Nothing happens. Error details shown in the status message.
 
 ### Viewing different details panel: `view`
