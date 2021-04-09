@@ -38,11 +38,11 @@ Given below are my contributions to the project.
     * Justification: This will ensure the correct amount of ingredients that are stored in the inventory.
       
 * **Enhancements to existing features**:
-    * Personalised the GUI color scheme for JJIMY (Pull requests [\#123](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/123))
+    * Complete overhaul of the app GUI (Pull requests [\#123](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/123))
     
 * **Documentation**:
     * General:
-        * Complete overhaul of the User Guide and Developer Guide UI (Pull requests [\#150](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/150))
+        * Improve user-friendliness of product website and personalised it's color scheme (Pull requests [\#150](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/150))
             * Drop-down lists and Dark mode
             * Color code commands from different components
     * User Guide:
