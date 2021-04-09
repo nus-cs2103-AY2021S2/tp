@@ -27,7 +27,7 @@ public class ViewTimeTableCommandParser implements Parser<ViewTimeTableCommand> 
             return new ViewTimeTableCommand(queryDate);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewEventCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewTimeTableCommand.MESSAGE_USAGE), pe);
         }
     }
 }

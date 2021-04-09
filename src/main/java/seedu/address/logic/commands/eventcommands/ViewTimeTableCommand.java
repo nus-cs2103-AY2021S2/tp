@@ -29,4 +29,11 @@ public class ViewTimeTableCommand extends Command {
         model.setTimeTableDate(queryDate);
         return new CommandResult(SHOWING_OPEN_MESSAGE, false, false, true);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewTimeTableCommand // instanceof handles nulls
+                && queryDate.equals(((ViewTimeTableCommand) other).queryDate)); // state check
+    }
 }

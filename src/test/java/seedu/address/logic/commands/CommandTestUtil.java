@@ -86,8 +86,8 @@ public class CommandTestUtil {
 
     public static final String VALID_SCHEDULE_TITLE_ONE = "Maths Homework";
     public static final String VALID_SCHEDULE_DATE_ONE = "2021-05-24";
-    public static final String VALID_SCHEDULE_TIME_FROM_ONE = "10:00AM";
-    public static final String VALID_SCHEDULE_TIME_TO_ONE = "12:00PM";
+    public static final String VALID_SCHEDULE_TIME_FROM_ONE = "12:00PM";
+    public static final String VALID_SCHEDULE_TIME_TO_ONE = "2:00PM";
     public static final String VALID_SCHEDULE_DATE_TIME_FROM_ONE = VALID_SCHEDULE_DATE_ONE + " "
             + VALID_SCHEDULE_TIME_FROM_ONE;
     public static final String VALID_SCHEDULE_DATE_TIME_TO_ONE = VALID_SCHEDULE_DATE_ONE + " "
@@ -97,8 +97,8 @@ public class CommandTestUtil {
     public static final String VALID_SCHEDULE_TITLE_TWO = "Science Homework";
     public static final String VALID_SCHEDULE_DESCRIPTION_TWO = "Chapter 3 Page 21";
     public static final String VALID_SCHEDULE_DATE_TWO = "2021-05-27";
-    public static final String VALID_SCHEDULE_TIME_FROM_TWO = "12:00PM";
-    public static final String VALID_SCHEDULE_TIME_TO_TWO = "2:00PM";
+    public static final String VALID_SCHEDULE_TIME_FROM_TWO = "2:00PM";
+    public static final String VALID_SCHEDULE_TIME_TO_TWO = "4:00PM";
     public static final String VALID_SCHEDULE_DATE_TIME_FROM_TWO = VALID_SCHEDULE_DATE_TWO + " "
             + VALID_SCHEDULE_TIME_FROM_TWO;
     public static final String VALID_SCHEDULE_DATE_TIME_TO_TWO = VALID_SCHEDULE_DATE_TWO + " "

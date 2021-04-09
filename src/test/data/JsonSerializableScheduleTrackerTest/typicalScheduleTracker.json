@@ -3,14 +3,14 @@
     {
       "title": "Maths Homework",
       "description": "Chapter 5 Page 841",
-      "timeFrom": "2021-05-24 10:00 AM",
-      "timeTo": "2021-05-24 12:00 PM"
+      "timeFrom": "2021-05-24 12:00 PM",
+      "timeTo": "2021-05-24 2:00 PM"
     },
     {
       "title": "Science Homework",
       "description": "Chapter 3 Page 21",
-      "timeFrom": "2021-05-27 12:00 PM",
-      "timeTo": "2021-05-27 2:00 PM"
+      "timeFrom": "2021-05-27 2:00 PM",
+      "timeTo": "2021-05-27 4:00 PM"
     }
   ]
 }
