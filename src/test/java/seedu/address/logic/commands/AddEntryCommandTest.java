@@ -41,7 +41,7 @@ public class AddEntryCommandTest {
         AddEntryCommand addEntryCommand3 = new AddEntryCommand(CLASS_MEETING);
 
         assertEquals(addEntryCommand0, addEntryCommand1);
-        assertNotEquals(addEntryCommand0, addEntryCommand2);
+        assertEquals(addEntryCommand0, addEntryCommand2);
         assertNotEquals(addEntryCommand0, addEntryCommand3);
         assertNotEquals(addEntryCommand1, addEntryCommand3);
     }

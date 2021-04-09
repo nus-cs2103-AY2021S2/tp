@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEntryAtIndex;
-import static seedu.address.testutil.TypicalEntries.getTypicalEntriesList;
 import static seedu.address.testutil.TypicalIndices.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndices.INDEX_SECOND;
+import static seedu.address.testutil.TypicalTeachingAssistant.getTypicalTeachingAssistant;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +20,7 @@ import seedu.address.model.entry.Entry;
 
 public class DeleteEntryCommandTest {
 
-    private Model model = new ModelManager(getTypicalEntriesList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

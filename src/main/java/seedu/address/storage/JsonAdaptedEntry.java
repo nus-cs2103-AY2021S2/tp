@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_RANGE;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +15,8 @@ import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryDate;
 import seedu.address.model.entry.EntryName;
 import seedu.address.model.tag.Tag;
+
+
 
 public class JsonAdaptedEntry {
 
@@ -42,9 +46,9 @@ public class JsonAdaptedEntry {
      * Converts a gievn {@code Entry} into this class for Jackson use.
      */
     public JsonAdaptedEntry(Entry source) {
-        entryName = source.getEntryName().toString();
-        startDate = source.startTimestamp();
-        endDate = source.endTimestamp();
+        entryName = source.getEntryName().name;
+        startDate = source.getOriginalStartDate().toString();
+        endDate = source.getOriginalEndDate().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -86,7 +90,12 @@ public class JsonAdaptedEntry {
         if (!EntryDate.isValidDate(endDate)) {
             throw new IllegalValueException(EntryDate.DATE_CONSTRAINTS);
         }
+
         final EntryDate modelEndDate = new EntryDate(endDate);
+
+        if (modelStartDate.isAfter(modelEndDate)) {
+            throw new IllegalValueException(MESSAGE_INVALID_DATE_RANGE);
+        }
 
         final Set<Tag> modelTags = new HashSet<>(entryTags);
         return new Entry(modelEntryName, modelStartDate, modelEndDate, modelTags);
