@@ -274,7 +274,12 @@ Vax@NUS saves your current data into your computer automatically after any comma
 
 VAX@NUS data is saved as a JSON file [JAR file location]/data/studentbook.json. Advanced users are welcome to update data directly by editing that data file.
 
-Please refer to the [Input Formats](#input-formats) section when editing the data file to conform to the required format .
+Editing a student's matriculation number through the JSON file is allowed, however, extra care must be taken to ensure data integrity. 
+
+If you change a student's matriculation number, you must also update the matriculation number for the corresponding student's appointment(s). 
+Failure to do so will result in an invalid data file format as the appointment does not belong to any student. 
+
+Please refer to the [Input Formats](#input-formats) section when editing the data file to conform to the required format.
 
 > :warning: **If your changes to the data file makes it an invalid format, VAX@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
 
