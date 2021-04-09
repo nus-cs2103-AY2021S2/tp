@@ -20,7 +20,7 @@ public class ViewMedicalRecordCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 3";
 
-    public static final String MESSAGE_SUCCESS = "New Medical Record for: %s";
+    public static final String MESSAGE_SUCCESS = "Viewing medical record #%s of %s from %s";
 
     private final Index index;
 
@@ -46,8 +46,10 @@ public class ViewMedicalRecordCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_MEDICAL_RECORD_INDEX);
         }
         MedicalRecord mrec = patient.getRecords().get(index.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()), false, true,
-                patient, mrec, null, null, false);
+        String feedbackToUser = String.format(MESSAGE_SUCCESS, index.getOneBased(), patient.getName(),
+                                                patient.getRecords().get(index.getZeroBased()).getDateDisplay());
+        return new CommandResult(feedbackToUser, false, true, patient, mrec,
+                null, null, false);
     }
 
     @Override
