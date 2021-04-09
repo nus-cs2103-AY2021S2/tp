@@ -219,7 +219,7 @@ The following sequence diagram shows how the `collect` command works.
 
 ![CollectSequenceDiagram](images/CollectSequenceDiagram.png)
 
-#### Design consideration:
+#### Design considerations:
 
 ##### Aspect: The number of fields to be collected from
 
@@ -271,41 +271,7 @@ The following activity diagram shows what happens when `find` command is execute
 * **Alternative 2:** Find by names and find by tags are separate commands.
     * Pros: Easier to debug as one command is meant for one criterion.
     * Cons: It is now not possible to combine both criteria together. More commands to remember. Due to similarity of the commands, they can be confused from one another.
-
-### Collect feature
-The collect feature is facilitated by `CommandResult`, which is responsible for displaying the results after
-collecting the details. Currently, only details from the 4 main fields (name, phone, address, email)
-can be collected.
-
-The following sequence diagram shows how the `collect` command works.
-
-![CollectSequenceDiagram](images/CollectSequenceDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: The number of fields to be collected from
-
-* **Alternative 1 (current choice):** Exactly 1 field out of 4 possible choices.
-    * Pros: Simpler and more intuitive command format.
-            Usually only 1 field is needed at a time when copying to messaging applications.
-    * Cons: Not customisable for all needs.
-
-* **Alternative 2:** Exactly 1 field out of all existing fields.
-    * Pros: Able to be used for more situations.
-    * Cons: More complex command format for likely unnecessary details.
-
-##### Aspect: The ability to start or end the separator with blank space
-
-* **Alternative 1 (current choice):** Leading or trailing blank space is ignored.
-    * Pros: Easier to implement due to reuse of `ArgumentTokenizer`.
-            Blank space is not the main separator in the recipient list for most messaging applications,
-            so functionality is not significantly impacted.
-    * Cons: Collected details are not in reader-friendly format.
-
-* **Alternative 2:** Include all leading and trailing blank spaces
-    * Pros: Able to be used for more situations.
-    * Cons: More complicated implementation resulting in possibly more bugs.
-
+    
 ### Mode of Contact feature
 The mode of contact feature built on the current `AddCommand` class.
 The following is an example usage scenario.
