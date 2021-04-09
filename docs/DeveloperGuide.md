@@ -1,5 +1,6 @@
 ---
-layout: page title: Developer Guide
+layout: page
+title: Developer Guide
 ---
 
 * Table of Contents {:toc}
@@ -482,7 +483,7 @@ person on the list is born before 12-12-2020.
        Test case: `add-date 1 d/DATE_AFTER_TODAY desc/sample desc` <br>
        Expected: Date is not added. Error details shown in the status message.
 
-    2. Adding a date that happens before the person is born Test
+    2. Adding a date that happens before the person is born Test <br>
        case: `add-date 1 d/DATE_BEFORE_BIRTHDAY desc/sample desc` <br>
        Expected: Similar to previous
 
