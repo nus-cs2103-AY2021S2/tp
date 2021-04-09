@@ -14,10 +14,10 @@ participant ":Model" as Model MODEL_COLOR
 participant ":NameSchoolAndSubjectContainsKeywordsPredicate" as NameSchoolAndSubjectContainsKeywordsPredicate MODEL_COLOR
 end box
 
-[-> LogicManager : execute("search n/alice s/woodlands t/math")
+[-> LogicManager : execute("search n/alice")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("search n/alice s/woodlands t/math")
+LogicManager -> AddressBookParser : parseCommand("search n/alice")
 activate AddressBookParser
 
 create SearchCommandParser
@@ -27,7 +27,7 @@ activate SearchCommandParser
 SearchCommandParser --> AddressBookParser
 deactivate SearchCommandParser
 
-AddressBookParser -> SearchCommandParser : parse("n/alice s/woodlands t/math")
+AddressBookParser -> SearchCommandParser : parse("n/alice")
 activate SearchCommandParser
 
 create NameSchoolAndSubjectContainsKeywordsPredicate
@@ -36,6 +36,8 @@ activate NameSchoolAndSubjectContainsKeywordsPredicate
 
 NameSchoolAndSubjectContainsKeywordsPredicate --> SearchCommandParser : p
 deactivate NameSchoolAndSubjectContainsKeywordsPredicate
+NameSchoolAndSubjectContainsKeywordsPredicate -[hidden]-> SearchCommandParser
+destroy NameSchoolAndSubjectContainsKeywordsPredicate
 
 create SearchCommand
 SearchCommandParser -> SearchCommand
@@ -71,6 +73,8 @@ deactivate CommandResult
 
 SearchCommand --> LogicManager : result
 deactivate SearchCommand
+SearchCommand -[hidden]-> LogicManager
+destroy SearchCommand
 
 [<--LogicManager
 deactivate LogicManager
