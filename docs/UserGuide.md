@@ -284,7 +284,7 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my quiz attempt scores to other computers?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file
-that contains the data of your previous WeebLingo home folder.
+that contains the data of your previous Weeblingo home folder.
 
 **Q**: Can I add my customized flashcards?<br>
 **A**: Sorry, the current version of the application does not allow self-defined flashcards to be added. However, if you
