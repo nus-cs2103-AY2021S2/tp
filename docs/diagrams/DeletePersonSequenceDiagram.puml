@@ -1,0 +1,74 @@
+@startuml
+!include Style.puml
+hide footbox
+title Delete Person Sequence Diagram
+skinparam sequenceMessageAlign center
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeletePersonCommandParser" as DeletePersonCommandParser LOGIC_COLOR
+participant "command:DeletePersonCommand" as command LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete_person s/3")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("delete_person s/3")
+activate AddressBookParser
+
+create DeletePersonCommandParser
+AddressBookParser -> DeletePersonCommandParser
+activate DeletePersonCommandParser
+
+DeletePersonCommandParser -[hidden]-> AddressBookParser
+deactivate DeletePersonCommandParser
+
+AddressBookParser -> DeletePersonCommandParser : parse("s/3")
+activate DeletePersonCommandParser
+
+create command
+DeletePersonCommandParser -> command
+activate command
+
+command -[hidden]-> DeletePersonCommandParser
+deactivate command
+
+DeletePersonCommandParser --> AddressBookParser : command
+deactivate DeletePersonCommandParser
+
+AddressBookParser -[hidden]-> DeletePersonCommandParser
+destroy DeletePersonCommandParser
+
+AddressBookParser --> LogicManager : command
+deactivate AddressBookParser
+
+LogicManager -> command : execute()
+activate command
+
+command -> Model : deletePerson()
+activate Model
+
+Model -> AddressBook : removePerson()
+activate AddressBook
+
+deactivate AddressBook
+
+AddressBook -[hidden]-> Model
+deactivate Model
+
+command --> LogicManager : commandResult
+deactivate command
+
+LogicManager -[hidden]-> command
+destroy command
+
+LogicManager -->[ : commandResult
+deactivate LogicManager
+@enduml
+

@@ -1,6 +1,7 @@
 package seedu.address.model.session;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.model.session.exceptions.InvalidSessionIdException;
 
@@ -33,6 +34,7 @@ public class SessionId {
      */
     public SessionId(String id) {
         requireNonNull(id);
+        checkArgument(isValidSessionId(id), MESSAGE_CONSTRAINTS);
         sessionId = id;
     }
 
