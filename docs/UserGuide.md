@@ -283,7 +283,8 @@ Showcases a note.
 
 Format: `shownote INDEX​`
 
-* Shows the note at the specified `INDEX`. The index refers to the index number shown in the displayed note list. The index **must be a positive integer** 1, 2, 3, …​
+* Shows the dictionary content at the specified `INDEX`.
+* The index refers to the index number shown in the displayed Note list. The index **must be a positive integer** 1, 2, 3, …​
 
 #### List all notes : `listnote`
 
@@ -315,18 +316,27 @@ Examples:
 * `findnote c/CS t/urgent` will return all notes containing `CS` and tagged with `urgent`.
 #### Edit a note in edit mode : `editmode`
 
-Edits a note in edit mode.
+Edits a note in edit mode. 
 
 Format: `editmode`
 
 * A note have to be show on the note content panel using `shownote` command.
+* The user will be able to edit the note content in the text box.
+* The user will not be able to edit the tag.
 * In edit note mode, all others note related command will be disable.
 * To exit edit note mode, use `quit` to discard all changes or `save` to save all changes
 
 
 Examples:
 * `editmode`
-  * note content will be editable
+  * Note Content will be editable
+![Ui Panel](images/EditModeExample.png)
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Use <kbd>Esc</kbd> to return to command box and <kbd>Tab</kbd> to focus on next element.
+
+</div>
 
 #### Save and exit edit mode: `save`
 
