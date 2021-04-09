@@ -201,8 +201,34 @@ but one is due on this Monday and the other is due the next Monday. Both of thes
 Similar to Task-related Models, we face the same challenge when choosing between checking for the equality of name only and 
 checking for all fields entered by the user. We chose to check for all fields for the same reasons as mentioned above.
 
-### 3.4.3 Design considerations for Name-Related, Tag-Related and Category-related Models
+#### 3.4.3 Design considerations for `Name` Object
+When implementing the Name class, one of the considerations we need to decide is about its maximum length. 
+Due to constraints in GUI, if the task or event has an extremely long name, only part of the name can be displayed
+and the rest will be hidden and cannot be viewed. This is something undesirable.
 
+* Alternative 1 (Chosen Implementation): set the maximum length to 20 characters long.
+    * Pros:
+        * Resolved the potential bug where tasks or events with excessively long names are displayed
+        incompletely.
+    * Cons:
+        * More restrictive as a hard maximum limit has been set to disallow users from creating a 
+        task or event with a name of longer than 20 characters.
+* Alternative 2: do not set a maximum length and find other potential solutions.
+    * Pros:
+        * Users can have more freedom in creating or editing the tasks and events.
+    * Cons:
+        * May require major changes to the design and implementation of GUI, which may be time consuming and 
+          lead to other undesirable bugs.
+
+We chose Alternative 1 because this is the most suitable option given the limited development time 
+and more controllable impacts on other components of the application. More importantly, we estimate that 
+the current maximum length is sufficient to meet most of our users' common needs. 
+Thus, under normal usage, this additional restrictions will not cause great inconveniences to our users.
+
+#### 3.4.3 Design considerations for `Tag` and `Category` Object
+Similar to `Name` Object, we face the same chanllenge when displaying tasks or events with tags and categories
+of excessively long length. 
+We choose to set the maximum length to 10 characters long for the similar reasons as mentioned above.
 
 ### 3.5 Storage component
 
@@ -216,7 +242,9 @@ The `Storage` component,
 
 ### 3.6 Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
+
+Classes used by both `Task` and `Event` are in the `seedu.address.model.common` package.
 
 [Return to Table of Contents](#table-of-contents)  
 
