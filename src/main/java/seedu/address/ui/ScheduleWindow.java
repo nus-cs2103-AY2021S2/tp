@@ -121,7 +121,6 @@ public class ScheduleWindow extends UiPart<Stage> {
         saturdayLessonListPanel = new LessonListPanel(logic.getSaturdayLesson());
         saturdayListPanelPlaceholder.getChildren().add(saturdayLessonListPanel.getRoot());
 
-
         getRoot().show();
         getRoot().centerOnScreen();
     }
