@@ -331,14 +331,14 @@ Examples:
 Finds all properties containing any of the specified keywords (case-insensitive) and/or with the given options. 
 
 Format:
-* `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS]* 
-[p/POSTAL_CODE]* [d/DEADLINE]* [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT]* 
-[ce/CLIENT_EMAIL]* [tags/TAGS_SEPARATED_BY_COMMA]`
-* Note that all options marked with `*` are limited to one per query. 
+* `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS] 
+[p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT] 
+[ce/CLIENT_EMAIL] [tags/TAGS_SEPARATED_BY_COMMA]`
 
 Description:
-* There can be 1 or more parameters. Other than options marked with `*`, there can be multiple of 
-each option. 
+* There can be 1 or more parameters. 
+* If a same option is used multiple times, entries matching **either** will be returned as results. 
+    * For example: `find property n/jurong n/woodlands` will match all properties containing either "alex" or "john" in their names, i.e. both "Jurong BLK123" and "Woodlands Condo" will be matched. 
 * All text are case insensitive.
 
 Options:
@@ -366,21 +366,15 @@ Options:
 * `[a/ADDRESS]`
     
     Searches for properties with `[ADDRESS]` as address. 
-    
-    Limited to one per query. 
-    
+        
 * `[p/POSTAL_CODE]`
     
     Searches for properties with `[POSTAL_CODE]` as postal code. 
-    
-    Limited to one per query. 
-    
+        
 * `[d/DEADLINE]`
     
     Searches for properties with `[DEADLINE]` as deadline. 
-    
-    Limited to one per query. 
-    
+        
 * `[r/REMARKS]` 
 
     Searches for properties containing `[REMARKS]` in their remarks. 
@@ -418,6 +412,7 @@ Format:
 Description:
 * There can be 1 or more options. 
 * If a same option is used multiple times, entries matching **either** will be returned as results. 
+    * For example: `find appointment n/john n/alex` will match all appointments containing either "alex" or "john" in their names, i.e. both "Meet Alex" and "Meet John" will be matched. 
 * All text are case insensitive.
 
 Options: 
