@@ -412,7 +412,7 @@ The `AddFoodIntakeParser` first verifies that the expected format is met and the
 2. If no match is found in the `UniqueFoodList`, a new `Food` object is created and added to the `UniqueFoodList` for the user's convenience using the provided nutrient values. Values that are not provided are default to **0**.
 
 <div markdown="span" class="alert alert-info">
-**Note:** when updating a `Food` to its new nutrient values, `FoodIntake`s already in the `FoodIntakeList` will not be affected by the update.
+  :information_source: **Note:** When updating a `Food` to its new nutrient values, `FoodIntake`s already in the `FoodIntakeList` will not be affected by the update.
 </div>
 
 The `addFoodIntake()` method of the `FoodIntakeList` is finally called to add the `FoodIntake` into the list. Refer to the detailed implementation below.
