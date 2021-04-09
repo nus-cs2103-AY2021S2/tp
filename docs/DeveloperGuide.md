@@ -14,14 +14,14 @@ title: Developer Guide
    3.6  [Common Classes](#36-common-classes)<br>
 1. [Implementation](#4-implementation)<br>
    4.1 [SOChedule](#41-sochedule)<br>
-       4.1.1 [Overview](#411-overview)<br>
-       4.1.2 [Implementation of SOChedule-level Commands](#412-implementation)<br>
+   &nbsp;&nbsp;4.1.1 [Overview](#411-overview)<br>
+   &nbsp;&nbsp;4.1.2 [Implementation of SOChedule-level Commands](#412-implementation)<br>
    4.2 [Task](#42-task)<br>
-       4.1.1 [Overview](#421-overview)<br>
-       4.1.2 [Implementation of Task-level Commands](#422-implementation)<br>
+   &nbsp;&nbsp;4.2.1 [Overview](#421-overview)<br>
+   &nbsp;&nbsp;4.2.2 [Implementation of Task-level Commands](#422-implementation)<br>
    4.3 [Event](#43-event)<br>
-       4.1.1 [Overview](#431-overview)<br>
-       4.1.2 [Implementation of Event-level Commands](#432-implementation)<br>
+   &nbsp;&nbsp;4.3.1 [Overview](#431-overview)<br>
+   &nbsp;&nbsp;4.3.2 [Implementation of Event-level Commands](#432-implementation)<br>
 1. [Planned Features](#5-documentation-logging-testing-configuration-dev-ops)<br>
 1. [Appendix](#appendix)<br>
    A1. [Product Scope](#a1-product-scope)<br>
@@ -1147,22 +1147,13 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### A7. Launch and shutdown
-
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
+   
+   1. For testing purposes, a sample `sochedule.json` is provided [here](https://raw.githubusercontent.com/AY2021S2-CS2103-W16-1/tp/master/https://github.com/AY2021S2-CS2103-W16-1/tp/tree/master/src/test/data/sochedule.json). Place this file in a directory named `data`. `data` should be in the same relative path as `SOChedule.jar`.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample data.
 
 ### Deleting a task (Not in use yet)
 
@@ -1178,6 +1169,68 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete_task`, `delete_task x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Sorting the task list
+
+1. Sorting the task list
+
+    1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty.
+
+    1. Test case: `sort_task priority`<br>
+       Expected: "Sorted Tasks" to appear in status bar. Task list is now sorted by priority (highest priority to lowest priority). Pinned tasks remain on top, but also sorted by priority.
+
+    1. Test case: `sort_task 123`<br>
+       Expected: This is an invalid input. "Invalid command format!" to appear in status bar. Task list remains unchanged.
+
+    1. Other valid parameters to test: `name`, `completion` and `deadline`.
+
+1. _{ more test cases …​ }_
+
+### Pinning a task
+
+1. Pinning a task while all tasks are being shown
+
+    1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty.
+
+    1. Test case: `pin_task 3` (Assuming there are 3 tasks in task list)<br>
+       Expected: "Pinned Task" to appear in status bar. Third task is now on top of the task list, with a pin icon beside its name.
+
+   1. Test case: `pin_task 0`<br>
+      Expected: This is an invalid input. "Invalid command format!" to appear in status bar. No task is pinned and task list remains unchanged.
+   
+   1. Test case: `pin_task 1` (Assuming Task 1 is already pinned<br>
+      Expected: This is an invalid input. "This task is already pinned." to appear in status bar. Task list remains unchanged.
+
+   1. Test case: `pin_task 999` (Assuming there are less than 999 tasks in task list<br>
+      Expected: This is an out-of-bounds input. "The task at this index does not exist." to appear in status bar. No task is pinned and task list remains unchanged.
+
+    1. Other incorrect delete commands to try: `pin_task`, `pin_task x` (where x is larger than the list size)<br>
+       Expected: Similar to previous cases.
+
+1. _{ more test cases …​ }_
+
+### Unpinning a task
+
+1. Unpinning a task while all tasks are being shown
+
+    1. Prerequisites: List all tasks using the `list_task` command. Multiple tasks in the list. At least one task in pinned.
+
+    1. Test case: `unpin_task 1` (Assuming Task 1 is pinned) <br>
+       Expected: "Unpinned Task" to appear in status bar. First task may or may not be at the top of task list. For that task, pin icon beside its name is removed.
+
+   1. Test case: `unpin_task 0`<br>
+      Expected: This is an invalid input. "Invalid command format!" to appear in status bar. Task list remains unchanged.
+
+   1. Test case: `unpin_task 3` (Assuming Task 3 exists and is not pinned<br>
+      Expected: This is an invalid input. "This task is not pinned to begin with." to appear in status bar. Task list remains unchanged.
+
+   1. Test case: `unpin_task 999` (Assuming there are less than 999 tasks in task list<br>
+      Expected: This is an out-of-bounds input. "The task at this index does not exist." to appear in status bar. No task is pinned and task list remains unchanged.
+
+   1. Other incorrect delete commands to try: `unpin_task`, `unpin_task x` (where x is larger than the list size)<br>
+      Expected: Similar to previous cases.
 
 1. _{ more test cases …​ }_
 
@@ -1198,9 +1251,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `clear_expired_task`<br>
       Expected: Tasks with past deadlines are cleared from the list. Success message `Expired tasks (if any) have been cleared!` 
       will always be shown in the status message, regardless of whether there is any expired task or not. 
-
       
-
 ### Adding an event
 
 1. Adding an event
@@ -1259,12 +1310,37 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `clear_expired_event`<br>
       Expected: Events with past end date time are cleared from the list. Success message `Expired events (if any) have been cleared!` 
       will always be shown in the status message, regardless of whether there is any expired event or not.
-      
 
+### Finding free time slots
+
+1. Finding free time slots
+
+    1. Test case: `free_time 2021-06-10`<br>
+       Expected: Displays a list of free time slots on 2021-06-10. Success message `Found free time slots on 2021-04-27:` 
+       will be shown if free time slots were found.
+            
+       1. if there are available free time slots, a list of free time slots will be displayed after the success message.
+       2. if there are no events happening on the day, `The entire day is free!` will be displayed after the sucess message.
+       3. if no free time slots were found, `There is no free time in the day!` will be displayed.
+
+### Getting a summary of SOChedule
+
+1. Getting a summary of SOChedule
+
+    1. Test case: `summary`<br>
+       Expected: Displays a summary for SOChedule. Success message `Summary:`, followed by detailed about `Task`,
+       and details about `Event`.
+
+### Clearing SOChedule
+
+1. Clearing SOChedule
+
+    1. Test case: `clear`<br>
+       Expected: All Tasks and Events in SOChedule are cleared. Success message `Sochedule has been cleared!`
+       will always be shown in the status message, regardless of whether there is any Task or Event.
+       
 ### A8. Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing/corrupted/missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. SOChedule will re-initialise and provide an empty Task list and Event list.

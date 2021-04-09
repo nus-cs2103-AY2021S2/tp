@@ -1,0 +1,116 @@
+{
+  "tasks" : [ {
+    "name" : "Homework",
+    "deadline" : "2021-04-28",
+    "priority" : "9",
+    "completionStatus" : "COMPLETE",
+    "pinnedStatus" : "UNPINNED",
+    "category" : [ "Homework" ],
+    "tagged" : [ "MA3110" ]
+  }, {
+    "name" : "CS2105 Assignment",
+    "deadline" : "2021-05-09",
+    "priority" : "1",
+    "completionStatus" : "COMPLETE",
+    "pinnedStatus" : "UNPINNED",
+    "category" : [ "SchoolWork" ],
+    "tagged" : [ "CS2105" ]
+  }, {
+    "name" : "CS2106 Lab",
+    "deadline" : "2021-05-12",
+    "priority" : "3",
+    "completionStatus" : "INCOMPLETE",
+    "pinnedStatus" : "UNPINNED",
+    "category" : [ "Homework" ],
+    "tagged" : [ "MA3110" ]
+  }, {
+    "name" : "Toast Bread",
+    "deadline" : "2021-04-30",
+    "priority" : "7",
+    "completionStatus" : "INCOMPLETE",
+    "pinnedStatus" : "PINNED",
+    "category" : [ "Life" ],
+    "tagged" : [ ]
+  }, {
+    "name" : "Buy Clothes",
+    "deadline" : "2021-06-14",
+    "priority" : "8",
+    "completionStatus" : "COMPLETE",
+    "pinnedStatus" : "PINNED",
+    "category" : [ "Life" ],
+    "tagged" : [ ]
+  }, {
+    "name" : "Run 10km",
+    "deadline" : "2021-06-15",
+    "priority" : "0",
+    "completionStatus" : "INCOMPLETE",
+    "pinnedStatus" : "PINNED",
+    "category" : [ "Exercise" ],
+    "tagged" : [ ]
+  }, {
+    "name" : "Play Mario Kart",
+    "deadline" : "2021-05-14",
+    "priority" : "0",
+    "completionStatus" : "INCOMPLETE",
+    "pinnedStatus" : "PINNED",
+    "category" : [ "Leisure" ],
+    "tagged" : [ ]
+  } ],
+  "events" : [ {
+    "name" : "CS2103 Meeting",
+    "startDate" : "2022-02-27",
+    "startTime" : "15:00",
+    "endDate" : "2022-02-27",
+    "endTime" : "17:00",
+    "category" : [ "SchoolWork" ],
+    "tagged" : [ "SOCheduleBest" ]
+  }, {
+    "name" : "1 Year Anniversary",
+    "startDate" : "2021-07-27",
+    "startTime" : "00:00",
+    "endDate" : "2021-07-27",
+    "endTime" : "23:59",
+    "category" : [ "HateYou" ],
+    "tagged" : [ "LoveYou" ]
+  }, {
+    "name" : "Camp",
+    "startDate" : "2021-05-27",
+    "startTime" : "15:00",
+    "endDate" : "2022-05-30",
+    "endTime" : "17:00",
+    "category" : [ "Boring" ],
+    "tagged" : [ "Leisure" ]
+  }, {
+    "name" : "GoogleCTF",
+    "startDate" : "2022-04-27",
+    "startTime" : "09:00",
+    "endDate" : "2022-04-28",
+    "endTime" : "21:00",
+    "category" : [ "CyberSec" ],
+    "tagged" : [ "TryHard" ]
+  }, {
+    "name" : "Workshop",
+    "startDate" : "2022-04-27",
+    "startTime" : "00:00",
+    "endDate" : "2022-04-27",
+    "endTime" : "10:00",
+    "category" : [ "Boring" ],
+    "tagged" : [ ]
+  }, {
+    "name" : "ICG Basketball",
+    "startDate" : "2022-03-27",
+    "startTime" : "15:00",
+    "endDate" : "2022-03-27",
+    "endTime" : "17:00",
+    "category" : [ "Hall" ],
+    "tagged" : [ "TryHard" ]
+  }, {
+    "name" : "Concert",
+    "startDate" : "2021-06-27",
+    "startTime" : "15:00",
+    "endDate" : "2022-06-27",
+    "endTime" : "17:00",
+    "category" : [ "LookingForward" ],
+    "tagged" : [ ]
+  } ]
+}
