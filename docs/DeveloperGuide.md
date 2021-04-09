@@ -735,6 +735,83 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## **Appendix: Instructions for manual testing**
 
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
 
 ### Launch and shutdown
+1. Initial launch
+    1. Download the latest release jar file from [here](https://github.com/AY2021S2-CS2103-W16-2/tp/releases).
+    2. Copy the downloaded jar file into an empty folder.
+    3. Nagviate your command prompt to the folder containing the downloaded jar file and run the command `java -jar <fileName>`
+       . Lunach the application by double-clicking only as a last resort if the command does not work.
 
+2. Saving window size and location preferences
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    2. Re-launch the application by following either the command or by double-clicking.
+        Expected: The most recent window size and location is retained.
+
+3. Saving application launch display list
+    1. launch the application and run either `listorders` , `listcustomers` or `listcheeses`. Close the window.
+    2. Re-launch the application by following either the command or by double-clicking.
+        Expected: The most recent list depending on last `list` command will be displayed.
+
+### Adding a customer
+1. Adding a customer into CHIM
+    1. Prerequisites: Arguments are valid and compulsory parameters are provided. No duplicated phone number exist in CHIM.
+    2. Test case: `addcustomer n/Tim p/96284715 e/tim@example.com a/Blk 55 Woodlands Street 99, #99-23`
+        Expected: item is added into CHIM. If displayed list is customer list , the new customer appears at the bottom.
+            Otherwise, run command `listcustomers`. Details of the new customer is shown in the status message.
+    3. Test case: `addcustomer n/Jerry p/841264562 e/jerry@example.com a/Blk 381 Yishun Ave 23, #55-25`
+        Expected: similar to above test case
+    4. Test case: `addcustomer n/Mary p/841264562 e/mary@example.com a/Blk 654 Jurong East Street 21, #54-84`
+        Expected: No customer is added , Error message stating that an customer with supplied phone number exist in CHIM.
+    5. Test case: 'addcustomer'
+        Expected: No customer is added , Error message with command requirements is shown in status message.
+    6. Other incorrect / missing compulsory fields
+        Expected: similar to previous
+
+### Editing a customer
+1. Editing a customer in CHIM
+    1. Prerequisites: There are some customer in CHIM.
+    2. Test case: `editcustomer 1 n/Berry`
+        Expected: The name of the first customer in `listcustomers` is updated to Berry. Details of the customer is as shown in the status message.
+    3. 
+    4. Test case: `editcustomer`
+        Expected: No customer is edited, Error message with command requirements is shown in the status message.
+    5. Test case: `editcustomer 0 n/Sally`
+        Expected: Similar to previous
+    6. Other incorrect `editcustomer` to try: `editcustomer x` (where x is an index larger than the list size)
+        Expected: Similar to previous
+
+### Deleting a customer
+1. Deleting a customer in CHIM
+    1. Prerequisites: There are some customer in CHIM, customer with phone number provided exist in CHIM.
+    2. Test case: `deletecustomer p/87438807`
+        Expected: The customer with phone number of 87438807 is deleted.
+            If displayed list is not customer list , use command `listcustomer` to verify. Details of the deleted customer is as shown in the status message.
+    3. Test case: `deletecustomer`
+        Expected: No customer is deleted, Error messsage with command requirements is shown in the status message.
+    4. Other incorrect `deletecustomer` to try: `deletecustomer n\x`(where x is a phone number does not exist in CHIM)
+
+### Finding customers
+
+### Listing Customers
+1. Listing all customers in CHIM
+
+
+### Add an Order
+### Edit an Order
+### Delete an Order
+
+### Add a Cheese
+### Edit a Cheese
+### Delete a Cheese
+
+### Clear data
+1. Clearing all data in the inventory
+    1. Test case: `clear`
+        Expected: All customers , orders and cheeses are cleared in CHIM

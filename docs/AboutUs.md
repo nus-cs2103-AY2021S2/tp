@@ -42,7 +42,6 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/ahquanz.png" width="200px">
 
 [[github](http://github.com/ahquanz)]
-
 [[portfolio](team/ahquanz.md)]
 
 * Role: Developer
