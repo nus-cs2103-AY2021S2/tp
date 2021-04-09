@@ -28,7 +28,7 @@ public class SampleDataUtil {
                     new Gender("M"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Address("Blk 30 Geylang Street 29, #06-40"),
                     new BloodType("AB+"), new Height("175cm"), new Weight("69kg"),
-                    getTagSet("bronchitis", "lung cancer")),
+                    getTagSet("bronchitis", "fever")),
             new Patient(new Name("Bernice Yu"), new DateOfBirth("10101995"),
                     new Gender("F"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
@@ -43,17 +43,17 @@ public class SampleDataUtil {
                     new Gender("M"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                     new BloodType("O-"), new Height("163cm"), new Weight("63kg"),
-                    getTagSet("lung cancer")),
+                    getTagSet("cold")),
             new Patient(new Name("Irfan Ibrahim"), new DateOfBirth("15021989"),
                     new Gender("M"), new Phone("92492021"), new Email("irfan@example.com"),
                     new Address("Blk 47 Tampines Street 20, #17-35"),
                     new BloodType("AB+"), new Height("179cm"), new Weight("66kg"),
-                    getTagSet("nut allergy")),
+                    getTagSet("regular")),
             new Patient(new Name("Roy Balakrishnan"), new DateOfBirth("10122001"),
                     new Gender("M"), new Phone("92624417"), new Email("royb@example.com"),
                     new Address("Blk 45 Aljunied Street 85, #11-31"),
                     new BloodType("B-"), new Height("172cm"), new Weight("58kg"),
-                    getTagSet("lactose intolerant"))
+                    getTagSet("regular"))
         };
     }
 
