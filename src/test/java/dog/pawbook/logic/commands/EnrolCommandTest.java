@@ -138,7 +138,7 @@ public class EnrolCommandTest {
         expectedModel.setEntity(ID_FIFTEEN, new Program(editedProgram1.getName(),
                 editedProgram1.getSessions(), editedProgram1.getTags(), updatedEnrolledDogs1));
 
-        HashSet<Integer> updatedEnrolledDogs2 = new HashSet<>(editedProgram1.getDogIdSet());
+        HashSet<Integer> updatedEnrolledDogs2 = new HashSet<>(editedProgram2.getDogIdSet());
         updatedEnrolledDogs2.add(ID_TWO);
 
         expectedModel.setEntity(ID_SIXTEEN, new Program(editedProgram2.getName(),
