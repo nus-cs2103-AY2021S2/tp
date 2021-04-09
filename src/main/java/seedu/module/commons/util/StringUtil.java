@@ -58,10 +58,10 @@ public class StringUtil {
         requireNonNull(s);
         try {
             Integer.parseInt(s);
-            return !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
         } catch (NumberFormatException nfe) {
             return false;
         }
+        return true;
     }
 
     /**

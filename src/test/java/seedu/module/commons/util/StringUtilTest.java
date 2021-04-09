@@ -27,9 +27,6 @@ public class StringUtilTest {
         assertFalse(StringUtil.isInteger(" 10 ")); // Leading/trailing spaces
         assertFalse(StringUtil.isInteger("1 0")); // Spaces in the middle
 
-        // EP: positive-signed numbers
-        assertFalse(StringUtil.isInteger("+1"));
-
         // EP: zero
         assertTrue(StringUtil.isInteger("0"));
 
@@ -40,7 +37,11 @@ public class StringUtilTest {
         assertTrue(StringUtil.isInteger("-1"));
         assertTrue(StringUtil.isInteger("-10"));
 
-        // EP: valid numbers, should return true
+        // EP: positive signed numbers
+        assertTrue(StringUtil.isInteger("+1"));
+        assertTrue(StringUtil.isInteger("+10"));
+
+        // EP: positive unsigned numbers
         assertTrue(StringUtil.isInteger("1")); // Boundary value
         assertTrue(StringUtil.isInteger("10"));
     }
@@ -63,6 +64,9 @@ public class StringUtilTest {
         // EP: negative numbers
         assertFalse(StringUtil.isNonZeroUnsignedInteger("-1")); // Boundary value
         assertFalse(StringUtil.isNonZeroUnsignedInteger("-10"));
+
+        // EP: positive-signed numbers
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("+1"));
 
         // EP: valid numbers, should return true
         assertTrue(StringUtil.isNonZeroUnsignedInteger("1")); // Boundary value
