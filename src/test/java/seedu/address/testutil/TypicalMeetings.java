@@ -8,8 +8,8 @@ import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_PRIORITY_MEETING2;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_START_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_START_MEETING2;
-import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_TAG_MEETING1;
-import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_TAG_MEETING2;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_GROUP_MEETING1;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_GROUP_MEETING2;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_TERMINATE_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_TERMINATE_MEETING2;
 
@@ -30,12 +30,12 @@ public class TypicalMeetings {
             .withStart(VALID_START_MEETING1)
             .withTerminate(VALID_TERMINATE_MEETING1).withPriority(VALID_PRIORITY_MEETING1)
             .withDescription(VALID_DESCRIPTION_MEETING1)
-            .withGroups(VALID_TAG_MEETING1).build();
+            .withGroups(VALID_GROUP_MEETING1).build();
     public static final Meeting MEETING2 = new MeetingBuilder().withName(VALID_NAME_MEETING2)
             .withStart(VALID_START_MEETING2)
             .withTerminate(VALID_TERMINATE_MEETING2).withPriority(VALID_PRIORITY_MEETING2)
             .withDescription(VALID_DESCRIPTION_MEETING2)
-            .withGroups(VALID_TAG_MEETING2).build();
+            .withGroups(VALID_GROUP_MEETING2).build();
 
     public static final Meeting MEETING3 = new MeetingBuilder().withName("CS2103 ONLINE Lecture")
             .withStart("2020-03-11 14:00").withTerminate("2020-03-11 16:00")
