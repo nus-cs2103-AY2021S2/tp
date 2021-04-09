@@ -50,7 +50,7 @@ public class PooledPassengerContainsKeywordsPredicateTest {
         // One keyword
         PooledPassengerContainsKeywordsPredicate predicate =
                 new PooledPassengerContainsKeywordsPredicate(
-                        Arrays.asList(ALICE.getName().toString().split("\\s")[0]));
+                        Collections.singletonList(ALICE.getName().toString().split("\\s")[0]));
         assertTrue(predicate.test(WORKPOOL));
 
         // Multiple keywords
