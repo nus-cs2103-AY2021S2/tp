@@ -2,6 +2,7 @@ package seedu.address.model.contact;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.logic.parser.CliSyntax.PLACEHOLDER;
 
 /**
  * Represents a Contact's phone number in the address book.
@@ -13,7 +14,6 @@ public class Phone {
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
-    public static final String PLACEHOLDER = "NIL";
     public final String value;
 
     /**
