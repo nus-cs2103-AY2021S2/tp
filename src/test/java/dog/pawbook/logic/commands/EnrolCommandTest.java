@@ -68,20 +68,20 @@ public class EnrolCommandTest {
         List<Integer> programIdList = Arrays.asList(ID_FIFTEEN, ID_SIXTEEN);
         Set<Integer> programIdSet = new HashSet<>(programIdList);
 
-        Program editedProgram1 = (Program) expectedModel.getEntity(ID_FIFTEEN);
-        Program editedProgram2 = (Program) expectedModel.getEntity(ID_SIXTEEN);
+        Program editedProgramFifteen = (Program) expectedModel.getEntity(ID_FIFTEEN);
+        Program editedProgramSixteen = (Program) expectedModel.getEntity(ID_SIXTEEN);
 
-        HashSet<Integer> updatedEnrolledDogs1 = new HashSet<>(editedProgram1.getDogIdSet());
-        updatedEnrolledDogs1.add(ID_TWO);
+        HashSet<Integer> updatedEnrolledDogsFifteen = new HashSet<>(editedProgramFifteen.getDogIdSet());
+        updatedEnrolledDogsFifteen.add(ID_TWO);
 
-        expectedModel.setEntity(ID_FIFTEEN, new Program(editedProgram1.getName(),
-                editedProgram1.getSessions(), editedProgram1.getTags(), updatedEnrolledDogs1));
+        expectedModel.setEntity(ID_FIFTEEN, new Program(editedProgramFifteen.getName(),
+                editedProgramFifteen.getSessions(), editedProgramFifteen.getTags(), updatedEnrolledDogsFifteen));
 
-        HashSet<Integer> updatedEnrolledDogs2 = new HashSet<>(editedProgram1.getDogIdSet());
-        updatedEnrolledDogs2.add(ID_TWO);
+        HashSet<Integer> updatedEnrolledDogsSixteen = new HashSet<>(editedProgramFifteen.getDogIdSet());
+        updatedEnrolledDogsSixteen.add(ID_TWO);
 
-        expectedModel.setEntity(ID_SIXTEEN, new Program(editedProgram2.getName(),
-                editedProgram2.getSessions(), editedProgram2.getTags(), updatedEnrolledDogs2));
+        expectedModel.setEntity(ID_SIXTEEN, new Program(editedProgramSixteen.getName(),
+                editedProgramSixteen.getSessions(), editedProgramSixteen.getTags(), updatedEnrolledDogsSixteen));
 
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(programIdSet));
 
@@ -129,20 +129,20 @@ public class EnrolCommandTest {
         Set<Integer> dogIdSet = new HashSet<>(dogIdList);
         Set<Integer> programIdSet = new HashSet<>(programIdList);
 
-        Program editedProgram1 = (Program) expectedModel.getEntity(ID_FIFTEEN);
-        Program editedProgram2 = (Program) expectedModel.getEntity(ID_SIXTEEN);
+        Program editedProgramFifteen = (Program) expectedModel.getEntity(ID_FIFTEEN);
+        Program editedProgramSixteen = (Program) expectedModel.getEntity(ID_SIXTEEN);
 
-        HashSet<Integer> updatedEnrolledDogs1 = new HashSet<>(editedProgram1.getDogIdSet());
-        updatedEnrolledDogs1.add(ID_TWO);
+        HashSet<Integer> updatedEnrolledDogsFifteen = new HashSet<>(editedProgramFifteen.getDogIdSet());
+        updatedEnrolledDogsFifteen.add(ID_TWO);
 
-        expectedModel.setEntity(ID_FIFTEEN, new Program(editedProgram1.getName(),
-                editedProgram1.getSessions(), editedProgram1.getTags(), updatedEnrolledDogs1));
+        expectedModel.setEntity(ID_FIFTEEN, new Program(editedProgramFifteen.getName(),
+                editedProgramFifteen.getSessions(), editedProgramFifteen.getTags(), updatedEnrolledDogsFifteen));
 
-        HashSet<Integer> updatedEnrolledDogs2 = new HashSet<>(editedProgram2.getDogIdSet());
-        updatedEnrolledDogs2.add(ID_TWO);
+        HashSet<Integer> updatedEnrolledDogsSixteen = new HashSet<>(editedProgramSixteen.getDogIdSet());
+        updatedEnrolledDogsSixteen.add(ID_TWO);
 
-        expectedModel.setEntity(ID_SIXTEEN, new Program(editedProgram2.getName(),
-                editedProgram2.getSessions(), editedProgram2.getTags(), updatedEnrolledDogs2));
+        expectedModel.setEntity(ID_SIXTEEN, new Program(editedProgramSixteen.getName(),
+                editedProgramSixteen.getSessions(), editedProgramSixteen.getTags(), updatedEnrolledDogsSixteen));
 
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(programIdSet));
 
