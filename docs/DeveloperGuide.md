@@ -920,8 +920,8 @@ Use case ends.
 
 1. User requests to list the residents.
 2. SunRez displays residents, each with its corresponding allocated room, if any.
-3. User requests to deallocate a resident from a room based on the index from the list displayed in step 2.
-4. SunRez deallocates the resident from room and saves the changes.
+3. User requests to deallocate a resident from its room.
+4. SunRez deallocates the resident from its room and saves the changes.
 
 **Extensions**
 
