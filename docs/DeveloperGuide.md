@@ -1033,43 +1033,43 @@ starting point for testers to work on; testers are expected to do more *explorat
 
     4. Test case:
         * `iadd r/01-234 d/Collapsed ceiling t/2020/01/01 12:00pm s/pending c/Ceiling g/a` <br>
-        * `iadd r/01-234 d/Collapsed ceiling t/2020/01/01 12:00pm s/pending c/Ceiling g/b`
+        * `iadd r/01-234 d/Collapsed ceiling t/2020/01/01 12:00pm s/pending c/Ceiling g/b` <br>
        Expected: An error message indicating that the issue already exists in SunRez as the issue to be added is exactly the same excluding tags.
 
 3. Finding issues
 
     1. Prerequisites: Issues belonging to room `01-234` and `03-325` with descriptions `Broken table` and `Door broke in half` respectively
 
-    2. Test case: `ifind 01`
+    2. Test case: `ifind 01` <br>
        Expected: Issue panel should be filtered to show all rooms with `01` in their room number, description, or tag. This includes the `Broken table` issue for `01-234`.
 
-    3. Test case: `ifind broke`
-       Expected: Issue panel should be filtered to show all rooms with `broke` (case insensitive) in their room number, description, or tag. This include both issues stated in the prerequisites.
+    3. Test case: `ifind broke` <br>
+       Expected: Issue panel should be filtered to show all rooms with `broke` (case insensitive) in their room number, description, or tag. This includes both issues stated in the prerequisites.
 
-    4. Test case: `ifind table door`
-       Expected: Issue panel should be filtered to show all rooms with `broke` or `door` (both case insensitive) in their room number, description, or tag. This include both issues stated in the prerequisites.
+    4. Test case: `ifind table door` <br>
+       Expected: Issue panel should be filtered to show all rooms with `broke` or `door` (both case insensitive) in their room number, description, or tag. This includes both issues stated in the prerequisites.
 
-    5. Test case: `ifind abcdefg`
+    5. Test case: `ifind abcdefg` <br>
        Expected: Issue panel should be filtered to show all rooms with `abcdefg` (case insensitive) in their room number, description, or tag. The issues in the prerequisite should not be in the panel.
 
-    6. Test case: `ifind`
+    6. Test case: `ifind` <br>
        Expected: An error message indicating invalid command format.
 
 4. Editing issues
 
     1. Prerequisites: There are only 2 issues: room `01-234` and `03-325` with descriptions `Broken table` and `Door broke in half` respectively listed in this order.
 
-    2. Test case: `iedit 1 d/Exploding cabinet`
+    2. Test case: `iedit 1 d/Exploding cabinet` <br>
        Expected: The first issue's description is changed from `Broken table` to `Exploding cabinet`.
 
-    3. Test case: `iedit 2 r/01-234`
+    3. Test case: `iedit 2 r/01-234` <br>
        Expected: The second issue's room number is set to `01-234`.
 
-    4. Test case `iedit 2 r/99-999`
+    4. Test case `iedit 2 r/99-999` <br>
        Expected: An error message indicating no such room.
 
-    5. Other incorrect `iedit` commands to try:
-        * `iedit x` with at least 1 valid parameter given and where `x` is either a non-positive number or not a number at all. E.g. `iedit -1 r/01-234` and `history a d/ABCDEF`. <br>
+    5. Other incorrect `iedit` commands to try: <br>
+        * `iedit x` with at least 1 valid parameter given and where `x` is either a non-positive number or not a number at all. E.g. `iedit -1 r/01-234` and `iedit a d/ABCDEF`. <br>
           Expected: An error message indicating the type of error.
         * `iedit x` with at least 1 invalid parameter given and where `x` is a valid index. <br>
           Expected: An error message indicating the constraints of the invalid paramter.
