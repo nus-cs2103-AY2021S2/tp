@@ -37,24 +37,24 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' Taskify's file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaskifyFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' Taskify's file path.
      */
-    void setAddressBookFilePath(Path taskifyFilePath);
+    void setTaskifyFilePath(Path taskifyFilePath);
 
     /**
-     * Replaces address book data with the data in {@code taskify}.
+     * Replaces Taskify's data with the data in {@code taskify}.
      */
-    void setAddressBook(ReadOnlyTaskify taskify);
+    void setTaskifyData(ReadOnlyTaskify taskify);
 
     /**
      * Returns the TaskifyParser
      */
-    ReadOnlyTaskify getAddressBook();
+    ReadOnlyTaskify getTaskify();
 
     /**
      * Returns true if a task with the same identity as {@code task} exists in the address book.

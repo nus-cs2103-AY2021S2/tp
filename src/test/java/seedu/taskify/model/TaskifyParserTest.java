@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_DEBUGGING;
 import static seedu.taskify.testutil.Assert.assertThrows;
 import static seedu.taskify.testutil.TypicalTasks.TASK_1;
-import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.taskify.testutil.TypicalTasks.getTypicalTaskify;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,8 +38,8 @@ public class TaskifyParserTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        Taskify newData = getTypicalAddressBook();
+    public void resetData_withValidReadOnlyTaskify_replacesData() {
+        Taskify newData = getTypicalTaskify();
         taskify.resetData(newData);
         assertEquals(newData, taskify);
     }
@@ -61,18 +61,18 @@ public class TaskifyParserTest {
     }
 
     @Test
-    public void hasTask_taskNotInAddressBook_returnsFalse() {
+    public void hasTask_taskNotInTaskify_returnsFalse() {
         assertFalse(taskify.hasTask(TASK_1));
     }
 
     @Test
-    public void hasTask_taskInAddressBook_returnsTrue() {
+    public void hasTask_taskInTaskify_returnsTrue() {
         taskify.addTask(TASK_1);
         assertTrue(taskify.hasTask(TASK_1));
     }
 
     @Test
-    public void hasTask_taskWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasTask_taskWithSameIdentityFieldsInTaskify_returnsTrue() {
         taskify.addTask(TASK_1);
         Task editedAlice = new TaskBuilder(TASK_1).withTags(VALID_TAG_DEBUGGING)
                                    .build();

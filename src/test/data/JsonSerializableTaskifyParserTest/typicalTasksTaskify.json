@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Task values as in TypicalTasks#getTypicalAddressBook()",
+  "_comment": "Taskify save file which contains the same Task values as in TypicalTasks#getTypicalTaskify()",
   "tasks": [
     {
       "name": "firstTask",

@@ -6,7 +6,7 @@ import static seedu.taskify.testutil.Assert.assertThrows;
 import static seedu.taskify.testutil.TypicalTasks.TASK_1;
 import static seedu.taskify.testutil.TypicalTasks.TASK_8;
 import static seedu.taskify.testutil.TypicalTasks.TASK_9;
-import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.taskify.testutil.TypicalTasks.getTypicalTaskify;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -26,12 +26,12 @@ public class JsonTaskifyParserStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readTaskify_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readTaskify(null));
     }
 
-    private java.util.Optional<ReadOnlyTaskify> readAddressBook(String filePath) throws Exception {
-        return new JsonTaskifyStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyTaskify> readTaskify(String filePath) throws Exception {
+        return new JsonTaskifyStorage(Paths.get(filePath)).readTaskifyData(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -42,69 +42,69 @@ public class JsonTaskifyParserStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readTaskify("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatTaskify.json"));
+        assertThrows(DataConversionException.class, () -> readTaskify("notJsonFormatTaskify.json"));
     }
 
     @Test
-    public void readAddressBook_invalidTaskAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidTaskTaskify.json"));
+    public void readTaskify_invalidTaskTaskify_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readTaskify("invalidTaskTaskify.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidTaskAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidTaskTaskify.json"));
+    public void readTaskify_invalidAndValidTaskTaskify_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readTaskify("invalidAndValidTaskTaskify.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
-        Taskify original = getTypicalAddressBook();
+    public void readAndSaveTaskify_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempTaskify.json");
+        Taskify original = getTypicalTaskify();
         JsonTaskifyStorage jsonTaskifyStorage = new JsonTaskifyStorage(filePath);
 
         // Save in new file and read back
-        jsonTaskifyStorage.saveAddressBook(original, filePath);
-        ReadOnlyTaskify readBack = jsonTaskifyStorage.readAddressBook(filePath).get();
+        jsonTaskifyStorage.saveTaskifyData(original, filePath);
+        ReadOnlyTaskify readBack = jsonTaskifyStorage.readTaskifyData(filePath).get();
         assertEquals(original, new Taskify(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addTask(TASK_8);
         original.removeTask(TASK_1);
-        jsonTaskifyStorage.saveAddressBook(original, filePath);
-        readBack = jsonTaskifyStorage.readAddressBook(filePath).get();
+        jsonTaskifyStorage.saveTaskifyData(original, filePath);
+        readBack = jsonTaskifyStorage.readTaskifyData(filePath).get();
         assertEquals(original, new Taskify(readBack));
 
         // Save and read without specifying file path
         original.addTask(TASK_9);
-        jsonTaskifyStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonTaskifyStorage.readAddressBook().get(); // file path not specified
+        jsonTaskifyStorage.saveTaskifyData(original); // file path not specified
+        readBack = jsonTaskifyStorage.readTaskifyData().get(); // file path not specified
         assertEquals(original, new Taskify(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(null, "SomeFile.json"));
+    public void saveTaskify_nullTaskify_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveTaskify(null, "SomeFile.json"));
     }
 
     /**
      * Saves {@code taskify} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyTaskify taskify, String filePath) {
+    private void saveTaskify(ReadOnlyTaskify taskify, String filePath) {
         try {
             new JsonTaskifyStorage(Paths.get(filePath))
-                    .saveAddressBook(taskify, addToTestDataPathIfNotNull(filePath));
+                    .saveTaskifyData(taskify, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveAddressBook(new Taskify(), null));
+    public void saveTaskify_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> saveTaskify(new Taskify(), null));
     }
 }

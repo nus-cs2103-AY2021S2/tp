@@ -27,32 +27,32 @@ public class JsonTaskifyStorage implements TaskifyStorage {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getTaskifyFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyTaskify> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyTaskify> readTaskifyData() throws DataConversionException {
+        return readTaskifyData(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readTaskifyData()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyTaskify> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyTaskify> readTaskifyData(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableTaskify> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableTaskify> jsonTaskify = JsonUtil.readJsonFile(
                 filePath, JsonSerializableTaskify.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonTaskify.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonTaskify.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -60,16 +60,16 @@ public class JsonTaskifyStorage implements TaskifyStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTaskify taskify) throws IOException {
-        saveAddressBook(taskify, filePath);
+    public void saveTaskifyData(ReadOnlyTaskify taskify) throws IOException {
+        saveTaskifyData(taskify, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyTaskify)}.
+     * Similar to {@link #saveTaskifyData(ReadOnlyTaskify)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyTaskify taskify, Path filePath) throws IOException {
+    public void saveTaskifyData(ReadOnlyTaskify taskify, Path filePath) throws IOException {
         requireNonNull(taskify);
         requireNonNull(filePath);
 

@@ -50,30 +50,30 @@ public class StorageManager implements Storage {
     // ================ TaskifyParser methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return taskifyStorage.getAddressBookFilePath();
+    public Path getTaskifyFilePath() {
+        return taskifyStorage.getTaskifyFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyTaskify> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(taskifyStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyTaskify> readTaskifyData() throws DataConversionException, IOException {
+        return readTaskifyData(taskifyStorage.getTaskifyFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyTaskify> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyTaskify> readTaskifyData(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return taskifyStorage.readAddressBook(filePath);
+        return taskifyStorage.readTaskifyData(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTaskify taskify) throws IOException {
-        saveAddressBook(taskify, taskifyStorage.getAddressBookFilePath());
+    public void saveTaskifyData(ReadOnlyTaskify taskify) throws IOException {
+        saveTaskifyData(taskify, taskifyStorage.getTaskifyFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyTaskify taskify, Path filePath) throws IOException {
+    public void saveTaskifyData(ReadOnlyTaskify taskify, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        taskifyStorage.saveAddressBook(taskify, filePath);
+        taskifyStorage.saveTaskifyData(taskify, filePath);
     }
 
 }

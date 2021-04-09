@@ -12,7 +12,7 @@ import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taskify.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_SECOND_TASK;
-import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.taskify.testutil.TypicalTasks.getTypicalTaskify;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +31,7 @@ import seedu.taskify.testutil.TaskBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTaskify(), new UserPrefs());
 
 
     @Test
@@ -43,7 +43,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new Taskify(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Taskify(model.getTaskify()), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -67,10 +67,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new Taskify(model.getAddressBook()), new UserPrefs());
-        System.out.println(expectedModel.getFilteredTaskList());
-        System.out.println("The last task is " + lastTask);
-        System.out.println("The edited task is " + editedTask);
+        Model expectedModel = new ModelManager(new Taskify(model.getTaskify()), new UserPrefs());
+
         expectedModel.setTask(lastTask, editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -84,7 +82,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new Taskify(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Taskify(model.getTaskify()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -101,7 +99,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
-        Model expectedModel = new ModelManager(new Taskify(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Taskify(model.getTaskify()), new UserPrefs());
         expectedModel.setTask(model.getFilteredTaskList().get(0), editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -123,7 +121,7 @@ public class EditCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         // edit task in filtered list into a duplicate in Taskify
-        Task taskInList = model.getAddressBook().getTaskList().get(INDEX_SECOND_TASK.getZeroBased());
+        Task taskInList = model.getTaskify().getTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK,
                 new EditTaskDescriptorBuilder(taskInList).build());
 
