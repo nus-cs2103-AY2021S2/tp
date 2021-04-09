@@ -14,14 +14,14 @@ title: Developer Guide
    3.6  [Common Classes](#36-common-classes)<br>
 1. [Implementation](#4-implementation)<br>
    4.1 [SOChedule](#41-sochedule)<br>
-       4.1.1 [Overview](#411-overview)<br>
-       4.1.2 [Implementation of SOChedule-level Commands](#412-implementation)<br>
+   &nbsp;&nbsp;4.1.1 [Overview](#411-overview)<br>
+   &nbsp;&nbsp;4.1.2 [Implementation of SOChedule-level Commands](#412-implementation)<br>
    4.2 [Task](#42-task)<br>
-       4.1.1 [Overview](#421-overview)<br>
-       4.1.2 [Implementation of Task-level Commands](#422-implementation)<br>
+   &nbsp;&nbsp;4.2.1 [Overview](#421-overview)<br>
+   &nbsp;&nbsp;4.2.2 [Implementation of Task-level Commands](#422-implementation)<br>
    4.3 [Event](#43-event)<br>
-       4.1.1 [Overview](#431-overview)<br>
-       4.1.2 [Implementation of Event-level Commands](#432-implementation)<br>
+   &nbsp;&nbsp;4.3.1 [Overview](#431-overview)<br>
+   &nbsp;&nbsp;4.3.2 [Implementation of Event-level Commands](#432-implementation)<br>
 1. [Planned Features](#5-documentation-logging-testing-configuration-dev-ops)<br>
 1. [Appendix](#appendix)<br>
    A1. [Product Scope](#a1-product-scope)<br>
