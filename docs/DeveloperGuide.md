@@ -605,7 +605,7 @@ person on the list is born before 12-12-2020.
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
        Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
+    1. Test case: `delete 0` (Invalid index)<br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
@@ -623,6 +623,12 @@ person on the list is born before 12-12-2020.
 
 ### Exiting the program: `exit`
 
+1. Exiting the program
+
+    1. Test case: `exit`<br>
+       Process terminates with return code 0. FriendDex information is written to data files located in `./data` 
+       directory.
+
 ### Locating persons by name: `find`
 
 1. Finding contacts with naive string search
@@ -632,11 +638,11 @@ person on the list is born before 12-12-2020.
     1. Test case: `find alex`<br>
        Expected: All contact with the token `alex` will be listed. A success message is shown to the user.
        
-    1. Test case: `find yeoh, li, yu`<br>
+    1. Test case: `find yeoh li yu`<br>
        Expected: All contact with name containing at least one token from the set of tokens `yeoh`, `li`, `yu` will 
        be listed. A success message is shown to the user.
        
-    1. Test case: `find`<br>
+    1. Test case: `find` (Invalid format)<br>
        Expected: Listed contacts are not updated. Error details shown in the status message.
 
 2. Finding contacts wth pattern matching
@@ -657,6 +663,9 @@ person on the list is born before 12-12-2020.
        Expected: All contacts with names that starts with `a` and ends with `h` regardless of case will be listed. A 
        success message is show to the user.
 
+    2. Test case: `find [ p/` (Invalid argument)<br>
+       Expected: Listed contacts are not updated. Error details shown in the status message.
+
 ### Viewing help: `help`
 
 ### Listing all persons: `list`
@@ -673,15 +682,19 @@ person on the list is born before 12-12-2020.
        user. Goal information in various panels will be updated. Streaks for that contact will be shown when switched to
        the streaks tab.
 
-    1. Test case: `set-goal 0 f/w`<br>
+    1. Test case: `set-goal 0 f/w` (Invalid index)<br>
        Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
        information.
 
-    1. Test case: `set-goal 1 f/asdfg`<br>
+    1. Test case: `set-goal 1 f/asdfg` (Invalid argument)<br>
+       Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
+       information.
+       
+    1. Test case: `set-goal f/w` (Invalid format)<br>
        Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
        information.
 
-    1. Test case: `set-goal 1`<br>
+    1. Test case: `set-goal 1` (Invalid format)<br>
        Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
        information.
 
@@ -694,14 +707,14 @@ person on the list is born before 12-12-2020.
        Goal information in various panels will be updated. Streaks for that contact will no longer be shown when
        switching to the streaks tab.
 
-    2. Test case: `set-goal 0 f/n`<br>
+    2. Test case: `set-goal 0 f/n` (Invalid index)<br>
        Expected: Goals for no one is removed. Error details shown in the status message. No updates to FriendDex
        information.
 
-    2. Test case: `set-goal 1 f/asdfg`<br>
+    2. Test case: `set-goal 1 f/asdfg` (Invalid argument)<br>
        Expected: Goals for no one is removed. Error details shown in the status message. No updates to FriendDex
        information.
-    2. Test case: `set-goal 1`<br>
+    2. Test case: `set-goal 1` (Invalid format)<br>
        Expected: Goals for no one is removed. Error details shown in the status message. No updates to FriendDex
        information.
 
@@ -714,21 +727,22 @@ person on the list is born before 12-12-2020.
     1. Test case: `theme @monokai`<br>
        Expected: Theme of the application changes. A success message will be shown.
 
-    1. Test case: `theme @asdfg`<br>
+    1. Test case: `theme @asdfg` (Invalid argument)<br>
        Expected: Nothing happens. Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+    1. Test case: `theme` (Invalid format)<br>
+       Expected: Nothing happens. Error details shown in the status message.
 
 2. Applying a user defined theme
 
     2. Test case: `theme monokai.json`, where `monokai.json` is a valid theme file<br>
        Expected: Theme of the application changes. A success message will be shown.
 
-    2. Test case: `theme invalid.json`, where `invalid.json` is a theme file containing invalid values<br>
+    2. Test case: `theme invalid.json`, where `invalid.json` is a theme file containing invalid values (Invalid data)
+       <br>
        Expected: Nothing happens. Error details shown in the status message.
 
-    2. Test case: `theme not_found.json`, where `invalid.json` does not exist<br>
+    2. Test case: `theme not_found.json`, where `invalid.json` does not exist (Invalid data)<br>
        Expected: Nothing happens. Error details shown in the status message.
 
 ### Viewing different details panel: `view`
