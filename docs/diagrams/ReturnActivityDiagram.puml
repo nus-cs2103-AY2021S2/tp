@@ -1,6 +1,6 @@
 @startuml
 start
-:User inputs 'return r/Tom b/Cloud Atlas';
+:User inputs 'return bc/1000000000';
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
@@ -8,8 +8,8 @@ start
 if () then ([valid input])
     :execute command;
     :markRecordAsReturned;
-    :updateReaderStatus;
-    :updateBookStatus;
+    :changeReaderStatus;
+    :changeBookStatus;
     :return book success;
 else ([input invalid or check condition failed])
     :command invalid;

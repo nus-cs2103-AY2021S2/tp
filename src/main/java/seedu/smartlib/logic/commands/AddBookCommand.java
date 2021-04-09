@@ -7,8 +7,10 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_GENRE;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ISBN;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PUBLISHER;
 
+import java.util.ArrayList;
 import java.util.Random;
 
+import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.book.Barcode;
@@ -31,7 +33,8 @@ public class AddBookCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New book added: %1$s";
     public static final String MESSAGE_DUPLICATE_BOOK = "This book already exists in the book base.";
-
+    public static final String MESSAGE_DUPLICATE_ISBN = "The ISBN you entered exists in the book base but it has "
+            + "a different book name. Please ensure that you key in the correct book name and ISBN.";
     private final Book bookWithTempBarcode;
 
     /**
@@ -57,6 +60,15 @@ public class AddBookCommand extends Command {
 
         if (model.hasBook(bookWithTempBarcode)) {
             throw new CommandException(MESSAGE_DUPLICATE_BOOK);
+        }
+        if (model.hasBook(bookWithTempBarcode.getIsbn())) {
+            ArrayList<Book> booksWithIsbn = model.getBooksByIsbn(bookWithTempBarcode.getIsbn());
+            Name bookName = bookWithTempBarcode.getName();
+            for (Book b : booksWithIsbn) {
+                if (!b.getName().equals(bookName)) {
+                    throw new CommandException(MESSAGE_DUPLICATE_ISBN);
+                }
+            }
         }
 
         model.addBook(new Book(bookWithTempBarcode.getName(), bookWithTempBarcode.getAuthor(),

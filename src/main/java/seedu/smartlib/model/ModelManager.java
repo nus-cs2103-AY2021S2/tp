@@ -15,6 +15,7 @@ import seedu.smartlib.commons.core.LogsCenter;
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
+import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
 
@@ -168,6 +169,17 @@ public class ModelManager implements Model {
     public boolean hasBook(Name bookName) {
         requireAllNonNull(bookName);
         return smartLib.hasBook(bookName);
+    }
+
+    /**
+     * Returns true if a book with the same isbn as {@code isbn} exists in the registered book base.
+     *
+     * @param isbn
+     */
+    @Override
+    public boolean hasBook(Isbn isbn) {
+        requireAllNonNull(isbn);
+        return smartLib.hasBook(isbn);
     }
 
     /**
@@ -330,14 +342,6 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Retrieves the list of books that has the bookName
-     * @param bookName bookName to query
-     * @return the list of bookNames
-     */
-    public ArrayList<Book> getBooksByName(Name bookName) {
-        return smartLib.getBooksByName(bookName);
-    }
-    /**
      * Adds the given reader.
      * {@code reader} must not already exist in the registered reader base.
      *
@@ -392,12 +396,41 @@ public class ModelManager implements Model {
         return null;
     }
 
+    /**
+     * Returns the book with the given barcode.
+     *
+     * @param barcode the specified barcode
+     * @return the book with the given barcode
+     */
     @Override
     public Book getBookByBarcode(Barcode barcode) {
         requireNonNull(barcode);
         return smartLib.getBookByBarcode(barcode);
     }
 
+    /**
+     * Retrieves the list of books that has the isbn.
+     *
+     * @param isbn Isbn to query
+     * @return the list of books with given Isbn
+     */
+    @Override
+    public ArrayList<Book> getBooksByIsbn(Isbn isbn) {
+        requireNonNull(isbn);
+        return smartLib.getBooksByIsbn(isbn);
+    }
+
+    /**
+     * Retrieves the list of books that has the bookName.
+     *
+     * @param bookName bookName to query
+     * @return the list of bookNames
+     */
+    @Override
+    public ArrayList<Book> getBooksByName(Name bookName) {
+        requireNonNull(bookName);
+        return smartLib.getBooksByName(bookName);
+    }
     /**
      * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
      *

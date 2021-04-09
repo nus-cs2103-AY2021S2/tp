@@ -48,8 +48,7 @@ public class LogicManagerTest {
                 new JsonSmartLibStorage(temporaryFolder.resolve("smartLib.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(smartLibStorage, userPrefsStorage);
-        ModelManager modelManager = new ModelManager();
-        logic = new LogicManager(modelManager, storage);
+        logic = new LogicManager(model, storage);
 
     }
 

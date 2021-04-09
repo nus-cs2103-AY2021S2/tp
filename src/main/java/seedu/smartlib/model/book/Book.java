@@ -150,10 +150,15 @@ public class Book {
         return barcode;
     }
 
-
+    /**
+     * Returns the borrow date of the book.
+     *
+     * @return the borrow date of the book.
+     */
     public DateBorrowed getDateBorrowed() {
         return dateBorrowed;
     }
+
     /**
      * Returns true if both books have the same name and barcode.
      * This defines a weaker notion of equality between two books.
@@ -181,7 +186,7 @@ public class Book {
             return false;
         }
         LocalDateTime timeNow = LocalDateTime.now();
-        LocalDateTime startDate = LocalDateTime.parse(dateBorrowed.getValue());
+        LocalDateTime startDate = LocalDateTime.parse(dateBorrowed.toString());
 
         return (int) Duration.between(startDate, timeNow).toHours() > HOURS_BORROW_ALLOWED;
     }

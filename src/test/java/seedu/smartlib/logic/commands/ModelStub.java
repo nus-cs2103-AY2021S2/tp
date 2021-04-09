@@ -12,6 +12,7 @@ import seedu.smartlib.model.ReadOnlySmartLib;
 import seedu.smartlib.model.ReadOnlyUserPrefs;
 import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
+import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
 
@@ -128,6 +129,16 @@ class ModelStub implements Model {
         return null;
     }
 
+    /**
+     * Returns the Book with the specified ISBN.
+     *
+     * @param isbn
+     */
+    @Override
+    public ArrayList<Book> getBooksByIsbn(Isbn isbn) {
+        return null;
+    }
+
     @Override
     public Barcode getFirstAvailableBookBarcode(Name bookName) {
         return null;
@@ -196,6 +207,16 @@ class ModelStub implements Model {
      */
     @Override
     public boolean hasBook(Name bookName) {
+        return false;
+    }
+
+    /**
+     * Returns true if a book with the same isbn as {@code isbn} exists in the registered book base.
+     *
+     * @param isbn
+     */
+    @Override
+    public boolean hasBook(Isbn isbn) {
         return false;
     }
 
