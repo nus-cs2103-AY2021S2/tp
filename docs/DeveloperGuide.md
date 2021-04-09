@@ -104,8 +104,8 @@ The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
 * stores a `CommandHistory` object that represents all previous commands entered by the user.
 * stores an `AliasMapping` object that represents the mapping of aliases to actual commands.
-* stores the address book data in a `StatefulAddressBook`.
-    * which stores a list of `ReadOnlyAddressBooks` which are the states after each command is executed  
+* stores the SunRez data in a `StatefulAddressBook`.
+    * which stores a list of `ReadOnlyAddressBook` objects, each representing a state after a state-changing command is executed.  
 * exposes the following unmodifiable `ObservableList<T>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
     * `ObservableList<Resident>`
     * `ObservableList<Room>`
