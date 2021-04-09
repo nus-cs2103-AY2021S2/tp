@@ -14,10 +14,18 @@ public class TypicalReminders {
 
     public static final Reminder MATHS_TUITION_PAYMENT_REMINDER = new ReminderBuilder()
             .withDescription("Maths Tuition Payment Due")
-            .withDescription("2021-04-01").build();
+            .withReminderDate("2021-05-01").build();
     public static final Reminder SCIENCE_TUITION_PAYMENT_REMINDER = new ReminderBuilder()
             .withDescription("Science Tuition Payment Due")
-            .withDescription("2021-04-05").build();
+            .withReminderDate("2021-05-05").build();
+
+    public static final Reminder PAST_REMINDER_1 = new ReminderBuilder()
+            .withDescription("Maths Tuition Payment Due")
+            .withReminderDate("2021-01-01").build();
+    public static final Reminder PAST_REMINDER_2 = new ReminderBuilder()
+            .withDescription("Science Tuition Payment Due")
+            .withReminderDate("2021-01-05").build();
+
 
     private TypicalReminders() {
     } // prevents instantiation
@@ -35,5 +43,9 @@ public class TypicalReminders {
 
     public static List<Reminder> getTypicalReminders() {
         return new ArrayList<>(Arrays.asList(MATHS_TUITION_PAYMENT_REMINDER, SCIENCE_TUITION_PAYMENT_REMINDER));
+    }
+
+    public static List<Reminder> getTypicalPastReminders() {
+        return new ArrayList<>(Arrays.asList(PAST_REMINDER_1, PAST_REMINDER_2));
     }
 }

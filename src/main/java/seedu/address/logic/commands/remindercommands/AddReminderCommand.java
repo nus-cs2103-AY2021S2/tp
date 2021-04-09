@@ -58,9 +58,16 @@ public class AddReminderCommand extends Command {
 
         if (model.hasReminder(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_REMINDER);
-        } else {
-            model.addReminder(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.REMINDER);
         }
+
+        model.addReminder(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.REMINDER);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddReminderCommand // instanceof handles nulls
+                && toAdd.equals(((AddReminderCommand) other).toAdd));
     }
 }
