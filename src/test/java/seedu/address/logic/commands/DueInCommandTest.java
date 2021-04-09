@@ -18,6 +18,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -38,10 +39,17 @@ public class DueInCommandTest {
 
     @Test
     public void equals() {
-        DeadlineDateInRangePredicate firstPredicate =
-                new DeadlineDateInRangePredicate(numberOfDays);
-        DeadlineDateInRangePredicate secondPredicate =
-                new DeadlineDateInRangePredicate(numberOfWeeks * 7);
+        DeadlineDateInRangePredicate firstPredicate;
+        DeadlineDateInRangePredicate secondPredicate;
+        try {
+            firstPredicate =
+                    new DeadlineDateInRangePredicate(numberOfDays);
+            secondPredicate =
+                    new DeadlineDateInRangePredicate(numberOfWeeks * 7);
+        } catch (ParseException e) {
+            assertFalse(true); // Must not be call;
+            return;
+        }
 
         DueInCommand dueInFirstCommand = new DueInCommand(firstPredicate);
         DueInCommand dueInSecondCommand = new DueInCommand(secondPredicate);
@@ -78,9 +86,14 @@ public class DueInCommandTest {
 
     @Test
     public void execute_noParamsGiven_noTaskFound() {
-        DeadlineDateInRangePredicate predicate =
-                new DeadlineDateInRangePredicate(numberOfDays);
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
+        DeadlineDateInRangePredicate predicate;
+        try {
+            predicate = new DeadlineDateInRangePredicate(numberOfDays);
+        } catch (ParseException e) {
+            assertFalse(true); // Must not be called
+            return;
+        }
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0) + predicate.toString();
         DueInCommand command = new DueInCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -89,9 +102,14 @@ public class DueInCommandTest {
 
     @Test
     public void execute_numberOfDaysGiven_multipleTasksFound() {
-        DeadlineDateInRangePredicate predicate =
-                new DeadlineDateInRangePredicateStub(numberOfDays);
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 6);
+        DeadlineDateInRangePredicate predicate;
+        try {
+            predicate = new DeadlineDateInRangePredicateStub(numberOfDays);
+        } catch (ParseException e) {
+            assertFalse(true); // Must not be called
+            return;
+        }
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 6) + predicate.toString();
         DueInCommand command = new DueInCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -100,9 +118,14 @@ public class DueInCommandTest {
 
     @Test
     public void execute_numberOfWeeksGiven_multipleTasksFound() {
-        DeadlineDateInRangePredicate predicate =
-                new DeadlineDateInRangePredicateStub(7 * numberOfWeeks);
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 6);
+        DeadlineDateInRangePredicate predicate;
+        try {
+            predicate = new DeadlineDateInRangePredicateStub(numberOfWeeks * 7);
+        } catch (ParseException e) {
+            assertFalse(true); // Must not be called
+            return;
+        }
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 6) + predicate.toString();
         DueInCommand command = new DueInCommand(predicate);
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -111,7 +134,7 @@ public class DueInCommandTest {
 
     private class DeadlineDateInRangePredicateStub extends DeadlineDateInRangePredicate {
 
-        public DeadlineDateInRangePredicateStub(long numberOfDays) {
+        public DeadlineDateInRangePredicateStub(long numberOfDays) throws ParseException {
             super(numberOfDays);
         };
 

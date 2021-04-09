@@ -48,6 +48,7 @@ public class DeadlineDateTest {
         assertFalse(DeadlineDate.isValidDeadlineDate("12/22/2020")); // incorrect format MM/DD/YYYY
         assertFalse(DeadlineDate.isValidDeadlineDate("22/12/2020")); // incorrect format DD/MM/YYYY
         assertFalse(DeadlineDate.isValidDeadlineDate("2020/12/02")); // incorrect format YYYY/DD/MM
+        assertFalse(DeadlineDate.isValidDeadlineDate("29-02-2023")); // non-leap year
 
         // valid DeadlineDate
         assertTrue(DeadlineDate.isValidDeadlineDate("11-11-2022")); // min year

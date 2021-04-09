@@ -41,7 +41,7 @@
 
     2. Index must be available on the list, else an error will be thrown.
 
-    
+
 
     - Example: Using the command `list` to show all tasks, the user wants to delete the 2nd task. User uses command `delete 2` to delete the 2nd task from the list.
 
@@ -61,7 +61,7 @@
 
     4. Existing values will be updated to the input values.
 
-    
+
 
     - Example: `edit 1 n/Software Engineering Finals mc/CS2103`. Edits the name of the task and module code of the task at index 1 to be “Software Engineering Finals” and “CS2103” respectively.
 
@@ -84,9 +84,9 @@
     3. Only the task taskName is searched.
     4. Only full words will be matched e.g. Java will not match Javascript
     5. Tasks matching at least one keyword will be returned (i.e. OR search). e.g. SQL Python will return SQL Quiz, Python Assignment
-    
-    
-    
+
+
+
       * Example: `find C++` will return C++ project and C++ graded quiz
       * Example: `find assignment exam` will return Final Assignment, Midterm exam
 
@@ -109,8 +109,8 @@
     2. The index refers to the index number shown in the displayed task list.
     3. The index must be a positive integer 1, 2, 3, …
     4. Adding notes to a task that already has existing notes will overwrite the previous notes.
-    
-    
+
+
       * Example: `list` followed by `notes 2 notes/Hello World!` adds the note “Hello World!” to the 2nd task in the task list.
       * Example: `find assignment` followed by `notes 1 notes/fooBar` adds the note “fooBar” to the 1st task in the results of the find command.
 
@@ -123,9 +123,8 @@
     2. `NUMBER_OF_DAYS` & `NUMBER_OF_WEEKS` must be a positive integer.
     3. If both `day/` & `week/` are given, an error will be thrown.
     4. Tasks shown are tasks with deadlines starting from today's date.
-    
-    
-    
+    5. The limit for dueIn is until 31-12-2099.
+
       * Example: `dueIn day/2` will show tasks that have deadlines within the next 2 days.
 
 8. ### Toggle the status of a Task: *done*
@@ -133,10 +132,10 @@
   * Toggles the status of a task.
   * Format: `done INDEX`
     1. Index to be inserted must be positive, and
-    
+
     2. Index must be available on the list, else an error will be thrown.
-    
-    
+
+
       * Example: Task 3 has finished. `done 3` will mark task 3 to be unfinished. If the user types `done 3` again, it will mark task 3 to be finished again.
 
 9. ### Undo the previous command: *undo*
@@ -152,7 +151,7 @@
   * Format: `redo`
     1. Only commands which modify the state of the TaskTracker will be redone
     2. There must be an available state to redo to
-    
+
 11. ### Add a task to the daily task list: `doToday`
 
 - Adds the specified task from the regular task list to the daily task list.

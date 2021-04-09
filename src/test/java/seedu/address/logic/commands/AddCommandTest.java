@@ -85,6 +85,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasDailyTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
@@ -225,6 +230,8 @@ public class AddCommandTest {
         public boolean canRedoTaskTracker() {
             throw new AssertionError("This method should not be called.");
         }
+
+
     }
 
     /**

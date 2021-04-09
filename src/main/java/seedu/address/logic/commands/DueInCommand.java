@@ -16,11 +16,12 @@ public class DueInCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose date is "
             + "in range of the specified days or weeks.\n"
-            + "Parameters: days/NUMBER_OF_DAYS OR week/NUMBER_OF_WEEKS\n"
+            + "Parameters: day/NUMBER_OF_DAYS OR week/NUMBER_OF_WEEKS\n"
             + "NUMBER_OF_DAYS and NUMBER_OF_WEEKS must be a positive integer.\n"
-            + "Example: " + COMMAND_WORD + " days/10\n"
+            + "Example: " + COMMAND_WORD + " day/10\n"
             + "If no parameters specified, the command will show assignments within the next 7 days.\n"
-            + "If multiple parameters specified, the command will prioritize days/ over week/.";
+            + "If multiple parameters specified, an error will be thrown.\n"
+            + "The limit for dueIn is until 31-12-2099";
 
     private final DeadlineDateInRangePredicate predicate;
 
@@ -33,7 +34,8 @@ public class DueInCommand extends Command {
         requireNonNull(model);
         model.updateFilteredTaskList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
+                String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size())
+                        + predicate.toString());
     }
 
     @Override

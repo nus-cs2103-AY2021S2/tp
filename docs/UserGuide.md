@@ -67,7 +67,7 @@ your contact management tasks done faster than traditional GUI apps.
 * Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`)
   will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
- 
+
 * All available inputs of priority tags are `LOW/MEDIUM/HIGH`. The application only accept these inputs as valid inputs and will throw an error if other inputs are entered
 
 * The module code parameter only takes in uppercase CS module codes.
@@ -93,7 +93,7 @@ This table outlines all the available prefixes that can be used for the `add` an
 
 Add a task to the list.
 
-Format: `add mc/MODULE_CODE n/TASK_NAME d/DEADLINE_DATE t/DEADLINE_TIME w/WEIGHTAGE [pt/TAGS] [ptag/PRIORITY_TAG]`
+Format: `add mc/MODULE_CODE n/TASK_NAME d/DEADLINE_DATE t/DEADLINE_TIME w/WEIGHTAGE [ptag/PRIORITY_TAG] [pt/TAGS]...`
 
 Example:
 
@@ -125,7 +125,7 @@ Examples:
 
 ### Delete a task: `delete`
 
-Deletes the task at the specified index under All Tasks 
+Deletes the task at the specified index under All Tasks
 
 Format: `delete INDEX`
 
@@ -216,6 +216,7 @@ Format: `dueIn [day/NUMBER_OF_DAYS OR week/NUMBER_OF_WEEKS]`
 * `NUMBER_OF_DAYS` & `NUMBER_OF_WEEKS` must be a positive integer
 * If both `day/` & `week/` are given, an error will be thrown.
 * Tasks shown are tasks with deadlines starting from today's date.
+* The limit for dueIn is until 31-12-2099.
 
 Example:
 
@@ -277,17 +278,17 @@ the data of your previous `semester.config` home folder.
 
 Action | Format, Examples
 --------|------------------
-**add** | `add mc/MODULE_CODE n/TASK_NAME d/DEADLINE_DATE t/DEADLINE_TIME w/WEIGHTAGE [pt/TAGS] [ptag/PRIORITY_TAG]` <br> e.g, `add mc/CS1010 n/Practical Exam d/12-12-2020 t/10:10 w/10%` 
+**add** | `add mc/MODULE_CODE n/TASK_NAME d/DEADLINE_DATE t/DEADLINE_TIME w/WEIGHTAGE [pt/TAGS] [ptag/PRIORITY_TAG]` <br> e.g, `add mc/CS1010 n/Practical Exam d/12-12-2020 t/10:10 w/10%`
  **delete**  | `delete INDEX` <br> e.g, `delete 3` `delete 1`
 **find** | `find KEYWORD ...` <br> e.g, `find Database` `find Software`
 **list** | `list`
 **done** | `done INDEX` <br> e.g, `done 1`
-**sort** | `sort [dateTime OR taskName OR moduleCode OR priorityTag OR weightage]` <br> e.g, `sort dateTime` `sort moduleCode` 
-**notes** | `notes INDEX notes/NOTES` <br> e.g, `notes 4 notes/Assignment must be handwritten` 
-**edit** | `edit INDEX [n/TASK NAME] [mc/MODULE CODE] [d/DEADLINE_DATE] [t/DEADLINE_TIME] [notes/NOTES] [ptag/PRIORITY_TAG]` <br> e.g, `edit 2 n/Assignment 7` 
+**sort** | `sort [dateTime OR taskName OR moduleCode OR priorityTag OR weightage]` <br> e.g, `sort dateTime` `sort moduleCode`
+**notes** | `notes INDEX notes/NOTES` <br> e.g, `notes 4 notes/Assignment must be handwritten`
+**edit** | `edit INDEX [n/TASK NAME] [mc/MODULE CODE] [d/DEADLINE_DATE] [t/DEADLINE_TIME] [notes/NOTES] [ptag/PRIORITY_TAG]` <br> e.g, `edit 2 n/Assignment 7`
 **clear** |`clear`
-**dueIn** | `dueIn [day/NUMBER_OF_DAYS OR week/NUMBER_OF_WEEKS]` <br> e.g, `dueIn`  `dueIn day/10` `dueIn week/2` 
-**doToday** | `doToday [-a OR -r] INDEX` <br>e.g, `doToday -a 2` `doToday -r 2` 
+**dueIn** | `dueIn [day/NUMBER_OF_DAYS OR week/NUMBER_OF_WEEKS]` <br> e.g, `dueIn`  `dueIn day/10` `dueIn week/2`
+**doToday** | `doToday [-a OR -r] INDEX` <br>e.g, `doToday -a 2` `doToday -r 2`
 **undo** | `undo`
 **redo** | `redo`
 **exit** | `exit`

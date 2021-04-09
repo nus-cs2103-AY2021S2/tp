@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -17,11 +17,11 @@ public class NotesCommand extends Command {
 
     public static final String COMMAND_WORD = "notes";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the notes of the person identified "
-        + "by the index number used in the last person listing. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the notes of the task identified "
+        + "by the index number used in the All tasks list. "
         + "Existing notes will be overwritten by the input.\n"
         + "Parameters: INDEX (must be a positive integer) "
-        + PREFIX_NOTES + "[REMARK]\n"
+        + PREFIX_NOTES + "REMARK\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_NOTES + "Likes to swim.";
 
@@ -50,7 +50,8 @@ public class NotesCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, NotesCommand.MESSAGE_USAGE));
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());

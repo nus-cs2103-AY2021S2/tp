@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a Task's deadlineDate in the task list.
@@ -19,7 +20,8 @@ public class DeadlineDate implements Comparable<DeadlineDate> {
                     + " 4.The date cannot be earlier than today.";
 
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-((20)[2-9][0-9])$";
-    private static final DateTimeFormatter dateDateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static final DateTimeFormatter dateDateFormatter = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+            .withResolverStyle(ResolverStyle.STRICT);
 
     private LocalDate deadlineDate;
 
