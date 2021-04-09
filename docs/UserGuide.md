@@ -72,7 +72,16 @@ Input Parameter | Workload Rating
 
 E.g. for a low workload rating, key in `w/1`.
 
-* The following module codes are supported:
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:**
+First time using the app? Or want to refresh your handling of the app? Simply look out for these boxes.
+Commands for this tutorial are arranged in the sequential order of this User Guide and are accompanied by screenshots.
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
+## Supported Module Codes
 
 Module Code | Subject Description
 --------|------------------
@@ -108,10 +117,12 @@ you may use a substitute module code based on the subject description.
 First time using the app? Or want to refresh your handling of the app? Simply look out for these boxes.
 Commands for this tutorial are arranged in the sequential order of this User Guide and are accompanied by screenshots.
 </div>
+
+--------------------------------------------------------------------------------------------------------------------
   
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
+
 
 ## Command Notes
 
@@ -189,9 +200,10 @@ t/ | TAG |
    the app will give an error message due to the tag being empty.
    E.g. for `tag 1 t/quiz t/QUIZ, t/Quiz`, only `t/quiz` is accepted and the actual tag will be spelt as `quiz`.
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 
 ## Command list
 
@@ -229,9 +241,9 @@ All commands are ordered in a sequential manner. Do give them a try!
 
 * **`exit`** : Close the app
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### Delete all tasks: `clear`
 
@@ -247,6 +259,8 @@ For this tutorial, let's start by clearing out any existing tasks. Type:<br>
 </div>
 
 <img src="images/clearCommand.png" width="700">
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -282,6 +296,8 @@ Other Examples:
 * `add n/v1.2 TP m/CS2103T d/implement basic features b/2021-03-13 23:59 w/3 t/urgent`
 * `add n/practice sets m/CS3230 d/practice master's theorem a/2021-03-14 00:00 b/2021-03-15 00:00 w/1 r/weekly`
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ### Mark a task as done : `done`
@@ -305,6 +321,8 @@ Format: `done INDEX`
 Other Examples:
 * `list` followed by `done 2` marks the 2nd task as done in the ModuleBook3.5.
 * `find Quiz` followed by `done 1` marks the 1st task in the results of the `find` command as done.
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -330,6 +348,8 @@ Other Examples:
 * `list` followed by `notdone 2` marks the 2nd task as not done in the ModuleBook3.5.
 * `find Quiz` followed by `notdone 1` marks the 1st task in the results of the `find` command as not done.
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ### Add tag(s): `tag`
@@ -353,6 +373,8 @@ Other Examples:
 * `tag 1 t/SoftwareEng` adds `SoftwareEng` tag to task 1.
 * `tag 3 t/Participation` adds `Participation` tag to task 3.
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ### Search tasks with name of task: `find`
@@ -373,6 +395,8 @@ but rather, tasks that have the word "Green" in their names.)
 
 <img src="images/findCommand.png" width="700">
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ### List out tasks : `list`
@@ -388,6 +412,8 @@ Format: `list`
 </div>
 
 <img src="images/listCommand.png" width="700">
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -408,6 +434,8 @@ Format: `findTag KEYWORD`
 </div>
 
 <img src="images/findTagCommand.png" width="700">
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -431,6 +459,8 @@ this command still works.)
 Other Examples:
 * `mod CS3243` lists out tasks associated with module CS3243.
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ### Delete tag of Task: `deleteTag`
@@ -452,6 +482,8 @@ Format: `deleteTag INDEX t/TAG`
 </div>
 
 <img src="images/deleteTagCommand.png" width="700">
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -480,10 +512,12 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 
 In this screenshot, the colour of task 1 changed because the new deadline is closer.
 
-Examples:
+Other Examples:
 *  `edit 1 d/Finish User Guide` Edits the description of the 1st task to `Finish User Guide`.
 *  `edit 2 d/Finish User Guide b/2021-03-21 10:10:10` Edits the description of the 2nd task to be `Finish User Guide` and its deadline to date `2021-03-21 10:10:10`.
 *  `edit 2 b/2021-03-25` Edits the deadline of the 3rd task to `2021-03-25`
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -507,6 +541,8 @@ Format:  `sort` or `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/`
 </div>
 
 <img src="images/sortCommand.png" width="700">
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -538,7 +574,6 @@ Other Examples:
 * `recur 3 r/daily` Recurs the 3rd task in ModuleBook3.5 every day.
 * `recur 4 r/` Removes the recurrence of the 4th task in ModuleBook3.5.
 
-<div style="page-break-after: always;"></div>
 
 ### Refresh all tasks: `refresh`
 
@@ -556,6 +591,8 @@ Format: `refresh`
 <img src="images/refreshCommand.png" width="700">
 
 Note that you may get a new deadline for task 1 that is different from what is in the screenshot.
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -580,6 +617,8 @@ Format: `delete INDEX`
 Other Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the ModuleBook3.5.
 * `find CS2103T` followed by `delete 1` deletes the 1st task in the results of the `find` command.
+
+--------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
@@ -617,9 +656,9 @@ If your changes to the data file makes its format invalid, ModuleBook3.5 will di
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ModuleBook3.5 home folder.
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
