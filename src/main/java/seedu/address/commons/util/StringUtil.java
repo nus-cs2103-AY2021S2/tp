@@ -99,4 +99,14 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Checks if a {@code String} input contains only numbers, with '+' or '-' characters as prefix.
+     *
+     * @param input input to be checked.
+     * @return true if the input contains only numbers, with '+' or '-' characters as prefix.
+     */
+    public static boolean isNumbersOnly(String input) {
+        return input.matches("(\\+?|-?)[0-9]+");
+    }
 }

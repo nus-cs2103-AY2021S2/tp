@@ -1,7 +1,11 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.BatchCommandParser.INVALID_BATCH_COMMAND;
+import static seedu.address.logic.parser.BatchCommandParser.INVALID_EDIT_ARGUMENTS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INDEX_IS_WORD;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,41 +64,50 @@ public class BatchCommandParserTest {
 
     @Test
     public void parse_invalidIndices_throwsParseException() {
+        // Input with invalid numerical index
         assertParseFailure(BATCH_COMMAND_PARSER, "delete 0, 1, 2",
-                String.format(BatchCommand.ERROR_MESSAGE, ParserUtil.MESSAGE_INVALID_INDEX));
+                String.format(BatchCommand.ERROR_MESSAGE, MESSAGE_INVALID_INDEX));
+
+        // Input with huge numerical index
+        assertParseFailure(BATCH_COMMAND_PARSER, "delete 274890137843892748927983739483, 1, 2",
+                String.format(BatchCommand.ERROR_MESSAGE, MESSAGE_INVALID_INDEX));
+
+        // Input with invalid index as word
+        assertParseFailure(BATCH_COMMAND_PARSER, "delete 1, 2, lol",
+                String.format(BatchCommand.ERROR_MESSAGE, MESSAGE_INDEX_IS_WORD));
 
         assertParseFailure(BATCH_COMMAND_PARSER, "edit 0, 4, 5 t/husband i/P#1245 i/POL#6789>www.youtube.com",
-                String.format(BatchCommand.ERROR_MESSAGE, ParserUtil.MESSAGE_INVALID_INDEX));
+                String.format(BatchCommand.ERROR_MESSAGE, MESSAGE_INVALID_INDEX));
     }
 
     @Test
     public void parse_invalidEditArguments_throwsParseException() {
         assertParseFailure(BATCH_COMMAND_PARSER, "edit 1, 4, 5 n/Tom i/P#1245 i/POL#6789>www.youtube.com",
-                String.format(BatchCommand.ERROR_MESSAGE, BatchCommandParser.INVALID_EDIT_ARGUMENTS));
+                String.format(BatchCommand.ERROR_MESSAGE, INVALID_EDIT_ARGUMENTS));
     }
 
     @Test
     public void parse_invalidCommandForBatch_throwsParseException() {
         assertParseFailure(BATCH_COMMAND_PARSER, "add n/Tom a/Orchard p/9999 e/tom@tom.com t/tom i/POL_#tom123",
-                String.format(BatchCommand.ERROR_MESSAGE, BatchCommandParser.INVALID_BATCH_COMMAND));
+                String.format(BatchCommand.ERROR_MESSAGE, INVALID_BATCH_COMMAND));
 
         assertParseFailure(BATCH_COMMAND_PARSER, "policy 1",
-                String.format(BatchCommand.ERROR_MESSAGE, BatchCommandParser.INVALID_BATCH_COMMAND));
+                String.format(BatchCommand.ERROR_MESSAGE, INVALID_BATCH_COMMAND));
 
         assertParseFailure(BATCH_COMMAND_PARSER, "exit",
-                String.format(BatchCommand.ERROR_MESSAGE, BatchCommandParser.INVALID_BATCH_COMMAND));
+                String.format(BatchCommand.ERROR_MESSAGE, INVALID_BATCH_COMMAND));
 
         assertParseFailure(BATCH_COMMAND_PARSER, "list",
-                String.format(BatchCommand.ERROR_MESSAGE, BatchCommandParser.INVALID_BATCH_COMMAND));
+                String.format(BatchCommand.ERROR_MESSAGE, INVALID_BATCH_COMMAND));
 
         assertParseFailure(BATCH_COMMAND_PARSER, "find",
-                String.format(BatchCommand.ERROR_MESSAGE, BatchCommandParser.INVALID_BATCH_COMMAND));
+                String.format(BatchCommand.ERROR_MESSAGE, INVALID_BATCH_COMMAND));
 
         assertParseFailure(BATCH_COMMAND_PARSER, "sort -n -des",
-                String.format(BatchCommand.ERROR_MESSAGE, BatchCommandParser.INVALID_BATCH_COMMAND));
+                String.format(BatchCommand.ERROR_MESSAGE, INVALID_BATCH_COMMAND));
 
         assertParseFailure(BATCH_COMMAND_PARSER, "lock 123",
-                String.format(BatchCommand.ERROR_MESSAGE, BatchCommandParser.INVALID_BATCH_COMMAND));
+                String.format(BatchCommand.ERROR_MESSAGE, INVALID_BATCH_COMMAND));
     }
 
 }
