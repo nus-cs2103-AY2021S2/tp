@@ -343,7 +343,13 @@ The following sequence diagram shows how the operation `done 1` is carried out a
         * Pros: better in terms of performance as there are lesser functions to be called.
         * Cons: This introduces another reason for 'DoneCommand.execute()' to change in the future.
 
-## **Documentation, logging, testing, configuration, dev-ops** [In Progress]
+## **Documentation, logging, testing, configuration, dev-ops**
+
+* [Documentation guide](Documentation.html)
+* [Testing guide](Testing.html)
+* [Logging guide](Logging.html)
+* [Configuration guide](Configuration.html)
+* [DevOps guide](DevOps.html)
 
 --------------------------------------------------------------------------------------------------------------------
 
