@@ -1251,7 +1251,6 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `clear_expired_task`<br>
       Expected: Tasks with past deadlines are cleared from the list. Success message `Expired tasks (if any) have been cleared!` 
       will always be shown in the status message, regardless of whether there is any expired task or not. 
-
       
 ### Adding an event
 
@@ -1311,8 +1310,35 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `clear_expired_event`<br>
       Expected: Events with past end date time are cleared from the list. Success message `Expired events (if any) have been cleared!` 
       will always be shown in the status message, regardless of whether there is any expired event or not.
-      
 
+### Finding free time slots
+
+1. Finding free time slots
+
+    1. Test case: `free_time 2021-06-10`<br>
+       Expected: Displays a list of free time slots on 2021-06-10. Success message `Found free time slots on 2021-04-27:` 
+       will be shown if free time slots were found.
+            
+       1. if there are available free time slots, a list of free time slots will be displayed after the success message.
+       2. if there are no events happening on the day, `The entire day is free!` will be displayed after the sucess message.
+       3. if no free time slots were found, `There is no free time in the day!` will be displayed.
+
+### Getting a summary of SOChedule
+
+1. Getting a summary of SOChedule
+
+    1. Test case: `summary`<br>
+       Expected: Displays a summary for SOChedule. Success message `Summary:`, followed by detailed about `Task`,
+       and details about `Event`.
+
+### Clearing SOChedule
+
+1. Clearing SOChedule
+
+    1. Test case: `clear`<br>
+       Expected: All Tasks and Events in SOChedule are cleared. Success message `Sochedule has been cleared!`
+       will always be shown in the status message, regardless of whether there is any Task or Event.
+       
 ### A8. Saving data
 
 1. Dealing with missing/corrupted/missing data files

@@ -605,10 +605,14 @@ Format: `free_time DATE`
   indicating invalid date.
 
 Examples:
-* `free_time 2021-06-01` finds all free time slots on the given date `1st June 2021`.
+* `free_time 2021-04-10` finds all free time slots on the given date `10th April 2021`.
+
+#### Illustration of usage of `free_time`:
+![Example of usage of `free_time`](images/FindFreeTimeExample.png)
+
+* There is only one event on 2021-04-10 (highlighted in red box).
 
 [Return to Feature List](#feature-list)
-
 
 ### Summarising tasks and events statistics: `summary`
 Displays a summary of tasks completion status and events upcoming in the next 7 days.
@@ -621,6 +625,9 @@ Format: `summary`
   i.e., `completionStatus is INCOMPLETE` and `deadline is after current date`
 * **Events upcoming in the next 7 days** refer to events that are going to happen in the next 7 days. Events that are happening today are not included.
 
+#### Illustration of usage of `summary`:
+![Example of usage of `summary`](images/SummaryExample.png)
+
 [Return to Feature List](#feature-list)
 
 
@@ -628,6 +635,9 @@ Format: `summary`
 Clears all tasks and events in the SOChedule's task list and event list.
 
 Format: `clear`
+
+#### Illustration of usage of `clear`:
+![Example of usage of `clear`](images/ClearExample.png)
 
 [Return to Feature List](#feature-list)
 
