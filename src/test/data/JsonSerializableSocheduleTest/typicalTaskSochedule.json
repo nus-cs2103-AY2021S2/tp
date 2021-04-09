@@ -1,0 +1,52 @@
+{
+  "tasks" : [ {
+    "name" : "CS2105 Assignment",
+    "deadline" : "2021-05-09",
+    "priority" : "1",
+    "completionStatus" : "INCOMPLETE",
+    "pinnedStatus" : "UNPINNED",
+    "category" : [ "SchoolWork" ],
+    "tagged" : [ ]
+  }, {
+    "name" : "CS2106 Lab",
+    "deadline" : "2021-05-11",
+    "priority" : "3",
+    "completionStatus" : "INCOMPLETE",
+    "pinnedStatus" : "UNPINNED",
+    "category" : [ "SchoolWork" ],
+    "tagged" : [ ]
+  }, {
+    "name" : "Toast Bread",
+    "deadline" : "2021-06-11",
+    "priority" : "7",
+    "completionStatus" : "INCOMPLETE",
+    "pinnedStatus" : "UNPINNED",
+    "category" : [ "Life" ],
+    "tagged" : [ ]
+  }, {
+    "name" : "Buy Clothes",
+    "deadline" : "2021-07-10",
+    "priority" : "8",
+    "completionStatus" : "INCOMPLETE",
+    "pinnedStatus" : "UNPINNED",
+    "category" : [ "Life" ],
+    "tagged" : [ ]
+  }, {
+    "name" : "Revise CS2103",
+    "deadline" : "2021-07-11",
+    "priority" : "2",
+    "completionStatus" : "INCOMPLETE",
+    "pinnedStatus" : "UNPINNED",
+    "category" : [ "Exam" ],
+    "tagged" : [ ]
+  }, {
+    "name" : "Run 10km",
+    "deadline" : "2021-06-10",
+    "priority" : "5",
+    "completionStatus" : "INCOMPLETE",
+    "pinnedStatus" : "UNPINNED",
+    "category" : [ "Exercise" ],
+    "tagged" : [ ]
+  } ],
+  "events" : [ ]
+}

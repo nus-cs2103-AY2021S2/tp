@@ -1,0 +1,52 @@
+{
+  "tasks" : [ ],
+  "events" : [ {
+    "name" : "CS2103 Meeting",
+    "startDate" : "2021-04-15",
+    "startTime" : "21:00",
+    "endDate" : "2021-04-15",
+    "endTime" : "23:00",
+    "category" : [ "SchoolWork" ],
+    "tagged" : [ "SocheduleBest" ]
+  }, {
+    "name" : "1 Year Anniversary",
+    "startDate" : "2021-04-16",
+    "startTime" : "08:00",
+    "endDate" : "2021-04-16",
+    "endTime" : "21:00",
+    "category" : [ "Love" ],
+    "tagged" : [ "LoveYou" ]
+  }, {
+    "name" : "RVRC Camping",
+    "startDate" : "2021-05-09",
+    "startTime" : "08:00",
+    "endDate" : "2021-05-09",
+    "endTime" : "22:00",
+    "category" : [ "Leisure" ],
+    "tagged" : [ "Boring" ]
+  }, {
+    "name" : "Google Hash Code",
+    "startDate" : "2021-05-10",
+    "startTime" : "21:00",
+    "endDate" : "2021-06-09",
+    "endTime" : "23:00",
+    "category" : [ "Competition" ],
+    "tagged" : [ ]
+  }, {
+    "name" : "Shopee Code League Workshop",
+    "startDate" : "2021-05-12",
+    "startTime" : "21:00",
+    "endDate" : "2021-05-12",
+    "endTime" : "23:00",
+    "category" : [ ],
+    "tagged" : [ "Learning" ]
+  }, {
+    "name" : "Inter College Game Basketball",
+    "startDate" : "2021-06-19",
+    "startTime" : "21:00",
+    "endDate" : "2021-06-19",
+    "endTime" : "23:00",
+    "category" : [ "Exercise" ],
+    "tagged" : [ "Semifinal" ]
+  } ]
+}
