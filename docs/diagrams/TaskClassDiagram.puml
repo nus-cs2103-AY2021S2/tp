@@ -1,0 +1,40 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package "Model (Task)" <<Rectangle>>{
+Class Sochedule
+
+Package Task {
+Class Task
+Class CompletionStatus
+Class Priority
+Class PinnedStatus
+Class UniqueTaskList
+}
+Package Common {
+Class Tag
+Class Category
+Class Name
+Class Date
+}
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Sochedule
+
+Sochedule *--> "1" UniqueTaskList
+UniqueTaskList o--> "*" Task
+Task *--> "1" Name
+Task *--> "1" Date
+Task *--> "1" CompletionStatus
+Task *--> "1" PinnedStatus
+Task *--> "1" Priority
+Task *--> "*" Tag
+Task *--> "*" Category
+
+Category -[hidden]right-> Name
+Category -[hidden]right-> Date
+@enduml

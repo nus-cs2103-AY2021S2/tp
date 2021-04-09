@@ -133,17 +133,35 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### 3.4 Model component
 
+This section explains the high level design of the `Model` component of our application.
+
+The `Model` stores:
+* a `UserPref` object that represents the user’s preferences.
+* the Sochedule data.
+
+There are two main packages in `Model`:
+* the `Task` package contains classes that represent a task.
+* the  `Event` package contains classes that represent an event.
+
+Also, the `Model`:
+* exposes an unmodifiable `ObservableList<Task>` and an unmodifiable `ObservableList<Event>`that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* does not depend on any of the other three components.
+
+The class diagram below gives an overview of the `Model` component. 
+Due to size constraint, this diagram omitted the details of the `Task` and `Event` packages. 
+For more information, please refer to the class diagrams for `Task` and `Event` at the later section.
+
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-The `Model`,
+The class diagram below gives the design of the `Task` package.
 
-* stores a `UserPref` object that represents the user’s preferences.
-* stores the Sochedule data.
-* exposes an unmodifiable `ObservableList<Task>` and an unmodifiable `ObservableList<Event>`that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+![Structure of the Task Package](images/TaskClassDiagram.png)
 
+The class diagram below gives the design of the `Event` package.
+
+![Structure of the Event Package](images/EventClassDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** An (arguably) more OOP model can store a `Tag` list and a `Category` list in the `Sochedule`, which `Task` and `Event` can refer.
@@ -182,6 +200,9 @@ but one is due on this Monday and the other is due the next Monday. Both of thes
 #### 3.4.2 Design considerations for Event-Related Models
 Similar to Task-related Models, we face the same challenge when choosing between checking for the equality of name only and 
 checking for all fields entered by the user. We chose to check for all fields for the same reasons as mentioned above.
+
+### 3.4.3 Design considerations for Name-Related, Tag-Related and Category-related Models
+
 
 ### 3.5 Storage component
 
