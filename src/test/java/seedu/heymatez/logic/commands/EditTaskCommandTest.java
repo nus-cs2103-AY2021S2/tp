@@ -7,6 +7,7 @@ import static seedu.heymatez.logic.commands.CommandTestUtil.DESC_TASK2;
 import static seedu.heymatez.logic.commands.CommandTestUtil.VALID_DEADLINE_MARATHON;
 import static seedu.heymatez.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MARATHON;
 import static seedu.heymatez.logic.commands.CommandTestUtil.VALID_TITLE_MARATHON;
+import static seedu.heymatez.logic.commands.CommandTestUtil.VALID_TITLE_MEETING;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.heymatez.logic.commands.CommandTestUtil.showTaskAtIndex;
@@ -91,10 +92,10 @@ public class EditTaskCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Task taskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
-        Task editedTask = new TaskBuilder(taskInFilteredList).withTitle(VALID_TITLE_MARATHON).build();
+        Task editedTask = new TaskBuilder(taskInFilteredList).withTitle(VALID_TITLE_MEETING).build();
 
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK,
-                new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_MARATHON).build());
+                new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_MEETING).build());
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 

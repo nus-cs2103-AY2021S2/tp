@@ -227,7 +227,7 @@ Format: `findMembers KEYWORD [MORE_KEYWORDS]...`
   * E.g. A member whose name is `Rachel` will not be found with `findMembers Rach`.
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
-Keywords are case-insensitive.
+The search using keywords is case-insensitive. e.g. `david li` will match with `David Li`.
 </div>
 
 Examples: 
@@ -334,7 +334,7 @@ Format: `findTasks KEYWORD [MORE_KEYWORDS]...`
   * E.g. A task with title `Proposal` will not be found with `findTasks Prop`.
   
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Keywords are case-insensitive. 
+The search using keywords is case-insensitive. e.g. `proposal` will match with `Proposal`.
 </div>
 
 Examples: 
@@ -411,6 +411,8 @@ In order to manage members efficiently, you may want to track the tasks that are
 This feature allows you to find all tasks assigned to a single Member.
 
 Format: `findTasksFor NAME`
+
+* The search suing NAME is case-insensitive. e.g. `david li` will match with `David Li`.
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
 The NAME specified can only belong to 1 Member while a NAME that does not exist in the Member List will return 0 tasks listed

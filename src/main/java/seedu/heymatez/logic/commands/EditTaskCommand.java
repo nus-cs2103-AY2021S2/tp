@@ -52,6 +52,8 @@ public class EditTaskCommand extends Command {
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in HeyMatez.";
+
     private final Index index;
     private final EditTaskCommand.EditTaskDescriptor editTaskDescriptor;
 
@@ -81,6 +83,10 @@ public class EditTaskCommand extends Command {
 
         if (!model.checkAssignees(editedTask)) {
             throw new CommandException(Assignee.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
         model.setTask(taskToEdit, editedTask);
