@@ -11,9 +11,9 @@ Interface CommandHistoryStorage <<Interface>>
 
 Class StorageManager
 StorageManager .left.|> Storage
-StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
-StorageManager o-up-> CommandHistoryStorage
+StorageManager *-right-> UserPrefsStorage
+StorageManager *--> AddressBookStorage
+StorageManager *-up-> CommandHistoryStorage
 
 Class JsonUserPrefsStorage
 JsonUserPrefsStorage .left.|> UserPrefsStorage

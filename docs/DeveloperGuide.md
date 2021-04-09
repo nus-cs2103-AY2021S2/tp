@@ -376,7 +376,7 @@ The diagram below details how the user's command to add an issue propagates thro
 The `Alias` feature allows users to define a shortcut for a longer command that is often used. The longer command can then be executed by entering the alias instead of the full or partial command.
 
 #### Implementation
-User-defined `Alias` is stored in `AliasMapping` within `AddressBook`. `AliasMapping` internally uses `HashMap<String, Alias>` to store the mapping between the name of an `Alias` object and itself. The class diagram of `AliasMapping` and `Alias` is shown below:
+User-defined `Alias` is stored in `AliasMapping` within `AddressBook`. `AliasMapping` internally uses `HashMap<String, Alias>` to store the mapping between the name of an `Alias` object and the object itself. The class diagram of `AliasMapping` and `Alias` is shown below:
 
 ![AliasMappingClassDiagram](images/alias/AliasMappingClassDiagram.png)
 
