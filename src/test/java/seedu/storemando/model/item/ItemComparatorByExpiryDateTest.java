@@ -52,7 +52,7 @@ class ItemComparatorByExpiryDateTest {
         Item kettle = new ItemBuilder().withName("Kettle").withQuantity("6")
             .withExpiryDate("No Expiry Date").withLocation("Storeroom").build();
         Item oranges = new ItemBuilder().withName("Oranges")
-            .withLocation("Kitchen Basket").withExpiryDate("2021-04-08")
+            .withLocation("Kitchen Basket").withExpiryDate("2021-07-01")
             .withQuantity("9")
             .withTags("Expiring").build();
 
