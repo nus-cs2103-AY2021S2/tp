@@ -27,8 +27,8 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/Main.java) 
-and [`MainApp`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/heymatez/Main.java) 
+and [`MainApp`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/heymatez/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -63,11 +63,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/heymatez/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/heymatez/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -79,7 +79,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/heymatez/logic/Logic.java)
 
 1. `Logic` uses the `HeyMatezParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -98,12 +98,12 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/heymatez/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the heymatez book data.
 * exposes an unmodifiable `ObservableList<Person>` and `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -112,7 +112,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/heymatez/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -120,7 +120,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.heymatez.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -129,10 +129,10 @@ This section documents some of the noteworthy details on how certain features ar
 
 ### Mark as completed / uncompleted features
 
-The implementation of the mark as completed and uncompleted features are facilitated by the `DoneTaskCommand` and `
+The implementation of the mark as `completed` and `uncompleted` features are facilitated by the `DoneTaskCommand` and `
 UndoTaskCommand` classes respectively, both of which extends from the Command abstract class.
 
-It is also facilitated by the following Parser Classes:
+The execution of the command is also facilitated by the following Parser Classes:
 * `DoneTaskCommandParser`
 * `UndoTaskCommandParser`
 
@@ -142,24 +142,24 @@ The above mentioned Parser classes all inherit the `#parse` method from the Pars
 * `UndoTaskCommandParser#parse` - checks if the arguments passed to the current Undo Command is valid and creates an UndoTaskCommand instance if it is.
 
 Subsequently, the created `DoneTaskCommand` / `UndoTaskCommand` object contains an `#execute` method which is responsible for
-updating the status of the Task to "completed" or "uncompleted". This is achieved by creating a new `Task` object with the
+updating the status of the Task to `completed` or `uncompleted`. This is achieved by creating a new `Task` object with the
 same fields and values but updating the `TaskStatus` field according to the input.
 
 Below is the usage scenario and how the mark the task as completed mechanism behaves.
 
 Assumptions:
 1. User has already launched the app
-2. HEY MATEz application has an existing task with **uncompleted** status
+2. HEY MATEz application has an existing task whose status is `uncompleted`
 
-Step 1. User executes the `done 1` command to mark the task with index number 1 in the task list of HEY MATEz to be completed. 
- A ` DoneTaskCommandParser` object is created and it calls `DoneTaskCommandParser#parse` on the arguments
+Step 1. User executes the `done 1` command to mark the task with index number 1 in the task list of HEY MATEz to be marked as `completed`. 
+ A ` DoneTaskCommandParser` object is created and it calls `DoneTaskCommandParser#parse` on the arguments.
 
 Step 2. `DoneTaskCommandParser#parse` method will check on the validity of the arguments for a `DoneTaskCommand`. If it
-is valid,  it will call the create a new `DoneTaskCommand` by calling the constructor.
+is valid, it will create a new `DoneTaskCommand` instance by calling the constructor of `DoneTaskCommand`.
 
 Step 3. The `DoneTaskCommand#execute` is then called by the `LogicManager`. The task with the same `Index` is retrieved and
-a copy of the task is created with the same attribute values. However. the `TaskStatus` value is updated to be **completed**'
-in the `Model`.
+a copy of the task is created with the same attribute values. However, the `TaskStatus` value is updated to be `completed`. The task copy
+with the updated status replaces the old task in the `Model`.
 
 Step 4. Once the execution is completed, the message `MESSAGE_DONE_TASK_SUCCESS` is used to return a new Command Result
 with the attached message.
