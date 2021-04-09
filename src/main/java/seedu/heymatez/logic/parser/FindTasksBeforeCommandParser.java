@@ -1,6 +1,8 @@
 package seedu.heymatez.logic.parser;
 
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DEADLINE;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DEADLINE_FORMAT;
 
 import seedu.heymatez.logic.commands.FindTasksBeforeCommand;
 import seedu.heymatez.logic.parser.exceptions.ParseException;
@@ -23,10 +25,12 @@ public class FindTasksBeforeCommandParser implements Parser<FindTasksBeforeComma
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTasksBeforeCommand.MESSAGE_USAGE));
         }
-        if (!Deadline.isValidDeadline(trimmedArgs)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Deadline.MESSAGE_CONSTRAINTS));
+        if (!Deadline.isValidFormat(trimmedArgs)) {
+            throw new ParseException(MESSAGE_INVALID_TASK_DEADLINE_FORMAT + Deadline.MESSAGE_CONSTRAINTS);
         }
-
+        if (!Deadline.isValidDeadline(trimmedArgs)) {
+            throw new ParseException(MESSAGE_INVALID_TASK_DEADLINE + Deadline.MESSAGE_CONSTRAINTS);
+        }
         return new FindTasksBeforeCommand(new DeadlineBeforeDatePredicate(trimmedArgs));
     }
 }

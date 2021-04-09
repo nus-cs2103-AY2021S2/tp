@@ -1,6 +1,7 @@
 package seedu.heymatez.logic.parser;
 
-import seedu.heymatez.commons.core.Messages;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.heymatez.logic.commands.FindMemberTasksCommand;
 import seedu.heymatez.logic.parser.exceptions.ParseException;
 import seedu.heymatez.model.assignee.Assignee;
@@ -20,7 +21,7 @@ public class FindMemberTasksCommandParser implements Parser<FindMemberTasksComma
         String trimmedArgs = args.trim();
 
         if (trimmedArgs.equals("")) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindMemberTasksCommand.MESSAGE_USAGE));
         }
 
