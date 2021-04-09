@@ -55,11 +55,11 @@ public class AllocateResidentRoomCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_throwsCommandException() {
+    public void execute_invalidIndexLteZero_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredResidentList().size() + 1);
         DeallocateResidentRoomCommand deallocateResidentRoomCommand =
                 new DeallocateResidentRoomCommand(outOfBoundIndex);
 
-        assertCommandFailure(deallocateResidentRoomCommand, model, Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+        assertCommandFailure(deallocateResidentRoomCommand, model, Messages.MESSAGE_NO_RESIDENTS);
     }
 }

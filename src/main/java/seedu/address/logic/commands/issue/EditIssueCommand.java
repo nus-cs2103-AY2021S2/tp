@@ -49,6 +49,7 @@ public class EditIssueCommand extends Command {
             + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_CATEGORY + "CATEGORY]"
             + "[" + PREFIX_TAG + "TAG]\n"
+            + "At least one of the above optional parameters must be provided\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Broken window "
             + PREFIX_CATEGORY + "Window";
@@ -92,9 +93,14 @@ public class EditIssueCommand extends Command {
         requireNonNull(model);
         List<Issue> lastShownList = model.getFilteredIssueList();
 
+        if (lastShownList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_ISSUES);
+        }
+
         if (index.getZeroBased() >= lastShownList.size()) {
             logger.warning("Provided index was more than current list size");
-            throw new CommandException(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX, lastShownList.size()));
         }
 
         Issue issueToEdit = lastShownList.get(index.getZeroBased());
