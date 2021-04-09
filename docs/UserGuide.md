@@ -177,7 +177,14 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 
 ### Finding deliveries using keywords matching any attribute: `find <KEYWORDS>`
-**Attributes**: Name, Telephone Number, Address, Date, Remark, Done, Email
+**Attributes:** Name, Telephone Number, Address, Date, Remark, Done, Email
+
+**Notes:**
+ * It is worth noting that you have to key in a full `KEYWORD` to retrieve a result.
+   That is, say you want to find `Alex Yeoh`, then typing `find Al` would not return a result,
+   but `find Alex` or `find Yeoh` will. So, avoid keying in incomplete keywords.
+ * Incomplete keywords disabled in order to reduce the number of unnecessary search results which
+   defeats the purpose of the app.
 
 **Purpose** Find deliveries that match certain attribute
 
