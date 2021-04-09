@@ -47,8 +47,14 @@ public class EmailTest {
         assertFalse(Email.isValidEmail("peterjack@example.com.")); // domain name ends with a period
         assertFalse(Email.isValidEmail("peterjack@-example.com")); // domain name starts with a hyphen
         assertFalse(Email.isValidEmail("peterjack@example.com-")); // domain name ends with a hyphen
+        assertFalse(Email.isValidEmail("example@abc def ghi")); // space in label
+        assertFalse(Email.isValidEmail("hello@example.")); // trailing period
+        assertFalse(Email.isValidEmail("hello@.example")); // invalid label
+        assertFalse(Email.isValidEmail("hello.")); // no @
+        assertFalse(Email.isValidEmail("hello@example." + "exmaple".repeat(100))); // long label
 
         // valid email
+        assertTrue(Email.isValidEmail("s@example"));
         assertTrue(Email.isValidEmail("PeterJack_1190@example.com"));
         assertTrue(Email.isValidEmail("a@bc")); // minimal
         assertTrue(Email.isValidEmail("test@localhost")); // alphabets only
