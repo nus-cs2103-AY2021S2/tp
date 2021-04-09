@@ -6,7 +6,6 @@ import static seedu.dictionote.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 import seedu.dictionote.logic.commands.enums.UiAction;
 import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
-import seedu.dictionote.logic.parser.exceptions.ParseException;
 import seedu.dictionote.model.Model;
 
 /**
