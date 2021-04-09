@@ -2,17 +2,17 @@
   "tasks" : [ ],
   "events" : [ {
     "name" : "CS2103 Meeting",
-    "startDate" : "2021-02-27",
+    "startDate" : "2022-02-27",
     "startTime" : "15:00",
-    "endDate" : "2021-02-27",
+    "endDate" : "2022-02-27",
     "endTime" : "17:00",
     "category" : [ "School" ],
     "tagged" : [ "TeamProject" ]
   }, {
     "name" : "CS2103 Meeting",
-    "startDate" : "2021-02-27",
+    "startDate" : "2022-02-27",
     "startTime" : "15:00",
-    "endDate" : "2021-02-27",
+    "endDate" : "2022-02-27",
     "endTime" : "17:00",
     "category" : [ "School" ],
     "tagged" : [ "TeamProject" ]

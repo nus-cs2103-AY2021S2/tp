@@ -1,12 +1,12 @@
 package seedu.address.storage;
 
 //import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.commons.core.Messages.MESSAGE_END_DATETIME_BEFORE_START_DATETIME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -73,12 +73,10 @@ public class JsonSerializableSocheduleTest {
     }
 
     @Test
-    @Disabled
-    // PENDING BUG SQUASH
     public void toModelType_improperSchedulingEvents_throwsIllegalValueException() throws Exception {
         JsonSerializableSochedule dataFromFile = JsonUtil.readJsonFile(INVALID_EVENT_SCHEDULING_FILE,
                 JsonSerializableSochedule.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableSochedule.MESSAGE_DUPLICATE_EVENT,
+        assertThrows(IllegalValueException.class, MESSAGE_END_DATETIME_BEFORE_START_DATETIME,
                 dataFromFile::toModelType);
     }
 }
