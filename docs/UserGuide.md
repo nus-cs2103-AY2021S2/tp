@@ -134,6 +134,12 @@ Only one command can be executed at a time and any words after a valid command i
          ```
          customer list
          ```
+         ExamplesL:
+         ```
+         customer list
+         ```
+
+         The above command would list all the customers in the left column in the GUI.
         
         </details>
 
