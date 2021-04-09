@@ -229,6 +229,8 @@ Application: Used to add new tasks for tracking purposes.
 
 Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORKLOAD [r/RECURRENCE] [t/TAG]…​`
 
+* If you wish to include any of the optional field, you need to follow its format.
+
 * If you wish to include a start time for your task, the start time should not be later than deadline.
 
 * Recurrence should be either "daily", "weekly" or "biweekly".
