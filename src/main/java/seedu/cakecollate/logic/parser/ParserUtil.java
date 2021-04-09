@@ -63,7 +63,7 @@ public class ParserUtil {
      * @throws ParseException if one of the specified indices is invalid.
      */
     public static IndexList parseIndexList(String oneBasedIndexList) throws ParseException {
-        String[] indexListSplit = oneBasedIndexList.trim().split(" ");
+        String[] indexListSplit = oneBasedIndexList.trim().split("\\s+");
         IndexList indexList = new IndexList(new ArrayList<>());
         for (String index: indexListSplit) {
             if ((!index.equals(" ")) && (!index.equals(""))) {
