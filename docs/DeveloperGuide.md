@@ -149,7 +149,7 @@ _{Coming soon}_
 
 **How**
 
-![image](https://user-images.githubusercontent.com/48408342/114144387-daf2b900-9947-11eb-88f9-6b55c5a68bf7.png)
+![image](https://user-images.githubusercontent.com/48408342/114147903-c3b5ca80-994b-11eb-9bf3-add78bd3fca7.png)
 
 The viewing mechanism is facilitated by the `ViewPatientCommand` which extends `Command`. It mainly overrides `Command#execute` in order to return a `CommandResult` with a patient(`Person` object) attribute. When `MainWindow#executeCommand` is ran, the command is parsed into a `CommandResult` by the `LogicManager` and passed into `MainWindow#processResult`. The `CommandResult` will then trigger `MainWindow#handlePatientViewBox` since it has a patient. `MainWindow#handlePatientViewBox` handles the construction of the `StackPane` containing all the patient information. It clears the `viewPatienBoxPlaceholder` in case there are Javafx nodes from the previous patient, and adds a new `ViewPatientBox` to it. The constructor of `ViewPatientBox` takes in a `Person` object and extracts information such as their name, phone, address, email, tags, appointments and medical records and adds the information to the labels and Panes which will be displayed in the `ViewPatientBox` UI.
 
