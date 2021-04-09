@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Objects;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.residence.Residence;
@@ -56,6 +58,12 @@ public class AddCommand extends Command {
 
     public static String getCommandWord() {
         return COMMAND_WORD;
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+        return Objects.hash(toAdd);
     }
 
     @Override

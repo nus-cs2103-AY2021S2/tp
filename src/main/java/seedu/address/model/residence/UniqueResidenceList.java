@@ -146,4 +146,8 @@ public class UniqueResidenceList implements Iterable<Residence> {
         }
         return true;
     }
+
+    public void sortResidenceList() {
+        FXCollections.sort(internalList);
+    }
 }

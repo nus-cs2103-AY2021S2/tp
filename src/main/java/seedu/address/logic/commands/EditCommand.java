@@ -72,6 +72,7 @@ public class EditCommand extends Command {
         }
 
         Residence residenceToEdit = lastShownList.get(index.getZeroBased());
+        editResidenceDescriptor.setBookingDetails(residenceToEdit.getBookingList());
         Residence editedResidence = createEditedResidence(residenceToEdit, editResidenceDescriptor);
 
         if (!residenceToEdit.isSameResidence(editedResidence) && model.hasResidence(editedResidence)) {
@@ -147,7 +148,6 @@ public class EditCommand extends Command {
         public EditResidenceDescriptor(EditResidenceDescriptor toCopy) {
             setResidenceName(toCopy.residenceName);
             setResidenceAddress(toCopy.residenceAddress);
-            setBookingDetails(toCopy.bookingList);
             setCleanStatusTag(toCopy.cleanStatusTag);
             setTags(toCopy.tags);
         }

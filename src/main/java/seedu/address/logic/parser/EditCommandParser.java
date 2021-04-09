@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_ADDRESS;
@@ -34,15 +33,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RESIDENCE_ADDRESS,
-                        PREFIX_BOOKING, PREFIX_CLEAN_STATUS_TAG, PREFIX_TAG);
+                        PREFIX_CLEAN_STATUS_TAG, PREFIX_TAG);
 
         Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
+
+        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
         EditResidenceDescriptor editResidenceDescriptor = new EditResidenceDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -60,6 +58,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editResidenceDescriptor::setTags);
+
+        if (argMultimap.getValue(PREFIX_CLEAN_STATUS_TAG).isPresent()) {
+            editResidenceDescriptor.setCleanStatusTag(
+                    ParserUtil.parseCleanStatusTag(argMultimap.getValue(PREFIX_CLEAN_STATUS_TAG).get()));
+        }
 
         if (!editResidenceDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
