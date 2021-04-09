@@ -53,9 +53,9 @@ This user guide uses various formatting styles to facilitate reading and to comm
 
 ### 2.2 Trying out
 
-1. Let's try out your first command by adding a new property! Type <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021` into the command box and press <kbd>Enter</kbd> to execute it. After that, scroll down to the bottom of the property list to see your newly added property.
+1. Let's try out your first command by adding a new property! Type <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021` into the command box and press <kbd>Enter</kbd> to execute it. After that, scroll down to the bottom of the property list to see your newly added property.
 1. Want to view the properties in order of their asking price? Type the command <br>`sort property o/desc k/price` and press <kbd>Enter</kbd>. The property list will now be in descending order based on price, with the property having the highest asking price at the top.
-1. Now let's try adding a new appointment. Type <br>`add appointment n/Meet Jacob for dinner r/At Lot One's food court d/19-4-2021 t/1930` and hit the <kbd>Enter</kbd> button. Scroll down to the bottom of the appointment list to see your newly added appointment.
+1. Now let's try adding a new appointment. Type <br>`add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930` and hit the <kbd>Enter</kbd> button. Scroll down to the bottom of the appointment list to see your newly added appointment.
 1. Forgot when you are supposed to meet Simon again? Let's try finding out! Type <br>`find appointment n/simon` and press <kbd>Enter</kbd>. There it is! Your appointment with Simon is on Sep 20, 2021.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -83,7 +83,7 @@ For a quick reference of the available commands and their syntax, refer to the [
   e.g. in `add property n/NAME`, `NAME` is a parameter which can be used as <br>`add property n/Bishan`.
 
 * Items in square brackets are optional.<br>
-  e.g `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` can be used as <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021` <br> or as <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`.
+  e.g `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` can be used as <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021` <br> or as <br>`add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`.
 
 * Items with `…` after them can be used multiple times, including zero times.<br>
   e.g. `[OPTION]...` can be used as `pl/$1,000,000`, `pl/$1,000,000 t/Condo` etc.
@@ -150,12 +150,12 @@ Description:
 * The format for specifying a date is `DD-MM-YYYY`.
 * The format for specifying a time is `HHMM` (in 24-hour clock).
    
-Examples:
-* `add appointment n/Meet Jacob for dinner r/At Lot One's food court d/19-04-2021 t/1930`
+Examples & Output:
+* `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930`
+* `add appointment n/Meeting at agency r/Company is setting new sales target for the month d/01-06-2021 t/1300`
 
 ![Example property added](images/ExampleAddAppointment.png)
 
-* `add appointment n/Celebrate CNY with Pauline r/Her house d/01-02-2022 t/1900`
 
 ### 3.3 Editing
 
@@ -177,7 +177,7 @@ Description:
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit property 1 r/Urgent to sell cn/Alice` Edits the remark and client name of the 1st property to be `Urgent to sell` and `Alice` respectively.
+*  `edit property 1 r/Urgent to sell cc/96011846` Edits the remark and client's contact number of the 1st property to be `Urgent to sell` and `96011846` respectively.
 
 #### 3.3.2 Editing an appointment : `edit appointment`
 
@@ -191,7 +191,7 @@ Description:
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit appointment 3 d/21-03-2021 r/at M hotel` Edits the date and remark of the 3rd appointment to be `21-03-2021` and `at M hotel` respectively.
+*  `edit appointment 3 d/21-07-2021 t/1500` Edits the date and time of the 3rd appointment to be `21-07-2021` and `1500` respectively.
 
 ### 3.4 Deleting
 
@@ -518,10 +518,10 @@ Action | Format, Examples
 --------|------------------
 **Help** | `help`
 **Exit** | `exit`
-**Add property** | `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` <br><br> e.g., `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-6-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`
-**Add appointment** | `add appointment n/NAME r/REMARKS d/DATE t/TIME` <br><br> e.g., `add appointment n/Meet Jacob for dinner r/At Lot One's food court d/19-4-2021 t/1930`
-**Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]`<br><br> e.g.,`edit property 1 r/Urgent to sell cn/Alice`
-**Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br><br> e.g.,`edit appointment 3 d/28-03-2021 r/at M hotel`
+**Add property** | `add property n/NAME t/PROPERTY_TYPE a/ADDRESS p/POSTAL_CODE d/DEADLINE [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]` <br><br> e.g., `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021 r/Urgent to sell cn/George cc/91124788 ce/george_4788@gmail.com ca/$750,000 tags/Urgent, 4 bedrooms`
+**Add appointment** | `add appointment n/NAME r/REMARKS d/DATE t/TIME` <br><br> e.g., `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930`
+**Edit property** | `edit property INDEX [n/NAME] [t/PROPERTY_TYPE] [a/ADDRESS] [p/POSTAL_CODE] [d/DEADLINE] [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT_NUMBER] [ce/CLIENT_EMAIL] [ca/CLIENT_ASKING_PRICE] [tags/TAGS_SEPARATED_BY_COMMAS]`<br><br> e.g.,`edit property 1 r/Urgent to sell cc/96011846`
+**Edit appointment** | `edit appointment INDEX [n/NAME] [r/REMARKS] [d/DATE] [t/TIME]`<br><br> e.g.,`edit appointment 3 d/21-07-2021 t/1500`
 **Remove an entry** | `delete appointment INDEX` <br> e.g. `delete appointment 7` <br><br> `delete property INDEX` <br> e.g. `delete property 7`
 **List all** | `list all`
 **List property** | `list property`

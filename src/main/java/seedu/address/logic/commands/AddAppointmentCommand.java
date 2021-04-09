@@ -28,9 +28,9 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_DATE + "DATE "
             + PREFIX_TIME + "TIME \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Meet Jacob for dinner "
-            + PREFIX_REMARK + "At Lot One's food court "
-            + PREFIX_DATE + "19-04-2021 "
+            + PREFIX_NAME + "Meet Jacob "
+            + PREFIX_REMARK + "For collection of commission "
+            + PREFIX_DATE + "19-05-2021 "
             + PREFIX_TIME + "1930";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
