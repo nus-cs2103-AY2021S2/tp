@@ -82,24 +82,6 @@ public class ScheduleWindow extends UiPart<Stage> {
     public void show() {
         logger.fine("Showing schedule window.");
 
-        /*
-        ObservableList<String> monLessons = logic.getLessonsForDayInString("monday");
-        ObservableList<String> tuesLessons = logic.getLessonsForDayInString("tuesday");
-        ObservableList<String> wedLessons = logic.getLessonsForDayInString("wednesday");
-        ObservableList<String> thursLessons = logic.getLessonsForDayInString("thursday");
-        ObservableList<String> friLessons = logic.getLessonsForDayInString("friday");
-        ObservableList<String> satLessons = logic.getLessonsForDayInString("saturday");
-        ObservableList<String> sunLessons = logic.getLessonsForDayInString("sunday");
-
-        sunList.setItems(sunLessons);
-        monList.setItems(monLessons);
-        tuesList.setItems(tuesLessons);
-        wedList.setItems(wedLessons);
-        thursList.setItems(thursLessons);
-        friList.setItems(friLessons);
-        satList.setItems(satLessons);
-         */
-
         sundayLessonListPanel = new LessonListPanel(logic.getSundayLesson());
         sundayListPanelPlaceholder.getChildren().add(sundayLessonListPanel.getRoot());
 
