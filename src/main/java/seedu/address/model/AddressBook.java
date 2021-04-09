@@ -182,7 +182,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public int hashCode() {
-        //TODO might need to change if got collisions
         return Objects.hash(passengers, pools);
     }
 }

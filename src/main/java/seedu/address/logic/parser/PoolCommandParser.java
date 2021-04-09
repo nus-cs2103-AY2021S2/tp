@@ -43,7 +43,6 @@ public class PoolCommandParser implements Parser<PoolCommand> {
         TripTime tripTime = ParserUtil.parseTripTime(argMultimap.getValue(PREFIX_TRIPTIME).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        // TODO perhaps could refactor diver creation to a parser util else delete this todo
         Driver driver = new Driver(name, phone);
 
         return new PoolCommand(driver, commuterSet, tripDay, tripTime, tagList);

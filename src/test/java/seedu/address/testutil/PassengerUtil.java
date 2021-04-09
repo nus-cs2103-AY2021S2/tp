@@ -40,15 +40,11 @@ public class PassengerUtil {
         sb.append(PREFIX_TRIPDAY + passenger.getTripDayAsStr() + " ");
         sb.append(PREFIX_TRIPTIME + passenger.getTripTimeAsStr() + " ");
 
-        // TODO tidy up hacky method
-        // law of demeter might be violated
-        if (passenger.getPrice().isEmpty()) {
-            sb.append(EMPTY_PRICE + " ");
-        } else {
-            sb.append(PREFIX_PRICE + passenger.priceToString() + " ");
-        }
+        passenger.getPrice().ifPresentOrElse(
+            price -> sb.append(PREFIX_PRICE + price.toString() + " "), () -> sb.append(EMPTY_PRICE + " ")
+        );
 
-        passenger.getTags().stream().forEach(
+        passenger.getTags().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
