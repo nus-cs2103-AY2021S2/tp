@@ -152,13 +152,13 @@ Assumptions:
 2. HEY MATEz application has an existing task whose status is `uncompleted`
 
 Step 1. User executes the `done 1` command to mark the task with index number 1 in the task list of HEY MATEz to be marked as `completed`. 
- A ` DoneTaskCommandParser` object is created and it calls `DoneTaskCommandParser#parse` on the arguments
+ A ` DoneTaskCommandParser` object is created and it calls `DoneTaskCommandParser#parse` on the arguments.
 
 Step 2. `DoneTaskCommandParser#parse` method will check on the validity of the arguments for a `DoneTaskCommand`. If it
 is valid, it will create a new `DoneTaskCommand` instance by calling the constructor of `DoneTaskCommand`.
 
 Step 3. The `DoneTaskCommand#execute` is then called by the `LogicManager`. The task with the same `Index` is retrieved and
-a copy of the task is created with the same attribute values. However. the `TaskStatus` value is updated to be `completed`. The task copy
+a copy of the task is created with the same attribute values. However, the `TaskStatus` value is updated to be `completed`. The task copy
 with the updated status replaces the old task in the `Model`.
 
 Step 4. Once the execution is completed, the message `MESSAGE_DONE_TASK_SUCCESS` is used to return a new Command Result
