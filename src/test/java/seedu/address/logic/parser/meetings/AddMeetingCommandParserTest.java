@@ -24,8 +24,8 @@ import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.TAG_D
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.TAG_DESC_MEETING2;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_NAME_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_START_MEETING1;
-import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_TAG_MEETING1;
-import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_TAG_MEETING2;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_GROUP_MEETING1;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_GROUP_MEETING2;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_TERMINATE_MEETING1;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.GROUP_DESC_FRIEND;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.INVALID_GROUP_DESC;
@@ -48,7 +48,7 @@ class AddMeetingCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Meeting expectedMeeting = new MeetingBuilder(MEETING1).withGroups(VALID_TAG_MEETING1).build();
+        Meeting expectedMeeting = new MeetingBuilder(MEETING1).withGroups(VALID_GROUP_MEETING1).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_MEETING1
@@ -82,8 +82,8 @@ class AddMeetingCommandParserTest {
                 + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
 
         // multiple groups - all accepted
-        Meeting expectedMeetingMultipleGroups = new MeetingBuilder(MEETING1).withGroups(VALID_TAG_MEETING1,
-                VALID_TAG_MEETING2)
+        Meeting expectedMeetingMultipleGroups = new MeetingBuilder(MEETING1).withGroups(VALID_GROUP_MEETING1,
+                VALID_GROUP_MEETING2)
                 .build();
         assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1 + END_DESC_MEETING1
                 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
@@ -93,7 +93,7 @@ class AddMeetingCommandParserTest {
 
     @Test
     public void parse_personMeetingConnection() {
-        Meeting expectedMeeting = new MeetingBuilder(MEETING1).withGroups(VALID_TAG_MEETING1).build();
+        Meeting expectedMeeting = new MeetingBuilder(MEETING1).withGroups(VALID_GROUP_MEETING1).build();
 
         // parse one connection will not influence the meeting object.
         assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1
