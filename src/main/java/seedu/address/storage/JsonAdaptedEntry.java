@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_RANGE;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -8,12 +10,13 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryDate;
 import seedu.address.model.entry.EntryName;
 import seedu.address.model.tag.Tag;
+
+
 
 public class JsonAdaptedEntry {
 
@@ -91,7 +94,7 @@ public class JsonAdaptedEntry {
         final EntryDate modelEndDate = new EntryDate(endDate);
 
         if (modelStartDate.isAfter(modelEndDate)) {
-            throw new IllegalValueException(Messages.MESSAGE_INVALID_DATE_RANGE);
+            throw new IllegalValueException(MESSAGE_INVALID_DATE_RANGE);
         }
 
         final Set<Tag> modelTags = new HashSet<>(entryTags);
