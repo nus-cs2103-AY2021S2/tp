@@ -37,7 +37,8 @@ public class FindAppointmentCommand extends Command {
             + " - " + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_NAME + "\n"
             + " - " + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_DATE + "20/05";
 
-    public static final String MESSAGE_MISSING_FIND_APPOINTMENT_OPTION = "Please provide one of the following options:\n"
+    public static final String MESSAGE_MISSING_FIND_APPOINTMENT_OPTION =
+            "Please provide one of the following options:\n"
             + " - " + OPTION_NAME + " (to find by name)\n"
             + " - " + OPTION_CHILD + " (to find by child)\n"
             + " - " + OPTION_ADDRESS + " (to find by address)\n"
