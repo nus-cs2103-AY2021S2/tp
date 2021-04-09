@@ -423,6 +423,8 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 
 [Return to Table of Contents](#table-of-contents)  
 
+#### 4.2.3.3 Done Task feature
+
 **Implementation of DoneTaskCommand**
 The done task mechanism is supported mainly by `DoneTaskCommand` and `DoneTaskCommandParser`.
 
@@ -483,6 +485,8 @@ under normal usage. Thus, we feel alternative 1 is necessary to serve our users 
 
 [Return to Table of Contents](#table-of-contents)
 
+#### 4.2.3.4 Undone Task feature
+
 **Implementation of UndoneTaskCommand**
 
 The undone task mechanism is supported mainly by `UndoneTaskCommand` and `UndoneTaskCommandParser`.
@@ -542,6 +546,8 @@ testing time. More importantly, unlike done task, users are unlikely to have the
 under normal usage. Thus, we feel alternative 1 is sufficient to serve our users.
 
 [Return to Table of Contents](#table-of-contents)
+
+#### 4.2.3.5 Edit Task feature
 
 **Implementation of EditTaskCommand**  
 

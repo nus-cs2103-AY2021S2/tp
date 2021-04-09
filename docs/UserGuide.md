@@ -79,7 +79,7 @@ As listed below are the attributes to be specified for Tasks and Events. All par
         <td><code>n/</code></td>
         <td>
             <ul>
-                <li>Maximum 50 characters in length</li>
+                <li>Maximum 30 characters in length</li>
             </ul>
         </td>
     </tr>
@@ -88,7 +88,7 @@ As listed below are the attributes to be specified for Tasks and Events. All par
         <td><code>c/</code></td>
         <td>
             <ul>
-                <li>Maximum 20 characters in length each</li>
+                <li>Maximum 15 characters in length each</li>
                 <li>None, single or multiple Categories can be assigned to a single element</li>
                 <li>No spaces are allowed</li>
             </ul>
@@ -99,7 +99,7 @@ As listed below are the attributes to be specified for Tasks and Events. All par
         <td><code>t/</code></td>
         <td>
             <ul>
-                <li>Maximum 20 characters in length each</li>
+                <li>Maximum 15 characters in length each</li>
                 <li>None, single or multiple Tags can be assigned to a single element</li>
                 <li>No spaces are allowed</li>
             </ul>

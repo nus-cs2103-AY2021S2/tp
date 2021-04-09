@@ -32,13 +32,14 @@ public class NameTest {
         assertFalse(Name.isValidName(" ")); // spaces only
         assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
         assertFalse(Name.isValidName("do * at #")); // contains non-alphanumeric characters
+        assertFalse(Name.isValidName("CS2103 Software Programming Lecture 2")); // overly long names
 
         // valid name
         assertTrue(Name.isValidName("lecture")); // alphabets only
         assertTrue(Name.isValidName("1337")); // numbers only
         assertTrue(Name.isValidName("cs2103 lecture")); // alphanumeric characters
         assertTrue(Name.isValidName("Official Meeting")); // with capital letters
-        assertTrue(Name.isValidName("CS2103 Software Programming Lecture 2")); // long names
+        assertTrue(Name.isValidName("CS2103 Software Programming L2")); // long names - hits 30 char limit
     }
 
     @Test
