@@ -25,7 +25,7 @@ public class AllocateResidentRoomCommand extends Command {
     public static final String COMMAND_WORD = "alloc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Allocates a resident to a room in SunRez"
-            + " identified by a resident index and room index displayed in the resident and room list respectively. \n"
+            + " identified by a resident index and room index displayed in the resident and room lists respectively. \n"
             + "Parameters: "
             + PREFIX_RESIDENT_INDEX + "INDEX "
             + PREFIX_ROOM_INDEX + "INDEX (both indices must be positive integers)\n"
