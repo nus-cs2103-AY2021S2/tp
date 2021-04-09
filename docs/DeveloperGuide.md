@@ -302,8 +302,45 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
+### Light Feature
 
+The light feature is implemented in the `LightCommand` class.
+The following is an example usage scenario.
 
+Step 1: The user executes `light` to switch the current theme to a light theme.
+The `UI` component then passes the string to the `LogicManager` class in `Logic` component.
+
+Step 2: The `Logic` component executes the command which changes the boolean light to true. This is passed back to the `UI` component.
+
+Step 3: The `UI` component loads the fxml file containing the light theme and is displayed back to the user.
+
+The following sequence diagram shows how the light command works:
+
+![LightSequenceDiagram](images/LightSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes the light command:
+
+![LightActivityDiagram](images/LightActivityDiagram.png)
+
+### Dark Feature
+
+The dark feature is implemented in the `DarkCommand` class.
+The following is an example usage scenario.
+
+Step 1: The user executes `dark` to switch the current theme to a dark theme.
+The `UI` component then passes the string to the `LogicManager` class in `Logic` component.
+
+Step 2: The `Logic` component executes the command which changes the boolean dark to true. This is passed back to the `UI` component.
+
+Step 3: The `UI` component loads the fxml file containing the dark theme and is displayed back to the user.
+
+The following sequence diagram shows how the dark command works:
+
+![DarkSequenceDiagram](images/DarkSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes the dark command:
+
+![DarkActivityDiagram](images/DarkActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -357,6 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user with many contacts                    | assign each contact an additional optional remark    | remember contacts more accurately                                       |
 | `* *`    | user with many contacts                    | sort contacts by name                                | locate a contact easily                                                 |
 | `* *`    | user                                       | review my previous commands                          | simply modify them instead of retyping the commands, especially for the commands with longer parameters list.
+| `* *`    | user                                       | change between light and dark mode                   | have less strain on my eyes.
 
 ### Use cases
 
@@ -481,6 +519,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. SpamEZ displays the updated contact list.
    
    Use case ends.
+   
+**Use case: Changing to light mode**
+
+**MSS**
+
+1. User requests to change mode of viewing to light mode.
+2. SpamEZ changes the mode of viewing to light mode.
+
+**Extensions**
+
+* 1a. SpamEZ is already in light mode.
+
+    Use case ends.   
+    
+**Use case: Changing to dark mode**
+
+**MSS**
+
+1. User request to change mode of viewing to dark mode.
+2. SpamEZ changes the mode of viewing to dark mode.
+
+**Extensions**
+
+* 1a. SpamEZ is already in dark mode.
+    
+    Use case ends.    
 
 *{More to be added}*
 
