@@ -161,7 +161,6 @@ issues the command `add n/apple q/2 l/kitchen`.
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
-
 From the diagram above:
 
 1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input.
@@ -206,7 +205,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 
 
-### Edit feature
+### Edit feature `edit`
 The edit feature allows the user to edit an item's name, quantity, location, expiry date and tag. This will help the
 user to not delete and add back an item upon inputting an incorrect item. <br>
 The edit command has the following format: `edit INDEX [n/ITEM NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/TAG]...`
@@ -217,48 +216,55 @@ and only changes the specified attribute.
   other prefixes to be declared more than once. However, StoreMando only parses the last common prefix input to update the
   item.
 
-#### Implementation
+#### Actual Implementation
+
+The sequence diagram below shows how the components interact with each other for the scenario where the user
+issues the command `edit 1 n/apple`: 
+
+<br>
+
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
-Step 1: The user inputs `edit 1 n/apple` wanting to change the first item's name.
+From the diagram above:
 
-Step 2: The input is passed to `LogicManager` in a form of a String.
+1. When the user keys in an input, `execute` command of the `LogicManager` is called with the given user input as parameter.
 
-Step 3: The input string is passed to `StoreMandoParser` for it to be parsed.
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
 
-Step 4: The input string is separated into command keyword and arguments containing the prefixes with the updated item's
-attribute.
+3. The `StoreMandoParser` parses the user input and identifies it as an `EditCommand` and instantiates an `EditCommandParser` object.
 
-Step 5: The argument is passed to `EditCommandParser` to check if the user input follows the edit command format.
+4. `StoreMandoParser` then invokes the `parse` method of `EditCommandParser` to further parse the arguments provided. In the `parse` method,
+   the `EditCommandParser` ensures that the input is of the correct format and creates an `EditItemDescriptor` object 
+   through `EditCommand`.
 
-Step 6: `EditCommandParser` creates `EditItemDescriptor` through `EditCommand`.
+5. Based on the user input, the `EditItemDescriptor` updates its own attributes.
 
-Step 7: Based on the user input string, the `EditItemDescriptor` updates its own attributes.
+6. `EditCommandParser` creates an `EditCommand` object with the item index and `EditItemDescriptor`.
 
-Step 8: `EditCommandParser` creates an `EditCommand` with the item index and `EditItemDescriptor`.
+7. The `EditCommand` object is passed back to `StoreMandoParser` and then back to `LogicManager`.
 
-Step 9: The new `EditCommand` is pass from `EditCommandParser` back to `LogicManager`.
+8. The `LogicManager` then invokes the `execute` method of the `EditCommand` object with `model` as argument.
 
-Step 10: `LogicManager` then calls the **execute** method of `EditCommand`.
+9. `EditCommand` calls the `getFilteredList` method of `Model` to get the list of items. It also calls the
+`createEditedItem` method to create the edited item. 
 
-Step 11: `EditCommand` calls **getFilteredList** method to get the list of item from `Model`. It also calls the
-**createEditedItem** method to create the edited item.
-
-Step 12: From the index argument of `EditCommand`, it gets the targeted item from the list of items and set it to the
+10. Using the index attribute of the `EditCommand` object, the targeted item from the list of items is retrieved and set to the
 edit item.
 
-Step 13: `EditCommand` will create a `CommandResult` and pass to `LogicManager` with message containing the edited
-item's description and possibly some warning.
+11. `EditCommand` will create a `CommandResult` and pass to `LogicManager` with message containing the edited
+item's description.
 
-Step 14: Depending on the entire execution, the `LogicManager` either receive an exception or the `CommandResult`. The
-GUI proceeds to show it on the result display.
+12. This `CommandResult` will be returned in the end.
 
-#### Activity Diagram
+The following activity diagram summarizes what happens when a user executes the `edit` command:
+
+<br>
+
 ![EditActivityDiagram](images/EditActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: How Edit executes
+##### Aspect: How edit executes
 
 * **Alternative 1 (current choice):** Doesn't allow edit item to have the same field as the original item.
     * Pros: User will be notified if original items are not being edited.
