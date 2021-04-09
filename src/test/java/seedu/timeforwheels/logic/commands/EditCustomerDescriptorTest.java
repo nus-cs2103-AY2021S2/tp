@@ -8,7 +8,7 @@ import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_ADDRESS_B
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_TAG_HEAVY;
 
 import org.junit.jupiter.api.Test;
 
@@ -53,7 +53,7 @@ public class EditCustomerDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditCustomerDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditCustomerDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HEAVY).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

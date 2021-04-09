@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.timeforwheels.logic.commands.FindCommand;
 import seedu.timeforwheels.logic.parser.exceptions.ParseException;
-import seedu.timeforwheels.model.customer.NameContainsKeywordsPredicate;
+import seedu.timeforwheels.model.customer.AttributeContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -27,7 +27,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindCommand(new AttributeContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

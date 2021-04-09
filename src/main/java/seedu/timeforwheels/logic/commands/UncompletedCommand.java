@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.timeforwheels.commons.core.Messages;
 import seedu.timeforwheels.model.Model;
-import seedu.timeforwheels.model.customer.NameContainsKeywordsPredicate;
+import seedu.timeforwheels.model.customer.AttributeContainsKeywordsPredicate;
 
 /**
  * Finds and lists all uncompleted deliveries in delivery list
@@ -23,7 +23,8 @@ public class UncompletedCommand extends Command {
         requireNonNull(model);
         String trimmedArgs = "[X]";
         String[] nameKeywords = trimmedArgs.split("\\s+");
-        NameContainsKeywordsPredicate uncomplete = new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords));
+        AttributeContainsKeywordsPredicate uncomplete =
+            new AttributeContainsKeywordsPredicate(Arrays.asList(nameKeywords));
         model.updateFilteredCustomerList(uncomplete);
         return new CommandResult(
                 String.format(Messages.MESSAGE_CUSTOMERS_UNCOMPLETED, model.getFilteredCustomerList().size()));

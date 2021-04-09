@@ -110,7 +110,7 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 **Purpose:** Adds a delivery task to the delivery list.
 
-**Format:** `add n/NAME p/PHONE a/ADDRESS e/EMAIL d/DATETIME`
+**Format:** `add n/NAME p/PHONE a/ADDRESS e/EMAIL d/DATE`
 
 **Examples:**
 
@@ -119,44 +119,80 @@ increase work productivity for delivery drivers by simplifying the delivery mana
   
 ![Ui](images/AddCommand.png)
 
-### Deleting a delivery task : `delete`
 
-**Purpose:** Deletes the specified delivery location from the delivery list.
+### Editing a delivery task: `edit INDEX PREFIX/ATTRIBUTE`
 
-**Format:** `delete INDEX`
+**Purpose:** Edits any selected attribute of the delivery entry except the remark.
 
-* Deletes the delivery at the specified INDEX.
-* The index refers to the index number shown in the displayed delivery list.
-* The index must be a positive integer 1, 2, 3,
+**Prefix:** `n/`, `p/`, `a/`, `e/`, `t/`, `d/`
+
+**Attribute:** Enter information based on the format of the attribute specified.
+
+**Note:** 
+  * You can edit multiple attributes.
+  * Remark can be edited separately through the remark command.
+  * INDEX refers to the number shown in front of each delivery
+
+**Format:** `edit INDEX PREFIX/ATTRIBUTE`
 
 **Examples:**
 
-* `delete 2` - delete 2 will delete the second delivery location in the delivery list.
+* `edit 8 n/Joshua`
+
+![Ui](images/EditSingleAttribute.png)
+
+* `edit 8 a/Clementi Road d/2021-10-01`
+
+![Ui](images/EditMultipleAttribute.png)
+
+
+### Deleting a delivery task : `delete`
+
+**Purpose:** Deletes the delivery task from the delivery list.
+
+**Format:** `delete TASK NUMBER``
+
+* Deletes a delivery task from the list.
+* The TASK NUMBER refers to the number shown in the displayed delivery list.
+* The index must be a positive number 1, 2, 3,
+
+**Examples:**
+
+* `delete 2` - delete 2 will delete the second delivery task in the delivery list.
   
 ![Ui](images/DeleteCommand.png)
 
 ### Mark a delivery as done : `done`
 
-**Purpose:** Set a delivery task in the delivery list to done
+**Purpose:** Set a delivery task in the delivery list to done or not done
 
-**Format:** `done INDEX`
+**Format:** `done TASK NUMBER`
 
-* Sets the delivery at the specified INDEX to done.
-* The index refers to the index number shown in the displayed delivery list.
-* The index must be a positive integer 1, 2, 3,
+* Sets the delivery task as done [✓].
+* The TASK NUMBER refers to the number shown in the displayed delivery list.
+* The TASK NUMBER must be a positive number such as 1, 2, 3
+* If the delivery task is already marked as done [✓], running this command will mark it as not done [X]
 
 **Example:**
 
-* `done 2` - done 2 will set the second delivery location in the delivery list as done.
+* `done 2` - done 2 will set the second delivery task in the delivery list as done.
 
 ![Ui](images/DoneCommand.png)
 
-### Finding deliveries using keyword matching a certain criteria: `find <keyword>`
-**Criteria**: Name, Telephone Number, Address, Date
 
-**Purpose** Find deliveries that match certain criteria
+### Finding deliveries using keywords matching any attribute: `find KEYWORDS`
+**Attributes:** Name, Telephone Number, Address, Date, Remark, Done, Email
 
-**Format** `find <keywords>`
+**Purpose** Find deliveries that match certain attribute
+
+**Notes:**
+* It is worth noting that you have to key in a full `KEYWORD` to retrieve a result.
+  That is, if you want to find `Alex Yeoh`, then typing `find Al` would not return a result,
+  but `find Alex` or `find Yeoh` will. So, avoid keying in incomplete keywords.
+* Incomplete keywords are disabled in order to reduce the number of unnecessary search results which
+  may defeat the aim of the feature.
+  
+**Format** `find KEYWORDS`
 
 * One of the following results will show:
   * Deliveries matching the keywords
@@ -189,18 +225,37 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 ### Statistics of delivery workflow : `stats`
 
-**Purpose:** Get a summary of your current delivery workflow
+**Purpose:** Get a summary report of the current delivery workflow
 
 **Format:** `stats`
 
-* The following statistics will be calculated and shown on the screen:
+* The following data will be calculated and shown on the screen:
   * Deliveries Done, Deliveries Not Done, Deliveries Due, Deliveries Not Due
-  * Fragile Deliveries , Liquid Deliveries, Hot Deliveries, Tagless Deliveries
-
-
+  * Fragile Deliveries , Liquid Deliveries, Food Deliveries, Hot Deliveries
+  * Cold Deliveries , Heavy Deliveries, Bulky Deliveries, Urgent Deliveries
+  * Other Deliveries
+  * `Deliveries Done` are Deliveries that have been marked done
+  * `Deliveries Not Done` are Deliveries that have not been marked as done
+  * `Deliveries Due` are Deliveries that have exceeded their delivery date and are still marked as not done
+  * `Deliveries Not Due` are Deliveries that have not yet exceeded their delivery date and are marked as not done
+  * `Fragile Deliveries` are Deliveries with tags marked as fragile
+  * `Liquid Deliveries` are Deliveries with tags marked as liquid
+  * `Food Deliveries` are Deliveries with tags marked as food
+  * `Hot Deliveries` are Deliveries with tags marked as hot
+  * `Cold Deliveries` are Deliveries with tags marked as cold
+  * `Heavy Deliveries` are Deliveries with tags marked as heavy
+  * `Bulky Deliveries` are Deliveries with tags marked as bulky
+  * `Urgent Deliveries` are Deliveries with tags marked as urgent
+  * `Other Deliveries` are Deliveries without any tags 
+  
+  
+**How to interpret the displayed data:**
+ * `Deliveries Done : 5 ( 83.33% )` means 5 and 83.33% of the deliveries in the list are marked as done 
+ * `Deliveries Due: 1 ( 16.67% )` means 1 and 16.67% of the deliveries in the list are due 
+  
 **Example:**
 
-* `stats` - outputs the statistics
+* `stats` - outputs the calculated figures as shown below
 
 ### View completed deliveries : `completed`
 

@@ -60,7 +60,7 @@ public class EditCommand extends Command {
     private final EditCustomerDescriptor editCustomerDescriptor;
 
     /**
-     * @param index of the customer in the filtered customer list to edit
+     * @param index                  of the customer in the filtered customer list to edit
      * @param editCustomerDescriptor details to edit the customer with
      */
     public EditCommand(Index index, EditCustomerDescriptor editCustomerDescriptor) {
@@ -143,7 +143,8 @@ public class EditCommand extends Command {
         private Done done;
         private Date date;
 
-        public EditCustomerDescriptor() {}
+        public EditCustomerDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -164,7 +165,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, date, remark);
         }
 
         public void setName(Name name) {
