@@ -156,7 +156,7 @@ The following activity diagram summarizes what happens when a user adds a new ta
 ![NewTagActivityDiagram](images/NewTagActivityDiagram.png)
 
 The tags function ties together with the Start function of the application, as users can choose to start a quiz
-containing flashcards that have the same tag only (to be implemented...)
+containing flashcards that have the same tag only.
 
 ### [Implemented] Quiz feature
 

@@ -11,7 +11,7 @@ We are team T13-1 from [CS2103T](https://github.com/nus-cs2103-ay2021s2).
 
 <img src="images/jellybeano.png" width="200px">
 
-[ [github](http://github.com/Jellybeano) ] [ [portfolio](team/lanyuxuan.md) ]
+[ [github](http://github.com/Jellybeano) ] [ [portfolio](team/jellybeano.md) ]
 
 * Role: Team Lead
 * Responsibilities: Documentation
