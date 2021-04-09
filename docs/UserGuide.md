@@ -139,7 +139,7 @@ Prefix: `d/`
 ##### `ORDER_DESCRIPTION`
 The order description for the order.<br>
 Prefix: `o/`
-* It can contain any characters.
+* Each order description cannot be longer than 70 characters.
 * It cannot be empty.<br>
   E.g. `Durian Cake`
 <br><br>
@@ -153,7 +153,7 @@ Prefix: `oi/`
 The tags you can add to an order.<br>
 Prefix: `t/`
 * It can contain alphabetical or numerical characters.
-* It cannot be longer than 30 characters.
+* Each tag cannot be longer than 30 characters.
 * There is no specific usage for `TAG`.
   * Use it as a tag for the customer. E.g. `friend`, `fussy`, `important`
   * Use it as a tag for the order. E.g. `urgent`, `complicated`
@@ -161,7 +161,7 @@ Prefix: `t/`
 ##### `REQUEST`
 The request or notes you can add to an order.<br>
 Prefix: `r/`
-* It can contain any characters.
+* It can contain any type of characters.
 * It can be empty.
   * An empty request is used to clear/reset the `REQUEST` field of the order.
 
@@ -256,11 +256,15 @@ Adds a special request to an existing order in the CakeCollate database.
 Format: `request INDEX r/REQUEST`
 
 * Adds a special request to the order at the specified `INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
-* You can remove an order’s special request by typing `r/` without specifying any requests after it.
+* Adding new special requests to an order will replace the existing special request the order currently has.
+* You can remove an order’s special request by typing `r/` without specifying any requests after it, or only simply
+specifying the index without adding the prefix.
 
 Examples:
 * `request 1 r/More sugar, spice and everything nice.` Sets the special request of the 1st order to be `More sugar, spice and everything nice.`
 * `request 2 r/` Removes the 2nd order's current special request.
+* `request 1` Removes the 1st order's current special request.
+
 
 ##### Deleting an order: `delete`
 
