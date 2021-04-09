@@ -8,12 +8,13 @@ title: User Guide
 Taskify is a **desktop app for university students** who have a seemingly endless list of tasks to finish week 
 after week. Many students **struggle to track all their tasks in a systematic and efficient manner** and this is 
 where Taskify comes to the rescue! With Taskify, students can 
-**manage all their tasks (academics/personal/CCAs) 
+**manage all their tasks (academics/personal/CCA) 
 effectively and seamlessly** through a beautiful interface. <br><br>Taskify is optimized for use via a Command Line 
 Interface (CLI) while 
 still having the 
 benefits    
-of a Graphical User Interface (GUI). If you can type fast, Taskify can get your task management done faster than traditional GUI apps.
+of a Graphical User Interface (GUI). If you can type fast, Taskify can get your task management done faster 
+than traditional GUI apps.
 
 
 
@@ -131,7 +132,7 @@ Format: `edit INDEX [n/NAME] [desc/DESCRIPTION] [date/DATE] [s/STATUS] [t/TAG]â€
 Examples:
 *  `edit 1 desc/my typical description` Edits the description of the 1st task to be `my typical description`.
 *  `edit 2 n/Important Task t/` Edits the name of the 2nd task to be `Important Task` and clears all existing tags.
-* `edit 2 s/completed` sets the status of the 2nd task in the list to `completed`.
+*  `edit 2 s/completed` sets the status of the 2nd task in the list to `completed`.
 
 ### Deleting multiple tasks : `delete`
 
@@ -246,14 +247,22 @@ Format: `exit`
 **A**: Yes! Taskify is totally free to use.
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install Taskify by downloading the `taskify.jar` file in the other computer and replace the default data file 
-(located at `[JAR file location]/data/taskify.json`) it creates with the data file from your 
+**A**: Install Taskify by downloading the `taskify.jar` file in the other computer and replace the default data file it creates 
+(located at `[JAR file location]/data/taskify.json`) with the Taskify data file from your 
 previous computer.
 
 **Q**: Can I specify a status when adding a new task to Taskify?<br>
 **A**: All newly added tasks have an "uncompleted" status by default. However, you can change the status of a task using the`edit` command. <br>
 
 --------------------------------------------------------------------------------------------------------------------
+## Glossary
+Term | Explanation 
+--------|--------|
+**CCA** | Abbreviation for Co-curricular activities
+**CLI** | Abbreviation for Command Line Interface. The command line interface is an interface that accepts text input from users which is then processed and passed as commands to Taskify.
+**GUI** | Abbreviation for Graphical User Interface. The graphical user interface is a form of user interface that allows users to interact with Taskify through graphical icons.   
+**App** | Short form for application
+
 
 ## Command summary
 
