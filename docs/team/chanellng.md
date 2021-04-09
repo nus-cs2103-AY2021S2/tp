@@ -53,4 +53,3 @@ Given below are my contributions to the project.
 
 * **Community**:
   * Reported bugs and suggestions for other teams in the PE Dry Run (Reported 20 bugs).
-
