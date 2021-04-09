@@ -28,7 +28,6 @@ public class PropertyBuilder {
     public static final String DEFAULT_POSTAL = "128807";
     public static final LocalDate DEFAULT_DEADLINE =
             LocalDate.parse("03-11-2021", DateTimeFormat.INPUT_DATE_FORMAT);
-    public static final String DEFAULT_REMARK = "Urgent to sell!";
 
     private Name name;
     private Type type;
@@ -49,7 +48,7 @@ public class PropertyBuilder {
         address = new Address(DEFAULT_ADDRESS);
         postal = new PostalCode(DEFAULT_POSTAL);
         deadline = new Deadline(DEFAULT_DEADLINE);
-        remark = new Remark(DEFAULT_REMARK);
+        remark = null;
         client = null;
         tags = new HashSet<>();
         status = null;
