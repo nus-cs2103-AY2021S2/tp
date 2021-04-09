@@ -11,6 +11,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
@@ -23,7 +24,6 @@ import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.score.Score;
 import seedu.weeblingo.model.tag.Tag;
-import javafx.collections.ObservableList;
 import seedu.weeblingo.testutil.FlashcardBuilder;
 import seedu.weeblingo.testutil.QuizBuilder;
 

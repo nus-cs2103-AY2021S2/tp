@@ -3,7 +3,6 @@ package seedu.weeblingo.model.flashcard;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_A;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_I;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_A;
