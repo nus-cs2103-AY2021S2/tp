@@ -541,56 +541,48 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person
 
    1. Prerequisites: Know a valid person ID.
 
-   1. Test case: `delete s/1`<br>
+   1. Test case: `delete_person s/1`<br>
       Assumption: `s/1` is a valid person ID. <br>
       Expected: Person with the ID `s/1` is deleted from the person list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete t/0`<br>
+   1. Test case: `delete_person t/0`<br>
       Assumption: `t/0` is an invalid person ID. <br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is an invalid person ID)<br>
+   1. Other incorrect delete commands to try: `delete_person`, `delete_person x`, `...` (where x is an invalid person ID)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Viewing a person
 1. Viewing a person
     1. Prerequisites: there is at least 1 person in the list, 
-       and his/her personID is known to the tester.
+       and his/her person ID is known to the tester.
     1. Test case: `view_person s/1` <br>
-        Assumption: `s/1` is a valid personID <br>
-       Expected: details of person with personID `s/1` is displayed on the left pane, 
+        Assumption: `s/1` is a valid person ID <br>
+       Expected: details of person with person ID `s/1` is displayed on the left pane, 
        and his/her associated sessions are displayed on the right
        
     1. Test case: `view_person s/0` <br>
-        Assumption: `s/0` is an invalid personID since personID starts from 1 <br>
+        Assumption: `s/0` is an invalid person ID since person ID starts from 1 <br>
        Expected: Error message is shown, no person/session is displayed
-       
-2. _{ more test cases …​ }_
 
 ### Viewing a session
 1. Viewing a session
     1. Prerequisites: there is at least 1 session in the list,
-       and the sessionID is known to the tester.
+       and the session ID is known to the tester.
     1. Test case: `view_session c/1` <br>
-       Assumption: `c/1` is a valid sessionID <br>
-       Expected: details of the session with sessionID `c/1` is displayed on the left pane,
+       Assumption: `c/1` is a valid session ID <br>
+       Expected: details of the session with session ID `c/1` is displayed on the left pane,
        and the students in the session are displayed on the right
 
     1. Test case: `view_session c/0` <br>
-       Assumption: `c/0` is an invalid sessionID since sessionID starts from 1 <br>
+       Assumption: `c/0` is an invalid sessionID since session ID starts from 1 <br>
        Expected: Error message is shown, no person/session is displayed
-
-2. _{ more test cases …​ }_
 
 ### Saving data
 
