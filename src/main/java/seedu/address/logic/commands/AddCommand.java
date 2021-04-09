@@ -12,9 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -91,7 +89,7 @@ public class AddCommand extends Command {
         }
 
         if (!model.isSavedState()) {
-            checkForDuplicateNameOrLesson(model, toAdd);
+            checksForDuplicateNameOrLesson(model, toAdd);
             if (this.duplicate != 0) {
                 handleDuplicateNameOrLesson(model);
             }
@@ -103,7 +101,10 @@ public class AddCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
-    public void checkForDuplicateNameOrLesson(Model model, Person toAdd) {
+    /**
+     * Checks if person to be added has the same name or same lessons as the contacts in TutorsPet.
+     */
+    public void checksForDuplicateNameOrLesson(Model model, Person toAdd) {
         if (model.hasPotentialPerson(toAdd)) {
             model.setSavedState(true);
             this.duplicate = DUPLICATE_PERSON;
@@ -117,6 +118,10 @@ public class AddCommand extends Command {
         }
     }
 
+    /**
+     * Handles the situation where there is a duplicate name or lesson or both by throwing
+     * an appropriate exception.
+     */
     public void handleDuplicateNameOrLesson(Model model) throws CommandException {
         switch(duplicate) {
         case DUPLICATE_PERSON:
@@ -127,10 +132,12 @@ public class AddCommand extends Command {
                     duplicateLessons.stream().map(model::getLesson).map(Lesson::getPersonInString)
                             .collect(Collectors.joining(" and "))));
         case DUPLICATE_LESSON_AND_PERSON:
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_NAME_LESSON,
-                    toAdd.getName(), duplicateLessons.stream().map(Lesson::formatString).collect(Collectors.joining(", ")),
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_NAME_LESSON, toAdd.getName(),
+                    duplicateLessons.stream().map(Lesson::formatString).collect(Collectors.joining(", ")),
                     duplicateLessons.stream().map(model::getLesson).map(Lesson::getPersonInString)
                             .collect(Collectors.joining(" and "))));
+        default:
+            return;
         }
     }
 
