@@ -1,0 +1,38 @@
+@startuml
+!include ../style.puml
+title Opening Timetable Window
+
+start
+:User executes ViewTimeTableCommand;
+
+if () then ([correct command format])
+      :Parses the args;
+
+      if () then ([all args formatted correctly])
+      :Check if there is a date parameter;
+
+          if () then ([date parameter exists])
+          :Open timetable window of \n the week that consist of \nthe date parameter;
+
+          else ([else])
+          :Open timetable window of \nthe current week;
+
+      endif
+          :Show success message;
+
+      else ([else])
+
+      :Shows an error message on
+      invalid prefix format;
+
+      endif
+
+else ([else])
+    :Shows an invalid command error
+    and command format message;
+
+endif
+
+stop
+
+@enduml
