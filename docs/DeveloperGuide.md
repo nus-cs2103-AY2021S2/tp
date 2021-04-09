@@ -1,10 +1,8 @@
 ---
-layout: page
-title: Developer Guide
+layout: page title: Developer Guide
 ---
 
-* Table of Contents
-{:toc}
+* Table of Contents {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -111,11 +109,12 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-
 #### Command Implementations
+
 The diagram below further explains the implementation of individual commands.
+
 1. AddGroup Command
-![](images/AddGroupSequenceDiagram.png)
+   ![](images/AddGroupSequenceDiagram.png)
 
 ### Model component
 
@@ -173,13 +172,14 @@ application continues to use the default theme. Otherwise, it attempts to load t
 #### Command Invocation
 
 When the command `theme` is invoked, the following happens:
+
 1. A `Theme t` instance is created by calling `ThemeManager#load(FILE)`, where `FILE` is the supplied file path.
 2. `ThemeManager#setTheme(t, FILE)` is then called. This stores/generates the following:
     * `theme` - The `Theme` object currently used.
     * `themePath` - The path of the `json` file.
     * `cssCacheUri` - The temp file containing the `CSS` to be used by `MainWindow.fxml`'s `scene`.
 3. When the command gets executed, the result is processed by `MainWindow#executeCommand()`. The flag `theme` will be
-set, informing the application that there is a change in `cssCacheUri` and it applies the theme.
+   set, informing the application that there is a change in `cssCacheUri` and it applies the theme.
 
 The following sequence diagram depicts the simplified workings of the command:
 ![Sequence diagram for theme invocation](images/ThemeCommandSequenceDiagram.png)
@@ -190,22 +190,25 @@ When the program terminates, `themePath` is saved into `UserPrefs` so it can loc
 
 ### Details panel tab switching
 
-The `DetailsPanel` is used for displaying multiple types of content. We will refer to each type of content as a tab.
-By default, it displays a list of upcoming dates, but it can be toggled to display other tabs as well.
+The `DetailsPanel` is used for displaying multiple types of content. We will refer to each type of content as a tab. By
+default, it displays a list of upcoming dates, but it can be toggled to display other tabs as well.
 
 #### Implementation
 
-Each tab should have its own respective UI component and an instance of the component should be stored in `DetailsPanel`.
-All tabs should also be recorded as enums under [`DetailsPanelTab`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/java/seedu/address/commons/core/DetailsPanelTab.java).
-Toggling to a new tab is done via the execution of commands.
+Each tab should have its own respective UI component and an instance of the component should be stored in `DetailsPanel`
+. All tabs should also be recorded as enums
+under [`DetailsPanelTab`](https://github.com/AY2021S2-CS2103T-W14-1/tp/blob/master/src/main/java/seedu/address/commons/core/DetailsPanelTab.java)
+. Toggling to a new tab is done via the execution of commands.
 
 1. The user will first enter a command text which requests for the tab to be switched.
 2. The command text will be parsed by `InputParser` and the respective command will be created.
-3. The command will be executed by `LogicManager`, and a `CommandResult` containing information of the new tab to toggle to will be created.
+3. The command will be executed by `LogicManager`, and a `CommandResult` containing information of the new tab to toggle
+   to will be created.
 4. When `MainWindow` receives the `CommandResult`, it will check if there is a new tab to toggle to.
 5. If so, `MainWindow` will execute `DetailsPanel#toggleTab()` and `DetailsPanel` will update its display accordingly.
 
-The sequence diagram below depicts the execution path when the user enters a command which requests for the tab to be switched.
+The sequence diagram below depicts the execution path when the user enters a command which requests for the tab to be
+switched.
 
 ![SwitchTabSequenceDiagram](images/SwitchTabSequenceDiagram.png)
 
@@ -217,7 +220,8 @@ FriendDex allows users to add a picture to their contact. This section details t
 
 1. The user will first supply the index of the contact to edit and the path to an image file.
 2. `AddPictureCommand` will take the file path and validate it.
-3. If everything looks good, the image file will be renamed to a random UUID and copied to `[JAR file location]/data`. The renaming is done to avoid problems with two image files having the same file name.
+3. If everything looks good, the image file will be renamed to a random UUID and copied to `[JAR file location]/data`.
+   The renaming is done to avoid problems with two image files having the same file name.
 4. A `Picture` object will then be created, storing the file path of the copied image file.
 5. Lastly, it will be attached to the `Person` being edited and saved to `Model`.
 
@@ -512,8 +516,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually. The instructions are mainly laid out in alphabetical order of the command word (e.g. `add-group`) for ease of searching for specific features to test.
-The only exceptions are sections that test FriendDex in its entirety. These instructions will be at the top.
+Given below are instructions to test the app manually. The instructions are mainly laid out in alphabetical order of the
+command word (e.g. `add-group`) for ease of searching for specific features to test. The only exceptions are sections
+that test FriendDex in its entirety. These instructions will be at the top.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -554,38 +559,36 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a meeting: `add-meeting`
 
-Prerequisites: List all person using the `list` command. There is at least a person present in the list. 
-The first person on the list is born before 12-12-2020.
+Prerequisites: List all person using the `list` command. There is at least a person present in the list. The first
+person on the list is born before 12-12-2020.
 
 1. Adding a meeting to an existing person
-    
-    1. Test case: `add-meeting 1 d/12-12-2020 t/1945 desc/sample desc` <br> 
+
+    1. Test case: `add-meeting 1 d/12-12-2020 t/1945 desc/sample desc` <br>
        Expected: Meeting is added to the first contact. A success message is shown in the status message.
-       
+
     2. Test case: `add-meeting 0` (Invalid index) <br>
        Expected: No meetings added. Error details shown in the status message.
-       
-    3. Other incorrect `add-meeting` commands to try: 
+
+    3. Other incorrect `add-meeting` commands to try:
         * `add-meeting x` (where x is larger than list size),
         * `add-meeting 1 d/12-12-2020 t/1945` (missing `DESCRIPTION` argument, other arguments can also be left out),
-       Expected: Similar to previous
-   
-2. Adding a meeting with boundary time values. FriendDex will only allow adding of meetings that have already occurred. 
+          Expected: Similar to previous
 
-    1. These arguments should be replaced with their proper datetime representation. 
+2. Adding a meeting with boundary time values. FriendDex will only allow adding of meetings that have already occurred.
+
+    1. These arguments should be replaced with their proper datetime representation.
        `TODAY_DATE`: today's date in the format of dd-MM-yyyy, e.g. `04-04-2021`
        `TIME_AFTER_NOW`: add a few minutes to the current time in the format of HHmm, e.g. `1230`
-       
-    2. Adding a meeting for today
-       Test case: `add-meeting 1 d/{TODAY_DATE} t/0000 desc/sample desc`.
-       Expected: Meeting is added to the first contact. A success message is shown in the status message. 
-       
-    3. Adding a meeting for today but has not occurred yet
-       Test case: `add-meeting 1 d/{TODAY_DATE} t/{TIME_AFTER_NOW} desc/sample desc`
+
+    2. Adding a meeting for today Test case: `add-meeting 1 d/{TODAY_DATE} t/0000 desc/sample desc`. Expected: Meeting
+       is added to the first contact. A success message is shown in the status message.
+
+    3. Adding a meeting for today but has not occurred yet Test
+       case: `add-meeting 1 d/{TODAY_DATE} t/{TIME_AFTER_NOW} desc/sample desc`
        Expected: No meetings added. Error details shown in the status message.
 
-    4. Adding a meeting that happens in the future
-       Test case: `add-meeting 1 d/12-12-2099 t/1945 desc/sample desc` <br> 
+    4. Adding a meeting that happens in the future Test case: `add-meeting 1 d/12-12-2099 t/1945 desc/sample desc` <br>
        Expected: Similar to previous
 
 ### Adding a profile picture: `add-picture`
@@ -608,8 +611,6 @@ The first person on the list is born before 12-12-2020.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }
-
 ### Deleting a special date: `del-date`
 
 ### Deleting a meeting: `del-meeting`
@@ -630,10 +631,72 @@ The first person on the list is born before 12-12-2020.
 
 ### Setting meeting goal: `set-goal`
 
+1. Setting a relationship goal with a particular contact
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. everyone in FriendDex has
+       their goal set to `NONE`.
+
+    1. Test case: `set-goal 1 f/w`<br>
+       Expected: A weekly goal will be set for the first contact in the list. A success message will be shown to the
+       user. Goal information in various panels will be updated. Streaks for that contact will be shown when switched to
+       the streaks tab.
+
+    1. Test case: `set-goal 0 f/w`<br>
+       Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
+       information.
+
+    1. Test case: `set-goal 1 f/asdfg`<br>
+       Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
+       information.
+
+    1. Test case: `set-goal 1`<br>
+       Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
+       information.
+
+2. Removing a relationship goal for a particular contact:
+
+    2. Prerequisites: List all persons using the `list` command. Contact at index 1 has a relationship goal set.
+
+    2. Test case: `set-goal 1 f/n`<br>
+       Expected: Goal will be removed from the first contact in the list. A success message will be shown to the user.
+       Goal information in various panels will be updated. Streaks for that contact will no longer be shown when
+       switching to the streaks tab.
+
+    2. Test case: `set-goal 0 f/n`<br>
+       Expected: Goals for no one is removed. Error details shown in the status message. No updates to FriendDex
+       information.
+
+    2. Test case: `set-goal 1 f/asdfg`<br>
+       Expected: Goals for no one is removed. Error details shown in the status message. No updates to FriendDex
+       information.
+    2. Test case: `set-goal 1`<br>
+       Expected: Goals for no one is removed. Error details shown in the status message. No updates to FriendDex
+       information.
+
 ### Subtracting Debt: `subtract-debt`
 
 ### Styling the application: `theme`
 
+1. Applying a predefined theme
+
+    1. Test case: `theme @monokai`<br>
+       Expected: Theme of the application changes. A success message will be shown.
+
+    1. Test case: `theme @asdfg`<br>
+       Expected: Nothing happens. Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+2. Applying a user defined theme
+
+    2. Test case: `theme monokai.json`, where `monokai.json` is a valid theme file<br>
+       Expected: Theme of the application changes. A success message will be shown.
+
+    2. Test case: `theme invalid.json`, where `invalid.json` is a theme file containing invalid values<br>
+       Expected: Nothing happens. Error details shown in the status message.
+
+    2. Test case: `theme not_found.json`, where `invalid.json` does not exist<br>
+       Expected: Nothing happens. Error details shown in the status message.
+
 ### Viewing different details panel: `view`
-
-
