@@ -22,7 +22,7 @@ import seedu.weeblingo.model.score.Score;
 import seedu.weeblingo.model.tag.Tag;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the flashcard book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -32,6 +32,7 @@ public class ModelManager implements Model {
     private final FilteredList<Flashcard> filteredFlashcards;
     private final FilteredList<Score> filteredHistoryScores;
     private final Mode mode;
+
     private Quiz quizInstance;
 
     /**
@@ -121,7 +122,6 @@ public class ModelManager implements Model {
     @Override
     public void setFlashcard(Flashcard target, Flashcard editedFlashcard) {
         requireAllNonNull(target, editedFlashcard);
-
         flashcardBook.setFlashcard(target, editedFlashcard);
     }
 
@@ -202,13 +202,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void getCurrentFlashcard() {
-        requireNonNull(quizInstance);
-        Flashcard current = quizInstance.getCurrentQuestion();
-        updateFilteredFlashcardList(curr -> curr.equals(current));
-    }
-
-    @Override
     public int getCurrentIndex() {
         requireNonNull(quizInstance);
         return quizInstance.getCurrentQuizIndex();
@@ -219,9 +212,9 @@ public class ModelManager implements Model {
      * @param attempt The answer which the user entered.
      * @return True if the answer matches, false otherwise.
      */
-    public boolean isCorrectAttempt(Answer attempt) {
+    public boolean isCorrectAnswer(Answer attempt) {
         requireNonNull(quizInstance);
-        return quizInstance.isCorrectAttempt(attempt);
+        return quizInstance.isCorrectAnswer(attempt);
     }
 
     @Override
@@ -238,35 +231,27 @@ public class ModelManager implements Model {
         quizInstance = null;
     }
 
-    /**
-     * Gets this quiz instance.
-     *
-     * @return this quiz instance.
-     */
-    public Quiz getQuizInstance() {
-        return quizInstance;
-    }
-
     @Override
     public String getQuizStatisticString() {
         return quizInstance.getStatisticString();
     }
 
     @Override
-    public String getCorrectAttemptsString() {
-        if (quizInstance.getCorrectlyAnsweredFlashcards().isEmpty()) {
-            return "You did not answer any questions correctly.";
-        } else {
-            List<Integer> correctAttemptDisplayIndexes = new ArrayList<>();
-            for (int i = 0; i < quizInstance.getAttemptedFlashcards().size(); i++) {
-                if (quizInstance.getCorrectlyAnsweredFlashcards()
-                        .contains(filteredFlashcards.get(i))) {
-                    correctAttemptDisplayIndexes.add(i + 1);
-                }
+    public List<Integer> getCorrectAttemptsIndexes() {
+        List<Flashcard> correctlyAnsweredFlashcards = quizInstance.getCorrectlyAnsweredFlashcards();
+        List<Integer> correctAttemptsIndexes = new ArrayList<>();
+        List<Flashcard> attemptedFlashcards = quizInstance.getAttemptedFlashcards();
+        for (int i = 0; i < attemptedFlashcards.size(); i++) {
+            if (correctlyAnsweredFlashcards.contains(filteredFlashcards.get(i))) {
+                correctAttemptsIndexes.add(i + 1);
             }
-            return "You answered the following question(s) correctly: "
-                    + correctAttemptDisplayIndexes.toString();
         }
+        return correctAttemptsIndexes;
+    }
+
+    @Override
+    public Quiz getQuizInstance() {
+        return quizInstance;
     }
 
     //=========== Mode Related =============================================================

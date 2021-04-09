@@ -11,7 +11,7 @@ import seedu.weeblingo.model.tag.Tag;
 
 
 /**
- * Starts the quiz.
+ * Starts the quiz session.
  */
 public class StartCommand extends Command {
 

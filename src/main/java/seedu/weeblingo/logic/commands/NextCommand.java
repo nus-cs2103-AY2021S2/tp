@@ -8,7 +8,7 @@ import seedu.weeblingo.model.Mode;
 import seedu.weeblingo.model.Model;
 
 /**
- * Gets the next flashcard.
+ * Gets the next flashcard in the quiz session.
  */
 public class NextCommand extends Command {
 
@@ -19,6 +19,8 @@ public class NextCommand extends Command {
             + "\"next\" to move to the next question or \"end\" to return to menu.";
 
     public static final String MESSAGE_QUIZ_ENDED = "The Quiz is over! Your score has been recorded:\n";
+
+    public static final String MESSAGE_CORRECT_ATTEMPTS_HELPER = "You answered the following question(s) correctly: \n";
 
     public static final String MESSAGE_QUIZ_ALREADY_ENDED = "The quiz session has already ended. \n";
 
@@ -42,9 +44,10 @@ public class NextCommand extends Command {
             String quizStatistics = model.getQuizStatisticString() + "\n";
             model.addScore();
             model.showAttemptedQuestions();
-            String correctAttempts = model.getCorrectAttemptsString() + "\n";
+            String correctAttempts = model.getCorrectAttemptsIndexes().toString() + "\n";
             model.switchModeQuizSessionEnded();
-            return new CommandResult(MESSAGE_QUIZ_ENDED + quizStatistics + correctAttempts);
+            return new CommandResult(MESSAGE_QUIZ_ENDED
+                    + quizStatistics + MESSAGE_CORRECT_ATTEMPTS_HELPER +  correctAttempts);
         }
 
         model.switchModeQuizSession();

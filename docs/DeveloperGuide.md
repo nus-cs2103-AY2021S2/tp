@@ -383,6 +383,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Question**: A Japanese character/word
 * **Answer**: The pronunciation/translation of the Japanese word given in the corresponding question
 * **Flashcard**: An object that can display a question and its answer
+* **Quiz Session**: During a quiz session, flashcards with only question displayed will be shown one by one. 
+  Users may chooses to answer or skip the questions. Score and time spent will be recorded.
+* **Score**: Calculated during a quiz session. Calculated by: number of user correct attempts / number of user checks.
 
 --------------------------------------------------------------------------------------------------------------------
 

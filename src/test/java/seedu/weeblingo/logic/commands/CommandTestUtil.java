@@ -28,9 +28,9 @@ import seedu.weeblingo.model.tag.Tag;
 public class CommandTestUtil {
 
     public static final String VALID_QUESTION_A = "あ";
-    public static final String VALID_QUESTION_B = "い";
+    public static final String VALID_QUESTION_I = "い";
     public static final String VALID_ANSWER_A = "a";
-    public static final String VALID_ANSWER_B = "i";
+    public static final String VALID_ANSWER_I = "i";
     public static final String VALID_TAG_DIFFICULT = "difficult";
     public static final String VALID_TAG_EASY = "easy";
     public static final String VALID_START_INTEGER_MIN = "1";
@@ -66,9 +66,9 @@ public class CommandTestUtil {
     public static final String VALID_NONEXISTENT_TAGS_SET_DESC = " " + PREFIX_TAG + VALID_NONEXISTENT_TAG;
 
     public static final String QUESTION_DESC_A = " " + PREFIX_QUESTION + VALID_QUESTION_A;
-    public static final String QUESTION_DESC_B = " " + PREFIX_QUESTION + VALID_QUESTION_B;
+    public static final String QUESTION_DESC_B = " " + PREFIX_QUESTION + VALID_QUESTION_I;
     public static final String ANSWER_DESC_A = " " + PREFIX_ANSWER + VALID_ANSWER_A;
-    public static final String ANSWER_DESC_B = " " + PREFIX_ANSWER + VALID_ANSWER_B;
+    public static final String ANSWER_DESC_B = " " + PREFIX_ANSWER + VALID_ANSWER_I;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_EASY;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_DIFFICULT;
 

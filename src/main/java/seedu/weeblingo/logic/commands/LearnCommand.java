@@ -11,7 +11,7 @@ import seedu.weeblingo.model.Model;
 import seedu.weeblingo.model.tag.Tag;
 
 /**
- * Lists all flashcards in the address book to the user.
+ * Lists flashcards matching specified tags (if any) in the flashcard book.
  */
 public class LearnCommand extends Command {
 

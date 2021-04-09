@@ -1,10 +1,26 @@
 package seedu.weeblingo.model.flashcard;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_A;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_I;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_EASY;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_A;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_I;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_GOJUON;
+import static seedu.weeblingo.testutil.TypicalFlashcards.A_CARD;
+import static seedu.weeblingo.testutil.TypicalFlashcards.I_CARD;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import seedu.weeblingo.model.flashcard.exceptions.DuplicateFlashcardException;
+import seedu.weeblingo.model.flashcard.exceptions.FlashcardNotFoundException;
+import seedu.weeblingo.testutil.FlashcardBuilder;
 
 public class UniqueFlashcardListTest {
 
@@ -15,142 +31,142 @@ public class UniqueFlashcardListTest {
         assertThrows(NullPointerException.class, () -> uniqueFlashcardList.contains(null));
     }
 
-    //    @Test
-    //    public void contains_flashcardNotInList_returnsFalse() {
-    //        assertFalse(uniqueFlashcardList.contains(ALICE));
-    //    }
+    @Test
+    public void contains_flashcardNotInList_returnsFalse() {
+        assertFalse(uniqueFlashcardList.contains(A_CARD));
+    }
 
-    //    @Test
-    //    public void contains_flashcardInList_returnsTrue() {
-    //        uniqueFlashcardList.add(ALICE);
-    //        assertTrue(uniqueFlashcardList.contains(ALICE));
-    //    }
+    @Test
+    public void contains_flashcardInList_returnsTrue() {
+        uniqueFlashcardList.add(A_CARD);
+        assertTrue(uniqueFlashcardList.contains(A_CARD));
+    }
 
-    //    @Test
-    //    public void contains_flashcardWithSameIdentityFieldsInList_returnsTrue() {
-    //        uniqueFlashcardList.add(ALICE);
-    //        Flashcard editedAlice = new FlashcardBuilder(ALICE)
-    //        .withAnswer(VALID_ANSWER_B).withTags(VALID_TAG_HUSBAND)
-    //                .build();
-    //        assertTrue(uniqueFlashcardList.contains(editedAlice));
-    //    }
+    @Test
+    public void contains_flashcardWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueFlashcardList.add(A_CARD);
+        Flashcard editedA_CARD = new FlashcardBuilder(A_CARD).withQuestion(VALID_QUESTION_A)
+        .withAnswer(VALID_ANSWER_A).withTags(VALID_START_TAG_GOJUON).withUserTags(VALID_TAG_EASY)
+                .build();
+        assertTrue(uniqueFlashcardList.contains(editedA_CARD));
+    }
 
     @Test
     public void add_nullFlashcard_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueFlashcardList.add(null));
     }
 
-    //    @Test
-    //    public void add_duplicateFlashcard_throwsDuplicateFlashcardException() {
-    //        uniqueFlashcardList.add(ALICE);
-    //        assertThrows(DuplicateFlashcardException.class, () -> uniqueFlashcardList.add(ALICE));
-    //    }
+    @Test
+    public void add_duplicateFlashcard_throwsDuplicateFlashcardException() {
+        uniqueFlashcardList.add(A_CARD);
+        assertThrows(DuplicateFlashcardException.class, () -> uniqueFlashcardList.add(A_CARD));
+    }
 
-    //    @Test
-    //    public void setFlashcard_nullTargetFlashcard_throwsNullPointerException() {
-    //        assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setFlashcard(null, ALICE));
-    //    }
+    @Test
+    public void setFlashcard_nullTargetFlashcard_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setFlashcard(null, A_CARD));
+    }
 
-    //    @Test
-    //    public void setFlashcard_nullEditedFlashcard_throwsNullPointerException() {
-    //        assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setFlashcard(ALICE, null));
-    //    }
+    @Test
+    public void setFlashcard_nullEditedFlashcard_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setFlashcard(A_CARD, null));
+    }
 
-    //    @Test
-    //    public void setFlashcard_targetFlashcardNotInList_throwsFlashcardNotFoundException() {
-    //        assertThrows(FlashcardNotFoundException.class, () -> uniqueFlashcardList.setFlashcard(ALICE, ALICE));
-    //    }
+    @Test
+    public void setFlashcard_targetFlashcardNotInList_throwsFlashcardNotFoundException() {
+        assertThrows(FlashcardNotFoundException.class, () -> uniqueFlashcardList.setFlashcard(A_CARD, A_CARD));
+    }
 
-    //    @Test
-    //    public void setFlashcard_editedFlashcardIsSameFlashcard_success() {
-    //        uniqueFlashcardList.add(ALICE);
-    //        uniqueFlashcardList.setFlashcard(ALICE, ALICE);
-    //        UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
-    //        expectedUniqueFlashcardList.add(ALICE);
-    //        assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
-    //    }
+    @Test
+    public void setFlashcard_editedFlashcardIsSameFlashcard_success() {
+        uniqueFlashcardList.add(A_CARD);
+        uniqueFlashcardList.setFlashcard(A_CARD, A_CARD);
+        UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
+        expectedUniqueFlashcardList.add(A_CARD);
+        assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
+    }
 
-    //    @Test
-    //    public void setFlashcard_editedFlashcardHasSameIdentity_success() {
-    //        uniqueFlashcardList.add(ALICE);
-    //        Flashcard editedAlice = new FlashcardBuilder(ALICE)
-    //        .withAnswer(VALID_ANSWER_B).withTags(VALID_TAG_HUSBAND)
-    //                .build();
-    //        uniqueFlashcardList.setFlashcard(ALICE, editedAlice);
-    //        UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
-    //        expectedUniqueFlashcardList.add(editedAlice);
-    //        assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
-    //    }
+    @Test
+    public void setFlashcard_editedFlashcardHasSameIdentity_success() {
+        uniqueFlashcardList.add(A_CARD);
+        Flashcard editedA_CARD = new FlashcardBuilder(A_CARD).withQuestion(VALID_QUESTION_I)
+        .withAnswer(VALID_ANSWER_I).withTags(VALID_START_TAG_GOJUON).withUserTags(VALID_TAG_EASY)
+                .build();
+        uniqueFlashcardList.setFlashcard(A_CARD, editedA_CARD);
+        UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
+        expectedUniqueFlashcardList.add(editedA_CARD);
+        assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
+    }
 
-    //    @Test
-    //    public void setFlashcard_editedFlashcardHasDifferentIdentity_success() {
-    //        uniqueFlashcardList.add(ALICE);
-    //        uniqueFlashcardList.setFlashcard(ALICE, BOB);
-    //        UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
-    //        expectedUniqueFlashcardList.add(BOB);
-    //        assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
-    //    }
+    @Test
+    public void setFlashcard_editedFlashcardHasDifferentIdentity_success() {
+        uniqueFlashcardList.add(A_CARD);
+        uniqueFlashcardList.setFlashcard(A_CARD, I_CARD);
+        UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
+        expectedUniqueFlashcardList.add(I_CARD);
+        assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
+    }
 
-    //    @Test
-    //    public void setFlashcard_editedFlashcardHasNonUniqueIdentity_throwsDuplicateFlashcardException() {
-    //        uniqueFlashcardList.add(ALICE);
-    //        uniqueFlashcardList.add(BOB);
-    //        assertThrows(DuplicateFlashcardException.class, () -> uniqueFlashcardList.setFlashcard(ALICE, BOB));
-    //    }
+    @Test
+    public void setFlashcard_editedFlashcardHasNonUniqueIdentity_throwsDuplicateFlashcardException() {
+        uniqueFlashcardList.add(A_CARD);
+        uniqueFlashcardList.add(I_CARD);
+        assertThrows(DuplicateFlashcardException.class, () -> uniqueFlashcardList.setFlashcard(A_CARD, I_CARD));
+    }
 
     @Test
     public void remove_nullFlashcard_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueFlashcardList.remove(null));
     }
 
-    //    @Test
-    //    public void remove_flashcardDoesNotExist_throwsFlashcardNotFoundException() {
-    //        assertThrows(FlashcardNotFoundException.class, () -> uniqueFlashcardList.remove(ALICE));
-    //    }
+    @Test
+    public void remove_flashcardDoesNotExist_throwsFlashcardNotFoundException() {
+        assertThrows(FlashcardNotFoundException.class, () -> uniqueFlashcardList.remove(A_CARD));
+    }
 
-    //    @Test
-    //    public void remove_existingFlashcard_removesFlashcard() {
-    //        uniqueFlashcardList.add(ALICE);
-    //        uniqueFlashcardList.remove(ALICE);
-    //        UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
-    //        assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
-    //    }
+    @Test
+    public void remove_existingFlashcard_removesFlashcard() {
+        uniqueFlashcardList.add(A_CARD);
+        uniqueFlashcardList.remove(A_CARD);
+        UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
+        assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
+    }
 
     @Test
     public void setFlashcards_nullUniqueFlashcardList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setFlashcards((UniqueFlashcardList) null));
     }
 
-    //    @Test
-    //    public void setFlashcards_uniqueFlashcardList_replacesOwnListWithProvidedUniqueFlashcardList() {
-    //        uniqueFlashcardList.add(ALICE);
-    //        UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
-    //        expectedUniqueFlashcardList.add(BOB);
-    //        uniqueFlashcardList.setFlashcards(expectedUniqueFlashcardList);
-    //        assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
-    //    }
+    @Test
+    public void setFlashcards_uniqueFlashcardList_replacesOwnListWithProvidedUniqueFlashcardList() {
+        uniqueFlashcardList.add(A_CARD);
+        UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
+        expectedUniqueFlashcardList.add(I_CARD);
+        uniqueFlashcardList.setFlashcards(expectedUniqueFlashcardList);
+        assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
+    }
 
     @Test
     public void setFlashcards_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueFlashcardList.setFlashcards((List<Flashcard>) null));
     }
 
-    //    @Test
-    //    public void setFlashcards_list_replacesOwnListWithProvidedList() {
-    //        uniqueFlashcardList.add(ALICE);
-    //        List<Flashcard> flashcardList = Collections.singletonList(BOB);
-    //        uniqueFlashcardList.setFlashcards(flashcardList);
-    //        UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
-    //        expectedUniqueFlashcardList.add(BOB);
-    //        assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
-    //    }
+    @Test
+    public void setFlashcards_list_replacesOwnListWithProvidedList() {
+        uniqueFlashcardList.add(A_CARD);
+        List<Flashcard> flashcardList = Collections.singletonList(I_CARD);
+        uniqueFlashcardList.setFlashcards(flashcardList);
+        UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
+        expectedUniqueFlashcardList.add(I_CARD);
+        assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
+    }
 
-    //    @Test
-    //    public void setFlashcards_listWithDuplicateFlashcards_throwsDuplicateFlashcardException() {
-    //        List<Flashcard> listWithDuplicateFlashcards = Arrays.asList(ALICE, ALICE);
-    //        assertThrows(DuplicateFlashcardException.class, () -> uniqueFlashcardList
-    //        .setFlashcards(listWithDuplicateFlashcards));
-    //    }
+    @Test
+    public void setFlashcards_listWithDuplicateFlashcards_throwsDuplicateFlashcardException() {
+        List<Flashcard> listWithDuplicateFlashcards = Arrays.asList(A_CARD, A_CARD);
+        assertThrows(DuplicateFlashcardException.class, () -> uniqueFlashcardList
+        .setFlashcards(listWithDuplicateFlashcards));
+    }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {

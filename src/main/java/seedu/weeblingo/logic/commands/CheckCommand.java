@@ -9,7 +9,7 @@ import seedu.weeblingo.model.Model;
 import seedu.weeblingo.model.flashcard.Answer;
 
 /**
- * Reveals answer for current quiz question
+ * Checks if user attempt matches the currect quiz question
  */
 public class CheckCommand extends Command {
 
@@ -17,7 +17,7 @@ public class CheckCommand extends Command {
 
     public static final String CORRECT_ATTEMPT = "You answered this question correctly!\n";
 
-    public static final String WRONG_ATTEMPT = " is incorrect.\n";
+    public static final String WRONG_ATTEMPT = " is incorrect. You may try again.\n";
 
     public static final String MESSAGE_HELPER = "Enter \"end\" to return to menu "
             + "or \"next\" to move to the next question.";
@@ -34,7 +34,7 @@ public class CheckCommand extends Command {
 
     /**
      * Creates a CheckCommand to check the specified attempt
-     * @param attempt
+     * @param attempt user's attempt at answering the current quiz question
      */
     public CheckCommand(Answer attempt) {
         requireNonNull(attempt);
@@ -55,8 +55,8 @@ public class CheckCommand extends Command {
             throw new CommandException(Messages.MESSAGE_NOT_IN_QUIZ_SESSION);
         }
 
-        // Model::isCorrectAttempt() modifies the quiz statistic, FYI
-        if (model.isCorrectAttempt(attempt)) {
+        // Model::isCorrectAnswer() modifies the quiz statistic, FYI
+        if (model.isCorrectAnswer(attempt)) {
             model.switchModeCheckSuccess();
             String quizStatistics = model.getQuizStatisticString() + "\n";
             return new CommandResult(CORRECT_ATTEMPT + quizStatistics + MESSAGE_HELPER,
@@ -67,5 +67,22 @@ public class CheckCommand extends Command {
                     false, false);
         }
 
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof CheckCommand)) {
+            return false;
+        }
+
+        // state check
+        CheckCommand e = (CheckCommand) other;
+        return attempt.equals(e.attempt);
     }
 }

@@ -1,6 +1,7 @@
 package seedu.weeblingo.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -108,13 +109,15 @@ public interface Model {
      * */
     void startQuiz(int numberOfQuestions, Set<Tag> tags) throws CommandException;
 
+    /**
+     * Gets the quiz object in the model
+     */
+    Quiz getQuizInstance() throws CommandException;
+
     /** Shows the next question in the Quiz */
     Flashcard getNextFlashcard();
 
-    /** Shows the current question in the Quiz */
-    void getCurrentFlashcard();
-
-    /** Returns the index of current question in the Quiz */
+    /** Returns the index of current question for a started a quiz session.*/
     int getCurrentIndex();
 
     /** Shows all attempted questions in the Quiz */
@@ -123,7 +126,10 @@ public interface Model {
     /** Clears the Quiz instance when the "end" command is called */
     void clearQuizInstance();
 
-    boolean isCorrectAttempt(Answer attempt);
+    /**
+     * Checks if the given attempt matches answer of currently tested flashcard in quiz session
+     */
+    boolean isCorrectAnswer(Answer attempt);
 
     /** Returns the Mode object */
     Mode getMode();
@@ -133,9 +139,6 @@ public interface Model {
 
     /** Sets a tag */
     void tagFlashcard(Flashcard target, String tag);
-
-    /** Gets the quiz instance, which is this quiz session */
-    Quiz getQuizInstance() throws CommandException;
 
     void switchModeQuiz() throws CommandException;
 
@@ -154,7 +157,8 @@ public interface Model {
     /** Gets the statistics information as a string for display purposes */
     String getQuizStatisticString();
 
-    String getCorrectAttemptsString();
+    /** Gets the indexes of questions answered correctly in existing quiz session*/
+    List<Integer> getCorrectAttemptsIndexes();
 
     /** Add a score to the FlashcardBook */
     void addScore();
