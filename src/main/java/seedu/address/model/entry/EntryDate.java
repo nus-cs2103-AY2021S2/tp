@@ -1,5 +1,6 @@
 package seedu.address.model.entry;
 
+import static java.time.format.ResolverStyle.STRICT;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -17,7 +18,7 @@ public class EntryDate {
             "Dates should be in the format YYYY-MM-DD hh:mm. Time must be in the 24-hour clock notation.";
 
     public static final DateTimeFormatter DEFAULT_FORMATTER =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm").withResolverStyle(STRICT);
 
     public final LocalDateTime value;
 
@@ -49,6 +50,13 @@ public class EntryDate {
      */
     public boolean isAfter(EntryDate other) {
         return value.isAfter(other.getDate());
+    }
+
+    /**
+     * Returns true if this entryDate is before the specified entryDate.
+     */
+    public boolean isBefore(EntryDate other) {
+        return value.isBefore(other.getDate());
     }
 
     public LocalDateTime getDate() {
