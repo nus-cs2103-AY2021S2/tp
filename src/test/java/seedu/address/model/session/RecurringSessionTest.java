@@ -250,6 +250,13 @@ class RecurringSessionTest extends SessionTest {
 
         RecurringSession editedSubject = copiedUnBuilt.withSubject(SUBJECT.toString()).build();
         assertFalse(recurringSession.equals(editedSubject));
+
+        RecurringSession editedLastSession = copiedUnBuilt.withLastSessionDate("2021-01-08", "00:00")
+                .build();
+        assertFalse(recurringSession.equals(editedLastSession));
+
+        RecurringSession editedInterval = copiedUnBuilt.withInterval("1").build();
+        assertFalse(recurringSession.equals(editedInterval));
     }
 
 }

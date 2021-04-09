@@ -283,7 +283,7 @@ public class RecurringSession extends Session {
 
         RecurringSession otherSession = (RecurringSession) other;
         return super.equals(other) // this is intended to extend the parent equals method.
-                && otherSession.getInterval().equals(otherSession.getInterval())
-                && otherSession.getLastSessionDate().equals(otherSession.getLastSessionDate());
+                && this.getInterval().equals(otherSession.getInterval())
+                && this.getLastSessionDate().equals(otherSession.getLastSessionDate());
     }
 }
