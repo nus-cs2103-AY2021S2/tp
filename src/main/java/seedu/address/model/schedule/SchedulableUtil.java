@@ -41,14 +41,14 @@ public class SchedulableUtil {
             listOfSchedulableUnits.add(lastPeriod);
         }
 
-        startDateTime = getStartOfTheDay(startDateTime).plusDays(1);
+        startDateTime = getStartOfTheNextDay(startDateTime);
         endDateTime = getStartOfTheDay(endDateTime);
 
         //iterate through each day slot in between
         while(endDateTime.isAfter(startDateTime)) {
             Schedulable toAdd = new SimplePeriod(name, startDateTime, getEndOfTheDay(startDateTime));
             listOfSchedulableUnits.add(toAdd);
-            startDateTime = getStartOfTheDay(startDateTime).plusDays(1);
+            startDateTime = getStartOfTheNextDay(startDateTime);
         }
 
         return listOfSchedulableUnits;
@@ -124,6 +124,13 @@ public class SchedulableUtil {
      */
     public static LocalDateTime getStartOfTheDay(LocalDateTime localDateTime) {
         return localDateTime.toLocalDate().atTime(0,0);
+    }
+
+    /**
+     * Get the start of the next day of this localDateTime.
+     */
+    public static LocalDateTime getStartOfTheNextDay(LocalDateTime localDateTime) {
+        return getStartOfTheDay(localDateTime).plusDays(1);
     }
 
 

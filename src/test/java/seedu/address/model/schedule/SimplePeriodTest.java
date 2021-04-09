@@ -23,21 +23,21 @@ public class SimplePeriodTest {
             = LocalDateTime.of(2020,2,2,6,10,0);
 
     @Test
-    public void nonOverlapExceptAtEndPoint_noConflict() {
+    public void isConflict_nonOverlapExceptAtEndPoint_noConflict() {
         SimplePeriod simplePeriodOne = new SimplePeriod("one", startTimeOne, endTimeOne);
         SimplePeriod simplePeriodTwo = new SimplePeriod("two", startTimeTwo, endTimeTwo);
         assertFalse(simplePeriodOne.isConflict(simplePeriodTwo));
     }
 
     @Test
-    public void overlapAtMoreThanEndPoint_isConflict() {
+    public void isConflict_overlapAtMoreThanEndPoint_hasConflict() {
         SimplePeriod simplePeriodTwo = new SimplePeriod("one", startTimeTwo, endTimeTwo);
         SimplePeriod simplePeriodThree = new SimplePeriod("two", startTimeThree, endTimeThree);
         assertTrue(simplePeriodTwo.isConflict(simplePeriodThree));
     }
 
     @Test
-    public void noOverlap_noConflict() {
+    public void isConflict_noOverlap_noConflict() {
         SimplePeriod simplePeriodOne = new SimplePeriod("one", startTimeOne, endTimeOne);
         SimplePeriod simplePeriodThree = new SimplePeriod("two", startTimeThree, endTimeThree);
         assertFalse(simplePeriodOne.isConflict(simplePeriodThree));
