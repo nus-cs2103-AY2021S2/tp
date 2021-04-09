@@ -85,12 +85,12 @@ create CommandResult
 EditCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> EditCommand
+CommandResult --> EditCommand : result
 deactivate CommandResult
 
-EditCommand --> LogicManager
+EditCommand --> LogicManager : result
 deactivate EditCommand
 
-[<--LogicManager
+[<--LogicManager : result
 deactivate LogicManager
 @enduml
