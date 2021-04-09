@@ -605,8 +605,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | confused user | have a help command | learn how to use the application |
 | `* * *` | user | add issues | track room issues and their status |
 | `* * *` | user | see a list of pending issues sorted by deadline | prioritise which issue to work on |
-| `* * *` | user | search for issues | find a specific issue and get its information |
-| `* * *` | user | search for issues | find issues matching a specific criteria |
+| `* * *` | user | search for issues | find issues by their room number |
+| `* * *` | user | search for issues | find issues by their description |
 | `* * *` | user | close issues | focus on open issues |
 | `* * *` | user | update issues | ensure issues have the latest and correct information |
 | `* * *` | user | remove issues | not worry about issues that are no longer relevant |
