@@ -2,6 +2,17 @@
 layout: page
 title: Developer Guide
 ---
+
+RemindMe Developer Guide
+---
+RemindMe is a reminder application that features a combination of a list and a calendar. RemindMe makes use of both 
+Graphical User Interface(GUI) and Command Line Input(CLI). The target users for RemindMe are National University of 
+Singapore(NUS) School of Computing (SOC) students. SOC students can enjoy the benefits of CLI and GUI, which is not 
+common in reminder applications in the current market. Users can use RemindMe to store their modules, assignments, exams, 
+contacts and general events. RemindMe aims to reorganise students' hectic lives and solve specific needs of SOC students.
+
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 
 * **[1. Setting up, getting started](#1-setting-up-getting-started)**
@@ -227,7 +238,8 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 <br>
 <br>
 
-**Step 3:** In `FindCommandParser#parseCommand`, your input will be tokenized using `ArgumentTokenizer`. `ArgumentTokenizer` uses your input, then searches for the prefixes and returns the `ArgumentMultimap`.
+**Step 3:** In `FindCommandParser#parseCommand`, your input will be tokenized using `ArgumentTokenizer`. 
+`ArgumentTokenizer` uses your input, then searches for the prefixes and returns the `ArgumentMultimap`.
 <br>
 <br>
 
@@ -240,11 +252,10 @@ Given below is an example usage scenario and how the find mechanism behaves at e
     Since the input is `m/`, `FindModuleCommandPaser` will be returned.
 <br>
 
-**Step 5:** In `FindModuleCommandPaser`, `FindModuleCommandPaser#parse` is called. Again `ArgumentMultimap` is created using `ArgumentTokenizer` but only with `Module` prefix: `m/`. The class diagram shows the Parser class diagram when passing your input into the appropriate `FindModuleCommand`.  
+**Step 5:** In `FindModuleCommandPaser`, `FindModuleCommandPaser#parse` is called. Again `ArgumentMultimap` is created 
+using `ArgumentTokenizer` but only with `Module` prefix: `m/`. The class diagram shows the Parser class diagram when 
+passing your input into the appropriate `FindModuleCommand`.  
 <br>
-<br>
-
-![FindCommandParserClassDiagram](images/findcommand/FindCommandParserClassDiagram.png)
 <br>
 
 **Step 6:** The `parse` method does a few checks:
@@ -263,17 +274,26 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 <br>
 
 **Step 8:** `FindModuleCommand` is executed:
-    
 * Using the `predicate`, the `Model#updateFilteredModuleList` is called with `predicate` as input.
-* Using the `FilteredList<Module>#setPredicate` returns the filtered list of modules with titles matching to any of the `keywords` as a `CommandResult`.
+* Using the `FilteredList<Module>#setPredicate` returns the filtered list of modules with titles matching to any of the 
+  `keywords` as a `CommandResult`.
+<br>
 <br>
 
-**Step 9:** The `CommandResult` is logged in the `logger` and using `resultDisplay#setFeedacktoUser`, returning `resultDisplay`. Using `resultDisplay#setText` shows the `CommandResult` in the `GUI`.
+**Step 9:** The `CommandResult` is logged in the `logger` and using `resultDisplay#setFeedacktoUser`, returning 
+`resultDisplay`. Using `resultDisplay#setText` shows the `CommandResult` in the `GUI`.
 <br>
 <br>
-<br>
+
 The following sequence diagram shows how the find operation works:
-![FindSequenceDiagram](images/findcommand/FindSequenceDiagram.png)  
+![FindSequenceDiagram](images/findcommand/FindSequenceDiagram.png)<br>
+*[Find Sequence Diagram for `find m/CS2101`]*
+
+The following activity diagram summarizes what happens when a user executes a `find m/CS2101` command:
+![FindActivityDiagram](images/findcommand/FindActivityDiagram.png)<br>
+*[Find Activity Diagram for `find m/CS2101`]*
+<br>
+<br>
 
 ### 3.3 Delete Assignment
 
