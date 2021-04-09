@@ -59,16 +59,17 @@ This user guide is to help you learn how to use Taskify to manage your tasks eff
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Finish Tutorial`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/Finish Tutorial t/CS2103T` or as `n/Finish Tutorial`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/Finish Tutorial t/CS2103T` or as `n/Finish Tutorial`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/CS2103T`, `t/ CS2103T t/Assignment` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/CS2103T`, `t/Assignment t/ CS2103T` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME desc/DESCRIPTION`, `desc/DESCRIPTION n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `n/Finish Tutorial n/Watch Lecture`, only `n/Finish Tutorial` will be taken.
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence 
+  of the parameter will be taken.<br>
+  e.g. if you specify `n/Finish Tutorial n/Watch Lecture`, only `n/Watch Lecture` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `sort` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -122,9 +123,10 @@ Format: `edit INDEX [n/NAME] [desc/DESCRIPTION] [date/DATE] [s/STATUS] [t/TAG]�
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
+* When editing tags, the existing tags of the task will be removed i.e. adding of tags is not cumulative.
 * You can remove all the task’s tags by typing `t/` without specifying any tags after it.
-* There are 3 Task statuses: `expired`, `uncompleted` and `completed`. However you can cannot directly modify task's status to `expired`
+* There are 3 Task statuses: `expired`, `uncompleted` and `completed`. However, you can cannot directly modify a 
+  task's status to `expired`
 
 Examples:
 *  `edit 1 desc/my typical description` Edits the description of the 1st task to be `my typical description`.
@@ -166,7 +168,7 @@ Find tasks whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `cs2103t` will match `CS2103T`
+* The search is case-insensitive. e.g. `cs2103t` will match `CS2103T`
 * The order of the keywords does not matter. e.g. `Finish CS2103T Tutorial` will match `CS2103T Tutorial Finish`
 * Only the name of the task is searched.
 * Only full words will be matched e.g. `CS2103` will not match `CS2103T`
@@ -190,7 +192,7 @@ Examples:
 Find and list all tasks with the same date as the specified date.
 
 * The `DATE` format `yyyy-mm-dd`.
-* The `DATE` can also be specified as `today` or `tomorrow` to search for the current day's or the next day's task 
+* The `DATE` can also be specified as `today` or `tomorrow` to search for the current or next day's tasks
   easily.
 
 Format: `view DATE`
