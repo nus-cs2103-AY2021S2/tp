@@ -163,16 +163,16 @@ feature works!
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 
-* RemindMe will not accept multiple parameters if it only takes in one!<br>
+RemindMe will not accept multiple parameters if it only takes in one!<br>
 
-* Commands that do not take in parameters (such as `help` and `exit`) ignore extraneous parameters, except `clear`.<br>
-  For example: If you input `help 123`, RemindMe will return the result of the `help` function.<br>
+Commands that do not take in parameters (such as `help` and `exit`) ignore extraneous parameters, except `clear`.<br>
+For example: If you input `help 123`, RemindMe will return the result of the `help` function.<br>
 
-* Parameters must follow the order given.<br>
-  For example: `add b/BIRTHDAY n/NAME` is not allowed.<br>
+Parameters must follow the order given.<br>
+For example: `add b/BIRTHDAY n/NAME` is not allowed.<br>
 
-* If you have the [calendar window](#39-viewing-calendar-calendar-c) open while adding/editing/deleting/clearing events, 
-  it will not be automatically reflected on the calendar window. You would need to click on the **refresh button** to refresh the calendar. 
+If you have the [calendar window](#39-viewing-calendar-calendar-c) open while adding/editing/deleting/clearing events, 
+it will not be automatically reflected on the calendar window. You would need to click on the **refresh button** to refresh the calendar. 
 
 </div>
 
@@ -205,13 +205,12 @@ This section explains how to add entries into your RemindMe.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 
-* Duplicate entries are not allowed. 
-  Example:<br> 
-  * People with the same name.<br>
-  * Modules with the same title.<br>
-  * Assignments with the same description and date and time in the same module.<br>
-  * Exams with the same date and time for the same module.<br>
-  * General events with the same description and date and time. 
+Duplicate entries are not allowed. Example:<br> 
+People with the same name.<br>
+Modules with the same title.<br>
+Assignments with the same description and date and time in the same module.<br>
+Exams with the same date and time for the same module.<br>
+General events with the same description and date and time. 
 </div>
 
 You can add:
@@ -277,7 +276,7 @@ adding your assignment to RemindMe.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 
-* The module provided MUST already exist in RemindMe.<br>
+The module provided MUST already exist in RemindMe.<br>
 </div>
 
 Command: `add m/MODULE a/ASSIGNMENT by/DEADLINE`
@@ -301,7 +300,7 @@ Next, let's add an exam to a module.
 </div>
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 
-* The module provided MUST already exist in RemindMe
+The module provided MUST already exist in RemindMe
 </div>
 
 Command: `add m/MODULE e/DATE-TIME`
@@ -355,8 +354,9 @@ saving you the hassle of deleting and recreating an entry just because of a tiny
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 
-* Editing of an entry should not result in duplicates.<br>
-* Target entries for editing MUST exist in RemindMe.
+Editing of an entry should not result in duplicates.<br>
+
+Target entries for editing MUST exist in RemindMe.
 </div>
 
 You can edit:
@@ -416,8 +416,9 @@ You can change the assignment description as well if you made an error while ent
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 
-* Only one of the inputs in the curly braces can be used for a single edit assignment command.<br>
-* The target module and assignment MUST exist in RemindMe.<br>
+Only one of the inputs in the curly braces can be used for a single edit assignment command.<br>
+
+The target module and assignment MUST exist in RemindMe.<br>
 </div>
 
 Command: `edit m/MODULE a/ASSIGNMENT INDEX {d/NEW DESCRIPTION by/NEW DEADLINE}`
@@ -437,7 +438,7 @@ You can also change the date of the exam in a module.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 
-* The target module and exam MUST exist in RemindMe.<br>
+The target module and exam MUST exist in RemindMe.<br>
 </div>
 
 Command: `edit m/MODULE e/EXAM INDEX on/NEW DATE-TIME`
@@ -461,7 +462,7 @@ You can also update the name and date-time of your general events.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 
-* Only one of the inputs in the curly braces can be used for a single edit general event command.<br>
+Only one of the inputs in the curly braces can be used for a single edit general event command.<br>
 </div>
 
 Command: `edit INDEX {g/NEW DESCRIPTION on/NEW DATE}`
@@ -591,7 +592,7 @@ If you need to refine your assignments further, you can remove the done status b
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 
-* The target module and assignment MUST exist in RemindMe.<br>
+The target module and assignment MUST exist in RemindMe.<br>
 </div>
 
 Command: `done m/MODULE a/INDEX`
@@ -613,7 +614,7 @@ When you do not need your entries anymore, you can delete them using RemindMe's 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 
-* The index provided must be a valid index for the desired entry.<br>
+The index provided must be a valid index for the desired entry.<br>
 </div>
 
 You can delete:
@@ -711,13 +712,13 @@ This section shows features that deals with the clearing of entries in the Remin
 <br>
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 
-* All cleared data cannot be recovered.<br>
+All cleared data cannot be recovered.<br>
 
-* Although the tags used for clearing person, modules, and general events are optional, they are needed to remove only 
-  that specific component of RemindMe. Otherwise, RemindMe will clear all entries stored.<br>
+Although the tags used for clearing person, modules, and general events are optional, they are needed to remove only 
+that specific component of RemindMe. Otherwise, RemindMe will clear all entries stored.<br>
 
-* All clear commands must follow the exact usage as shown below. Additional inputs after prefixes will cause the command 
-  to fail.<br>
+All clear commands must follow the exact usage as shown below. Additional inputs after prefixes will cause the command 
+to fail.<br>
 </div>
 <br>
 You can clear:
@@ -785,10 +786,11 @@ to go back to the current month.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 
-* Please refresh the calendar with the `refresh` button whenever you update assignments/exams/birthdays/general events 
-  while the calendar window is still open.<br>
-* The calendar window does not automatically update the changes when you update assignments/exams/birthdays/general events 
-  in the main window.
+Please refresh the calendar with the `refresh` button whenever you update assignments/exams/birthdays/general events  
+while the calendar window is still open.<br>
+
+The calendar window does not automatically update the changes when you update assignments/exams/birthdays/general events 
+in the main window.
 
 </div>
 
