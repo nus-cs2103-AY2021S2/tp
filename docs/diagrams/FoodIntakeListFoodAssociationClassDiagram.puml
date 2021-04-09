@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+left to right direction
+
+class FoodIntakeList {
+}
+
+class FoodIntake {
+  date : LocalDate
+  food : Food
+}
+
+FoodIntakeList --> "*" FoodIntake
+@enduml

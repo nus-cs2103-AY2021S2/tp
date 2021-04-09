@@ -87,11 +87,11 @@ Legend | Description
 2. Download the [latest DietLAH.jar](https://github.com/AY2021S2-CS2103T-T12-2/tp/releases) from our website.
 
 3. Double-click the file to start DietLAH!
-   
+
 4. When you first launch DietLAH!, this is what it looks like:
-   <p align="center"><img src="images/user-guide/dietlah-app.png"></p>
-   
-   It will show some basic information on how to use it, and some sample data will already be present. 
+  <p align="center"><img src="images/user-guide/dietlah-app.png"></p>
+
+  It will show some basic information on how to use it, and some sample data will already be present. 
 
 5. Type the command in the command box at the top and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Here are some quick commands to get you started:

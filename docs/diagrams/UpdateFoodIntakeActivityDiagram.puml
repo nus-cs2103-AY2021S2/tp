@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes command;
+:Parse command input;
+if () then ([FoodIntake exists in FoodIntakeList])
+  if () then ([at least 1 nutrient\nvalues provided])
+    :Update FoodIntake in FoodIntakeList;
+    :Display result;
+  else ([else])
+    :Display error message;
+  endif
+else ([else])
+  :Display error message;
+endif
+stop
+
+@enduml

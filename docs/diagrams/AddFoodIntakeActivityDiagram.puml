@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes command;
+:Parse command input;
+if () then ([Food exists in UniqueFoodList])
+  if () then ([update\nnutrient\n value(s)]\n)
+    :Update Food in UniqueFoodList;
+  else ([else])
+  endif
+else ([new food])
+  :Construct Food;
+  :Add Food to UniqueFoodList;
+endif
+:Construct a FoodIntake;
+:Add to FoodIntakeList;
+:Display result;
+stop
+
+@enduml

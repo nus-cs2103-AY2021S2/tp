@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Food {
+  name : String
+  carbos : double
+  fats : double
+  proteins : double
+  kilocalories : double
+}
+
+@enduml

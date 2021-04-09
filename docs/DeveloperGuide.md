@@ -16,6 +16,7 @@ title: Developer Guide
 * [Design](#design)
 * [Implementation](#implementation)
   * [User Object](#user-object)
+  * [Date Format](#date-format)
   * [Food Object](#food-object)
     * [Add food item feature](#add-food-item-feature)
     * [Update food item feature](#update-food-item-feature)
@@ -27,6 +28,7 @@ title: Developer Guide
     * [Delete food intake feature](#delete-food-intake-feature)
     * [Update food intake feature](#update-food-intake-feature)
   * [Progress Report feature](#progress-report-feature)
+  * [Reset feature](#reset-feature)
   * [Mifflin-St Joer Formula](#mifflin-st-joer-formula)
 * [Product Scope](#product-scope)
 * [User Stories](#user-stories)
@@ -173,7 +175,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## Date format
+## Date Format
 DietLAH! uses the following date format for command inputs: `d Mmm yyyy` which is clearer to interpret and reduces the chances of typos. Refer to the table below for more information:
 
 Legend | Description
@@ -238,6 +240,8 @@ Below is the Sequence Flow Diagram when a Food gets added to the UniqueFoodList 
     * More overhead to update items as a new object is created every time
 
 ### Add food item feature
+
+The following activity diagram summarizes what happens when a user executes a `food_add` command:
 
 <img src="images/AddFoodItemActivityDiagram.png" width="415" />
 
@@ -384,6 +388,8 @@ Additionally, some noteworthy information to note:
 
 ### Add Food Intake feature
 
+The following activity diagram summarizes what happens when a user executes a `food_intake_add` command:
+
 <img src="images/AddFoodIntakeActivityDiagram.png" width="507" />
 
 #### Description:
@@ -406,7 +412,7 @@ The `AddFoodIntakeParser` first verifies that the expected format is met and the
 2. If no match is found in the `UniqueFoodList`, a new `Food` object is created and added to the `UniqueFoodList` for the user's convenience using the provided nutrient values. Values that are not provided are default to **0**.
 
 <div markdown="span" class="alert alert-info">
-**Note:** when updating a `Food` to its new nutrient values, `FoodIntake`s already in the `FoodIntakeList` will not be affected by the update.
+  :information_source: **Note:** When updating a `Food` to its new nutrient values, `FoodIntake`s already in the `FoodIntakeList` will not be affected by the update.
 </div>
 
 The `addFoodIntake()` method of the `FoodIntakeList` is finally called to add the `FoodIntake` into the list. Refer to the detailed implementation below.
@@ -420,11 +426,13 @@ For example, if the original name is 'chocolate', and there are 3 `FoodIntake`s 
 
 ### Delete Food Intake feature
 
+The following activity diagram summarizes what happens when a user executes a `food_intake_delete` command:
+
 <img src="images/DeleteFoodIntakeActivityDiagram.png" width="523" />
 
 
 #### Description:
-The user can delete food intakes already added to the application by providing the food name, and date of intake. 
+The user can delete food intakes already added to the application by providing the food name, and date of intake.
 
 Example: `food_intake_delete d/dd MMM yyy n/FOOD_NAME`
 
@@ -435,6 +443,8 @@ When the user deletes a food intake, the matching `FoodIntake` with the same dat
 The `deleteFoodIntake()` method in the `FoodIntakeList`  looks for the matching `FoodIntake` `Food` name with the specified date and deletes the `FoodIntake` if it exists or throw a `FoodIntakeNotFoundException`. After successfully deleting, the `reorderDuplicateFoodNames()` is called to re-order all matching `Food` names as the counter might be out-of-date. This step is crucial, as the duplicate count's numbering may be out of order if they are not re-ordered.
 
 ### Update Food Intake feature
+
+The following activity diagram summarizes what happens when a user executes a `food_intake_update` command:
 
 <img src="images/UpdateFoodIntakeActivityDiagram.png" width="635" />
 
@@ -534,6 +544,25 @@ As such, the DietLAH! team has decided to use the Mifflin-St Joer formula as the
 <br/>
 
 Secondly, there are leeways given for the *daily adherence percentage* and the *total adherence percentage* to provide more flexibility to the application. This is made in consideration of human errors, such as inaccurate estimation of macronutrients, as well as inaccuracies in nutrition labels.
+
+### Reset feature
+
+#### Description:
+
+DietLAH! allows users to reset the application data to either blank or to some sample template data for testing purposes.
+
+Example: `reset t/blank` to a fresh copy
+
+Example: `reset t/template` to the sample template data
+
+
+#### Implementation:
+Both the `resetToTemplate()` and `resetToBlank()` methods reside in the `FoodIntakeList` and `UniqueFoodList` respectively. When the `reset` command is called, the respective reset method is called in both the `FoodIntakeList` and `UniqueFoodList`.
+
+`resetToTemplate()` makes use of the `TemplateInitializer` to populate the lists with a fixed set of sample template data, while `resetToBlank()` resets the list to blank.
+
+Thereafter, a new `User` is created via `createUser(this.foodList, this.foodIntakeList)` with the cleared `UniqueFoodList` and `FoodIntakeList`. If the reset type is set to `blank`, the `User` storage file is **deleted** and the user will be required to re-setup their BMI.
+
 
 
 ### Mifflin-St Joer Formula

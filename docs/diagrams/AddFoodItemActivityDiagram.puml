@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes command;
+:Parse command input;
+if () then ([Food exists in UniqueFoodList])
+  :Display error message;
+else ([else])
+  :Construct Food;
+  :Add Food to UniqueFoodList;
+  :Display result;
+endif
+stop
+
+@enduml

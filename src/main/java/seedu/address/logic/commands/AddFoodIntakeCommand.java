@@ -68,16 +68,16 @@ public class AddFoodIntakeCommand extends Command {
             model.getUniqueFoodList().getFoodList().set(index, editedFood);
 
             Food addedFood = model.addFoodIntake(this.date, editedFood);
-            String updateFoodIntakeList = model.getFoodIntakeList().getFoodIntakeListByDate(date);
+            String updatedFoodIntakeList = model.getFoodIntakeList().getFoodIntakeListByDate(date);
 
             return new CommandResult(MESSAGE_SUCCESS_FOODINTAKE_ADD + ": \n"
-                    + addedFood + "\n\n" + MESSAGE_SUCCESS_FOOD_UPDATE + "\n\n" + updateFoodIntakeList);
+                    + addedFood + "\n\n" + MESSAGE_SUCCESS_FOOD_UPDATE + "\n\n" + updatedFoodIntakeList);
         }
 
         Food addedFood = model.addFoodIntake(this.date, food);
-        String updateFoodIntakeList = model.getFoodIntakeList().getFoodIntakeListByDate(date);
+        String updatedFoodIntakeList = model.getFoodIntakeList().getFoodIntakeListByDate(date);
 
-        return new CommandResult(MESSAGE_SUCCESS_FOODINTAKE_ADD + ": \n" + addedFood + "\n\n" + updateFoodIntakeList);
+        return new CommandResult(MESSAGE_SUCCESS_FOODINTAKE_ADD + ": \n" + addedFood + "\n\n" + updatedFoodIntakeList);
     }
 
     /**

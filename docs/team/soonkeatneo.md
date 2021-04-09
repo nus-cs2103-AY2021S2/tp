@@ -14,11 +14,11 @@ Given below are my contributions to the project.
 * **New Feature**: New help command to provide updated help-information specific to the DietLAH! product.
     * What it does: on first launch, shows the help window with common tasks. On user command `help`, it shows the same text.
     * Justification: As there are many implemented commands in the application, we provide the most relevant subset to get users started. Users may refer to the User Guide if they need more specific help.
-    
+
 * **New Feature**: Updated Storage to manage storage of user with new attributes
     * What it does: Manages the saving and loading of the user object with varying attributes (e.g. BMI, food list, selected diet plan)
     * Justification: This feature allows the application to save the user object in memory at the time the application was running and load it from the disk so that the state is restored.
-    
+
 * **New Feature**: Implemented model of User and related-objects (e.g. Bmi) that allows corresponding information to be stored and computed.
     * What it does: Provides the base model that corresponds to the actual user of the application. Also provides base calculation for how the Bmi will be used in the calculation of diet plan recommendations.
     * Justification: Allows for OOP-oriented storage of further features.
@@ -36,14 +36,14 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Added NFRs to the application.
     * Website:
-        * Update various placeholders and leftovers from AB3 
-    
+        * Update various placeholders and leftovers from AB3
+
 * **Contributions to team-based tasks**:
     * Set up the GitHub team org and repo.
     * Updated documentation and config for different product (PRs [\#23](https://github.com/AY2021S2-CS2103T-T12-2/tp/pull/23), [\#93](https://github.com/AY2021S2-CS2103T-T12-2/tp/pull/93)).
     * Set up tools (e.g. CodeCov and Gradle) (PR [\#2](https://github.com/AY2021S2-CS2103T-T12-2/tp/pull/2)).
     * Set up the issue tracker with required labels
-    
+
 * **Community**:
     * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/5#issuecomment-761537781), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/156#issuecomment-780712826), [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/145#issuecomment-779743886), [4](https://github.com/nus-cs2103-AY2021S2/forum/issues/58#issuecomment-768847590))
     * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S2-CS2103T-T10-1/tp/issues/304), [2](https://github.com/AY2021S2-CS2103T-T10-1/tp/issues/310), [3](https://github.com/AY2021S2-CS2103T-T10-1/tp/issues/303))
