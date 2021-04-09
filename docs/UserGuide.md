@@ -41,6 +41,9 @@ in workload management.
    Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
+   Here is a layout guide to the app.<br>
+   ![UiGuide](images/UiGuide.png)
+
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
    pressing Enter will display a list of commonly used commands for first time users.<br>
    Some example commands you can try:
@@ -65,61 +68,19 @@ Here are some symbols you might need to know:
 --------------------------------------------------------------------------------------------------------------------
 
 # Features
-## Tasks
+## Glossary of attributes
 PlanIT contains a list of tasks.
 Tasks can have the following attributes:
 
-### Title: `t/`
-A short description or name for the task. Titles can only contain alphanumeric values.
-
-:information_source:  Every task must have a title.
-
-### Date: `set/`
-A date to represent the deadline of a Task or to represent the day that the task will be carried out.
-
-Dates should be of the format dd/mm/yyyy e.g 02/06/2021
-
-### Duration: `s/`
-The start and end time of a task. You should specify start time and end time in the 24-hour clock format.
-
-Duration should be of the format hh:mm-hh:mm e.g 12:30-13:30
-
-### Recurring Schedule: `r/`
-Represents a task that might repeat weekly or biweekly.
-
-:bulb: You can use this to quickly add weekly tutorials or biweekly lab session for the entire semester.
-
-Recurring Schedule should be of the format [END DATE][DAY][FREQUENCY] e.g [23/10/2021][mon][weekly]
-
-**Recurring dates that is of the upcoming day of week up till the [END DATE] will be generated for the task.**
-
-**Note: Suppose today is 06/04/2021 which falls on a Tuesday, 
-user enters [30/06/2021][tue][weekly] for the recurring schedule field.
-The date of 06/04/2021 will not be included in the recurring dates and only recurring dates from the following tuesday
-will be included up till 30th June 2021 on a weekly basis.**
-
-**Note: Existing recurring dates that has passed the current system date will be removed
-automatically from the existing task upon application startup.**
-
-* END DATE should be in the format dd/mm/yyyy, any number greater than 31 is invalid for the day 
-  and any number greater than 12 is invalid for the month.
-
-* DAY should be either: mon, tue, wed, thu, fri, sat, sun and is case-insensitive.
-
-* FREQUENCY should be either: weekly or biweekly and is also case-insensitive.
-
-### Description: `d/`
-A text description of the task. Your description should only contain alphanumeric values.
-
-### Tag: `t/`
-A label attached to a task for easy grouping and searching of tasks. Your tag should only contain alphanumeric values.
-
-:bulb: You can use this to group tasks by modules e.g adding a `CS2103` tag to a task.
-
-### Status: 's/'
-Reflects the current status of your task. Status can only be either 'done' or 'not done'.
-
-:information_source:   Your task's status will be set to 'not done' by default.
+| Attribute | Prefix | Description |
+|---|---|---|
+| Title | `t/` | A short description or name for the task. Titles can only contain alphanumeric values. <div markdown="block" class="alert alert-info"><br>:information_source:  Every task must have a title. </div>|
+| Date | `set/` | A date to represent the deadline of a Task or to represent the day that the task will be carried out. <br> Dates should be of the format dd/mm/yyyy e.g 02/06/2021|
+| Duration | `s/` | The start and end time of a task. You should specify start time and end time in the 24-hour clock format. <br> Duration should be of the format hh:mm-hh:mm e.g 12:30-13:30|
+| Recurring Schedule | `r/` | Represents a task that might repeat weekly or biweekly. <div markdown="span" class="alert alert-primary">:bulb: You can use this to quickly add weekly tutorials or biweekly lab session for the entire semester. </div><br>Recurring Schedule should be of the format [END DATE][DAY][FREQUENCY] e.g [23/10/2021][mon][weekly] <br><br>**Recurring dates that is of the upcoming day of week up till the [END DATE] will be generated for the task.** <br><br>**Note: Suppose today is 06/04/2021 which falls on a Tuesday, user enters [30/06/2021][tue][weekly] for the recurring schedule field. The date of 06/04/2021 will not be included in the recurring dates and only recurring dates from the following tuesday will be included up till 30th June 2021 on a weekly basis.** <br><br>**Note: Existing recurring dates that has passed the current system date will be removed automatically from the existing task upon application startup.** <ul><li>END DATE should be in the format dd/mm/yyyy, any number greater than 31 is invalid for the day and any number greater than 12 is invalid for the month.</li><li>DAY should be either: mon, tue, wed, thu, fri, sat, sun and is case-insensitive.</li> <li>FREQUENCY should be either: weekly or biweekly and is also case-insensitive.</li>|
+| Description | `d/` | A text description of the task. Your description can be any value.|
+| Tag | `t/` | A label attached to a task for easy grouping and searching of tasks. Your tag should only contain alphanumeric values.<div markdown="span" class="alert alert-primary">:bulb: You can use this to group tasks by modules e.g adding a `CS2103` tag to a task. </div>|
+| Status | `s/` | Reflects the current status of your task. Status can only be either 'done' or 'not done'.<div markdown="block" class="alert alert-info"><br>:information_source:   Your task's status will be set to 'not done' by default. Status is compulsory and cannot be removed. </div>|
 
 
 ## Constraints
@@ -187,9 +148,8 @@ Format: `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION]
 [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…`
 
 * Only title is compulsory.
-* Date should be in the format dd/mm/yyyy. For example, 1 December 2021
-  should be expressed as `01/12/2021`, not 1/12/2021. Furthermore, Date should be
-  a day that is after the current day.
+* Date should be in the format dd/mm/yyyy. For example, 1 July 2021
+  should be expressed as `01/07/2021`, not 1/7/2021.
 * Duration should be numeric, contain 2 timings, and should be in 24 hours format with a colon, like `22:30-22:45`.
   Duration can only exist when there is date or recurring schedule. 
 * Description can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>.
@@ -241,30 +201,7 @@ Examples:
 Examples:
 *  `mk n/CS2103 team meeting r/[31/05/2021][mon][weekly]` Adds the task with the title `CS2103 team meeting` to the
    planner and generate upcoming recurring dates that is on `mon` `weekly` up to `31/05/2021`.
-
-
-### Adding date to a task : `edit`
-
-Adds a date to an existing task in the planner
-so that you can have the option to set a deadline to the task or use it for a single day event task.
-
-Format: `edit INDEX [set/DATE]…​`
-Date should only be in the format of dd/mm/yyyy as specified above. 
-
-* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list. 
-The index **must be a positive integer** 1, 2, 3, …​
-* Date field must be provided.
-* Existing values will be updated to the input values.
-* When editing date, the existing dates of the task will be removed i.e adding of date is not cumulative.
-* You can remove all the task’s date by typing `set/` without
-  specifying any date after it.
-
-Examples:
-*  `edit 1 set/13/05/2021` Adds a date to the 1st task on the list which is to be `13 May 2021`.
-*  `edit 2 set/` Clears the existing date of 2nd task on the list.
-*  `edit 1 r/[23/12/2021][mon][biweekly]` modifies the first task in the planner and generate upcoming recurring dates 
-   that is on `mon` `biweekly` up to `23/12/2021`.
-
+   
 ### Postpone a task's date : `snooze`
 
 Postpones your task's date by a specified number of days.
@@ -298,15 +235,16 @@ Format: `ls not done`
 
 ### Sort task by date: `sort by a` or `sort by d`
 
-Sort tasks in the list either in ascending dates or descending dates so that users would
+Sort tasks in the displayed list either in ascending dates or descending dates so that users would
 be able to see the task or event nearest to current date or furthest away from current date.
 
 Format: `sort by a` or `sort by d`
 
-* Shows the list of all task.
-* If `sort by a`, task with no deadlines would appear first, 
+* Sorts the displayed list. If `find` command is used before sorting, `sort by a` or `sort by d`
+  will sort the displayed list only. To sort the entire list, make sure to use `ls` before sorting.
+* If `sort by a`, task with no dates would appear last, 
     subsequently task will be ordered in increasing dates. 
-* If `sort by d`, task with no deadlines would appear last, 
+* If `sort by d`, task with no dates would appear first, 
     subsequently task will be ordered in decreasing dates.
 * If two tasks have the same dates, they will be ordered in equal priority.
 
@@ -483,14 +421,16 @@ start with an empty data file at the next run.
 
 ## Calendar Navigation
 
-You can click on the `prev` and `next` buttons on the calendar to move to the previous and next months respectively,
+![Calendar](images/Calendar.png)
+
+You can click on the `prev` and `next` buttons on the calendar shown above, to move to the previous and next months respectively,
 or you can simply type in the following commands, if you are more inclined to using the command line interface.
 
-### Navigate to the previous month on the calendar : `prev`
+**Navigate to the previous month on the calendar :** `prev`
 
-### Navigate to the next month on the calendar : `next`
+**Navigate to the next month on the calendar :** `next`
 
-* These 2 commands do not take in parameters. As per the feature commands, extraneous parameters will be ignored.
+* These 2 commands do not take in parameters. Extraneous parameters will be ignored.
     
     E.g. if the command specifies `prev 987`, it will be interpreted as `prev`.
 

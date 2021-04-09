@@ -32,7 +32,8 @@ public class HelpCommand extends Command {
             + "4. Finding tasks: \n" + HELP_MESSAGE_FIND + "\n"
             + "5. Deleting a task: \n" + HELP_MESSAGE_DELETE_TASK + "\n"
             + "6. Deleting a task's attribute: \n" + HELP_MESSAGE_DELETE_FIELD + "\n"
-            + "For more commands, features and a detailed description of the above features, read our user guide.";
+            + "For more commands, features and a detailed description of the above features, read our user guide.\n"
+            + "You may find the user guide here: https://ay2021s2-cs2103t-t10-2.github.io/tp/UserGuide.html";
 
     @Override
     public CommandResult execute(Model model) {

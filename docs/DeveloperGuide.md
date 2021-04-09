@@ -233,7 +233,7 @@ interface, subscribing to the changes in the list. Thus, coupling is reduced.
 This interface is actually `<<Logic>>` and `<<Model>>`, implemented by `LogicManager` and `ModelManager`, which are
 abstracted out of the diagram for more concrete representation.
 
-### Viewing tasks on a date and bringing the calendar to the date
+### Viewing tasks on a date and changing the calendar's date
 
 The `view` command can get and list all tasks with dates and their recurring schedule's dates on a particular date. The
 next argument for the command is taken as the `DATE` and used in the predicate that filters the task list stored. The
@@ -427,8 +427,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user | schedule recurring tasks at a specified frequency | easily set tasks for the future at one go |
 | `* * *`  | user | see how many days I have left until a specific task is due/happening | know how much time I have left to work on the task |
 | `* * *`  | user | see all the statistics for the tasks | track my progress |
-
-*{Updated for v1.2}*
+| `* * *`  | user | see a list of tags currently used | keep track of all my tags |
+| `* * *`  | user | view all the tasks on a specific date | schedule new tasks during the free time on that day |
 
 ### Use cases
 
@@ -438,7 +438,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User enters command to add a task to the list.
+1. User enters command to add a task with optional fields to the list.
 2. PlanIT shows the resulting list after adding task to it.
 
     Use case ends.
@@ -481,7 +481,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Add a date to a task**
 
 **MSS**
-1. User _adds a task_ to the list.
+1. User <u>adds a task</u> to the list.
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to add a date to a specified task.
 4. PlanIt shows task with updated date and updates list.
@@ -496,7 +496,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Add a start time to a task**
 
 **MSS**
-1. User _adds a task with deadline_ to the list.
+1. User <u>adds a task</u> with deadline to the list.
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to add a start time to a specified task.
 4. PlanIt shows task with updated start time and updates list.
@@ -513,7 +513,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Precondition: The task does not have a date, only repeats in weekly or biweekly basis.**
 
 **MSS**
-1. User enters command to _adds a task with recurring schedule_ to the list.
+1. User enters command to <u>adds a task</u> with recurring schedule to the list.
 2. PlanIt shows task with the recurring dates based on the conditions specified by th the user.
 
 **Extensions**
@@ -528,7 +528,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Remove a task**
 
 **MSS**
-1. User _adds a task_ to the list.
+1. User <u>adds a task</u> to the list.
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to remove a specified task.
 4. PlanIt shows task that was removed and updates list.
@@ -542,7 +542,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Sort tasks according to date**
 
 **MSS**
-1. User _adds a task with a deadline_ to the list.
+1. User <u>adds a task</u> with a deadline to the list.
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to sort tasks either in ascending or descending deadlines with tasks that have 
    no deadlines considered to be the latest.
@@ -556,7 +556,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Find matching tasks by title**
 
 **MSS**
-1. User _adds a task with title_ to the list.
+1. User <u>adds a task</u> with title to the list.
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to find tasks with given keywords from the task title.
 4. PlanIt shows all tasks that matches any full word from the given keywords.
@@ -570,7 +570,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Find matching tasks by tag(s)**
 
 **MSS**
-1. User _adds a task with tag(s)_ to the list.
+1. User <u>adds a task</u> with tag(s) to the list.
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to find tasks with given keyword(s) from the task tag(s).
 4. PlanIt shows all tasks that matches the full keyword for the tag.
@@ -584,7 +584,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Find matching tasks by multi-line description**
 
 **MSS**
-1. User _adds a task with multi-line description_ to the list.
+1. User <u>adds a task</u> with multi-line description to the list.
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to find tasks with given keyword(s) from the task description.
 4. PlanIt shows all tasks that matches any keyword from the description.
@@ -598,7 +598,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Mark task as done**
 
 **MSS**
-1. User _adds a task_ to the list.
+1. User <u>adds a task</u> to the list.
 2. PlanIt shows task added to the list and updates list.
 3. User enters command to mark a task as done.
 4. PlanIt updates Task in the model with Status updated to 'done'.
@@ -609,6 +609,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 4a1. PlanIt displays task already done message.
 
       Use case ends.
+
+#### **Use case: View tasks on a date**
+
+**MSS**
+1. User enters command to view the tasks on a given date.
+2. PlanIt shows all the tasks that have their dates on the given date, if any.
+3. PlanIt changes the calendar's date to the given date.
+4. PlanIt displays a success message.
+
+**Extensions**
+* 1a. PlanIt detects an error in the entered command.
+    * 1a1. PlanIt requests for the correct command.
+    * 1a2. User enters new data. 
+      
+    Steps 1a1-1a2 are repeated until the data entered are correct.
+
+    Use case resumes from step 2.
 
 
 ### Non-Functional Requirements
@@ -677,29 +694,27 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a task
 
 1. Deleting a task while all tasks are being shown
 
-   1. Prerequisites: List all existing tasks using the `list` command. Multiple tasks in the list.
+   1. Prerequisites: List all existing tasks using the `ls` command. Multiple tasks in the list.
 
-   1. Test case: `delete-task 1`<br>
+   1. Test case: `rmt 1`<br>
       Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
 
-   1. Test case: `delete-task 0`<br>
+   1. Test case: `rmt 0`<br>
       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete-task x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `rmt x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Test case: Delete the data file which is saved at the same folder as the jar file.
+      Expected: PlanIt launches with sample data loaded, and creates a new data file.
+      
+   1. Test case: Remove an attribute of a task, or fill in an attribute with the wrong format.
+      Expected: PlanIt launches with an empty list.
