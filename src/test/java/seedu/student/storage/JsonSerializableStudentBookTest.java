@@ -23,7 +23,7 @@ public class JsonSerializableStudentBookTest {
     private static final Path NO_STUDENT_FOR_APPOINTMENT_FILE = TEST_DATA_FOLDER
             .resolve("invalidAppointmentStudentBook.json");
     private static final Path INVALID_APPOINTMENT_FILE = TEST_DATA_FOLDER
-            .resolve("invalidAppointmentTimeStudentBook.json");
+            .resolve("invalidDuplicatedAppointmentStudentBook.json");
     private static final Path INVALID_APPOINTMENT_TIME_FILE = TEST_DATA_FOLDER
             .resolve("invalidAppointmentTimeStudentBook.json");
     private static final Path INVALID_APPOINTMENT_OVERLAP_FILE = TEST_DATA_FOLDER
@@ -83,6 +83,16 @@ public class JsonSerializableStudentBookTest {
         JsonSerializableStudentBook dataFromFile = JsonUtil.readJsonFile(INVALID_APPOINTMENT_TIME_FILE,
                 JsonSerializableStudentBook.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableStudentBook.MESSAGE_INVALID_START_TIME,
+                dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidExtraAppointment_throwsIllegalValueException() throws Exception {
+
+        JsonSerializableStudentBook dataFromFile = JsonUtil.readJsonFile(INVALID_APPOINTMENT_FILE,
+                JsonSerializableStudentBook.class).get();
+
+        assertThrows(IllegalValueException.class, JsonSerializableStudentBook.MESSAGE_DUPLICATED_APPOINTMENT,
                 dataFromFile::toModelType);
     }
 
