@@ -29,6 +29,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.gradecommands.EditGradeCommand;
+import seedu.address.logic.commands.remindercommands.EditReminderCommand;
 import seedu.address.logic.commands.schedulecommands.EditScheduleCommand;
 import seedu.address.logic.commands.tutorcommands.EditCommand;
 import seedu.address.model.GradeBook;
@@ -38,11 +39,14 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderDate;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleDateViewPredicate;
 import seedu.address.model.tutor.NameContainsKeywordsPredicate;
 import seedu.address.model.tutor.Tutor;
 import seedu.address.testutil.EditGradeDescriptorBuilder;
+import seedu.address.testutil.EditReminderDescriptorBuilder;
 import seedu.address.testutil.EditScheduleDescriptorBuilder;
 import seedu.address.testutil.EditTutorDescriptorBuilder;
 
@@ -132,6 +136,20 @@ public class CommandTestUtil {
     public static final String INVALID_TIME_TO_DESC = " " + PREFIX_TIME_TO + "21:00"; // 24 hours timing not accepted
     public static final String INVALID_DESC_DESC = " " + PREFIX_DESCRIPTION; // empty string not allowed for description
 
+    public static final String VALID_REMINDER_DESC_ONE = "Maths Tuition Payment Due";
+    public static final String VALID_REMINDER_DATE_ONE = "2021-05-01";
+    public static final String VALID_REMINDER_DESC_TWO = "Science Tuition Payment Due";
+    public static final String VALID_REMINDER_DATE_TWO = "2021-05-05";
+    public static final String VALID_REMINDER_DESC_THREE = "English Tuition Payment Due";
+    public static final String VALID_REMINDER_DATE_THREE = "2021-05-06";
+
+    public static final String REMINDER_DESC_DESC_ONE = " " + PREFIX_DESCRIPTION + VALID_REMINDER_DESC_ONE;
+    public static final String REMINDER_DESC_DESC_TWO = " " + PREFIX_DESCRIPTION + VALID_REMINDER_DESC_TWO;
+    public static final String REMINDER_DESC_DESC_THREE = " " + PREFIX_DESCRIPTION + VALID_REMINDER_DESC_THREE;
+    public static final String REMINDER_DATE_DESC_ONE = " " + PREFIX_DATE + VALID_REMINDER_DATE_ONE;
+    public static final String REMINDER_DATE_DESC_TWO = " " + PREFIX_DATE + VALID_REMINDER_DATE_TWO;
+    public static final String REMINDER_DATE_DESC_THREE = " " + PREFIX_DATE + VALID_REMINDER_DATE_THREE;
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String GENDER_DESC_AMY = " " + PREFIX_GENDER + VALID_GENDER_AMY;
@@ -182,6 +200,8 @@ public class CommandTestUtil {
     public static final EditScheduleCommand.EditScheduleDescriptor DESC_SCHEDULE_MATHS;
     public static final EditScheduleCommand.EditScheduleDescriptor DESC_SCHEDULE_SCIENCE;
 
+    public static final EditReminderCommand.EditReminderDescriptor DESC_REMINDER_MATHS;
+    public static final EditReminderCommand.EditReminderDescriptor DESC_REMINDER_SCIENCE;
 
     static {
         DESC_AMY = new EditTutorDescriptorBuilder().withName(VALID_NAME_AMY).withGender(VALID_GENDER_AMY)
@@ -212,6 +232,12 @@ public class CommandTestUtil {
         DESC_SCHEDULE_SCIENCE = new EditScheduleDescriptorBuilder().withTitle(VALID_SCHEDULE_TITLE_TWO)
                 .withDescription(VALID_SCHEDULE_DESCRIPTION_TWO).withTimeFrom(VALID_SCHEDULE_DATE_TIME_FROM_TWO)
                 .withTimeTo(VALID_SCHEDULE_DATE_TIME_TO_TWO).build();
+
+        // EditReminderDescriptor
+        DESC_REMINDER_MATHS = new EditReminderDescriptorBuilder().withDescription(VALID_REMINDER_DESC_ONE)
+                .withReminderDate(VALID_REMINDER_DATE_ONE).build();
+        DESC_REMINDER_SCIENCE = new EditReminderDescriptorBuilder().withDescription(VALID_REMINDER_DESC_TWO)
+                .withReminderDate(VALID_REMINDER_DATE_TWO).build();
     }
 
     /**
@@ -289,8 +315,8 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the appointment at the given {@code targetIndex} in the
+     * {@code model}'s appointment book.
      */
     public static void showAppointmentAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredAppointmentList().size());
@@ -303,8 +329,8 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the schedule at the given {@code targetIndex} in the
+     * {@code model}'s schedule tracker.
      */
     public static void showScheduleAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredScheduleList().size());
@@ -314,6 +340,20 @@ public class CommandTestUtil {
 
         model.updateFilteredScheduleList(new ScheduleDateViewPredicate(date));
         assertEquals(1, model.getFilteredScheduleList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the reminder at the given {@code targetIndex} in the
+     * {@code model}'s reminder tracker.
+     */
+    public static void showReminderAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredReminderList().size());
+
+        Reminder reminder = model.getFilteredReminderList().get(targetIndex.getZeroBased());
+        final ReminderDate date = reminder.getReminderDate();
+
+        model.updateFilteredReminderList(reminder1 -> reminder1.equals(reminder));
+        assertEquals(1, model.getFilteredReminderList().size());
     }
 
     /**
