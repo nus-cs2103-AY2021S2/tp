@@ -31,6 +31,10 @@ package Model{
 Class HiddenModel #FFFFFF
 }
 
+package Storage{
+Class HiddenModel #FFFFFF
+}
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
@@ -40,7 +44,7 @@ ClientBookParser .left.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommandParser
 XYZCommandParser ..> XYZCommand : creates >
-XYZCommandParser ..|> Parser
+XYZCommandParser .left.|> Parser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
@@ -54,6 +58,9 @@ XYZCommand *-left-> "*" XYZCommand
 LogicManager .left.> Command : executes >
 
 LogicManager --> Model
+LogicManager --> Storage
+Storage --[hidden] Model
+Command .[hidden]up.> Storage
 Command .right.> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 note bottom of XYZCommand: Whole-part relationship only \nvalid for BatchCommand (whole) and \nEditCommand/DeleteCommand (part))
