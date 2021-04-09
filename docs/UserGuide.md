@@ -818,17 +818,22 @@ There are 3 ways to exit the application.
 <br>
 1. You can type `exit` in the command box as shown below.
 <br>
+
 ![exit1](images/exit1.png)
+
 <br>
 <br>
 2. You can also type `E` in the command box as a shortcut as shown below.
 <br>
+
 ![exit2](images/exit2.png)
+
 <br>
 <br>
 3. Lastly, you may simply click the `X` button in the top right-hand corner of the
 application to exit the program.
 <br>
+
 ![exit3](images/exit3.png)
 
 [Back to Table of Contents](#table-of-contents)

@@ -466,8 +466,8 @@ and then the details about events are retrieved from RemindMe model by calling `
 <br>
 <br>
 
-**Step5:** With calendar storage updated, the calendar will then store events to each respective day and then the calendar
-will be ready to be displayed as a GUI. 
+**Step5:** With calendar storage updated, the `CalendarWindow` will then store events to each respective day `CalendarWindow#loadCalendar`
+and then the calendar will be ready to be displayed as a GUI. 
 <br>
 <br>
 
@@ -696,6 +696,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends.
+* 1b. System detects index in command to locate module is invalid.
+    * 1b1. System display module missing/invalid input error message.
+    <br> Use case ends. 
  
 ### Use Case: `UC09` - edit assignment
 
@@ -710,6 +713,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends. 
+* 1b. System detects index in command to locate assignment is invalid.
+    * 1b1. System display assignment missing/invalid input error message.
+    <br> Use case ends. 
         
 ### Use Case: `UC10` - edit exam
 
@@ -723,21 +729,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
-        <br> Use case ends.      
+        <br> Use case ends.
+* 1b. System detects index in command to locate exam is invalid.
+    * 1b1. System display exam missing/invalid input error message.
+    <br> Use case ends.      
     
-### Use Case: `UC11` - edit person and birthday
+### Use Case: `UC11` - edit person
 
 **MSS:**
 
-1. User enters command to edit the birthday of a person.
-2. System edits birthday and displays edited birthday info.
+1. User enters command to edit the person/birthday.
+2. System edits person and displays edited person info.
 <br> Use case ends.
    
 **Extensions:**
 
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
-        <br> Use case ends.     
+        <br> Use case ends.
+* 1b. System detects index in command to locate person is invalid.
+    * 1b1. System display person missing error message.
+    <br> Use case ends.      
 
 ### Use Case: `UC12` - edit general event
 
@@ -752,6 +764,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends. 
+* 1b. System detects index in command to locate event is invalid.
+    * 1b1. System display event missing/invalid input error message.
+    <br> Use case ends.
 
 ### Use Case: `UC13` - delete module
 
@@ -779,7 +794,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
-        <br> Use case ends. 
+        <br> Use case ends.
+* 1b. System detects index in command to locate assignment is invalid.
+    * 1b1. System display assignment missing/invalid input error message.
+    <br> Use case ends. 
         
 ### Use Case: `UC15` - delete exam
 
@@ -793,7 +811,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
-        <br> Use case ends.      
+        <br> Use case ends.
+* 1b. System detects index in command to locate exam is invalid.
+    * 1b1. System display exam missing/invalid input error message.
+    <br> Use case ends.      
     
 ### Use Case: `UC16` - delete person
 
@@ -807,7 +828,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
-        <br> Use case ends.     
+        <br> Use case ends. 
+* 1b. System detects index in command to locate person is invalid.
+    * 1b1. System display person missing/invalid input error message.
+    <br> Use case ends.    
 
 ### Use Case: `UC17` - delete general event
 
@@ -822,6 +846,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends. 
+* 1b. System detects index in command to locate event is invalid.
+    * 1b1. System display event missing/invalid input error message.
+    <br> Use case ends.
 
 ### Use Case: `UC18` - find module
 
@@ -892,6 +919,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
   * 1a1. System display formatting error message.
       <br> Use case ends.
+* 1b. System detects index in command to locate assignment is invalid.
+    * 1b1. System display assignment missing/invalid input error message.
+    <br> Use case ends.
 
 ### Use Case: `UC23` - clear App
 
@@ -1005,29 +1035,65 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### Launch
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the latest [jar](https://github.com/AY2021S2-CS2103T-W15-1/tp/releases) file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI for RemdindMe.
 
-1. Saving window preferences
+   3. Test the following commands according to the flow.
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+### Testing commands
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+**Testing Person commands**
+   1. Add a person. Test case: `add n/Benson b/30/09/1997 t/friends`. Benson will be added into the contacts list.
+   
+   2. Edit a person. Test case: `edit 1 n/Benson b/30/09/1997`. Benson will be updated in the contacts list.
+      
+**Testing Module commands**
+   1. Add a module. Test case: `add m/CS1101`. CS1101 will be added into the module list.
+   
+   2. Edit a module. Test case: `edit 1 m/CS1101S`. CS1101 will be renamed to CS1101S in module list.
+   
+   3. One can explore adding assignments/exams by referring to the [user guide](https://ay2021s2-cs2103t-w15-1.github.io/tp/UserGuide.html#table-of-contents).
+   
+**Testing General Event commands**
+   1. Add a general event. Test case: `add g/School contest on/10/10/2021 1200`. School contest will be added into the event list. 
+   
+   2. Edit a general event. Test case: `edit 1 on/01/04/2021 1200` School contest date will be edited in the event list.
+   
+**Testing finding command**
+   1. Find the person. Test case: `find n/Benson`. Benson will be shown in the contact list.
+   
+   2. Find modules. Test case: `find m/CS1101S` CS1101S will be shown in the module list.
+   
+   3. Find event. Test case: `find g/School contest`. School contest will be shown in the event list.
+   
+**Testing Calendar**
+   1. Try opening the calendar. Test case: `calendar`. A calendar window (GUI) will pop up.
+   
+   2. Try clicking the `<` `>` `today` buttons to see if the calendar moves.
+   
+   3. Click on a date with events to see event for the day on the left panel of the calendar window (GUI).
+   
+**Test delete commands**
+   1. Delete a person. Test case: `delete 1`. Benson will be deleted from the contacts list.
 
-1. _{ more test cases …​ }_
+   2. Delete a module. Test case: `delete m/CS1101S`. CS1101S will be deleted from the contacts list.
 
-
+   3. Delete a event. Test case: `delete g/1` School contest will be deleted from the event list.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Dealing with missing data files
+  
+   Prerequisites:
+   
+   Remove the remindMe.json file from the folder with name 'data' in the same directory as your remindMe.jar file.
+   Ensure that the data folder is empty.
+   
+   Test case: Launch ClientBook
+   
+   Expected: ClientBook launches and loads the data of the sample contacts.
