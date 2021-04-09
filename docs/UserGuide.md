@@ -94,6 +94,9 @@ that you key in. Any success, error or warning messages will be displayed in thi
 
 Every item is made up of an item name, location and quantity. Expiry date and tags are optional. 
 
+Expiry date of an item will be shown in orange if the item is expiring within the next 3 days. Expiry date of an item will be shown
+in red if the item has expired.
+
 2 items are identical when they have the exact same name, location and expiry date.
 StoreMando does not allow two identical items to exist. 
 
@@ -135,8 +138,8 @@ t/ | TAG `t/TAG` | Each TAG can only be one word long.
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/favourite`, `t/favourite t/drink` etc.
 * Inputs can be specified in any order.<br>
   e.g. `n/ITEM_NAME l/LOCATION` and `l/LOCATION n/ITEM_NAME` are both acceptable.
-* Except for tags, if you specified an input field multiple times, only the last occurrence of the input will be
-  taken.<br>
+* Except for tags, if you specified an input field that comes with a prefix multiple times, only the last occurrence of 
+  the input will be taken.<br>
   e.g. if you specify `e/2020-10-10 e/2020-08-08`, only `e/2020-08-08` will be taken.
 * Features that filter the inventory list like reminder, find and list are carried out on the currently displayed 
   list and not the entire inventory list. To carry out the filter on the entire list, simply key in `list` before 
@@ -225,9 +228,9 @@ Format: `delete INDEX`
 
 Examples:
 
-* `list` followed by `delete 2` deletes the second item in the entire inventory.
-* `find Chocolate` followed by `delete 1` deletes the first item in the result of the `find` command.
-* `list Room 2` followed by `delete 3` deletes the third item in the recorded list of items in Room 2.
+* `list` before executing `delete 2` deletes the second item in the entire inventory.
+* `find Chocolate` before executing `delete 1` deletes the first item in the resulting list of the `find` command.
+* `list Room 2` before executing `delete 3` deletes the third item in the resulting list of the `list` command.
 
 <div markdown="block" class="alert alert-info">
 
@@ -393,13 +396,15 @@ Examples:
 
 **:information_source: Notes about the reminder command:**
 
-* `NUMBER` refers to the number of days/weeks and **can be any integer** …​, -7, -3, 0, 3, 7, …​
+* `NUMBER` refers to the number of days/weeks 
+* `NUMBER` must be **an integer from -365 to 365.** i.e. -365, -3, 0, 3, 365
 * `TIME_UNIT` is either `days` or `weeks`.
 * `day` or `week` will only be accepted when `NUMBER` is either **-1, 0 or 1**
 * Items without expiry date will not be shown.
 * This command is executed on the currently displayed list instead of the entire list.
   e.g. if the list currently shows all the milk in the inventory, `reminder 3 days` will return the list
   of milk expiring within 3 days instead of all items expiring within 3 days.
+* `days` or `weeks` is case-insensitive. Keying in `reminder 7 DaYs` is also a valid command.
 
 </div>
 
@@ -561,7 +566,7 @@ to this user guide to provide you with the help you need.
 Action | Format, Examples 
 :-----:|------------------
 **[“Add"](#31-adding-an-item--add)** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g. `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
-**[“Edit"](#32-editing-an-item--edit)** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.`update 1 l/freezer q/2 `
+**[“Edit"](#32-editing-an-item--edit)** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.`edit 1 l/freezer q/2 `
 **[“Delete"](#33-deleting-an-item--delete)** | `delete INDEX`<br> e.g. `delete 2`
 **[“Find"](#34-finding-items-by-name--find)** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g. `find koko krunch` `find */choco`
 **[“List"](#35-listing-items--list)** | `list` `list [l/LOCATION]` `list [t/TAG]`<br> e.g. `list` `list l/fridge` `list t/favourite`

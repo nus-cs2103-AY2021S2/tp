@@ -57,7 +57,7 @@ public class ReminderCommandTest {
 
     @Test
     public void execute_multipleItemsFound() {
-        ItemExpiringPredicate predicate = new ItemExpiringPredicate((long) 30);
+        ItemExpiringPredicate predicate = new ItemExpiringPredicate((long) 100);
         expectedModel.updateFilteredItemList(predicate);
         ItemComparatorByExpiryDate comparator = new ItemComparatorByExpiryDate();
         expectedModel.updateSortedItemList(comparator);

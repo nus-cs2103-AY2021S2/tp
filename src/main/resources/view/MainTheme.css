@@ -43,7 +43,7 @@
 
 .table-view {
     -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
+    -fx-control-inner-background: white;
     -fx-background-color: #1d1d1d;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
@@ -189,6 +189,18 @@
     -fx-background-color: derive(-fx-focus-color, 30%);
 }
 
+/* LOCATION HEADER */
+
+.cell_location_header {
+    -fx-font-family: "Helveticish";
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-text-fill: black;
+}
+
+.location_box {
+    -fx-background-color: #6a8883;
+}
 /* LIST VIEW BACKGROUND */
 .list-view {
     -fx-background-insets: 0;
@@ -317,6 +329,14 @@
     -fx-background-color: #6a8883;
     -fx-background-radius: 0;
     -fx-padding: 2 2 2 2;
+
+    -fx-min-width: 12;
+    -fx-pref-width: 12;
+    -fx-max-width: 12;
+
+    -fx-min-height: 12;
+    -fx-pref-height: 12;
+    -fx-max-height: 12;
 }
 
 .scroll-bar .thumb {
@@ -339,4 +359,37 @@
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 6 1 6 1;
+}
+
+/* Table View*/
+.table-view {
+    -fx-background-color: #e1beb2;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #e1beb2;
+    -fx-background-insets: 0 0 10 0;
+    -fx-padding: 0 0 10 0;
+}
+
+.table-view .column-header .table-view .filler{
+    -fx-size: 36;
+    -fx-border-width: 0 0 10 0;
+    -fx-background-color: #e1beb2;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: black;
+    -fx-font-size: 14;
+}
+
+.table-row-cell {
+    -fx-cell-size: 46;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+}
+
+.black-column.table-row-cell {
+    -fx-text-fill: white
 }

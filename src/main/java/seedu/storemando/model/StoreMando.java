@@ -2,10 +2,14 @@ package seedu.storemando.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.storemando.model.item.Item;
+import seedu.storemando.model.item.Location;
 import seedu.storemando.model.item.UniqueItemList;
 
 /**
@@ -114,6 +118,19 @@ public class StoreMando implements ReadOnlyStoreMando {
     @Override
     public ObservableList<Item> getItemList() {
         return items.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Location> getLocationList() {
+        HashSet<Location> hashSet = new HashSet<>();
+        ArrayList<Location> locationList = new ArrayList<>();
+        for (Item item : items) {
+            if (!hashSet.contains(item.getLocation())) {
+                hashSet.add(item.getLocation());
+                locationList.add(item.getLocation());
+            }
+        }
+        return FXCollections.observableList(locationList);
     }
 
     @Override
