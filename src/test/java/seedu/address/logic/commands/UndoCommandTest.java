@@ -35,7 +35,7 @@ public class UndoCommandTest {
 
         assertCommandSuccess(deleteCommand, model, expectedDeleteMessage, expectedDeleteModel);
         model.commitTaskTracker(model.getTaskTracker());
-        ;
+
 
         assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
     }
