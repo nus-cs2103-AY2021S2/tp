@@ -81,7 +81,7 @@ public class ParserUtil {
         if (!trimmedValue.matches(Food.VALIDATION_POSITIVE_DOUBLE_REGEX)) {
             throw new ParseException(Food.MESSAGE_DIGIT_CONSTRAINTS);
         }
-        if (trimmedValue.length() > dotIndex + DOUBLE_DECIMAL_LIMIT) {
+        if (trimmedValue.length() > dotIndex + DOUBLE_DECIMAL_LIMIT && dotIndex != -1) {
             throw new ParseException(Food.MESSAGE_DECIMAL_PLACE_CONSTRAINTS);
         }
         return Double.valueOf(trimmedValue);
@@ -145,8 +145,12 @@ public class ParserUtil {
     public static double parseWeightAndHeight(String weightHeightString) throws ParseException {
         requireNonNull(weightHeightString);
         String trimmedWeightHeight = weightHeightString.trim();
+        int dotIndex = trimmedWeightHeight.indexOf(".");
         if (!Bmi.isValidWeightOrHeight(trimmedWeightHeight)) {
             throw new ParseException(Bmi.MESSAGE_CONSTRAINTS);
+        }
+        if (trimmedWeightHeight.length() > dotIndex + DOUBLE_DECIMAL_LIMIT && dotIndex != -1) {
+            throw new ParseException(Food.MESSAGE_DECIMAL_PLACE_CONSTRAINTS);
         }
 
         return Double.parseDouble(trimmedWeightHeight);
@@ -177,10 +181,13 @@ public class ParserUtil {
     public static double parseIdealWeight(String idealWeightString) throws ParseException {
         requireNonNull(idealWeightString);
         String trimmedWeight = idealWeightString.trim();
+        int dotIndex = trimmedWeight.indexOf(".");
         if (!IdealWeight.isValidIdealWeight(trimmedWeight)) {
             throw new ParseException(IdealWeight.MESSAGE_CONSTRAINTS);
         }
-
+        if (trimmedWeight.length() > dotIndex + DOUBLE_DECIMAL_LIMIT && dotIndex != -1) {
+            throw new ParseException(Food.MESSAGE_DECIMAL_PLACE_CONSTRAINTS);
+        }
         return Double.parseDouble(trimmedWeight);
     }
 
