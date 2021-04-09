@@ -269,6 +269,11 @@ View scores of all past quiz attempts.
 
 Format: `history`
 
+#### Saving the data
+
+Weeblingo data is saved in the hard disk automatically after any command that changes the data.
+There is no need to save manually.
+
 #### Adding and removing entries `[coming in v2.0]`
 
 _Details coming soon ..._
