@@ -46,8 +46,13 @@ public class DeallocateResidentRoomCommand extends Command {
 
         List<Resident> lastShownList = model.getFilteredResidentList();
 
+        if (lastShownList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_RESIDENTS);
+        }
+
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX, lastShownList.size()));
         }
 
         Resident residentToDeallocate = lastShownList.get(targetIndex.getZeroBased());

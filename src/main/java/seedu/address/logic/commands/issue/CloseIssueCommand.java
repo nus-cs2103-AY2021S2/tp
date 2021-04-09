@@ -40,8 +40,13 @@ public class CloseIssueCommand extends Command {
         requireNonNull(model);
         List<Issue> lastShownList = model.getFilteredIssueList();
 
+        if (lastShownList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_ISSUES);
+        }
+
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX, lastShownList.size()));
         }
 
         Issue issueToClose = lastShownList.get(targetIndex.getZeroBased());

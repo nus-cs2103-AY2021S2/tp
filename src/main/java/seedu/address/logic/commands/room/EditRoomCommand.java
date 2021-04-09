@@ -69,8 +69,13 @@ public class EditRoomCommand extends Command {
         requireNonNull(model);
         List<Room> lastShownList = model.getFilteredRoomList();
 
+        if (lastShownList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_ROOMS);
+        }
+
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX, lastShownList.size()));
         }
 
         Room roomToEdit = lastShownList.get(index.getZeroBased());

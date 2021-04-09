@@ -71,8 +71,13 @@ public class EditResidentCommand extends Command {
         requireNonNull(model);
         List<Resident> lastShownList = model.getFilteredResidentList();
 
+        if (lastShownList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_RESIDENTS);
+        }
+
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX, lastShownList.size()));
         }
 
         Resident residentToEdit = lastShownList.get(index.getZeroBased());
