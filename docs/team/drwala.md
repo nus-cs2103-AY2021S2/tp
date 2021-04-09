@@ -3,14 +3,14 @@ layout: page
 title: Azeem's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: SunRez
 
 SunRez is a resident management system for use in hostels and residential colleges (RCs). The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 12 kLoC.
 
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to manage rooms (CRUD Rooms)
-  * What it does: Allows the user to manage the rooms of the hostel/RC
+  * What it does: Allows the user to manage the rooms of the hostel/RC.
   * Justification: This feature is a core feature of SunRez, which allows for the user to CRUD rooms. Without rooms, there would be no hostel to manage. 
   * Highlights: This feature is a core part of SunRez. Significant effort went into the creation of the models, commmands (`oadd`, `oedit`, `odel`, `olist`, `ofind`) and supporting structures (read/write from storage, tests) to ensure that it integrates well with the existing infrastructure. There was also some challenge in dealing with enum values for RoomType to ensure that they are displayed in a user friendly manner but can also be easily added.
 
@@ -30,8 +30,9 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation for all the room features: `oadd`, `oedit`, `olist`, `ofind` and `odel`: [\#150](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/150), [\#289](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/289) 
-    * Created a section to explain how command parsing works and how parameter values are processed: [\#290](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/290) 
+    * Created a section to explain how command parsing works, how parameter values are processed, and how errors are handled: [\#290](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/290), [\#REPLACE THIS](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/290) 
   * Developer Guide:
+    * Added implementation of overarching Model component: [\#380](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/380)
     * Added explanation of how the Room class works, and fits in to the broader SunRez system:  [\#115](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/115)
     * Added implementation details of the `AddRoomCommand` command: [\#115](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/115)
     * Wrote use cases UC-006 - UC-010
