@@ -18,16 +18,16 @@ public class RoomNumberContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("10");
         List<String> secondPredicateKeywordList = Arrays.asList("10", "20");
 
-        RoomNumberOrTagContainsKeywordsPredicate firstPredicate = new RoomNumberOrTagContainsKeywordsPredicate(
+        IssueContainsKeywordsPredicate firstPredicate = new IssueContainsKeywordsPredicate(
                 firstPredicateKeywordList);
-        RoomNumberOrTagContainsKeywordsPredicate secondPredicate = new RoomNumberOrTagContainsKeywordsPredicate(
+        IssueContainsKeywordsPredicate secondPredicate = new IssueContainsKeywordsPredicate(
                 secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        RoomNumberOrTagContainsKeywordsPredicate firstPredicateCopy = new RoomNumberOrTagContainsKeywordsPredicate(
+        IssueContainsKeywordsPredicate firstPredicateCopy = new IssueContainsKeywordsPredicate(
                 firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
@@ -45,17 +45,17 @@ public class RoomNumberContainsKeywordsPredicateTest {
     @Test
     public void test_roomNumberContainsKeywords_returnsTrue() {
         // One keyword
-        RoomNumberOrTagContainsKeywordsPredicate predicate = new RoomNumberOrTagContainsKeywordsPredicate(
+        IssueContainsKeywordsPredicate predicate = new IssueContainsKeywordsPredicate(
                 Collections.singletonList("10-"));
         assertTrue(predicate.test(new IssueBuilder().withRoomNumber("10-100").build()));
 
         // Multiple keywords
-        predicate = new RoomNumberOrTagContainsKeywordsPredicate(Arrays.asList("10-", "11-"));
+        predicate = new IssueContainsKeywordsPredicate(Arrays.asList("10-", "11-"));
         assertTrue(predicate.test(new IssueBuilder().withRoomNumber("10-100").build()));
         assertTrue(predicate.test(new IssueBuilder().withRoomNumber("11-100").build()));
 
         // Only one matching keyword
-        predicate = new RoomNumberOrTagContainsKeywordsPredicate(Arrays.asList("11-", "12-"));
+        predicate = new IssueContainsKeywordsPredicate(Arrays.asList("11-", "12-"));
         assertFalse(predicate.test(new IssueBuilder().withRoomNumber("10-100").build()));
         assertTrue(predicate.test(new IssueBuilder().withRoomNumber("11-100").build()));
     }
@@ -63,16 +63,16 @@ public class RoomNumberContainsKeywordsPredicateTest {
     @Test
     public void test_roomNumberDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        RoomNumberOrTagContainsKeywordsPredicate predicate = new RoomNumberOrTagContainsKeywordsPredicate(
+        IssueContainsKeywordsPredicate predicate = new IssueContainsKeywordsPredicate(
                 Collections.emptyList());
         assertFalse(predicate.test(new IssueBuilder().withRoomNumber("10-100").build()));
 
         // Non-matching keyword
-        predicate = new RoomNumberOrTagContainsKeywordsPredicate(Arrays.asList("123"));
+        predicate = new IssueContainsKeywordsPredicate(Arrays.asList("123"));
         assertFalse(predicate.test(new IssueBuilder().withRoomNumber("10-100").build()));
 
         // Keywords match description, timestamp, status, category, but does not match room number
-        predicate = new RoomNumberOrTagContainsKeywordsPredicate(
+        predicate = new IssueContainsKeywordsPredicate(
                 Arrays.asList(IssueBuilder.DEFAULT_ROOM_NUMBER,
                         IssueBuilder.DEFAULT_DESCRIPTION,
                         IssueBuilder.DEFAULT_TIMESTAMP,
