@@ -2,7 +2,7 @@ package seedu.address.commons.core;
 
 public enum DetailsPanelTab {
     UPCOMING_EVENTS("Upcoming Events"),
-    PERSON_DETAILS("Person Details"),
+    PERSON_DETAILS("Details"),
     STREAKS("Streaks");
 
     private final String label;

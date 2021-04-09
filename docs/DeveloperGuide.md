@@ -225,106 +225,6 @@ The sequence diagram below depicts the execution path when a `AddPictureCommand`
 
 ![AddPictureSequenceDiagram](images/AddPictureSequenceDiagram.png)
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
-history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
-following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()`
-and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
-initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command
-calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
-to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
-state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`
-, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing
-the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
-once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once
-to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such
-as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`.
-Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
-pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be
-purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
-desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -550,6 +450,37 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a special date: `add-date`
 
+Prerequisites: List all person using the `list` command. There is at least a person present in the list. 
+The first person on the list is born before 12-12-2020.
+
+1. Adding a date to an existing person
+
+   1. Test case: `add-date 1 d/12-12-2020 desc/sample desc` <br>
+      Expected: Date is added to the first contact. A success message is shown in the status message.
+
+   2. Test case: `add-date 0` (Invalid index) <br>
+      Expected: Date is not added. Error details shown in the status message.
+   
+   3. Other incorrect `add-date` commands to try:
+       * `add-date x` (where x is larger than list size),
+       * `add-date 1 d/12-12-2020` (missing `DESCRIPTION` argument, other arguments can also be left out),
+
+       Expected: Similar to previous
+
+2. Adding a date with boundary date values. FriendDex will only allow adding of dates that have already occured.
+
+    * These arguments should be replaced with their proper date representation.
+       * `DATE_AFTER_TODAY`: a future date in the format of dd-MM-yyyy, e.g. `04-04-2099`
+       * `DATE_BEFORE_BIRTHDAY`: a date prior to the person's birthday in the format of dd-MM-yyyy, e.g. `04-04-1800` 
+
+    1. Adding a date that happens in the future <br>
+       Test case: `add-date 1 d/DATE_AFTER_TODAY desc/sample desc` <br>
+       Expected: Date is not added. Error details shown in the status message.
+
+    2. Adding a date that happens before the person is born
+       Test case: `add-date 1 d/DATE_BEFORE_BIRTHDAY desc/sample desc` <br>
+       Expected: Similar to previous
+
 ### Adding a friend group: `add-group`
 
 ### Adding a meeting: `add-meeting`
@@ -568,23 +499,24 @@ The first person on the list is born before 12-12-2020.
     3. Other incorrect `add-meeting` commands to try: 
         * `add-meeting x` (where x is larger than list size),
         * `add-meeting 1 d/12-12-2020 t/1945` (missing `DESCRIPTION` argument, other arguments can also be left out),
+
        Expected: Similar to previous
    
 2. Adding a meeting with boundary time values. FriendDex will only allow adding of meetings that have already occurred. 
 
-    1. These arguments should be replaced with their proper datetime representation. 
-       `TODAY_DATE`: today's date in the format of dd-MM-yyyy, e.g. `04-04-2021`
-       `TIME_AFTER_NOW`: add a few minutes to the current time in the format of HHmm, e.g. `1230`
+    * These arguments should be replaced with their proper datetime representation. <br>
+       * `TODAY_DATE`: today's date in the format of dd-MM-yyyy, e.g. `04-04-2021` <br>
+       * `TIME_AFTER_NOW`: add a few minutes to the current time in the format of HHmm, e.g. `1230`
        
-    2. Adding a meeting for today
-       Test case: `add-meeting 1 d/{TODAY_DATE} t/0000 desc/sample desc`.
+    1. Adding a meeting for today <br>
+       Test case: `add-meeting 1 d/{TODAY_DATE} t/0000 desc/sample desc`. <br>
        Expected: Meeting is added to the first contact. A success message is shown in the status message. 
        
-    3. Adding a meeting for today but has not occurred yet
-       Test case: `add-meeting 1 d/{TODAY_DATE} t/{TIME_AFTER_NOW} desc/sample desc`
+    2. Adding a meeting for today but has not occurred yet <br>
+       Test case: `add-meeting 1 d/{TODAY_DATE} t/{TIME_AFTER_NOW} desc/sample desc` <br>
        Expected: No meetings added. Error details shown in the status message.
 
-    4. Adding a meeting that happens in the future
+    3. Adding a meeting that happens in the future <br>
        Test case: `add-meeting 1 d/12-12-2099 t/1945 desc/sample desc` <br> 
        Expected: Similar to previous
 
@@ -612,11 +544,48 @@ The first person on the list is born before 12-12-2020.
 
 ### Deleting a special date: `del-date`
 
+Prerequisites: List all person using the `list` command. There is at least a person present in the list. 
+The first person on the list has at least one date.
+
+1. Deleting a date from an existing person
+
+   1. Test case: `del-date 1 i/1` <br>
+      Expected: The first contact's first date is deleted. A success message is shown in the status message.
+
+   2. Test case: `del-date 0 i/1` (Invalid index) <br>
+      Expected: No date is deleted. Error details shown in the status message.
+
+   3. Test case: `del-date 1 i/0` (Invalid date index) <br>
+      Expected: Similar to previous
+   
+   4. Other incorrect `del-date` commands to try:
+       * `del-date x i/1` (where x is larger than list size),
+       * `del-date 1 i/x` (where x is larger than the number of dates the first person has),
+       * `del-date 1` (missing `DATE_INDEX` argument),
+
+       Expected: Similar to previous
+
 ### Deleting a meeting: `del-meeting`
 
 ### Deleting a profile picture `del-picture`
 
 ### Viewing full details: `details`
+
+Prerequisites: List all person using the `list` command. There is at least a person present in the list.
+
+1. Displaying the full details of an existing person
+
+    1. Test case: `details 1` <br>
+       Expected: Details for the first contact displayed on the details panel on the right. A success message is shown in the status message.
+
+    2. Test case: `details 0` <br>
+       Expected: Details panel not updated. Error details shown in the status message.
+
+    3. Other incorrect `details` commands to try:
+       * `details x` (where x is larger than the list size),
+       * `details` (missing `INDEX` argument),
+
+       Expected: Similar to previous
 
 ### Editing a person: `edit`
 
@@ -634,6 +603,21 @@ The first person on the list is born before 12-12-2020.
 
 ### Styling the application: `theme`
 
-### Viewing different details panel: `view`
+### Viewing a different tab on the details panel: `view`
 
+1. Displaying a different tab on the details panel
 
+    1. Test case: `view streaks` <br>
+       Expected: Streaks dashboard displayed on the details panel on the right. A success message is shown in the status message.
+
+    2. Test case: `view upcoming events` <br>
+       Expected: Upcoming events displayed on the details panel on the right. A success message is shown in the status message.
+
+    3. Test case: `view details` <br>
+       Expected: Details panel not updated. Information on the `details` command shown in the status message.
+
+    4. Other incorrect `view` commands to try:
+       * `view x` (where x is not a valid `TAB`),
+       * `view` (missing `TAB` argument),
+
+       Expected: Details panel not updated. Error details shown in the status message.
