@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_PAST_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -22,7 +21,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.common.Category;
 import seedu.address.model.common.Date;
-import seedu.address.model.common.DatePastPredicate;
 import seedu.address.model.common.Name;
 import seedu.address.model.common.Tag;
 import seedu.address.model.task.CompletionStatus;
@@ -109,8 +107,7 @@ public class EditTaskCommand extends Command {
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor)
-            throws CommandException {
+    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
@@ -119,25 +116,11 @@ public class EditTaskCommand extends Command {
         Set<Category> updatedCategories = editTaskDescriptor.getCategories().orElse(taskToEdit.getCategories());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
-        if (!isUpdatedDeadlineValid(updatedDeadline)) {
-            throw new CommandException(String.format(MESSAGE_PAST_DEADLINE));
-        }
-
         Task editedTask = new Task(updatedName, updatedDeadline, updatedPriority, updatedCategories, updatedTags);
         if (taskToEdit.isPinned()) {
             editedTask.pin();
         }
         return editedTask;
-    }
-
-    /**
-     * Returns true if updated deadline is today or after today; otherwise, false.
-     *
-     * @param updatedDeadline updated deadline, an Date object
-     * @return true if updated deadline is today or after today; otherwise, false
-     */
-    private static boolean isUpdatedDeadlineValid(Date updatedDeadline) {
-        return new DatePastPredicate().test(updatedDeadline);
     }
 
     @Override
