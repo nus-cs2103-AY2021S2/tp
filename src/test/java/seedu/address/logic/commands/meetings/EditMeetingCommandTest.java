@@ -30,20 +30,6 @@ public class EditMeetingCommandTest {
     private Model model = new ModelManager(getTypicalMeetingBook(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Meeting editedMeeting = new MeetingBuilder().build();
-        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
-        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST, descriptor);
-
-        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
-
-        Model expectedModel = new ModelManager(new MeetingBook(model.getMeetingBook()), new UserPrefs());
-        expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
-
-        assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastMeeting = Index.fromOneBased(model.getFilteredMeetingList().size());
         Meeting lastMeeting = model.getFilteredMeetingList().get(indexLastMeeting.getZeroBased());
@@ -80,23 +66,6 @@ public class EditMeetingCommandTest {
         String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
         Model expectedModel = new ModelManager(new MeetingBook(model.getMeetingBook()), new UserPrefs());
-
-        assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_filteredList_success() {
-        showMeetingAtIndex(model, INDEX_FIRST);
-
-        Meeting meetingInFilteredList = model.getFilteredMeetingList().get(INDEX_FIRST.getZeroBased());
-        Meeting editedMeeting = new MeetingBuilder(meetingInFilteredList).withName(VALID_NAME_MEETING1).build();
-        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST,
-                new EditMeetingDescriptorBuilder().withName(VALID_NAME_MEETING1).build());
-
-        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
-
-        Model expectedModel = new ModelManager(new MeetingBook(model.getMeetingBook()), new UserPrefs());
-        expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
 
         assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
     }
