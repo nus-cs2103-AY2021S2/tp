@@ -12,7 +12,7 @@ import seedu.taskify.model.Model;
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_SUCCESS = "Sorted tasks by deadlines";
+    public static final String MESSAGE_SUCCESS = "Sorted tasks by their deadlines!";
 
     @Override
     public CommandResult execute(Model model) {
