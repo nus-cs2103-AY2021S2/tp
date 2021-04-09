@@ -1147,8 +1147,6 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### A7. Launch and shutdown
-
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
@@ -1263,8 +1261,6 @@ testers are expected to do more *exploratory* testing.
 
 ### A8. Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing/corrupted/missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. SOChedule will re-initialise and provide an empty Task list and Event list.
