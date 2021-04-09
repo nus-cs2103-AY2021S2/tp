@@ -40,6 +40,7 @@ public class EditRoomCommand extends Command {
             + "[" + PREFIX_ROOM_NUMBER + "ROOM_NUMBER] "
             + "[" + PREFIX_ROOM_TYPE + "TYPE] "
             + "[" + PREFIX_ROOM_TAG + "TAG]...\n"
+            + "At least one of the above optional parameters must be provided\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_ROOM_NUMBER + "12-100 ";
 
@@ -69,8 +70,13 @@ public class EditRoomCommand extends Command {
         requireNonNull(model);
         List<Room> lastShownList = model.getFilteredRoomList();
 
+        if (lastShownList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_ROOMS);
+        }
+
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX, lastShownList.size()));
         }
 
         Room roomToEdit = lastShownList.get(index.getZeroBased());

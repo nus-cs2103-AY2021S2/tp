@@ -16,6 +16,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX_RANGE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
@@ -51,16 +52,18 @@ public class EditResidentCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_INDEX_RANGE);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_INDEX_RANGE);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditResidentCommand.MESSAGE_USAGE));
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 i/ string",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditResidentCommand.MESSAGE_USAGE));
     }
 
     @Test

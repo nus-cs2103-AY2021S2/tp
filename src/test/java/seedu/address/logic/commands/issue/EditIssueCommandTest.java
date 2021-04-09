@@ -148,7 +148,8 @@ public class EditIssueCommandTest {
                 .build();
 
         EditIssueCommand editIssueCommand = new EditIssueCommand(outOfBoundIndex, descriptor);
-        assertCommandFailure(editIssueCommand, model, Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX);
+        assertCommandFailure(editIssueCommand, model, String.format(
+                Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX, model.getFilteredIssueList().size()));
     }
 
     /**
@@ -168,7 +169,8 @@ public class EditIssueCommandTest {
                 .build();
         EditIssueCommand editIssueCommand = new EditIssueCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editIssueCommand, model, Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX);
+        assertCommandFailure(editIssueCommand, model, String.format(
+                Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX, model.getFilteredIssueList().size()));
     }
 
     @Test

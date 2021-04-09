@@ -3,7 +3,9 @@ package seedu.address.logic.commands.issue;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -26,22 +28,47 @@ public class DeleteIssueCommand extends Command {
 
     public static final String MESSAGE_DELETE_ISSUE_SUCCESS = "Deleted Issue: %1$s";
 
+    private final Logger logger = LogsCenter.getLogger(DeleteIssueCommand.class);
+
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteIssueCommand to delete the specified issue at {@code targetIndex}.
+     *
+     * @param targetIndex Target index of the issue in the filtered issue list to delete.
+     * @throws NullPointerException If {@code targetIndex} is null.
+     */
     public DeleteIssueCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Executes an DeleteIssuecommand to delete a targeted issue.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return Result of command execution.
+     * @throws CommandException     If {@code model} is invalid.
+     * @throws NullPointerException If the {@code model} is null.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Issue> lastShownList = model.getFilteredIssueList();
 
+        if (lastShownList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_ISSUES);
+        }
+
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX);
+            logger.warning("Provided index was more than current list size");
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX, lastShownList.size()));
         }
 
         Issue issueToDelete = lastShownList.get(targetIndex.getZeroBased());
+        assert issueToDelete != null;
+
         model.deleteIssue(issueToDelete);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_ISSUE_SUCCESS, issueToDelete));

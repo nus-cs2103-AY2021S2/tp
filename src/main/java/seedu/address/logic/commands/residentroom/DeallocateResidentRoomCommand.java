@@ -24,8 +24,9 @@ import seedu.address.model.room.RoomNumber;
 public class DeallocateResidentRoomCommand extends Command {
     public static final String COMMAND_WORD = "dealloc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deallocates a resident from a room in SunRez. "
-            + "Parameters: INDEX (must be positive integer)\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deallocates a resident from a room in SunRez "
+            + "identified by the index number used in the displayed resident list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Deallocation made: %1$s";
@@ -46,8 +47,13 @@ public class DeallocateResidentRoomCommand extends Command {
 
         List<Resident> lastShownList = model.getFilteredResidentList();
 
+        if (lastShownList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_RESIDENTS);
+        }
+
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX, lastShownList.size()));
         }
 
         Resident residentToDeallocate = lastShownList.get(targetIndex.getZeroBased());

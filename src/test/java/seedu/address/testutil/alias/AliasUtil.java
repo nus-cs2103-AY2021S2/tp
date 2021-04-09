@@ -45,7 +45,8 @@ public class AliasUtil {
     public static final Alias VALID_ALIAS_2 = new Alias("rls", "rlist");
     public static final Alias VALID_ALIAS_3 = new Alias(
             "pest",
-            "alias a/pest cmd/iadd r/12-200 d/Cockroach " + "infestation c/Pest");
+            "iadd r/12-200 d/Cockroach infestation c/Pest");
+    public static final Alias VALID_ALIAS_4 = new Alias("pest", "help");
 
     // alias mapping valid aliases
     public static final AliasMapping VALID_ALIAS_MAPPING;
