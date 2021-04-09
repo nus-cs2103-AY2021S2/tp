@@ -261,10 +261,17 @@ Examples:
 Edits an **existing and uncompleted** task in the task list.
 
 Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...`
-* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
-* You can only edit the details of an uncompleted task.
-* At least one of the optional fields must be provided.
+* Edits the task at the specified `INDEX`. 
+  The index refers to the index number shown in the displayed task list. 
+  The index must be an **integer larger than zero**. A valid example can be `1`.
+* You can only edit an **existing and uncompleted** task.
+* **At least one** of the optional fields must be provided.
+* The `DEADLINE` provided cannot be earlier than today.
 * Existing values will be updated to the input values.
+* If the index provided is a negative integer or zero, an error message indicating invalid command format will be returned.
+* If the index provided is larger than `2147483647`(i.e. larger than the maximum value of `Integer` object in Java),
+  it is not a valid integer in our definition.
+  Thus, an error message indicating invalid command format will be returned.
 * When editing tags/categories, the existing tags/categories of the task will be removed i.e. adding of tags/categories is not cumulative.
 * You can remove all the task’s tags by typing `t/` without specifying any tags after it.
   Similarly, you can remove all the task’s categories by typing `c/` without specifying any categories after it.
@@ -288,14 +295,19 @@ Format: `list_task`
 Marks one or more task from the task list as completed.
 
 Format: `done_task INDEX1 [INDEX2] ...`
-* Marks the task(s) at the specified INDEX(es) as complete.
-* When multiple indexes are provided, they should be separated by a whitespace, e.g. `1 2`.
-* All specified tasks must be uncompleted and existing before calling this command.
-* The index refers to the index number shown in the displayed task list.
-* The index must be a positive and valid integer 1, 2, 3, ...
+* Marks the task(s) at the specified INDEX(es) as complete. 
+  The index refers to the index number shown in the displayed task list.
+  The index must be an **integer larger than zero**. A valid example can be `1`.
+* When multiple indexes are provided, they need to be separated by a whitespace, e.g. `1 2`.
+* All specified tasks must be **uncompleted and existing** before calling this command.
+* If more than 1 indexes are provided, these indexes **cannot contain duplicates**. 
+  Otherwise, an error message indicating invalid command format will be returned.
+* If the index provided is a negative integer or zero, an error message indicating invalid command format will be returned. 
+* If the index provided is larger than `2147483647`(i.e. larger than the maximum value of `Integer` object in Java), 
+  it is not a valid integer in our definition. 
+  Thus, an error message indicating invalid command format will be returned.
 
 Examples:
-* `done_task 1` marks the first task in the task list as completed.
 * `done_task 1 2` marks the first and second task in the task list as completed.
 
 [Return to Feature List](#feature-list)
@@ -306,9 +318,13 @@ Marks a completed task from the task list as uncompleted.
 
 Format: `undone_task INDEX`
 * Marks the task at the specified INDEX as uncompleted.
+  The index refers to the index number shown in the displayed task list.
+  The index must be an **integer larger than zero**. A valid example can be `1`.
 * The specified task must be completed before calling this command.
-* The index refers to the index number shown in the displayed task list.
-* The index must be a positive and valid integer 1, 2, 3, ...
+* If the index provided is a negative integer or zero, an error message indicating invalid command format will be returned.
+* If the index provided is larger than `2147483647`(i.e. larger than the maximum value of `Integer` object in Java),
+  it is not a valid integer in our definition.
+  Thus, an error message indicating invalid command format will be returned.
 
 Examples:
 * `undone_task 1` marks the first task in the task list as uncompleted.
@@ -550,20 +566,23 @@ and return success message `Expired events (if any) have been cleared!` (In this
 
 
 ### Finding tasks and events before or on a given date: `find_schedule`
-Finds tasks and events before or on the specified date from the event list.
+Finds uncompleted tasks that are due before or on the specified date 
+and events that are ongoing given the specified date.
 
 Format: `find_schedule DATE`
-* Tasks refer to **uncompleted tasks** with deadlines before or on the specified date
-* Events refer to events with start date before or on the specified date and end date after or on the specified date, 
-  i.e., `event start date <= given date <= event end date`
-* Date entered must be a valid date and in the format of `YYYY-MM-DD`, e.g. `2021-04-01`
-* Only one single date can be entered. If more than one dates are supplied, program will return an error message
-  indicating invalid date format. If no date is given, an error message indicating invalid command format will be returned.
+* Tasks to be found here are uncompleted tasks with deadlines before or on the specified date.
+* Events to be found here are events with start date before or on the specified date and end date after or on the specified date, 
+  i.e., `event start date <= given date <= event end date`.
+* Date entered must be a valid date and in the format of `YYYY-MM-DD`, e.g. `2021-04-01`. 
+  It can be a date that is earlier than today.
+* Only one single date can be entered. 
+  If more than one dates are supplied, program will return an error message indicating invalid date format. 
+  If no date is given, an error message indicating invalid command format will be returned.
 * After running `find_schedule`, if you wish to view all existing tasks and all existing events, 
   please use the `list_task` and `list_event` respectively.
 
 Examples:
-* `find_schedule 2021-06-01` finds all existing uncompleted tasks with deadlines 
+* `find_schedule 2021-06-01` finds all existing uncompleted tasks with deadlines before or on the specified date
   and all existing events with start date before or on the specified date and end date after or on 
   before or on `1st June 2021`.
 
