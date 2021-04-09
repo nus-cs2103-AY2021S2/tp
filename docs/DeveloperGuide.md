@@ -1034,8 +1034,13 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Dealing with missing data files
+  
+   Prerequisites:
+   
+   Remove the remindMe.json file from the folder with name 'data' in the same directory as your remindMe.jar file.
+   Ensure that the data folder is empty.
+   
+   Test case: Launch ClientBook
+   
+   Expected: ClientBook launches and loads the data of the sample contacts.
