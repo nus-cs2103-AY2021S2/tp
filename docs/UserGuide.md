@@ -700,7 +700,7 @@ Action | Format, Examples
 **Edit contact** | `editcontact INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editcontact 2 n/James Lee e/jameslee@example.com`
 **Find contacts** | `findcontact [n/NAME_KEYWORD]... [e/EMAIL_KEYWORD]... [t/TAG_KEYWORD]...`<br> e.g., `findcontact n/James e/@mail.com t/family`
 **Delete contact** | `deletecontact INDEX`<br> e.g., `deletecontact 3`
-**Send email to contact** | `emailcontact INDEX`<br> e.g., `emailcontact 2`
+**Send email to contact** | `emailcontact INDEX [ni/NOTE_INDEX]`<br> e.g., `emailcontact 2 ni/1`
 **Sort contacts by most-frequent** | `mostfreqcontact`
 **Clear contacts list** | `clearcontact`
 ***UI Features*** | -
