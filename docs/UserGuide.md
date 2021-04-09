@@ -70,7 +70,7 @@ This user guide is to help you learn how to use Taskify to manage your tasks eff
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME desc/DESCRIPTION`, `desc/DESCRIPTION n/NAME` is also acceptable.
-  sk : add
+  
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence 
   of the parameter will be taken.<br>
   e.g. if you specify `n/Finish Tutorial n/Watch Lecture`, only `n/Watch Lecture` will be taken.
