@@ -270,9 +270,8 @@ Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORK
 * Recurrence should be either "daily", "weekly" or "biweekly".
 
 * Enter the time you wish to complete your task in any of these formats: 
-  * yyyy-MM-dd HH:mm:ss
-  * yyyy-MM-dd HH:mm (ss set to 0)
-  * yyyy-MM-dd (HH:mm:ss set to 00:00:00)
+  * yyyy-MM-dd HH:mm
+  * yyyy-MM-dd (HH:mm set to 00:00)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:**
 Now, key in the following commands in this order:<br>
