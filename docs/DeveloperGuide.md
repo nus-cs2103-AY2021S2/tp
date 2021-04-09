@@ -454,6 +454,37 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a person: `add`
 
+1. Adding a person into FriendDex
+
+    1. Adding a person with only required fields. <br>
+       Test case: `add n/John Doe p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends`. <br>
+       Expected: The person gets added to FriendDex with the provided information. The Friend Panel gets lists all
+       contacts in FriendDex. A success message is shown in the status message.
+
+    2. Adding a person with tags. <br>
+       Test case: `add n/John Doe p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends t/owesMoney`
+       . <br>
+       Expected: The person gets added to FriendDex with the provided information. The Friend Panel gets lists all
+       contacts in FriendDex. A success message is shown in the status message.
+
+    3. Adding a duplicate person. <br>
+        * Prerequisite: A person with the name `john doe` must already be in FriendDex. <br>
+          Test case: `add n/John Doe p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends`. <br>
+          Expected: No new contact will be added to FriendDex. Error details shown in the status message.
+
+    4. Adding a person with missing required fields. <br>
+       Test case: `add n/John Doe e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends`. <br>
+       Expected: No new contact will be added to FriendDex. Error details shown in the status message.
+
+    5. Adding a person with invalid email. <br>
+       Test case: `add n/John Doe p/98765432 e/john👦@example.com a/PGPH block 21 b/01-01-1998 t/friends`. <br>
+       Expected: No new contact will be added to FriendDex. Error details and email specification shown in status
+       message.
+
+    6. Adding a person with invalid name. <br>
+       Test case: `add n/👦 p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends t/owesMoney`. <br>
+       Expected: No new contact will be added to FriendDex. Error details and name format shown in the status message.
+
 ### Adding a special date: `add-date`
 
 Prerequisites: List all person using the `list` command. There is at least a person present in the list. The first
@@ -603,9 +634,9 @@ Prerequisites: List all person using the `list` command. There is at least a per
 
 ### Locating persons by name: `find`
 
-1. Finding contacts with naive string search
+Prerequisites: List contains the default data included in FriendDex.
 
-    1. Prerequisites: List contains the default data included in FriendDex.
+1. Finding contacts with naive string search
 
     2. Test case: `find alex`<br>
        Expected: All contact with the token `alex` will be listed. A success message is shown to the user.
@@ -614,12 +645,11 @@ Prerequisites: List all person using the `list` command. There is at least a per
        Expected: All contact with name containing at least one token from the set of tokens `yeoh`, `li`, `yu` will be
        listed. A success message is shown to the user.
 
-    4. Test case: `find` (Invalid format)<br>
+    4. Naive search with empty keyword. <br>
+       Test case: `find`<br>
        Expected: Listed contacts are not updated. Error details shown in the status message.
 
 2. Finding contacts wth pattern matching
-
-    1. Prerequisites: List contains the default data included in FriendDex.
 
     2. Test case: `find p/`<br>
        Expected: All contacts will be listed. A success message is shown to the user.
@@ -635,7 +665,8 @@ Prerequisites: List all person using the `list` command. There is at least a per
        Expected: All contacts with names that starts with `a` and ends with `h` regardless of case will be listed. A
        success message is show to the user.
 
-    6. Test case: `find [ p/` (Invalid argument)<br>
+    6. Pattern search with invalid Regex. <br>
+       Test case: `find [ p/` <br>
        Expected: Listed contacts are not updated. Error details shown in the status message.
 
 ### Viewing help: `help`
@@ -654,21 +685,25 @@ Prerequisites: List all person using the `list` command. There is at least a per
        user. Goal information in various panels will be updated. Streaks for that contact will be shown when switched to
        the streaks tab.
 
-    3. Test case: `set-goal 0 f/w` (Invalid index)<br>
-       Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
-       information.
+    3. Setting a relationship goal with invalid index. <br>
+       Test case: `set-goal 0 f/w` (Invalid index)<br>
+       Expected: Goals for no one is set. No updates to FriendDex information. Error details shown in the status
+       message.
 
-    4. Test case: `set-goal 1 f/asdfg` (Invalid argument)<br>
-       Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
-       information.
+    4. Setting a relationship goal with invalid frequency. <br>
+       Test case: `set-goal 1 f/asdfg` <br>
+       Expected: Goals for no one is set. No updates to FriendDex information. Error details shown in the status
+       message.
 
-    5. Test case: `set-goal f/w` (Invalid format)<br>
-       Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
-       information.
+    5. Setting a relationship goal with missing index. <br>
+       Test case: `set-goal f/w`<br>
+       Expected: Goals for no one is set. No updates to FriendDex information. Error details shown in the status
+       message.
 
-    6. Test case: `set-goal 1` (Invalid format)<br>
-       Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
-       information.
+    6. Setting a relationship goal with missing frequency. <br>
+       Test case: `set-goal 1`<br>
+       Expected: Goals for no one is set. No updates to FriendDex information. Error details shown in the status
+       message.
 
 2. Removing a relationship goal for a particular contact:
 
@@ -679,16 +714,20 @@ Prerequisites: List all person using the `list` command. There is at least a per
        Goal information in various panels will be updated. Streaks for that contact will no longer be shown when
        switching to the streaks tab.
 
-    3. Test case: `set-goal 0 f/n` (Invalid index)<br>
-       Expected: Goals for no one is removed. Error details shown in the status message. No updates to FriendDex
-       information.
+    3. Removing a relationship goal with invalid index. <br>
+       Test case: `set-goal 0 f/n` <br>
+       Expected: Goals for no one is removed. No updates to FriendDex information. <br>
+       Error details shown in the status message.
 
-    4. Test case: `set-goal 1 f/asdfg` (Invalid argument)<br>
-       Expected: Goals for no one is removed. Error details shown in the status message. No updates to FriendDex
-       information.
-    5. Test case: `set-goal 1` (Invalid format)<br>
-       Expected: Goals for no one is removed. Error details shown in the status message. No updates to FriendDex
-       information.
+    4. Setting a relationship goal with invalid frequency. <br>
+       Test case: `set-goal 1 f/asdfg` <br>
+       Expected: Goals for no one is removed. No updates to FriendDex information. <br>
+       Error details shown in the status message.
+
+    5. Removing a relationship goal with invalid format. <br>
+       Test case: `set-goal 1` <br>
+       Expected: Goals for no one is removed. No updates to FriendDex information. <br>
+       Error details shown in the status message.
 
 ### Subtracting Debt: `subtract-debt`
 
