@@ -432,7 +432,7 @@ The following activity diagram summarizes what happens when a user executes a `f
 
 
 #### Description:
-The user can delete food intakes already added to the application by providing the food name, and date of intake. 
+The user can delete food intakes already added to the application by providing the food name, and date of intake.
 
 Example: `food_intake_delete d/dd MMM yyy n/FOOD_NAME`
 
