@@ -745,4 +745,28 @@ person on the list is born before 12-12-2020.
     2. Test case: `theme not_found.json`, where `not_found.json` does not exist (Invalid data)<br>
        Expected: Nothing happens. Error details shown in the status message.
 
+3. Automatically applying predefined theme across instances
+
+    3. Test case: `theme @pulp`.
+    
+    3. Close the application.
+    
+    3. Relaunch the application. Observe that the theme of the application persists.
+
+4. Automatically applying user defined theme across instances
+
+    4. Test case: Applying valid theme with no external modification `theme some_theme.json`.
+
+    4. Close the application.
+       
+    4. Reopen the application. Observe that the theme of the application persists.
+    
+    4. Test case: Applying valid theme with external modification `theme some_theme.json`.
+    
+    4. Close the application.
+    
+    4. Delete `some_theme.json`.
+    
+    4. Relaunch the application. Observe that the the default theme is applied to the application.
+
 ### Viewing different details panel: `view`
