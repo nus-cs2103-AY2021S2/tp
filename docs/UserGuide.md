@@ -119,6 +119,28 @@ increase work productivity for delivery drivers by simplifying the delivery mana
   
 ![Ui](images/AddCommand.png)
 
+
+### Editing a delivery task: `edit INDEX PREFIX/ATTRIBUTE`
+
+**Purpose:** Edits any selected attribute of the delivery entry except the remark.
+
+**Note** 
+  * You can edit multiple attributes.
+  * Remark can be edited separately through the remark command.
+
+**Format:** `edit INDEX PREFIX/ATTRIBUTE`
+
+**Examples:**
+
+* `edit 8 n/Joshua`
+
+![Ui](images/EditSingleAttribute.png)
+
+* `edit 8 a/Clementi Road d/2021-10-01`
+
+![Ui](images/EditMultipleAttribute.png)
+
+
 ### Deleting a delivery task : `delete`
 
 **Purpose:** Deletes the delivery task from the delivery list.
@@ -152,12 +174,13 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 ![Ui](images/DoneCommand.png)
 
-### Finding deliveries using keyword matching a certain criteria: `find <keyword>`
-**Criteria**: Name, Telephone Number, Address, Date
 
-**Purpose** Find deliveries that match certain criteria
+### Finding deliveries using keywords matching any attribute: `find <KEYWORDS>`
+**Attributes**: Name, Telephone Number, Address, Date, Remark, Done, Email
 
-**Format** `find <keywords>`
+**Purpose** Find deliveries that match certain attribute
+
+**Format** `find <KEYWORDS>`
 
 * One of the following results will show:
   * Deliveries matching the keywords
