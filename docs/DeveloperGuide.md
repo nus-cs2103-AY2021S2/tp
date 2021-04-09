@@ -1076,7 +1076,7 @@ starting point for testers to work on; testers are expected to do more *explorat
     2. Test case: `oadd r/10-999 t/suite_ac` <br>
        Expected: A feedback message in the result box indicating the room was successfully added. The room should also be visible in the room panel.
 
-    3. [Continuing from Step 2] Test case: `oadd r/10-999 t/suite_ac` <br>
+    3. After step 2, key in `oadd r/10-999 t/suite_ac` <br>
        Expected: An error message indicating the room `10-999` already exists in the system.
 
     4. Test case: `oadd r/00-999 t/suite_ac` <br>
