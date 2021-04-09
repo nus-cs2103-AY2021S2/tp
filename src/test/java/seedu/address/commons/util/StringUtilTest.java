@@ -51,7 +51,7 @@ public class StringUtilTest {
     /*
      * Invalid equivalence partitions for word: null, empty, multiple words
      * Invalid equivalence partitions for sentence: null
-     * The four isWithinRange cases below isWithinRange one invalid input at a time.
+     * The four test cases below test one invalid input at a time.
      */
 
     @Test
@@ -98,7 +98,7 @@ public class StringUtilTest {
      *   - query word matches part of a sentence word
      *   - sentence word matches part of the query word
      *
-     * The isWithinRange method below tries to verify all above with a reasonably low number of isWithinRange cases.
+     * The test method below tries to verify all above with a reasonably low number of test cases.
      */
 
     @Test

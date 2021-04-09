@@ -21,7 +21,7 @@ import seedu.address.storage.meetingbook.JsonMeetingBookStorage;
 
 
 public class JsonMeetingBookStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "isWithinRange", "data", "JsonMeetingBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonMeetingBookStorageTest");
 
     @TempDir
     public Path testFolder;

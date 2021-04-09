@@ -91,13 +91,7 @@ public class EditMeetingCommand extends Command {
         }
 
         Meeting meetingToEdit = lastShownList.get(index.getZeroBased());
-        Meeting editedMeeting;
-        try {
-            editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor);
-        } catch (InvalidMeetingException err) {
-            throw new CommandException(err.getMessage());
-        }
-
+        Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor);
 
         if (!meetingToEdit.isSameMeeting(editedMeeting) && model.hasMeeting(editedMeeting)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
@@ -129,10 +123,9 @@ public class EditMeetingCommand extends Command {
      * Creates and returns a {@code Meeting} with the details of {@code meetingToEdit}
      * edited with {@code editMeetingDescriptor}.
      */
-    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor)
-            throws InvalidMeetingException {
-
+    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor) {
         assert meetingToEdit != null;
+
         MeetingName updatedMeetingName = editMeetingDescriptor
                 .getName()
                 .orElse(meetingToEdit.getName());
@@ -151,10 +144,6 @@ public class EditMeetingCommand extends Command {
         Set<Group> updatedGroups = editMeetingDescriptor
                 .getGroups()
                 .orElse(meetingToEdit.getGroups());
-
-        if (!Meeting.isValidStartTerminate(updatedStart, updatedTerminate)) {
-            throw new InvalidMeetingException(Meeting.MESSAGE_CONSTRAINTS);
-        };
 
         return new Meeting(updatedMeetingName, updatedStart,
                 updatedTerminate, updatedPriority, updatedDescription, updatedGroups);

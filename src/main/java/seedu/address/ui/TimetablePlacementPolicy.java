@@ -1,14 +1,14 @@
 package seedu.address.ui;
 
+import seedu.address.model.schedule.Schedulable;
+import seedu.address.model.schedule.SchedulableUtil;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Stream;
-
-import seedu.address.model.schedule.Schedulable;
-import seedu.address.model.schedule.SchedulableUtil;
 
 /**
  * In charge of putting meetings into the @code{TimetableView} given a certain meeting,
@@ -59,7 +59,7 @@ public class TimetablePlacementPolicy {
      * @param schedulable
      * @return
      */
-    public boolean isWithinRange(Schedulable schedulable) {
+    public boolean test(Schedulable schedulable) {
         LocalDateTime startTimeOfSchedulable = schedulable.getStartLocalDateTime();
         LocalDateTime endTimeOfSchedulable = schedulable.getTerminateLocalDateTime();
         return !(endTimeOfSchedulable.compareTo(startDateTime) <= 0
@@ -104,22 +104,14 @@ public class TimetablePlacementPolicy {
     }
 
     /**
-     * Gets the number of seconds so far in a day, starting from 00:00.
+     * Gets the number of seconds so far in a day, starting from 00:00
      * @param localDateTime
      * @return
      */
 
     public static int getSecondsInDay(LocalDateTime localDateTime) {
-        return localDateTime.getHour() * SECONDS_IN_AN_HOUR + localDateTime.getMinute() * SECONDS_IN_A_MINUTE
-                + localDateTime.getSecond();
+        return localDateTime.getHour() * SECONDS_IN_AN_HOUR + localDateTime.getMinute() * SECONDS_IN_A_MINUTE + localDateTime.getSecond();
     }
-
-    /**
-     * Gets the y-coordinate position of a timetable slot to be placed within the column
-     * , with the coordinate of value 0 corresponding to the tip of the column.
-     * @param schedulable
-     * @return
-     */
 
     public double getVerticalPosition(Schedulable schedulable) {
         LocalDateTime startingDateTime = schedulable.getStartLocalDateTime();
@@ -140,7 +132,7 @@ public class TimetablePlacementPolicy {
         long startSecondsSoFar = getSecondsInDay(offSetStartDate);
         long endSecondsSoFar = getSecondsInDay(offSetEndDate);
         assert endSecondsSoFar >= startSecondsSoFar;
-        double ratio = (double) (endSecondsSoFar - startSecondsSoFar) / SECONDS_IN_DAY;
+        double ratio = (double)(endSecondsSoFar - startSecondsSoFar) / SECONDS_IN_DAY;
         return TIMETABLE_DISPLAY_SIZE * ratio;
 
     }
@@ -154,24 +146,25 @@ public class TimetablePlacementPolicy {
      * one from the next day 7am to 5pm. Then all the schedulables which lie outside outside the time range of this
      * timetable ( which spans 7 days), will be filtered out. The method retursn the resulting stream of broken down
      * schedulables.
-     * @param schedulable to split into schedulables that span across a day
-     * @return the stream of schedulables split by day.
+     * @param schedulable
+     * @return
      */
+
     public Stream<Schedulable> breakIntoDayUnits(Schedulable schedulable) {
 
-        assert isWithinRange(schedulable);
+        assert test(schedulable);
         Schedulable offSetSchedule = SchedulableUtil.applyNegativeOffset(schedulable, startHour, startMinute);
         List<Schedulable> splittedSchedulables = SchedulableUtil.splitSchedulableByDay(offSetSchedule);
         return splittedSchedulables
                 .stream()
                 .map(s -> SchedulableUtil.applyPositiveOffset(s, startHour, startMinute))
-                .filter(this ::isWithinRange);
+                .filter(this :: test);
 
     }
 
     /**
-     * apply negative offset by start hour and start minutes so each day period starts from 00:00  and ends at
-     * LocalTime.max the next day.
+     * apply offset start hour and start minutes so each day period starts from 00:00 and ends at LocalTime.max the
+     * next day.
      * @param localDateTime
      * @return
      */
@@ -180,7 +173,7 @@ public class TimetablePlacementPolicy {
     }
 
     /**
-     * remove the negative offset on a date Time which has previously been offset by amount startHour and startminute
+     * remove the offset on a date Time which has previously been offset by amount startHour and startminute
      * in @code{applyOffset}
      *
      * @param offSetDateTime

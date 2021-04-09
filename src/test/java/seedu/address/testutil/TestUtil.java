@@ -10,14 +10,14 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * A utility class for isWithinRange cases.
+ * A utility class for test cases.
  */
 public class TestUtil {
 
     /**
      * Folder used for temp files created during testing. Ignored by Git.
      */
-    private static final Path SANDBOX_FOLDER = Paths.get("src", "isWithinRange", "data", "sandbox");
+    private static final Path SANDBOX_FOLDER = Paths.get("src", "test", "data", "sandbox");
 
     /**
      * Appends {@code fileName} to the sandbox folder path and returns the resulting path.

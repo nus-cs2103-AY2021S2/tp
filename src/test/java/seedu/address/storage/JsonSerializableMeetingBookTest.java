@@ -16,7 +16,7 @@ import seedu.address.testutil.TypicalMeetings;
 
 
 public class JsonSerializableMeetingBookTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "isWithinRange", "data", "JsonSerializableMeetingBookTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableMeetingBookTest");
     private static final Path TYPICAL_MEETINGS_FILE = TEST_DATA_FOLDER.resolve("sampleMeetingBook.json");
     private static final Path INVALID_MEETINGS_FILE = TEST_DATA_FOLDER.resolve("invalidMeetingsMeetingBook.json");
     private static final Path DUPLICATE_MEETINGS_FILE = TEST_DATA_FOLDER.resolve("duplicateMeetingsMeetingBook.json");

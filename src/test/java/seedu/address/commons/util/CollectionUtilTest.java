@@ -20,7 +20,7 @@ public class CollectionUtilTest {
 
         // any non-empty argument list
         assertNullPointerExceptionNotThrown(new Object(), new Object());
-        assertNullPointerExceptionNotThrown("isWithinRange");
+        assertNullPointerExceptionNotThrown("test");
         assertNullPointerExceptionNotThrown("");
 
         // argument lists with just one null at the beginning
@@ -29,7 +29,7 @@ public class CollectionUtilTest {
         assertNullPointerExceptionThrown(null, new Object(), new Object());
 
         // argument lists with nulls in the middle
-        assertNullPointerExceptionThrown(new Object(), null, null, "isWithinRange");
+        assertNullPointerExceptionThrown(new Object(), null, null, "test");
         assertNullPointerExceptionThrown("", null, new Object());
 
         // argument lists with one null as the last argument
