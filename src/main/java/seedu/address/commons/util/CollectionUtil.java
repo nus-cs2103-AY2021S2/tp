@@ -12,6 +12,11 @@ import java.util.stream.Stream;
  */
 public class CollectionUtil {
 
+    /**
+     * Prevents CollectionUtil from being instantiated.
+     */
+    private CollectionUtil() {}
+
     /** @see #requireAllNonNull(Collection) */
     public static void requireAllNonNull(Object... items) {
         requireNonNull(items);

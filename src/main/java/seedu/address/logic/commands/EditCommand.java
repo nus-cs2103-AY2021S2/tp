@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PASSENGERS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -20,23 +20,24 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.human.Name;
-import seedu.address.model.human.Phone;
-import seedu.address.model.human.person.Address;
-import seedu.address.model.human.person.Person;
-import seedu.address.model.human.person.TripDay;
-import seedu.address.model.human.person.TripTime;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.passenger.Address;
+import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.Price;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing passenger in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the passenger identified "
+            + "by the index number used in the displayed passenger list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -49,61 +50,64 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_TRIPDAY + "friday";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PASSENGER_SUCCESS = "Edited Passenger: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the GME Terminal.";
+    public static final String MESSAGE_DUPLICATE_PASSENGER = "This passenger already exists in the GME Terminal.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditPassengerDescriptor editPassengerDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the passenger in the filtered passenger list to edit
+     * @param editPassengerDescriptor details to edit the passenger with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditPassengerDescriptor editPassengerDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editPassengerDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editPassengerDescriptor = new EditPassengerDescriptor(editPassengerDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Passenger> lastShownList = model.getFilteredPassengerList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Passenger passengerToEdit = lastShownList.get(index.getZeroBased());
+        Passenger editedPassenger = createEditedPassenger(passengerToEdit, editPassengerDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!passengerToEdit.isSamePassenger(editedPassenger) && model.hasPassenger(editedPassenger)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PASSENGER);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setPassenger(passengerToEdit, editedPassenger);
+        model.updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
+        return new CommandResult(String.format(MESSAGE_EDIT_PASSENGER_SUCCESS, editedPassenger));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Passenger} with the details of {@code passengerToEdit}
+     * edited with {@code editPassengerDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Passenger createEditedPassenger(Passenger passengerToEdit,
+                                                   EditPassengerDescriptor editPassengerDescriptor) {
+        assert passengerToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        TripDay updatedTripDay = editPersonDescriptor.getTripDay().orElse(personToEdit.getTripDay());
-        TripTime updatedTripTime = editPersonDescriptor.getTripTime().orElse(personToEdit.getTripTime());
+        Name updatedName = editPassengerDescriptor.getName().orElse(passengerToEdit.getName());
+        Phone updatedPhone = editPassengerDescriptor.getPhone().orElse(passengerToEdit.getPhone());
+        Address updatedAddress = editPassengerDescriptor.getAddress().orElse(passengerToEdit.getAddress());
+        Set<Tag> updatedTags = editPassengerDescriptor.getTags().orElse(passengerToEdit.getTags());
+        TripDay updatedTripDay = editPassengerDescriptor.getTripDay().orElse(passengerToEdit.getTripDay());
+        TripTime updatedTripTime = editPassengerDescriptor.getTripTime().orElse(passengerToEdit.getTripTime());
+        Optional<Price> updatedPrice = editPassengerDescriptor.getPrice().or(passengerToEdit::getPrice);
 
-        return new Person(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, updatedTags);
+        return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, updatedPrice,
+                updatedTags);
     }
 
     @Override
@@ -121,41 +125,43 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editPassengerDescriptor.equals(e.editPassengerDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the passenger with. Each non-empty field value will replace the
+     * corresponding field value of the passenger.
      */
-    public static class EditPersonDescriptor {
+    public static class EditPassengerDescriptor {
         private Name name;
         private Phone phone;
         private Address address;
         private Set<Tag> tags;
         private TripDay tripDay;
         private TripTime tripTime;
+        private Price price;
 
-        public EditPersonDescriptor() {}
+        public EditPassengerDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditPassengerDescriptor(EditPassengerDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setTripDay(toCopy.tripDay);
             setTripTime(toCopy.tripTime);
+            setPrice(toCopy.price);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, address, tripDay, tripTime, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, address, tripDay, tripTime, price, tags);
         }
 
         public void setName(Name name) {
@@ -198,6 +204,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(tripTime);
         }
 
+        public void setPrice(Price price) {
+            this.price = price;
+        }
+
+        public Optional<Price> getPrice() {
+            return Optional.ofNullable(price);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -223,18 +237,19 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditPassengerDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditPassengerDescriptor e = (EditPassengerDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getAddress().equals(e.getAddress())
                     && getTripDay().equals(e.getTripDay())
                     && getTripTime().equals(e.getTripTime())
+                    && getPrice().equals(e.getPrice())
                     && getTags().equals(e.getTags());
         }
     }

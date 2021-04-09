@@ -11,6 +11,11 @@ import seedu.address.MainApp;
 public class AppUtil {
 
     /**
+     * Prevents AppUtil from being instantiated.
+     */
+    private AppUtil() {}
+
+    /**
      * Gets an {@code Image} from the specified path.
      */
     public static Image getImage(String imagePath) {

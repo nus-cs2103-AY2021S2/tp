@@ -10,16 +10,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TRIPTIME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.human.person.Person;
+import seedu.address.model.person.passenger.Passenger;
 
 /**
- * Adds a person to the address book.
+ * Adds a passenger to the passenger list.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a passenger to passenger list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -35,28 +35,28 @@ public class AddCommand extends Command {
             + PREFIX_TRIPTIME + "1930 "
             + PREFIX_TAG + "female";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the GME Terminal";
+    public static final String MESSAGE_SUCCESS = "New passenger added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PASSENGER = "This passenger already exists in the GME Terminal";
 
-    private final Person toAdd;
+    private final Passenger toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Passenger}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Passenger passenger) {
+        requireNonNull(passenger);
+        toAdd = passenger;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasPassenger(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PASSENGER);
         }
 
-        model.addPerson(toAdd);
+        model.addPassenger(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

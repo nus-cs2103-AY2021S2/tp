@@ -31,7 +31,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private FilteredPassengerListPanel filteredPassengerListPanel;
+    private PoolListPanel poolListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +43,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane filteredPassengerListPanelPlaceholder;
+
+    @FXML
+    private StackPane poolListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,8 +114,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        filteredPassengerListPanel = new FilteredPassengerListPanel(logic.getFilteredPassengerList());
+        filteredPassengerListPanelPlaceholder.getChildren().add(filteredPassengerListPanel.getRoot());
+        //TODO: removed creation of takenPassengerListPanel here as the logic should no longer support getting a
+        // passenger list by drivers
+        poolListPanel = new PoolListPanel(logic.getFilteredPoolList());
+        poolListPanelPlaceholder.getChildren().add(poolListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -163,8 +171,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public FilteredPassengerListPanel getFreePassengerListPanel() {
+        return filteredPassengerListPanel;
+    }
+
+    public PoolListPanel getPoolListPanel() {
+        return poolListPanel;
     }
 
     /**

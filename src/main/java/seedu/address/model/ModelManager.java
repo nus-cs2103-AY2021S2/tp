@@ -11,7 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.human.person.Person;
+import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.pool.Pool;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +22,8 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Passenger> filteredPassengers;
+    private final FilteredList<Pool> filteredPools;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,7 +36,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.filteredPassengers = new FilteredList<>(this.addressBook.getPassengerList());
+        this.filteredPools = new FilteredList<>(this.addressBook.getPoolList());
     }
 
     public ModelManager() {
@@ -89,44 +92,78 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasPassenger(Passenger passenger) {
+        requireNonNull(passenger);
+        return addressBook.hasPassenger(passenger);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasPool(Pool pool) {
+        requireNonNull(pool);
+        return addressBook.hasPool(pool);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public boolean deletePassenger(Passenger passenger) {
+        return addressBook.removePassenger(passenger);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void deletePool(Pool pool) {
+        addressBook.removePool(pool);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void addPassenger(Passenger passenger) {
+        addressBook.addPassenger(passenger);
+        updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
+    }
+
+    @Override
+    public void setPassenger(Passenger target, Passenger editedPassenger) {
+        requireAllNonNull(target, editedPassenger);
+
+        addressBook.setPassenger(target, editedPassenger);
+    }
+
+    //=========== Filtered Passenger List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Passenger} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Passenger> getFilteredPassengerList() {
+        return filteredPassengers;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPassengerList(Predicate<Passenger> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredPassengers.setPredicate(predicate);
+    }
+
+    //=========== Filtered Pool List Accessors =============================================================
+
+    @Override
+    public void addPool(Pool pool) {
+        addressBook.addPool(pool);
+        updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Pool} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Pool> getFilteredPoolList() {
+        return filteredPools;
+    }
+
+    @Override
+    public void updateFilteredPoolList(Predicate<Pool> predicate) {
+        requireNonNull(predicate);
+        filteredPools.setPredicate(predicate);
     }
 
     @Override
@@ -145,7 +182,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPassengers.equals(other.filteredPassengers)
+                && filteredPools.equals(other.filteredPools);
     }
 
 }

@@ -3,18 +3,22 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.human.person.Person;
-import seedu.address.model.human.person.UniquePersonList;
+import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.person.passenger.UniquePassengerList;
+import seedu.address.model.pool.Pool;
+import seedu.address.model.pool.UniquePoolList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSamePassenger comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniquePassengerList passengers;
+    private final UniquePoolList pools;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +28,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        passengers = new UniquePassengerList();
+        pools = new UniquePoolList();
     }
 
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Passengers in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -40,11 +45,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the passenger list with {@code passengers}.
+     * {@code passengers} must not contain duplicate passengers.
      */
-    public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+    public void setPassengers(List<Passenger> passengers) {
+        this.passengers.setPassengers(passengers);
+    }
+
+    /**
+     * Replaces the contents of the pool list with {@code pool}.
+     * {@code pool} must not contain duplicate pool.
+     */
+    public void setPools(List<Pool> pool) {
+        this.pools.setPools(pool);
     }
 
     /**
@@ -53,68 +66,122 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setPassengers(newData.getPassengerList());
+        setPools(newData.getPoolList());
     }
 
-    //// person-level operations
+    //// passenger-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a passenger with the same identity as {@code passenger} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasPassenger(Passenger passenger) {
+        requireNonNull(passenger);
+        return passengers.contains(passenger);
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a passenger to the address book.
+     * The passenger must not already exist in the address book.
      */
-    public void addPerson(Person p) {
-        persons.add(p);
+    public void addPassenger(Passenger p) {
+        passengers.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given passenger {@code target} in the list with {@code editedPassenger}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The passenger identity of {@code editedPassenger} must not be the same as another existing passenger in the
+     * address book.
      */
-    public void setPerson(Person target, Person editedPerson) {
-        requireNonNull(editedPerson);
+    public void setPassenger(Passenger target, Passenger editedPassenger) {
+        requireNonNull(editedPassenger);
 
-        persons.setPerson(target, editedPerson);
+        passengers.setPassenger(target, editedPassenger);
+        pools.setPassenger(target, editedPassenger);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     * @return true if {@code key} has been removed, false if a {@code Pool} references {@code key}.
+     */
+    public boolean removePassenger(Passenger key) {
+        if (pools.containsPassenger(key)) {
+            return false;
+        }
+        passengers.remove(key);
+        return true;
+    }
+
+
+    ////Pool level operations
+
+    /**
+     * Returns true if a passenger with the same identity as {@code passenger} exists in the address book.
+     */
+    public boolean hasPool(Pool pool) {
+        requireNonNull(pool);
+        return pools.contains(pool);
+    }
+
+    /**
+     * Adds a passenger to the address book.
+     * The passenger must not already exist in the address book.
+     */
+    public void addPool(Pool p) {
+        pools.add(p);
+    }
+
+    /**
+     * Replaces the given passenger {@code target} in the list with {@code editedPassenger}.
+     * {@code target} must exist in the address book.
+     * The passenger identity of {@code editedPassenger} must not be the same as another existing passenger in the
+     * address book.
+     */
+    public void setPool(Pool target, Pool editedPool) {
+        requireNonNull(editedPool);
+
+        pools.setPool(target, editedPool);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public void removePool(Pool key) {
+        pools.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return passengers.asUnmodifiableObservableList().size() + " passengers; "
+                + pools.asUnmodifiableObservableList().size() + " pools";
         // TODO: refine later
     }
 
     @Override
-    public ObservableList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+    public ObservableList<Passenger> getPassengerList() {
+        return passengers.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Pool> getPoolList() {
+        return pools.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && passengers.equals(((AddressBook) other).passengers)
+                && pools.equals(((AddressBook) other).pools));
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return Objects.hash(passengers, pools);
     }
 }

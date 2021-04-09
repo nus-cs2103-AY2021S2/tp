@@ -13,6 +13,11 @@ public class FileUtil {
 
     private static final String CHARSET = "UTF-8";
 
+    /**
+     * Prevents FileUtil from being instantiated.
+     */
+    private FileUtil() {}
+
     public static boolean isFileExists(Path file) {
         return Files.exists(file) && Files.isRegularFile(file);
     }
