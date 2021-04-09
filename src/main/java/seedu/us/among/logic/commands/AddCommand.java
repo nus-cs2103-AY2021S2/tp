@@ -38,7 +38,7 @@ public class AddCommand extends Command {
             + "Example: "
             + MESSAGE_API_EXAMPLE;
 
-    public static final String MESSAGE_SUCCESS = "New API endpoint added: \n%1$s";
+    public static final String MESSAGE_SUCCESS = "Endpoint added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_ENDPOINT = "This API endpoint already exists in the API endpoint list";
 
     private final Endpoint toAdd;

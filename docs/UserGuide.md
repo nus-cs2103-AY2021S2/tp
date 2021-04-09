@@ -9,7 +9,7 @@ nav-text: User Guide
 </p>
 
 <h1 class="post-title">{{ page.title | escape }}</h1>
-<h3 class="post-subtitle">v1.4</h3>
+<h3 class="post-subtitle">v1.4b</h3>
 
 <div style="page-break-after: always;"></div>
 <br/>
@@ -134,17 +134,14 @@ Here are some general rules to follow when entering prefixes and parameters:
   e.g. If the user input is `help 123`, it will be interpreted as `help`.<br>
   
 * For **add**, **edit** and **run** commands, to add multiple parameters of the same prefix, add the prefix multiple times before each parameter.<br>
-  e.g. To add two tags, enter `-t tagOne -t tagTwo`.<br>
-  e.g. To add three headers, enter `-h "header: one" -h "header: two" -h "header: three"`.<br>
+  e.g. To add 2 tags, enter `-t tagOne -t tagTwo`.<br>
+  e.g. To add 3 headers, enter `-h "key1: 1" -h "key2: 2" -h "key3: 3"`.<br>
   
-* Multiple **headers/tags must be unique** and duplicates will be ignored.<br>
+* All **headers/tags must be unique** and duplicates will be ignored.<br>
   e.g. `edit 1 -t tagA -t tagA` will only create one `tagA`.
 
-* For the **URL** parameter, as our application is focused on API testing, we have no plans to direct all our efforts in
-  verifying every technically valid or invalid [**URL**](https://en.wikipedia.org/wiki/URL) against the 
-  official [URL standard](https://url.spec.whatwg.org/#url-parsing). Hence, **minimal checks** are performed 
-  for cases of **invalid URL** for which we will still display error messages.<br>
-  e.g.`abc.com\go` is an invalid URL as `\` cannot exist in a valid URL.
+* Modification of **headers/tags** is not cumulative (i.e previous values will be deleted) and if no values are given, all previous values will also be removed.<br>
+  e.g. `edit 1 -t` will delete all tags for the first endpoint in the list.
 
 * If no website [protocol](#glossary-protocol) is specified for the **URL**, we enforce a **HTTP protocol** as a 
   protocol is needed for an API request to be carried out.<br>
@@ -153,10 +150,15 @@ Here are some general rules to follow when entering prefixes and parameters:
 * The **index** parameter provided should be a **non-zero unsigned integer** within the allowed range of Java's 
   [`int`](#glossary-int) data type. On top of that, the **index** should be within the bounds of the API endpoint 
   list.<br>
-  e.g If there are three endpoints saved in the API endpoint list. The range of valid index is from 1 to 3.
+  e.g If there are 3 endpoints saved in the endpoint list. The range of valid index is 1 to 3.
+
+* For the **URL** parameter, as our application is focused on API testing, we have no plans to direct all our efforts in
+  verifying every technically valid or invalid [**URL**](https://en.wikipedia.org/wiki/URL) against the 
+  official [URL standard](https://url.spec.whatwg.org/#url-parsing). Hence, **minimal checks** are performed 
+  for cases of **invalid URL** for which we will still display error messages.<br>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-Every command explanation comes with a screenshot that shows the expected message in the application's **Result Display** (screenshot may be partial to save space!)
+Every command explanation has a screenshot to give an idea of the expected message in the application's **Result Display** (screenshot may be partial to save space!)
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -211,6 +213,11 @@ Every command explanation comes with a screenshot that shows the expected messag
   <img width="450px" src="images/commands/add.png" >
 </p>
 
+<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
+If you are only using an endpoint once, consider the convenient option of using the <span class="main-command">[run](#428-call-an-api-endpoint-directly-without-saving-run)</span> command!
+</div>
+
+<div style="page-break-after: always;"></div>
 
 #### 4.2.2 Edit an API endpoint: <span class="main-command">edit</span>
 
@@ -223,14 +230,6 @@ Every command explanation comes with a screenshot that shows the expected messag
 <p align="center">
   <img width="450px" src="images/commands/edit.png" >
 </p>
-
-<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-When editing tags/headers, the existing tags/headers of the endpoint will be removed. <br>
-i.e adding of tags/headers is not cumulative.<br>
-You may remove all the endpoint’s tags by typing `-t` without specifying any tags after it. Similarly, you may remove
-all the endpoint's headers by typing `-h` without specifying any headers after it.<br>
-For example: `edit 1 -t` will remove all existing tags for the first endpoint in the API endpoint list.
-</div>
 
 #### 4.2.3 Show an API endpoint: <span class="main-command">show</span>
 
@@ -258,53 +257,7 @@ For example: `edit 1 -t` will remove all existing tags for the first endpoint in
   <img width="450px" src="images/commands/remove.png" >
 </p>
 
-#### 4.2.5 Find a saved API endpoint: <span class="main-command">find</span>
-
-**Description (General Search):** Find endpoints containing the search word/s through all fields **(requires at least one keyword)**.
-
-**Format (General Search):** <span class="main-command">find</span> <span class="optional-param">[KEYWORD]</span>
-
-**Example & Output:** <span class="main-command">find</span> <span class="optional-param">github</span> <span class="optional-param">transport</span>
-
-<p align="center">
-  <img width="450px" src="images/commands/find.png" >
-</p>
-
-**Description (Precise Search):** Find endpoints containing the search word/s based on the [prefix](#prefix-table) **(requires at least one keyword)**
-
-**Format (Precise Search):** <span class="main-command">find</span> <span class="optional-param">-x [METHOD]</span> <span class="optional-param">-u [URL]</span> <span class="optional-param">-d [DATA]</span> <span class="optional-param">-h [HEADER]</span> <span class="optional-param">-t [TAG]</span>
-
-**Example & Output:** <span class="main-command">find</span> <span class="optional-param">-x GET</span> <span 
-class="optional-param">-u google</span>
-
-to-do tanjin update pic here (will match `GET` from the Method field **and** `google` from the URL field)
-<p align="center">
-  <img width="450px" src="images/commands/find.png" >
-</p>
-
-**Example & Output:** <span class="main-command">find</span> <span class="optional-param">-x GET POST</span> <span 
-class="optional-param">-u google</span>
-
-to-do tanjin update pic here (will match `GET OR POST` from the Method field **and** `google` from the URL field)
-<p align="center">
-  <img width="450px" src="images/commands/find.png" >
-</p>
-
-<div markdown="span" class="alert alert-warning">:bulb: **Tip:** The search is case-insensitive and the order of the keywords do not matter.<br>
-Partial Words **will** be matched. e.g. `appl` will match `Apple`<br>
-Searches with no none or a single [prefix](#prefix-table) will preform an **OR** search and all Endpoints matching either keywords will be returned.<br>
-Searches across multiple [prefixes](#prefix-table) will preform an **AND** search and only endpoints matching all keywords will be returned.
-</div>
-
-<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-`find -x GET -x POST` is not the same as `find -x GET POST`. <br>
-The first command will only search for items matching `POST` (as stated [here](#general-rules)), while the second command 
-will search for all items matching `GET` and `POST`.
-</div>
-
-<div style="page-break-after: always;"></div>
-
-#### 4.2.6 List all saved API endpoints: <span class="main-command">list</span>
+#### 4.2.5 List all saved API endpoints: <span class="main-command">list</span>
 
 **Description:** Show a list of all API endpoints in the API endpoint list. If there are no endpoints in the API 
 endpoint list, nothing will show up on the endpoint list panel.
@@ -317,7 +270,7 @@ endpoint list, nothing will show up on the endpoint list panel.
   <img width="450px" src="images/commands/list.png" >
 </p>
 
-#### 4.2.7 Clear all saved API endpoints: <span class="main-command">clear</span>
+#### 4.2.6 Clear all saved API endpoints: <span class="main-command">clear</span>
 
 **Description:** Clear all API endpoints in the API endpoint list.
 
@@ -335,19 +288,46 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
 
 <div style="page-break-after: always;"></div>
 
-#### 4.2.8 Call a saved API endpoint: <span class="main-command">send</span>
+#### 4.2.7 Find a saved API endpoint: <span class="main-command">find</span>
 
-**Description:** [Call](#glossary-call) an API endpoint from the API endpoint list **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
+**Description (General Search):** Find endpoints containing the search word/s through all fields **(requires at least one keyword)**.
 
-**Format:** <span class="main-command">send</span> <span class="compulsory-param">INDEX</span>
+**Format (General Search):** <span class="main-command">find</span> <span class="optional-param">[KEYWORD]</span>
 
-**Example & Output:** <span class="main-command">send</span> <span class="compulsory-param">1</span>
+**Example & Output:** <span class="main-command">find</span> <span class="optional-param">github</span> <span class="optional-param">transport</span>
 
 <p align="center">
-  <img width="450px" src="images/commands/send.png" >
+  <img width="450px" src="images/commands/find1.png" >
 </p>
 
-#### 4.2.9 Call an API endpoint directly without saving: <span class="main-command">run</span>
+**Description (Precise Search):** Find endpoints containing the search word(s) based on the [prefix](#prefix-table) **(requires at least one keyword)** Note the following 2 points:
+- Searches **within a single [prefix](#prefix-table)** will perform an **OR** search across the search terms and all endpoints matching either keywords will be returned.
+- Searches **across multiple [prefixes](#prefix-table)** will preform an **AND** search and only endpoints matching all keywords will be returned.
+
+**Format (Precise Search):** <span class="main-command">find</span> <span class="optional-param">-x [METHOD]</span> <span class="optional-param">-u [URL]</span> <span class="optional-param">-d [DATA]</span> <span class="optional-param">-h [HEADER]</span> <span class="optional-param">-t [TAG]</span>
+
+**Example & Output:** <span class="main-command">find</span> <span class="optional-param">-x GET</span> <span 
+class="optional-param">-u github</span> (match **GET** in Method **and** **github** in URL)
+<p align="center">
+  <img width="450px" src="images/commands/find2.png" >
+</p>
+
+**Example & Output:** <span class="main-command">find</span> <span class="optional-param">-x GET POST</span> <span 
+class="optional-param">-u reqres</span> (match **GET OR POST** in Method **and** **reqres** in URL)
+<p align="center">
+  <img width="450px" src="images/commands/find3.png" >
+</p>
+
+<div markdown="span" class="alert alert-warning">:bulb: **Tip:** The search is case-insensitive and the order of the keywords do not matter. Partial Words **will** also be matched. e.g. `appl` will match `Apple`<br>
+</div>
+
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
+<span class="main-command">find</span> <span class="optional-param">-x GET</span> <span class="optional-param">-x POST</span> is not the same as <span class="main-command">find</span> <span class="optional-param">-x GET POST</span>. The former will only search for items with method matching **POST** (as stated [here](#general-rules)) while the latter will search for all items with method matching **GET or POST**.
+</div>
+
+<div style="page-break-after: always;"></div>
+
+#### 4.2.8 Call an API endpoint directly without saving: <span class="main-command">run</span>
 
 **Description:** [Call](#glossary-call) an API endpoint directly (without saving) **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
@@ -375,6 +355,20 @@ request that does not specify any data or header **(an ongoing call can be cance
 The above shortcut for run command is designed for users to easily verify outputs for common API endpoints that 
 do not require any input data or header. Note that this feature is only meant for sending GET requests.
 </div>
+
+<div style="page-break-after: always;"></div>
+
+#### 4.2.9 Call a saved API endpoint: <span class="main-command">send</span>
+
+**Description:** [Call](#glossary-call) an API endpoint from the API endpoint list **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
+
+**Format:** <span class="main-command">send</span> <span class="compulsory-param">INDEX</span>
+
+**Example & Output:** <span class="main-command">send</span> <span class="compulsory-param">1</span>
+
+<p align="center">
+  <img width="450px" src="images/commands/send.png" >
+</p>
 
 <div style="page-break-after: always;"></div>
 

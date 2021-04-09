@@ -19,6 +19,7 @@ public class ShowCommand extends Command {
 
     public static final String COMMAND_WORD = "show";
 
+    public static final String MESSAGE_SUCCESS = "Endpoint details: \n%1$s";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the details of an existing endpoint "
             + "using its displayed index from the endpoint list.\n"
             + "Parameters: INDEX\n"
@@ -47,7 +48,7 @@ public class ShowCommand extends Command {
         }
 
         Endpoint endpointToShow = lastShownList.get(index.getZeroBased());
-        return new CommandResult(endpointToShow.toString(), endpointToShow, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, endpointToShow.toString()), endpointToShow, false);
     }
 
 

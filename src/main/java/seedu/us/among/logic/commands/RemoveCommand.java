@@ -24,7 +24,7 @@ public class RemoveCommand extends Command {
             + "Use the help command for more information.\n\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_REMOVE_ENDPOINT_SUCCESS = "Remove endpoint: %1$s";
+    public static final String MESSAGE_REMOVE_ENDPOINT_SUCCESS = "Endpoint removed: \n%1$s";
 
     private final Index targetIndex;
 

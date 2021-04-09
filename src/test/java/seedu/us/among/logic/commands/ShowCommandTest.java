@@ -57,7 +57,8 @@ public class ShowCommandTest {
     @Test
     public void execute_validEndpointIndex_success() throws CommandException {
         ShowCommand showCommand = new ShowCommand(Index.fromZeroBased(0));
-        assertEquals(model.getEndpointList().getEndpointList().get(0).toString(),
+        assertEquals(String.format(ShowCommand.MESSAGE_SUCCESS,
+                model.getEndpointList().getEndpointList().get(0).toString()),
                 showCommand.execute(model).getFeedbackToUser());
     }
 
