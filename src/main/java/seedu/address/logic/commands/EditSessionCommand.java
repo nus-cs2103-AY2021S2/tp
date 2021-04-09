@@ -26,7 +26,7 @@ import seedu.address.model.tag.Tag;
 
 public class EditSessionCommand extends Command {
     /**
-    * Edits the details of an existing person in the address book.
+    * Edits the details of an existing session in EZManage.
     */
     public static final String COMMAND_WORD = "edit_session";
 
@@ -42,7 +42,7 @@ public class EditSessionCommand extends Command {
             + PREFIX_DAY + "MONDAY "
             + PREFIX_SUBJECT + "Biology";
 
-    public static final String MESSAGE_EDIT_SESSION_SUCCESS = "Edited Session: %1$s";
+    public static final String MESSAGE_EDIT_SESSION_SUCCESS = "Edited Session: ";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final SessionId sessionId;
@@ -79,7 +79,8 @@ public class EditSessionCommand extends Command {
             Session editedSession = createEditedSession(sessionToEdit, editSessionDescriptor);
             model.setSession(sessionToEdit, editedSession);
             model.updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
-            return new CommandResult(String.format(MESSAGE_EDIT_SESSION_SUCCESS, editedSession));
+            return new CommandResult(MESSAGE_EDIT_SESSION_SUCCESS + String.format(Messages
+                                .MESSAGE_SESSION_PLACEHOLDER, editedSession));
         } else {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }
@@ -88,7 +89,7 @@ public class EditSessionCommand extends Command {
 
     /**
      * Checks if session to be edited has existing tutor assigned or students assigned.
-     * Only checks if session day or timeslot is to be edited.
+     * Method only used if either session's day or timeslot is to be edited.
      */
 
     private static boolean emptySession(Optional<Session> sessionToEdit) {
@@ -103,8 +104,8 @@ public class EditSessionCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Session} with the details of {@code sessionToEdit}
+     * edited with {@code editSessionDescriptor}.
      */
     private static Session createEditedSession(Session sessionToEdit, EditSessionDescriptor editSessionDescriptor) {
         assert sessionToEdit != null;
@@ -140,8 +141,8 @@ public class EditSessionCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the session with. Each non-empty field value will replace the
+     * corresponding field value of the session. All fields can be edited except the session ID.
      */
     public static class EditSessionDescriptor {
         private Day day;

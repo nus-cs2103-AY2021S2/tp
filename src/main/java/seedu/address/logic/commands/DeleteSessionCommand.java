@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SESSIONS;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,7 @@ public class DeleteSessionCommand extends Command {
             + "Parameters: C/ID (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " c/1";
 
-    public static final String MESSAGE_DELETE_SESSION_SUCCESS = "Deleted Session: %1$s";
+    public static final String MESSAGE_DELETE_SESSION_SUCCESS = "Deleted Session: ";
 
     private final SessionId targetClassId;
 
@@ -41,12 +42,18 @@ public class DeleteSessionCommand extends Command {
         Optional<Session> sessionToDelete = lastShownList.stream()
                 .filter(x-> x.getClassId().equals(targetClassId)).findAny();
 
-        if (sessionToDelete.isPresent()) {
-            model.deleteSession(sessionToDelete.get());
-            return new CommandResult(String.format(MESSAGE_DELETE_SESSION_SUCCESS, sessionToDelete.get()));
-        } else {
+        if (!sessionToDelete.isPresent()) {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }
+
+        if (sessionToDelete.get().hasTutor() || sessionToDelete.get().hasStudent()) {
+            throw new CommandException(Messages.MESSAGE_CANNOT_DELETE_SESSION);
+        }
+
+        model.deleteSession(sessionToDelete.get());
+        model.updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+        return new CommandResult(MESSAGE_DELETE_SESSION_SUCCESS + String.format(Messages
+                .MESSAGE_SESSION_PLACEHOLDER, sessionToDelete.get()));
 
     }
 

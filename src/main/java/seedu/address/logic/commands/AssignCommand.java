@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTOR_ID;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -32,7 +33,7 @@ public class AssignCommand extends Command {
             + PREFIX_TUTOR_ID + "2 "
             + PREFIX_CLASS_ID + "1 ";
 
-    public static final String MESSAGE_SUCCESS = "New assignment added: %1$s";
+    public static final String MESSAGE_SUCCESS = "Assign: %1$s";
     public static final String MESSAGE_TIMESLOT_CLASH = "Timeslot clash! Cannot assign: %1$s to %2$s";
     public static final String MESSAGE_ALREADY_ASSIGNED = "%1$s is already assigned to %2$s";
     public static final String MESSAGE_SESSION_HAS_TUTOR = "Cannot assign! %1$s already has tutor %2$s";
@@ -170,6 +171,7 @@ public class AssignCommand extends Command {
         }
 
         assignStudents(students, session);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, assignment));
     }
 
