@@ -26,13 +26,14 @@ public class CheckCommandParserTest {
 
     @Test
     public void parse_invalidAnswer_failure() {
-        assertParseFailure(parser, INVALID_ANSWER_SYMBOL, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, INVALID_ANSWER_SYMBOL, Answer.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_validArgs_returnCheckCommand() {
         Answer validAnswer = new Answer(VALID_ANSWER_A);
         Answer validAnswerCaps = new Answer(VALID_ANSWER_CAPS);
+        
         assertParseSuccess(parser, VALID_ANSWER_A, new CheckCommand(validAnswer));
         assertParseSuccess(parser, VALID_ANSWER_CAPS, new CheckCommand(validAnswerCaps));
 
