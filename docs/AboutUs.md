@@ -9,52 +9,52 @@ You can reach us at the email `jjimy@comp.nus.edu.sg`
 
 ## Project team
 
-### Ian Chan Kit Wai
-
-<img src="images/ianckw.png" width="200px">
-
-[[github](http://github.com/IanCKW)]
-[[portfolio](team/ian.md)]
-
-* Role: Team Lead
-* In Charge of: Food Orders
-
 ### James Lee Hong Thern
 
 <img src="images/jamesleeht.png" width="200px">
 
 [[github](https://github.com/jamesleeht)]
-[[portfolio](team/james.md)]
+[[portfolio](team/jamesleeht.md)]
+
+* Role: Team Lead
+* Responsibility: Class Models
+
+### Ian Chan Kit Wai
+
+<img src="images/ianckw.png" width="200px">
+
+[[github](http://github.com/IanCKW)]
+[[portfolio](team/IanCKW.md)]
 
 * Role: Testing
-* In Charge of: Food Inventory
+* Responsibility: Commands
 
 ### Guan Yang Ze
 
 <img src="images/guanyz.png" width="200px">
 
 [[github](http://github.com/guanyz)]
-[[portfolio](team/yangze.md)]
+[[portfolio](team/guanyz.md)]
 
 * Role: Documentation
-* In Charge of: Shopping List
+* Responsibility: Commands
 
 ### Lee Kang Ting Marcus
 
 <img src="images/kangtinglee.png" width="200px">
 
 [[github](http://github.com/kangtinglee)]
-[[portfolio](team/marcus.md)]
+[[portfolio](team/kangtinglee.md)]
 
 * Role: Integration
-* In Charge of: Contact
+* Responsibility: Commands
 
 ### Kong Jian Wei
 
 <img src="images/sharptail.png" width="200px">
 
 [[github](http://github.com/Sharptail)]
-[[portfolio](team/jianwei.md)]
+[[portfolio](team/Sharptail.md)]
 
 * Role: Code Quality
-* In Charge of: Menu
+* Responsibility: GUI and Parsers
