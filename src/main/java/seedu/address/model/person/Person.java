@@ -37,7 +37,7 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.remark = new Remark("No remark");
+        this.remark = new Remark(Remark.DEFAULT_REMARK);
         this.modeOfContact = modeOfContact;
         this.blacklist = blacklist;
         this.tags.addAll(tags);
@@ -121,7 +121,10 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getAddress().equals(getAddress());
     }
 
     /**

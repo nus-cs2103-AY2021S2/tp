@@ -30,7 +30,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
-    private String CurrentCss;
+    private String currentCss;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -67,7 +67,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the Style Sheet
         setCss(logic.getCssSettings());
-        this.CurrentCss = logic.getCssSettings().getCssSettings();
+        this.currentCss = logic.getCssSettings().getCssSettings();
 
         setAccelerators();
 
@@ -164,7 +164,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleLightChange() {
         loadFxmlFile(getFxmlFileUrl("MainWindowLight.fxml"), primaryStage);
-        this.CurrentCss = "MainWindowLight.fxml";
+        this.currentCss = "MainWindowLight.fxml";
         fillInnerParts();
     }
 
@@ -180,7 +180,7 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
-        CssSettings cssSettings = new CssSettings(this.CurrentCss);
+        CssSettings cssSettings = new CssSettings(this.currentCss);
         logic.setCssSettings(cssSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -192,7 +192,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleDarkChange() {
         loadFxmlFile(getFxmlFileUrl("MainWindow.fxml"), primaryStage);
-        this.CurrentCss = "MainWindow.fxml";
+        this.currentCss = "MainWindow.fxml";
         fillInnerParts();
 
     }

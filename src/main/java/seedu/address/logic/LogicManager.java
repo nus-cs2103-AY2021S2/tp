@@ -54,8 +54,8 @@ public class LogicManager implements Logic {
         try {
             storage.saveAddressBook(model.getAddressBook());
             AddressBook abCopy = new AddressBook(model.getAddressBook());
-            if (!abCopy.equals(state.getCurrentState()) || commandText.startsWith("sort")) {
-                state.addState(abCopy);
+            if (!abCopy.equals(state.getCurrentAddressBook()) || commandText.startsWith("sort")) {
+                state.addState(abCopy, commandText);
             }
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);

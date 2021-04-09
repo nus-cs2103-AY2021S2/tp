@@ -77,14 +77,22 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /**
+     * Deletes all contacts within the specified index range (inclusive).
+     */
+    void massDelete(int startIndex, int endIndex);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
+     * Blacklists all unblacklisted contacts within the specified index range (inclusive).
+     * If the contact is already blacklisted, then no change will occur.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void massBlacklist(int startIndex, int endIndex);
+
+    /**
+     * Unblacklists all blacklisted contacts within the specified index range (inclusive).
+     * If the contact is already unblacklisted, then no change will occur.
+     */
+    void massUnblacklist(int startIndex, int endIndex);
 
     /**
      * Sorts the contact in the address book by name in alphabetical order.
@@ -94,21 +102,14 @@ public interface Model {
      */
     void sortByName(boolean isAscending);
 
-    /**
-     * Toggles the blacklist status of the given person {@code target}.
-     * {@code target} must exist in the address book.
-     */
-    void toggleBlacklist(Person target);
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Blacklists the given person.
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
      */
-    void blacklistPerson(Person target);
-
-    /**
-     * Unblacklists the given person.
-     */
-    void unblacklistPerson(Person target);
+    void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
      * Sets the user prefs' CSS settings.
