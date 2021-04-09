@@ -27,9 +27,9 @@ public interface Logic {
     /**
      * Returns the TaskifyParser.
      *
-     * @see seedu.taskify.model.Model#getAddressBook()
+     * @see seedu.taskify.model.Model#getTaskify()
      */
-    ReadOnlyTaskify getAddressBook();
+    ReadOnlyTaskify getTaskify();
 
     /**
      * Returns an unmodifiable view of the filtered list of tasks
@@ -46,9 +46,9 @@ public interface Logic {
 
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' Taskify file path.
      */
-    Path getAddressBookFilePath();
+    Path getTaskifyFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

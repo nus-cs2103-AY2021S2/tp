@@ -15,7 +15,7 @@ import static seedu.taskify.testutil.TypicalTasks.TASK_1;
 import static seedu.taskify.testutil.TypicalTasks.TASK_2;
 import static seedu.taskify.testutil.TypicalTasks.TASK_3;
 import static seedu.taskify.testutil.TypicalTasks.TASK_5;
-import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.taskify.testutil.TypicalTasks.getTypicalTaskify;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ public class DeleteMultipleCommandTest {
     private static final String MESSAGE_DELETE_COMPLETED_TASKS_SUCCESS =
             "Deleted Tasks: \n" + TASK_3.toString() + "\n\n" + TASK_5.toString() + "\n\n";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTaskify(), new UserPrefs());
 
 
     private List<Task> getTasksByIndexes(List<Index> indexes) {
@@ -80,7 +80,7 @@ public class DeleteMultipleCommandTest {
 
         String expectedMessage = MESSAGE_DELETE_FIRST_TO_THIRD_TASK_SUCCESS;
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getTaskify(), new UserPrefs());
         deleteTasksFromModel(expectedModel, tasksToDelete);
 
         assertCommandSuccess(deleteMulCommand, model, expectedMessage, expectedModel);
@@ -108,7 +108,7 @@ public class DeleteMultipleCommandTest {
 
         String expectedMessage = MESSAGE_DELETE_FIRST_TO_THIRD_TASK_SUCCESS;
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTaskify(), new UserPrefs());
         deleteTasksFromModel(expectedModel, tasksToDelete);
         showNoTask(expectedModel);
 
@@ -121,7 +121,7 @@ public class DeleteMultipleCommandTest {
 
         Index outOfBoundIndex = Index.fromOneBased(4);
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTaskList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskify().getTaskList().size());
         List<Index> indexes = new ArrayList<>(INDEXES_FIRST_TO_THIRD_TASK);
         indexes.add(outOfBoundIndex);
         DeleteMultipleCommand deleteMulCommand = new DeleteMultipleCommand(indexes);
@@ -138,7 +138,7 @@ public class DeleteMultipleCommandTest {
 
         DeleteMultipleCommand deleteMulCommand = new DeleteMultipleCommand(new Status(StatusType.COMPLETED));
         String expectedMessage = MESSAGE_DELETE_COMPLETED_TASKS_SUCCESS;
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getTaskify(), new UserPrefs());
         deleteTasksFromModel(expectedModel, tasksToDelete);
 
         assertCommandSuccess(deleteMulCommand, model, expectedMessage, expectedModel);

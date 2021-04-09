@@ -1,7 +1,7 @@
 package seedu.taskify.logic.commands;
 
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.taskify.testutil.TypicalTasks.getTypicalTaskify;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ import seedu.taskify.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyTaskify_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -21,10 +21,10 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setAddressBook(new Taskify());
+    public void execute_nonEmptyTaskify_success() {
+        Model model = new ModelManager(getTypicalTaskify(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalTaskify(), new UserPrefs());
+        expectedModel.setTaskifyData(new Taskify());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

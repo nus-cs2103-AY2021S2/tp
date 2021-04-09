@@ -8,7 +8,7 @@ import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taskify.testutil.TypicalTasks.TASK_1;
 import static seedu.taskify.testutil.TypicalTasks.TASK_2;
 import static seedu.taskify.testutil.TypicalTasks.TASK_3;
-import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
+import static seedu.taskify.testutil.TypicalTasks.getTypicalTaskify;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +24,8 @@ import seedu.taskify.model.task.predicates.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTaskify(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTaskify(), new UserPrefs());
 
     @Test
     public void equals() {

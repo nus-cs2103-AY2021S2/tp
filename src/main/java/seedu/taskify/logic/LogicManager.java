@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveTaskifyData(model.getTaskify());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,8 +55,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyTaskify getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyTaskify getTaskify() {
+        return model.getTaskify();
     }
 
     @Override
@@ -85,8 +85,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getTaskifyFilePath() {
+        return model.getTaskifyFilePath();
     }
 
     @Override

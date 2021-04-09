@@ -26,7 +26,7 @@ public class JsonSerializableTaskifyParserTest {
         JsonSerializableTaskify dataFromFile = JsonUtil.readJsonFile(TYPICAL_TASKS_FILE,
                 JsonSerializableTaskify.class).get();
         Taskify taskifyFromFile = dataFromFile.toModelType();
-        Taskify typicalTasksTaskify = TypicalTasks.getTypicalAddressBook();
+        Taskify typicalTasksTaskify = TypicalTasks.getTypicalTaskify();
         assertEquals(taskifyFromFile, typicalTasksTaskify);
     }
 

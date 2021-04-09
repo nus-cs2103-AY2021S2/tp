@@ -71,7 +71,7 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonTaskifyIoExceptionThrowingStub
         JsonTaskifyStorage taskifyStorage =
-                new JsonTaskifyIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+                new JsonTaskifyIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionTaskify.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(taskifyStorage, userPrefsStorage);
@@ -132,7 +132,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTaskify(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -159,7 +159,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyTaskify taskify, Path filePath) throws IOException {
+        public void saveTaskifyData(ReadOnlyTaskify taskify, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

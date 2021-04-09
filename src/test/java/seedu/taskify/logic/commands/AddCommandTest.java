@@ -101,12 +101,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getTaskifyFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path taskifyFilePath) {
+        public void setTaskifyFilePath(Path taskifyFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -116,12 +116,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyTaskify newData) {
+        public void setTaskifyData(ReadOnlyTaskify newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyTaskify getAddressBook() {
+        public ReadOnlyTaskify getTaskify() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -233,7 +233,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyTaskify getAddressBook() {
+        public ReadOnlyTaskify getTaskify() {
             return new Taskify();
         }
     }

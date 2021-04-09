@@ -4,7 +4,7 @@ import seedu.taskify.model.Taskify;
 import seedu.taskify.model.task.Task;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building Taskify objects.
  * Example usage: <br>
  * {@code TaskifyParser ab = new TaskifyBuilder().withTask("John", "Doe").build();}
  */
