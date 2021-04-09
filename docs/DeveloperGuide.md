@@ -1,5 +1,6 @@
 ---
-layout: page title: Developer Guide
+layout: page
+title: Developer Guide
 ---
 
 * Table of Contents {:toc}
@@ -767,6 +768,6 @@ person on the list is born before 12-12-2020.
     
     4. Delete `some_theme.json`.
     
-    4. Relaunch the application. Observe that the the default theme is applied to the application.
+    4. Relaunch the application. Observe that the default theme is applied to the application.
 
 ### Viewing different details panel: `view`
