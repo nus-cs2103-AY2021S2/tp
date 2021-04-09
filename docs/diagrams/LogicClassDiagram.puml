@@ -43,7 +43,6 @@ LogicManager -->"1" DictionoteParser
 DictionoteParser .left.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
-XYZCommandParser ..|> Parser
 XYZCommandParser .left.|> Parser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
