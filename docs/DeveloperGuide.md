@@ -594,7 +594,10 @@ The sequence diagram for `DeleteEventCommand` can be found below.
 **Implementation of EditEventCommand**  
 The following is a detailed explanation on how EditEventCommand is implemented.
 
-**Step 1**: User executes `Edit_event Index` command to Edit the event at the given index.
+The `edit_event` feature was implemented with a static class `EditEventDescriptor` introduced.
+<img src="images/EditEventCommandClassDiagram.png" width="550" />
+
+**Step 1**: User executes `edit_event Index` command to Edit the event at the given index.
 An `EditEventParser` object is created, and the `EditEventParser#parse(String args)` method is called.
 The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
 An `EditEventDescriptor` object is created, and it contains all the field an Event needed. 
@@ -613,6 +616,11 @@ The UI will also update as the underlying event list has been modified.
 The sequence diagram for `EditEventCommand` can be found below.
 
 ![Sequence Diagram of EditEvent Command](images/EditEventCommandSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes a EditEventCommand:
+(For brevity, "Show error" actions are omitted.)
+
+<img src="images/EditEventCommandActivityDiagram.png" width="250" />
 
 [Return to Table of Contents](#table-of-contents)  
 
@@ -1172,6 +1180,86 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+
+### Clearing completed tasks
+
+1. Clearing completed tasks
+
+   1. Test case: `clear_completed_task`<br>
+      Expected: Tasks marked as done are cleared from the list. Success message `Completed tasks (if any) have been cleared!` 
+      will always be shown in the status message, regardless of whether there is any completed task or not.   
+
+
+### Clearing expired tasks
+
+1. Clearing expired tasks
+
+   1. Test case: `clear_expired_task`<br>
+      Expected: Tasks with past deadlines are cleared from the list. Success message `Expired tasks (if any) have been cleared!` 
+      will always be shown in the status message, regardless of whether there is any expired task or not. 
+
+      
+
+### Adding an event
+
+1. Adding an event
+
+    1. Prerequisites: No duplicates events with the same ISBN exists.
+    
+    1. Test case: `add_event n/CS2103 meeting sd/2022-05-27 st/15:00 ed/2022-05-27 et/17:00`
+           Expected: Event successfully added, detailed information shown in the status bar.
+           
+    1. Test case: `add_event n/1 Year Anniversary sd/2021-03-14 st/08:00 ed/2022-03-17 et/21:00`
+                  Expected: Event successfully added, detailed information shown in the status bar.
+                  
+    1. Test case: `add_event n/Inter College Game sd/2000-03-23 st/12:00 ed/2000-03-23 et/14:00`
+                  Expected: No event is deleted, since end date time is past. Detailed error message shown in the status bar.              
+                  
+    1. Other incorrect commands to try: `add_event`, `add_event n/Meeting 1`, etc.
+    
+### Deleting an event
+
+1. Deleting an event 
+
+   1. Prerequisites: List all events using the `list` command. At least one event in the list.
+
+   1. Test case: `delete_event 1`<br>
+      Expected: First event is deleted from the list. Details of the deleted event shown in the status message.
+
+   1. Test case: `delete_event 50` (50 is larger than the list size) <br> 
+      Expected: No event is deleted. Error message `The event index provided is invalid.` shown in the status message.
+      
+   1. Test case: `delete_event -1`<br> 
+      Expected: No event is deleted. Error message `Index should be an integer greater then 0.` shown in the status message.
+
+   1. Other incorrect delete commands to try: `delete_event`, `delete_event x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+      
+      
+### Editing an event
+
+1. Editing an event
+
+    1. Prerequisites: There are events in the list.
+
+    1. Test case: `edit_event 1 t/`
+       Expected: Clearing all the tags of the first event in the list. 
+           
+    1. Test case: `edit_event 1 n/editedEventName`
+       Expected: The name of the first event in the list is changed to `editedEventName`.
+               
+    1. Other incorrect commands to try: `edit_event`, `edit_event n/editedEventName`, etc.
+
+
+### Clearing expired events
+
+1. Clearing expired events
+
+   1. Test case: `clear_expired_event`<br>
+      Expected: Events with past end date time are cleared from the list. Success message `Expired events (if any) have been cleared!` 
+      will always be shown in the status message, regardless of whether there is any expired event or not.
+      
 
 ### A8. Saving data
 

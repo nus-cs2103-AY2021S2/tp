@@ -413,6 +413,8 @@ Examples:
 Clear tasks marked as completed from the task list.
 
 Format: `clear_completed_task`
+* If there's no completed task in the list (or even no any task in the list), this command is still able to be executed
+and return success message `Completed tasks (if any) have been cleared!` (In this case, no task is cleared since no task is completed.)
 
 #### Illustration of usage of `clear_completed_task`:
 ![Example of usage of `clear_completed_task`](images/ClearCompletedTaskUsage.png)
@@ -426,6 +428,8 @@ Clear tasks with past deadlines from the task list.
 Format: `clear_expired_task`
 * For a task to be considered expired, the task should have past deadline compare to the local date on the user's computer, 
 hence changing of date on a computer could affect the judgement of expiration.
+* If there's no expired task in the list (or even no any task in the list), this command is still able to be executed
+and return success message `Expired tasks (if any) have been cleared!` (In this case, no task is cleared since no task is expired.)
 
 #### Illustration of usage of `clear_expired_task`:
 ![Example of usage of `clear_expired_task`](images/ClearExpiredTaskUsage.png)
@@ -536,6 +540,8 @@ Clears events with past end date time from the event list.
 Format: `clear_expired_event`
 * For an event to be considered expired, the event should have past end date time compare to the local time on the user's computer, 
 hence changing of timing on a computer could affect the judgement of expiration.
+* If there's no expired event in the list (or even no any event in the list), this command is still able to be executed
+and return success message `Expired events (if any) have been cleared!` (In this case, no event is cleared since no event is expired.)
 
 #### Illustration of usage of `clear_expired_event`:
 ![Example of usage of `clear_expired_event`](images/ClearExpiredEventUsage.png)
