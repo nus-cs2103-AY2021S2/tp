@@ -257,6 +257,9 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            if (e.getMessage().startsWith("The student name ")) {
+                commandBox.setWaitForNextInput(true);
+            }
             if (e.getMessage().startsWith("You have a lesson at ")) {
                 commandBox.setWaitForNextInput(true);
             }
