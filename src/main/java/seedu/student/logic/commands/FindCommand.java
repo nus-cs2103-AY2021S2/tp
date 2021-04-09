@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.logging.Logger;
 
 import seedu.student.commons.core.LogsCenter;
-import seedu.student.commons.core.Messages;
 import seedu.student.model.Model;
 import seedu.student.model.ModelManager;
 import seedu.student.model.appointment.AppointmentContainsMatriculationNumberPredicate;

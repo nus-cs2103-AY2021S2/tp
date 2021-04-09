@@ -6,7 +6,6 @@ import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENT_LISTS;
 
 import java.util.function.Predicate;
 
-import seedu.student.commons.core.Messages;
 import seedu.student.model.Model;
 import seedu.student.model.student.Faculty;
 import seedu.student.model.student.SchoolResidence;
@@ -24,7 +23,6 @@ public class FilterCommand extends Command {
     private static String vaccinationStatus = VaccinationStatus.getStringVaccinationStatus();
     private static String faculties = Faculty.getStringFaculties();
     private static String residences = SchoolResidence.getStringResidences();
-    private String input;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Displays the list of student of the requested entity: \n"
@@ -36,7 +34,7 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_STUDENTS_ARE_LISTED = "All %s students listed.";
     public static final String MESSAGE_NO_STUDENTS_ARE_LISTED = "No %s students exist in VAX@NUS's record.";
-
+    private String input;
 
     private final Predicate<Student> predicate;
 
@@ -52,7 +50,7 @@ public class FilterCommand extends Command {
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT_LISTS, PREDICATE_SHOW_ALL_APPOINTMENTS);
         if (model.getFilteredStudentList().size() == 0) {
             return new CommandResult(
-                    String.format(MESSAGE_NO_STUDENTS_ARE_LISTED,input, model.getFilteredStudentList().size()));
+                    String.format(MESSAGE_NO_STUDENTS_ARE_LISTED, input, model.getFilteredStudentList().size()));
         } else {
             return new CommandResult(
                     String.format(MESSAGE_STUDENTS_ARE_LISTED, input, model.getFilteredStudentList().size()));
