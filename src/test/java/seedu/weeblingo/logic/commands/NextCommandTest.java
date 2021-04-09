@@ -23,10 +23,9 @@ import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.score.Score;
 import seedu.weeblingo.model.tag.Tag;
+import javafx.collections.ObservableList;
 import seedu.weeblingo.testutil.FlashcardBuilder;
 import seedu.weeblingo.testutil.QuizBuilder;
-
-import javafx.collections.ObservableList;
 
 public class NextCommandTest {
 

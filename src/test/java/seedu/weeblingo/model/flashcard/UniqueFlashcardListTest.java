@@ -4,13 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_A;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_I;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_EASY;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_A;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_I;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_A;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_I;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_GOJUON;
-
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_EASY;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
 import static seedu.weeblingo.testutil.TypicalFlashcards.A_CARD;
 import static seedu.weeblingo.testutil.TypicalFlashcards.I_CARD;
@@ -166,13 +165,13 @@ public class UniqueFlashcardListTest {
     @Test
     public void setFlashcards_listWithDuplicateFlashcards_throwsDuplicateFlashcardException() {
         List<Flashcard> listWithDuplicateFlashcards = Arrays.asList(A_CARD, A_CARD);
-        assertThrows(DuplicateFlashcardException.class, () -> uniqueFlashcardList
-        .setFlashcards(listWithDuplicateFlashcards));
+        assertThrows(DuplicateFlashcardException.class, ()
+            -> uniqueFlashcardList.setFlashcards(listWithDuplicateFlashcards));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueFlashcardList.asUnmodifiableObservableList().remove(0));
+            -> uniqueFlashcardList.asUnmodifiableObservableList().remove(0));
     }
 }

@@ -22,9 +22,8 @@ import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.score.Score;
 import seedu.weeblingo.model.tag.Tag;
-import seedu.weeblingo.testutil.FlashcardBuilder;
-
 import javafx.collections.ObservableList;
+import seedu.weeblingo.testutil.FlashcardBuilder;
 
 public class CheckCommandTest {
 
