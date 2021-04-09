@@ -605,12 +605,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | confused user | have a help command | learn how to use the application |
 | `* * *` | user | add issues | track associated issues with rooms and their status|
 | `* * *` | user | see a list of pending issues sorted by deadline | prioritise which issue to work on |
-| `* * *` | user | search for issues | find a specific task and get its information or tasks matching a specific criteria|
+| `* * *` | user | search for issues | find a specific issue and get its information|
+| `* * *` | user | search for issues | find issues matching a specific criteria|
 | `* * *` | user | close issues | focus on open issues |
 | `* * *` | user | update issues | ensure it has the latest and correct information |
 | `* * *` | user | remove issues | not worry about issues that are no longer relevant |
 | `* * *` | user | add residents | track and manage residents who are staying or want to stay in the hostel |
-| `* * *` | user | search for residents | find a specific resident's information or residents matching a specific criteria |
+| `* * *` | user | search for residents | find a specific resident's information |
 | `* * *` | user | update resident details | ensure their information is up to date |
 | `* * *` | user | remove residents | stop tracking residents who are not in the hostel or don't wish to stay anymore |
 | `* * *` | user | add new rooms | track and manage rooms in the hostel|
