@@ -209,6 +209,8 @@ This section describes some noteworthy details on how [Sochedule](#41-sochedule)
 
 #### 4.1.1 Overview
 
+
+
 #### 4.1.2 Implementation
 
 **Implementation of ClearCommand**  
