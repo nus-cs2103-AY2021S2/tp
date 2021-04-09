@@ -123,7 +123,7 @@ The Streaks dashboard shows how consistent you are in meeting your friends up ti
 
 #### Full Details of a Person
 As a person in the FriendDex can contain a lot of information, not all of it is displayed in the main list of persons.
-Upon execution of the `details` command, FriendDex will display the full details of the specified person on the details panel. See [Details Command](l#viewing-full-details--details) for more details.
+Upon execution of the `details` command, FriendDex will display the full details of the specified person on the details panel. See [Details Command](#viewing-full-details--details) for more details.
 
 ### Autocomplete
 

@@ -550,7 +550,7 @@ The first person on the list has at least one date.
 1. Deleting a date from an existing person
 
    1. Test case: `del-date 1 i/1` <br>
-      Expected: Date is deleted from the first contact. A success message is shown in the status message.
+      Expected: The first contact's first date is deleted. A success message is shown in the status message.
 
    2. Test case: `del-date 0 i/1` (Invalid index) <br>
       Expected: No date is deleted. Error details shown in the status message.

@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
@@ -9,8 +11,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonEvent;
 import seedu.address.model.person.PersonStreak;
-
-import java.util.logging.Logger;
 
 public class DetailsPanel extends UiPart<Region> {
 
