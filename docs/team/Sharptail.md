@@ -49,24 +49,24 @@ Given below are my contributions to the project.
     the `-f` flag to the Parser.
       
 * **Enhancements to existing features**:
-    * Personalised the GUI color scheme for JJIMY (Pull requests [\#123]())
+    * Personalised the GUI color scheme for JJIMY (Pull requests [\#123](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/123))
     
 * **Documentation**:
     * General:
-        * Complete overhaul of the User Guide and Developer Guide Design (Pull requests [\#150]())
+        * Complete overhaul of the User Guide and Developer Guide Design (Pull requests [\#150](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/150))
             * Drop-down
             * Dark mode
             * Color code commands from different components
     * User Guide:
-        * Added the documentation for feature `Help` and `Exit`. (Pull requests [\#144]())
-        * Fixed the documentation for the multiple features (Pull requests [\#224]())
+        * Added the documentation for feature `Help` and `Exit`. (Pull requests [\#144](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/144))
+        * Fixed the documentation for the multiple features (Pull requests [\#224](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/224))
             *  Standardised the parameter of command format. 
             *  Updated `order add`, `order find`, `order edit`, `menu add`, `menu edit` formatting.
             *  Added 't' tag to customer add format
             *  Added '-f' explanation for both menu delete and inventory delete
             *  Added '-a' explanation for menu list
     * Developer Guide:
-        * Added implementation details of the different `component` parser (Pull requests [\#87]())
+        * Added implementation details of the different `component` parser (Pull requests [\#87](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/87))
     
 * **Team-Based Task**:
     * Setting up the GitHub team organisation and repository.
@@ -77,5 +77,5 @@ Given below are my contributions to the project.
     * Created the template for Project Portfolio Page for the team and linked it with About Us page.
 
 * **Review/mentoring contributions**:
-    * PRs reviewed (with non-trivial review comments): [\#111]()
+    * PRs reviewed (with non-trivial review comments): [\#111](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/111)
     
