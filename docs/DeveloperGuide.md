@@ -149,22 +149,111 @@ Classes used by multiple components are in the `seedu.iscam.storage` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Client Features
+The Client family of features consist of the following features: Add Client, Edit Client, List Clients, 
+Find Clients by Name, Find Clients by Insurance Plan and Delete Client.
+
 #### Client Class
-#### Add Client
-
-### Meeting Features
-The Meeting family of features consist of the following features: Add Meeting, Edit Meeting, List Meeting, Find Meeting,
-Reschedule Meeting, Relocate Meeting, Complete Meeting and Delete Meeting.
-
-#### Meeting Class
-The Meeting class consists of 6 fields, each of the fields represented by own respective classes. Within those classes, 
-they have their own methods to verify their respective inputs and display error message when the given input is invalid.
-This allows the fields to have a low degree of coupling and we can change how the fields are verified without affecting
-other classes in the App. Additionally, the Meeting class can be expanded to contain more fields without affecting the 
-existing fields as well.
+The Client class consists of 7 fields, each of the fields represented by its own representative classes. Within those classes,
+methods are provided to verify their respective inputs and display error message when the given input is invalid.
+This allows the fields to have a low degree of coupling, and we can change how the fields are verifield without affecting
+other classes in the App. Additionally, the Client class can be expanded to contain more fields without affecting the
+existing features.
 
 Fields
-* `ClientName` - Name of the client involved 
+* `Name` - The client's name.
+* `Phone` - The client's phone number.
+* `Email` - The client's email address.
+* `InsurancePlans` - Insurance Plans the client currently holds.
+  * A client may have no Insurance Plans.
+* `Location` - The client's preferred meeting location.
+* `Tags` - Tags associated with the client.
+* `ImageRes` - Image of the client.
+  * If no image is provided, a default image will be provided by the App.
+
+The `Client` objects are stored in a `UniqueClientList` within `ClientBook`.
+
+#### Add Client
+This section will detail the implementation of the Add Client feature via the `add` command.
+
+##### Overview of Add Client Process
+The `AddCommand` is executed through entering `add`, followed by valid parameters of the client's name,
+phone number, email, preferred meeting location, as well as his/her insurance plans, tags and image, if needed.
+The entire command string will be parsed to extract the parameters that were inputted, and if all inputs are valid,
+a Client object is constructed which is then added to the Model and saved to the local storage. Upon successful adding,
+a feedback message is displayed to the user.
+
+##### AddCommand
+`AddCommand` is inherited from the `Command` class and overrides its `execute()` method to initiate the
+creation of a client, addition to the model and saving to the local storage. Through the inheritance from `Command`, the
+`Logic` component can deal with `AddCommand` as if it is just a `Command` through polymorphism, further reducing
+coupling.
+
+##### Detailed Execution Pathway
+The diagram below details how the user's command to add a meeting propagates through the system to eventually add a
+meeting.
+
+#### Find Client by Name
+This section will detail the implementation of the Find Client by Name feature via the `find` command.
+
+##### Overview of Find Client by Name Process
+The `FindCommand` is executed through entering `find` followed by full keywords to return a filtered list
+to be displayed by the UI. The entire command string will be parsed to extract the keywords that were inputted and
+form a predicate that requires a client to match all the keywords in order to pass. This predicate is then used to
+filter the meeting list in the model and display the filtered list onto the UI. Upon successful filtering, a success
+message is displayed to the user.
+
+Note
+* When no keywords are provided, a feedback message will be displayed to the user.
+
+This process is visualised in the diagram below:
+
+##### FindCommand
+Similar to the `AddCommand` class, `FindCommand` is inherited from `Command` class and overrides its `execute()`
+method to initiate the search and filtering of the displayed list of Clients in the App's UI. Through the
+inheritance from `Command`, the `Logic` component can deal with `FindCommand` as if it were just a `Command` through
+polymorphism, further reducing coupling.
+
+##### Detailed Execution Pathway
+The diagram below details how the user's command to find clients by their names propagates through the system to
+eventually displays the matching clients to the user.
+
+#### Delete Client
+This section will detail the implementation of the Delete Client feature via the `delete` command.
+
+##### Overview of DeleteClient Process
+The `DeleteCommand` is executed through entering `delete`, followed by the index of the client on the entire list
+displayed by the UI. The entire command string will be parsed to extract the index that was entered and identify the
+client to be deleted from `UniqueClientList` within `ClientBook`. Subsequently, the new `UniqueClientList` is saved to
+local storage.
+
+Note
+* When an invalid index is provided, a feedback message will be displayed to the user.
+
+This process is visualised in the diagram below:
+
+##### DeleteCommand
+Similar to the `AddCommand` class, `DeleteCommand` is inherited from `Command` class and overrides its `execute()`
+method to initiate the search and delete the client from the `UniqueClientList` within `ClientBook`. Through the 
+inheritance from `Command`, the `Logic` component can deal with `DeleteCommand` as if it were just a `Command` through
+polymorphism, further reducing coupling.
+
+##### Detailed Execution Pathway
+The diagram below details how the user's command to delete a client propagates through the system to eventually
+remove the matching client from the App.
+
+### Meeting Features
+The Meeting family of features consist of the following features: Add Meeting, Edit Meeting, List Meetings,
+Find Meetings, Reschedule Meeting, Relocate Meeting, Complete Meeting and Delete Meeting.
+
+#### Meeting Class
+The Meeting class consists of 6 fields, each of the fields represented by its own respective classes. Within those classes, 
+methods are provided to verify their respective inputs and display error message when the given input is invalid.
+This allows the fields to have a low degree of coupling, and we can change how the fields are verified without affecting
+other classes in the App. Additionally, the Meeting class can be expanded to contain more fields without affecting the 
+existing fields.
+
+Fields
+* `ClientName` - Name of the client involved in the meeting.
   * The client referred here does not need to be in the ClientBook.
 * `DateTime` - Date and time when the meeting take place.
 * `Location` - Location where the meeting take place.
@@ -172,14 +261,14 @@ Fields
 * `Tags` - Tagging the type of meeting it is.
 * `CompletionStatus` - Status of the meeting, whether if it is completed or not.
 
-The `Meeting` objects are stored in a `MeetingList` within `MeetingBook`.
+The `Meeting` objects are stored in a `UniqueMeetingList` within `MeetingBook`.
 
 #### Add Meeting
 This section will detail the implementation of the Add Meeting feature via the `addmeet` command.
 
 ##### Overview of Adding Process
 The `AddMeetingCommand` is executed through entering `addmeet` followed by valid parameters of the client's name,
-date and time,location and any tags if needed. The entire command string will be parsed to extract the parameters that 
+date and time, location and any tags if needed. The entire command string will be parsed to extract the parameters that 
 were inputted and if they are all valid, a Meeting object is constructed and added to the Model and saved to the local
 storage. Upon successful adding, a feedback message is displayed to the user.
 
