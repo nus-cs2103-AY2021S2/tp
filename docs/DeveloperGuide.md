@@ -324,7 +324,7 @@ The following sequence diagram shows how the add operation works:
 
 Note: Style of diagram to be updated.
 
-### \[Proposed\] Appointment feature
+### Appointment feature
 
 #### Proposed Implementation
 
@@ -364,18 +364,18 @@ for that particularly command.
 
 ![AppointmentCommandClassDiagram](images/AppointmentCommandClassDiagram.png)
 
-The main methods for the appointment feature include `AddAppointmentCommand`, `DeleteAppointmentCommand` and `FindAppointmentCommand`. These methods interact with other components in a similar way
+The main methods for the appointment feature include `AddAppointmentCommand`, `EditAppointmentCommand`, `DeleteAppointmentCommand` and `FindAppointmentCommand`. These methods interact with other components in a similar way
 to similar methods for AddressBook. 
-* For `AddAppointmentCommand`, adding of contacts is handled by `AppointmentBook#addAppointment`, similar to how adding of addresses is handled by `AddressBook#addPerson()`. 
+* For `AddAppointmentCommand`, adding of appointments is handled by `AppointmentBook#addAppointment()`, similar to how adding of contacts is handled by `AddressBook#addContact()`. 
+* For `EditAppointmentCommand`, editing of appointments is handled by `AppointmentBook#setAppointment()`, similar to how editing of contacts is handled by `AddressBook#setContact()`.
 * For `FindAppointmentCommand`, a predicate defined by given keywords is fed to the filtered list of `Appointment` handled by `ModelManager`, and this filters the `Appointment` objects.
 * For `DeleteAppointmentCommand`, `Appointment` is selected to be deleted by the given `index`.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** FindAppointmentCommand only supports finding by the name of the appointment.
-</div>
 
 ##### Storage Component
 
 ![AppointmentWithStorageClassDiagram](images/AppointmentWithStorageClassDiagramUpdated.png)
+
+The storage component now saves and reads back appointment book data on top of address book and user preference data. The implementation of the appointment book storage is similar to that of the address book storage.
 
 ### \[Proposed\] Undo/redo feature
 
