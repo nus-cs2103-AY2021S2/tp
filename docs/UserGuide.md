@@ -26,11 +26,11 @@ EzManage is a **desktop app for managing students, tutors and classes, optimized
 
    * **`list persons`** : Lists all students and tutors.
 
-   * **`add_person`**`tp/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student named `John Doe` to the Contact List.
+   * **`add_person`**`pt/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student named `John Doe` to the Contact List.
 
    * **`delete_person`**`t/1` : Deletes the tutor with the ID `t/1` from the Contact list.
      
-   * **`assign`** : `assign s/3 t/2 c/1` Assigns student(s) or tutor to a specific class.
+   * **`assign`** : `s/3 t/2 c/1` Assigns student(s) or tutor to a specific class.
 
    * **`clear`** : Deletes all contacts.
 
@@ -74,37 +74,38 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a tutor: `add_person`
+### Adding a person: `add_person`
 
-Adds a tutor to the address book.
+User can add either a student, or a tutor
+
+####Adding a Tutor to EZManage
 
 Format: `add_person pt/tutor n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A Tutor can have any number of tags (including 0)
 </div>
 
 Examples:
 * `add_person pt/tutor n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add_person pt/tutor n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
+* `add_person pt/tutor n/Betsy Crowe e/betsycrowe@example.com a/Prim Street p/1234567 tag/chemistry`
 
-### Adding a student: `add_person`
 
-Adds a student to the address book.
+####Adding a Student to EZManage
 
 Format: `add_person pt/student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A Student can have any number of tags (including 0)
 </div>
 
 Examples:
 * `add_person pt/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add_person pt/student n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
+* `add_person pt/student n/Betsy Crowe e/betsycrowe@example.com a/Prim Street p/1234567 tag/dedicated`
 
 ### Adding a session: `add_session`
 
-Adds a session to the address book.
+Adds a session to EZManage.
 
 Format: `add_session d/DAY t/TIMESLOT su/SUBJECT [tag/TAG] …
 `
@@ -113,7 +114,7 @@ Format: `add_session d/DAY t/TIMESLOT su/SUBJECT [tag/TAG] …
 A session can have any number of tags (including 0)
 </div>
 
-* A new session will have a unique session ID assigned after creation. 
+* A new session will have a unique session ID assigned after creation.
 * DAY should match the format of a valid day in the week.
 * TIMESLOT should be in the format `HH:MM to HH:MM` and the end time should only be after the start time.
 * DAY and SUBJECT will be capitalised when displayed but do not have to be capitalised in the input
@@ -193,7 +194,7 @@ Edits an existing student in the address book.
 
 Format: `edit_person s/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​`
 
-* Edits the student at the specified student ID (in the format `s/ID`). The student ID can be found from the displayed student list. 
+* Edits the student at the specified student ID (in the format `s/ID`). The student ID can be found from the displayed student list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -210,7 +211,7 @@ Edits an existing tutor in the address book.
 
 Format: `edit_person t/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​`
 
-* Edits the tutor at the specified tutor ID (in the format `s/ID`). The tutor ID can be found from the displayed tutor list. 
+* Edits the tutor at the specified tutor ID (in the format `s/ID`). The tutor ID can be found from the displayed tutor list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -227,7 +228,7 @@ Edits an existing session in EZManage.
 
 Format: `edit_session c/ID [d/DAY] [ts/TIMESLOT] [su/SUBJECT] [tag/TAG]…​`
 
-* Edits the session with the specified session ID. The session ID can be found from the displayed session list. 
+* Edits the session with the specified session ID. The session ID can be found from the displayed session list.
 * The session ID has to be a valid session ID i.e. the session has to exist in EZManage.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -299,23 +300,21 @@ Examples:
 
 Assigns a student or multiple student and/or a tutor to a specific class
 
-3 Formats : 
+3 Formats :
 
 1) `assign [s/ID]…​ [c/ID]`
 
     * This assigns a student of `s/ID` or multiple students to a class of `c/ID`
-    
+      
     * Example : `assign s/2 s/1 c/1` This assigns students of `s/2` and `s/1` to class `c/1`
 
 
 2) `assign [t/ID] [c/ID]`
     * This assign a tutor of `t/ID` to a class of `c/ID`
     * Example:  `assign t/1 c/1` This assign a tutor of `t/1` to class of `c/1`
-    
 
 3) `assign [s/ID]…​ [t/ID] [c/ID]`
-    * This assigns a student of `s/ID` or multiple students and a tutor of `t/ID` to a class of `c/ID` 
-    
+    * This assigns a student of `s/ID` or multiple students and a tutor of `t/ID` to a class of `c/ID`
 
 A class must always be provided, either student or tutor can be optional.
 
@@ -376,10 +375,11 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | For Person:`add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​` <br> e.g., `add_person tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br><br> For Session: `add_session d/DAY ts/TIMESLOT su/SUBJECT [tag/TAG]…​` <br> e.g. `add_session d/Saturday ts/13:00 to 15:00 s/Math` 
+**Add** | For Person:`add_person pt/PERSON_TYPE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​` <br> e.g., `add_person pt/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br><br> For Session: `add_session d/DAY ts/TIMESLOT s/SUBJECT [tag/TAG]…​` <br> e.g. `add_session d/Saturday ts/13:00 to 15:00 s/Math`
 **Clear** | `clear`
 **Delete** | For Student: <br> `delete_person s/ID`<br> e.g., `delete_person s/22` <br><br> For Tutor: <br> `delete_person t/ID`<br> e.g., `delete_person t/8`<br><br> For Session:<br>`delete_session c/ID` <br> e.g., `delete_session c/9`
 **Edit** | For Student: <br> `edit_person s/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person s/2 n/Betsy Crower tag/` <br><br> For Tutor: <br> `edit_person t/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person t/1 p/88888888 e/sarahwong@example.com` <br><br> For Session: <br> `edit_session c/ID [d/DAY] [ts/TIMESLOT] [su/SUBJECT] [tag/TAG]…​`<br> e.g.,`edit_session c/1 d/Monday s/Biology` <br> e.g. `edit_session c/2 d/Saturday ts/13:00 to 15:00 tag/Hard` 
+
 **Assign** | `assign [s/ID]… [t/ID] c/ID`<br> e.g., `assign s/1 s/2 t/1 c/1`
 **Unassign** | `unassign [s/ID]… [t/ID] c/ID`<br> e.g., `unassign s/1 s/2 t/1 c/1`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
