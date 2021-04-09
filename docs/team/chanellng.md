@@ -52,5 +52,5 @@ Given below are my contributions to the project.
     * Added implementation details of the `delete_session` and `edit_session` features. (Pull request [\#161](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/161))
 
 * **Community**:
-  * Reported bugs and suggestions for other teams in the PE Dry Run (Reported 20 bugs).
+  * Reported bugs and suggestions for other teams in the PE Dry Run (Reported 19 bugs).
   
