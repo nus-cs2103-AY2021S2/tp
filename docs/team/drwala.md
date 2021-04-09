@@ -30,7 +30,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation for all the room features: `oadd`, `oedit`, `olist`, `ofind` and `odel`: [\#150](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/150), [\#289](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/289) 
-    * Created a section to explain how command parsing works, how parameter values are processed, and how errors are handled: [\#290](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/290), [\#REPLACE THIS](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/290) 
+    * Created a section to explain how command parsing works, how parameter values are processed, and how errors are handled: [\#290](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/290), [\#382](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/382) 
   * Developer Guide:
     * Added implementation of overarching Model component: [\#380](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/380)
     * Added explanation of how the Room class works, and fits in to the broader SunRez system:  [\#115](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/115)
