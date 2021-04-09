@@ -12,7 +12,7 @@ LoC.
 Given below are my contributions to the project.
 
 * **New Feature**: Meetings
-  * What it does: Allows the insurance agent to record the meetings they going to have with their clients and track which meeting is coming soon, all through CLI commands and view through the GUI. 
+  * What it does: Allows the insurance agent to record the meetings they are going to have with their clients and track which meeting is coming soon, all through CLI commands and view through the GUI. 
   * Justification: Even though insurance policies can be purchased online, many clients still prefers the personal touch of having an agent to handle the matters. The interaction between clients and agents often comes in the form of physical or digital meetings. So, agents may need to juggle all these meetings and ensure not to dissapoint any clients and lose a policy. This feature will help to minimize that effort and help them to juggle those meetings.
   * Highlights:
     * A new suite of commands that is similar to the Person commands from AddressBook-3. 
@@ -26,7 +26,7 @@ Given below are my contributions to the project.
 
 
 * **Project management**:
-  * Set up, managed the team repository and resolve any GitHub related problems tha the team has.
+  * Set up, managed the team repository and resolve any GitHub related problems that the team has.
   * Set up the [github-page](https://ay2021s2-cs2103-w17-4.github.io/tp/) for the team.
   * Integrated and released `v1.1` - `v1.4` (4 releases) on GitHub.
   * Read through and tag every project issues from the PE dry run to allow easier prioritization for the team.
