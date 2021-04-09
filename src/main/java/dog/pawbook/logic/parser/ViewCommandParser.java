@@ -2,7 +2,7 @@
 package dog.pawbook.logic.parser;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static dog.pawbook.commons.core.Messages.MESSAGE_NEGATIVE_ENTITY_ID;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ID_GENERAL;
 
 import dog.pawbook.logic.commands.ViewCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
@@ -27,9 +27,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         // Check if integer is valid
         int id = ParserUtil.parseId(trimmedArgs);
 
-        if (id < 1) {
-            throw new ParseException(MESSAGE_NEGATIVE_ENTITY_ID);
-        }
+        assert id > 0 : MESSAGE_INVALID_ID_GENERAL;
 
         return new ViewCommand(id);
     }
