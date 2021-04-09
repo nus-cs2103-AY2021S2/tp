@@ -36,12 +36,16 @@ public class DateOfBirth {
         if (test.length() != 8) { //Return false if not in DDMMYYYY format
             return false;
         }
+        LocalDate date;
         try { //If any exception is thrown here date is not in correct format
             int day = Integer.parseInt(test.substring(0, 2));
             int month = Integer.parseInt(test.substring(2, 4));
             int year = Integer.parseInt(test.substring(4, 8));
-            LocalDate.of(year, month, day);
+            date = LocalDate.of(year, month, day);
         } catch (NumberFormatException | DateTimeException e) {
+            return false;
+        }
+        if (date.isAfter(LocalDate.now())) {
             return false;
         }
         return true;
@@ -64,5 +68,5 @@ public class DateOfBirth {
     public int hashCode() {
         return value.hashCode();
     }
-
+    
 }
