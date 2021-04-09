@@ -703,7 +703,7 @@ Format: `updateG PROJECT_INDEX i/GROUPMATE_INDEX [n/NAME] [r/ROLE]…​`
 
 * At least one of the optional fields must be provided.
 * When updating roles, the existing roles of the groupmate will be removed i.e. adding of roles is not cumulative.
-* You can remove all the roles of the groupmate by typing `r/` without specifying any roles after it.
+* You can remove all the roles of the groupmate by giving **only one** `r/` without specifying any roles after it.
 
 </div>
 
@@ -791,7 +791,7 @@ Format: `updateC CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
 * At least one of the optional fields must be provided.
 * When updating tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
-* You can remove all the contact’s tags by typing `t/` without specifying any tags after it.
+* You can remove all the contact’s tags by giving **only one** `t/` without specifying any tags after it.
 </div>
 
 Parameters:
