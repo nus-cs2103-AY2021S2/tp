@@ -20,8 +20,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds endpoints using keywords.\n"
             + "Parameters: [KEYWORD]\n"
-            + MESSAGE_USE_HELP + " An option for more precise search is also"
-            + " explained in the user guide).\n\n"
+            + MESSAGE_USE_HELP + "\n\n"
             + "Example: " + COMMAND_WORD + " transport github";
 
     private final Predicate<Endpoint> predicate;
