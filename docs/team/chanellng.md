@@ -43,7 +43,7 @@ Given below are my contributions to the project.
   * Updated the list command to be able to view all persons, all students, all tutors and all sessions. (Pull Request [\#70](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/70))
   * Updated the clear command to clear the whole list of persons and sessions. (Pull Request [\#164](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/164))
   * Updated the Ui on a consistent basis:
-    * Addition of Ui view for the commands (Pull requests [\#74](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/74) , [\#91](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/91)) 
+    * Addition of Ui view for the commands. (Pull requests [\#74](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/74) , [\#91](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/91)) 
     * Addition of split pane view for view commands. (Pull request [\#70](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/70))
     * Resolved Ui issues such as when certain sets of commands are called, switching of panes, truncated fields etc. (Pull requests [\#76](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/76) , [\#161](https://github.com/AY2021S2-CS2103-W16-4/tp/pull/161))
 
