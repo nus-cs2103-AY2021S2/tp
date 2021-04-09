@@ -48,7 +48,6 @@ public class MeetingBook implements ReadOnlyMeetingBook {
      */
     public void resetData(ReadOnlyMeetingBook newData) {
         requireNonNull(newData);
-
         setMeetings(newData.getMeetingList());
     }
 

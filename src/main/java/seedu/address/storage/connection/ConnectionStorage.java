@@ -3,7 +3,9 @@ package seedu.address.storage.connection;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.meeting.MeetingBook;
+import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.person.AddressBook;
+import seedu.address.model.person.ReadOnlyAddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -25,18 +27,18 @@ public interface ConnectionStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    public Optional<PersonMeetingConnection> readConnection(MeetingBook meetingBook,
-                                                            AddressBook addressBook)
+    public Optional<PersonMeetingConnection> readConnection(ReadOnlyMeetingBook meetingBook,
+                                                            ReadOnlyAddressBook addressBook)
             throws DataConversionException, IOException;
 
     /**
      * Returns the person and meeting connection from a specified file path.
-     * See {@link #readConnection(MeetingBook,AddressBook)}
+     * See {@link #readConnection(ReadOnlyMeetingBook,ReadOnlyAddressBook)}
      * @param filePath path to the data file, cannot be null
      * @throws DataConversionException if the file is not of the correct format.
      */
-    public Optional<PersonMeetingConnection> readConnection(Path filePath, MeetingBook meetingBook,
-                                                            AddressBook addressBook)
+    public Optional<PersonMeetingConnection> readConnection(Path filePath, ReadOnlyMeetingBook meetingBook,
+                                                            ReadOnlyAddressBook addressBook)
             throws DataConversionException, IOException;
 
     /**

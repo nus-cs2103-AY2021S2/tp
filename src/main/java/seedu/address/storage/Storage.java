@@ -66,7 +66,8 @@ public interface Storage extends AddressBookStorage,
     Path getConnectionFilePath();
 
     @Override
-    public Optional<PersonMeetingConnection> readConnection(MeetingBook meetingBook, AddressBook addressBook)
+    public Optional<PersonMeetingConnection> readConnection(ReadOnlyMeetingBook meetingBook,
+                                                            ReadOnlyAddressBook addressBook)
             throws DataConversionException, IOException;
     @Override
     public void saveConnection(PersonMeetingConnection connection) throws IOException;

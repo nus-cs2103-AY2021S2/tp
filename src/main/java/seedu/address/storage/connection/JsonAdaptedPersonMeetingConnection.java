@@ -5,13 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.DateTimeUtil;
 import seedu.address.model.connection.PersonMeetingConnection;
-import seedu.address.model.meeting.DateTime;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.MeetingBook;
-import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.*;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
+import seedu.address.model.person.ReadOnlyAddressBook;
 
 public class JsonAdaptedPersonMeetingConnection {
     public static final String CONNECTION_FIELD_MESSAGE_FORMAT = "Connection's %s field is missing!";
@@ -49,7 +47,8 @@ public class JsonAdaptedPersonMeetingConnection {
      * @throws IllegalValueException if there were any data constraints violated in the adapted meeting.
      */
 
-    public PersonMeetingConnection toModelType(AddressBook addressBook, MeetingBook meetingBook, PersonMeetingConnection connection) throws IllegalValueException {
+    public PersonMeetingConnection toModelType(ReadOnlyAddressBook addressBook, ReadOnlyMeetingBook meetingBook,
+                                               PersonMeetingConnection connection) throws IllegalValueException {
         Person person = addressBook.getPersonByName(new PersonName(personName));
         Meeting meeting = meetingBook.getMeetingByNameAndStartTime(new MeetingName(meetingName), new DateTime(startDateTime));
         if (connection.existPersonMeetingConnection(person, meeting)) {

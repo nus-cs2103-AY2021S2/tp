@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.note.NoteBook;
@@ -28,6 +29,8 @@ import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.addressbook.AddressBookStorage;
 import seedu.address.storage.addressbook.JsonAddressBookStorage;
+import seedu.address.storage.connection.ConnectionStorage;
+import seedu.address.storage.connection.JsonConnectionStorage;
 import seedu.address.storage.meetingbook.JsonMeetingBookStorage;
 import seedu.address.storage.notebook.JsonNoteBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -68,7 +71,9 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         MeetingBookStorage meetingBookStorage = new JsonMeetingBookStorage(userPrefs.getMeetingBookFilePath());
         NoteBookStorage noteBookStorage = new JsonNoteBookStorage(userPrefs.getNoteBookFilePath());
-        storage = new StorageManager(addressBookStorage, meetingBookStorage, noteBookStorage, userPrefsStorage);
+        ConnectionStorage connectionStorage = new JsonConnectionStorage(userPrefs.getConnectionsFilePath());
+        storage = new StorageManager(addressBookStorage, meetingBookStorage, noteBookStorage, userPrefsStorage,
+                connectionStorage);
 
         initLogging(config);
 
@@ -88,9 +93,11 @@ public class MainApp extends Application {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         Optional<ReadOnlyMeetingBook> meetingBookOptional;
         Optional<ReadOnlyNoteBook> noteBookOptional;
+        Optional<PersonMeetingConnection> personMeetingConnectionOptional;
         ReadOnlyAddressBook initialDataAddressBook;
         ReadOnlyMeetingBook initialDataMeetingBook;
         ReadOnlyNoteBook initialDataNoteBook;
+        PersonMeetingConnection personMeetingConnection;
 
         try {
             addressBookOptional = storage.readAddressBook();
@@ -140,8 +147,23 @@ public class MainApp extends Application {
 
         //=============== Establish Connection ========================================================================
 
-
-        return new ModelManager(initialDataAddressBook, initialDataMeetingBook, initialDataNoteBook, userPrefs);
+        try {
+            personMeetingConnectionOptional = storage.readConnection(initialDataMeetingBook, initialDataAddressBook);
+            if (!personMeetingConnectionOptional.isPresent()) {
+                logger.info("Date file not found. Will be starting with no person to meetings established");
+            }
+            personMeetingConnection = personMeetingConnectionOptional.orElseGet(() -> new PersonMeetingConnection());
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with no person to meeting "
+                    + "connections");
+            personMeetingConnection = new PersonMeetingConnection();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with no person to meeting "
+                    + "connections established");
+            personMeetingConnection = new PersonMeetingConnection();
+        }
+        return new ModelManager(initialDataAddressBook, initialDataMeetingBook, initialDataNoteBook,
+                userPrefs, personMeetingConnection);
     }
 
     private void initLogging(Config config) {

@@ -16,7 +16,7 @@ import seedu.address.model.note.ReadOnlyNoteBook;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.storage.addressbook.AddressBookStorage;
-import seedu.address.storage.connection.JsonConnectionStorage;
+import seedu.address.storage.connection.ConnectionStorage;
 import seedu.address.storage.meetingbook.MeetingBookStorage;
 import seedu.address.storage.notebook.NoteBookStorage;
 
@@ -30,7 +30,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
     private MeetingBookStorage meetingBookStorage;
     private NoteBookStorage noteBookStorage;
-    private JsonConnectionStorage jsonConnectionStorage;
+    private ConnectionStorage connectionStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage},
@@ -38,13 +38,13 @@ public class StorageManager implements Storage {
      */
     public StorageManager(AddressBookStorage addressBookStorage, MeetingBookStorage meetingBookStorage,
                           NoteBookStorage noteBookStorage, UserPrefsStorage userPrefsStorage,
-                          JsonConnectionStorage jsonConnectionStorage) {
+                          ConnectionStorage connectionStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.meetingBookStorage = meetingBookStorage;
         this.noteBookStorage = noteBookStorage;
-        this.jsonConnectionStorage = jsonConnectionStorage;
+        this.connectionStorage = connectionStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -156,31 +156,32 @@ public class StorageManager implements Storage {
     //===================== Person-Meeting Connection ===========================================================
     @Override
     public Path getConnectionFilePath() {
-        return jsonConnectionStorage.getConnectionFilePath();
+        return connectionStorage.getConnectionFilePath();
     }
 
     @Override
-    public Optional<PersonMeetingConnection> readConnection(MeetingBook meetingBook, AddressBook addressBook)
+    public Optional<PersonMeetingConnection> readConnection(ReadOnlyMeetingBook meetingBook,
+                                                            ReadOnlyAddressBook addressBook)
             throws DataConversionException, IOException {
-        return readConnection(jsonConnectionStorage.getConnectionFilePath(), meetingBook, addressBook);
+        return readConnection(connectionStorage.getConnectionFilePath(), meetingBook, addressBook);
     }
 
     @Override
-    public Optional<PersonMeetingConnection> readConnection(Path filePath, MeetingBook meetingBook,
-                                                            AddressBook addressBook)
+    public Optional<PersonMeetingConnection> readConnection(Path filePath, ReadOnlyMeetingBook meetingBook,
+                                                            ReadOnlyAddressBook addressBook)
             throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return jsonConnectionStorage.readConnection(filePath, meetingBook, addressBook);
+        return connectionStorage.readConnection(filePath, meetingBook, addressBook);
     }
 
     @Override
     public void saveConnection(PersonMeetingConnection personMeetingConnection) throws IOException {
-        saveConnection(personMeetingConnection, jsonConnectionStorage.getConnectionFilePath());
+        saveConnection(personMeetingConnection, connectionStorage.getConnectionFilePath());
     }
     @Override
     public void saveConnection(PersonMeetingConnection personMeetingConnection, Path filePath) throws IOException {
         logger.fine("Attempting to write data to file: " + filePath);
-        jsonConnectionStorage.saveConnection(personMeetingConnection, filePath);
+        connectionStorage.saveConnection(personMeetingConnection, filePath);
     }
 
 }
