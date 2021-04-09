@@ -41,8 +41,8 @@ public class Issue implements Comparable<Issue> {
     /**
      * Takes in an issue and returns an issue with the same values except for Status being closed.
      *
-     * @param issue to be closed
-     * @return the same issue but the status set to closed
+     * @param issue Issue to be closed.
+     * @return A new issue with the same values except for status which is {@code Closed}.
      */
     public static Issue closeIssue(Issue issue) {
         requireNonNull(issue);

@@ -16,7 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 
 /**
  * Represents an issue's timestamp in SunRez. Guarantees: immutable; is valid as
- * declared in {@link #isValidTimestamp(String)}
+ * declared in {@link #isValidTimestamp(String)}.
  */
 public class Timestamp implements Comparable<Timestamp> {
 
@@ -64,6 +64,9 @@ public class Timestamp implements Comparable<Timestamp> {
 
     /**
      * Returns true if a given string is a valid timestamp.
+     *
+     * @param test String to check.
+     * @return True if test is valid.
      */
     public static boolean isValidTimestamp(String test) {
         try {
