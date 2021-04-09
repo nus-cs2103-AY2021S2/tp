@@ -6,7 +6,6 @@ import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENT_LISTS;
 
 import java.util.function.Predicate;
 
-import seedu.student.commons.core.Messages;
 import seedu.student.model.Model;
 import seedu.student.model.student.Faculty;
 import seedu.student.model.student.SchoolResidence;
@@ -20,6 +19,8 @@ import seedu.student.model.student.VaccinationStatus;
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
+    public static final String MESSAGE_NO_STUDENTS_ARE_LISTED = "No %s students exist in VAX@NUS's record.";
+    public static final String MESSAGE_STUDENTS_ARE_LISTED = "All %s students listed.";
 
     private static String vaccinationStatus = VaccinationStatus.getStringVaccinationStatus();
     private static String faculties = Faculty.getStringFaculties();
@@ -33,11 +34,19 @@ public class FilterCommand extends Command {
             + "Please enter only one parameter." + " Examples: " + COMMAND_WORD + " vaccinated, "
             + COMMAND_WORD + " COM, " + COMMAND_WORD + " PGPH " + "\n";
 
-
     private final Predicate<Student> predicate;
+    private final String input;
 
-    public FilterCommand(Predicate<Student> predicate) {
+
+    /**
+     * Constructor
+     * @param predicate
+     * @param input the filter input given by the user
+     */
+
+    public FilterCommand(Predicate<Student> predicate, String input) {
         this.predicate = predicate;
+        this.input = input;
     }
 
     @Override
@@ -47,10 +56,10 @@ public class FilterCommand extends Command {
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT_LISTS, PREDICATE_SHOW_ALL_APPOINTMENTS);
         if (model.getFilteredStudentList().size() == 0) {
             return new CommandResult(
-                    String.format(Messages.MESSAGE_NO_STUDENTS_ARE_LISTED, model.getFilteredStudentList().size()));
+                    String.format(MESSAGE_NO_STUDENTS_ARE_LISTED, input, model.getFilteredStudentList().size()));
         } else {
             return new CommandResult(
-                    String.format(Messages.MESSAGE_STUDENTS_ARE_LISTED, model.getFilteredStudentList().size()));
+                    String.format(MESSAGE_STUDENTS_ARE_LISTED, input, model.getFilteredStudentList().size()));
         }
     }
 
