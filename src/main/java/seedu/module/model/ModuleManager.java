@@ -147,9 +147,9 @@ public class ModuleManager {
      * @return return the workload information of one module.
      */
     public static String getModuleWorkloadInformation(Module module) {
-        String moduleWorkLoadInformation = String.format("low workload tasks:%d\n"
-                + "medium workload tasks:%d\n"
-                + "high workload tasks:%d\n",
+        String moduleWorkLoadInformation = String.format("low workload tasks: %d\n"
+                + "medium workload tasks: %d\n"
+                + "high workload tasks: %d\n",
             moduleLowWorkLoadDistribution.getOrDefault(module, 0),
             moduleMediumWorkLoadDistribution.getOrDefault(module, 0),
             moduleHighWorkLoadDistribution.getOrDefault(module, 0));
@@ -220,7 +220,7 @@ public class ModuleManager {
     }
 
     /**
-     * Fills the observable list of existringModules with the keySet of the mapping.
+     * Fills the observable list of existingModules with the keySet of the mapping.
      */
     public static void setExistingModuleList() {
         List<Module> existingModules = List.copyOf(mappingOfModulesToTasks.keySet());
@@ -228,7 +228,7 @@ public class ModuleManager {
     }
 
     /**
-     * Fills the observable list of existringModules with the keySet of the mapping.
+     * Fills the observable list of existingModules with the keySet of the mapping.
      */
     public static void setModulePieChartData() {
         modulePieChartData.clear();

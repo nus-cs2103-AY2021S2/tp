@@ -31,7 +31,7 @@ on ModuleBook3.5.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
-<img src="images/Ui.png" width="700">
+<img src="images/UiAnnotated.png" width="700">
 
 * At the top of the display is a toolbar to either exit the app (under `File`) 
    or access this user guide (under `Help`).
@@ -264,10 +264,11 @@ Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORK
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:**
 Now, key in the following commands in this order:<br>
-1. `add n/Do tP team tasks m/CS2103T d/Finish the team tasks for v1.4 w/3 a/2021-04-01 b/2021-04-11`<br>
-2. `add n/Participate in class m/CS2105 d/Contribute to discussions w/2 b/2021-04-15 r/weekly t/Participation`<br>
-3. `add n/PAQ m/IS1103 d/Answer quiz questions on ethics w/1 b/2021-04-09`<br>
-4. `add n/Mix Green And Pink m/CS2101 d/Create the forbidden colour combination w/1 b/2021-04-15`
+1. `add n/Do tP team tasks m/CS2103T d/Finish the team tasks for v1.4 w/3 a/2021-04-02 b/2021-04-12`<br>
+2. `add n/Participate in class m/CS2105 d/Contribute to discussions w/2 b/2021-04-16 10:10 r/weekly t/Participation`<br>
+3. `add n/PAQ m/IS1103 d/Answer quiz questions on ethics w/1 b/2021-04-10`<br>
+4. `add n/Mix Green And Pink m/CS2101 d/Create the forbidden colour combination w/1 b/2021-04-16`<br>
+Note that your tasks may have a different colour from the one in the screenshots.
 </div>
 
 <img src="images/addCommand.png" width="700">
@@ -362,7 +363,8 @@ Format: `find KEYWORD`
 * You may key in multiple keywords. ModuleBook3.5 will list down all tasks that contains any of the given keyword.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
-`find Green`
+`find Green` (Here, we are not looking for tasks that are coloured green, 
+but rather, tasks that have the word "Green" in their names.)
 </div>
 
 <img src="images/findCommand.png" width="700">
@@ -398,7 +400,7 @@ Format: `findTag KEYWORD`
 * Tag provided must be alphanumerical.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
-`findTag Ethics`
+`findTag ethics` (To demonstrate that finding tags is case-insensitive.)
 </div>
 
 <img src="images/findTagCommand.png" width="700">
@@ -407,7 +409,7 @@ Format: `findTag KEYWORD`
 
 ### Search tasks associated to a Module: `mod`
 
-Searches for tasks of a specific Module.
+Searches for tasks of a specific Module from all tasks.
 
 Application: Used to find tasks from one Module.
 
@@ -416,7 +418,8 @@ Format: `mod MODULE`
 * Searches through ModuleBook3.5 for tasks which belong to `MODULE`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
-`mod CS2103T`
+`mod CS2103T` (Note that although the CS2103T task is not shown after applying the previous tutorial command,
+this command still works.)
 </div>
 
 <img src="images/findModuleCommand.png" width="700">
@@ -465,12 +468,12 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
   If you wish to add or delete only certain tags, use `tag` and `deleteTag` commands instead.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
-`edit 1 n/Refactor tP code d/Make the code look neater b/2021-04-09`
+`edit 1 n/Refactor tP code d/Make the code look neater b/2021-04-10`
 </div>
 
 <img src="images/editCommand.png" width="700">
 
-Notice how the colour of task 1 changed because you edited the deadline to be closer.
+In this screenshot, the colour of task 1 changed because the new deadline is closer.
 
 Examples:
 *  `edit 1 d/Eat Biscuits` Edits the description of the 1st task to `Eat Biscuits`.
@@ -490,7 +493,7 @@ Format:  `sort` or `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/`
 *  `sort n/` Sorts the tasks by name alphabetically in ascending order.
 *  `sort d/` Sorts the tasks by the length of description in descending order.
 *  `sort w/` Sorts the tasks by workload in descending order.
-*  `sort` or `sort b/` Sorts the tasks by deadline so that the the task with closer the deadline in the list, the higher the task.
+*  `sort` or `sort b/` Sorts the tasks by deadline so that a task with a closer deadline appears towards the top of the list.
 *  `sort m/` Sorts the tasks by module code alphabetically in descending order.
 *  `sort t/` Sorts the tasks by number of tags in descending order.
 
@@ -541,7 +544,7 @@ Application: Used to update deadlines based on recurrences. Also done automatica
 Format: `refresh`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
-1. `edit 1 b/2021-04-08` (Let's set this task to have a deadline that is past)<br>
+1. `edit 1 b/2021-04-09` (Let's set this task to have a deadline that is past)<br>
 2. `refresh` 
 </div>
 
