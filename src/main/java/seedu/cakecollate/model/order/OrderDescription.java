@@ -6,7 +6,6 @@ import static seedu.cakecollate.commons.util.AppUtil.checkArgument;
 public class OrderDescription {
 
     public static final String MESSAGE_CONSTRAINTS = "Order description should not be left blank.";
-    public static final String MESSAGE_EMPTY = "Order description cannot be empty";
     public static final String MESSAGE_OVERFLOW = "Order description has a size limit of 70 characters.";
 
     /*

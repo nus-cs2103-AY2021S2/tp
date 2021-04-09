@@ -161,9 +161,6 @@ public class ParserUtil {
     public static OrderDescription parseOrderDescription(String orderDescription) throws ParseException {
         requireNonNull(orderDescription);
         String trimmedOrderDescription = orderDescription.trim();
-        if (trimmedOrderDescription.isEmpty()) {
-            throw new ParseException(OrderDescription.MESSAGE_EMPTY);
-        }
         if (trimmedOrderDescription.length() > ORDER_DESCRIPTION_LENGTH) {
             throw new ParseException(OrderDescription.MESSAGE_OVERFLOW);
         }
