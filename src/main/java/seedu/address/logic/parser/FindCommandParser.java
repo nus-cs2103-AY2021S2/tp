@@ -35,6 +35,7 @@ import seedu.address.model.contact.predicate.PhoneContainsKeywordsPredicate;
 import seedu.address.model.contact.predicate.TagsMatchKeywordPredicate;
 import seedu.address.model.tag.Tag;
 
+
 /**
  * Parses input arguments and creates a new FindCommand object
  */
@@ -81,7 +82,6 @@ public class FindCommandParser implements Parser<FindCommand> {
             handleMissingFindOptionsArgsExceptions(option);
         }
         String optionArgs = optionArgsArray[1];
-        handleMissingFindOptionsArgsExceptions(option);
 
         // get keywords
         List<String> keywords = Arrays.asList(optionArgs.split("\\s+"));
@@ -134,7 +134,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             );
         default:
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_OPTION, MESSAGE_USAGE));
         }
     }
 

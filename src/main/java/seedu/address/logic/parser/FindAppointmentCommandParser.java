@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_OPTION;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_OPTION;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_OPTION_ARGS;
 import static seedu.address.logic.commands.FindAppointmentCommand.MESSAGE_MISSING_ADDRESS_ARGS;
@@ -49,8 +50,8 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
             // get everything after PREFIX_OPTION
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OPTION);
             Optional<String> argsString = argMultimap.getValue(PREFIX_OPTION);
-
             String unboxedArgsString = argsString.get();
+
             if (unboxedArgsString.trim().isEmpty()) { // option prefix present but option not present
                 throw new ParseException(
                         String.format(MESSAGE_MISSING_OPTION, MESSAGE_MISSING_FIND_APPOINTMENT_OPTION)
@@ -96,10 +97,15 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
             return new FindAppointmentCommand(new ApptContactsContainKeywordsPredicate(keywords));
         default:
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_OPTION, MESSAGE_USAGE));
         }
     }
 
+    /**
+     * Handles exceptions
+     * @param option
+     * @throws ParseException
+     */
     private void handleMissingFindAppointmentOptionsArgsExceptions(String option) throws ParseException {
 
         switch (option) {
@@ -125,7 +131,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
             );
         default:
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_OPTION, MESSAGE_USAGE));
         }
     }
 
