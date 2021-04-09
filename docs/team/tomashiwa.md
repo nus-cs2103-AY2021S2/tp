@@ -78,3 +78,4 @@ Given below are my contributions to the project.
     ![FindMeeting activity diagram](../images/FindMeetingActivityDiagram.png)
   * FindMeeting's Sequence Diagram
     ![FindMeeting sequence diagram](../images/FindMeetingSequenceDiagram.png)
+    
