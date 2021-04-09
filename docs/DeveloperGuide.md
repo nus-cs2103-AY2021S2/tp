@@ -12,7 +12,7 @@ title: Developer Guide
   - [Storage](#storage-component)
 - [Implementation](#implementation)
   - [Blacklist](#blacklist-feature)
-  - [Collect]
+  - [Collect](#collect-feature)
   - [Find](#finding-persons-by-details-feature)
   - [Light/Dark] >Ryan
   - [Mass Blacklist] >JB
@@ -31,9 +31,9 @@ title: Developer Guide
   - [Launch and shutdown](#launch-and-shutdown)
   - [Deleting a contact](#deleting-a-contact)
   - [Saving data](#saving-data)
-  - [Add a contact] >Ryan (Mode of contact)
-  - [Changing blacklist status of a contact] >Ern
-  - [Collecting details from all contacts] >Ern
+  - [Adding a contact] >Ryan (Mode of contact)
+  - [Changing blacklist status of a contact](#changing-blacklist-status-of-a-contact)
+  - [Collecting details from all listed contacts](#collecting-details-from-all-listed-contacts)
   - [Editing remark for a contact] >JB
   - [Finding persons by details] >JQ
   - [Performing mass blacklist] >JB
@@ -237,6 +237,40 @@ The following activity diagram shows what happens when `find` command is execute
 * **Alternative 2:** Find by names and find by tags are separate commands.
     * Pros: Easier to debug as one command is meant for one criterion.
     * Cons: It is now not possible to combine both criteria together. More commands to remember. Due to similarity of the commands, they can be confused from one another.
+
+### Collect feature
+The collect feature is facilitated by `CommandResult`, which is responsible for displaying the results after
+collecting the details. Currently, only details from the 4 main fields (name, phone, address, email)
+can be collected.
+
+The following sequence diagram shows how the `collect` command works.
+
+![CollectSequenceDiagram](images/CollectSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: The number of fields to be collected from
+
+* **Alternative 1 (current choice):** Exactly 1 field out of 4 possible choices.
+    * Pros: Simpler and more intuitive command format.
+            Usually only 1 field is needed at a time when copying to messaging applications.
+    * Cons: Not customisable for all needs.
+
+* **Alternative 2:** Exactly 1 field out of all existing fields.
+    * Pros: Able to be used for more situations.
+    * Cons: More complex command format for likely unnecessary details.
+
+##### Aspect: The ability to start or end the separator with blank space
+
+* **Alternative 1 (current choice):** Leading or trailing blank space is ignored.
+    * Pros: Easier to implement due to reuse of `ArgumentTokenizer`.
+            Blank space is not the main separator in the recipient list for most messaging applications,
+            so functionality is not significantly impacted.
+    * Cons: Collected details are not in reader-friendly format.
+
+* **Alternative 2:** Include all leading and trailing blank spaces
+    * Pros: Able to be used for more situations.
+    * Cons: More complicated implementation resulting in possibly more bugs.
 
 ### Mode of Contact feature
 The mode of contact feature built on the current `AddCommand` class.
@@ -520,16 +554,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    
    Use case ends.
 
-*{More to be added}*
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Every command that is accessible via the graphical user interface should be possible using only command line inputs.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -562,8 +592,6 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a contact
 
 1. Deleting a contact while all contacts are being shown
@@ -571,23 +599,19 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
     1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+       Expected: First contact is deleted from the list. Details of the deleted contact are shown in the status message.
 
     1. Test case: `delete 0`<br>
-       Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No contact is deleted. Error details are shown in the status message.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
 
 ### Filtering the contacts
 
@@ -608,4 +632,40 @@ testers are expected to do more *exploratory* testing.
        Expected: No filtering is done, and the original list is presented. Error details shown in the status message.
 
     1. Other incorrect find commands to try: `find n/`, `find t/`, `...` <br>
+       Expected: Similar to previous.
+
+### Changing blacklist status of a contact
+
+1. Blacklisting a contact while some contacts are being shown
+
+    1. Prerequisites: List some contacts using the `list` or `find` commands. At least 1 contact in the list.
+    
+    1. Test case: `blist 1`<br>
+       Expected: The blacklist status of the first contact is changed (from blacklisted to un-blacklisted or vice versa).
+       Details of the updated contact are shown in the status message.
+   
+    1. Test case: `blist 0`<br>
+       Expected: No contact is edited. Error details are shown in the status message.
+   
+    1. Other incorrect blacklist commands to try: `blist`, `blist x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Collecting details from all listed contacts
+
+1. Collecting details while some contacts are being shown
+
+    1. Prerequisites: List some contacts using the `list` or `find` commands. At least 1 contact in the list.
+
+    1. Test case: `collect e/`<br>
+       Expected: Emails of all the contacts in the list are collected, separated by `;`.
+       The result is shown in the status message.
+
+    1. Test case: `collect e/ s/,`<br>
+       Expected: Emails of all the contacts in the list are collected, separated by `,`.
+       The result is shown in the status message.
+
+    1. Test case: `collect`<br>
+       Expected: No details are collected. Error details are shown in the status message.
+
+    1. Other incorrect collect commands to try: `collect m/`, `collect n/ e/`, `...` (trying to collect multiple types of details at once)<br>
        Expected: Similar to previous.
