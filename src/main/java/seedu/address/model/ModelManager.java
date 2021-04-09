@@ -165,6 +165,7 @@ public class ModelManager implements Model {
     @Override
     public void setCurrentGroup(Name currentGroupName) {
         this.currentGroup = groupMap.get(currentGroupName);
+        this.setGroup(currentGroupName, currentGroup);
     }
 
     @Override
@@ -187,17 +188,14 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
-        this.setGroup(DEFAULT_GROUP_NAME, groupMap.get(DEFAULT_GROUP_NAME));
     }
 
     @Override
     public void updateFilteredPersonList() {
         if (currentGroup != null) {
             filteredPersons.setPredicate(getCurrentGroupPredicate());
-            this.setGroup(currentGroup.getName(), currentGroup);
         } else {
             filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
-            this.setGroup(DEFAULT_GROUP_NAME, groupMap.get(DEFAULT_GROUP_NAME));
         }
     }
 

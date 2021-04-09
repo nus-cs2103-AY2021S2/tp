@@ -20,7 +20,7 @@ public class DeleteGroupCommand extends Command {
             + PREFIX_NAME + "Close Friends";
 
     public static final String MESSAGE_DELETE_GROUP_SUCCESS = "Deleted group %1$s";
-    public static final String MESSAGE_DELETE_DEFAULT_GROUP_ERROR = "Unable to delete the Default Group, %1$s.";
+    public static final String MESSAGE_DELETE_DEFAULT_GROUP_ERROR = "%1$s cannot be deleted";
 
     private final Name groupName;
 

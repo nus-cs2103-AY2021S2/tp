@@ -38,7 +38,6 @@ public class ListCommand extends Command {
         if (this.name.isEmpty()) {
             Group defaultGroup = model.getGroupMap().get(DEFAULT_GROUP_NAME);
             model.setGroup(defaultGroup.getName(), defaultGroup);
-            model.setCurrentGroup(defaultGroup);
             model.updateFilteredPersonList();
             return new CommandResult(MESSAGE_SUCCESS_DEFAULT);
         } else {

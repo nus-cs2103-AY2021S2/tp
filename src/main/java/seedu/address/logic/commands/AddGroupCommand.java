@@ -31,7 +31,8 @@ public class AddGroupCommand extends Command {
             + PREFIX_PERSONS + "1 2 3 4";
 
     public static final String MESSAGE_ADD_GROUP_SUCCESS = "Added %1$s into group %2$s";
-    public static final String MESSAGE_ADD_DEFAULT_GROUP_ERROR = "Unable to add to the Default Group, %1$s.";
+    public static final String MESSAGE_ADD_DEFAULT_GROUP_ERROR = "There is no need to add people to %1$s "
+            + "as everyone is included by default.";
 
     private final List<Index> indexes;
     private final Name groupName;
