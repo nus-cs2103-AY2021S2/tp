@@ -17,8 +17,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.AddressBook;
+import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -27,7 +29,7 @@ import seedu.address.model.person.AddressBook;
 
 public class DeleteMeetingCommandTest {
     private Model model = new ModelManager(new AddressBook(), getTypicalMeetingBook(),
-            getTypicalNoteBook(), new UserPrefs());
+            getTypicalNoteBook(), new UserPrefs(), new PersonMeetingConnection());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -37,7 +39,7 @@ public class DeleteMeetingCommandTest {
         String expectedMessage = String.format(DeleteMeetingCommand.MESSAGE_DELETE_MEETING_SUCCESS, meetingToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getMeetingBook(),
-                model.getNoteBook(), new UserPrefs());
+                model.getNoteBook(), new UserPrefs(), new PersonMeetingConnection());
         expectedModel.deleteMeeting(meetingToDelete);
 
         assertCommandSuccess(deleteMeetingCommand, model, expectedMessage, expectedModel);
@@ -61,7 +63,7 @@ public class DeleteMeetingCommandTest {
         String expectedMessage = String.format(DeleteMeetingCommand.MESSAGE_DELETE_MEETING_SUCCESS, meetingToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), model.getMeetingBook(),
-                model.getNoteBook(), new UserPrefs());
+                model.getNoteBook(), new UserPrefs(), new PersonMeetingConnection());
         expectedModel.deleteMeeting(meetingToDelete);
         showNoMeeting(expectedModel);
 

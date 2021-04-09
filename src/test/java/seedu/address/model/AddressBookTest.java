@@ -20,8 +20,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.testutil.Assert;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -98,6 +100,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public Person getPersonByName(PersonName name) {
+            throw new AssertionError("this method should not be called");
         }
     }
 
