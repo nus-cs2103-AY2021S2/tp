@@ -11,7 +11,7 @@ import seedu.address.model.entry.EntryTagsContainKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FilterEntryCommand object
  */
-public class FilterEntryCommandParser {
+public class FilterEntryCommandParser implements Parser<FilterEntryCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FilterCommand
      * and returns a FilterCommand object for execution.
