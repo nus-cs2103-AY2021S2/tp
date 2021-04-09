@@ -129,6 +129,10 @@ table tr:nth-child(even) {
   color: white;
 }
 
+strong {
+  color: var(--quaternary-color);
+}
+
 /**
  customer styles
  */

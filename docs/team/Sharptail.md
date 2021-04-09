@@ -24,10 +24,8 @@ Given below are my contributions to the project.
         
       Example:  
       `customer add` and `menu add` both uses the `add` command but it belongs to different components.  
-      <br>
     * Justification: This feature improves the product functionality significantly because a user can now manage multiple
       different list instead of the original `Contact` list only.  
-      <br>
     * Highlights: This enhancement will be able to add on even more components in the future if needed.
     
 * **New Feature**: Added a new column to the GUI to view customer list with other components side by side.
@@ -37,7 +35,6 @@ Given below are my contributions to the project.
       Example: `customer list` on the left column while `menu list` on the right column
       ![Ui](../images/Ui.png)
     * Justification: This feature improves the user-friendliness of the app for the user to view 2 lists at a time to minimise navigating to different component list back and forth.
-      <br>
     * Highlights: The tabs below the right column is also clickable with the same functionality.
 
 * **New Feature**: Update ingredient quantity whenever order is added or deleted
