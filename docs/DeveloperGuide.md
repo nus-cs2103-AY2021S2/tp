@@ -146,9 +146,7 @@ Classes used by multiple components are in the `seedu.storemando.commons` packag
 
 ### Add feature `add`
 
-#### Actual Implementation
-
-The `add` feature allows users to add an item's details to the inventory. An item's details is made up of it's name, 
+The `add` feature allows users to add an item's details to the inventory. An item's details is made up of it's name,
 quantity, location, expiry date (optional), and tags (optional).
 
 <div markdown="span" class="alert alert-info">
@@ -156,28 +154,35 @@ quantity, location, expiry date (optional), and tags (optional).
 An item's name, quantity and location are compulsory fields that must be supplied by the user.
 </div>
 
-The Sequence Diagram below shows how the components interact with each other for the scenario where the user
-issues the command `add n/apple q/2 l/kitchen`.
+#### Actual Implementation
+
+The sequence diagram below shows how the components interact with each other for the scenario where the user
+issues the command `add n/apple q/2 l/kitchen`:
+
+<br>
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
-
 From the diagram above:
 
-1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input.
+1. When the user keys in an input, `execute` method of the `LogicManager` class is called with the user input as the parameter.
 2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
-3. The `StoreMandoParser` parses the user input and identifies it as an `AddCommand` and instantiates `AddCommandParser`. 
-4. `StoreMandoParser` then invokes the `parse` method of `AddCommandParser` to further parse the arguments provided. In the `parse` method,
+3. The `StoreMandoParser` parses the user input, identifies it as an `AddCommand` and instantiates an `AddCommandParser` object. 
+4. `StoreMandoParser` then invokes the `parse` method of the `AddCommandParser` object to further parse the arguments provided. In the `parse` method,
    the `AddCommandParser` ensures that the input is of the correct format and identifies the input for the item name, quantity, 
    location, expiry date and tag(s).
-5. If all the arguments of the `add` command are valid, The `AddCommandParser` creates a new `Item` object, 
+5. If all the inputs are valid, The `AddCommandParser` creates a new `Item` object, 
    and instantiates a new `AddCommand` object that contains the `Item` object. This `AddCommand` object will be
-   returned to the `LogicManager`.
-6. The `LogicManager` will then invoke the `execute` method of the `AddCommand` object with `model` as argument.   
-7. Consequently, `AddCommand` object will add the `Item` object to `Model`, and return a `CommandResult` to `LogicManager`.
+   returned to `LogicManager` via `StoreMandoParser`.
+6. The `LogicManager` will then invoke the overridden `execute` method of the `AddCommand` object with `model` as argument.   
+7. Subsequently, the `AddCommand` object will add the `Item` object to `Model`, and return a `CommandResult` object to `LogicManager`.
 8. This `CommandResult` will be returned at the end.
 
-The following activity diagram summarizes what happens when a user executes a new `add` command:
+
+The following activity diagram summarizes what happens when a user executes the `add` command:
+
+<br>
+
 ![AddActivityDiagram](images/AddActivityDiagram.png)
 
 ##### Proposed Improvements
@@ -192,13 +197,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 ##### Design Considerations:
 
 ##### Aspect: Identifying the addition of duplicate item
-* **Alternative 1 (current choice):** Compare item to be added and existing items in the inventory by name, location 
-  **and** expiry date.
+* **Alternative 1 (current choice):** Compare item to be added and existing items in the inventory by **name, location 
+  and expiry date**.
     * Pros: Allows users to store the same products that may have been produced in different batches. This would also 
       help users identify and differentiate similar products by their expiry date.
     * Cons: Items with the same name and location may be a potential source of confusion.
 
-* **Alternative 2:** Compare item to be added and existing items in the inventory by name and location only.
+* **Alternative 2:** Compare item to be added and existing items in the inventory by **name and location** only.
     * Pros: Allows users to clearly distinguish items with the same names by location. This would prevent confusion and
       save users from going through the hassle of distinguishing items by expiry date.
     * Cons: Users would not be able to store similar items that have different expiry dates as a result of being 
@@ -267,43 +272,42 @@ GUI proceeds to show it on the result display.
 * **Alternative 2:** Allow edit item to have the same fields as the original item.
     * Pros: Easy to implement.
     
-### Delete Item `Delete`
+### Delete Item `delete`
+
+The `delete` feature allows users to delete an item from the inventory by using the item's index in the displayed list.
 
 #### Actual Implementation
 
-The `delete` feature allows users to delete an item in their Inventory by the item's index in the list.
+The sequence diagram below shows how the components interact with each other for the scenario where the user
+issues the command `delete 5` to delete the item with index 5 in the currently displayed list:
 
-The following sequence diagram shows how the delete operation works:
+<br>
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
-Given below is an example usage scenario and how delete mechanism behaves at each step.
+From the diagram above:
 
-Step 1. User executes `delete 5` to delete the 5th item in the list. `StoreMandoParser` takes in the user input and
-determines the command word (delete) and argument (5) respectively.
+1. When the user keys in an input, `execute` method of the `LogicManager` class is called with the user input as the parameter.
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
+3. The `StoreMandoParser` parses the user input, identifies it as a `DeleteCommand` and instantiates a `DeleteCommandParser` object.
+4. `StoreMandoParser` then invokes the `parse` method of the `DeleteCommandParser` object to further parse the arguments provided. In the `parse` method,
+   the `DeleteCommandParser` ensures that the input is of the correct format and identifies the input for the index of the item to be deleted.
+5. If the index specified by the user is valid, a new `DeleteCommand` instance will be
+   created and returned to `LogicManager` via `StoreMandoParser`.
+6. The `LogicManager` will then invoke the overridden `execute` method of the `DeleteCommand` object with `model` as argument.
+7. Subsequently, the `DeleteCommand` object will invoke `deleteItem` method of `Model` with the index of the item to delete as the argument. It will then return 
+a `CommandResult` object to `LogicManager`
+8. This `CommandResult` will be returned at the end.
 
-Step 2. An instance of `DeleteCommandParser` will be created, followed by a call on its `parse` method, taking in the
-argument stated in step 1 (5).
+The following activity diagram summarizes what happens when a user executes the `delete` command:
 
-Step 3. The `parse` method will check for the validity of the index. If valid, a new `DeleteCommand` instance will be
-created and returned to `LogicManager` class via `StoreMandoParser` class.
-
-<div markdown="span" class="alert alert-info">
-
-:information_source: **Note:** If the index is determined to be invalid, a parseException will be thrown to notify the
-user of the error.
-
-</div>
-
-Step 4. The overridden `execute` method of `DeleteCommand` will be called, deleting the item from the list.
-
-Step 5. Finally, a `CommandResult` object is created and returned to `LogicManager`.
+<br>
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
 ##### Aspect: How `delete` executes
 
-* **Alternative 1 (current choice):** Delete item by an index.
+* **Alternative 1 (current choice):** Delete item by its index in the displayed list.
     * Pros: Easy to implement.
     * Cons: Requires user to scroll through the list to find the item and specify the index.
 
@@ -337,18 +341,21 @@ argument stated in step 1 ("Chocolate").
 Step 3. The `parse` method will check for the presence of keyword(s). If keywords are present, a new `FindCommand` instance will be
 created and returned to `LogicManager` class via `StoreMandoParser` class.
 
-<div markdown="span" class="alert alert-info"> 
-:information_source: **Note:** If the command format is determined to be invalid, a parseException will be thrown to notify the
-user of the error.
-</div>
-
 Step 4. The overridden `execute` method will be called. The current predicate and filtered item list of the `Model` will
 be updated, and all items in the inventory that matches the keyword in full will be listed. An instance of
 `CommandResult` will be created, generating the result of the execution. The String parameter passed in the `CommandResult` depends
 on whether the number of items that matched the keyword is more than one or less than two. The `LogicManager` class will receive the
 result of the execution.
 
+<div markdown="span" class="alert alert-info"> 
+:information_source: **Note:** If the command format is determined to be invalid, a parseException will be thrown to notify the
+user of the error.
+</div>
+
+
 The following activity diagram summarizes what happens when a user executes a new command:
+
+<br>
 
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
