@@ -45,8 +45,9 @@ Before diving into the rest of the contents in our developer guide, the followin
 
 ## **Design**
 ### Architecture
-
-![Architecture_Diagram](images/ArchitectureDiagram.png)
+<p align="center">
+  <img width="360px" src="images/ArchitectureDiagram.png" >
+</p>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -70,7 +71,9 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+<p align="center">
+  <img width="800px" src="images/LogicClassDiagram.png" >
+</p>
 
 <div style="page-break-after: always;"></div>
 
@@ -78,15 +81,18 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `remove 1`.
 
-<img src="images/ArchitectureSequenceDiagramRemove.png" width="600" />
+<p align="center">
+  <img width="500px" src="images/ArchitectureSequenceDiagramRemove.png" >
+</p>
 
 The sections below give more details of each component.
 
 <div style="page-break-after: always;"></div>
 
 ### UI component
-
-![Structure of the UI Component](images/UiClassDiagram.png)
+<p align="center">
+  <img width="800px" src="images/UiClassDiagram.png" >
+</p>
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/ui/Ui.java)
@@ -105,7 +111,9 @@ The `UI` component,
 <div style="page-break-after: always;"></div>
 
 ### Logic component
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+<p align="center">
+  <img width="800px" src="images/LogicClassDiagram.png" >
+</p>
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/logic/Logic.java)
@@ -117,7 +125,10 @@ The `UI` component,
 5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("remove 1")` API call.
-![Interactions Inside the Logic Component for the `delete 1` Command](images/RemoveSequenceDiagram.png)
+
+<p align="center">
+  <img width="800px" src="images/RemoveSequenceDiagram.png" >
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -125,7 +136,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div style="page-break-after: always;"></div>
 
 ### Model component
-![Structure of the Model Component](images/ModelClassDiagram.png)
+<p align="center">
+  <img width="360px" src="images/ModelClassDiagram.png" >
+</p>
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/model/Model.java)
 
@@ -144,8 +157,9 @@ require one `Tag` object per unique `Tag`, instead of each `Endpoint` needing th
 <div style="page-break-after: always;"></div>
 
 ### Storage component
-
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+<p align="center">
+  <img width="800px" src="images/StorageClassDiagram.png" >
+</p>
 
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/us/among/storage/Storage.java)
 
@@ -164,10 +178,16 @@ Classes used by multiple components are in the `seedu.us.among.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
 ### Endpoint components
+
 * Change/Add classes in the Endpoint package to encapsulate an API endpoint.
+
 #### Implementation
-![Structure of the Model Component](images/EndpointClassDiagram.png)
+<p align="center">
+  <img width="500px" src="images/EndpointClassDiagram.png" >
+</p>
+
 An `Endpoint`,
 * is stored in `EndpointList` of the `Model`
 * encapsulates an API endpoint
@@ -219,7 +239,11 @@ Step 1. The user launches the application and executes `add -x get -u https://ap
 Step 2. The endpoint is added to the model.
 
 The following sequence diagram shows how the add operation works:
-![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+<p align="center">
+  <img width="800px" src="images/AddSequenceDiagram.png" >
+</p>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -247,7 +271,7 @@ Step 3. `Model#updateFilteredEndpointList` will be called and model will be upda
 The following activity diagram summarizes what happens when a user executes a find command:
 
 <p align="center">
-  <img src="images/FindActivityDiagram.png" alt="FindActivityDiagram" width="450px" />
+  <img width="360px" src="images/FindActivityDiagram.png" >
 </p>
 
 ### Send/run command feature
@@ -275,7 +299,11 @@ Step 4. The response retrieved will also be parsed and passed to UI for further 
 </div>
 
 The following sequence diagram shows how the send operation works:
-![SendSequenceDiagram](images/SendSequenceDiagram.png)
+
+<p align="center">
+  <img width="600px" src="images/SendSequenceDiagram.png" >
+</p>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SendCommand` should end 
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -286,9 +314,11 @@ The `run` command deploys a similar trick but for an endpoint specified directly
 <div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a run command:
+
 <p align="center">
-  <img alt="RunActivityDiagram" src="images/RunActivityDiagram.png" width="400px"/>
+  <img width="360px" src="images/RunActivityDiagram.png" >
 </p>
+
 #### Design consideration:
 
 ##### Aspect: How send & run executes
@@ -335,9 +365,11 @@ Step 4. The response retrieved will also be parsed and passed to UI for further 
 </div>
 
 The following sequence diagram shows how the request operation works when a user executes a `send` command for an endpoint with a `GET` request:
-<p align="centre">
-  <img alt="SendSequenceDiagram" src="images/RequestSequenceDiagram.png"/>
+
+<p align="center">
+  <img width="500px" src="images/RequestSequenceDiagram.png" >
 </p>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SendCommand`, `EndpointCaller` and `GetRequest` should end 
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -345,10 +377,10 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 <div style="page-break-after: always;"></div>
 
-The following activity diagram summarizes what happens when a user executes a `send` command for an endpoint with a `GET` request:
-<br/>
+The following activity diagram summarizes what happens when a user executes a `send` command for an endpoint with a `GET` request:<br/>
+
 <p align="center">
-  <img alt="RequestActivityDiagram" src="images/RequestActivityDiagram.png" />
+  <img width="400px" img alt="RequestActivityDiagram" src="images/RequestActivityDiagram.png" />
 </p>
 
 #### Design consideration:
@@ -382,7 +414,10 @@ Step 2. The `toggle` command returns a `CommandResult` that triggers the `update
 <div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how the toggle command works for the above example: 
-![ToggleSequenceDiagram](images/ToggleSequenceDiagram.png)
+
+<p align="center">
+  <img width="1000px" src="images/ToggleSequenceDiagram.png" >
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ToggleCommand`, `ToggleCommandParser` and `CommandResult` should end 
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
