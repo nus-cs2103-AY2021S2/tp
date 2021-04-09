@@ -31,11 +31,11 @@ Given below are my contributions to the project.
     * User Guide:
         * Added documentation for Macronutrients Tracker section and updated table of contents
     * Developer Guide:
-        * Added explanation of design decisions when implementing the operations of the food item feature. Editted the UML diagrams from the old address book to a new one that fits DietLAH! implementation.
+        * Added explanation of design decisions when implementing the operations of the food item feature. Editted the UML diagrams (Logic Class Diagram, Architecture Sequence Diagram, UI class Diagram, Delete Sequence Diagram) from the old address book to a new one that fits DietLAH! implementation.
 
 * **Contributions to team-based tasks**:
   * Set up of issues for user stories
-	    * Reviewing and approving of teammates' pull requests
+  * Reviewing and approving of teammates' pull requests
 
 * **Community**:
   * Raised some issues in the forum for open discussions
