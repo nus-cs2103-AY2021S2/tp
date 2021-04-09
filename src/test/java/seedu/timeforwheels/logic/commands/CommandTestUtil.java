@@ -131,18 +131,4 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredCustomerList().size());
     }
 
-    /**
-     * Executes the given {@code command}, confirms that <br>
-     * - the {@code actualModel} matches {@code expectedModel}
-     */
-    public static void assertCommandModelSuccess(Command command, Model actualModel, Model expectedModel) {
-        try {
-            CommandResult result = command.execute(actualModel);
-            assertEquals(expectedModel, actualModel);
-        } catch (CommandException ce) {
-            throw new AssertionError("Execution of command should not fail.", ce);
-        }
-    }
-
-
 }

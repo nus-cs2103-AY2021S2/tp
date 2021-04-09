@@ -27,7 +27,7 @@ public class JsonSerializableDeliveryListTest {
             JsonSerializableDeliveryList.class).get();
         DeliveryList deliveryListFromFile = dataFromFile.toModelType();
         DeliveryList typicalCustomersDeliveryList = TypicalCustomers.getTypicalDeliveryList();
-        assertEquals(deliveryListFromFile.toString(), typicalCustomersDeliveryList.toString());
+        assertEquals(deliveryListFromFile, typicalCustomersDeliveryList);
     }
 
     @Test
