@@ -656,7 +656,7 @@ Dictionote data are saved as a JSON file at directory `[JAR file location]/data/
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Dictionote will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
@@ -669,7 +669,11 @@ _Details coming soon ..._
 
 **My data is missing after I edited my JSON file.**
 * When an invalid JSON file is detected, Dictionote discards all data and starts over with an empty data file. 
-* Please use a JSON editor software to check that the format is still valid after you've edited it.
+* Please use a JSON editor software to ensure that the format is still valid after you've edited it.
+
+**MI tried to open the closed panel with my mouse, but there is no content displayed when I drag the panel open.**
+* Dictionote is designed to support fast typists, mouse action is limited, please use the `open` command instead.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -679,10 +683,10 @@ Action | Format, Examples
 --------|------------------
 **Viewing help** | `help`
 **Viewing Command List** | `listcommand`
-**Viewing Dictionary Command Details** | `listcommandd`
-**Viewing Note Command Details** | `listcommandn`
-**Viewing Contact Command Details** | `listcommandc`
-**Viewing UI Command Details** | `listcommandu`
+**Viewing Dictionary Command Details** | `commanddetaild`
+**Viewing Note Command Details** | `commanddetailn`
+**Viewing Contact Command Details** | `commanddetailc`
+**Viewing UI Command Details** | `commanddetailu`
 **Exit** | `exit`
 ***Dictionary Features*** | -
 **Find content** | `findcontent KEYWORD [MORE_KEYWORDS]`
