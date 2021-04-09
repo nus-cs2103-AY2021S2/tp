@@ -9,9 +9,9 @@ import static seedu.cakecollate.commons.util.AppUtil.checkArgument;
  */
 public class Name {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
-
+    public static final String MESSAGE_CONSTRAINTS = "Names should only contain alphanumeric characters and spaces.";
+    public static final String MESSAGE_EMPTY = "Name cannot be blank.";
+    public static final String MESSAGE_OVERFLOW = "Name has a size limit of 70 characters.";
     /*
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.

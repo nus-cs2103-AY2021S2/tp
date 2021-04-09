@@ -32,6 +32,8 @@ public class RequestCommand extends Command {
 
     public static final String MESSAGE_ADD_REQUEST_SUCCESS = "Added request to order: %1$s";
     public static final String MESSAGE_DELETE_REQUEST_SUCCESS = "Removed request from order: %1$s";
+    public static final String MESSAGE_DELETE_REQUEST_SUCCESS_EMPTY =
+            "Special request is already empty! Try adding a request instead.";
 
     private final Index index;
     private final Request request;
@@ -58,24 +60,28 @@ public class RequestCommand extends Command {
         Order orderToEdit = lastShownList.get(index.getZeroBased());
         Order editedOrder = new Order(orderToEdit.getName(), orderToEdit.getPhone(), orderToEdit.getEmail(),
                 orderToEdit.getAddress(), orderToEdit.getOrderDescriptions(),
-                orderToEdit.getTags(), orderToEdit.getDeliveryDate(), request);
+                orderToEdit.getTags(), orderToEdit.getDeliveryDate(), orderToEdit.getDeliveryStatus(), request);
 
         model.setOrder(orderToEdit, editedOrder);
         model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
 
-        return new CommandResult(generateSuccessMessage(editedOrder));
+        return new CommandResult(generateSuccessMessage(editedOrder, orderToEdit));
     }
 
     /**
      * Generates a command execution success message based on whether the request is added to or removed from
      * {@code orderToEdit}.
      */
-    private String generateSuccessMessage(Order orderToEdit) {
+    private String generateSuccessMessage(Order editedOrder, Order orderToEdit) {
         boolean isEmptyRequest = request.isRequestEmpty();
+        boolean isOrderRequestCurrentlyEmpty = orderToEdit.getRequest().isRequestEmpty;
+        if (isOrderRequestCurrentlyEmpty && isEmptyRequest) {
+            return String.format(MESSAGE_DELETE_REQUEST_SUCCESS_EMPTY);
+        }
         String message = isEmptyRequest
                 ? MESSAGE_DELETE_REQUEST_SUCCESS
                 : MESSAGE_ADD_REQUEST_SUCCESS;
-        return String.format(message, orderToEdit);
+        return String.format(message, editedOrder);
     }
 
     @Override

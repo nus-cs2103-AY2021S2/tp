@@ -12,8 +12,11 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.cakecollate.commons.core.GuiSettings;
 import seedu.cakecollate.model.CakeCollate;
+import seedu.cakecollate.model.OrderItems;
 import seedu.cakecollate.model.ReadOnlyCakeCollate;
+import seedu.cakecollate.model.ReadOnlyOrderItems;
 import seedu.cakecollate.model.UserPrefs;
+import seedu.cakecollate.testutil.TypicalOrderItems;
 
 public class StorageManagerTest {
 
@@ -65,6 +68,24 @@ public class StorageManagerTest {
     @Test
     public void getCakeCollateFilePath() {
         assertNotNull(storageManager.getCakeCollateFilePath());
+    }
+
+    @Test
+    public void orderItemReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonOrderItems} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonOrderItemsStorageTest} class.
+         */
+        OrderItems original = TypicalOrderItems.getTypicalOrderItemsModel();
+        storageManager.saveOrderItems(original);
+        ReadOnlyOrderItems retrieved = storageManager.readOrderItems().get();
+        assertEquals(original, new OrderItems(retrieved));
+    }
+
+    @Test
+    public void getOrderItemsFilePath() {
+        assertNotNull(storageManager.getOrderItemsFilePath());
     }
 
 }

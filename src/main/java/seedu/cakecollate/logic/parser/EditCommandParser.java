@@ -8,7 +8,6 @@ import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ORDER_DESCRIPTION;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_REQUEST;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -19,6 +18,7 @@ import java.util.Set;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.logic.commands.EditCommand;
 import seedu.cakecollate.logic.commands.EditCommand.EditOrderDescriptor;
+import seedu.cakecollate.logic.parser.exceptions.IndexOutOfBoundsException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.tag.Tag;
@@ -37,12 +37,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_ORDER_DESCRIPTION, PREFIX_TAG, PREFIX_DATE, PREFIX_REQUEST);
+                        PREFIX_ORDER_DESCRIPTION, PREFIX_TAG, PREFIX_DATE);
 
         Index index;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (IndexOutOfBoundsException pe) {
+            throw new IndexOutOfBoundsException(pe.getMessage());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }

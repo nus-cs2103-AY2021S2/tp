@@ -3,7 +3,6 @@ package seedu.cakecollate.model.orderitem;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_COST_STRAWBERRY;
 import static seedu.cakecollate.testutil.Assert.assertThrows;
 import static seedu.cakecollate.testutil.TypicalOrderItems.CHOCOLATE;
 import static seedu.cakecollate.testutil.TypicalOrderItems.STRAWBERRY;
@@ -41,7 +40,7 @@ public class UniqueOrderItemListTest {
     @Test
     public void contains_orderItemWithSameTypeInList_returnsTrue() {
         uniqueOrderItemList.add(CHOCOLATE);
-        OrderItem editedChocolate = new OrderItemBuilder(CHOCOLATE).withCost(VALID_COST_STRAWBERRY).build();
+        OrderItem editedChocolate = new OrderItemBuilder(CHOCOLATE).build();
         assertTrue(uniqueOrderItemList.contains(editedChocolate));
     }
 
@@ -83,7 +82,7 @@ public class UniqueOrderItemListTest {
     @Test
     public void setOrderItem_editedOrderItemHasSameType_success() {
         uniqueOrderItemList.add(CHOCOLATE);
-        OrderItem editedChocolate = new OrderItemBuilder(CHOCOLATE).withCost(VALID_COST_STRAWBERRY).build();
+        OrderItem editedChocolate = new OrderItemBuilder(CHOCOLATE).build();
         uniqueOrderItemList.setOrderItem(CHOCOLATE, editedChocolate);
         UniqueOrderItemList expectedUniqueOrderItemList = new UniqueOrderItemList();
         expectedUniqueOrderItemList.add(editedChocolate);

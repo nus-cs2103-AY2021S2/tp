@@ -222,6 +222,11 @@ public class AddCommandTest {
         public ReadOnlyOrderItems getOrderItems() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setOrderItems(ReadOnlyOrderItems orderItems) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -283,7 +288,7 @@ public class AddCommandTest {
         @Override
         public boolean hasOrderItem(OrderItem item) {
             requireNonNull(item);
-            return orderItemsStub.stream().anyMatch(item::isSameOrderItem);
+            return orderItemsStub.stream().anyMatch(item::equals);
         }
 
         @Override

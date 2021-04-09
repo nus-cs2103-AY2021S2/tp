@@ -7,9 +7,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.commons.util.StringUtil;
+import seedu.cakecollate.logic.parser.exceptions.IndexOutOfBoundsException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.order.Address;
 import seedu.cakecollate.model.order.DeliveryDate;
@@ -17,7 +19,6 @@ import seedu.cakecollate.model.order.Email;
 import seedu.cakecollate.model.order.Name;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
-import seedu.cakecollate.model.orderitem.Cost;
 import seedu.cakecollate.model.orderitem.OrderItem;
 import seedu.cakecollate.model.orderitem.Type;
 import seedu.cakecollate.model.tag.Tag;
@@ -28,6 +29,12 @@ import seedu.cakecollate.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final int PHONE_LENGTH = 20;
+    public static final int TAG_LENGTH = 30;
+    public static final int INTEGER_LENGTH = 10;
+    public static final int NAME_LENGTH = 70;
+    public static final int ORDER_DESCRIPTION_LENGTH = 70;
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -36,6 +43,12 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        boolean allDigits = oneBasedIndex.chars().allMatch(Character::isDigit);
+        boolean lengthMoreThanTen = oneBasedIndex.length() > INTEGER_LENGTH;
+        boolean allDigitsAndLengthMoreThanTen = allDigits && lengthMoreThanTen;
+        if (allDigitsAndLengthMoreThanTen) {
+            throw new IndexOutOfBoundsException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
@@ -51,10 +64,12 @@ public class ParserUtil {
      */
     public static IndexList parseIndexList(String oneBasedIndexList) throws ParseException {
         String[] indexListSplit = oneBasedIndexList.trim().split(" ");
-        IndexList indexList = new IndexList(new ArrayList<Index>());
+        IndexList indexList = new IndexList(new ArrayList<>());
         for (String index: indexListSplit) {
-            Index parsedIndex = parseIndex(index);
-            indexList.add(parsedIndex);
+            if ((!index.equals(" ")) && (!index.equals(""))) {
+                Index parsedIndex = parseIndex(index.trim());
+                indexList.add(parsedIndex);
+            }
         }
         indexList.sortList();
         return indexList;
@@ -70,6 +85,12 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
+        if (trimmedName.isEmpty()) {
+            throw new ParseException(Name.MESSAGE_EMPTY);
+        }
+        if (trimmedName.length() > NAME_LENGTH) {
+            throw new ParseException(Name.MESSAGE_OVERFLOW);
+        }
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -85,6 +106,12 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
+        if (trimmedPhone.isEmpty()) {
+            throw new ParseException(Phone.MESSAGE_EMPTY);
+        }
+        if (trimmedPhone.length() > PHONE_LENGTH) {
+            throw new ParseException(Phone.MESSAGE_OVERFLOW);
+        }
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
@@ -92,14 +119,17 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String cakecollate} into an {@code Address}.
+     * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code cakecollate} is invalid.
+     * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
+        if (trimmedAddress.isEmpty()) {
+            throw new ParseException(Address.MESSAGE_EMPTY);
+        }
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
@@ -115,6 +145,9 @@ public class ParserUtil {
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
+        if (trimmedEmail.isEmpty()) {
+            throw new ParseException(Email.MESSAGE_EMPTY);
+        }
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
@@ -130,7 +163,9 @@ public class ParserUtil {
     public static OrderDescription parseOrderDescription(String orderDescription) throws ParseException {
         requireNonNull(orderDescription);
         String trimmedOrderDescription = orderDescription.trim();
-
+        if (trimmedOrderDescription.length() > ORDER_DESCRIPTION_LENGTH) {
+            throw new ParseException(OrderDescription.MESSAGE_OVERFLOW);
+        }
         if (!OrderDescription.isValidOrderDescription(trimmedOrderDescription)) {
             throw new ParseException(OrderDescription.MESSAGE_CONSTRAINTS);
         }
@@ -160,6 +195,9 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
+        if (trimmedTag.length() > TAG_LENGTH) {
+            throw new ParseException(Tag.MESSAGE_OVERFLOW);
+        }
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
@@ -187,12 +225,13 @@ public class ParserUtil {
     public static DeliveryDate parseDeliveryDate(String deliveryDate) throws ParseException {
         requireNonNull(deliveryDate);
         String trimmedDeliveryDate = deliveryDate.trim();
+        if (trimmedDeliveryDate.isEmpty()) {
+            throw new ParseException(DeliveryDate.MESSAGE_EMPTY);
+        }
         if (!DeliveryDate.isValidFormat(trimmedDeliveryDate)) {
-            System.out.println("not valid format");
             throw new ParseException(DeliveryDate.MESSAGE_CONSTRAINTS_FORMAT);
         }
         if (!DeliveryDate.isXDaysLater(trimmedDeliveryDate, 0L)) {
-            System.out.println("not future date");
             throw new ParseException(String.format(DeliveryDate.MESSAGE_CONSTRAINTS_VALUE, trimmedDeliveryDate));
         }
         return new DeliveryDate(trimmedDeliveryDate);
@@ -213,6 +252,6 @@ public class ParserUtil {
         if (!Type.isValidType(trimmedOrderItemDescription)) {
             throw new ParseException(Type.MESSAGE_CONSTRAINTS);
         }
-        return new OrderItem(new Type(trimmedOrderItemDescription), new Cost("10"));
+        return new OrderItem(new Type(trimmedOrderItemDescription));
     }
 }

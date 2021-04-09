@@ -11,52 +11,21 @@ import java.util.Objects;
 public class OrderItem {
 
     private final Type type;
-    private final Cost cost;
 
-    /**
-     * Every field must be present and not null.
-     */
-    public OrderItem(Type type, Cost cost) {
-        // requireAllNonNull(type, cost);
-        requireAllNonNull(type);
-        this.type = type;
-        this.cost = cost;
-    }
-
-    // i'm assuming the above constructor will get deleted
     /**
      * Every field must be present and not null.
      */
     public OrderItem(Type type) {
         requireAllNonNull(type);
         this.type = type;
-        this.cost = new Cost("20.75"); // placeholder to avoid NPE, needed to use samae value as order item builder
     }
 
     public Type getType() {
         return type;
     }
 
-    public Cost getCost() {
-        return cost;
-    }
-
     /**
-     * Returns true if both orders have the same type of cake.
-     * This defines a weaker notion of equality between two orders.
-     */
-    public boolean isSameOrderItem(OrderItem otherOrder) {
-        if (otherOrder == this) {
-            return true;
-        }
-
-        return otherOrder != null
-                && otherOrder.getType().equals(getType());
-    }
-
-    /**
-     * Returns true if both order items have the same type of cake and cost.
-     * This defines a stronger notion of equality between two orders.
+     * Returns true if both order items have the same type of cake.
      */
     @Override
     public boolean equals(Object other) {
@@ -69,23 +38,19 @@ public class OrderItem {
         }
 
         OrderItem otherOrder = (OrderItem) other;
-        return otherOrder.getType().equals(getType())
-                && otherOrder.getCost().equals(getCost());
+        return otherOrder.getType().equals(getType());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, cost);
+        return Objects.hash(type);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Type of cake: ")
-                .append(getType())
-                .append("; Cost: ")
-                .append(getCost());
-
+                .append(getType());
         return builder.toString();
     }
 

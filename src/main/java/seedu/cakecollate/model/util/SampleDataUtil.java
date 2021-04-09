@@ -18,7 +18,6 @@ import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
 import seedu.cakecollate.model.order.Request;
-import seedu.cakecollate.model.orderitem.Cost;
 import seedu.cakecollate.model.orderitem.OrderItem;
 import seedu.cakecollate.model.orderitem.Type;
 import seedu.cakecollate.model.tag.Tag;
@@ -30,7 +29,7 @@ public class SampleDataUtil {
     private static LocalDate dateToday = LocalDate.now();
     private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("[dd/MM/yyyy]");
     private static final Request EMPTY_REQUEST = new Request("");
-    private static final Request NON_EMPTY_REQUEST_1 = new Request("No sugar, customer has diabetus.");
+    private static final Request NON_EMPTY_REQUEST_1 = new Request("No sugar, customer has diabetes.");
     private static final Request NON_EMPTY_REQUEST_2 = new Request("More sugar, spice and everything nice.");
 
     public static Order[] getSampleOrders() {
@@ -73,14 +72,14 @@ public class SampleDataUtil {
     // sample order items should include the order descriptions above so it doesn't confuse users
     // since order descriptions typed by users should always be added to the order items table
     public static OrderItem[] getSampleOrderItem() {
-        return new OrderItem[] { new OrderItem(new Type("Banana Cake"), new Cost("5.0")),
-            new OrderItem(new Type("GME Banana Cake"), new Cost("42690.0")),
-            new OrderItem(new Type("1 x Strawberry Cake"), new Cost("5.0")),
-            new OrderItem(new Type("2 x Chocolate Cake"), new Cost("5.0")),
-            new OrderItem(new Type("1 x Black Forest Cake"), new Cost("5.0")),
-            new OrderItem(new Type("1 x Vanilla Cake"), new Cost("5.0")),
-            new OrderItem(new Type("1 x Chocolate Vanilla Cake"), new Cost("5.0")),
-            new OrderItem(new Type("1 x Berries Cake"), new Cost("5.0"))
+        return new OrderItem[] { new OrderItem(new Type("Banana Cake")),
+            new OrderItem(new Type("GME Banana Cake")),
+            new OrderItem(new Type("1 x Strawberry Cake")),
+            new OrderItem(new Type("2 x Chocolate Cake")),
+            new OrderItem(new Type("1 x Black Forest Cake")),
+            new OrderItem(new Type("1 x Vanilla Cake")),
+            new OrderItem(new Type("1 x Chocolate Vanilla Cake")),
+            new OrderItem(new Type("1 x Berries Cake"))
         };
     }
 

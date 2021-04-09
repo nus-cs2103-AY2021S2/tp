@@ -35,9 +35,7 @@ public class CommandTestUtil {
 
     //the following variables are for an OrderItem
     public static final String VALID_TYPE_CHOCOLATE = "Chocolate cake";
-    public static final String VALID_COST_CHOCOLATE = "20.75";
     public static final String VALID_TYPE_STRAWBERRY = "Strawberry cake";
-    public static final String VALID_COST_STRAWBERRY = "30.50";
 
     //the following variables are for an Order
     public static final String VALID_NAME_AMY = "Amy Bee";

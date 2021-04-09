@@ -1,0 +1,19 @@
+{
+  "_comment": "OrderItems save file which contains the same OrderItem values as in TypicalOrderItems#getTypicalOrderItemsModel()",
+  "orderItems": [ {
+    "type": "Black Forest"
+  }, {
+    "type": "Red Velvet Cake"
+  }, {
+    "type": "Chocolate Mud Cake"
+  }, {
+    "type": "Oreo Cheesecake"
+  }, {
+    "type": "Butterscotch Cake"
+  },
+    {
+    "type": "Strawberry cake"
+  }, {
+    "type": "Chocolate cake"
+  } ]
+}

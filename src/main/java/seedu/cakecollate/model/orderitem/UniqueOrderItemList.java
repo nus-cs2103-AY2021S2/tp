@@ -13,15 +13,15 @@ import seedu.cakecollate.model.orderitem.exceptions.OrderItemNotFoundException;
 
 /**
  * A list of order items that enforces uniqueness between its elements and does not allow nulls.
- * A order item is considered unique by comparing using {@code OrderItem#isSameOrderItem(OrderItem)}.
- * As such, adding and updating of orders uses OrderItem#isSameOrderItem(OrderItem) for equality so as
- * to ensure that the order item being added or updated is unique in terms of identity in the UniqueOrderItemList.
- * However, the removal of an order uses OrderItem#equals(Object) so
- * as to ensure that the order with exactly the same fields will be removed.
+ * A order item is considered unique by comparing using {@code OrderItem#equals(Object)}.
+ * As such, adding and updating of orders uses OrderItem#equals(Object) for equality so as
+ * to ensure that the order item being added or updated is unique in terms of order description in
+ * the UniqueOrderItemList. The removal of an order uses OrderItem#equals(Object) so also uses
+ * {@code OrderItem#equals(Object)}.
  * <p>
  * Supports a minimal set of list operations.
  *
- * @see OrderItem#isSameOrderItem(OrderItem)
+ * @see OrderItem#equals(Object)
  */
 public class UniqueOrderItemList implements Iterable<OrderItem> {
 
@@ -34,7 +34,7 @@ public class UniqueOrderItemList implements Iterable<OrderItem> {
      */
     public boolean contains(OrderItem toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameOrderItem);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -62,7 +62,7 @@ public class UniqueOrderItemList implements Iterable<OrderItem> {
             throw new OrderItemNotFoundException();
         }
 
-        if (!target.isSameOrderItem(editedOrderItem) && contains(editedOrderItem)) {
+        if (!target.equals(editedOrderItem) && contains(editedOrderItem)) {
             throw new DuplicateOrderItemException();
         }
 
@@ -128,7 +128,7 @@ public class UniqueOrderItemList implements Iterable<OrderItem> {
     private boolean orderItemsAreUnique(List<OrderItem> orderItems) {
         for (int i = 0; i < orderItems.size() - 1; i++) {
             for (int j = i + 1; j < orderItems.size(); j++) {
-                if (orderItems.get(i).isSameOrderItem(orderItems.get(j))) {
+                if (orderItems.get(i).equals(orderItems.get(j))) {
                     return false;
                 }
             }
