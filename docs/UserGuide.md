@@ -192,7 +192,8 @@ This section details the format of the commands available in TutorBuddy. We will
 * Date must be input in the format, `yyyy-mm-dd`.
   e.g. `2021-01-01` is allowed, but not `01-01-2021`.
   
-* Year must be between 1970 and 2037, both inclusive.
+* Year must be between 1970 and 2037, both inclusive, in consideration of the
+  [2038 problem](https://en.wikipedia.org/wiki/Year_2038_problem)
   e.g. `1969` and `2038` is not allowed.
 
 
@@ -435,8 +436,7 @@ Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 
 * `STUDENT_NAME` should match the exact student’s name in TutorBuddy
 * `MONTH` should be a positive integer between 1 and 12 inclusive
-* `YEAR` should be a positive integer between 1970 and 2037 inclusive, in consideration of the
-  [2038 problem](https://en.wikipedia.org/wiki/Year_2038_problem)
+* `YEAR` should be a positive integer between 1970 and 2037 inclusive
 
 Example:
 * `fee n/John Doe m/1 y/2021` returns John Doe monthly fee for January 2021
