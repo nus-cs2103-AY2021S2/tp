@@ -167,6 +167,8 @@ class SortCommandTest {
 
         assertNotEquals(moduleSortCommand, new SortCommand(new Task.WorkloadComparator()));
 
+        assertNotEquals(workloadSortCommand, new SortCommand(new Task.TagComparator()));
+
     }
 
 }
