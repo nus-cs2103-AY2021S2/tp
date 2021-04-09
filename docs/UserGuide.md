@@ -274,13 +274,13 @@ Examples:
 ![Find](images/find.png)
 ### Viewing help : `help`
 
-Display a pop-up window showing a list of commonly used commands and a link to our User Guide. 
+Display a pop-up window showing a list of commonly used commands in Vax@NUS and a link to our User Guide. 
 
 Format: `help`
 
 ### Clearing all data : `clear`
 
-Clearing all the data from VAX@NUS.
+Clearing all the data from Vax@NUS.
 
 Format: `clear`
 
