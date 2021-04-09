@@ -24,14 +24,18 @@ public class UndoneTaskCommandParserTest {
     }
 
     @Test
-    @Disabled
+    public void parse_noArgs_throwsParseException() {
+        assertParseFailure(parser, "   ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, UndoneTaskCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_invalidArg_throwsParseException() {
         assertParseFailure(parser, "a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, UndoneTaskCommand.MESSAGE_USAGE));
     }
 
     @Test
-    @Disabled
     public void parse_invalidArgNegativeIndex_throwsParseException() {
         assertParseFailure(parser, "-1",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, UndoneTaskCommand.MESSAGE_USAGE));
