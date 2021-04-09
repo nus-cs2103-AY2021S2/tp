@@ -70,8 +70,8 @@ public class ReminderCommandParserTest {
         assertParseFailure(parser, "-366 weeks", ReminderCommand.MESSAGE_INCORRECT_INTEGER);
 
         // integer provided greater than maximum integer
-        assertParseFailure(parser, "2140928140124 days", ReminderCommand.MESSAGE_INCORRECT_INTEGER);
-        assertParseFailure(parser, "-28347923847102 weeks", ReminderCommand.MESSAGE_INCORRECT_INTEGER);
+        assertParseFailure(parser, "9223372036854775810 days", ReminderCommand.MESSAGE_INCORRECT_INTEGER);
+        assertParseFailure(parser, "-9223372036854775810 weeks", ReminderCommand.MESSAGE_INCORRECT_INTEGER);
     }
 
 }
