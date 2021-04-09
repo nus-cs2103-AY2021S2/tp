@@ -6,11 +6,14 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Class EndpointList
 
+Class ModelManager
+
 Package Endpoint {
 Class Endpoint
 Class Address
 Class Data
 Class Method
+Class Response
 Class UniqueEndpointList
 }
 
@@ -22,12 +25,13 @@ Package Tag {
 Class Tag
 }
 
-
+ModelManager ---> Endpoint
 EndpointList *--> "1" UniqueEndpointList
 UniqueEndpointList o--> "*" Endpoint
 Endpoint *--> "1" Method
-Endpoint *--> "1" Data
+Endpoint *--> "0..1" Data
 Endpoint *--> "1" Address
+Endpoint *--> "0..1" Response
 Endpoint *--> "*" Header
 Endpoint *--> "*" Tag
 
