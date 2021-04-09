@@ -126,7 +126,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
          ```
-         customer add n/[NAME] p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS]
+         customer add n/[NAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] (t/[TAG])
          ```
         
         Example:
@@ -172,7 +172,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
         ```
-        customer edit [INDEX] (n/[NAME]) (p/[PHONE_NUMBER]) (e/[EMAIL]) (a/[ADDRESS])
+        customer edit [INDEX] (n/[NAME]) (p/[PHONE]) (e/[EMAIL]) (a/[ADDRESS]) (t/[TAG])
         ```
         
         At least one of the fields in brackets must be present in the edit command.
@@ -229,6 +229,18 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         ```
         menu list (-a)
         ```
+        To show the current available dishes only, a `-a` flag has to be added to the end of the command.
+        Examples:
+        ```
+        menu list
+        ```
+        
+        The above command would display all dishes disregard the availability of the dish.
+        
+        ```
+        menu list -a
+        ```
+        The above command will only display the dishes that are currently available based on the available ingredients.
         
         </details>
         
@@ -238,7 +250,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
         ```
-        menu add n/[NAME] p/[PRICE]  i/[INGREDIENT_INDEX] q/[INGREDIENT_AMOUNT]...
+        menu add [n/NAME] [p/PRICE] ([i/INGREDIENT_ID] [q/INGREDIENT_QUANTITY]...)
         ```
         
         At least one pair of ingredient index and amount must be present.
@@ -251,10 +263,28 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
         ```
-        menu delete [INDEX]
-        or
         menu delete [INDEX] (-f)
         ```
+        
+        In the event that there are uncompleted orders by the dishes that is being attempted to be deleted, a `-f` flag 
+        has to be added to the end of the command to confirm the command. This is to prevent you from accidentally 
+        deleting orders unknowingly and leading to unhappy customers!
+        
+        Examples:
+        ```
+        menu delete 2
+        ```
+        
+        The above command would delete the second dishes on the menu information pane.
+        
+        ```
+        menu delete 2 -f
+        ```
+        
+        In the event that there are pending orders that have not been fulfilled that contains dish id 2, then deletion 
+        of the dish will not be allowed since we do not want to unknowingly delete orders that are still pending.
+        If deleting any dishes that belongs to any uncompleted order is desired, then adding the `-f` at the 
+        end of the command acknowledges and confirms the deletion behavior.
         
         </details>
         
@@ -264,7 +294,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
         ```
-        menu edit [INDEX] (n/[NAME]) (p/[PRICE])
+        menu edit [INDEX] ([n/NAME] [p/PRICE] [i/INGREDIENT_ID] [q/INGREDIENT_QUANTITY]...)
         ```
         
         At least one of the fields in brackets must be present in the edit command.
@@ -297,6 +327,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
     - <details open>
         <summary class="dropdown-3">List all orders - <code>list</code></summary>
         
+        Displays the list of upcoming orders.  
         Format:
         ```
         order list
@@ -308,9 +339,19 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
     - <details open>
         <summary class="dropdown-3">Add an order - <code>add</code></summary>
         
+        Creates an order and add it to the order list.  
         Format:
         ```
-        order add n/[CUSTOMER_NAME] dt/[DELIVERY_DATETIME, DD-MM-YYYY HH:MM] d/[DISH_NAME] q/[QUANTITY]...   
+        order add n/[CUSTOMER_ID] dt/[DELIVERY_DATETIME, DD-MM-YYYY HH:MM] d/[DISH_ID] q/[QUANTITY]...   
+        ```
+        Example:  
+        ![OrderAddExample](images/order/OrderAddExample.png)  
+        `Bernice Yu` has ordered a `burger` and 2 `chicken wings` on `14th Feb 2021 6:30pm`.  
+        You can see on the customer list (right column) that `Bernice Yu` has an id of `2`.  
+        While a `burger` has an id of `2`, `Chicken Wings` has an id of `3` on the menu list (right column).  
+        The command to be inputted will be:
+        ```
+        order add n/2 dt/14-02-2021 18:30 d/1 q/1 d/3 q/1  
         ```
         
         </details>
@@ -332,7 +373,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
         ```
-        inventory edit [INDEX] (n/[CUSTOMER_NAME]) (dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM)) (d/[DISH_NAME] q/[QUANTITY]...)
+        order edit [INDEX] (n/[CUSTOMER_ID]) (dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM)) (d/[DISH_ID] q/[QUANTITY]...)
         ```
         
         At least one of the fields in brackets must be present in the edit command.
@@ -345,7 +386,7 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
         ```
-        orders find n/[KEYWORD] (MORE KEYWORDS) q/[LESS THAN QUANTITY]
+        order find n/[KEYWORD] (MORE KEYWORDS) d/[KEYWORD]
         ```
         
         At least one prefix must be specified. If both are specified, both conditions will be checked.
@@ -425,10 +466,28 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
         
         Format:
         ```
-        inventory delete [INDEX]
-        or
         inventory delete [INDEX] (-f)
         ```
+
+        In the event that there are ingredients that is needed by certain dishes that is being attempted to be deleted, 
+        a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from 
+        accidentally deleting dishes unknowingly and leads to invalid orders!
+        
+        Examples:
+        ```
+        inventory delete 2
+        ```
+        
+        The above command would delete the second ingredient on the inventory information pane.
+        
+        ```
+        inventory delete 2 -f
+        ```
+        
+        In the event that there are dishes that needs ingredient id 2, then deletion
+        of the dish will not be allowed since we do not want to unknowingly delete dishes that needs the ingredient.
+        If deleting any ingredient that is needed to any dishes is desired, then adding the `-f` at the
+        end of the command acknowledges and confirms the deletion behavior.
         
         </details>
         

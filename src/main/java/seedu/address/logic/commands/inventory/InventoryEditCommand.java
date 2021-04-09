@@ -26,7 +26,7 @@ public class InventoryEditCommand extends Command {
             + "identified by the index number used in the displayed ingredient list.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_NAME + "INGREDIENT_NAME] "
             + "[" + PREFIX_QUANTITY + "QUANTITY]\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Sweetcorn";
