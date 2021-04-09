@@ -70,7 +70,7 @@ public class ListAppointmentsCommandTest {
 
         // same object -> returns true
         assertTrue(listAppointmentsFirstCommand.equals(listAppointmentsFirstCommand));
-        
+
         // different types -> returns false
         assertFalse(listAppointmentsFirstCommand.equals(1));
 

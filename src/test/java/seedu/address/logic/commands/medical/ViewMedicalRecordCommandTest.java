@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.UnarchiveCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -81,6 +82,22 @@ class ViewMedicalRecordCommandTest {
         String expectedMessage = String.format(ViewMedicalRecordCommand.MESSAGE_SUCCESS,
                 patientToView.getName().fullName);
         assertCommandSuccess(viewMedicalRecordCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_viewingMrecWithoutSelectingPatient_throwsCommandException() {
+        ViewMedicalRecordCommand viewMedicalRecordCommand = new ViewMedicalRecordCommand(INDEX_FIRST_PERSON);
+        assertCommandFailure(viewMedicalRecordCommand, model, Messages.MESSAGE_NOT_VIEWING_PATIENT);
+    }
+
+    @Test
+    public void execute_viewingPatientWithNoRecords_throwsCommandException() {
+        ViewMedicalRecordCommand viewMedicalRecordCommand = new ViewMedicalRecordCommand(INDEX_FIRST_PERSON);
+        Patient patientToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        model.selectPatient(patientToView);
+        assertCommandFailure(viewMedicalRecordCommand, model,
+                                String.format(Messages.MESSAGE_NO_MEDICAL_RECORD_FOUND,
+                                    patientToView.getName().fullName, patientToView.getName().fullName));
     }
 
     @Test
