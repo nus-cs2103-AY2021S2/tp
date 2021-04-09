@@ -22,13 +22,13 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PropertyBuilder {
 
-    public static final String DEFAULT_NAME = "Mayfair";
+    public static final String DEFAULT_NAME = "The Trilinq";
     public static final String DEFAULT_TYPE = "Condo";
-    public static final String DEFAULT_ADDRESS = "1 Jurong East Street 32, #08-111";
-    public static final String DEFAULT_POSTAL = "609477";
+    public static final String DEFAULT_ADDRESS = "28 Jln Lempeng";
+    public static final String DEFAULT_POSTAL = "128807";
     public static final LocalDate DEFAULT_DEADLINE =
-            LocalDate.parse("31-12-2021", DateTimeFormat.INPUT_DATE_FORMAT);
-    public static final String DEFAULT_REMARK = "Urgent to sell";
+            LocalDate.parse("03-11-2021", DateTimeFormat.INPUT_DATE_FORMAT);
+    public static final String DEFAULT_REMARK = "Urgent to sell!";
 
     private Name name;
     private Type type;

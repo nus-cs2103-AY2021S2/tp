@@ -11,10 +11,10 @@ import seedu.address.model.property.client.Email;
  */
 public class ClientBuilder {
 
-    public static final String DEFAULT_NAME = "George";
-    public static final String DEFAULT_CONTACT = "91124788";
-    public static final String DEFAULT_EMAIL = "george_4788@gmail.com";
-    public static final Long DEFAULT_ASKING_PRICE = Long.parseLong("750000");
+    public static final String DEFAULT_NAME = "Mallory";
+    public static final String DEFAULT_CONTACT = "84237541";
+    public static final String DEFAULT_EMAIL = "mallory_7541@gmail.com";
+    public static final Long DEFAULT_ASKING_PRICE = Long.parseLong("1000000");
 
     private Name clientName;
     private Contact clientContact;
