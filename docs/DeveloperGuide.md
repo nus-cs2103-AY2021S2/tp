@@ -1062,7 +1062,7 @@ starting point for testers to work on; testers are expected to do more *explorat
 
 ### Allocation and Deallocation
 1. Allocating residents to rooms
-    1. Prerequisites: Have the first displayed resident and fist displayed room be both unallocated.
+    1. Prerequisites: Have the first displayed resident and first displayed room be both unallocated.
     2. Test case: `alloc ri/1 oi/1` <br>
        Expected: 1st resident is allocated to the 1st room displayed in the list.
 2. Deallocating residents
