@@ -17,6 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.common.Description;
 import seedu.address.model.common.Title;
+import seedu.address.model.reminder.ReminderDate;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutor.Address;
 import seedu.address.model.tutor.Email;
@@ -44,6 +45,9 @@ public class ParserUtilTest {
     private static final String INVALID_TITLE = "H@mework";
     private static final String INVALID_DATE_TIME = "2/5/2021 11:00 AM";
     private static final String INVALID_DESCRIPTION = " ";
+
+    private static final String VALID_DATE = "2021-05-24";
+    private static final String INVALID_DATE = "2/5/2021";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -235,7 +239,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseDateTime_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATE_TIME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATE));
     }
 
     @Test
@@ -272,5 +276,28 @@ public class ParserUtilTest {
         String descriptionWithWhitespace = WHITESPACE + VALID_SCHEDULE_DESCRIPTION + WHITESPACE;
         Description expectedDescription = new Description(VALID_SCHEDULE_DESCRIPTION);
         assertEquals(expectedDescription, ParserUtil.parseDescription(descriptionWithWhitespace));
+    }
+
+    @Test
+    public void parseDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDate((String) null));
+    }
+
+    @Test
+    public void parseDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime(INVALID_DATE_TIME));
+    }
+
+    @Test
+    public void parseDate_validValueWithoutWhitespace_returnsDate() throws Exception {
+        ReminderDate expectedDate = new ReminderDate(VALID_DATE);
+        assertEquals(expectedDate, ParserUtil.parseDate(VALID_DATE));
+    }
+
+    @Test
+    public void parseDate_validValueWithWhitespace_returnsTrimmedDate() throws Exception {
+        String dateWithWhitespace = WHITESPACE + VALID_DATE + WHITESPACE;
+        ReminderDate expectedDate = new ReminderDate(VALID_DATE);
+        assertEquals(expectedDate, ParserUtil.parseDate(dateWithWhitespace));
     }
 }
