@@ -3,6 +3,10 @@
     background-color: #383838; /* Used in the default.html file */
 }
 
+.error {
+    -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
+}
+
 .cell_title_label {
 	-fx-font-family: "Segoe UI Semibold";
 	-fx-font-size: 22px;

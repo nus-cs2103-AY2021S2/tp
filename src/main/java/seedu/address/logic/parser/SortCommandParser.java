@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_MORE_THAN_ONE_SAME_PREFIX;
 import static seedu.address.logic.parser.CliSyntax.OPTION_DATE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
@@ -26,10 +25,6 @@ public class SortCommandParser implements Parser<SortCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_OPTION);
-
-        if (argMultimap.getAllValues(PREFIX_OPTION).size() > 1) {
-            throw new ParseException(MESSAGE_MORE_THAN_ONE_SAME_PREFIX);
-        }
 
         Optional<String> option = argMultimap.getValue(PREFIX_OPTION);
 
