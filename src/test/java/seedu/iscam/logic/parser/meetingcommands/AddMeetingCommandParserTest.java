@@ -14,6 +14,8 @@ import static seedu.iscam.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DES
 import static seedu.iscam.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.iscam.logic.commands.CommandTestUtil.LOCATION_DESC_CLEO;
 import static seedu.iscam.logic.commands.CommandTestUtil.LOCATION_DESC_DAN;
+import static seedu.iscam.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.iscam.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.iscam.logic.commands.CommandTestUtil.STATUS_DESC_CLEO;
 import static seedu.iscam.logic.commands.CommandTestUtil.TAG_DESC_PREMIUM;
 import static seedu.iscam.logic.commands.CommandTestUtil.TAG_DESC_URGENT;
@@ -26,8 +28,6 @@ import static seedu.iscam.logic.commands.CommandTestUtil.VALID_TAG_PREMIUM;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.iscam.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.iscam.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.iscam.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.iscam.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.iscam.testutil.TypicalMeetings.CLEO;
 
 import org.junit.jupiter.api.Test;

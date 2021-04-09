@@ -2,21 +2,15 @@ package seedu.iscam.logic.parser.meetingcommands;
 
 import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.iscam.logic.commands.CommandTestUtil.DATETIME_DESC_CLEO;
-import static seedu.iscam.logic.commands.CommandTestUtil.INVALID_LOCATION_DESC;
-import static seedu.iscam.logic.commands.CommandTestUtil.LOCATION_DESC_CLEO;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_DATETIME_CLEO;
-import static seedu.iscam.logic.commands.CommandTestUtil.VALID_LOCATION_CLEO;
 import static seedu.iscam.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.iscam.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static org.junit.jupiter.api.Assertions.*;
 import static seedu.iscam.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.iscam.logic.commands.RelocateMeetingCommand;
 import seedu.iscam.logic.commands.RescheduleMeetingCommand;
-import seedu.iscam.model.commons.Location;
 import seedu.iscam.model.meeting.DateTime;
 
 class RescheduleMeetingCommandParserTest {
