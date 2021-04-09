@@ -41,7 +41,7 @@ public class PassengerUtil {
         sb.append(PREFIX_TRIPTIME + passenger.getTripTimeAsStr() + " ");
 
         passenger.getPrice().ifPresentOrElse(
-            x -> sb.append(PREFIX_PRICE + x.toString() + " "), () -> sb.append(EMPTY_PRICE + " ")
+            price -> sb.append(PREFIX_PRICE + price.toString() + " "), () -> sb.append(EMPTY_PRICE + " ")
         );
 
         passenger.getTags().forEach(
