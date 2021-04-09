@@ -4,20 +4,20 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_NOT_EDITED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditEntryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.entry.EntryName;
-import seedu.address.model.entry.EntryNameContainsKeywordsPredicate;
 import seedu.address.model.entry.TemporaryEntry;
 import seedu.address.model.tag.Tag;
 
@@ -33,12 +33,17 @@ public class EditEntryCommandParser implements Parser<EditEntryCommand> {
      */
     public EditEntryCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer
+                .tokenize(args, PREFIX_INDEX, PREFIX_NAME, PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_TAG);
 
-        EntryName tempEntryName;
+        if (!arePrefixesPresent(argMultimap, PREFIX_INDEX)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEntryCommand.MESSAGE_USAGE));
+        }
+
+        Index targetIndex;
         try {
-            tempEntryName = ParserUtil.parseEntryName(argMultimap.getPreamble());
+            targetIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEntryCommand.MESSAGE_USAGE), pe);
         }
@@ -61,15 +66,11 @@ public class EditEntryCommandParser implements Parser<EditEntryCommand> {
             throw new ParseException(MESSAGE_NOT_EDITED);
         }
 
-        String trimmedArgs = tempEntryName.toString().trim();
-        if (trimmedArgs.length() == 0) {
+        if (args.trim().length() == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEntryCommand.MESSAGE_USAGE));
         }
 
-        String[] keywords = trimmedArgs.split("\\s+");
-        EntryNameContainsKeywordsPredicate predicate = new EntryNameContainsKeywordsPredicate(Arrays.asList(keywords));
-
-        return new EditEntryCommand(predicate, tempEntry);
+        return new EditEntryCommand(targetIndex, tempEntry);
     }
 
     /**
@@ -85,6 +86,14 @@ public class EditEntryCommandParser implements Parser<EditEntryCommand> {
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

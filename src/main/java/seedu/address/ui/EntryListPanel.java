@@ -41,7 +41,7 @@ public class EntryListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new EntryCard(entry).getRoot());
+                setGraphic(new EntryCard(entry, getIndex() + 1).getRoot());
             }
         }
     }
