@@ -3,13 +3,12 @@ package seedu.address.model.subject;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.tag.Filterable;
 
 /**
  * Represents a Tutor's qualifications in a subject in Tutor Tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidQualification(String)}
  */
-public class SubjectQualification implements Filterable {
+public class SubjectQualification {
     public static final String MESSAGE_CONSTRAINTS =
             "Qualifications should only contain alphanumeric characters, spaces,"
             + " the symbols - ( ) and it should not be blank";
@@ -55,10 +54,5 @@ public class SubjectQualification implements Filterable {
     @Override
     public int hashCode() {
         return qualification.hashCode();
-    }
-
-    @Override
-    public boolean filter(String s) {
-        return qualification.contains(s);
     }
 }

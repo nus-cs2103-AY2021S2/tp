@@ -3,9 +3,7 @@ package seedu.address.model.grade;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.tag.Filterable;
-
-public class GradedItem implements Filterable {
+public class GradedItem {
     public static final String MESSAGE_CONSTRAINTS =
             "Graded item should only contain alphanumeric characters and spaces, "
                     + "and it should not be blank";
@@ -56,10 +54,5 @@ public class GradedItem implements Filterable {
     @Override
     public int hashCode() {
         return gradedItem.hashCode();
-    }
-
-    @Override
-    public boolean filter(String s) {
-        return this.gradedItem.contains(s);
     }
 }

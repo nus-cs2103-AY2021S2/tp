@@ -5,13 +5,12 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 import seedu.address.model.subject.SubjectName;
-import seedu.address.model.tag.Filterable;
 
 /**
  * Represents a Grade in Tutor Tracker.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Grade implements Filterable {
+public class Grade {
     public static final String MESSAGE_CONSTRAINTS =
             "Each Grade must contain subject name, exam name and grade.";
 
@@ -98,10 +97,4 @@ public class Grade implements Filterable {
     public int hashCode() {
         return Objects.hash(subject, gradedItem, grade);
     }
-
-    @Override
-    public boolean filter(String s) {
-        return subject.filter(s);
-    }
-
 }
