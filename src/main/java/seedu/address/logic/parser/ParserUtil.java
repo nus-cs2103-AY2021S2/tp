@@ -262,11 +262,14 @@ public class ParserUtil {
      */
     public static List<InsurancePolicy> parsePolicies(Collection<String> policies) throws ParseException {
         requireNonNull(policies);
-        final List<InsurancePolicy> policyList = new ArrayList<>();
+        final Set<InsurancePolicy> policySet = new HashSet<>();
         for (String policy : policies) {
             requireNonNull(policy);
-            policyList.add(parsePolicy(policy));
+            InsurancePolicy parsedPolicy = parsePolicy(policy);
+            policySet.add(parsedPolicy);
         }
+        final List<InsurancePolicy> policyList = new ArrayList<>();
+        policyList.addAll(policySet);
         return policyList;
     }
     /**
