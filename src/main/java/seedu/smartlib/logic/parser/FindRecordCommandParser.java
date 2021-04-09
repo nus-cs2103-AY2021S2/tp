@@ -14,6 +14,19 @@ import seedu.smartlib.model.record.RecordContainsBookNamePredicate;
 public class FindRecordCommandParser implements Parser<FindRecordCommand> {
 
     /**
+     * Verifies that the keyword(s) for record search is not empty.
+     *
+     * @param trimmedArgs trimmed keyword(s) for record search.
+     * @throws ParseException the input keyword(s) is empty.
+     */
+    private void verifyArgsNonEmpty(String trimmedArgs) throws ParseException {
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRecordCommand.MESSAGE_USAGE));
+        }
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the FindRecordCommand
      * and returns a FindRecordCommand object for execution.
      *
@@ -23,10 +36,7 @@ public class FindRecordCommandParser implements Parser<FindRecordCommand> {
      */
     public FindRecordCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindRecordCommand.MESSAGE_USAGE));
-        }
+        verifyArgsNonEmpty(trimmedArgs);
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 

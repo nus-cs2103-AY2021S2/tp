@@ -64,37 +64,53 @@ class JsonAdaptedRecord {
     }
 
     /**
-     * Converts this Jackson-friendly adapted record object into the model's {@code record} object.
+     * Verifies validity of the book name.
      *
-     * @return Record object converted from the storage file.
-     * @throws IllegalValueException if there were any data constraints violated in the adapted record.
+     * @throws IllegalValueException if the book name is null or invalid.
      */
-    public Record toModelType() throws IllegalValueException {
-
+    private void verifyBookName() throws IllegalValueException {
         if (bookName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(bookName)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelBookName = new Name(bookName);
+    }
 
+    /**
+     * Verifies validity of the book barcode.
+     *
+     * @throws IllegalValueException if the book barcode is null or invalid.
+     */
+    private void verifyBookBarcode() throws IllegalValueException {
         if (barcode == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Barcode.class.getSimpleName()));
         }
         if (!Barcode.isValidBarcode(Integer.parseInt(barcode))) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Barcode modelBookBarcode = new Barcode(Integer.parseInt(barcode));
+    }
 
+    /**
+     * Verifies validity of the reader name.
+     *
+     * @throws IllegalValueException if the reader name is null or invalid.
+     */
+    private void verifyReaderName() throws IllegalValueException {
         if (readerName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(readerName)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelReaderName = new Name(readerName);
+    }
 
+    /**
+     * Verifies validity of the borrow date.
+     *
+     * @throws IllegalValueException if the borrow date is null or invalid.
+     */
+    private void verifyDateBorrowed() throws IllegalValueException {
         if (dateBorrowed == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     DateBorrowed.class.getSimpleName()));
@@ -102,6 +118,26 @@ class JsonAdaptedRecord {
         if (!DateBorrowed.isValidDate(dateBorrowed)) {
             throw new IllegalValueException(DateBorrowed.MESSAGE_CONSTRAINTS);
         }
+    }
+
+    /**
+     * Converts this Jackson-friendly adapted record object into the model's {@code record} object.
+     *
+     * @return Record object converted from the storage file.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted record.
+     */
+    public Record toModelType() throws IllegalValueException {
+
+        verifyBookName();
+        final Name modelBookName = new Name(bookName);
+
+        verifyBookBarcode();
+        final Barcode modelBookBarcode = new Barcode(Integer.parseInt(barcode));
+
+        verifyReaderName();
+        final Name modelReaderName = new Name(readerName);
+
+        verifyDateBorrowed();
         final DateBorrowed modelDateBorrowed = new DateBorrowed(dateBorrowed);
 
         final DateReturned modelDateReturned;

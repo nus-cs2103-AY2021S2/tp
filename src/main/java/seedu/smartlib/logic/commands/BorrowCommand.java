@@ -51,7 +51,16 @@ public class BorrowCommand extends Command {
         this.incompleteRecord = incompleteRecord;
     }
 
+    /**
+     * Checks the presence of input book barcode and reader name in SmartLib.
+     * And throws exception if no such barcode or reader name is found in SmartLib.
+     *
+     * @param model {@code Model} which checks the presence of input barcode and reader name in SmartLib.
+     * @throws CommandException if either the reader name or the barcode, or both are not present in SmartLib.
+     */
     private void verifyNameRegistration(Model model) throws CommandException {
+        requireAllNonNull(model);
+
         if (!model.hasBookWithBarcode(incompleteRecord.getBookBarcode())
                 && !model.hasReader(incompleteRecord.getReaderName())) {
             throw new CommandException(NO_READER_AND_BOOK_FOUND);
@@ -66,6 +75,12 @@ public class BorrowCommand extends Command {
         }
     }
 
+    /**
+     * Generates a complete borrow record about the relevant book and reader.
+     *
+     * @param model {@code Model} which returns the book with the given barcode.
+     * @return a complete borrow record about the borrowed book and reader.
+     */
     private Record createProperRecord(Model model) {
         Book book = model.getBookByBarcode(incompleteRecord.getBookBarcode());
         Name bookName = book.getName();
@@ -73,7 +88,18 @@ public class BorrowCommand extends Command {
                 incompleteRecord.getDateBorrowed());
     }
 
+    /**
+     * Verifies the integrity of the complete borrow record.
+     *
+     * @param model {@code Model} checks for validity or duplicate record.
+     * @param properRecord  a complete borrow record about the borrowed book and reader.
+     * @throws CommandException if properRecord is duplicated, barcode is invalid, the book is already borrowed,
+     * or the reader has reached borrow quota
+     */
     private void verifyRecordIntegrity(Model model, Record properRecord) throws CommandException {
+        requireAllNonNull(model, properRecord);
+
+
         if (model.hasRecord(properRecord)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECORD);
         }
