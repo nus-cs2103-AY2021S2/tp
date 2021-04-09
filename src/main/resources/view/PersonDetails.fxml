@@ -12,10 +12,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="personDetails" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="800.0" prefHeight="459.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="personDetails" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="800.0" prefHeight="459.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
 
    <children>
-      <Label fx:id="title" alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="40.0" prefHeight="40.0" prefWidth="800.0" styleClass="detail_heading" text="Details" VBox.vgrow="ALWAYS">
+      <Label fx:id="title" alignment="CENTER" minHeight="40.0" prefHeight="40.0" prefWidth="800.0" styleClass="detail_heading" text="Details" VBox.vgrow="ALWAYS">
          <font>
             <Font size="24.0" />
          </font>
