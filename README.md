@@ -3,7 +3,7 @@
 
 ![Ui](docs/images/Ui2.png)
 
-###RemindMe
+### RemindMe
 RemindMe is a desktop app designed to help School of Computing students better manage their workload
 and take control of their work life. 
 For the detailed documentation of this project, check out our **[product website](https://nus-cs2103-ay2021s2.github.io/tp/)**.
