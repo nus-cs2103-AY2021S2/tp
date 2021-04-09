@@ -76,7 +76,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 ### 3.1.1 Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explianing how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -116,18 +116,13 @@ Adds a new passenger in the GME terminal.
 
 **Format:** `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [tag/TAG tag/TAG ...]`
 
-<div markdown="block" class="alert-warning">
-
-**:warning: As the current iteration of GME(v1.4) is still only a minimum viable product, every passenger can only specify one day and one time a week for when they intend to carpool.**
-
-</div>
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the add command:**<br>
 * [TripDay](#6-glossary) is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
 * [TripTime](#6-glossary) is required to be in the 24-hour format. e.g. `0530` or `2359` 
 * The tripday and triptime specified are intended as weekly specifications for the day and time that the passenger intends to carpool every week.
+* As the current iteration of GME(v1.4) is still only a minimum viable product, every passenger can only specify one day and one time a week for when they intend to carpool.
 </div>
 
 **Examples:**
