@@ -12,6 +12,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.stream.Collectors;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lesson.Lesson;
@@ -54,14 +59,19 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "%1$s already belongs to another student in TutorsPet. \n"
             + "Please assign a unique phone number to student %2$s.";
     public static final String MESSAGE_DUPLICATE_NAME_LESSON = "The student name %1$s already exists "
-            + "with a different phone number. \n" + "And You have a lesson at %2$s with %3$s. \n"
+            + "with a different phone number. \n" + "You also have a lesson at %2$s with %3$s. \n"
             + "Do you wish to proceed? y/n";
     public static final String MESSAGE_POTENTIAL_DUPLICATE = "This student name %1$s already exists "
             + "with a different phone number. \n" + "Do you wish to proceed? y/n";
     public static final String MESSAGE_DUPLICATE_LESSON = "You have a lesson at %1$s with %2$s. \n"
             + "Do you wish to proceed? y/n";
+    public static final int DUPLICATE_PERSON = 1;
+    public static final int DUPLICATE_LESSON = 2;
+    public static final int DUPLICATE_LESSON_AND_PERSON = 3;
 
     private Person toAdd;
+    private int duplicate;
+    private ArrayList<Lesson> duplicateLessons;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
@@ -69,6 +79,8 @@ public class AddCommand extends Command {
     public AddCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
+        duplicate = 0;
+        duplicateLessons = new ArrayList<>();
     }
 
     @Override
@@ -79,35 +91,47 @@ public class AddCommand extends Command {
         }
 
         if (!model.isSavedState()) {
-            for (Lesson lesson : toAdd.getLessons()) {
-                if (model.hasPotentialPerson(toAdd) && model.hasLesson(lesson)) {
-                    model.setSavedState(true);
-                    throw new CommandException(String.format(MESSAGE_DUPLICATE_NAME_LESSON,
-                            toAdd.getName(), lesson.formatString(), model.getLesson(lesson).getPersonInString()));
-                }
+            checkForDuplicateNameOrLesson(model, toAdd);
+            if (this.duplicate != 0) {
+                handleDuplicateNameOrLesson(model);
             }
         }
 
-        if (!model.isSavedState()) {
-            if (model.hasPotentialPerson(toAdd)) {
-                model.setSavedState(true);
-                throw new CommandException(String.format(MESSAGE_POTENTIAL_DUPLICATE, toAdd.getName()));
-            }
-        }
-
-        if (!model.isSavedState()) {
-            for (Lesson lesson : toAdd.getLessons()) {
-                if (model.hasLesson(lesson)) {
-                    model.setSavedState(true);
-                    throw new CommandException(String.format(MESSAGE_DUPLICATE_LESSON,
-                            lesson.formatString(), model.getLesson(lesson).getPersonInString()));
-                }
-            }
-        }
         model.addPersonToLesson(toAdd);
         model.addPerson(toAdd);
         model.setSavedState(false);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
+
+    public void checkForDuplicateNameOrLesson(Model model, Person toAdd) {
+        if (model.hasPotentialPerson(toAdd)) {
+            model.setSavedState(true);
+            this.duplicate = DUPLICATE_PERSON;
+        }
+        for (Lesson lesson : toAdd.getLessons()) {
+            if (model.hasLesson(lesson)) {
+                this.duplicateLessons.add(lesson);
+                model.setSavedState(true);
+                this.duplicate = this.duplicate == 0 ? DUPLICATE_LESSON : DUPLICATE_LESSON_AND_PERSON;
+            }
+        }
+    }
+
+    public void handleDuplicateNameOrLesson(Model model) throws CommandException {
+        switch(duplicate) {
+        case DUPLICATE_PERSON:
+            throw new CommandException(String.format(MESSAGE_POTENTIAL_DUPLICATE, toAdd.getName()));
+        case DUPLICATE_LESSON:
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_LESSON,
+                    duplicateLessons.stream().map(Lesson::formatString).collect(Collectors.joining(", ")),
+                    duplicateLessons.stream().map(model::getLesson).map(Lesson::getPersonInString)
+                            .collect(Collectors.joining(" and "))));
+        case DUPLICATE_LESSON_AND_PERSON:
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_NAME_LESSON,
+                    toAdd.getName(), duplicateLessons.stream().map(Lesson::formatString).collect(Collectors.joining(", ")),
+                    duplicateLessons.stream().map(model::getLesson).map(Lesson::getPersonInString)
+                            .collect(Collectors.joining(" and "))));
+        }
     }
 
     @Override

@@ -12,11 +12,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -61,7 +63,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_NAME_LESSON = "The student name %1$s already exists "
-            + "with a different phone number. \n" + "And You have a lesson at %2$s with %3$s. \n"
+            + "with a different phone number. \n" + "You also have a lesson at %2$s with %3$s. \n"
             + "Do you wish to proceed? y/n";
     public static final String MESSAGE_DUPLICATE_PERSON = "%1$s already belongs to another student in TutorsPet. \n"
             + "Please assign a unique phone number to student %2$s.";
@@ -69,9 +71,14 @@ public class EditCommand extends Command {
             + "with a different phone number. \n" + "Do you wish to proceed? y/n";
     public static final String MESSAGE_DUPLICATE_LESSON = "You have a lesson at %1$s with %2$s. \n"
             + "Do you wish to proceed? y/n";
+    public static final int DUPLICATE_PERSON = 1;
+    public static final int DUPLICATE_LESSON = 2;
+    public static final int DUPLICATE_LESSON_AND_PERSON = 3;
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
+    private int duplicate;
+    private ArrayList<Lesson> duplicateLessons;
 
     /**
      * @param index of the student in the filtered student list to edit
@@ -83,6 +90,8 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        duplicate = 0;
+        duplicateLessons = new ArrayList<>();
     }
 
     @Override
@@ -102,39 +111,10 @@ public class EditCommand extends Command {
                     editedPerson.getPhone(), editedPerson.getName()));
         }
 
-        if (editPersonDescriptor.isLessonEdited() && !model.isSavedState()) {
-            for (Lesson lesson : editedPerson.getLessons()) {
-                if (personToEdit.getLessons().stream().anyMatch(lesson::isSameLesson)) {
-                    continue;
-                }
-                if (!personToEdit.isPotentialSamePerson(editedPerson) && model.hasPotentialPerson(editedPerson)
-                        && model.hasLesson(lesson) && !(model.getLesson(lesson).getNumberOfPerson() == 1
-                        && model.getLesson(lesson).containsPerson(personToEdit))) {
-                    model.setSavedState(true);
-                    throw new CommandException(String.format(MESSAGE_DUPLICATE_NAME_LESSON, editedPerson.getName(),
-                            lesson.formatString(), model.getLesson(lesson).getPersonInString()));
-                }
-            }
-        }
-
         if (!model.isSavedState()) {
-            if (!personToEdit.isPotentialSamePerson(editedPerson) && model.hasPotentialPerson(editedPerson)) {
-                model.setSavedState(true);
-                throw new CommandException(String.format(MESSAGE_POTENTIAL_DUPLICATE, editedPerson.getName()));
-            }
-        }
-
-        if (editPersonDescriptor.isLessonEdited() && !model.isSavedState()) {
-            for (Lesson lesson : editedPerson.getLessons()) {
-                if (personToEdit.getLessons().stream().anyMatch(lesson::isSameLesson)) {
-                    continue;
-                }
-                if (model.hasLesson(lesson) && !(model.getLesson(lesson).getNumberOfPerson() == 1
-                        && model.getLesson(lesson).containsPerson(personToEdit))) {
-                    model.setSavedState(true);
-                    throw new CommandException(String.format(MESSAGE_DUPLICATE_LESSON,
-                            lesson.formatString(), model.getLesson(lesson).getPersonInString()));
-                }
+            checkForDuplicateNameOrLesson(model, personToEdit, editedPerson);
+            if (this.duplicate != 0) {
+                handleDuplicateNameOrLesson(model, editedPerson);
             }
         }
         model.removePersonFromLesson(personToEdit);
@@ -171,6 +151,44 @@ public class EditCommand extends Command {
 
         return new Person(updatedName, updatedPhone, updatedSchool, updatedEmail, updatedAddress,
                 updatedGuardianName, updatedGuardianPhone, updatedLevel, updatedSubjects, updatedLessons);
+    }
+
+    public void checkForDuplicateNameOrLesson(Model model, Person personToEdit, Person editedPerson) {
+        if (!personToEdit.isPotentialSamePerson(editedPerson) && model.hasPotentialPerson(editedPerson)) {
+            model.setSavedState(true);
+            duplicate = DUPLICATE_PERSON;
+        }
+
+        if (editPersonDescriptor.isLessonEdited()) {
+            for (Lesson lesson : editedPerson.getLessons()) {
+                if (personToEdit.getLessons().stream().anyMatch(lesson::isSameLesson)) {
+                    continue;
+                }
+                if (model.hasLesson(lesson) && !(model.getLesson(lesson).getNumberOfPerson() == 1
+                        && model.getLesson(lesson).containsPerson(personToEdit))) {
+                    model.setSavedState(true);
+                    this.duplicateLessons.add(lesson);
+                    this.duplicate = this.duplicate == 0 ? DUPLICATE_LESSON : DUPLICATE_LESSON_AND_PERSON;
+                }
+            }
+        }
+    }
+
+    public void handleDuplicateNameOrLesson(Model model, Person editedPerson) throws CommandException {
+        switch(duplicate) {
+        case DUPLICATE_PERSON:
+            throw new CommandException(String.format(MESSAGE_POTENTIAL_DUPLICATE, editedPerson.getName()));
+        case DUPLICATE_LESSON:
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_LESSON,
+                    duplicateLessons.stream().map(Lesson::formatString).collect(Collectors.joining(", ")),
+                    duplicateLessons.stream().map(model::getLesson).map(Lesson::getPersonInString)
+                            .collect(Collectors.joining(" and "))));
+        case DUPLICATE_LESSON_AND_PERSON:
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_NAME_LESSON,
+                    editedPerson.getName(), duplicateLessons.stream().map(Lesson::formatString).collect(Collectors.joining(", ")),
+                    duplicateLessons.stream().map(model::getLesson).map(Lesson::getPersonInString)
+                            .collect(Collectors.joining(" and "))));
+        }
     }
 
     @Override
