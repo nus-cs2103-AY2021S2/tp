@@ -1,6 +1,5 @@
 ---
-layout: page
-title: Developer Guide
+layout: page title: Developer Guide
 ---
 
 * Table of Contents {:toc}
@@ -456,35 +455,35 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a special date: `add-date`
 
-Prerequisites: List all person using the `list` command. There is at least a person present in the list. 
-The first person on the list is born before 12-12-2020.
+Prerequisites: List all person using the `list` command. There is at least a person present in the list. The first
+person on the list is born before 12-12-2020.
 
 1. Adding a date to an existing person
 
-   1. Test case: `add-date 1 d/12-12-2020 desc/sample desc` <br>
-      Expected: Date is added to the first contact. A success message is shown in the status message.
+    1. Test case: `add-date 1 d/12-12-2020 desc/sample desc` <br>
+       Expected: Date is added to the first contact. A success message is shown in the status message.
 
-   2. Test case: `add-date 0` (Invalid index) <br>
-      Expected: Date is not added. Error details shown in the status message.
-   
-   3. Other incorrect `add-date` commands to try:
-       * `add-date x` (where x is larger than list size),
-       * `add-date 1 d/12-12-2020` (missing `DESCRIPTION` argument, other arguments can also be left out),
+    2. Test case: `add-date 0` (Invalid index) <br>
+       Expected: Date is not added. Error details shown in the status message.
+
+    3. Other incorrect `add-date` commands to try:
+        * `add-date x` (where x is larger than list size),
+        * `add-date 1 d/12-12-2020` (missing `DESCRIPTION` argument, other arguments can also be left out),
 
        Expected: Similar to previous
 
 2. Adding a date with boundary date values. FriendDex will only allow adding of dates that have already occured.
 
     * These arguments should be replaced with their proper date representation.
-       * `DATE_AFTER_TODAY`: a future date in the format of dd-MM-yyyy, e.g. `04-04-2099`
-       * `DATE_BEFORE_BIRTHDAY`: a date prior to the person's birthday in the format of dd-MM-yyyy, e.g. `04-04-1800` 
+        * `DATE_AFTER_TODAY`: a future date in the format of dd-MM-yyyy, e.g. `04-04-2099`
+        * `DATE_BEFORE_BIRTHDAY`: a date prior to the person's birthday in the format of dd-MM-yyyy, e.g. `04-04-1800`
 
     1. Adding a date that happens in the future <br>
        Test case: `add-date 1 d/DATE_AFTER_TODAY desc/sample desc` <br>
        Expected: Date is not added. Error details shown in the status message.
 
-    2. Adding a date that happens before the person is born
-       Test case: `add-date 1 d/DATE_BEFORE_BIRTHDAY desc/sample desc` <br>
+    2. Adding a date that happens before the person is born Test
+       case: `add-date 1 d/DATE_BEFORE_BIRTHDAY desc/sample desc` <br>
        Expected: Similar to previous
 
 ### Adding a friend group: `add-group`
@@ -505,18 +504,18 @@ person on the list is born before 12-12-2020.
     3. Other incorrect `add-meeting` commands to try:
         * `add-meeting x` (where x is larger than list size),
         * `add-meeting 1 d/12-12-2020 t/1945` (missing `DESCRIPTION` argument, other arguments can also be left out),
-       Expected: Similar to previous
-   
-2. Adding a meeting with boundary time values. FriendDex will only allow adding of meetings that have already occurred. 
+          Expected: Similar to previous
+
+2. Adding a meeting with boundary time values. FriendDex will only allow adding of meetings that have already occurred.
 
     * These arguments should be replaced with their proper datetime representation. <br>
-       * `TODAY_DATE`: today's date in the format of dd-MM-yyyy, e.g. `04-04-2021` <br>
-       * `TIME_AFTER_NOW`: add a few minutes to the current time in the format of HHmm, e.g. `1230`
-       
+        * `TODAY_DATE`: today's date in the format of dd-MM-yyyy, e.g. `04-04-2021` <br>
+        * `TIME_AFTER_NOW`: add a few minutes to the current time in the format of HHmm, e.g. `1230`
+
     1. Adding a meeting for today <br>
        Test case: `add-meeting 1 d/{TODAY_DATE} t/0000 desc/sample desc`. <br>
-       Expected: Meeting is added to the first contact. A success message is shown in the status message. 
-       
+       Expected: Meeting is added to the first contact. A success message is shown in the status message.
+
     2. Adding a meeting for today but has not occurred yet <br>
        Test case: `add-meeting 1 d/{TODAY_DATE} t/{TIME_AFTER_NOW} desc/sample desc` <br>
        Expected: No meetings added. Error details shown in the status message.
@@ -547,24 +546,24 @@ person on the list is born before 12-12-2020.
 
 ### Deleting a special date: `del-date`
 
-Prerequisites: List all person using the `list` command. There is at least a person present in the list. 
-The first person on the list has at least one date.
+Prerequisites: List all person using the `list` command. There is at least a person present in the list. The first
+person on the list has at least one date.
 
 1. Deleting a date from an existing person
 
-   1. Test case: `del-date 1 i/1` <br>
-      Expected: The first contact's first date is deleted. A success message is shown in the status message.
+    1. Test case: `del-date 1 i/1` <br>
+       Expected: The first contact's first date is deleted. A success message is shown in the status message.
 
-   2. Test case: `del-date 0 i/1` (Invalid index) <br>
-      Expected: No date is deleted. Error details shown in the status message.
+    2. Test case: `del-date 0 i/1` (Invalid index) <br>
+       Expected: No date is deleted. Error details shown in the status message.
 
-   3. Test case: `del-date 1 i/0` (Invalid date index) <br>
-      Expected: Similar to previous
-   
-   4. Other incorrect `del-date` commands to try:
-       * `del-date x i/1` (where x is larger than list size),
-       * `del-date 1 i/x` (where x is larger than the number of dates the first person has),
-       * `del-date 1` (missing `DATE_INDEX` argument),
+    3. Test case: `del-date 1 i/0` (Invalid date index) <br>
+       Expected: Similar to previous
+
+    4. Other incorrect `del-date` commands to try:
+        * `del-date x i/1` (where x is larger than list size),
+        * `del-date 1 i/x` (where x is larger than the number of dates the first person has),
+        * `del-date 1` (missing `DATE_INDEX` argument),
 
        Expected: Similar to previous
 
@@ -579,14 +578,15 @@ Prerequisites: List all person using the `list` command. There is at least a per
 1. Displaying the full details of an existing person
 
     1. Test case: `details 1` <br>
-       Expected: Details for the first contact displayed on the details panel on the right. A success message is shown in the status message.
+       Expected: Details for the first contact displayed on the details panel on the right. A success message is shown
+       in the status message.
 
     2. Test case: `details 0` <br>
        Expected: Details panel not updated. Error details shown in the status message.
 
     3. Other incorrect `details` commands to try:
-       * `details x` (where x is larger than the list size),
-       * `details` (missing `INDEX` argument),
+        * `details x` (where x is larger than the list size),
+        * `details` (missing `INDEX` argument),
 
        Expected: Similar to previous
 
@@ -597,7 +597,7 @@ Prerequisites: List all person using the `list` command. There is at least a per
 1. Exiting the program
 
     1. Test case: `exit`<br>
-       Process terminates with return code 0. FriendDex information is written to data files located in `./data` 
+       Process terminates with return code 0. FriendDex information is written to data files located in `./data`
        directory.
 
 ### Locating persons by name: `find`
@@ -605,21 +605,21 @@ Prerequisites: List all person using the `list` command. There is at least a per
 1. Finding contacts with naive string search
 
     1. Prerequisites: List contains the default data included in FriendDex.
-    
+
     2. Test case: `find alex`<br>
        Expected: All contact with the token `alex` will be listed. A success message is shown to the user.
-       
+
     3. Test case: `find yeoh li yu`<br>
-       Expected: All contact with name containing at least one token from the set of tokens `yeoh`, `li`, `yu` will 
-       be listed. A success message is shown to the user.
-       
+       Expected: All contact with name containing at least one token from the set of tokens `yeoh`, `li`, `yu` will be
+       listed. A success message is shown to the user.
+
     4. Test case: `find` (Invalid format)<br>
        Expected: Listed contacts are not updated. Error details shown in the status message.
 
 2. Finding contacts wth pattern matching
 
     1. Prerequisites: List contains the default data included in FriendDex.
-    
+
     2. Test case: `find p/`<br>
        Expected: All contacts will be listed. A success message is shown to the user.
 
@@ -627,11 +627,11 @@ Prerequisites: List all person using the `list` command. There is at least a per
        Expected: All contacts will be listed. A success message is shown to the user.
 
     4. Test case: `find alex p/`<br>
-       Expected: All contacts with names containing substring `alex` regardless of case will be listed. A success 
+       Expected: All contacts with names containing substring `alex` regardless of case will be listed. A success
        message is shown to the user.
-       
+
     5. Test case: `find ^a.*h p/`<br>
-       Expected: All contacts with names that starts with `a` and ends with `h` regardless of case will be listed. A 
+       Expected: All contacts with names that starts with `a` and ends with `h` regardless of case will be listed. A
        success message is show to the user.
 
     6. Test case: `find [ p/` (Invalid argument)<br>
@@ -660,7 +660,7 @@ Prerequisites: List all person using the `list` command. There is at least a per
     4. Test case: `set-goal 1 f/asdfg` (Invalid argument)<br>
        Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
        information.
-       
+
     5. Test case: `set-goal f/w` (Invalid format)<br>
        Expected: Goals for no one is set. Error details shown in the status message. No updates to FriendDex
        information.
@@ -719,9 +719,9 @@ Prerequisites: List all person using the `list` command. There is at least a per
 3. Automatically applying predefined theme across instances
 
     1. Test case: `theme @pulp`.
-    
+
         1. Close the application.
-        
+
         2. Relaunch the application. Observe that the theme of the application persists.
 
 4. Automatically applying user defined theme across instances
@@ -729,15 +729,15 @@ Prerequisites: List all person using the `list` command. There is at least a per
     1. Test case: Applying valid theme with no external modification `theme some_theme.json`.
 
         1. Close the application.
-       
+
         2. Reopen the application. Observe that the theme of the application persists.
-    
+
     2. Test case: Applying valid theme with external modification `theme some_theme.json`.
-        
+
         1. Close the application.
-           
+
         2. Delete `some_theme.json`.
-        
+
         3. Relaunch the application. Observe that the default theme is applied to the application.
 
 ### Viewing a different tab on the details panel: `view`
@@ -745,16 +745,18 @@ Prerequisites: List all person using the `list` command. There is at least a per
 1. Displaying a different tab on the details panel
 
     1. Test case: `view streaks` <br>
-       Expected: Streaks dashboard displayed on the details panel on the right. A success message is shown in the status message.
+       Expected: Streaks dashboard displayed on the details panel on the right. A success message is shown in the status
+       message.
 
     2. Test case: `view upcoming events` <br>
-       Expected: Upcoming events displayed on the details panel on the right. A success message is shown in the status message.
+       Expected: Upcoming events displayed on the details panel on the right. A success message is shown in the status
+       message.
 
     3. Test case: `view details` <br>
        Expected: Details panel not updated. Information on the `details` command shown in the status message.
 
     4. Other incorrect `view` commands to try:
-       * `view x` (where x is not a valid `TAB`),
-       * `view` (missing `TAB` argument),
+        * `view x` (where x is not a valid `TAB`),
+        * `view` (missing `TAB` argument),
 
        Expected: Details panel not updated. Error details shown in the status message.
