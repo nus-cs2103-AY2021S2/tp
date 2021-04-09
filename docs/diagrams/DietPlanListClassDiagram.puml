@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+left to right direction
+
+class DietPlanList {
+}
+
+class DietPlan {
+  planName : String
+  description : String
+}
+
+enum PlanType {
+  WEIGHT_GAIN
+  WEIGHT_LOSS
+  WEIGHT_MAINTAIN
+}
+
+class MacroNutrientComposition {
+  fats : double
+  carbohydrates : double
+  proteins : double
+}
+
+DietPlanList --> "*" DietPlan
+DietPlan --> PlanType
+DietPlan --> MacroNutrientComposition
+
+@enduml

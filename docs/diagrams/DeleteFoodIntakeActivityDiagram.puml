@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes command;
+:Parse command input;
+if () then ([FoodIntake exists in FoodIntakeList])
+  :Delete FoodIntake;
+  :Re-order duplicate Food names in FoodIntakeList;
+  :Display result;
+else ([else])
+  :Display error message;
+endif
+stop
+
+@enduml
