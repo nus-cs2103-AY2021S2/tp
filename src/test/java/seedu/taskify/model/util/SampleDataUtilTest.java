@@ -1,11 +1,7 @@
 package seedu.taskify.model.util;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.taskify.model.ReadOnlyTaskify;
-import seedu.taskify.model.task.Task;
-import seedu.taskify.testutil.TaskBuilder;
-import seedu.taskify.testutil.TypicalTasks;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.taskify.testutil.TypicalTasks.TASK_1;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -13,8 +9,11 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.taskify.testutil.TypicalTasks.TASK_1;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.taskify.model.ReadOnlyTaskify;
+import seedu.taskify.model.task.Task;
+import seedu.taskify.testutil.TaskBuilder;
 
 class SampleDataUtilTest {
 

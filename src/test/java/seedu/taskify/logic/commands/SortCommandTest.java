@@ -1,16 +1,15 @@
 package seedu.taskify.logic.commands;
 
-import seedu.taskify.model.Model;
-import seedu.taskify.model.ModelManager;
-import seedu.taskify.model.UserPrefs;
-
-import java.util.Collections;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.taskify.testutil.TypicalTasks.getTypicalTaskify;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.taskify.testutil.TypicalTasks.getTypicalTaskify;
+import seedu.taskify.model.Model;
+import seedu.taskify.model.ModelManager;
+import seedu.taskify.model.UserPrefs;
 
 class SortCommandTest {
     private Model model = new ModelManager(getTypicalTaskify(), new UserPrefs());
