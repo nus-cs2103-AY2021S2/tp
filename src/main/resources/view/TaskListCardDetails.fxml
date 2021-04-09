@@ -18,9 +18,14 @@
         </Label>
         <Label fx:id="title" text="\$first"/>
         <Region HBox.hgrow="ALWAYS" />
-        <Label fx:id="status" text="\$status"/>
+        <Label fx:id="status" text="\$status" >
+            <minWidth>
+                <!-- Ensures that the label text is never truncated -->
+                <Region fx:constant="USE_PREF_SIZE"/>
+            </minWidth>
+        </Label>
     </HBox>
-    <FlowPane fx:id="tags"/>
+    <FlowPane fx:id="tags" minWidth="200"/>
     <HBox>
         <Label fx:id="date" text="No date">
             <graphic>

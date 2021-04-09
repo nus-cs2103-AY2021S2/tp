@@ -29,7 +29,7 @@ public class ViewDayCommandParser implements Parser<ViewDayCommand> {
             Date date = ParserUtil.parseDate(trimmedInput);
             return new ViewDayCommand(new TaskOnDatePredicate(date), date.getDate());
         } catch (ParseException parseException) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewDayCommand.MESSAGE_USAGE));
+            throw parseException;
         }
     }
 }

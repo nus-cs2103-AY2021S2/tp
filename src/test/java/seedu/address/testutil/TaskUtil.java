@@ -13,6 +13,7 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.AttributeManager;
 import seedu.address.model.task.Task;
 
 
@@ -34,7 +35,8 @@ public class TaskUtil {
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + task.getTitle().fullTitle + " ");
-        if (!task.isEmptyDate()) {
+        AttributeManager attributeManager = new AttributeManager(task);
+        if (!attributeManager.isEmptyDate()) {
             sb.append(PREFIX_DATE + task.getDate().toString() + " ");
         }
         sb.append(PREFIX_DURATION + task.getDuration().toString() + " ");

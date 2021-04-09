@@ -16,10 +16,10 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks whose titles contain any of "
+    public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD + ": Finds all tasks whose titles contain any of "
             + "the specified keywords (case-insensitive).\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " quiz meeting task742";
+            + "\nParameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "\nExample: " + COMMAND_WORD + " quiz meeting task";
 
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " KEYWORD [MORE_KEYWORDS]...\n";
 
