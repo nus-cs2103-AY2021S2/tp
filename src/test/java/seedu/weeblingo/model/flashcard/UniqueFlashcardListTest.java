@@ -3,13 +3,15 @@ package seedu.weeblingo.model.flashcard;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_A;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_I;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_EASY;
-import static seedu.weeblingo.testutil.Assert.assertThrows;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_A;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_I;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_GOJUON;
+
+import static seedu.weeblingo.testutil.Assert.assertThrows;
 import static seedu.weeblingo.testutil.TypicalFlashcards.A_CARD;
 import static seedu.weeblingo.testutil.TypicalFlashcards.I_CARD;
 
@@ -18,6 +20,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.weeblingo.model.flashcard.exceptions.DuplicateFlashcardException;
 import seedu.weeblingo.model.flashcard.exceptions.FlashcardNotFoundException;
 import seedu.weeblingo.testutil.FlashcardBuilder;
@@ -45,10 +48,9 @@ public class UniqueFlashcardListTest {
     @Test
     public void contains_flashcardWithSameIdentityFieldsInList_returnsTrue() {
         uniqueFlashcardList.add(A_CARD);
-        Flashcard editedA_CARD = new FlashcardBuilder(A_CARD).withQuestion(VALID_QUESTION_A)
-        .withAnswer(VALID_ANSWER_A).withTags(VALID_START_TAG_GOJUON).withUserTags(VALID_TAG_EASY)
-                .build();
-        assertTrue(uniqueFlashcardList.contains(editedA_CARD));
+        Flashcard editedCard = new FlashcardBuilder(A_CARD).withQuestion(VALID_QUESTION_A)
+                .withAnswer(VALID_ANSWER_A).withTags(VALID_START_TAG_GOJUON).withUserTags(VALID_TAG_EASY).build();
+        assertTrue(uniqueFlashcardList.contains(editedCard));
     }
 
     @Test
@@ -89,12 +91,12 @@ public class UniqueFlashcardListTest {
     @Test
     public void setFlashcard_editedFlashcardHasSameIdentity_success() {
         uniqueFlashcardList.add(A_CARD);
-        Flashcard editedA_CARD = new FlashcardBuilder(A_CARD).withQuestion(VALID_QUESTION_I)
-        .withAnswer(VALID_ANSWER_I).withTags(VALID_START_TAG_GOJUON).withUserTags(VALID_TAG_EASY)
+        Flashcard editedCard = new FlashcardBuilder(A_CARD).withQuestion(VALID_QUESTION_I)
+                .withAnswer(VALID_ANSWER_I).withTags(VALID_START_TAG_GOJUON).withUserTags(VALID_TAG_EASY)
                 .build();
-        uniqueFlashcardList.setFlashcard(A_CARD, editedA_CARD);
+        uniqueFlashcardList.setFlashcard(A_CARD, editedCard);
         UniqueFlashcardList expectedUniqueFlashcardList = new UniqueFlashcardList();
-        expectedUniqueFlashcardList.add(editedA_CARD);
+        expectedUniqueFlashcardList.add(editedCard);
         assertEquals(expectedUniqueFlashcardList, uniqueFlashcardList);
     }
 
@@ -171,6 +173,6 @@ public class UniqueFlashcardListTest {
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-            -> uniqueFlashcardList.asUnmodifiableObservableList().remove(0));
+                -> uniqueFlashcardList.asUnmodifiableObservableList().remove(0));
     }
 }

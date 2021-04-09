@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
+
 import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
@@ -25,6 +25,8 @@ import seedu.weeblingo.model.score.Score;
 import seedu.weeblingo.model.tag.Tag;
 import seedu.weeblingo.testutil.FlashcardBuilder;
 import seedu.weeblingo.testutil.QuizBuilder;
+
+import javafx.collections.ObservableList;
 
 public class NextCommandTest {
 
@@ -51,8 +53,8 @@ public class NextCommandTest {
         NextCommand nextCommand = new NextCommand();
         ModelStubMenuMode modelStub = new ModelStubMenuMode();
 
-        assertThrows(CommandException.class, Messages.MESSAGE_NOT_IN_QUIZ_SESSION,
-                () -> nextCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_NOT_IN_QUIZ_SESSION, () -> nextCommand.execute(modelStub));
     }
 
     @Test
@@ -61,8 +63,8 @@ public class NextCommandTest {
         ModelStubQuizSessionEndedMode modelStub = new ModelStubQuizSessionEndedMode();
 
         assertThrows(CommandException.class,
-                NextCommand.MESSAGE_QUIZ_ALREADY_ENDED + NextCommand.MESSAGE_QUIZ_END_ACTIONS,
-                () -> nextCommand.execute(modelStub));
+                NextCommand.MESSAGE_QUIZ_ALREADY_ENDED
+                        + NextCommand.MESSAGE_QUIZ_END_ACTIONS, () -> nextCommand.execute(modelStub));
     }
 
     private class ModelStub implements Model {

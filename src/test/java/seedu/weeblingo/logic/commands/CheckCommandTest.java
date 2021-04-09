@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
+
 import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
@@ -23,6 +23,8 @@ import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.score.Score;
 import seedu.weeblingo.model.tag.Tag;
 import seedu.weeblingo.testutil.FlashcardBuilder;
+
+import javafx.collections.ObservableList;
 
 public class CheckCommandTest {
 
@@ -57,8 +59,8 @@ public class CheckCommandTest {
         ModelStubMenuMode modelStub = new ModelStubMenuMode();
         CheckCommand checkCommand = new CheckCommand(attempt);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_NOT_IN_QUIZ_SESSION,
-                () -> checkCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_NOT_IN_QUIZ_SESSION, () -> checkCommand.execute(modelStub));
     }
 
     @Test
@@ -67,8 +69,8 @@ public class CheckCommandTest {
         ModelStubCheckSuccessMode modelStub = new ModelStubCheckSuccessMode();
         CheckCommand checkCommand = new CheckCommand(attempt);
 
-        assertThrows(CommandException.class, CheckCommand.MULTIPLE_CHECKING_AFTER_SUCCESS,
-                () -> checkCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                CheckCommand.MULTIPLE_CHECKING_AFTER_SUCCESS, () -> checkCommand.execute(modelStub));
     }
 
     /**
