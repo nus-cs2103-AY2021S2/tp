@@ -457,15 +457,15 @@ _{More to be added}_
 (For all use cases below, the **System** is the `imPoster` and the **Actor** is
 the `user`, unless specified otherwise)
 
-### <ins>General Use Cases</ins>
+### General Use Cases
 
 **Use case G01 - View Help**
 
 **MSS**
 
 1.  User requests for help with using the application
-2.  User enters help command into command box
-3.  imPoster returns a help link for the user to click
+2.  User enters `help` command into command box
+3.  imPoster returns a help page with links and command summary for the user
 
     Use case ends.
 
@@ -482,7 +482,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to exit the application
-2.  User enters exit command into command box
+2.  User enters `exit` command into command box
 3.  imPoster exits
 
     Use case ends.
@@ -500,7 +500,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to toggle application theme
-2.  User enters toggle command into command box
+2.  User enters `toggle` command into command box
 3.  imPoster switches to user specified application theme
 
     Use case ends.
@@ -519,7 +519,7 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
-### <ins>Endpoint Use Cases</ins>
+### Endpoint Use Cases
 
 **Use case E01 - Add an API endpoint**
 
@@ -539,6 +539,12 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
+- 2b. Adding the endpoint results in a duplicate
+
+  - 2b1. imPoster shows a message informing the user that the desired endpoint already exist
+
+    Use case resumes at step 1.
+
 **Use case E02 - Edit an API endpoint**
 
 **MSS**
@@ -557,9 +563,15 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
-- 2b. The given index is invalid
+- 2b. Editing the endpoint results in a duplicate
 
-  - 2b1. imPoster shows an error message to the user
+  - 2b1. imPoster shows a message informing the user that the desired endpoint already exist
+
+    Use case resumes at step 1.
+
+- 2c. The given index is invalid
+
+  - 2c1. imPoster shows an error message to the user
 
     Use case resumes at step 2.
 
@@ -606,11 +618,11 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
-- 2b. The given search result is empty
+- 3a. The search result comes up empty
 
-  - 2b1. imPoster shows a message informing the user that there are no endpoints found
+  - 3a1. imPoster shows a message informing the user that there are no endpoints found
 
-    Use case resumes at step 1.
+    Use case ends.
 
 **Use case E05 - List all saved API endpoints**
 
@@ -630,7 +642,7 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
     
-- 3a.The API endpoint list is empty
+- 3a. The API endpoint list is empty
 
   - 3a1. imPoster shows an additional message to inform the user that the endpoint list is empty
 
@@ -773,7 +785,7 @@ the `user`, unless specified otherwise)
     endpoint fails due to third-party unavailability.
 6.  Should not crash or throw unexpected errors when internet connection is
     unavailable.
-7.  Should be able to display responses not exceeding 100000 lines from an
+7.  Should be able to display responses not exceeding 100000 characters from an
     API call without crashing or throwing unexpected errors.
 
 ## **Appendix E: Glossary**
