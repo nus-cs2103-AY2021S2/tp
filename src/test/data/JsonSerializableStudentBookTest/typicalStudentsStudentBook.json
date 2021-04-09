@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "StudentBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "students" : [ {
     "name" : "Alice Pauline",
     "matriculationNumber" : "A3456789D",
@@ -7,7 +7,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "vaccinationStatus" : "not vaccinated",
+    "vaccinationStatus" : "unvaccinated",
     "medicalDetails" : "shellfish allergy",
     "schoolResidence" : "RVRC"
   }, {
@@ -17,7 +17,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "vaccinationStatus" : "not vaccinated",
+    "vaccinationStatus" : "unvaccinated",
     "medicalDetails" : "none",
     "schoolResidence" : "RVRC"
   }, {
@@ -47,7 +47,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "vaccinationStatus" : "not vaccinated",
+    "vaccinationStatus" : "unvaccinated",
     "medicalDetails" : "none",
     "schoolResidence" : "RVRC"
   }, {
@@ -67,8 +67,9 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "vaccinationStatus" : "not vaccinated",
+    "vaccinationStatus" : "unvaccinated",
     "medicalDetails" : "none",
     "schoolResidence" : "RVRC"
-  } ]
+  } ],
+  "appointments": []
 }
