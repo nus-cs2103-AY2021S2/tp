@@ -645,7 +645,7 @@ Prerequisites: List all person using the `list` command. There is at least a per
 
 1. Setting a relationship goal with a particular contact
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. everyone in FriendDex has
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. Everyone in FriendDex has
        their goal set to `NONE`.
 
     2. Test case: `set-goal 1 f/w`<br>
