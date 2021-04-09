@@ -95,5 +95,6 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com"));
         // 63 character label
         assertTrue(Email.isValidEmail("hello@" + "a".repeat(63)));
+        assertTrue(Email.isValidEmail("hello@example.a//d"));
     }
 }
