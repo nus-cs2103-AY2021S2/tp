@@ -445,8 +445,8 @@ and then the details about events are retrieved from RemindMe model by calling `
 <br>
 <br>
 
-**Step5:** With calendar storage updated, the calendar will then store events to each respective day and then the calendar
-will be ready to be displayed as a GUI. 
+**Step5:** With calendar storage updated, the `CalendarWindow` will then store events to each respective day `CalendarWindow#loadCalendar`
+and then the calendar will be ready to be displayed as a GUI. 
 <br>
 <br>
 
