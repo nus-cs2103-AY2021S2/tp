@@ -122,7 +122,9 @@ Commands for this tutorial are arranged in the sequential order of this User Gui
 * Words in `UPPER_CASE` are parameters to be supplied by you.<br>
   e.g. in `add d/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `add d/DESCRIPTION`.
 
-* Parameters in square brackets are optional. Parameters without square brackets are compulsory. If you wish to include any of the optional field, you need to follow its format.<br>
+* Parameters in square brackets are optional. Parameters without square brackets are compulsory.<br>
+  If you wish to include any optional parameter, you must follow its format, 
+  otherwise command parsing will fail even if all the compulsory fields are valid.<br>
   e.g. `d/DESCRIPTION [t/TAG]` can be used as `d/CS3243 Assignment4 t/Minimax` or as `d/CS3243 Assignment4`.
   
 * For commands that take in an `INDEX`, only one index is to be supplied.<br>
@@ -336,8 +338,7 @@ Application: Used to briefly indicate the nature of the task.
 Format: `tag INDEX t/TAG [t/MORETAGS]...​` 
 
 * Attaches one or more tags to the task associated with INDEX. Tags can be used to identify related tasks.
-* If only `t/` is provided without preceding value, no tag will be added but MB3.5 will show you the existing tags
-associated to the task you tried to tag.
+* If only `t/` is provided without any value, no new tag will be added.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `tag 3 t/Ethics t/Quiz`
