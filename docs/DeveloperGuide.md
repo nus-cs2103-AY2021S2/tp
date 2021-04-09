@@ -99,12 +99,9 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete m/CS2103 a/1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("clear m/")` API call.
 
-![Interactions Inside the Logic Component for the `delete m/CS2103 a/1` Command](images/DeleteFeatureSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+![Interactions Inside the Logic Component for the `clear m/` Command](images/ClearFeatureSequenceDiagram.png)
 
 ### 2.4 Model component
 
@@ -237,20 +234,24 @@ Given below is an example usage scenario and how the find mechanism behaves at e
     Module: `m/`: `FindModuleCommandPaser`
     Person: `n/`: `FindPersonCommandParser`
     General Event: `g/`: `FindGeneralEventParser`  
-    if it is an unknown prefix, `parseCommand` will throw a ParseException and returns a `FindMessageUsage`. Since the input is `m/`, `FindModuleCommandPaser` will be returned.
-
+    if it is an unknown prefix, `parseCommand` will throw a ParseException and returns a `FindMessageUsage`. 
+    Since the input is `m/`, `FindModuleCommandPaser` will be returned.
 <br>
 
 **Step 5:** In `FindModuleCommandPaser`, `FindModuleCommandPaser#parse` is called. Again `ArgumentMultimap` is created using `ArgumentTokenizer` but only with `Module` prefix: `m/`. The class diagram shows the Parser class diagram when passing your input into the appropriate `FindModuleCommand`.  
 <br>
 <br>
 
-![FindCommandParserClassDiagram](images/FindCommandParserClassDiagram.png)
+![FindCommandParserClassDiagram](images/findcommand/FindCommandParserClassDiagram.png)
 <br>
 
 **Step 6:** The `parse` method does a few checks:
 
-* If there isn't the `PREFIX`: `m/` present, or the preamble of the `PREFIX` is not empty, or your search input after the `PREFIX` is whitespaces, then `parse` method will throw `ParseException` and returns a `FindMessageUsage` for `Module`.
+* If there isn't the `PREFIX`: 
+    * `m/` present, or 
+    * the preamble of the `PREFIX` is not empty, or 
+    * your search input after the `PREFIX` is whitespaces, 
+  * then `parse` method will throw `ParseException` and returns a `FindMessageUsage` for `Module`.
 * Else your inputs is split into individual keywords, and contained as a `List of keywords`.
 <br>
 <br>
@@ -270,7 +271,7 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 <br>
 <br>
 The following sequence diagram shows how the find operation works:
-![FindSequenceDiagram](images/FindSequenceDiagram.png)  
+![FindSequenceDiagram](images/findcommand/FindSequenceDiagram.png)  
 
 ### 3.3 Delete Assignment
 
