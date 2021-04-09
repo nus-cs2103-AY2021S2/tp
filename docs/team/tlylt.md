@@ -31,21 +31,23 @@ imPoster is a desktop application for beginners of API development to easily gra
 
 - **New Feature**: Added a show command that allows the user to view the details of a saved endpoint.
 
-- **Enhancements to existing features**:
+- **Enhancements**:
 
   - Updated various custom command feedback messages in the result display.
   - Wrote additional tests for existing features to increase coverage.
   - Refactored code in the request calling logic, and the handling of command result to reduce duplication and improve 
     code quality.
-  - Fixed issues related to user input(such as the integer index) involved in various commands to ensure bugs are 
+  - Fixed issues related to user input (such as the integer index) involved in various commands to ensure bugs are 
     caught and relevant error messages are provided.
 
-- **Project management**:
+<div style="page-break-after: always;"></div>
+
+#### Project management
 
   - Contributed to gathering of discussion topics and updating of meeting minutes in weekly team meetings.
   - Managed the `v1.3.1` product release on GitHub.
-  
-- **Documentation**:
+
+#### Documentation
 
   - User Guide:
     - Added the documentation for the features `send`, `run` and `help`.
@@ -57,27 +59,27 @@ imPoster is a desktop application for beginners of API development to easily gra
       (Architecture, UI component and Logic component).
     - Added implementation details of the `send` & `run` feature.
 
-- **Community**:
+#### Community
 
   - PRs reviewed (with non-trivial review comments):
     ([\#79](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/79), 
     [\#146](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/146),
     [\#189](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/189), 
     [\#345](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/345)).
-  - Contributed to forum discussions
+  - Contributed to forum discussions:
     ([1](https://github.com/nus-cs2103-AY2021S2/forum/issues/220#issuecomment-797323149), 
     [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/241#issuecomment-802904375), 
     [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/236#issuecomment-799401973), 
     [4](https://github.com/nus-cs2103-AY2021S2/forum/issues/235#issuecomment-799058631)).
-  - Provided helpful tips and suggestions for other teams in the class 
+  - Provided helpful tips and suggestions for other teams in the class: 
     ([1](https://github.com/nus-cs2103-AY2021S2/forum/issues/179#issuecomment-785740902),
     [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/175#issuecomment-784177269), 
     [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/243#issuecomment-803282899),
     [4](https://github.com/nus-cs2103-AY2021S2/forum/issues/293#issue-850026014)).
-  - Raised pertinent issues on the topic of design principles and code refactoring 
+  - Raised pertinent issues on the topic of design principles and code refactoring: 
     ([1](https://github.com/nus-cs2103-AY2021S2/forum/issues/240), 
     [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/230)).
-  - Followed up on bug reports to other teams to provide detailed information and observation
+  - Followed up on bug reports to other teams to provide detailed information and observation:
     ([1](https://github.com/AY2021S2-CS2103T-W14-2/tp/issues/196#issuecomment-812967806),
     [2](https://github.com/AY2021S2-CS2103T-W14-2/tp/issues/196#issuecomment-812968068)).
     

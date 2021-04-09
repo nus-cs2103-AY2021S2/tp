@@ -9,7 +9,7 @@ nav-text: Developer Guide
 </p>
 
 <h1 class="post-title">{{ page.title | escape }}</h1>
-<h3 class="post-subtitle">v1.4</h3>
+<h3 class="post-subtitle">v1.4b</h3>
 
 <div style="page-break-after: always;"></div>
 ## Table of Contents
@@ -411,21 +411,25 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 **Target user profile**:
 
-- has a need to test a significant number of APIs
 - prefers a quick means of testing APIs
-- can type fast
-- prefers typing to mouse interactions
-- is reasonably comfortable with APIs
+- can type fast and prefer typing to mouse interactions
+- is a beginner in API development
 - is keen to develop software products that involve APIs
 - requires testing of APIs in projects or work-related tasks
+- needs to learn and interact with APIs
+- prefers a portable and lightweight application
 
 **Value proposition**:
 
-- beautify response
-- save requests for quick execution again
-- general analysis/recommendation system based on certain metrics
+- beautify and highlight key metrics of API responses
+- shortcuts to execute common API testing tasks
+- able to save APIs for repeated execution and continuous debugging
+- relevant prompts and comprehensive supporting documentations
 - no need to create any account
 - simple and easy to get started
+- clutter free user interface
+- one-step download and light on system resources
+- optimised for keyboard navigation and shortcuts 
 - unintrusive
 - great user experience
 
@@ -436,36 +440,43 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low
 (unlikely to have) - `*`
 
-| Priority | As a …​               | I want to …​                              | So that I can…​                                                 |
+| Priority | As a …​               | I want to …​                              | So that I can…​                  |
 | -------- | --------------------- | ----------------------------------------- | --------------------------------------------------------------- |
-| `* * *`  | new user              | view a quick description of APIs          | quickly review the concepts of APIs                             |
-| `* * *`  | long time user        | test my APIs on the fly                   | run API tests anytime                                           |
+| `* * *`  | new user              | view a quick description of APIs          | quickly review the basic concepts of APIs                             |
+| `* * *`  | long time user        | test API endpoints without saving them                  | have a quick way to verify if an API is working                                           |
 | `* * *`  | long time user        | quickly load my previous APIs             | save time and not have to type them all out again               |
-| `* * *`  | experienced developer | test out my API multiple times repeatedly | know if my API can cope under significant traffic               |
-| `* * *`  | new API developer     | clear error messages                      | quickly learn where I went wrong                                |
-| `* * *`  | API tester            | a focused simple design                   | quickly validate the state of an endpoint                       |
-| `* * *`  | new user              | have an optional features walkthrough     | have a broad overview of functionalities                        |
-| `* * *`  | moderate user         | find/locate saved API endpoints           | can easily view the information for the endpoint of my interest |
-| `*`      | experienced developer | export my saved API endpoints             | can easily port or integrate the data with other platforms      |
-| `*`      | expert user           | have API recommendations                  | help to optimise or are more suited for my product              |
-| `*`      | moderate user         | learn to optimise my usage                | can have a faster and smoother workflow                         |
+| `* * *`  | new API developer     | view clear error messages                      | quickly learn what went wrong                                |
+| `* * *`  | API tester            | a simple user interface                   | quickly validate the state of an endpoint                       |
+| `* * *`  | new user              | view a table of command summary    | have a broad overview of available functionalities                        |
+| `* * *`  | moderate user         | find/locate saved API endpoints           | easily view the details of a particular endpoint |
+| `* * *`  | API developer         | cancel my API call if it takes too long           | proceed to verify the errors or work on another API request |
+| `* * *`  | API developer         | organize my APIs by categories           | easily find the ones that I want to test |
+| `* * *`  | beginner API developer         | call up APIs that I have just used           | quickly verify the output again after fixing bugs  |
+| `* *`  | API developer         | see a loading spinner when making an API call           | clearly know when an API call is still in-progress or when an error has occurred |
+| `* *`  | moderate user              | be able to change the application theme          | make the user interface more comfortably suit my visual needs                             |
+| `* *`      | long time developer | have shortcuts to certain commands that I frequently use             | save time typing certain commands      |
+| `*`      | experienced developer | export my saved API endpoints             | easily port or integrate the data with other platforms      |
+| `*`      | expert user           | have analysis reports of my usage                  | identify trends and consolidate my API testing progress              |
+| `*`      | moderate user         | get tips on how to optimise my usage                | can have a faster and smoother workflow                         |
+| `*`  | experienced developer | send out multiple requests to an API endpoint concurrently | test if the API can cope under significant traffic               |
+| `*`  | expert user | store my API data in the cloud | use the tester across multiple workstations               |
+| `*`  | moderate user | generate bug report for the API under test | share and request bug fixes from the developers               |
 
-_{More to be added}_
 
 ## **Appendix C: Use Cases**
 
 (For all use cases below, the **System** is the `imPoster` and the **Actor** is
 the `user`, unless specified otherwise)
 
-### <ins>General Use Cases</ins>
+### General Use Cases
 
 **Use case G01 - View Help**
 
 **MSS**
 
 1.  User requests for help with using the application
-2.  User enters help command into command box
-3.  imPoster returns a help link for the user to click
+2.  User enters `help` command into command box
+3.  imPoster returns a help page with links and command summary for the user
 
     Use case ends.
 
@@ -482,7 +493,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to exit the application
-2.  User enters exit command into command box
+2.  User enters `exit` command into command box
 3.  imPoster exits
 
     Use case ends.
@@ -500,7 +511,7 @@ the `user`, unless specified otherwise)
 **MSS**
 
 1.  User requests to toggle application theme
-2.  User enters toggle command into command box
+2.  User enters `toggle` command into command box
 3.  imPoster switches to user specified application theme
 
     Use case ends.
@@ -519,7 +530,7 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
-### <ins>Endpoint Use Cases</ins>
+### Endpoint Use Cases
 
 **Use case E01 - Add an API endpoint**
 
@@ -539,6 +550,12 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
+- 2b. Adding the endpoint results in a duplicate
+
+  - 2b1. imPoster shows a message informing the user that the desired endpoint already exist
+
+    Use case resumes at step 1.
+
 **Use case E02 - Edit an API endpoint**
 
 **MSS**
@@ -557,9 +574,15 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
-- 2b. The given index is invalid
+- 2b. Editing the endpoint results in a duplicate
 
-  - 2b1. imPoster shows an error message to the user
+  - 2b1. imPoster shows a message informing the user that the desired endpoint already exist
+
+    Use case resumes at step 1.
+
+- 2c. The given index is invalid
+
+  - 2c1. imPoster shows an error message to the user
 
     Use case resumes at step 2.
 
@@ -606,11 +629,11 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
-- 2b. The given search result is empty
+- 3a. The search result comes up empty
 
-  - 2b1. imPoster shows a message informing the user that there are no endpoints found
+  - 3a1. imPoster shows a message informing the user that there are no endpoints found
 
-    Use case resumes at step 1.
+    Use case ends.
 
 **Use case E05 - List all saved API endpoints**
 
@@ -630,7 +653,7 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
     
-- 3a.The API endpoint list is empty
+- 3a. The API endpoint list is empty
 
   - 3a1. imPoster shows an additional message to inform the user that the endpoint list is empty
 
@@ -773,7 +796,7 @@ the `user`, unless specified otherwise)
     endpoint fails due to third-party unavailability.
 6.  Should not crash or throw unexpected errors when internet connection is
     unavailable.
-7.  Should be able to display responses not exceeding 100000 lines from an
+7.  Should be able to display responses not exceeding 100000 characters from an
     API call without crashing or throwing unexpected errors.
 
 ## **Appendix E: Glossary**
