@@ -33,7 +33,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/noelmathewisaac.png" width="200px">
 
 [Github](https://github.com/noelmathewisaac)
-[[portfolio](team/noel.md)]
+[[portfolio](team/noelmathewisaac.md)]
 
 * Role: Developer
 * Responsibilities: UI expert
