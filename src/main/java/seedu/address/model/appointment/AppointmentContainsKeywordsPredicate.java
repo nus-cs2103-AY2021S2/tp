@@ -10,8 +10,9 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.person.Doctor;
+import seedu.address.model.person.DoctorMap;
 import seedu.address.model.person.Patient;
-import seedu.address.ui.AppointmentListPanel;
+import seedu.address.model.person.PatientMap;
 
 /**
  * Tests that a {@code Appointment}'s {@code Prefix} matches any of the keywords given.
@@ -38,8 +39,8 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
 
     @Override
     public boolean test(Appointment appointment) {
-        Map<UUID, Patient> patientHashMap = AppointmentListPanel.getPatientHashMap();
-        Map<UUID, Doctor> doctorHashMap = AppointmentListPanel.getDoctorHashMap();
+        Map<UUID, Patient> patientHashMap = PatientMap.getPatientMap();
+        Map<UUID, Doctor> doctorHashMap = DoctorMap.getDoctorMap();
 
         Predicate<String> isMatchPatient = keyword -> StringUtil.containsWordIgnoreCase(
                 patientHashMap.get(appointment.getPatientUuid())

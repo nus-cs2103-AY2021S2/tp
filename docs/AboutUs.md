@@ -15,8 +15,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/onnwards.md)]
 
 * Role: Developer
-* Responsibilities: Scheduling and Tracking
-* Backup Responsibilities: Code Quality, Testing
+* Responsibilities: Scheduling and Tracking, VSCode Expert, Git Expert, In charge of UI
+* Backup Responsibilities: Code Quality, Testing, Integration
 
 ### Pang Jiarong, Jacob
 

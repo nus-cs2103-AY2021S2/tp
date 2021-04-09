@@ -11,7 +11,9 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.exceptions.AppointmentConflictException;
+import seedu.address.model.appointment.exceptions.AppointmentDoctorNotInDoctorRecordsException;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
+import seedu.address.model.appointment.exceptions.AppointmentPatientNotInPatientRecordsException;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 
@@ -41,6 +43,40 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
     public boolean contains(Appointment toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::equals);
+    }
+
+    /**
+     * Checks the appointmentSchedule to ensure the validity of its patient data.
+     *
+     * @param patientRecords the current list of Patients
+     * @throws AppointmentPatientNotInPatientRecordsException if a patient's data in
+     * appointmentSchedule does not match any patient in the patientRecord
+     */
+    public void checkAppointmentPatientValidity(List<Patient> patientRecords)
+            throws AppointmentPatientNotInPatientRecordsException {
+        boolean isValid = internalList.stream().allMatch(appt -> {
+            return patientRecords.stream().map(pt -> pt.getUuid()).anyMatch(appt.getPatientUuid()::equals);
+        });
+        if (!isValid) {
+            throw new AppointmentPatientNotInPatientRecordsException();
+        }
+    }
+
+    /**
+     * Checks the appointmentSchedule to ensure the validity of its doctor data.
+     *
+     * @param doctorRecords the current list of Doctors
+     * @throws AppointmentDoctorNotInDoctorRecordsException if a doctor's data in
+     * appointmentSchedule does not match any doctor in the doctorRecord
+     */
+    public void checkAppointmentDoctorValidity(List<Doctor> doctorRecords)
+            throws AppointmentDoctorNotInDoctorRecordsException {
+        boolean isValid = internalList.stream().allMatch(appt -> {
+            return doctorRecords.stream().map(dr -> dr.getUuid()).anyMatch(appt.getDoctorUuid()::equals);
+        });
+        if (!isValid) {
+            throw new AppointmentDoctorNotInDoctorRecordsException();
+        }
     }
 
     /**

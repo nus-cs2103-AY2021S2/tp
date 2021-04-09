@@ -25,10 +25,10 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
+import seedu.address.model.person.PatientMap;
 import seedu.address.model.person.SamePersonPredicate;
 import seedu.address.testutil.EditDoctorDescriptorBuilder;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
-import seedu.address.ui.AppointmentListPanel;
 
 /**
  * Contains helper methods for testing commands.
@@ -176,8 +176,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredAppointmentList().size());
 
         Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
-        Map<UUID, Patient> patientHashMap = AppointmentListPanel.getPatientHashMap();
-        AppointmentListPanel.updatePatientHashMap(model.getPatientRecords().getPersonList());
+        Map<UUID, Patient> patientHashMap = PatientMap.getPatientMap();
+        PatientMap.updatePatientHashMap(model.getPatientRecords().getPersonList());
 
         UUID patientUuid = appointment.getPatientUuid();
 
