@@ -293,6 +293,18 @@ email (e.g. company email address) and insurance policies (co-owner of the same 
         <ul><li>If duplicate insurance policies are entered in a command, only 1 will be added to the client</li></ul>
     </td>
   </tr>
+  <tr>
+    <td> Meeting </td>
+    <td> <code>m</code> </td>
+    <td><ul><li>Optional</li></ul> 
+        <ul><li>Should be of the form <code>DATE START END PLACE</code></li></ul> 
+        <ul><li><code>DATE</code> part should be in <code>dd.MM.yyyy</code> format</li></ul>
+        <ul><li><code>START</code> and <code>END</code> parts should be in <code>HH:mm</code> format</li></ul>
+        <ul><li><code>END</code> of a meeting must be after <code>START</code> of the same meeting on the same <code>DATE</code></li></ul>
+        <ul><li><code>START</code> of a meeting cannot be the same as <code>END</code> of another meeting on the same <code>DATE</code></li></ul>
+        <ul><li><code>PLACE</code> should not be empty and can have space between characters</li></ul>
+    </td>
+  </tr>
 </table>
 
 [Return to Table of Contents](#table-of-contents)
@@ -449,7 +461,6 @@ If a parameter is expected only once in the command, but you specified it multip
 * To batch delete more than 1 client contact.
     * `batch delete 1, 2, 4`
 
-
 [Return to Table of Contents](#table-of-contents)
 <br><br>
 
@@ -462,13 +473,11 @@ If a parameter is expected only once in the command, but you specified it multip
 * Schedules a meeting with the client at the specified `INDEX`.
 * `INDEX` refers to the index number shown in the displayed client list.
 * `INDEX` must be 1 or higher, and less than or equal to the index of the last item in the displayed list.
-* `ACTION` can be `add` to add a meeting, `delete` to delete a meeting, `clear` to clear all meetings.
-* If `-ACTION` is empty, the default action is to add a meeting.
-* `DATE` must be in the `DD:MM:YYYY` format.
-* `START` and `END` must be in the `HH:MM` format.
-* `END` must be after `START` on the same `DATE`.
-* `PLACE` cannot be empty.
-* There is a check for clashes between meetings when adding a new meeting.
+* `ACTION` can be `add` to add a meeting, `delete` to delete a meeting, `clear` to clear all meetings of a client.
+* If `-ACTION` is empty, the default action for the command is to add a meeting.
+* Past meeting is allowed to be added for archive purposes.
+* There is a check for clashes between meetings when adding a new meeting with `meet` command.
+* Meetings can be modified with the `edit` command, but there will be no check for clashes between meetings.
 
 **Examples**:
 * Add a meeting and there are no clashes.
@@ -482,7 +491,7 @@ If a parameter is expected only once in the command, but you specified it multip
       ![meet-clash](images/meet-clash.png)
 <br><br>
 * Delete a meeting.
-    * `meet 1 -delete 20.05.2021 15:00 16:00 MRT`
+    * `meet 5 -delete 20.05.2021 15:00 16:00 KENT RIDGE MRT`
 <br><br>
 * Clear all meetings.
     * `meet 2 -clear`
