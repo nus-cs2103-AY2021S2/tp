@@ -14,11 +14,11 @@ public class TypicalSchedules {
 
     public static final Schedule MATHS_HOMEWORK_SCHEDULE = new ScheduleBuilder()
             .withTitle("Maths Homework")
-            .withTimeFrom("2021-05-24 10:00AM").withTimeTo("2021-05-24 12:00PM")
+            .withTimeFrom("2021-05-24 12:00PM").withTimeTo("2021-05-24 2:00PM")
             .withDescription("Chapter 5 Page 841").build();
     public static final Schedule SCIENCE_HOMEWORK_SCHEDULE = new ScheduleBuilder()
             .withTitle("Science Homework")
-            .withTimeFrom("2021-05-27 12:00PM").withTimeTo("2021-05-27 2:00PM")
+            .withTimeFrom("2021-05-27 2:00PM").withTimeTo("2021-05-27 4:00PM")
             .withDescription("Chapter 3 Page 21").build();
 
     public static final Schedule ENGLISH_HOMEWORK_SCHEDULE = new ScheduleBuilder()
