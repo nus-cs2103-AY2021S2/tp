@@ -37,6 +37,7 @@ public class DeleteMultipleCommand extends Command {
      * @param targetIndexes the {@link Index}s of the tasks to delete
      */
     public DeleteMultipleCommand(List<Index> targetIndexes) {
+        requireNonNull(targetIndexes);
         this.targetIndexes = targetIndexes;
         this.statusOfTasksToDelete = Optional.empty();
         this.toDeleteByStatus = false;

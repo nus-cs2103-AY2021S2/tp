@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taskify.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static seedu.taskify.testutil.Assert.assertThrows;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.taskify.testutil.TypicalTasks.getTypicalAddressBook;
@@ -25,6 +26,11 @@ import seedu.taskify.model.task.Task;
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    @Test
+    public void constructor_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteCommand(null));
+    }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

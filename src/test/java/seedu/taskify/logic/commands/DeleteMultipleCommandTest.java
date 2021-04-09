@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taskify.logic.commands.CommandTestUtil.showTasksAtIndexes;
+import static seedu.taskify.testutil.Assert.assertThrows;
 import static seedu.taskify.testutil.TypicalIndexes.INDEXES_FIRST_TO_THIRD_TASK;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.taskify.testutil.TypicalIndexes.INDEX_SECOND_TASK;
@@ -60,6 +61,16 @@ public class DeleteMultipleCommandTest {
         }
     }
 
+
+    @Test
+    public void constructor_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteMultipleCommand((List<Index>) null));
+    }
+
+    @Test
+    public void overloadedConstructor_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteMultipleCommand((Status) null));
+    }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
