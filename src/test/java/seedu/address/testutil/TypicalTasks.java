@@ -18,29 +18,29 @@ import seedu.address.model.person.Task;
 public class TypicalTasks {
 
     public static final Task CS2103 = new TaskBuilder().withName("Week 10 Quiz")
-        .withCode("CS2103").withDeadlineDate("09-10-2020").withDeadlineTime("10:10")
+        .withCode("CS2103").withDeadlineDate("09-10-2022").withDeadlineTime("10:10")
         .withStatus("Unfinished").withWeightage(0).withNotes("Being a software engineer is fun")
         .withTags("friends").build();
     public static final Task CS2040 = new TaskBuilder().withName("Take Home lab 1")
-        .withCode("CS2040").withDeadlineDate("10-10-2020").withDeadlineTime("10:10")
+        .withCode("CS2040").withDeadlineDate("10-10-2022").withDeadlineTime("10:10")
         .withStatus("Unfinished").withWeightage(0)
         .withNotes("Favourite pastime: Kattis")
         .withTags("owesMoney", "friends").build();
     public static final Task CS1010E = new TaskBuilder().withName("Tutorial 6")
-        .withCode("CS1010").withDeadlineDate("09-10-2020").withDeadlineTime("10:10")
+        .withCode("CS1010").withDeadlineDate("09-10-2022").withDeadlineTime("10:10")
         .withStatus("Unfinished").withWeightage(0)
         .withNotes("PE1").build();
     public static final Task CS2030 = new TaskBuilder().withName("Tutorial 5")
-        .withCode("CS2030").withDeadlineDate("10-10-2020").withDeadlineTime("10:10")
+        .withCode("CS2030").withDeadlineDate("10-10-2022").withDeadlineTime("10:10")
         .withStatus("Unfinished").withWeightage(0)
         .withNotes("PE2")
         .withTags("friends").build();
     public static final Task CS3243 = new TaskBuilder().withName("Weekly Readings")
-        .withCode("CS3243").withDeadlineDate("08-10-2020").withDeadlineTime("10:10")
+        .withCode("CS3243").withDeadlineDate("08-10-2022").withDeadlineTime("10:10")
         .withStatus("Unfinished").withWeightage(0)
         .build();
     public static final Task CS2100 = new TaskBuilder().withName("Write Tests")
-        .withCode("CS2100").withDeadlineDate("13-10-2020").withDeadlineTime("10:10")
+        .withCode("CS2100").withDeadlineDate("13-10-2022").withDeadlineTime("10:10")
         .withStatus("Unfinished").withWeightage(0)
         .build();
 

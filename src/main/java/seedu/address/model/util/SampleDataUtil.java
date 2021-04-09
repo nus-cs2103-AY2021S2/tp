@@ -1,5 +1,7 @@
 package seedu.address.model.util;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,31 +24,34 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
 
     public static final Notes EMPTY_NOTES = new Notes("");
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu");
+    public static final DeadlineDate defaultDate = new DeadlineDate(
+            LocalDate.now().plusDays(5).format(FORMATTER)); // 5 days after today
 
     public static Task[] getSampleTasks() {
         return new Task[]{
             new Task(new TaskName("Week 10 Quiz"), new ModuleCode("CS2103"),
-                new DeadlineDate("01-04-2021"), new DeadlineTime("10:10"),
+                defaultDate, new DeadlineTime("10:10"),
                 new Status(), new Weightage(0),
                     EMPTY_NOTES, getTagSet("core")),
             new Task(new TaskName("Take Home lab 1"), new ModuleCode("CS2040"),
-                new DeadlineDate("10-04-2021"), new DeadlineTime("10:10"),
+                defaultDate, new DeadlineTime("10:10"),
                 new Status(), new Weightage(10),
                     EMPTY_NOTES, getTagSet("core", "difficult")),
             new Task(new TaskName("Tutorial 6"), new ModuleCode("CS1010"),
-                new DeadlineDate("31-03-2021"), new DeadlineTime("10:10"),
+                defaultDate, new DeadlineTime("10:10"),
                 new Status("Finished"), new Weightage(20),
                     EMPTY_NOTES, getTagSet("core")),
             new Task(new TaskName("Tutorial 5"), new ModuleCode("CS2030"),
-                new DeadlineDate("30-04-2021"), new DeadlineTime("10:10"),
+                defaultDate, new DeadlineTime("10:10"),
                 new Status(), new Weightage(10),
                     EMPTY_NOTES, getTagSet("core")),
             new Task(new TaskName("Weekly Readings"), new ModuleCode("CS3243"),
-                new DeadlineDate("12-05-2021"), new DeadlineTime("10:10"),
+                defaultDate, new DeadlineTime("10:10"),
                 new Status(), new Weightage(20),
                     EMPTY_NOTES, getTagSet("specialization")),
             new Task(new TaskName("Write Tests"), new ModuleCode("CS3244"),
-                new DeadlineDate("07-04-2021"), new DeadlineTime("10:10"),
+                defaultDate, new DeadlineTime("10:10"),
                 new Status("Finished"), new Weightage(15),
                     EMPTY_NOTES, getTagSet("specialization"))
         };

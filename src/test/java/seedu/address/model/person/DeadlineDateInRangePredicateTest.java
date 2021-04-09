@@ -42,8 +42,8 @@ public class DeadlineDateInRangePredicateTest {
         assertFalse(secondPredicate.equals(new Object()));
         assertFalse(firstPredicate.equals(new DeadlineTime("10:10"))); // DeadlineTime
         assertFalse(secondPredicate.equals(new DeadlineTime("10:10")));
-        assertFalse(firstPredicate.equals(new DeadlineDate("10-10-2020"))); // DeadlineDate
-        assertFalse(secondPredicate.equals(new DeadlineDate("10-11-2020")));
+        assertFalse(firstPredicate.equals(new DeadlineDate("10-10-2022"))); // DeadlineDate
+        assertFalse(secondPredicate.equals(new DeadlineDate("10-11-2022")));
 
         // null -> returns false
         assertFalse(firstPredicate.equals(null));

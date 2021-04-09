@@ -50,12 +50,12 @@ public class DeadlineDateTest {
         assertFalse(DeadlineDate.isValidDeadlineDate("2020/12/02")); // incorrect format YYYY/DD/MM
 
         // valid DeadlineDate
-        assertTrue(DeadlineDate.isValidDeadlineDate("11-11-2020")); // min year
+        assertTrue(DeadlineDate.isValidDeadlineDate("11-11-2022")); // min year
         assertTrue(DeadlineDate.isValidDeadlineDate("11-01-2026")); // min month
         assertTrue(DeadlineDate.isValidDeadlineDate("01-10-2029")); // min date
         assertTrue(DeadlineDate.isValidDeadlineDate("12-02-2099")); // max year
         assertTrue(DeadlineDate.isValidDeadlineDate("01-12-2029")); // max month
-        assertTrue(DeadlineDate.isValidDeadlineDate("31-10-2020")); // max day
+        assertTrue(DeadlineDate.isValidDeadlineDate("31-10-2022")); // max day
         assertTrue(DeadlineDate.isValidDeadlineDate("29-02-2024")); // leap day
         assertTrue(DeadlineDate.isValidDeadlineDate("10-11-2021")); // typical value
         assertTrue(DeadlineDate.isValidDeadlineDate("25-09-2032")); // typical value
@@ -63,7 +63,7 @@ public class DeadlineDateTest {
 
     @Test
     public void toStringTest() {
-        DeadlineDate toTest = new DeadlineDate("11-11-2020");
+        DeadlineDate toTest = new DeadlineDate("11-11-2022");
 
         //Different Strings
         assertFalse(toTest.toString().equals(null)); // null
@@ -74,12 +74,12 @@ public class DeadlineDateTest {
         assertTrue(toTest.toString().equals(toTest.toString()));
 
         //Equals to other DeadlineDate with same date
-        assertTrue(toTest.toString().equals(new DeadlineDate("11-11-2020").toString()));
+        assertTrue(toTest.toString().equals(new DeadlineDate("11-11-2022").toString()));
     }
 
     @Test
     public void equals() {
-        DeadlineDate toTest = new DeadlineDate("11-11-2020");
+        DeadlineDate toTest = new DeadlineDate("11-11-2022");
 
         //Different object
         assertFalse(toTest.equals(null)); // null
@@ -89,15 +89,15 @@ public class DeadlineDateTest {
         assertFalse(toTest.equals(new DeadlineTime("11:11"))); // DeadlineTime
 
         //Different values
-        assertFalse(toTest.equals(new DeadlineDate("10-11-2020"))); // Different date
-        assertFalse(toTest.equals(new DeadlineDate("11-10-2020"))); // Different month
-        assertFalse(toTest.equals(new DeadlineDate("11-11-2022"))); // Different year
-        assertFalse(toTest.equals(new DeadlineDate("01-01-2022"))); // All different
+        assertFalse(toTest.equals(new DeadlineDate("10-11-2022"))); // Different date
+        assertFalse(toTest.equals(new DeadlineDate("11-10-2022"))); // Different month
+        assertFalse(toTest.equals(new DeadlineDate("11-11-2023"))); // Different year
+        assertFalse(toTest.equals(new DeadlineDate("01-01-2024"))); // All different
 
         //Equals to itself
         assertTrue(toTest.equals(toTest));
 
         //Equals to other DeadlineDate with same date
-        assertTrue(toTest.equals(new DeadlineDate("11-11-2020")));
+        assertTrue(toTest.equals(new DeadlineDate("11-11-2022")));
     }
 }

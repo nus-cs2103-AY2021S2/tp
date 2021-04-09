@@ -21,7 +21,7 @@ public class TaskBuilder {
 
     public static final String DEFAULT_NAME = "Weekly Quiz 11";
     public static final String DEFAULT_CODE = "CS2103";
-    public static final String DEFAULT_DATE = "10-10-2020";
+    public static final String DEFAULT_DATE = "10-10-2022";
     public static final String DEFAULT_TIME = "10:10";
     public static final String DEFAULT_STATUS = "Unfinished";
     public static final Integer DEFAULT_WEIGHTAGE = 0;

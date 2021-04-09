@@ -3,7 +3,7 @@
   "tasks" : [ {
     "taskName": "Week 10 Quiz",
     "moduleCode": "CS2103",
-    "deadlineDate" : "09-10-2020",
+    "deadlineDate" : "09-10-2022",
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 0,
@@ -12,7 +12,7 @@
   }, {
     "taskName": "Take Home lab 1",
     "moduleCode": "CS2040",
-    "deadlineDate" : "10-10-2020",
+    "deadlineDate" : "10-10-2022",
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 0,
@@ -21,7 +21,7 @@
   }, {
     "taskName": "Tutorial 6",
     "moduleCode": "CS1010",
-    "deadlineDate" : "09-10-2020",
+    "deadlineDate" : "09-10-2022",
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 0,
@@ -30,7 +30,7 @@
   }, {
     "taskName": "Tutorial 5",
     "moduleCode": "CS2030",
-    "deadlineDate" : "10-10-2020",
+    "deadlineDate" : "10-10-2022",
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 0,
@@ -39,7 +39,7 @@
   }, {
     "taskName": "Weekly Readings",
     "moduleCode": "CS3243",
-    "deadlineDate" : "08-10-2020",
+    "deadlineDate" : "08-10-2022",
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 0,
@@ -48,7 +48,7 @@
   }, {
     "taskName": "Write Tests",
     "moduleCode": "CS2100",
-    "deadlineDate" : "13-10-2020",
+    "deadlineDate" : "13-10-2022",
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 0,
