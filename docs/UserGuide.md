@@ -367,7 +367,7 @@ Format: `tag INDEX t/TAG [t/MORETAGS]...​`
 `tag 3 t/Ethics t/Quiz`
 </div>
 
-<img src="images/tagCommand.png" width=730px">
+<img src="images/tagCommand.png" width="730px">
 
 Other Examples:
 * `tag 1 t/SoftwareEng` adds `SoftwareEng` tag to task 1.
