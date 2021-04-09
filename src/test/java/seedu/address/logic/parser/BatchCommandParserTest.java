@@ -29,37 +29,29 @@ public class BatchCommandParserTest {
             Index.fromOneBased(1));
 
     @Test
-    public void parse_validArgsForBatchEdit_returnsBatchEditCommand() {
-        try {
-            List<EditCommand> listOfEditCommands = new ArrayList<>();
-            for (Index index : LIST_OF_INDICES) {
-                String newCommandInput = index.getOneBased() + " " + CommandTestUtil.ARGS_FOR_EDIT;
-                EditCommand editCommand = EDIT_COMMAND_PARSER.parse(newCommandInput);
-                listOfEditCommands.add(editCommand);
-            }
-
-            assertParseSuccess(BATCH_COMMAND_PARSER, "edit 1, 2,3 t/husband i/P#1245 i/POL#6789>www.youtube.com",
-                    new BatchCommand<>(listOfEditCommands));
-        } catch (ParseException e) {
-            e.printStackTrace();
+    public void parse_validArgsForBatchEdit_returnsBatchEditCommand() throws ParseException {
+        List<EditCommand> listOfEditCommands = new ArrayList<>();
+        for (Index index : LIST_OF_INDICES) {
+            String newCommandInput = index.getOneBased() + " " + CommandTestUtil.ARGS_FOR_EDIT;
+            EditCommand editCommand = EDIT_COMMAND_PARSER.parse(newCommandInput);
+            listOfEditCommands.add(editCommand);
         }
+
+        assertParseSuccess(BATCH_COMMAND_PARSER, "edit 1, 2,3 t/husband i/P#1245 i/POL#6789>www.youtube.com",
+                new BatchCommand<>(listOfEditCommands));
     }
 
     @Test
-    public void parse_validArgsForBatchDelete_returnsBatchDeleteCommand() {
-        try {
-            List<DeleteCommand> listOfDeleteCommands = new ArrayList<>();
-            for (Index index : LIST_OF_INDICES) {
-                String newCommandInput = String.valueOf(index.getOneBased());
-                DeleteCommand deleteCommand = DELETE_COMMAND_PARSER.parse(newCommandInput);
-                listOfDeleteCommands.add(deleteCommand);
-            }
-
-            assertParseSuccess(BATCH_COMMAND_PARSER, "delete 1, 2,3",
-                    new BatchCommand<>(listOfDeleteCommands));
-        } catch (ParseException e) {
-            e.printStackTrace();
+    public void parse_validArgsForBatchDelete_returnsBatchDeleteCommand() throws ParseException {
+        List<DeleteCommand> listOfDeleteCommands = new ArrayList<>();
+        for (Index index : LIST_OF_INDICES) {
+            String newCommandInput = String.valueOf(index.getOneBased());
+            DeleteCommand deleteCommand = DELETE_COMMAND_PARSER.parse(newCommandInput);
+            listOfDeleteCommands.add(deleteCommand);
         }
+
+        assertParseSuccess(BATCH_COMMAND_PARSER, "delete 1, 2,3",
+                new BatchCommand<>(listOfDeleteCommands));
     }
 
     @Test
