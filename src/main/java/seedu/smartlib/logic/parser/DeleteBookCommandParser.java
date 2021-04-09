@@ -1,5 +1,6 @@
 package seedu.smartlib.logic.parser;
 
+import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX;
 import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.smartlib.commons.core.index.Index;
@@ -20,6 +21,15 @@ public class DeleteBookCommandParser implements Parser<DeleteBookCommand> {
      * @throws ParseException if the user input does not conform to the expected format.
      */
     public DeleteBookCommand parse(String args) throws ParseException {
+
+        if (!args.trim().matches("^[a-zA-Z]*$")) {
+            try {
+                Integer.parseInt(args.trim());
+            } catch (NumberFormatException ne) {
+                throw new ParseException(MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
+            }
+        }
+
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteBookCommand(index);

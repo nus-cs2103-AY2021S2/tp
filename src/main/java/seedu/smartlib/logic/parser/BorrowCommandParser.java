@@ -1,7 +1,7 @@
 package seedu.smartlib.logic.parser;
 
 import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BARCODE;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 
 import java.time.LocalDateTime;
@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.commands.BorrowCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
+import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.record.DateBorrowed;
 import seedu.smartlib.model.record.IncompleteRecord;
 
@@ -27,17 +28,17 @@ public class BorrowCommandParser implements Parser<BorrowCommand> {
      * @throws ParseException if the user input does not conform to the expected format.
      */
     public BorrowCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BOOK, PREFIX_READER);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BARCODE, PREFIX_READER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_BOOK, PREFIX_READER)
+        if (!arePrefixesPresent(argMultimap, PREFIX_BARCODE, PREFIX_READER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BorrowCommand.MESSAGE_USAGE));
         }
 
-        Name bookName = ParserUtil.parseName(argMultimap.getValue(PREFIX_BOOK).get());
+        Barcode bookBarcode = ParserUtil.parseBarcode(argMultimap.getValue(PREFIX_BARCODE).get());
         Name readerName = ParserUtil.parseName(argMultimap.getValue(PREFIX_READER).get());
         DateBorrowed dateBorrowed = new DateBorrowed(LocalDateTime.now());
-        IncompleteRecord record = new IncompleteRecord(bookName, readerName, dateBorrowed);
+        IncompleteRecord record = new IncompleteRecord(bookBarcode, readerName, dateBorrowed);
 
         return new BorrowCommand(record);
     }

@@ -1,13 +1,14 @@
 package seedu.smartlib.logic.commands;
 
 import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BARCODE;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 
+import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.SmartLib;
-import seedu.smartlib.model.book.Barcode;
+import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.record.IncompleteRecord;
 import seedu.smartlib.model.record.Record;
 
@@ -20,16 +21,16 @@ public class BorrowCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a record of a reader borrowing a book. "
             + "Note that a book cannot be borrowed to multiple readers at the same time.\n"
             + "Note that readers may only borrow up to " + SmartLib.QUOTA + " books.\n"
-            + "Parameters: " + PREFIX_BOOK + "<book name> " + PREFIX_READER + "<reader name>\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_BOOK + "The Hobbit " + PREFIX_READER + "Alex Yeoh";
+            + "Parameters: " + PREFIX_BARCODE + "<barcode> " + PREFIX_READER + "<reader name>\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_BARCODE + "1000000001 " + PREFIX_READER + "Alex Yeoh";
     public static final String MESSAGE_SUCCESS = "New borrowing record added.";
     public static final String MESSAGE_DUPLICATE_RECORD = "This record already exists in the registered record base.";
     public static final String NO_READER_AND_BOOK_FOUND = "Sorry, we were unable to find "
-            + "neither the book nor the reader which you have specified. Please check if you have spelled correctly.";
+            + "neither the book nor the reader which you have specified. Please check if you have keyed in correctly.";
     public static final String NO_BOOK_FOUND = "Sorry, we could not find the "
-            + "book which you have specified. Please check if you have spelled correctly.";
+            + "book which you have specified. Please check if you have entered the correct barcode.";
     public static final String NO_READER_FOUND = "Sorry, we could not find the "
-            + "reader which you have specified. Please check if you have spelled correctly.";
+            + "reader which you have specified. Please check if you have entered the name correctly.";
     public static final String BOOK_ALREADY_BORROWED = "Sorry, the book is already borrowed.";
     public static final String READER_DISABLE_BORROWING = "Sorry, the reader has either reached the quota of books"
             + " that he/she can borrow, or is holding on to an overdue book.";
@@ -51,11 +52,12 @@ public class BorrowCommand extends Command {
     }
 
     private void verifyNameRegistration(Model model) throws CommandException {
-        if (!model.hasBook(incompleteRecord.getBookName()) && !model.hasReader(incompleteRecord.getReaderName())) {
+        if (!model.hasBookWithBarcode(incompleteRecord.getBookBarcode())
+                && !model.hasReader(incompleteRecord.getReaderName())) {
             throw new CommandException(NO_READER_AND_BOOK_FOUND);
         }
 
-        if (!model.hasBook(incompleteRecord.getBookName())) {
+        if (!model.hasBookWithBarcode(incompleteRecord.getBookBarcode())) {
             throw new CommandException(NO_BOOK_FOUND);
         }
 
@@ -65,8 +67,9 @@ public class BorrowCommand extends Command {
     }
 
     private Record createProperRecord(Model model) {
-        Barcode bookBarcode = model.getFirstAvailableBookBarcode(incompleteRecord.getBookName());
-        return new Record(incompleteRecord.getBookName(), bookBarcode, incompleteRecord.getReaderName(),
+        Book book = model.getBookByBarcode(incompleteRecord.getBookBarcode());
+        Name bookName = book.getName();
+        return new Record(bookName, incompleteRecord.getBookBarcode(), incompleteRecord.getReaderName(),
                 incompleteRecord.getDateBorrowed());
     }
 
