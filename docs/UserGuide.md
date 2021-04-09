@@ -110,7 +110,7 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 
 **Purpose:** Adds a delivery task to the delivery list.
 
-**Format:** `add n/NAME p/PHONE a/ADDRESS e/EMAIL d/DATETIME`
+**Format:** `add n/NAME p/PHONE a/ADDRESS e/EMAIL d/DATE`
 
 **Examples:**
 
@@ -127,6 +127,7 @@ increase work productivity for delivery drivers by simplifying the delivery mana
 **Note** 
   * You can edit multiple attributes.
   * Remark can be edited separately through the remark command.
+  * INDEX refers to the number shown in front of each delivery
 
 **Format:** `edit INDEX PREFIX/ATTRIBUTE`
 
