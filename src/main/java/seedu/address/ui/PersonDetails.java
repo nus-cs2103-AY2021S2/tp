@@ -34,19 +34,13 @@ public class PersonDetails extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label school;
+    private Label education;
     @FXML
-    private Label level;
-    @FXML
-    private Label studentPhone;
+    private Label studentContact;
     @FXML
     private Label address;
     @FXML
-    private Label studentEmail;
-    @FXML
-    private Label guardianName;
-    @FXML
-    private Label guardianPhone;
+    private Label guardianContact;
     @FXML
     private StackPane lessonListPanelPlaceholder;
 
@@ -57,49 +51,57 @@ public class PersonDetails extends UiPart<Region> {
         super(FXML);
         this.person = null;
         name.setText("");
-        school.setText("");
-        studentPhone.setText("");
+        education.setText("");
+        studentContact.setText("");
         address.setText("");
-        guardianName.setText("");
-        guardianPhone.setText("");
-        studentEmail.setText("");
-        level.setText("");
+        guardianContact.setText("");
     }
 
     public void setPerson(Person person) {
         this.person = person;
+
+        // Set student name
         name.setText(person.getName().fullName);
-        studentPhone.setText(person.getPhone().value);
-        if (person.getSchool().isPresent()) {
-            school.setText(person.getSchool().get().fullSchoolName);
-        } else {
-            school.setText("");
+
+        // Set student contact (phone and email)
+        String studentContactString = person.getPhone().value;
+        if (person.getEmail().isPresent()) {
+            studentContactString += "\n" + person.getEmail().get().value;
         }
-        if (person.getLevel().isPresent()) {
-            level.setText(person.getLevel().get().getFullLevel());
-        } else {
-            level.setText("");
-        }
+        studentContact.setText(studentContactString);
+
+        // Set student address
         if (person.getAddress().isPresent()) {
             address.setText(person.getAddress().get().value);
         } else {
             address.setText("");
         }
+
+        // Set student education information (education level and school)
+        String educationString = "";
+        if (person.getLevel().isPresent()) {
+            educationString += person.getLevel().get().getFullLevel();
+        }
+        if (person.getLevel().isPresent() && person.getSchool().isPresent()) {
+            educationString += "\n";
+        }
+        if (person.getSchool().isPresent()) {
+            educationString += person.getSchool().get().fullSchoolName;
+        }
+        education.setText(educationString);
+
+        // Set guardian contacts (guardian name and phone number)
+        String guardianContactString = "";
         if (person.getGuardianName().isPresent()) {
-            guardianName.setText(person.getGuardianName().get().fullName);
-        } else {
-            guardianName.setText("");
+            guardianContactString += person.getGuardianName().get().fullName;
+        }
+        if (person.getGuardianName().isPresent() && person.getGuardianPhone().isPresent()) {
+            guardianContactString += "\n";
         }
         if (person.getGuardianPhone().isPresent()) {
-            guardianPhone.setText(person.getGuardianPhone().get().value);
-        } else {
-            guardianPhone.setText("");
+            guardianContactString += person.getGuardianPhone().get().value;
         }
-        if (person.getEmail().isPresent()) {
-            studentEmail.setText(person.getEmail().get().value);
-        } else {
-            studentEmail.setText("");
-        }
+        guardianContact.setText(guardianContactString);
     }
 
     public void setLessonList(ObservableList<Lesson> lessonList) {

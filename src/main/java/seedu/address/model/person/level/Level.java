@@ -23,7 +23,7 @@ import seedu.address.model.subject.Subject;
 public class Level implements Comparable<Level> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Level can only be [pri1] to [pri6], [sec1] to [sec4], [jc1] to [jc2] or [graduated].";
+            "Level can only be [pri1] to [pri6], [sec1] to [sec4], [jc1] to [jc2] or [grad].";
 
     private String level;
     private int levelIndex;
@@ -108,7 +108,7 @@ public class Level implements Comparable<Level> {
     public static boolean isValidLevel(String test) {
         // ArrayList<String> levelList = new LevelList().LEVEL_LIST;
         boolean result = false;
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < 14; i++) {
             if (test.equals(LEVEL_LIST.get(i))) {
                 result = true;
             }
