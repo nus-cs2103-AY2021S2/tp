@@ -86,8 +86,10 @@ public class CommandTestUtil {
     public static final String VALID_NAME_POTTY_TRAINING = "Potty Training";
     public static final String VALID_SESSION_OBEDIENCE_TRAINING = "01-01-2022 10:30";
     public static final String VALID_SESSION_POTTY_TRAINING = "03-02-2022 20:30";
+    public static final String VALID_SESSION_DANCE_TRAINING = "11-11-2011 11:11";
     public static final String VALID_TAG_PUPPIES = "Puppies";
     public static final String VALID_TAG_ALL = "All";
+    public static final String VALID_TAG_DOGS = "Dogs";
 
     public static final String NAME_DESC_OBEDIENCE_TRAINING = " " + PREFIX_NAME + VALID_NAME_OBEDIENCE_TRAINING;
     public static final String NAME_DESC_POTTY_TRAINING = " " + PREFIX_NAME + VALID_NAME_POTTY_TRAINING;
@@ -95,8 +97,11 @@ public class CommandTestUtil {
             + VALID_SESSION_OBEDIENCE_TRAINING;
     public static final String SESSION_DESC_POTTY_TRAINING = " " + PREFIX_SESSION
             + VALID_SESSION_POTTY_TRAINING;
+    public static final String SESSION_DESC_DANCE_TRAINING = " " + PREFIX_SESSION
+            + VALID_SESSION_DANCE_TRAINING;
     public static final String TAG_DESC_PUPPIES = " " + PREFIX_TAG + VALID_TAG_PUPPIES;
     public static final String TAG_DESC_ALL = " " + PREFIX_TAG + VALID_TAG_ALL;
+    public static final String TAG_DESC_DOGS = " " + PREFIX_TAG + VALID_TAG_DOGS;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
