@@ -149,7 +149,7 @@ We will break our explanation down into the following categories:
 This error typically shows a message along the following lines: `Invalid command format! [Information on how to use
 the command]`
 
-[!Invalid format](images/error-invalid-cmd-format.png)
+![Invalid command format](images/error-invalid-cmd-format.png)
 
 Typically this happens because the command does not match the required format. Check if you are missing any parameters.
 A special case of this takes place when the `INDEX` value is not a number.
@@ -159,7 +159,7 @@ This error typically shows a message along the following lines: `[Parameter name
 `Room numbers should be formatted as such: XY-ABC, where XY can be any pair of digits except 00, and ABC can 
 be any 3 digits.`
 
-[!Invalid format](images/error-invalid-param-format.png)
+![Invalid param format](images/error-invalid-param-format.png)
 
 Typically this happens because the parameter provided does not match the required format. Check if your parameter conforms
 to the format stated under the [command parameters](#command-parameters) section. The error message usually gives some
@@ -178,18 +178,18 @@ will be dealt with
 
 - If the `INDEX` parameter is required alongside other parameters e.g [`redit`](#edit-a-resident-record--redit), and
   **only** an `INDEX` (be it valid or not) value is provided (e.g. `redit 1000` or `redit 1`): The app will inform you
-  that the format is invalid, and display the format that should be used. This is also a specific case 
+  that the format is invalid, and display the format that should be used. This is another specific case 
   of [incorrect formats](#incorrect-formats), as the command compulsorily needs at least one of the optional parameters 
   to be provided.
   
 - If the `INDEX` is 0 or lesser (e.g `rdel -5`): The app will inform you that `INDEX` should be a positive integer.
 
-[!Index non positive](images/error-idx-non-positive.png)
+![Index non positive](images/error-idx-non-positive.png)
 
 - If the `INDEX` is above the range of the collection specified (e.g `rdel 100` but there are only 10 residents): The 
   app will inform you that `INDEX` needs to be between 1 and the size of the collection in question.
 
-[!Index out of range](images/error-idx-out-of-range.png)
+![Index out of range](images/error-idx-out-of-range.png)
 
 
 ### Command Parameters
