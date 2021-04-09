@@ -24,18 +24,24 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=BigDoot&tabRepo=AY2021S2-CS2103T-W12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-  * Managed releases `v1.3` on GitHub
+  * Managed release `v1.3` on GitHub
+  * Maintained issue tracker
+  * Maintained milestones
+  * Set up google docs for project planning
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Updated the GUI theme to DocBob and changed icon (Pull request [\#23](https://github.com/AY2021S2-CS2103T-W12-1/tp/pull/23))
+  * Modified existing features to work synonymously with `view` function and other new functions
+  * Updated `help` function window to display command information
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features `view`, `listappt`, `mrec`, `vrec` [\#72]()
+    * Modified some existing documentation to fit theme: [\#74]()
+    * Kept command summary up to date
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added implementation details of the `view` feature.
+    * Added UML diagrams for the `view` feature
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
