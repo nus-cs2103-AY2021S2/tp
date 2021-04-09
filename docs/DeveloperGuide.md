@@ -897,8 +897,6 @@ Given below are instructions to test the app manually.
    1. With the app still open, enter `exit` in the command box or click on the close window button.<br>
       Expected: App closes.
 
-1. _{ more test cases …​ }_
-
 ### Edit an endpoint
 
 1. Edit an endpoint
@@ -920,8 +918,8 @@ Given below are instructions to test the app manually.
     1. Test case: `edit 1 -h` <br>
        Expected: Any existing headers of the endpoint at index 1 are removed and any existing response is cleared.
        
-    1. Test case: `edit 1 -x POST -u https://reqres.in/api/users -d {"name": "john doe", "job": "developer"} -t common -t important` <br>
-       Expected: The method of the endpoint at index 1 is change to `POST`, its url addresss is changed to `https://reqres.in/api/users`, its data is changed to `{"name": "john doe", "job": "developer"}` and its tags are changed to `common` and `important` and any existing response is cleared.
+    1. Test case: `edit 1 -x POST -u https://reqres.in/api/users -d {\"name\": \"john doe\", \"job\": \"developer\"} -t common -t important` <br>
+       Expected: The method of the endpoint at index 1 is change to `POST`, its url addresss is changed to `https://reqres.in/api/users`, its data is changed to `{\"name\": \"john doe\", \"job\": \"developer\"}` and its tags are changed to `common` and `important` and any existing response is cleared.
 
     1. Test case: `edit` <br>
        Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Invalid command format!...`
@@ -942,7 +940,6 @@ Given below are instructions to test the app manually.
 
     1. Test case: `edit 1 -h abc` <br>
        Expected: No endpoint is edited. Error details shown in the result display, with a result message saying `Headers should be...`
-       
 
 ### Remove an endpoint
 
@@ -963,6 +960,60 @@ Given below are instructions to test the app manually.
    1. Test case: `remove 100`<br>
       Expected: No endpoint is deleted. Error details shown in the result display, with a result message saying `Index provided is not within...`
       Other incorrect remove commands to try: `remove x` (where x is larger than the list size, and is a positive integer that is less than the maximum integer size). <br>
+
+### Clear all endpoints
+
+1. Clear all endpoints from the endpoint list
+
+   1. Prerequisites: None
+
+   1. Test case: `clear`<br>
+      Expected: All endpoints are cleared from the list.
+
+   1. Test case: `clear 123`<br>
+      Expected: All endpoints are cleared from the list.
+
+### Call a saved endpoint
+
+1. Call a saved endpoint while all endpoints are being shown
+
+   1. Prerequisites: List all endpoints using the `list` command. There exists at least 1 endpoint in the list, and there are less than 100 endpoints.
+
+   1. Test case: `send 1`<br>
+      Expected: First endpoint is called from the list. Details of the response is shown in the result display.
+
+   1. Test case: `send`<br>
+      Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Invalid command format!...`
+
+   1. Test case: `send 0`<br>
+      Expected: No endpoint is called. Error details shown in the result display, with a result message saying `An index must be specified...`
+      Other incorrect remove commands to try: `send x` (where x is a number that is less than or equal to zero or greater than the maximum integer size).
+      
+   1. Test case: `send 100`<br>
+      Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Index provided is not within...`
+      Other incorrect remove commands to try: `send x` (where x is larger than the list size, and is a positive integer that is less than the maximum integer size). <br>
+
+### Call an endpoint (without saving)
+
+1. Call an endpoint directly
+   
+    1. Prerequisites: None
+    
+    1. Test case: `run -x get -u https://google.com`<br>
+       Expected: Endpoint is called successfully. Details of the response is shown in the result display.
+
+    1. Test case: `run https://google.com` <br>
+       Expected: Endpoint is called successfully. Details of the response is shown in the result display.
+
+    1. Test case: `run -x POST -u https://reqres.in/api/users -d {\"name\": \"john doe\", \"job\": \"developer\"}` <br>
+       Expected: Endpoint is called successfully. Details of the response is shown in the result display..
+
+    1. Test case: `run` <br>
+       Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Invalid command format!...`
+
+    1. Test case: `run https://thisisarandomanyhowlink.com` <br>
+       Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Connection could not be established.`
+       Other incorrect remove commands to try: `run x` (where x is any URL whose connection cannot be established).
 
 ### Saving data
 
