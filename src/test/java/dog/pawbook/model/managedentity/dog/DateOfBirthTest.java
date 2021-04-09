@@ -1,5 +1,6 @@
 package dog.pawbook.model.managedentity.dog;
 
+import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_DATEOFBIRTH_DESC;
 import static dog.pawbook.testutil.Assert.assertThrows;
 
 import java.time.LocalDate;
@@ -15,7 +16,6 @@ class DateOfBirthTest {
 
     @Test
     public void constructor_invalidDateOfBirth_throwsIllegalArgumentException() {
-        String invalidDateOfBirth = "";
-        assertThrows(IllegalArgumentException.class, () -> new DateOfBirth(invalidDateOfBirth));
+        assertThrows(IllegalArgumentException.class, () -> new DateOfBirth(INVALID_DATEOFBIRTH_DESC));
     }
 }

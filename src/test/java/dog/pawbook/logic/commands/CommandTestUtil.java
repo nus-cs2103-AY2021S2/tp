@@ -105,6 +105,8 @@ public class CommandTestUtil {
     // allowed in dates of birth
     public static final String INVALID_BREED_DESC = " " + PREFIX_BREED + "poodle!"; // '!' not allowed for breed
     public static final String INVALID_OWNERID_DESC = " " + PREFIX_OWNERID; // empty ownerID not allowed
+    public static final String INVALID_SESSION_DESC = " " + PREFIX_SESSION + "01-01-aa22 10:a0"; // 'a' not
+    // allowed in dates of birth
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
