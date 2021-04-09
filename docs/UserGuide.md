@@ -115,7 +115,7 @@ If this is your first time using Pawbook, follow these simple steps to jump stra
 5. Congratulations, you have successfully launched Pawbook! For new users, type `help` in the command box to launch the [help page view](#help-page-view).
 6. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing `add` and pressing <kbd>Enter</kbd> will allow you to start adding information into Pawbook.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info">
 :bulb: Please refer to the features below for details of each command.
 
 :heavy_exclamation_mark: Ensure that the <kbd>data/pawbook.json</kbd> file is not corrupted or edited wrongly. If any part of the file is invalid or corrupted, Pawbook will not be able to restore the data from the previous session and will start fresh, writing over the same file when saving!
@@ -168,7 +168,7 @@ Examples:
 3. Creates a program with program name Obedience Training.<br>
    Command: `add program n/Obedience Training s/02-02-2020 18:00 t/puppies`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info">
 :bulb: Address fields are free from input checking to allow flexibility to users from different countries with different address formats.
 </div>
 
@@ -203,7 +203,7 @@ Examples:
 3. Deletes the program with ID 3 in Pawbook.<br>
    Command: `delete program 3`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info">
 :heavy_exclamation_mark: Take note that deleting an owner will automatically delete all the dogs that belong to that owner as well. We do not allow dogs in Pawbook to not have an owner!
 
 :heavy_exclamation_mark: Requiring the type of entity you are deleting to be specified helps ensure that you do not accidentally delete the wrong entity and lose important customer data!
@@ -245,7 +245,7 @@ Examples:
 3. Edits the program with ID 3 in Pawbook.<br>
    Command: `edit program 3 t/learn`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info">
 :bulb: Tags are only able to take in one alphanumeric string!
 
 :heavy_exclamation_mark: Take note that editing sessions for programs and tags for any entity will automatically override **all** its current sessions/tags!
@@ -284,7 +284,7 @@ Examples:
 3. Enrol dog with ID 2 into programs with ID 3 and ID 4.<br>
    Command: `enrol d/2 p/3 p/4`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info">
 :bulb: Even for batch enrolment, the dog must not be enrolled in any of the programs, or all dogs must not be enrolled in that program, in order for the command to work.
 
 :heavy_exclamation_mark: Take note that enrolling multiple dogs into multiple programs at once is **NOT** allowed as it is error-prone.
@@ -322,7 +322,7 @@ Examples:
 3. Drop dog with ID 2 from programs with ID 3 and 4.<br>
    Command: `drop d/2 p/3 p/4`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info">
 :bulb: Even for batch removal, the dog must be enrolled in all of the programs, or all dogs must be enrolled in that program for the command to work.
 
 :heavy_exclamation_mark: Take note that removing multiple dogs from multiple programs at once is **NOT** allowed! For example, `drop d/2 d/3 p/4 p/5` is **NOT** allowed!
@@ -406,7 +406,7 @@ Examples:
 2. Find all entities with the name "Alice", "Bob" or "Charlie".<br>
    Command: `find alice bob charlie`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info">
 :bulb: `find` is able to take in multiple keywords and return all results as long as the name contains any one of the keywords.
 </div>
 
