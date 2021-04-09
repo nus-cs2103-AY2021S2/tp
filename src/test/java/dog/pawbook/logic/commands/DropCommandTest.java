@@ -1,13 +1,17 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static dog.pawbook.logic.commands.DropCommand.MESSAGE_NOT_ENROLLED;
+import static dog.pawbook.logic.commands.DropCommand.MESSAGE_NOT_ENROLLED_MULTIPLE_DOGS;
+import static dog.pawbook.logic.commands.DropCommand.MESSAGE_NOT_ENROLLED_MULTIPLE_PROGRAMS;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 import static dog.pawbook.testutil.TypicalId.ID_EIGHT;
 import static dog.pawbook.testutil.TypicalId.ID_EIGHTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_FOUR;
 import static dog.pawbook.testutil.TypicalId.ID_NINETEEN;
-import static dog.pawbook.testutil.TypicalId.ID_SIX;
+import static dog.pawbook.testutil.TypicalId.ID_TEN;
 import static dog.pawbook.testutil.TypicalId.ID_TWENTY;
 import static dog.pawbook.testutil.TypicalId.ID_TWENTY_ONE;
 import static dog.pawbook.testutil.TypicalId.ID_TWO;
@@ -95,6 +99,7 @@ public class DropCommandTest {
                 editedProgram2.getSessions(), editedProgram2.getTags(), updatedDroppedDogs2));
 
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(programIdSet));
+
         assertCommandSuccess(dropCommand, model, expectedMessage, expectedModel);
     }
 
@@ -102,9 +107,8 @@ public class DropCommandTest {
     public void execute_dropManyDogsOneProgram_success() {
         Program editedProgram = (Program) expectedModel.getEntity(ID_TWENTY);
 
+        Set<Integer> dogIdSet = editedProgram.getDogIdSet();
         Set<Integer> programIdSet = new HashSet<>();
-        List<Integer> dogIdList = Arrays.asList(ID_FOUR, ID_SIX, ID_EIGHT);
-        Set<Integer> dogIdSet = new HashSet<>(dogIdList);
         programIdSet.add(ID_TWENTY);
 
         DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
@@ -156,5 +160,85 @@ public class DropCommandTest {
         DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
 
         assertThrows(AssertionError.class, () -> dropCommand.execute(model));
+    }
+
+    @Test
+    public void execute_dropUnenrolledDog_throwsCommandException() {
+        Program editedProgram = (Program) expectedModel.getEntity(ID_EIGHTEEN);
+
+        Set<Integer> dogIdSet = new HashSet<>();
+        dogIdSet.add(ID_FOUR);
+        Set<Integer> programIdSet = new HashSet<>();
+        programIdSet.add(ID_EIGHTEEN);
+
+        HashSet<Integer> updatedDroppedDogs = new HashSet<>(editedProgram.getDogIdSet());
+        updatedDroppedDogs.remove(ID_FOUR);
+
+        expectedModel.setEntity(ID_EIGHTEEN, new Program(editedProgram.getName(),
+                editedProgram.getSessions(), editedProgram.getTags(), updatedDroppedDogs));
+
+        expectedModel.updateFilteredEntityList(new IdMatchPredicate(programIdSet));
+
+        DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
+
+        assertCommandFailure(dropCommand, model, MESSAGE_NOT_ENROLLED);
+    }
+
+    @Test
+    public void execute_dropMultipleUnenrolledDogs_throwsCommandException() {
+        Program editedProgram = (Program) expectedModel.getEntity(ID_TWENTY);
+
+        Set<Integer> dogIdSet = new HashSet<>();
+        dogIdSet.addAll(editedProgram.getDogIdSet());
+        dogIdSet.add(ID_TWO);
+        dogIdSet.add(ID_TEN);
+        Set<Integer> programIdSet = new HashSet<>();
+        programIdSet.add(ID_TWENTY);
+
+        HashSet<Integer> updatedDroppedDogs = new HashSet<>(editedProgram.getDogIdSet());
+        updatedDroppedDogs.removeAll(dogIdSet);
+
+        expectedModel.updateFilteredEntityList(new IdMatchPredicate(programIdSet));
+
+        DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
+
+        assertCommandFailure(dropCommand, model, MESSAGE_NOT_ENROLLED_MULTIPLE_DOGS);
+    }
+
+    @Test
+    public void execute_dropUnenrolledDogFromMultiplePrograms_throwsCommandException() {
+        Program editedProgram1 = (Program) expectedModel.getEntity(ID_NINETEEN);
+        Program editedProgram2 = (Program) expectedModel.getEntity(ID_TWENTY);
+        Program editedProgram3 = (Program) expectedModel.getEntity(ID_TWENTY_ONE);
+
+        Set<Integer> dogIdSet = new HashSet<>();
+        dogIdSet.add(ID_FOUR);
+        List<Integer> programIdList = Arrays.asList(ID_NINETEEN, ID_TWENTY, ID_TWENTY_ONE);
+        Set<Integer> programIdSet = new HashSet<>(programIdList);
+        programIdSet.addAll(programIdList);
+
+        HashSet<Integer> updatedDroppedDogs1 = new HashSet<>(editedProgram1.getDogIdSet());
+        updatedDroppedDogs1.remove(ID_FOUR);
+
+        expectedModel.setEntity(ID_NINETEEN, new Program(editedProgram1.getName(),
+                editedProgram1.getSessions(), editedProgram1.getTags(), updatedDroppedDogs1));
+
+        HashSet<Integer> updatedDroppedDogs2 = new HashSet<>(editedProgram2.getDogIdSet());
+        updatedDroppedDogs2.remove(ID_FOUR);
+
+        expectedModel.setEntity(ID_TWENTY, new Program(editedProgram2.getName(),
+                editedProgram2.getSessions(), editedProgram2.getTags(), updatedDroppedDogs2));
+
+        HashSet<Integer> updatedDroppedDogs3 = new HashSet<>(editedProgram3.getDogIdSet());
+        updatedDroppedDogs3.remove(ID_FOUR);
+
+        expectedModel.setEntity(ID_TWENTY_ONE, new Program(editedProgram3.getName(),
+                editedProgram3.getSessions(), editedProgram3.getTags(), updatedDroppedDogs3));
+
+        expectedModel.updateFilteredEntityList(new IdMatchPredicate(programIdSet));
+
+        DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
+
+        assertCommandFailure(dropCommand, model, MESSAGE_NOT_ENROLLED_MULTIPLE_PROGRAMS);
     }
 }
