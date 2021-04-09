@@ -28,6 +28,7 @@ title: Developer Guide
     * [Delete food intake feature](#delete-food-intake-feature)
     * [Update food intake feature](#update-food-intake-feature)
   * [Progress Report feature](#progress-report-feature)
+  * [Reset feature](#reset-feature)
   * [Mifflin-St Joer Formula](#mifflin-st-joer-formula)
 * [Product Scope](#product-scope)
 * [User Stories](#user-stories)
@@ -551,6 +552,7 @@ Secondly, there are leeways given for the *daily adherence percentage* and the *
 DietLAH! allows users to reset the application data to either blank or to some sample template data for testing purposes.
 
 Example: `reset t/blank` to a fresh copy
+
 Example: `reset t/template` to the sample template data
 
 
