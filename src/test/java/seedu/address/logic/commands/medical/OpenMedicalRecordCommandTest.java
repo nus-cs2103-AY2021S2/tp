@@ -44,7 +44,6 @@ public class OpenMedicalRecordCommandTest {
         model.addPerson(newGeorge);
         model.addPerson(newHoon);
         model.addPerson(newIda);
-        //expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
     }
 
     @Test

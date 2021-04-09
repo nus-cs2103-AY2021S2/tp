@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
@@ -45,4 +46,9 @@ public class ListAppointmentsCommand extends Command {
                 false, false, null, null, appointments, null, false);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || other instanceof ListAppointmentsCommand; // instanceof handles nulls
+    }
 }
