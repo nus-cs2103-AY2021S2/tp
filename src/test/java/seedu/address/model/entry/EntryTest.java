@@ -10,15 +10,15 @@ import seedu.address.testutil.EntryBuilder;
 
 public class EntryTest {
 
+    private final Entry defaultEntry = new EntryBuilder().build();
+
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Entry entry = new EntryBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> entry.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> defaultEntry.getTags().remove(0));
     }
 
     @Test
     public void isSameEntry() {
-        Entry defaultEntry = new EntryBuilder().build();
 
         // same object -> returns true
         assertTrue(defaultEntry.isSameEntry(defaultEntry));
@@ -54,15 +54,14 @@ public class EntryTest {
 
     @Test
     public void isOverlapping() {
-        Entry defaultEntry = new EntryBuilder().build();
 
         // date ranges do not coincide -> return false
-        assertFalse(defaultEntry.overlapsWith(new EntryBuilder().withEntryName("Second Entry").withStartDate("2222-01-01 00:00")
-                .withEndDate("2222-01-01 12:00").build()));
+        assertFalse(defaultEntry.overlapsWith(new EntryBuilder().withEntryName("Second Entry")
+                .withStartDate("2222-01-01 00:00").withEndDate("2222-01-01 12:00").build()));
 
         // start date of second entry is equal to end date of default entry -> return false
-        assertFalse(defaultEntry.overlapsWith(new EntryBuilder().withEntryName("Second Entry").withStartDate("2021-04-05 19:00")
-                .withEndDate("2222-01-01 00:00").build()));
+        assertFalse(defaultEntry.overlapsWith(new EntryBuilder().withEntryName("Second Entry")
+                .withStartDate("2021-04-05 19:00").withEndDate("2222-01-01 00:00").build()));
 
         // start date of second entry is in between the start date and end date of default entry -> return true
         assertTrue(defaultEntry.overlapsWith(new EntryBuilder().withEntryName("Second Entry")
@@ -79,7 +78,6 @@ public class EntryTest {
 
     @Test
     public void equals() {
-        Entry defaultEntry = new EntryBuilder().build();
 
         // same object -> returns true
         assertTrue(defaultEntry.equals(defaultEntry));
