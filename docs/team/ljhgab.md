@@ -135,8 +135,8 @@ Computing, National University of Singapore (NUS).
   [1](#https://github.com/AY2021S2-CS2103T-W13-4/tp/issues/120), 
   [2](#https://github.com/AY2021S2-CS2103T-W13-4/tp/issues/121),
   [3](#https://github.com/AY2021S2-CS2103T-W13-4/tp/issues/122),
-  [4](#https://github.com/AY2021S2-CS2103T-W13-4/tp/issues/123)
-  [5](#https://github.com/AY2021S2-CS2103T-W13-4/tp/issues/126))_
+  [4](#https://github.com/AY2021S2-CS2103T-W13-4/tp/issues/123),
+  [5](#https://github.com/AY2021S2-CS2103T-W13-4/tp/issues/126))
   
 
 
