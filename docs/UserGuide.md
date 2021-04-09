@@ -395,6 +395,7 @@ Format: `editcontact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…�
 * Edits the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contacts list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* The new phone number or email-if specified-**must not** be present as a value for any other existing contact.
 * When editing tags, the existing tags of the contact will be removed (i.e., adding of tags is not cumulative).
 * You can remove all of the contact’s tags by typing `t/` without
   specifying any tags after it.
