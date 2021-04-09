@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.room.RoomCommandTestUtil.VALID_ROOM_T
 import static seedu.address.logic.commands.room.RoomCommandTestUtil.showRoomAtIndex;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
@@ -35,16 +36,17 @@ public class EditRoomCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredRoomList_success() {
-        Room roomToEdit = model.getFilteredRoomList().get(0);
+        Room roomToEdit = model.getFilteredRoomList().get(3);
 
         // Room we are changing to needs to maintain the occupancy status
         // of the room we start with. So we pre-set it here.
         Room editedRoom = new RoomBuilder()
-                // .withOccupancyStatus(roomToEdit.isOccupied().toString())
+                .withOccupancyStatus(roomToEdit.isOccupied().toString())
                 .build();
 
         EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder(editedRoom).build();
-        EditRoomCommand editRoomCommand = new EditRoomCommand(INDEX_FIRST, descriptor);
+        // Use 4th as its not tied to any issues in the test data
+        EditRoomCommand editRoomCommand = new EditRoomCommand(INDEX_FOURTH, descriptor);
 
         String expectedMessage = String.format(EditRoomCommand.MESSAGE_EDIT_ROOM_SUCCESS, editedRoom);
 
@@ -56,13 +58,17 @@ public class EditRoomCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredRoomList_success() {
-        Index indexLastRoom = Index.fromOneBased(model.getFilteredRoomList().size());
-        Room lastRoom = model.getFilteredRoomList().get(indexLastRoom.getZeroBased());
+        // We used second-last room as last room is tied to an issue
+        Index indexSecondLastRoom = Index.fromOneBased(model.getFilteredRoomList().size() - 1);
+        Room secondLastRoom = model.getFilteredRoomList().get(indexSecondLastRoom.getZeroBased());
 
-        RoomBuilder roomInList = new RoomBuilder(lastRoom);
+        RoomBuilder roomInList = new RoomBuilder(secondLastRoom);
+
+        // Inherit the occupancy status of the room we start with, as that is guaranteed
         Room editedRoom = roomInList
                 .withRoomNumber(VALID_ROOM_NUMBER_ONE)
                 .withRoomType(VALID_ROOM_TYPES.get(0))
+                .withOccupancyStatus(secondLastRoom.isOccupied().toString())
                 .build();
 
         EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder()
@@ -70,21 +76,22 @@ public class EditRoomCommandTest {
                 .withRoomType(VALID_ROOM_TYPES.get(0))
                 .build();
 
-        EditRoomCommand editRoomCommand = new EditRoomCommand(indexLastRoom, descriptor);
+        EditRoomCommand editRoomCommand = new EditRoomCommand(indexSecondLastRoom, descriptor);
 
         String expectedMessage = String.format(EditRoomCommand.MESSAGE_EDIT_ROOM_SUCCESS, editedRoom);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setRoom(lastRoom, editedRoom);
+        expectedModel.setRoom(secondLastRoom, editedRoom);
 
         assertCommandSuccess(editRoomCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredRoomList_success() {
-        EditRoomCommand editRoomCommand = new EditRoomCommand(INDEX_FIRST,
+        // Use 4th as its not tied to any issues in the test data
+        EditRoomCommand editRoomCommand = new EditRoomCommand(INDEX_FOURTH,
                 new EditRoomDescriptor());
-        Room editedRoom = model.getFilteredRoomList().get(INDEX_FIRST.getZeroBased());
+        Room editedRoom = model.getFilteredRoomList().get(INDEX_FOURTH.getZeroBased());
 
         String expectedMessage = String.format(EditRoomCommand.MESSAGE_EDIT_ROOM_SUCCESS, editedRoom);
 
@@ -95,8 +102,10 @@ public class EditRoomCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showRoomAtIndex(model, INDEX_FIRST);
+        // Use 4th room as it is not tied to any issues.
+        showRoomAtIndex(model, INDEX_FOURTH);
 
+        // Use 4th as its not tied to any issues in the test data
         Room roomInFilteredList = model.getFilteredRoomList().get(INDEX_FIRST.getZeroBased());
         Room editedRoom = new RoomBuilder(roomInFilteredList).withRoomNumber(VALID_ROOM_NUMBER_ONE).build();
         EditRoomDescriptor descriptor = new EditRoomDescriptorBuilder().withRoomNumber(VALID_ROOM_NUMBER_ONE).build();
