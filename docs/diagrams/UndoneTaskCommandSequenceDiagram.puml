@@ -36,8 +36,6 @@ destroy UndoneTaskCommandParser
 
 LogicManager <-- SocheduleParser : u
 deactivate SocheduleParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-SocheduleParser -[hidden]->[
 
 LogicManager -> UndoneTaskCommand : execute()
 activate UndoneTaskCommand
@@ -47,7 +45,7 @@ activate Model
 UndoneTaskCommand <-- Model
 deactivate Model
 
-UndoneTaskCommand -> Model : updateFilteredTaskList()
+UndoneTaskCommand -> Model : updateFilteredTaskList(...)
 activate Model
 UndoneTaskCommand <-- Model
 deactivate Model
