@@ -43,18 +43,11 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             return new DeleteClearCommand();
         }
 
-        try {
-
-            if (tagIsPresent) {
-                return createDeleteContactWithTagCommand(argMultimap.getAllValues(PREFIX_TAG), isAny);
-            }
-
-            return createDeleteContactCommand(argMultimap.getPreamble());
-
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+        if (tagIsPresent) {
+            return createDeleteContactWithTagCommand(argMultimap.getAllValues(PREFIX_TAG), isAny);
         }
+
+        return createDeleteContactCommand(argMultimap.getPreamble());
     }
 
     private DeleteContactWithTagCommand createDeleteContactWithTagCommand(List<String> tags, boolean isAny)
