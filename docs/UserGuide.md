@@ -136,7 +136,7 @@ Format: `help`
 
 Adds a new flashcard to the flashcard list.<br>
 Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br>
-<div markdown="span" class="alert alert-primary">:information_source: **Note:** <br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** <br>
 The `TAG` is optional when adding a new flashcard.<br>
 Tag(s) should be alphanumeric, and there should not be any spacing between characters.<br>
 Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`, case-sensitive.
@@ -236,7 +236,7 @@ Examples:
 
 Filter flashcards based on specified field input in FlashBack.
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** You can only filter by `question`, `category`, `priority`, and `tag`.
 
@@ -278,7 +278,7 @@ Format: `clear`
 ### Undoing a command : `undo`
 
 Restores FlashBack to the state before the previous command was executed.
-<div markdown="span" class="alert alert-primary">:information_source:
+<div markdown="span" class="alert alert-info">:information_source:
 **Note:**  Only commands that modify FlashBack's content can be reversed. (`add`, `delete`, `edit` and `clear`).
 </div>
 
@@ -316,7 +316,7 @@ Examples:
 
 ### Sorting all flashcards: `sort`
 Sorts all flashcards in display according to a given option.
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** You can only sort by `priority` or `question`.
 
@@ -342,7 +342,7 @@ Reviews list of flashcards that is in display.<br>
 When the user enters `review` in the command box, this new window will appear. <br><br>
 ![UiReviewMode](./images/UiReviewModeNoAnswer.png) <br><br>
 Format: `review`
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** The flashcards in Review Mode are appeared in random order.
 
@@ -362,7 +362,7 @@ The following statistics are displayed:
 
 Format: `stats [INDEX]` <br>
 
-<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
 If a valid `INDEX` is provided, the statistics of the flashcard identified by the provided index is shown.
 If the `INDEX` is omitted, FlashBack will display overall statistics for all flashcards in the current list.
 </div>
@@ -379,7 +379,7 @@ Examples:
 
 ### Adding an alias: `alias`
 Defines an alias for a command in FlashBack.
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** You can only add alias for Main mode commands. The alias should also not have the same name as commands in both the main and review modes.
 
@@ -474,7 +474,7 @@ Example: <br><br>
 ### Reviewing a flashcard as correct: `t`
 
 Marks that the user got the answer correct for the current flashcard. <br>
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** This command can only be executed if the answer of the current flashcard is shown.
 
@@ -489,7 +489,7 @@ Example: <br><br>
 ### Reviewing a flashcard as wrong : `f`
 
 Marks that the user got the answer wrong for the current flashcard. <br>
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** This command can only be executed if the answer of the current flashcard is shown.
 
