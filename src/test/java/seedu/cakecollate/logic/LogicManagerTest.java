@@ -2,6 +2,7 @@ package seedu.cakecollate.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX;
+import static seedu.cakecollate.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
 import static seedu.cakecollate.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.DELIVERY_DATE_DESC_AMY;
@@ -70,7 +71,8 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, model.getFilteredOrderList().size());
+        assertCommandSuccess(listCommand, expectedMessage, model);
     }
 
     @Test
