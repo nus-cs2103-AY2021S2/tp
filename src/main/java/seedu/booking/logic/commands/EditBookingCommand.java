@@ -53,7 +53,7 @@ public class EditBookingCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_BOOKING = "This booking already exists in the booking system.";
     public static final String MESSAGE_UNCHANGED_BOOKING = "The information provided has no difference "
-            + "from the records in the system;";
+            + "from the records in the system.";
     public static final String MESSAGE_OVERLAPPING_BOOKING = "This slot has been booked already";
     public static final String MESSAGE_SUCCESS = "New booking added: %1$s";
     public static final String MESSAGE_INVALID_TIME =
@@ -87,10 +87,6 @@ public class EditBookingCommand extends Command {
 
         Booking bookingToEdit = lastShownList.get(index.getZeroBased());
         Booking editedBooking = createEditedBooking(bookingToEdit, editBookingDescriptor);
-
-        if (bookingToEdit.isExactlySameBooking(editedBooking)) {
-            throw new CommandException(MESSAGE_UNCHANGED_BOOKING);
-        }
 
         if (!bookingToEdit.isSameBooking(editedBooking) && model.hasBooking(editedBooking)) {
             throw new CommandException(MESSAGE_DUPLICATE_BOOKING);

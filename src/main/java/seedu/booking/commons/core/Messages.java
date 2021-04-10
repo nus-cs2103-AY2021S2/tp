@@ -6,11 +6,11 @@ package seedu.booking.commons.core;
 public class Messages {
     // Person related messages
     public static final String MESSAGE_DUPLICATE_PERSON_DISPLAYED_EMAIL = "This email address has been "
-            + "registered in system. Please provide another email address\n";
+            + "registered in system. Please provide another email address.\n";
     public static final String MESSAGE_DUPLICATE_PERSON_DISPLAYED_PHONE = "This number has been registered in system. "
-            + "Please provide another number\n";
+            + "Please provide another number.\n";
     public static final String MESSAGE_DUPLICATE_PERSON_DISPLAYED_NAME = "This name has been registered in system. "
-            + "Please provide another name\n";
+            + "Please provide another name.\n";
     public static final String MESSAGE_INVALID_NAME_FORMAT = "Invalid name format, please try again.\n";
     public static final String MESSAGE_INVALID_PHONE_FORMAT = "Invalid phone format, please try again.\n";
     public static final String PROMPT_PHONE_MESSAGE = "Please enter the phone number of the booker.\n";
@@ -46,9 +46,9 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_VENUE_LISTED_EMPTY = "There are no venues in the system.\n";
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Invalid date format! Input "
-            + "should be in yyyy-mm-dd HH:MM format\n";
+            + "should be in yyyy-mm-dd HH:MM format.\n";
     public static final String MESSAGE_INVALID_TIME =
-            "Invalid timing: The booking's starting time cannot be later than its ending time";
+            "Invalid timing: The booking's starting time cannot be later than its ending time.";
     public static final String MESSAGE_OVERLAPPING_BOOKING = "This time slot has been booked.";
 
 
@@ -66,7 +66,7 @@ public class Messages {
         + "Multiple tags to be separated with commas.\n";
     public static final String PROMPT_NEWDATE_MESSAGE = "Please try another booking time period.\n";
     public static final String PROMPT_START_MESSAGE = "Please indicate the booking start time. "
-            + "Please enter a valid input in yyyy-mm-dd HH:MM format\n";
+            + "Please enter a valid input in yyyy-mm-dd HH:MM format.\n";
     public static final String PROMPT_END_MESSAGE = "Please indicate the booking end time. "
-            + "Please enter a valid input in yyyy-mm-dd HH:MM format\n";
+            + "Please enter a valid input in yyyy-mm-dd HH:MM format.\n";
 }

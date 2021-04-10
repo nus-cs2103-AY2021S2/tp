@@ -11,7 +11,11 @@ import seedu.booking.commons.util.StringUtil;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric without spaces";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Tag names should be alphanumeric without spaces and should not be empty. \n "
+                    + "More than consecutive commas are not allowed in the middle of the sentence. \n";
+    public static final String ONE_TAG_CONSTRAINTS = "Only one tag should be provided at a time. \n"
+            + "Tag name should be alphanumeric without spaces and should not be empty.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;

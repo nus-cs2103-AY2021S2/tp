@@ -152,7 +152,15 @@ public class CommandTestUtil {
     public static final String BOOKING_END_DESC_HALL = " " + PREFIX_BOOKING_END + VALID_BOOKING_END_HALL;
     public static final String BOOKING_END_DESC_FIELD = " " + PREFIX_BOOKING_END + VALID_BOOKING_END_FIELD;
     public static final String BOOKING_TAGS_DESC_HALL = " " + PREFIX_TAG + VALID_BOOKING_TAGS_HALL;
+    public static final String BOOKING_TAGS_DESC_FIELD = " " + PREFIX_TAG + VALID_BOOKING_TAGS_FIELD;
     public static final String INVALID_BOOKER_EMAIL = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+
+    public static final String INVALID_BOOKING_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo";
+    public static final String INVALID_BOOKING_VENUE_NAME_DESC = " " + PREFIX_VENUE + "James&";
+    public static final String INVALID_BOOKING_START_DESC = " " + PREFIX_BOOKING_START + "911a";
+    public static final String INVALID_BOOKING_END_DESC = " " + PREFIX_BOOKING_END;
+    public static final String INVALID_BOOKING_TAG_DESC = " " + PREFIX_TAG + "hubby*";
+
 
 
     static {
@@ -246,7 +254,5 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredVenueList().size());
     }
-
-
 
 }

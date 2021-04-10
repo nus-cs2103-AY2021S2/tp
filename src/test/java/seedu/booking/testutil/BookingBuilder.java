@@ -21,7 +21,7 @@ import seedu.booking.model.venue.VenueName;
  */
 public class BookingBuilder {
 
-    public static final String DEFAULT_BOOKER = "example@gmail.com";
+    public static final String DEFAULT_BOOKER = "bob@example.com";
     public static final String DEFAULT_VENUE = VENUE1.getVenueName().venueName;
     private static final String DEFAULT_DESCRIPTION = "Good";
     private static final String DEFAULT_BOOKING_START = "2021-03-01 12:30";
