@@ -26,6 +26,15 @@
     -fx-background-insets: 0;
 }
 
+.list-cell:filled:even:selected {
+    -fx-background-color: #3c3e3f;
+}
+
+.list-cell:filled:odd:selected {
+    -fx-background-color: #515658;
+}
+
+
 .label {
     -fx-alignment: center;
     -fx-font-family: "Segoe UI Semibold";
