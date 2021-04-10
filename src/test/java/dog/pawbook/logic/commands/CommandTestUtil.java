@@ -113,7 +113,9 @@ public class CommandTestUtil {
     public static final String INVALID_SEX_DESC = " " + PREFIX_SEX + "Male1"; // '1' not allowed in sex
     public static final String INVALID_DATEOFBIRTH_DESC = " " + PREFIX_DOB + "aa-aa-2020"; // 'a' not
     // allowed in dates of birth
-    public static final String INVALID_DATEOFBIRTH_APRIL_DESC = " " + PREFIX_DOB + "31-04-2020";
+    public static final String VALID_DATE_1ST_JAN = "01-01-2021";
+    public static final String INVALID_DATE_APRIL_31ST = "31-04-2020";
+    public static final String INVALID_DATEOFBIRTH_APRIL_DESC = " " + PREFIX_DOB + INVALID_DATE_APRIL_31ST;
     public static final String INVALID_DATEOFBIRTH_FEB_DESC = " " + PREFIX_DOB + "29-02-2021";
     public static final String INVALID_DATEOFBIRTH_SEP_DESC = " " + PREFIX_DOB + "31-09-2021";
     public static final String INVALID_BREED_DESC = " " + PREFIX_BREED + "poodle!"; // '!' not allowed for breed
@@ -126,27 +128,23 @@ public class CommandTestUtil {
     public static final String INVALID_SESSION_TIME_DESC = " " + PREFIX_SESSION + "11-09-2021 24:30";
     public static final String INVALID_SESSION_TIME_MINUTES_DESC = " " + PREFIX_SESSION + "11-09-2021 22:60";
 
-    public static final String INVALID_SESSION_DESC = " " + PREFIX_SESSION + "12-a-12 18:00"; // 'a' not allowed
-    // in dates of birth
-
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditOwnerCommand.EditOwnerDescriptor DESC_AMY;
     public static final EditOwnerCommand.EditOwnerDescriptor DESC_BOB;
 
-    public static final String INVALID_EMPTY_STRING = "";
+    public static final String EMPTY_STRING = "";
+    public static final String WHITESPACE_STRING = "   ";
     public static final String INVALID_NEGATIVE_ID_STRING = "-1";
     public static final String INVALID_UNKNOWN_ID_STRING = "dummy";
-    public static final String INVALID_OUT_OF_BOUNDS_ID_STRING = String.valueOf(Integer.MAX_VALUE);
+    public static final String INVALID_OUT_OF_BOUNDS_ID_STRING = String.valueOf(Long.MAX_VALUE);
 
     public static final String INVALID_NEGATIVE_DOGID_DESC = " " + PREFIX_DOGID + INVALID_NEGATIVE_ID_STRING;
     public static final String INVALID_NEGATIVE_PROGRAMID_DESC = " " + PREFIX_PROGRAMID + INVALID_NEGATIVE_ID_STRING;
     public static final String INVALID_UNKNOWN_DOGID_DESC = " " + PREFIX_DOGID + INVALID_UNKNOWN_ID_STRING;
     public static final String INVALID_UNKNOWN_PROGRAMID_DESC = " " + PREFIX_PROGRAMID + INVALID_UNKNOWN_ID_STRING;
 
-    public static final int INVALID_OUT_OF_BOUNDS_ID_INTEGER = Integer.MAX_VALUE;
-    public static final int INVALID_NEGATIVE_ID_INTEGER = -1;
 
     static {
         DESC_AMY = new EditOwnerDescriptorBuilder().withName(VALID_NAME_AMY)
