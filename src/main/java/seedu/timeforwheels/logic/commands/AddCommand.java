@@ -6,7 +6,6 @@ import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.timeforwheels.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.timeforwheels.logic.commands.exceptions.CommandException;
 import seedu.timeforwheels.model.Model;
@@ -26,14 +25,12 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_DATE + "DATE \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "regular "
-            + PREFIX_TAG + "fragile"
             + PREFIX_DATE + "2021-10-10";
 
     public static final String MESSAGE_SUCCESS = "The following new customer has been added: %1$s";

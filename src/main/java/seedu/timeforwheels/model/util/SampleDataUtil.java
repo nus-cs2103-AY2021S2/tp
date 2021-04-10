@@ -22,8 +22,10 @@ import seedu.timeforwheels.model.tag.Tag;
  * Contains utility methods for populating {@code DeliveryList} with sample data.
  */
 public class SampleDataUtil {
+
     public static final Done NOT_DONE = new Done("[X]");
     public static final Done DONE = new Done("[✓]");
+
 
     public static Customer[] getSampleCustomers() {
         return new Customer[] {
