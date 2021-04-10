@@ -2,9 +2,8 @@
 layout: page
 title: Developer Guide for The Food Diary
 ---
-
 * Table of Contents
-  {:toc}
+{:toc}
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Description**
@@ -199,9 +198,19 @@ The following activity diagram summarizes what happens when a user executes the 
     * Cons: Difficult to implement, lesser time for testability given the project deadline duration.
 
 
-## **Appendix: Requirements**
+## **Documentation, logging, testing, configuration, dev-ops**
+- [Documentation guide](Documentation.md)
+- [Testing guide](Testing.md)
+- [Logging guide](Logging.md)
+- [Configuration guide](Configuration.md)
+- [DevOps guide](DevOps.md)
 
-### Product scope
+
+## **Appendix A: Effort**
+### **Challenges & Effort Required**
+### **Achievements**
+
+## **Appendix B: Product scope**
 
 **Target user profile**:
 
@@ -225,9 +234,7 @@ The Food Diary especially caters to students chiefly on 3 aspects
 Two, the ability to effortlessly reference food options based on relevant filters in a user-friendly GUI;
 and Three, the ability to import and export their personal food diary to share with friends.
 
-
-### User stories
-
+## **Appendix C: User stories**
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority| As a …​                                                       | I want to …​                                  | So that I can…​                                             |
@@ -244,12 +251,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | User who wants to eat good food at an affordable price           | Search for places that match both the rating and price that I want | visit the best food places without overspending
 | `* * *`   | User who made a mistake in an entry           | Perform revisions and updates to the entry | keep accurate and up-to-date information of food places
 
-### Use cases
 
+## **Appendix D: Use cases**
 (For all use cases below, the **System** is the `Food Diary` and the **Actor** is the `user`, unless specified otherwise)
 
 **UC01: Add an Entry**
-Preconditions: There are lesser than 1 000 000 entries in the Food Diary application. 
+Preconditions: There are lesser than 1 000 000 entries in the Food Diary application.
 
 **MSS**
 
@@ -304,7 +311,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 2. Food Diary adds the new category into the app.
 3. Food Diary displays the new category added in a tag.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -313,7 +320,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
     * 1a2. User enters correct syntax.
 
       Use case resumes from step 2.
-    
+
 * 1b. New category already exists.
     * 1b1. Food Diary tells user that the category already exists.
 
@@ -334,7 +341,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
     * 1a2. User enters correct command.
 
       Use case resumes from step 2.
-    
+
 * 2a. Specified Food Diary entry not found
     * 2a1. Food Diary tells user that the specified entry is invalid.
 
@@ -370,7 +377,7 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 * 1a. Food diary detects invalid command from user.
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
-      
+
       Use case resumes from step 2.
 
 * 2a. No entry found
@@ -384,14 +391,14 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 1. User enters keywords to specify requirements for entries.
 2. Food Diary shows all entries matching user requirements (if any).
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**:
 * 1a. Food Diary detects invalid command from user.
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
 
-    Use case resumes from step 2.
+  Use case resumes from step 2.
 
 **UC09: Revise an Entry**
 
@@ -404,14 +411,14 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
 * 1a. Food diary detects invalid command from user.
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
-    
-        Use case ends.
+
+      Use case ends.
 
 * 2a. User key in non-existent index in list
     * 2a1. Food Diary tells user that no entry was found.
 
       Use case ends.
-    
+
 **UC10: Exit**
 
 **MSS**
@@ -437,20 +444,18 @@ Preconditions: There are lesser than 1 000 000 entries in the Food Diary applica
     * 1a2. User enters correct syntax.
 
       Use case resumes from step 2.
-    
 
-
-### Non-Functional Requirements
+## **Appendix E: Non-Functional Requirements**
 
 Non-functional requirements specify the constraints under which the system for The Food Diary is developed and operated.
 The Food Diary system is made up of the front-end, which is interchangeably referred to as the User Interface (UI),
 and the back-end, which handles data management and operations.
 
-#### Technical requirements:
+### Technical requirements:
 
 * The system should be operable on Windows, MacOS and Linux operating systems, with Java 11 or above installed.
 
-#### Performance requirements:
+### Performance requirements:
 
 * The system should be loaded up within 2 seconds or less.
 * The UI should appear within 2 seconds or less and be responsive to User input.
@@ -458,28 +463,28 @@ and the back-end, which handles data management and operations.
 * The back-end should be able to handle 1,000 or more data entries (Food Diary entries) without noticeable sluggishness
   in performance for typical usage.
 
-#### Usability requirements:
+### Usability requirements:
 
 * The user should have access to a keyboard, and be proficient with typing alphanumeric English characters for commands
   to accomplish most of the usages of The Food Diary.
 
-#### Project scope:
+### Project scope:
 * The system should mainly comprise the handling of Food Diary-entry addition, deletion, and listing.
 * The system would not be responsible for features involving multiple users
 
-#### Scalability requirements:
+### Scalability requirements:
 * The system can handle a larger user base with many more food reviews being added to it
 * Program is extendable for future addition of features easily
 
-#### Other Noteworthy Points:
+### Other Noteworthy Points:
 
 * The system should preserve data keyed in by the user
 
-### Glossary
+## **Appendix F: Glossary**
 The glossary serves to ensure that all stakeholders, including users, have a common understanding of the noteworthy terms, and abbreviations.
 
 * **Sluggishness**: The system starts to be slow in displaying user input when typed, and processing user input when entered.
 
-### UI Mockup
+## UI Mockup
 
 ![Ui Mock-up](images/Ui.png)
