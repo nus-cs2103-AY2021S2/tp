@@ -15,7 +15,7 @@ Given below is a summary of my contributions to the development of TutorBuddy.
   * **What it does:** This feature calculates the current month, and the previous 2 months expected monthly fee based on existing sessions and recurring sessions. We then display the results on the UI accordingly.
   * **Highlights:** Calculation are performed in a separate FeeUtil class. It performs the calculation using a loop and takes into account whether the sessions are individual sessions or recurring sessions.
     As the monthly fees are expected to show up in the UI, I had to create a list panel, and a card fxml file that represents the monthly fee.
-    A student list's listener was also added, to enforce accuracy, even when the student list has updated.
+    A student list's listener was added, to enforce accuracy, even when the student list was updated.
   * **Related PR:** [PR #118](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/118) and
     [PR #145](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/145).
 * Feature to get a particular student's monthly fee.
