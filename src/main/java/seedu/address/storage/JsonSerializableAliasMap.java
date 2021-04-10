@@ -14,41 +14,41 @@ import seedu.address.model.UniqueAliasMap;
 import seedu.address.model.alias.CommandAlias;
 
 /**
- * An Immutable Aliases that is serializable to JSON format.
+ * An Immutable AliasMap that is serializable to JSON format.
  */
-@JsonRootName(value = "aliases")
-class JsonSerializableAliases {
+@JsonRootName(value = "aliasmap")
+class JsonSerializableAliasMap {
 
-    public static final String MESSAGE_DUPLICATE_ALIAS = "Aliases contains duplicate alias(s).";
+    public static final String MESSAGE_DUPLICATE_ALIAS = "Command aliases contains duplicate alias(es).";
 
-    private final List<JsonAdaptedCommandAlias> aliases = new ArrayList<>();
+    private final List<JsonAdaptedCommandAlias> commandAliases = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAliases} with the given aliases.
+     * Constructs a {@code JsonSerializableAliasMap} with the given command aliases.
      */
     @JsonCreator
-    public JsonSerializableAliases(@JsonProperty("aliases") List<JsonAdaptedCommandAlias> aliases) {
-        this.aliases.addAll(aliases);
+    public JsonSerializableAliasMap(@JsonProperty("commandAliases") List<JsonAdaptedCommandAlias> commandAliases) {
+        this.commandAliases.addAll(commandAliases);
     }
 
     /**
      * Converts a given {@code ReadOnlyUniqueAliasMap} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAliases}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableAliasMap}.
      */
-    public JsonSerializableAliases(ReadOnlyUniqueAliasMap source) {
-        aliases.addAll(source.getAliases().values().stream().map(JsonAdaptedCommandAlias::new)
+    public JsonSerializableAliasMap(ReadOnlyUniqueAliasMap source) {
+        commandAliases.addAll(source.getCommandAliases().values().stream().map(JsonAdaptedCommandAlias::new)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this aliases into the model's {@code UniqueAliasMap} object.
+     * Converts this command aliases into the model's {@code UniqueAliasMap} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public UniqueAliasMap toModelType() throws IllegalValueException {
         UniqueAliasMap uniqueAliasMap = new UniqueAliasMap();
-        for (JsonAdaptedCommandAlias jsonAdaptedCommandAlias : this.aliases) {
+        for (JsonAdaptedCommandAlias jsonAdaptedCommandAlias : this.commandAliases) {
             CommandAlias commandAlias = jsonAdaptedCommandAlias.toModelType();
             if (uniqueAliasMap.hasCommandAlias(commandAlias)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ALIAS);

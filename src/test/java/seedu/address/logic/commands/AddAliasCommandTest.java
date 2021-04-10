@@ -167,7 +167,7 @@ public class AddAliasCommandTest {
         }
 
         @Override
-        public ReadOnlyUniqueAliasMap getAliases() {
+        public ReadOnlyUniqueAliasMap getAliasMap() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -212,7 +212,7 @@ public class AddAliasCommandTest {
         }
 
         @Override
-        public int getNumOfAlias() {
+        public int getNumOfCommandAlias() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -230,7 +230,9 @@ public class AddAliasCommandTest {
         public Predicate<Person> getSelectedPersonPredicate() {
             throw new AssertionError("This method should not be called.");
         }
-        public ObservableList<String> getObservableStringAliases() {
+
+        @Override
+        public ObservableList<String> getCommandAliasesStringList() {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -272,7 +274,7 @@ public class AddAliasCommandTest {
         }
 
         @Override
-        public ReadOnlyUniqueAliasMap getAliases() {
+        public ReadOnlyUniqueAliasMap getAliasMap() {
             return new UniqueAliasMap();
         }
     }

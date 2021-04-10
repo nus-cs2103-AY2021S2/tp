@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAliases.ADD_ALIAS;
-import static seedu.address.testutil.TypicalAliases.DELETE_ALIAS;
-import static seedu.address.testutil.TypicalAliases.INVALID_ALIAS;
-import static seedu.address.testutil.TypicalAliases.getTypicalAlias;
-import static seedu.address.testutil.TypicalAliases.getTypicalAliases;
-import static seedu.address.testutil.TypicalAliases.getTypicalCommandAlias;
+import static seedu.address.testutil.TypicalCommandAliases.ADD_ALIAS;
+import static seedu.address.testutil.TypicalCommandAliases.DELETE_ALIAS;
+import static seedu.address.testutil.TypicalCommandAliases.INVALID_ALIAS;
+import static seedu.address.testutil.TypicalCommandAliases.getTypicalAlias;
+import static seedu.address.testutil.TypicalCommandAliases.getTypicalAliasMap;
+import static seedu.address.testutil.TypicalCommandAliases.getTypicalCommandAlias;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ import seedu.address.model.alias.CommandAlias;
  */
 public class DeleteAliasCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAliases());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAliasMap());
 
     @Test
     public void execute_validAlias_success() {
@@ -36,7 +36,7 @@ public class DeleteAliasCommandTest {
 
         String expectedMessage = String.format(DeleteAliasCommand.MESSAGE_SUCCESS, commandAliasToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getAliases());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getAliasMap());
         expectedModel.deleteAlias(aliasToDelete);
 
         assertCommandSuccess(deleteAliasCommand, model, expectedMessage, expectedModel);

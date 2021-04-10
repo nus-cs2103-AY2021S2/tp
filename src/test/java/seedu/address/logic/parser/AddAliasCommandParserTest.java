@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasSuccess;
-import static seedu.address.testutil.TypicalAliases.ADD_COMMAND_ALIAS;
+import static seedu.address.testutil.TypicalCommandAliases.ADD_COMMAND_ALIAS;
 
 import org.junit.jupiter.api.Test;
 

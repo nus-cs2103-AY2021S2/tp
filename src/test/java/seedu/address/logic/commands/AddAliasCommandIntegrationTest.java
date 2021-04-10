@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAliases.ADD_ALIAS_STRING;
-import static seedu.address.testutil.TypicalAliases.getTypicalAliases;
+import static seedu.address.testutil.TypicalCommandAliases.ADD_ALIAS_STRING;
+import static seedu.address.testutil.TypicalCommandAliases.getTypicalAliasMap;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -24,14 +24,14 @@ public class AddAliasCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAliases());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalAliasMap());
     }
 
     @Test
     public void execute_newAlias_success() {
         CommandAlias validCommandAlias = new CommandAliasBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getAliases());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getAliasMap());
         expectedModel.addAlias(validCommandAlias);
 
         assertCommandSuccess(new AddAliasCommand(validCommandAlias), model,

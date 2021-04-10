@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAliases.getTypicalAliases;
+import static seedu.address.testutil.TypicalCommandAliases.getTypicalAliasMap;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
@@ -27,7 +27,7 @@ import seedu.address.model.UserPrefs;
 public class EmailCommandTest {
 
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            getTypicalAliases());
+            getTypicalAliasMap());
 
     @Test
     public void initialize_nullIndexes_throwsException() {

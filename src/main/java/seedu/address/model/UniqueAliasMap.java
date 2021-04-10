@@ -4,11 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -27,14 +27,11 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     private final ObservableMap<Alias, CommandAlias> internalMap = FXCollections.observableMap(new HashMap<>());
     private final ObservableMap<Alias, CommandAlias> internalUnmodifiableMap =
             FXCollections.unmodifiableObservableMap(internalMap);
-    private final ObservableList<String> internalList = FXCollections.observableArrayList();
-    private final ObservableList<String> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
 
     public UniqueAliasMap() {}
 
     /**
-     * Creates an UniqueAliasMap using the aliases in the {@code toBeCopied}
+     * Creates an UniqueAliasMap using the alias map in the {@code toBeCopied}
      */
     public UniqueAliasMap(ReadOnlyUniqueAliasMap toBeCopied) {
         this();
@@ -42,19 +39,18 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     }
 
     /**
-     * Replaces the contents of the aliases with {@code aliases}.
-     * {@code aliases} must not contain duplicate aliases.
+     * Replaces the contents of the commandAliases with {@code commandAliases}.
+     * {@code commandAliases} must not contain duplicate aliases.
      *
-     * @throws DuplicateAliasException if there are duplicate aliases in {@code aliases}.
+     * @throws DuplicateAliasException if there are duplicate aliases in {@code commandAliases}.
      */
-    public void setAliases(Map<Alias, CommandAlias> aliases) {
-        requireAllNonNull(aliases);
-        if (!aliasesAreUnique(aliases)) {
+    public void setCommandAliases(Map<Alias, CommandAlias> commandAliases) {
+        requireAllNonNull(commandAliases);
+        if (!commandAliasesAreUnique(commandAliases)) {
             throw new DuplicateAliasException();
         }
         internalMap.clear();
-        internalMap.putAll(aliases);
-        updateInternalList();
+        internalMap.putAll(commandAliases);
     }
 
     /**
@@ -63,11 +59,11 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     public void resetData(ReadOnlyUniqueAliasMap newData) {
         requireNonNull(newData);
 
-        setAliases(newData.getAliases());
+        setCommandAliases(newData.getCommandAliases());
     }
 
     /**
-     * Returns true if the aliases contains an equivalent alias as the given argument.
+     * Returns true if the command aliases contains an equivalent alias as the given argument.
      */
     public boolean hasAlias(Alias alias) {
         requireNonNull(alias);
@@ -75,7 +71,7 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     }
 
     /**
-     * Returns true if the aliases contains an equivalent command alias as the given argument.
+     * Returns true if the command aliases contains an equivalent command alias as the given argument.
      */
     public boolean hasCommandAlias(CommandAlias commandAlias) {
         requireNonNull(commandAlias);
@@ -83,8 +79,8 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     }
 
     /**
-     * Adds a command alias to the aliases.
-     * The alias must not already exist in the aliases.
+     * Adds a command alias to the command aliases.
+     * The alias must not already exist in the command aliases.
      */
     public void addAlias(CommandAlias toAdd) {
         requireNonNull(toAdd);
@@ -92,14 +88,14 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
             throw new DuplicateAliasException();
         }
         internalMap.put(toAdd.getAlias(), toAdd);
-        internalList.add(toAdd.toString());
     }
 
     /**
-     * Removes the equivalent alias from the aliases.
-     * The alias must exist in the aliases.
+     * Removes the equivalent alias from the command aliases.
+     * The alias must exist in the command aliases.
      *
-     * @throws AliasNotFoundException if the alias {@code toRemove} does not exist and not found in {@code aliases}.
+     * @throws AliasNotFoundException if the alias {@code toRemove} does not exist
+     *     and not found in {@code command aliases}.
      */
     public void removeAlias(Alias toRemove) {
         requireNonNull(toRemove);
@@ -107,24 +103,23 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
             throw new AliasNotFoundException();
         }
         internalMap.remove(toRemove);
-        updateInternalList();
     }
 
     /**
-     * Returns command alias mapped to alias if alias is found in aliases.
+     * Returns command alias mapped to alias if alias is found in command aliases.
      * If alias is not found, null is returned.
      *
-     * @param alias alias to search in aliases.
+     * @param alias alias to search in command aliases.
      */
     public CommandAlias getCommandAlias(Alias alias) {
         return internalMap.get(alias);
     }
 
     /**
-     * Returns command mapped to alias if alias is found in aliases.
+     * Returns command mapped to alias if alias is found in command aliases.
      * If alias is not found, null is returned.
      *
-     * @param alias alias to search in aliases.
+     * @param alias alias to search in command aliases.
      */
     public Command getCommand(Alias alias) {
         CommandAlias commandAlias = getCommandAlias(alias);
@@ -153,8 +148,13 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     }
 
     @Override
-    public ObservableMap<Alias, CommandAlias> getAliases() {
+    public ObservableMap<Alias, CommandAlias> getCommandAliases() {
         return internalUnmodifiableMap;
+    }
+
+    @Override
+    public List<String> getCommandAliasesStringList() {
+        return internalMap.values().stream().map(CommandAlias::toString).collect(Collectors.toUnmodifiableList());
     }
 
     @Override
@@ -185,28 +185,17 @@ public class UniqueAliasMap implements ReadOnlyUniqueAliasMap {
     }
 
     /**
-     * Returns true if {@code aliases} contains only unique aliases.
+     * Returns true if {@code commandAliases} contains only unique aliases.
      */
-    private boolean aliasesAreUnique(Map<Alias, CommandAlias> aliases) {
+    private boolean commandAliasesAreUnique(Map<Alias, CommandAlias> commandAliases) {
         UniqueAliasMap checkDuplicate = new UniqueAliasMap();
-        for (CommandAlias commandAlias: aliases.values()) {
+        for (CommandAlias commandAlias: commandAliases.values()) {
             if (checkDuplicate.hasCommandAlias(commandAlias)) {
                 return false;
             }
             checkDuplicate.addAlias(commandAlias);
         }
         return true;
-    }
-
-    @Override
-    public ObservableList<String> getObservableStringAliases() {
-        return internalUnmodifiableList;
-    }
-
-    private void updateInternalList() {
-        internalList.clear();
-        internalList.addAll(FXCollections.observableList(
-                internalMap.values().stream().map(CommandAlias::toString).collect(Collectors.toList())));
     }
 
 }

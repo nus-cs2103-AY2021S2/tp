@@ -44,7 +44,7 @@ import seedu.address.model.ReadOnlyUniqueAliasMap;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonAliasesStorage;
+import seedu.address.storage.JsonAliasMapStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -63,9 +63,9 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        JsonAliasesStorage aliasesStorage =
-                new JsonAliasesStorage(temporaryFolder.resolve("aliases.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, aliasesStorage);
+        JsonAliasMapStorage aliasMapStorage =
+                new JsonAliasMapStorage(temporaryFolder.resolve("aliasMap.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, aliasMapStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -89,14 +89,14 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
+        // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub and JsonAliasMapIoExceptionThrowingStub
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        JsonAliasesStorage aliasesStorage =
-                new JsonAliasesIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, aliasesStorage);
+        JsonAliasMapStorage aliasMapStorage =
+                new JsonAliasMapIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAliasMap.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, aliasMapStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -295,7 +295,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getAliases());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getAliasMap());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -329,13 +329,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAliasesIoExceptionThrowingStub extends JsonAliasesStorage {
-        private JsonAliasesIoExceptionThrowingStub(Path filePath) {
+    private static class JsonAliasMapIoExceptionThrowingStub extends JsonAliasMapStorage {
+        private JsonAliasMapIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAliases(ReadOnlyUniqueAliasMap aliases, Path filePath) throws IOException {
+        public void saveAliasMap(ReadOnlyUniqueAliasMap aliasMap, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

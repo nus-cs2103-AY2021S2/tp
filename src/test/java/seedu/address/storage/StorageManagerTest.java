@@ -2,7 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalAliases.getTypicalAliases;
+import static seedu.address.testutil.TypicalCommandAliases.getTypicalAliasMap;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
@@ -29,8 +29,8 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        JsonAliasesStorage aliasesStorage = new JsonAliasesStorage(getTempFilePath("al"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, aliasesStorage);
+        JsonAliasMapStorage aliasMapStorage = new JsonAliasMapStorage(getTempFilePath("al"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, aliasMapStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -65,15 +65,15 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void aliasesReadSave() throws Exception {
+    public void aliasMapReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAliasesStorage} class.
-         * More extensive testing of Aliases saving/reading is done in {@link JsonAliasesStorageTest} class.
+         * {@link JsonAliasMapStorage} class.
+         * More extensive testing of alias map saving/reading is done in {@link JsonAliasMapStorageTest} class.
          */
-        UniqueAliasMap original = getTypicalAliases();
-        storageManager.saveAliases(original);
-        ReadOnlyUniqueAliasMap retrieved = storageManager.readAliases().get();
+        UniqueAliasMap original = getTypicalAliasMap();
+        storageManager.saveAliasMap(original);
+        ReadOnlyUniqueAliasMap retrieved = storageManager.readAliasMap().get();
         assertEquals(original, new UniqueAliasMap(retrieved));
     }
 
@@ -88,8 +88,8 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void getAliasesFilePath() {
-        assertNotNull(storageManager.getAliasesFilePath());
+    public void getAliasMapFilePath() {
+        assertNotNull(storageManager.getAliasMapFilePath());
     }
 
 }
