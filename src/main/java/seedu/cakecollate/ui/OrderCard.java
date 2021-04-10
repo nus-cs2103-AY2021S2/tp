@@ -81,7 +81,7 @@ public class OrderCard extends UiPart<Region> {
     }
 
     private Node createOrderDescLabel(OrderDescription orderDescription, int quantity) {
-        return new Label(orderDescription.value);
+        return new Label(String.format("%d x %s", quantity, orderDescription.value));
     }
 
     public void setDeliveryStatusStyle() {
