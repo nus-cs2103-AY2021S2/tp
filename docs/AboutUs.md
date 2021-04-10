@@ -25,7 +25,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/umergta.png" width="200px">
 
 [[github](https://github.com/umergta)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/umergta.md)]
 
 * Role: Developer, Documentation
 * Responsibilities:
