@@ -377,14 +377,14 @@ Use case ends.
 **MSS**
 
 1.  User requests to delete a member by specifying the member's name
-2.  HEY MATEz searches for the member's name in the list
-3.  HEY MATEz deletes the specified member from the list
+2.  HEY MATEz searches for the member's name in the currently displayed list of members
+3.  HEY MATEz deletes the specified member from the members list
     
 Use case ends. 
 
 **Extensions** 
 
-* 2a. Name specified does not exist in the list of members
+* 2a. Name specified does not exist in the currently displayed list of members
     * 2a1. HEY MATEz shows an error message
   
 Use case ends.
@@ -394,14 +394,14 @@ Use case ends.
 **MSS**
 
 1.  User requests to edit the details of a member by specifying the member's name
-2.  HEY MATEz searches for the member's name in the list 
+2.  HEY MATEz searches for the member's name in the currently displayed list of members 
 3.  HEY MATEz edits the corresponding member with the new details 
     
 Use case ends. 
 
 **Extensions**
 
-* 2a. Name specified does not exist in the list of members
+* 2a. Name specified does not exist in the currently displayed list of members
     * 2a1. HEY MATEz shows an error message
   
 Use case ends.

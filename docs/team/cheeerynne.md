@@ -25,8 +25,8 @@ Given below are my contributions to the project.
     * What it does: allows the user to find all tasks which contain any of the specified keywords in its title or description. 
     * Justification: This feature improves the product significantly because a user can easily filter and find tasks based on specific 
       keywords. With this easy filtering, there is no need for users to scroll through the entire list just to find a specific task. 
-    * Highlights: The implementation was challenging as I had to check through the title and description field of all the tasks 
-      in the task list. I decided to implement a predicate,TaskContainsKeywordPredicate, which compares the title and description of
+    * Highlights: The implementation was challenging as I had to check through the title and description fields of all the tasks 
+      in the task list. I decided to implement a predicate, TaskContainsKeywordPredicate, which compares the title and description of
       a task to the list of keywords specified. The task list is then updated accordingly to the predicate. 
       Furthermore, integration and unit testing had to be implemented thoroughly to ensure that the various scenarios of usage were accounted for.
     

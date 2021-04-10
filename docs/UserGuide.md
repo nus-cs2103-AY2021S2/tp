@@ -175,8 +175,10 @@ As members leave the club, you can delete a member along with all of his/her con
 
 Format: `deleteMember NAME`
 
+* NAME field is case-sensitive.
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The NAME specified is case-sensitive and must be in the current displayed list of Members.
+The NAME specified must be in the currently displayed list of Members when executing this command.
 </div>
 
 Examples:
@@ -200,12 +202,13 @@ existing Member in the application with the name you specify.
 Format: `editMember NAME [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/NEW_ROLE]`
 
 * Edits the member at the specified NAME.
+* NAME field is case-sensitive.
 * At least one of the optional fields must be provided.
 * NEW_NAME and NEW_ROLE fields can take on any values with alphanumeric characters.
 * Existing values will be updated to the input values. 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The NAME specified is case-sensitive and must be in the currently displayed list of Members 
+The NAME specified must be in the currently displayed list of Members when executing this command.  
 </div>
 
 Examples: 
