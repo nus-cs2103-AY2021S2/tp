@@ -8,7 +8,9 @@ import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -213,11 +215,11 @@ public class ParserUtilTest {
 
     @Test
     public void parseOrderDescription_collectionWithValidOrderDescription_returnsSet() throws Exception {
-        Set<OrderDescription> actualOrderDescriptionSet =
+        Map<OrderDescription, Integer> actualOrderDescriptionSet =
                 ParserUtil.parseOrderDescriptions(Arrays.asList(VALID_ORDER_DESC_1, VALID_ORDER_DESC_2));
-        Set<OrderDescription> expectedOrderDescriptionSet =
-                new HashSet<>(Arrays.asList(new OrderDescription(VALID_ORDER_DESC_1),
-                        new OrderDescription(VALID_ORDER_DESC_2)));
+        Map<OrderDescription, Integer> expectedOrderDescriptionSet = new HashMap<>();
+        expectedOrderDescriptionSet.put(new OrderDescription(VALID_ORDER_DESC_1), 1);
+        expectedOrderDescriptionSet.put(new OrderDescription(VALID_ORDER_DESC_2), 1);
 
         assertEquals(expectedOrderDescriptionSet, actualOrderDescriptionSet);
     }

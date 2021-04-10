@@ -1,8 +1,10 @@
 package seedu.cakecollate.storage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -74,7 +76,7 @@ class JsonAdaptedOrder {
         email = source.getEmail().value;
         address = source.getAddress().value;
         orderDescriptions.addAll(
-                source.getOrderDescriptions().stream()
+                source.getOrderDescriptions().keySet().stream()
                 .map(JsonAdaptedOrderDescription::new)
                 .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
@@ -148,7 +150,9 @@ class JsonAdaptedOrder {
         for (JsonAdaptedOrderDescription o : orderDescriptions) {
             orderOrderDescriptions.add(o.toModelType());
         }
-        final Set<OrderDescription> modelOrderDescriptions = new HashSet<>(orderOrderDescriptions);
+
+        final Map<OrderDescription, Integer> modelOrderDescriptions = new HashMap<>();
+        orderOrderDescriptions.forEach(o -> modelOrderDescriptions.put(o, 1));
 
         final DeliveryStatus modelDeliveryStatus;
         if (deliveryStatus == null) {

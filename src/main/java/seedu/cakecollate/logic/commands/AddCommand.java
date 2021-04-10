@@ -10,8 +10,10 @@ import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -116,7 +118,7 @@ public class AddCommand extends Command {
      * @param model
      */
     private void addToOrderItems(Model model) {
-        this.addOrderDescriptor.getOrderDescriptions().get().stream()
+        this.addOrderDescriptor.getOrderDescriptions().get().keySet().stream()
                 .map(OrderDescription::getValue) // because a string is needed for creating a new Type for new OrderItem
                 .map(o -> new OrderItem(new Type(o))) // map to order item so can check if already in model
                 .filter(o -> !model.hasOrderItem(o)) // filters out items that already exist in model
@@ -167,8 +169,8 @@ public class AddCommand extends Command {
     private void addToOrderItemsModel(Model model) {
         assert addOrderDescriptor.getOrderDescriptions().isPresent();
 
-        Set<OrderDescription> orderDescriptionSet = addOrderDescriptor.getOrderDescriptions().get();
-        orderDescriptionSet.stream()
+        Map<OrderDescription, Integer> orderDescriptionMap = addOrderDescriptor.getOrderDescriptions().get();
+        orderDescriptionMap.keySet().stream()
                 .map(o -> new OrderItem(new Type(o.toString())))
                 .filter(o -> !model.hasOrderItem(o))
                 .forEach(model::addOrderItem);
@@ -202,7 +204,7 @@ public class AddCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<OrderDescription> orderDescriptions;
+        private HashMap<OrderDescription, Integer> orderDescriptions;
         private Set<Tag> tags;
         private DeliveryDate deliveryDate;
         private Request request;
@@ -257,29 +259,29 @@ public class AddCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setOrderDescriptions(Set<OrderDescription> orderDescriptions) {
+        public void setOrderDescriptions(Map<OrderDescription, Integer> orderDescriptions) {
             if (orderDescriptions == null) {
                 return;
             }
 
             if (this.orderDescriptions == null) {
-                this.orderDescriptions = new HashSet<>(orderDescriptions);
+                this.orderDescriptions = new HashMap<>(orderDescriptions);
             } else {
-                this.orderDescriptions.addAll(orderDescriptions);
+                this.orderDescriptions.putAll(orderDescriptions);
             }
         }
 
         public void setOrderDescription(OrderDescription orderDescription) {
             if (this.orderDescriptions == null) {
-                this.orderDescriptions = new HashSet<>();
+                this.orderDescriptions = new HashMap<>();
             }
 
-            this.orderDescriptions.add(orderDescription);
+            this.orderDescriptions.put(orderDescription, 1);
         }
 
-        public Optional<Set<OrderDescription>> getOrderDescriptions() {
+        public Optional<Map<OrderDescription, Integer>> getOrderDescriptions() {
             return (orderDescriptions != null)
-                    ? Optional.of(Collections.unmodifiableSet(orderDescriptions))
+                    ? Optional.of(Collections.unmodifiableMap(orderDescriptions))
                     : Optional.empty();
         }
 

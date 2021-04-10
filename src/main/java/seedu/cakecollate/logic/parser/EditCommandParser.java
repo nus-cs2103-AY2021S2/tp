@@ -12,6 +12,7 @@ import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -103,7 +104,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * If {@code orderDescriptions} contain only one element which is an empty string, it will be parsed into a
      * {@code Set<OrderDescription>} containing zero orderDescriptions.
      */
-    private Optional<Set<OrderDescription>> parseOrderDescriptionsForEdit(Collection<String> orderDescriptions)
+    private Optional<Map<OrderDescription, Integer>> parseOrderDescriptionsForEdit(Collection<String> orderDescriptions)
             throws ParseException {
         assert orderDescriptions != null;
 
