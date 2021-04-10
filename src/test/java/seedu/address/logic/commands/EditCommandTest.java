@@ -77,20 +77,20 @@ public class EditCommandTest {
     //
     //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     //    }
-    @Test
-    public void execute_duplicateEvent_failure() {
-        model = new ModelManager(new UserPrefs(), getTypicalEventBook());
-
-        //Optional<Event> optFirstEvent = model.getEventByIdentifier(IDENTIFIER_FIRST_EVENT.getValue());
-        //assertTrue(optFirstEvent.isPresent());
-        //Event firstEvent = optFirstEvent.get();
-        Event firstEvent = model.getEventBook().getEventList().get(IDENTIFIER_FIRST_EVENT.getZeroBased());
-
-        EditEventDescriptor descriptor = new EditEventDescriptorBuilder(firstEvent).build();
-        EditCommand editCommand = new EditCommand(IDENTIFIER_SECOND_EVENT, descriptor);
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EVENT);
-    }
+    //    @Test
+    //    public void execute_duplicateEvent_failure() {
+    //        model = new ModelManager(new UserPrefs(), getTypicalEventBook());
+    //
+    //        //Optional<Event> optFirstEvent = model.getEventByIdentifier(IDENTIFIER_FIRST_EVENT.getValue());
+    //        //assertTrue(optFirstEvent.isPresent());
+    //        //Event firstEvent = optFirstEvent.get();
+    //        Event firstEvent = model.getEventBook().getEventList().get(IDENTIFIER_FIRST_EVENT.getZeroBased());
+    //
+    //        EditEventDescriptor descriptor = new EditEventDescriptorBuilder(firstEvent).build();
+    //        EditCommand editCommand = new EditCommand(IDENTIFIER_SECOND_EVENT, descriptor);
+    //
+    //        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EVENT);
+    //    }
 
     @Test
     public void execute_invalidEventIndexUnfilteredList_failure() {
