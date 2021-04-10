@@ -97,6 +97,7 @@ public class DeleteBookCommandTest {
         // different reader -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
+
     /**
      * Updates {@code model}'s filtered book list to show no book.
      */
@@ -105,5 +106,6 @@ public class DeleteBookCommandTest {
 
         assertTrue(model.getFilteredBookList().isEmpty());
     }
+
 }
 

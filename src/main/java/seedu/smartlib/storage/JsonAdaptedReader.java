@@ -82,6 +82,62 @@ class JsonAdaptedReader {
     }
 
     /**
+     * Verifies validity of the reader name.
+     *
+     * @throws IllegalValueException if the reader name is null or invalid.
+     */
+    private void verifyReaderName() throws IllegalValueException {
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Verifies validity of the reader phone.
+     *
+     * @throws IllegalValueException if the reader phone is null or invalid.
+     */
+    private void verifyReaderPhone() throws IllegalValueException {
+        if (phone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
+        if (!Phone.isValidPhone(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Verifies validity of the reader email.
+     *
+     * @throws IllegalValueException if the reader email is null or invalid.
+     */
+    private void verifyReaderEmail() throws IllegalValueException {
+        if (email == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        }
+        if (!Email.isValidEmail(email)) {
+            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Verifies validity of the reader address.
+     *
+     * @throws IllegalValueException if the reader address is null or invalid.
+     */
+    private void verifyReaderAddress() throws IllegalValueException {
+        if (address == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        }
+        if (!Address.isValidAddress(address)) {
+            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
      * Converts this Jackson-friendly adapted reader object into the model's {@code Reader} object.
      *
      * @return Reader object converted from the storage file.
@@ -98,36 +154,16 @@ class JsonAdaptedReader {
             readerBorrows.put(pair.toModelType().getKey(), pair.toModelType().getValue());
         }
 
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
+        verifyReaderName();
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
+        verifyReaderPhone();
         final Phone modelPhone = new Phone(phone);
 
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
+        verifyReaderEmail();
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
+        verifyReaderAddress();
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(readerTags);

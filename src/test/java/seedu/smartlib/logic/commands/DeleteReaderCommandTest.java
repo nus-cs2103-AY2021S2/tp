@@ -106,4 +106,5 @@ public class DeleteReaderCommandTest {
 
         assertTrue(model.getFilteredReaderList().isEmpty());
     }
+
 }

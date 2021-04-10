@@ -2,7 +2,21 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox spacing="5" alignment="CENTER_LEFT">
+        <ImageView fitHeight="40" fitWidth="40">
+            <Image url="@/images/readers.png" />
+        </ImageView>
+        <Label fx:id="name" text="Readers" styleClass="cell_big_label">
+            <padding><Insets left="10"/></padding>
+        </Label>
+        <padding><Insets right="10" bottom="10" left="10"/></padding>
+    </HBox>
     <ListView fx:id="readerListView" VBox.vgrow="ALWAYS" />
 </VBox>

@@ -4,7 +4,6 @@ import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -32,7 +31,7 @@ public class SampleDataUtil {
 
     // books
 
-    private static final Book OLDMAN = new Book(
+    public static final Book OLDMAN = new Book(
             new Name("The Old Man And The Sea"),
             new Author(new Name("Harmingway")),
             new Publisher(new Name("Pearson")),
@@ -43,7 +42,7 @@ public class SampleDataUtil {
             new DateBorrowed("2021-03-02T13:45:00")
     );
 
-    private static final Book HOBBIT = new Book(
+    public static final Book HOBBIT = new Book(
             new Name("The Hobbit"),
             new Author(new Name("Tolkien")),
             new Publisher(new Name("Pearson")),
@@ -53,7 +52,7 @@ public class SampleDataUtil {
             new DateBorrowed("2021-01-22T23:30:00")
     );
 
-    private static final Book CLOUDATLAS = new Book(
+    public static final Book CLOUDATLAS = new Book(
             new Name("Cloud Atlas"),
             new Author(new Name("David Mitchell")),
             new Publisher(new Name("Pearson")),
@@ -64,7 +63,7 @@ public class SampleDataUtil {
             new DateBorrowed("2020-11-23T08:30:00")
     );
 
-    private static final Book CLOUDNINE = new Book(
+    public static final Book CLOUDNINE = new Book(
             new Name("Cloud Nine"),
             new Author(new Name("Tom Hanks")),
             new Publisher(new Name("Scientific")),
@@ -73,7 +72,7 @@ public class SampleDataUtil {
             new Genre(new Name("SciFi"))
     );
 
-    private static final Book AVENGERS = new Book(
+    public static final Book AVENGERS = new Book(
             new Name("The Avengers"),
             new Author(new Name("Marvel")),
             new Publisher(new Name("Pearson")),
@@ -82,7 +81,7 @@ public class SampleDataUtil {
             new Genre(new Name("Comic"))
     );
 
-    private static final Book LILAC = new Book(
+    public static final Book LILAC = new Book(
             new Name("Lilac"),
             new Author(new Name("IU")),
             new Publisher(new Name("Scientific")),
@@ -93,7 +92,7 @@ public class SampleDataUtil {
             new DateBorrowed("2021-03-30T08:30:00")
     );
 
-    private static final Book HELLO = new Book(
+    public static final Book HELLO = new Book(
             new Name("Hello"),
             new Author(new Name("Me")),
             new Publisher(new Name("NUS")),
@@ -104,7 +103,7 @@ public class SampleDataUtil {
             new DateBorrowed("2021-03-29T08:30:00")
     );
 
-    private static final Book HELLOWORLD = new Book(
+    public static final Book HELLOWORLD = new Book(
             new Name("Helloworld"),
             new Author(new Name("You")),
             new Publisher(new Name("NUS")),
@@ -115,35 +114,35 @@ public class SampleDataUtil {
 
     // records
 
-    private static final Record ALEX_RECORD = new Record(
+    public static final Record ALEX_RECORD = new Record(
             CLOUDATLAS.getName(),
             CLOUDATLAS.getBarcode(),
             CLOUDATLAS.getBorrowerName(),
             CLOUDATLAS.getDateBorrowed()
     );
 
-    private static final Record BERNICE_RECORD_1 = new Record(
+    public static final Record BERNICE_RECORD_1 = new Record(
             HOBBIT.getName(),
             HOBBIT.getBarcode(),
             HOBBIT.getBorrowerName(),
             HOBBIT.getDateBorrowed()
     );
 
-    private static final Record BERNICE_RECORD_2 = new Record(
+    public static final Record BERNICE_RECORD_2 = new Record(
             OLDMAN.getName(),
             OLDMAN.getBarcode(),
             OLDMAN.getBorrowerName(),
             OLDMAN.getDateBorrowed()
     );
 
-    private static final Record ALICE_RECORD = new Record(
+    public static final Record ALICE_RECORD = new Record(
             LILAC.getName(),
             LILAC.getBarcode(),
             LILAC.getBorrowerName(),
             LILAC.getDateBorrowed()
     );
 
-    private static final Record BOB_RECORD = new Record(
+    public static final Record BOB_RECORD = new Record(
             HELLO.getName(),
             HELLO.getBarcode(),
             HELLO.getBorrowerName(),
@@ -165,16 +164,16 @@ public class SampleDataUtil {
                     getTagSet("VIP", "TopBorrower"), maps[2]),
             new Reader(new Name("Charlotte"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                    getTagSet("VIP"), getBorrowMap(new HashMap<>())),
+                    getTagSet("VIP"), new HashMap<>()),
             new Reader(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    getTagSet(), getBorrowMap(new HashMap<>())),
+                    getTagSet(), new HashMap<>()),
             new Reader(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                     new Address("Blk 47 Tampines Street 20, #17-35"),
-                    getTagSet(), getBorrowMap(new HashMap<>())),
+                    getTagSet(), new HashMap<>()),
             new Reader(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    getTagSet("VIP"), getBorrowMap(new HashMap<>())),
+                    getTagSet("VIP"), new HashMap<>()),
             new Reader(new Name("Bob"), new Phone("98765432"), new Email("bob@hi.com"),
                     new Address("1 Bukit Timah Road"),
                     getTagSet("VIP"), maps[3]),
@@ -257,16 +256,6 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
-    }
-
-    /**
-     * Returns a borrow map containing the list of borrow records given.
-     *
-     * @param map given list of borrow records.
-     * @return borrow map containing the list of borrow records given.
-     */
-    private static Map<Book, DateBorrowed> getBorrowMap(HashMap<Book, DateBorrowed> map) {
-        return map;
     }
 
 }

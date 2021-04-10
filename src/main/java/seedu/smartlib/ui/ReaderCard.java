@@ -6,9 +6,9 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.tag.Tag;
 
@@ -44,9 +44,9 @@ public class ReaderCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private HBox tags;
     @FXML
-    private FlowPane borrows;
+    private VBox borrows;
 
     /**
      * Creates a {@code ReaderCard} with the given {@code Reader} and index to display.
@@ -64,11 +64,18 @@ public class ReaderCard extends UiPart<Region> {
         email.setText(reader.getEmail().toString());
         reader.getTags().stream()
                 .sorted(Comparator.comparing(Tag::getTagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.getTagName())));
-        reader.getBorrows().forEach((key, value) -> borrows.getChildren()
-                .add(new Label(key.getName().toString() + ", borrowed: "
-                        + LocalDateTime.parse(value.toString()).format(DateTimeFormatter.ofPattern("d MMM yyyy"))
-                        + ".")));
+                .forEach(tag -> {
+                    Label l = new Label(tag.getTagName());
+                    l.setWrapText(true);
+                    tags.getChildren().add(l);
+                });
+        reader.getBorrows().forEach((key, value) -> {
+            Label l = new Label(key.getName().toString() + ", borrowed: "
+                    + LocalDateTime.parse(value.toString()).format(DateTimeFormatter.ofPattern("d MMM yyyy"))
+                    + ".");
+            l.setWrapText(true);
+            borrows.getChildren().add(l);
+        });
     }
 
     /**

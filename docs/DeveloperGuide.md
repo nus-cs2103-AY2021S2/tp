@@ -2,40 +2,9 @@
 layout: page
 title: Developer Guide
 ---
-# Table of Contents
-* [Introduction](#introduction)
-    * [Purpose](#purpose)
-    * [Audience](#audience)
-    * [Overview](#overview)
-* [Getting started](#setting-up-getting-started)
-* [Design](#design)
-    * [Architecture](#architecture)
-    * [UI component](#ui-component)
-    * [Logic component](#logic-component)
-    * [Model component](#model-component)
-    * [Storage component](#storage-component)
-    * [Common classes](#common-classes)
-* [Implementation](#implementation)
-    * [Deleting a book](#deleting-a-book)
-    * [Finding a book](#finding-books-with-keywords)
-    * [Adding a reader](#adding-a-reader)
-    * [Listing all readers](#listing-all-readers)
-    * [Finding a reader](#finding-readers-with-keywords)
-    * [Borrowing a book](#borrowing-a-book)
-    * [Returning a book](#returning-a-book)
-    * [Returning overdue books](#returning-overdue-books)
-    * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
-* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-* [Appendix: Requirements](#appendix-requirements)
-    * [Product scope](#product-scope)
-    * [User stories](#user-stories)
-    * [Use cases](#use-cases)
-    * [Non-functional requirements](#non-functional-requirements)
-    * [Glossary](#glossary)
-* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-    * [Launch and shutdown](#launch-and-shutdown)
-    * [Deleting a reader](#deleting-a-reader)
-    * [Saving data](#saving-data)
+
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -124,8 +93,7 @@ and exposes its functionality using the `LogicManager.java` class which implemen
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
 the command `delete 1`.
-
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -219,6 +187,11 @@ Classes used by multiple components are in the `seedu.smartlib.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+## Book
+
+### Adding a book
+The execution of adding a book `addbook` is very similar to adding a reader `addreader` (refer to diagrams under Reader)
+
 ### Deleting a book
 
 The execution of deleting a book and deleting a reader is very similar (refer to the sequence diagram under
@@ -256,6 +229,8 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![FindBookActivityDiagram](images/FindBookActivityDiagram.png)
 
+# Reader
+
 ### Adding a reader
 Adding a reader into a class requires user input from the CLI.
 The `SmartLibParser` will parse the user input to check the validity of it, the input is valid if
@@ -282,6 +257,11 @@ The following sequence diagram shows how the `addreader` operation works:
 The following activity diagram summarizes what happens when a user executes the `addreader` command:
 
 ![AddReaderActivityDiagram](images/AddReaderActivityDiagram.png)
+
+
+### Deleting a reader
+The execution of deleting a reader `deletereader` is very similar to deleting a book `deletebook` (refer to diagrams under Book)
+
 
 ### Listing all readers
 
@@ -318,6 +298,8 @@ refer to the diagrams under [**`Finding books with keywords`**](#finding-books-w
 The only differences are that `FindReaderCommandParser` is used to parse the argument(s) and instead of
 `FindBookCommandParser`, and an object of `FindReaderCommand` is created. In order to find a reader using keywords,
 `Model#updateFilteredReaderList()` is called instead of `Model#updateFilteredBookList()`.
+
+## Record
 
 ### Borrowing a book
 
@@ -364,26 +346,26 @@ The following activity diagram summarizes what happens when a user executes the 
 
 Recording a reader returning a book requires a user input from the CLI.
 The respective parsers will parse the user input to check whether the input is valid, the input is valid if
-1. The reader and book specified exists in the code base.
-2. The reader is borrowing the book and the book is borrowed by the reader
+1. The book specified exists in the code base.
+2. The book is borrowed by someone
 3. There is such a valid borrowing record existing in the code base
 
 Then take the following pseudo processes:
-1. Obtain the Reader object and the Book object based on the identity provided by the user
-2. Mark a corresponding record as returned by indicating the dateReturned field.
+1. Obtain the Book object based on the identity provided by the user
+2. Mark the corresponding record as returned by indicating the dateReturned field.
 3. Remove the book from reader's borrowing list and set book's borrower to null
 
 Given below is an example usage scenario of how the `return` mechanism behaves at each step. In our example and the
 diagrams below,
-we assume that the user input is `return r/Tom b/Cloud Atlas`:
-* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader
-  list and books added to the book list and records added to record list
-* Step 2: The user inputs `return r/Tom b/Cloud Atlas` to SmartLib, which calls upon `LogicManager#execute()`.
+we assume that the user input is `return bc/1000000000`:
+* Step 1: The user launches the SmartLib application with all of his/her readers, books and records already added to the 
+  reader list, book list and record list respectively.
+* Step 2: The user inputs `return bc/1000000000` to SmartLib, which calls upon `LogicManager#execute()`.
 * Step 3: `SmartLibParser` and `ReturnCommandParser` will check the user input, and return a `ReturnCommand` to
   the `LogicManager` if the input is valid.
 * Step 4: `LogicManager` will then call `ReturnCommand#execute()`, which in turn calls `Model#markRecordAsReturned()`
-and `Model#returnBook()`.
-* Step 5: For calling `Model#markRecordAsReturned()`, `ModelManager` will then call `SmartLib#markRecordAsReturned()`
+  ,`Model#getReaderNameForReturn()`, `Model#getBookNameForReturn()` and `Model#returnBook()`.
+* Step 5: After calling `Model#markRecordAsReturned()`, `ModelManager` will then call `SmartLib#markRecordAsReturned()`
 and `Model#updateFilteredRecordList()`
 * Step 6: `SmartLib#markRecordAsReturned()` will find the corresponding record in the record list and set the
   dateReturned to LocalDate.now()

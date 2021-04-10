@@ -29,7 +29,6 @@ import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
 import seedu.smartlib.model.record.RecordContainsBarcodePredicate;
-import seedu.smartlib.testutil.EditReaderDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -99,22 +98,15 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditReaderDescriptor DESC_AMY;
-    public static final EditCommand.EditReaderDescriptor DESC_BOB;
-
-    static {
-        DESC_AMY = new EditReaderDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_MEMBERSHIP).build();
-        DESC_BOB = new EditReaderDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_VIP, VALID_TAG_MEMBERSHIP).build();
-    }
-
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
-     * - the {@code actualModel} matches {@code expectedModel}
+     * - the {@code actualModel} matches {@code expectedModel}.
+     *
+     * @param command command to be executed.
+     * @param actualModel model obtained from executing the command.
+     * @param expectedCommandResult expected result from the command.
+     * @param expectedModel model which we expect the executed command to produce.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
             Model expectedModel) {
@@ -130,6 +122,11 @@ public class CommandTestUtil {
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
+     *
+     * @param command command to be executed.
+     * @param actualModel model obtained from executing the command.
+     * @param expectedMessage expected message arising from the command.
+     * @param expectedModel model which we expect the executed command to produce.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
             Model expectedModel) {
@@ -141,7 +138,11 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the smartlib, filtered reader list and selected reader in {@code actualModel} remain unchanged
+     * - the smartlib, filtered reader list and selected reader in {@code actualModel} remain unchanged.
+     *
+     * @param command command to be executed.
+     * @param actualModel model obtained from executing the command.
+     * @param expectedMessage expected message arising from the command.
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -157,6 +158,9 @@ public class CommandTestUtil {
     /**
      * Updates {@code model}'s filtered list to show only the reader at the given {@code targetIndex} in the
      * {@code model}'s smartlib.
+     *
+     * @param model model to be examined.
+     * @param targetIndex index of the reader to be shown in the filtered list.
      */
     public static void showReaderAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredReaderList().size());
@@ -171,6 +175,9 @@ public class CommandTestUtil {
     /**
      * Updates {@code model}'s filtered list to show only the book at the given {@code targetIndex} in the
      * {@code model}'s smartlib.
+     *
+     * @param model model to be examined.
+     * @param targetIndex index of the book to be shown in the filtered list.
      */
     public static void showBookAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredBookList().size());
@@ -185,6 +192,9 @@ public class CommandTestUtil {
     /**
      * Updates {@code model}'s filtered list to show only the record at the given {@code targetIndex} in the
      * {@code model}'s smartlib.
+     *
+     * @param model model to be examined.
+     * @param targetIndex index of the record to be shown in the filtered list.
      */
     public static void showRecordAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredRecordList().size());
@@ -193,6 +203,18 @@ public class CommandTestUtil {
         final Barcode barcode = record.getBookBarcode();
         model.updateFilteredRecordList((new RecordContainsBarcodePredicate(barcode)));
         assertEquals(1, model.getFilteredRecordList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the overdue book in the
+     * {@code model}'s smartlib.
+     *
+     * @param model model to be examined.
+     */
+    public static void showOverdueBook(Model model) {
+        final String overdueBookName = "Secret"; //the only overdue book in typical book list.
+        model.updateFilteredBookList((new BookNameContainsKeywordsPredicate(Arrays.asList(overdueBookName))));
+        assertEquals(1, model.getFilteredBookList().size());
     }
 
 }

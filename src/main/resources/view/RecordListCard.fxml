@@ -25,13 +25,13 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="bookName" text="\$first" styleClass="cell_big_label" />
+                <Label fx:id="bookName" text="\$first" styleClass="cell_big_label" wrapText="true"/>
             </HBox>
             <FlowPane fx:id="tags" />
-            <Label fx:id="barcode" styleClass="cell_small_label" text="\$barcode" />
-            <Label fx:id="readerName" styleClass="cell_small_label" text="\$readerName" />
-            <Label fx:id="dateBorrowed" styleClass="cell_small_label" text="\$dateBorrowed" />
-            <Label fx:id="dateReturned" styleClass="cell_small_label" text="\$dateReturned" />
+            <Label fx:id="barcode" styleClass="cell_small_label" text="\$barcode" wrapText="true"/>
+            <Label fx:id="readerName" styleClass="cell_small_label" text="\$readerName" wrapText="true"/>
+            <Label fx:id="dateBorrowed" styleClass="cell_small_label" text="\$dateBorrowed" wrapText="true"/>
+            <Label fx:id="dateReturned" styleClass="cell_small_label" text="\$dateReturned" wrapText="true"/>
         </VBox>
     </GridPane>
 </HBox>

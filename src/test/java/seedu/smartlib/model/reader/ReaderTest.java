@@ -89,4 +89,5 @@ public class ReaderTest {
         editedAlice = new ReaderBuilder(ALICE).withTags(VALID_TAG_MEMBERSHIP).build();
         assertFalse(ALICE.equals(editedAlice));
     }
+
 }

@@ -1,6 +1,7 @@
 package seedu.smartlib.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -8,6 +9,7 @@ import seedu.smartlib.commons.core.GuiSettings;
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
+import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
 
@@ -76,6 +78,11 @@ public interface Model {
     boolean hasBook(Name bookName);
 
     /**
+     * Returns true if a book with the same isbn as {@code isbn} exists in the registered book base.
+     */
+    boolean hasBook(Isbn isbn);
+
+    /**
      * Returns true if a book with the same barcode as {@code barcode} exists in the registered book base.
      */
     boolean hasBookWithBarcode(Barcode barcode);
@@ -84,6 +91,12 @@ public interface Model {
      * Returns true if a book with the same barcode as {@code barcode} is already borrowed in the registered book base.
      */
     boolean isBookWithBarcodeBorrowed(Barcode barcode);
+
+    /**
+     * Returns true if the reader can be delete.
+     * Condition: currently does not borrow any books
+     */
+    boolean canDeleteReader(Reader reader);
 
     /**
      * Returns true if a reader with the same identity as {@code reader} exists in the registered reader base.
@@ -135,6 +148,12 @@ public interface Model {
     void addBook(Book book);
 
     /**
+     * Gets the list of books with the given bookName
+     * @return the list of books
+     */
+    ArrayList<Book> getBooksByName(Name bookName);
+
+    /**
      * Adds the given reader.
      * {@code reader} must not already exist in the registered reader base.
      */
@@ -155,6 +174,21 @@ public interface Model {
      * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
      */
     Barcode getBookBarcode(Name bookName);
+
+    /**
+     * Returns the Book with the specified barcode.
+     */
+    Book getBookByBarcode(Barcode barcode);
+
+    /**
+     * Returns the Book with the specified ISBN.
+     */
+    ArrayList<Book> getBooksByIsbn(Isbn isbn);
+
+    /**
+     * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
+     */
+    Barcode getFirstAvailableBookBarcode(Name bookName);
 
     /**
      * Returns the book name of the book with the corresponding barcode borrowed by the reader in SmartLib.

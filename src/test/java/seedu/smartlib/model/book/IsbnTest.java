@@ -42,4 +42,5 @@ public class IsbnTest {
         assertTrue(Isbn.isValidIsbn("9312153445782"));
         assertTrue(Isbn.isValidIsbn("1242938420331"));
     }
+
 }

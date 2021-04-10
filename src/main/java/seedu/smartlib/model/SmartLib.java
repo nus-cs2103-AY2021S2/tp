@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
+import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.book.UniqueBookList;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.reader.UniqueReaderList;
@@ -183,6 +184,16 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     /**
+     * Checks if a reader has borrowed any books.
+     *
+     * @param reader reader to check, non null.
+     * @return true if the reader has borrowed at least one books, and false otherwise.
+     */
+    public boolean hasReaderBorrowedBooks(Reader reader) {
+        return reader.hasBorrowedBooks();
+    }
+
+    /**
      * Returns true if a record with the same identity as {@code record} exists in the registered record base.
      *
      * @param record record to be checked.
@@ -243,6 +254,20 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     /**
+     * Replaces the given record {@code target} in the list with {@code editedRecord}.
+     * {@code target} must exist in SmartLib.
+     * The record identity of {@code editedBook} must not be the same as another existing record in SmartLib.
+     *
+     * @param target record to be replaced.
+     * @param editedRecord the new book.
+     */
+    public void setRecord(Record target, Record editedRecord) {
+        requireNonNull(editedRecord);
+
+        records.setRecord(target, editedRecord);
+    }
+
+    /**
      * Removes {@code key} from this {@code SmartLib}.
      * {@code key} must exist in the SmartLib registered reader base.
      *
@@ -283,6 +308,22 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     /**
+     * Returns true if a book with the same isbn as {@code isbn} exists in the registered book base.
+     *
+     * @param isbn Isbn of the book to be checked.
+     * @return true if a book with the same name as {@code bookName} exists in the registered book base, and false
+     * otherwise.
+     */
+    public boolean hasBook(Isbn isbn) {
+        requireNonNull(isbn);
+
+        ArrayList<Book> booksWithIsbn = getBooksByIsbn(isbn);
+        requireNonNull(booksWithIsbn);
+
+        return booksWithIsbn.size() > 0;
+    }
+
+    /**
      * Returns true if a book with the same barcode as {@code book} exists in the registered book base.
      *
      * @param barcode barcode of the book to be checked.
@@ -304,7 +345,7 @@ public class SmartLib implements ReadOnlySmartLib {
     public Book getBookByBarcode(Barcode barcode) {
         requireNonNull(barcode);
         assert(Barcode.isValidBarcode(barcode.getValue()));
-        for (Book book: books) {
+        for (Book book : books) {
             if (book.getBarcode().equals(barcode)) {
                 return book;
             }
@@ -344,6 +385,23 @@ public class SmartLib implements ReadOnlySmartLib {
             }
         }
         return booksWithName;
+    }
+
+    /**
+     * Retrieves a list of Book objects whose name is specified by its ISBN.
+     *
+     * @param isbn Book's Isbn.
+     * @return list of Book objects, an empty list if there is no such book.
+     */
+    public ArrayList<Book> getBooksByIsbn(Isbn isbn) {
+        requireNonNull(isbn);
+        ArrayList<Book> booksWithIsbn = new ArrayList<>();
+        for (Book book : books) {
+            if (book.getIsbn().equals(isbn)) {
+                booksWithIsbn.add(book);
+            }
+        }
+        return booksWithIsbn;
     }
 
     /**
@@ -449,7 +507,11 @@ public class SmartLib implements ReadOnlySmartLib {
      */
     @Override
     public int hashCode() {
-        return readers.hashCode();
+        ArrayList<Integer> listOfHashCodes = new ArrayList<>();
+        listOfHashCodes.add(books.hashCode());
+        listOfHashCodes.add(readers.hashCode());
+        listOfHashCodes.add(records.hashCode());
+        return listOfHashCodes.hashCode();
     }
 
     /**
@@ -457,8 +519,9 @@ public class SmartLib implements ReadOnlySmartLib {
      *
      * @param readerName readerName, must exist in reader base and must satisfy requirement for borrowing
      * @param barcode barcode of book, must exist in book base
+     * @return true if borrow is successful, and false otherwise
      */
-    public boolean borrowBook(Name readerName, Barcode barcode) {
+    public boolean isBookBorrowed(Name readerName, Barcode barcode) {
         Reader reader = getReaderByName(readerName);
         if (reader == null) {
             return false;
@@ -469,7 +532,7 @@ public class SmartLib implements ReadOnlySmartLib {
             return false;
         }
 
-        if (!book.isBorrowed()) {
+        if (canReaderBorrow(readerName) && !book.isBorrowed()) {
             reader.getBorrows().put(book, new DateBorrowed(LocalDateTime.now()));
             Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
                     reader.getAddress(), reader.getTags(), reader.getBorrows());
@@ -489,8 +552,9 @@ public class SmartLib implements ReadOnlySmartLib {
      *
      * @param readerName readerName, must exist in reader base
      * @param barcode barcode of book, must exist in book base
+     * @return true if return is successful, and false otherwise
      */
-    public boolean returnBook(Name readerName, Barcode barcode) {
+    public boolean isBookReturned(Name readerName, Barcode barcode) {
         Reader reader = getReaderByName(readerName);
         if (reader == null) {
             return false;
@@ -498,6 +562,10 @@ public class SmartLib implements ReadOnlySmartLib {
 
         Book book = getBookByBarcode(barcode);
         if (book == null) {
+            return false;
+        }
+
+        if (book.getBorrowerName() == null) {
             return false;
         }
 
@@ -514,6 +582,30 @@ public class SmartLib implements ReadOnlySmartLib {
         setBook(book, editedBook);
 
         return true;
+    }
+
+    /**
+     * Mark the particular record returned in code base
+     * Set Record to a new Record object with the dateReturned field filled
+     * @param record new record carrying dateReturned field
+     * @return the complete record
+     */
+    public Record markRecordAsReturned(Record record) {
+        assert record != null;
+        Record foundRecord = null;
+        for (Record r : this.getRecordList()) {
+            if (r.getBookBarcode().equals(record.getBookBarcode()) && !r.isReturned()) {
+                foundRecord = r;
+                break;
+            }
+        }
+        assert foundRecord != null;
+        Record updatedRecord = new Record(foundRecord.getBookName(), foundRecord.getBookBarcode(),
+                foundRecord.getReaderName(), foundRecord.getDateBorrowed(),
+                record.getDateReturned());
+        setRecord(foundRecord, updatedRecord);
+
+        return updatedRecord;
     }
 
 }

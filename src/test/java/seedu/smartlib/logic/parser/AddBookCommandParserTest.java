@@ -39,6 +39,7 @@ import seedu.smartlib.model.book.Publisher;
 import seedu.smartlib.testutil.BookBuilder;
 
 public class AddBookCommandParserTest {
+
     private AddBookCommandParser parser = new AddBookCommandParser();
 
     @Test

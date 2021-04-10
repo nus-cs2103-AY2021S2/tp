@@ -41,6 +41,7 @@ import seedu.smartlib.model.tag.Tag;
 import seedu.smartlib.testutil.ReaderBuilder;
 
 public class AddReaderCommandParserTest {
+
     private AddReaderCommandParser parser = new AddReaderCommandParser();
 
     @Test
@@ -138,4 +139,5 @@ public class AddReaderCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_VIP + TAG_DESC_MEMBERSHIP,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReaderCommand.MESSAGE_USAGE));
     }
+
 }

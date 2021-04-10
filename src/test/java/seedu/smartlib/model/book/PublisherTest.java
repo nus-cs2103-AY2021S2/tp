@@ -40,7 +40,6 @@ public class PublisherTest {
         assertTrue(Publisher.isValidPublisher("P")); // one character publisher name
         assertTrue(Publisher.isValidPublisher("HarperCollins ")); // publisher name with trailing space
         assertTrue(Publisher.isValidPublisher("Scholastic 2002")); // publisher name with digits
-
     }
 
 }

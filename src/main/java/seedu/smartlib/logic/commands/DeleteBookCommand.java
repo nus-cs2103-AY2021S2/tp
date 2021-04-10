@@ -19,10 +19,13 @@ public class DeleteBookCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the book identified by the index number used in the displayed book list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameter: INDEX (must be a positive integer < 2^31)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_BOOK_SUCCESS = "Deleted Book: %1$s";
+    public static final String MESSAGE_UNABLE_TO_DELETE_UNRETURNED = "The book specified cannot be"
+            + " deleted because it is currently on loan.\n"
+            + "Please manually return the book and then try delete again.";
 
     private final Index targetIndex;
 
@@ -50,8 +53,10 @@ public class DeleteBookCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_BOOK_DISPLAYED_INDEX);
         }
-
         Book bookToDelete = lastShownList.get(targetIndex.getZeroBased());
+        if (bookToDelete.isBorrowed()) {
+            throw new CommandException(MESSAGE_UNABLE_TO_DELETE_UNRETURNED);
+        }
         model.deleteBook(bookToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_BOOK_SUCCESS, bookToDelete));
     }

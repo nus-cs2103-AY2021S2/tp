@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import seedu.smartlib.logic.commands.AddReaderCommand;
 import seedu.smartlib.logic.commands.ClearCommand;
 import seedu.smartlib.logic.commands.DeleteReaderCommand;
-import seedu.smartlib.logic.commands.EditCommand;
 import seedu.smartlib.logic.commands.ExitCommand;
 import seedu.smartlib.logic.commands.FindReaderCommand;
 import seedu.smartlib.logic.commands.HelpCommand;
@@ -24,7 +23,6 @@ import seedu.smartlib.logic.commands.ListReaderCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.reader.NameContainsKeywordsPredicate;
 import seedu.smartlib.model.reader.Reader;
-import seedu.smartlib.testutil.EditReaderDescriptorBuilder;
 import seedu.smartlib.testutil.ReaderBuilder;
 import seedu.smartlib.testutil.ReaderUtil;
 
@@ -50,15 +48,6 @@ public class SmartLibParserTest {
         DeleteReaderCommand command = (DeleteReaderCommand) parser.parseCommand(
                 DeleteReaderCommand.COMMAND_WORD + " " + INDEX_FIRST_READER.getOneBased());
         assertEquals(new DeleteReaderCommand(INDEX_FIRST_READER), command);
-    }
-
-    @Test
-    public void parseCommand_edit() throws Exception {
-        Reader reader = new ReaderBuilder().build();
-        EditCommand.EditReaderDescriptor descriptor = new EditReaderDescriptorBuilder(reader).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_READER.getOneBased() + " " + ReaderUtil.getEditReaderDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_READER, descriptor), command);
     }
 
     @Test
@@ -101,4 +90,5 @@ public class SmartLibParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
+
 }

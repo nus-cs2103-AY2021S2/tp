@@ -16,6 +16,19 @@ import seedu.smartlib.model.reader.TagContainsKeywordsPredicate;
 public class FindReaderCommandParser implements Parser<FindReaderCommand> {
 
     /**
+     * Verifies that the keyword(s) for reader search is not empty.
+     *
+     * @param trimmedArgs trimmed keyword(s) for reader search.
+     * @throws ParseException the input keyword(s) is empty.
+     */
+    private void verifyArgsNonEmpty(String trimmedArgs) throws ParseException {
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindReaderCommand.MESSAGE_USAGE));
+        }
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the FindReaderCommand
      * and returns a FindReaderCommand object for execution.
      *
@@ -25,10 +38,7 @@ public class FindReaderCommandParser implements Parser<FindReaderCommand> {
      */
     public FindReaderCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindReaderCommand.MESSAGE_USAGE));
-        }
+        verifyArgsNonEmpty(trimmedArgs);
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
         int endOfTag = 2;

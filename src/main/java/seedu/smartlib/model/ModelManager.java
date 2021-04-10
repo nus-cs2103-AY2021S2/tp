@@ -15,6 +15,7 @@ import seedu.smartlib.commons.core.LogsCenter;
 import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Book;
+import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.reader.Reader;
 import seedu.smartlib.model.record.Record;
 
@@ -60,6 +61,16 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     /**
+     * Returns the user prefs.
+     *
+     * @return the user's preferences.
+     */
+    @Override
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
+    }
+
+    /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      *
      * @param userPrefs new userPref data.
@@ -68,16 +79,6 @@ public class ModelManager implements Model {
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
-    }
-
-    /**
-     * Returns the user prefs.
-     *
-     * @return the user's preferences.
-     */
-    @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
     }
 
     /**
@@ -125,16 +126,6 @@ public class ModelManager implements Model {
     //=========== SmartLib ================================================================================
 
     /**
-     * Replaces SmartLib's data with the data in {@code smartLib}.
-     *
-     * @param smartLib the new SmartLib.
-     */
-    @Override
-    public void setSmartLib(ReadOnlySmartLib smartLib) {
-        this.smartLib.resetData(smartLib);
-    }
-
-    /**
      * Returns an immutable copy of SmartLib.
      *
      * @return an immutable copy of SmartLib.
@@ -142,6 +133,16 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlySmartLib getSmartLib() {
         return smartLib;
+    }
+
+    /**
+     * Replaces SmartLib's data with the data in {@code smartLib}.
+     *
+     * @param smartLib the new SmartLib.
+     */
+    @Override
+    public void setSmartLib(ReadOnlySmartLib smartLib) {
+        this.smartLib.resetData(smartLib);
     }
 
     /**
@@ -171,6 +172,17 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Returns true if a book with the same isbn as {@code isbn} exists in the registered book base.
+     *
+     * @param isbn
+     */
+    @Override
+    public boolean hasBook(Isbn isbn) {
+        requireAllNonNull(isbn);
+        return smartLib.hasBook(isbn);
+    }
+
+    /**
      * Returns true if a book with the same barcode as {@code barcode} exists in the registered book base.
      *
      * @param barcode barcode of the book to be checked.
@@ -194,6 +206,15 @@ public class ModelManager implements Model {
     @Override
     public boolean isBookWithBarcodeBorrowed(Barcode barcode) {
         return smartLib.isBookWithBarcodeBorrowed(barcode);
+    }
+
+    /**
+     * Returns true if the reader can be delete.
+     * Condition: currently does not borrow any books
+     */
+    @Override
+    public boolean canDeleteReader(Reader reader) {
+        return !smartLib.hasReaderBorrowedBooks(reader);
     }
 
     /**
@@ -259,7 +280,7 @@ public class ModelManager implements Model {
     @Override
     public boolean borrowBook(Name readerName, Barcode barcode) {
         requireAllNonNull(barcode, readerName);
-        boolean status = smartLib.borrowBook(readerName, barcode);
+        boolean status = smartLib.isBookBorrowed(readerName, barcode);
         updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
         updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
@@ -276,7 +297,7 @@ public class ModelManager implements Model {
     @Override
     public boolean returnBook(Name readerName, Barcode barcode) {
         requireAllNonNull(barcode, readerName);
-        boolean status = smartLib.returnBook(readerName, barcode);
+        boolean status = smartLib.isBookReturned(readerName, barcode);
         updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
         updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
@@ -291,6 +312,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void deleteBook(Book target) {
+        requireNonNull(target);
         smartLib.removeBook(target);
     }
 
@@ -302,6 +324,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void deleteReader(Reader target) {
+        requireNonNull(target);
         smartLib.removeReader(target);
     }
 
@@ -313,6 +336,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void addBook(Book book) {
+        requireNonNull(book);
         smartLib.addBook(book);
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
     }
@@ -325,6 +349,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void addReader(Reader reader) {
+        requireNonNull(reader);
         smartLib.addReader(reader);
         updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
     }
@@ -337,7 +362,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void addRecord(Record record) {
-        System.out.println(smartLib);
+        requireNonNull(record);
         smartLib.addRecord(record);
         updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
     }
@@ -349,20 +374,7 @@ public class ModelManager implements Model {
      */
     @Override
     public Record markRecordAsReturned(Record record) {
-        Record foundRecord = null;
-        for (Record r : smartLib.getRecordList()) {
-            if (r.equals(record)) {
-                foundRecord = r;
-            }
-        }
-        if (foundRecord != null) {
-            foundRecord.setDateReturned(record.getDateReturned());
-        }
-        updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
-
-        assert foundRecord != null : "The record must exist in this step of execution";
-
-        return foundRecord;
+        return smartLib.markRecordAsReturned(record);
     }
 
     /**
@@ -373,13 +385,68 @@ public class ModelManager implements Model {
      */
     @Override
     public Barcode getBookBarcode(Name bookName) {
+        requireNonNull(bookName);
+
         ArrayList<Book> books = smartLib.getBooksByName(bookName);
-        requireNonNull(books);
 
         for (Book b : books) {
             return b.getBarcode();
         }
 
+        return null;
+    }
+
+    /**
+     * Returns the book with the given barcode.
+     *
+     * @param barcode the specified barcode
+     * @return the book with the given barcode
+     */
+    @Override
+    public Book getBookByBarcode(Barcode barcode) {
+        requireNonNull(barcode);
+        return smartLib.getBookByBarcode(barcode);
+    }
+
+    /**
+     * Retrieves the list of books that has the isbn.
+     *
+     * @param isbn Isbn to query
+     * @return the list of books with given Isbn
+     */
+    @Override
+    public ArrayList<Book> getBooksByIsbn(Isbn isbn) {
+        requireNonNull(isbn);
+        return smartLib.getBooksByIsbn(isbn);
+    }
+
+    /**
+     * Retrieves the list of books that has the bookName.
+     *
+     * @param bookName bookName to query
+     * @return the list of bookNames
+     */
+    @Override
+    public ArrayList<Book> getBooksByName(Name bookName) {
+        requireNonNull(bookName);
+        return smartLib.getBooksByName(bookName);
+    }
+    /**
+     * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
+     *
+     * @param bookName name of the book to be borrowed
+     * @return the barcode of the first available copy of the book in SmartLib
+     */
+    public Barcode getFirstAvailableBookBarcode(Name bookName) {
+        requireNonNull(bookName);
+
+        ArrayList<Book> books = smartLib.getBooksByName(bookName);
+
+        for (Book b : books) {
+            if (!b.isBorrowed()) {
+                return b.getBarcode();
+            }
+        }
         return null;
     }
 
@@ -391,9 +458,10 @@ public class ModelManager implements Model {
      */
     @Override
     public Name getBookNameForReturn(Barcode barcode) {
+        requireNonNull(barcode);
+
         Book book = smartLib.getBookByBarcode(barcode);
-        requireNonNull(book);
-        return book.getName();
+        return book == null ? null : book.getName();
     }
 
     /**
@@ -404,9 +472,10 @@ public class ModelManager implements Model {
      */
     @Override
     public Name getReaderNameForReturn(Barcode barcode) {
+        requireNonNull(barcode);
+
         Reader reader = smartLib.getReaderByBarcode(barcode);
-        requireNonNull(reader);
-        return reader.getName();
+        return reader == null ? null : reader.getName();
     }
 
     /**
@@ -432,6 +501,16 @@ public class ModelManager implements Model {
      * @return an unmodifiable view of the filtered reader list.
      */
     @Override
+    public ObservableList<Reader> getFilteredReaderList() {
+        return filteredReaders;
+    }
+
+    /**
+     * Returns an unmodifiable view of the filtered book list.
+     *
+     * @return an unmodifiable view of the filtered book list.
+     */
+    @Override
     public ObservableList<Book> getFilteredBookList() {
         return filteredBooks;
     }
@@ -444,16 +523,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Record> getFilteredRecordList() {
         return filteredRecords;
-    }
-
-    /**
-     * Returns an unmodifiable view of the filtered book list.
-     *
-     * @return an unmodifiable view of the filtered book list.
-     */
-    @Override
-    public ObservableList<Reader> getFilteredReaderList() {
-        return filteredReaders;
     }
 
     /**

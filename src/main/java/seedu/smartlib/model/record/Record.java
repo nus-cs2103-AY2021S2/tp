@@ -17,7 +17,7 @@ public class Record {
     // null when creating an returning record to mark existing record as returned
     protected final DateBorrowed dateBorrowed;
     // null when creating an borrowing record, is a returned record when dateReturned non-null
-    protected DateReturned dateReturned;
+    protected final DateReturned dateReturned;
 
     /**
      * Creates a borrowing record.
@@ -78,15 +78,6 @@ public class Record {
     }
 
     /**
-     * Marks the record as returned.
-     *
-     * @param dateReturned return date of the book.
-     */
-    public void returnRecord(DateReturned dateReturned) {
-        this.dateReturned = dateReturned;
-    }
-
-    /**
      * Retrieves the bookName of the book associated with this record.
      *
      * @return the bookName of the book associated with this record.
@@ -132,15 +123,6 @@ public class Record {
     }
 
     /**
-     * Updates the return date noted in this record.
-     *
-     * @param dateReturned the new return date noted in this record.
-     */
-    public void setDateReturned(DateReturned dateReturned) {
-        this.dateReturned = dateReturned;
-    }
-
-    /**
      * Returns true if both records have the same details.
      * This defines a weaker notion of equality between two records, to facilitate checking when recording a record.
      * Whenever getDateReturned or getDateBorrowed are not equal, or if any field is missing, then they are equal.
@@ -166,11 +148,11 @@ public class Record {
         }
 
         if (otherRecord.getDateReturned() != null && this.getDateReturned() != null) {
-            return otherRecord.getDateReturned() == this.getDateReturned();
+            return otherRecord.getDateReturned().equals(this.getDateReturned());
         }
 
         if (otherRecord.getDateBorrowed() != null && this.getDateBorrowed() != null) {
-            return otherRecord.getDateBorrowed() == this.getDateBorrowed();
+            return otherRecord.getDateBorrowed().equals(this.getDateBorrowed());
         }
 
         return true;
@@ -184,8 +166,8 @@ public class Record {
     public Duration getBorrowDuration() {
         assert dateBorrowed != null && dateReturned != null : "Date cannot be null";
 
-        LocalDateTime startDate = LocalDateTime.parse(dateBorrowed.getValue());
-        LocalDateTime endDate = LocalDateTime.parse(dateReturned.getValue());
+        LocalDateTime startDate = LocalDateTime.parse(dateBorrowed.toString());
+        LocalDateTime endDate = LocalDateTime.parse(dateReturned.toString());
 
         return Duration.between(startDate, endDate);
     }

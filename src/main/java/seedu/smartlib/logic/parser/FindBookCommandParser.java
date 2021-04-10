@@ -14,6 +14,19 @@ import seedu.smartlib.model.book.BookNameContainsKeywordsPredicate;
 public class FindBookCommandParser implements Parser<FindBookCommand> {
 
     /**
+     * Verifies that the keyword(s) for book search is not empty.
+     *
+     * @param trimmedArgs trimmed keyword(s) for book search.
+     * @throws ParseException the input keyword(s) is empty.
+     */
+    private void verifyArgsNonEmpty(String trimmedArgs) throws ParseException {
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindBookCommand.MESSAGE_USAGE));
+        }
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the FindBookCommand
      * and returns a FindBookCommand object for execution.
      *
@@ -23,10 +36,7 @@ public class FindBookCommandParser implements Parser<FindBookCommand> {
      */
     public FindBookCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindBookCommand.MESSAGE_USAGE));
-        }
+        verifyArgsNonEmpty(trimmedArgs);
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 

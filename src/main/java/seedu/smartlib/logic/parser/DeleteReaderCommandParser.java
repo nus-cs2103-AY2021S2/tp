@@ -12,6 +12,23 @@ import seedu.smartlib.logic.parser.exceptions.ParseException;
 public class DeleteReaderCommandParser implements Parser<DeleteReaderCommand> {
 
     /**
+     * Verifies the validity of index of the reader to delete.
+     *
+     * @param args input index of the reader to delete.
+     * @throws ParseException if input index contains alphabets or exceeds maximum integer.
+     */
+    private void verifyReaderIndex(String args) throws ParseException {
+        if (!args.trim().matches("^[a-zA-Z]*$")) {
+            try {
+                Integer.parseInt(args.trim());
+            } catch (NumberFormatException ne) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteReaderCommand.MESSAGE_USAGE), ne);
+            }
+        }
+    }
+
+    /**
      * Parses the given {@code String} of arguments in the context of the DeleteReaderCommand
      * and returns a DeleteReaderCommand object for execution.
      *
@@ -20,12 +37,15 @@ public class DeleteReaderCommandParser implements Parser<DeleteReaderCommand> {
      * @throws ParseException if the user input does not conform to the expected format.
      */
     public DeleteReaderCommand parse(String args) throws ParseException {
+        verifyReaderIndex(args);
+
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteReaderCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteReaderCommand.MESSAGE_USAGE), pe);
+
         }
     }
 

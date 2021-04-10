@@ -167,4 +167,5 @@ public class UniqueReaderListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueReaderList.asUnmodifiableObservableList().remove(0));
     }
+
 }

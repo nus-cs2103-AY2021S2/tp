@@ -10,6 +10,7 @@ import seedu.smartlib.model.UserPrefs;
 import seedu.smartlib.model.record.Record;
 
 class BorrowCommandTest {
+
     private Model model = new ModelManager(getTypicalSmartLib(), new UserPrefs());
 
     @Test

@@ -68,7 +68,7 @@ public class Barcode {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Barcode // instanceof handles nulls
-                && value == ((Barcode) other).value); // state check
+                && value == ((Barcode) other).getValue()); // state check
     }
 
     /**

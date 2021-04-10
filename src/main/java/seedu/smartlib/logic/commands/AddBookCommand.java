@@ -7,8 +7,10 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_GENRE;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_ISBN;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PUBLISHER;
 
+import java.util.ArrayList;
 import java.util.Random;
 
+import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.book.Barcode;
@@ -31,7 +33,8 @@ public class AddBookCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New book added: %1$s";
     public static final String MESSAGE_DUPLICATE_BOOK = "This book already exists in the book base.";
-
+    public static final String MESSAGE_DUPLICATE_ISBN = "The ISBN you entered exists in the book base but it has "
+            + "a different book name. Please ensure that you key in the correct book name and ISBN.";
     private final Book bookWithTempBarcode;
 
     /**
@@ -45,6 +48,29 @@ public class AddBookCommand extends Command {
     }
 
     /**
+     * Verifies information of the new book to add, especially its isbn.
+     *
+     * @param model {@code Model} checks for matching isbn of books with same title.
+     * @throws CommandException if books of the same title have different ISBN.
+     */
+    private void verifyBookInfo(Model model) throws CommandException {
+        requireNonNull(model);
+        if (model.hasBook(bookWithTempBarcode)) {
+            throw new CommandException(MESSAGE_DUPLICATE_BOOK);
+        }
+
+        if (model.hasBook(bookWithTempBarcode.getIsbn())) {
+            ArrayList<Book> booksWithIsbn = model.getBooksByIsbn(bookWithTempBarcode.getIsbn());
+            Name bookName = bookWithTempBarcode.getName();
+            for (Book b : booksWithIsbn) {
+                if (!b.getName().equals(bookName)) {
+                    throw new CommandException(MESSAGE_DUPLICATE_ISBN);
+                }
+            }
+        }
+    }
+
+    /**
      * Executes the command and returns the result message.
      *
      * @param model {@code Model} which the command should operate on.
@@ -54,10 +80,7 @@ public class AddBookCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (model.hasBook(bookWithTempBarcode)) {
-            throw new CommandException(MESSAGE_DUPLICATE_BOOK);
-        }
+        verifyBookInfo(model);
 
         model.addBook(new Book(bookWithTempBarcode.getName(), bookWithTempBarcode.getAuthor(),
                 bookWithTempBarcode.getPublisher(), bookWithTempBarcode.getIsbn(),
@@ -65,6 +88,11 @@ public class AddBookCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, bookWithTempBarcode));
     }
 
+    /**
+     * Generates an barcode to to distinguish between each book.
+     *
+     * @param model to check if the newly generated barcode has already be taken up by some book in SmartLib.
+     */
     private Barcode generateBarcode(Model model) {
         Random random = new Random();
         int rv = random.nextInt(Barcode.MAX_VALUE - Barcode.MIN_VALUE) + Barcode.MIN_VALUE;

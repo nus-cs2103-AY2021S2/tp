@@ -24,6 +24,7 @@ import seedu.smartlib.model.book.BookNameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindBookCommand}.
  */
 public class FindBookCommandTest {
+
     private Model model = new ModelManager(getTypicalSmartLib(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalSmartLib(), new UserPrefs());
 
@@ -100,5 +101,6 @@ public class FindBookCommandTest {
     private BookNameContainsKeywordsPredicate preparePredicate(String userInput) {
         return new BookNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
+
 }
 

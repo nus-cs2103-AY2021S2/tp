@@ -39,10 +39,6 @@ public class DateBorrowed {
         value = date;
     }
 
-    public String getValue() {
-        return value;
-    }
-
     /**
      * Indicates whether the book associated with a record is overdue.
      *

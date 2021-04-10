@@ -20,6 +20,7 @@ import seedu.smartlib.model.ReadOnlySmartLib;
 import seedu.smartlib.model.SmartLib;
 
 public class JsonSmartLibStorageTest {
+
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSmartLibStorageTest");
 
     @TempDir
@@ -107,4 +108,5 @@ public class JsonSmartLibStorageTest {
     public void saveSmartLib_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveSmartLib(new SmartLib(), null));
     }
+
 }

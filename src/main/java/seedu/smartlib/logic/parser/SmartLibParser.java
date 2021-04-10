@@ -13,7 +13,6 @@ import seedu.smartlib.logic.commands.ClearCommand;
 import seedu.smartlib.logic.commands.Command;
 import seedu.smartlib.logic.commands.DeleteBookCommand;
 import seedu.smartlib.logic.commands.DeleteReaderCommand;
-import seedu.smartlib.logic.commands.EditCommand;
 import seedu.smartlib.logic.commands.ExitCommand;
 import seedu.smartlib.logic.commands.FindBookCommand;
 import seedu.smartlib.logic.commands.FindReaderCommand;
@@ -55,9 +54,6 @@ public class SmartLibParser {
 
         case AddReaderCommand.COMMAND_WORD:
             return new AddReaderCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
 
         case DeleteReaderCommand.COMMAND_WORD:
             return new DeleteReaderCommandParser().parse(arguments);

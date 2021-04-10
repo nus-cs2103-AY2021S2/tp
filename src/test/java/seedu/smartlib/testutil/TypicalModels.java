@@ -46,6 +46,7 @@ public class TypicalModels {
             .withPublisher("Scholastic")
             .withIsbn("9780439708180")
             .withGenre("Fantasy")
+            .withBarcode((Barcode.MAX_VALUE / 2) + "")
             .build();
 
     public static final Book PROMISE_LAND = new BookBuilder()
@@ -54,6 +55,7 @@ public class TypicalModels {
             .withPublisher("Crown Publishing Group")
             .withIsbn("9781524763169")
             .withGenre("Novel")
+            .withBarcode((Barcode.MAX_VALUE / 2 + 1) + "")
             .build();
 
     public static final Book LEGACY = new BookBuilder()
@@ -62,6 +64,7 @@ public class TypicalModels {
             .withPublisher("Brown Book Group")
             .withIsbn("9781472103536")
             .withGenre("Novel")
+            .withBarcode((Barcode.MAX_VALUE / 2 + 2) + "")
             .build();
 
     public static final Book HABIT = new BookBuilder()
@@ -70,6 +73,7 @@ public class TypicalModels {
             .withPublisher("Cornerstone")
             .withIsbn("9781847941831")
             .withGenre("Education")
+            .withBarcode((Barcode.MAX_VALUE / 2 + 3) + "")
             .build();
 
     public static final Book POWER = new BookBuilder()
@@ -78,6 +82,7 @@ public class TypicalModels {
             .withPublisher("Hodder and Stoughton")
             .withIsbn("9780340733509")
             .withGenre("Education")
+            .withBarcode((Barcode.MAX_VALUE / 2 + 4) + "")
             .build();
 
     public static final Book LIFE = new BookBuilder()
@@ -86,6 +91,7 @@ public class TypicalModels {
             .withPublisher("Hay House UK Ltd")
             .withIsbn("9781788171823")
             .withGenre("Fiction")
+            .withBarcode((Barcode.MAX_VALUE / 2 + 5) + "")
             .build();
 
     public static final Book SECRET = new BookBuilder()
@@ -94,6 +100,9 @@ public class TypicalModels {
             .withPublisher("Simon and Schuster Ltd")
             .withIsbn("9781847370297")
             .withGenre("Mystery")
+            .withBarcode((Barcode.MAX_VALUE / 2 + Barcode.MIN_VALUE / 2) + "")
+            .withBorrowerName("Benson Meier")
+            .withDateBorrowed("2021-01-01T23:30:00")
             .build();
 
     // Manually added - Book's details found in {@code CommandTestUtil}
@@ -104,6 +113,7 @@ public class TypicalModels {
             .withPublisher(VALID_PUBLISHER_HARRY)
             .withIsbn(VALID_ISBN_HARRY)
             .withGenre(VALID_GENRE_HARRY)
+            .withBarcode((Barcode.MAX_VALUE / 2 + 10) + "")
             .build();
 
     public static final Book MAZE = new BookBuilder()
@@ -112,6 +122,7 @@ public class TypicalModels {
             .withPublisher(VALID_PUBLISHER_MAZE)
             .withIsbn(VALID_ISBN_MAZE)
             .withGenre(VALID_GENRE_MAZE)
+            .withBarcode((Barcode.MAX_VALUE / 2 + 100) + "")
             .build();
 
     //=========== Readers ==================================================================================
@@ -130,6 +141,7 @@ public class TypicalModels {
             .withEmail("johnd@example.com")
             .withPhone("98765432")
             .withTags("VIP", "TopBorrower")
+            .withBorrows(SECRET, SECRET.getDateBorrowed())
             .build();
 
     public static final Reader CARL = new ReaderBuilder()
@@ -206,12 +218,23 @@ public class TypicalModels {
 
     public static final Record RECORD_A = new Record(
             new Name(VALID_NAME_HARRY),
-            new Barcode(Barcode.MAX_VALUE), new Name("Alex Yeoh"), new DateBorrowed("2020-11-23T08:30:00")
+            new Barcode(Barcode.MAX_VALUE),
+            new Name("Alex Yeoh"),
+            new DateBorrowed("2020-11-23T08:30:00")
     );
 
     public static final Record RECORD_B = new Record(
             new Name(VALID_NAME_MAZE),
-            new Barcode(Barcode.MAX_VALUE - 2), new Name("Bernice Yu"), new DateBorrowed("2021-01-22T23:30:00")
+            new Barcode(Barcode.MAX_VALUE - 2),
+            new Name("Bernice Yu"),
+            new DateBorrowed("2021-01-22T23:30:00")
+    );
+
+    public static final Record RECORD_C = new Record(
+            SECRET.getName(),
+            SECRET.getBarcode(),
+            SECRET.getBorrowerName(),
+            SECRET.getDateBorrowed()
     );
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
@@ -250,4 +273,5 @@ public class TypicalModels {
     public static List<Book> getTypicalBooks() {
         return new ArrayList<>(Arrays.asList(HARRY_PORTER, PROMISE_LAND, LEGACY, HABIT, POWER, LIFE, SECRET));
     }
+
 }
