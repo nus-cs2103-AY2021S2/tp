@@ -1,8 +1,6 @@
 @startuml
 !include style.puml
 
-'autoactivate on
-
 participant ":MainApp" as MainApp USER_COLOR
 
 box Model MODEL_COLOR_T1
@@ -51,13 +49,8 @@ alt themePath == null
 
     ref over MainApp, ThemeManager : ThemeManager#setTheme(theme, themePath)
 else
-    MainApp -> ThemeFactory : loadTheme(themePath)
 
-    activate ThemeFactory
-
-    ThemeFactory --> MainApp : theme
-
-    deactivate ThemeFactory
+    ref over MainApp, ThemeFactory : ThemeFactory#load(themePath)
 
     ref over MainApp, ThemeManager : ThemeManager#setTheme(theme, themePath)
 end
