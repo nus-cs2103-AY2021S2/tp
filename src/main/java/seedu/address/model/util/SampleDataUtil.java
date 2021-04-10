@@ -97,6 +97,9 @@ public class SampleDataUtil {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Returns a default medical record list.
+     */
     public static List<MedicalRecord> getMedicalRecordList() {
         ArrayList<Section> defaultSectionList = new ArrayList<>();
         LocalDateTime firstDateTime = LocalDateTime.of(2021, 04, 01, 15, 00);
