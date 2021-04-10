@@ -26,7 +26,7 @@ public class RecurCommandParserTest {
     public void parse_invalidIndex_throwsParseException() {
         String invalidIndexString = "-1";
         String userInput = invalidIndexString + " " + PREFIX_RECURRENCE + VALID_RECURRENCE_LAB;
-        assertParseFailure(parser, userInput, parser.RECUR_EXCEPTION_MESSAGE);
+        assertParseFailure(parser, userInput, ParserUtil.MESSAGE_INVALID_INDEX);
     }
 
     @Test
