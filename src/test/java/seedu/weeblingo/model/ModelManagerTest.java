@@ -1,5 +1,6 @@
 package seedu.weeblingo.model;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -8,18 +9,20 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
-import static seedu.weeblingo.testutil.TypicalFlashcards.A_CARD;
-import static seedu.weeblingo.testutil.TypicalFlashcards.I_CARD;
+import static seedu.weeblingo.testutil.TypicalFlashcards.*;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
+import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.flashcard.QuestionContainsKeywordsPredicate;
 import seedu.weeblingo.testutil.FlashcardBookBuilder;
@@ -117,6 +120,49 @@ public class ModelManagerTest {
         Quiz quiz = modelManager.getQuizInstance();
         Flashcard nextFlashcard = quiz.getNextQuestion();
         assertNotNull(nextFlashcard);
+    }
+
+    @Test
+    public void getNextFlashcard_queueEmpty_returnsNull() throws CommandException {
+        modelManager.addFlashcard(A_CARD);
+        modelManager.addFlashcard(I_CARD);
+        modelManager.startQuiz(0, new HashSet<>());
+        Quiz quiz = modelManager.getQuizInstance();
+        quiz.getNextQuestion();
+        Flashcard nextFlashcard = quiz.getNextQuestion();
+        assertNull(nextFlashcard);
+    }
+
+    @Test
+    public void getCurrentIndex_atThirdQuestion_returnsIndexThree() throws CommandException {
+        modelManager.addFlashcard(A_CARD);
+        modelManager.addFlashcard(I_CARD);
+        modelManager.addFlashcard(U_CARD);
+        modelManager.startQuiz(0, new HashSet<>());
+        Quiz quiz = modelManager.getQuizInstance();
+        assertNotNull(quiz);
+        quiz.getNextQuestion();
+        quiz.getNextQuestion();
+        int expectedCurrentIndex = 3;
+        int actualCurrentIndex = modelManager.getCurrentIndex();
+        assertEquals(expectedCurrentIndex, actualCurrentIndex);
+    }
+
+    @Test
+    public void clearQuizInstance_validClear_success() {
+        modelManager.clearQuizInstance();
+        Quiz quizInstance = modelManager.getQuizInstance();
+        assertNull(quizInstance);
+    }
+
+    @Test
+    public void getCorrectAttemptsIndexes_oneCorrectAttempt_returnsCorrectIndexes() throws CommandException {
+        modelManager.addFlashcard(A_CARD);
+        modelManager.startQuiz(0, new HashSet<>());
+        modelManager.isCorrectAnswer(new Answer("a"));
+        List<Integer> expectedIndexes = List.of(1);
+        List<Integer> actualIndexes = modelManager.getCorrectAttemptsIndexes();
+        assertEquals(expectedIndexes, actualIndexes);
     }
 
     //=========== Mode Related =============================================================
