@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.taskify.commons.core.Messages;
 import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.logic.commands.exceptions.CommandException;
+import seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.task.Task;
 
@@ -54,7 +54,7 @@ public class DeleteCommand extends Command {
         }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(DeleteMultipleCommandUtil.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());

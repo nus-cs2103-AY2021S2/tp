@@ -13,16 +13,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.taskify.commons.core.Messages;
 import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.commons.util.CollectionUtil;
 import seedu.taskify.logic.commands.exceptions.CommandException;
+import seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Date;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
 import seedu.taskify.model.task.Status;
+import seedu.taskify.model.task.StatusType;
 import seedu.taskify.model.task.Task;
 
 /**
@@ -74,7 +75,7 @@ public class EditCommand extends Command {
         }
 
         if (this.index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(DeleteMultipleCommandUtil.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
@@ -84,7 +85,7 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        if (taskToEdit.getStatus().toString().equals("Expired")) {
+        if (taskToEdit.getStatus().equals(new Status(StatusType.EXPIRED))) {
             throw new CommandException(MESSAGE_CANNOT_EDIT_EXPIRED_STATUS);
         }
 
