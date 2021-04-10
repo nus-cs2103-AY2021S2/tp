@@ -437,7 +437,7 @@ Only one command can be executed at a time and any words after a valid command i
         order history
         ```
  
-        The above command displays the history of completed and cancelled orders. The list is in chronological sequence based on the order's date and time.
+        The above command displays the history of completed and cancelled orders in the right column of the GUI. The list is in chronological sequence based on the order's date and time.
         </details>
 
     </details>
