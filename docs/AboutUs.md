@@ -41,7 +41,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/marc-97.png" width="200px">
 
 [[github](https://github.com/marc-97)]
-[[portfolio](team/marcus.md)]
+[[portfolio](team/marc-97.md)]
 
 * Role: Developer
 
