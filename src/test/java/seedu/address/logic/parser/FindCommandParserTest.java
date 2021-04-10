@@ -11,7 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -121,7 +121,7 @@ public class FindCommandParserTest {
     public void parse_validTagArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList("[" + VALID_TAG_FRIEND + "]")));
+                new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList("[" + VALID_TAG_IT + "]")));
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n " + TAG_DESC_FRIEND + "\n \t", expectedFindCommand);
@@ -164,9 +164,9 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " " + PREFIX_ALL + VALID_ADDRESS_AMY, expectedAllCommand);
 
         expectedAllCommand =
-                new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(VALID_TAG_FRIEND)));
+                new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(VALID_TAG_IT)));
 
-        assertParseSuccess(parser, " " + PREFIX_ALL + VALID_TAG_FRIEND, expectedAllCommand);
+        assertParseSuccess(parser, " " + PREFIX_ALL + VALID_TAG_IT, expectedAllCommand);
     }
 
     @Test
