@@ -9,7 +9,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESIDENTS;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -52,6 +54,8 @@ public class EditResidentCommand extends Command {
     public static final String MESSAGE_RESIDENT_ALLOCATED_FAILURE =
             "The resident has been allocated to a room. Please deallocate the resident before editing.";
 
+    private final Logger logger = LogsCenter.getLogger(EditResidentCommand.class);
+
     private final Index index;
     private final EditResidentDescriptor editResidentDescriptor;
 
@@ -77,18 +81,23 @@ public class EditResidentCommand extends Command {
         }
 
         if (index.getZeroBased() >= lastShownList.size()) {
+            logger.warning("Provided index was more than the current list size");
             throw new CommandException(
                     String.format(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX, lastShownList.size()));
         }
 
         Resident residentToEdit = lastShownList.get(index.getZeroBased());
+        assert residentToEdit != null;
         Resident editedResident = createEditedResident(residentToEdit, editResidentDescriptor);
+        assert editedResident != null;
 
         if (!residentToEdit.isSameResident(editedResident) && model.hasResident(editedResident)) {
+            logger.warning("Duplicate resident added to redit command");
             throw new CommandException(MESSAGE_DUPLICATE_RESIDENT);
         }
 
         if (model.hasEitherResidentRoom(new ResidentRoom(residentToEdit.getName(), null))) {
+            logger.warning("Resident to be edited is already allocated.");
             throw new CommandException(MESSAGE_RESIDENT_ALLOCATED_FAILURE);
         }
 
@@ -106,6 +115,8 @@ public class EditResidentCommand extends Command {
     public static Resident createEditedResident(Resident residentToEdit,
             EditResidentDescriptor editResidentDescriptor) {
         assert residentToEdit != null;
+        requireNonNull(residentToEdit);
+        requireNonNull(editResidentDescriptor);
 
         Name updatedName = editResidentDescriptor.getName().orElse(residentToEdit.getName());
         Phone updatedPhone = editResidentDescriptor.getPhone().orElse(residentToEdit.getPhone());
@@ -151,6 +162,7 @@ public class EditResidentCommand extends Command {
          * Copy constructor.
          */
         public EditResidentDescriptor(EditResidentDescriptor toCopy) {
+            requireNonNull(toCopy);
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
