@@ -15,7 +15,7 @@ Given below is a summary of my contributions to the development of TutorBuddy.
   * **What it does:** This feature calculates the current month, and the previous 2 months expected monthly fee based on existing sessions and recurring sessions. We then display the results on the UI accordingly.
   * **Highlights:** Calculation are performed in a separate FeeUtil class. It performs the calculation using a loop and takes into account whether the sessions are individual sessions or recurring sessions.
     As the monthly fees are expected to show up in the UI, I had to create a list panel, and a card fxml file that represents the monthly fee.
-    A student list's listener was also added, so that whenever the student list updates, the monthly fees would also updates.
+    A student list's listener was also added, to enforce accuracy, even when the student list has updated.
   * **Related PR:** [PR #118](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/118) and
     [PR #145](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/145).
 * Feature to get a particular student's monthly fee.
@@ -41,8 +41,6 @@ the fields taken to be representative of a student class instead.
 * Updating sample data to include sample sessions as well to better reflect our current application [PR #166](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/166).
 
 ### Other Contribution:
-* Project Management:
-    * In charge of ensuring that the project is on track for completion by the given dateline.
 * Testing:
     * Written test for many of the classes such as `Month`, `Fee`, `GetMonthlyFeeCommand` and `GetMonthlyFeeCommandParser`.
     * Non-trivial testing PR includes: [PR #128](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/128), [PR #165](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/165), [PR #271](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/271)
