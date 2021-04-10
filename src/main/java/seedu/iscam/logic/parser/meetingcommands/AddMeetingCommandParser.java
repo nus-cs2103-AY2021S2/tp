@@ -5,8 +5,8 @@ import static seedu.iscam.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_ON;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;

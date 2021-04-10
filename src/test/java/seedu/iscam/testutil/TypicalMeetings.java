@@ -4,12 +4,10 @@ import static seedu.iscam.logic.commands.CommandTestUtil.VALID_CLIENT_NAME_CLEO;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_CLIENT_NAME_DAN;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_DATETIME_CLEO;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_DATETIME_DAN;
-import static seedu.iscam.logic.commands.CommandTestUtil.VALID_LOCATION_CLEO;
-import static seedu.iscam.logic.commands.CommandTestUtil.VALID_LOCATION_DAN;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CLEO;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_DESCRIPTION_DAN;
-import static seedu.iscam.logic.commands.CommandTestUtil.VALID_TAG_PREMIUM;
-import static seedu.iscam.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
+import static seedu.iscam.logic.commands.CommandTestUtil.VALID_LOCATION_CLEO;
+import static seedu.iscam.logic.commands.CommandTestUtil.VALID_LOCATION_DAN;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_STATUS_CLEO;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_STATUS_DAN;
 

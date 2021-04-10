@@ -122,42 +122,42 @@ class EditMeetingCommandParserTest {
         // client name
         Index targetIndex = INDEX_THIRD_ITEM;
         String userInput = targetIndex.getOneBased() + CLIENT_NAME_DESC_CLEO;
-        EditMeetingDescriptor descriptor= new EditMeetingDescriptorBuilder()
+        EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder()
                 .withClientName(VALID_CLIENT_NAME_CLEO).build();
         EditMeetingCommand expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // dateTime
         userInput = targetIndex.getOneBased() + DATETIME_DESC_CLEO;
-        descriptor= new EditMeetingDescriptorBuilder()
+        descriptor = new EditMeetingDescriptorBuilder()
                 .withDateTime(VALID_DATETIME_CLEO).build();
         expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // location
         userInput = targetIndex.getOneBased() + LOCATION_DESC_CLEO;
-        descriptor= new EditMeetingDescriptorBuilder()
+        descriptor = new EditMeetingDescriptorBuilder()
                 .withLocation(VALID_LOCATION_CLEO).build();
         expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // description
         userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_CLEO;
-        descriptor= new EditMeetingDescriptorBuilder()
+        descriptor = new EditMeetingDescriptorBuilder()
                 .withDescription(VALID_DESCRIPTION_CLEO).build();
         expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_URGENT;
-        descriptor= new EditMeetingDescriptorBuilder()
+        descriptor = new EditMeetingDescriptorBuilder()
                 .withTags(VALID_TAG_URGENT).build();
         expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // status
         userInput = targetIndex.getOneBased() + STATUS_DESC_CLEO;
-        descriptor= new EditMeetingDescriptorBuilder()
+        descriptor = new EditMeetingDescriptorBuilder()
                 .withStatus(VALID_STATUS_CLEO).build();
         expectedCommand = new EditMeetingCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
