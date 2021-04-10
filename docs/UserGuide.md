@@ -175,7 +175,7 @@ As members leave the club, you can delete a member along with all of his/her con
 Format: `deleteMember NAME`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-To prevent unintentional deleting of Members, the NAME you specify must be in the currently displayed list of Members 
+The NAME you specify must be in the currently displayed list of Members  
 </div>
 
 Examples:
@@ -206,7 +206,7 @@ Format: `editMember NAME [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/NEW_
 * Existing values will be updated to the input values.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-To prevent unintentional editing of Members, the NAME you specify must be in the currently displayed list of Members 
+The NAME you specify must be in the currently displayed list of Members 
 </div>
 
 Examples: 
@@ -406,10 +406,11 @@ This feature allows you to find all tasks assigned to a single Member.
 
 Format: `findTasksFor NAME`
 
-* The search suing NAME is case-insensitive. e.g. `david li` will match with `David Li`.
-
+* The search using NAME is case-sensitive. e.g. `David Li` will only match with `David Li`.
+* NAME must match an entire member's name exactly in order for the tasks assigned to that member to be found. 
+  
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
-The NAME specified can only belong to 1 Member while a NAME that does not exist in the Member List will return 0 tasks listed
+A NAME that does not exist in the Member List will return no tasks listed
 </div>
 
 Examples: 
