@@ -94,6 +94,7 @@ Edits an existing customer in CHIM.
 
 Format: `editcustomer INDEX [n/CUSTOMER_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG…]`
 * At least one of the optional fields must be provided to edit the customer.
+* The `INDEX` refers to the index number of the customer shown in `listcustomers`.
 
 Example: `editcustomer 4 n/Jane Lim p/65558888`
 
@@ -126,9 +127,9 @@ Searches for a customer in CHIM.
 Format: `findcustomer [n/NAME_KEYWORDS…] [p/PHONE_KEYWORDS…] [e/EMAIL_KEYWORDS…] [a/ADDRESS_KEYWORDS…] `
 * At least one of the optional fields must be provided to find a customer.
 * Search is case-insensitive, e.g. Betty will match betty.
-* Search will search by given keywords as prefix, e.g. Bet will match Betty.
+* Search will search by given keywords as prefix, e.g. Bet will match Betty as well as Amy Beth.
 * Search will find any customers which match **all** of the given fields,
-e.g. `findcustomer n/Betty p/9123` will find a customer with the name `Betty` and a phone number with prefix `9123`.
+e.g. `findcustomer n/Betty Yu p/9123 81` will find customers with name that contains a prefix of `Betty` or `Yu` **and** a phone number with prefix `9123` or `81`.
 
 Examples:
 
@@ -180,6 +181,7 @@ Edits an existing unassigned cheese in CHIM.
 Format: `editcheese INDEX [t/CHEESE_TYPE] [d/MANUFACTURE_DATE] [e/EXPIRY_DATE]`
 * At least one of the optional fields must be provided to edit a cheese.
 * The specified `INDEX` must be a positive integer.
+* The `INDEX` refers to the index number of the cheese shown in `listcheeses`.
 * All dates must be given in these formats: `DD/MM/YYYY` or `YYYY-MM-DD` or `MMM DD YYYY`.
 * The specified `MANUFACTURE_DATE` must be any date up to the current date, and not in the future.
 * The specified `EXPIRY_DATE` must occur after the `MANUFACTURE_DATE`.
@@ -200,6 +202,7 @@ Deletes a specified unassigned cheese from the inventory, identified by its inde
 
 Format: `deletecheese CHEESE_INDEX`
 * The `CHEESE_INDEX` must be a positive integer.
+* The `CHEESE_INDEX` refers to the index number of the cheese shown in `listcheeses`.
 
 Example: `deletecheese 2`
 
@@ -217,10 +220,10 @@ Searches for particular cheeses in CHIM.
 
 Format: `findcheese [t/CHEESE_TYPE_KEYWORDS…] [s/ASSIGNMENT_STATUS]`
 * At least one of the optional fields must be provided to find a cheese.
-* Search is case-insensitive, e.g. Brie will match brie.
+* Search is case-insensitive, e.g. Brie will match brie and Blue Brie.
 * Assignment status parameter must be either `assigned` or `unassigned`.
 * Search will find any cheeses which match **all** of the given fields,
-e.g. `findcheese t/Gouda s/assigned` will find a cheese with type `Gouda` and an `assigned` status.
+e.g. `findcheese t/Gouda Cam s/assigned` will find a cheese with type containing prefix of `Gouda` or `Cam` **and** an `assigned` status.
 
 Examples:
 
@@ -276,6 +279,7 @@ Edits an existing uncompleted order in CHIM.
 Format: `editorder INDEX [t/CHEESE_TYPE] [q/QUANTITY] [p/PHONE_NUMBER] [d/ORDER_DATE]`
 * At least one of the optional fields must be provided to edit an order.
 * The specified `INDEX` and `QUANTITY` must be a positive integer.
+* The `INDEX` refers to the index number of the order shown in `listorders`.
 * The specified `CHEESE_TYPE` need not belong to an existing cheese type in CHIM.
 * The specified `PHONE_NUMBER` must belong to an existing user.
 * The specified `ORDER_DATE` must be given in these formats: `DD/MM/YYYY` or `YYYY-MM-DD` or `MMM DD YYYY`.
@@ -299,6 +303,7 @@ This assigns cheeses to the order.
 
 Format: `done ORDER_INDEX`
 * The `ORDER_INDEX` provided must be a positive integer.
+* The `ORDER_INDEX` refers to the index number of the order shown in `listorders`.
 
 Example: `done 2` - marks the second order in the list of orders as complete.
 
@@ -318,6 +323,7 @@ If the order is marked as complete and has cheeses assigned to it, those cheeses
 
 Format: `deleteorder ORDER_INDEX`
 * The `ORDER_INDEX` provided must be a positive integer.
+* The `ORDER_INDEX` refers to the index number of the order shown in `listorders`.
 
 Example: `deleteorder 2`
 
