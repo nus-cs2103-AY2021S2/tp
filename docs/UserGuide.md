@@ -450,8 +450,9 @@ Format: `add-date d/DESCRIPTION dt/DETAILS`
 :bulb:**Tips:** <br>
 
 * `DETAILS` must be in the **yyyy-mm-dd HHmm format** e.g. `2021-11-03 0800`
-*  Dates with the **exact same description and details** will be considered a duplicate and will not be added into TutorsPet
-*  To avoid confusion, dates with the same description will also not be added into TutorsPet.
+* Dates with the **exact same description and details** will be considered a duplicate and will not be added into TutorsPet
+* To avoid confusion, dates with the same description will also not be added into TutorsPet.
+* All dates would be accepted, including past dates. e.g. `2019-01-20`
 
 </div>
 
