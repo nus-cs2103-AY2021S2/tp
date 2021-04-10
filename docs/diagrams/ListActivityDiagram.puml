@@ -1,16 +1,16 @@
 @startuml
 start
-:User executes command;
+:User enters list command;
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
-
-if () then ([command is in valid format])
-    :Parse arguments as predicate;
-    :Update current predicate in Model;
-    :Update filtered item list in Model;
+:Parse user input;
+if () then ([user input is valid])
+    :Create and execute ListCommand;
     :Display filtered list;
+    :Display command success message;
 else ([else])
+    :Display parse error message;
 endif
 stop
 @enduml
