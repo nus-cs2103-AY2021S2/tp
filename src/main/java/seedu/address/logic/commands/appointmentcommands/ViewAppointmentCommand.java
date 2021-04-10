@@ -19,7 +19,7 @@ public class ViewAppointmentCommand extends Command {
             + "Parameters: DATE (must be in YYYY-MM-DD format)\n"
             + "Example: " + COMMAND_WORD + " 2021-03-17";
 
-    public static final String MESSAGE_VIEW_APPOINTMENT_SUCCESS = "View Appointment: %1$s";
+    public static final String MESSAGE_VIEW_APPOINTMENT_SUCCESS = "Viewing appointment(s) on %1$s (%2$d displayed)";
 
     private final DateViewPredicate predicate;
 
@@ -31,7 +31,8 @@ public class ViewAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredAppointmentList(predicate);
-        return new CommandResult(String.format(MESSAGE_VIEW_APPOINTMENT_SUCCESS, predicate.toString()),
+        return new CommandResult(String.format(MESSAGE_VIEW_APPOINTMENT_SUCCESS, predicate.toString(),
+                model.getFilteredAppointmentList().size()),
                 TabName.APPOINTMENT);
     }
 

@@ -14,13 +14,13 @@ public class ListScheduleCommand extends Command {
 
     public static final String COMMAND_WORD = "list_schedules";
 
-    public static final String MESSAGE_SUCCESS = "Listed all schedules";
-
+    public static final String MESSAGE_SUCCESS = "Listed all schedules (%1$s displayed)";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULE);
-        return new CommandResult(MESSAGE_SUCCESS, TabName.SCHEDULE);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredScheduleList().size()),
+                TabName.SCHEDULE);
     }
 }

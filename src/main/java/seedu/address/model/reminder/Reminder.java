@@ -60,8 +60,9 @@ public class Reminder {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDescription())
-                .append("; Remind on: ")
-                .append(getReminderDate());
+                .append(" (Remind on: ")
+                .append(getReminderDate())
+                .append(")");
 
         return builder.toString();
     }
