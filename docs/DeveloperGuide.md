@@ -258,6 +258,16 @@ This section describes some noteworthy details on how [Sochedule](#41-sochedule)
 
 #### 4.1.1 Overview
 
+SOChedule consists of two lists: a task list and an event list. The task list is used to accommodate different tasks
+specified by users while the event list is used to accommodate different events specified by users.
+
+While both task list and event list can be updated independently by their corresponding commands (e.g. `add_task`, 
+`delete_event`), there are some SOChedule-Level commands listed as follows that can act on both task list and event list
+
+* `clear`
+* `summary`
+* `find_schedule`
+
 #### 4.1.2 Implementation of SOChedule-Level Commands
 
 **Implementation of ClearCommand**  
@@ -376,6 +386,34 @@ helpful for users to know what tasks should be dealt with first and improve thei
 ### 4.2 Task
 
 #### 4.2.1 Overview
+
+`Task` is a type of activity that comes with a `Deadline` attribute and can be marked as complete or incomplete. It is
+specified by the following attributes:
+
+* `Name`
+* `Deadline`
+* `Priority`
+* `[Category] ...` (Optional, can be multiple)
+* `[Tag] ...` (Optional, can be multiple)
+
+Note that a `Task` is defined to be the same as another `Task` if and only if all of their attributes listed above are
+equal correspondingly.
+
+Our `Task` supports the following features through a `LogicManager`
+
+* `add_task`
+* `delete_task`
+* `edit_task`
+* `list_task`
+* `done_task`
+* `undone_task`
+* `today_task`
+* `find_task`
+* `sort_task`
+* `pin_task`
+* `unpin_task`
+* `clear_completed_task`
+* `clear_expired_task`
 
 #### 4.2.2 Implementation
 
@@ -759,6 +797,30 @@ The sequence diagram for `ClearExpiredTaskCommand` can be found below.
 ### 4.3 Event
 
 #### 4.3.1 Overview
+
+`Event` is a type of activity that has a specific `StartDate` and `StartTime` following an `EndDate` and `EndTime`.
+It is specified by the following attributes:
+
+* `Name`
+* `StartDate`
+* `StartTime`
+* `EndDate`
+* `EndTime`
+* `[Category] ...` (Optional, can be multiple)
+* `[Tag] ...` (Optional, can be multiple)
+
+Note that an `Event` is defined to be the same as another `Event` if and only if all of their attributes listed above 
+are equal correspondingly.
+
+Our `Event` supports the following features through a `LogicManager`
+
+* `add_event`
+* `delete_event`
+* `edit_event`
+* `list_event`
+* `today_event`
+* `find_event`
+* `clear_expired_event`
 
 #### 4.3.2 Implementation
 
@@ -1349,7 +1411,8 @@ Use case ends.
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Event**: Activities that start at a specific time and ends at a specific time.
-* **Task**: Activities to be undertaken that can be marked complete/incomplete. Optionally it has a date field to indicate deadlines.
+* **Task**: Activities to be undertaken that can be marked complete/incomplete. It also has a compulsory date field to 
+  indicate its deadline.
 
 --------------------------------------------------------------------------------------------------------------------
 
