@@ -25,7 +25,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/umergta.png" width="200px">
 
 [[github](https://github.com/umergta)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/umergta.md)]
 
 * Role: Developer, Documentation
 * Responsibilities:
@@ -38,20 +38,21 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/figo2127.png" width="200px">
 
 [[github](http://github.com/figo2127)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/figo2127.md)]
 
 * Role: Developer, QA Engineer
 * Responsibilities:
     * Developer for ModuleBook3.5
     * Model Component Checker
     * QA Checker
+    * Project Management
 
 ### Wang Yuanzhe
 
 <img src="images/aiwassprime.png" width="200px">
 
 [[github](https://github.com/AiwassPrime)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/aiwassprime.md)]
 
 * Role: Developer, QA Engineer
 * Responsibilities:
@@ -59,6 +60,7 @@ We are a team based in the [School of Computing, National University of Singapor
     * Commons Component Checker
     * Tester
     * QA Checker
+    * Project Management
 
 ### He Qiyuan
 

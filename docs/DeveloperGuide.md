@@ -98,6 +98,10 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("mod CS2103T")` API call.
+
+![Interactions Inside the Logic Component for the `mod CS2103T` Command](images/FindModuleSequenceDiagram.png)
+
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("sort /w")` API call.
 
 ![Interactions Inside the Logic Component for the `sort /w` Command](images/SortSequenceDiagram.png)
@@ -310,6 +314,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | student                                    | tag tasks                                     | filter through my tasks easily and focus on the similar ones with the same tags   |
 | `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task                                         |
 | `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task     
+| `*`      | user with many tasks in the module book    | search for tasks by their name                | find the task quickly from the large list
+| `*`      | user with many tasks in the module book    | search for tasks by module code               | list down all the tasks from the same module clearly
 | `*`      | user with many tasks in the module book    | sort the tasks by deadline                    | see which tasks need to be addressed as soon as possible
 | `*`      | user with many tasks in the module book    | sort the tasks by workload                    | see which tasks require more effort to complete
 | `*`      | busy student                               | view workload count for each module           | decide which module requires more effort
@@ -331,7 +337,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 2.  ModuleBook3.5 presents tasks in list form.
 
- **Extensions**
+**Extensions**
 * 2a. The list is empty.
     Use case ends.
     
@@ -719,10 +725,11 @@ Use case ends.
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The size of ModuleBook3.5 will not be larger than 20 MB.
-5.  The project is expected to adhere to a schedule that delivers a feature set every two weeks until the end of April.
+2.  Should work on any monitor which has a resolution greater than 1400 * 800.
+3.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  The size of ModuleBook3.5 will not be larger than 20 MB.
+6.  The project is expected to adhere to a schedule that delivers a feature set every two weeks until the end of April.
 
 ### Glossary
 
@@ -755,8 +762,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a task
 
 1. Deleting a task while all tasks are being shown
@@ -772,12 +777,11 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Delete `.\data\modulebook.json`<br>
+   
+   1. Re-launch the app by double-clicking the jar file.<br>
+      Expected: `.\data\modulebook.json` generated automatically with some example inside.

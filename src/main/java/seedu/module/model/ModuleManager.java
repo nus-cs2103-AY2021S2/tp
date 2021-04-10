@@ -79,7 +79,6 @@ public class ModuleManager {
             List<Task> newList = new ArrayList<>();
             newList.add(task);
             mappingOfModulesToTasks.put(module, newList);
-            moduleWorkLoadDistribution.put(module, task.getWorkload().getWorkloadLevel());
         }
         increaseCorrectWorkloadDistribution(module, task);
         setExistingModuleList();
@@ -95,7 +94,7 @@ public class ModuleManager {
     public static void increaseCorrectWorkloadDistribution(Module module, Task task) {
         int workloadLevel = task.getWorkload().getWorkloadLevel();
         moduleWorkLoadDistribution.put(module,
-            moduleWorkLoadDistribution.get(module) + workloadLevel);
+            moduleWorkLoadDistribution.getOrDefault(module, 0) + workloadLevel);
         switch(workloadLevel) {
         case LOW_LEVEL:
             moduleLowWorkLoadDistribution.put(module,
@@ -147,9 +146,9 @@ public class ModuleManager {
      * @return return the workload information of one module.
      */
     public static String getModuleWorkloadInformation(Module module) {
-        String moduleWorkLoadInformation = String.format("low workload tasks:%d\n"
-                + "medium workload tasks:%d\n"
-                + "high workload tasks:%d\n",
+        String moduleWorkLoadInformation = String.format("low workload tasks: %d\n"
+                + "medium workload tasks: %d\n"
+                + "high workload tasks: %d\n",
             moduleLowWorkLoadDistribution.getOrDefault(module, 0),
             moduleMediumWorkLoadDistribution.getOrDefault(module, 0),
             moduleHighWorkLoadDistribution.getOrDefault(module, 0));
@@ -220,7 +219,7 @@ public class ModuleManager {
     }
 
     /**
-     * Fills the observable list of existringModules with the keySet of the mapping.
+     * Fills the observable list of existingModules with the keySet of the mapping.
      */
     public static void setExistingModuleList() {
         List<Module> existingModules = List.copyOf(mappingOfModulesToTasks.keySet());
@@ -228,7 +227,7 @@ public class ModuleManager {
     }
 
     /**
-     * Fills the observable list of existringModules with the keySet of the mapping.
+     * Fills the observable list of existingModules with the keySet of the mapping.
      */
     public static void setModulePieChartData() {
         modulePieChartData.clear();

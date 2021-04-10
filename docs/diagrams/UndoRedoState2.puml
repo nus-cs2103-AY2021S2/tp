@@ -3,12 +3,12 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title After command "add n/David"
+title After command "add n/Assignment m/CS2103T d/ff b/2021-05-31 w/2"
 
 package States <<rectangle>> {
-    class State1 as "__ab0:ModuleBook__"
-    class State2 as "__ab1:ModuleBook__"
-    class State3 as "__ab2:ModuleBook__"
+    class State1 as "__mb0:ModuleBook__"
+    class State2 as "__mb1:ModuleBook__"
+    class State3 as "__mb2:ModuleBook__"
 }
 
 State1 -[hidden]right-> State2

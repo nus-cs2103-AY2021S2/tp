@@ -33,9 +33,18 @@ public class DeleteTagCommandParserTest {
         assertParseFailure(parser, "a tag", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteTagCommand.MESSAGE_USAGE));
 
+        //Negative index
+        assertParseFailure(parser, "-1" + CommandTestUtil.TAG_DESC_LOW,
+                String.format(ParserUtil.MESSAGE_INVALID_INDEX));
+
         //Valid index, but no other arguments offered
         assertParseFailure(parser, "1 ",
                 String.format(DeleteTagCommand.MESSAGE_NOT_EDITED));
+
+        //Valid index, invalid tag
+        assertParseFailure(parser, "1" + CommandTestUtil.INVALID_TAG_DESC,
+                String.format(Tag.MESSAGE_CONSTRAINTS));
     }
+
 }
 

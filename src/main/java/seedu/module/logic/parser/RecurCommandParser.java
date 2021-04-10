@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import seedu.module.commons.core.index.Index;
 import seedu.module.commons.core.optionalfield.OptionalField;
+import seedu.module.commons.exceptions.IllegalIntegerException;
 import seedu.module.commons.exceptions.IllegalValueException;
 import seedu.module.logic.commands.Command;
 import seedu.module.logic.commands.RecurCommand;
@@ -33,6 +34,8 @@ public class RecurCommandParser implements Parser<Command> {
             recurCommand = new RecurCommand(index);
         } catch (IllegalValueException ive) {
             throw new ParseException(RECUR_EXCEPTION_MESSAGE, ive);
+        } catch (IllegalIntegerException iie) {
+            throw new ParseException(iie.getMessage());
         }
 
         String recurValue;

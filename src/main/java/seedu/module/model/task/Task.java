@@ -411,7 +411,7 @@ public class Task {
 
         @Override
         public String toString() {
-            return "description";
+            return "length of description";
         }
 
         @Override

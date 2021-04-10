@@ -70,7 +70,7 @@ public class CommandTestUtil {
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "CS!2040"; // ! not allowed in modules
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // descriptions should not be empty
     public static final String INVALID_WORKLOAD_DESC = " " + PREFIX_WORKLOAD + "4"; // workload should be in range 1-3
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "quiz*"; // '*' not allowed in tags
     public static final String INVALID_RECURRENCE_DESC = " " + PREFIX_RECURRENCE + "hourly"; // cant recur hourly
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

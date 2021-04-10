@@ -23,6 +23,7 @@ import seedu.module.model.util.SampleDataUtil;
 public class TaskBuilder {
 
     public static final String DEFAULT_NAME = "Assignment 6";
+    public static final String LATER_STARTTIME = "2021-03-09 14:00";
     public static final String DEFAULT_DEADLINE = "2021-03-07 14:00";
     public static final String DEFAULT_MODULE = "CS3243";
     public static final String DEFAULT_DONE = String.valueOf(Boolean.FALSE);

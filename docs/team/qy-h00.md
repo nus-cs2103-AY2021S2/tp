@@ -6,7 +6,7 @@ title: T13-2 ModuleBook Level 3.5
 ## Project: ModuleBook Level 3.5
 
 ModuleBook - Level 3.5 is a desktop module book application used for keeping track of tasks for various NUS modules
-in an *Easy, Simple and Straightforward* manner. 
+in an *Easy, Seamless and Straightforward* manner. 
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
@@ -42,9 +42,12 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Updated NFR and glossary parts of ModuleBook 3.5 [\#37](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/37), [\#56](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/56)
     * Add the diagram of sort tasks and ModuleManager [\#133](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/133) 
+        * SortSequenceDiagram
+    	* ModelClassDiagram
+    	* UiClassDiagram
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#90](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/90), [\#84](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/84)
+  * PRs reviewed (with non-trivial review comments): [\#90](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/90), [\#84](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/84), [\#64](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/64), [\#83](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/83)
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/137), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/245), [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/206), [4](https://github.com/nus-cs2103-AY2021S2/forum/issues/15))
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2021S2-CS2103T-W10-4/tp/issues/220), [2](https://github.com/AY2021S2-CS2103T-W10-4/tp/issues/219))
   
