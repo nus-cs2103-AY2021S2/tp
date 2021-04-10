@@ -38,10 +38,10 @@ Please note the following symbols used in the User Guide which may serve as poin
 # 2. Quick start <a name = "quickstart"></a>
 
 1. Ensure you have Java 11 or above installed in your computer
-2. Download the latest `GreenMileageEfforts.jar` from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases)
+2. Download the latest GreenMileageEfforts.jar from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases)
 3. Copy the file to the folder you want to use as the *home* folder for your **GreenMileageEfforts**.
 4. Double click the file to start the app.
-5. Type the command in the command box and press `Enter` to execute it
+5. Type the command in the command box and press the Enter key to execute it
 6. Refer to the [Features](#3-features-) below for the details on each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -114,13 +114,15 @@ GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanc
 
 Adds a new passenger in the GME terminal.
 
-**Format:** `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [tag/TAG tag/TAG ...]`
+**Format:** `add n/NAME p/PHONE a/ADDRESS d/TRIPDAY t/TRIPTIME [pr/PRICE] [tag/TAG tag/TAG ...]`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the pool command:**<br>
+**:information_source: Notes about the add command:**<br>
 * [TripDay](#6-glossary) is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
 * [TripTime](#6-glossary) is required to be in the 24-hour format. e.g. `0530` or `2359` 
+* [Tag](#6-glossary) is required to be an alphanumeric input at most 30 characters in length.
+* [Price](#6-glossary) is an optional amount that the passenger can include that describes how much they are willing to pay for a carpooling trip. It is required to be a positive whole number or a positive decimal number rounded to 2 decimal places.
 </div>
 
 **Examples:**
@@ -300,8 +302,10 @@ Action | Format, Examples
 
 Term used | Meaning
 --------|------------------
-Pool | A group of employees carpooling together. Consists of one driver and at least one passenger.
-Passenger | An employee carpooling with at least one driver.
+Pool | A group of employees carpooling together. Consists of one driver and at least one passenger
+Passenger | An employee carpooling with at least one driver
 TripDay | Day of intended carpooling trip 
 TripTime | Time of intended carpooling trip 
-Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
+Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have
+Price | The amount of money a passenger is willing to pay for the carpooling trip.
+Alphanumeric | A combination of letters and numbers only
