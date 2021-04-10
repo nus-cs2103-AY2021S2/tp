@@ -21,7 +21,7 @@ import seedu.storemando.model.item.Item;
 /**
  * Table displaying all items expiring in a week
  */
-public class TablePanel2 extends UiPart<Region> implements Initializable {
+public class ExpiringTablePanel extends UiPart<Region> implements Initializable {
     private static final String FXML = "TablePanel.fxml";
     private final Logger logger = LogsCenter.getLogger(getClass());
     private ObservableList<Item> itemList;
@@ -30,7 +30,7 @@ public class TablePanel2 extends UiPart<Region> implements Initializable {
     private TableView<ExpiringItem> tableView;
 
     @FXML
-    private TableColumn<ExpiringItem, String> daysBeforeExpiryCol;
+    private TableColumn<ExpiringItem, String> numberOfDays;
 
     @FXML
     private TableColumn<ExpiringItem, String> numberOfItems;
@@ -38,7 +38,7 @@ public class TablePanel2 extends UiPart<Region> implements Initializable {
     /**
      * Creates a {@code TablePanel} with the given {@code ObservableList}.
      */
-    public TablePanel2(ObservableList<Item> itemList) {
+    public ExpiringTablePanel(ObservableList<Item> itemList) {
         super(FXML);
         this.itemList = itemList;
         tableView.setItems(getExpiringItems(itemList));
@@ -59,8 +59,7 @@ public class TablePanel2 extends UiPart<Region> implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        daysBeforeExpiryCol = new TableColumn<>("avc");
-        daysBeforeExpiryCol.setCellValueFactory(new PropertyValueFactory<ExpiringItem, String>("daysBeforeExpiry"));
+        numberOfDays.setCellValueFactory(new PropertyValueFactory<ExpiringItem, String>("daysBeforeExpiry"));
         numberOfItems.setCellValueFactory(new PropertyValueFactory<ExpiringItem, String>("numberOfItems"));
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -96,7 +95,7 @@ public class TablePanel2 extends UiPart<Region> implements Initializable {
          * @return The string representation of days.
          */
         private String convertDaysInIntToString(int daysBeforeExpiry) {
-            if (daysBeforeExpiry == 1) {
+            if (daysBeforeExpiry <= 1) {
                 return String.valueOf(daysBeforeExpiry) + " day";
             } else {
                 return String.valueOf(daysBeforeExpiry) + " days";
