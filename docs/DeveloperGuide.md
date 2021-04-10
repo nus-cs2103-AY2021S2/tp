@@ -86,9 +86,9 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete_student 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete_student 1` Command](images/enhao/DeleteStudentSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -133,11 +133,14 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### List Student Feature
+### Students
+Students in TutorBuddy is facilitated by the `Student` class which stores specific details of
+a `student` within one `student` object. Students are not allowed to have duplicated names.
 
-#### Implementation
+#### List Student Feature
 The list student feature displays a list of existing students in the TutorBuddy application.
 
+##### Implementation
 This feature is facilitated by `ListStudentCommand` which extends `Command`.
 The method `ListStudentCommand#execute` updates the filtered student list by calling the method
 `Model#updateFilteredStudentList` exposed in the `Model` interface.
@@ -158,11 +161,10 @@ NOTE: The lifeline of `ListStudentCommand` should end at the cross but is not sh
 The following activity diagram summarizes what happens when a user executes the `list_student` command.
 ![ListStudentActivityDiagram](images/choonwei/ListStudentActivityDiagram.png)
 
-### Add Student Feature
-
-#### Implementation
+#### Add Student Feature
 The add student feature allows user to add a student to the TutorBuddy Application.
 
+##### Implementation
 This feature makes use of `AddStudentCommandParser` and `AddStudentCommand` to create a new `Student` object. The operation can be accessed in the Model interface through `Model#addStudent()`.
 
 Given below is an example of how the add student mechanism runs:
@@ -180,12 +182,46 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![AddStudentActivityDiagram](images/enhao/AddStudentActivityDiagram.png)
 
-### List Students' Email Feature
+The following sequence diagram summarizes what happens when a user executes the `add_student` command:
+![AddStudentSequenceDiagram](images/enhao/AddStudentSequenceDiagram.png)
+
+#### Delete Student Feature
+The delete student feature allows user to delete a student from the TutorBuddy Application.
+
+##### Implementation
+The delete student feature is implemented similarly to the add student feature. However, it makes use of the
+`DeleteStudentCommandParser` and `DeleteStudentCommand` instead to delete the student from the student list. 
+The command word to use is `delete_student`. In step 4, it only validates the information and do not create a new 
+`student` object. In step 7 and 8, instead of adding the student to the `AddressBook` and
+`filteredStudents`, we remove the student instead.
+
+#### Edit Student Feature
+The edit student feature allows user to edit a student profile from the TutorBuddy Application.
+
+##### Implementation
+The edit student feature is implemented similarly to the add student feature. However, it makes use of the
+`EditStudentCommandParser` and `EditStudentCommand` instead to edit the student from the student list.
+The command word to use is `edit_student`. In step 4, it only validates the information, determine the fields to be edited, 
+but it does not create a new `student` object. In step 7 and 8, instead of adding the student to the `AddressBook` and
+`filteredStudents`, we update the student list instead.
+
+#### Find Student Feature
+The find student feature allows user to specific keywords in relation to the student's name in the application.
+TutorBuddy will then filter the student list based on given keyword.
+
+##### Implementation
+The find student feature is implemented similarly to the add student feature. However, it makes use of the
+`FindStudentCommandParser` and `FindStudentCommand` instead to edit the student from the student list.
+The command word to use is `find_student`. In step 4, it only validates the information, determine the keywords,
+but it does not create a new `student` object. In step 7 and 8, instead of adding the student to the `AddressBook` and
+`filteredStudents`, we only update the `filteredStudents` list instead based on the given keywords.
+
+#### List Students' Email Feature
 The list students' email feature allows the end-user to retrieve a list of students' emails, which are concatenated with
 a semi-colon `;`. This allows for easy copy and pasting to e-mail applications, such as Microsoft Outlook, for mass
 e-mail purposes (e.g. newsletter).
 
-#### Implementation
+##### Implementation
 This feature is mainly supported by `EmailCommand`, with retrieval of students' emails through the Model interface
 `Model#getFilteredStudentList()`.
 
@@ -205,31 +241,23 @@ The following activity diagram summarizes what happens when a user executes the 
 The following sequence diagram summarizes what happens when a user executes the `emails` command:
 ![EmailCommandSequenceDiagram.png](images/sam/EmailCommandSequenceDiagram.png)
 
-
-### Add Session Feature
-The add session feature allows users to add individual tuition sessions with specific details of each session.
-
-This section explains the implementation of the add session mechanism and highlights the design considerations
-taken into account when implementing this feature.
-<!--
-### Session Feature
-The session feature is facilitated by the `Session` class which stores specific details of
+### Session
+Sessions in TutorBuddy is facilitated by the `Session` class which stores specific details of
 a tuition session with one student. Each session is composed within a `Student`,
 and a `Student` can have multiple `Session`s.
--->
 
-#### Implementation
-The add attendance mechanism is facilitated by `AddAttendanceCommand` and it extends `Command`. The method,
-`AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
-before adding the session.
-<!--
+#### Add Session Feature
+The add session feature allows users to add individual tuition sessions with specific details of each session.
+
+This section explains the implementation of the `add_session` mechanism and highlights the design considerations taken into account when implementing this feature.
+
+##### Implementation
 The creation of a session is facilitated by `AddSessionCommand` and it extends `Command`. The method,
 `AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
 before adding the session.
--->
 
 The following sequence diagram shows the interactions between the Model and Logic components during the execution of
-an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`:
+an `AddSessionCommand` with user input `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`:
 
 ![AddSessionSequenceDiagram](images/junwei/AddSessionSequenceDiagram.png)
 
@@ -240,7 +268,7 @@ an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k
    `addSession(name, sessionToAdd)` which adds the session to the specific student.
 5. The result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
 
-#### Design Considerations
+##### Design Considerations
 Aspect 1: Type of input for AddSessionCommand
 * **Alternative 1 (current choice)**: Using student name to identify the student to add the session to.
     * Pros:
@@ -260,7 +288,7 @@ updated student index id. Student name on the other hand, stays constant through
 which he also has knowledge of. Therefore, student name can be easily entered without reference to the AddressBook, saving much more time compared
 to alternative 2.
 
-###Delete Session Feature
+#### Delete Session Feature
 The `DeleteSessionCommand` does the opposite of `AddSessionCommand` -- it calls `Model#deleteSession(studentName, sessionIndex)` instead
 which calls `AddressBook#removeSession(studentName, sessionIndex)` and
 `UniqueStudentList#deleteSession(targetStudent, sessionIndex)`.
@@ -270,91 +298,52 @@ The following sequence diagram shows how deleting a session works:
 
 It shares the same design considerations as what is mentioned in Add Session Feature.
 
+### Monthly Fees
+Monthly Fees in TutorBuddy is calculated based on the session `fee`. It makes uses of the FeeUtil static method
+to perform the calculation.
 
-### \[Proposed\] Undo/redo feature
+#### Calculating Monthly Fee Feature
+The monthly `fee` feature allows user to quickly calculate the amount of money they should have received
+from a particular student in a given month and year.
 
-#### Proposed Implementation
+This section explains the implementation of the `fee` command and highlights the design considerations taken into account when implementing this feature.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+##### Implementation
+The calculation of the fees is facilitated by the `GetMonthlyFeeCommand` and it extends `Command`. The method,
+`GetMonthlyFeeCommand#execute()`, performs a validity check on student name input to ensure that the student name exists in the application.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+The following sequence diagram shows the interactions between the Model, Logic and FeeUtil components during the execution of
+an `GetMonthlyFeeCommand` with user input `fee n/STUDENT_NAME m/MONTH y/YEAR`:
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+![GetMonthlyFeeSequenceDiagram](images/enhao/GetMonthlyFeeSequenceDiagram.png)
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+1. `Logic` uses the `AddressBookParser` class to parse the user command.
+2. A new instance of an `GetMonthlyFeeCommand` would be created by the `GetMonthlyFeeCommandParser` and returned to `AddressBookParser`.
+3. `AddressBookParser` encapsulates the `AddSessionCommand` object as a `Command` object which is executed by the `LogicManager`.
+4. The command execution calls `hasStudent(name)` to validate the inputs.
+5. The command execution the calls the `getFeePerStudent(student, startPeriod, endPeriod)` static method in `FeeUtil` and perform the calculation.  
+6. The calculation result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+#### Design Considerations
+Aspect 1: Calculation for the fees
+* **Alternative 1 (current choice)**: Abstracting out the calculation to a common file such as `FeeUtil`.
+    * Pros:
+        * Ensures the "don't repeat yourself" software development principle by allowing both this command, and the 3 monthly fee feature to make use of the same methods in `FeeUtil`.
+        * Potentially easier to be maintained by further developer.
+    * Cons:
+        * Increases coupling.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+* **Alternative 2**: Performing the calculation inside `GetMonthlyFeeCommand`.
+    * Pros:
+        * Reduces coupling.
+    * Cons:
+        * Repeated code and increased difficult for maintenance when there is a need to update the calculation algorithm.
 
-Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+Alternative 1 was chosen because the pros of implementing alternative 1 outweighs the cons derived from it. By having
+an abstracted `FeeUtil` method, we will only need to update the methods in `FeeUtil` which will have a rippling effect
+to the rest of the features that uses this method. This allows the UI to make use of the `FeeUtil` methods when calculating the 
+3 months fees as well. Although this results in increased coupling, with proper testing in place, we could mitigate the risk 
+as we ensure that changes in the `FeeUtil` method do not unintentionally changes the behaviour of the other feature.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -382,9 +371,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 
 **Value proposition**:
-* Cut down admin overhead for independent tutors
-* All in one platform to manage their students' information
-
+* All in one platform to manage their students’ contacts
+* Provide a quick overview of scheduled tuition sessions
+* Handle monthly tuition fees calculation
 
 
 ### User stories
