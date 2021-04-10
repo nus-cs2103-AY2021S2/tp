@@ -31,6 +31,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in Taskify";
+    public static final String MESSAGE_LONG_NAME = "This task already exists in Taskify";
     public static final String MESSAGE_SWITCH_TO_HOME = "Switch back to home page to add!";
 
     private final Task toAdd;
