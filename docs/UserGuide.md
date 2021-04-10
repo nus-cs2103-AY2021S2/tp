@@ -180,9 +180,13 @@ This section details the format of the commands available in TutorBuddy. We will
 * Extra parameters for commands that do not take in parameters (such as `emails`, `help`, `exit`, `clear` and `list`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* Names are case-insensitive.<br>
-  e.g. `john` is considered to have the same name as `John`
+* Names are case-sensitive.<br>
+  e.g. `john` is considered different from `John`. <br>
+  However, note that in [`find_student`](#locating-student-by-name-find_student), the search is case-insensitive,
 
+* Names cannot be duplicates.<br>
+  e.g. There cannot be 2 different students of the same name `John Tan` and `John Tan`.
+  
 * Indexes **must be positive whole numbers** 1, 2, 3, …
 
 * The `STUDENT_INDEX` refers to the index number shown in the [displayed student list](#application-overview).
@@ -257,6 +261,8 @@ Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEV
 :bulb: TutorBuddy does not restrict the <code>STUDY_LEVEL</code> due to the vast number of education levels. The user 
 is free to input any education level.<br>
 Example: Any of the inputs here will be accepted. <code>Sec 2</code>, <code>Secondary 2</code>, <code>JC 1</code>, <code>Poly Y2</code>
+:bulb: If you have different students of the same <code>NAME</code> consider changing the name. <br>
+Example: Add a <code>John Doe Bespectacled</code> and a <code>John Doe Unadorned</code>
 </div>
 
 Example:
