@@ -116,6 +116,9 @@ public class FindAppointmentCommandParserTest {
 
     @Test
     public void parse_invalidOption_returnsFindAppointmentCommand() {
+        // words before option prefix but valid option
+        assertParseFailure(parser, " fesfefewfwfo/name",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
 
         // no option after option prefix
         assertParseFailure(parser, " o/",
