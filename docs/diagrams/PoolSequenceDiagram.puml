@@ -14,10 +14,10 @@ participant ":Model" as Model MODEL_COLOR
 participant "toAdd:Pool" as Pool MODEL_COLOR
 end box
 
-[-> LogicManager : execute("pool n/Alice p/91234567 d/monday t/1930 c/2 c/3")
+[-> LogicManager : execute(command)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("pool n/Alice p/91234567 d/monday t/1930 c/2 c/3")
+LogicManager -> AddressBookParser : parseCommand(command)
 activate AddressBookParser
 
 create PoolCommandParser
