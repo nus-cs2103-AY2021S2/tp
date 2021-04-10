@@ -4,13 +4,11 @@ import static seedu.student.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.student.logic.commands.CommandTestUtil.DATE_DESC_AMY_APPOINTMENT;
 import static seedu.student.logic.commands.CommandTestUtil.DATE_DESC_BOB_APPOINTMENT;
 import static seedu.student.logic.commands.CommandTestUtil.INVALID_MATRIC_DESC;
-import static seedu.student.logic.commands.CommandTestUtil.MATRIC_DESC_AMY;
 import static seedu.student.logic.commands.CommandTestUtil.MATRIC_DESC_BOB;
 import static seedu.student.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.student.logic.commands.CommandTestUtil.START_TIME_DESC_AMY_APPOINTMENT;
 import static seedu.student.logic.commands.CommandTestUtil.START_TIME_DESC_BOB_APPOINTMENT;
 import static seedu.student.logic.commands.CommandTestUtil.VALID_DATE_BOB_APPOINTMENT;
-import static seedu.student.logic.commands.CommandTestUtil.VALID_MATRIC_AMY;
 import static seedu.student.logic.commands.CommandTestUtil.VALID_MATRIC_BOB;
 import static seedu.student.logic.commands.CommandTestUtil.VALID_START_TIME_BOB_APPOINTMENT;
 import static seedu.student.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -20,9 +18,7 @@ import static seedu.student.testutil.TypicalAppointments.BOB_APPOINTMENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.student.logic.commands.AddAppointmentCommand;
-import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.appointment.Appointment;
-import seedu.student.model.student.MatriculationNumber;
 import seedu.student.testutil.AppointmentBuilder;
 
 public class AddAppointmentCommandParserTest {

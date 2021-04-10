@@ -36,7 +36,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         MatriculationNumber matriculationNumber;
 
         try {
-            matriculationNumber = ParserUtil.parseMatric(argMultimap.getLastPreamble());
+            matriculationNumber = ParserUtil.parseMatric(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddAppointmentCommand.MESSAGE_USAGE));
