@@ -13,6 +13,12 @@ public class Messages {
             "Invalid age input! Please refer to Tip 1! \n%1$s";
     public static final String MESSAGE_BAD_AGE_RANGE_NOTATION =
             "Invalid age range notation (You used more than one '-'! Please refer to Tip 1! \n%1$s";
+    public static final String MESSAGE_BAD_AGE_FILTER_KEYWORD_NOTATION =
+            "Invalid age range notation (Age filter keywords and lower/upper bounds have to be an integer! "
+                    + " Please refer to Tip 1! \n%1$s";
+    public static final String MESSAGE_BAD_LOWER_UPPER_AGE_RANGE_NOTATION =
+            "Invalid age range notation (Your lower and upper bound for age filter have not been set correctly! "
+                    + "You have inputted in this format: age/[upper_bound]-[lower_bound]! Do refer to Tip 1! \n%1$s";
     public static final String MESSAGE_INVALID_GENDER_INPUT =
             "Invalid gender input! Please refer to Tip 2! \n%1$s";
     public static final String MESSAGE_EMPTY_ARGUMENT =

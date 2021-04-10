@@ -1,11 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_BAD_AGE_RANGE_NOTATION;
+import static seedu.address.commons.core.Messages.MESSAGE_BAD_AGE_FILTER_KEYWORD_NOTATION;
+import static seedu.address.commons.core.Messages.MESSAGE_BAD_LOWER_UPPER_AGE_RANGE_NOTATION;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_ARGUMENT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AGE_INPUT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_GENDER_INPUT;
 import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_WORD_PER_ATTRIBUTE;
+
 
 import java.util.Arrays;
 
@@ -55,6 +58,21 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                 } else if (input.value().split("-").length >= 3) {
                     throw new ParseException(
                             String.format(MESSAGE_BAD_AGE_RANGE_NOTATION, FilterCommand.MESSAGE_USAGE));
+                } else if (input.value().split("-").length == 2) {
+                    String[] ageBoundsArgs = input.value().split("-");
+                    try {
+                        int lowerBound = Integer.parseInt(ageBoundsArgs[0]);
+                        int upperBound = Integer.parseInt(ageBoundsArgs[1]);
+                        if (lowerBound > upperBound) {
+                            throw new ParseException(
+                                    String.format(MESSAGE_BAD_LOWER_UPPER_AGE_RANGE_NOTATION,
+                                            FilterCommand.MESSAGE_USAGE));
+                        }
+                    } catch (NumberFormatException e) {
+                        throw new ParseException(
+                                String.format(MESSAGE_BAD_AGE_FILTER_KEYWORD_NOTATION, FilterCommand.MESSAGE_USAGE));
+                    }
+
                 }
             } else if (input.getAttributeType().equals("gender")) {
                 if (!input.value().equalsIgnoreCase("m")
