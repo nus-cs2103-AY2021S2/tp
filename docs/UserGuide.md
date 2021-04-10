@@ -137,6 +137,11 @@ Only one command can be executed at a time and any words after a valid command i
 
          The above command would list all the customers in the left column of the GUI in the sequence that they were added, with the most recent being at the top.
 
+
+
+
+ 
+  
         </details>
 
         <a name="customer-add"></a>
@@ -360,7 +365,7 @@ Only one command can be executed at a time and any words after a valid command i
     - <details open>
         <summary class="dropdown-3">Add an order - <code>add</code></summary>
 
-        Creates an order and add it to the order list.
+        Creates an order and adds it to the order list.
         Format:
         ```
         order add n/[CUSTOMER_ID] dt/[DELIVERY_DATETIME, DD-MM-YYYY HH:MM] d/[DISH_ID] q/[QUANTITY]...
@@ -385,7 +390,7 @@ Only one command can be executed at a time and any words after a valid command i
         ```
         order delete [INDEX]
         ```
-
+        The above command deletes the order based with that index.
         </details>
 
         <a name="order-edit"></a>
@@ -424,7 +429,6 @@ Only one command can be executed at a time and any words after a valid command i
         ```
         order complete [INDEX]
         ```
-
         The above command would mark the order of that index as complete. The order will no longer be in the order list. Instead, it will be in order history.
         </details>
 
