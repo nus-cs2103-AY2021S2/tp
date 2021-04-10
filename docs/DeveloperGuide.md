@@ -571,7 +571,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 
 
-**Use case: Delete a contact**
+**Use case: UC03 -  Delete a contact**
 
 **MSS**
 
