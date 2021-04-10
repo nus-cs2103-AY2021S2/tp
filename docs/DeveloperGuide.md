@@ -480,6 +480,10 @@ the UI is updated to display the retrieved message.
 
 </div>
 
+Now, when user executes a command in the main mode, `FlashBackParser` will check if the `commandWord` is an alias. If `commandWord` is an alias, The `commandWord` will be parsed into the actual command before the specified CommandParser is created.
+The following activity diagram summarizes what happens when a user tries to execute a command using the alias.<br><br>
+![AliasActivityDiagram](images/AliasActivityDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
