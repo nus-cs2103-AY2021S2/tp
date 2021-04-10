@@ -43,6 +43,11 @@ public class TypicalTeachingAssistant {
     public static final Entry CONSULTATION_MATH = new EntryBuilder().withEntryName("Consultation")
             .withStartDate("2022-02-05 17:00").withEndDate("2022-02-05 18:00").withTags("Math", "Alice").build();
 
+    public static final Entry NON_OVERDUE_ENTRY = new EntryBuilder().withEntryName("This entry will not be overdue")
+            .withStartDate("2030-02-04 09:00").withEndDate("2030-02-04 09:30").withTags("Important", "Stuff").build();
+
+    public static final Entry OVERDUE_ENTRY = new EntryBuilder().withEntryName("This entry is overdue")
+            .withStartDate("2010-02-04 09:00").withEndDate("2010-02-04 09:30").withTags("Important", "Stuff").build();
     //===Person===
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")

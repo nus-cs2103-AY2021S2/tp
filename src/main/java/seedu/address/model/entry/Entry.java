@@ -60,6 +60,25 @@ public class Entry {
     }
 
     /**
+     * Returns true if both entries have the same fields
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Entry)) {
+            return false;
+        }
+
+        Entry otherEntry = (Entry) other;
+        return otherEntry.getEntryName().equals(getEntryName())
+                && otherEntry.getOriginalStartDate().equals(getOriginalStartDate())
+                && otherEntry.getOriginalEndDate().equals(getOriginalEndDate())
+                && otherEntry.getTags().equals(getTags());
+    }
+    /**
      * Returns true if both entries are the same objects.
      */
     public boolean isSameEntry(Entry otherEntry) {
@@ -114,26 +133,6 @@ public class Entry {
         return getEndDate().format(EntryDate.DEFAULT_FORMATTER);
     }
 
-    /**
-     * Returns true if both entries have the same identity and data fields.
-     * This defines a stronger notion of equality between two entries.
-     */
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Entry)) {
-            return false;
-        }
-
-        Entry otherEntry = (Entry) other;
-        return otherEntry.getEntryName().equals(getEntryName())
-                && otherEntry.getStartDate().equals(getStartDate())
-                && otherEntry.getEndDate().equals(getEndDate())
-                && otherEntry.getTags().equals(getTags());
-    }
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
