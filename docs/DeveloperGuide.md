@@ -419,7 +419,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *(For all use cases, the **System** is the TutorBuddy Application, **Actor** is the user, and the **Precondition** is that the application has already been opened, unless otherwise specified)*
 
-**Use case: UC0X - Create a student profile**
+**Use case: UC01 - Create a student profile**
 
 MSS:
 
@@ -436,7 +436,7 @@ Extensions:
 
     Use case ends.
 
-**Use case: UC0X - Find a student’s profile**
+**Use case: UC02 - Find a student’s profile**
 
 MSS:
 
@@ -452,7 +452,7 @@ Extensions:
 
   Use case ends.
 
-**Use case: UC0X - Delete a student profile**
+**Use case: UC03 - Delete a student profile**
 
 MSS:
 
@@ -469,7 +469,7 @@ Extensions:
 
   Use case ends.
 
-**Use case: UC0X - Edit student details**
+**Use case: UC04 - Edit student details**
 
 MSS:
 
@@ -487,7 +487,7 @@ Extensions:
     
   Use case ends.
 
-**Use case: UC0X - Create a session**
+**Use case: UC05 - Create a session**
 
 MSS:
 
@@ -510,7 +510,7 @@ MSS:
 
   Use case ends.
 
-**Use case: UC0X - Create a recurring session**
+**Use case: UC06 - Create a recurring session**
 
 MSS:
 
@@ -533,7 +533,7 @@ MSS:
 
   Use case ends.
 
-**Use case: UC0X - Delete a session or the entire recurring session**
+**Use case: UC07 - Delete a session or the entire recurring session**
 
 MSS:
 
@@ -551,7 +551,7 @@ MSS:
 
   Use case ends.
 
-**Use case: UC0X - Delete a single session from a recurring session**
+**Use case: UC08 - Delete a single session from a recurring session**
 
 MSS:
 
@@ -569,7 +569,7 @@ MSS:
 
   Use case ends.
 
-**Use case: UC0X - List all students and sessions**
+**Use case: UC09 - List all students and sessions**
 
 MSS:
 
@@ -588,7 +588,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC0X - Calculate fee for a student of a particular month and year**
+**Use case: UC10 - Calculate fee for a student of a particular month and year**
 
 MSS:
 
@@ -605,7 +605,7 @@ Extensions:
 
   Use case ends.
 
-**UC0X - View 3 months monthly fee**
+**Use case: UC11 - View 3 months monthly fee**
 
 MSS:
 
@@ -614,7 +614,7 @@ MSS:
 
    Use case ends.
 
-**UC0X - Reminders for upcoming sessions**
+**Use case: UC12 - Reminders for upcoming sessions**
 
 MSS:
 
@@ -623,7 +623,7 @@ MSS:
 
    Use case ends.
 
-**UC0X - Calendar View**
+**Use case: UC13 - Calendar View**
 
 MSS:
 
@@ -640,7 +640,7 @@ Extensions:
 
   Use case ends.
 
-**Use case: UC0X - Show help**
+**Use case: UC14 - Show help**
 
 MSS:
 
@@ -649,7 +649,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC0X - Sample data for new users**
+**Use case: UC15 - Sample data for new users**
 
 MSS:
 
@@ -659,7 +659,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC0X - Clear data**
+**Use case: UC16 - Clear data**
 
 MSS:
 
@@ -668,7 +668,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC0X - Exit application**
+**Use case: UC17 - Exit application**
 
 MSS:
 
