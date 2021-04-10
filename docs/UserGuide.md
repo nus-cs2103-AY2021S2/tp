@@ -84,40 +84,22 @@ commands may receive.
 </div>
 
 #### **2.2.3 Types of User Input**
-In this section, you will learn about the commonly used User Inputs as well as their accompanying prefixes. These will be helpful when you are trying to specify the fields for certain commands.
+In this section, you will learn about the commonly used User Inputs as well as their accompanying prefixes. 
+These will be helpful when you are trying to specify the fields for certain commands.
 <br><br>
-##### `NAME`
-The name of the customer who has placed the order.<br>
-Prefix: `n/`
-* It can contain alphabetical characters, numbers and spaces.<br>
-  E.g. `Alex Yeoh`, `Johnathan9`, `Charlotte the 5th`
-* It cannot be longer than 70 characters.
-* It cannot be empty.
 
-##### `PHONE_NUMBER`
-The phone number of the customer who has placed the order.<br>
-Prefix: `p/`
-* It can only contain numbers.
-* It should be at least 3 digits long.
-* It cannot be longer than 20 digits.
-
-##### `EMAIL`
-The email of the customer who has placed the order.<br>
-Prefix: `e/`
-* Emails should be of the format `local-part@domain`.
-* `local-part` can contain alphabetical or numerical characters and these special characters: ``!#$%&'*+/=?`{|}~^.-``.<br>
-  E.g. `alice#3in?wonderland!`
-* `domain` should
-  * be at least 2 characters long
-  * start and end with alphabetical or numerical characters
-  * contain alphabetical or numerical characters, a period `.` or a hyphen `-` for the characters in between, if any.<br>
-  E.g. `sample-domain.com`
 
 ##### `ADDRESS`
 The address of the customer who has placed the order.<br>
 Prefix: `a/`
-* It can contain any characters.
+* It can contain any type of characters.
 * It cannot be empty.
+
+##### 'DAYS'
+The number of days from the current date.
+Prefix: `none`
+* It can only contain integers greater than or equal to 0.
+  E.g. `0`,`365`,`99`
 
 ##### `DELIVERY_DATE`
 The delivery date for the order.<br>
@@ -136,12 +118,38 @@ Prefix: `d/`
 
 **:exclamation: For advanced users:** You will be able to enter a past delivery date into the save file `cakecollate.json`. As such, you are recommended to add/edit a delivery date through the application itself.
 
+##### `INDEX`
+Indexes are used to specify specific orders in CakeCollate. 
+Prefix: `none`
+* It can only contain positive integers greater than 1.
+  E.g. `1`,`20`,`35`
+  
+##### `EMAIL`
+The email of the customer who has placed the order.<br>
+Prefix: `e/`
+* Emails should be of the format `local-part@domain`.
+* `local-part` can contain alphabetical or numerical characters and these special characters: ``!#$%&'*+/=?`{|}~^.-``.<br>
+  E.g. `alice#3in?wonderland!`
+* `domain` should
+  * be at least 2 characters long
+  * start and end with alphabetical or numerical characters
+  * contain alphabetical or numerical characters, a period `.` or a hyphen `-` for the characters in between, if any.<br>
+  E.g. `sample-domain.com`
+  
+##### `NAME`
+The name of the customer who has placed the order.<br>
+Prefix: `n/`
+* It can contain alphabetical characters, numbers and spaces.<br>
+  E.g. `Alex Yeoh`, `Johnathan9`, `Charlotte the 5th`
+* It cannot be longer than 70 characters.
+* It cannot be empty.
+
 ##### `ORDER_DESCRIPTION`
-The order description for the order.<br>
+The order description of the order.<br>
 Prefix: `o/`
 * Each order description cannot be longer than 70 characters.
 * It cannot be empty.<br>
-  E.g. `Durian Cake`
+  E.g. `Durian Cake`, `Blackforest Cake`
 
 ##### `ORDER_ITEM_INDEXES`
 The order item index of the order item table for the order.<br>
@@ -149,17 +157,16 @@ Prefix: `oi/`
 * This refers to indexes of the order item table in the [order item box](#221-sections-of-the-ui).
 * This can be used with or as a replacement for `ORDER_DESCRIPTION`, given the order item in the table matches the order description you want to add/edit.
 
-##### `TAG`
-The tags you can add to an order.<br>
-Prefix: `t/`
-* It can contain alphabetical or numerical characters.
-* Each tag cannot be longer than 30 characters.
-* There is no specific usage for `TAG`.
-  * Use it as a tag for the customer. E.g. `friend`, `fussy`, `important`
-  * Use it as a tag for the order. E.g. `urgent`, `complicated`
+##### `PHONE_NUMBER`
+The phone number of the customer who has placed the order.<br>
+Prefix: `p/`
+* It can only contain numbers.<br>
+  E.g. `90126969`
+* It should be at least 3 digits long.
+* It cannot be longer than 20 digits.
 
 ##### `REQUEST`
-The request or notes you can add to an order.<br>
+The special request or notes you can add to an order.<br>
 Prefix: `r/`
 * It can contain any type of characters.
 * It can be empty.
@@ -167,6 +174,15 @@ Prefix: `r/`
 
 :information_source: `Request` and its prefix `r/` will only be processed in the [Request Command](#adding-a-special-request-to-an-order-request) and [Find Command](#locating-orders-find).
 
+##### `TAG`
+The tags you can add to an order. A small piece of information you can add to an order.<br>
+Prefix: `t/`
+* It can contain alphabetical or numerical characters but not spaces.
+* Each tag cannot be longer than 30 characters.
+* There is no specific usage for `TAG`.
+  * Use it as a tag for the customer. E.g. `friend`, `fussy`, `important`
+  * Use it as a tag for the order. E.g. `urgent`, `complicated`
+  
 ## **3. Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -440,7 +456,7 @@ Examples:
 
 Format: `help`
 
-##### Clearing all existing orders and order items: `clear`
+#### Clearing all existing orders and order items: `clear`
 
 Deletes all existing orders and order items in the CakeCollate database.
 
