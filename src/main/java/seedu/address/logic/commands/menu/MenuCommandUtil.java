@@ -38,13 +38,13 @@ public class MenuCommandUtil {
      * @throws CommandException If any input IDs are invalid.
      */
     public static List<Pair<Ingredient, Integer>> lookupIngredientIds(
-            List<Pair<Integer, Integer>> ingredientIdsList,
+            List<Pair<Index, Integer>> ingredientIdsList,
             Model model) throws CommandException {
 
         List<Pair<Ingredient, Integer>> ingredientQuantityList = new ArrayList<>();
 
-        for (Pair<Integer, Integer> ingredientPair : ingredientIdsList) {
-            int ingredientId = Index.fromOneBased(ingredientPair.getKey()).getZeroBased();
+        for (Pair<Index, Integer> ingredientPair : ingredientIdsList) {
+            int ingredientId = ingredientPair.getKey().getZeroBased();
             Integer ingredientQuantity = ingredientPair.getValue();
 
             if (ingredientId >= model.getFilteredIngredientList().size()) {

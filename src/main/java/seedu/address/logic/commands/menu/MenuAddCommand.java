@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import java.util.List;
 
 import seedu.address.commons.core.Pair;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -43,13 +44,13 @@ public class MenuAddCommand extends Command {
 
     private final String name;
     private final double price;
-    private final List<Pair<Integer, Integer>> ingredientIdsQuantityList;
+    private final List<Pair<Index, Integer>> ingredientIdsQuantityList;
 
     /**
      * Creates an MenuAddCommand to add the specified {@code Dish}
      */
     public MenuAddCommand(String name, double price,
-                          List<Pair<Integer, Integer>> ingredientIdsQuantityList) {
+                          List<Pair<Index, Integer>> ingredientIdsQuantityList) {
         this.name = name;
         this.price = price;
         this.ingredientIdsQuantityList = ingredientIdsQuantityList;
