@@ -191,6 +191,11 @@ This section details the format of the commands available in TutorBuddy. We will
 
 * Date must be input in the format, `yyyy-mm-dd`.
   e.g. `2021-01-01` is allowed, but not `01-01-2021`.
+  
+* Year must be between 1970 and 2037, both inclusive, in consideration of the
+  [2038 problem](https://en.wikipedia.org/wiki/Year_2038_problem)
+  e.g. `1969` and `2038` is not allowed.
+
 
 
 </div>
