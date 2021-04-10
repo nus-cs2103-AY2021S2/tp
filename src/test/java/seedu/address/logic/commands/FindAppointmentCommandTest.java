@@ -1,16 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.AddressBook;
-import seedu.address.model.AppointmentBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.appointment.predicate.ApptNameContainsKeywordsPredicate;
-
-import java.util.Arrays;
-import java.util.Collections;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,10 +7,22 @@ import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENTS_LISTED_OV
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.BALLET_RECITAL;
 import static seedu.address.testutil.TypicalAppointments.PLAY_DATE;
-import static seedu.address.testutil.TypicalAppointments.PTM;
 import static seedu.address.testutil.TypicalAppointments.PSG_MEETING;
-import static seedu.address.testutil.TypicalContacts.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAppointments.PTM;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.appointment.predicate.ApptNameContainsKeywordsPredicate;
+
+
 
 
 /**
