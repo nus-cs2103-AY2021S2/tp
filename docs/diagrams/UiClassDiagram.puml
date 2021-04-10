@@ -11,8 +11,8 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class OwnerListPanel
-Class OwnerCard
+Class EntityListPanel
+Class EntityCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -33,25 +33,25 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> OwnerListPanel
+MainWindow *-down-> EntityListPanel
 MainWindow *-down-> StatusBarFooter
 
-OwnerListPanel -down-> OwnerCard
+EntityListPanel -down-> EntityCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-OwnerListPanel --|> UiPart
-OwnerCard --|> UiPart
+EntityListPanel --|> UiPart
+EntityCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
-OwnerCard ..> Model
+EntityCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-OwnerListPanel -[hidden]left- HelpWindow
+EntityListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter

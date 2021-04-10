@@ -82,24 +82,31 @@ public class TypicalEntities {
 
     // Programs
     // With no dogs enrolled
+    // 15
     public static final Program ACTIVE_LISTENING = new ProgramBuilder().withName("Active Listening")
             .withSessions("12-12-2021 18:00").withTags("Puppies").build();
+    // 16
     public static final Program BEHAVING = new ProgramBuilder().withName("Behaving")
             .withSessions("11-11-2021 20:00").withTags("Puppies").build();
+    // 17
     public static final Program COOLDOWN_SESSION = new ProgramBuilder().withName("Cooldown Session")
             .withSessions("10-10-2021 10:00").withTags("All").build();
 
     // With 1 dog enrolled
+    // 18
     public static final Program DANCING = new ProgramBuilder().withName("Dancing")
             .withSessions("09-12-2021 19:00").withDogs(2).withTags("Puppies").build();
+    // 19
     public static final Program ELEGANCE_TRAINING = new ProgramBuilder().withName("Elegance Training")
             .withSessions("08-11-2021 10:00").withDogs(4).withTags("All").build();
 
     // With multiple dogs enrolled
+    // 20
     public static final Program FOOD_TASTING = new ProgramBuilder().withName("Food Tasting")
-            .withSessions("09-08-2021 09:00").withDogs(6, 8).withTags("Puppies").build();
+            .withSessions("09-08-2021 09:00").withDogs(4, 6, 8).withTags("Puppies").build();
+    // 21
     public static final Program GENERAL_KNOWLEDGE = new ProgramBuilder().withName("General Knowledge")
-            .withSessions("27-08-2021 09:00").withDogs(10, 12, 14).withTags("Puppies").build();
+            .withSessions("27-08-2021 09:00").withDogs(8, 10, 12, 14).withTags("Puppies").build();
 
     // Manually added owners
     public static final Owner HOON = new OwnerBuilder().withName("Hoon Meier").withPhone("8482424")

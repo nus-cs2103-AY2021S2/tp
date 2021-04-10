@@ -167,13 +167,13 @@
     "name" : "Food Tasting",
     "sessions" : [ "09-08-2021 09:00" ],
     "tagged" : [ "Puppies" ],
-    "enrolledDogs" : [ 6, 8 ]
+    "enrolledDogs" : [ 4, 6, 8 ]
   }, {
     "type" : "program",
     "id" : 21,
     "name" : "General Knowledge",
     "sessions" : [ "27-08-2021 09:00" ],
     "tagged" : [ "Puppies" ],
-    "enrolledDogs" : [ 10, 12, 14 ]
+    "enrolledDogs" : [ 8, 10, 12, 14 ]
   }]
 }
