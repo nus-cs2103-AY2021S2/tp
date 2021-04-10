@@ -64,8 +64,8 @@ public class CommandTestUtil {
     public static final String VALID_BREED_BELL = "Greyhound";
     public static final int VALID_DOGID_TWO = 2;
     public static final int VALID_DOGID_FOUR = 4;
-    public static final int VALID_OWNERID_FIFTEEN = 15;
-    public static final int VALID_OWNERID_SEVENTEEN = 17;
+    public static final int VALID_OWNERID_ASHER = 15;
+    public static final int VALID_OWNERID_BELL = 17;
     public static final String VALID_TAG_FRIENDLY = "friendly";
     public static final String VALID_TAG_QUIET = "quiet";
     public static final String VALID_ENTITY_ID = "1";
@@ -80,8 +80,8 @@ public class CommandTestUtil {
     public static final String DATEOFBIRTH_DESC_BELL = " " + PREFIX_DOB + VALID_DATEOFBIRTH_BELL;
     public static final String DOGID_DESC_TWO = " " + PREFIX_DOGID + VALID_DOGID_TWO;
     public static final String DOGID_DESC_FOUR = " " + PREFIX_DOGID + VALID_DOGID_FOUR;
-    public static final String OWNERID_DESC_FIFTEEN = " " + PREFIX_OWNERID + VALID_OWNERID_FIFTEEN;
-    public static final String OWNERID_DESC_SEVENTEEN = " " + PREFIX_OWNERID + VALID_OWNERID_SEVENTEEN;
+    public static final String OWNERID_DESC_ASHER = " " + PREFIX_OWNERID + VALID_OWNERID_ASHER;
+    public static final String OWNERID_DESC_BELL = " " + PREFIX_OWNERID + VALID_OWNERID_BELL;
     public static final String TAG_DESC_FRIENDLY = " " + PREFIX_TAG + VALID_TAG_FRIENDLY;
     public static final String TAG_DESC_QUIET = " " + PREFIX_TAG + VALID_TAG_QUIET;
 

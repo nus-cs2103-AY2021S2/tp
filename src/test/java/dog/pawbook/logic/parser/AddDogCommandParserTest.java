@@ -12,8 +12,8 @@ import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_SEX_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_BELL;
-import static dog.pawbook.logic.commands.CommandTestUtil.OWNERID_DESC_FIFTEEN;
-import static dog.pawbook.logic.commands.CommandTestUtil.OWNERID_DESC_SEVENTEEN;
+import static dog.pawbook.logic.commands.CommandTestUtil.OWNERID_DESC_ASHER;
+import static dog.pawbook.logic.commands.CommandTestUtil.OWNERID_DESC_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static dog.pawbook.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static dog.pawbook.logic.commands.CommandTestUtil.SEX_DESC_ASHER;
@@ -23,7 +23,7 @@ import static dog.pawbook.logic.commands.CommandTestUtil.TAG_DESC_QUIET;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_BREED_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_DATEOFBIRTH_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_BELL;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_OWNERID_SEVENTEEN;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_OWNERID_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SEX_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_FRIENDLY;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
@@ -52,29 +52,29 @@ public class AddDogCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BELL + SEX_DESC_BELL + BREED_DESC_BELL
-                + DATEOFBIRTH_DESC_BELL + OWNERID_DESC_SEVENTEEN + TAG_DESC_FRIENDLY, new AddDogCommand(expectedDog));
+                + DATEOFBIRTH_DESC_BELL + OWNERID_DESC_BELL + TAG_DESC_FRIENDLY, new AddDogCommand(expectedDog));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_ASHER + NAME_DESC_BELL + SEX_DESC_BELL + BREED_DESC_BELL
-                + DATEOFBIRTH_DESC_BELL + OWNERID_DESC_SEVENTEEN + TAG_DESC_FRIENDLY, new AddDogCommand(expectedDog));
+                + DATEOFBIRTH_DESC_BELL + OWNERID_DESC_BELL + TAG_DESC_FRIENDLY, new AddDogCommand(expectedDog));
 
         // multiple sexes - last sex accepted
         assertParseSuccess(parser, NAME_DESC_BELL + SEX_DESC_ASHER + SEX_DESC_BELL + BREED_DESC_BELL
-                + DATEOFBIRTH_DESC_BELL + OWNERID_DESC_SEVENTEEN + TAG_DESC_FRIENDLY, new AddDogCommand(expectedDog));
+                + DATEOFBIRTH_DESC_BELL + OWNERID_DESC_BELL + TAG_DESC_FRIENDLY, new AddDogCommand(expectedDog));
 
         // multiple date of births - last date of birth accepted
         assertParseSuccess(parser, NAME_DESC_BELL + SEX_DESC_BELL + BREED_DESC_ASHER + BREED_DESC_BELL
-                + DATEOFBIRTH_DESC_BELL + OWNERID_DESC_SEVENTEEN + TAG_DESC_FRIENDLY, new AddDogCommand(expectedDog));
+                + DATEOFBIRTH_DESC_BELL + OWNERID_DESC_BELL + TAG_DESC_FRIENDLY, new AddDogCommand(expectedDog));
 
         // multiple breeds - last breed accepted
         assertParseSuccess(parser, NAME_DESC_BELL + SEX_DESC_BELL + BREED_DESC_BELL + DATEOFBIRTH_DESC_ASHER
-                + DATEOFBIRTH_DESC_BELL + OWNERID_DESC_SEVENTEEN + TAG_DESC_FRIENDLY, new AddDogCommand(expectedDog));
+                + DATEOFBIRTH_DESC_BELL + OWNERID_DESC_BELL + TAG_DESC_FRIENDLY, new AddDogCommand(expectedDog));
 
         // multiple tags - all accepted
         Dog expectedDogMultipleTags = new DogBuilder(BELL).withTags(VALID_TAG_FRIENDLY, VALID_TAG_QUIET)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BELL + SEX_DESC_BELL + BREED_DESC_BELL + DATEOFBIRTH_DESC_BELL
-                + OWNERID_DESC_SEVENTEEN + TAG_DESC_QUIET + TAG_DESC_FRIENDLY,
+                + OWNERID_DESC_BELL + TAG_DESC_QUIET + TAG_DESC_FRIENDLY,
                 new AddDogCommand(expectedDogMultipleTags));
     }
 
@@ -83,7 +83,7 @@ public class AddDogCommandParserTest {
         // zero tags
         Dog expectedDog = new DogBuilder(ASHER).withTags().build();
         assertParseSuccess(parser, NAME_DESC_ASHER + SEX_DESC_ASHER + BREED_DESC_ASHER
-                        + DATEOFBIRTH_DESC_ASHER + OWNERID_DESC_FIFTEEN, new AddDogCommand(expectedDog));
+                        + DATEOFBIRTH_DESC_ASHER + OWNERID_DESC_ASHER, new AddDogCommand(expectedDog));
     }
 
     @Test
@@ -92,58 +92,58 @@ public class AddDogCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BELL + SEX_DESC_BELL + BREED_DESC_BELL + DATEOFBIRTH_DESC_BELL
-                        + OWNERID_DESC_SEVENTEEN, expectedMessage);
+                        + OWNERID_DESC_BELL, expectedMessage);
 
         // missing sex prefix
         assertParseFailure(parser, NAME_DESC_BELL + VALID_SEX_BELL + BREED_DESC_BELL + DATEOFBIRTH_DESC_BELL
-                        + OWNERID_DESC_SEVENTEEN, expectedMessage);
+                        + OWNERID_DESC_BELL, expectedMessage);
 
         // missing breed prefix
         assertParseFailure(parser, NAME_DESC_BELL + SEX_DESC_BELL + VALID_BREED_BELL + DATEOFBIRTH_DESC_BELL
-                        + OWNERID_DESC_SEVENTEEN, expectedMessage);
+                        + OWNERID_DESC_BELL, expectedMessage);
 
         // missing date of birth prefix
         assertParseFailure(parser, NAME_DESC_BELL + SEX_DESC_BELL + BREED_DESC_BELL + VALID_DATEOFBIRTH_BELL
-                        + OWNERID_DESC_SEVENTEEN, expectedMessage);
+                        + OWNERID_DESC_BELL, expectedMessage);
 
         // missing ownerID prefix
         assertParseFailure(parser, NAME_DESC_BELL + SEX_DESC_BELL + BREED_DESC_BELL + DATEOFBIRTH_DESC_BELL
-                + VALID_OWNERID_SEVENTEEN, expectedMessage);
+                + VALID_OWNERID_BELL, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BELL + VALID_SEX_BELL + VALID_BREED_BELL + VALID_DATEOFBIRTH_BELL
-                        + VALID_OWNERID_SEVENTEEN, expectedMessage);
+                        + VALID_OWNERID_BELL, expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + SEX_DESC_BELL + BREED_DESC_BELL + DATEOFBIRTH_DESC_BELL
-                + OWNERID_DESC_SEVENTEEN + TAG_DESC_QUIET + TAG_DESC_FRIENDLY, Name.MESSAGE_CONSTRAINTS);
+                + OWNERID_DESC_BELL + TAG_DESC_QUIET + TAG_DESC_FRIENDLY, Name.MESSAGE_CONSTRAINTS);
 
         // invalid sex
         assertParseFailure(parser, NAME_DESC_BELL + INVALID_SEX_DESC + BREED_DESC_BELL + DATEOFBIRTH_DESC_BELL
-                + OWNERID_DESC_SEVENTEEN + TAG_DESC_QUIET + TAG_DESC_FRIENDLY, Sex.MESSAGE_CONSTRAINTS);
+                + OWNERID_DESC_BELL + TAG_DESC_QUIET + TAG_DESC_FRIENDLY, Sex.MESSAGE_CONSTRAINTS);
 
         // invalid breed
         assertParseFailure(parser, NAME_DESC_BELL + SEX_DESC_BELL + INVALID_BREED_DESC + DATEOFBIRTH_DESC_BELL
-                + OWNERID_DESC_SEVENTEEN + TAG_DESC_QUIET + TAG_DESC_FRIENDLY, Breed.MESSAGE_CONSTRAINTS);
+                + OWNERID_DESC_BELL + TAG_DESC_QUIET + TAG_DESC_FRIENDLY, Breed.MESSAGE_CONSTRAINTS);
 
         // invalid date of birth
         assertParseFailure(parser, NAME_DESC_BELL + SEX_DESC_BELL + BREED_DESC_BELL + INVALID_DATEOFBIRTH_DESC
-                + OWNERID_DESC_SEVENTEEN + TAG_DESC_QUIET + TAG_DESC_FRIENDLY, DateOfBirth.MESSAGE_CONSTRAINTS);
+                + OWNERID_DESC_BELL + TAG_DESC_QUIET + TAG_DESC_FRIENDLY, DateOfBirth.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BELL + SEX_DESC_BELL + BREED_DESC_BELL + DATEOFBIRTH_DESC_BELL
-                + OWNERID_DESC_SEVENTEEN + INVALID_TAG_DESC + VALID_TAG_FRIENDLY, Tag.MESSAGE_CONSTRAINTS);
+                + OWNERID_DESC_BELL + INVALID_TAG_DESC + VALID_TAG_FRIENDLY, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + SEX_DESC_BELL + BREED_DESC_BELL
-                + INVALID_DATEOFBIRTH_DESC + OWNERID_DESC_SEVENTEEN, Name.MESSAGE_CONSTRAINTS);
+                + INVALID_DATEOFBIRTH_DESC + OWNERID_DESC_BELL, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BELL + SEX_DESC_BELL + BREED_DESC_BELL
-                        + DATEOFBIRTH_DESC_BELL + OWNERID_DESC_SEVENTEEN + TAG_DESC_QUIET + TAG_DESC_FRIENDLY,
+                        + DATEOFBIRTH_DESC_BELL + OWNERID_DESC_BELL + TAG_DESC_QUIET + TAG_DESC_FRIENDLY,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDogCommand.MESSAGE_USAGE));
     }
 }
