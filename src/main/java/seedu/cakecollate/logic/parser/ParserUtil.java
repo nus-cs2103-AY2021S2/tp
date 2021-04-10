@@ -12,6 +12,7 @@ import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.commons.util.StringUtil;
 import seedu.cakecollate.logic.parser.exceptions.IndexOutOfBoundsException;
+import seedu.cakecollate.logic.parser.exceptions.NegativeIndexException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.order.Address;
 import seedu.cakecollate.model.order.DeliveryDate;
@@ -28,7 +29,7 @@ import seedu.cakecollate.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_NEGATIVE_INDEX = "Index can't be negative.";
     public static final int PHONE_LENGTH = 20;
     public static final int TAG_LENGTH = 30;
     public static final int INTEGER_LENGTH = 10;
@@ -50,7 +51,7 @@ public class ParserUtil {
             throw new IndexOutOfBoundsException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new NegativeIndexException(MESSAGE_NEGATIVE_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
