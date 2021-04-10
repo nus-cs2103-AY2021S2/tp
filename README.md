@@ -7,7 +7,7 @@ Example usages:
 - To allocate students and tutors to a specific class
 - Manage students, classes and tutors all in one platform
 
-The project simulates an ongoing software project for a desktop application (called EZManage) used for
+The project simulates an ongoing software project for a desktop application (called EzManage) used for
 managing students, tutors and classes.
 - It is written in OOP fashion. It provides a reasonably well-written code base bigger (around 6 KLoC) than what students usually write in beginner-level SE modules,
   without being overwhelmingly big.
@@ -16,7 +16,7 @@ managing students, tutors and classes.
 It is named as EzManage as it allows tuition centres managers to easily manage
 students, tutors and classes all in one single web application.
 
-For the detailed documentation of this project, see the [EZManage product website](https://ay2021s2-cs2103-w16-4.github.io/tp/).
+For the detailed documentation of this project, see the [EzManage product website](https://ay2021s2-cs2103-w16-4.github.io/tp/).
 This project is a part of the se-education.org initiative. If you would like to contribute code to this project, see se-education.org for more info.
 
 ## Feature List
@@ -39,6 +39,8 @@ This project is a part of the se-education.org initiative. If you would like to 
 * Clear Contacts
 * Assign Student(s) to Session
 * Assign tutor to Session
+* Unassign Student(s) from Session
+* Unassign tutor from Session
 * Help
 * Exit
 

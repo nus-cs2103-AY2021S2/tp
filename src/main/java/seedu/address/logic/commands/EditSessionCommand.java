@@ -26,7 +26,7 @@ import seedu.address.model.tag.Tag;
 
 public class EditSessionCommand extends Command {
     /**
-    * Edits the details of an existing session in EZManage.
+    * Edits the details of an existing session in EzManage.
     */
     public static final String COMMAND_WORD = "edit_session";
 
