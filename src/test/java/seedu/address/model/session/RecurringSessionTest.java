@@ -17,9 +17,9 @@ import static seedu.address.testutil.SessionBuilder.DEFAULT_TIME;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SESSION;
 import static seedu.address.testutil.TypicalStudents.CARL;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
