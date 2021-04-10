@@ -101,8 +101,7 @@ Shows an in-app user guide to various commands.<br>
 Format: `help`
 <br><br>
 
-<a name="adding-a-garment-to-the-wardrobe---add-"></a>
-### Adding a Garment to the Wardrobe: `add` 
+### <a name="adding-a-garment-to-the-wardrobe---add-"></a> Adding a Garment to the Wardrobe: `add` 
 Adds a garment with a name, size, colour, dress code and type into the wardrobe, along with optional descriptions.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/AddGarment.png" alt="alt text" width="790">
