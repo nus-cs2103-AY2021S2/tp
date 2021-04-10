@@ -179,7 +179,7 @@ Example output for adding semester:
 Example output for deleting semester:
 ![delete_semester](images/DeleteSemester.png)
 
-### Set Semester as in-progress: `current semester`
+### Set Semester as in-progress: `current`
 Format: `current s/SEM_NUMBER`
 
 Marks the supplied semester as the current semester of the master plan.
