@@ -952,6 +952,106 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<br>
+
+**Use case 16: Launch policies window**
+
+**MSS**
+
+1.  User requests to display policies associated with a selected client.
+
+2.  Window showing all policies associated with this client is launched.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The selected client has no policies.
+
+    * 1a1. Window launched shows that selected client has no associated policies.
+
+      Use case ends.
+
+* 1a. The given index is invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
+<br>
+
+**Use case 17: Retrieve URL for policy**
+
+**MSS**
+
+1.  User requests to display policies associated with a selected client.
+
+2.  Window showing all policies associated with this client is launched.
+
+3.  User retrieves URL from the launched window.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The selected client has no policies.
+
+    * 1a1. Window launched shows that selected client has no associated policies.
+
+      Use case ends.
+
+* 1a. The given index is invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
+<br>
+
+**Use case 18: Batch edit client details**
+
+**MSS**
+
+1.  User requests to change the policy ID of a policy shared by multiple customers.
+
+2.  ClientBook updates the details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given indices are invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
+* 1a. The given arguments are invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
+<br>
+
+**Use case 19: Batch delete client contacts**
+
+**MSS**
+
+1.  User requests to delete several clients at once.
+
+2.  ClientBook removes the client contacts from the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given indices are invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
 
 ### Non-Functional Requirements
 
