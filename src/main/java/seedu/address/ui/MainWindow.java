@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -13,9 +15,13 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.medical.Appointment;
+import seedu.address.model.medical.MedicalRecord;
+import seedu.address.model.person.Patient;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +40,8 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private List<EditorWindow> editorWindows;
+    private ViewPatientBox viewPatientBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +57,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane viewPatientBoxPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +77,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        editorWindows = new ArrayList<>();
     }
 
     public Stage getPrimaryStage() {
@@ -78,6 +90,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -119,8 +132,11 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeTextCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        ViewPatientBox viewPatientBox = new ViewPatientBox();
+        viewPatientBoxPlaceholder.getChildren().add(viewPatientBox.getRoot());
     }
 
     /**
@@ -147,8 +163,58 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Displays the patientViewBox which contains information about patient
+     */
+    @FXML
+    public void handlePatientViewBox(Patient p) {
+        ViewPatientBox viewPatientBox = new ViewPatientBox(p);
+        viewPatientBoxPlaceholder.getChildren().clear();
+        viewPatientBoxPlaceholder.getChildren().add(viewPatientBox.getRoot());
+    }
+
+    /**
+     * Updates the patientViewBox to show a list of appointments
+     */
+    @FXML
+    public void handleAppointmentsList(List<Appointment> appointments) {
+        ViewPatientBox viewPatientBox = new ViewPatientBox();
+        String allAppointments = String.format("You have %d upcoming appointments: \n\n", appointments.size());
+        for (Appointment appt : appointments) {
+            allAppointments += appt + "\n";
+        }
+        viewPatientBox.setText(allAppointments);
+        viewPatientBoxPlaceholder.getChildren().clear();
+        viewPatientBoxPlaceholder.getChildren().add(viewPatientBox.getRoot());
+    }
+
+    /**
+     * Updates the patientViewBox to show a display a message
+     */
+    @FXML
+    public void handleDisplayMessage(String message) {
+        ViewPatientBox viewPatientBox = new ViewPatientBox();
+        viewPatientBox.setText(message);
+        viewPatientBoxPlaceholder.getChildren().clear();
+        viewPatientBoxPlaceholder.getChildren().add(viewPatientBox.getRoot());
+    }
+
     void show() {
         primaryStage.show();
+    }
+
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleEdit(Patient patient, MedicalRecord medicalRecord) {
+        EditorWindow editorWindow = new EditorWindow(this::executeCommand, patient, medicalRecord);
+        editorWindows.add(editorWindow);
+        if (!editorWindow.isShowing()) {
+            editorWindow.show();
+        } else {
+            editorWindow.focus();
+        }
     }
 
     /**
@@ -172,25 +238,57 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeTextCommand(String commandText) throws CommandException, ParseException {
+        CommandResult commandResult;
         try {
-            CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
-            if (commandResult.isExit()) {
-                handleExit();
-            }
-
-            return commandResult;
+            commandResult = logic.execute(commandText);
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        }
+        processResult(commandResult);
+        return commandResult;
+    }
+
+    private CommandResult executeCommand(Command command) throws CommandException {
+        CommandResult commandResult;
+        try {
+            commandResult = logic.execute(command);
+        } catch (CommandException e) {
+            logger.info("Invalid command: " + command.toString());
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        }
+        processResult(commandResult);
+        return commandResult;
+    }
+
+    private void processResult(CommandResult commandResult) {
+        logger.info("Result: " + commandResult.getFeedbackToUser());
+        resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+        if (commandResult.isShowHelp()) {
+            handleHelp();
+        }
+
+        if (commandResult.isShowEdit()) {
+            handleEdit(commandResult.getPatient(), commandResult.getMedicalRecord());
+        }
+
+        if (commandResult.isShowViewBox()) {
+            handlePatientViewBox(commandResult.getPatient());
+        }
+
+        if (commandResult.showAppointments()) {
+            handleAppointmentsList(commandResult.getAppointments());
+        }
+
+        if (commandResult.isDisplayMessage()) {
+            handleDisplayMessage(commandResult.getDisplayMessage());
+        }
+
+        if (commandResult.isExit()) {
+            handleExit();
         }
     }
 }

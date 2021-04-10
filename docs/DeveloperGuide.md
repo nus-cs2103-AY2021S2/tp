@@ -82,7 +82,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a patient).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -133,89 +133,34 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### \[Proposed\] Archiving certain contacts
 
-#### Proposed Implementation
+_{Coming soon}_
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+### \[Proposed\] Adding Medical Information such as Appointments and Medical Records
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+_{Coming soon}_
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+### \[Proposed\] Viewing all upcoming appointments the doctor has
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+_{Coming soon}_
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+### Viewing all information regarding a patient
 
-![UndoRedoState0](images/UndoRedoState0.png)
+**How**
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+![image](https://user-images.githubusercontent.com/48408342/114147903-c3b5ca80-994b-11eb-9bf3-add78bd3fca7.png)
 
-![UndoRedoState1](images/UndoRedoState1.png)
+The viewing mechanism is facilitated by the `ViewPatientCommand` which extends `Command`. It mainly overrides `Command#execute` in order to return a `CommandResult` with a patient(`Person` object) attribute. When `MainWindow#executeCommand` is ran, the command is parsed into a `CommandResult` by the `LogicManager` and passed into `MainWindow#processResult`. The `CommandResult` will then trigger `MainWindow#handlePatientViewBox` since it has a patient. `MainWindow#handlePatientViewBox` handles the construction of the `StackPane` containing all the patient information. It clears the `viewPatienBoxPlaceholder` in case there are Javafx nodes from the previous patient, and adds a new `ViewPatientBox` to it. The constructor of `ViewPatientBox` takes in a `Person` object and extracts information such as their name, phone, address, email, tags, appointments and medical records and adds the information to the labels and Panes which will be displayed in the `ViewPatientBox` UI.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+**Why**
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![image](https://user-images.githubusercontent.com/48408342/114144410-e47c2100-9947-11eb-895f-afd00657b5af.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+Since `MainWindow` dictates what to show on the UI depending on the `CommandResult` after running `logic.execute(commandtext)`, we can easily allow `MainWindow#processResult` to call `MainWindow#handlePatientViewBox` when it detects that a patient is present in `CommandResult`. `MainWindow#handlePatientViewBox` can then simply contruct the `StackPane` containing the patient's information.
 
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -236,13 +181,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* Clinics where patient information is managed in a written medium such as pen and paper
+* has many patients to manage
+* has a need to edit and maintain patients personal and medical information
+* well versed in CLI
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+
+**Value proposition**:
+
+* Ease the job of clinics with a centralised record of its patients
+* Doctors can easily access patient's personal and medical information without having to go through stacks of paper
+* Helps the clinic doctor to keep track of his appointments
+* For those proficient in typing, ease management of assets 
+
 
 
 ### User stories
@@ -251,56 +203,97 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                       | add patient's contact.         | have a separate place to store patient-specific information            |
+| `* * *`  | user                                       | delete patient's contact       | remove unwanted patients                                               |
+| `* * *`  | user                                       | view all my patients           | view a list of all my patients                                        |
+| `* * *`  | user                                       | find a patient by name         | locate details of patients without having to go through the entire list |
+| `* * *`  | user                                       | add appointments to a patient  | know when is my next appointment with the specific patient                               |
+| `* * *`  | user                                       | view all my upcoming appointments | know when is my next appointment |
+| `* * `  | user                                       | archive a patient's contact information | reduce clutter |
+| `* *`    | user                                       | see all the commands available | know what commands to use                |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Bob` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Adding a new patient**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+  1. User chooses to add a patient.
+  2. User enters the requested details of patient.
+  3. Bob adds the client and displays the new log of clients.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+  *2a. Bob detects an error in the format of the entered data.
+  *    2a1. Bob requests for the correct format of the data.
+  *    2a2. User enters new data.
+  *    Steps 2a1-2a2 are repeated until the data entered are correct.
+  
+      Use case resumes from step 3.
 
-  Use case ends.
+      Use case ends.
 
-* 3a. The given index is invalid.
+**Use case: Listing all patients**
 
-    * 3a1. AddressBook shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1. User requests to list all patients.
+2. Bob shows a list of patients.
+
+    Use case ends.
+
+**Extensions**
+
+  *2a. The list is empty
+
+      Use case ends.
+
+**Use case: Deleting a patient's information**
+
+**Pre-requisite:** Use 'list' to list out the index of all the patients
+
+**MSS**
+
+1. User requests to delete a specific patient in the list.
+2. Bob deletes the patient.
+
+
+
+      Use case ends.
+
+**Extensions**
+
+  *1a. The given index is invalid
+  *    1a1. Bob shows an error message.
+        
+      Use case resumes at step 1.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Domain rules : at least 1 user added
+2. Constraints : System should be compatible with previous version and easily scalable to add new functionalities
+3. Technical requirement : System should be able to work on any processor i.e. 32 bit or 64 bit.
+4. Technical requirement : System should be scalable enough to be able to keep up with new processors (more than 64)
+5. Technical requirement : System should be able to work on an operating system (OS) i.e. MacOS, Windows, Linux etc.
+6. Performance requirement : System should have at most a tolerable lag time but not too long that it is off putting
+7. Quality requirement : System should be straightforward enough that a novice should at the very least be able to add, edit and delete users
+8. Process requirement : i.e. the project should adhere to the schedule pre decided (subject to minor adjustments within the agreed upon room for error)
+9. Miscellaneous : the program should not contain any offending imaginary and or vulgar words/language
+
 
 *{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -330,17 +323,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a patient
 
-1. Deleting a person while all persons are being shown
+1. Deleting a patient while all patients are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

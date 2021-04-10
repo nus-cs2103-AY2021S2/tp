@@ -8,21 +8,27 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a patient identified using it's displayed index from DocBob.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the patient identified by the index number used in the displayed patient list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Patient: %1$s";
+
+    public static final String MESSAGE_DISPLAYED_IN_VIEW_PATIENT_BOX = "Goodbye, %s!";
+
+    public static final String MESSAGE_NO_PATIENTS_LEFT = "Doc, you have no more patients left!\n"
+                                                        + "Start adding more patients with the 'add' command!";
+
 
     private final Index targetIndex;
 
@@ -33,15 +39,22 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deletePerson(patientToDelete);
+        model.selectPatient(null);
+        String displayMessage = MESSAGE_DISPLAYED_IN_VIEW_PATIENT_BOX;
+        if (lastShownList.size() - 1 <= 0) {
+            displayMessage = MESSAGE_NO_PATIENTS_LEFT;
+        }
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, patientToDelete),
+        false, false, null, null, null, String.format(displayMessage, patientToDelete.getName().fullName), false);
+
     }
 
     @Override

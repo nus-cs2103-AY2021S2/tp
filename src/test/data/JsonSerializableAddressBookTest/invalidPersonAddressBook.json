@@ -1,8 +1,13 @@
 {
   "persons": [ {
     "name": "Hans Muster",
+    "dateOfBirth": "14122001",
+    "gender": "M",
     "phone": "9482424",
     "email": "invalid@email!3e",
-    "address": "4th street"
+    "address": "4th street",
+    "bloodType": "A+",
+    "height": "169cm",
+    "weight": "69kg"
   } ]
 }

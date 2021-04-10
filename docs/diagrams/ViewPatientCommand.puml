@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+participant ":MainWindow" as MainWindow LOGIC_COLOR
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ViewPatientCommandParser" as ViewPatientCommandParser LOGIC_COLOR
+participant ":ViewPatientCommand" as ViewPatientCommand LOGIC_COLOR
+
+autonumber
+-> MainWindow ++ : executeCommand("view 1")
+MainWindow -> LogicManager ++: execute("view 1")
+LogicManager -> AddressBookParser ++: parseCommand("view 1")
+AddressBookParser -> ViewPatientCommandParser**
+activate ViewPatientCommandParser
+AddressBookParser <-- ViewPatientCommandParser--
+AddressBookParser -> ViewPatientCommandParser : parse("view 1")
+activate ViewPatientCommandParser
+ViewPatientCommandParser -> ViewPatientCommand**
+activate ViewPatientCommand
+ViewPatientCommandParser <-- ViewPatientCommand--
+AddressBookParser <-- ViewPatientCommandParser--
+LogicManager <-- AddressBookParser--
+LogicManager -> ViewPatientCommand : execute(ViewPatientCommand)
+activate ViewPatientCommand
+LogicManager <-- ViewPatientCommand-- : CommandResult
+MainWindow <-- LogicManager--
+MainWindow -> MainWindow : processResult(CommandResult)
+
+
+
+@enduml
