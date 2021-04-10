@@ -357,7 +357,7 @@ Ian finds it difficult to sieve information and is prone to making human errors.
 
 **Target user profile**:
 
-* UHC staff who has a need to manage a significant number of appointments and student records.
+* UHC staff who has a need to manage a significant number of appointments and student records
 * UHC staff who has to keep track of NUS (National University of Singapore) students' COVID-19 vaccinations regarding:
   * Who has been vaccinated
   * Who has not been vaccinated
