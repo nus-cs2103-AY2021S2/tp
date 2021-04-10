@@ -9,7 +9,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +20,9 @@ import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
@@ -76,7 +81,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws IllegalValueException {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -90,6 +96,26 @@ public class EditCommand extends Command {
         Picture picture = personToEdit.getPicture().orElse(null);
         List<SpecialDate> dates = personToEdit.getDates();
         List<Meeting> meetings = personToEdit.getMeetings();
+
+        Optional<Meeting> earliestMeeting = meetings.stream().min(Comparator.comparing(Meeting::getDate));
+        Optional<SpecialDate> earliestDate = dates.stream().min(Comparator.comparing(SpecialDate::getDate));
+
+        if (earliestMeeting.isPresent() && earliestMeeting.get().getDate().isAfter(updatedBirthday.getDate())) {
+            throw new IllegalValueException(String.format(
+                    Messages.MESSAGE_BIRTHDAY_CONSTRAINT,
+                    DateUtil.toUi(updatedBirthday.getDate()),
+                    "meeting",
+                    DateUtil.toUi(earliestMeeting.get().getDate())));
+        }
+
+        if (earliestDate.isPresent() && earliestDate.get().getDate().isAfter(updatedBirthday.getDate())) {
+            throw new IllegalValueException(String.format(
+                    Messages.MESSAGE_BIRTHDAY_CONSTRAINT,
+                    DateUtil.toUi(updatedBirthday.getDate()),
+                    "special date",
+                    DateUtil.toUi(earliestDate.get().getDate())));
+        }
+
         return new Person(updatedName, updatedPhone, updatedEmail, updatedBirthday, updatedGoal,
                 updatedAddress, picture, debt, updatedTags, dates, meetings);
 
@@ -106,7 +132,13 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Person editedPerson;
+
+        try {
+            editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        } catch (IllegalValueException e) {
+            throw new CommandException(e.getMessage());
+        }
 
         // the currently edited person transforms to an existing person
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {

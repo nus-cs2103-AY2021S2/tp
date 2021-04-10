@@ -15,18 +15,29 @@ import static seedu.address.testutil.TestDataUtil.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Birthday;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TestDataUtil;
+import seedu.address.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -144,6 +155,22 @@ public class EditCommandTest {
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidPersonBirthday_failure() {
+        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        Person person = model.getAddressBook().getPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptorBuilder()
+                .withBirthday("1-1-1997").build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, editPersonDescriptor);
+        Meeting earliestMeeting = person.getMeetings().stream().min(Comparator.comparing(Meeting::getDate)).get();
+        assertCommandFailure(editCommand, model, String.format(
+                Messages.MESSAGE_BIRTHDAY_CONSTRAINT,
+                DateUtil.toUi(new Birthday(LocalDate.of(1997, 1, 1)).getDate()),
+                "meeting",
+                DateUtil.toUi(earliestMeeting.getDate())
+        ));
     }
 
     @Test
