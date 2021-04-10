@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a Customer's DateOfBirth in the customer list. Guarantees: immutable; is valid as declared in {@link
@@ -16,7 +17,8 @@ public class DateOfBirth {
     public static final String MESSAGE_CONSTRAINTS = "Birth date should be of the format yyyy MM dd "
         + "EG:(2011 07 06 for 6th July, 2011)";
 
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy MM dd");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy MM dd")
+            .withResolverStyle(ResolverStyle.STRICT);
 
     public final String birthDate;
 
