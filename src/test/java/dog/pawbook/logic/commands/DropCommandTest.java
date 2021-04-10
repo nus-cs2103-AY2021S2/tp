@@ -9,12 +9,16 @@ import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 import static dog.pawbook.testutil.TypicalId.ID_EIGHT;
 import static dog.pawbook.testutil.TypicalId.ID_EIGHTEEN;
+import static dog.pawbook.testutil.TypicalId.ID_FIFTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_FOUR;
 import static dog.pawbook.testutil.TypicalId.ID_NINETEEN;
+import static dog.pawbook.testutil.TypicalId.ID_SIXTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_TEN;
 import static dog.pawbook.testutil.TypicalId.ID_TWENTY;
 import static dog.pawbook.testutil.TypicalId.ID_TWENTY_ONE;
 import static dog.pawbook.testutil.TypicalId.ID_TWO;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -186,5 +190,42 @@ public class DropCommandTest {
         DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
 
         assertCommandFailure(dropCommand, model, MESSAGE_NOT_ENROLLED_MULTIPLE_PROGRAMS);
+    }
+
+    @Test
+    public void equals() {
+        Set<Integer> dogIdSet1 = new HashSet<>();
+        Set<Integer> programIdSet1 = new HashSet<>();
+        dogIdSet1.add(ID_TWO);
+        programIdSet1.add(ID_FIFTEEN);
+
+        Set<Integer> dogIdSet2 = new HashSet<>();
+        Set<Integer> programIdSet2 = new HashSet<>();
+        dogIdSet1.add(ID_FOUR);
+        programIdSet1.add(ID_SIXTEEN);
+
+        DropCommand dropFirstCommand = new DropCommand(dogIdSet1, programIdSet1);
+
+        // same object -> returns true
+        assertTrue(dropFirstCommand.equals(dropFirstCommand));
+
+        // same values -> returns true
+        DropCommand dropFirstCommandCopy = new DropCommand(dogIdSet1, programIdSet1);
+        assertTrue(dropFirstCommand.equals(dropFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(dropFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(dropFirstCommand.equals(null));
+
+        // different dogIdSet -> returns false
+        assertFalse(dropFirstCommand.equals(new DropCommand(dogIdSet2, programIdSet1)));
+
+        // different programIdSet -> returns false
+        assertFalse(dropFirstCommand.equals(new DropCommand(dogIdSet1, programIdSet2)));
+
+        // different dogIdSet and programIdSet -> returns false
+        assertFalse(dropFirstCommand.equals(new DropCommand(dogIdSet2, programIdSet2)));
     }
 }

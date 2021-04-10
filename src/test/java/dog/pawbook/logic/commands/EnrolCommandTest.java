@@ -8,6 +8,8 @@ import static dog.pawbook.testutil.TypicalId.ID_FOUR;
 import static dog.pawbook.testutil.TypicalId.ID_SIX;
 import static dog.pawbook.testutil.TypicalId.ID_SIXTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_TWO;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -149,5 +151,42 @@ public class EnrolCommandTest {
         EnrolCommand enrolCommand = new EnrolCommand(dogIdSet, programIdSet);
 
         assertThrows(AssertionError.class, () -> enrolCommand.execute(model));
+    }
+
+    @Test
+    public void equals() {
+        Set<Integer> dogIdSet1 = new HashSet<>();
+        Set<Integer> programIdSet1 = new HashSet<>();
+        dogIdSet1.add(ID_TWO);
+        programIdSet1.add(ID_FIFTEEN);
+
+        Set<Integer> dogIdSet2 = new HashSet<>();
+        Set<Integer> programIdSet2 = new HashSet<>();
+        dogIdSet1.add(ID_FOUR);
+        programIdSet1.add(ID_SIXTEEN);
+
+        EnrolCommand enrolFirstCommand = new EnrolCommand(dogIdSet1, programIdSet1);
+
+        // same object -> returns true
+        assertTrue(enrolFirstCommand.equals(enrolFirstCommand));
+
+        // same values -> returns true
+        EnrolCommand enrolFirstCommandCopy = new EnrolCommand(dogIdSet1, programIdSet1);
+        assertTrue(enrolFirstCommand.equals(enrolFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(enrolFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(enrolFirstCommand.equals(null));
+
+        // different dogIdSet -> returns false
+        assertFalse(enrolFirstCommand.equals(new EnrolCommand(dogIdSet2, programIdSet1)));
+
+        // different programIdSet -> returns false
+        assertFalse(enrolFirstCommand.equals(new EnrolCommand(dogIdSet1, programIdSet2)));
+
+        // different dogIdSet and programIdSet -> returns false
+        assertFalse(enrolFirstCommand.equals(new EnrolCommand(dogIdSet2, programIdSet2)));
     }
 }

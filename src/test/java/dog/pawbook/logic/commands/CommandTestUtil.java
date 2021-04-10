@@ -3,10 +3,12 @@ package dog.pawbook.logic.commands;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_BREED;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOB;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOGID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PHONE;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PROGRAMID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SESSION;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SEX;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
@@ -60,8 +62,10 @@ public class CommandTestUtil {
     public static final String VALID_DATEOFBIRTH_BELL = "15-04-2020";
     public static final String VALID_BREED_ASHER = "Corgi";
     public static final String VALID_BREED_BELL = "Greyhound";
-    public static final int VALID_OWNERID_15 = 15;
-    public static final int VALID_OWNERID_17 = 17;
+    public static final int VALID_DOGID_TWO = 2;
+    public static final int VALID_DOGID_FOUR = 4;
+    public static final int VALID_OWNERID_ASHER = 15;
+    public static final int VALID_OWNERID_BELL = 17;
     public static final String VALID_TAG_FRIENDLY = "friendly";
     public static final String VALID_TAG_QUIET = "quiet";
     public static final String VALID_ENTITY_ID = "1";
@@ -74,8 +78,10 @@ public class CommandTestUtil {
     public static final String BREED_DESC_BELL = " " + PREFIX_BREED + VALID_BREED_BELL;
     public static final String DATEOFBIRTH_DESC_ASHER = " " + PREFIX_DOB + VALID_DATEOFBIRTH_ASHER;
     public static final String DATEOFBIRTH_DESC_BELL = " " + PREFIX_DOB + VALID_DATEOFBIRTH_BELL;
-    public static final String OWNERID_DESC_15 = " " + PREFIX_OWNERID + VALID_OWNERID_15;
-    public static final String OWNERID_DESC_17 = " " + PREFIX_OWNERID + VALID_OWNERID_17;
+    public static final String DOGID_DESC_TWO = " " + PREFIX_DOGID + VALID_DOGID_TWO;
+    public static final String DOGID_DESC_FOUR = " " + PREFIX_DOGID + VALID_DOGID_FOUR;
+    public static final String OWNERID_DESC_ASHER = " " + PREFIX_OWNERID + VALID_OWNERID_ASHER;
+    public static final String OWNERID_DESC_BELL = " " + PREFIX_OWNERID + VALID_OWNERID_BELL;
     public static final String TAG_DESC_FRIENDLY = " " + PREFIX_TAG + VALID_TAG_FRIENDLY;
     public static final String TAG_DESC_QUIET = " " + PREFIX_TAG + VALID_TAG_QUIET;
 
@@ -83,6 +89,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_POTTY_TRAINING = "Potty Training";
     public static final String VALID_SESSION_OBEDIENCE_TRAINING = "01-01-2022 10:30";
     public static final String VALID_SESSION_POTTY_TRAINING = "03-02-2022 20:30";
+    public static final int VALID_PROGRAMID_FIFTEEN = 15;
+    public static final int VALID_PROGRAMID_SEVENTEEN = 17;
     public static final String VALID_TAG_PUPPIES = "Puppies";
     public static final String VALID_TAG_ALL = "All";
 
@@ -92,6 +100,8 @@ public class CommandTestUtil {
             + VALID_SESSION_OBEDIENCE_TRAINING;
     public static final String SESSION_DESC_POTTY_TRAINING = " " + PREFIX_SESSION
             + VALID_SESSION_POTTY_TRAINING;
+    public static final String PROGRAMID_DESC_FIFTEEN = " " + PREFIX_PROGRAMID + VALID_PROGRAMID_FIFTEEN;
+    public static final String PROGRAMID_DESC_SEVENTEEN = " " + PREFIX_PROGRAMID + VALID_PROGRAMID_SEVENTEEN;
     public static final String TAG_DESC_PUPPIES = " " + PREFIX_TAG + VALID_TAG_PUPPIES;
     public static final String TAG_DESC_ALL = " " + PREFIX_TAG + VALID_TAG_ALL;
 
@@ -126,6 +136,11 @@ public class CommandTestUtil {
     public static final String INVALID_NEGATIVE_ID_STRING = "-1";
     public static final String INVALID_UNKNOWN_ID_STRING = "dummy";
     public static final String INVALID_OUT_OF_BOUNDS_ID_STRING = String.valueOf(Integer.MAX_VALUE);
+
+    public static final String INVALID_NEGATIVE_DOGID_DESC = " " + PREFIX_DOGID + INVALID_NEGATIVE_ID_STRING;
+    public static final String INVALID_NEGATIVE_PROGRAMID_DESC = " " + PREFIX_PROGRAMID + INVALID_NEGATIVE_ID_STRING;
+    public static final String INVALID_UNKNOWN_DOGID_DESC = " " + PREFIX_DOGID + INVALID_UNKNOWN_ID_STRING;
+    public static final String INVALID_UNKNOWN_PROGRAMID_DESC = " " + PREFIX_PROGRAMID + INVALID_UNKNOWN_ID_STRING;
 
     public static final int INVALID_OUT_OF_BOUNDS_ID_INTEGER = Integer.MAX_VALUE;
     public static final int INVALID_NEGATIVE_ID_INTEGER = -1;

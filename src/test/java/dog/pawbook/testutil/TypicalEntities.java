@@ -14,8 +14,8 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_OBEDIENCE_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_POTTY_TRAINING;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_OWNERID_15;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_OWNERID_17;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_OWNERID_ASHER;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_OWNERID_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_OBEDIENCE_TRAINING;
@@ -136,10 +136,10 @@ public class TypicalEntities {
 
     // Manually added - Dog's details found in {@code CommandTestUtil}
     public static final Dog ASHER = new DogBuilder().withName(VALID_NAME_ASHER).withSex(VALID_SEX_ASHER)
-            .withDateOfBirth(VALID_DATEOFBIRTH_ASHER).withBreed(VALID_BREED_ASHER).withOwnerID(VALID_OWNERID_15)
+            .withDateOfBirth(VALID_DATEOFBIRTH_ASHER).withBreed(VALID_BREED_ASHER).withOwnerID(VALID_OWNERID_ASHER)
             .withTags(VALID_TAG_FRIENDLY).build();
     public static final Dog BELL = new DogBuilder().withName(VALID_NAME_BELL).withSex(VALID_SEX_BELL)
-            .withDateOfBirth(VALID_DATEOFBIRTH_BELL).withBreed(VALID_BREED_BELL).withOwnerID(VALID_OWNERID_17)
+            .withDateOfBirth(VALID_DATEOFBIRTH_BELL).withBreed(VALID_BREED_BELL).withOwnerID(VALID_OWNERID_BELL)
             .withTags(VALID_TAG_QUIET, VALID_TAG_FRIENDLY).build();
 
     // Manually added - Programs's details found in {@code CommandTestUtil}
