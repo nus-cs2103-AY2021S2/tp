@@ -141,30 +141,47 @@ Examples:
 *  `edit 2 n/Important Task t/` Edits the name of the 2nd task to be `Important Task` and clears all existing tags.
 *  `edit 2 s/completed` sets the status of the 2nd task in the list to `completed`.
 
-### Deleting multiple tasks : `delete`
+### Deleting a task : `delete`
 
+Deletes an existing task in Taskify. Deletion of multiple tasks with one command is also supported.
 
-Delete multiple tasks at once by either:
-1. Listing the indexes of the tasks to delete exhaustively
-2. Stating the range of indexes to delete
-3. Indicating the desired `Status` of tasks to delete
+Format: `delete INDEX`
 
-* Deletes the task at the specified `INDEX`.
+Examples: `delete 2` deletes the 2nd task in Taskify, if there are at least 2 tasks.
+
+Notes:
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, …
 
+#### Deleting multiple tasks
 
-* Listing the indexes exhaustively
-    * Format: `delete INDEX [MORE_INDICES]`
-    * Examples: `delete 1 2 3` deletes the 1st, 2nd, 3rd task as displayed when `list` is used
+Deletes multiple tasks with one command.
+
+Delete multiple tasks by either:
+1. Listing individual indices (i.e more than one index)
+2. Stating an index range
+3. Indicating the desired `Status` of tasks to delete
+
+* Listing individual indices
+    * Format: `delete INDEX INDEX ...`
+    * Examples: `delete 1 2 3` deletes the 1st, 2nd, 3rd task as displayed, if Taskify has at least 3 tasks.
+    * Note:
+        * `delete 1 2 3` will **NOT** delete the 1st and 2nd task if there are **only** two tasks in Taskify.
+    
+
 * Stating the range of indexes
     * Format: `delete INDEX-INDEX`
-    * Examples: `delete 1-3` deletes the 1st, 2nd, 3rd task as displayed when `list` is used
+    * Examples: `delete 1-3` deletes the 1st, 2nd, 3rd task as displayed, if Taskify has at least 3 tasks.
     * Notes:
+        * `delete 1-3` will **NOT** delete the 1st and 2nd task if there are **only** two tasks in Taskify.
         * `delete 2-2` does not delete the 2nd task. Use `delete 2` instead
+    
+        
 * Indicating the `Status` to delete by
     * Format: `delete STATUS -all`
-    * Examples: `delete expired -all` deletes **all** tasks that are in expired as their `Status`.
+    
+    * Examples: `delete expired -all` deletes **all** tasks that are **expired**.
+
     * Notes:
         * All tasks have one of the 3 `Status`: `uncompleted`, `completed`, `expired`
         * Newly created tasks have `uncompleted` as their `Status`
@@ -283,7 +300,7 @@ Command | Format | Examples
 **Add** | `add n/NAME desc/DESCRIPTION date/DATE [t/TAG]…` | `add n/Finish CS2103T Tutorial desc/another task date/2021-12-12 10:10 t/Assignment`
 **List** | `list` | `list`
 **Edit** | `edit INDEX [n/NAME] [desc/DESCRIPTION] [date/DATE] [t/TAG] [s/STATUS]…` | `edit 1 s/completed`
-**Delete** | `delete INDEX`, `delete INDEX [MORE_INDICES]`, `delete INDEX-INDEX`, `delete STATUS -all`| `delete 3`, `delete 4 10 6`, `delete 5-8`, `delete completed -all`
+**Delete** | `delete INDEX`, `delete INDEX INDEX ...`, `delete INDEX-INDEX`, `delete STATUS -all`| `delete 3`, `delete 4 10 6`, `delete 5-8`, `delete completed -all`
 **Find** | `find KEYWORD [MORE_KEYWORDS]` | `find Module Code`
 **Tag-Search** | `tag-search TAG [MORE_TAGS]` | `tag-search CS2103T isFun`
 **View** | `view DATE` | `view 2021-05-21`, `view today`, `view tomorrow`
