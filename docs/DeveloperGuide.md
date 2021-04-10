@@ -1,22 +1,8 @@
 --------------------------------------------------------------------------------------------------------------------
-## Developer Guide for v1.2
+## Developer Guide for The Food Diary
 
-## Table of contents
-
-- Description of Application
-- Design
-    - Architecture
-- Implementation
-    - AddOn feature
-    - View feature
-    - FindAll feature
-- Appendix: Requirements
-    - Product Scope
-    - User Stories
-    - Use Cases
-    - Non-Functional Requirements
-    - Glossary
-    - UI Mock-Up
+* Table of Contents
+  {:toc}
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Description**
@@ -60,7 +46,7 @@ using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Logic Class Diagram](images/LogicClassDiagram.png)
 
-####How the architecture components interact with each other
+#### How the architecture components interact with each other
 The *Sequence Diagram* below shows how the components interact with each other for the scenario 
 where the user issues the command `addon 1 re/i like this food`.
 
@@ -68,15 +54,26 @@ where the user issues the command `addon 1 re/i like this food`.
 
 The sections below give more details of each component. 
 
-###UI component
+### UI component
 
-###Logic Component
+### Logic Component
 
-###Model Component
+### Model Component
+![Model Architecture Diagram](images/ModelArchitectureDiagram.png)
 
-###Storage Component
+**API :** `Model.java`
 
-###Common classes
+The `Model`,
+- stores a `UserPref` object that represents the user’s preferences.
+- stores the user's food entries data.
+- exposes an unmodifiable `ObservableList<Entry>` that can be ‘observed’ e.g. the UI can be bound to this list so that 
+  the UI automatically updates when the data in the list change.
+- does not depend on any of the other three components.
+
+
+### Storage Component
+
+### Common classes
 Classes used by multiple components are in the seedu.fooddiary.commons package.
 
 
@@ -146,22 +143,42 @@ command:
 
 
 ### View Feature
-#### Implementation
-The View feature allows the user to view a specified entry in a new window, allowing the user to carefully look through
-all the details of an entry.
+`View`: Allows the user to view a specified entry in a new window, allowing the user to carefully look through
+all the details of an entry. This feature is mainly used to read lengthy food reviews which cannot be shown on the Main 
+UI window.
+
+Given below is an example usage scenario:
+
+Step 1. The user launches The Food Diary application. Data will be loaded from the storage to the application memory. 
+The `FoodDiary` will be populated with a list of `Entry`, each contains: `Name`, `Address`, `Price` 
+, `Rating`, `Review`, `TagCategory` and `TagSchool`.
+
+Step 2. The user executes `View <INDEX>`, for whichever entry with lengthy reviews he/she wants to view.
+
+Step 3. If the user input is invalid, an error message will be displayed in the command box, If the entry specified do
+not exist, the filteredEntryList will be empty and no entry will be displayed on the Main Window.  
 
 The mechanism works in such a way where after the user enters a command in the UI, the command will be passed into
- `MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in
- `FoodDiaryParser#parseCommand()`. The user input will be parsed as a 'View' command and executed to retrieve all the
- details related to the specified entry. The result of this execution will be passed back to the UI and shown in a
- pop up window.
+`MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in
+`FoodDiaryParser#parseCommand()`. The parsed command will be recognised as a 'View' command and executed to 
+retrieve all the details related to the specified entry. The result of this execution will be passed back to the UI and 
+shown in a new window.
 
-The following sequence diagram shows how the View feature works:
+The following sequence diagram shows how the `View` feature works:
 ![View Sequence Diagram](images/ViewSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a view command:
+The following activity diagram summarizes what happens when a user executes the `View` command:
 ![View Activity Diagram](images/ViewActivityDiagram.png)
 
+#### Design Consideration
+
+##### Aspect: Whether to view entry with lengthy reviews in the Main UI or in a new window.
+* **Alternative 1 (current choice):** View entry with lengthy reviews in a new window.
+    * Pros: Easier to implement, do not need to deal with complex UI codes. Entry information looks neater.
+    * Cons: User has to close/minimize the window to return to Main Window.
+* **Alternative 2:** View entry with lengthy reviews in the Main UI.
+    * Pros: Design is integrated within Main UI, which gives it a cleaner look.
+    * Cons: Difficult to implement, lesser time for testability given the project deadline duration.
 
 
 ## **Appendix: Requirements**
@@ -204,13 +221,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | User who would like to create custom category of food place      | Add the category of the place                    | I can have a specific view of certain places                           |
 | `* * *` | User who does not want to visit a place again                    | Remove the place                                 | reduce redundant food places in my list                           |
 | `* * *` | User who wants to remember food ratings | Give a rating on the overall food experience | I can gauge/ballpark the satisfaction level I get against other food experiences           |
-| `* * *` | User deciding to revisit a place | Expand all the reviews of an entry | Read all the reviews in a glance           |
+| `* * *` | User who wants to read lengthy reviews of an entry | Glance through reviews of an entry | Quickly arrive at a conclusion for a food place|
 | `* *`   | User frequently revisiting a place                          | Add multiple reviews to a single place           | Store all my food experiences with the place   |
 | `* *`   | User who wants to eat good food at an affordable price           | Search for places that match both the rating and price that I want | visit the best food places without overspending
 | `* * *`   | User who made a mistake in an entry           | Perform revisions and updates to the entry | keep accurate and up-to-date information of food places
-
-
-*{More to be added}*
 
 ### Use cases
 
@@ -233,7 +247,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     *	1a2. User enters correct syntax.
 
          Use case resumes from step 2.
-    
 
 * 2a. Food Diary detects duplicate restaurant that is already reviewed.
 
@@ -284,7 +297,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 2.
     
-
 * 1b. New category already exists.
     * 1b1. Food Diary tells user that the category already exists.
 
@@ -343,6 +355,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Food diary detects invalid command from user.
     * 1a1. Food Diary warns user about wrong syntax.
     * 1a2. User enters correct syntax.
+      
+      Use case resumes from step 2.
 
 * 2a. No entry found
     * 2a1. Food Diary tells user that no entry was found.
@@ -377,7 +391,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a2. User enters correct syntax.
     
         Use case ends.
-    
 
 * 2a. User key in non-existent index in list
     * 2a1. Food Diary tells user that no entry was found.
@@ -385,6 +398,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
     
 **UC10: Exit**
+
 **MSS**
 1. User exits.
 2. Food Diary closes and data is saved.
@@ -396,6 +410,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**UC11: Clear**
+
+**MSS**
+1. User requests to clear all entries.
+2. Food Diary clears all entries.
+
+**Extensions**:
+* 1a. Food diary detects invalid command from user.
+    * 1a1. Food Diary warns user about wrong syntax.
+    * 1a2. User enters correct syntax.
+
+      Use case resumes from step 2.
+    
 
 
 ### Non-Functional Requirements

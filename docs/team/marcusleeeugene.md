@@ -30,6 +30,8 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `view` and `revise`
+        * Modified previous AB3 `edit` command to fit The Food Diary's implementation
+        * Product description
     * Developer Guide:
         * Added implementation details of the `view` feature.
         * Added component details for the Model architecture
@@ -42,14 +44,35 @@ Given below are my contributions to the project.
     * Maintain issue tracker
     * Release management
     * Merged pull requests
-    * Refactored model and test codes from AB3 to fit FoodDiary
+    * Refactored model, logic and test codes from AB3 to fit FoodDiary
 
 
 * **Review/mentoring contributions**:
-    * Helped the person in charge in merging
+    * Helped the person in charge of merging, with resolving conflicts
     * PRs reviewed:
-      [#]()
-
+      
+      [#189](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/189), 
+      [#185](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/185),
+      [#114](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/114),
+      [#102](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/102),
+      [#98](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/98),
+      [#97](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/97),
+      [#86](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/86),
+      [#84](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/84),
+      [#83](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/83),
+      [#82](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/82),
+      [#78](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/78),
+      [#75](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/75),
+      [#67](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/67),
+      [#66](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/66),
+      [#65](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/65), 
+      [#55](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/55),
+      [#44](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/44), 
+      [#26](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/26),
+      [#21](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/21), 
+      [#17](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/17), 
+      [#1](https://github.com/AY2021S2-CS2103-T14-2/tp/pull/1)
+      
 
 * **Contributions beyond the project team**:
     * Shared approach to using enums for individual project [#14](https://github.com/nus-cs2103-AY2021S2/forum/issues/14)
