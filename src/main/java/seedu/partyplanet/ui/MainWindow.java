@@ -162,6 +162,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
+        logger.info("Activated help window from menu bar.");
         if (!helpWindow.isShowing()) {
             helpWindow.show();
         } else {
@@ -244,13 +245,16 @@ public class MainWindow extends UiPart<Stage> {
         scene.getStylesheets().addAll(Theme.getStyleSheets(theme));
         logic.setGuiSettings(new GuiSettings(theme));
         this.theme = theme;
+        logger.info("Theme set to " + theme.name());
     }
     @FXML
     private void setThemePastel() {
+        logger.info("Activated theme selector from menu bar.");
         setTheme(Theme.PASTEL);
     }
     @FXML
     private void setThemeDark() {
+        logger.info("Activated theme selector from menu bar.");
         setTheme(Theme.DARK);
     }
 }
