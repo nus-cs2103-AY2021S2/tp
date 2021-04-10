@@ -6,8 +6,6 @@ import java.util.logging.Logger;
 
 import seedu.weeblingo.MainApp;
 import seedu.weeblingo.commons.core.LogsCenter;
-import seedu.weeblingo.logic.commands.CheckCommand;
-import seedu.weeblingo.logic.commands.StartCommand;
 import seedu.weeblingo.model.exceptions.NullInputException;
 
 /**
