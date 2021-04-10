@@ -5,7 +5,7 @@ title: User Guide
 
 TutorsPet is a **desktop app designed for private tutors in Singapore to manage students’ information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of both lesson schedules and important dates.
 
-* Table of Contents
+# Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
 ## About
@@ -247,9 +247,10 @@ Format: `detail INDEX`
 </div>
 
 Examples: <br>
-  | Command     | Result                                             |
-  | ----------- |---------------------------------------------------:|
-  |detail 1     | displays the details of the 1st student in the list|
+
+Command     | Result                   
+----------- |---------------------------------------------------
+detail 1    | displays the details of the 1st student in the list
 
 <a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
