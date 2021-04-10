@@ -11,8 +11,8 @@ public class Assignee {
     public static final String MESSAGE_SEARCH_TASKS_CONSTRAINTS = "Please check that the name you have typed in is a "
             + "proper name";
 
-    public static final String MESSAGE_CONSTRAINTS = "Assignee specified must be a member in the "
-            + "displayed member's list, with the exact name (case-sensitive and format-sensitive) and name should not "
+    public static final String MESSAGE_CONSTRAINTS = "Assignee specified must be an existing member "
+            + "HEY MATEz, with the exact name (case-sensitive and format-sensitive) and name should not "
             + "have extra spaces or characters between words.";
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
