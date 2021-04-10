@@ -50,7 +50,6 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             nameKeywords = extractKeywordsAsArray(argMultimap, PREFIX_NAME);
-
         }
         if (argMultimap.getValue(PREFIX_SCHOOL).isPresent()) {
             schoolKeywords = extractKeywordsAsArray(argMultimap, PREFIX_SCHOOL);

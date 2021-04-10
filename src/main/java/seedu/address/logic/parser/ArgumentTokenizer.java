@@ -50,7 +50,7 @@ public class ArgumentTokenizer {
      * @param prefixes   Prefixes to look out for
      * @return           First Prefix that corresponds to appear in the arguments
      */
-    public static Prefix getFirstPrefix(String argsString, Prefix... prefixes) throws ParseException {
+    public static Prefix getLastPrefix(String argsString, Prefix... prefixes) throws ParseException {
         Prefix firstPrefix;
         List<PrefixPosition> prefixPositions = findAllPrefixPositions(argsString, prefixes);
         if (prefixPositions.isEmpty()) {
@@ -58,7 +58,7 @@ public class ArgumentTokenizer {
             throw new ParseException(noPrefixMessage);
         }
         prefixPositions.sort((prefix1, prefix2) -> prefix1.getStartPosition() - prefix2.getStartPosition());
-        firstPrefix = prefixPositions.get(0).getPrefix();
+        firstPrefix = prefixPositions.get(prefixPositions.size() - 1).getPrefix();
         return firstPrefix;
     }
 

@@ -22,7 +22,7 @@ public class LevelUpCommandParser {
     public LevelUpCommand parse(String args) throws ParseException {
         Prefix firstPrefix;
         try {
-            firstPrefix = ArgumentTokenizer.getFirstPrefix(
+            firstPrefix = ArgumentTokenizer.getLastPrefix(
                     args, PREFIX_EXCLUDE);
         } catch (ParseException pe) {
             firstPrefix = new Prefix("");

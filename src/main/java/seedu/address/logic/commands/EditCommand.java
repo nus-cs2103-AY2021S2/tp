@@ -157,7 +157,8 @@ public class EditCommand extends Command {
      * Checks if person to be edited has the same name or same lessons as the contacts in TutorsPet.
      */
     public void checkForDuplicateNameOrLesson(Model model, Person personToEdit, Person editedPerson) {
-        if (!personToEdit.isPotentialSamePerson(editedPerson) && model.hasPotentialPerson(editedPerson)) {
+        if (!personToEdit.isPotentialSamePerson(editedPerson) && model.hasPotentialPerson(editedPerson)
+                && editPersonDescriptor.isNameEdited()) {
             model.setSavedState(true);
             duplicate = DUPLICATE_PERSON;
         }
@@ -264,6 +265,10 @@ public class EditCommand extends Command {
 
         public boolean isLessonEdited() {
             return CollectionUtil.isAnyNonNull(lessons);
+        }
+
+        public boolean isNameEdited() {
+            return CollectionUtil.isAnyNonNull(name);
         }
 
         public void setName(Name name) {
