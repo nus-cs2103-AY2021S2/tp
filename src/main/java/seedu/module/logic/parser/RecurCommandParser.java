@@ -17,7 +17,7 @@ import seedu.module.model.task.Recurrence;
 
 public class RecurCommandParser implements Parser<Command> {
 
-    private static final String RECUR_EXCEPTION_MESSAGE = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+    public static final String RECUR_EXCEPTION_MESSAGE = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             RecurCommand.MESSAGE_USAGE);
 
     @Override
