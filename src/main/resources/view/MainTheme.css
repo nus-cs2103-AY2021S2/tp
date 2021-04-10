@@ -194,12 +194,12 @@
 .cell_location_header {
     -fx-font-family: "Helveticish";
     -fx-font-weight: bold;
-    -fx-font-size: 16px;
+    -fx-font-size: 18px;
     -fx-text-fill: black;
 }
 
 .location_box {
-    -fx-background-color: #6a8883;
+    -fx-background-color: #e1beb2;
 }
 /* LIST VIEW BACKGROUND */
 .list-view {
@@ -363,11 +363,11 @@
 
 /* Table View*/
 .table-view {
-    -fx-background-color: #e1beb2;
+    -fx-background-color: #ead4cf;
 }
 
 .table-view .column-header-background {
-    -fx-background-color: #e1beb2;
+    -fx-background-color: #ead4cf;
     -fx-background-insets: 0 0 10 0;
     -fx-padding: 0 0 10 0;
 }
@@ -375,7 +375,7 @@
 .table-view .column-header .table-view .filler{
     -fx-size: 36;
     -fx-border-width: 0 0 10 0;
-    -fx-background-color: #e1beb2;
+    -fx-background-color: #ead4cf;
 }
 
 .table-view .column-header .label {
