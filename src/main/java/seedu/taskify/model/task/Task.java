@@ -121,8 +121,7 @@ public class Task {
         Task otherTask = (Task) other;
         return otherTask.getName().equals(getName())
                        && otherTask.getDescription().equals(getDescription())
-                       && otherTask.getDate().equals(getDate())
-                       && otherTask.getTags().equals(getTags());
+                       && otherTask.getDate().equals(getDate());
     }
 
     @Override

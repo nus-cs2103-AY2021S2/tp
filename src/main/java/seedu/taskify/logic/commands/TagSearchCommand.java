@@ -18,7 +18,7 @@ public class TagSearchCommand extends Command {
                                                        + "specified (case-insensitive) and displays them as a list "
                                                        + "with index numbers.\n"
                                                        + "Parameters: TAG [MORE_TAGS]...\n"
-                                                       + "Example: " + COMMAND_WORD + "lab tutorial";
+                                                       + "Example: " + COMMAND_WORD + " lab tutorial";
 
     private final TagContainsKeywordsPredicate predicate;
 
