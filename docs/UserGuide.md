@@ -362,7 +362,7 @@ Note: Autocompleted Tags will be returned in alphabetical order and is case-sens
 
 Undoes the most recent action that changed PartyPlanet's Contact or Event List.
 
-Note: This means that only commands such, as `add`, `delete` etc.., can be undoed.<br>
+Note: This means that only commands such, as `add`, `delete` etc.., can be undone.<br>
 Other command that only changes display, such as `theme`, `list` etc.., will not be affected.
 
 Can be invoked repeatedly until there is no more history from the current session.
@@ -442,7 +442,7 @@ Action | Format, Examples
 **Edit** | `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG]...}`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit --remove -t colleague`
 **EEdit** | `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]` <br> e.g. `eedit 3 -r Celebrate during first combined practice`
 **List** | `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`<br> e.g., `list`<br> e.g., `list -s date`
-**EList** | `elist [--exact] [--any] [-n NAME] [-r REMARK]... [-s SORT] [-o ORDER]` <br> e.g. `elist --any -n Christmas -r tarts`
+**EList** | `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT] [-o ORDER]` <br> e.g. `elist --any -n Christmas -r tarts`
 **Undo** | `undo`
 **Redo** | `redo`
 **Help** | `help [COMMAND]`<br> e.g., `help`<br> e.g.,`help list`
