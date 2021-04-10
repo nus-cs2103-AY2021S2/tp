@@ -68,7 +68,7 @@ class JsonSerializableAddressBook {
             if (addressBook.hasPool(pool)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_POOL);
             }
-            if (pool.getPassengers().stream().map(addressBook::hasPassenger).anyMatch(exist -> !exist)) {
+            if (pool.getPassengers().stream().map(addressBook::hasEqualPassenger).anyMatch(exist -> !exist)) {
                 throw new IllegalValueException(MESSAGE_POOL_PASSENGER_INVALID);
             }
             addressBook.addPool(pool);

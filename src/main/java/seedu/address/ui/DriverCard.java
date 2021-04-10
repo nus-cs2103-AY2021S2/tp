@@ -17,6 +17,7 @@ import seedu.address.model.person.driver.Driver;
  */
 public class DriverCard extends UiPart<Region> {
 
+    //todo delete DriverCard and related tests
     public static final String ICON_PATH_NAME = "/images/name.png";
     public static final String ICON_PATH_PHONE = "/images/phone.png";
     public static final String POOL_MESSAGE = "Pooled by:";
