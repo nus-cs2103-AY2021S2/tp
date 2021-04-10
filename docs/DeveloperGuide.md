@@ -152,7 +152,7 @@ Given below is the Sequence Diagram for interactions within the Logic component 
 From the diagram illustrated above:
 1. `LogicManager` has its `execute()` method called when a user enters the `"pool n/Alice p/91234567 d/monday t/1930 c/2 c/3"` command.
 1. `AddressBookParser` class is then instantiated, which subsequently instantiates `PoolCommandParser` class to help parse the user's command.
-1. `AddressBookParser` would then have its `parse()` method invoked to parse the arguments of `"n/Alice p/91234567 d/monday t/1930 c/2 c/3"` to 
+1. `AddressBookParser` would then have its `parse()` method invoked to parse the arguments of `"n/Alice p/91234567 d/monday t/1930 c/2 c/3"` to
    `PoolCommandParser` which creates and returns a `PoolCommand`.
 1. `LogicManager` would subsequently invoke the `execute()` method of the `PoolCommand`, which in turn calls its own method of `getPassengersFromIndexes()`
     that gets a list of passengers from `Model` by calling `getFilteredPassengerList()`.
@@ -163,7 +163,6 @@ From the diagram illustrated above:
 It is worth noting that unlike the `AddCommand` which has a constructor that takes in a single passenger created and passed from `AddCommandParser`, the `PoolCommand` is constructed using the details specified and
 parsed from `PoolCommandParser`. The rationale is due the fact that a list of passengers have to be obtained from the indexes specified, which requires interactions
 with the model that is encapsulated within the methods of `PoolCommand`.
-
 
 
 ### Unpool feature
@@ -182,8 +181,6 @@ From the diagram illustrated above:
 1. Given that the index `"1"` is a valid index, an `UnpoolCommand` object would be created and returned to `LogicManager`.
 1. `LogicManager` would subsequently invoke the `execute()` method of the `UnpoolCommand` which in turn invokes `deletePool()` method with an argument of `1`.
 1. This would update the model by deleting the specified pool, then the result of the command execution `CommandResult` would be created and returned back to `LogicManager`.
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 
