@@ -96,6 +96,7 @@ public class AddCommand extends Command {
 
     private void updateModel(Model model) {
         model.addTask(toAdd);
+        model.resetCalendarDate();
     }
 
     @Override
