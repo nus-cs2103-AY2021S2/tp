@@ -63,7 +63,7 @@ public class MenuEditCommand extends Command {
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
-                    String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_PERSON));
+                    String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_DISH));
         }
 
         Dish dishToEdit = lastShownList.get(index.getZeroBased());
