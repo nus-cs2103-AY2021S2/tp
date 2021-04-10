@@ -1,9 +1,9 @@
 ---
-layout: page 
+layout: page
 title: Developer Guide
 ---
 
-* Table of Contents 
+* Table of Contents
   {:toc}
 * [Setting up, getting started](#setting-up-getting-started)
 * [Design](#design)
@@ -237,7 +237,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
     * 2a1. Taskify warns that the list is empty.
-      
         Use case ends.
 
 * 3a. The given index is invalid.
@@ -260,8 +259,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The Task to be added already exists in the list
     * 1a1. Taskify warns the User that there is already such a Task
-      
-        Use case ends.
+      Use case ends.
 
 * 1b. The User fails to fill in any of the compulsory fields to create a new Task
     * 1b1. Taskify informs the User of the format of creating a new Task

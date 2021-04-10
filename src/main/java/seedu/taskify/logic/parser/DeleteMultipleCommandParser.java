@@ -1,6 +1,7 @@
 package seedu.taskify.logic.parser;
 
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.hasMultipleValidIndex;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.isDeletingTasksByRange;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.isDeletingTasksByStatus;
 import static seedu.taskify.logic.parser.ParserUtil.parseInputToStatus;
 import static seedu.taskify.logic.parser.ParserUtil.parseMultipleIndex;
@@ -28,8 +29,13 @@ public class DeleteMultipleCommandParser implements Parser<DeleteMultipleCommand
             Status status = parseInputToStatus(args);
             return new DeleteMultipleCommand(status);
         }
+
         assert hasMultipleValidIndex(args);
         List<Index> indexes = parseMultipleIndex(args);
-        return new DeleteMultipleCommand(indexes);
+
+        if (isDeletingTasksByRange(args)) {
+            return new DeleteMultipleCommand(indexes, true);
+        }
+        return new DeleteMultipleCommand(indexes, false);
     }
 }
