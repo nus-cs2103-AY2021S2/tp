@@ -17,6 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.storemando.commons.core.GuiSettings;
 import seedu.storemando.logic.commands.AddCommand;
 import seedu.storemando.logic.commands.CommandResult;
 import seedu.storemando.logic.commands.ListCommand;
@@ -91,6 +92,18 @@ public class LogicManagerTest {
     @Test
     public void getFilteredItemList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredItemList().remove(0));
+    }
+
+    @Test
+    public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> logic.setGuiSettings(null));
+    }
+
+    @Test
+    public void setGuiSettings_validGuiSettings_setsGuiSettings() {
+        GuiSettings guiSettings = new GuiSettings(1, 2, 3, 4);
+        logic.setGuiSettings(guiSettings);
+        assertEquals(guiSettings, logic.getGuiSettings());
     }
 
     /**
