@@ -154,7 +154,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 **How it works**
 
 The viewing mechanism is facilitated by the `ViewPatientCommand` which extends `Command`. It mainly overrides `Command#execute` in order to return a `CommandResult` with a `Patient` attribute. When `MainWindow#executeCommand` is ran:
-1. The command is parsed into a `CommandResult` by the `LogicManager` and passed into `MainWindow#processResult`
+1. The command is parsed into a `CommandResult` by the `LogicManager` and passed into `MainWindow#processResult`.
 2. The `CommandResult` will then trigger `MainWindow#handlePatientViewBox` since it has a patient.
 3. `MainWindow#handlePatientViewBox` handles the construction of the `StackPane` containing all the patient information. It clears the `viewPatienBoxPlaceholder` in case there are Javafx nodes from the previous patient, and adds a new `ViewPatientBox` to it.
 4. The constructor of `ViewPatientBox` takes in a `Person` object and extracts information such as their name, phone, address, email, tags, appointments and medical records and adds the information to the labels and Panes which will be displayed in the `ViewPatientBox` UI.
