@@ -162,6 +162,15 @@ package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Learn Mode
+
+The `learn` command is used to enter Learn Mode, allowing the user to view all flashcards with the question and answer
+both displayed. Tagging and deletion of tags is also only available in this mode. 
+
+The following activity diagram summarizes what happens when a user attempts to enter Learn Mode:
+
+![LearnModeActivityDiagram](images/LearnModeActivityDiagram.png)
+
 ### [Implemented] Tagging Flashcards
 
 The tagging mechanism allows users to add tags to flashcards of their choice while in the Learn Mode
