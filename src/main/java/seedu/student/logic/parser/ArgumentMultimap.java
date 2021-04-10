@@ -57,4 +57,12 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
+
+    /**
+     * Returns the last preamble string separated by space.
+     */
+    public String getLastPreamble() {
+        String[] splitPreamble = getPreamble().split(" ");
+        return splitPreamble[splitPreamble.length - 1];
+    }
 }
