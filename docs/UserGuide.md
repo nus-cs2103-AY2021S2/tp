@@ -294,7 +294,7 @@ is to load the storage file with built-in default flashcards and tags.
 
 **Q**: Why can't I delete some tags?<br>
 **A**: Default tags are provided by the application to aid in the learning process and guide you along the way. You can,
-however, add your own tags to any flashcard. The deletion of tags exists is to complement this user tagging function, 
+however, add your own tags to any flashcard. The deletion of tags exists to complement this user tagging function, 
 in case you have a change of mind or typed any tag wrongly.
 
 **Q**: I just want to do a short quiz! Is there any way to do that?<br>
