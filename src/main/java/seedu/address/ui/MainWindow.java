@@ -22,6 +22,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.storage.CalendarStorage;
 import seedu.address.ui.calendar.CalendarWindow;
 import seedu.address.ui.calendar.schedule.UpcomingSchedule;
+import seedu.address.ui.panels.DisplayPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing

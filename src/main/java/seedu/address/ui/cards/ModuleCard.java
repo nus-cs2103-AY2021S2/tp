@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.cards;
 
 import static java.util.Objects.requireNonNull;
 
@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.module.Module;
+import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -38,11 +39,15 @@ public class ModuleCard extends UiPart<Region> {
         super(FXML);
         requireNonNull(module);
         this.module = module;
+        title.setWrapText(true);
+        title.setMaxWidth(600);
         title.setText(displayIndex + ". " + module.getTitle().modTitle + ": ");
         assignments.setWrapText(true);
         assignments.setText(module.getAssignments().toString());
+        assignments.setMaxWidth(300);
         exams.setWrapText(true);
         exams.setText(module.getExams().toString());
+        exams.setMaxWidth(300);
     }
 
 

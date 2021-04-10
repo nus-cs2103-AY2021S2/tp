@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.addcommandparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.BIRTHDAY_DESC_AMY;
@@ -23,7 +23,6 @@ import static seedu.address.testutil.TypicalRemindMe.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.addcommand.AddPersonCommand;
-import seedu.address.logic.parser.addcommandparser.AddPersonCommandParser;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
