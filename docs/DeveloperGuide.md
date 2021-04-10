@@ -110,13 +110,6 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-#### Command Implementations
-
-The diagram below further explains the implementation of individual commands.
-
-1. AddGroup Command
-   ![](images/AddGroupSequenceDiagram.png)
-
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -212,6 +205,12 @@ The sequence diagram below depicts the execution path when the user enters a com
 switched.
 
 ![SwitchTabSequenceDiagram](images/SwitchTabSequenceDiagram.png)
+
+### Add Group
+
+The sequence diagram below depicts the execution path when a `AddGroupCommand` is executed.
+
+![AddGroupSequenceDiagram](images/AddGroupSequenceDiagram.png)
 
 ### Add Picture
 
