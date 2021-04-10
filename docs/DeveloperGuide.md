@@ -276,62 +276,67 @@ The following activity diagram summarizes what happens when a user executes a fi
   <img width="430px" src="images/FindActivityDiagram.png" >
 </p>
 
-### Send/run command feature
+### Send & run command feature
 
 #### What it is
 
-Allows the user to make an API call to a specific endpoint, either with values from a saved endpoint (`send`) or values passed in as command line arguments (`run`).
+Allows the user to make a request to a specific API endpoint, either with data from a saved endpoint (`send` command) or values passed in from the command box (`run` command). The main use cases for send and run commands are as follows:
+* Send: the user wants to get the latest response from the API service provider of a particular endpoint in the endpoint list. The endpoint invoked will also update its response details in the storage file.
+* Run: the user wants to run a quick API request without saving. The parameters required for the API request is supplied as part of the command parameters, and the response will be displayed for inspection.
 
 #### Implementation
 
-The send/run mechanism is very involved in the invocation of an actual outbound request that is facilitated by the `request` package. Both commands allow users to get the latest response from an endpoint and display the result for inspection.
+The send and run commands both involve the invocation of an actual outbound request that is facilitated by the `request` package. Both commands allow users to get the latest response from an endpoint and display the result for inspection.
 
-Given below is an example usage scenario and how the send command behaves at each step.
+Given below is an example usage scenario of how the `run` command behaves at each step.
 
-Step 1. The user launches the application and executes `add -x get -u https://api.data.gov.sg/v1/environment/air-temperature` to save an endpoint (a `get` request to the API URL address above).
+Step 1. The user launches the application and executes `run -x get -u https://api.data.gov.sg/v1/environment/air-temperature` to make a call to the specified API (which is a `get` request to the URL above).
 
-Step 2. The user executes `send 1` command to first retrieve the endpoint stored at index 1. The endpoint at that index will then be used to generate an `EndpointCaller` object.
+Step 2. The `run` command parser first validates the user input. According to the format of the run command supplied, the parser retrieves the relevant endpoint details in order to construct a `run` command.
 
-Step 3. The `send` command calls `EndpointCaller#callEndpoint()`, sending out the HTTP request to the targeted API service provider and retrieves a response. The existing endpoint used to invoke the request will be used to generate an updated endpoint with the returned response and saved into the model.
+Step 3. The `run` command creates an `EndpointCaller` object to execute the request via `EndpointCaller#callEndpoint()`, sending out the HTTP request to the targeted API service provider and retrieves a response.
 
-Step 4. The response retrieved will also be parsed and passed to UI for further formatting and displaying to the user.
+Step 4. The response will then be parsed and forwarded to `UI` for further formatting before displaying to the user.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a send command fails its execution, it will not call `model.setEndpoint()`, so the endpoint list state will not be updated or saved.
-
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a run command fails to execute, relevant error message will be provided.
 </div>
 
-The following sequence diagram shows how the send operation works:
+The following sequence diagram shows how the `run` operation works:
 
 <p align="center">
-  <img width="600px" src="images/SendSequenceDiagram.png" >
+  <img width="900px" src="images/RunSequenceDiagram.png" >
 </p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SendCommand` should end 
-at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for 
+`RunCommandParser`, `RunCommand` and `EndpointCaller` should end at the destroy marker (X) but due to a limitation 
+of PlantUML, the lifeline reaches the end of diagram.
 </div>
-
-The `run` command deploys a similar trick but for an endpoint specified directly within the command arguments.
 
 <div style="page-break-after: always;"></div>
 
-The following activity diagram summarizes what happens when a user executes a run command:
-
+The following activity diagram summarizes what happens when a user executes a valid run command:
 <p align="center">
-  <img width="400px" src="images/RunActivityDiagram.png" >
+  <img width="430px" src="images/RunActivityDiagram.png" >
 </p>
 
 #### Design consideration:
 
-##### Aspect: How send & run executes
+##### Aspect: How run executes
 
-* **Alternative 1 (current choice):** The Send and Run command parsers verify the validity of endpoint/url address before generating the respective commands.
-    * Pros: Keep the checking logic within the same place.
-    * Cons: It may not be clear if the command contains a valid endpoint.
+* **Alternative 1 (current choice):** The `run` command parser does a primitive verification of the url via
+  the helper method `ParserUtil#parseAddress`. The helper method in term invokes `Address#isValidAddress` to
+  intercept obvious non-urls provided by the user. The parser thereafter generates a `run` command with the verified
+  input.
+  * Pros: By abstracting out the `parseAddress` method and encapsulating the validity of URL address in the `Address`
+    class, the helper method can be utilised by other commands such as the `add` command.
+  * Cons: An extra layer of abstraction may make it harder to make quick changes to the logic in URL address
+    verification.
 
-* **Alternative 2:** Individual command checks if the endpoint/url address is valid by itself.
-    * Pros: Checking of url address validity right before execution will ensure proper request is processed.
-    * Cons: Duplication of code across Send and Run commands.
+* **Alternative 2:** Individual command parser checks for the url address validity by itself.
+  * Pros: Making it obvious to developers to view the exact steps taken in parsing the user input within
+    each command parser.
+  * Cons: Duplication of code across all command parsers that require the verification of URLs, such as `add` and
+    `run` commands.
 
 <div style="page-break-after: always;"></div>
 
@@ -897,6 +902,26 @@ Given below are instructions to test the app manually.
    1. With the app still open, enter `exit` in the command box or click on the close window button.<br>
       Expected: App closes.
 
+### Show an endpoint
+
+1. Show the details of a selected endpoint from the endpoint list in the result display
+
+  1. Prerequisites: There exists at least one (but less than 100) endpoints in the endpoint list.
+
+  1. Test case: `show 1`<br>
+     Expected: Details of the first endpoint in the endpoint list is shown in the result display.
+
+  1. Test case: `show`<br>
+     Expected: Error details shown in the result display, with a result message saying `Invalid command format!...`.
+
+  1. Test case: `show 0`<br>
+     Expected: Error details shown in the result display, with a result message saying `An index must be specified.
+     ..`. Other incorrect show commands to try: `show -1`, `show one`
+
+  1. Test case: `show 100`<br>
+     Expected: Error details shown in the result display, with a result message saying `Index provided is not
+     within...`. Other incorrect remove commands to try: `show 101`,`show 999`
+
 ### Edit an endpoint
 
 1. Edit an endpoint
@@ -961,6 +986,34 @@ Given below are instructions to test the app manually.
       Expected: No endpoint is deleted. Error details shown in the result display, with a result message saying `Index provided is not within...`
       Other incorrect remove commands to try: `remove x` (where x is larger than the list size, and is a positive integer that is less than the maximum integer size). <br>
 
+### List all endpoints
+
+1. List all endpoints
+
+  1. Prerequisites: There exists multiple endpoints in the list.
+
+  1. Test case: `list`<br>
+     Expected: All endpoints are shown in the endpoint list, with a
+     result message saying `Listed all saved...`.
+
+2. List all endpoints from the endpoint list after a `find` command
+
+  1. Prerequisites: List all endpoints using the `list` command. There exists multiple endpoints in the list.
+     Perform a `find` command such that the endpoint list shows less than actual number of endpoints.
+
+  1. Test case: `list`<br>
+     Expected: Filter from the `find` will be cleared and all endpoints are shown in the endpoint list, with a
+     result message saying `Listed all saved...`.
+
+3. List all endpoints from the endpoint list after a `clear` command
+
+  1. Prerequisites: List all endpoints using the `list` command. There exists multiple endpoints in the list.
+     Perform a `clear` command such that all endpoints are cleared from the endpoint list.
+
+  1. Test case: `list`<br>
+     Expected: No endpoints are shown in the endpoint list, with a result message saying `It seems like your list
+     is empty!...`.
+     
 ### Clear all endpoints
 
 1. Clear all endpoints from the endpoint list
