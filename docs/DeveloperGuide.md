@@ -244,39 +244,39 @@ Below is the sequence diagram:
 
 ![#Interactions Inside the Logic Component for the `deleteTask 1` Command](images/DeleteTaskSequenceDiagram.png)
 
-### Clear all Assignee of a Task feature
+### Clear all Assignees of a Task feature
 
-The implementation of clearing all `Assignee` of a Task feature is facilitated by the `ClearAssigneeCommand` 
+The implementation of clearing all assignees of a Task feature is facilitated by the `ClearAssigneeCommand` 
 class which extends from the Command abstract class.
 
 It is also facilitated by the following Parser Classes:
 * `ClearAssigneesCommandParser`
 
-The above mentioned Parser classes all inherit the `#parse` method from the Parser interface.
+The above mentioned Parser class inherits the `#parse` method from the Parser interface.
 
 * `ClearAssigneesCommandParser#parse` - checks if the arguments passed to the current ClearAssigneeCommand is valid. 
   If the arguments are valid, it creates a ClearAssigneeCommand instance.
 
 Subsequently, the created `ClearAssigneeCommand` object contains an `#execute` method which is responsible for
-clearing all `Assignee` of the Task, with respect to its index. This is achieved by creating a new 
-`Task` object with the same fields and values but setting the Set<Assignee> field as a new empty HashSet. 
+clearing all assignees of the Task, with respect to its index. This is achieved by creating a new 
+`Task` object with the same fields and values as before but setting the `Set<Assignee>` field as a new empty HashSet. 
 
-Below is the usage scenario of how clear all assignee of a Task mechanism behaves.
+Below is the usage scenario of how clear all assignees of a Task mechanism behaves.
 
 Assumptions:
 1. User has already launched the app
-2. HEY MATEz application has an existing task with **assignee**
+2. HEY MATEz application has an existing task with an **assignee**
 
-Step 1. User executes the `clearAssignees 1` command to mark the task with index number 1 in the task list of 
-HEY MATEz to be cleared. A ` ClearAssigneesCommandParser` object is created and it calls `ClearAssigneesCommandParser#parse` 
-on the arguments.
+Step 1. User executes the `clearAssignees 1` command to clear all the assignees of the task at index 1 in the task list of 
+HEY MATEz. A ` ClearAssigneesCommandParser` object is created and it calls `ClearAssigneesCommandParser#parse` on the arguments.
 
 Step 2. `ClearAssigneesCommandParser#parse` method will check on the validity of the arguments for a `ClearAssigneesCommand`. 
-If it is valid,  it will call the create a new `ClearAssigneesCommand` by calling the constructor.
+If it is valid, it will create a new `ClearAssigneesCommand` instance by calling the constructor of `ClearAssigneesCommand`.
 
 Step 3. The `ClearAssigneesCommand#execute` is then called by the `LogicManager`. The task with the same `Index` 
-is retrieved and a copy of the task is created with the same attribute values. However. the `Set<Assignee>` field is 
-updated to be a new empty HashSet in the `Model`.
+is retrieved and a copy of the task is created with the same attribute values but with the `Set<Assignee>` field  
+updated to be a new empty HashSet. The copy of the task with the updated `Set<Assignee>` field replaces the old task in
+the `Model` class.
 
 Step 4. Once the execution is completed, the message `MESSAGE_CLEARED_ASSIGNEES_SUCCESS` is used to return a new Command Result
 with the attached message.
@@ -303,9 +303,8 @@ Below is the sequence diagram:
 
 **Target user profile**:
 
-* CCA / Club head who is managing many members
-* Needs an efficient and organised method to assign tasks to these members.
-* Needs to manage a significant number of members
+* CCA / Club head who is managing many members and tasks
+* Needs an efficient and organised method to assign tasks to these members
 * Prefer desktop apps over other types
 * Prefers typing to mouse interactions
 
@@ -377,15 +376,15 @@ Use case ends.
 
 **MSS**
 
-1.  User requests to delete a member using the member's name
-2.  HEY MATEz searches for the member 
-3.  HEY MATEz deletes the member from the list
+1.  User requests to delete a member by specifying the member's name
+2.  HEY MATEz searches for the member's name in the list
+3.  HEY MATEz deletes the specified member from the list
     
 Use case ends. 
 
-**Extensions**
+**Extensions** 
 
-* 2a. Member does not exist in the list of members
+* 2a. Name specified does not exist in the list of members
     * 2a1. HEY MATEz shows an error message
   
 Use case ends.
@@ -394,20 +393,20 @@ Use case ends.
 
 **MSS**
 
-1.  User requests to edit the details of a member using the member's name
-2.  HEY MATEz searches for the member 
+1.  User requests to edit the details of a member by specifying the member's name
+2.  HEY MATEz searches for the member's name in the list 
 3.  HEY MATEz edits the corresponding member with the new details 
     
 Use case ends. 
 
 **Extensions**
 
-* 2a. Member does not exist in the list of members
+* 2a. Name specified does not exist in the list of members
     * 2a1. HEY MATEz shows an error message
   
 Use case ends.
 
-:pencil2: **Use case: Find members using keywords**
+:pencil2: **Use case: Find members with keywords**
 
 **MSS**
 
@@ -428,8 +427,8 @@ Use case ends.
 
 **Extensions**
 
-* 2a. Task already exists (Matching Title) in the list
-    * 2a1. HEY MATEz shows an error message
+* 1a. Task already exists (Matching Title) in the list
+    * 1a1. HEY MATEz shows an error message
   
 Use case ends.
 
@@ -438,7 +437,7 @@ Use case ends.
 **MSS**
 
 1.  User requests to view the list of tasks
-2.  HEY MATEz lists the tasks along with the description 
+2.  HEY MATEz lists all the tasks along with the details 
     
 Use case ends.
 
@@ -463,12 +462,12 @@ Similar to editing a member except that the user specifies task index instead of
 
 **Extensions**
 
-* 1a. Task does not exist (Task index out of bounds)
-    * 1a1. HEY MATEz shows an error message
+* 2a. Task does not exist (Task index out of bounds)
+    * 2a1. HEY MATEz shows an error message
   
 Use case ends.
 
-:pencil2: **Use case: Find tasks using keywords**
+:pencil2: **Use case: Find tasks with keywords**
 
 **MSS**
 
@@ -495,7 +494,7 @@ Use case ends.
     
 Use case ends.
 
-Extensions
+**Extensions**
 * 1a. The input value by the user is not a valid priority
     * 1a1. HEY MATEz shows an error message
       
@@ -535,7 +534,7 @@ Use case ends.
 
 **MSS**
 
-1.  User requests to remove all assignees from a task, using the task's index
+1.  User requests to remove all assignees from a task using the task's index
 2.  HEY MATEz searches for the task index 
 3.  HEY MATEz removes all members assigned to the task
 
