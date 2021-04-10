@@ -40,6 +40,7 @@ public class UpdateDeadlineCommand extends Command {
 
     public static final String MESSAGE_UPDATE_DEADLINE_SUCCESS = "Updated deadline: %1$s";
     public static final String MESSAGE_DUPLICATE_DEADLINE = "This deadline already exists in this project.";
+    public static final String MESSAGE_UNCHANGED_DEADLINE = "This deadline already has this description and date.";
 
     private final Index projectIndex;
     private final Index targetDeadlineIndex;
@@ -82,6 +83,11 @@ public class UpdateDeadlineCommand extends Command {
 
         if (deadlineList.hasDeadline(updatedDeadline) && !deadlineToUpdate.equals(updatedDeadline)) {
             throw new CommandException(MESSAGE_DUPLICATE_DEADLINE);
+        }
+
+        if (deadlineToUpdate.getDescription().equals(updatedDeadline.getDescription()) &&
+                deadlineToUpdate.getBy().equals(updatedDeadline.getBy())) {
+            throw new CommandException(MESSAGE_UNCHANGED_DEADLINE);
         }
 
         if (deadlineList.checkIsDone(targetDeadlineIndex.getZeroBased())) {
