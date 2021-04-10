@@ -32,6 +32,7 @@ import seedu.student.model.ModelManager;
 import seedu.student.model.ReadOnlyStudentBook;
 import seedu.student.model.UserPrefs;
 import seedu.student.model.student.Student;
+import seedu.student.model.student.exceptions.MatriculationNumberDoesNotExistException;
 import seedu.student.storage.JsonStudentBookStorage;
 import seedu.student.storage.JsonUserPrefsStorage;
 import seedu.student.storage.StorageManager;
@@ -107,7 +108,7 @@ public class LogicManagerTest {
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-            Model expectedModel) throws CommandException, ParseException {
+            Model expectedModel) throws CommandException, ParseException, MatriculationNumberDoesNotExistException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);

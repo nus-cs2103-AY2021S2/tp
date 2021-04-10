@@ -1,7 +1,12 @@
+
 package seedu.student.model.student;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.student.commons.util.AppUtil.checkArgument;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class VaccinationStatus {
 
@@ -46,6 +51,16 @@ public class VaccinationStatus {
         } catch (IllegalArgumentException e) {
             return false;
         }
+    }
+
+    public static String getStringVaccinationStatus() {
+        return String.join(", ", getVaccinationStatus());
+    }
+
+    public static List<String> getVaccinationStatus() {
+        String[] residenceArray = Stream.of(VaccinationStatus.VaccinationStatusAbbreviation.values())
+                .map(VaccinationStatus.VaccinationStatusAbbreviation::name).toArray(String[]::new);
+        return Arrays.asList(residenceArray);
     }
 
     @Override

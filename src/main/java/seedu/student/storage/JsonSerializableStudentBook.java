@@ -21,6 +21,7 @@ import seedu.student.model.student.Student;
 class JsonSerializableStudentBook {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "Student list contains duplicate student(s).";
+    public static final String MESSAGE_CLASHING_APPOINTMENT = "Appointment list contains clashing appointment(s),";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "Appointment list contains duplicate appointment(s),";
     public static final String MESSAGE_MISSING_STUDENT = "The student does not exist in the records.";
     public static final String MESSAGE_INVALID_START_TIME = "Time should be a valid time of the form HH:00 or HH:30";
@@ -73,9 +74,14 @@ class JsonSerializableStudentBook {
                 throw new IllegalValueException(MESSAGE_MISSING_STUDENT);
             }
 
-            if (studentBook.hasAppointment(appointment) || studentBook.hasOverlappingAppointment(appointment)) {
+            if (studentBook.hasOverlappingAppointment(appointment)) {
+                throw new IllegalValueException(MESSAGE_CLASHING_APPOINTMENT);
+            }
+
+            if (studentBook.hasAppointment(appointment)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);
             }
+
             studentBook.addAppointment(appointment);
         }
         return studentBook;

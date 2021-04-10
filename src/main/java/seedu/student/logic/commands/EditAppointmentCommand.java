@@ -56,7 +56,6 @@ public class EditAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-
         Appointment appointmentToEdit = model.getAppointmentToEdit(matriculationNumber);
         if (appointmentToEdit == null) {
             throw new CommandException(MESSAGE_APPOINTMENT_DOES_NOT_EXIST);
