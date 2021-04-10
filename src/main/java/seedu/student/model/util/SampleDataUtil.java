@@ -74,6 +74,22 @@ public class SampleDataUtil {
                     new Phone("97055955"), new Email("ayden.toy@example.com"),
                     new Address("Blk 45 Aljunied Street 85, #11-31"), new VaccinationStatus("unvaccinated"),
                     new MedicalDetails("penicillin allergy"), new SchoolResidence("UTR")),
+            new Student(new Name("Bernard Shum"), new MatriculationNumber("A0164360V"), new Faculty("ENG"),
+                    new Phone("87538557"), new Email("bernard.sh@example.com"),
+                    new Address("64 Aljunied Vista"), new VaccinationStatus("vaccinated"),
+                    new MedicalDetails("none"), new SchoolResidence("RH")),
+            new Student(new Name("Cora Wong"), new MatriculationNumber("A0209475D"), new Faculty("FASS"),
+                    new Phone("91061216"), new Email("jeromy.kee@example.com"),
+                    new Address("51 Mandai Junction"), new VaccinationStatus("unvaccinated"),
+                    new MedicalDetails("history of anaphylaxis"), new SchoolResidence("RVRC")),
+            new Student(new Name("Godfrey Selverajah"), new MatriculationNumber("A0214512E"), new Faculty("DEN"),
+                    new Phone("93513743"), new Email("godfrey.selverajah@example.com"),
+                    new Address("Blk 234 Lorong 3 Queenstown, #07-04"), new VaccinationStatus("vaccinated"),
+                    new MedicalDetails("none"), new SchoolResidence("RC4")),
+            new Student(new Name("Samihah Nordin"), new MatriculationNumber("A0224235N"), new Faculty("SCI"),
+                    new Phone("94058046"), new Email("samihah@example.com"),
+                    new Address("Blk 112 Lorong 7 Buona Vista, #08-21"), new VaccinationStatus("unvaccinated"),
+                    new MedicalDetails("penicillin allergy"), new SchoolResidence("UTR"))
         };
     }
 
