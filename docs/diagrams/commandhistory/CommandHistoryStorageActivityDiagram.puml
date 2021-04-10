@@ -4,13 +4,13 @@ start
 :User enters command;
 :Parse command text;
 if () then ([else])
-:Show error
+:Show parsing error
 message to user;
 stop
 else ([parsing successful])
 :Execute command;
 if () then ([else])
-:Show error
+:Show execution error
 message to user;
 stop
 else ([execution successful])
@@ -20,7 +20,8 @@ to command history;
 command history;
 :Save command
 history to file;
-:Show success
+:Show command
+success
 message to user;
 stop
 endif
