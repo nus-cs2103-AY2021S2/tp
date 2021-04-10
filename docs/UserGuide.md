@@ -19,7 +19,7 @@ way for you to manage your data.
 CakeCollate promises to be an efficient desktop application that allows you to easily consolidate and manage your orders. Our main features include:<br>
 1. Order management
 2. Order Item management
-3. Reminders for orders that have delivery dates approaching the current date
+3. Reminders for undelivered orders that have delivery dates approaching the current date
 4. Checking the delivery status of your orders
 
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
@@ -84,41 +84,23 @@ commands may receive.
 </div>
 
 #### **2.2.3 Types of User Input**
-In this section, you will learn about the commonly used User Inputs as well as their accompanying prefixes. These will be helpful when you are trying to specify the fields for certain commands.
+In this section, you will learn about the commonly used User Inputs as well as their accompanying prefixes. 
+These will be helpful when you are trying to specify the fields for certain commands.
 <br><br>
-##### `NAME`
-The name of the customer who has placed the order.<br>
-Prefix: `n/`
-* It can contain alphabetical characters, numbers and spaces.<br>
-  E.g. `Alex Yeoh`, `Johnathan9`, `Charlotte the 5th`
-* It cannot be longer than 70 characters.
-* It cannot be empty.
-<br><br>
-##### `PHONE_NUMBER`
-The phone number of the customer who has placed the order.<br>
-Prefix: `p/`
-* It can only contain numbers.
-* It should be at least 3 digits long.
-* It cannot be longer than 20 digits.
-<br><br>
-##### `EMAIL`
-The email of the customer who has placed the order.<br>
-Prefix: `e/`
-* Emails should be of the format `local-part@domain`.
-* `local-part` can contain alphabetical or numerical characters and these special characters: ``!#$%&'*+/=?`{|}~^.-``.<br>
-  E.g. `alice#3in?wonderland!`
-* `domain` should
-  * be at least 2 characters long
-  * start and end with alphabetical or numerical characters
-  * contain alphabetical or numerical characters, a period `.` or a hyphen `-` for the characters in between, if any.<br>
-  E.g. `sample-domain.com`
-<br><br>
+
+
 ##### `ADDRESS`
 The address of the customer who has placed the order.<br>
 Prefix: `a/`
-* It can contain any characters.
+* It can contain any type of characters.
 * It cannot be empty.
-<br><br>
+
+##### 'DAYS'
+The number of days from the current date.
+Prefix: `none`
+* It can only contain integers greater than or equal to 0.
+  E.g. `0`,`365`,`99`
+
 ##### `DELIVERY_DATE`
 The delivery date for the order.<br>
 Prefix: `d/`
@@ -135,38 +117,75 @@ Prefix: `d/`
 :information_source: You do not have to worry about losing track of overdue orders.<br>
 
 **:exclamation: For advanced users:** You will be able to enter a past delivery date into the save file `cakecollate.json`. As such, you are recommended to add/edit a delivery date through the application itself.
-<br><br>
+
+##### `INDEX`
+Indexes are used to specify specific orders in CakeCollate. The index number can be found beside the 'name' field 
+in [order item box](#221-sections-of-the-ui).
+Prefix: `none`
+* It can only contain positive integers greater than 1, but should not be greater than the total number of orders in 
+the Orders Box.
+  E.g. `1`,`20`,`35`
+  
+##### `EMAIL`
+The email of the customer who has placed the order.<br>
+Prefix: `e/`
+* Emails should be of the format `local-part@domain`.
+* `local-part` can contain alphabetical or numerical characters and these special characters: ``!#$%&'*+/=?`{|}~^.-``.<br>
+  E.g. `alice#3in?wonderland!`
+* `domain` should
+  * be at least 2 characters long
+  * start and end with alphabetical or numerical characters
+  * contain alphabetical or numerical characters, a period `.` or a hyphen `-` for the characters in between, if any.<br>
+  E.g. `sample-domain.com`
+  
+##### `NAME`
+The name of the customer who has placed the order.<br>
+Prefix: `n/`
+* It can contain alphabetical characters, numbers and spaces.<br>
+  E.g. `Alex Yeoh`, `Johnathan9`, `Charlotte the 5th`
+* It cannot be longer than 70 characters.
+* It cannot be empty.
+
 ##### `ORDER_DESCRIPTION`
-The order description for the order.<br>
+The order description of the order.<br>
 Prefix: `o/`
 * Each order description cannot be longer than 70 characters.
 * It cannot be empty.<br>
-  E.g. `Durian Cake`
-<br><br>
+  E.g. `Durian Cake`, `Blackforest Cake`
+
 ##### `ORDER_ITEM_INDEXES`
 The order item index of the order item table for the order.<br>
 Prefix: `oi/`
 * This refers to indexes of the order item table in the [order item box](#221-sections-of-the-ui).
 * This can be used with or as a replacement for `ORDER_DESCRIPTION`, given the order item in the table matches the order description you want to add/edit.
-<br><br>
-##### `TAG`
-The tags you can add to an order.<br>
-Prefix: `t/`
-* It can contain alphabetical or numerical characters.
-* Each tag cannot be longer than 30 characters.
-* There is no specific usage for `TAG`.
-  * Use it as a tag for the customer. E.g. `friend`, `fussy`, `important`
-  * Use it as a tag for the order. E.g. `urgent`, `complicated`
-<br><br>
+
+##### `PHONE_NUMBER`
+The phone number of the customer who has placed the order.<br>
+Prefix: `p/`
+* It can only contain numbers.<br>
+  E.g. `90126969`
+* It should be at least 3 digits long.
+* It cannot be longer than 20 digits.
+
 ##### `REQUEST`
-The request or notes you can add to an order.<br>
+The special request or notes you can add to an order. What makes it different from tags it that it can contain
+large amounts of information.<br>
 Prefix: `r/`
 * It can contain any type of characters.
 * It can be empty.
   * An empty request is used to clear/reset the `REQUEST` field of the order.
 
-:information_source: `Request` and its prefix `r/` will only be processed in the [Request Command](#adding-a-special-request-to-an-order-request) and [Find Command](#locating-orders-find).
+:information_source: The user input `Request` and its prefix `r/` will only be used in the [Request Command](#adding-a-special-request-to-an-order-request) and [Find Command](#locating-orders-find).
 
+##### `TAG`
+The tags you can add to an order. A small piece of information you can add to an order.<br>
+Prefix: `t/`
+* It can contain alphabetical or numerical characters but not spaces.
+* Each tag cannot be longer than 30 characters.
+* There is no specific usage for `TAG`.
+  * Use it as a tag for the customer. E.g. `friend`, `fussy`, `important`
+  * Use it as a tag for the order. E.g. `urgent`, `complicated`
+  
 ## **3. Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -193,7 +212,7 @@ You can use the sample data pre-loaded in the application to get play around and
 
    * **`delete`**`3` : Deletes the 3rd order shown in the current list.
    
-   * **`remind`**`2` : Lists all orders that are 2 days within the current local date.
+   * **`remind`**`2` : Lists all undelivered orders that are 2 days within the current local date.
 
    * **`clear`** : Deletes all order in the CakeCollate database.
 
@@ -261,9 +280,14 @@ Format: `request INDEX r/REQUEST`
 specifying the index without adding the prefix.
 
 Examples:
-* `request 1 r/More sugar, spice and everything nice.` Sets the special request of the 1st order to be `More sugar, spice and everything nice.`
-* `request 2 r/` Removes the 2nd order's current special request.
+* `request 1 r/More sugar, spice and everything nice` Sets the special request of the 1st order to be `More sugar, spice and everything nice.`
+* `request 1 r/` Removes the 1st order's current special request.
 * `request 1` Removes the 1st order's current special request.
+* Assuming the special request on an order was previously empty as shown in this picture,
+![empty_request](images/Empty_request.PNG) using the command `request 1 r/More sugar, spice and everything nice` would
+update the order's current special request to ![fllled_request](images/Filled_request.PNG) 
+using the command `request 1` or `request 1 r/` on the same order again would update the request of the order back to 
+![empty_request](images/Empty_request.PNG).
 
 
 ##### Deleting an order: `delete`
@@ -386,17 +410,18 @@ Format: `list`
 
 ##### Receiving reminders for orders: `remind`
 
-Displays a list of reminder for orders that are X days within the current date.
+Displays a list of reminder for all undelivered orders that are X days within the current date.
 
 Format: `remind DAYS`
 
-* Lists all orders within the current date to the numbers of days from the specified date.
+* Lists all undelivered orders within the current date to the numbers of days from the specified date.
 * The `DAYS` refers to the number of days from the current date.
 * The `DAYS` **must be a positive integer starting from 0**.
 
 Examples:
-* `remind 0` lists all orders that have a delivery date for today.
-* `remind 3` lists all orders that have a delivery date within 3 days from today.
+* `remind 0` lists all undelivered orders that have a delivery date for today.
+* `remind 365` lists all undelivered orders that have a delivery date within 365 days from today. <br>
+    ![result for 'remind 365'](images/Remind365.PNG) 
 
 
 ### **4.2 Order Items**
@@ -440,7 +465,7 @@ Examples:
 
 Format: `help`
 
-##### Clearing all existing orders and order items: `clear`
+#### Clearing all existing orders and order items: `clear`
 
 Deletes all existing orders and order items in the CakeCollate database.
 
@@ -495,43 +520,57 @@ on the operating system of the computer you are running cakecollate on.
 
 ## **7. Command and prefix summary**
 
-Action  | Format, Examples
+### Order Interaction
+
+Action  | Format
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...` 
-<br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake 3` 
-<br><br> `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_ITEM_INDEXES [o/ORDER_DESCRIPTION]... [t/TAG]...` 
-<br> e.g. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake oi/1` <br>
-
-**Clear** | `clear`
-**Delete** | `delete INDEXES`<br> e.g., `delete 3 4`
+**Delete** | `delete INDEXES`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/ORDER_DESCRIPTION]... [t/TAG]...`
-<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find [n/KEYWORD_NAME]... [p/KEYWORD_PHONE]... [e/KEYWORD_EMAIL]... [a/KEYWORD_ADDRESS]... 
-[o/KEYWORD_ORDER_DESCRIPTION]... [t/KEYWORD_TAG]... [d/KEYWORD_DELIVERY_DATE]... [s/KEYWORD_DELIVERY_STATUS]... [r/KEYWORD_REQUEST]... 
-`<br> e.g., `find James Jake`, `find n/Alex o/Chocolate`, `find n/Bernice d/march s/undelivered`
+**Request** | `request INDEX r/REQUEST` 
+**Undelivered** | `undelivered INDEXES`
+**Delivered** | `delivered INDEXES`
+**Cancelled** | `cancelled INDEXES`
+
+### Order Functionalities
+
+Action | Format
+-------|----------
+**Find** | `find [n/KEYWORD_NAME]... [p/KEYWORD_PHONE]... [e/KEYWORD_EMAIL]... [a/KEYWORD_ADDRESS]... [o/KEYWORD_ORDER_DESCRIPTION]... [t/KEYWORD_TAG]... [d/KEYWORD_DELIVERY_DATE]... [s/KEYWORD_DELIVERY_STATUS]... [r/KEYWORD_REQUEST]...`
 **List** | `list`
+**Remind** | `remind DAYS`
+
+
+### Order Items
+
+Action | Format
+-------|----------
+**Add Order Item** | `addItem ORDER_ITEM_DESCRIPTION`
+**Delete Order Item** | `deleteItem ORDER_ITEM_INDEXES`
+
+### Others
+
+Action | Format
+-------|----------
 **Help** | `help`
-**Remind** | `remind DAYS`<br> e.g., `remind 3`
-**Request** | `request INDEX [r/REQUEST]` <br> e.g., `request 1 r/More sugar, spice and everything nice.`
-**Undelivered** | `undelivered INDEXES`<br> e.g., `undelivered 3 4`
-**Delivered** | `delivered INDEXES`<br> e.g., `delivered 3 4`
-**Cancelled** | `cancelled INDEXES`<br> e.g., `cancelled 3 4`
-**Add Order Item** | `addItem ORDER_ITEM_DESCRIPTION`<br> e.g., `addItem 2 x Red Velvet`
-**Delete Order Item** | `deleteItem ORDER_ITEM_INDEXES`<br> e.g., `deleteItem 2 3`
+**Clear** | `clear`
+**Exit** | `exit`
+
+### Prefix
 
 Prefix  | Description
 --------|------------------
-**n/** / Name of the customer
-**p/** / Phone number of the customer
-**e/** / Email of the customer
-**a/** / Address of the customer
-**d/** / Delivery date of the order
-**o/** / Order placed by the customer
-**oi/** / Order index of the order placed by the customer, based on the order item table on the right
-**t/** / Tags for the order
-**r/** / Request placed by the customer for an order
-**s/** / Status of the order (undelivered, delivered or cancelled)
---------------------------------------------------------------------------------------------------------------------
+**n/** | Name of the customer
+**p/** | Phone number of the customer
+**e/** | Email of the customer
+**a/** | Address of the customer
+**d/** | Delivery date of the order
+**o/** | Order placed by the customer
+**oi/** | Order index of the order placed by the customer, based on the order item table on the right
+**t/** | Tags for the order
+**r/** | Request placed by the customer for an order
+**s/** | Status of the order (undelivered, delivered or cancelled)
+
 
 ## Acknowledgements
 
