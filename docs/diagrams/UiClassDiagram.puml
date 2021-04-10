@@ -15,6 +15,7 @@ Class XYZListPanel
 Class XYZCard
 Class StatusBarFooter
 Class CommandBox
+Class KeyboardShortcuts
 }
 
 package Model <<Rectangle>> {
@@ -34,7 +35,8 @@ MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> XYZListPanel
-MainWindow *-down-> StatusBarFooter
+MainWindow *-down--> StatusBarFooter
+MainWindow *-down-> KeyboardShortcuts
 
 XYZListPanel -down-> XYZCard
 
