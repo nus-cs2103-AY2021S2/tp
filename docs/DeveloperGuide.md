@@ -554,6 +554,12 @@ Use case ends.
     
 Use case ends.
 
+:pencil2: **Use case: View Unassigned Tasks**
+
+**MSS**
+
+Similar to viewing a list of uncompleted tasks but a list of unassigned task is displayed instead.
+
 :pencil2: **Use case: Find all Tasks assigned to a particular Members**
 
 **MSS**
