@@ -465,25 +465,34 @@ between `ViewHistoryCommand` and the Model component.
 ![ViewHistorySequenceDiagram](images/commandhistory/CmdHistViewHistorySequenceDiagram.png)
 
 ##### Navigate History
-The user navigates their command history via the UP and DOWN arrow keys. The UP and DOWN arrow keys respectively
+The user navigates their command history via the `UP` and `DOWN` arrow keys. The `UP` and `DOWN` arrow keys respectively
 select the previous and next commands in history, if any.
 
-The UP and DOWN key press events are first handled by `CommandBox` in the UI component. `CommandBox` delegates the
+The `UP` and `DOWN` key press events are first handled by `CommandBox` in the UI component. `CommandBox` delegates the
 logic of navigation and keeping track of state (which command we are selecting) to a `CommandHistorySelector`.
-The `CommandHistorySelector` is called via `#selectNext()` and `#selectPrevious()` which are expected
-to respectively return the next and previous commands in history since they were last called. Upon receiving the
-relevant commands from `CommandHistorySelector`, `CommandBox` will populate its text box with that command's text.
-The following sequence diagram shows the aforementioned relationships.
+The `CommandHistorySelector` is called via `#selectNextUntilOnePastLast()` and `#selectPreviousUntilFirst()` which are
+expected to respectively return the next and previous commands in history since they were last called. Upon receiving
+the relevant commands from `CommandHistorySelector`, `CommandBox` will populate its text box with that command's text.
+The following sequence diagram shows the aforementioned relationships in the example where a user presses the `UP` arrow
+key.
 
 ![AccessHistorySequenceDiagram](images/commandhistory/CmdHistAccessHistorySequenceDiagram.png)
 
-`CommandHistorySelector#selectLast()` can also be called to reset the selection to the most recent command in history.
-This is useful, for example, when a user has navigated to the middle of their command history then executes a new
-command. At this point, we want navigation to start from the most recent command again - not where the user was
-before he/she executed a command.
+<div markdown="span" class="alert alert-info">:information_source:
+**Note:** In the sequence diagram above, `update state` is not an actual method; rather it is an abstraction of the
+internal process of updating the `CommandHistorySelector` state.
+</div>
+
+`CommandHistorySelector#navigateToOnePastLast()` can also be called to reset the selection to the one past the most
+recent command in history. This is useful, for example, when a user has navigated to the middle of their command history
+then executes a new command. At this point, we want navigation to start from the most recent command again - not where
+the user was before he/she executed a command. We go _one past_ the most recent command so that when the user requests
+for the most recent command (previous), it shows the most recent one rather than the second most recent one.
 
 Currently, SunRez uses a `SuppliedCommandHistorySelector` as its `CommandHistorySelector`. This implementation uses
-a `Supplier<ReadOnlyCommandHistory>` to view SunRez command history whenever it is called to select a new entry.
+a `Supplier<ReadOnlyCommandHistory>` to obtain the current SunRez command history whenever it is called to select a new
+entry. The exact implementation used may change, so the sequence diagram above shows the interface 
+`CommandHistorySelector` rather than a specific class.
 
 ##### Save/Load History
 SunRez automatically saves command history after each command execution, and loads command history (if any) upon app

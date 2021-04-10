@@ -9,25 +9,25 @@ Participant ":ReadOnlyCommandHistory" as cmdHist MODEL_COLOR
 user -[USER_COLOR]> ui : press UP arrow
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> selector : selectPrevious()
+ui -[UI_COLOR]> selector : selectPreviousUntilFirst()
 activate selector LOGIC_COLOR
 
 selector -[LOGIC_COLOR]> selector : update state
 activate selector LOGIC_COLOR
 
-selector --[LOGIC_COLOR]> selector
+selector --[LOGIC_COLOR]> selector : newSelectedIndex
 deactivate selector
 
-selector -[LOGIC_COLOR]> cmdHist : get(previous)
+selector -[LOGIC_COLOR]> cmdHist : get(newSelectedIndex)
 activate cmdHist MODEL_COLOR
 
-cmdHist --[MODEL_COLOR]> selector : command entry
+cmdHist --[MODEL_COLOR]> selector : cmdEntry
 deactivate cmdHist
 
-selector --[LOGIC_COLOR]> ui : command entry
+selector --[LOGIC_COLOR]> ui : cmdEntry
 deactivate selector
 
-ui --[UI_COLOR]> user : display\n command entry
+ui --[UI_COLOR]> user : display\n cmdEntry
 deactivate ui UI_COLOR
 
 @enduml
