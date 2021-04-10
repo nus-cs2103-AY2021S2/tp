@@ -29,4 +29,4 @@ Given below are my contributions to the project:
     - Added more content to the FAQ Section.
 
 - **Community**:
-  - PRs Reviewed (with non-trivial review comments): 19
+  - PRs Reviewed (with non-trivial review comments): 1
