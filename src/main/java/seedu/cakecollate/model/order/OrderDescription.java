@@ -3,14 +3,15 @@ package seedu.cakecollate.model.order;
 import static java.util.Objects.requireNonNull;
 import static seedu.cakecollate.commons.util.AppUtil.checkArgument;
 
+import seedu.cakecollate.model.orderitem.Type;
+
 public class OrderDescription {
     public static final String MESSAGE_OVERFLOW = "Order description has a size limit of 70 characters.";
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Order description should only contain alphanumeric characters," +
-                    "\" and white spaces, and it should not be blank";
+            String.format(Type.SHARED_CONSTRAINTS_MESSAGE, "Order description");
 
-    public static final String VALIDATION_REGEX = "^([\\p{Alnum}\"]|([\\p{Alnum}\"][\\p{Alnum}\" ]*))$";
+    public static final String VALIDATION_REGEX = Type.VALIDATION_REGEX;
 
     public final String value;
 
