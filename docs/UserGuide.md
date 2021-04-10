@@ -179,6 +179,8 @@ Description:
 Examples:
 *  `edit property 1 r/Urgent to sell cc/96011846` Edits the remark and client's contact number of the 1st property to be `Urgent to sell` and `96011846` respectively.
 
+![Example property edited](images/ExampleEditProperty.PNG)
+
 #### 3.3.2 Editing an appointment : `edit appointment`
 
 Overwrites the information of the appointment according to the user input provided.
@@ -192,6 +194,8 @@ Description:
 
 Examples:
 *  `edit appointment 3 d/21-07-2021 t/1500` Edits the date and time of the 3rd appointment to be `21-07-2021` and `1500` respectively.
+
+![Example appointment edited](images/ExampleEditAppointment.PNG)
 
 ### 3.4 Deleting
 
@@ -274,6 +278,8 @@ Status Types:
 Examples:
 *  `update 1 u/new 600000` Creates a new status with amount 600000 for the 1st property.
 *  `update 3 u/proceed` Moves the status of the 3rd property to next one.
+
+![Example property updated](images/ExampleUpdateNew.PNG)
 
 ### 3.7 Sorting
 
