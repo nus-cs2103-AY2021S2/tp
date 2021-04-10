@@ -136,5 +136,13 @@ public abstract class ProgramRegistrationCommand extends Command {
     protected abstract String getFailureMessageMultipleDogs();
 
     protected abstract String getFailureMessageMultiplePrograms();
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ProgramRegistrationCommand // instanceof handles nulls
+                && (dogIdSet.equals(((ProgramRegistrationCommand) other).dogIdSet)
+                && programIdSet.equals(((ProgramRegistrationCommand) other).programIdSet)));
+    }
 }
 
