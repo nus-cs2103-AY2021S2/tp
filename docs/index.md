@@ -4,6 +4,7 @@ title: FriendDex
 ---
 
 [![CI Status](https://github.com/AY2021S2-CS2103T-W14-1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2021S2-CS2103T-W14-1/tp/actions/workflows/gradle.yml)
+[![codecov](https://codecov.io/gh/AY2021S2-CS2103T-W14-1/tp/branch/master/graph/badge.svg?token=X3UIlIULcR)](https://codecov.io/gh/AY2021S2-CS2103T-W14-1/tp)
 
 ![Ui](images/Ui.png)
 
