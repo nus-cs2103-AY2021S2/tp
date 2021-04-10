@@ -17,7 +17,7 @@ import seedu.address.model.student.Student;
 public class TuitionCard extends UiPart<Region> {
     // TODO: Some Ui to differentiate recurring sessions from others.
 
-    private static final String FXML = "TuitionListCard.fxml";
+    private static final String FXML = "TuitionCard.fxml";
     private static final int ROW_HEIGHT = 98;
 
     public final Student student;
