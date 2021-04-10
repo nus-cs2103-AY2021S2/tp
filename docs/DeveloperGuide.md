@@ -133,10 +133,14 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### List Student Feature
+### Students
+Students in TutorBuddy is facilitated by the `Student` class which stores specific details of
+a `student` within one `student` object. Students are not allowed to have duplicated names.
+
+#### List Student Feature
 The list student feature displays a list of existing students in the TutorBuddy application.
 
-#### Implementation
+##### Implementation
 This feature is facilitated by `ListStudentCommand` which extends `Command`.
 The method `ListStudentCommand#execute` updates the filtered student list by calling the method
 `Model#updateFilteredStudentList` exposed in the `Model` interface.
@@ -157,10 +161,10 @@ NOTE: The lifeline of `ListStudentCommand` should end at the cross but is not sh
 The following activity diagram summarizes what happens when a user executes the `list_student` command.
 ![ListStudentActivityDiagram](images/choonwei/ListStudentActivityDiagram.png)
 
-### Add Student Feature
+#### Add Student Feature
 The add student feature allows user to add a student to the TutorBuddy Application.
 
-#### Implementation
+##### Implementation
 This feature makes use of `AddStudentCommandParser` and `AddStudentCommand` to create a new `Student` object. The operation can be accessed in the Model interface through `Model#addStudent()`.
 
 Given below is an example of how the add student mechanism runs:
@@ -181,43 +185,43 @@ The following activity diagram summarizes what happens when a user executes the 
 The following sequence diagram summarizes what happens when a user executes the `add_student` command:
 ![AddStudentSequenceDiagram](images/enhao/AddStudentSequenceDiagram.png)
 
-### Delete Student Feature
+#### Delete Student Feature
 The delete student feature allows user to delete a student from the TutorBuddy Application.
 
-#### Implementation
+##### Implementation
 The delete student feature is implemented similarly to the add student feature. However, it makes use of the
 `DeleteStudentCommandParser` and `DeleteStudentCommand` instead to delete the student from the student list. 
 The command word to use is `delete_student`. In step 4, it only validates the information and do not create a new 
 `student` object. In step 7 and 8, instead of adding the student to the `AddressBook` and
 `filteredStudents`, we remove the student instead.
 
-### Edit Student Feature
+#### Edit Student Feature
 The edit student feature allows user to edit a student profile from the TutorBuddy Application.
 
-#### Implementation
+##### Implementation
 The edit student feature is implemented similarly to the add student feature. However, it makes use of the
 `EditStudentCommandParser` and `EditStudentCommand` instead to edit the student from the student list.
 The command word to use is `edit_student`. In step 4, it only validates the information, determine the fields to be edited, 
 but it does not create a new `student` object. In step 7 and 8, instead of adding the student to the `AddressBook` and
 `filteredStudents`, we update the student list instead.
 
-### Find Student Feature
+#### Find Student Feature
 The find student feature allows user to specific keywords in relation to the student's name in the application.
 TutorBuddy will then filter the student list based on given keyword.
 
-#### Implementation
+##### Implementation
 The find student feature is implemented similarly to the add student feature. However, it makes use of the
 `FindStudentCommandParser` and `FindStudentCommand` instead to edit the student from the student list.
 The command word to use is `find_student`. In step 4, it only validates the information, determine the keywords,
 but it does not create a new `student` object. In step 7 and 8, instead of adding the student to the `AddressBook` and
 `filteredStudents`, we only update the `filteredStudents` list instead based on the given keywords.
 
-### List Students' Email Feature
+#### List Students' Email Feature
 The list students' email feature allows the end-user to retrieve a list of students' emails, which are concatenated with
 a semi-colon `;`. This allows for easy copy and pasting to e-mail applications, such as Microsoft Outlook, for mass
 e-mail purposes (e.g. newsletter).
 
-#### Implementation
+##### Implementation
 This feature is mainly supported by `EmailCommand`, with retrieval of students' emails through the Model interface
 `Model#getFilteredStudentList()`.
 
@@ -237,16 +241,17 @@ The following activity diagram summarizes what happens when a user executes the 
 The following sequence diagram summarizes what happens when a user executes the `emails` command:
 ![EmailCommandSequenceDiagram.png](images/sam/EmailCommandSequenceDiagram.png)
 
-### Add Session Feature
+### Session
 Sessions in TutorBuddy is facilitated by the `Session` class which stores specific details of
 a tuition session with one student. Each session is composed within a `Student`,
 and a `Student` can have multiple `Session`s.
 
+#### Add Session Feature
 The add session feature allows users to add individual tuition sessions with specific details of each session.
 
 This section explains the implementation of the `add_session` mechanism and highlights the design considerations taken into account when implementing this feature.
 
-#### Implementation
+##### Implementation
 The creation of a session is facilitated by `AddSessionCommand` and it extends `Command`. The method,
 `AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
 before adding the session.
@@ -263,7 +268,7 @@ an `AddSessionCommand` with user input `add_session n/STUDENT_NAME d/DATE t/TIME
    `addSession(name, sessionToAdd)` which adds the session to the specific student.
 5. The result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
 
-#### Design Considerations
+##### Design Considerations
 Aspect 1: Type of input for AddSessionCommand
 * **Alternative 1 (current choice)**: Using student name to identify the student to add the session to.
     * Pros:
@@ -283,7 +288,7 @@ updated student index id. Student name on the other hand, stays constant through
 which he also has knowledge of. Therefore, student name can be easily entered without reference to the AddressBook, saving much more time compared
 to alternative 2.
 
-### Delete Session Feature
+#### Delete Session Feature
 The `DeleteSessionCommand` does the opposite of `AddSessionCommand` -- it calls `Model#deleteSession(studentName, sessionIndex)` instead
 which calls `AddressBook#removeSession(studentName, sessionIndex)` and
 `UniqueStudentList#deleteSession(targetStudent, sessionIndex)`.
@@ -293,13 +298,17 @@ The following sequence diagram shows how deleting a session works:
 
 It shares the same design considerations as what is mentioned in Add Session Feature.
 
-### Calculating Monthly Fee Feature
+### Monthly Fees
+Monthly Fees in TutorBuddy is calculated based on the session `fee`. It makes uses of the FeeUtil static method
+to perform the calculation.
+
+#### Calculating Monthly Fee Feature
 The monthly `fee` feature allows user to quickly calculate the amount of money they would have received
 from a particular student in a given month and year.
 
 This section explains the implementation of the `fee` command and highlights the design considerations taken into account when implementing this feature.
 
-#### Implementation
+##### Implementation
 The calculation of the fees is facilitated by the `GetMonthlyFeeCommand` and it extends `Command`. The method,
 `GetMonthlyFeeCommand#execute()`, performs a validity check on student name input to ensure that the student name exists in the application.
 
@@ -328,13 +337,13 @@ Aspect 1: Calculation for the fees
     * Pros:
         * Reduces coupling.
     * Cons:
-        * Repeated code and increased difficult for maintence when there is a need to update the calculation algorithm.
+        * Repeated code and increased difficult for maintenance when there is a need to update the calculation algorithm.
 
 Alternative 1 was chosen because the pros of implementing alternative 1 outweighs the cons derived from it. By having
 an abstracted `FeeUtil` method, we will only need to update the methods in `FeeUtil` which will have a rippling effect
-to the rest of the features that uses this method. Although there is increased coupling, however, with proper testing in place,
-we could mitigate the risk as we ensure that changes in the `FeeUtil` method do not unintentionally changes the behaviour
-of the other feature.
+to the rest of the features that uses this method. This allows the UI to make use of the `FeeUtil` methods when calculating the 
+3 months fees as well. Although this results in increased coupling, with proper testing in place, we could mitigate the risk 
+as we ensure that changes in the `FeeUtil` method do not unintentionally changes the behaviour of the other feature.
 
 --------------------------------------------------------------------------------------------------------------------
 
