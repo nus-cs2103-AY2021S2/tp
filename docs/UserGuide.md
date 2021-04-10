@@ -72,6 +72,8 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
 
 1. Refer to the [Features](#features) below for details of each command.
 
+1. All sample data in TutorsPet can be cleared at once using the `clear` command.
+
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -278,9 +280,12 @@ Format: `delete INDEX`
 
 </div>
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd student in TutorsPet.
-* `search n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `search` command.
+Examples: <br>
+
+Command     | Result
+----------- |---------------------------------------------------
+`list` followed by `delete 2`  | deletes the 2nd student in TutorsPet
+`search n/Betsy` followed by `delete 1`| deletes the 1st student in the results of the `search` command
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -477,8 +482,11 @@ Format: `add-date d/DESCRIPTION dt/DETAILS`
 
 </div>
 
-Examples:
-* `add-date d/math exam dt/2021-11-03 0800`
+Examples: <br>
+
+Command     | Result
+----------- |---------------------------------------------------
+`add-date d/math exam dt/2021-11-03 0800`  | adds an important date with description `math exam` and details `2021-11-03 0800`
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -507,8 +515,11 @@ Format: `delete-date INDEX`
 * The index **must be a positive integer** ranging from 1 to 2147483647.
 </div>
 
-Examples:
-* `list-date` followed by `delete-date 2` deletes the 2nd important date in TutorsPet.
+Examples: <br>
+
+Command     | Result
+----------- |---------------------------------------------------
+`list-date` followed by `delete-date 2` |  deletes the 2nd important date in TutorsPet
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -564,14 +575,6 @@ If your changes to the data file makes its format invalid, TutorsPet will discar
 
 _Format: `add-subject SUBJECT_NAME` <br> Currently, there is a fixed list of subjects that is available to teach and can be tagged in TutorsPet, 
 while in v2.0, more personalised subjects can be added in._
-
-### Undo/Redo `[coming in v2.0]`
-
-_Details coming soon ..._
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 ### Add profile picture for each contact`[coming in v2.0]`
 _Format: `add-profile INDEX FILE_PATH` <br> Add a profile picture to the contact of the specified index
