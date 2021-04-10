@@ -137,7 +137,7 @@ Format:
 ```
 add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]...
 add owner n/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...
-add program n/PROGRAM_NAME s/DATETIME_OF_SESSION [s/DATETIME_OF_SESSION]... [t/TAG]...
+add program n/PROGRAM_NAME [s/DATETIME_OF_SESSION]... [t/TAG]...
 ```
 
 Note:
@@ -257,7 +257,7 @@ Examples:
 <div markdown="block" class="alert alert-info">
 :bulb: Tags are only able to take in one alphanumeric string!
 
-:heavy_exclamation_mark: Take note that editing sessions for programs and tags for any entity will automatically override **all** its current sessions/tags!
+:heavy_exclamation_mark: Take note that editing sessions for programs and tags for any entity will automatically override **all** its current sessions/tags! To clear all sessions/tags, use "s/" and "t/" respectively without any values.
 
 :heavy_exclamation_mark: At least one attribute needs to be modified!
 </div>

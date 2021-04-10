@@ -38,7 +38,7 @@ public abstract class AddCommand<T extends Entity> extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example for Program: " + COMMAND_WORD + " " + Program.ENTITY_WORD + " "
             + PREFIX_NAME + "NAME "
-            + PREFIX_SESSION + "SESSION "
+            + "[" + PREFIX_SESSION + "SESSION]... "
             + "[" + PREFIX_TAG + "TAG]...";
     public static final String MESSAGE_SUCCESS_FORMAT = "New %s added: ";
 
