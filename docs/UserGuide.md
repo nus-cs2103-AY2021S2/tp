@@ -281,7 +281,7 @@ Failure to do so will result in an invalid data file format as the appointment d
 
 > :warning: **If your changes to the data file makes it an invalid format, Vax@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
 
-Please refer to the [Input Formats](#input-formats) section when editing the data file to conform to the required format.
+> Please refer to the [Input Formats](#input-formats) section when editing the data file to conform to the required format.
 
 :information_source: **NOTE:** Vax@NUS will load an empty data file if you have cleared your data with the `clear` command right before exiting Vax@NUS.
 
