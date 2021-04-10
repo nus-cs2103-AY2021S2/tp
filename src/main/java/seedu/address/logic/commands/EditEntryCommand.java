@@ -39,7 +39,7 @@ public class EditEntryCommand extends Command {
             + "[" + PREFIX_START_DATE + "START_DATE] "
             + "[" + PREFIX_END_DATE + "END_DATE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " Meeting "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Meeting with group ";
 
     private final Index targetIndex;
@@ -79,7 +79,7 @@ public class EditEntryCommand extends Command {
             throw new CommandException(MESSAGE_ENTRY_END_DATE_IN_PAST);
         }
 
-        if (updatedEntryStartDate.isAfter(updatedEntryEndDate)) {
+        if (!updatedEntryStartDate.isBefore(updatedEntryEndDate)) {
             throw new CommandException(MESSAGE_INVALID_DATE_RANGE);
         }
 

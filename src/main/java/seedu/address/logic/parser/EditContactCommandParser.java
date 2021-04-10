@@ -17,7 +17,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditContactCommand;
 import seedu.address.logic.commands.EditContactCommand.EditContactDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.contact.ContactName;
 import seedu.address.model.tag.Tag;
 
 /**

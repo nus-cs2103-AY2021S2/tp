@@ -90,13 +90,7 @@ public class CommandTestUtil {
     public static final Name SECOND_PERSON_NAME = new Name("Benson Meier");
     public static final Name LAST_PERSON_NAME = new Name("George Best");
     public static final Name INVALID_PERSON_NAME = new Name("John Doe");
-    //------------------------------------------
 
-    public static final ContactName FIRST_CONTACT_NAME_ALICE = new ContactName("Alice Pauline");
-    public static final ContactName SECOND_CONTACT_NAME_BENSON = new ContactName("Benson Meier");
-    public static final ContactName LAST_CONTACT_NAME_GEORGE = new ContactName("George Best");
-    public static final ContactName INVALID_CONTACT_NAME_JOHN = new ContactName("John Doe");
-    //to be deleted---------------------------
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 

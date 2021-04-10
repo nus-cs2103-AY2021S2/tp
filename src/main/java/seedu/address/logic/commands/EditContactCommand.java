@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_CONTACT;
 import static seedu.address.commons.core.Messages.MESSAGE_EDIT_CONTACT_SUCCESS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX;

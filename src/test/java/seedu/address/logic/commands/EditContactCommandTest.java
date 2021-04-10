@@ -2,15 +2,11 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_CONTACT_NAME_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_CONTACT;
 import static seedu.address.commons.core.Messages.MESSAGE_EDIT_CONTACT_SUCCESS;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.CONTACT_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.CONTACT_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.FIRST_CONTACT_NAME_ALICE;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_CONTACT_NAME_JOHN;
-import static seedu.address.logic.commands.CommandTestUtil.LAST_CONTACT_NAME_GEORGE;
-import static seedu.address.logic.commands.CommandTestUtil.SECOND_CONTACT_NAME_BENSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -45,7 +41,7 @@ public class EditContactCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Contact editedContact = new ContactBuilder().build();
         EditContactDescriptor descriptor = new EditContactDescriptorBuilder(editedContact).build();
-        EditContactCommand editContactCommand = new EditContactCommand(FIRST_CONTACT_NAME_ALICE, descriptor);
+        EditContactCommand editContactCommand = new EditContactCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
@@ -66,7 +62,7 @@ public class EditContactCommandTest {
 
         EditContactDescriptor descriptor = new EditContactDescriptorBuilder().withContactName(VALID_NAME_BOB)
                 .withContactPhone(VALID_PHONE_BOB).withContactTags(VALID_TAG_HUSBAND).build();
-        EditContactCommand editContactCommand = new EditContactCommand(LAST_CONTACT_NAME_GEORGE, descriptor);
+        EditContactCommand editContactCommand = new EditContactCommand(indexLastContact, descriptor);
 
         String expectedMessage = String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
 
@@ -79,7 +75,7 @@ public class EditContactCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditContactCommand editContactCommand =
-                new EditContactCommand(FIRST_CONTACT_NAME_ALICE, new EditContactDescriptor());
+                new EditContactCommand(INDEX_FIRST, new EditContactDescriptor());
         Contact editedContact = model.getFilteredContactList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
@@ -95,7 +91,7 @@ public class EditContactCommandTest {
 
         Contact contactInFilteredList = model.getFilteredContactList().get(INDEX_FIRST.getZeroBased());
         Contact editedContact = new ContactBuilder(contactInFilteredList).withName(VALID_NAME_BOB).build();
-        EditContactCommand editContactCommand = new EditContactCommand(FIRST_CONTACT_NAME_ALICE,
+        EditContactCommand editContactCommand = new EditContactCommand(INDEX_FIRST,
                 new EditContactDescriptorBuilder().withContactName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
@@ -107,41 +103,59 @@ public class EditContactCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
+    public void execute_duplicateContactUnfilteredList_failure() {
         Contact firstContact = model.getFilteredContactList().get(INDEX_FIRST.getZeroBased());
         EditContactDescriptor descriptor = new EditContactDescriptorBuilder(firstContact).build();
-        EditContactCommand editContactCommand = new EditContactCommand(SECOND_CONTACT_NAME_BENSON, descriptor);
+        EditContactCommand editContactCommand = new EditContactCommand(INDEX_SECOND, descriptor);
 
         assertCommandFailure(editContactCommand, model, MESSAGE_DUPLICATE_CONTACT);
     }
 
     @Test
-    public void execute_duplicatePersonFilteredList_failure() {
+    public void execute_duplicateContactFilteredList_failure() {
         showContactAtIndex(model, INDEX_FIRST);
 
-        // edit person in filtered list into a duplicate in address book
+        // edit Contact in filtered list into a duplicate in address book
         Contact contactInList = model.getAddressBook().getContactList().get(INDEX_SECOND.getZeroBased());
-        EditContactCommand editContactCommand = new EditContactCommand(FIRST_CONTACT_NAME_ALICE,
+        EditContactCommand editContactCommand = new EditContactCommand(INDEX_FIRST,
                 new EditContactDescriptorBuilder(contactInList).build());
 
         assertCommandFailure(editContactCommand, model, MESSAGE_DUPLICATE_CONTACT);
     }
 
     @Test
-    public void execute_invalidPersonName_failure() {
+    public void execute_invalidContactIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredContactList().size() + 1);
         EditContactDescriptor descriptor = new EditContactDescriptorBuilder().withContactName(VALID_NAME_BOB).build();
-        EditContactCommand editContactCommand = new EditContactCommand(INVALID_CONTACT_NAME_JOHN, descriptor);
+        EditContactCommand editContactCommand = new EditContactCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editContactCommand, model, MESSAGE_CONTACT_NAME_DOES_NOT_EXIST);
+        assertCommandFailure(editContactCommand, model, MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
+    }
+
+    /**
+     * Edit filtered list where index is larger than size of filtered list,
+     * but smaller than size of address book
+     */
+    @Test
+    public void execute_invalidContactIndexFilteredList_failure() {
+        showContactAtIndex(model, INDEX_FIRST);
+        Index outOfBoundIndex = INDEX_SECOND;
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getContactList().size());
+
+        EditContactCommand editContactCommand = new EditContactCommand(outOfBoundIndex,
+                new EditContactDescriptorBuilder().withContactName(VALID_NAME_BOB).build());
+
+        assertCommandFailure(editContactCommand, model, MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditContactCommand standardCommand = new EditContactCommand(FIRST_CONTACT_NAME_ALICE, CONTACT_DESC_AMY);
+        final EditContactCommand standardCommand = new EditContactCommand(INDEX_FIRST, CONTACT_DESC_AMY);
 
         // same values -> returns true
         EditContactDescriptor copyDescriptor = new EditContactDescriptor(CONTACT_DESC_AMY);
-        EditContactCommand commandWithSameValues = new EditContactCommand(FIRST_CONTACT_NAME_ALICE, copyDescriptor);
+        EditContactCommand commandWithSameValues = new EditContactCommand(INDEX_FIRST, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -154,9 +168,9 @@ public class EditContactCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditContactCommand(SECOND_CONTACT_NAME_BENSON, CONTACT_DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditContactCommand(INDEX_SECOND, CONTACT_DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditContactCommand(FIRST_CONTACT_NAME_ALICE, CONTACT_DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditContactCommand(INDEX_FIRST, CONTACT_DESC_BOB)));
     }
 }
