@@ -32,13 +32,13 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_DEADLINE = "This deadline already exists in this project.";
     public static final String MESSAGE_DUPLICATE_GROUPMATE = "This groupmate already exists in this project.";
 
-    public static final String MESSAGE_DELETE_DEADLINE_SUCCESS = "Deleted Deadline %1$s from Project %2$s";
-    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event %1$s from Project %2$s";
-    public static final String MESSAGE_DELETE_TODO_SUCCESS = "Deleted Todo %1$s from Project %2$s";
-    public static final String MESSAGE_DELETE_GROUPMATE_SUCCESS = "Deleted Groupmate %1$s from Project %2$s";
+    public static final String MESSAGE_DELETE_DEADLINE_SUCCESS = "Deleted deadline %1$s from project %2$s";
+    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted event %1$s from project %2$s";
+    public static final String MESSAGE_DELETE_TODO_SUCCESS = "Deleted todo %1$s from project %2$s";
+    public static final String MESSAGE_DELETE_GROUPMATE_SUCCESS = "Deleted groupmate %1$s from project %2$s";
 
-    public static final String MESSAGE_MARK_DEADLINE_SUCCESS = "Marked Deadline as done: %1$s";
-    public static final String MESSAGE_MARK_TODO_SUCCESS = "Marked Todo as done: %1$s";
+    public static final String MESSAGE_MARK_DEADLINE_SUCCESS = "Marked deadline as done: %1$s";
+    public static final String MESSAGE_MARK_TODO_SUCCESS = "Marked todo as done: %1$s";
 
     public static final String MESSAGE_UI_PROJECT_NOT_DISPLAYED = "No project displayed. Display a project using the "
             + ViewProjectCommand.COMMAND_WORD + " command.";
