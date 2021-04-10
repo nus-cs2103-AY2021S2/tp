@@ -139,6 +139,10 @@ you may use a substitute module code based on the subject description.
   e.g. If you do `mod CS2101` and a task at position 4 is pushed up to position 1, the `INDEX` for this task
   will be `1` for the next command.
 
+* For `NAME`, the length of name should not be greater than 60 English characters.<br>
+
+* For `DESCRIPTION` and `TAG`, the length of these fields should not be greater than 100 English characters.<br>
+
 * For `MODULE`, the letters in module code should be upper-case.<br>
   e.g. `CS2103T` and not `cs2103t`.
   
