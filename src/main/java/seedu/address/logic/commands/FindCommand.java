@@ -53,6 +53,7 @@ public class FindCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             model.updateFilteredPersonList(predicate.and(PREDICATE_SHOW_MAIN_PATIENTS));
             firstPatient = null;
+            model.selectPatient(null);
             displayMessage = MESSAGE_DISPLAYED_IN_VIEW_PATIENT_BOX;
         }
         return new CommandResult(
