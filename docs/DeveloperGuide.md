@@ -303,7 +303,7 @@ Monthly Fees in TutorBuddy is calculated based on the session `fee`. It makes us
 to perform the calculation.
 
 #### Calculating Monthly Fee Feature
-The monthly `fee` feature allows user to quickly calculate the amount of money they would have received
+The monthly `fee` feature allows user to quickly calculate the amount of money they should have received
 from a particular student in a given month and year.
 
 This section explains the implementation of the `fee` command and highlights the design considerations taken into account when implementing this feature.
