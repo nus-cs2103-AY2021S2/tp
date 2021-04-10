@@ -1,10 +1,12 @@
 package seedu.address.model.property;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_MAYFAIR;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalProperties.WOODLANDS_CRESCENT;
 import static seedu.address.testutil.TypicalProperties.MAYFAIR;
+import static seedu.address.testutil.TypicalProperties.WOODLANDS_CRESCENT;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,10 +14,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.property.Property;
-import seedu.address.model.property.UniquePropertyList;
-import seedu.address.model.property.exceptions.PropertyNotFoundException;
 import seedu.address.model.property.exceptions.DuplicatePropertyException;
+import seedu.address.model.property.exceptions.PropertyNotFoundException;
 import seedu.address.testutil.PropertyBuilder;
 
 public class UniquePropertyListTest {
