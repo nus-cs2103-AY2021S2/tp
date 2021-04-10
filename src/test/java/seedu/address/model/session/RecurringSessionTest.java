@@ -46,13 +46,16 @@ class RecurringSessionTest extends SessionTest {
 
     @Test
     public void lastValidDateOnOrBeforeTest() {
-        assertEquals(SESSION_DATE.getDate(),
+        //end is on start, suggest after 1 recurrence, thus invalid
+        assertEquals(SESSION_DATE.getDate().plusDays(INTERVAL.getValue()),
                 RecurringSession.lastValidDateOnOrBefore(SESSION_DATE, SESSION_DATE, INTERVAL));
 
+        //end is one interval after, thus valid
         assertEquals(SESSION_DATE.getDate().plusDays(INTERVAL.getValue()),
                 RecurringSession
                         .lastValidDateOnOrBefore(SESSION_DATE.addDays(INTERVAL.getValue()), SESSION_DATE, INTERVAL));
 
+        // end is one day after one interval, thus invalid
         assertEquals(SESSION_DATE.getDate().plusDays(INTERVAL.getValue()),
                 RecurringSession
                         .lastValidDateOnOrBefore(

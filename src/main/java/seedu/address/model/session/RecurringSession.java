@@ -56,13 +56,17 @@ public class RecurringSession extends Session {
      * @param dateToTest a valid date to check for; must not be before startDate
      * @param startDate the start date of the recurring session
      * @param interval the interval of recurrence for the recurring session
-     * @return {@LocalDate} of the last valid date of session, on or before {@dateToTest}.
+     * @return {@LocalDate} of the last valid date of session, on or before {@dateToTest},
+     * except it will be the first session after {@dateToTest} if one recurrence ends then.
      */
     public static LocalDate lastValidDateOnOrBefore(SessionDate dateToTest, SessionDate startDate, Interval interval) {
         assert(!dateToTest.getDate().isBefore(startDate.getDate()));
         int numOfDaysBetween = startDate.numOfDayTo(dateToTest);
         LocalDate lastLocalDate = dateToTest.getDateTime()
                 .minusDays(numOfDaysBetween % interval.getValue()).toLocalDate();
+        if (lastLocalDate.equals(startDate.getDate())) {
+            return lastLocalDate.plusDays(interval.getValue());
+        }
         return lastLocalDate;
     }
 
