@@ -23,6 +23,12 @@ Class CommandResult
 Class "{abstract}\nCommand" as Command
 }
 
+package Conditions {
+Class ConstraintManager
+Class DateVerifier
+Class IndexManager
+}
+
 Interface Logic <<Interface>>
 Class LogicManager
 }
@@ -50,6 +56,10 @@ ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
 XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
+
+XYZCommand ..> DateVerifier
+XYZCommand ..> IndexManager
+XYZCommand ..> ConstraintManager
 
 LogicManager --> Model
 Command .right.> Model
