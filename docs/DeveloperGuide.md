@@ -96,7 +96,6 @@ Classes used by multiple components are in the seedu.fooddiary.commons package.
 ## **Implementation**
 This section describes some noteworthy details on how certain features are implemented.
 ### AddOn Feature
-#### Implementation
 The AddOn feature allows the user to add review(s) and/or a price to a single entry of a food place. This will be useful
 for users who frequently visit a particular place and would like to enter their reviews and the price spent every visit.
 The reviews are added to the specifed entry and the price added on will be refelcted as a price range the of the user's spending history 
@@ -110,7 +109,6 @@ The following activity diagram summaries the flow of event when a user executes 
 ![AddOn_Activity_Diagram](images/AddOn_Activity_Diagram.png)
 
 ### FindAll Feature
-#### Implementation
 The FindAll feature allows a user to find entries that match all the keywords provided by the user.
 This enables the user to easily sieve out all the entries that meet every single requirement the user
 is looking for, which will be useful when deciding where to eat.
@@ -133,7 +131,6 @@ command:
 ![FindAll Activity Diagram](images/FindAllActivityDiagram.png)
 
 ### Revise Feature
-#### Implementation
 The Revise feature allows a user to quickly edit different sections of an entry. It is often misunderstood to be 
 mutually exclusive with the edit feature or the slower alternative. This feature shines when a user wishes to edit 
 while also adding into multiple sections in an entry. The edit and addon features are still necessities for making 
@@ -166,7 +163,7 @@ command:
   * Cons: For entry with lengthy details, it will flood the command line space and be difficult for revising.
 
 ### View Feature
-`View`: Allows the user to view a specified entry in a new window, allowing the user to carefully look through
+`view`: Allows the user to view a specified entry in a new window, allowing the user to carefully look through
 all the details of an entry. This feature is mainly used to read lengthy food reviews which cannot be shown on the Main 
 UI window.
 
@@ -176,7 +173,7 @@ Step 1. The user launches The Food Diary application. Data will be loaded from t
 The `FoodDiary` will be populated with a list of `Entry`, each contains: `Name`, `Address`, `Price` 
 , `Rating`, `Review`, `TagCategory` and `TagSchool`.
 
-Step 2. The user executes `View <INDEX>`, for whichever entry with lengthy reviews he/she wants to view.
+Step 2. The user executes `view <INDEX>`, for whichever entry with lengthy reviews he/she wants to view.
 
 Step 3. If the user input is invalid, an error message will be displayed in the command box, If the entry specified do
 not exist, the filteredEntryList will be empty and no entry will be displayed on the Main Window.  
@@ -187,11 +184,17 @@ The mechanism works in such a way where after the user enters a command in the U
 retrieve all the details related to the specified entry. The result of this execution will be passed back to the UI and 
 shown in a new window.
 
-The following sequence diagram shows how the `View` feature works:
+The following sequence diagram shows how the `view` feature works:
 ![View Sequence Diagram](images/ViewSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes the `View` command:
+The following activity diagram summarizes what happens when a user executes the `view` command:
 ![View Activity Diagram](images/ViewActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** If the index specified by the user do not exist in The Food Diary, a CommandException will be thrown and the
+error will be displayed to the user in the command box. If index is not specified, the error message in the command box
+will show the correct syntax to use for the `View` command.
+</div>
 
 #### Design Consideration
 
@@ -203,6 +206,21 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: Design is integrated within Main UI, which gives it a cleaner look.
     * Cons: Difficult to implement, lesser time for testability given the project deadline duration.
 
+### Clear Feature
+`clear`: Allows the user to clear entries in The Food Diary.
+
+Given below is an example usage scenario:
+
+Step 1. The user launches The Food Diary application. Data will be loaded from the storage to the application memory.
+The `FoodDiary` will be populated with a list of `Entry`, each contains: `Name`, `Address`, `Price`
+, `Rating`, `Review`, `TagCategory` and `TagSchool`.
+
+Step 2. The user executes `clear` to clear all entries in The Food Diary.
+
+This feature was brought over to The Food Diary from AB3. There were not much changes apart from modifying it to clear
+entries instead. Similiar to other commands,`MainWindow#executeCommand()` runs and `Logic#execute()` 
+will be called to parse the user input in `FoodDiaryParser#parseCommand()`. The parsed command will be identified
+as a `clear` command.
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 - [Documentation guide](Documentation.md)
