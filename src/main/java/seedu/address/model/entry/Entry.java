@@ -60,6 +60,25 @@ public class Entry {
     }
 
     /**
+     * Returns true if both entries have the same fields
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Entry)) {
+            return false;
+        }
+
+        Entry otherEntry = (Entry) other;
+        return otherEntry.getEntryName().equals(getEntryName())
+                && otherEntry.getOriginalStartDate().equals(getOriginalStartDate())
+                && otherEntry.getOriginalEndDate().equals(getOriginalEndDate())
+                && otherEntry.getTags().equals(getTags());
+    }
+    /**
      * Returns true if both entries are the same objects.
      */
     public boolean isSameEntry(Entry otherEntry) {
@@ -84,12 +103,13 @@ public class Entry {
     }
 
     /**
-     * Returns true if the end date is after current date.
+     * Returns true if the current date is after end date.
      */
     public boolean isOverdue() {
         LocalDateTime currentDateTime = LocalDateTime.now();
         return currentDateTime.isAfter(getEndDate());
     }
+
     /**
      * Returns true if start date is different from end date.
      */

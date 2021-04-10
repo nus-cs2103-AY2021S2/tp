@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -17,6 +19,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.EntryNameContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -37,6 +41,19 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_ENTRY_NAME_EXAMS = "Exams";
+    public static final String VALID_ENTRY_NAME_ASSIGNMENTS = "Assignment 3";
+    public static final String VALID_ENTRY_NAME_CONSULTATION = "Consultation";
+    public static final String VALID_START_DATE_EXAMS = "2021-04-01 17:00";
+    public static final String VALID_END_DATE_EXAMS = "2021-04-01 19:00";
+    public static final String VALID_START_DATE_ASSIGNMENT = "2021-04-03 19:00";
+    public static final String VALID_END_DATE_ASSIGNMENT = "2021-04-03 19:00";
+    public static final String VALID_START_DATE_CONSULTATION = "2021-04-05 10:00";
+    public static final String VALID_END_DATE_CONSULTATION = "2021-04-05 13:00";
+    public static final String VALID_TAG_CS2030T = "CS2030T";
+    public static final String VALID_TAG_CS2100 = "CS2100";
+    public static final String VALID_TAG_ALEX = "ALEX";
+    public static final String VALID_TAG_BEN = "BEN";
     /*
     public static final Name VALID_NAME_OBJECT_ALICE = new Name("Alice Pauline");
     public static final Name VALID_NAME_OBJECT_GEORGE = new Name("George Best");
@@ -64,6 +81,10 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    public static final String INVALID_DATE_RANGE = " " + PREFIX_START_DATE + "2021-01-01 13:00"
+            + " " + PREFIX_END_DATE + "2021-01-01 12:00";
+    public static final String PAST_DATE_INTERVAL = " " + PREFIX_START_DATE + "2020-01-01 12:00"
+            + " " + PREFIX_END_DATE + "2020-01-01 13:00";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -135,4 +156,17 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the entry at the given {@code targetIndex} in the
+     * {@code model}'s list.
+     */
+    public static void showEntryAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEntryList().size());
+
+        Entry entry = model.getFilteredEntryList().get(targetIndex.getZeroBased());
+        final String[] splitEntryName = entry.getEntryName().name.split("\\s+");
+        model.updateFilteredEntryList(new EntryNameContainsKeywordsPredicate(Arrays.asList(splitEntryName[0])));
+
+        assertEquals(1, model.getFilteredEntryList().size());
+    }
 }

@@ -23,6 +23,8 @@ public class EntryCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label id;
+    @FXML
     private Label entryName;
     @FXML
     private Label startDate;
@@ -34,9 +36,10 @@ public class EntryCard extends UiPart<Region> {
     /**
      * Creates a {@code EntryCard} to display.
      */
-    public EntryCard(Entry entry) {
+    public EntryCard(Entry entry, int displayedIndex) {
         super(FXML);
         this.entry = entry;
+        id.setText(displayedIndex + ". ");
         entryName.setText(entry.getEntryName().name);
 
         if (entry.haveDifferentDates()) {
@@ -44,9 +47,15 @@ public class EntryCard extends UiPart<Region> {
                     + entry.getStartDate().format(DEFAULT_FORMATTER));
             endDate.setText("To: "
                     + entry.getEndDate().format(DEFAULT_FORMATTER));
+            cardPane.setStyle("-fx-background-color: #515658");
         } else {
             startDate.setText("");
-            endDate.setText("Date: " + entry.getEndDate().format(DEFAULT_FORMATTER));
+            endDate.setText("Due: " + entry.getEndDate().format(DEFAULT_FORMATTER));
+            cardPane.setStyle("-fx-background-color: #3c3e3f");
+        }
+
+        if (entry.isOverdue()) {
+            cardPane.setStyle("-fx-background-color: derive(#FF0000, 40%)");
         }
 
         entry.getTags().stream()
