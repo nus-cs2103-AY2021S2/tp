@@ -12,7 +12,7 @@ import seedu.timeforwheels.model.customer.Customer;
 
 
 /**
- * Deletes a customer identified using it's displayed index from the delivery list.
+ * Deletes a delivery task identified using it's displayed index from the delivery list.
  */
 public class DeleteCommand extends Command {
 

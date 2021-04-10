@@ -13,7 +13,7 @@ import seedu.timeforwheels.model.customer.Customer;
 import seedu.timeforwheels.model.customer.Done;
 
 /**
- * Edits the details of an existing customer in the delivery list.
+ * Marks a delivery task identified using it's displayed index from the delivery list as done [✓].
  */
 public class DoneCommand extends Command {
 
@@ -33,7 +33,7 @@ public class DoneCommand extends Command {
     private final Done done;
 
     /**
-     * @param targetIndex of the customer in the filtered customer list to edit
+     * @param targetIndex of the delivery task in the filtered delivery list to mark as done
      */
     public DoneCommand(Index targetIndex) {
         requireAllNonNull(targetIndex);
