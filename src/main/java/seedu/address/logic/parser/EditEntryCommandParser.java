@@ -14,7 +14,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditContactCommand;
 import seedu.address.logic.commands.EditEntryCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entry.TemporaryEntry;
@@ -40,7 +39,7 @@ public class EditEntryCommandParser implements Parser<EditEntryCommand> {
             targetIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String
-                    .format(MESSAGE_INVALID_COMMAND_FORMAT, EditContactCommand.MESSAGE_USAGE), pe);
+                    .format(MESSAGE_INVALID_COMMAND_FORMAT, EditEntryCommand.MESSAGE_USAGE), pe);
         }
 
         TemporaryEntry tempEntry = new TemporaryEntry();
