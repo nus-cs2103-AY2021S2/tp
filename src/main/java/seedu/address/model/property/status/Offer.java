@@ -14,10 +14,12 @@ public class Offer implements Comparable<Offer> {
     public static final String MESSAGE_CONSTRAINTS = "Note the following conditions for specifying an offer:\n"
             + "1. The dollar sign is optional.\n"
             + "2. There should not be any leading zeros in the number specified.\n"
-            + "3. Either do not use commas at all or be consistent in the usage of commas throughout, "
+            + "3. The asking price should not be negative.\n"
+            + "4. Either do not use commas at all or be consistent in the usage of commas throughout, "
             + "where each comma should separate every three digits from the back.\n"
-            + "   E.g.\n"
-            + "   $1000000 or $1,000,000 are valid but $1000,000 or $100,00,00 are not valid.";
+            + "E.g.\n"
+            + "$1000000 or $1,000,000 are valid but $1000,000 or $100,00,00 are not valid.";
+
     /*
      * Dollar sign is optional.
      * No leading zeros.
