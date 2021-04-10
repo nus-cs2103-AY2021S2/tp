@@ -36,9 +36,9 @@ public class TimeTest {
 
     @Test
     public void testStringConversion() {
-        assertEquals("9:00AM",
+        assertEquals("9:00am",
                 new Time(LocalTime.parse("09:00")).toString());
-        assertEquals("11:59PM",
+        assertEquals("11:59pm",
                 new Time(LocalTime.parse("23:59")).toString());
     }
 }
