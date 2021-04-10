@@ -20,7 +20,7 @@ import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_DESC_AMY;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_DESC_BOB;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_ITEM_INDEXES_1;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_ITEM_INDEXES_2;
-import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_ITEM_INDEXLIST2;
+import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_ITEM_INDEXLIST_2;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -126,7 +126,7 @@ public class AddCommandParserTest {
                 new AddCommand(indexList, descriptor));
 
 
-        IndexList lastIndexList = ORDER_ITEM_INDEXLIST2;
+        IndexList lastIndexList = ORDER_ITEM_INDEXLIST_2;
 
         // multiple order indexes - only last prefix accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
