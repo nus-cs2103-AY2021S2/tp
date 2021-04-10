@@ -189,12 +189,12 @@ The activity diagram shows the workflow when an add command is executed:
 ##### Aspect: Whether to allow incomplete fields(i.e. some personal details can be missing when adding a new student)
 
 * **Alternative 1 (current choice):** Certain fields are optional when a new student are added.
-  * Pros: More flexible and user-friendly.
-  * Cons: It may take some time to add in the missing fields in the future.
+    * Pros: More flexible and user-friendly.
+    * Cons: It may take some time to add in the missing fields in the future.
 
 * **Alternative 2:** All fields of a student must be added at first.
-  * Pros: More standardized and easier to track.
-  * Cons: Certain fields of a new student may not be known by the user at once.
+    * Pros: More standardized and easier to track.
+    * Cons: Certain fields of a new student may not be known by the user at once.
 
 ### Edit feature
 
