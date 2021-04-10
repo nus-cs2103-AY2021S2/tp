@@ -25,6 +25,10 @@ public class ClearCommandParserTest {
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "n/bedroom",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
+
+        // correct prefix but no location given
+        assertParseFailure(parser, "l/",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
     }
 
     @Test

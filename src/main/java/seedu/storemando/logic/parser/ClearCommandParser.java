@@ -25,11 +25,7 @@ public class ClearCommandParser implements Parser<ClearCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_LOCATION);
 
-        if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
-        }
-
-        if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
+        if (argMultimap.getPreamble().isEmpty() && argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
             String location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()).toString();
             return new ClearCommand(new LocationContainsPredicate(location));
         } else {
