@@ -18,10 +18,13 @@ import javafx.stage.Stage;
 import seedu.cakecollate.commons.core.GuiSettings;
 import seedu.cakecollate.commons.core.LogsCenter;
 import seedu.cakecollate.logic.Logic;
+import seedu.cakecollate.logic.commands.Command;
 import seedu.cakecollate.logic.commands.CommandResult;
 import seedu.cakecollate.logic.commands.HelpCommand;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
+
+import static seedu.cakecollate.logic.commands.HelpCommand.SHOWING_RETURN_MESSAGE;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -157,6 +160,8 @@ public class MainWindow extends UiPart<Stage> {
         helpPanelToMain = new Button("Return to the order list");
         helpPanelToMain.setOnAction(event -> {
             resetMainWindow();
+            logger.info("Result: " + SHOWING_RETURN_MESSAGE);
+            resultDisplay.setFeedbackToUser(SHOWING_RETURN_MESSAGE);
         });
     }
 
@@ -185,8 +190,7 @@ public class MainWindow extends UiPart<Stage> {
         replaceHelpPanelWithModels();
         removeHelpButtonFromDisplay();
 
-        logger.info("Result: " + HelpCommand.SHOWING_RETURN_MESSAGE);
-        resultDisplay.setFeedbackToUser(HelpCommand.SHOWING_RETURN_MESSAGE);
+        logger.info("Result: " + SHOWING_RETURN_MESSAGE);
 
         inHelp = false;
     }
@@ -265,8 +269,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             commandBox.updateUserInputs(commandText);
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            String result = commandResult.getFeedbackToUser();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -278,7 +281,11 @@ public class MainWindow extends UiPart<Stage> {
 
             if (inHelp && !commandResult.isShowHelp()) {
                 resetMainWindow();
+                result = SHOWING_RETURN_MESSAGE + "\n" + result;
             }
+
+            resultDisplay.setFeedbackToUser(result);
+            logger.info("Result: " + result);
 
             return commandResult;
         } catch (CommandException | ParseException e) {
