@@ -5,10 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.commons.core.Messages.MESSAGE_LESS_THAN_TWO_ITEMS_LISTED_OVERVIEW;
 import static seedu.storemando.commons.core.Messages.MESSAGE_MORE_THAN_ONE_ITEM_LISTED_OVERVIEW;
+import static seedu.storemando.commons.core.Messages.MESSAGE_NO_ITEM_IN_LIST;
+import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.storemando.logic.commands.CommandTestUtil.showEmptyListAfterFind;
 import static seedu.storemando.testutil.TypicalItems.CREAM;
 import static seedu.storemando.testutil.TypicalItems.EGGS;
 import static seedu.storemando.testutil.TypicalItems.FLOUR;
+import static seedu.storemando.testutil.TypicalItems.HEATER;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import java.util.Arrays;
@@ -16,6 +20,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.storemando.commons.core.Messages;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.UserPrefs;
@@ -101,6 +106,13 @@ public class FindCommandTest {
         expectedModel.updateFilteredItemList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(EGGS), model.getFilteredItemList());
+    }
+
+    @Test
+    public void execute_noItemInList() {
+        showEmptyListAfterFind(model, HEATER);
+
+        assertCommandFailure(new SortAscendingQuantityCommand(), model, Messages.MESSAGE_NO_ITEM_IN_LIST);
     }
 
     /**

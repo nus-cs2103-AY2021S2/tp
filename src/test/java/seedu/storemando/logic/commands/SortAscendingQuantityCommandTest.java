@@ -60,8 +60,7 @@ class SortAscendingQuantityCommandTest {
         Model model = new ModelManager(getTypicalStoreMando(), new UserPrefs());
         showEmptyListAfterFind(model, HEATER);
 
-        assertCommandFailure(new SortAscendingQuantityCommand(), model,
-            Messages.MESSAGE_NO_ITEM_IN_LIST);
+        assertCommandFailure(new SortAscendingQuantityCommand(), model, Messages.MESSAGE_NO_ITEM_IN_LIST);
     }
 
     @Test

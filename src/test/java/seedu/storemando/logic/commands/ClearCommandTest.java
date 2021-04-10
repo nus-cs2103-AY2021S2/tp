@@ -20,7 +20,6 @@ public class ClearCommandTest {
     @Test
     public void execute_emptyStoreMando_failure() {
         Model model = new ModelManager();
-        Model expectedModel = new ModelManager();
 
         assertCommandFailure(new ClearCommand(), model, Messages.MESSAGE_NO_ITEM_IN_LIST);
     }
