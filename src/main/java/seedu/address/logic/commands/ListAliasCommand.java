@@ -9,7 +9,7 @@ import seedu.address.model.Model;
  */
 public class ListAliasCommand extends AliasCommand {
 
-    public static final String SHOWING_ALIASES_MESSAGE = "You have %d aliases.";
+    public static final String SHOWING_ALIASES_MESSAGE = "You have %d alias(es).";
 
     @Override
     public CommandResult execute(Model model) {
