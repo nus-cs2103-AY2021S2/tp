@@ -135,21 +135,39 @@ The `UI` component,
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
+**Diagram Notes** :
+* `XYZCommand` is a placeholder for a concrete command such as `AddResidentCommand`, `ExitCommand`, etc. There are many
+  commands (each with its own class), so for a placeholder has been used for simplicity. Likewise, `XYZCommandParser` is
+  a placeholder for a concrete command parser.
+* Some (but not all) command parsers make use of utility parser classes such as `CliSyntax`, `ParserUtil`,
+  `ArgumentMultimap`, `ArgumentTokenizer` and `Prefix`. These classes are not necessary for a high-level understanding
+  of the logic component, so they have been omitted from the diagram above for brevity.
+
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `LogicManager` uses the `AddressBookParser` to parse the user command. 
+1. `LogicManager` may consult the `AliasMapping` in the `Model` (not shown in the diagram above) in case the user
+   uses an alias. How an alias is executed is detailed [here](#alias-execution).
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution may affect the `Model` (e.g. adding a resident or closing an issue).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. In addition, the `CommandResult` object may also instruct the `Ui` to perform certain actions, such as displaying
+   help to the user.
+1. `CommandHistorySelector` is responsible for the logic of navigating command history. Its implementation is detailed
+   [here](#navigate-history).
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("idel 1")` API call.
+Many other commands have a similar flow, differing only by the specific command parser class, command class and 
+interaction with the model.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `idel 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+**Diagram Notes** :
+* To improve readability, some class names have been shortened in the diagram:
+    * `DeleteIssueCmdParser` represents the class `DeleteIssueCommandParser`
+    * `DeleteIssueCmd` represents the class `DeleteIssueCommand`
+    * `CmdResult` represents the class `CommandResult`
 
 ### Model component
 

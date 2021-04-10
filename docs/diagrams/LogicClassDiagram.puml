@@ -10,11 +10,6 @@ package Parser {
 Interface Parser <<Interface>>
 Class AddressBookParser
 Class XYZCommandParser
-Class CliSyntax
-Class ParserUtil
-Class ArgumentMultimap
-Class ArgumentTokenizer
-Class Prefix
 }
 
 package Command {
@@ -23,40 +18,49 @@ Class CommandResult
 Class "{abstract}\nCommand" as Command
 }
 
+package CommandHistory {
+Interface CommandHistorySelector <<Interface>>
+Class SuppliedCommandHistorySelector
+}
+
 Interface Logic <<Interface>>
 Class LogicManager
 }
 
-package Model{
+package Model {
 Class HiddenModel #FFFFFF
 }
 
+package Storage {
+CLass HiddenStorage #FFFFFF
+}
+
+'Logic
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Logic
+HiddenOutside ...> Logic
+Logic ..> CommandResult
 
+'Logic Manager
 LogicManager .up.|> Logic
-LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+LogicManager -left->"1" AddressBookParser: calls >
+LogicManager --> Model
+LogicManager -> Storage
+LogicManager .left.> CommandResult
 
-XYZCommandParser ..> XYZCommand : creates >
-XYZCommandParser ..|> Parser
-XYZCommandParser ..> ArgumentMultimap
-XYZCommandParser ..> ArgumentTokenizer
-ArgumentTokenizer .left.> ArgumentMultimap
-XYZCommandParser ..> CliSyntax
-CliSyntax ..> Prefix
-XYZCommandParser ..> ParserUtil
-ParserUtil .down.> Prefix
-ArgumentTokenizer .down.> Prefix
+'Command History
+SuppliedCommandHistorySelector ..|> CommandHistorySelector
+Logic .left> CommandHistorySelector
+LogicManager .> CommandHistorySelector
+
+'Parser
+AddressBookParser .down.> XYZCommandParser: creates >
+XYZCommandParser .right.> XYZCommand : creates >
+XYZCommandParser .up..|> Parser
+
+'Command
 XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
-
-LogicManager --> Model
-Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
-
-Logic ..> CommandResult
-LogicManager .down.> CommandResult
 Command .up.> CommandResult
 CommandResult -[hidden]-> Parser
+Command .right.> Model
 @enduml
