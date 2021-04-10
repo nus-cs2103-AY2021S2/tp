@@ -126,7 +126,8 @@ public class EditCommand extends Command {
     /**
      * Edits contacts that have been edited in {@code appointment}.
      */
-    public static void editAppointment(Model model, Appointment appointment, Contact contactToEdit, Contact newContact) {
+    public static void editAppointment(Model model, Appointment appointment, Contact contactToEdit,
+                                       Contact newContact) {
         List<Contact> newContacts = new ArrayList<>();
         Set<Contact> contacts = appointment.getContacts();
         contacts.forEach(contact -> {
