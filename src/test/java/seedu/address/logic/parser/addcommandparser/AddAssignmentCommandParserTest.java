@@ -66,6 +66,14 @@ public class AddAssignmentCommandParserTest {
         assertParseFailure(parser, userInput3,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAssignmentCommand.MESSAGE_USAGE));
 
+
+    }
+
+    @Test
+    public void parse_empty_failure() {
+        String userInput = "";
+        assertParseFailure(parser, userInput,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAssignmentCommand.MESSAGE_USAGE));
     }
 
 }
