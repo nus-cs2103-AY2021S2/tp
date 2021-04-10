@@ -87,6 +87,7 @@ public class DeleteRecurringSessionCommand extends Command {
                 sessionToDelete.toString(), sessionDate.getDate().toString()));
     }
 
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

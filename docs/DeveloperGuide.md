@@ -137,30 +137,6 @@ This section describes some noteworthy details on how certain features are imple
 Students in TutorBuddy is facilitated by the `Student` class which stores specific details of
 a `student` within one `student` object. Students are not allowed to have duplicated names.
 
-#### List Student Feature
-The list student feature displays a list of existing students in the TutorBuddy application.
-
-##### Implementation
-This feature is facilitated by `ListStudentCommand` which extends `Command`.
-The method `ListStudentCommand#execute` updates the filtered student list by calling the method
-`Model#updateFilteredStudentList` exposed in the `Model` interface.
-
-Given below is an example of how the list student
-1. The user executes the list student command with the input `list_student`.
-2. `LogicManager` executes the input and parses the command using `AddressBookParser`.
-3. `AddressBookParser` identifies the correct command and creates a new `ListStudentCommand`.
-4. `AddressBookParser` returns the new `ListStudentCommand` to `LogicManager`.
-5. `LogicManager` executes the `ListStudentCommand`.
-6. `ListStudentCommand` now calls `Model` to update the `filteredStudentList` to show all students.
-
-The following sequence diagram shows the interactions when user executes the `list_student` command:
-![ListStudentSequenceDiagram](images/choonwei/ListStudentSequenceDiagram.png)
-
-NOTE: The lifeline of `ListStudentCommand` should end at the cross but is not shown due to the limitations of PlantUML.
-
-The following activity diagram summarizes what happens when a user executes the `list_student` command.
-![ListStudentActivityDiagram](images/choonwei/ListStudentActivityDiagram.png)
-
 #### Add Student Feature
 The add student feature allows user to add a student to the TutorBuddy Application.
 
@@ -298,6 +274,59 @@ The following sequence diagram shows how deleting a session works:
 
 It shares the same design considerations as what is mentioned in Add Session Feature.
 
+#### Delete Recurring Session Feature
+The delete recurring session feature allows users to remove a single session from an existing recurring session.
+
+This section explains the implementation of the `delete_rec_session` command and highlights the design considerations
+taken into account when implementing this feature.
+
+##### Implementation
+
+The deletion of a single session in an existing recurring session is facilitated by the `DeleteRecurringSessionCommand` and it extends `Command`.
+The method `DeleteRecurringSessionCommand#execute()` performs a validity check on the student name, target index, and session date to be deleted
+before deleting the single session.
+
+The following sequence diagram shows the interactions between the Model and Logic components during the execution of a `DeleteRecurringSessionCommand`
+with user input `delete_rec_session n/STUDENT_NAME i/SESSION_INDEX d/DATE`:
+![DeleteSessionSequenceDiagram](images/choonwei/DeleteRecurringSessionSequenceDiagram.png)
+
+NOTE: The lifeline of `DeleteRecurringSessionCommandParser` should end at the cross but is not shown due to the limitations of PlantUML.
+
+1. `Logic` uses the `AddressBookParser` class to parse the user command.
+2. A new instance of a `DeleteRecurringSessionCommand` would be created by the `DeleteRecurringSessionCommandParser` and returned to `AddressBookParser`.
+3. `AddressBookParser` encapsulates the `DeleteRecurringSessionCommand` object as a `Command` object which is executed by the `LogicManager`.
+4. The execution calls `hasName(studentName)` to validate an existing student in TutorBuddy, and `hasSessionOnDate(sessionDate)` to validate
+   the session date belongs to a recurring session.
+5. It also calls `getStudentWithName(studentName)` to get the student name before calling `deleteSessionInRecurringSession(studentName, targetIndex, sessionDate)`
+which splits the recurring session into two recurring session(s)/session(s), one exclusively before the session date, and another exclusively after the session date.
+6. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the Ui to display the updated list of sessions.
+
+The following activity diagram summarizes what happens when a user executes the `delete_rec_session` command.
+![ListActivityDiagram](images/choonwei/DeleteRecurringSessionActivityDiagram.png)
+
+##### Design Considerations
+Aspect 1: Exclusion of the single session from the recurring session
+* **Alternative 1 (current choice)**: Splits the recurring session into two recurring session(s)/session(s), one
+  exclusively before the session date, and another exclusively after the session date.
+    * Pros:
+        * Easier for user to keep track of their sessions since they only need to read the start and end date of the recurring sessions.
+        * Easier to handle session entries when displaying recurring sessions in `Calendar`, `Reminders`, and `Fees` components.
+    * Cons:
+        * More work required for TutorBuddy to execute the splitting of sessions.
+
+* **Alternative 2**: Store a `List<SessionDate>` inside of each `Session` for excluded sessions.
+    * Pros:
+        * Allows quick exclusion of session dates since we only need to store the session date in the session.
+    * Cons:
+        * Requires a lot of book-keeping when displaying recurring sessions in `Calendar`, `Reminders`, and `Fees` components.
+        * Tedious for user to keep track of their sessions by regularly checking if the date is excluded.
+    
+Alternative 1 was chosen because of the pros of implementing alternative 1 outweighs the cons that comes along with it.
+Although it requires TutorBuddy to do more of the processing work to split the recurring session, it makes it easier to
+display recurring sessions in the Calendar view, display upcoming recurring sessions in reminders, and calculation of fees.
+It also makes it more intuitive and convenient for the user to see if a recurring session occurs on a certain date without
+having to check if the date is excluded when they refer to the `Tuition` page.
+
 ### Monthly Fees
 Monthly Fees in TutorBuddy is calculated based on the session `fee`. It makes uses of the FeeUtil static method
 to perform the calculation.
@@ -344,6 +373,32 @@ an abstracted `FeeUtil` method, we will only need to update the methods in `FeeU
 to the rest of the features that uses this method. This allows the UI to make use of the `FeeUtil` methods when calculating the 
 3 months fees as well. Although this results in increased coupling, with proper testing in place, we could mitigate the risk 
 as we ensure that changes in the `FeeUtil` method do not unintentionally changes the behaviour of the other feature.
+
+### General
+#### List Feature
+The list feature displays a list of existing students, and a list of sessions of those students in the TutorBuddy application.
+
+##### Implementation
+This feature is facilitated by `ListCommand` which extends `Command`.
+The method `ListCommand#execute` updates the filtered student list, and the filtered session list by calling the method
+`Model#updateFilteredStudentList` exposed in the `Model` interface.
+
+Given below is an example of how the list student
+1. The user executes the list command with the input `list`.
+2. `LogicManager` executes the input and parses the command using `AddressBookParser`.
+3. `AddressBookParser` identifies the correct command and creates a new `ListCommand`.
+4. `AddressBookParser` returns the new `ListCommand` to `LogicManager`.
+5. `LogicManager` executes the `ListCommand`.
+6. `ListCommand` now calls `Model` to update the `filteredStudents` and  to show all students.
+
+The following sequence diagram shows the interactions when user executes the `list` command:
+![ListSequenceDiagram](images/choonwei/ListSequenceDiagram.png)
+
+NOTE: The lifeline of `ListCommand` should end at the cross but is not shown due to the limitations of PlantUML.
+
+The following activity diagram summarizes what happens when a user executes the `list` command.
+![ListActivityDiagram](images/choonwei/ListActivityDiagram.png)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
