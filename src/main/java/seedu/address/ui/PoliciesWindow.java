@@ -11,12 +11,13 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 
 public class PoliciesWindow extends UiPart<Stage> {
 
-    private static final String NO_POLICY_FEEDBACK = "This contact has no policies now!";
     private static final String NOT_URL = "No URL!";
     private static final Logger logger = LogsCenter.getLogger(PoliciesWindow.class);
     private static final String FXML = "PoliciesWindow.fxml";
@@ -32,6 +33,7 @@ public class PoliciesWindow extends UiPart<Stage> {
      */
     public PoliciesWindow(Stage root) {
         super(FXML, root);
+        setWindowTitle("Policies");
     }
 
     /**
@@ -105,10 +107,6 @@ public class PoliciesWindow extends UiPart<Stage> {
     public void noPolicyToDisplay(String noPolicyFeedback) {
         clearWindow();
 
-        String[] nameAndFeedback = noPolicyFeedback.split(" has ");
-        String name = nameAndFeedback[0];
-        setWindowTitle(name + "'s Policies");
-
         HBox row = new HBox();
         setupHBoxRowNoButton(row, noPolicyFeedback);
 
@@ -119,11 +117,13 @@ public class PoliciesWindow extends UiPart<Stage> {
     /**
      * Formats and sets up policies and their URLs for display in window.
      *
+     * @param clientName name of the client whose policies are being displayed.
      * @param policiesToDisplay joined {@code String} of all policies associated with the chosen contact.
      */
-    public void setPoliciesToDisplay(String windowTitle, String policiesToDisplay) {
+    public void setPoliciesToDisplay(String clientName, String policiesToDisplay) {
         clearWindow();
-        setWindowTitle(windowTitle);
+
+        setHeaderInWindow(clientName);
 
         String[] split = policiesToDisplay.split("\n");
 
@@ -141,6 +141,16 @@ public class PoliciesWindow extends UiPart<Stage> {
             outerBox.getChildren().add(row);
         }
         formatOuterBox();
+    }
+
+    private void setHeaderInWindow(String clientName) {
+        HBox nameRow = new HBox(10);
+        Label header = new Label(clientName);
+        header.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+        header.setUnderline(true);
+        nameRow.getChildren().add(header);
+        nameRow.setAlignment(Pos.CENTER);
+        outerBox.getChildren().add(nameRow);
     }
 
     private void clearWindow() {

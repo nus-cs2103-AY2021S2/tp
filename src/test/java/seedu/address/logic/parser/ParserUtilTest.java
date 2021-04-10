@@ -2,15 +2,15 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INDEX_IS_WORD;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_BATCH_INDICES;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -48,6 +48,13 @@ public class ParserUtilTest {
 
     private static final String WHITESPACE = " \t\r\n";
 
+    private static final String INVALID_INPUT_INDICES_ZERO = "0, 1, 2";
+    private static final String INVALID_INPUT_INDICES_HUGE = "1, 2, 10000000000000000000000000000000000000";
+    private static final String INVALID_INPUT_INDICES_ALL_NUMBERS_NO_COMMA = "1 2 3";
+    private static final String INVALID_INPUT_INDICES_WITH_WORD_NO_COMMA = "1 2 lol";
+    private static final String INVALID_INPUT_INDICES_WITH_WORD_WITH_COMMA = "1, 2, lol";
+    private static final String INVALID_INPUT_INDICES_REPEATED_INDICES = "1 1 1";
+
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
@@ -66,6 +73,34 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+    }
+
+    @Test
+    public void parseIndices_invalidInput_throwsParseException() {
+        // Input indices contain some indices which are less than 1
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+            -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_ZERO));
+
+        // Input indices contain some indices which are huge
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+            -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_HUGE));
+
+        // Input all numbers but not separated by commas
+        assertThrows(ParseException.class, MESSAGE_INVALID_BATCH_INDICES, ()
+            -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_ALL_NUMBERS_NO_COMMA));
+
+        // Input has word and not separated by commas
+        assertThrows(ParseException.class, MESSAGE_INDEX_IS_WORD, ()
+            -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_WITH_WORD_NO_COMMA));
+
+        // Input has word but separated by commas
+        assertThrows(ParseException.class, MESSAGE_INDEX_IS_WORD, ()
+            -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_WITH_WORD_WITH_COMMA));
+
+        // Repeated indices in input
+        assertThrows(ParseException.class, MESSAGE_INVALID_BATCH_INDICES, ()
+            -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_REPEATED_INDICES));
+
     }
 
     @Test
@@ -206,10 +241,6 @@ public class ParserUtilTest {
         assertEquals(expectedTagSet, actualTagSet);
     }
 
-
-
-
-
     @Test
     public void parsePolicies_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePolicies(null));
@@ -243,12 +274,12 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePolicies_collectionWithValidPolicies_returnsTagSet() throws Exception {
-        List<InsurancePolicy> actualPolicyList = ParserUtil.parsePolicies(Arrays.asList(VALID_POLICYID_NO_URL,
+    public void parsePolicies_collectionWithValidPolicies_returnsPoliciesList() throws Exception {
+        Set<InsurancePolicy> actualPolicySet = ParserUtil.parsePolicies(Arrays.asList(VALID_POLICYID_NO_URL,
             VALID_POLICYID_VALID_URL));
-        List<InsurancePolicy> expectedPolicyList = new ArrayList<>(Arrays.asList(new InsurancePolicy(VALID_POLICYID_1),
+        Set<InsurancePolicy> expectedPolicyList = new HashSet<>(Arrays.asList(new InsurancePolicy(VALID_POLICYID_1),
                 new InsurancePolicy(VALID_POLICYID_2, VALID_POLICY_URL)));
 
-        assertEquals(expectedPolicyList, actualPolicyList);
+        assertEquals(expectedPolicyList, actualPolicySet);
     }
 }

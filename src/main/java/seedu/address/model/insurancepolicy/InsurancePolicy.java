@@ -2,6 +2,7 @@ package seedu.address.model.insurancepolicy;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Pattern;
@@ -17,9 +18,18 @@ public class InsurancePolicy {
             + "\nOptional URLs should be preceded by '>' after the PolicyID, and should be of a standard URL format."
             + "\nDo head over to our User Guide if you are unsure of the command or input format for policies.";
     public static final String MESSAGE_NO_POLICY = "Currently does not have an active policy";
+    /*
+    Checks if a String is a valid URL.
+    Reused from: https://stackoverflow.com/a/42619410
+     */
     public static final Pattern URL_REGEX = Pattern.compile("((ftp|http|https):\\/\\/)?(www.)?(?!.*(ftp|http"
             + "|https|www.))[a-zA-Z0-9_-]+(\\.[a-zA-Z]+)+((\\/)[\\w#]+)*(\\/\\w+\\?[a-zA-Z0-9_]+=\\"
             + "w+(&[a-zA-Z0-9_]+=\\w+)*)?", Pattern.CASE_INSENSITIVE);
+    /*
+    Checks if String contains angular brackets, which we do not want in a URL.
+    Reused from: https://stackoverflow.com/a/4105987
+     */
+    public static final Pattern ANGULAR_BRACKET_REGEX = Pattern.compile("^[^<>]+$");
 
     public final String policyId;
     private final String policyUrl;
@@ -101,17 +111,12 @@ public class InsurancePolicy {
      * @return true if policy input contains a valid policy ID.
      */
     public static boolean isValidPolicyInput(String input) {
-        String[] splitByAngularBracket = input.split(">");
-
+        String[] splitByAngularBracket = input.split(">", 2);
+        System.out.println(Arrays.toString(splitByAngularBracket));
         if (splitByAngularBracket.length == 1) {
             // Return true if length is 1, since no '>' was used, meaning no URL and valid policy ID.
             return true;
-        } else if (splitByAngularBracket.length > 2 || splitByAngularBracket.length <= 0) {
-            // Return false if there is more than 1 ">" character, or if empty array.
-            return false;
         }
-
-        assert splitByAngularBracket.length == 2;
 
         // Due to the variable nature of policy ID names, we only need to check if after splitting, the 2nd item
         // in the array is a valid URL for the entire input to be valid.
@@ -135,6 +140,6 @@ public class InsurancePolicy {
      * @return true if the URL is valid.
      */
     public static boolean isValidPolicyUrl(String policyUrl) {
-        return URL_REGEX.matcher(policyUrl).find();
+        return URL_REGEX.matcher(policyUrl).find() && ANGULAR_BRACKET_REGEX.matcher(policyUrl).find();
     }
 }

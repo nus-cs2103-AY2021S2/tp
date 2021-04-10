@@ -21,6 +21,7 @@ package Command {
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
+Enum "<<enumeration>>\nCommandWord" as CommandWord
 }
 
 Interface Logic <<Interface>>
@@ -28,6 +29,10 @@ Class LogicManager
 }
 
 package Model{
+Class HiddenModel #FFFFFF
+}
+
+package Storage{
 Class HiddenModel #FFFFFF
 }
 
@@ -40,7 +45,7 @@ ClientBookParser .left.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommandParser
 XYZCommandParser ..> XYZCommand : creates >
-XYZCommandParser ..|> Parser
+XYZCommandParser .left.|> Parser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
@@ -54,6 +59,9 @@ XYZCommand *-left-> "*" XYZCommand
 LogicManager .left.> Command : executes >
 
 LogicManager --> Model
+LogicManager --> Storage
+Storage --[hidden] Model
+Command .[hidden]up.> Storage
 Command .right.> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 note bottom of XYZCommand: Whole-part relationship only \nvalid for BatchCommand (whole) and \nEditCommand/DeleteCommand (part))
@@ -63,5 +71,6 @@ Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult
 CommandResult -[hidden]-> Parser
+CommandWord -[hidden]up-> XYZCommand
 note right of XYZCommandParser: Association between XYZCommandParser \nand XYZCommandParser is only relevant \nfor BatchCommandParser and \nEditCommandParser/DeleteCommandParser
 @enduml

@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 
 public class InsurancePolicyTest {
     private static final String INVALID_POLICY_ID_CONTAINS_ANGULAR_BRACKET = "Policy>1234>www.google.com";
+    private static final String VALID_POLICY_ID_INVALID_URL = "Policy_1234>www.google.com>";
+    private static final String VALID_POLICY_ID_INVALID_URL_2 = "Policy_1234>www.goog>le.com";
     private static final String CORRECT_POLICY_WITH_URL = "Policy1234>www.google.com";
     private static final String CORRECT_POLICY_NO_URL = "Policy1234";
     private static final String DEFAULT_POLICY_ID = "P#123";
@@ -27,6 +29,12 @@ public class InsurancePolicyTest {
 
         // invalid input of Policy ID with angular bracket in the ID
         assertFalse(InsurancePolicy.isValidPolicyInput(INVALID_POLICY_ID_CONTAINS_ANGULAR_BRACKET));
+
+        // valid policy ID, invalid policy URL
+        assertFalse(InsurancePolicy.isValidPolicyInput(VALID_POLICY_ID_INVALID_URL));
+
+        // valid policy ID, invalid policy URL
+        assertFalse(InsurancePolicy.isValidPolicyInput(VALID_POLICY_ID_INVALID_URL_2));
     }
 
     @Test
