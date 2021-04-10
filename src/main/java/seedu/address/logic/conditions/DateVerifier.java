@@ -16,7 +16,6 @@ public class DateVerifier {
     private static final String MESSAGE_DATE_OVER = "The task selected is already over.";
     private static final Logger logger = LogsCenter.getLogger(DateVerifier.class);
 
-    private Task task;
     private AttributeManager attributeManager;
 
     /**
@@ -25,7 +24,6 @@ public class DateVerifier {
      * @param task The task with Date to be verified.
      */
     public DateVerifier(Task task) {
-        this.task = task;
         this.attributeManager = new AttributeManager(task);
     }
 

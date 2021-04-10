@@ -61,10 +61,10 @@ note left of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 LogicManager .left.> Command : executes >
 
 XYZCommand ..> ConditionLogic
-ConditionLogic ..> DateVerifier
-ConditionLogic ..> IndexManager
-ConditionLogic ..> ConstraintManager
-ConditionLogic ..> RecurringScheduleVerifier
+ConditionLogic --> DateVerifier
+ConditionLogic --> IndexManager
+ConditionLogic --> ConstraintManager
+ConditionLogic --> RecurringScheduleVerifier
 
 LogicManager --> Model
 Command .left.> Model
