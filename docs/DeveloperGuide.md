@@ -398,11 +398,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | remove a student's profile                        | keep track of only students that I teach                     |
 | `* * *`  | user                                       | edit the details of a student                     | keep track of up-to-date information                         |
 | `* * *`  | user                                       | add individual tuition sessions                   | keep track of my tuition sessions                            |
-| `* * *`  | user                                       | delete an individual tuition session              | update my tuition schedule                                   |
+| `* * *`  | busy user                                  | add recurring tuition sessions                    | save time by creating multiple sessions in one command       |
+| `* * *`  | user                                       | delete a non-recurring tuition session            | update my tuition schedule                                   |
+| `* * *`  | user                                       | delete the entire recurring session               | update my tuition schedule                                   |
+| `* * *`  | user                                       | delete a single session from a recurring session  | update cancelled tuition session                             |
 | `* * *`  | user                                       | see a list of all the students profile and sessions|                                                             |
 | `* * *`  | user                                       | get all the emails of the parent of my students'  | email them reminders for payment                             |
 | `* * *`  | user                                       | calculate the monthly fees of a particular student| use the information when collecting monthly fees             |
 | `* * *`  | user                                       | get the monthly fees that I would have received for the past 3 months    | manage my finance better              |
+| `* * *`  | forgetful user                             | see a list of upcoming sessions                   | be aware of my teaching schedule for the next few days       |
+| `* * *`  | user teaching many lessons                 | see my schedule in a calendar view                | have an overview of my hectic schedules at a glance          |
 | `* *`    | new user                                   | get a list of commands of the application         | know at a glance what are the features of the application    |
 | `* *`    | potential user                             | see the app populated with sample data on the first run  | try using the features easily                         |
 | `* *`    | new user                                   | purge all current data                            | get rid of sample/current data I used for exploring the app  |
@@ -414,7 +419,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *(For all use cases, the **System** is the TutorBuddy Application, **Actor** is the user, and the **Precondition** is that the application has already been opened, unless otherwise specified)*
 
-**Use case: UC0X - Create a student profile**
+**Use case: UC01 - Create a student profile**
 
 MSS:
 
@@ -431,7 +436,7 @@ Extensions:
 
     Use case ends.
 
-**Use case: UC0X - Find a student’s profile**
+**Use case: UC02 - Find a student’s profile**
 
 MSS:
 
@@ -447,7 +452,7 @@ Extensions:
 
   Use case ends.
 
-**Use case: UC0X - Delete a student profile**
+**Use case: UC03 - Delete a student profile**
 
 MSS:
 
@@ -464,7 +469,7 @@ Extensions:
 
   Use case ends.
 
-**Use case: UC0X - Edit student details**
+**Use case: UC04 - Edit student details**
 
 MSS:
 
@@ -482,31 +487,89 @@ Extensions:
     
   Use case ends.
 
-**Use case: UC0X - Create a session**
-
-**Preconditions: Student profile linked to session has been created.**
+**Use case: UC05 - Create a session**
 
 MSS:
 
-1. User enters the add session command, together with the session details.
-2. TutorBuddy creates the session.
-3. TutorBuddy displays a success message.
+1. User enters the `add_session` command, together with the session details.
+2. TutorBuddy verifies that the student exists, and the inputs are valid.
+3. TutorBuddy creates the session.
+4. TutorBuddy displays a success message.
 
    Use case ends.
 
 **Extensions:**
 
-* 1a. TutorBuddy detects an error in the entered data.
-    * 1a1. TutorBuddy prompts an error and requests for the correct data.
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
 
   Use case ends.
 
-* 1b. TutorBuddy detects another session that the user has in the same timeframe.
-    * 1b1. TutorBuddy prompts an error and requests for the correct data.
+* 2b. TutorBuddy detects another overlapping session that the user has in the same timeframe.
+    * 2b1. TutorBuddy prompts an error and requests for the correct data.
 
   Use case ends.
 
-**Use case: UC0X - List all students and sessions**
+**Use case: UC06 - Create a recurring session**
+
+MSS:
+
+1. User enters the `add_rec_session` command, together with the session details.
+2. TutorBuddy verifies that the student exists, and the inputs are valid.
+3. TutorBuddy creates the recurring session.
+4. TutorBuddy displays a success message.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+
+  Use case ends.
+
+* 2b. TutorBuddy detects another overlapping session that the user has in the same timeframe.
+    * 2b1. TutorBuddy prompts an error and requests for the correct data.
+
+  Use case ends.
+
+**Use case: UC07 - Delete a session or the entire recurring session**
+
+MSS:
+
+1. User enters the `delete_session` command with the appropriate inputs.
+2. TutorBuddy verifies that the student exists, and the inputs are valid.
+3. TutorBuddy deletes the session.
+4. TutorBuddy displays a success message.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+
+  Use case ends.
+
+**Use case: UC08 - Delete a single session from a recurring session**
+
+MSS:
+
+1. User enters the `delete_rec_session` command with the appropriate inputs.
+2. TutorBuddy verifies that the student exists, and the inputs are valid.
+3. TutorBuddy deletes the single session and splits up the remaining session into 2 recurring sessions (Before and After).
+4. TutorBuddy displays a success message.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+
+  Use case ends.
+
+**Use case: UC09 - List all students and sessions**
 
 MSS:
 
@@ -525,7 +588,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC0X - Calculate fee for a student of a particular month and year**
+**Use case: UC10 - Calculate fee for a student of a particular month and year**
 
 MSS:
 
@@ -542,7 +605,7 @@ Extensions:
 
   Use case ends.
 
-**UC0X - View 3 months monthly fee**
+**Use case: UC11 - View 3 months monthly fee**
 
 MSS:
 
@@ -551,7 +614,33 @@ MSS:
 
    Use case ends.
 
-**Use case: UC0X - Show help**
+**Use case: UC12 - Reminders for upcoming sessions**
+
+MSS:
+
+1. User toggles to the `Home` tab.
+2. TutorBuddy shows a list of upcoming sessions that would happen, within the next 3 days.
+
+   Use case ends.
+
+**Use case: UC13 - Calendar View**
+
+MSS:
+
+1. User toggles to the `Calendar` tab.
+2. TutorBuddy shows a calendar representation of the sessions, showing the schedule of the current week.
+
+   Use case ends.
+
+Extensions:
+
+* 2a. User can toggle between the different weeks using the left and right button in the Calendar page.
+
+* 2b. User can toggle directly move to this week's schedule by clicking on the `Today` button.
+
+  Use case ends.
+
+**Use case: UC14 - Show help**
 
 MSS:
 
@@ -560,7 +649,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC0X - Sample data for new users**
+**Use case: UC15 - Sample data for new users**
 
 MSS:
 
@@ -570,7 +659,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC0X - Clear data**
+**Use case: UC16 - Clear data**
 
 MSS:
 
@@ -579,7 +668,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC0X - Exit application**
+**Use case: UC17 - Exit application**
 
 MSS:
 
