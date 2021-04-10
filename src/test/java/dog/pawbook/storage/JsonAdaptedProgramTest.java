@@ -26,11 +26,11 @@ public class JsonAdaptedProgramTest {
     private static final Integer INDEPENDENCE_TRAINING_ID = 2;
     private static final String VALID_NAME = INDEPENDENCE_TRAINING.getName().toString();
     private static final List<JsonAdaptedSession> VALID_SESSIONS = INDEPENDENCE_TRAINING.getSessions().stream()
-        .map(JsonAdaptedSession::new)
-        .collect(Collectors.toList());
+            .map(JsonAdaptedSession::new)
+            .collect(Collectors.toList());
     private static final List<JsonAdaptedTag> VALID_TAGS = INDEPENDENCE_TRAINING.getTags().stream()
-        .map(JsonAdaptedTag::new)
-        .collect(Collectors.toList());
+            .map(JsonAdaptedTag::new)
+            .collect(Collectors.toList());
     private static final List<Integer> VALID_DOG_IDS = new ArrayList<>(INDEPENDENCE_TRAINING.getDogIdSet());
 
     @Test
@@ -43,7 +43,7 @@ public class JsonAdaptedProgramTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedProgram program = new JsonAdaptedProgram(INDEPENDENCE_TRAINING_ID, INVALID_NAME, VALID_SESSIONS,
-            VALID_TAGS, VALID_DOG_IDS);
+                VALID_TAGS, VALID_DOG_IDS);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, program::toModelType);
     }
@@ -51,7 +51,7 @@ public class JsonAdaptedProgramTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedProgram program = new JsonAdaptedProgram(INDEPENDENCE_TRAINING_ID, null, VALID_SESSIONS,
-            VALID_TAGS, VALID_DOG_IDS);
+                VALID_TAGS, VALID_DOG_IDS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, program::toModelType);
     }
@@ -61,7 +61,7 @@ public class JsonAdaptedProgramTest {
         List<JsonAdaptedSession> invalidSessions = new ArrayList<>(VALID_SESSIONS);
         invalidSessions.add(new JsonAdaptedSession(INVALID_SESSION));
         JsonAdaptedProgram program = new JsonAdaptedProgram(INDEPENDENCE_TRAINING_ID, VALID_NAME, invalidSessions,
-            VALID_TAGS, VALID_DOG_IDS);
+                VALID_TAGS, VALID_DOG_IDS);
         String expectedMessage = Session.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, program::toModelType);
     }
@@ -72,7 +72,7 @@ public class JsonAdaptedProgramTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedProgram program = new JsonAdaptedProgram(INDEPENDENCE_TRAINING_ID, VALID_NAME,
-            VALID_SESSIONS, invalidTags, VALID_DOG_IDS);
+                VALID_SESSIONS, invalidTags, VALID_DOG_IDS);
         assertThrows(IllegalValueException.class, program::toModelType);
     }
 
