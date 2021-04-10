@@ -379,21 +379,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | user                                       | add a new student record       | keep track of that student's vaccination status                        |
 | `* * *`  | user                                       | edit a student's record        | update the system of student's records should changes occur            |
-| `* * *`  | user                                       | delete a student's record      | remove records that I no longer need or I accidentally added           |
-| `* *`    | user                                       | filter student records         | view a specific group of student entries                               |
+| `* * *`  | user                                       | delete a student's record      | remove records that I no longer need or I accidentally added           | |
 | `* * *`  | user                                       | view student statistics        | understand the progress of the vaccination program                      |
 | `* * *`  | user                                       | add an appointment for a student | schedule and keep track of that student's appointment                |
 | `* * *`  | user                                       | arrange for appointments without timing clashes | maximise the number of appointments in a day to increase UHC's efficiency and effectivity |
 | `* * *`  | user                                       | quickly arrange for appointments without manually checking for timing clashes | effectively and efficiently schedule appointments |
 | `* * *`  | user                                       | edit a student's appointment    | update the system of appointments should changes occur                 |
 | `* * *`  | user                                       | delete a student's appointment  | remove appointments that I no longer need or I accidentally added    |
-| `* *`    | user                                       | view appointment statistics     | understand the efficiency of the vaccination program                   |
-| `* * `   | user                                       | view number of appointments for the upcoming week  | understand how busy UHC vaccination staff will be for the next week |
 | `* * *`  | user                                       | list all data                   | view all student records and appointments at once                      |
-| `* * *`  | user                                       | find a student and their appointment | locate a particular student record and their appointment (if it exists) without traversing the entire list   |
+| `* *`    | user                                       | find a student and their appointment | locate a particular student record and their appointment (if it exists) without traversing the entire list   |
+| `* *`    | user                                       | filter student records         | view a specific group of student entries |
 | `* *`    | new user                                   | see the usage of commonly used commands   | quickly refer to instructions when I forget how to use Vax@NUS    |
 | `* *`    | new user                                   | see the usage of all instructions         | refer to instructions when I forget how to use less common commands in Vax@NUS     |
 | `* *`    | user                                       | see medical history (e.g. allergies, pre-conditions) of a student | pass this critical information to the nurse in charge    |
+| `* *`    | user                                       | view appointment statistics     | understand the efficiency of the vaccination program                   |
+| `* * `   | user                                       | view number of appointments for the upcoming week  | understand how busy UHC vaccination staff will be for the next week |
+| `*`      | user                                       | prioritise students for the vaccination | schedule the higher priority students to have earlier appointments                 |
+| `* `   | user                                         | quickly craft a vaccination appointment message | quickly send students reminder messages for their appointments |
+| `* `   | user                                         | export statistics as a PDF | submit to my supervisor to easily update about the progress of the vaccination program |
 
 *{More to be added}*
 
