@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+
+participant ":UI" as UI UI_COLOR
+participant ":Logic" as Logic LOGIC_COLOR
+
+[-> UI : "light"
+activate UI UI_COLOR
+
+UI -> Logic : execute("light")
+activate Logic LOGIC_COLOR
+
+Logic --> UI
+deactivate Logic
+
+UI -> UI : handleLightChange()
+
+[<-- UI
+deactivate UI
+@enduml
