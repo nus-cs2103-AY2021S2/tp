@@ -212,7 +212,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @param commandResult the command entered
      */
-    public void handelApiResponse(CommandResult commandResult) {
+    public void handleApiResponse(CommandResult commandResult) {
         Endpoint e = commandResult.getEndpoint();
         resultDisplay.setApiFeedbackToUser(commandResult.getFeedbackToUser(), e);
         endpointListPanel.focusSelectedEndpoint(e);
@@ -224,7 +224,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @param commandResult the command entered
      */
-    public void handelEndpointResponse(CommandResult commandResult) {
+    public void handleEndpointResponse(CommandResult commandResult) {
         Endpoint e = commandResult.getEndpoint();
         resultDisplay.setResponseMetaFeedbackHelper(commandResult.getFeedbackToUser(), e);
         endpointListPanel.focusSelectedEndpoint(e);
@@ -255,9 +255,9 @@ public class MainWindow extends UiPart<Stage> {
             endpointListPanel.unfocusEndpointList();
 
             if (commandResult.isApiResponse()) {
-                handelApiResponse(commandResult);
+                handleApiResponse(commandResult);
             } else if (commandResult.getEndpoint() != null) {
-                handelEndpointResponse(commandResult);
+                handleEndpointResponse(commandResult);
             } else {
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             }
