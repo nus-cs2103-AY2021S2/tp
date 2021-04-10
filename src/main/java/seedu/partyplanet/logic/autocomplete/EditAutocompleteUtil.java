@@ -1,6 +1,7 @@
 package seedu.partyplanet.logic.autocomplete;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.partyplanet.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -16,8 +17,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
-import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.commons.core.index.Index;
+import seedu.partyplanet.logic.commands.EditCommand;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.logic.parser.ArgumentMultimap;
 import seedu.partyplanet.logic.parser.ArgumentTokenizer;
@@ -30,7 +31,7 @@ import seedu.partyplanet.model.tag.Tag;
 
 public class EditAutocompleteUtil {
 
-    private static final String INDEX_NOT_SPECIFIED_OR_INVALID_MESSAGE = "Index not specified or invalid!";
+    private static final String INDEX_OUT_OF_BOUNDS_ERROR = "Index provided does not match any user!";
 
     /**
      * Used to convert Set of {@code Tag}s into a String with Tag Prefixes.
@@ -62,12 +63,12 @@ public class EditAutocompleteUtil {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble().split(" ")[0]);
         } catch (ParseException pe) {
-            throw new ParseException(INDEX_NOT_SPECIFIED_OR_INVALID_MESSAGE);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
         ObservableList<Person> filteredPersonList = model.getFilteredPersonList();
         if (index.getZeroBased() >= filteredPersonList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(INDEX_OUT_OF_BOUNDS_ERROR);
         }
 
         Person person = filteredPersonList.get(index.getZeroBased());
