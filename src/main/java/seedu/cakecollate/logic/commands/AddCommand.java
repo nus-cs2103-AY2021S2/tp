@@ -93,14 +93,14 @@ public class AddCommand extends Command {
                 : "some error here; neither order description nor order item index was provided";
 
         if (this.addOrderDescriptor.getOrderDescriptions().isPresent()) {
-            addToOrderItems(model);
+            addToOrderItemsModel(model);
         }
 
         if (orderItemIndexList != null) {
             addToOrderDescriptionsBasedOnIndexes(model);
         }
 
-        Order toAdd = addOrderDescriptor.build(); // slightly diff from editOrderDescriptor
+        Order toAdd = addOrderDescriptor.build();
 
         if (model.hasOrder(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);
@@ -117,7 +117,7 @@ public class AddCommand extends Command {
      *
      * @param model
      */
-    private void addToOrderItems(Model model) {
+    private void addToOrderItemsModel(Model model) {
         this.addOrderDescriptor.getOrderDescriptions().get().keySet().stream()
                 .map(OrderDescription::getValue) // because a string is needed for creating a new Type for new OrderItem
                 .map(o -> new OrderItem(new Type(o))) // map to order item so can check if already in model
@@ -127,7 +127,8 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Adds order items from the order model that correspond to order item indexes given by the user to the descriptor
+     * Adds order items from the order model that correspond to order item indexes
+     * given by the user, which have been added to the descriptor by the parser
      *
      * @param model
      * @throws CommandException thrown when invalid indexes are given
@@ -156,19 +157,7 @@ public class AddCommand extends Command {
         ));
     }
 
-    /**
-     * If user inputs an order description that isn't in the order items model,
-     * add it to the order items model.
-     */
-    private void addToOrderItemsModel(Model model) {
-        assert addOrderDescriptor.getOrderDescriptions().isPresent();
 
-        Map<OrderDescription, Integer> orderDescriptionMap = addOrderDescriptor.getOrderDescriptions().get();
-        orderDescriptionMap.keySet().stream()
-                .map(o -> new OrderItem(new Type(o.toString())))
-                .filter(o -> !model.hasOrderItem(o))
-                .forEach(model::addOrderItem);
-    }
 
     @Override
     public boolean equals(Object other) {
@@ -192,6 +181,8 @@ public class AddCommand extends Command {
     /**
      * Stores the details to edit the order with. Each non-empty field value will replace the
      * corresponding field value of the order.
+     *
+     * Note that this order descriptor has slight differences from edit order descriptor.
      */
     public static class AddOrderDescriptor {
         private Name name;

@@ -1,10 +1,15 @@
 package seedu.cakecollate.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_ITEM_AMY;
+import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_ITEM_BOB;
+import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_BERRY_ORDER;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.cakecollate.testutil.TestUtil.stringify;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
+import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_SECOND_ORDER;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_THIRD_ORDER;
 import static seedu.cakecollate.testutil.TypicalOrderItems.getTypicalOrderItemsModel;
 import static seedu.cakecollate.testutil.TypicalOrders.getTypicalCakeCollate;
@@ -74,7 +79,7 @@ public class AddCommandIntegrationTest {
     // === INDEX LIST RELATED ===
 
     @Test
-    public void execute_invalidListIndex_uhh() throws CommandException {
+    public void execute_invalidListIndex_throwsInvalidIndex() throws CommandException {
         Model emptyModel = new ModelManager();
         AddCommand.AddOrderDescriptor descriptor =
                 new AddOrderDescriptorBuilder(new OrderBuilder().withOrderDescriptions().build()).build();
@@ -150,7 +155,6 @@ public class AddCommandIntegrationTest {
         AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(order).build();
 
         OrderItem newOrderItemToAdd = new OrderItemBuilder().withType(value).build();
-        // does this stuff go into dg, e.g. how to test - use builders
 
         assert !model.hasOrderItem(newOrderItemToAdd)
                 : "corresponding order description shouldn't be in the order item model";
@@ -175,5 +179,70 @@ public class AddCommandIntegrationTest {
     public void execute_bothOrderDescAndIndexList_allAddedToOrder() {
 
 
+    }
+
+
+    // ======== TESTS ADDED FOR BUG FIX: ACCEPT DUPLICATE CAKES IN SAME ORDER ========
+
+    @Test
+    public void execute_recogniseDuplicateCakes_addedOrderHasDuplicateCakes() throws CommandException {
+
+        // ==== Add same order indexes ========================================================================
+
+        Order validOrder = new OrderBuilder().withOrderDescriptions().build();
+        AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(validOrder).build();
+        Model model = new ModelManager();
+
+        // set up order items
+        IndexList indexListWithMultiple = new IndexList(new ArrayList<>());
+        indexListWithMultiple.add(INDEX_SECOND_ORDER);
+        indexListWithMultiple.add(INDEX_SECOND_ORDER);
+        model.addOrderItem(ORDER_ITEM_AMY);
+        model.addOrderItem(ORDER_ITEM_BOB);
+
+        Order expectedOrder = new OrderBuilder()
+                .withOrderDescriptions(VALID_BERRY_ORDER, VALID_BERRY_ORDER).build();
+
+
+        CommandResult commandResult = new AddCommand(indexListWithMultiple, descriptor).execute(model);
+
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, expectedOrder), commandResult.getFeedbackToUser());
+        assertTrue(model.hasOrder(expectedOrder));
+        assertTrue(model.getFilteredOrderItemsList().size() == 2);
+
+
+
+        // ==== Add same order descriptions ========================================================================
+        // ---- this test ends up checking whether the builder stores multiple too
+
+        validOrder = new OrderBuilder().withOrderDescriptions(VALID_BERRY_ORDER, VALID_BERRY_ORDER).build();
+        descriptor = new AddOrderDescriptorBuilder(validOrder).build();
+        model = new ModelManager();
+
+        expectedOrder = validOrder;
+
+        commandResult = new AddCommand(null, descriptor).execute(model);
+
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, expectedOrder), commandResult.getFeedbackToUser());
+        assertTrue(model.hasOrder(expectedOrder));
+        assertEquals(model.getFilteredOrderItemsList().size(), 1);
+
+
+        // ==== Add item in order description and add corresponding order item index
+        validOrder = new OrderBuilder().withOrderDescriptions(VALID_BERRY_ORDER).build();
+        descriptor = new AddOrderDescriptorBuilder(validOrder).build();
+        model = new ModelManager();
+
+        indexListWithMultiple = new IndexList(new ArrayList<>());
+        indexListWithMultiple.add(INDEX_FIRST_ORDER);
+        model.addOrderItem(ORDER_ITEM_BOB);
+
+        expectedOrder = validOrder;
+
+        commandResult = new AddCommand(null, descriptor).execute(model);
+
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, expectedOrder), commandResult.getFeedbackToUser());
+        assertTrue(model.hasOrder(expectedOrder));
+        assertEquals(model.getFilteredOrderItemsList().size(), 1);
     }
 }

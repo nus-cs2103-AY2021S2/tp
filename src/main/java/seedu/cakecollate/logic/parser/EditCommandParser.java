@@ -99,10 +99,11 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> orderDescriptions} into a {@code Set<OrderDescription>} if {@code
+     * Parses {@code Collection<String> orderDescriptions} into a {@code Map<OrderDescription, Integer>} if {@code
      * orderDescriptions} is non-empty.
+     * The value of the map corresponds to the quantity of order descriptions inputted.
      * If {@code orderDescriptions} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<OrderDescription>} containing zero orderDescriptions.
+     * {@code Map<OrderDescription, Integer>} containing zero orderDescriptions.
      */
     private Optional<Map<OrderDescription, Integer>> parseOrderDescriptionsForEdit(Collection<String> orderDescriptions)
             throws ParseException {

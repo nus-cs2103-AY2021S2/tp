@@ -176,7 +176,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> orderDescriptions} into a {@code Set<OrderDescription>}.
+     * Parses {@code Collection<String> orderDescriptions} into a {@code Map<OrderDescription, Integer>}.
      */
     public static Map<OrderDescription, Integer> parseOrderDescriptions(Collection<String> orderDescriptions)
             throws ParseException {
