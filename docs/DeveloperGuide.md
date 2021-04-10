@@ -158,18 +158,18 @@ guardian's name, guardian's phone, subjects and lessons are optional. Any missin
 by using Edit feature. Here, an example of a student with only compulsory details available is used.
 </div>
 
-Step 1. The user executes `add n/John Doe p/98765432` command to add a new student who is called John Doe 
+Step 1. The user executes `add n/John Doe p/98765432` command to add a new student who is called John Doe
 and has a phone number of 98765432 in TutorsPet.
 
 Step 2. The user input is parsed by `AddressBookParser`, which passes the add command's argument to `AddCommandParser`.
 
-Step 3. `AddCommandParser` creates a new `Person` object for the new student and returns a new `AddCommand` 
+Step 3. `AddCommandParser` creates a new `Person` object for the new student and returns a new `AddCommand`
 if the argument is valid. Otherwise, a `ParseException` is thrown.
 
 Step 4. `LogicManager` then calls `AddCommand#execute()`.
 
-Step 5. `AddCommand#execute()` checks if the student represented by the `Person`object exists. 
-If the student does not exist, he/she gets added and a new `CommandResult` is returned. 
+Step 5. `AddCommand#execute()` checks if the student represented by the `Person`object exists.
+If the student does not exist, he/she gets added and a new `CommandResult` is returned.
 Otherwise, a `CommandException` is thrown.
 
 Step 6. If the add command has been successfully executed, the success message will be displayed.
@@ -186,7 +186,68 @@ The activity diagram shows the workflow when an add command is executed:
 
 #### Design consideration:
 
-##### Aspect: Whether to allow incomplete fields(i.e. some personal details can be missing when adding a new student) 
+##### Aspect: Whether to allow incomplete fields(i.e. some personal details can be missing when adding a new student)
+
+* **Alternative 1 (current choice):** Certain fields are optional when a new student are added.
+  * Pros: More flexible and user-friendly.
+  * Cons: It may take some time to add in the missing fields in the future.
+
+* **Alternative 2:** All fields of a student must be added at first.
+  * Pros: More standardized and easier to track.
+  * Cons: Certain fields of a new student may not be known by the user at once.
+
+### Edit feature
+
+#### Implementation
+The edit mechanism is facilitated by `EditCommand` and `EditCommandParser`.
+
+`EditCommand` extends `Command` and implements the following operation:
+
+* `EditCommand#execute()` — edits the student with personal details if the details are valid, and returns a new
+  `CommandResult` with a success message.
+
+`EditCommandParser` implements the `Parser` interface and implements the following operation:
+
+* `EditCommandParser#parse()`  —  parses the user's input and returns a `EditCommand` if the command format
+  is valid
+
+Given below is an example usage scenario and how the edit mechanism behaves at each step.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+Name and phone are compulsory details which must be included in add command, while school, email, address,
+guardian's name, guardian's phone, subjects and lessons are optional. Any missing optional details can be added in later
+by using Edit feature. Here, an example of a student with only compulsory details available is used.
+</div>
+
+Step 1. The user executes `edit n/John Doe p/98765432` command to add a new student who is called John Doe 
+and has a phone number of 98765432 in TutorsPet.
+
+Step 2. The user input is parsed by `AddressBookParser`, which passes the add command's argument to `EditCommandParser`.
+
+Step 3. `EditCommandParser` creates a new `Person` object for the new student and returns a new `EditCommand` 
+if the argument is valid. Otherwise, a `ParseException` is thrown.
+
+Step 4. `LogicManager` then calls `EditCommand#execute()`.
+
+Step 5. `EditCommand#execute()` checks if the student represented by the `Person`object exists. 
+If the student does not exist, he/she gets added and a new `CommandResult` is returned. 
+Otherwise, a `CommandException` is thrown.
+
+Step 6. If the edit command has been successfully executed, the success message will be displayed.
+
+#### Sequence Diagram
+
+The sequence diagram below shows how the edit feature works:
+![Sequence Diagram for Edit Command](images/EditSequenceDiagram.png)
+
+#### Activity Diagram
+
+The activity diagram shows the workflow when an edit command is executed:
+![Activity Diagram for Edit Command](images/EditActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to enable every optional field to clear the current stored values under a field with blank space after its prefix
 
 * **Alternative 1 (current choice):** Certain fields are optional when a new student are added.
     * Pros: More flexible and user-friendly.
@@ -195,7 +256,7 @@ The activity diagram shows the workflow when an add command is executed:
 * **Alternative 2:** All fields of a student must be added at first.
     * Pros: More standardized and easier to track.
     * Cons: Certain fields of a new student may not be known by the user at once.
-
+  
 ### Delete feature
 
 #### Implementation
