@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Ian Chan Wai Kit's Project Portfolio Page
+title: Ian Chan Kit Wai's Project Portfolio Page
 ---
 
 ## Project: JJIMY
