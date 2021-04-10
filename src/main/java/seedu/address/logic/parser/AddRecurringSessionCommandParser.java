@@ -28,10 +28,11 @@ import seedu.address.model.student.Name;
 
 
 public class AddRecurringSessionCommandParser implements Parser<AddRecurringSessionCommand> {
-    private static final String MESSAGE_LAST_BEFORE_START = "Last date specified is before the starting date.";
-    private static final String MESSAGE_UNUSED_RECURRENCE = "The session is not recurring, "
+    protected static final String MESSAGE_LAST_BEFORE_START = "Last date specified is before the starting date.";
+    protected static final String MESSAGE_UNUSED_RECURRENCE = "The session is not recurring, "
             + "add as a single session with add_session "
             + "or edit the last date.";
+
     @Override
     public AddRecurringSessionCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultimap =
