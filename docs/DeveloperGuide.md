@@ -3,7 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents {:toc}
+* Table of Contents 
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -478,8 +479,8 @@ testers are expected to do more *exploratory* testing.
         * Prerequisite: A person with the name `john doe` must already be in FriendDex. <br>
           Test case: `add n/John Doe p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends`. <br>
           Expected: No new contact will be added to FriendDex. Error details shown in the status message.
-        * Note: See [`add`](UserGuide.md#adding-a-person--add) in User guide for more info on detecting duplicates.
-
+        * Note: See [`add`](UserGuide.md#adding-a-person--add) in User guide for more info on detecting duplicates. <br><br>
+       
     4. Adding a person with missing required fields. <br>
        Test case: `add n/John Doe e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends`. <br>
        Expected: No new contact will be added to FriendDex. Error details shown in the status message.
@@ -507,22 +508,23 @@ person on the list is born before 12-12-2020.
        Expected: Date is not added. Error details shown in the status message.
 
     3. Other incorrect `add-date` commands to try:
-        * `add-date x` (where x is larger than list size),
-        * `add-date 1 d/12-12-2020` (missing `DESCRIPTION` argument, other arguments can also be left out)<br>
+        * `add-date x` (where x is larger than list size)
+        * `add-date 1 d/12-12-2020` (missing `DESCRIPTION` argument, other arguments can also be left out)
+        
        Expected: Similar to previous
 
 2. Adding a date with boundary date values. FriendDex will only allow adding of dates that have already occured.
 
     * These arguments should be replaced with their proper date representation.
         * `DATE_AFTER_TODAY`: a future date in the format of dd-MM-yyyy, e.g. `04-04-2099`
-        * `DATE_BEFORE_BIRTHDAY`: a date prior to the person's birthday in the format of dd-MM-yyyy, e.g. `04-04-1800`
+        * `DATE_BEFORE_BIRTHDAY`: a date prior to the person's birthday in the format of dd-MM-yyyy, e.g. `04-04-1800` <br><br>
 
     1. Adding a date that happens in the future <br>
        Test case: `add-date 1 d/DATE_AFTER_TODAY desc/sample desc` <br>
        Expected: Date is not added. Error details shown in the status message.
 
-    2. Adding a date that happens before the person is born Test <br>
-       case: `add-date 1 d/DATE_BEFORE_BIRTHDAY desc/sample desc` <br>
+    2. Adding a date that happens before the person is born <br>
+       Test case: `add-date 1 d/DATE_BEFORE_BIRTHDAY desc/sample desc` <br>
        Expected: Similar to previous
 
 ### Adding a friend group: `add-group`
@@ -541,15 +543,16 @@ person on the list is born before 12-12-2020.
        Expected: No meetings added. Error details shown in the status message.
 
     3. Other incorrect `add-meeting` commands to try:
-        * `add-meeting x` (where x is larger than list size),
-        * `add-meeting 1 d/12-12-2020 t/1945` (missing `DESCRIPTION` argument, other arguments can also be left out) <br>
-          Expected: Similar to previous
+        * `add-meeting x` (where x is larger than list size)
+        * `add-meeting 1 d/12-12-2020 t/1945` (missing `DESCRIPTION` argument, other arguments can also be left out)
+          
+        Expected: Similar to previous
 
 2. Adding a meeting with boundary time values. FriendDex will only allow adding of meetings that have already occurred.
 
-    * These arguments should be replaced with their proper datetime representation. <br>
-        * `TODAY_DATE`: today's date in the format of dd-MM-yyyy, e.g. `04-04-2021` <br>
-        * `TIME_AFTER_NOW`: add a few minutes to the current time in the format of HHmm, e.g. `1230`
+    * These arguments should be replaced with their proper datetime representation.
+        * `TODAY_DATE`: today's date in the format of dd-MM-yyyy, e.g. `04-04-2021`
+        * `TIME_AFTER_NOW`: add a few minutes to the current time in the format of HHmm, e.g. `1230` <br><br>
 
     1. Adding a meeting for today <br>
        Test case: `add-meeting 1 d/{TODAY_DATE} t/0000 desc/sample desc`. <br>
@@ -570,22 +573,23 @@ List all persons using the `list` command. There is at least a person present in
 
 1. Adding a picture to an existing person
    
-    1. These arguments should be replaced with the correct details.
+    * These arguments should be replaced with the correct details.
         * `PICTURE_FILE_PATH` - the file path of the sample picture, e.g. `Users/bob/Desktop/picture.jpg` for macOS
         * `INVALID_FILE_PATH` - any invalid file path, e.g. `asdf123`
         * `FILE_PATH_WITH_WRONG_FILE_EXTENSION` - a valid file path that points to an actual file but is not an image (Refer to UG `add-picture` command for a list of valid file extensions) <br><br>
        
-    2. Test case: `add-picture 1 {PICTURE_FILE_PATH}` <br>
+    1. Test case: `add-picture 1 {PICTURE_FILE_PATH}` <br>
        Expected: A picture is attached to the first contact and a success message is shown in the status message. The picture added is shown in the results display beside the details of the first contact.
 
-    3. Test case: `add-picture 0` <br>
+    2. Test case: `add-picture 0` <br>
        Expected: No picture added. Error details shown in the status message.
 
-    4. Other incorrect `add-picture` commands to try: 
+    3. Other incorrect `add-picture` commands to try: 
        * `add-picture x` (where x is larger than the list size).
        * `add-picture 1 {INVALID_FILE_PATH}`
        * `add-picture 1 {FILE_PATH_WITH_WRONG_FILE_EXTENSION}`
-       * Expected for incorrect commands: Similar to previous
+     
+       Expected: Similar to previous
          
 ### Clearing all entries: `clear`
 
@@ -593,7 +597,7 @@ Prerequisites: List all persons using the `list` command. There is at least a pe
 
 1. Clearing all data
     
-    1. Test case: `clear`
+    1. Test case: `clear` <br>
        Expected: All persons deleted from the app.
        
     2. Close the application.
@@ -608,12 +612,11 @@ Prerequisites: List all persons using the `list` command. There is at least a pe
 
     2. Test case: `delete 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
        
-    3. Test case: `delete 0` (Invalid index)<br>
+    3. Test case: `delete 0` (Invalid index) <br>
        Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size) <br>
        Expected: Similar to previous.
 
 ### Deleting a special date: `del-date`
@@ -633,9 +636,9 @@ person on the list has at least one date.
        Expected: Similar to previous
 
     4. Other incorrect `del-date` commands to try:
-        * `del-date x i/1` (where x is larger than list size),
-        * `del-date 1 i/x` (where x is larger than the number of dates the first person has),
-        * `del-date 1` (missing `DATE_INDEX` argument),
+        * `del-date x i/1` (where x is larger than person list size)
+        * `del-date 1 i/x` (where x is larger than the number of dates the first person has)
+        * `del-date 1` (missing `DATE_INDEX` argument)
 
        Expected: Similar to previous
 
@@ -648,25 +651,35 @@ Prerequisites: List all persons using the `list` command. There is at least a pe
     1. Test case: `del-meeting 1 i/1` <br>
        Expected: The first meeting is removed from the first contact. View the full details of the first contact to verify.
 
-    2. Test case: `del-meeting 1 i/0` <br>
-       Expected: No meeting is deleted from the first contact. Error details shown in the status message.  
+    2. Test case: `del-meeting 0 i/1` (Invalid index) <br>
+       Expected: No meeting is deleted. Error details shown in the status message.
        
-    3. Other incorrect commands to try: `del-meeting`, `del-meeting 1 i/x` (where x is larger than the number of meetings the first contact has) <br>
+    3. Test case: `del-meeting 1 i/0` (Invalid meeting index) <br>
+       Expected: Similar to previous
+       
+    3. Other incorrect commands to try: 
+        * `del-meeting x i/1` (where x is larger than person list size)
+        * `del-meeting 1 i/x` (where x is larger than the number of meetings the first person has)
+        * `del-meeting 1` (missing `MEETING_INDEX` argument)
+
        Expected: Similar to previous
 
 ### Deleting a profile picture `del-picture`
 
 Prerequisites: List all persons using the `list` command. There is at least a person present in the list. The first person should have a picture added.
 
-1. Deleting a meeting
+1. Deleting a picture
 
     1. Test case: `del-picture 1` <br>
-       Expected: The picture is deleted from the first person. There should not be a picture shown beside the first person's details in the results display. 
+       Expected: The picture is deleted from the first person. There should not be a picture shown beside the first person's details in the Friends Panel. 
        
-    2. Test case: `del-meeting 0` <br>
+    2. Test case: `del-picture 0` <br>
        Expected: No picture is deleted. Error details shown in the status message.
 
-    3. Other incorrect commands to try: `del-picture`, `del-meeting x` (where x is larger than the person list size) <br>
+    3. Other incorrect commands to try: 
+        * `del-picture` (missing `INDEX` argument)
+        * `del-picture x` (where x is larger than the person list size)
+
        Expected: Similar to previous
 
 ### Viewing full details: `details`
@@ -683,8 +696,8 @@ Prerequisites: List all person using the `list` command. There is at least a per
        Expected: Details panel not updated. Error details shown in the status message.
 
     3. Other incorrect `details` commands to try:
-        * `details x` (where x is larger than the list size),
-        * `details` (missing `INDEX` argument),
+        * `details` (missing `INDEX` argument)
+        * `details x` (where x is larger than the list size)
 
        Expected: Similar to previous
 
@@ -694,7 +707,7 @@ Prerequisites: List all person using the `list` command. There is at least a per
 
 1. Exiting the program
 
-    1. Test case: `exit`<br>
+    1. Test case: `exit` <br>
        Process terminates with return code 0. FriendDex information is written to data files located in `./data`
        directory.
 
