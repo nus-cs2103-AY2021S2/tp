@@ -576,7 +576,8 @@ List all persons using the `list` command. There is at least a person present in
     * These arguments should be replaced with the correct details.
         * `PICTURE_FILE_PATH` - the file path of the sample picture, e.g. `Users/bob/Desktop/picture.jpg` for macOS
         * `INVALID_FILE_PATH` - any invalid file path, e.g. `asdf123`
-        * `FILE_PATH_WITH_WRONG_FILE_EXTENSION` - a valid file path that points to an actual file but is not an image (Refer to UG `add-picture` command for a list of valid file extensions) <br><br>
+        * `FILE_PATH_WITH_WRONG_FILE_EXTENSION` - a valid file path that points to an actual file but is not an image (Refer to UG `add-picture` command [here](https://ay2021s2-cs2103t-w14-1.github.io/tp/UserGuide.html#adding-a-profile-picture--add-picture) 
+          for a list of valid file extensions) <br><br>
        
     1. Test case: `add-picture 1 {PICTURE_FILE_PATH}` <br>
        Expected: A picture is attached to the first contact and a success message is shown in the status message. The picture added is shown in the results display beside the details of the first contact.
@@ -598,7 +599,7 @@ Prerequisites: List all persons using the `list` command. There is at least a pe
 1. Clearing all data
     
     1. Test case: `clear` <br>
-       Expected: All persons deleted from the app.
+       Expected: All persons and groups deleted from the app.
        
     2. Close the application.
     
