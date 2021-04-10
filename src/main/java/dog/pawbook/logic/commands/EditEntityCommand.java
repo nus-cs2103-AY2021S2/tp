@@ -77,7 +77,7 @@ public abstract class EditEntityCommand extends Command {
             throw new CommandException("Entity to edit does not match given entity type!");
         }
 
-        if (!targetEntity.equals(editedEntity) && model.hasEntity(editedEntity)) {
+        if (!targetEntity.isSameAs(editedEntity) && model.hasEntity(editedEntity)) {
             throw new CommandException(getDuplicateEntityMessage());
         }
 
