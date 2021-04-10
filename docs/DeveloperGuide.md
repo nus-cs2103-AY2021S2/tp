@@ -132,30 +132,30 @@ This section describes some noteworthy details on how certain features are imple
 
 ![image](images/ArchiveCommandLogic.png)
 
-After `Logic` component receives the instruction from `Ui` component, the `LogicManager` calls the `AddressBookParser` 
+After `Logic` component receives the instruction from `Ui` component, the `LogicManager` calls the `AddressBookParser`
 which correctly identifies that the `ArchiveCommand` is needed in the current situation. The `ArchiveCommandParser`
-checks the arguments and then creates an `ArchiveCommand` object. Next, the archiving mechanism is facilitated by the 
-`ArchiveCommand` object which extends `Command`. It overrides `Command#execute` in order to return 
+checks the arguments and then creates an `ArchiveCommand` object. Next, the archiving mechanism is facilitated by the
+`ArchiveCommand` object which extends `Command`. It overrides `Command#execute` in order to return
 a `CommandResult` with a success message stating that the command has been successfully executed. Then, the patient to
-be archived is correctly identified from the index provided and passed to the `Model` component from the `Logic` 
+be archived is correctly identified from the index provided and passed to the `Model` component from the `Logic`
 component. The `UnarchiveCommand` works similar to the implementation of the `ArchiveCommand`.
 
 ![image](images/ArchiveCommandModel.png)
 
 The indicator for whether a patient is archived is implemented as a boolean in the `Patient` class. Therefore, when the
-`ArchiveCommand` is executed, `Model` component receives the instruction and patient to be archived from `Logic`. 
-Then, the `UniquePersonList` in the `AddressBook` is accessed through the `ModelManager` and the specified patient is 
-archived by removing them from the list, changing their `isArchived` status to true and then adding them back to the 
+`ArchiveCommand` is executed, `Model` component receives the instruction and patient to be archived from `Logic`.
+Then, the `UniquePersonList` in the `AddressBook` is accessed through the `ModelManager` and the specified patient is
+archived by removing them from the list, changing their `isArchived` status to true and then adding them back to the
 `UniquePersonList`. The `UnarchiveCommand` works similarly except for changing the `isArchived` to false.
 
 **Why**<br>
-It was implemented in this way in order to make it easier to use the `Model#updateFilteredPersonList` in order to 
-display all archived patients using a suitable predicate when the `ArchiveListCommand` is called just like how the 
+It was implemented in this way in order to make it easier to use the `Model#updateFilteredPersonList` in order to
+display all archived patients using a suitable predicate when the `ArchiveListCommand` is called just like how the
 original `ListCommand` works. Moreover, the existing `DeleteCommand` and `FindCommand` could be used with the
 archived list just like how they worked with the main list.
 Another possible implementation was to create 2 `UniquePersonList` objects in AddressBook, one for the main list and
 one for the archived list. However, this idea was scrapped as that would involve more changes throughout the component
-and involve changes in unrelated classes. This way, the changes were contained and it made more sense for the `Patient` 
+and involve changes in unrelated classes. This way, the changes were contained and it made more sense for the `Patient`
 object to contain the information of whether or not they were archived.
 
 
@@ -215,7 +215,7 @@ _{more aspects and alternatives to be added}_
 * Ease the job of clinics with a centralised record of its patients
 * Doctors can easily access patient's personal and medical information without having to go through stacks of paper
 * Helps the clinic doctor to keep track of his appointments
-* For those proficient in typing, ease management of assets 
+* For those proficient in typing, ease management of assets
 
 
 
@@ -256,7 +256,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   *    2a1. Bob requests for the correct format of the data.
   *    2a2. User enters new data.
   *    Steps 2a1-2a2 are repeated until the data entered are correct.
-  
+
       Use case resumes from step 3.
 
       Use case ends.
@@ -293,7 +293,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   *1a. The given index is invalid
   *    1a1. Bob shows an error message.
-        
+
       Use case resumes at step 1.
 
 *{More to be added}*
