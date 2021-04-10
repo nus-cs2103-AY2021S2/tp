@@ -9,6 +9,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
 
     //=================================Patient related messages===============================================
+    public static final String MESSAGE_ADD_PATIENT_SUCCESS = "New patient added: %1$s";
+    public static final String MESSAGE_ADD_DUPLICATE_PATIENT = "This patient already exists in the patient records";
     public static final String MESSAGE_PATIENTS_LISTED_OVERVIEW = "%1$d patients listed!";
     public static final String MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX = "The patient index provided is invalid";
     public static final String MESSAGE_FORCE_DELETE_PATIENT_REQUIRED =
@@ -22,6 +24,8 @@ public class Messages {
     public static final String MESSAGE_LIST_PATIENT_SUCCESS = "Listed all patients";
 
     //=================================Doctor related messages================================================
+    public static final String MESSAGE_ADD_DOCTOR_SUCCESS = "New doctor added: %1$s";
+    public static final String MESSAGE_ADD_DUPLICATE_DOCTOR = "This doctor already exists in the doctor records";
     public static final String MESSAGE_DOCTORS_LISTED_OVERVIEW = "%1$d doctors listed!";
     public static final String MESSAGE_INVALID_DOCTOR_DISPLAYED_INDEX = "The doctor index provided is invalid";
     public static final String MESSAGE_FORCE_DELETE_DOCTOR_REQUIRED =
@@ -35,6 +39,9 @@ public class Messages {
     public static final String MESSAGE_LIST_DOCTOR_SUCCESS = "Listed all doctors";
 
     //=================================Appointment related messages===========================================
+    public static final String MESSAGE_ADD_APPOINTMENT_SUCCESS = "New appointment added: %1$s";
+    public static final String MESSAGE_ADD_APPOINTMENT_CONFLICT = "This appointment will result in conflicts "
+            + "in the appointment schedule";
     public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX =
             "The appointment index provided is invalid";
     public static final String MESSAGE_APPOINTMENTS_LISTED_OVERVIEW = "%1$d appointments listed!";

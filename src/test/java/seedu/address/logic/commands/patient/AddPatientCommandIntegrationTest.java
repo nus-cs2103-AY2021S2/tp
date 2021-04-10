@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -38,14 +39,14 @@ public class AddPatientCommandIntegrationTest {
         expectedModel.addPatient(validPatient);
 
         assertCommandSuccess(new AddPatientCommand(validPatient), model,
-                String.format(AddPatientCommand.MESSAGE_SUCCESS, validPatient), expectedModel);
+                String.format(Messages.MESSAGE_ADD_PATIENT_SUCCESS, validPatient), expectedModel);
     }
 
     @Test
     public void execute_duplicatePatient_throwsCommandException() {
         Patient patientInList = model.getPatientRecords().getPersonList().get(0);
         assertCommandFailure(new AddPatientCommand(patientInList), model,
-                AddPatientCommand.MESSAGE_DUPLICATE_PATIENT);
+                Messages.MESSAGE_ADD_DUPLICATE_PATIENT);
     }
 
 }

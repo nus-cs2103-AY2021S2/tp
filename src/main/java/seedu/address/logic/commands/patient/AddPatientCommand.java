@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -35,9 +36,6 @@ public class AddPatientCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the patient records";
-
     private final Patient toAdd;
 
     /**
@@ -53,7 +51,7 @@ public class AddPatientCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPatient(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
+            throw new CommandException(Messages.MESSAGE_ADD_DUPLICATE_PATIENT);
         }
 
         if (model.hasConflictingUuid(toAdd.getUuid())) {
@@ -63,12 +61,12 @@ public class AddPatientCommand extends Command {
                         toAdd.getEmail(), toAdd.getAddress(), toAdd.getTags());
             }
             model.addPatient(newUuidPatient);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+            return new CommandResult(String.format(Messages.MESSAGE_ADD_PATIENT_SUCCESS, toAdd));
         }
 
         assert !model.hasConflictingUuid(toAdd.getUuid());
         model.addPatient(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(Messages.MESSAGE_ADD_PATIENT_SUCCESS, toAdd));
     }
 
     @Override
