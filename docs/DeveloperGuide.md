@@ -591,18 +591,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Software System: Delivery App**
 
-**Use case: UC11 - Find all delivery entries by the keyword(s).**
+**Use case: UC11 - Find all delivery entries by the keyword(s) that match an attribute.**
 
 **Actor: Delivery driver (app user)**
 
 **Guarantees:**
 
-* Getting the list of existing delivery entries with details containing the specified keyword(s).
+* Getting the list of existing delivery entries with attributes matching the specified keyword(s).
 
 **MSS**
 
 1.  User requests to see all delivery entries with the matching keyword(s).
-2.  Delivery App lists out all existing delivery entries with details containing the specified keyword(s).
+2.  Delivery App lists out all existing delivery entries with attributes matching the specified keyword(s).
 
     Use case ends.
 
@@ -617,6 +617,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. Delivery App informs the User that there are no delivery entries with details containing the specified keyword(s).
 
   Use case ends.
+
+Below is an illustration of the find command sequence diagram
+
+![Find Command Sequence Diagram](images/FindCommandSequenceDiagram.png)
+
+Below is a further breakdown of the logic component of the find command using a sequence diagram
+
+![Find Command Logic Sequence Diagram](images/FindCommandLogicSequenceDiagram.png)
+
+Below is an activity diagram to show a more simplified representation of the find command
+
+![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
 
 **Software System: Delivery App**
 

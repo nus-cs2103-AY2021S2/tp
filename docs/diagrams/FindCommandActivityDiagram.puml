@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes find command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if (attribute matching keyword found) then ([find command commits TimesForWheels])
+    :Add delivery tasks with attributes matching keyword;
+    :Save TimesForWheels matching delivery tasks to
+    DeliveryList;
+else ([else])
+    : No matches found;
+    : Return Empty Delivery list;
+endif
+stop
+@enduml
