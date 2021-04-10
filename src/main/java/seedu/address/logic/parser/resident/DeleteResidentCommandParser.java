@@ -27,10 +27,10 @@ public class DeleteResidentCommandParser implements Parser<DeleteResidentCommand
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteResidentCommand(index);
-        } catch (ParseException pe) {
+        } catch (IllegalArgumentException iex) {
             logger.warning("Failed to parse index for rdel command");
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteResidentCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteResidentCommand.MESSAGE_USAGE), iex);
         }
     }
 

@@ -14,7 +14,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -47,6 +49,7 @@ public class EditIssueCommand extends Command {
             + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_CATEGORY + "CATEGORY]"
             + "[" + PREFIX_TAG + "TAG]\n"
+            + "At least one of the above optional parameters must be provided\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Broken window "
             + PREFIX_CATEGORY + "Window";
@@ -56,12 +59,18 @@ public class EditIssueCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ISSUE = "This issue already exists in SunRez.";
 
+    private final Logger logger = LogsCenter.getLogger(EditIssueCommand.class);
+
     private final Index index;
     private final EditIssueDescriptor editIssueDescriptor;
 
     /**
-     * @param index               of the issue in the filtered issue list to edit
-     * @param editIssueDescriptor details to edit the issue with
+     * Creates an EditIssueCommand to edit the specified issue at {@code targetIndex} to the new Issue described by
+     * {@code editIssueDescriptor}.
+     *
+     * @param index               Index of the issue in the filtered issue list to edit.
+     * @param editIssueDescriptor Description of the updated issue.
+     * @throws NullPointerException If {@code index} or {@code editIssueDescriptor} is null.
      */
     public EditIssueCommand(Index index, EditIssueDescriptor editIssueDescriptor) {
         requireNonNull(index);
@@ -71,23 +80,41 @@ public class EditIssueCommand extends Command {
         this.editIssueDescriptor = new EditIssueDescriptor(editIssueDescriptor);
     }
 
+    /**
+     * Executes an EditIssuecommand to replace a targeted issue with a new issue.
+     *
+     * @param model The {@code model} which the command should operate on.
+     * @return Result of command execution.
+     * @throws CommandException     If {@code model} is invalid.
+     * @throws NullPointerException If the {@code model} is null.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Issue> lastShownList = model.getFilteredIssueList();
 
+        if (lastShownList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_ISSUES);
+        }
+
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX);
+            logger.warning("Provided index was more than current list size");
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_INDEX, lastShownList.size()));
         }
 
         Issue issueToEdit = lastShownList.get(index.getZeroBased());
+        assert issueToEdit != null;
         Issue editedIssue = createEditedIssue(issueToEdit, editIssueDescriptor);
+        assert editedIssue != null;
 
         if (!model.hasRoom(new seedu.address.model.room.RoomNumber(editedIssue.getRoomNumber().value))) {
+            logger.warning("Non existent room given to iadd command");
             throw new CommandException(MESSAGE_NO_SUCH_ROOM);
         }
 
         if (!issueToEdit.equals(editedIssue) && model.hasIssue(editedIssue)) {
+            logger.warning("Duplicate issue given to iadd command");
             throw new CommandException(MESSAGE_DUPLICATE_ISSUE);
         }
 
@@ -98,11 +125,12 @@ public class EditIssueCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Issue} with the details of {@code issueToEdit}
+     * Creates and returns an {@code Issue} with the details of {@code issueToEdit}
      * edited with {@code editIssueDescriptor}.
      */
     private static Issue createEditedIssue(Issue issueToEdit, EditIssueDescriptor editIssueDescriptor) {
-        assert issueToEdit != null;
+        requireNonNull(issueToEdit);
+        requireNonNull(editIssueDescriptor);
 
         RoomNumber updatedRoomNumber = editIssueDescriptor.getRoomNumber().orElse(issueToEdit.getRoomNumber());
         Description updatedDescription = editIssueDescriptor.getDescription()
@@ -154,6 +182,7 @@ public class EditIssueCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditIssueDescriptor(EditIssueDescriptor toCopy) {
+            requireNonNull(toCopy);
             setRoomNumber(toCopy.roomNumber);
             setDescription(toCopy.description);
             setTimestamp(toCopy.timestamp);
@@ -169,50 +198,96 @@ public class EditIssueCommand extends Command {
             return CollectionUtil.isAnyNonNull(roomNumber, description, timestamp, status, category, tags);
         }
 
-        public void setRoomNumber(RoomNumber name) {
-            this.roomNumber = name;
+        /**
+         * Sets {@code roomNumber} to this object's {@code roomNumber}.
+         *
+         * @param roomNumber The new room number.
+         */
+        public void setRoomNumber(RoomNumber roomNumber) {
+            this.roomNumber = roomNumber;
         }
 
+        /**
+         * Returns an immutable room number.
+         * Returns {@code Optional#empty()} if {@code roomNumber} is null.
+         *
+         * @return RoomNumber of the issue.
+         */
         public Optional<RoomNumber> getRoomNumber() {
             return Optional.ofNullable(roomNumber);
         }
 
-        public void setDescription(Description phone) {
-            this.description = phone;
+        /**
+         * Sets {@code description} to this object's {@code description}.
+         *
+         * @param description The new description.
+         */
+        public void setDescription(Description description) {
+            this.description = description;
         }
 
+        /**
+         * Returns an immutable description.
+         * Returns {@code Optional#empty()} if {@code description} is null.
+         *
+         * @return Description of the issue.
+         */
         public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
         }
 
-        public void setTimestamp(Timestamp email) {
-            this.timestamp = email;
+        /**
+         * Sets {@code timestamp} to this object's {@code timestamp}.
+         *
+         * @param timestamp The new timestamp.
+         */
+        public void setTimestamp(Timestamp timestamp) {
+            this.timestamp = timestamp;
         }
 
+        /**
+         * Returns an immutable timestamp.
+         * Returns {@code Optional#empty()} if {@code timestamp} is null.
+         *
+         * @return Timestamp of the issue.
+         */
         public Optional<Timestamp> getTimestamp() {
             return Optional.ofNullable(timestamp);
         }
 
-        public void setStatus(Status address) {
-            this.status = address;
+        /**
+         * Sets {@code status} to this object's {@code status}.
+         *
+         * @param status The new status.
+         */
+        public void setStatus(Status status) {
+            this.status = status;
         }
 
+        /**
+         * Returns an immutable status.
+         * Returns {@code Optional#empty()} if {@code status} is null.
+         *
+         * @return Status of the issue.
+         */
         public Optional<Status> getStatus() {
             return Optional.ofNullable(status);
         }
 
         /**
          * Sets {@code category} to this object's {@code category}.
-         * A defensive copy of {@code category} is used internally.
+         *
+         * @param category The new category.
          */
         public void setCategory(Category category) {
             this.category = category;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code category} is null.
+         * Returns an immutable status.
+         * Returns {@code Optional#empty()} if {@code status} is null.
+         *
+         * @return Category of the issue.
          */
         public Optional<Category> getCategory() {
             return Optional.ofNullable(category);
@@ -230,11 +305,19 @@ public class EditIssueCommand extends Command {
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
+         *
+         * @return Optional set of tags.
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Checks if this EditIssueDescriptor is equal to another. Follows Issue's equals method.
+         *
+         * @param other The other issue.
+         * @return True if they are the equal.
+         */
         @Override
         public boolean equals(Object other) {
             // short circuit if same object

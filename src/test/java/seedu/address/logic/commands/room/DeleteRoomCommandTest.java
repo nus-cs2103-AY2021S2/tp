@@ -46,7 +46,8 @@ public class DeleteRoomCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredRoomList().size() + 1);
         DeleteRoomCommand deleteRoomCommand = new DeleteRoomCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteRoomCommand, model, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+        assertCommandFailure(deleteRoomCommand, model, String.format(
+                Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX, model.getFilteredRoomList().size()));
     }
 
     @Test
@@ -76,7 +77,8 @@ public class DeleteRoomCommandTest {
 
         DeleteRoomCommand deleteRoomCommand = new DeleteRoomCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteRoomCommand, model, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+        assertCommandFailure(deleteRoomCommand, model, String.format(
+                Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX, model.getFilteredRoomList().size()));
     }
 
     @Test

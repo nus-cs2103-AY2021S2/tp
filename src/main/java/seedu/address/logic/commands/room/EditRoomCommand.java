@@ -11,7 +11,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -40,6 +42,7 @@ public class EditRoomCommand extends Command {
             + "[" + PREFIX_ROOM_NUMBER + "ROOM_NUMBER] "
             + "[" + PREFIX_ROOM_TYPE + "TYPE] "
             + "[" + PREFIX_ROOM_TAG + "TAG]...\n"
+            + "At least one of the above optional parameters must be provided\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_ROOM_NUMBER + "12-100 ";
 
@@ -48,6 +51,9 @@ public class EditRoomCommand extends Command {
     public static final String MESSAGE_DUPLICATE_ROOM = "This room already exists in SunRez.";
     public static final String MESSAGE_ROOM_ALLOCATED_FAILURE =
             "The room has already been allocated to another resident. Please deallocate the room before editing.";
+    public static final String MESSAGE_ROOM_HAS_ISSUES = "This room still has issues assigned to it. Please delete all "
+            + "corresponding issues before editing the room.";
+    private static final Logger logger = LogsCenter.getLogger(EditRoomCommand.class);
 
     private final Index index;
     private final EditRoomDescriptor editRoomDescriptor;
@@ -69,12 +75,20 @@ public class EditRoomCommand extends Command {
         requireNonNull(model);
         List<Room> lastShownList = model.getFilteredRoomList();
 
+        if (lastShownList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_ROOMS);
+        }
+
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX, lastShownList.size()));
         }
 
         Room roomToEdit = lastShownList.get(index.getZeroBased());
         Room editedRoom = createEditedRoom(roomToEdit, editRoomDescriptor);
+
+        assert roomToEdit != null;
+        assert editedRoom != null;
 
         if (!roomToEdit.isSameRoom(editedRoom) && model.hasRoom(editedRoom)) {
             throw new CommandException(MESSAGE_DUPLICATE_ROOM);
@@ -84,9 +98,15 @@ public class EditRoomCommand extends Command {
             throw new CommandException(MESSAGE_ROOM_ALLOCATED_FAILURE);
         }
 
+        if (model.issuesContainRoom(roomToEdit)) {
+            throw new CommandException(MESSAGE_ROOM_HAS_ISSUES);
+        }
+
         model.setRoom(roomToEdit, editedRoom);
         model.updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
         model.commitAddressBook();
+
+        logger.info("EditRoomCommand successfully updated the model");
         return new CommandResult(String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom));
     }
 

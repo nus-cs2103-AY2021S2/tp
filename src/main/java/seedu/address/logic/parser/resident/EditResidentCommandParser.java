@@ -38,10 +38,10 @@ public class EditResidentCommandParser implements Parser<EditResidentCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
+        } catch (IllegalArgumentException iex) {
             logger.warning("Failed to parse index to be edited for redit command");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                EditResidentCommand.MESSAGE_USAGE), pe);
+                EditResidentCommand.MESSAGE_USAGE), iex);
         }
 
         EditResidentDescriptor editResidentDescriptor = new EditResidentDescriptor();

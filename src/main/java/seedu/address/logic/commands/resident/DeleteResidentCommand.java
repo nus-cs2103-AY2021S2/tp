@@ -44,9 +44,14 @@ public class DeleteResidentCommand extends Command {
         requireNonNull(model);
         List<Resident> lastShownList = model.getFilteredResidentList();
 
+        if (lastShownList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_RESIDENTS);
+        }
+
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             logger.warning("Provided index was more than current list size");
-            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX, lastShownList.size()));
         }
 
         Resident residentToDelete = lastShownList.get(targetIndex.getZeroBased());
