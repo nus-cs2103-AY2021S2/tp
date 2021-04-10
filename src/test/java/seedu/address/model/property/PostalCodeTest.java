@@ -32,6 +32,8 @@ public class PostalCodeTest {
         assertFalse(PostalCode.isValidPostal("postal")); // non-numeric
         assertFalse(PostalCode.isValidPostal("12post34")); // alphabets within digits
         assertFalse(PostalCode.isValidPostal("123 456")); // spaces within digits
+        assertFalse(PostalCode.isValidPostal(" 123456")); // leading whitespaces
+        assertFalse(PostalCode.isValidPostal("123456 ")); // trailing whitespaces
 
         // valid postal codes
         assertTrue(PostalCode.isValidPostal("12345")); // exactly 5 numbers

@@ -27,9 +27,11 @@ public class TypeTest {
         // invalid type
         assertFalse(Type.isValidType("")); // empty string
         assertFalse(Type.isValidType(" ")); // spaces only
+        assertFalse(Type.isValidType(" hdb")); // contains extraneous leading spaces
         assertFalse(Type.isValidType("hdb ")); // contains extraneous trailing spaces
-        assertFalse(Type.isValidType("hdb1")); // contains extraneous trailing characters
         assertFalse(Type.isValidType("1hdb")); // contains extraneous leading characters
+        assertFalse(Type.isValidType("hdb1")); // contains extraneous trailing characters
+        assertFalse(Type.isValidType("apartment")); // not one of hdb, condo, landed
 
         // valid type
         assertTrue(Type.isValidType("hdb")); // hdb type

@@ -10,28 +10,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 
-class ListCommandTest {
+class ListAllCommandTest {
     private Model model = getTypicalModelManager();
     private Model expectedModel = getTypicalModelManager();
-
-    @Test
-    public void listPropertyTest() {
-        //clear property list
-        model.updateFilteredPropertyList(a -> false);
-
-        assertCommandSuccess(new ListPropertyCommand(), model, ListPropertyCommand.MESSAGE_SUCCESS, expectedModel);
-        assertEquals(getTypicalProperties(), model.getFilteredPropertyList());
-    }
-
-    @Test
-    public void listAppointmentTest() {
-        //clear appointment list
-        model.updateFilteredAppointmentList(a -> false);
-
-        assertCommandSuccess(new ListAppointmentCommand(),
-            model, ListAppointmentCommand.MESSAGE_SUCCESS, expectedModel);
-        assertEquals(getTypicalAppointments(), model.getFilteredAppointmentList());
-    }
 
     @Test
     public void listAllTest() {
