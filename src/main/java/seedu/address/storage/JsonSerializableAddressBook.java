@@ -8,10 +8,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
-import seedu.address.commons.core.Alias;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.alias.Alias;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.residentroom.ResidentRoom;
@@ -26,8 +26,9 @@ class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_RESIDENT = "Residents list contains duplicate resident(s).";
     public static final String MESSAGE_DUPLICATE_ROOM = "Rooms list contains duplicate room(s).";
-    public static final String MESSAGE_DUPLICATE_RESIDENT_ROOM =
-            "ResidentRoom list contains duplicate residentRoom(s).";
+    public static final String MESSAGE_DUPLICATE_ISSUE = "Issues list contains duplicate issue(s).";
+    public static final String MESSAGE_DUPLICATE_RESIDENT_ROOM = "ResidentRoom list contains duplicate "
+            + "residentRoom(s).";
 
     private final List<JsonAdaptedResident> residents = new ArrayList<>();
     private final List<JsonAdaptedRoom> rooms = new ArrayList<>();
@@ -92,13 +93,16 @@ class JsonSerializableAddressBook {
 
         for (JsonAdaptedIssue jsonAdaptedIssue : issues) {
             Issue issue = jsonAdaptedIssue.toModelType();
+            if (addressBook.hasIssue(issue)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ISSUE);
+            }
             addressBook.addIssue(issue);
         }
 
         for (JsonAdaptedResidentRoom jsonAdaptedResidentRoom : residentRooms) {
             ResidentRoom residentRoom = jsonAdaptedResidentRoom.toModelType();
             if (addressBook.hasBothResidentRoom(residentRoom)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_ROOM);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_RESIDENT_ROOM);
             }
             addressBook.addResidentRoom(residentRoom);
         }

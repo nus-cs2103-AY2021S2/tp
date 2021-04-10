@@ -1,0 +1,65 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+    together overarching {
+        Interface ReadOnlyAddressBook <<Interface>>
+        Interface Model <<Interface>>
+        Interface ObservableList <<Interface>>
+        Class AddressBook
+        Class StatefulAddressBook
+        Class ReadOnlyAddressBook
+        Class Model
+        Class ModelManager
+        Class UserPrefs
+        Class ReadOnlyUserPrefs
+    }
+
+    together res {
+        Package Resident {
+        }
+        Package Room {
+        }
+        Package ResidentRoom {
+        }
+        Package Issue {
+        }
+        Package Alias {
+        }
+        Package CommandHistory {
+        }
+    }
+}
+' ===== Overarching stuff =====
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+StatefulAddressBook -left-|> AddressBook
+AddressBook .up.|> ReadOnlyAddressBook
+StatefulAddressBook -up-> "1..*" ReadOnlyAddressBook
+
+ModelManager .up.|> Model
+Model .left.> ObservableList
+ModelManager --left-> "1" StatefulAddressBook
+ModelManager --right-> "1" UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
+
+
+ModelManager --down-> ResidentRoom
+ModelManager --down-> Resident
+ModelManager --down-> Room
+
+ModelManager --> Issue
+ModelManager --> CommandHistory
+ModelManager --> Alias
+
+AddressBook ---down-> Resident
+AddressBook ---down-> Room
+AddressBook ---down-> ResidentRoom
+AddressBook ---down-> Issue
+AddressBook ---down-> Alias
+
+@enduml

@@ -198,20 +198,20 @@ Many SunRez commands use various parameters. Their formats, constraints and rati
 
 | Parameter | Prefix | Applicable to | Description |
 |---|---|---|---|
-| <a id="alias_name"></a> `ALIAS_NAME` | `a/` | `alias` `unalias` | The name of an alias.{::nomarkdown}<ul><li> Must be alphanumeric. </li><li> Must not be empty. </li><li> Must not be a reserved keyword i.e. names of other system commands. </li></ul>{:/} |
-| <a id="category"></a> `CATEGORY` | `c/` | `iadd` `iedit`| The category of an issue.{::nomarkdown}<ul><li> Must be alphanumeric. </li><li> Must not be empty. </li></ul>{:/} |
+| <a id="alias_name"></a> `ALIAS_NAME` | `a/` | `alias` `unalias` | The name of an alias.{::nomarkdown}<ul><li> Must be alphanumeric. </li><li> Must not contain space. </li><li> Must not be empty. </li><li> Must not be a reserved keyword i.e. names of other system commands. </li></ul>{:/} |
+| <a id="category"></a> `CATEGORY` | `c/` | `iadd` `iedit`| DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
 | <a id="command"></a> `COMMAND` | `cmd/`| `alias` | The command that an alias is short for.{::nomarkdown}  <ul><li> Must not be empty. </li><li> Must not be recursive i.e. contains another alias name. </li></ul>{:/} |
 | <a id="count"></a> `COUNT` | - | `history` | The number of command history entries wanted.{::nomarkdown} <ul><li> Must be a positive integer: 1, 2, 3, ... </li><li> Must be at most the total number of entries in command history. </li><li>Exception: if command history is empty then <code>COUNT</code> can be greater than the number of entries in command history (that is, it can be a positive integer). SunRez will simply indicate that command history is empty.</li></ul>{:/} |
-| <a id="description"></a> `DESCRIPTION` | `d/` | `iadd` `iedit` | The description of an issue.{::nomarkdown} <ul><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be empty. </li><li> Will wrap if too long. </li></ul>{:/} |
-| <a id="email"></a> `EMAIL` | `e/` | `radd` `redit` | The email of a resident.{::nomarkdown} <ul><li> Format: local-part@domain. </li><li> Local-part should only contain alphanumeric characters, and these special characters, excluding the parenthesis (!#$%&'*+/=?&#96;{&#124;}~^.-). </li><li> Must contain @. </li><li> Domain must be at least 2 characters long, start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any. </li><li> e.g. e0123456@u.nus.edu </li></ul>{:/} |
+| <a id="description"></a> `DESCRIPTION` | `d/` | `iadd` `iedit` | The description of an issue.{::nomarkdown} <ul><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be empty. </li><li> Will wrap if too long. </li><li> These constraints are chosen for simplicity's sake and ease of displaying. </li></ul>{:/} |
+| <a id="email"></a> `EMAIL` | `e/` | `radd` `redit` | The email of a resident.{::nomarkdown} <ul><li> Format: local-part@domain. </li><li> Local-part should only contain alphanumeric characters, and these special characters, excluding the parenthesis (!#$%&'*+/=?&#96;{&#124;}~^.-). </li><li> Must contain @. </li><li> Domain must be at least 2 characters long, start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any. </li><li> e.g. e0123456@u.nus.edu </li><li> These constraints are specific to intended use cases and not meant to emulate industry standards for emails. </li></ul>{:/} |
 | <a id="index"></a> `INDEX` | - | `redit` `rdel` `oedit` `odel` `iedit` `iclo` `idel` `alloc` `dealloc`| The index number shown in the displayed list.{::nomarkdown} <ul><li> Must be a positive integer: 1, 2, 3, ... </li></ul>{:/} |
 | <a id="keyword"></a> `KEYWORD` | - | `rfind` `ofind` `ifind` | A keyword used in the various find commands.{::nomarkdown} <ul><li> Format: Single word consisting of any character except spaces. </li><li> For best usage: Use English characters only. </li></ul>{:/} |
-| <a id="name"></a> `NAME` | `n/` | `radd` `redit` | The identifier of a resident.{::nomarkdown} <ul><li> Accepts only alphabetic characters and spaces. </li><li> Must not be blank. </li><li> Must be unique. </li></ul>{:/} |
+| <a id="name"></a> `NAME` | `n/` | `radd` `redit` | The identifier of a resident.{::nomarkdown} <ul><li> Accepts only alphabetic characters and spaces. </li><li> Must not be blank. </li><li> Must be unique. </li><li> While it is acknowledged that some names may have special characters, the chosen constraints are sufficient for intended use cases. </li></ul>{:/} |
 | <a id="phone_number"></a> `PHONE_NUMBER` | `p/` | `radd` `redit` | The phone number of a resident.{::nomarkdown} <ul><li> Must contain only numbers. </li><li> Must be at least 3 digits long. </li></ul>{:/} |
 | <a id="room_number"></a> `ROOM_NUMBER` | `r/` | `oadd` `oedit` `iadd` `iedit` | Room number for a room.{::nomarkdown} <ul><li> Format: <code>XY-ABC</code>, where XY can be any pair of digits except 00, and ABC can be any 3 digits. <ul><li> Valid examples: 01-000, 11-100, 12-345. </li><li> Invalid examples: 00-000, 00-100. </li></ul> </li><li> Room numbers are unique within SunRez. </li><li> We disallow floor numbers being 00. However, unit numbers can be 000. </li></ul>{:/} |
 | <a id="room_type"></a> `ROOM_TYPE` | `t/` | `oadd` `oedit` | Room type of a room.{::nomarkdown} <ul><li> Must be one of the following strings: <code>corridor_ac</code>, <code>corridor_non_ac</code>, <code>suite_ac</code>, <code>suite_non_ac</code>. </li><li> Strings are not case-sensitive. </li></ul>{:/} |
 | <a id="status"></a> `STATUS` | `s/` | `iadd` `iedit` | The status of an issue.{::nomarkdown} <ul><li> Must of one of the following strings: <code>PENDING</code>, <code>CLOSED</code>. </li><li> Short forms are available: <code>P</code> for <code>PENDING</code>, <code>C</code> for <code>CLOSED</code>. </li><li> Strings are not case-sensitive. </li></ul>{:/} |
-| <a id="tag"></a> `TAG` | `g/` | `oadd` `oedit` `iadd` `iedit` | The tag associated with a room or issue.{::nomarkdown} <ul><li> Tags must be non-blank and alphanumeric (spaces are not allowed). </li><li> Tags are limited to 25 characters. </li><li> Tags are case-sensitive: e.g. <code>SHN</code>,<code>shn</code> and <code>Shn</code> are each considered separate tags. </li><li> Insertion order of tags does not guarantee display order in any part of the user interface. </li><li> Duplicate tags will be accepted as input, but only one instance will be recorded. </li><li> For the best experience, we recommend keeping tags short and having fewer than 20 of them per entry. There is no theoretical limit to the number of tags an entry can have, but SunRez may slow down or run into unexpected problems for a huge number of tags. </li></ul>{:/} |
+| <a id="tag"></a> `TAG` | `g/` | `oadd` `oedit` `iadd` `iedit` | The tag associated with a room or issue.{::nomarkdown} <ul><li> Tags must be non-blank and alphanumeric (spaces are not allowed). </li><li> Tags are limited to 25 characters. </li><li> Tags are case-sensitive: e.g. <code>SHN</code>,<code>shn</code> and <code>Shn</code> are each considered separate tags. </li><li> Insertion order of tags does not guarantee display order in any part of the user interface. </li><li> Duplicate tags will be accepted as input, but only one instance will be recorded. </li><li> For the best experience, we recommend keeping tags short and having fewer than 20 of them per entry. There is no theoretical limit to the number of tags an entry can have, but SunRez may slow down or run into unexpected problems for a huge number of tags. </li><li> These constraints are chosen for simplicity's sake and ease of displaying. </li></ul>{:/} |
 | <a id="timestamp"></a> `TIMESTAMP` | `t/` | `iadd` `iedit` | The timestamp for which the issue occurred.{::nomarkdown} <ul><li> Must not be in the future. </li><li> Must be in the format: <code>yyyy/MM/dd hh:mma</code>. </li><li> <code>yyyy</code> - 4 digit year (e.g. <code>2021</code>). </li><li> <code>MM</code> - 2 digit month (e.g. <code>01</code>, <code>05</code>, <code>12</code>). </li><li> <code>dd</code> - 2 digit day (e.g. <code>01</code>, <code>05</code>, <code>31</code>). </li><li> <code>hh</code> - 2 digit hour (<code>01</code>-<code>12</code>) (midnight is <code>12:00am</code>). </li><li> <code>mm</code> - 2 digit minutes (<code>00</code>-<code>59</code>). </li><li> <code>a</code> - case-insensitive AM/PM. </li><li> Example: <code>2021/01/01 12:00am</code>. </li></ul>{:/} |
 | <a id="year"></a> `YEAR` | `y/` | `radd` `redit` | The year of study of a resident.{::nomarkdown} <ul><li> Must be a single digit numeric character from 1 to 5 inclusive. </li></ul>{:/} |
 
@@ -230,10 +230,10 @@ Adds a resident to the housing management system.
 Format: `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR`
 
 Parameters:
-* [NAME](#name) The name of the resident.
-* [PHONE_NUMBER](#phone_number) The phone number of the resident.
-* [EMAIL](#email) The email of the resident.
-* [YEAR](#year) The year of the resident.
+* [`NAME`](#name) The name of the resident.
+* [`PHONE_NUMBER`](#phone_number) The phone number of the resident.
+* [`EMAIL`](#email) The email of the resident.
+* [`YEAR`](#year) The year of the resident.
 
 Examples:
 * `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3`
@@ -258,6 +258,7 @@ Format: `rfind KEYWORD [MORE_KEYWORDS]`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`.
 * Residents matching at least one keyword will be returned (i.e. OR search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+* If no resident matching the search criteria is found, the resulting resident list will be blank.
 
 Examples:
 * `rfind john` returns `john` and `John Doe`.
@@ -275,11 +276,11 @@ Format: `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR]`
   See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
 
 Parameters:
-* [INDEX](#index) The index of the displayed resident.
-* [NAME](#name) The name of the resident.
-* [PHONE_NUMBER](#phone_number) The phone number of the resident.
-* [EMAIL](#email) The email of the resident.
-* [YEAR](#year) The year of the resident.
+* [`INDEX`](#index) The index of the displayed resident.
+* [`NAME`](#name) The name of the resident.
+* [`PHONE_NUMBER`](#phone_number) The phone number of the resident.
+* [`EMAIL`](#email) The email of the resident.
+* [`YEAR`](#year) The year of the resident.
 
 Example:
 * `redit 1 p/91234567 e/e0123456@u.nus.edu` Edits the phone number and email address of the 1st resident to
@@ -295,7 +296,7 @@ Format: `rdel INDEX`
    See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
 
 Parameters:
-* [INDEX](#index) The index of the displayed resident.
+* [`INDEX`](#index) The index of the displayed resident.
 
 Example:
 * `rdel 1` deletes the 1st resident in the resident list.
@@ -348,6 +349,7 @@ Format: `ofind KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `11- 10-` will match `10-100`, `10-101`, `11-100`, and `11-101`.
 * Only the room number and tags are searched.
 * Rooms matching at least one keyword will be returned (i.e. OR search). e.g. `10 20` will return `10-100`, `11-120`.
+* If no room matching the search criteria is found, the resulting room list will be blank.
 
 Parameters:
 * [`KEYWORD`](#keyword) The keyword to search for in the room list.
@@ -420,12 +422,13 @@ Allocates an existing resident to an existing room.
 
 Format: `alloc ri/RESIDENT_INDEX oi/ROOM_INDEX`
 * Both fields must be provided.
+* The resident and room at `RESIDENT_INDEX` and `ROOM_INDEX` respectively must both be unallocated.
 
 Parameters:
-* [RESIDENT_INDEX](#index) The index of the displayed resident.
-* [ROOM_INDEX](#index) The index of the displayed room.
+* [`RESIDENT_INDEX`](#index) The index of the displayed resident.
+* [`ROOM_INDEX`](#index) The index of the displayed room.
 
-Note that RESIDENT_INDEX and ROOM_INDEX both conform to [INDEX](#index).
+Note that `RESIDENT_INDEX` and `ROOM_INDEX` both conform to [`INDEX`](#index).
 
 Example:
 * `alloc ri/1 oi/2` Allocates the 1st resident in the resident list to the 2nd room in the room list.
@@ -433,13 +436,13 @@ Example:
 #### Deallocate resident from room : `dealloc`
 Deallocates an existing resident from an existing room.
 
-Format: `dealloc INDEX`
-* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
-* The resident at the `INDEX` must already be allocated.
+Format: `dealloc RESIDENT_INDEX`
+* The resident at `RESIDENT_INDEX` must already be allocated.
 
 Parameters:
-* [INDEX](#index) The index of the displayed resident.
+* [`RESIDENT_INDEX`](#index) The index of the displayed resident.
 
+Note that `RESIDENT_INDEX` conforms to [`INDEX`](#index).
 
 Example:
 * `dealloc 1` Deallocates the 1st resident in the resident list from its allocated room.
@@ -494,6 +497,7 @@ Format: `ifind KEYWORD [MORE_KEYWORDS]`
 * Only the description, room number, and tags are searched.
 * Issues matching at least one keyword will be returned (i.e. OR search).
   e.g. `Broken window` will return `Broken light`, `Dirty window`, and `Broken window`.
+* If no issue matching the search criteria is found, the resulting issue list will be blank.
 
 Parameters:
 * [`KEYWORD`](#keyword) The keyword to search for in the issue list.

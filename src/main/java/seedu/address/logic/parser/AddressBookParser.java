@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.commons.core.Alias;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
@@ -56,6 +55,7 @@ import seedu.address.logic.parser.room.DeleteRoomCommandParser;
 import seedu.address.logic.parser.room.EditRoomCommandParser;
 import seedu.address.logic.parser.room.FindRoomCommandParser;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.alias.Alias;
 
 /**
  * Parses user input.

@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.Alias;
-import seedu.address.commons.core.AliasMapping;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.AliasMapping;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Resident;
