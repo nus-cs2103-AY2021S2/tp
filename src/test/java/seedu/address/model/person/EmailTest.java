@@ -85,6 +85,8 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("test@localhost"));
         // special characters local part
         assertTrue(Email.isValidEmail("!#$%&'*+/=?`{|}~^.-@example.org"));
+        // technically not allowed in RFC
+        assertTrue(Email.isValidEmail("...................@example.org"));
         // numeric local part and domain name
         assertTrue(Email.isValidEmail("123@145"));
         // mixture of alphanumeric and special characters

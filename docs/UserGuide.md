@@ -614,9 +614,11 @@ If the previous theme file supplied is not found or unreadable, then the default
 **Q**: What is a valid email format?<br>
 **A**: The email allowed in FriendDex shall adhere to the following rules:
 * Emails shall have the format `local-part@label(.label)*`.
-* `local-part` contains at least one alphanumeric character with the following special characters <code>.!#$%&'*+\/=?^_`{|}~-</code>.
+* `local-part` local-part can contain any characters provided that they are either
+    * Alphanumeric (A - Z, a - z, 0 -9), or
+    * Any character from the set <code>.!#$%&'*+\/=?^_`{|}~-</code>.
 * This is followed by a `@` and then a `label`.
-* `label` should be shorter than 63 characters.
+* `label` should be shorter than 64 characters.
 * Multiple `label` are allowed, provided that they are delimited by a single period.
 Note that email does NOT conform to [RFC](https://tools.ietf.org/html/rfc5322) standards.
 --------------------------------------------------------------------------------------------------------------------

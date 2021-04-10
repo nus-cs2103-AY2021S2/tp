@@ -471,6 +471,7 @@ testers are expected to do more *exploratory* testing.
         * Prerequisite: A person with the name `john doe` must already be in FriendDex. <br>
           Test case: `add n/John Doe p/98765432 e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends`. <br>
           Expected: No new contact will be added to FriendDex. Error details shown in the status message.
+        * Note: See [`add`](UserGuide.md#adding-a-person--add) in User guide for more info on detecting duplicates.
 
     4. Adding a person with missing required fields. <br>
        Test case: `add n/John Doe e/johnd@example.com a/PGPH block 21 b/01-01-1998 t/friends`. <br>
