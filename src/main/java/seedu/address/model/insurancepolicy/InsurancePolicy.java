@@ -112,7 +112,6 @@ public class InsurancePolicy {
      */
     public static boolean isValidPolicyInput(String input) {
         String[] splitByAngularBracket = input.split(">", 2);
-        System.out.println(Arrays.toString(splitByAngularBracket));
         if (splitByAngularBracket.length == 1) {
             // Return true if length is 1, since no '>' was used, meaning no URL and valid policy ID.
             return true;
