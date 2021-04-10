@@ -23,6 +23,7 @@ import seedu.taskify.model.task.Date;
 import seedu.taskify.model.task.Description;
 import seedu.taskify.model.task.Name;
 import seedu.taskify.model.task.Status;
+import seedu.taskify.model.task.StatusType;
 import seedu.taskify.model.task.Task;
 
 /**
@@ -84,7 +85,7 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        if (taskToEdit.getStatus().toString().equals("Expired")) {
+        if (taskToEdit.getStatus().equals(new Status(StatusType.EXPIRED))) {
             throw new CommandException(MESSAGE_CANNOT_EDIT_EXPIRED_STATUS);
         }
 
