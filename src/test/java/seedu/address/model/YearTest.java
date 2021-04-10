@@ -7,6 +7,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.fee.Year;
+
 public class YearTest {
     @Test
     public void constructor_invalidYear_throwsIllegalArgumentException() {
