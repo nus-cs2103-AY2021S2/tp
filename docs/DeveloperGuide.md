@@ -647,7 +647,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 * 2b. User selects a wrong criterion.
-    * 2a1. ModuleBook3.5 shows an error message with the correct format for sort and example.
+    * 2a1. ModuleBook3.5 shows an error message with the valid criterion for sort and example.
 
       Use case resumes at step 2.
     
