@@ -1069,7 +1069,18 @@ Use case ends.
 
 **Use case: UC03 - Editing a task**
 
-`<pending>`
+**MSS**
+
+1. User wishes to edit a task.
+2. SOChedule edits the task and displays a success message for editing the task.
+   <br><br>
+   Use case ends.
+   
+**Extensions**
+
+* 1a. The task specified by the user is not found in the current task list.
+
+* 1b. The 
 
 **Use case: UC04 - List tasks**
 
@@ -1082,7 +1093,7 @@ Use case ends.
 Use case ends.
 
 
-**Use case: UC05 - Marking tasks complete**
+**Use case: UC05 - Marking one or more tasks complete**
 *TO BE EDITED*
 **MSS**
 
@@ -1107,7 +1118,7 @@ Use case ends.
 
       Use case resumes at step 2.
 
-**Use case: UC06 - Undoing a task completion**
+**Use case: UC06 - Undone a task **
 
 `<pending>`
 
@@ -1290,7 +1301,7 @@ Use case ends.
 
 `<pending>`
 
-**Use case: UC20 - Finding tasks and events before or on given date**
+**Use case: UC20 - Finding Schedule**
 
 `<pending>`
 
