@@ -93,10 +93,7 @@ public class UpdateEventCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
-        if (eventToUpdate.getDescription().equals(updatedEvent.getDescription()) &&
-                eventToUpdate.getDate().equals(updatedEvent.getDate()) &&
-                eventToUpdate.getTime().equals(updatedEvent.getTime()) &&
-                eventToUpdate.getIsWeekly().equals(updatedEvent.getIsWeekly())) {
+        if (eventToUpdate.equals(updatedEvent)) {
             throw new CommandException(MESSAGE_UNCHANGED_EVENT);
         }
 

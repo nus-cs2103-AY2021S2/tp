@@ -75,12 +75,12 @@ public class UpdateTodoCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TODO);
         }
 
-        if (todos.getTodo(targetTodoIndex.getZeroBased()).getDescription().equals(todo.getDescription())) {
-            throw new CommandException(MESSAGE_UNCHANGED_TODO);
-        }
-
         if (todos.checkIsDone(targetTodoIndex.getZeroBased())) {
             todo.markAsDone();
+        }
+
+        if (todos.getTodo(targetTodoIndex.getZeroBased()).equals(todo)) {
+            throw new CommandException(MESSAGE_UNCHANGED_TODO);
         }
 
         todos.setTodo(targetTodoIndex.getZeroBased(), todo);

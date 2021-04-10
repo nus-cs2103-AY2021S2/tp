@@ -85,13 +85,12 @@ public class UpdateDeadlineCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_DEADLINE);
         }
 
-        if (deadlineToUpdate.getDescription().equals(updatedDeadline.getDescription()) &&
-                deadlineToUpdate.getBy().equals(updatedDeadline.getBy())) {
-            throw new CommandException(MESSAGE_UNCHANGED_DEADLINE);
-        }
-
         if (deadlineList.checkIsDone(targetDeadlineIndex.getZeroBased())) {
             updatedDeadline.markAsDone();
+        }
+
+        if (deadlineToUpdate.equals(updatedDeadline)) {
+            throw new CommandException(MESSAGE_UNCHANGED_DEADLINE);
         }
 
         deadlineList.setDeadline(targetDeadlineIndex.getZeroBased(), updatedDeadline);
