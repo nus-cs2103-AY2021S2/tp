@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.timeforwheels.commons.core.Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.timeforwheels.testutil.TypicalCustomers.ALICE;
+import static seedu.timeforwheels.testutil.TypicalCustomers.BENSON;
 import static seedu.timeforwheels.testutil.TypicalCustomers.CARL;
 import static seedu.timeforwheels.testutil.TypicalCustomers.ELLE;
 import static seedu.timeforwheels.testutil.TypicalCustomers.FIONA;
@@ -72,6 +74,26 @@ public class FindCommandTest {
         expectedModel.updateFilteredCustomerList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredCustomerList());
+    }
+
+    @Test
+    public void execute_multipleTypeKeywords_multipleCustomersFound() {
+        String expectedMessage = String.format(MESSAGE_CUSTOMERS_LISTED_OVERVIEW, 3);
+        AttributeContainsKeywordsPredicate predicate = preparePredicate("Kurz Clementi liquid");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredCustomerList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL), model.getFilteredCustomerList());
+    }
+
+    @Test
+    public void execute_multipleTypeKeywordsWithNonMatching_multipleCustomersFound() {
+        String expectedMessage = String.format(MESSAGE_CUSTOMERS_LISTED_OVERVIEW, 3);
+        AttributeContainsKeywordsPredicate predicate = preparePredicate("Kurz Clementi liquid blablabla");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredCustomerList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL), model.getFilteredCustomerList());
     }
 
     /**
