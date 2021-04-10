@@ -2,11 +2,11 @@ package dog.pawbook.model.managedentity.dog;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.Vector;
 
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.Name;
@@ -121,17 +121,14 @@ public class Dog extends Entity {
         return builder.toString();
     }
 
-    /**
-     * Returns an array of IDs that are closely related to the entity.
-     */
     @Override
-    public Collection<Integer> getRelatedEntityIds() {
+    public List<Integer> getRelatedEntityIds() {
         return Collections.singletonList(ownerID);
     }
 
     @Override
-    public Collection<String> getOtherPropertiesAsString() {
-        Collection<String> properties = new Vector<>();
+    public List<String> getOtherPropertiesAsString() {
+        List<String> properties = new ArrayList<>();
         properties.add("Breed: " + breed.value);
         properties.add("Date of Birth: " + dob.value);
         properties.add("Sex: " + sex.value);

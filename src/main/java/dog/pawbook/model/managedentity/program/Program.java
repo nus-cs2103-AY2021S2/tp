@@ -4,13 +4,12 @@ import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.Vector;
 import java.util.stream.Collectors;
 
 import dog.pawbook.model.managedentity.Entity;
@@ -23,6 +22,8 @@ import dog.pawbook.model.managedentity.tag.Tag;
  */
 public class Program extends Entity {
     public static final String ENTITY_WORD = "program";
+    public static final String TIMESLOT_PREFIX = "Timeslot(s): ";
+    public static final String DOG_ID_PREFIX = "Participating Dog ID(s): ";
 
     // Data fields
     private final Set<Session> sessionSet = new HashSet<>();
@@ -108,29 +109,26 @@ public class Program extends Entity {
         return builder.toString();
     }
 
-    /**
-     * Returns an array of IDs that are closely related to the entity.
-     */
     @Override
-    public Collection<Integer> getRelatedEntityIds() {
-        return new ArrayList<>(dogIdSet);
+    public List<Integer> getRelatedEntityIds() {
+        return dogIdSet.stream().sorted().collect(Collectors.toList());
     }
 
     @Override
-    public Collection<String> getOtherPropertiesAsString() {
-        Collection<String> properties = new Vector<>();
+    public List<String> getOtherPropertiesAsString() {
+        List<String> properties = new ArrayList<>();
 
         String timeslots = sessionSet.stream()
                 .sorted(Comparator.comparing(session -> session.dateTime))
                 .map(session -> session.value)
                 .collect(Collectors.joining(", "));
-        properties.add("Timeslot(s): " + timeslots);
+        properties.add(TIMESLOT_PREFIX + (sessionSet.size() > 0 ? timeslots : "None"));
 
         if (!dogIdSet.isEmpty()) {
             properties.add(dogIdSet.stream()
                     .sorted()
                     .map(String::valueOf)
-                    .collect(Collectors.joining(", ", "Participating Dog ID(s): ", "")));
+                    .collect(Collectors.joining(", ", DOG_ID_PREFIX, "")));
         }
         return properties;
     }

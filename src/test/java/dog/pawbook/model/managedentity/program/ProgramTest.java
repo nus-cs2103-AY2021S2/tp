@@ -3,7 +3,10 @@ package dog.pawbook.model.managedentity.program;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_OBEDIENCE_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_POTTY_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_OBEDIENCE_TRAINING;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_POTTY_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_ALL;
+import static dog.pawbook.model.managedentity.program.Program.DOG_ID_PREFIX;
+import static dog.pawbook.model.managedentity.program.Program.TIMESLOT_PREFIX;
 import static dog.pawbook.testutil.TypicalEntities.ACTIVE_LISTENING;
 import static dog.pawbook.testutil.TypicalEntities.ALICE;
 import static dog.pawbook.testutil.TypicalEntities.APPLE;
@@ -14,6 +17,7 @@ import static dog.pawbook.testutil.TypicalEntities.OBEDIENCE_TRAINING;
 import static dog.pawbook.testutil.TypicalEntities.POTTY_TRAINING;
 import static dog.pawbook.testutil.TypicalId.ID_EIGHT;
 import static dog.pawbook.testutil.TypicalId.ID_FOURTEEN;
+import static dog.pawbook.testutil.TypicalId.ID_ONE;
 import static dog.pawbook.testutil.TypicalId.ID_TEN;
 import static dog.pawbook.testutil.TypicalId.ID_TWELVE;
 import static dog.pawbook.testutil.TypicalId.ID_TWO;
@@ -22,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -94,6 +99,42 @@ public class ProgramTest {
     public void getTags() {
         assertEquals(Set.of(new Tag("Puppies")), ACTIVE_LISTENING.getTags());
         assertEquals(Set.of(new Tag("All")), OBEDIENCE_TRAINING.getTags());
+    }
+
+    @Test
+    public void getRelatedEntityIds() {
+        // no dogs enrolled
+        assertEquals(List.of(), ACTIVE_LISTENING.getRelatedEntityIds());
+
+        // one dog enrolled
+        assertEquals(List.of(2), DANCING.getRelatedEntityIds());
+
+        // multiple dogs enrolled
+        assertEquals(List.of(8, 10, 12, 14), GENERAL_KNOWLEDGE.getRelatedEntityIds());
+    }
+
+    @Test
+    public void getOtherPropertiesAsString() {
+        // Program with single session, no dogs
+        assertEquals(List.of(TIMESLOT_PREFIX + VALID_SESSION_OBEDIENCE_TRAINING),
+                OBEDIENCE_TRAINING.getOtherPropertiesAsString());
+
+        // Program with no session
+        assertEquals(List.of("Timeslot(s): None"), new ProgramBuilder(OBEDIENCE_TRAINING).withSessions().build()
+                .getOtherPropertiesAsString());
+
+        // Program with one session and enrolled dog
+        assertEquals(List.of(TIMESLOT_PREFIX + VALID_SESSION_OBEDIENCE_TRAINING, DOG_ID_PREFIX + ID_ONE),
+                new ProgramBuilder(OBEDIENCE_TRAINING).withDogs(ID_ONE).build().getOtherPropertiesAsString());
+
+        // Program with multiple sessions and multiple enrolled dogs
+        assertEquals(List.of(TIMESLOT_PREFIX + VALID_SESSION_OBEDIENCE_TRAINING + ", " + VALID_SESSION_POTTY_TRAINING,
+                DOG_ID_PREFIX + ID_ONE + ", " + ID_TWO),
+                new ProgramBuilder(OBEDIENCE_TRAINING)
+                        .withSessions(VALID_SESSION_OBEDIENCE_TRAINING, VALID_SESSION_POTTY_TRAINING)
+                        .withDogs(ID_ONE, ID_TWO)
+                        .build()
+                        .getOtherPropertiesAsString());
     }
 
     @Test
