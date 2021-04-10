@@ -51,7 +51,7 @@ public class ModelManager implements Model {
         upcomingDates = this.addressBook.getUpcomingDates();
         detailedPerson = FXCollections.observableArrayList();
         personStreaks = this.addressBook.getPersonStreaks();
-        currentGroup = null;
+        currentGroup = this.addressBook.getGroupMap().get(DEFAULT_GROUP_NAME);
     }
 
     public ModelManager() {
