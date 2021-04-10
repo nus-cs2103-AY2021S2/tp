@@ -39,7 +39,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 1. Ensure you have Java 11 or above installed in your computer
 2. Download the latest GreenMileageEfforts.jar from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases)
-3. Copy the file to the folder you want to use as the *home* folder for your **GreenMileageEfforts**.
+3. Copy the file to the folder you want to use as the [home folder](#6-glossary) for your **GreenMileageEfforts**.
 4. Double click the file to start the app.
 5. Type the command in the command box and press the Enter key to execute it
 6. Refer to the [Features](#3-features-) below for the details on each command.
@@ -309,3 +309,4 @@ TripTime | Time of intended carpooling trip
 Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have
 Price | The amount of money a passenger is willing to pay for the carpooling trip.
 Alphanumeric | A combination of letters and numbers only
+Home Folder | The folder where the app's data will be stored
