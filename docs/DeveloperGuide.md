@@ -681,7 +681,7 @@ The user interface for original AddressBook was only optimised to display only o
 
 We found our original implementation of displaying one list at a time to be less user friendly as the user had to use `list property` or `list appointment` command before using other commands.
 
-We overcame this by displaying both properties and appointments side by side for easy referral, without having to call `list property` or `list appointment` prior to a sort or filter. This design was also optimal in allowing find features that are simultaneously done on both lists. Eg. `find client [keyword]` where keyword is searched from both property and appointment lists.
+We overcame this by displaying both properties and appointments side by side for easy referral, without having to call `list property` or `list appointment` prior to a sort or filter. This design was also optimal in allowing find features that are simultaneously done on both lists. Eg. `find client [KEYWORD]` where keyword is searched from both property and appointment lists.
 
 The new UI structure of a side by side property and appointment list required a redesign of the user interface that was more complex, where we faced some sizing issues such as text wrapping, window issues due to the large amount of data displayed. In doing so, we also changed the colour scheme of the UI to be a light themed one in order to allow greater emphasis on some data (bolding of words) and less focus on other data Eg. Greying out of properties and appointments with expired deadlines. The original UI that was dark themed would not allow colour play with the different shades of black.
 
