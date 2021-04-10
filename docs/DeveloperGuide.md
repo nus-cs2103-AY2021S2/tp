@@ -2,14 +2,20 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
+
+Welcome to the PocketEstate Developer Guide! This guide will take you through the underlying components that make up PocketEstate, and provide the essential information required for you to get started with becoming a PocketEstate developer.
+
+## Table of Contents
+{: .no_toc}
+
+* Table of Contents 
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Please refer to the guide [_Setting up and getting started_](SettingUp.md) to learn how to set up this project in your computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -187,7 +193,7 @@ A `Client` consists of at least one of the following attributes,
     * Pros: Easy to implement
     * Cons: More prone to bugs
 
-#### Aspect: How each tag is stored
+##### Aspect: How each tag is stored
 
 * An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `PropertyBook`, which `Property` references. This allows `PropertyBook` to only require one `Tag` object per unique `Tag`, instead of each `Property` needing their own `Tag` object.
     * Pros: Prevents creating the same tag multiple times when each `Property` needs to refer to the tag
@@ -277,7 +283,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, may only save the appointment/property being deleted, and the deleted appointment/property is added back if the command is undone).
   * Cons: Difficult to implement, different implementations are required to restore different changes.
     
-### \[Implemented\] Update feature
+### Update feature
 
 #### Implementation
 
@@ -320,7 +326,6 @@ Step 4. The user executes `update 1 u/proceed` to move the `Status` of the first
 Step 5. The user then decides that having the `Completion` status on the first property was a mistake and executes the command `update 1 u/cancel`.
 
 ![UpdateStep5Cancel](images/UpdateStep5Cancel.png)
-
 
 #### Design consideration:
 
