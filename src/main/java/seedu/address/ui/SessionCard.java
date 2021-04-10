@@ -14,7 +14,7 @@ import seedu.address.model.session.Session;
  */
 public class SessionCard extends UiPart<Region> {
 
-    private static final String FXML = "SessionListCard.fxml";
+    private static final String FXML = "SessionCard.fxml";
 
     public final Session session;
 
