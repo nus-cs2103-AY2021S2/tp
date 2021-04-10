@@ -36,7 +36,6 @@ import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ORDER_ITEM_IDX;
 import static seedu.cakecollate.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.cakecollate.logic.parser.CommandParserTestUtil.assertParseSuccess;
