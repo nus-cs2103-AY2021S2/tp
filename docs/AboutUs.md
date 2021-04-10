@@ -37,6 +37,6 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/ivantjh.png" width="200px">
 
-[[github](https://github.com/ivantjh)]
+[[github](https://github.com/ivantjh)][[portfolio](team/ivantjh.html)]
 
 * Role: Developer
