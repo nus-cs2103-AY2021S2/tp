@@ -1,0 +1,65 @@
+@startuml
+!include Style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "r:RemarkCommand" as RemarkCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR_T2
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR_T2
+end box
+
+
+ -> LogicManager : execute("remark 3 r/...")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("remark 3 r/...")
+activate AddressBookParser
+
+create RemarkCommand
+AddressBookParser -> RemarkCommand :
+activate RemarkCommand
+
+RemarkCommand --> AddressBookParser :
+deactivate RemarkCommand
+
+AddressBookParser --> LogicManager : r
+deactivate AddressBookParser
+
+LogicManager -> RemarkCommand : execute()
+activate RemarkCommand
+
+RemarkCommand -> Model : setPerson(newPerson, originalPerson)
+activate Model
+
+Model --> RemarkCommand :
+deactivate Model
+RemarkCommand --> LogicManager : result
+deactivate RemarkCommand
+RemarkCommand -[hidden]-> LogicManager : result
+destroy RemarkCommand
+
+
+LogicManager -> Storage : saveAddressBook(addressBook)
+activate Storage
+
+Storage -> Storage : Save to file
+activate Storage
+
+Storage --> Storage
+deactivate Storage
+
+
+Storage --> LogicManager :
+deactivate Storage
+
+<-- LogicManager
+
+@enduml

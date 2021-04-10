@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes sort command;
+:Parser parses the keyword;
+if () then ([keyword is valid])
+    :Sort command is executed;
+if () then ([keyword is "ascending"])
+    :Address book is sorted in ascending order;
+else ([keyword is "descending"])
+    :Address book is sorted in descending order;
+endif
+:Save changes to storage;
+else ([else])
+    :UI displays error message;
+endif
+stop
+@enduml

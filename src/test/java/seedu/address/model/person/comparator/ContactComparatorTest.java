@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Person;
 
-public class NameComparatorTest {
+public class ContactComparatorTest {
 
     @Test
     public void compare() {
         Person firstPerson = ALICE;
         Person secondPerson = CARL;
-        NameComparator nameComparator = new NameComparator();
-        assertTrue(nameComparator.compare(firstPerson, secondPerson) < 0);
+        ContactComparator contactComparator = new ContactComparator();
+        assertTrue(contactComparator.compare(firstPerson, secondPerson) < 0);
     }
 }

@@ -1,0 +1,65 @@
+@startuml
+!include Style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "m:MassDeleteCommand" as MassDeleteCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR_T2
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR_T2
+end box
+
+
+ -> LogicManager : execute("massdelete 2-5")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("massdelete 2-5")
+activate AddressBookParser
+
+create MassDeleteCommand
+AddressBookParser -> MassDeleteCommand :
+activate MassDeleteCommand
+
+MassDeleteCommand --> AddressBookParser :
+deactivate MassDeleteCommand
+
+AddressBookParser --> LogicManager : m
+deactivate AddressBookParser
+
+LogicManager -> MassDeleteCommand : execute()
+activate MassDeleteCommand
+
+MassDeleteCommand -> Model : massDelete(2,5)
+activate Model
+
+Model --> MassDeleteCommand :
+deactivate Model
+MassDeleteCommand --> LogicManager : result
+deactivate MassDeleteCommand
+MassDeleteCommand -[hidden]-> LogicManager : result
+destroy MassDeleteCommand
+
+
+LogicManager -> Storage : saveAddressBook(addressBook)
+activate Storage
+
+Storage -> Storage : Save to file
+activate Storage
+
+Storage --> Storage
+deactivate Storage
+
+
+Storage --> LogicManager :
+deactivate Storage
+
+<-- LogicManager
+
+@enduml

@@ -16,9 +16,9 @@ title: Developer Guide
   - [Find](#finding-persons-by-details-feature)
   - [Light/Dark] >Ryan
   - [Mass Blacklist] >JB
-  - [Mass Delete] >JB  
+  - [Mass Delete](#mass-delete-feature)
   - [Mode of Contact](#mode-of-contact-feature)  
-  - [Remark] >JB
+  - [Remark](#remark-feature)
   - [Sort](#sort-feature)
   - [Undo](#undo-feature)
 - [Additional guides](#documentation-logging-testing-configuration-dev-ops)
@@ -330,27 +330,114 @@ Step 5: The `Model` component passes the `CommandResult` to the `Logic` componen
 The following sequence diagram shows how the add command works:
 ![ModeOfContactSequenceDiagram](images/ModeOfContactSequenceDiagram.png)
 
-### Sort feature
-The sort feature is implemented in the `SortCommand` class.
+### Mass Delete feature
+The mass delete mechanism is facilitated by `MassDeleteCommand`.
 Below is an example usage scenario.
 
-Step 1: The user executes `sort c/...` to sort the contact list according to some specific criteria.
-The `UI` component passes the string to the `LogicManager` class in the `Logic` component.
+Step 1: The user executes `massdelete 2-5` to delete all contacts within the index range 2-5.
+The string is passed to the `Logic` component.
+
+Step 2: The `Logic` component parses the string and creates a corresponding `MassDeleteCommand` object.
+
+Step 3: The `MassDeleteCommand` object calls `Model#massDelete(2,5)` to delete all contacts
+in the `AddressBook` with index between 2 to 5.
+
+Step 4: After deletion, `filteredPersons` in `ModelManager` is updated to reflect the change.
+
+The following sequence diagram illustrates how the mass delete operation works:
+![MassDeleteSequenceDiagram](images/MassDeleteSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MassDeleteCommand` should end at the 
+destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+The following activity diagram summarizes what happens when a user executes a mass delete command:
+![MassDeleteActivityDiagram](images/MassDeleteActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Input format
+* **Alternative 1 (current choice):** Input format is `massdelete START-END`.
+    * Pros: More inutitive for the user.
+    * Cons: More difficult to implement as new methods will have to be written to parse the hyphen (-) symbol.
+
+* **Alternative 2:** Input format is `massdelete start/START end/END`.
+    * Pros: Easier to implement as the existing `ArgumentMultimap` and `CliSyntax` classes are
+      well-suited to parse such input formats.
+    * Cons: There are more prefixes for the user to remember.
+
+### Remark feature
+The Remark feature is facilitated by the classes `Remark` and `RemarkCommand`.
+Below is an example usage scenario.
+
+Step 1: The user executes `add n/John Doe...` to add a new contact. This creates a new `Person` object. By default,
+the new contact is displayed as having "No remark".
+
+Step 2: The user now decides to add a new remark to the new contact by executing `remark 3 r/Absent`.
+The string is passed to the `Logic` component.
+
+Step 3: The `Logic` component parses the string and creates a new `RemarkCommand` object.
+
+Step 5: `RemarkCommand` creates a new `Person` object which is identical to the original `Person` object in
+every field except that the `Remark` of the new `Person` object have been updated.
+
+Step 6: `RemarkCommand` calls `Model#setPerson()` to replace the original `Person` in the `AddressBook` with the new
+`Person`.
+
+Step 7: After the `AddressBook` has been updated, the `ModelManager` class will update `filteredPersons`
+to reflect the change.
+
+The following sequence diagram illustrates how the remark operation works:
+![RemarkSequenceDiagram](images/RemarkSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MassDeleteCommand` should end at the 
+destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+The following activity diagram summarizes what happens when a user executes a remark command:
+![RemarkActivityDiagram](images/RemarkActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Implementation of remark
+* **Alternative 1 (current choice):** Editing the `Remark` field is done in a separate command.
+    * Pros: Reduces coupling and increases abstraction. Code for the `Remark` command can be reused elsewhere.
+    * Cons: More commands for the user to remember.
+
+* **Alternative 2:** Use the existing `Edit` command to edit the `Remark` field.
+    * Pros: Easier to implement as the edit command already has a parser and many helper methods. 
+    * Cons: The edit command is already the largest class in the `commands` package. Adding more code will make the
+      class even bigger and thus more difficult to maintain.
+
+### Sort feature
+The sort mechanism is facilitated by `SortCommand`.
+Below is an example usage scenario.
+
+Step 1: The user executes `sort ascending` to sort the contact list by name in ascending order. The
+string is passed to the `Logic` component.
 
 Step 2: The `Logic` component parses the string and creates a corresponding `SortCommand` object.
 
-Step 3: The `LogicManager` executes the `SortCommand` object. This calls the appropriate `sort` method in
-the `Model` component.
+Step 3: The `SortCommand` object calls `Model#sortByName()` to sort the
+internal `AddressBook`.
 
-Step 4: The `Model` component sorts the internal contact list. After sorting, the appropriate method in the `Storage`
-component is called to update the file.
-
-Step 5: Finally, the `Model` component passes the `CommandResult` back to the `Logic` component, which in turn passes
-it back to the `UI` component to display it to the user.
+Step 4: After sorting, `filteredPersons` in `ModelManager` is updated to reflect the change.
 
 The following sequence diagram illustrates how the sort operation works:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
-    
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+![SortActivityDiagram](images/SortActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Implementation of sort
+* **Alternative 1 (current choice):** Sort command sorts the entire address book.
+    * Pros: Easy to implement.
+    * Cons: 
+
+* **Alternative 2:** 
+    * Pros: 
+    * Cons: 
+
 ### Undo feature
 
 #### Implementation
@@ -676,8 +763,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
-</div>
 
 ### Launch and shutdown
 
