@@ -34,9 +34,9 @@ public class PassengerTest {
         // null -> returns false
         assertFalse(ALICE.isSamePassenger(null));
 
-        // same name, all other attributes different -> returns true
-        Passenger editedAlice = new PassengerBuilder(ALICE).withPhone(VALID_PHONE_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTripDay(VALID_TRIPDAY_BOB).withTripTime(VALID_TRIPTIME_BOB)
+        // same name and phone, all other attributes different -> returns true
+        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withTripDay(VALID_TRIPDAY_BOB).withTripTime(VALID_TRIPTIME_BOB)
                 .withTags(VALID_TAG_HR).withPrice(VALID_PRICE_AMY).build();
         assertTrue(ALICE.isSamePassenger(editedAlice));
 
