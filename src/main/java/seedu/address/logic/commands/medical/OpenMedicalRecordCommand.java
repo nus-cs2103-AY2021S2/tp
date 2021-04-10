@@ -16,7 +16,7 @@ public class OpenMedicalRecordCommand extends Command {
 
     public static final String COMMAND_WORD = "mrec";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens an editor for a medical report for a patient "
-            + "identified by the index number used in the displayed person list. \n"
+            + "identified by the index number used in the displayed patient list. \n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 3";
 
@@ -41,7 +41,15 @@ public class OpenMedicalRecordCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Patient patient = lastShownList.get(index.getZeroBased());
+        model.selectPatient(patient);
         return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()), false, true,
-                patient, null, null, false);
+                patient, null, null, null, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof OpenMedicalRecordCommand // instanceof handles nulls
+                && index.equals(((OpenMedicalRecordCommand) other).index)); // state check
     }
 }

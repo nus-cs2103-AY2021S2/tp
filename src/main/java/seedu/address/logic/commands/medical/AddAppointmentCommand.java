@@ -22,15 +22,15 @@ public class AddAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "appt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment with a patient "
-            + "identified by the index number used in the displayed person list. \n"
+            + "identified by the index number used in the displayed patient list. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_DATE + "DATE] \n" + Appointment.MESSAGE_CONSTRAINTS_DATE_FORMAT
             + "\nExample: " + COMMAND_WORD + " 1 " + PREFIX_DATE + "24051800";
 
     public static final String MESSAGE_SUCCESS = "Appointment added: %s";
 
-    public static final String MESSAGE_ARCHIVED_PERSON = "You cannot add appointments to an archived person.\n"
-            + "Unarchive the person and try again.";
+    public static final String MESSAGE_ARCHIVED_PERSON = "You cannot add appointments to an archived patient.\n"
+            + "Unarchive the patient and try again.";
 
     private final Index index;
     private final LocalDateTime date;
@@ -67,9 +67,10 @@ public class AddAppointmentCommand extends Command {
         Appointment appointment = new Appointment(date);
         patient.addAppointment(appointment);
         model.setPerson(patient, patient);
+        model.selectPatient(patient);
         model.updateFilteredPersonList(PREDICATE_SHOW_MAIN_PATIENTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, appointment.getDateDisplay()),
-                false, false, patient, null, null, false);
+                false, false, patient, null, null, null, false);
     }
 
     @Override

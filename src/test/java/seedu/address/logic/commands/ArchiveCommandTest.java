@@ -49,7 +49,8 @@ class ArchiveCommandTest {
         Patient copy = new PersonBuilder(patientInFilteredList).build();
         ArchiveCommand archiveCommand = new ArchiveCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_PERSON_SUCCESS, patientInFilteredList);
+        String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_PERSON_SUCCESS,
+                                                    patientInFilteredList.getName().fullName);
 
         expectedModel.archivePerson(copy);
         assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
@@ -77,7 +78,8 @@ class ArchiveCommandTest {
 
         ArchiveCommand archiveCommand = new ArchiveCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_PERSON_SUCCESS, patientToArchive);
+        String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_PERSON_SUCCESS,
+                                                                patientToArchive.getName().fullName);
 
         expectedModel.archivePerson(copy);
 

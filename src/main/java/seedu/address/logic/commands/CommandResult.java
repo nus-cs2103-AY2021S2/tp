@@ -31,6 +31,9 @@ public class CommandResult {
     /** List of appointments that should be shown to the user. */
     private final List<Appointment> appointments;
 
+    /** Message to be displayed. */
+    private final String displayMessage;
+
     /** The application should exit. */
     private final boolean exit;
 
@@ -38,13 +41,15 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showEdit,
-                         Patient patient, MedicalRecord medicalRecord, List<Appointment> appointments, boolean exit) {
+                         Patient patient, MedicalRecord medicalRecord, List<Appointment> appointments,
+                         String displayMessage, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showEdit = showEdit;
         this.patient = patient;
         this.medicalRecord = medicalRecord;
         this.appointments = appointments;
+        this.displayMessage = displayMessage;
         this.exit = exit;
     }
 
@@ -53,7 +58,7 @@ public class CommandResult {
      * set to default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, false, null, null, null, exit);
+        this(feedbackToUser, showHelp, false, null, null, null, null, exit);
     }
 
     /**
@@ -84,6 +89,10 @@ public class CommandResult {
         return appointments != null;
     }
 
+    public boolean isDisplayMessage() {
+        return displayMessage != null;
+    }
+
     public boolean isExit() {
         return exit;
     }
@@ -98,6 +107,10 @@ public class CommandResult {
 
     public List<Appointment> getAppointments() {
         return appointments;
+    }
+
+    public String getDisplayMessage() {
+        return displayMessage;
     }
 
     @Override
@@ -116,6 +129,9 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && showEdit == otherCommandResult.showEdit
                 && patient == otherCommandResult.patient
+                && medicalRecord == otherCommandResult.medicalRecord
+                && appointments == otherCommandResult.appointments
+                && displayMessage == otherCommandResult.displayMessage
                 && exit == otherCommandResult.exit;
     }
 

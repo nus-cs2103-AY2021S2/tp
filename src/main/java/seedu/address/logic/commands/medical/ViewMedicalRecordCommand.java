@@ -2,6 +2,7 @@ package seedu.address.logic.commands.medical;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -18,7 +19,7 @@ public class ViewMedicalRecordCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 3";
 
-    public static final String MESSAGE_SUCCESS = "New Medical Record for: %s";
+    public static final String MESSAGE_SUCCESS = "Viewing medical record #%s of %s from %s";
 
     private final Index index;
 
@@ -34,8 +35,26 @@ public class ViewMedicalRecordCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Patient patient = model.getSelectedPatient();
+        if (patient == null) {
+            throw new CommandException(Messages.MESSAGE_NOT_VIEWING_PATIENT);
+        }
+        if (patient.getRecords().size() == 0) {
+            throw new CommandException(String.format(Messages.MESSAGE_NO_MEDICAL_RECORD_FOUND,
+                                                        patient.getName().fullName, patient.getName().fullName));
+        } else if (index.getZeroBased() >= patient.getRecords().size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MEDICAL_RECORD_INDEX);
+        }
         MedicalRecord mrec = patient.getRecords().get(index.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()), false, true,
-                patient, mrec, null, false);
+        String feedbackToUser = String.format(MESSAGE_SUCCESS, index.getOneBased(), patient.getName(),
+                                                patient.getRecords().get(index.getZeroBased()).getDateDisplay());
+        return new CommandResult(feedbackToUser, false, true, patient, mrec,
+                null, null, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewMedicalRecordCommand // instanceof handles nulls
+                && index.equals(((ViewMedicalRecordCommand) other).index)); // state check
     }
 }

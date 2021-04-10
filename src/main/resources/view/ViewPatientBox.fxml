@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox id="viewPatientBox" fx:id="viewPatientBox" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="viewPatientBox" fx:id="viewPatientBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 
     <SplitPane>
         <VBox>
@@ -15,16 +15,22 @@
             <FlowPane fx:id="ptags" />
             <HBox HBox.hgrow="ALWAYS">
                 <VBox maxWidth="80" minWidth="80" VBox.vgrow="NEVER">
+                    <Label fx:id="dateOfBirthLabel" styleClass="patient_box_label" text="" />
+                    <Label fx:id="genderLabel" styleClass="patient_box_label" text="" />
                     <Label fx:id="phoneLabel" styleClass="patient_box_label" text="" />
                     <Label fx:id="addressLabel" styleClass="patient_box_label" text="" />
                     <Label fx:id="emailLabel" styleClass="patient_box_label" text="" />
+                    <Label fx:id="bloodTypeLabel" styleClass="patient_box_label" text="" />
                     <Label fx:id="heightLabel" styleClass="patient_box_label" text="" />
                     <Label fx:id="weightLabel" styleClass="patient_box_label" text="" />
                 </VBox>
                 <VBox>
+                    <Label fx:id="dateOfBirth" styleClass="patient_box_label_field" text="" />
+                    <Label fx:id="gender" styleClass="patient_box_label_field" text="" />
                     <Label fx:id="phone" styleClass="patient_box_label_field" text="" />
                     <Label fx:id="address" styleClass="patient_box_label_field" text="" />
                     <Label fx:id="email" styleClass="patient_box_label_field" text="" />
+                    <Label fx:id="bloodType" styleClass="patient_box_label_field" text="" />
                     <Label fx:id="height" styleClass="patient_box_label_field" text="" />
                     <Label fx:id="weight" styleClass="patient_box_label_field" text="" />
                 </VBox>

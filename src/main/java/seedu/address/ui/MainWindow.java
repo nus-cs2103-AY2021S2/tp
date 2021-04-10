@@ -188,6 +188,17 @@ public class MainWindow extends UiPart<Stage> {
         viewPatientBoxPlaceholder.getChildren().add(viewPatientBox.getRoot());
     }
 
+    /**
+     * Updates the patientViewBox to show a display a message
+     */
+    @FXML
+    public void handleDisplayMessage(String message) {
+        ViewPatientBox viewPatientBox = new ViewPatientBox();
+        viewPatientBox.setText(message);
+        viewPatientBoxPlaceholder.getChildren().clear();
+        viewPatientBoxPlaceholder.getChildren().add(viewPatientBox.getRoot());
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -270,6 +281,10 @@ public class MainWindow extends UiPart<Stage> {
 
         if (commandResult.showAppointments()) {
             handleAppointmentsList(commandResult.getAppointments());
+        }
+
+        if (commandResult.isDisplayMessage()) {
+            handleDisplayMessage(commandResult.getDisplayMessage());
         }
 
         if (commandResult.isExit()) {

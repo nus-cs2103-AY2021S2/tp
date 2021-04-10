@@ -39,9 +39,15 @@ public class ListAppointmentsCommand extends Command {
         }
         Collections.sort(appointments);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_PATIENTS_WITH_APPT);
+        model.selectPatient(null);
         //model.sortFilteredPersonList(Model.COMPARATOR_BY_FIRST_APPT_DATE);
         return new CommandResult(MESSAGE_SUCCESS,
-                false, false, null, null, appointments, false);
+                false, false, null, null, appointments, null, false);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || other instanceof ListAppointmentsCommand; // instanceof handles nulls
+    }
 }
