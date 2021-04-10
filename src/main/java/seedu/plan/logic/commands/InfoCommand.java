@@ -34,7 +34,7 @@ public class InfoCommand extends Command {
      * @param moduleCode the modulecode of the module information to be listed
      */
     public InfoCommand (String moduleCode) {
-        this.moduleCode = moduleCode;
+        this.moduleCode = moduleCode.toUpperCase();
     }
 
     /**
