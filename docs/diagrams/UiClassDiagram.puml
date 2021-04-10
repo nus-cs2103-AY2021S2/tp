@@ -7,7 +7,6 @@ skinparam classBackgroundColor UI_COLOR
 
 package UI <<Rectangle>>{
 Interface Ui <<Interface>>
-Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class SidePanel
@@ -36,37 +35,19 @@ Class HiddenLogic #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ...> Ui
-
-UI -[hidden]up- HiddenOutside
+HiddenOutside ..> Ui
 
 UiManager .up.|> Ui
-UiManager -down-> MainWindow
+UiManager -left--> MainWindow
 
-MainWindow *-left> HelpPanel
-MainWindow *-left> CommandBox
-MainWindow *-left> ResultDisplay
-MainWindow *-left> StatusBarFooter
-MainWindow *-down> SidePanel
-MainWindow *-down> TodayPanel
-MainWindow *-right> ProjectDisplayPanel
-MainWindow *-down-> ContactListPanel
-
-ResultDisplay ---|> UiPart
-CommandBox ---|> UiPart
-ContactListPanel ---|> UiPart
-ContactCard ---|> UiPart
-SidePanel ---|> UiPart
-ProjectCard ---|> UiPart
-TodayPanel ---|> UiPart
-ProjectDisplayPanel ---|> UiPart
-StatusBarFooter ---|> UiPart
-TodayEventCard ---|> UiPart
-TodayDeadlineCard ---|> UiPart
-EventCard ---|> UiPart
-DeadlineCard ---|> UiPart
-TodoCard ---|> UiPart
-HelpPanel ---|> UiPart
+MainWindow *--left-> HelpPanel
+MainWindow *--left-> CommandBox
+MainWindow *--left-> ResultDisplay
+MainWindow *--left-> StatusBarFooter
+MainWindow *--down-> SidePanel
+MainWindow *--down-> TodayPanel
+MainWindow *--down-> ProjectDisplayPanel
+MainWindow *--down-> ContactListPanel
 
 ContactListPanel ---> ContactCard
 SidePanel ---> ProjectCard
@@ -76,25 +57,22 @@ ProjectDisplayPanel ---> TodoCard
 TodayPanel ---> TodayDeadlineCard
 TodayPanel ---> TodayEventCard
 
-ContactCard .down.> Model
-ProjectCard .down.> Model
-EventCard .down.> Model
-DeadlineCard .down.> Model
-TodoCard .down.> Model
-TodayDeadlineCard .down.> Model
-TodayEventCard .down.> Model
+ContactCard .down...> Model
+ProjectCard .down...> Model
+EventCard .down...> Model
+DeadlineCard .down...> Model
+TodoCard .down...> Model
+TodayDeadlineCard .down...> Model
+TodayEventCard .down...> Model
 
-MainWindow ---|> UiPart
+UiManager -down--> Logic
+MainWindow -down--> Logic
 
-UiManager -up-> Logic
-MainWindow -up-> Logic
-
-HelpPanel -[hidden]up- StatusBarFooter
-StatusBarFooter -[hidden]up- ResultDisplay
-ResultDisplay -[hidden]up- CommandBox
-HiddenOutside -[hidden]up- UiManager
-HiddenOutside -[hidden]left- Logic
-UiPart -[hidden]down- Model
-Ui -[hidden]up-- Logic
+'CommandBox -[hidden]down- HelpPanel
+'HelpPanel -[hidden]down- ResultDisplay
+'ResultDisplay -[hidden]down- StatusBarFooter
+Ui -[hidden]right--- Model
+Ui -[hidden]up--- HiddenOutside
+Ui -[hidden]up Logic
 
 @enduml
