@@ -209,6 +209,10 @@ It also implements following method:
 
 * `decreaseCorrectWorkloadDistribution(Module module, Task task)` —  Based on the workload of the task, decreases the value of corresponding map and the `moduleWorkloadDistribution`.
 
+The following class diagram shows the classes related to implement workload distribution:
+
+![WorkloadDistributionDiagram](images/WorkloadDistributionClassDiagram.png)
+
 <div style="page-break-after: always;"></div>
 
 ### \[Proposed\] Undo/redo feature
