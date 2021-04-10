@@ -17,7 +17,9 @@ public class Messages {
     public static final String MESSAGE_CLEAR_APPOINTMENTS_BEFORE_PATIENTS_REQUIRED =
             "Patient records cannot be cleared until appointment schedule is cleared.\n"
                     + "Use the command \"clear-appt\" to clear the appointment schedule.";
+    public static final String MESSAGE_CLEAR_PATIENT_SUCCESS = "Patient records has been cleared!";
     public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Patient: %1$s";
+    public static final String MESSAGE_LIST_PATIENT_SUCCESS = "Listed all patients";
 
     //=================================Doctor related messages================================================
     public static final String MESSAGE_DOCTORS_LISTED_OVERVIEW = "%1$d doctors listed!";
@@ -28,10 +30,14 @@ public class Messages {
     public static final String MESSAGE_CLEAR_APPOINTMENTS_BEFORE_DOCTORS_REQUIRED =
             "Doctors records cannot be cleared until appointment schedule is cleared.\n"
                     + "Use the command \"clear-appt\" to clear the appointment schedule.";
+    public static final String MESSAGE_CLEAR_DOCTOR_SUCCESS = "Doctor records have been cleared!";
     public static final String MESSAGE_DELETE_DOCTOR_SUCCESS = "Deleted Doctor: %1$s";
+    public static final String MESSAGE_LIST_DOCTOR_SUCCESS = "Listed all doctors";
 
     //=================================Appointment related messages===========================================
     public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX =
             "The appointment index provided is invalid";
     public static final String MESSAGE_APPOINTMENTS_LISTED_OVERVIEW = "%1$d appointments listed!";
+    public static final String MESSAGE_CLEAR_APPOINTMENT_SUCCESS = "Appointment Schedule has been cleared!";
+    public static final String MESSAGE_LIST_APPOINTMENT_SUCCESS = "Listed all Appointments";
 }

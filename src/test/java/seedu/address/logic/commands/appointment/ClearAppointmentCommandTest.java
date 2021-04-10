@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.AppointmentSchedule;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -20,7 +21,7 @@ public class ClearAppointmentCommandTest {
         Model expectedModel = new ModelManager();
 
         assertCommandSuccess(new ClearAppointmentCommand(), model,
-                ClearAppointmentCommand.MESSAGE_SUCCESS, expectedModel);
+                Messages.MESSAGE_CLEAR_APPOINTMENT_SUCCESS, expectedModel);
     }
 
     @Test
@@ -32,7 +33,7 @@ public class ClearAppointmentCommandTest {
 
         expectedModel.setAppointmentSchedule(new AppointmentSchedule());
         assertCommandSuccess(new ClearAppointmentCommand(), model,
-                ClearAppointmentCommand.MESSAGE_SUCCESS, expectedModel);
+                Messages.MESSAGE_CLEAR_APPOINTMENT_SUCCESS, expectedModel);
     }
 
 }

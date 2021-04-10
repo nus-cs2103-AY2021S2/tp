@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_CLEAR_APPOINTMENTS_BEF
 
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -20,8 +21,6 @@ import seedu.address.model.person.Patient;
 public class ClearPatientCommand extends Command {
 
     public static final String COMMAND_WORD = "clear-patient";
-    public static final String MESSAGE_SUCCESS = "Patient records has been cleared!";
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -34,6 +33,6 @@ public class ClearPatientCommand extends Command {
         }
 
         model.setPatientRecords(new AddressBook<>());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(Messages.MESSAGE_CLEAR_PATIENT_SUCCESS);
     }
 }
