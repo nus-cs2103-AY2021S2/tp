@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.stage.*?>
 
-<fx:root fx:id="mainStage" minHeight="600" minWidth="700.0" onCloseRequest="#handleExit" title="JJIMY" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="mainStage" minHeight="600" minWidth="700.0" onCloseRequest="#handleExit" title="JJIMY" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -106,8 +106,17 @@
                   </VBox>
                </children>
             </HBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+            <HBox fx:id="statusbarPlaceholder" alignment="BOTTOM_RIGHT">
+               <children>
+                  <ImageView pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/resize.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children></HBox>
       </VBox>
     </Scene>
   </scene>
