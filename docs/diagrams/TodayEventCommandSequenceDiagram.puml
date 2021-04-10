@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SOCheduleParser" as SOCheduleParser LOGIC_COLOR
+participant "s:TodayEventCommand" as TodayEventCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : parse("today_event")
+activate LogicManager
+
+LogicManager -> SOCheduleParser : parseCommand("today_event")
+activate SOCheduleParser
+
+create TodayEventCommand
+SOCheduleParser -> TodayEventCommand
+activate TodayEventCommand
+
+TodayEventCommand --> SOCheduleParser : s
+deactivate TodayEventCommand
+
+LogicManager <-- SOCheduleParser : s
+deactivate SOCheduleParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SOCheduleParser -[hidden]->[
+
+LogicManager -> TodayEventCommand : execute()
+activate TodayEventCommand
+
+TodayEventCommand -> Model : updateFilteredList(Predicate<Event> predicate)
+activate Model
+TodayEventCommand <-- Model
+deactivate Model
+
+create CommandResult
+TodayEventCommand -> CommandResult
+activate CommandResult
+TodayEventCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- TodayEventCommand
+deactivate TodayEventCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TodayEventCommand -[hidden]->[
+destroy TodayEventCommand
+
+[<-- LogicManager : CommandResult
+@enduml
