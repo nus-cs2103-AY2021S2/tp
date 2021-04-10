@@ -91,6 +91,13 @@ public class StoreMandoTest {
     }
 
     @Test
+    public void hasLocationFiltered_returnsTrue() {
+        storeMando.addItem(APPLE);
+        ObservableList<Location> filteredLocation = storeMando.getLocationList();
+        assertTrue(filteredLocation.contains(APPLE.getLocation()));
+    }
+
+    @Test
     public void hasSimilarItem_nullItem_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> storeMando.hasSimilarItem(null));
     }
