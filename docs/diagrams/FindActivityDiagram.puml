@@ -4,16 +4,9 @@ start
 
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
-
+:Parse user input;
 if () then ([user input is valid])
-    :Parse user input;
-    :Update current predicate in Model;
-    :Update filtered item list in Model;
-    if () then ([numberOfItems > 1])
-    :Display more than one items listed message;
-    else ([else])
-    :Display less than two items listed message;
-    endif
+    :Create and execute FindCommand;
     :Display filtered list;
     :Display command success message;
 else ([else])
