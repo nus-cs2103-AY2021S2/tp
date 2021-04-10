@@ -830,7 +830,7 @@ The UI will also update as the underlying event list has been modified.
 
 The sequence diagram for `EditEventCommand` can be found below.
 
-![Sequence Diagram of EditEvent Command](images/CommandEditEventSequenceDiagram.png)
+![Sequence Diagram of EditEvent Command](images/EditEventCommandSequenceDiagram.png)
 
 The following activity diagram summarises what happens when a user executes a EditEventCommand:
 (For brevity, "Show error" actions are omitted.)
@@ -1287,7 +1287,7 @@ Use case ends.
 
 **MSS**
 
-1. User requests to <u> list events (UC06)</u>.
+1. User requests to <u> list events (UC16)</u>.
 1. SOChedule shows a list of events.
 1. User requests to delete a specific event in the list.
 1. SOChedule displays a success message for deleting the event.
@@ -1309,7 +1309,7 @@ Use case ends.
 
 **Use case: UC15 - Editing an event**
 
-1. User requests to <u> list events (UC02)</u>.
+1. User requests to <u> list events (UC16)</u>.
 1. SOChedule shows a list of events.
 1. User requests to edit a specific event in the list.
 1. SOChedule displays a success message for editing the event.
@@ -1363,7 +1363,9 @@ Use case ends.
 **Extensions**
 
 * 1a. No events have been added.
+
     * 1a1. SOChedule displays an empty list.
+    
       Use case ends.
 
 **Use case: UC17 - Getting today's events**
@@ -1571,7 +1573,7 @@ testers are expected to do more *exploratory* testing.
                   Expected: Event successfully added, detailed information shown in the status bar.
                   
     1. Test case: `add_event n/Inter College Game sd/2000-03-23 st/12:00 ed/2000-03-23 et/14:00`
-                  Expected: No event is deleted, since end date time is past. Detailed error message shown in the status bar.              
+                  Expected: No event is added, since end date time is past. Detailed error message shown in the status bar.              
                   
     1. Other incorrect commands to try: `add_event`, `add_event n/Meeting 1`, etc.
     
