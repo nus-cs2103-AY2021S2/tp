@@ -20,7 +20,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryNameContainsKeywordsPredicate;
