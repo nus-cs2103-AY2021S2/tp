@@ -161,7 +161,7 @@ The `UI` component,
 ### Logic component
 
 <p align="center"><img src="images/LogicClassDiagram.png"></p>
-<p align="center">Overall Logic Class Diagram</p>
+<p align="center">Overall Logic Class Diagram (due to limitations of PlantUML, the 1 in the Parser box is meant to be the multiplicity from LogicManager to Parser)</p>
 <br><br>
 <p align="center"><img src="images/ParserClassDiagram.png"></p>
 <p align="center">Parser Class Diagram in Logic Component</p>
