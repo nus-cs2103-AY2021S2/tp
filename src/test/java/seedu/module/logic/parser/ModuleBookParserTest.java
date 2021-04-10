@@ -17,16 +17,20 @@ import org.junit.jupiter.api.Test;
 
 import seedu.module.logic.commands.AddCommand;
 import seedu.module.logic.commands.ClearCommand;
+import seedu.module.logic.commands.CommandTestUtil;
 import seedu.module.logic.commands.DeleteCommand;
+import seedu.module.logic.commands.DeleteTagCommand;
 import seedu.module.logic.commands.DoneCommand;
 import seedu.module.logic.commands.EditCommand;
 import seedu.module.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.module.logic.commands.ExitCommand;
 import seedu.module.logic.commands.FindCommand;
+import seedu.module.logic.commands.FindModuleCommand;
 import seedu.module.logic.commands.FindTagCommand;
 import seedu.module.logic.commands.HelpCommand;
 import seedu.module.logic.commands.ListCommand;
 import seedu.module.logic.commands.NotDoneCommand;
+import seedu.module.logic.commands.RefreshCommand;
 import seedu.module.logic.commands.SortCommand;
 import seedu.module.logic.commands.TagCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
@@ -59,6 +63,19 @@ public class ModuleBookParserTest {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_TASK), command);
+    }
+
+    @Test
+    public void parseCommand_deleteTag() throws Exception {
+        Set<Tag> stubTags = new HashSet<>();
+        Tag stubTag = new Tag("Stub");
+        stubTags.add(stubTag);
+        DeleteTagCommand deleteTagCommand = new DeleteTagCommand(INDEX_FIRST_TASK, stubTag);
+
+        DeleteTagCommand command = (DeleteTagCommand) parser.parseCommand(
+                DeleteTagCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased()
+                        + " " + TaskUtil.getTagDetails(stubTag));
+        assertEquals(deleteTagCommand, command);
     }
 
     @Test
@@ -95,7 +112,8 @@ public class ModuleBookParserTest {
     public void parseCommand_findTag() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindTagCommand command = (FindTagCommand) parser.parseCommand(
-                FindTagCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindTagCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindTagCommand(new Tag(keywords.get(0))), command);
     }
 
@@ -110,6 +128,20 @@ public class ModuleBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_mod() throws Exception {
+        FindModuleCommand command = (FindModuleCommand) parser.parseCommand(
+                FindModuleCommand.COMMAND_WORD + " " + CommandTestUtil.VALID_MODULE_LAB
+        );
+        assertEquals(new FindModuleCommand(CommandTestUtil.VALID_MODULE_LAB), command);
+    }
+
+    @Test
+    public void parseCommand_refresh() throws Exception {
+        assertTrue(parser.parseCommand(RefreshCommand.COMMAND_WORD) instanceof RefreshCommand);
+        assertTrue(parser.parseCommand(RefreshCommand.COMMAND_WORD + " 3") instanceof RefreshCommand);
     }
 
     @Test
@@ -145,6 +177,7 @@ public class ModuleBookParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class,
+                MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }

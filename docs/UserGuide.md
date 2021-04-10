@@ -23,12 +23,21 @@ on ModuleBook3.5.
 
 1. Once the jar file is ready, simply double-click the file in the download section.
 
-1. Go through the tutorial in the given order. Simply look out for blue boxes with a bulb icon and titled "Tutorial Example:".
+1. Read through the `Features` section and `Command Notes` to understand how the application should be used.
+
+1. Go through the tutorial in the given order. Simply look out for blue boxes with a bulb icon and titled "Tutorial Example:", 
+   such as the one below.
 
 1. Once you are familiar with the app, you may use the table of contents to jump to a command that you may be unsure of.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:**
+First time using the app? Or want to refresh your handling of the app? Simply look out for these boxes.
+Commands for this tutorial are arranged in the sequential order of this User Guide and are accompanied by screenshots.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 <img src="images/UiAnnotated.png" width="700">
@@ -72,11 +81,6 @@ Input Parameter | Workload Rating
 **w/3** | High
 
 E.g. for a low workload rating, key in `w/1`.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:**
-First time using the app? Or want to refresh your handling of the app? Simply look out for these boxes.
-Commands for this tutorial are arranged in the sequential order of this User Guide and are accompanied by screenshots.
-</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -384,6 +388,7 @@ Format: `find KEYWORD`
 
 * Searches through ModuleBook3.5 for tasks whose names contain `KEYWORD`.
 * You may key in multiple keywords. ModuleBook3.5 will list down all tasks that contains any of the given keyword.
+* Once another command is executed, even if it is not `list` command, the original unfiltered task list is restored for viewing.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `find Green` (Here, we are not looking for tasks that are coloured green, 
@@ -425,6 +430,7 @@ Format: `findTag KEYWORD`
 * Searches through ModuleBook3.5 for tasks which have a tag named `KEYWORD`.
 * Only allows one tag as input. The rest will be ignored.
 * Tag provided must be alphanumerical.
+* Once another command is executed, even if it is not `list` command, the original unfiltered task list is restored for viewing.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `findTag ethics` (To demonstrate that finding tags is case-insensitive.)
@@ -445,6 +451,7 @@ Application: Used to find tasks from one Module.
 Format: `mod MODULE`
 
 * Searches through ModuleBook3.5 for tasks which belong to `MODULE`.
+* Once another command is executed, even if it is not `list` command, the original unfiltered task list is restored for viewing.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `mod CS2103T` (Note that although the CS2103T task is not shown after applying the previous tutorial command,

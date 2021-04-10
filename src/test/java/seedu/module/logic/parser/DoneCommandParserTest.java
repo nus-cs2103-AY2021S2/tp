@@ -26,6 +26,7 @@ public class DoneCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
+        assertParseFailure(parser, "-1", String.format(ParserUtil.MESSAGE_INVALID_INDEX));
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE));
     }
 }

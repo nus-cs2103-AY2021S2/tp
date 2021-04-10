@@ -13,15 +13,46 @@ public class StringUtilTest {
     //---------------- Tests for isNonZeroUnsignedInteger --------------------------------------
 
     @Test
-    public void isNonZeroUnsignedInteger() {
+    public void isInteger() {
 
         // EP: empty strings
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("")); // Boundary value
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("  "));
+        assertFalse(StringUtil.isInteger("")); // Boundary value
+        assertFalse(StringUtil.isInteger("  "));
 
         // EP: not a number
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("a"));
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("aaa"));
+        assertFalse(StringUtil.isInteger("a"));
+        assertFalse(StringUtil.isInteger("aaa"));
+
+        // EP: numbers with white space
+        assertFalse(StringUtil.isInteger(" 10 ")); // Leading/trailing spaces
+        assertFalse(StringUtil.isInteger("1 0")); // Spaces in the middle
+
+        // EP: zero
+        assertTrue(StringUtil.isInteger("0"));
+
+        // EP: zero as prefix
+        assertTrue(StringUtil.isInteger("01"));
+
+        // EP: negative numbers
+        assertTrue(StringUtil.isInteger("-1"));
+        assertTrue(StringUtil.isInteger("-10"));
+
+        // EP: positive signed numbers
+        assertTrue(StringUtil.isInteger("+1"));
+        assertTrue(StringUtil.isInteger("+10"));
+
+        // EP: positive unsigned numbers
+        assertTrue(StringUtil.isInteger("1")); // Boundary value
+        assertTrue(StringUtil.isInteger("10"));
+    }
+
+    @Test
+    public void isNonZeroUnsignedInteger() {
+
+        // EP: invalid inputs. Generate assertion error
+        assertThrows(AssertionError.class, () -> StringUtil.isNonZeroUnsignedInteger(""));
+        assertThrows(AssertionError.class, () -> StringUtil.isNonZeroUnsignedInteger("aaa"));
+        assertThrows(AssertionError.class, () -> StringUtil.isNonZeroUnsignedInteger("1 0"));
 
         // EP: zero
         assertFalse(StringUtil.isNonZeroUnsignedInteger("0"));
@@ -29,16 +60,15 @@ public class StringUtilTest {
         // EP: zero as prefix
         assertTrue(StringUtil.isNonZeroUnsignedInteger("01"));
 
-        // EP: signed numbers
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("-1"));
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("+1"));
-
-        // EP: numbers with white space
-        assertFalse(StringUtil.isNonZeroUnsignedInteger(" 10 ")); // Leading/trailing spaces
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("1 0")); // Spaces in the middle
-
         // EP: number larger than Integer.MAX_VALUE
         assertFalse(StringUtil.isNonZeroUnsignedInteger(Long.toString(Integer.MAX_VALUE + 1)));
+
+        // EP: negative numbers
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("-1")); // Boundary value
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("-10"));
+
+        // EP: positive-signed numbers
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("+1"));
 
         // EP: valid numbers, should return true
         assertTrue(StringUtil.isNonZeroUnsignedInteger("1")); // Boundary value

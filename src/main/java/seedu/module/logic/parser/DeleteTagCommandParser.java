@@ -5,6 +5,7 @@ import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.module.commons.core.index.Index;
+import seedu.module.commons.exceptions.IllegalIntegerException;
 import seedu.module.commons.exceptions.IllegalValueException;
 import seedu.module.logic.commands.Command;
 import seedu.module.logic.commands.DeleteTagCommand;
@@ -31,6 +32,8 @@ public class DeleteTagCommandParser implements Parser {
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteTagCommand.MESSAGE_USAGE), ive);
+        } catch (IllegalIntegerException iie) {
+            throw new ParseException(iie.getMessage());
         }
 
         if (argMultimap.getValue(PREFIX_TAG).isEmpty()) {
