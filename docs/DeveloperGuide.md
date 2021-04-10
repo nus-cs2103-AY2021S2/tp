@@ -442,24 +442,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <ul id="use-cases-toc"></ul>
 <script>
+function getLastH4Sibling(element) {
+    while (element && element.tagName != document.createElement('h4').tagName) {
+        element = element.previousElementSibling;
+    }
+    return element;
+}
 document.addEventListener('DOMContentLoaded', () => {
     // get all use case headings as an array
-    const usecase_h4s = Array.prototype.slice.call(
-        document.getElementsByTagName("h4")
+    const usecase_h5s = Array.prototype.slice.call(
+        document.getElementsByTagName("h5")
     ).filter(h => h.textContent.startsWith('UC'));
-    for (const usecase_h4 of usecase_h4s) {
-        // create a <li> element for the current use case heading
-        // and append it to #use-cases-toc
-        const usecase_text = usecase_h4.textContent;
-        const usecase_link = '#' + usecase_h4.getAttribute('id');
-        const li = document.createElement('li');
-        li.innerHTML = `<a href="${usecase_link}">${usecase_text}</a>`;
-        document.getElementById('use-cases-toc').appendChild(li);
+    const categories = {};
+    const category_links = {};
+    for (const usecase_h5 of usecase_h5s) {
+        const category = getLastH4Sibling(usecase_h5);
+        if (!(category.textContent in categories)) {
+            categories[category.textContent] = [];
+            category_links[category.textContent] = '#' + category.getAttribute('id');
+        }
+        categories[category.textContent].push({
+            'usecase_text': usecase_h5.textContent,
+            'usecase_link': '#' + usecase_h5.getAttribute('id')
+        });
+    }
+    for (const category_text of Object.keys(categories)) {
+        const category_link = category_links[category_text];
+        const category_li = document.createElement('li');
+        category_li.innerHTML = `<a href="${category_link}">${category_text}</a>`;
+        category_ul = document.createElement('ul');
+        for (const usecase of categories[category_text]) {
+            const usecase_li = document.createElement('li');
+            usecase_li.innerHTML = `<a href="${usecase.usecase_link}">${usecase.usecase_text}</a>`;
+            category_ul.appendChild(usecase_li);
+        }
+        category_li.appendChild(category_ul);
+        document.getElementById('use-cases-toc').appendChild(category_li);
     }
 });
 </script>
 
-#### UC1 - Add a project
+#### Projects
+
+##### UC1 - Add a project
 
 **MSS**
 
@@ -484,7 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC2 - Delete a project
+##### UC2 - Delete a project
 
 **MSS**
 
@@ -509,7 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC3 - Add or modify information about a project
+##### UC3 - Add or modify information about a project
 
 **MSS**
 
@@ -534,7 +559,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC4 - Add a todo to a project
+#### Todos
+
+##### UC4 - Add a todo to a project
 
 **MSS**
 
@@ -567,7 +594,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC5 - Delete a todo from a project
+##### UC5 - Delete a todo from a project
 
 **MSS**
 
@@ -604,7 +631,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC6 - Add or modify information about a todo in a project
+##### UC6 - Add or modify information about a todo in a project
 
 **MSS**
 
@@ -641,7 +668,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC7 - Mark a todo in a project as done
+##### UC7 - Mark a todo in a project as done
 
 **MSS**
 
@@ -678,7 +705,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC8 - Add a deadline to a project
+#### Deadlines
+
+##### UC8 - Add a deadline to a project
 
 **MSS**
 
@@ -711,7 +740,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC9 - Delete a deadline from a project
+##### UC9 - Delete a deadline from a project
 
 **MSS**
 
@@ -748,7 +777,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC10 - Add or modify information about a deadline in a project
+##### UC10 - Add or modify information about a deadline in a project
 
 **MSS**
 
@@ -785,7 +814,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC11 - Mark a deadline in a project as done
+##### UC11 - Mark a deadline in a project as done
 
 **MSS**
 
@@ -822,7 +851,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC12 - Add an event to a project
+#### Events
+
+##### UC12 - Add an event to a project
 
 **MSS**
 
@@ -855,7 +886,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC13 - Delete an event from a project
+##### UC13 - Delete an event from a project
 
 **MSS**
 
@@ -892,7 +923,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC14 - Add or modify information about an event in a project
+##### UC14 - Add or modify information about an event in a project
 
 **MSS**
 
@@ -929,7 +960,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC15 - Add a groupmate to a project
+#### Groupmates
+
+##### UC15 - Add a groupmate to a project
 
 **MSS**
 
@@ -962,7 +995,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC16 - Delete a groupmate from a project
+##### UC16 - Delete a groupmate from a project
 
 **MSS**
 
@@ -999,7 +1032,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC17 - Add or modify information about a groupmate in a project
+##### UC17 - Add or modify information about a groupmate in a project
 
 **MSS**
 
@@ -1036,7 +1069,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC18 - Add a contact
+#### Contacts
+
+##### UC18 - Add a contact
 
 **MSS**
 
@@ -1061,7 +1096,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC19 - Find a specific contact
+##### UC19 - Find a specific contact
 
 **MSS**
 
@@ -1078,7 +1113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC20 - Delete a contact
+##### UC20 - Delete a contact
 
 **MSS**
 
@@ -1109,7 +1144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC21 - Add or modify information about a contact
+##### UC21 - Add or modify information about a contact
 
 **MSS**
 
@@ -1134,7 +1169,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC22 - Manage today's deadlines and events
+#### Others
+
+##### UC22 - Manage today's deadlines and events
 
 **MSS**
 
@@ -1149,7 +1186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC23 - Purge all entries from the app
+##### UC23 - Purge all entries from the app
 
 **MSS**
 
@@ -1168,7 +1205,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 * *a. At any time, User <u>requests to view help (<a href="#uc24---view-help">UC24</a>)</u>.
 
-#### UC24 - View help
+##### UC24 - View help
 
 **MSS**
 
