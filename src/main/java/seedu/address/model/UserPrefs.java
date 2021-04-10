@@ -14,7 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path dietLahFilePath = Paths.get("data" , "dietLah.json");
     private Path uniqueFoodListFilePath = Paths.get("data" , "foodlist.json");
     private Path foodIntakeListFilePath = Paths.get("data" , "foodintakelist.json");
     private Path dietPlanListFilePath = Paths.get("data" , "dietplanlist.json");
@@ -39,7 +39,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setDietLahFilePath(newUserPrefs.getDietLahFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -51,8 +51,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    public Path getDietLahFilePath() {
+        return dietLahFilePath;
     }
 
     public Path getUniqueFoodListFilePath() {
@@ -71,9 +71,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return userFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    public void setDietLahFilePath(Path dietLahFilePath) {
+        requireNonNull(dietLahFilePath);
+        this.dietLahFilePath = dietLahFilePath;
     }
 
     public void setUniqueFoodListFilePath(Path uniqueFoodListFilePath) {
@@ -108,7 +108,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath)
+                && dietLahFilePath.equals(o.dietLahFilePath)
                 && uniqueFoodListFilePath.equals(o.uniqueFoodListFilePath)
                 && foodIntakeListFilePath.equals(o.foodIntakeListFilePath)
                 && dietPlanListFilePath.equals(o.dietPlanListFilePath)
@@ -117,7 +117,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, uniqueFoodListFilePath,
+        return Objects.hash(guiSettings, dietLahFilePath, uniqueFoodListFilePath,
                 foodIntakeListFilePath, dietPlanListFilePath, userFilePath);
     }
 
@@ -125,7 +125,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + dietLahFilePath);
         sb.append("\nLocal unique food list file location : " + uniqueFoodListFilePath);
         sb.append("\nLocal data file location : " + foodIntakeListFilePath);
         sb.append("\nLocal diet plan list file location : " + dietPlanListFilePath);

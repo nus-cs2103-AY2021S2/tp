@@ -46,22 +46,22 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' diet lah file path.
      */
-    Path getAddressBookFilePath();
+    Path getDietLahFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' diet lah file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setDietLahFilePath(Path dietLahFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces diet lah data with the data in {@code dietLah}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setDietLah(ReadOnlyDietLah dietLah);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the DietLah */
+    ReadOnlyDietLah getDietLah();
 
     //=========== UnqiueFoodList Accessors =============================================================
     /**

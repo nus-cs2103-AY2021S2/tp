@@ -16,10 +16,9 @@ import seedu.address.model.user.User;
 import seedu.address.model.util.TemplateInitializer;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the DietLah level
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class DietLah implements ReadOnlyDietLah {
     private final UniquePersonList persons;
 
     private User user;
@@ -36,13 +35,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     }
 
-    public AddressBook() {
+    public DietLah() {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}.
+     * Creates an DietLah using the Persons in the {@code toBeCopied}.
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public DietLah(ReadOnlyDietLah toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -51,7 +50,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Creates an AddressBook using the Persons in the {@code toBeCopied}. Adds
      * the associated {@code FoodList} {@code FoodIntakeList}.
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied,
+    public DietLah(ReadOnlyDietLah toBeCopied,
                        UniqueFoodList uniqueFoodList,
                        FoodIntakeList foodIntakeList,
                        User user) {
@@ -75,7 +74,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyDietLah newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -134,8 +133,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                || (other instanceof DietLah // instanceof handles nulls
+                && persons.equals(((DietLah) other).persons));
     }
 
     @Override

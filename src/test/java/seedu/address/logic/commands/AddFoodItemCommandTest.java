@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.DietLah;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyDietLah;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.diet.DietPlan;
 import seedu.address.model.diet.DietPlanList;
@@ -82,12 +82,12 @@ public class AddFoodItemCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getDietLahFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setDietLahFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -97,12 +97,12 @@ public class AddFoodItemCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setDietLah(ReadOnlyDietLah newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyDietLah getDietLah() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -291,9 +291,8 @@ public class AddFoodItemCommandTest {
             return stringBuilder.toString();
         }
 
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyDietLah getDietLah() {
+            return new DietLah();
         }
     }
 }

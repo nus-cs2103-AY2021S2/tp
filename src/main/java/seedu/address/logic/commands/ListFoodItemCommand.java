@@ -14,7 +14,7 @@ public class ListFoodItemCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        if (model.getAddressBook().getFoodList().getFoodList().size() == 0) {
+        if (model.getDietLah().getFoodList().getFoodList().size() == 0) {
             return new CommandResult(MESSAGE_NO_FOOD_ITEM);
         }
         String result = model.listFoodItem();
