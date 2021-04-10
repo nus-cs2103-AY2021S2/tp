@@ -90,7 +90,7 @@ Optional parts of the command will be wrapped in round brackets.
 
 Only one command can be executed at a time and any words after a valid command is entered will be ignored.
 
-
+<p>&nbsp;</p>
 <a name="general"></a>
 - <details open>
     <summary class="dropdown-2">General</summary>
@@ -136,12 +136,6 @@ Only one command can be executed at a time and any words after a valid command i
          ```
 
          The above command would list all the customers in the left column of the GUI in the sequence that they were added, with the most recent being at the top.
-
-
-
-
- 
-  
         </details>
 
         <a name="customer-add"></a>
