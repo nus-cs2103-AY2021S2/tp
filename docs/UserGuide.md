@@ -260,7 +260,7 @@ Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEV
 <div markdown="block" class="alert alert-primary">
 :bulb: TutorBuddy does not restrict the <code>STUDY_LEVEL</code> due to the vast number of education levels. The user 
 is free to input any education level.<br>
-Example: Any of the inputs here will be accepted. <code>Sec 2</code>, <code>Secondary 2</code>, <code>JC 1</code>, <code>Poly Y2</code>
+Example: Any of the inputs here will be accepted. <code>Sec 2</code>, <code>Secondary 2</code>, <code>JC 1</code>, <code>Poly Y2</code> <br>
 :bulb: If you have different students of the same <code>NAME</code> consider changing the name. <br>
 Example: Add a <code>John Doe Bespectacled</code> and a <code>John Doe Unadorned</code>
 </div>
