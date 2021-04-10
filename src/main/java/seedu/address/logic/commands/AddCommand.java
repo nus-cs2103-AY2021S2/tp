@@ -45,8 +45,7 @@ public class AddCommand extends Command {
             + PREFIX_BLOODTYPE + "AB- "
             + PREFIX_HEIGHT + "169cm "
             + PREFIX_WEIGHT + "69kg "
-            + PREFIX_TAG + "bronchitis "
-            + PREFIX_TAG + "lung cancer";
+            + PREFIX_TAG + "bronchitis";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in DocBob!";
