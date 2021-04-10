@@ -38,11 +38,7 @@ public class LessonListCard extends UiPart<Region> {
         super(FXML);
         this.lesson = lesson;
         lessonDetails.setText(lesson.getTimeInString());
-        personNames.setWrapText(true);
-        personNames.prefWidthProperty().bind(getRoot().widthProperty());
-        personNames.prefHeightProperty().bind(getRoot().heightProperty());
         personNames.setText(lesson.getPersonInString());
-        cardPane.prefWidthProperty().bind(getRoot().widthProperty());
     }
 
     @Override
