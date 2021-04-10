@@ -19,6 +19,12 @@ activate LogicManager
 LogicManager -> SocheduleParser : parseCommand(pin)
 activate SocheduleParser
 
+create PinTaskCommandParser
+SocheduleParser -> PinTaskCommandParser
+activate PinTaskCommandParser
+SocheduleParser <-- PinTaskCommandParser
+deactivate PinTaskCommandParser
+
 SocheduleParser -> PinTaskCommandParser: parse(args)
 activate PinTaskCommandParser
 
