@@ -62,7 +62,7 @@ deactivate PoolCommand
 create Pool
 PoolCommand -> Pool
 activate Pool
-Pool --> PoolCommand
+Pool --> PoolCommand : toAdd
 deactivate Pool
 
 PoolCommand -> Model : addPool(toAdd)

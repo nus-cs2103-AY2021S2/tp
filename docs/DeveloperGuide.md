@@ -131,6 +131,24 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## Implementation
 This section describes some noteworthy details on how certain features are implemented.
 
+### Pool feature
+This feature allows users to create a pool based on the details specified within the command, and add it to the list of pools.
+
+Given below is the Sequence Diagram for interactions within the Logic component for the execute("pool n/Alice p/91234567 d/monday t/1930 c/2 c/3").
+![Interactions Inside the Logic Component for the `pool n/Alice p/91234567 d/monday t/1930 c/2 c/3` Command](images/PoolSequenceDiagram.png)
+
+From the diagram illustrated above:
+1. `LogicManager` has its `execute()` method called when a user enters the `"pool n/Alice p/91234567 d/monday t/1930 c/2 c/3"` command.
+1. `AddressBookParser` class is then instantiated, which subsequently instantiates `PoolCommandParser` class to help parse the user's command.
+1. `AddressBookParser` would then have its `parse()` method invoked to parse the arguments of `"n/Alice p/91234567 d/monday t/1930 c/2 c/3"` to 
+   `PoolCommandParser` which creates and returns a `PoolCommand`.
+1. `LogicManager` would subsequently invoke the `execute()` method of the `PoolCommand`, which in turn calls its own method of `getPassengersFromIndexes()`
+    that gets a list of passengers from `Model` by calling `getFilteredPassengerList()`.
+1. A `Pool` object is then created with the list of passengers returned by `getPassengersFromIndexes()`, and then added to the model by the `addPool()` method.
+1. The model filtered pool list is then updated with `updateFilteredPoolList()` with a predicate to show all pools in the list `PREDICATE_SHOW_ALL_POOLS`.
+1. Finally, a `CommandResult` would be returned back to `LogicManager` to indicate the completion status of the command.
+
+
 ### Unpool feature
 This feature allows users to remove a pool from the pool list through the specification of an index.
 
