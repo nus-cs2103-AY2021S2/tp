@@ -58,7 +58,7 @@ The sections below give more details of each component.
 ### UI component
 
 ### Logic Component
-**API:** [`Logic.java`](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/src/main/java/fooddiary/logic/Logic.java)
+**API:** [`Logic.java`](../src/main/java/fooddiary/logic/Logic.java)
 
 1. `Logic` uses the `FoodDiaryParser` class to parse the user command.
 2. This results in a `Command` object which is executed by the `LogicManager`.
@@ -76,7 +76,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ### Model Component
 ![Model Architecture Diagram](images/ModelArchitectureDiagram.png)
 
-**API :** `Model.java`
+**API :** [`Model.java`](../src/main/java/fooddiary/model/Model.java)
 
 The `Model`,
 - stores a `UserPref` object that represents the user’s preferences.
