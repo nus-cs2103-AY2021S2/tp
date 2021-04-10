@@ -88,8 +88,22 @@ component command /prefix [input] -flag
 
 Optional parts of the command will be wrapped in round brackets.
 
-Only one command can be executed at a time and any words after a valid command is entered will be ignored.
-<p>&nbsp;</p>
+><b><u>Things to note</u></b>  
+>- Only one command can be executed at a time and any words after a valid command is entered will be ignored.  
+>  Example:  
+>  ```
+>  customer list JJIMY is the best!
+>  ```
+>  The command above will execute `customer list` and ignore `JJIMY is the best!`
+>  <p>&nbsp;</p>
+>
+>- Only the latest input for any duplicated prefixes will be taken, any input for previous duplicated prefixes will be ignored.  
+>  Examples:
+>  ```
+>  menu edit 5 n/Fries1 n/Fries2 p/5 p/6
+>  ```
+>  The command above will only take in `n/Fries2` and `p/6`, any other input for the same prefixes will be ignored.  
+  <p>&nbsp;</p>
 
 <a name="general"></a>
 - <details open>
@@ -103,7 +117,7 @@ Only one command can be executed at a time and any words after a valid command i
         ```
         help
         ```
-        Alternatively, you can click on the ![settings](images/settings.png) icon > `help` or simply press `F1` on your keyboard.
+        Alternatively, you can click on the ![settings](images/settings_white.png) icon > `help` or simply press `F1` on your keyboard.
         Shortly it will open up the `User Guide` in your default browser.
 
         </details>
@@ -116,7 +130,7 @@ Only one command can be executed at a time and any words after a valid command i
         ```
         exit
         ```
-        Alternatively, you can click on the ![settings](images/settings.png) icons > `exit` or simply press `F2` on your keyboard.
+        Alternatively, you can click on the ![settings](images/settings_white.png) icons > `exit` or simply press `F2` on your keyboard.
 
         </details>
 
