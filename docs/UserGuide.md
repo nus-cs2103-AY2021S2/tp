@@ -159,9 +159,9 @@ Format: `cedit id/INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
 Example(s):
 
-* `cedit 1 p/91234567 e/alexyeoh@example.com` Edits the phone number and email address of the contact corresponding to 
+* `cedit id/1 p/91234567 e/alexyeoh@example.com` Edits the phone number and email address of the contact corresponding to 
   index 1 and to `p/91234567` and `alexyeoh@example.com` respectively.
-* `cedit 1 n/Bernice Yu Xiao Ling t/` Edits the name of the contact corresponding to index 1 to be `Bernice Yu Xiao Ling` 
+* `cedit id/1 n/Bernice Yu Xiao Ling t/` Edits the name of the contact corresponding to index 1 to be `Bernice Yu Xiao Ling` 
   and clears all existing tags.
 
 ### Listing contacts
@@ -252,9 +252,9 @@ Format: `eedit id/INDEX [n/NAME] [sd/START_DATE] [ed/END_DATE] [t/TAG]...`
 
 Example(s):
 
-* `eedit 1 sd/2021-05-03 13:00 ed/2021-05-03 14:00` Edits the start and end dates of the entry corresponding to index 1 to
+* `eedit id/1 sd/2021-05-03 13:00 ed/2021-05-03 14:00` Edits the start and end dates of the entry corresponding to index 1 to
   be `2021-05-03 13:00` and `2021-05-03 14:00` respectively.
-* `eedit 1 t/` Edits the entry corresponding to index 1 by clearing all existing tags.
+* `eedit id/1 t/` Edits the entry corresponding to index 1 by clearing all existing tags.
 
 ### Listing entries
 
