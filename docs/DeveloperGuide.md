@@ -239,7 +239,7 @@ The following sequence diagram shows how the `check` command works:
 #### Quiz Scoring
 
 The quiz can be scored for each individual quiz session. The scoring data will be written into the storage file
-after the quiz session is completed. A quiz session is complete if and only if the message indicating the end of
+after the quiz session is completed. A quiz session is completed if and only if the message indicating the end of
 quiz is displayed in the GUI window. The following activity diagrams summarize how the score is generated and recorded
 along with each quiz session.
 
@@ -275,7 +275,6 @@ switching UI display the other way around is similar.
     * Cons:
       * May have the overhead of writing similar code. For instance, `JsonAdaptedFlashcard` and `JsonAdaptedScore`.
       * Changing the GUI display from flashcards to score history may be cumbersome.
-      * Changing the UI display from flashcards to score history may be cumbersome.
 * **Alternative 2:** Let `Score` have inheritance relationship with `Flashcard`.
     * Pros: Changing GUI display is easy.
     * Cons:
@@ -405,10 +404,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  The product should be available for downloads after each [GitHub release](https://github.com/AY2021S2-CS2103T-T13-1/tp/releases).
 3.  The product's size in terms of the final `Jar` released should not exceed 100MB.
 4.  The product should be an offline application, which should work regardless of internet connection.
-5.  The product should be able to hold at least 200 flashcards without causing a delay in commands longer than
+5.  The product should be able to hold at least 100 flashcards without causing a delay in commands longer than
     0.2 seconds.
 6.  The product is not required to handle concurrency resulting from multiple instances of the applications running at the same
-    time, as the product is supposed to support single user's usage.
+    time, as the product is supposed to support a single user's usage.
 6.  The product should be open-sourced in the [GitHub repo](https://github.com/AY2021S2-CS2103T-T13-1/tp).
 7.  The project is expected to adhere to a schedule that delivers a new iteration every one or two weeks throughout the whole development cycle.
 8.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) and
@@ -433,7 +432,7 @@ Given below are instructions to test the app manually.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
-By the nature of the type of application Weeblingo is, it is inconvenient for testers who do not possess some elementary
+By the nature of Weeblingo, it is inconvenient for testers who do not possess some elementary
 knowledge of Japanese to test our application. Therefore, to facilitate testers, we have provided a list of flashcards which reside in the database
 of the current version of application for your reference. The link is [here](Flashcards.html).
 
@@ -475,18 +474,20 @@ of the current version of application for your reference. The link is [here](Fla
 
 1. Dealing with corrupted data files
 
-   1. Do an initial launch of the application as described in _Launch and shutdown_ segment above.
+   1. Do an initial launch of the application as described in _Launch and shutdown_ segment above. Type `learn` to view all flashcards available.
    
    1. Open `current_folder/data/flashcards.json`.
     
    1. Do some modifications that are possibly malicious.
        - Modify a field name of `flashcards.json`. E.g. change `question` to `questions`
-       - Modify the `tag` value of some flashcard to include characters that neither alphabetic or numeric. E.g. `&*&`, `你好世界`.
+       - Modify the `tag` value of some flashcard to include characters that are neither alphabetic or numeric. E.g. `&*&`, `你好世界`.
        - Modify the `question` value of some flashcard to include latin-specific characters. E.g. `Español`.
    
+
    1. Relaunch the application. Type `learn` to go into the `learn` mode. Original (unmodified) data content should present.
     
    1. **Close the application** and inspect the `flashcards.json` file. Modified parts of the original data content should disappear.
+    
     
 1. Dealing with missing data files
 
@@ -498,16 +499,12 @@ of the current version of application for your reference. The link is [here](Fla
     
    1. Now delete the `data` folder recursively (i.e. deleting the file(s) inside it as well).
 
-   1. Relaunch the application. Type `learn` to go into the `learn` mode. Original data content should present.
+   1. Repeat the second step.
 
    1. **Close the application**, and the `data` folder and the `flashcards.json` should be present (regenerated).
     
-<div markdown="span" class="alert alert-info">:information_source: Points to take note of for storage related testing right above: 
-
-- `learn` is only one command that you can try to check if the data is recovered. Other commands work as well, e.g. `quiz`.
-- Data file is recovered on a lazy basis. That is, if the data file is corrupted/missing, and a new application instance is
-  created and closed without **any** command entered. The data file will not be recovered.
-  
+<div markdown="span" class="alert alert-info">:information_source: Data file is recovered on a lazy basis. That is, if the data file is corrupted/missing, and a new application instance is
+  created and then closed without **any** command entered. The data file will not be recovered.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------

@@ -270,9 +270,10 @@ View scores of all past quiz attempts.
 Format: `history`
 
 Example:
+
 ![HistoryExample](images/HistoryUseExample.png)
 - If a quiz is left unfinished (i.e. there are still questions in the quiz), the history statistics will not be updated.
-- If a quiz session has zero attempts, a default correct ration of `0.000%` will be recorded.
+- If a quiz session has zero attempt, a default correct ratio of `0.000%` will be recorded.
 - In future versions, `history` will provide more useful information to better optimize users' learning experience.
 
 ### Adding and removing flashcards `[coming in v2.0]`
@@ -316,7 +317,7 @@ Action | Format, Examples |
 --------------------------------------------------------------------------------------------------------------------
 
 ## Note for Testers
-By the nature of the type of application Weeblingo is, it is inconvenient for testers who do not possess some elementary
+By the nature of Weeblingo, it is inconvenient for testers who do not possess some elementary
 knowledge of Japanese to test our application.
 
 Therefore, to facilitate testers, we have provided a list of flashcards which reside in the database
