@@ -3,12 +3,12 @@
 
 autoactivate on
 
-box Model LOGIC_COLOR_T1
-participant ":AddressBook" as AddressBook LOGIC_COLOR
-participant ":PersonStreakList" as PersonStreakList LOGIC_COLOR
-participant ":PersonStreak" as PersonStreak LOGIC_COLOR
-participant ":Person" as Person LOGIC_COLOR
-participant ":Streak" as Streak LOGIC_COLOR
+box Model MODEL_COLOR_T1
+participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":PersonStreakList" as PersonStreakList MODEL_COLOR
+participant ":PersonStreak" as PersonStreak MODEL_COLOR
+participant ":Person" as Person MODEL_COLOR
+participant ":Streak" as Streak MODEL_COLOR
 end box
 
 [-> AddressBook : setPersons(persons)
