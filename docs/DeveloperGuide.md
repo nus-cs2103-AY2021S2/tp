@@ -369,7 +369,16 @@ the matching meetings to the user.
 ### Customisation Features
 
 #### Profile picture for clients
+The application stores the names of the profile images for each client in the `ClientBook` in the model.
+The ClientDetailFragment UI class has access to an `ObservableClient` object owned by the model.
+Whenever the profile image needs to be displayed or updated, the ClientDetailFragment is updated
+through the ObservableClient.
 
+The ClientDetailFragment UI class directly accesses the `'data'` folder and attempts to load the
+image as an asset in the UI. If the asset cannot be found, the UI then loads the default image
+instead.
+
+![ShowCommand sequence diagram](images/ShowCommandSequenceDiagram.png)
 
 ### \[Proposed\] Data archiving
 
