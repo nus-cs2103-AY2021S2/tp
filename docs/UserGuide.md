@@ -501,7 +501,7 @@ Deadlines contain a description and a date. They can also be marked as done usin
 
 Deadlines are sorted in ascending order by date.
 
-You can add Deadline A to a project containing Deadline B with the same `DESCRIPTION` and `DATE`  as long as Deadline B has been marked as done.
+You can add Deadline A to a project containing Deadline B with the same `DESCRIPTION` and `DATE` as long as Deadline B has been marked as done.
 
 ##### Adding a deadline to a project: `addD`
 
@@ -598,6 +598,7 @@ Format: `addE PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
 
 * Adds an event to the project at the specified `PROJECT_INDEX` with a `DESCRIPTION` as well as the `DATE` and `TIME` of the event.
 * `REPEAT_WEEKLY` accepts values `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one time event.
+* You cannot add Event A to a project containing Event B with the same `DESCRIPTION`, `DATE`, `TIME` and `REPEAT_WEEKLY`.
 
 Parameters:
 
