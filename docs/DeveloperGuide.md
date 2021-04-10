@@ -3,7 +3,11 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents 
+<div style="text-align: center">
+   <img src="images/FriendDex.png" width="200" style="margin: 0 auto" />
+</div>
+
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
