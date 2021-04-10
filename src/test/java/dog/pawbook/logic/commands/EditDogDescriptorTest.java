@@ -5,7 +5,7 @@ import static dog.pawbook.logic.commands.CommandTestUtil.DESC_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_BREED_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_DATEOFBIRTH_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_BELL;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_OWNERID_17;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_OWNERID_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SEX_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -53,7 +53,7 @@ public class EditDogDescriptorTest {
         assertFalse(DESC_ASHER.equals(editedAsher));
 
         // different ownerId -> returns false
-        editedAsher = new EditDogDescriptorBuilder(DESC_ASHER).withOwnerId(VALID_OWNERID_17).build();
+        editedAsher = new EditDogDescriptorBuilder(DESC_ASHER).withOwnerId(VALID_OWNERID_BELL).build();
         assertFalse(DESC_ASHER.equals(editedAsher));
 
         // different tags -> returns false

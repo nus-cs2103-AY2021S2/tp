@@ -11,8 +11,8 @@ import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_SEX_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_ASHER;
-import static dog.pawbook.logic.commands.CommandTestUtil.OWNERID_DESC_15;
-import static dog.pawbook.logic.commands.CommandTestUtil.OWNERID_DESC_17;
+import static dog.pawbook.logic.commands.CommandTestUtil.OWNERID_DESC_ASHER;
+import static dog.pawbook.logic.commands.CommandTestUtil.OWNERID_DESC_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.SEX_DESC_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.SEX_DESC_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.TAG_DESC_FRIENDLY;
@@ -23,7 +23,7 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_BREED_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_DATEOFBIRTH_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_DATEOFBIRTH_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_ASHER;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_OWNERID_15;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_OWNERID_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SEX_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SEX_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_FRIENDLY;
@@ -117,12 +117,12 @@ public class EditDogCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Integer targetId = ID_TWO;
-        String userInput = targetId + BREED_DESC_ASHER + TAG_DESC_FRIENDLY + OWNERID_DESC_15
+        String userInput = targetId + BREED_DESC_ASHER + TAG_DESC_FRIENDLY + OWNERID_DESC_ASHER
                 + DATEOFBIRTH_DESC_ASHER + SEX_DESC_ASHER + NAME_DESC_ASHER + TAG_DESC_QUIET;
 
         EditDogDescriptor descriptor = new EditDogDescriptorBuilder().withName(VALID_NAME_ASHER)
                 .withBreed(VALID_BREED_ASHER).withDob(VALID_DATEOFBIRTH_ASHER).withSex(VALID_SEX_ASHER)
-                .withOwnerId(VALID_OWNERID_15)
+                .withOwnerId(VALID_OWNERID_ASHER)
                 .withTags(VALID_TAG_FRIENDLY, VALID_TAG_QUIET).build();
         EditDogCommand expectedCommand = new EditDogCommand(targetId, descriptor);
 
@@ -169,8 +169,8 @@ public class EditDogCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // ownerId
-        userInput = targetId + OWNERID_DESC_15;
-        descriptor = new EditDogDescriptorBuilder().withOwnerId(VALID_OWNERID_15).build();
+        userInput = targetId + OWNERID_DESC_ASHER;
+        descriptor = new EditDogDescriptorBuilder().withOwnerId(VALID_OWNERID_ASHER).build();
         expectedCommand = new EditDogCommand(targetId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -184,12 +184,12 @@ public class EditDogCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Integer targetId = ID_ONE;
-        String userInput = targetId + BREED_DESC_ASHER + DATEOFBIRTH_DESC_ASHER + SEX_DESC_ASHER + OWNERID_DESC_17
+        String userInput = targetId + BREED_DESC_ASHER + DATEOFBIRTH_DESC_ASHER + SEX_DESC_ASHER + OWNERID_DESC_BELL
                 + TAG_DESC_FRIENDLY + DATEOFBIRTH_DESC_ASHER + SEX_DESC_ASHER + BREED_DESC_ASHER + TAG_DESC_FRIENDLY
-                + BREED_DESC_BELL + DATEOFBIRTH_DESC_BELL + SEX_DESC_BELL + TAG_DESC_QUIET + OWNERID_DESC_15;
+                + BREED_DESC_BELL + DATEOFBIRTH_DESC_BELL + SEX_DESC_BELL + TAG_DESC_QUIET + OWNERID_DESC_ASHER;
 
         EditDogDescriptor descriptor = new EditDogDescriptorBuilder().withBreed(VALID_BREED_BELL)
-                .withDob(VALID_DATEOFBIRTH_BELL).withSex(VALID_SEX_BELL).withOwnerId(VALID_OWNERID_15)
+                .withDob(VALID_DATEOFBIRTH_BELL).withSex(VALID_SEX_BELL).withOwnerId(VALID_OWNERID_ASHER)
                 .withTags(VALID_TAG_FRIENDLY, VALID_TAG_QUIET).build();
         EditDogCommand expectedCommand = new EditDogCommand(targetId, descriptor);
 
@@ -207,9 +207,9 @@ public class EditDogCommandParserTest {
 
         // other valid values specified
         userInput = targetId + DATEOFBIRTH_DESC_BELL + INVALID_BREED_DESC + SEX_DESC_BELL
-                + BREED_DESC_BELL + OWNERID_DESC_15;
+                + BREED_DESC_BELL + OWNERID_DESC_ASHER;
         descriptor = new EditDogDescriptorBuilder().withBreed(VALID_BREED_BELL).withDob(VALID_DATEOFBIRTH_BELL)
-                .withOwnerId(VALID_OWNERID_15).withSex(VALID_SEX_BELL).build();
+                .withOwnerId(VALID_OWNERID_ASHER).withSex(VALID_SEX_BELL).build();
         expectedCommand = new EditDogCommand(targetId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

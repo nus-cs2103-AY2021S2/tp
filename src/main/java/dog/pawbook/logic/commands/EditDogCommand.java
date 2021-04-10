@@ -69,7 +69,7 @@ public class EditDogCommand extends EditEntityCommand {
         Dog targetDog = (Dog) targetEntity;
         Dog editedDog = createEditedEntity(targetEntity, editEntityDescriptor);
 
-        if (!targetDog.equals(editedDog) && model.hasEntity(editedDog)) {
+        if (!targetDog.isSameAs(editedDog) && model.hasEntity(editedDog)) {
             throw new CommandException(getDuplicateEntityMessage());
         }
 

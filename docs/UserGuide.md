@@ -70,7 +70,7 @@ Syntax | Meaning | Example | Explanation
 normal font | Command keyword | `schedule` | -
 CAPS_WITH_UNDERSCORE | Compulsory parameter | `delete dog DOG_ID` | `delete dog` are the command keywords, while DOG_ID is compulsory and any valid dog ID can be provided.
 [SQUARE BRACKETS] | Optional parameter | [t/TAG] | When adding a dog for example, the tags to be added are optional.
-Ellipsis | Repeatable parameters | [t/TAG]... | When adding a dog for example, multiple tags can be supplied and all will be recognized, unlike non-repeatable parameters which only the last occurrence of the paramter will be recognized.
+Ellipsis | Repeatable parameters | [t/TAG]... | When adding a dog for example, multiple tags can be supplied and all will be recognized, unlike non-repeatable parameters which only the last occurrence of the paramter will be recognized. 
 
 ## GUI Layout
 
@@ -151,11 +151,11 @@ Note:
 
 Date time part| Code | Valid values
 --------------|------|-------------
-day of month | <kbd>dd</kbd> | 01~31
-month | <kbd>MM</kbd> | 01~12
-year | <kbd>yyyy</kbd> | 0000~9999
-hours | <kbd>HH</kbd> | 00~23
-minutes | <kbd>mm</kbd> | 00~59
+Date of month | <kbd>dd</kbd> | 01~31
+Month | <kbd>MM</kbd> | 01~12
+Year | <kbd>yyyy</kbd> | 0000~9999
+Hours | <kbd>HH</kbd> | 00~23
+Minutes | <kbd>mm</kbd> | 00~59
 
 Examples:
 
@@ -172,7 +172,11 @@ Examples:
 :bulb: Address fields are free from input checking to allow flexibility to users from different countries with different address formats.
 </div>
 
+To add a dog called Oreo, with breed Jack Russell Terrier, date of birth 20 August 2020, sex female, belonging to the owner with ID 1, tags shy and docile,
+type `add dog n/Oreo b/Jack Russell Terrier d/2-02-2020 s/Female o/1 t/shy t/docile` into the commmand box. 
 ![Add Command](images/AddCommandScreenshot1.png)
+
+If successfully added, Pawbook will display a success message as shown here.
 ![Add Command Result](images/AddCommandScreenshot2.png)
 
 ### Delete Command: Remove a dog/owner/program
@@ -211,9 +215,14 @@ Examples:
 :bulb: Deleting using ID instead of name? Yes, all commands other than `add` and `find` uses the entity's ID. When a new entity is added to Pawbook, the system assigns an unique ID to each of them.
 </div>
 
+The ID for all entities is displayed in the first line beside its name.
 ![ID](images/DeleteCommandIDScreenshot.png)
 
-![Delete Command](images/DeleteCommandScreenshot1.png) ![Delete Command Result](images/DeleteCommandScreenshot2.png)
+To delete dog 3 from Pawbook, type `delete dog 3` into the command box.
+![Delete Command](images/DeleteCommandScreenshot1.png) 
+
+If successfully deleted, Pawbook will display a success message as shown here.
+![Delete Command Result](images/DeleteCommandScreenshot2.png)
 
 ### Edit Command: Modify the details of a dog/owner/program
 
@@ -253,7 +262,10 @@ Examples:
 :heavy_exclamation_mark: At least one attribute needs to be modified!
 </div>
 
+To edit the phone number of owner with ID 1 to 91234567, type `owner ID p/91234567` into the command box.
 ![Edit Command](images/EditCommandScreenshot1.png)
+
+If successfully edited, Pawbook will display a success message as shown here.
 ![Edit Command Result](images/EditCommandScreenshot2.png)
 
 ### Enrol Command: Let a dog join a program
@@ -291,7 +303,10 @@ Examples:
 For example, `enrol d/2 d/3 p/4 p/5` is **NOT** allowed!
 </div>
 
+To enrol dog 4 into program 13, type `enrol d/4 p/13` into the command box.
 ![Enrol Command](images/EnrolCommandScreenshot1.png)
+
+Upon successful enrollment, Pawbook will display a success message as shown here.
 ![Enrol Command Result](images/EnrolCommandScreenshot2.png)
 
 ### Drop Command: Remove dogs from enrolled programs
@@ -328,7 +343,10 @@ Examples:
 :heavy_exclamation_mark: Take note that removing multiple dogs from multiple programs at once is **NOT** allowed! For example, `drop d/2 d/3 p/4 p/5` is **NOT** allowed!
 </div>
 
+To drop dog 4 from program 13, type `drop d/4 p/13` into the command box.
 ![Drop Command](images/DropCommandScreenshot1.png)
+
+Upon successful dropping, Pawbook will display a success message as shown here.
 ![Drop Command Result](images/DropCommandScreenshot2.png)
 
 ### Schedule Command: See all your programs at a glance
@@ -353,6 +371,12 @@ Examples:
    Command: `schedule`
 2. Display the schedule for 1st April 2021:
    Command: `schedule 01-04-2021`
+   
+To view the schedule for 01-02-2021, type `schedule 01-02-2021` into the command box.
+![Schedule Command](images/ScheduleCommandScreenshot1.PNG)
+
+If there is a schedule to be viewed, Pawbook will display a success message as shown here.
+![Schedule Command Result](images/ScheduleCommandScreenshot2.PNG)
 
 ### List Command: Switch to viewing a particular type of entity
 
@@ -380,7 +404,10 @@ Examples:
 3. List all programs.<br>
    Command: `list program`
 
+To view all the programs in Pawbook, type `list program` into the command box.
 ![List Command](images/ListCommandScreenshot1.png)
+
+If there are programs to be viewed, Pawbook will display a success message as shown here.
 ![List Command Result](images/ListCommandScreenshot2.png)
 
 ### Find Command: Search for entities by name
@@ -391,7 +418,7 @@ Examples:
 Format:
 
 ```
-find KEYWORD [KEYWORD]...
+find KEYWORD [MORE_KEYWORDS]...
 ```
 
 Note:
@@ -410,7 +437,10 @@ Examples:
 :bulb: `find` is able to take in multiple keywords and return all results as long as the name contains any one of the keywords.
 </div>
 
+To find entities containing `Berry` and `Training`, type `find berry training` into the command box.
 ![Find Command](images/FindCommandScreenshot1.png)
+
+If there are entities to be viewed, Pawbook will display a success message as shown here.
 ![Find Command Result](images/FindCommandScreenshot2.png)
 
 ### View Command: See a particular entity alongside related entities
@@ -435,7 +465,10 @@ Examples:
 3. View ID 3 which belongs to a program, the program and all the enrolled dogs will be displayed.<br>
    Command: `view 3`
 
+To view all entities related to entity with ID 4, type `view 4` into the command box.
 ![View Command](images/ViewCommandScreenshot1.png)
+
+If there are entities to be viewed, Pawbook will display a success message as shown here.
 ![View Command Result](images/ViewCommandScreenshot2.png)
 
 ### Help Command
@@ -449,7 +482,10 @@ Format:
 help
 ```
 
+If you require help, type `help` into the command box.
 ![Help Command](images/HelpCommandScreenshot1.png)
+
+A command summary will appear, for more detailed information, click the <kbd>Copy URL</kbd> button to get the link to our user guide.
 ![Help Command Result](images/HelpCommandScreenshot2.png)
 
 
@@ -463,6 +499,9 @@ Format:
 ```
 exit
 ```
+
+To exit Pawbook, type `exit` into the command box.
+![Exit Command](images/ExitCommandScreenshot.png)
 
 -----
 
