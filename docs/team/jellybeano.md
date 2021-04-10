@@ -5,7 +5,9 @@ title: Lan Yu Xuan's Project Portfolio Page
 
 ## Project: WeebLingo
 
-Weeblingo is a desktop application used for managing flashcards. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Weeblingo is a desktop app for learning Japanese through flashcards, optimized for use via a Command Line Interface (CLI)
+while still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface,
+users can learn Japanese at a comfortable pace with this application. The user interacts with it via a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -18,7 +20,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the deleteTag command that tied in with the above command. Users could delete tags, but not default ones set by the application.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/#breakdown=true&search=jellybeano)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=t13-1&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&tabAuthor=Jellybeano&tabRepo=AY2021S2-CS2103T-T13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
     * Coordinated and led project meetings.
@@ -30,10 +32,14 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * Added documentation for the features `learn`, `tag` and `deleteTag` (Pull requests [\#96](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/96), [\#111](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/111))
-        * Update the diagrams to match the upstream repo after they were changed (Pull request [\#111](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/111))
+        * Maintain accuracy of screenshots used (Pull request [\#192](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/192))
+        * Included more questions and answers in the FAQ (Pull request [\#192](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/192))
+
     * Developer Guide:
         * Added implementation details of the `learn` feature and updated various UML diagrams. (Pull requests [\#81](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/81), [\#96](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/96))
         * Added implementation details of the tagging feature, along with relevant diagrams. (Pull request [\#81](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/81))
+        * Update the UML diagrams to match the upstream repo after they were changed (Pull request [\#111](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/111))
+        * Added implementation details of the tag deletion feature, along with relevant diagrams. (Pull request [\#192](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/192))
 
 * **Team-Based Tasks**:
     * Assisted with refactoring and morphing Address Book into the current application. (Pull request [\#22](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/22))
