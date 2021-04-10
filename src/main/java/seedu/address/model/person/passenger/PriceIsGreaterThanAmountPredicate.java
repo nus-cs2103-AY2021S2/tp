@@ -6,10 +6,10 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Passenger}'s {@code Name} matches any of the keywords given.
  */
-public class PriceContainsKeywordsPredicate implements Predicate<Passenger> {
+public class PriceIsGreaterThanAmountPredicate implements Predicate<Passenger> {
     private final Double price;
 
-    public PriceContainsKeywordsPredicate(Double price) {
+    public PriceIsGreaterThanAmountPredicate(Double price) {
         this.price = price;
     }
 
@@ -28,8 +28,8 @@ public class PriceContainsKeywordsPredicate implements Predicate<Passenger> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PriceContainsKeywordsPredicate // instanceof handles nulls
-                && price.equals(((PriceContainsKeywordsPredicate) other).price)); // state check
+                || (other instanceof PriceIsGreaterThanAmountPredicate // instanceof handles nulls
+                && price.equals(((PriceIsGreaterThanAmountPredicate) other).price)); // state check
     }
 
 }

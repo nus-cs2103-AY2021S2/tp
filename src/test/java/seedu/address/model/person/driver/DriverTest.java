@@ -9,13 +9,20 @@ import static seedu.address.testutil.TypicalDrivers.DRIVER_ALICE;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.testutil.DriverBuilder;
 import seedu.address.testutil.TypicalDrivers;
 
 public class DriverTest {
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Driver(null, null));
+    public void constructor_nullPhone_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Driver(new Name(VALID_NAME_BOB), null));
+    }
+
+    @Test
+    public void constructor_nullName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Driver(null, new Phone(VALID_PHONE_BOB)));
     }
 
     @Test

@@ -33,7 +33,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.Passenger;
-import seedu.address.model.person.passenger.PriceContainsKeywordsPredicate;
+import seedu.address.model.person.passenger.PriceIsGreaterThanAmountPredicate;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 /**
@@ -192,7 +192,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new TagContainsKeywordsPredicate(arguments);
         case PREFIX_PRICE_STRING:
             Double price = Double.parseDouble(arguments.get(0));
-            return new PriceContainsKeywordsPredicate(price);
+            return new PriceIsGreaterThanAmountPredicate(price);
         case PREFIX_ALL_STRING:
             return new AttributeContainsKeywordsPredicate(arguments);
         case PREFIX_TRIPDAY_STRING:
