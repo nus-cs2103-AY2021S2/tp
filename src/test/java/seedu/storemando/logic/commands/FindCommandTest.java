@@ -110,8 +110,9 @@ public class FindCommandTest {
     @Test
     public void execute_noItemInList() {
         showEmptyListAfterFind(model, HEATER);
+        ItemNameContainsKeywordsPredicate predicate = preparePredicate("Eggs");
 
-        assertCommandFailure(new SortAscendingQuantityCommand(), model, MESSAGE_NO_ITEM_IN_LIST);
+        assertCommandFailure(new FindCommand(predicate), model, MESSAGE_NO_ITEM_IN_LIST);
     }
 
     /**
