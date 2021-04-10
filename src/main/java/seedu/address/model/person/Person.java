@@ -126,6 +126,13 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    private List<Tag> getSortedTags() {
+        Set<Tag> tags = getTags();
+        List<Tag> listOfTags = new ArrayList<>(tags);
+        Collections.sort(listOfTags, Comparator.comparing(tag -> tag.tagName));
+        return listOfTags;
+    }
+
     /**
      * Returns an immutable policy arraylist, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -210,12 +217,10 @@ public class Person {
             builder.append("; Address: ").append(address.get());
         }
 
-        Set<Tag> tags = getTags();
-        List<Tag> listOfTags = new ArrayList<>(tags);
-        Collections.sort(listOfTags, Comparator.comparing(tag -> tag.tagName));
+        List<Tag> tags = getSortedTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
-            listOfTags.forEach(builder::append);
+            tags.forEach(builder::append);
         }
 
         List<InsurancePolicy> policies = getPolicies();
