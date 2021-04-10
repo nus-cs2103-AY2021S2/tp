@@ -137,6 +137,10 @@ This feature allows users to create a pool based on the details specified within
 Given below is the Sequence Diagram for interactions within the Logic component for the execute("pool n/Alice p/91234567 d/monday t/1930 c/2 c/3").
 ![Interactions Inside the Logic Component for the `pool n/Alice p/91234567 d/monday t/1930 c/2 c/3` Command](images/PoolSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `PoolCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+
 From the diagram illustrated above:
 1. `LogicManager` has its `execute()` method called when a user enters the `"pool n/Alice p/91234567 d/monday t/1930 c/2 c/3"` command.
 1. `AddressBookParser` class is then instantiated, which subsequently instantiates `PoolCommandParser` class to help parse the user's command.
@@ -152,8 +156,11 @@ From the diagram illustrated above:
 ### Unpool feature
 This feature allows users to remove a pool from the pool list through the specification of an index.
 
-Given below is the Sequence Diagram for interactions within the Logic component for the execute("unpool 1").
+Given below is the Sequence Diagram for interactions within the Logic component for the `execute("unpool 1")`.
 ![Interactions Inside the Logic Component for the `unpool 1` Command](images/UnpoolSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnpoolCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 From the diagram illustrated above:
 1. `LogicManager` has its `execute()` method called when a user enters the `"unpool 1"` command.
