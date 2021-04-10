@@ -30,6 +30,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
         * [Exiting the program](#exiting-the-program--exit): `exit`
         * [Saving data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
+        * [Editing the preferences file](#editing-the-preferences-file)
     * [Review mode](#review-mode)
         * [Showing next flashcard](#showing-next-flashcard--n): `n`
         * [Showing previous flashcard](#showing-previous-flashcard--p): `p`
@@ -380,7 +381,7 @@ Examples:
 Defines an alias for a command in FlashBack.
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Note:** You can only add alias for Main mode commands.
+:bulb: **Note:** You can only add alias for Main mode commands. The alias should also not have the same name as commands in both the main and review modes.
 
 </div>
 
@@ -417,6 +418,17 @@ FlashBack data are saved as a JSON file `[JAR file location]/data/flashback.json
 
 :exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FlashBack will discard all data and start with an empty data file at the next run.
+
+</div>
+
+### Editing the preferences file
+The user preferences are saved as a JSON file  `[JAR file location]/preferences.json`. Similar to the data file, advanced users are welcome to update the preferences and alias mapping directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+If your changes to the preferences file makes its format invalid, FlashBack will discard all preferences and start with an empty data file at the next run.
+If your changes to the alias mapping is invalid, for example add -> delete, FlashBack will deem the entire alias mapping corrupted and will start with an empty alias mapping.
 
 </div>
 <div style="page-break-after: always;"></div>
