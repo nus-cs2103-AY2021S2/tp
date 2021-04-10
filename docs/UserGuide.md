@@ -24,7 +24,7 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 <div markdown="block" class="alert-warning">
 
-**:warning: PartyPlanet will use its default Address Book and Event Book if it is unable to locate the 
+**:warning: PartyPlanet will use its default Address Book and Event Book if it is unable to locate the
 JSON files. It will start with an empty Address Book and Event Book if there is an error in the JSON files.**
 
 </div>
@@ -186,16 +186,16 @@ Search criteria, case-insensitive:
 * `-t`, `--tag` filters the contacts by tags
 * `-b`, `--birthday` filters contacts by birthday month
   * If `BIRTHDAY` is "0" or unspecified, displays filtered contacts without birthday.
-  * Otherwise, `BIRTHDAY` must be one of the 12 months, represented either by the month value or string, 
+  * Otherwise, `BIRTHDAY` must be one of the 12 months, represented either by the month value or string,
     i.e. `12`, `Dec`, `December` filters contacts with a birthday in December.
-    
-Partial matches to names and tags are performed by default, unless `--exact` is specified for exact matches. 
+   
+Partial matches to names and tags are performed by default, unless `--exact` is specified for exact matches.
 `--exact` requires exact spelling match, but is still case-insensitive. e.g. `alEx yeOh` will match `Alex Yeoh`.
 
-All specified search criteria must be fulfilled by each contact by default, unless `--any` is specified for any match. 
+All specified search criteria must be fulfilled by each contact by default, unless `--any` is specified for any match.
 
 Filtered contacts can be additionally sorted using the `-s` and `-o` prefixes (except upcoming birthdays), as below.
-   
+  
 `-s` parameter optionally sorts contacts by `SORT_FIELD`. Possible values of `SORT_FIELD`:
 * `n`, `name`: names in (case-sensitive) lexicographical order (by default, if `-s` not specified)
 * `b`, `birthday`: day and month of the birthday (Insensitive to year, will not sort by year)
@@ -209,13 +209,13 @@ Examples:
 * `list` Lists out all the contacts in the contact list.
 * `list -s name -o desc` Lists out all the contacts by name in descending lexicographical order.
 * `list -t friend` Lists out all contacts who has tags containing the word "friend"
-* `list -n alice -t friend` Lists out all contacts whose name contains the word "alice" and tag contains the word 
+* `list -n alice -t friend` Lists out all contacts whose name contains the word "alice" and tag contains the word
   "friend"
-* `list --any -n alice -t friend` Lists out all contacts whose name contains "alice" or tag contains the word 
+* `list --any -n alice -t friend` Lists out all contacts whose name contains "alice" or tag contains the word
   "friend"
-* `list --exact -n alice -t friend` Lists out all contacts whose name is exactly "alice" and who have tags that is 
+* `list --exact -n alice -t friend` Lists out all contacts whose name is exactly "alice" and who have tags that is
   exactly "friend"
-* `list --exact --any -n alice -t friend` Lists out all contacts whose name is "alice" or who have tags that is exactly 
+* `list --exact --any -n alice -t friend` Lists out all contacts whose name is "alice" or who have tags that is exactly
   "friend"
 * `list --any -n alice -n bob` Lists out all contacts whose name contain either "alice" or "bob"
 * `list --any -b 8 -b 9` Lists out all contacts whose birthdays are either in August or September
@@ -266,13 +266,13 @@ Search criteria, case-insensitive:
     * If multiple names/tags are specified, all specified search criteria must be fulfilled by each event by
       default, unless `--any` is specified for any match.
     * The filtered events can be additionally sorted using the `-s` and `-o` prefixes, as below.
-   
+  
 `-s` parameter optionally sorts events by `SORT_FIELD`. Possible values of `SORT_FIELD`:
 * `n`, `name`: names (case-sensitive) in lexicographical order (by default, if `-s` not specified)
 * `d`, `date`: event dates (Sensitive to year, will sort according to date with respect to year)
 * `u`, `upcoming`: days left to next upcoming event (All events marked as `done` will appear at the bottom of the list regardless of the date)
 
-Note: Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order  
+Note: Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order 
 
 `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`. Possible values of SORT_ORDER:
 * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
@@ -343,7 +343,7 @@ Below are the respective behaviors of Autocomplete for various prefixes.
 
 All Prefixes except Tag: For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on `TAB` keypress down.
 
-Tags: Due to the plural nature of Tags, the Tag Autocomplete will always add all remaining existing tags belonging to the user. 
+Tags: Due to the plural nature of Tags, the Tag Autocomplete will always add all remaining existing tags belonging to the user.
 
 Below are some examples for example Person 1 with Tags "Hello" and "World".
 1. Empty Tag Prefix, e.g. `edit 1 -t`
@@ -369,8 +369,8 @@ Can be invoked repeatedly until there is no more history from the current sessio
 
 Format: `undo`
 
-Shortcuts: 
-PC: `CTRL + Z` 
+Shortcuts:
+PC: `CTRL + Z`
 Mac: `CMD + Z`
 
 #### Redoing actions : `redo`
@@ -381,8 +381,8 @@ Can be invoked repeatedly until there are no more previously executed actions fr
 
 Format: `redo`
 
-Shortcut: 
-PC: `CTRL + SHIFT + Z` or `CTRL + Y` 
+Shortcut:
+PC: `CTRL + SHIFT + Z` or `CTRL + Y`
 Mac: `CMD + SHIFT + Z` or `CMD + Y`
 
 #### Toggle theme : `theme`

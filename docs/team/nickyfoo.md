@@ -26,11 +26,11 @@ Given below are my contributions to the project.
 
 - Added event book and feature to add events (`eadd` command)
   commits [4408fd8](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/4408fd8d35d6b7316c1df697fe85b66798235ad8), [858ae4a](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/858ae4a90277abeebc7681eddd9fe0739e2727c5), [551afbd](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/551afbd4839195fde395d29ff86ef197637c0da8), [9394207](https://github.com/AY2021S2-CS2103-W16-3/tp/commit/93942076dd8d51785c33e835dd3ac217c81a6344)
-  * What it does: Allows the user to store a book of events in PartyPlanet, and to `eadd` an event to PartyPlanet 
+  * What it does: Allows the user to store a book of events in PartyPlanet, and to `eadd` an event to PartyPlanet
   * Justification: This feature improves PartyPlanet significantly since a user would want to keep track of upcoming celebrations, or celebrations that need to be planned.
   * Highlights: This enhancement affected the existing `Logic` and `Model`, and required implementation of `EventBook` and `Event` from scratch. As such, code had to be written to implement an `Event` and `EventBook`, as well as to integrate it with the current `Logic` and `Model`. Finally, testing stubs had to be updated to reflect changes. Implementation was very difficult, as a lot of content had to be added, and existing content had to be refactored.
-  * Credits: Code used for `eadd` is referenced from the `add` command, and `EventBook` and `Event` are based off of `AddressBook` and `Person`.  
-  
+  * Credits: Code used for `eadd` is referenced from the `add` command, and `EventBook` and `Event` are based off of `AddressBook` and `Person`. 
+ 
 - Added feature to request help for specific commands (`help COMMAND`):
   [\#72](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/72)
   * What it does: Allows the user to request help for a specific command with an optional parameter `COMMAND`, to be displayed directly in the UI, instead of redirecting to the UG.
@@ -48,10 +48,10 @@ Given below are my contributions to the project.
 
 ### Documentation
 
-- UserGuide: 
+- UserGuide:
   * Added sections for [`help`](https://ay2021s2-cs2103-w16-3.github.io/tp/UserGuide.html#showing-help--help), [`undo`](https://ay2021s2-cs2103-w16-3.github.io/tp/UserGuide.html#undoing-actions--undo) and [`redo`](https://ay2021s2-cs2103-w16-3.github.io/tp/UserGuide.html#redoing-actions--redo)
-  
-- DeveloperGuide: 
+ 
+- DeveloperGuide:
   * Added User Stories: [\#36](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/36)
   * Added Use Case UC7 [\#60](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/60)
   * Updated Product Scope [\#69](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/69)
@@ -63,13 +63,13 @@ Given below are my contributions to the project.
 - Team-based tasks:
   * Update README with GitHub Actions build status badge [\#35](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/35)
   * Update site wide settings [\#44](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/44)
-  
+ 
 - Forum posts:
-  [\#141](https://github.com/nus-cs2103-AY2021S2/forum/issues/141), 
+  [\#141](https://github.com/nus-cs2103-AY2021S2/forum/issues/141),
   [\#151](https://github.com/nus-cs2103-AY2021S2/forum/issues/151)
-  
+ 
 - PRs reviewed (with non-trivial comments):
   [\#88](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/88),
   [\#92](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/92),
   [\#309](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/309)
-  
+ 
