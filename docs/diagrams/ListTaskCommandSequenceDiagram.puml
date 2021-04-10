@@ -4,8 +4,7 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
-participant ":DeleteTaskCommandParser" as DeleteTaskCommandParser LOGIC_COLOR
-participant "s:DeleteTaskCommand" as DeleteTaskCommand LOGIC_COLOR
+participant "s:ListTaskCommand" as ListTaskCommand LOGIC_COLOR
 participant "CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -19,52 +18,37 @@ activate LogicManager
 LogicManager -> SocheduleParser : parseCommand("list_task")
 activate SocheduleParser
 
-create DeleteTaskCommandParser
-SocheduleParser -> DeleteTaskCommandParser
-activate DeleteTaskCommandParser
+create ListTaskCommand
+SocheduleParser -> ListTaskCommand
+activate ListTaskCommand
 
-DeleteTaskCommandParser --> SocheduleParser
-deactivate DeleteTaskCommandParser
-
-SocheduleParser -> DeleteTaskCommandParser: parse("1")
-activate DeleteTaskCommandParser
-
-create DeleteTaskCommand
-DeleteTaskCommandParser -> DeleteTaskCommand
-activate DeleteTaskCommand
-
-DeleteTaskCommand --> DeleteTaskCommandParser : s
-deactivate DeleteTaskCommand
-
-SocheduleParser <--DeleteTaskCommandParser : s
-deactivate DeleteTaskCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteTaskCommandParser -[hidden]->[
-destroy DeleteTaskCommandParser
+ListTaskCommand --> SocheduleParser : s
+deactivate ListTaskCommand
 
 LogicManager <-- SocheduleParser : s
 deactivate SocheduleParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 SocheduleParser -[hidden]->[
 
-LogicManager -> DeleteTaskCommand : execute()
-activate DeleteTaskCommand
+LogicManager -> ListTaskCommand : execute()
+activate ListTaskCommand
 
-DeleteTaskCommand -> Model : deleteTasks(Task taskToDelete)
+ListTaskCommand -> Model : updateFilteredList(Predicate<Task> predicate)
 activate Model
-DeleteTaskCommand <-- Model
+ListTaskCommand <-- Model
 deactivate Model
 
 create CommandResult
-DeleteTaskCommand -> CommandResult
+ListTaskCommand -> CommandResult
 activate CommandResult
-DeleteTaskCommand <-- CommandResult
+ListTaskCommand <-- CommandResult
 deactivate CommandResult
 
-LogicManager <-- DeleteTaskCommand
-deactivate DeleteTaskCommand
+LogicManager <-- ListTaskCommand
+deactivate ListTaskCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteTaskCommand -[hidden]->[
+ListTaskCommand -[hidden]->[
+destroy ListTaskCommand
 
 [<-- LogicManager : CommandResult
 @enduml

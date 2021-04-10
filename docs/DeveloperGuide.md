@@ -417,6 +417,8 @@ Our `Task` supports the following features through a `LogicManager`
 
 #### 4.2.2 Implementation
 
+#### 4.2.2.1 Add Task Feature
+
 **Implementation of AddTaskCommand**
 
 The following is a detailed explanation on how AddTaskCommand is implemented.
@@ -439,6 +441,8 @@ The sequence diagram for `AddTaskCommand` can be found below.
 ![Sequence Diagram of AddTask Command](images/AddTaskCommandSequenceDiagram.png)
 
 [Return to Table of Contents](#table-of-contents)  
+
+#### 4.2.2.2 Delete Task Feature
 
 **Implementation of DeleteTaskCommand**  
 
@@ -464,7 +468,7 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 [Return to Table of Contents](#table-of-contents)  
 
 
-#### 4.2.3.3. List Task Feature
+#### 4.2.2.3. List Task Feature
 
 **Implementation of ListTaskCommand**
 
@@ -492,7 +496,11 @@ the task list will be appended with `CommandResult#MESSAGE_EMPTY`. Otherwise, a 
 
 The sequence diagram for ListTaskCommand can be found below.
 
-#### 4.2.3.3 Done Task feature
+![Sequence Diagram of ListTaskCommand](images/ListTaskCommandSequenceDiagram.png)
+
+[Return to Table of Contents](#table-of-contents)
+
+#### 4.2.2.4 Done Task feature
 
 **Implementation of DoneTaskCommand**
 
@@ -555,7 +563,7 @@ under normal usage. Thus, we feel alternative 1 is necessary to serve our users 
 
 [Return to Table of Contents](#table-of-contents)
 
-#### 4.2.3.4 Undone Task feature
+#### 4.2.2.5 Undone Task feature
 
 **Implementation of UndoneTaskCommand**
 
@@ -617,7 +625,7 @@ under normal usage. Thus, we feel alternative 1 is sufficient to serve our users
 
 [Return to Table of Contents](#table-of-contents)
 
-#### 4.2.3.5 Edit Task feature
+#### 4.2.2.6 Edit Task feature
 
 **Implementation of EditTaskCommand**  
 
@@ -753,7 +761,7 @@ By implementing it in this way, our group is able to ensure that the sort order 
 
 This would enable SOChedule to better serve the needs of its user base. 
 
-[Return to Table of Contents](#table-of-contents)  
+[Return to Table of Contents](#table-of-contents)
 
 **Implementation of PinTaskCommand/UnpinTaskCommand**  
 The following is a detailed explanation on how PinTaskCommand is implemented.
@@ -981,7 +989,39 @@ we allowed an expired task to be edited is because if the task is expired but no
 an “overdue task”, while there’s no “overdue event”.
 
 
-[Return to Table of Contents](#table-of-contents)  
+[Return to Table of Contents](#table-of-contents)
+
+**Implementation of ListEventCommand**
+
+The following is a detailed explanation on how ListEventCommand is implemented.
+
+The ListEventCommand is supported mainly by `ListEventCommand`.
+
+The relevant methods include:
+* `ListEventCommand#execute(Model model)` - Updates the event list on UI to show all the events stored in the internal
+  event list.
+
+Given below is an example usage scenario and how the list event mechanism behaves at each step.
+
+**Step 1**: User executes `list_event` command to list all the events currently present in the event list.
+A `ListEventCommand` object is returned
+
+**Step 2**: On `ListEventCommand#execute()`, `Model#updateFilteredEventList(Predicate<Event> predicate)` is called. This 
+will update the filtered event list with the predicate specified by the input predicate, which is 
+`PREDICATE_SHOW_ALL_EVENTS`. For brevity, lower level implementation of 
+`Model#updateFilteredEvents(Predicate<Event> predicate)` is omitted.
+
+**Step 3**: On execution completion, a `CommandResult` is created. `Model#isEventListEmpty()` is called to check whether
+the current internal event list is empty or not. If the internal event list is empty, a message indicating the emptiness
+of the event list will be appended with `CommandResult#MESSAGE_EMPTY`. Otherwise, a success message will be appended with
+`CommandResult#MESSAGE_SUCCESS`. The UI will also update as the underlying event list that has been modified.
+
+The sequence diagram for ListEventCommand can be found below.
+
+![Sequence Diagram of ListEventCommand](images/ListEventCommandSequenceDiagram.png)
+
+[Return to Table of Contents](#table-of-contents)
+
 
 **Implementation of FindFreeTimeCommand**  
 The following is a detailed explanation on how FindFreeTaskCommand is implemented.
