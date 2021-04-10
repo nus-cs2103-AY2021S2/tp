@@ -134,19 +134,25 @@ This section describes some noteworthy details on how certain features are imple
 ### Pool feature
 This feature allows users to create and add a pool to the list of pools, through the use of a `pool` command.
 
+Design considerations include the `pool` command being able to be used in complement with the `find` command. For instance, the user would
+first use `find tag/female` and then followed by `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3`.
+The `find tag/female` command first filters the list of displayed passengers, such that only passengers with the `female` tag would be displayed. Calling the `pool` command
+would then assign `Alice` with number `91234567` to be the driver of the passengers specified by the indices for the currently displayed list.
+
 The activity diagram below encapsulates the user workflow of adding passengers, finding passengers and then pooling the passengers:
 
 ![Activity Diagram for a User Using Pool](images/PoolActivityDiagram.png)
 
-The `pool` command has been designed to be able to be used after the `find` command. For instance, `find tag/female` followed by `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3`.
-The `find tag/female` command first filters the list of displayed passengers, such that only passengers with the `female` tag would be displayed. Calling the `pool` command
-would then assign `Alice` with number `91234567` to be the driver of the passengers specified by the indices for the currently displayed list.
+The rationale behind this implementation was because once the GME terminal is populated with a large number of passengers, it would be rather difficult for the user to find a specific passenger.
+By allowing the user to first filter the passengers then subsequently pooling from the filtered list would greatly enhance the feature, thereby making the product much more cohesive as features work well together.
 
-Given below is the Sequence Diagram for interactions within the Logic component for the `execute("pool n/Alice p/91234567 d/monday t/1930 c/2 c/3")` command. Note that `command` argument that is passed into
-`execute()`, represents the string `"pool n/Alice p/91234567 d/monday t/1930 c/2 c/3"`, and has been shortened for readability.
+Given below is the Sequence Diagram for interactions within the Logic component for the `execute("pool n/Alice p/91234567 d/monday t/1930 c/2 c/3")` command.
 ![Interactions Inside the Logic Component for the `pool n/Alice p/91234567 d/monday t/1930 c/2 c/3` Command](images/PoolSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `PoolCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:**  The `command` argument that is passed into
+`execute()`, represents the string `"pool n/Alice p/91234567 d/monday t/1930 c/2 c/3"`, and has been abstracted for readability.
+<br>
+The lifeline for `PoolCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 From the diagram illustrated above:
@@ -162,7 +168,7 @@ From the diagram illustrated above:
 
 It is worth noting that unlike the `AddCommand` which has a constructor that takes in a single passenger created and passed from `AddCommandParser`, the `PoolCommand` is constructed using the details specified and
 parsed from `PoolCommandParser`. The rationale is due the fact that a list of passengers have to be obtained from the indexes specified, which requires interactions
-with the model that is encapsulated within the methods of `PoolCommand`.
+with the model. This implementation would encapsulate the interactions with model within the methods of `PoolCommand`.
 
 
 ### Unpool feature
