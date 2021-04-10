@@ -83,7 +83,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'GreenMileageEfforts.jar'
 }
 
 defaultTasks 'clean', 'test'

@@ -7,7 +7,10 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPassengerAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.address.testutil.TypicalPassengers.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPassengers.ALICE;
+import static seedu.address.testutil.TypicalPassengers.getTypicalAddressBookPassengers;
+
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,14 +27,14 @@ import seedu.address.model.person.passenger.Passenger;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBookPassengers(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Passenger passengerToDelete = model.getFilteredPassengerList().get(INDEX_FIRST.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST);
+        DeleteCommand deleteCommand = new DeleteCommand(Collections.singletonList(INDEX_FIRST));
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PASSENGER_SUCCESS, passengerToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PASSENGER_SUCCESS, ALICE.getName());
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePassenger(passengerToDelete);
@@ -42,7 +45,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPassengerList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand deleteCommand = new DeleteCommand(Collections.singletonList(outOfBoundIndex));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
     }
@@ -52,9 +55,10 @@ public class DeleteCommandTest {
         showPassengerAtIndex(model, INDEX_FIRST);
 
         Passenger passengerToDelete = model.getFilteredPassengerList().get(INDEX_FIRST.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST);
+        DeleteCommand deleteCommand = new DeleteCommand(Collections.singletonList(INDEX_FIRST));
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PASSENGER_SUCCESS, passengerToDelete);
+        // 1 as it is 1 passenger
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PASSENGER_SUCCESS, ALICE.getName());
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePassenger(passengerToDelete);
@@ -71,21 +75,21 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPassengerList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand deleteCommand = new DeleteCommand(Collections.singletonList(outOfBoundIndex));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(Collections.singletonList(INDEX_FIRST));
+        DeleteCommand deleteSecondCommand = new DeleteCommand(Collections.singletonList(INDEX_SECOND));
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(Collections.singletonList(INDEX_FIRST));
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

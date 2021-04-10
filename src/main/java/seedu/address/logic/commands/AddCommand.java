@@ -13,13 +13,13 @@ import seedu.address.model.Model;
 import seedu.address.model.person.passenger.Passenger;
 
 /**
- * Adds a passenger to the address book.
+ * Adds a passenger to the passenger list.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a passenger to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a passenger to passenger list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "

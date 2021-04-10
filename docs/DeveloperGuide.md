@@ -101,8 +101,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Passenger>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the GME terminal data.
+* exposes an unmodifiable `ObservableList<Passenger>` and `ObservableList<Pool>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -144,9 +144,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 **Target user profile**:
 
-- has a need to find a driver/passenger to travel between workspace and home
+- a HR executive who is required to find and pool passengers with drivers from an already existing database.
 - prefer desktop apps over other types
-- can type fast
+- is able to type fast
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
@@ -179,8 +179,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 1. Search or list out passengers available to be picked up.
 2. GME shows a list of passengers.
 3. HR executive chooses and view the details of the specific passenger.
-4. HR executive allocates drivers to specific passenger to the driver's carpooling group. 
-   
+4. HR executive allocates drivers to specific passenger to the driver's carpooling group.
+
     Use case ends.
 
 ***Extensions***
@@ -197,7 +197,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 1. HR executive chooses the criteria that the passengers need to fulfil in order to be picked up.
 2. HR exective initiates the search.
 3. GME shows a list of passengers that fulfils the criteria.
-   
+
    Use case ends.
 
 ***Extensions***
@@ -220,11 +220,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
 ***Extensions***
 
-* 2a. Any required field is missing. 
+* 2a. Any required field is missing.
   * 2a1. GME warns the user to input the data missing.
-    
+
     Use case ends.
-    
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: Delete a passenger profile**
@@ -239,8 +239,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 ***Extensions***
 
 * 2a. Index number of passenger does not exist.
-  * 2a1. GME warns that no such passenger exists. 
-    
+  * 2a1. GME warns that no such passenger exists.
+
     Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -251,7 +251,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
 **MSS:**
 1. HR Executive finds passengers only looking for female drivers.
-2. HR Executive then matches female driver to female passengers looking for female drivers only.
+2. HR Executive then matches female drivers to female passengers looking for female drivers only.
 
     Use case ends.
 
@@ -281,8 +281,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
 ### Glossary
 
-- **Mainstream OS**: Windows, Linux, Unix, MacOS
-- **Green cars**: Electric or hybrid passenger cars
+- **Driver**: An employee that is in-charge of driving passengers within the pool to their location.
+- **GME**: GreenMileageEfforts, this software that is used to arrange carpooling.
+- **Mainstream OS**: Windows, Linux, Unix, MacOS.
+- **Pool**: A group of employees carpooling together. Consists of one driver and at least one passenger.
+- **Passenger**: An employee carpooling with at least one driver.
+- **Tag**: A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
+
 
 --------------------------------------------------------------------------------------------------------------------
 

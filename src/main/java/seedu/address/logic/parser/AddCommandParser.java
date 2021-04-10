@@ -15,13 +15,13 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.Price;
-import seedu.address.model.pool.TripDay;
-import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -51,13 +51,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         TripDay tripDay = ParserUtil.parseTripDay(argMultimap.getValue(PREFIX_TRIPDAY).get());
         TripTime tripTime = ParserUtil.parseTripTime(argMultimap.getValue(PREFIX_TRIPTIME).get());
 
-        // TODO tidy up code style
-        Optional<String> priceStr = argMultimap.getValue(PREFIX_PRICE);
-        Optional<Price> price;
-        if (priceStr.isPresent()) {
-            price = Optional.of(ParserUtil.parsePrice(priceStr.get()));
-        } else {
-            price = Optional.empty();
+        Optional<Price> price = Optional.empty();
+        if (arePrefixesPresent(argMultimap, PREFIX_PRICE)) {
+            price = Optional.of(
+                    ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get())
+            );
         }
 
         Passenger passenger = new Passenger(name, phone, address, tripDay, tripTime, price, tagList);

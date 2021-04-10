@@ -39,12 +39,13 @@ public class UnpoolCommand extends Command {
         List<Pool> lastShownList = model.getFilteredPoolList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_POOL_DISPLAYED_INDEX);
         }
 
         Pool poolToRemove = lastShownList.get(targetIndex.getZeroBased());
         model.deletePool(poolToRemove);
-        return new CommandResult(String.format(MESSAGE_UNPOOL_SUCCESS, poolToRemove));
+
+        return new CommandResult(String.format(MESSAGE_UNPOOL_SUCCESS, poolToRemove.getPassengerNames()));
     }
 
     @Override

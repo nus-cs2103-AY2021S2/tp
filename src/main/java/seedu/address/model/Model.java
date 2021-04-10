@@ -12,7 +12,9 @@ import seedu.address.model.pool.Pool;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true.
+     */
     Predicate<Passenger> PREDICATE_SHOW_ALL_PASSENGERS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
@@ -69,8 +71,9 @@ public interface Model {
     /**
      * Deletes the given passenger.
      * The passenger must exist in the address book.
+     * @return true if the passenger was deleted, false otherwise.
      */
-    void deletePassenger(Passenger passenger);
+    boolean deletePassenger(Passenger passenger);
 
     /**
      * Deletes the given pool.

@@ -6,7 +6,6 @@ import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -21,7 +20,6 @@ public class PassengerCard extends UiPart<Region> {
     private static final String FXML = "PassengerListCard.fxml";
     private static final String ICON_PATH_PHONE = "/images/phone.png";
     private static final String ICON_PATH_ADDRESS = "/images/address.png";
-    private static final String ICON_PATH_DRIVER = "/images/driver.png";
     private static final String ICON_PATH_TIME = "/images/time.png";
 
     /**
@@ -43,13 +41,7 @@ public class PassengerCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private DriverCard driverCard;
-    @FXML
-    private VBox driverCardContainer;
-    @FXML
     private VBox cardFieldContainer;
-    @FXML
-    private ColumnConstraints columnConstraints;
 
     /**
      * Creates a {@code PassengerCard} with the given {@code Passenger} and index to display.
@@ -63,9 +55,6 @@ public class PassengerCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        //TODO: Mark I removed the getDriverAsStr() method below here as the passenger no longer has a driver object
-        // attached to it. Just letting you know in case it causes problems.
-
         // collect the fields that uses the icon and label format
         List<Region> cardFields = new ArrayList<>();
         cardFields.add(new LabelWithIcon(ICON_PATH_PHONE, passenger.getPhone().value).getRoot());
@@ -73,9 +62,6 @@ public class PassengerCard extends UiPart<Region> {
         cardFields.add(new LabelWithIcon(ICON_PATH_TIME,
                 passenger.getTripDay() + " " + passenger.getTripTime()).getRoot());
         cardFieldContainer.getChildren().addAll(cardFields);
-
-        //TODO: Mark I removed the getDriver().ifPresentOrElse() block of code below here as the passenger no longer has
-        // a driver object attached to it. Just letting you know in case it causes problems.
     }
 
     @Override

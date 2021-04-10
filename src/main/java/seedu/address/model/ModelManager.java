@@ -104,8 +104,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePassenger(Passenger passenger) {
-        addressBook.removePassenger(passenger);
+    public boolean deletePassenger(Passenger passenger) {
+        return addressBook.removePassenger(passenger);
     }
 
     @Override
@@ -116,12 +116,6 @@ public class ModelManager implements Model {
     @Override
     public void addPassenger(Passenger passenger) {
         addressBook.addPassenger(passenger);
-        updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
-    }
-
-    @Override
-    public void addPool(Pool pool) {
-        addressBook.addPool(pool);
         updateFilteredPassengerList(PREDICATE_SHOW_ALL_PASSENGERS);
     }
 
@@ -150,6 +144,12 @@ public class ModelManager implements Model {
     }
 
     //=========== Filtered Pool List Accessors =============================================================
+
+    @Override
+    public void addPool(Pool pool) {
+        addressBook.addPool(pool);
+        updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
+    }
 
     /**
      * Returns an unmodifiable view of the list of {@code Pool} backed by the internal list of

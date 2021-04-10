@@ -10,6 +10,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,12 +27,13 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.PoolCommand;
+import seedu.address.logic.commands.UnpoolCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
-import seedu.address.model.pool.TripDay;
-import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.CommuterBuilder;
 import seedu.address.testutil.DriverBuilder;
@@ -61,7 +63,7 @@ public class AddressBookParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST), command);
+        assertEquals(new DeleteCommand(Collections.singletonList(INDEX_FIRST)), command);
     }
 
     @Test
@@ -114,7 +116,12 @@ public class AddressBookParserTest {
         assertEquals(new PoolCommand(driver, commuters, tripDay, tripTime, tags), command);
     }
 
-    //TODO add unpool command test
+    @Test
+    public void parseCommand_unpool() throws Exception {
+        UnpoolCommand command = (UnpoolCommand) parser.parseCommand(
+                UnpoolCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new UnpoolCommand(INDEX_FIRST), command);
+    }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

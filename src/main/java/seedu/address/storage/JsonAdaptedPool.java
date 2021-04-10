@@ -9,11 +9,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.pool.Pool;
-import seedu.address.model.pool.TripDay;
-import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -71,7 +71,7 @@ class JsonAdaptedPool {
         final TripDay modelTripDay = MODEL_UTIL.verifyAndReturnTripDay(tripDayStr);
         final TripTime modelTripTime = MODEL_UTIL.verifyAndReturnTripTime(tripTimeStr);
 
-        final Set<Passenger> modelPassengers = MODEL_UTIL.convertAdaptedPassengersToModel(passengers);
+        final List<Passenger> modelPassengers = MODEL_UTIL.convertAdaptedPassengersToModel(passengers);
         final Set<Tag> modelTags = MODEL_UTIL.convertAdaptedTagsToModel(tagged);
 
         return new Pool(modelDriver, modelTripDay, modelTripTime, modelPassengers, modelTags);

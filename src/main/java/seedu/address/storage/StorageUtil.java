@@ -4,18 +4,19 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.Price;
-import seedu.address.model.pool.TripDay;
-import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,16 +47,16 @@ public class StorageUtil {
     }
 
     /**
-     * Converts the given {@code List<JsonAdaptedPassenger>} to a {@code Set<Passenger>} by calling
+     * Converts the given {@code List<JsonAdaptedPassenger>} to a {@code List<Passenger>} by calling
      * {@code JsonAdaptedPassenger::toModelType}.
      *
      * @param passengerList the List of JsonAdaptedPassenger to convert.
-     * @return the Set of {@code Passenger} compatible with {@code Model}.
+     * @return the List of {@code Passenger} compatible with {@code Model}.
      * @throws IllegalValueException if any of the {@code Passenger}s is invalid.
      */
-    public Set<Passenger> convertAdaptedPassengersToModel(List<JsonAdaptedPassenger> passengerList)
+    public List<Passenger> convertAdaptedPassengersToModel(List<JsonAdaptedPassenger> passengerList)
             throws IllegalValueException {
-        final Set<Passenger> modelPassengers = new HashSet<>();
+        final List<Passenger> modelPassengers = new ArrayList<>();
         for (JsonAdaptedPassenger tag : passengerList) {
             modelPassengers.add(tag.toModelType());
         }

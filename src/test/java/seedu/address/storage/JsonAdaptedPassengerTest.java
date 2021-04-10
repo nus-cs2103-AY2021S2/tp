@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.Price;
-import seedu.address.model.pool.TripDay;
-import seedu.address.model.pool.TripTime;
 import seedu.address.testutil.PassengerBuilder;
 
 public class JsonAdaptedPassengerTest {
@@ -29,8 +29,6 @@ public class JsonAdaptedPassengerTest {
     private static final String INVALID_TRIPDAY = "funday";
     private static final String INVALID_TRIPTIME = "21032103";
     private static final String INVALID_PRICE = "1.42069";
-    private static final String INVALID_DRIVER_NAME = INVALID_NAME + "; Phone: 12345";
-    private static final String INVALID_DRIVER_PHONE = "Huyser Wang; Phone: " + INVALID_PHONE;
 
 
     private static final String VALID_NAME = BENSON.getName().toString();

@@ -61,20 +61,6 @@ public class TypicalPassengers {
             .withTripDay(DayOfWeek.MONDAY).withTripTime(LocalTime.of(19, 30))
             .withAddress("3rd ave").build();
 
-    // Passengers with drivers removed
-    public static final Passenger HILARY_NO_DRIVER = new PassengerBuilder().withName("Hilary Clinton")
-            .withPhone("9486666").withTripDay(DayOfWeek.MONDAY).withTripTime(LocalTime.of(19, 30))
-            .withPrice(1.69).withAddress("6th ave").build();
-    public static final Passenger IRENE_NO_DRIVER = new PassengerBuilder().withName("Irene Newton")
-            .withPhone("91238888").withTripDay(DayOfWeek.MONDAY).withTripTime(LocalTime.of(19, 30))
-            .withPrice(1.80).withAddress("5th ave").build();
-    public static final Passenger JACKSON_NO_DRIVER = new PassengerBuilder().withName("Jackson Mehoff")
-            .withPhone("91236969").withTripDay(DayOfWeek.MONDAY).withTripTime(LocalTime.of(19, 30))
-            .withPrice(1.30).withAddress("4th ave").build();
-    public static final Passenger KINGSLEY_NO_DRIVER = new PassengerBuilder().withName("Kingsley Kuan")
-            .withPhone("91867510").withTripDay(DayOfWeek.MONDAY).withTripTime(LocalTime.of(19, 30))
-            .withPrice(1.90).withAddress("3rd ave").build();
-
     // Manually added
     public static final Passenger HOON = new PassengerBuilder().withName("Hoon Meier").withPhone("8482424")
             .withTripDay(DayOfWeek.FRIDAY).withTripTime(LocalTime.of(18, 0)).withPrice(1.69)
@@ -99,15 +85,17 @@ public class TypicalPassengers {
     /**
      * Returns an {@code AddressBook} with all the typical passengers.
      */
-    public static AddressBook getTypicalAddressBook() {
+    public static AddressBook getTypicalAddressBookPassengers() {
         AddressBook ab = new AddressBook();
         for (Passenger passenger : getTypicalPassengers()) {
             ab.addPassenger(passenger);
         }
+
         return ab;
     }
 
     public static List<Passenger> getTypicalPassengers() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HILARY, JACKSON,
+                KINGSLEY, IRENE));
     }
 }

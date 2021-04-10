@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.passenger.Passenger;
+import seedu.address.model.pool.Pool;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -20,6 +21,7 @@ import seedu.address.model.person.passenger.Passenger;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PASSENGER = "Passengers list contains duplicate passenger(s).";
+    public static final String MESSAGE_DUPLICATE_POOL = "Pool list contains duplicate pool(s).";
 
     private final List<JsonAdaptedPassenger> passengers = new ArrayList<>();
     private final List<JsonAdaptedPool> pools = new ArrayList<>();
@@ -60,6 +62,15 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPassenger(passenger);
         }
+
+        for (JsonAdaptedPool jsonAdaptedPool : pools) {
+            Pool pool = jsonAdaptedPool.toModelType();
+            if (addressBook.hasPool(pool)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_POOL);
+            }
+            addressBook.addPool(pool);
+        }
+
         return addressBook;
     }
 

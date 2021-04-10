@@ -26,8 +26,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.Passenger;
-import seedu.address.model.pool.DriverNameContainsKeywordsPredicate;
-import seedu.address.model.pool.Pool;
 import seedu.address.testutil.EditPassengerDescriptorBuilder;
 
 /**
@@ -44,7 +42,7 @@ public class CommandTestUtil {
 
     public static final DayOfWeek VALID_TRIPDAY_FRIDAY = DayOfWeek.FRIDAY;
     public static final DayOfWeek VALID_TRIPDAY_MONDAY = DayOfWeek.MONDAY;
-    public static final LocalTime VALID_TRIPTIME_EVENING = LocalTime.of(18, 00);
+    public static final LocalTime VALID_TRIPTIME_EVENING = LocalTime.of(18, 0);
     public static final LocalTime VALID_TRIPTIME_MORNING = LocalTime.of(8, 30);
     public static final DayOfWeek VALID_TRIPDAY_BOB = DayOfWeek.THURSDAY;
     public static final LocalTime VALID_TRIPTIME_BOB = LocalTime.of(19, 30);
@@ -87,8 +85,13 @@ public class CommandTestUtil {
     public static final String COMMUTER_DESC_1 = " " + PREFIX_COMMUTER + VALID_COMMUTER_1;
     public static final String COMMUTER_DESC_2 = " " + PREFIX_COMMUTER + VALID_COMMUTER_2;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_NAME_NO_PREFIX = "James&"; // '&' not allowed in names
+    public static final String INVALID_PHONE_NO_PREFIX = "911a"; // 'a' not allowed in phones
+
+    public static final String INVALID_NAME_DESC =
+            " " + PREFIX_NAME + INVALID_NAME_NO_PREFIX; // '&' not allowed in names
+    public static final String INVALID_PHONE_DESC =
+            " " + PREFIX_PHONE + INVALID_PHONE_NO_PREFIX; // 'a' not allowed in phones
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TRIPDAY = " " + PREFIX_TRIPDAY + "FUNDAY"; // not among the valid week days
     public static final String INVALID_TRIPTIME = " " + PREFIX_TRIPTIME + "21032103"; // not in the 24 hour time format
@@ -166,24 +169,6 @@ public class CommandTestUtil {
         model.updateFilteredPassengerList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPassengerList().size());
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show only the pool at the given {@code targetIndex} in the
-     * {@code model}'s address book.
-     */
-    public static void showPoolAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPoolList().size());
-
-        Pool pool = model.getFilteredPoolList().get(targetIndex.getZeroBased());
-
-        final String keywords = pool.getDriver().getName().fullName + " "
-                + pool.getTripDayAsStr() + " "
-                + pool.getTripTimeAsStr();
-        final String[] splitKeywords = keywords.split("\\s+");
-        model.updateFilteredPoolList(new DriverNameContainsKeywordsPredicate(Arrays.asList(splitKeywords[0])));
-
-        assertEquals(1, model.getFilteredPoolList().size());
     }
 
 }

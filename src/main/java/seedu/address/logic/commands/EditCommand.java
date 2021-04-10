@@ -20,13 +20,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.passenger.Address;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.person.passenger.Price;
-import seedu.address.model.pool.TripDay;
-import seedu.address.model.pool.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -104,14 +104,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPassengerDescriptor.getTags().orElse(passengerToEdit.getTags());
         TripDay updatedTripDay = editPassengerDescriptor.getTripDay().orElse(passengerToEdit.getTripDay());
         TripTime updatedTripTime = editPassengerDescriptor.getTripTime().orElse(passengerToEdit.getTripTime());
-
-        // TODO find a better way to do this section
-        Optional<Price> updatedPrice;
-        if (editPassengerDescriptor.getTripTime().isPresent()) {
-            updatedPrice = editPassengerDescriptor.getPrice();
-        } else {
-            updatedPrice = passengerToEdit.getPrice();
-        }
+        Optional<Price> updatedPrice = editPassengerDescriptor.getPrice().or(passengerToEdit::getPrice);
 
         return new Passenger(updatedName, updatedPhone, updatedAddress, updatedTripDay, updatedTripTime, updatedPrice,
                 updatedTags);
