@@ -45,7 +45,7 @@ destroy UnpoolCommandParser
 AddressBookParser --> LogicManager : u
 deactivate AddressBookParser
 
-LogicManager -> UnpoolCommand : execute()
+LogicManager -> UnpoolCommand : execute(model)
 activate UnpoolCommand
 
 UnpoolCommand -> Model : deletePool(1)
