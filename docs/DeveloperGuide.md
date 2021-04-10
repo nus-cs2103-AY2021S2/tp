@@ -14,7 +14,7 @@ title: Developer Guide
     * [Storage component](#storage-component)
     * [Common classes](#common-classes)
 * [Implementation](#implementation)
-    * [Proposed Undo/redo feature](#proposed-undoredo-feature)
+    * [\[New\] Delete multiple tasks with indices](#new-delete-multiple-tasks-with-indices)
         * [Proposed Implementation](#proposed-implementation)
         * [Design consideration:](#design-consideration)
             * [Aspect: How undo & redo executes](#aspect-how-undo--redo-executes)
@@ -33,15 +33,15 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+# **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+# **Design**
 
-### Architecture
+## Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -94,7 +94,7 @@ the command `delete 1`.
 
 The sections below give more details of each component.
 
-### UI component
+## UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -115,7 +115,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+## Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -137,7 +137,7 @@ call.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+## Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -156,7 +156,7 @@ The `Model`,
 
 </div>
 
-### Storage component
+## Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -172,12 +172,12 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.taskify.commons` package.
 
 
-## Implementation
+# Implementation
 
-### \[New] Delete multiple tasks with indices
+## \[New] Delete multiple tasks with indices
 This feature allows users to list out the [indices](#glossary) of tasks to delete.
 
-#### Implementation
+### Implementation
 This feature is facilitated by `DeleteMultipleCommand`, which is a `Command` that is executed with `execute()`. It relies on `DeleteUtil#hasMultipleValidIndex` as a validity check,
 which is done in `TaskifyParser`. If valid, `DeleteMultipleCommandParser#parse` is called, and returns a `DeleteMultipleCommand`.
 
@@ -187,13 +187,13 @@ The following class diagram shows the relationship between classes for a success
 The following sequence diagram traces the step-by-step execution of deleting multiple tasks with multiple indices.
 ![](images/DeleteMultipleUsingIndicesSeqDiag.png)
 
-#### Design Consideration
+### Design Consideration
 
-##### Aspect 1: Problem & Solution
+#### Aspect 1: Problem & Solution
 * **Problem**: Deleting several tasks with the default delete feature is too cumbersome
 * **Solution**: Allow listing of multiple indices after typing `delete` once.
 
-##### Aspect 2: Design of solution
+#### Aspect 2: Design of solution
 * **Solution 1 (selected)**: Create a new command that is not a subclass of `DeleteCommand`
   * Pros: Decouple the new command from `DeleteCommand` and obey SRP.
   * Cons: Harder to implement
@@ -204,10 +204,10 @@ The following sequence diagram traces the step-by-step execution of deleting mul
     
 Solution 1 was selected for its better benefits as well as increased testability.
 
-### \[New] Delete multiple tasks with an index range
+## \[New] Delete multiple tasks with an index range
 This feature allows users to provide an index range to delete all tasks within the range, inclusive of the upper and lower bound indices.
 
-#### Implementation
+### Implementation
 This feature is also facilitated by `DeleteMultipleCommand`. The execution of this `DeleteMultipleCommand` is extremely similar to that in the
 [deleting multiple tasks with **multiple indices** feature](#new-delete-multiple-tasks-with-indices), with the only difference in
 the `isDeletingByRange` field in both `DeleteMultipleCommand` objects. This field is used for handling exceptions appropriately in 
@@ -218,22 +218,22 @@ The responsible class diagram for this feature is [here](#class-diag-delete-indi
 
 The following sequence diagram traces the step-by-step execution of deleting multiple tasks with an index range.
 ![](images/DeleteMultUsingIndexRangeSeqDiag.png)
-#### Design Consideration
+### Design Consideration
 
-##### Aspect 1: Problem & Solution
+#### Aspect 1: Problem & Solution
 * **Problem**: Listing indices individually after typing `delete` to delete many tasks might be cumbersome as well
 * **Solution**: Allow users to delete tasks using a range.
 
-##### Aspect 2: Design of solution
+#### Aspect 2: Design of solution
 `DeleteMultipleCommand` was already implemented to store the indices of the tasks to delete. A simple solution was to parse the index range
 its individual indices, and create a `DeleteMultipleCommand` with those indices. Testability might have reduced a little by adding some
 additional exceptions to be thrown within the execution of the command, but deleting either by an index range or individual indices seems to
 be part of the same responsibility, so it likely does not violate SRP.
 
-### \[New] Delete all tasks of a specified status
+## \[New] Delete all tasks of a specified status
 
 
-## **Documentation, logging, testing, configuration, dev-ops**
+# **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -243,9 +243,9 @@ be part of the same responsibility, so it likely does not violate SRP.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+# **Appendix: Requirements**
 
-### Product scope
+## Product scope
 
 **Target user profile**:
 
@@ -255,7 +255,7 @@ be part of the same responsibility, so it likely does not violate SRP.
 
 **Value proposition**: help students manage their tasks in a systematic and efficient manner
 
-### User stories
+## User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -278,7 +278,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+## Use cases
 
 (For all use cases below, the **System** is the `Taskify` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -511,7 +511,7 @@ Use case ends.
 
 ---
 
-### Non-Functional Requirements
+## Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 100 tasks without a noticeable sluggishness in performance for typical usage.
@@ -520,14 +520,14 @@ Use case ends.
 5. The app should be able to run with or without internet connection
 6. The product should not take above 10 seconds to execute any commands.
 
-### Glossary
+## Glossary
 * **SRP**: Single Responsibility Principle
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Indices**: Plural form of **Index**
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+# **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -536,7 +536,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+## Launch and shutdown
 
 1. Initial launch
 
@@ -554,7 +554,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a task
+## Deleting a task
 
 1. Deleting a task while all tasks are being shown
 
@@ -572,7 +572,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+## Saving data
 
 1. Dealing with missing/corrupted data files
 
