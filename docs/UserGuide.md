@@ -37,6 +37,8 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
 :exclamation: **Caution:** This block is used to point out any dangerous actions that may result in the loss of data or the app crashing.
 </div>
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -70,6 +72,8 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
 
 1. Refer to the [Features](#features) below for details of each command.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -97,7 +101,7 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Adding a contact: `add`
 
@@ -160,7 +164,7 @@ Examples:
 * `add n/Alice Tan p/98765432 s/Abc Secondary School e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789`
 * `add n/Bob Lee p/87654321 s/Def Secondary School e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/math le/monday 1300`
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Editing a contact : `edit`
 
@@ -224,7 +228,7 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing subjects.
 *  `edit 1 le/monday 1300 le/tuesday 1400` Edits the 1st student's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Viewing a contact details: `detail`
 
@@ -254,7 +258,7 @@ Command     | Result
 ----------- |---------------------------------------------------
 detail 1    | displays the details of the 1st student in the list
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Deleting a contact : `delete`
 
@@ -278,7 +282,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in TutorsPet.
 * `search n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `search` command.
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Searching for a contact: `search`
 
@@ -361,7 +365,7 @@ Examples:
 * `sort n/ s/` sorts students by the alphabetical orders of their schools, and ignores the name prefix.
 * `sort t/` sorts students based on the alphabetical order of their first subject 
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Listing all contacts : `list`
 
@@ -369,7 +373,7 @@ Shows a list of all student contacts in TutorsPet. Each student's name, phone nu
 
 Format: `list`
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Viewing schedule : `schedule`
 
@@ -379,7 +383,7 @@ Format: `schedule`
 
 ![schedule popup](images/scheduleWindow.png)
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Advancing all students: `levelup`
 
@@ -417,7 +421,7 @@ Examples:
 * `levelup ex/3 4` advances all students by one level, excluding the 3rd and 4th student
   in the list, as well as any students who have `grad`.
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Demoting all students: `leveldown`
 
@@ -454,7 +458,7 @@ Examples:
 * `levelup ex/2 5` demotes all students by one level, excluding the 3rd and 4th student
   in the list, as well as any students who are `pri1`.
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Adding an important date: `add-date`
 
@@ -476,7 +480,7 @@ Format: `add-date d/DESCRIPTION dt/DETAILS`
 Examples:
 * `add-date d/math exam dt/2021-11-03 0800`
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Listing all important dates : `list-date`
 
@@ -484,7 +488,7 @@ Shows a list of all important dates in TutorsPet.
 
 Format: `list-date`
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Deleting an important date : `delete-date`
 
@@ -506,7 +510,7 @@ Format: `delete-date INDEX`
 Examples:
 * `list-date` followed by `delete-date 2` deletes the 2nd important date in TutorsPet.
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Clearing all entries : `clear`
 
@@ -514,7 +518,7 @@ Clears all entries from TutorsPet.
 
 Format: `clear`
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Exiting the program : `exit`
 
@@ -522,7 +526,7 @@ Exits the program.
 
 Format: `exit`
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Viewing help : `help`
 
@@ -532,7 +536,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Saving the data
 
@@ -552,7 +556,7 @@ If your changes to the data file makes its format invalid, TutorsPet will discar
 
 </div>
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ## Coming soon
 
@@ -574,7 +578,7 @@ _Format: `add-profile INDEX FILE_PATH` <br> Add a profile picture to the contact
 by providing the file path to the picture._
 --------------------------------------------------------------------------------------------------------------------
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ## FAQ
 
@@ -605,7 +609,7 @@ like chem and bio.
 
 </div>
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ## Command summary
 
@@ -627,4 +631,4 @@ Action | Format, Examples
 **List dates** | `list-date`
 **Help** | `help`
 
-<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
