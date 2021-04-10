@@ -56,7 +56,7 @@ Each of the four components,
   API `interface` mentioned in the previous point).
 
 The ***Sequence Diagram*** below shows how the components interact with each other for the scenario where the user issues
-the command `delete 5`.
+the command `delete 1`.
 
 ![Sequence Diagram of the Architecture](images/ArchitectureSequenceDiagram.png)
 
@@ -178,7 +178,7 @@ From the diagram above:
 7. Subsequently, the `AddCommand` object will add the `Item` object to `Model`, and return a `CommandResult` object to `LogicManager`.
 8. This `CommandResult` will be returned at the end by `LogicManager`.
 
-The following activity diagram summarizes what happens when a user executes the `add` command:
+The following Activity Diagram summarizes what happens when a user executes the `add` command:
 
 <br>
 
@@ -208,7 +208,8 @@ The following activity diagram summarizes what happens when a user executes the 
       save users from going through the hassle of distinguishing items by expiry date.
     * **Cons**: Users would not be able to store similar items that have different expiry dates as a result of being 
       produced in different batches.
-
+      
+<br>
 
 ### Edit Feature `edit`
 The edit feature allows users to edit an item's name, quantity, location, expiry date and tag.
@@ -225,7 +226,7 @@ Even though the edit command expects the user input to only have multiple tag pr
 
 #### Actual Implementation
 
-The sequence diagram below shows how the components interact with each other for the scenario where the user
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 issues the command `edit 1 n/apple`: 
 
 <br>
@@ -262,7 +263,7 @@ edited item.
 
 12. This `CommandResult` will be returned in the end by `LogicManager`.
 
-The following activity diagram summarizes what happens when a user executes the `edit` command:
+The following Activity Diagram summarizes what happens when a user executes the `edit` command:
 
 <br>
 
@@ -272,22 +273,24 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ##### Aspect: How `edit` executes
 
-* **Alternative 1 (current choice):** Does not allow the edited item to have the same field as the original item.
+* **Alternative 1 (current choice):** Prevent the edited item to have the same field as the original item.
     * **Pros**: User will be notified if original items are not being edited.
     * **Cons**: Harder to implement
 
 
-* **Alternative 2:** Allows edited item to have the same fields as the original item.
+* **Alternative 2:** Allow edited item to have the same fields as the original item.
     * **Pros**: Easy to implement.
     * **Cons**: May seem confusing that an edit with no changes result in a success.
     
+<br>
+
 ### Delete Feature `delete`
 
 The delete feature allows users to delete an item from the inventory by using the item's index in the displayed list.
 
 #### Actual Implementation
 
-The sequence diagram below shows how the components interact with each other for the scenario where the user
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 issues the command `delete 5` to delete the item with index 5 in the currently displayed list:
 
 <br>
@@ -308,7 +311,7 @@ From the diagram above:
 a `CommandResult` object to `LogicManager`.
 8. This `CommandResult` will be returned at the end by `LogicManager`.
 
-The following activity diagram summarizes what happens when a user executes the `delete` command:
+The following Activity Diagram summarizes what happens when a user executes the `delete` command:
 
 <br>
 
@@ -324,9 +327,11 @@ The following activity diagram summarizes what happens when a user executes the 
     * **Pros**: Will be easier for the user especially when there are many items in the list.
     * **Cons**: Items with the same name in different locations may cause confusion.
 
+<br>
+
 ### Find Feature `find`
 
-The `find` feature is helps users find and display all items whose names
+The find feature helps users find and display all items whose names
 contain any of the given keywords, either in full or partial.
 
 `find KEYWORD [MORE_KEYWORDS]` displays items whose names contain any of the given keywords in full.
@@ -335,7 +340,7 @@ contain any of the given keywords, either in full or partial.
 
 #### Actual Implementation
 
-The sequence diagram below shows how the components interact with each other for the scenario where the user
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `find */cheese egg`:
 
 <br>
@@ -367,7 +372,7 @@ From the diagram above:
 9. Finally, a `CommandResult` object is created and returned to `LogicManager`.
 10. This `CommandResult` object will be returned in the end by `LogicManager`.
 
-The following activity diagram summarizes what happens when a user executes the `find` command:
+The following Activity Diagram summarizes what happens when a user executes the `find` command:
 
 <br>
 
@@ -387,6 +392,7 @@ The following activity diagram summarizes what happens when a user executes the 
     * **Pros**: Users would be able to retrieve a specific item more efficiently.
     * **Cons**: Users need to remember the items' attributes.
     
+<br>
 
 ### List Feature `list`
 
@@ -397,7 +403,7 @@ or with a specific tag respectively.
 
 #### Actual Implementation
 
-The sequence diagram below shows how the components interact with each other for the scenario where the user
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `list`:
 
 <br>
@@ -418,7 +424,7 @@ From the diagram above:
 8. Subsequently, a `CommandResult` object is created and returned to `LogicManager`.
 9. This `CommandResult` will be returned at the end by `LogicManager`.
 
-The following activity diagram summarizes what happens when a user executes the `list` command:
+The following Activity Diagram summarizes what happens when a user executes the `list` command:
 
 <br>
 
@@ -437,6 +443,7 @@ The following activity diagram summarizes what happens when a user executes the 
     * **Pros**: More organised overview of all the items in the inventory.
     * **Cons**: Difficult to implement.
     
+<br>
 
 ### Reminder Feature `reminder`
 
@@ -444,21 +451,21 @@ The reminder feature allows users to view items that are expiring within a certa
 
 #### Actual Implementation
 
-The sequence diagram below shows how the components interact with each other for the scenario where the user
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 issues the command `reminder 1 week`:
 
 <br>
 
-![ReminderSequenceDiagram](images/ReminderWeeksSequenceDiagram.png)
+![ReminderWeeksSequenceDiagram](images/ReminderWeeksSequenceDiagram.png)
 
 <br>
 
-The sequence diagram below shows how the components interact with each other for the scenario where the user
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 issues the command `reminder 3 days`:
 
 <br>
 
-![ReminderSequenceDiagram](images/ReminderDaysSequenceDiagram.png)
+![ReminderDaysSequenceDiagram](images/ReminderDaysSequenceDiagram.png)
 
 From the diagrams above:
 
@@ -482,7 +489,7 @@ From the diagrams above:
 12. Finally, a `CommandResult` object is created and returned to `LogicManager`.
 13. This `CommandResult` object will be returned at the end by `LogicManager`.
 
-The following activity diagram summarizes what happens when a user executes a `reminder` command:
+The following Activity Diagram summarizes what happens when a user executes a `reminder` command:
 
 <br>
 
@@ -503,12 +510,13 @@ The following activity diagram summarizes what happens when a user executes a `r
     * **Cons**: When the user wants to find items that are already expired, it is easier to key in a number then to
     find a particular date and key it in. This is more taxing on the user.
 
+<br>
 
 ### Sort Feature `sort`
 
-The `sort` feature allows users to view the items in the displayed list of items in a specific order.
+The sort feature allows users to view the items in the displayed list of items in a specific order.
 
-The `sort quantity asc` and` sort quantity desc` commands allows users to view all items in the displayed list in
+The `sort quantity asc` and `sort quantity desc` commands allows users to view all items in the displayed list in
 ascending or descending order of quantity respectively. 
 
 In comparison, the `sort expirydate` command allows users to
@@ -516,7 +524,7 @@ view items in the displayed list in chronological order of their expiry date.
 
 #### Actual Implementation
 
-The sequence diagram below shows how the components interact with each other for the scenario where the user
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `sort quantity asc`:
 
 <br>
@@ -548,7 +556,7 @@ From the diagram above:
 12. This `CommandResult` will be returned at the end by `LogicManager`.
 
 
-The following activity diagram summarizes what happens when a user executes a `sort quantity asc` command:
+The following Activity Diagram summarizes what happens when a user executes a `sort quantity asc` command:
 
 <br>
 
@@ -569,6 +577,8 @@ The following activity diagram summarizes what happens when a user executes a `s
     * **Cons**: Changing of underlying list implementation introduces unnecessary complexity and delay as all the other components
       that depend on filtered list implementation would have to be changed as well.
 
+<br>
+
 ### Clear Feature `clear`
 
 The clear feature allows users to either clear all items in the inventory or clear all items from a specific location.
@@ -576,7 +586,7 @@ The clear feature allows users to either clear all items in the inventory or cle
 
 #### Actual Implementation 
 
-The sequence diagram below shows how the components interact with each other for the scenario where the user
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `clear`:
 
 <br>
@@ -585,7 +595,7 @@ keys in the command `clear`:
 
 <br>
 
-The sequence diagram below shows how the components interact with each other for the scenario where the user
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `clear l/Kitchen`:
 
 <br>
@@ -608,11 +618,13 @@ From the diagram above:
 9. Finally, a `CommandResult` object is created and is returned to `LogicManager`.
 10. The `CommandResult` object will be returned in the end by `LogicManager`.
 
-The following activity diagram summarizes what happens when a user executes the clear by location command:
+The following Activity Diagram summarizes what happens when a user executes the clear by location command:
 
 <br>
 
 ![ClearActivityDiagram](images/ClearLocationActivityDiagram.png)
+
+<br>
 
 ### Help Feature `help`
 
@@ -620,7 +632,7 @@ The help feature redirects users to StoreMando's User Guide. If the device is co
 will automatically open the User Guide in a new browser. Otherwise, it will have a pop out window with the User
 Guide link.
 
-The help command has the following format :`help`.
+The help command has the following format : `help`.
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**
@@ -630,7 +642,7 @@ Even though the help command expects the user input to contain the `help` comman
 
 #### Actual Implementation
 
-The sequence diagram below shows how the components interact with each other for the scenario where the user
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 keys in the command `help`:
 
 <br>
@@ -650,7 +662,7 @@ From the diagram above:
    will be provided. `HelpCommand` will then create a `CommandResult` and pass to `LogicManager`.
 9. The `CommandResult` object will be returned in the end by `LogicManager`.   
 
-The following activity diagram summarizes what happens when a user executes a help command:
+The following Activity Diagram summarizes what happens when a user executes a help command:
 
 <br>
 
@@ -661,7 +673,7 @@ The following activity diagram summarizes what happens when a user executes a he
 ##### Aspect: How `help` executes
 
 * **Alternative 1 (Current choice):** Automatically open a browser to StoreMando's User Guide when there is internet access.
-    * **Pros**: User don't have to manually copy and paste the link on their browser.
+    * **Pros**: User doesn't have to manually copy and paste the link on their browser.
 
 * **Alternative 2**: Provide user the link to StoreMando's user guide.
     * **Pros**: Easier to implement.
