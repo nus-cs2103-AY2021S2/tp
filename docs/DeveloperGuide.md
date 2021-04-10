@@ -837,6 +837,56 @@ The following activity diagram summarises what happens when a user executes a Ed
 
 <img src="images/EditEventCommandActivityDiagram.png" width="250" />
 
+
+***Design Considerations for `EditEventCommand`***
+<table>
+    <tr>
+        <th> Alternative 1 (Chosen Implementation) </th>
+        <th> Alternative 2 </th>
+    </tr>
+    <tr>
+        <td> 
+            <ul>
+                <li>Allows an expired event to be edited only when end date time need to be extended to an unexpired time</li>
+                <li> Pros:
+                    <ul>
+                        <li>Similar checks to AddEventCommand</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>Only end date time of an unexpired event can be edited</li>
+                        <li>Affects other classes</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+        <td> 
+            <ul>
+                <li>Allows all fields in an expired event to be edited</li>
+                <li> Pros:
+                    <ul>
+                        <li>Users have more freedom to edited things</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>Need to add extra checks in EditEventCommand</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<div markdown="block">
+
+We chose alternative 1 because if the event in the real world ended, it’s meaningless to let users make changes 
+on any field other than end date time. We did consider the fact that an event in the real world could be extended, 
+so we allow users to make changes on end date time from an expired timestamp to an unexpired timestamp. Besides, 
+we allowed an expired task to be edited is because if the task is expired but not completed yet, it would then become 
+an “overdue task”, while there’s no “overdue event”.
+
+
 [Return to Table of Contents](#table-of-contents)  
 
 **Implementation of FindFreeTimeCommand**  
@@ -1073,13 +1123,6 @@ Use case ends.
 
 **Use case: UC04 - List tasks**
 
-**MSS**
-
-1. User wishes to add a new task.
-2. User enters the corresponding command.
-3. SOChedule displays all tasks.
-<br><br>
-Use case ends.
 
 
 **Use case: UC05 - Marking tasks complete**
@@ -1202,13 +1245,19 @@ Use case ends.
 
 **Use case: UC11 - Clearing all completed tasks**
 
-`<pending>`
+1. User requests to clear all completed tasks.
+1. SOChedule displays a success message for clearing all completed tasks.
+<br><br>
+Use case ends.
 
 **Use case: UC12 - Clearing all expired tasks**
 
-`<pending>`
+1. User requests to clear all expired tasks.
+1. SOChedule displays a success message for clearing all expired tasks.
+<br><br>
+Use case ends.
 
-**Use case: UC13 - Add an event**
+**Use case: UC13 - Adding an event**
 
 **MSS**
 
@@ -1232,15 +1281,14 @@ Use case ends.
       is invalid, or not following the `YYYY-MM-DD` format.
       Use case ends.
 
-**Use case: UC14 - Delete an event**
+**Use case: UC14 - Deleting an event**
 
 **MSS**
 
-1. User requests to <u> list events (UC06)</u>.
-2. SOChedule shows a list of events.
-3. User chooses to delete an event.
-4. User enters the index of the event to be deleted.
-5. SOChedule displays a success message for deleting the event.
+1. User requests to <u> list events (UC16)</u>.
+1. SOChedule shows a list of events.
+1. User requests to delete a specific event in the list.
+1. SOChedule displays a success message for deleting the event.
 <br><br>
 Use case ends.
 
@@ -1259,9 +1307,49 @@ Use case ends.
 
 **Use case: UC15 - Editing an event**
 
-`<pending>`
+1. User requests to <u> list events (UC16)</u>.
+1. SOChedule shows a list of events.
+1. User requests to edit a specific event in the list.
+1. SOChedule displays a success message for editing the event.
+   <br><br>
+   Use case ends.
+   
+* 3a. No edited field is provided
 
-**Use case: UC16 - List events**
+    * 3a1. SOChedule displays an error message suggesting that information provided when editing
+      the event is incomplete.
+      Use case resumes at step 2.
+
+* 3b. The event is expired
+
+    * 3b1. SOChedule displays an error message suggesting that an expired event cannot be edited.
+      Use case resumes at step 2.
+      
+* 3c. The date provided for the event is invalid
+
+    * 3c1. SOChedule displays an error message suggesting that date provided for the event
+      is invalid, or not following the `YYYY-MM-DD` format.
+      Use case resumes at step 2.
+      
+* 3d. The given index is invalid.
+
+    * 3d1. SOChedule shows an error message.
+      Use case resumes at step 2.
+
+**Extensions**
+
+* 2a. The task list is empty.
+
+  Use case ends.
+
+
+* 3a. The given index is invalid.
+
+    * 3a1. SOChedule shows an error message indicating the invalidity of the index.
+
+      Use case resumes at step 2.
+
+**Use case: UC16 - Listing events**
 
 **MSS**
 
@@ -1273,7 +1361,9 @@ Use case ends.
 **Extensions**
 
 * 1a. No events have been added.
+
     * 1a1. SOChedule displays an empty list.
+    
       Use case ends.
 
 **Use case: UC17 - Getting today's events**
@@ -1286,7 +1376,10 @@ Use case ends.
 
 **Use case: UC19 - Clearing expired events**
 
-`<pending>`
+1. User requests to clear all expired events.
+1. SOChedule displays a success message for clearing all expired events.
+<br><br>
+Use case ends.
 
 **Use case: UC20 - Finding tasks and events before or on given date**
 
@@ -1469,7 +1562,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding an event
 
-    1. Prerequisites: No duplicates events with the same ISBN exists.
+    1. Prerequisites: No duplicates events could exist.
     
     1. Test case: `add_event n/CS2103 meeting sd/2022-05-27 st/15:00 ed/2022-05-27 et/17:00`
            Expected: Event successfully added, detailed information shown in the status bar.
@@ -1478,7 +1571,7 @@ testers are expected to do more *exploratory* testing.
                   Expected: Event successfully added, detailed information shown in the status bar.
                   
     1. Test case: `add_event n/Inter College Game sd/2000-03-23 st/12:00 ed/2000-03-23 et/14:00`
-                  Expected: No event is deleted, since end date time is past. Detailed error message shown in the status bar.              
+                  Expected: No event is added, since end date time is past. Detailed error message shown in the status bar.              
                   
     1. Other incorrect commands to try: `add_event`, `add_event n/Meeting 1`, etc.
     

@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/yufeng0930.png" width="200px">
 
 [[github](https://github.com/YuFeng0930)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/YuFeng0930.md)]
 
 * Role: Developer
 * Responsibilities: Events Team

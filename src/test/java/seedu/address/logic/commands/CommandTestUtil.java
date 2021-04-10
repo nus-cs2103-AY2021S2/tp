@@ -77,7 +77,7 @@ public class CommandTestUtil {
     public static final String VALID_EVENT_CATEGORY_SCHOOL = "School";
     public static final String VALID_EVENT_TAG_FINAL = "Final";
     public static final String VALID_EVENT_TAG_FUN = "Fun";
-    public static final String INVALID_EVENT_ENDDATE = "2020-03-03";
+    public static final String INVALID_EVENT_ENDDATE = LocalDate.now().minusMonths(1).toString();
     // Event to input to parser
     public static final String NAME_DESC_EVENTONE = " " + PREFIX_NAME + VALID_EVENT_NAME_EVENTONE;
     public static final String NAME_DESC_EVENTTWO = " " + PREFIX_NAME + VALID_EVENT_NAME_EVENTTWO;

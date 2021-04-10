@@ -20,6 +20,13 @@ activate LogicManager
 LogicManager -> SocheduleParser : parseCommand(edit_event args)
 activate SocheduleParser
 
+create EditEventCommandParser
+SocheduleParser -> EditEventCommandParser
+activate EditEventCommandParser
+
+EditEventCommandParser --> SocheduleParser
+deactivate EditEventCommandParser
+
 SocheduleParser -> EditEventCommandParser: parse(args)
 activate EditEventCommandParser
 
