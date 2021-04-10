@@ -351,7 +351,11 @@ class="optional-param">-u reqres</span> (match **GET OR POST** in Method **and**
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 The above shortcut for run command is designed for users to easily verify outputs for common API endpoints that 
-do not require any input data or header. Note that this feature is only meant for sending GET requests.
+**do not require any input data or header**. Note that this feature is only meant for sending **GET** requests.
+</div>
+
+<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
+Do not worry if an API call is taking longer than usual, there is an automatic timeout of 60 seconds!
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -367,6 +371,10 @@ do not require any input data or header. Note that this feature is only meant fo
 <p align="center">
   <img width="450px" src="images/commands/send.png" >
 </p>
+
+<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
+Do not worry if an API call is taking longer than usual, there is an automatic timeout of 60 seconds!
+</div>
 
 <div style="page-break-after: always;"></div>
 
