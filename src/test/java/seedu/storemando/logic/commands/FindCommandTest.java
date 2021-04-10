@@ -20,7 +20,6 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.storemando.commons.core.Messages;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.UserPrefs;
@@ -112,7 +111,7 @@ public class FindCommandTest {
     public void execute_noItemInList() {
         showEmptyListAfterFind(model, HEATER);
 
-        assertCommandFailure(new SortAscendingQuantityCommand(), model, Messages.MESSAGE_NO_ITEM_IN_LIST);
+        assertCommandFailure(new SortAscendingQuantityCommand(), model, MESSAGE_NO_ITEM_IN_LIST);
     }
 
     /**

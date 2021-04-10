@@ -2,6 +2,7 @@ package seedu.storemando.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.storemando.commons.core.Messages.MESSAGE_NO_ITEM_IN_LIST;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.storemando.logic.commands.CommandTestUtil.showEmptyListAfterFind;
@@ -12,7 +13,6 @@ import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedB
 
 import org.junit.jupiter.api.Test;
 
-import seedu.storemando.commons.core.Messages;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.UserPrefs;
@@ -34,7 +34,7 @@ class SortAscendingQuantityCommandTest {
         Model model = new ModelManager();
 
         assertCommandFailure(new SortAscendingQuantityCommand(), model,
-            Messages.MESSAGE_NO_ITEM_IN_LIST);
+            MESSAGE_NO_ITEM_IN_LIST);
     }
 
     @Test
@@ -60,7 +60,7 @@ class SortAscendingQuantityCommandTest {
         Model model = new ModelManager(getTypicalStoreMando(), new UserPrefs());
         showEmptyListAfterFind(model, HEATER);
 
-        assertCommandFailure(new SortAscendingQuantityCommand(), model, Messages.MESSAGE_NO_ITEM_IN_LIST);
+        assertCommandFailure(new SortAscendingQuantityCommand(), model, MESSAGE_NO_ITEM_IN_LIST);
     }
 
     @Test
