@@ -203,7 +203,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
 ##### `NAME`
 
 * The name of a contact/groupmate/project.
-* Names should only contain alphanumeric characters, and it should not be blank.
+* Names should only contain alphanumeric characters and spaces, and it should not be blank.
 
 ##### `PHONE_NUMBER`
 
