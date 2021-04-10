@@ -21,7 +21,7 @@ import seedu.address.model.project.Project;
 class JsonSerializableColabFolder {
 
     public static final String MESSAGE_DUPLICATE_CONTACTS = "Contact list contains duplicate contact(s).";
-    public static final String MESSAGE_DUPLICATE_PROJECTS = "Contact list contains duplicate project(s).";
+    public static final String MESSAGE_DUPLICATE_PROJECTS = "Project list contains duplicate project(s).";
 
     private final List<JsonAdaptedContact> contacts = new ArrayList<>();
     private final List<JsonAdaptedProject> projects = new ArrayList<>();
