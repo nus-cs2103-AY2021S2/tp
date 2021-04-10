@@ -304,6 +304,8 @@ Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... 
   For example, in input `edit_task 1 t/tag1 t/tag2`, `t/tag1` is before `t/tag2`, 
   but `tag2` may appear in the UI before `tag1`, then `tag1` on the right of `tag2`. 
   The ordering is not guaranteed and this is intended behaviour.
+* When editing a task, error messages will be shown if the edited task is the same as the original task or the edited task is
+equivalent to another existing task in the task list.
 
 Examples:
 * `edit_task 1 n/t1` edits the name of the first task (if present in SOChedule) to be `editedTaskName`.
