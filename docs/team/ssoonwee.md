@@ -41,6 +41,7 @@ Given below are my contributions to the project.
   * Set up of issues for user stories
   * Raised issues and bugs related to certain features
   * Reviewing and approving of teammates' pull requests
+  * Fixed bugs found during the PE-Dry Run
 
 * **Community**:
   * Raised some issues in the forum for open discussions
