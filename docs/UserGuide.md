@@ -224,12 +224,9 @@ any of the specified keywords.
 
 Format: `findMembers KEYWORD [MORE_KEYWORDS]...`
 
-* KEYWORD must match an entire word exactly in order for the particular member to be found. 
-  * E.g. A member whose name is `Rachel` will not be found with `findMembers Rach`.
-
-<div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
-The search using keywords is case-insensitive. e.g. `david li` will match with `David Li`.
-</div>
+* KEYWORD must match an entire word, case-insensitive, in order for the particular member to be found. 
+  * E.g. `Rachel` will not match with `Rach`.
+  * E.g. `Rachel` will match with `rachel`. 
 
 Examples: 
 * `findMembers Rachel`
@@ -331,12 +328,9 @@ This feature allows you to find all tasks which contains any of the specified ke
 
 Format: `findTasks KEYWORD [MORE_KEYWORDS]...`
 
-* KEYWORD must match an entire word exactly in order for the particular task to be found.
-  * E.g. A task with title `Proposal` will not be found with `findTasks Prop`.
-  
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The search using keywords is case-insensitive. e.g. `proposal` will match with `Proposal`.
-</div>
+* KEYWORD must match an entire word, case-insensitive, in order for the particular task to be found.
+  * E.g. `Meeting` will not match with `Meet`.
+  * E.g. `Meeting` will match with `meeting`.
 
 Examples: 
 * `findTasks Meeting`
