@@ -1,6 +1,5 @@
 package seedu.address.logic.parser.editcommandparser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENERAL_EVENT;
 
@@ -29,15 +28,9 @@ public class EditEventCommandParser extends EditCommandParser implements Parser<
     public EditEventCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_GENERAL_EVENT, PREFIX_DATE);
-
         Index index;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditEventCommand.MESSAGE_USAGE), pe);
-        }
+        index = ParserUtil.parseGeneralEventIndex(argMultimap.getPreamble());
 
         int intIndex = index.getOneBased();
         Description eventEdit = null;
