@@ -405,8 +405,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  The product should be available for downloads after each [GitHub release](https://github.com/AY2021S2-CS2103T-T13-1/tp/releases).
 3.  The product's size in terms of the final `Jar` released should not exceed 100MB.
 4.  The product should be an offline application, which should work regardless of internet connection.
-5.  The product should be able to hold up to 2000 Japanese words without causing a delay in commands longer than
-    0.5 seconds.
+5.  The product should be able to hold at least 200 flashcards without causing a delay in commands longer than
+    0.2 seconds.
 6.  The product is not required to handle concurrency resulting from multiple instances of the applications running at the same
     time, as the product is supposed to support single user's usage.
 6.  The product should be open-sourced in the [GitHub repo](https://github.com/AY2021S2-CS2103T-T13-1/tp).
@@ -450,7 +450,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 ### Using the  `end` command
 
@@ -467,14 +466,41 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect end commands locations to try: _while in learn mode_, _right after ending a Quiz, …​ <br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Do an initial launch of the application as described in _Launch and shutdown_ segment above.
+   
+   1. Open `current_folder/data/flashcards.json`.
+    
+   1. Do some modifications that are possibly malicious.
+       - Modify a field name of `flashcards.json`. E.g. change `question` to `questions`
+       - Modify the `tag` value of some flashcard to include characters that neither alphabetic or numeric. E.g. `&*&`, `你好世界`.
+       - Modify the `question` value of some flashcard to include latin-specific characters. E.g. `Español`.
+   
+   1. Relaunch the application. Type `learn` to go into the `learn` mode. Original (unmodified) data content should present.
+    
+   1. **Close the application** and inspect the `flashcards.json` file. Modified parts of the original data content should disappear.
+    
+1. Dealing with missing data files
 
-1. _{ more test cases …​ }_
+   1. Delete the `flashcards.json` file, but keep the `data` folder.
 
+   1. Relaunch the application. Type `learn` to go into the `learn` mode. Original data content should present.
 
+   1. **Close the application** and inspect the `data` folder, a new `flashcards.json` loaded with content should be present.
+    
+   1. Now delete the `data` folder recursively (i.e. deleting the file(s) inside it as well).
+
+   1. Relaunch the application. Type `learn` to go into the `learn` mode. Original data content should present.
+
+   1. **Close the application**, and the `data` folder and the `flashcards.json` should be present (regenerated).
+    
+Points to take note of for storage related testing right above:
+- `learn` is only one command that you can try to check if the data is recovered. Other commands work as well, e.g. `quiz`.
+- Data file is recovered on a lazy basis. That is, if the data file is corrupted/missing, and a new application instance is
+  created and closed without **any** command entered. The data file will not be recovered. 
+
+--------------------------------------------------------------------------------------------------------------------
