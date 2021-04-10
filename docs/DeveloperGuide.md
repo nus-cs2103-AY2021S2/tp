@@ -366,7 +366,7 @@ Ian finds it difficult to sieve information and is prone to making human errors.
 * Prefers desktop apps over other types
 * Can type fast
 * Prefers typing to mouse interactions
-* Is reasonably comfortable using CLI apps
+* Reasonably comfortable using CLI apps
 * Tired of looking at multiple rows and columns in Excel for long hours daily
 
 **Value proposition**: a one stop management app to efficiently track and schedule COVID-19 vaccinations for NUS students
@@ -512,7 +512,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Vax@NUS should be able to hold up to 35000 students (NUS undergraduate cohort size) and 35000 appointments without a noticeable sluggishness in performance for typical usage.
     * A user should be able to use Vax@NUS even while offline.
 1.  **Usability**
-    * A user with above average typing speed (41.4 words per minute) for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+    * A user with above average typing speed (41.4 words per minute) for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using a mouse.
     * A user should be able to use Vax@NUS without a mouse.
 1. **Security**
     * A user should only be able to access Vax@NUS if they are an authorized UHC staff.
@@ -531,7 +531,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **COVID-19**: The COVID-19 pandemic, also known as the coronavirus pandemic, is a global pandemic of coronavirus disease 2019 (COVID-19) caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2).
 * **Vaccine**: Singapore has two approved COVID-19 vaccines, one developed by Pfizer-BioNTech, 
   the other by Moderna. Both require two doses, 21 days apart for Pfizer-BioNTech, 28 days apart for Moderna.
-  Two appointments must therefore be created manually per student.
 
 --------------------------------------------------------------------------------------------------------------------
 
