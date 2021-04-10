@@ -51,7 +51,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete A1234567X`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -200,9 +200,9 @@ The delete student feature is implemented in the `DeleteCommand` class and facil
 
 Given below is an example usage scenario and how the delete student mechanism behaves at each step.
 
-Step 1: The user executes `delete A1234567X` to add a student. The `AddressBookParser` class determines that the command called is `delete`, and therefore creates a new `DeleteCommandParser` instance to parse the command.
+Step 1: The user executes `delete A1234567X` to add a student. The `StudentBookParser` class determines that the command called is `delete`, and therefore creates a new `DeleteCommandParser` instance to parse the command.
 
-Step 2: The `DeleteCommandParser` instance obtains the user input and checks for its validity. It then returns a new `DeleteCommand` instance to the `LogicManager` via the `AddressBookParser` class.
+Step 2: The `DeleteCommandParser` instance obtains the user input and checks for its validity. It then returns a new `DeleteCommand` instance to the `LogicManager` via the `StudentBookParser` class.
 
 > **NOTE:** If the input format is incorrect or not found, `DeleteCommandParser` will throw a `ParseException` to notify the user of the error, and the execution will stop.
 > 
