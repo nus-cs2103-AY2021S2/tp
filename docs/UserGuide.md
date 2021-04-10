@@ -269,14 +269,21 @@ View scores of all past quiz attempts.
 
 Format: `history`
 
-#### Saving the data
+Example:
+
+![HistoryExample](images/HistoryUseExample.png)
+- If a quiz is left unfinished (i.e. there are still questions in the quiz), the history statistics will not be updated.
+- If a quiz session has zero attempt, a default correct ratio of `0.000%` will be recorded.
+- In future versions, `history` will provide more useful information to better optimize users' learning experience.
+
+### Adding and removing flashcards `[coming in v2.0]`
+
+_These functions are likely to be included in future versions of Weeblingo, stay tuned._
+
+### Saving the data
 
 Weeblingo data is saved in the hard disk automatically after any command.
 There is no need to save manually.
-
-#### Adding and removing entries `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -326,7 +333,7 @@ Action | Format, Examples |
 --------------------------------------------------------------------------------------------------------------------
 
 ## Note for Testers
-By the nature of the type of application Weeblingo is, it is inconvenient for testers who do not possess some elementary
+By the nature of Weeblingo, it is inconvenient for testers who do not possess some elementary
 knowledge of Japanese to test our application.
 
 Therefore, to facilitate testers, we have provided a list of flashcards which reside in the database
