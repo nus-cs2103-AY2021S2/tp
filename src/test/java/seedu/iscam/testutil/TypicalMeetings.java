@@ -1,5 +1,16 @@
 package seedu.iscam.testutil;
 
+import static seedu.iscam.logic.commands.CommandTestUtil.VALID_CLIENT_NAME_CLEO;
+import static seedu.iscam.logic.commands.CommandTestUtil.VALID_CLIENT_NAME_DAN;
+import static seedu.iscam.logic.commands.CommandTestUtil.VALID_DATETIME_CLEO;
+import static seedu.iscam.logic.commands.CommandTestUtil.VALID_DATETIME_DAN;
+import static seedu.iscam.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CLEO;
+import static seedu.iscam.logic.commands.CommandTestUtil.VALID_DESCRIPTION_DAN;
+import static seedu.iscam.logic.commands.CommandTestUtil.VALID_LOCATION_CLEO;
+import static seedu.iscam.logic.commands.CommandTestUtil.VALID_LOCATION_DAN;
+import static seedu.iscam.logic.commands.CommandTestUtil.VALID_STATUS_CLEO;
+import static seedu.iscam.logic.commands.CommandTestUtil.VALID_STATUS_DAN;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -56,6 +67,14 @@ public class TypicalMeetings {
     public static final Meeting IGUANA = new MeetingBuilder()
             .withName("Hoon Bee").withDateTime("02-01-2022 16:30").withLocation("TooD Cafe, One South")
             .withDescription("Introducing schemes.").withStatus("incomplete")
+            .build();
+    public static final Meeting CLEO = new MeetingBuilder()
+            .withName(VALID_CLIENT_NAME_CLEO).withDateTime(VALID_DATETIME_CLEO).withLocation(VALID_LOCATION_CLEO)
+            .withDescription(VALID_DESCRIPTION_CLEO).withStatus(VALID_STATUS_CLEO)
+            .build();
+    public static final Meeting DAN = new MeetingBuilder()
+            .withName(VALID_CLIENT_NAME_DAN).withDateTime(VALID_DATETIME_DAN).withLocation(VALID_LOCATION_DAN)
+            .withDescription(VALID_DESCRIPTION_DAN).withStatus(VALID_STATUS_DAN)
             .build();
 
     /**

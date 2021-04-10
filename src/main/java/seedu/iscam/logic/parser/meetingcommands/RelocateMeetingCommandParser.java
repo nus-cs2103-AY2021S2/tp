@@ -12,6 +12,7 @@ import seedu.iscam.logic.parser.Parser;
 import seedu.iscam.logic.parser.ParserUtil;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
+import seedu.iscam.logic.parser.exceptions.ParseIndexException;
 import seedu.iscam.model.commons.Location;
 
 /**
@@ -31,6 +32,8 @@ public class RelocateMeetingCommandParser implements Parser<RelocateMeetingComma
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseIndexException pie) {
+            throw pie;
         } catch (ParseException e) {
             throw new ParseFormatException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     RelocateMeetingCommand.MESSAGE_USAGE));

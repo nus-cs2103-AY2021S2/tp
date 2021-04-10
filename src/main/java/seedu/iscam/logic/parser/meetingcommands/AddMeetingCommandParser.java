@@ -5,6 +5,7 @@ import static seedu.iscam.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_ON;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -38,7 +39,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
      */
     public AddMeetingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CLIENT, PREFIX_ON, PREFIX_LOCATION,
-                PREFIX_DESCRIPTION, PREFIX_TAG);
+                PREFIX_DESCRIPTION, PREFIX_TAG, PREFIX_STATUS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT, PREFIX_ON, PREFIX_LOCATION, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
