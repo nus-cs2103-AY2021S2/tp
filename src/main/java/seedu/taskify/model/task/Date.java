@@ -90,6 +90,8 @@ public class Date {
     /**
      * Returns if a given int is a leap year.
      */
+    //@@author cletus-reused
+    //Reused from https://stackoverflow.com/questions/1021324 with minor modifications
     private static boolean isLeapYear(int year) {
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, year);
