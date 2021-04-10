@@ -148,6 +148,10 @@ public class Session {
         this.tutor = tutor;
     }
 
+    public boolean hasStudent() {
+        return !this.students.isEmpty();
+    }
+
     public void setStudents(List<PersonId> students) {
         for (PersonId student :students) {
             this.students.add(student);

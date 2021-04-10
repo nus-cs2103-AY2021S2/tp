@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -55,6 +56,11 @@ public class PersonCard extends UiPart<Region> {
         personId.setText(person.getPersonId().toString());
         name.setText(person.getName().fullName);
         personType.setText(person.getPersonType().toString());
+        if (person.getPersonType().toString().equals("student")) {
+            personType.setStyle("-fx-text-fill: pink ");
+        } else {
+            personType.setStyle("-fx-text-fill: aquamarine");
+        }
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);

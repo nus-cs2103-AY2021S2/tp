@@ -91,4 +91,11 @@ public class ListCommand extends Command {
             throw new CommandException(MESSAGE_USAGE);
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListCommand // instanceof handles nulls
+                && listCommandType.equals(((ListCommand) other).listCommandType)); // state check
+    }
 }
