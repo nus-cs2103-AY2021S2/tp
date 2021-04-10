@@ -6,7 +6,7 @@ import seedu.address.model.Model;
 /**
  * Describes behaviour of commands which can be executed in batch.
  */
-public interface BatchOperations {
+public interface BatchOperation {
     /**
      * Executes the command and returns the result message. Does not update the filtered list to show all the other
      * client contacts.

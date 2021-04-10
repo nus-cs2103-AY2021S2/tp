@@ -14,10 +14,8 @@ import seedu.address.model.shortcut.ShortcutLibrary;
 
 /**
  * Handles all execution of {@code BatchCommand} as well as for {@code EditCommand} or {@code DeleteCommand}.
- *
- * @param <T> the type of {@code Command} that will be executed by {@code BatchCommand}
  */
-public class BatchCommand<T extends BatchOperations> extends Command {
+public class BatchCommand<T extends BatchOperation> extends Command {
 
     public static final String COMMAND_WORD = "batch";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -33,9 +31,9 @@ public class BatchCommand<T extends BatchOperations> extends Command {
     private final List<T> listOfCommands;
 
     /**
-     * Creates a {@code BatchCommand} with a {@code List} of {@code EditCommands} or {@code DeleteCommands} to execute.
+     * Creates a {@code BatchCommand} with a {@code List} of {@code BatchOperation}.
      *
-     * @param listOfCommands {@code List} of {@code EditCommands} or {@code DeleteCommands} to execute
+     * @param listOfCommands {@code List} of {@code BatchOperation} to execute.
      */
     public BatchCommand(List<T> listOfCommands) {
         this.listOfCommands = listOfCommands;
@@ -57,13 +55,13 @@ public class BatchCommand<T extends BatchOperations> extends Command {
             // Execute on the copy first to check for errors
             Model copy = new ModelManager(model.getAddressBook(), model.getUserPrefs(), new ShortcutLibrary());
 
-            for (BatchOperations command : listOfCommands) {
+            for (BatchOperation command : listOfCommands) {
                 command.executeBatch(copy);
             }
 
             // If successfully executed on copy, we can now execute on model without worrying about exceptions.
             // Avoids having to maintain state/undo/redo functionality.
-            for (BatchOperations command : listOfCommands) {
+            for (BatchOperation command : listOfCommands) {
                 CommandResult commandResult = command.executeBatch(model);
                 logger.info("Result of batch command: " + commandResult.getFeedbackToUser());
             }
@@ -87,8 +85,8 @@ public class BatchCommand<T extends BatchOperations> extends Command {
 
             boolean areListsSame = true;
             for (int i = 0; i < listOfCommands.size(); i++) {
-                BatchOperations fromMainList = listOfCommands.get(i);
-                BatchOperations fromOtherList = (BatchOperations) otherBatchCommand.listOfCommands.get(i);
+                BatchOperation fromMainList = listOfCommands.get(i);
+                BatchOperation fromOtherList = (BatchOperation) otherBatchCommand.listOfCommands.get(i);
                 areListsSame &= fromMainList.equals(fromOtherList);
             }
 

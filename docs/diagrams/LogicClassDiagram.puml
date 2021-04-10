@@ -41,11 +41,11 @@ HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
 LogicManager -->"1" ClientBookParser
-ClientBookParser .left.> XYZCommandParser: creates >
+ClientBookParser .down.> XYZCommandParser: creates >
 
-XYZCommandParser ..> XYZCommandParser
+XYZCommandParser .left.> XYZCommandParser
 XYZCommandParser ..> XYZCommand : creates >
-XYZCommandParser .left.|> Parser
+XYZCommandParser .up.|> Parser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap

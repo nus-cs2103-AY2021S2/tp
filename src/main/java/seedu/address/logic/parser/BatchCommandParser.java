@@ -22,7 +22,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Handles all parsing of {@code BatchCommand} as well as arguments for {@code EditCommand} or {@code DeleteCommand}.
+ * Handles all parsing of {@code BatchCommand} as well as arguments for {@code BatchOperation}.
  */
 public class BatchCommandParser implements Parser<BatchCommand> {
     public static final String INVALID_BATCH_COMMAND = "Invalid batch operation!\nOnly edit and delete operations "
@@ -33,10 +33,10 @@ public class BatchCommandParser implements Parser<BatchCommand> {
             + "phone numbers, addresses, tags and insurance policies can be edited in batch.";
 
     /**
-     * Parses input to prepare for a {@code BatchCommand}, and the {@code Commands} that will be executed by it.
-     * First, parses and checks the validity of the {@code Command} that is to be executed in batch.
+     * Parses input to prepare for a {@code BatchCommand}, and the {@code BatchOperations} that will be executed by it.
+     * First, parses and checks the validity of the {@code BatchOperation}.
      * Then, parses and checks the validity of the indices and arguments (if applicable) to be passed to the
-     * {@code Command} to be executed in bulk.
+     * {@code BatchOperation}.
      *
      * @param args arguments of the {@BatchCommand} passed in by the user
      * @return a {@code BatchCommand} with the {@code List} of {@code Commands} to be executed in batch.
