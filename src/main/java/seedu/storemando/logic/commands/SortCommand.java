@@ -15,9 +15,6 @@ public abstract class SortCommand extends Command {
         + "2. " + COMMAND_WORD + " quantity desc\n"
         + "3. " + COMMAND_WORD + " expirydate";
 
-    public static final String MESSAGE_NO_ITEMS_TO_SORT = "Empty list cannot be sorted";
-
-
     public abstract CommandResult execute(Model model) throws CommandException;
 
     public abstract boolean equals(Object other);

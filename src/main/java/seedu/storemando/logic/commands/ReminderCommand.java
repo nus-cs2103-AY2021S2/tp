@@ -1,10 +1,15 @@
 package seedu.storemando.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.storemando.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
+import java.util.List;
+
+import seedu.storemando.commons.core.Messages;
 import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.expirydate.ItemExpiringPredicate;
+import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.ItemComparatorByExpiryDate;
 
 /**
@@ -50,6 +55,10 @@ public class ReminderCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         String message = getMessage();
+        List<Item> currentList = model.getFilteredItemList();
+        if (currentList.size() == 0) {
+            throw new CommandException(Messages.MESSAGE_NO_ITEM_IN_LIST);
+        }
         model.updateCurrentPredicate(predicate);
         model.updateFilteredItemList(model.getCurrentPredicate());
         ItemComparatorByExpiryDate comparator = new ItemComparatorByExpiryDate();
