@@ -15,7 +15,8 @@ public class Messages {
             "The patient has existing appointments in appointment schedule."
                     + " Force delete command format required! \n%1$s";
     public static final String MESSAGE_CLEAR_APPOINTMENTS_BEFORE_PATIENTS_REQUIRED =
-            "Patient records cannot be cleared until appointment schedule is cleared.\n"
+            "There are Appointments in the Appointment Schedule. "
+                    + "As such, patient records cannot be cleared until appointment schedule is cleared.\n"
                     + "Use the command \"clear-appt\" to clear the appointment schedule.";
     public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Patient: %1$s";
 
@@ -26,7 +27,8 @@ public class Messages {
             "The doctor has existing appointments in appointment schedule."
                     + " Force delete command format required! \n%1$s";
     public static final String MESSAGE_CLEAR_APPOINTMENTS_BEFORE_DOCTORS_REQUIRED =
-            "Doctors records cannot be cleared until appointment schedule is cleared.\n"
+            "There are Appointments in the Appointment Schedule. "
+            + "As such, doctor records cannot be cleared until appointment schedule is cleared.\n"
                     + "Use the command \"clear-appt\" to clear the appointment schedule.";
     public static final String MESSAGE_DELETE_DOCTOR_SUCCESS = "Deleted Doctor: %1$s";
 
