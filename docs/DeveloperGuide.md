@@ -51,7 +51,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete A1234567X`.
+The *Sequence Diagram* below shows how the components interact with each other in the scenario where the user issues the command `delete A1234567X`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -86,7 +86,7 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete A1234567X")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `"delete A1234567X"` Command API call.
 
 ![Interactions Inside the Logic Component for the `delete A1234567X` Command](images/DeleteSequenceDiagram.png)
 
@@ -195,27 +195,27 @@ _{more aspects and alternatives to be added}_
 The delete student feature helps users to delete a particular student entry by the student's matriculation number.
 
 The delete student feature is implemented in the `DeleteCommand` class and facilitated by the following classes:
-* `Command`. `DeleteCommand` extends `Command` and overrides the `execute` method, which deletes a `Person` from the `Model`.
-* `AddCommandParser`. It implements the `Parser` interface, which is used by all commands to read user input. `AddCommandParser` also checks the parameters of `AddCommand` and make sures that the input adheres to the specified format.
+* `Command`. `DeleteCommand` extends `Command` and overrides the `execute` method, which deletes a `Student` from the `Model`.
+* `DeleteCommandParser`. It implements the `Parser` interface, which is used by all commands to read user input. `DeleteCommandParser` also checks the parameters of `DeleteCommand` and make sures that the input adheres to the specified format.
 
 Given below is an example usage scenario and how the delete student mechanism behaves at each step.
 
-Step 1: The user executes `delete A1234567X` to add a student. The `StudentBookParser` class determines that the command called is `delete`, and therefore creates a new `DeleteCommandParser` instance to parse the command.
+Step 1: The user executes `delete A1234567X` to delete a student. The `StudentBookParser` class determines that the command called is `delete`, and therefore creates a new `DeleteCommandParser` instance to parse the command.
 
 Step 2: The `DeleteCommandParser` instance obtains the user input and checks for its validity. It then returns a new `DeleteCommand` instance to the `LogicManager` via the `StudentBookParser` class.
 
 > **NOTE:** If the input format is incorrect or not found, `DeleteCommandParser` will throw a `ParseException` to notify the user of the error, and the execution will stop.
 > 
 
-Step 3: With the `DeleteCommand` instance, the overridden `execute` method is called to delete the `Person` from the `Model`. The `LogicManager` then receives the result of the execution of the command.
+Step 3: With the `DeleteCommand` instance, the overridden `execute` method is called to delete the `Student` from the `Model`. The `LogicManager` then receives the result of the execution of the command.
 
-Step 4: The specified `Person` is deleted from the `StudentBook`.
+Step 4: The specified `Student` is deleted from the `StudentBook`.
 
 The following sequence diagram shows how the delete student operation works:
 
 ![Delete Student Sequence Diagram](images/DeleteStudentSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes the `deleteStud` command:
+The following activity diagram summarizes what happens when a user executes the `delete` command:
 
 ![Delete Student Activity Diagram](images/DeleteStudentActivityDiagram.png)
 
