@@ -1146,9 +1146,8 @@ Use case ends.
 
 1. User requests to <u> list tasks (UC02)</u>.
 2. SOChedule shows a list of tasks.
-3. User chooses to pin a task.
-4. User enters the index of the task to be pinned.
-5. SOChedule pins the task, <u> sorts the task list (UC08)</u>, and displays a success message for pinning the task.
+3. User requests to pin a specific task in the list.
+4. SOChedule pins the task, <u> sorts the task list (UC08)</u>, and displays a success message for pinning the task.
    <br><br>
    Use case ends.
 
@@ -1177,9 +1176,8 @@ Use case ends.
 
 1. User requests to <u> list tasks (UC02)</u>.
 2. SOChedule shows a list of tasks.
-3. User chooses to unpin a task.
-4. User enters the index of the task to be unpinned.
-5. SOChedule unpins the task, <u> sorts the task list (UC08)</u>, and displays a success message for unpinning the task.
+3. User requests to unpin a specific task in the list.
+4. SOChedule unpins the task, <u> sorts the task list (UC08)</u>, and displays a success message for unpinning the task.
    <br><br>
    Use case ends.
 
