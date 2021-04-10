@@ -4,7 +4,7 @@ title: User Guide
 ---
 Hello! Are you a parent whose phone's contact book is filling up with the contacts of teachers? Do you have trouble
 remembering who exactly that contact in your contact book is referring to? Do you have multiple children and want
-a centralised place to keep track of all their activities? Then ParentPal can be the app for you!
+a centralised place to keep track of all their activities? Then ParentPal could be the app for you!
 
 ParentPal is a **desktop app for managing your children's contacts and their related appointments, 
 optimized for use via a Command Line Interface** (CLI) while still having the benefits of a 
