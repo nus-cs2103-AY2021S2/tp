@@ -88,7 +88,6 @@ public class CommandTestUtil {
     public static final EditStudentCommand.EditStudentDescriptor DESC_BOB;
 
     public static final String VALID_DATE = "2010-01-01";
-    public static final String VALID_TIME = "10:00";
     public static final String VALID_DURATION = "60";
     public static final String VALID_SUBJECT = "Science";
     public static final String VALID_FEE = "30";

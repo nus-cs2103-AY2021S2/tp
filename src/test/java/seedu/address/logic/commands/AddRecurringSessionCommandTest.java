@@ -135,10 +135,7 @@ public class AddRecurringSessionCommandTest {
         ModelStubWithRecurringSession(RecurringSession recurringSession) {
             requireNonNull(recurringSession);
             this.student = new StudentBuilder().build();
-            List<Session> list = new ArrayList<>();
-            list.add(new RecurringSessionBuilder().build());
-            student.addSessions(list);
-        }
+            student.addSessions(new RecurringSessionBuilder().build()); }
 
         @Override
         public boolean hasStudent(Student student) {
