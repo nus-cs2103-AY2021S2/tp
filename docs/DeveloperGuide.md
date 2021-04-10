@@ -512,7 +512,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Vax@NUS should be able to hold up to 35000 students (NUS undergraduate cohort size) and 35000 appointments without a noticeable sluggishness in performance for typical usage.
     * A user should be able to use Vax@NUS even while offline.
 1.  **Usability**
-    * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+    * A user with above average typing speed (41.4 words per minute) for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
     * A user should be able to use Vax@NUS without a mouse.
 1. **Security**
     * A user should only be able to access Vax@NUS if they are an authorized UHC staff.
