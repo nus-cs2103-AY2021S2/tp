@@ -171,7 +171,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 |*       |HR Executive  |indicate the price willing to pay                                |drivers are more likely to choose these passengers                                              |
 
 
-## Use Cases
+## **Use Cases**
 
 **Use case: Allocate drivers to passengers to be picked up**
 
