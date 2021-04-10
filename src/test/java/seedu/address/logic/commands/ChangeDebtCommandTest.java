@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.model.person.Debt.MAX_DEBT;
+import static seedu.address.model.person.Debt.MIN_DEBT;
 import static seedu.address.testutil.TestDataUtil.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -57,6 +59,31 @@ public class ChangeDebtCommandTest {
         Debt addedDebt = new Debt("10");
         ChangeDebtCommand cmd = new ChangeDebtCommand(outOfBoundIndex, addedDebt, true);
         assertCommandFailure(cmd, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_outOfRangeNewDebt_failure() {
+        //ADD
+        Debt currentDebt = MAX_DEBT;
+        Person currentPerson = new PersonBuilder(firstPerson).withDebt(currentDebt).build();
+        Debt addedDebt = new Debt("1");
+
+        Model currentModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        currentModel.setPerson(firstPerson, currentPerson);
+
+        ChangeDebtCommand cmd = new ChangeDebtCommand(INDEX_FIRST_PERSON, addedDebt, true);
+        assertCommandFailure(cmd, currentModel, ChangeDebtCommand.MESSAGE_OUT_OF_RANGE);
+
+        //SUBTRACT
+        currentDebt = MIN_DEBT;
+        currentPerson = new PersonBuilder(firstPerson).withDebt(currentDebt).build();
+        Debt subtractedDebt = new Debt("1");
+
+        currentModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        currentModel.setPerson(firstPerson, currentPerson);
+
+        cmd = new ChangeDebtCommand(INDEX_FIRST_PERSON, subtractedDebt, false);
+        assertCommandFailure(cmd, currentModel, ChangeDebtCommand.MESSAGE_OUT_OF_RANGE);
     }
 }
 

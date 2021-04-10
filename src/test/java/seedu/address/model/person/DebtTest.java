@@ -30,6 +30,12 @@ public class DebtTest {
         assertFalse(Debt.isValidDebt(""));
         assertFalse(Debt.isValidDebt(" "));
         assertFalse(Debt.isValidDebt("abc"));
+
+        //Larger than MAX_DEBT
+        assertFalse(Debt.isValidDebt("1000000000000"));
+
+        //Smaller than MIN_DEBT
+        assertFalse(Debt.isValidDebt("-1000000000000"));
     }
 
     @Test
@@ -38,7 +44,6 @@ public class DebtTest {
         assertTrue(Debt.isValidDebt("0"));
         assertTrue(Debt.isValidDebt("100.1"));
         assertTrue(Debt.isValidDebt("0.01"));
-
     }
 
     @Test
