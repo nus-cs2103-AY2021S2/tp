@@ -9,6 +9,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Email {
 
+
+    public static final int MAX_CHARACTERS = 254;
+    public static final String INVALID_LENGTH_MESSAGE =
+            "ERROR: Input email should only be at most 254 characters long";
     private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
@@ -36,9 +40,18 @@ public class Email {
      */
     public Email(String email) {
         requireNonNull(email);
+        checkArgument(isValidLength(email), INVALID_LENGTH_MESSAGE);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
         value = email;
     }
+
+    /**
+     * Returns true if a given string is within the characters limit
+     */
+    public static boolean isValidLength(String test) {
+        return test.length() <= MAX_CHARACTERS;
+    }
+
 
     /**
      * Returns if a given string is a valid email.
