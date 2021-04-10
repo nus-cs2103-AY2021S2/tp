@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.patient;
+package seedu.address.logic.commands.patient;
 
 import static java.util.Objects.requireNonNull;
 
