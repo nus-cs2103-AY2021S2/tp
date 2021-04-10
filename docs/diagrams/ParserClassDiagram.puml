@@ -57,9 +57,6 @@ Storage --[hidden]left ClientBookParser
 Parser --[hidden]down ArgumentMultimap
 Parser --[hidden]down ClientBookParser
 
-
-
 note top of XYZCommandParser: Association between XYZCommandParser \nand XYZCommandParser is only relevant \nfor BatchCommandParser and \nEditCommandParser/DeleteCommandParser
-
 
 @enduml
