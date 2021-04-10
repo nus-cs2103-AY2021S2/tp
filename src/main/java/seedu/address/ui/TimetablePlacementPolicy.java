@@ -30,9 +30,9 @@ import static java.util.Objects.requireNonNull;
  */
 public class TimetablePlacementPolicy {
 
-    private static final int SECONDS_IN_A_MINUTE = 60;
-    private static final int SECONDS_IN_AN_HOUR = 3600;
-    private static final long SECONDS_IN_DAY = 86400;
+    public static final int SECONDS_IN_A_MINUTE = 60;
+    public static final int SECONDS_IN_AN_HOUR = 3600;
+    public static final long SECONDS_IN_DAY = 86400;
 
     public static final double TIMETABLE_DISPLAY_SIZE = 5760;
 
@@ -136,7 +136,11 @@ public class TimetablePlacementPolicy {
 
     /**
      * Gets the y-coordinate position of a timetable slot to be placed within the column
-     * , with the coordinate of value 0 corresponding to the tip of the column.
+     * with the coordinate of value 0 corresponding to the tip of the column. ( the y value
+     * measures the vertical distance from the topleft corner of the slot to the top of the
+     * timetable). Note the schedulabe should fit within one day inside the timetable, and
+     * not overlap across multiple days. See {@link #breakIntoDayUnits(Schedulable)} on how
+     * to split schedulable into days that fit in the timetable.
      *
      * @param schedulable
      * @return
@@ -150,8 +154,8 @@ public class TimetablePlacementPolicy {
     }
 
     /**
-     * Returns the size in pixels of the timetable cell to represent the Schedulable.
-     * We assume the schedulable must start and end on the same day.
+     * Returns the length in pixels of the timetable cell to represent the Schedulable.
+     * We assume the schedulable must start and end on the same day in the timetable.
      *
      * @param schedulable
      * @return
