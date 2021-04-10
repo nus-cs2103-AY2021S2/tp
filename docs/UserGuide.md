@@ -128,6 +128,7 @@ Adds a new passenger in the GME terminal.
 **Examples:**
 * `add n/Ben Dover p/91234567 a/Geylang d/FRIDAY t/1800`
 * `add n/Jenny Talia p/98765432 a/Yishun Avenue 4 d/SATURDAY t/0830 tag/female`
+* `add n/Mike Hawk p/91234023 a/Yishun Avenue 69 d/SATURDAY t/0420 tag/male tag/high`
 
 ### 3.2.2 Listing all passengers : `list`
 
