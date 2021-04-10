@@ -16,6 +16,9 @@ Class PersonCard
 Class PersonDetails
 Class StatusBarFooter
 Class CommandBox
+Class ImportantDatesWindow
+Class DateCard
+Class DateListPanel
 }
 
 package Model <<Rectangle>> {
@@ -37,8 +40,11 @@ MainWindow *-down-> ResultDisplay
 MainWindow *-down-> PersonListPanel
 MainWindow *-down-> PersonDetails
 MainWindow *-down-> StatusBarFooter
+MainWindow --> ImportantDatesWindow
+ImportantDatesWindow *-down-> DateListPanel
 
 PersonListPanel -down-> PersonCard
+DateListPanel -down->DateCard
 
 MainWindow -left-|> UiPart
 
@@ -49,11 +55,17 @@ PersonCard --|> UiPart
 PersonDetails --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
+ImportantDatesWindow -down-|> UiPart
+DateListPanel --|> UiPart
+DateCard --|> UiPart
+
 
 PersonCard ..> Model
 PersonDetails ..> Model
+DateCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
+ImportantDatesWindow --> Logic
 
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
