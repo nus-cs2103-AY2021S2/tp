@@ -278,7 +278,7 @@ public class AddPlanCommandTest {
 
         @Override
         public ObservableList<Plan> getFilteredPlanList() {
-            modulePlanner.setPersons(plansAdded);
+            modulePlanner.setPlans(plansAdded);
             return new FilteredList<>(modulePlanner.getPersonList());
         }
 

@@ -22,7 +22,7 @@ import seedu.plan.storage.JsonModule;
  */
 public class ModulePlanner implements ReadOnlyModulePlanner {
 
-    private final UniquePlanList persons;
+    private final UniquePlanList plans;
     private JsonModule[] moduleInfo;
     private Integer currentSemesterNumber;
     private ObservableList<JsonModule> foundModule;
@@ -34,7 +34,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      *   among constructors.
      */
     {
-        persons = new UniquePlanList();
+        plans = new UniquePlanList();
         currentSemesterNumber = null;
         try {
             moduleInfo = readModuleInfo();
@@ -63,8 +63,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * Replaces the contents of the plan list with {@code plans}.
      * {@code plans} must not contain duplicate plans.
      */
-    public void setPersons(List<Plan> plans) {
-        this.persons.setPlans(plans);
+    public void setPlans(List<Plan> plans) {
+        this.plans.setPlans(plans);
     }
 
     /**
@@ -73,7 +73,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     public void resetData(ReadOnlyModulePlanner newData) {
         requireNonNull(newData);
 
-        setPersons(newData.getPersonList());
+        setPlans(newData.getPersonList());
         currentSemesterNumber = newData.getCurrentSemesterNumber();
     }
 
@@ -85,13 +85,13 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     public boolean hasPlan(Plan plan) {
         requireNonNull(plan);
         boolean sameDescription = false;
-        for(Plan p : persons) {
+        for(Plan p : plans) {
             if(p.getDescription().equals(plan.getDescription())) {
                 sameDescription = true;
                 break;
             }
         }
-        return persons.contains(plan) || sameDescription;
+        return plans.contains(plan) || sameDescription;
     }
 
     /**
@@ -99,7 +99,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * The plan must not already exist in the address book.
      */
     public void addPlan(Plan p) {
-        persons.add(p);
+        plans.add(p);
     }
 
     /**
@@ -110,7 +110,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     public void setPlan(Plan target, Plan editedPlan) {
         requireNonNull(editedPlan);
 
-        persons.setPlan(target, editedPlan);
+        plans.setPlan(target, editedPlan);
     }
 
     /**
@@ -118,7 +118,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
      * {@code key} must exist in the address book.
      */
     public void removePlan(Plan key) {
-        persons.remove(key);
+        plans.remove(key);
     }
 
     /**
@@ -369,13 +369,13 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
+        return plans.asUnmodifiableObservableList().size() + " persons";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<Plan> getPersonList() {
-        return persons.asUnmodifiableObservableList();
+        return plans.asUnmodifiableObservableList();
     }
 
     @Override
@@ -384,7 +384,7 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
             return true;
         } else if (other instanceof ModulePlanner) {
             ModulePlanner o = (ModulePlanner) other;
-            return persons.equals(o.persons);
+            return plans.equals(o.plans);
         } else {
             return false;
         }
@@ -392,6 +392,6 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return plans.hashCode();
     }
 }
