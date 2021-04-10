@@ -32,26 +32,38 @@ public class TypicalTasks {
             .withDescription("About Artificial Intelligence.").withModule("CS3243")
             .withStartTime("2021-02-01 11:30").withDeadline("2021-02-01 12:00").withDoneStatus(NOT_DONE_STRING)
             .withWorkload("1").withTags("medianPriority").build();
+
     public static final Task MIDTERM = new TaskBuilder().withName("Midterm").withStartTime("2021-12-12 06:30")
             .withDescription("Not include CSP.").withWorkload("2")
             .withModule("CS3243").withDeadline("2021-12-12 08:30").withDoneStatus(NOT_DONE_STRING)
             .withRecurrence("biweekly").withTags("highPriority").build();
+
+    public static final Task RECURRING_MIDTERM = new TaskBuilder().withName("Midterm").withStartTime("2021-12-12 06:30")
+            .withDescription("Not include CSP.").withWorkload("2")
+            .withModule("CS3243").withDeadline("2021-12-26 08:30").withDoneStatus(NOT_DONE_STRING)
+            .withRecurrence("biweekly").withTags("highPriority").build();
+
     public static final Task TP = new TaskBuilder().withName("TP")
             .withDeadline("2021-03-14 14:00").withWorkload("3")
             .withModule("CS2103T").withDescription("Wrap up v1.2.").withDoneStatus(DONE_STRING).build();
+
     public static final Task TUTORIAL = new TaskBuilder().withName("Tutorial")
             .withDeadline("2021-03-02 23:59").withWorkload("2")
             .withModule("ST2131").withDoneStatus(NOT_DONE_STRING).withDescription("Try to get full mark.")
             .withTags("easy").build();
+
     public static final Task PROJECT = new TaskBuilder().withName("Project").withWorkload("3")
             .withDeadline("2021-02-28 23:59").withDoneStatus(NOT_DONE_STRING)
             .withModule("CS3243").withDescription("This is really challenging.").build();
+
     public static final Task PAQ = new TaskBuilder().withName("PAQ").withWorkload("1")
             .withDeadline("2021-03-05 23:59").withDoneStatus(DONE_STRING)
             .withModule("IS1103").withDescription("Strange questions.").build();
+
     public static final Task OP = new TaskBuilder().withName("OP 2").withWorkload("2")
             .withDeadline("2021-04-02 23:59").withDoneStatus(NOT_DONE_STRING)
             .withModule("CS2101").withDescription("Need to divide ourselves into two groups.").build();
+
     public static final Task REVIEW = new TaskBuilder().withName("Review").withModule("CS3244")
             .withWorkload("2").withDescription("ML FTW").withDeadline("2021-03-02 00:00")
             .withDoneStatus(DONE_STRING).build();

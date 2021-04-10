@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PRACTICAL;
 import static seedu.module.logic.commands.CommandTestUtil.VALID_TAG_PRIORITY_HIGH;
 import static seedu.module.testutil.Assert.assertThrows;
+import static seedu.module.testutil.TypicalTasks.MIDTERM;
 import static seedu.module.testutil.TypicalTasks.QUIZ;
 import static seedu.module.testutil.TypicalTasks.REVIEW;
 
@@ -168,5 +169,27 @@ public class UniqueTaskListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueTaskList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void containsRecurringTask_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTaskList.containsRecurringTask(null));
+    }
+
+    @Test
+    public void containsRecurringTask_recurringTaskNotInList_returnsFalse() {
+        //EP: task passed in is a recurring task
+        assertFalse(uniqueTaskList.containsRecurringTask(MIDTERM));
+
+        //EP: task is not a recurring task
+        assertFalse(uniqueTaskList.containsRecurringTask(QUIZ));
+    }
+
+    @Test
+    public void containsRecurringTask_recurringTaskInList_returnsTrue() {
+        uniqueTaskList.add(MIDTERM);
+
+        //EP: task is a recurring task
+        assertTrue(uniqueTaskList.containsRecurringTask(MIDTERM));
     }
 }

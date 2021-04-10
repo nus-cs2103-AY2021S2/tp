@@ -16,8 +16,10 @@ import seedu.module.model.task.Description;
 import seedu.module.model.task.DoneStatus;
 import seedu.module.model.task.Module;
 import seedu.module.model.task.Name;
+import seedu.module.model.task.Task;
 import seedu.module.model.task.Time;
 import seedu.module.model.task.Workload;
+import seedu.module.testutil.TaskBuilder;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_NAME = "  ";
@@ -158,5 +160,22 @@ public class JsonAdaptedTaskTest {
                         VALID_DESCRIPTION, VALID_WORKLOAD, VALID_DONE_STATUS, VALID_RECURRENCE, invalidTags);
         assertThrows(IllegalValueException.class, task::toModelType);
     }
+
+    @Test
+    public void toModelType_invalidRecurrence_throwsIllegalValueException() {
+        JsonAdaptedTask task = new JsonAdaptedTask(VALID_NAME, VALID_START_TIME, VALID_DEADLINE, VALID_MODULE,
+                VALID_DESCRIPTION, VALID_WORKLOAD, VALID_DONE_STATUS, INVALID_RECURRENCE, VALID_TAGS);
+
+        assertThrows(IllegalValueException.class, task::toModelType);
+    }
+
+    @Test
+    public void toModelType_emptyRecurrence_returnsTask() throws IllegalValueException {
+        Task nonRecurringMidterm = new TaskBuilder(MIDTERM).withRecurrence("").build();
+        JsonAdaptedTask nonRecurringTask = new JsonAdaptedTask(nonRecurringMidterm);
+
+        assertEquals(nonRecurringMidterm, nonRecurringTask.toModelType());
+    }
+
 
 }

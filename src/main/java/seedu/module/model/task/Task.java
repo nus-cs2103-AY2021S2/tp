@@ -206,7 +206,7 @@ public class Task {
      * @param oldTime current deadline of the recurring task.
      * @return new Deadline object for the recurring task.
      */
-    private static Time getRecurringTime(Task task, Time oldTime) {
+    public static Time getRecurringTime(Task task, Time oldTime) {
         assert(oldTime != null && task.isRecurring());
 
         String nextRecurringTimeStr = oldTime.value;
