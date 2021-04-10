@@ -138,6 +138,13 @@ Note: The current month and past two months are calculated when the user first o
 #### 4.1.2 Tuition
 The Tuition page is split into two views: **Student** and **Session**.
 ![tuition page](images/TuitionPage.png)
+
+<div markdown="block" class="alert alert-primary">
+:bulb: This is the main tab for managing your students and sessions. Navigating to this tab before using commands such as
+<code>add_student</code>, <code>find_student</code>, <code>add_session</code> or <code>delete_session</code> allows the user 
+to see the reflected changes on the <strong>Student</strong> and <strong>Session</strong> list view.
+</div>
+
 ##### Student
 The Student section displays students in TutorBuddy.
 
@@ -149,6 +156,11 @@ The Calendar section provides a weekly view of all tuition sessions in TutorBudd
 ![calendar](images/CalendarPage.png)
 The left and right arrow allows you to view past and future tuition sessions.
 Click the 'Today' button to be brought back to this week's view.
+
+<div markdown="block" class="alert alert-primary">
+:bulb: Clicking and focusing on the tab header allows the user to change tab quickly
+using the arrow keys.
+</div>
 
 ### 4.2 Commands
 
