@@ -26,6 +26,8 @@ public class MarkDeadlineCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MARK_TASK_INDEX + " 1";
 
+    public static final String MESSAGE_ALREADY_MARKED_DEADLINE = "This deadline has already been marked as done.";
+
     private final Index projectIndex;
     private final Index targetDeadlineIndex;
 
@@ -50,12 +52,16 @@ public class MarkDeadlineCommand extends Command {
         }
 
         if (targetDeadlineIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
-                .getDeadlines().getSortedDeadlineList().size()) {
+                .getSortedDeadlines().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_DEADLINE_DISPLAYED_INDEX);
         }
 
         Project projectToEdit = lastShownList.get(projectIndex.getZeroBased());
         requireNonNull(projectToEdit);
+
+        if (projectToEdit.getSortedDeadlines().get(targetDeadlineIndex.getZeroBased()).getIsDone()) {
+            throw new CommandException(MESSAGE_ALREADY_MARKED_DEADLINE);
+        }
 
         projectToEdit.markDeadline(targetDeadlineIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
