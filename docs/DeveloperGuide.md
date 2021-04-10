@@ -64,6 +64,17 @@ located at the end of the lifeline. However, due to a limitation of PlantUML, an
 the X to the end of the diagram.
 </div>
 
+#### Component colors
+
+Most diagrams (e.g. architecture, class and sequence) in this guide follow a color scheme to show which of the four
+major components something belongs to. Here is the color scheme in the format `COMPONENT`: COLOR.
+* `UI`: Green
+* `Logic`: Blue
+* `Model`: Red
+* `Storage`: Yellow
+
+The four components are formally introduced below in the [design section below](#design).
+
 #### How to create and edit
 
 This project uses [PlantUML](https://plantuml.com/) to create diagrams in this document. These diagrams are generated
