@@ -90,19 +90,21 @@ public class EditCommand extends Command {
 
         Task taskToEdit = getTaskToEdit(lastShownList);
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
+        editedTask = handleTagUpdates(model, taskToEdit, editedTask);
 
         checkForDuplicateTask(model, taskToEdit, editedTask);
+        verifyTask(editedTask);
+        updateModel(model, taskToEdit, editedTask);
 
-        ConditionLogic conditionLogic = new ConditionLogic(editedTask);
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
+    }
+
+    private void verifyTask(Task task) throws CommandException {
+        ConditionLogic conditionLogic = new ConditionLogic(task);
         conditionLogic.checkInvalidDateRange();
         conditionLogic.checkForExpiredDate();
         conditionLogic.enforceAttributeConstraints();
         conditionLogic.enforceTitleLength();
-
-        editedTask = handleTagUpdates(model, taskToEdit, editedTask);
-        updateModel(model, taskToEdit, editedTask);
-
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
     private Task getTaskToEdit(List<Task> list) {

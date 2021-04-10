@@ -26,6 +26,7 @@ Class "{abstract}\nCommand" as Command
 package Conditions {
 Class ConditionLogic
 Class ConstraintManager
+Class RecurringScheduleVerifier
 Class DateVerifier
 Class IndexManager
 }
@@ -63,6 +64,7 @@ XYZCommand ..> ConditionLogic
 ConditionLogic ..> DateVerifier
 ConditionLogic ..> IndexManager
 ConditionLogic ..> ConstraintManager
+ConditionLogic ..> RecurringScheduleVerifier
 
 LogicManager --> Model
 Command .left.> Model
@@ -72,4 +74,6 @@ LogicManager .down.> CommandResult
 Command .up.> CommandResult
 
 PlannerParser -[hidden]->LogicManager
+LogicManager -[hidden]->CommandResult
+Logic -[hidden]->XYZCommandParser
 @enduml
