@@ -58,8 +58,8 @@ Task *--> "1" DoneStatus
 Task *--> "0..1" Recurrence
 Task *--> "*" Tag
 
-Name -[hidden]right-> Deadline
-Deadline -[hidden]right-> Description
+Name -[hidden]right-> Time
+Time -[hidden]right-> Description
 Description -[hidden]right-> Module
 Module -[hidden]right-> DoneStatus
 DoneStatus -[hidden]right-> Workload
