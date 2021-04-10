@@ -446,7 +446,7 @@ example command `help`.
 ![CommandHistoryUpdateSequenceDiagram](images/commandhistory/CmdHistUpdateSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source:
-**Note:** In the sequence diagram above, `parse and execute()` is not an actual method; rather it is a simplification
+**Note:** In the sequence diagram above, `parse and execute` is not an actual method; rather it is a simplification
 of a two-step process in the `LogicManager`.
 </div>
 
