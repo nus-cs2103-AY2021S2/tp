@@ -44,6 +44,19 @@ If you can type fast, ParentPal can get your contact management tasks done faste
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Understanding ParentPal
+
+### Expired appointments
+ParentPal helps you to manage your expired appointments by colouring them red, once expired. 
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Should the appointment not appear red despite it having expired, click on the appointment box to refresh it.
+</div>
+
+![expiredAppt](images/expiredAppt.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
