@@ -128,6 +128,68 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Implementation
+This section describes some noteworthy details on how certain features are implemented.
+
+### Pool feature
+This feature allows users to create and add a pool to the list of pools, through the use of a `pool` command.
+
+Design considerations include the `pool` command being able to be used in complement with the `find` command. For instance, the user would
+first use `find tag/female` and then followed by `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3`.
+The `find tag/female` command first filters the list of displayed passengers, such that only passengers with the `female` tag would be displayed. Calling the `pool` command
+would then assign `Alice` with number `91234567` to be the driver of the passengers specified by the indices for the currently displayed list.
+
+The activity diagram below encapsulates the user workflow of adding passengers, finding passengers and then pooling the passengers:
+
+![Activity Diagram for a User Using Pool](images/PoolActivityDiagram.png)
+
+The rationale behind this implementation was because once the GME terminal is populated with a large number of passengers, it would be rather difficult for the user to find a specific passenger.
+By allowing the user to first filter the passengers then subsequently pooling from the filtered list would greatly enhance the feature, thereby making the product much more cohesive as features work well together.
+
+Given below is the Sequence Diagram for interactions within the Logic component for the `execute("pool n/Alice p/91234567 d/monday t/1930 c/2 c/3")` command.
+![Interactions Inside the Logic Component for the `pool n/Alice p/91234567 d/monday t/1930 c/2 c/3` Command](images/PoolSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**  The `command` argument that is passed into
+`execute()`, represents the string `"pool n/Alice p/91234567 d/monday t/1930 c/2 c/3"`, and has been abstracted for readability.
+<br>
+The lifeline for `PoolCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+From the diagram illustrated above:
+1. `LogicManager` has its `execute()` method called when a user enters the `"pool n/Alice p/91234567 d/monday t/1930 c/2 c/3"` command.
+1. `AddressBookParser` class is then instantiated, which subsequently instantiates `PoolCommandParser` class to help parse the user's command.
+1. `AddressBookParser` would then have its `parse()` method invoked to parse the arguments of `"n/Alice p/91234567 d/monday t/1930 c/2 c/3"` to
+   `PoolCommandParser` which creates and returns a `PoolCommand`.
+1. `LogicManager` would subsequently invoke the `execute()` method of the `PoolCommand`, which in turn calls its own method of `getPassengersFromIndexes()`
+    that gets a list of passengers from `Model` by calling `getFilteredPassengerList()`.
+1. A `Pool` object is then created with the list of passengers returned by `getPassengersFromIndexes()`, and then added to the model by the `addPool()` method.
+1. The model filtered pool list is then updated with `updateFilteredPoolList()` with a predicate to show all pools in the list `PREDICATE_SHOW_ALL_POOLS`.
+1. Finally, a `CommandResult` would be returned back to `LogicManager` to indicate the completion status of the command.
+
+It is worth noting that in the case of adding a passenger, a `Passenger` object is created by `AddCommandParser` and used in the constructor of `AddCommand`.
+However, in the case of adding a pool, a `PoolCommand` is constructed using the details specified and parsed from `PoolCommandParser`, instead of creating and passing a `Pool` object.
+The rationale is due the fact that a list of passengers have to be obtained from the indexes specified, which requires interactions with the model.
+The current implementation thus encapsulates all the interactions with model, within the methods of `PoolCommand`.
+
+### Unpool feature
+This feature allows users to remove a pool from the pool list through the specification of an index.
+
+Given below is the Sequence Diagram for interactions within the Logic component for the `execute("unpool 1")`.
+![Interactions Inside the Logic Component for the `unpool 1` Command](images/UnpoolSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnpoolCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+From the diagram illustrated above:
+1. `LogicManager` has its `execute()` method called when a user enters the `"unpool 1"` command.
+1. `AddressBookParser` class is then instantiated, which subsequently instantiates `UnpoolCommandParser` class to help parse the user's command.
+1. `AddressBookParser` would then have its `parse()` method invoked, passing the argument `"1"` to `UnpoolCommandParser`.
+1. Given that the index `"1"` is a valid index, an `UnpoolCommand` object would be created and returned to `LogicManager`.
+1. `LogicManager` would subsequently invoke the `execute()` method of the `UnpoolCommand` which in turn invokes `deletePool()` method with an argument of `1`.
+1. This would update the model by deleting the specified pool at the first index, then the result of the command execution `CommandResult` would be created and returned back to `LogicManager`.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
