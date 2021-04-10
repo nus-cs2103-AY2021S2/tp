@@ -86,9 +86,9 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete A1234567X")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete A1234567X` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -189,7 +189,7 @@ In the end, Alternative 1 was chosen because it is less likely to introduce bugs
 
 _{more aspects and alternatives to be added}_
 
-### Delete Student `deleteStud`
+### Delete Student `delete`
 
 #### Actual Implementation
 The delete student feature helps users to delete a particular student entry by the student's matriculation number.
@@ -200,7 +200,7 @@ The delete student feature is implemented in the `DeleteCommand` class and facil
 
 Given below is an example usage scenario and how the delete student mechanism behaves at each step.
 
-Step 1: The user executes `deleteStud A1234567X` to add a student. The `AddressBookParser` class determines that the command called is `deleteStud`, and therefore creates a new `DeleteCommandParser` instance to parse the command.
+Step 1: The user executes `delete A1234567X` to add a student. The `AddressBookParser` class determines that the command called is `delete`, and therefore creates a new `DeleteCommandParser` instance to parse the command.
 
 Step 2: The `DeleteCommandParser` instance obtains the user input and checks for its validity. It then returns a new `DeleteCommand` instance to the `LogicManager` via the `AddressBookParser` class.
 
