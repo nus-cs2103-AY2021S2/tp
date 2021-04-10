@@ -25,7 +25,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "\n\n Edit a student: edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] "
             + "\n                       [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]"
             + "\n\n Delete a student: delete MATRICULATION_NUMBER"
-            + "\n\n Add an appointment: addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME"
+            + "\n\n Add an appointment: addAppt MATRICULATION_NUMBER d/DATE ts/START_TIME"
             + "\n\n Edit an appointment: editAppt MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM"
             + "\n\n Delete an appointment: deleteAppt MATRICULATION_NUMBER"
             + "\n\n List all students and appointments : list"
