@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -210,9 +211,11 @@ public class Person {
         }
 
         Set<Tag> tags = getTags();
+        List<Tag> listOfTags = new ArrayList<>(tags);
+        Collections.sort(listOfTags, Comparator.comparing(tag -> tag.tagName));
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            listOfTags.forEach(builder::append);
         }
 
         List<InsurancePolicy> policies = getPolicies();
