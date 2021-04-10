@@ -29,7 +29,8 @@ import seedu.cakecollate.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_NEGATIVE_INDEX = "Index can't be negative.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is invalid.";
+    public static final String MESSAGE_NO_INDEX_PROVIDED = "No index provided";
     public static final int PHONE_LENGTH = 20;
     public static final int TAG_LENGTH = 30;
     public static final int INTEGER_LENGTH = 10;
@@ -50,8 +51,11 @@ public class ParserUtil {
         if (allDigitsAndLengthMoreThanTen) {
             throw new IndexOutOfBoundsException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
         }
+        if (StringUtil.isNegativeInteger(trimmedIndex)) {
+            throw new NegativeIndexException(Messages.MESSAGE_NEGATIVE_INDEX);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new NegativeIndexException(MESSAGE_NEGATIVE_INDEX);
+            throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
@@ -71,6 +75,9 @@ public class ParserUtil {
                 Index parsedIndex = parseIndex(index.trim());
                 indexList.add(parsedIndex);
             }
+        }
+        if (indexList.getIndexList().size() == 0) {
+            throw new ParseException(MESSAGE_NO_INDEX_PROVIDED);
         }
         indexList.sortList();
         return indexList;
