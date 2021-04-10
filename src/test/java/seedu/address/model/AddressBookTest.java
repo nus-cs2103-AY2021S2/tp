@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOLF;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPassengers.ALICE;
 import static seedu.address.testutil.TypicalPassengers.getTypicalAddressBookPassengers;
@@ -47,7 +47,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePassengers_throwsDuplicatePassengerException() {
         // Two passengers with the same identity fields
-        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_GOLF)
+        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HR)
                 .build();
         List<Passenger> newPassengers = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newPassengers);
@@ -74,7 +74,7 @@ public class AddressBookTest {
     @Test
     public void hasPassenger_passengerWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPassenger(ALICE);
-        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_GOLF)
+        Passenger editedAlice = new PassengerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HR)
                 .build();
         assertTrue(addressBook.hasPassenger(editedAlice));
     }

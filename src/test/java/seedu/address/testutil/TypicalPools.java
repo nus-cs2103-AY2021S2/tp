@@ -33,7 +33,7 @@ public class TypicalPools {
             .withTripDay(DayOfWeek.FRIDAY)
             .withTripTime(LocalTime.of(18, 0))
             .withPassengers(HOMEPOOL_PASSENGERS)
-            .withTags("friends")
+            .withTags("marketing")
             .build();
 
     public static final Pool OFFICEPOOL = new PoolBuilder()
@@ -41,7 +41,7 @@ public class TypicalPools {
             .withTripDay(DayOfWeek.MONDAY)
             .withTripTime(LocalTime.of(6, 30))
             .withPassengers(OFFICEPOOL_PASSENGERS)
-            .withTags("owesMoney", "friends").build();
+            .withTags("sales", "marketing").build();
 
     public static final Pool WORKPOOL = new PoolBuilder()
             .withDriver(TypicalDrivers.DRIVER_BOB)

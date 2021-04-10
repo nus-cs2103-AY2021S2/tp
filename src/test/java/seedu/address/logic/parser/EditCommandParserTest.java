@@ -23,8 +23,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOLF;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_FRIDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_MONDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_EVENING;
@@ -117,7 +117,7 @@ public class EditCommandParserTest {
         EditCommand.EditPassengerDescriptor descriptor = new EditPassengerDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_AMY)
                 .withTripDay(VALID_TRIPDAY_MONDAY).withTripTime(VALID_TRIPTIME_MORNING)
-                .withTags(VALID_TAG_GOLF, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HR, VALID_TAG_IT).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -171,7 +171,7 @@ public class EditCommandParserTest {
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditPassengerDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        descriptor = new EditPassengerDescriptorBuilder().withTags(VALID_TAG_IT).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -185,7 +185,7 @@ public class EditCommandParserTest {
 
         EditCommand.EditPassengerDescriptor descriptor = new EditPassengerDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTripDay(VALID_TRIPDAY_FRIDAY)
-                .withTripTime(VALID_TRIPTIME_EVENING).withTags(VALID_TAG_FRIEND, VALID_TAG_GOLF)
+                .withTripTime(VALID_TRIPTIME_EVENING).withTags(VALID_TAG_IT, VALID_TAG_HR)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
