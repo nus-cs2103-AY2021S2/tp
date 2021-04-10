@@ -1,15 +1,15 @@
 package seedu.address.commons.core;
 
-import java.awt.*;
-
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.awt.Point;
+
+import org.junit.jupiter.api.Test;
+
 public class GuiSettingsTest {
-    GuiSettings settings = new GuiSettings();
+    private GuiSettings settings = new GuiSettings();
     private double windowWidth = 1000;
     private double windowHeight = 700;
     private Point windowCoordinates = null;
