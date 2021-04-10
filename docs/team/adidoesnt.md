@@ -5,7 +5,7 @@ title: Aditya Banerjee's Project Portfolio Page
 
 ## Project: NuFash
 
-NuFash is a desktop wardrobe management application. It was built with the intention of allowing its users to betetr organise their wardrobe, as well as make better sartorial choices through a variety of clothing organisation and selection features. It employs a command line interface for quick input, along with some graphical elements for aesthetic appeal.
+NuFash is a desktop wardrobe management application. It was built with the intention of allowing its users to better organise their wardrobe, as well as make better sartorial choices through a variety of clothing organisation and selection features. It employs a command line interface for quick input, along with some graphical elements for aesthetic appeal.
 
 This document entails my contribution to the NuFash project.
 
