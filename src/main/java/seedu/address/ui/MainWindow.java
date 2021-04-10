@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private ContactListPanel contactListPanel;
     private EntryListPanel entryListPanel;
 
     //to be deleted.................
@@ -50,6 +51,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane contactListPanelPlaceholder;
 
     @FXML
     private StackPane entryListPanelPlaceholder;
@@ -132,6 +136,10 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        //to be added once person class is deleted
+        //contactListPanel = new ContactListPanel(logic.getFilteredContactList());
+        //contactListPanelPlaceholder.getChildren().add(contactListPanel.getRoot());
 
         entryListPanel = new EntryListPanel(logic.getFilteredEntryList());
         entryListPanelPlaceholder.getChildren().add(entryListPanel.getRoot());
