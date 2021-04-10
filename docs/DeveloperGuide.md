@@ -515,7 +515,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a tutor or student in the list
-2. EXManage adds the Person
+2. EzManage adds the Person
 
     Use case ends
 
