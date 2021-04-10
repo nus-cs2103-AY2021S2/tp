@@ -50,7 +50,7 @@ public class StringUtil {
     /**
      * Returns true if {@code s} represents an integer
      * Will return false for any other non-null string input
-     * e.g. empty string, "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
+     * e.g. empty string, " 2 " (untrimmed), "3 0" (contains whitespace) and "1 a" (contains letters)
      * @throws NullPointerException if {@code s} is null.
      */
     public static boolean isInteger(String s) {
@@ -68,7 +68,7 @@ public class StringUtil {
      * Any non-integers would have been caught by {@code isInteger() method}
      * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
      * Will return false for any other string integer
-     * e.g. empty string, "-1" and "0"
+     * e.g. empty string, "-1", "0" and "+1"
      * @throws NullPointerException if {@code s} is null.
      */
     public static boolean isNonZeroUnsignedInteger(String s) {
