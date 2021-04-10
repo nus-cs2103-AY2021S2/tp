@@ -21,7 +21,7 @@ You can reach us at the respective emails:
 [[portfolio](team/zatkiller.md)]
 
 * Role: Team Lead
-* Responsibilities: Deliverables and Scheduling, Code Quality
+* Responsibilities: Project Management and Code Quality
 
 ### Chee Erynne
 
