@@ -85,9 +85,9 @@ public class PoolBuilder {
     }
 
     /**
-     * Adds passengers at the given index to the {@code Passengers} of the {@code Pool} that we are building
-     * @param index
-     * @return
+     * Adds passengers at the given index to the {@code Passengers} of the {@code Pool} that we are building.
+     * @param index the {@code Index}s of the {@code Passenger}s to add to the Pool.
+     * @return a {@code PoolBuilder} with the {@code Passenger}s set.
      */
     public PoolBuilder withIndex(Index ... index) {
         ObservableList<Passenger> passengerList = model.getFilteredPassengerList();

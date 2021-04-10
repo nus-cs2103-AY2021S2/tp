@@ -42,7 +42,7 @@ public class CommandTestUtil {
 
     public static final DayOfWeek VALID_TRIPDAY_FRIDAY = DayOfWeek.FRIDAY;
     public static final DayOfWeek VALID_TRIPDAY_MONDAY = DayOfWeek.MONDAY;
-    public static final LocalTime VALID_TRIPTIME_EVENING = LocalTime.of(18, 00);
+    public static final LocalTime VALID_TRIPTIME_EVENING = LocalTime.of(18, 0);
     public static final LocalTime VALID_TRIPTIME_MORNING = LocalTime.of(8, 30);
     public static final DayOfWeek VALID_TRIPDAY_BOB = DayOfWeek.THURSDAY;
     public static final LocalTime VALID_TRIPTIME_BOB = LocalTime.of(19, 30);

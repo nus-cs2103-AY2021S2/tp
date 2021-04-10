@@ -17,7 +17,7 @@ public class PriceIsGreaterThanAmountPredicate implements Predicate<Passenger> {
     public boolean test(Passenger passenger) {
         if (passenger.getPrice().isPresent()) {
             Price priceToCompare = passenger.getPrice().get();
-            Double userPrice = Double.parseDouble(priceToCompare.toString());
+            double userPrice = Double.parseDouble(priceToCompare.toString());
 
             return userPrice >= this.price;
         } else {
