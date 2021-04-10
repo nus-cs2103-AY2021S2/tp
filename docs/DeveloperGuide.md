@@ -1426,11 +1426,6 @@ Use case ends.
 
 **Extensions**
 
-* 4a. Both task list and event list are empty.
-
-  Use case ends.
-
-
 * 5a. The specified date is invalid or does not follow the required format.
 
     * 5a1. SOChedule shows an error message.
@@ -1444,7 +1439,14 @@ Use case ends.
     * 5b1. SOChedule shows an error message.
 
       Use case resumes at step 4.
-    
+
+
+* 5c. Both task list and event list are empty.
+
+    * 5c1. SOChedule shows an empty task list and event list.
+
+      Use case ends.
+
 
 **Use case: UC21 - Finding free time slots**
 
@@ -1538,6 +1540,39 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Editing a task
+1. Edits an uncompleted task in the task list
+    1. Prerequistes: List all tasks using the `list_task` command. Task list is not empty. 
+       Currently, no tasks in the task list has a task name `task1`.
+
+    1. Test case: `edit_task 1 n/task1` <br>
+       Expected: The name of the first task in the task list is updated to `task1`.
+
+    1. Other incorrect command to try : `edit_task`
+
+### Marking one or more tasks as done
+1. Marks one or more uncompleted tasks from the task list as completed
+
+    1. Prerequistes: List all tasks using the `list_task` command. Task list is not empty.
+       All of the tasks to be completed are currently marked as uncompleted.
+
+    1. Test case: `done 1 2` <br>
+       Expected: The first and second task in the task list are marked as completed.
+
+    1. Other incorrect command to try : `done abc`.
+
+### Marking a task as uncompleted
+
+1. Marks a completed task from the task list as uncompleted
+
+    1. Prerequistes: List all tasks using the `list_task` command. Task list is not empty. 
+       The task to be uncompleted is currently marked as completed.
+    
+    1. Test case: `undone 1` <br>
+    Expected: The first task in the task list are marked as uncompleted.
+
+    1. Other incorrect command to try : `undone abc`.
 
 ### Sorting the task list
 
@@ -1677,6 +1712,17 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `clear_expired_event`<br>
       Expected: Events with past end date time are cleared from the list. Success message `Expired events (if any) have been cleared!` 
       will always be shown in the status message, regardless of whether there is any expired event or not.
+
+### Finding tasks and events before or on a given date
+
+1. Finding uncompleted tasks that are due before or on the specified date
+   and events with start date before or on the specified date and end date after or on specified date.
+   
+    1. Test case: `find_schedule 2021-05-01` <br>
+    Excepted: Displays uncompleted tasks with deadline before or on `2021-05-01`
+       and events with start date before or on `2021-05-01` and end date after or on `2021-05-01`.
+    
+    1. Other incorrect command to try: `find_schedule 2021-005-01`.
 
 ### Finding free time slots
 
