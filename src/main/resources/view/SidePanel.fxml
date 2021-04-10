@@ -14,5 +14,5 @@
   <Button fx:id="todayButton" text="Today" onAction="#openTodayPanel" prefWidth="200" maxWidth="200" prefHeight="45"/>
   <Button fx:id="contactsButton" onAction="#openContactsPanel" text="Contacts" prefWidth="200" maxWidth="200" prefHeight="45"/>
   <Separator/>
-  <StackPane fx:id="projectsListPanelPlaceholder"/>
+  <StackPane fx:id="projectsListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
 </VBox>
