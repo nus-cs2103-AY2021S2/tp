@@ -31,6 +31,12 @@ import seedu.address.model.user.IdealWeight;
 public class ParserUtil {
 
     public static final double DOUBLE_DECIMAL_LIMIT = 3;
+    public static final int FEB_MONTH_VALUE = 2;
+    public static final int FEB_LEAP_YEAR_NUMBER_OF_DAYS = 29;
+    public static final String MESSAGE_INVALID_DAY_LEAP_YEAR = "Current leap year only has 29 days in February. "
+            + "Please input a correct date.";
+    public static final String MESSAGE_INVALID_DAY_NORMAL_YEAR = "Current year only has 28 days in February. "
+            + "Please input a correct date.";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
@@ -63,6 +69,18 @@ public class ParserUtil {
             localDate = LocalDate.parse(trimmedDate, formatter);
         } catch (DateTimeParseException de) {
             throw new ParseException(MESSAGE_INVALID_DATETIME_FORMAT);
+        }
+        if (localDate.getMonthValue() == FEB_MONTH_VALUE) {
+            int inputDay = Integer.parseInt(trimmedDate.substring(0, 2));
+            if (localDate.isLeapYear()) {
+                if (inputDay > FEB_LEAP_YEAR_NUMBER_OF_DAYS) {
+                    throw new ParseException(MESSAGE_INVALID_DAY_LEAP_YEAR);
+                }
+            } else {
+                if (inputDay >= FEB_LEAP_YEAR_NUMBER_OF_DAYS) {
+                    throw new ParseException(MESSAGE_INVALID_DAY_NORMAL_YEAR);
+                }
+            }
         }
         return localDate;
     }

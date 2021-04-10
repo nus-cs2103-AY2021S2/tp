@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATETIME_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CARBOS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FATS;
@@ -30,13 +29,7 @@ public class AddFoodIntakeCommandParser implements Parser<AddFoodIntakeCommand> 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddFoodIntakeCommand.MESSAGE_USAGE));
         }
 
-        LocalDate date;
-        try {
-            date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_DATETIME_FORMAT,
-                    AddFoodIntakeCommand.MESSAGE_USAGE));
-        }
+        LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
 
         TemporaryFoodDescriptor tempFoodDescriptor = new TemporaryFoodDescriptor();
         tempFoodDescriptor.setName(ParserUtil.parseFoodName(argMultimap.getValue(PREFIX_NAME).get()));
