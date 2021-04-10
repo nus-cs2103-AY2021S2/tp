@@ -6,7 +6,6 @@ skinparam classBackgroundColor MODEL_COLOR
 skinparam linetype ortho
 
 Package Model <<Rectangle>>{
-    Class StatefulAddressBook
     Class ModelManager
 
     Package CommandHistory {
@@ -14,13 +13,11 @@ Package Model <<Rectangle>>{
         Class CommandHistoryEntry
     }
 }
-' ===== Overarching stuff =====
-ModelManager *-left-> "1" StatefulAddressBook
 
 ' ==== The model in question ====
-ModelManager  *---> CommandHistoryEntry
-StatefulAddressBook --down-> CommandHistory
-CommandHistory --> "*" CommandHistoryEntry
+ModelManager  *---> CommandHistory
+ModelManager  ..> CommandHistoryEntry
+CommandHistory "*" *--> CommandHistoryEntry
 
 
 @enduml

@@ -18,8 +18,9 @@ Package Model <<Rectangle>>{
 ModelManager *-left-> "1" StatefulAddressBook
 
 ' ==== The model in question ====
-ModelManager  *---> Alias
-StatefulAddressBook --down-> AliasMapping
+ModelManager  *---> AliasMapping
+StatefulAddressBook  ..> Alias
+StatefulAddressBook *--down-> AliasMapping
 AliasMapping --> Alias
 
 

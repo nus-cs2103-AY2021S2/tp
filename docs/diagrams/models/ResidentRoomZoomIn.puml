@@ -8,16 +8,16 @@ skinparam linetype ortho
 Package Model <<Rectangle>>{
     Class StatefulAddressBook
     Class ModelManager
-    Package ResidentRoom {
+    Package "                 ResidentRoom                  " {
         Class UniqueResidentRoomList
         Class ResidentRoom
     }
-    Package Resident {
+    Package "        Resident           " {
         Class UniqueResidentList
         Class Resident
         Class Name
     }
-    Package Room {
+    Package "          Room        " {
         Class UniqueRoomList
         Class Room
         Class RoomNumber
@@ -29,18 +29,21 @@ ModelManager "1" *-> "1" StatefulAddressBook
 ' ==== Room ====
 ModelManager  *---> "~* filteredlist" Room
 StatefulAddressBook --down-> "1" UniqueRoomList
+StatefulAddressBook ..> Room
 UniqueRoomList "~* " *--> "1" Room
 Room "1" *--> RoomNumber
 
 ' ==== Resident ====
 ModelManager  *---> "~* filteredlist" Resident
 StatefulAddressBook --down-> "1 " UniqueResidentList
+StatefulAddressBook ..> Resident
 UniqueResidentList "1" *--> "*" Resident
 Resident "1" *--> Name
 
 ' ==== ResidentRoom ====
 ModelManager  *---> "~* filteredlist" ResidentRoom
 StatefulAddressBook --down-> "1" UniqueResidentRoomList
+StatefulAddressBook ..>  ResidentRoom
 UniqueResidentRoomList "*" *--> "1" ResidentRoom
 ResidentRoom --> "1"  Name
 ResidentRoom --> "1"  RoomNumber

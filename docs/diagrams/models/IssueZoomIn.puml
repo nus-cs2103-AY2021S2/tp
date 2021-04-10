@@ -9,7 +9,7 @@ Package Model <<Rectangle>>{
     Class StatefulAddressBook
     Class ModelManager
 
-    Package Issue {
+    Package "     Issue     " {
         Class IssueList
         Class Issue
     }
@@ -20,6 +20,7 @@ ModelManager *-left-> "1" StatefulAddressBook
 ' ==== The model in question ====
 ModelManager  *---> "      ~* filteredlist " Issue
 StatefulAddressBook --down-> IssueList
+StatefulAddressBook ...> Issue
 IssueList --> "*" Issue
 
 
