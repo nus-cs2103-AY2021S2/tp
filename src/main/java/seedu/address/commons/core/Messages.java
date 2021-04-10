@@ -50,14 +50,14 @@ public class Messages {
             "Repeat Weekly should be one of: 'Y', 'N', 'y' or 'n'";
 
     public static final String MESSAGE_PARSER_DATE_CONSTRAINTS =
-                    "Date should be a valid date in one of the following formats:\n"
+                    "Date should be a valid date and in one of the following formats:\n"
                     + "24-11-2021\n"
                     + "24112021\n"
                     + "24/11/2021\n"
                     + "24.11.2021";
 
     public static final String MESSAGE_PARSER_TIME_CONSTRAINTS =
-            "Time should be a valid time in one of the following formats:\n"
+            "Time should be a valid time (from 00:00 to 23:59) and in one of the following formats:\n"
                     + "17:30\n"
                     + "1730";
 

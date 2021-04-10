@@ -25,7 +25,7 @@ public class RepeatableComparator implements Comparator<Repeatable> {
         LocalDate today = LocalDate.now();
         LocalDate date = repeatable.getDate();
 
-        if (repeatable.getIsWeekly()) {
+        if (repeatable.getIsWeekly() && !date.isAfter(today)) {
             int dayOfRepeatable = date.getDayOfWeek().getValue();
             int dayOfToday = today.getDayOfWeek().getValue();
 

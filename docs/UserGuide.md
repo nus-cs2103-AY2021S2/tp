@@ -27,9 +27,9 @@ CoLAB (Collaboration Lab) is a **desktop app for university students to manage t
 
 With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools.
 
-We have designed a user-friendly User Interface (UI) that is intuitive to both first-time users and seasoned ones. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps.
+We have designed a user-friendly User Interface (UI) that is intuitive to both first-time users and seasoned ones. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a clean and inviting Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps.
 
-We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. Get your journey started with the [Quick Start section](#3-quick-start)!
+We look forward to seeing what you accomplish with CoLAB. Get your journey started with the [Quick Start section](#3-quick-start)!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -224,13 +224,19 @@ To achieve the best possible experience, avoid adding excessively long text to C
 ##### `ROLE`
 
 * The role associated with a groupmate in a project.
-* Roles should consist of alphanumeric characters, hyphens and underscores.
+* Roles should:
+  * Consist of alphanumeric characters, hyphens and underscores.
+  * Be at least 2-character long.
+  * If there are hyphens or underscores, they should not be at the start or end of the role string
 
 ##### `TAG`
 
 * The tag associated with a contact.
 * The `TAG` parameter can only be used for contacts. It cannot be used for projects.
-* Tags should consist of alphanumeric characters.
+* Tags should:
+    * Consist of alphanumeric characters, hyphens and underscores.
+    * Be at least 2-character long.
+    * If there are hyphens or underscores, they should not be at the start or end of the tag string
 
 ##### `TIME`
 
@@ -697,7 +703,7 @@ Format: `updateG PROJECT_INDEX i/GROUPMATE_INDEX [n/NAME] [r/ROLE]…​`
 
 * At least one of the optional fields must be provided.
 * When updating roles, the existing roles of the groupmate will be removed i.e. adding of roles is not cumulative.
-* You can remove all the roles of the groupmate by typing `r/` without specifying any roles after it.
+* You can remove all the roles of the groupmate by giving **only one** `r/` without specifying any roles after it.
 
 </div>
 
@@ -785,7 +791,7 @@ Format: `updateC CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
 * At least one of the optional fields must be provided.
 * When updating tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
-* You can remove all the contact’s tags by typing `t/` without specifying any tags after it.
+* You can remove all the contact’s tags by giving **only one** `t/` without specifying any tags after it.
 </div>
 
 Parameters:
@@ -816,6 +822,10 @@ Format: `findC KEYWORD [KEYWORD]…​`
 * Only the contact name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Contacts matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Once the `findC` command is executed, only the relevant contacts will be shown. To view all contacts again, simply enter the `contacts` command or click on the contacts button in the side panel.
 </div>
 
 Parameter:
