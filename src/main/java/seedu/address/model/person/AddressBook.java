@@ -97,6 +97,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns null if no person found.
      * For storage use @code{JsonAdaptedPersonMeetingConnection}
      */
     public Person getPersonByName(PersonName name) {

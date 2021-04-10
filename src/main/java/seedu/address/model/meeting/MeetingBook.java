@@ -97,6 +97,7 @@ public class MeetingBook implements ReadOnlyMeetingBook {
 
     /**
      * For storage use @code{JsonAdaptedPersonMeetingConnection}
+     * Returns null if no sych meeting found.
      */
     public Meeting getMeetingByNameAndStartTime(MeetingName name, DateTime start) {
         for (Meeting meeting : meetings) {

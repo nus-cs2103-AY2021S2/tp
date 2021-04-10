@@ -14,7 +14,8 @@ public interface ReadOnlyAddressBook {
     ObservableList<Person> getPersonList();
 
     /**
-     * Returns a person by name inside the addresbook.
+     * Returns a person by name inside the Addresbook.
+     * Returns null if person not found.
      * @param name
      * @return
      */

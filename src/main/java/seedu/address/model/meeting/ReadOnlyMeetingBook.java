@@ -15,6 +15,7 @@ public interface ReadOnlyMeetingBook {
 
     /**
      * Returns a meeting by its name and start time.
+     * Returns null if meeting not found.
      */
     public Meeting getMeetingByNameAndStartTime(MeetingName name, DateTime start);
 
