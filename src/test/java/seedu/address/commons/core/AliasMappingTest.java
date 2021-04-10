@@ -38,6 +38,8 @@ import static seedu.address.testutil.alias.AliasUtil.VALID_ALIAS_3;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.alias.AliasMapping;
+
 public class AliasMappingTest {
     @Test
     public void containsAlias() {

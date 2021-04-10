@@ -10,7 +10,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.issue.FindIssueCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.issue.RoomNumberOrTagContainsKeywordsPredicate;
+import seedu.address.model.issue.IssueContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindIssueCommand object
@@ -40,7 +40,7 @@ public class FindIssueCommandParser implements Parser<FindIssueCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindIssueCommand(new RoomNumberOrTagContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindIssueCommand(new IssueContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

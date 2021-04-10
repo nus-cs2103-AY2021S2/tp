@@ -1,0 +1,50 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+'skinparam linetype polyline
+
+Package Model <<Rectangle>>{
+    Class AddressBook
+    Class ModelManager
+    Package "                ResidentRoom               " {
+        Class UniqueResidentRoomList
+        Class ResidentRoom
+    }
+    Package "           Resident           " {
+        Class UniqueResidentList
+        Class Resident
+        Class Name
+    }
+    Package "Room" {
+        Class UniqueRoomList
+        Class Room
+        Class RoomNumber
+    }
+}
+' ===== Overarching stuff =====
+ModelManager  -[hidden]->  AddressBook
+
+' ==== Room ====
+ModelManager --> "*" Room : > has\nfiltered\nlist of
+AddressBook --> "1" UniqueRoomList
+AddressBook ..> Room
+UniqueRoomList --> "*" Room
+Room *--> "1" RoomNumber
+
+' ==== Resident ====
+ModelManager --> "  *" Resident : > has\nfiltered\nlist of
+AddressBook --> "1" UniqueResidentList
+AddressBook ..> Resident
+UniqueResidentList --> "*" Resident
+Resident *--> "1" Name
+
+' ==== ResidentRoom ====
+ModelManager --> "*" ResidentRoom : > has\nfiltered\nlist of
+AddressBook --> "1" UniqueResidentRoomList
+AddressBook ..>  ResidentRoom
+UniqueResidentRoomList --> "*" ResidentRoom
+ResidentRoom --> "1"  Name
+ResidentRoom --> "1"  RoomNumber
+@enduml

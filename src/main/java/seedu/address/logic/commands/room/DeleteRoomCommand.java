@@ -3,7 +3,9 @@ package seedu.address.logic.commands.room;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -29,6 +31,7 @@ public class DeleteRoomCommand extends Command {
             "The room has been allocated to another resident. Please deallocate the room before deletion.";
     public static final String MESSAGE_ROOM_HAS_ISSUES = "This room still has issues assigned to it. Please delete all "
             + "corresponding issues before deleting the room.";
+    private static final Logger logger = LogsCenter.getLogger(DeleteRoomCommand.class);
 
     private final Index targetIndex;
 
@@ -53,15 +56,21 @@ public class DeleteRoomCommand extends Command {
         Room roomToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         if (model.hasEitherResidentRoom(new ResidentRoom(null, roomToDelete.getRoomNumber()))) {
+            logger.warning(String.format("Room %s attempting to be deleted but there's a resident associated with it",
+                    roomToDelete.getRoomNumber()));
             throw new CommandException(MESSAGE_ROOM_ALLOCATED_FAILURE);
         }
 
         if (model.issuesContainRoom(roomToDelete)) {
+            logger.warning(String.format("Room %s attempting to be deleted but there are issues associated with it",
+                    roomToDelete.getRoomNumber()));
             throw new CommandException(MESSAGE_ROOM_HAS_ISSUES);
         }
 
         model.deleteRoom(roomToDelete);
         model.commitAddressBook();
+
+        logger.info("DeleteRoomCommand successfully updated the model");
         return new CommandResult(String.format(MESSAGE_DELETE_ROOM_SUCCESS, roomToDelete));
     }
 

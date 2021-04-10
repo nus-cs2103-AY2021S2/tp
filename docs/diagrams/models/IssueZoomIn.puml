@@ -1,0 +1,25 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+'skinparam linetype ortho
+
+Package "                    Model                      " <<Rectangle>>{
+    Class AddressBook
+    Class ModelManager
+
+    Package "     Issue             " {
+        Class IssueList
+        Class Issue
+    }
+}
+
+' ==== The model in question ====
+ModelManager  -left-> "*" Issue :< has\nfiltered\nlist of
+AddressBook -> "1" IssueList
+AddressBook ..> Issue
+IssueList --> "*" Issue
+
+
+@enduml

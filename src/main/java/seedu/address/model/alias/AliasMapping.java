@@ -1,5 +1,5 @@
 //Solution below adapted from https://github.com/briyanii/main
-package seedu.address.commons.core;
+package seedu.address.model.alias;
 
 import java.io.Serializable;
 import java.util.ArrayList;

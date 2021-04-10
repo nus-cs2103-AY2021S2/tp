@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.issue.FindIssueCommand;
-import seedu.address.model.issue.RoomNumberOrTagContainsKeywordsPredicate;
+import seedu.address.model.issue.IssueContainsKeywordsPredicate;
 
 public class FindIssueCommandParserTest {
 
@@ -25,11 +25,11 @@ public class FindIssueCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindIssueCommand expectedFindIssueCommand = new FindIssueCommand(
-                new RoomNumberOrTagContainsKeywordsPredicate(Arrays.asList("10-", "20-")));
-        assertParseSuccess(parser, "10- 20-", expectedFindIssueCommand);
+                new IssueContainsKeywordsPredicate(Arrays.asList("10-", "20-", "abc")));
+        assertParseSuccess(parser, "10- 20- abc", expectedFindIssueCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n 10- \n \t 20-  \t", expectedFindIssueCommand);
+        assertParseSuccess(parser, " \n 10- \n \t 20-  \t \n\n abc", expectedFindIssueCommand);
     }
 
 }

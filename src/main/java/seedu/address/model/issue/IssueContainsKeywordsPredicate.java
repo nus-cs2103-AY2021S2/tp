@@ -6,22 +6,23 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Issue}'s {@code Name} or {@code Tag} matches any of the keywords given.
+ * Tests that a {@code Issue}'s {@code RoomNumber}, {@code Description} or {@code Tag} matches any of the keywords
+ * given.
  */
 
-public class RoomNumberOrTagContainsKeywordsPredicate implements Predicate<Issue> {
+public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
 
     private final List<String> keywords;
 
-    public RoomNumberOrTagContainsKeywordsPredicate(List<String> keywords) {
+    public IssueContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     /**
-     * Tests if any of the keywords are contained in either the room's number or any of its tags.
+     * Tests if any of the keywords are contained in either the room's number, description or any of its tags.
      *
      * @param issue Issue whose room number and tags need to be checked to see if they contain
-     *              any of the given keywords.
+     *                  any of the given keywords.
      * @return True if keyword is contained in the room's number or tags.
      */
     @Override
@@ -35,8 +36,8 @@ public class RoomNumberOrTagContainsKeywordsPredicate implements Predicate<Issue
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof RoomNumberOrTagContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((RoomNumberOrTagContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof IssueContainsKeywordsPredicate // instanceof handles nulls
+                        && keywords.equals(((IssueContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

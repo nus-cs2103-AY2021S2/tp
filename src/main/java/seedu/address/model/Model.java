@@ -4,10 +4,10 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.Alias;
-import seedu.address.commons.core.AliasMapping;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.AliasMapping;
 import seedu.address.model.commandhistory.ReadOnlyCommandHistory;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.resident.Name;

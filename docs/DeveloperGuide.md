@@ -64,6 +64,17 @@ located at the end of the lifeline. However, due to a limitation of PlantUML, an
 the X to the end of the diagram.
 </div>
 
+#### Component colors
+
+Most diagrams (e.g. architecture, class and sequence) in this guide follow a color scheme to show which of the four
+major components something belongs to. Here is the color scheme in the format `COMPONENT`: COLOR.
+* `UI`: Green
+* `Logic`: Blue
+* `Model`: Red
+* `Storage`: Yellow
+
+The four components are formally introduced below in the [design section below](#design).
+
 #### How to create and edit
 
 This project uses [PlantUML](https://plantuml.com/) to create diagrams in this document. These diagrams are generated
@@ -119,56 +130,102 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
+**Diagram Notes** :
+* `XYZListPanel` is a placeholder for a concrete `ListPanel`. Currently `Resident`, `Room`, and `Issue` each have a `ListPanel` class. Similarly for `XYZCard`.
+
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ListPanel`s, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
+* Delegates command history selection to the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
+**Diagram Notes** :
+* `XYZCommand` is a placeholder for a concrete command such as `AddResidentCommand`, `ExitCommand`, etc. There are many
+  commands (each with its own class), so for a placeholder has been used for simplicity. Likewise, `XYZCommandParser` is
+  a placeholder for a concrete command parser.
+* Some (but not all) command parsers make use of utility parser classes such as `CliSyntax`, `ParserUtil`,
+  `ArgumentMultimap`, `ArgumentTokenizer` and `Prefix`. These classes are not necessary for a high-level understanding
+  of the logic component, so they have been omitted from the diagram above for brevity.
+
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `LogicManager` uses the `AddressBookParser` to parse the user command. 
+1. `LogicManager` may consult the `AliasMapping` in the `Model` (not shown in the diagram above) in case the user
+   uses an alias. How an alias is executed is detailed [here](#alias-execution).
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution may affect the `Model` (e.g. adding a resident or closing an issue).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. In addition, the `CommandResult` object may also instruct the `Ui` to perform certain actions, such as displaying
+   help to the user.
+1. `CommandHistorySelector` is responsible for the logic of navigating command history. Its implementation is detailed
+   [here](#navigate-history).
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("idel 1")` API call.
+Many other commands have a similar flow, differing only by the specific command parser class, command class and 
+interaction with the model.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `idel 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+**Diagram Notes** :
+* To improve readability, some class names have been shortened in the diagram:
+    * `DeleteIssueCmdParser` represents the class `DeleteIssueCommandParser`
+    * `DeleteIssueCmd` represents the class `DeleteIssueCommand`
+    * `CmdResult` represents the class `CommandResult`
 
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+
+**Diagram Notes** :
+* We omit specific details of models `Resident`, `Room`, `ResidentRoom`, `Issue`, `CommandHistory` and `Alias` as they are explained
+in greater detail in their specific sections.
+
+* For simplicity, the interactions that `ModelManager` and `StatefulAddressBook`/`AddressBook` have with the 
+  lower level sub-packages are shown in separate zoomed-in diagrams.
+
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+* stores a `CommandHistory` object that represents all previous commands entered by the user.
+* stores an `AliasMapping` object that represents the mapping of aliases to actual commands.
+* stores the SunRez data in a `StatefulAddressBook`.
+    * the `StatefulAddressBook` stores state history as a list of `ReadOnlyAddressBook` objects, each representing a saved state after a state-changing command is executed.  
+* exposes the following unmodifiable `ObservableList<T>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
+    * `ObservableList<Resident>`
+    * `ObservableList<Room>`
+    * `ObservableList<Issue>`
+* does not depend on any of the other three components (`Storage`, `Logic`, `UI`).
+
+The section below zooms in a **little bit** on how the `ModelManager` and `AddressBook`/`StatefulAddressBook` interact with the lower level sub-packages.
+Finer details than what is shown in the section below can be seen under the implementation section of each of the models.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+#### Zoomed-in view of Room, Resident and ResidentRoom 
+![Zoomed in view of Room, Resident and ResidentRoom](images/high-level-models/ResidentRoomZoomIn.png)
 
-</div>
+#### Zoomed-in view of Issue 
+![Zoomed in view of Issue](images/high-level-models/IssueZoomIn.png)
+
+#### Zoomed-in view of CommandHistory 
+![Zoomed in view of CommandHistory](images/high-level-models/CommandHistoryZoomIn.png)
+
+#### Zoomed-in view of Alias 
+![Zoomed in view of Alias](images/high-level-models/AliasZoomIn.png)
 
 
 ### Storage component
@@ -345,7 +402,7 @@ The Issue class consists of 5 fields, each of which contain their own methods to
 
 Examples of verification functions in each of the fields include `Category#isValidCategory()`, `Status#isValidStatus()`, etc.
 
-![The Issue Class](images/Issue/IssueClass.png)
+![The Issue Class](images/issue/IssueClass.png)
 
 The `Issue` objects are stored in an `IssueList` which is held by `AddressBook`.
 
@@ -578,29 +635,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a … | I want to … | So that I can…|
 | - | - | - | - |
-| `* * *` | new user | see usage instructions | refer to instructions if I forget how to use the app |
 | `* * *` | confused user | have a help command | learn how to use the application |
-| `* * *` | user | add a new person | |
-| `* * *` | user | add issues | |
-| `* * *` | user | see a list of pending tasks sorted by deadline | prioritise which to do |
-| `* * *` | user | search for tasks | |
+| `* * *` | user | add issues | track room issues and their status |
+| `* * *` | user | see a list of pending issues sorted by deadline | prioritise which issue to work on |
+| `* * *` | user | search for issues | find issues by their room number |
+| `* * *` | user | search for issues | find issues by their description |
 | `* * *` | user | close issues | focus on open issues |
-| `* * *` | user | update issues | |
-| `* * *` | user | remove issues | |
-| `* * *` | user | add residents | |
-| `* * *` | user | search for residents | |
+| `* * *` | user | update issues | ensure issues have the latest and correct information |
+| `* * *` | user | remove issues | not worry about issues that are no longer relevant |
+| `* * *` | user | add residents | track and manage residents who are staying or want to stay in the hostel |
+| `* * *` | user | search for residents | find a specific resident's information |
 | `* * *` | user | update resident details | ensure their information is up to date |
-| `* * *` | user | remove residents | |
-| `* * *` | user | add new rooms | |
+| `* * *` | user | remove residents | stop tracking residents who are not in the hostel or don't wish to stay anymore |
+| `* * *` | user | add new rooms | track and manage rooms in the hostel |
 | `* * *` | user | see a list of rooms with their statuses | know which rooms are available |
-| `* * *` | user | search for rooms | |
-| `* * *` | user | update room details | |
-| `* * *` | user | remove rooms | |
-| `* *` | user | see both available rooms and unassigned residents side by side | easily match residents to rooms |
+| `* * *` | user | search for rooms | find a specific room or rooms matching a specific criteria |
+| `* * *` | user | update room details | ensure a room's information is up to date |
+| `* * *` | user | remove rooms | stop tracking rooms which are not in the hostel |
+| `* * *` | user | allocate a resident to a room | ensure that a resident and room are linked |
+| `* * *` | user | deallocate a resident from a room | ensure that a resident who is no longer living in a room is not associated with it |
 | `* *` | careless user | undo previous commands | easily fix any errors I might make |
 | `* *` | careless user | redo previous commands | easily fix an erroneous undo |
-| `* * *` | user | allocate a resident to a room | |
-| `* * *` | user | deallocate a resident from a room | |
 | `* *` | power user | access my command history | efficiently repeat similar commands |
 | `* *` | power user | access command history from previous sessions | easily reuse commands from previous sessions |
 | `* *` | power user | create aliases for longer commands | shorten commands to be more efficient to type |
@@ -1070,6 +1125,34 @@ starting point for testers to work on; testers are expected to do more *explorat
     2. Test case: `rfind KEYWORD` <br>
        Expected: Residents whose names have words fully matching `KEYWORD` are listed.
 
+### Rooms
+
+1. Adding a room
+
+    1. Prerequisites: There are no rooms in SunRez, or the room with the number `10-999` does not exist in the system.
+
+    2. Test case: `oadd r/10-999 t/suite_ac` <br>
+       Expected: A feedback message in the result box indicating the room was successfully added. The room should also be visible in the room panel.
+
+    3. After step 2, key in `oadd r/10-999 t/suite_ac` <br>
+       Expected: An error message indicating the room `10-999` already exists in the system.
+
+    4. Test case: `oadd r/00-999 t/suite_ac` <br>
+       Expected: An error message indicating the value constraints for room number.
+
+1. Deleting a room
+
+    1. Prerequisites: The room with the number `10-999` must exist in the system and its index must be known.
+
+    2. Test case: `odel [index of room 10-999]` <br>
+       Expected: A feedback message in the result box indicating the room was successfully deleted. The room should no longer be visible in the room panel.
+
+    3. Test case: `odel -5` <br>
+       Expected: An error message indicating that the index must be a positive integer.
+
+    4. Test case: `odel abc` <br>
+       Expected: A message indicating the command format is invalid followed by proper usage instructions.
+       
 ### Issue
 
 1. Adding an issue
