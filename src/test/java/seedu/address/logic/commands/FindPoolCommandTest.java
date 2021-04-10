@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_POOLS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TestUtil.prepareNamePredicate;
 import static seedu.address.testutil.TypicalPools.HOMEPOOL;
 import static seedu.address.testutil.TypicalPools.OFFICEPOOL;
 import static seedu.address.testutil.TypicalPools.WORKPOOL;
@@ -56,14 +57,6 @@ public class FindPoolCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(HOMEPOOL, OFFICEPOOL, WORKPOOL), model.getFilteredPoolList());
     }
-
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private PooledPassengerContainsKeywordsPredicate prepareNamePredicate(String userInput) {
-        return new PooledPassengerContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
-    }
-
 
     @Test
     public void equals() {

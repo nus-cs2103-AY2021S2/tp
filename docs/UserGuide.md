@@ -61,10 +61,10 @@ Please note the following symbols used in the User Guide which may serve as poin
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [tag/TAG]` can be used as `n/John Doe tag/friend` or as `n/John Doe`.
+  e.g `n/NAME [tag/TAG]` can be used as `n/John Doe tag/finance` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
+  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/finance`, `tag/finance tag/management` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -107,9 +107,11 @@ GME data is saved in the hard disk automatically after any command that changes 
 
 GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="block" class="alert-warning">
+<div markdown="block" class="alert alert-warning">
 
-**:warning: GME will replace the JSON file with a new one if it cannot read the file, do make a backup and edit at your own risk.**
+**:warning: GME will replace the JSON file with a new one if it cannot read the file**<br> 
+* Make a backup before any changes
+* Edit at your own risk
 
 </div>
 
@@ -129,13 +131,13 @@ Adds a new passenger in the GME terminal.
 * [Tag](#6-glossary) is required to be an alphanumeric input and can only have a maximum of 30 characters in length.
 * [Price](#6-glossary) is an optional amount that the passenger can include that describes how much they are willing to pay for a carpooling trip. It is required to be a positive whole number or a positive decimal number rounded to 2 decimal places.
 * The tripday and triptime specified are intended as weekly specifications for the day and time that the passenger intends to carpool every week.
-* As the current iteration of GME(v1.4) is still only a minimum viable product, every passenger can only specify one day and one time a week for when they intend to carpool.
+* As the current iteration of GME(`v1.4`) is only a minimum viable product, each passenger can only specify one day and time a week for their carpooling time.
 </div>
 
 **Examples:**
 * `add n/Ben Dover p/91234567 a/Geylang d/FRIDAY t/1800`
 * `add n/Jenny Talia p/98765432 a/Yishun Avenue 4 d/SATURDAY t/0830 tag/female`
-* `add n/Mike Hawk p/91234023 a/Yishun Avenue 69 d/SATURDAY t/0420 tag/male tag/early`
+* `add n/Jane Wong p/97654321 a/Create Way d/MONDAY t/1200 tag/female tag/finance tag/management`
 
 ### 3.2.2 Listing all passengers : `list`
 
@@ -197,7 +199,7 @@ Finds passengers whose names contain any of the given keywords.
 
 Deletes the specific passenger from the GME terminal.
 
-**Format:** `delete INDEX [INDEX INDEX...]`
+**Format:** <code>delete INDEX [<a title="These extra parameters are optional.">INDEX INDEX...</a>]</code>
 
 <div markdown="block" class="alert alert-info">
 
@@ -222,7 +224,7 @@ Deletes the specific passenger from the GME terminal.
 
 Selects passengers from the current view in the bottom left pane of the GME terminal to arrange a carpool. 
 
-**Format:** `pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [c/INDEX c/INDEX ...] [tag/TAG]`
+**Format:** <code>pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [<a title="These extra parameters are optional.">c/INDEX c/INDEX ...</a>] [tag/TAG]</code>
 
 <div markdown="block" class="alert alert-info">
 
@@ -265,7 +267,7 @@ Removes the [pool](#6-glossary) specified by an index from the GME terminal.
 
 Filtering pools where the name of the pool's passengers contain any of the given keywords.
 
-**Format:** `findPool n/KEYWORD [n/KEYWORD n/KEYWORD ...]`
+**Format:** <code>findPool n/KEYWORD [<a title="These extra parameters are optional.">n/KEYWORD n/KEYWORD ...</a>]</code>
 
 <div markdown="block" class="alert alert-info">
 

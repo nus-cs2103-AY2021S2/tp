@@ -2,7 +2,7 @@ package seedu.address.model.pool;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOLF;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -86,7 +86,7 @@ public class PoolTest {
 
         // same details, tags different -> returns true
         Pool editedHomePool = new PoolBuilder(HOMEPOOL)
-                .withTags(VALID_TAG_GOLF).build();
+                .withTags(VALID_TAG_HR).build();
         assertTrue(HOMEPOOL.isSamePool(editedHomePool));
 
         // different details, same tags -> returns false
@@ -134,7 +134,7 @@ public class PoolTest {
         assertFalse(HOMEPOOL.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PoolBuilder(HOMEPOOL).withTags(VALID_TAG_GOLF).build();
+        editedAlice = new PoolBuilder(HOMEPOOL).withTags(VALID_TAG_HR).build();
         assertFalse(HOMEPOOL.equals(editedAlice));
     }
 }
