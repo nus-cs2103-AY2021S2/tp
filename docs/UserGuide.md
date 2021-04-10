@@ -288,7 +288,7 @@ Please refer to the [Input Formats](#input-formats) section when editing the dat
 
 ## Input Formats
 
-**:information_source: NOTE: The following parameter formats must be followed:**
+The following parameter formats must be followed:**
 
 ### Matriculation Number
  The `MATRICULATION_NUMBER` of a student is a unique 9-character alphanumeric sequence that begins with A, followed by
