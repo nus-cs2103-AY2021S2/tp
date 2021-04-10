@@ -101,11 +101,11 @@ public class FindAppointmentCommandTest {
     @Test
     public void execute_somePartOfNamesSomeFullNamesKeywords_multipleContactsFound() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENTS_LISTED_OVERVIEW, 3);
-        ApptNameContainsKeywordsPredicate predicate = preparePredicate("date ballet PSG recital play PTM");
+        ApptNameContainsKeywordsPredicate predicate = preparePredicate("date ballet PSG recital play");
         FindAppointmentCommand command = new FindAppointmentCommand(predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BALLET_RECITAL, PSG_MEETING, PLAY_DATE, PTM), model.getFilteredAppointmentList());
+        assertEquals(Arrays.asList(BALLET_RECITAL, PSG_MEETING, PLAY_DATE), model.getFilteredAppointmentList());
     }
 
     @Test
@@ -131,7 +131,7 @@ public class FindAppointmentCommandTest {
     @Test
     public void execute_someIncompleteKeywordsSomeCompleteKeywords_multipleContactsFound() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENTS_LISTED_OVERVIEW, 4);
-        ApptNameContainsKeywordsPredicate predicate = preparePredicate("ball meeting date piano");
+        ApptNameContainsKeywordsPredicate predicate = preparePredicate("ball psg meeting date pt");
         FindAppointmentCommand command = new FindAppointmentCommand(predicate);
         expectedModel.updateFilteredAppointmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

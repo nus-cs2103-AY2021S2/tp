@@ -87,13 +87,13 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         switch (option) {
         case OPTION_NAME: // find by name
             return new FindAppointmentCommand(new ApptNameContainsKeywordsPredicate(keywords));
-        case OPTION_CHILD:
+        case OPTION_CHILD: //find by child
             return new FindAppointmentCommand(new ApptTagsContainKeywordsPredicate(keywords));
         case OPTION_ADDRESS: // find by address
             return new FindAppointmentCommand(new ApptAddressContainsKeywordsPredicate(keywords));
         case OPTION_DATE: // find by date
             return new FindAppointmentCommand(new ApptDateContainsKeywordsPredicate(keywords));
-        case OPTION_CONTACT: // find by contacts
+        case OPTION_CONTACT: // find by contact
             return new FindAppointmentCommand(new ApptContactsContainKeywordsPredicate(keywords));
         default:
             throw new ParseException(
