@@ -662,12 +662,24 @@ otherwise) <br /><br />
 
 **MSS**
 
-1. User requests to delete a flashcard from the list.
-1. FlashBack deletes the specified flashcard.
-1. User requests to undo delete command.
-1. FlashBack reverts to its previous state before delete command.
+1. User requests to execute a command.
+1. FlashBack executes the specified command.
+1. User requests to undo a command.
+1. FlashBack reverts to its state before the previous command was executed.
 
    Use case ends.
+   
+**Extensions**
+   
+* 1a. The command is invalid.
+   
+     Use case ends.
+   
+* 3a. The command executed is not an undoable command. (Only `add`, `edit`, `delete` and `clear` can be undone)
+   * 3a1. FlashBack shows an error message.
+
+     Use case ends.
+
    
 **Use case: UC08 - Redo an undoable command**
 
