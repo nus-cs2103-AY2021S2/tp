@@ -42,7 +42,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 4. Double click the file to start the aplication.
 5. Type the command in the command box and press the Enter key to execute it. Some examples of commands you could try are:
    * `list`: Lists all [passengers](#6-glossary) currently stored in the GME system.
-   * `pool n/Dr. Iver p/92385810 d/MONDAY t/0930 c/1 c/2 c/3`: adds the employees shown at indexes 1, 2, and 3 as passengers to a new [pool](#6-glossary) with Dr. Iver as the driver.
+   * `pool n/Doctor Iver p/92385810 d/MONDAY t/0930 c/1 c/2 c/3`: adds the employees shown at indexes 1, 2, and 3 as passengers to a new [pool](#6-glossary) with Dr. Iver as the driver.
    * `listPool`: Lists all [pools](#6-glossary) currently stored in the GME system.
    * `unpool 2`: Removes the pool at index 2.
    * `exit`: closes the GME application.
