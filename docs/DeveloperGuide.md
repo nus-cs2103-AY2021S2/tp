@@ -523,6 +523,10 @@ The sequence diagram for `UndoneTaskCommand` can be found below.
 when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`.
 </div>
 
+The activity diagram that summaries what happens when users execute the `UndoneTaskCommand` can be found below.
+
+![Acitivity Diagram of UndoneTask Command](images/UndoneTaskCommandActivityDiagram.png)
+
 **Design Considerations**
 
 One of the challenges is if we should add additional support to allow undone task command to mark more than one tasks as uncompleted.

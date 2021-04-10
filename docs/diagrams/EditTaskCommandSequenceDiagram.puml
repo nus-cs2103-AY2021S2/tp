@@ -46,11 +46,6 @@ deactivate SocheduleParser
 
 LogicManager -> EditTaskCommand : execute()
 activate EditTaskCommand
-
-EditTaskCommand -> EditTaskCommand : createEditedTask(taskToEdit, ed)
-activate EditTaskCommand
-EditTaskCommand <-- EditTaskCommand
-deactivate EditTaskCommand
 destroy EditTaskDescriptor
 
 EditTaskCommand -> Model : setTask(taskToEdit, editedTask)
