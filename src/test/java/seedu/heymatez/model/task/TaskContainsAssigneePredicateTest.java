@@ -1,6 +1,7 @@
 package seedu.heymatez.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -43,6 +44,13 @@ public class TaskContainsAssigneePredicateTest {
         assertTrue(predicate.test(new TaskBuilder().withAssignees("Alice").build()));
     }
 
+    @Test
+    public void test_invalidArgs_throwInllegalArg() {
+        TaskContainsAssigneePredicate predicate = new TaskContainsAssigneePredicate("");
+        Task task = new TaskBuilder().withTitle("Meeting").build();
+
+        assertThrows(IllegalArgumentException.class, () -> predicate.test(task));
+    }
 
     @Test
     public void test_taskDoesNotContainAssigne_returnsFalse() {
@@ -69,10 +77,10 @@ public class TaskContainsAssigneePredicateTest {
     }
 
     @Test
-    public void test_taskContainsMultipleAssignees_searchMixedCasingsReturnsTrue() {
+    public void test_taskContainsAssignee_searchMixedCasingsReturnsFalse() {
         TaskContainsAssigneePredicate predicate = new TaskContainsAssigneePredicate("AliCE");
         Task task = new TaskBuilder().withAssignees("Alice").build();
 
-        assertTrue(predicate.test(task));
+        assertFalse(predicate.test(task));
     }
 }
