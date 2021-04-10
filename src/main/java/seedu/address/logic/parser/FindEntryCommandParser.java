@@ -11,7 +11,7 @@ import seedu.address.model.entry.EntryNameContainsKeywordsPredicate;
 /**
  * Parses input arguments and creates a new FindEntryCommand object
  */
-public class FindEntryCommandParser {
+public class FindEntryCommandParser implements Parser<FindEntryCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindEntryCommand
      * and returns a FindEntryCommand object for execution.
