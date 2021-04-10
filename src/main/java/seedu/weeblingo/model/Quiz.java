@@ -110,6 +110,8 @@ public class Quiz {
      * @param numberOfQuestions The number of questions to limit the quiz to. Is ignored if zero.
      * @param tags Tags used to filter the array of flashcards. Can be empty.
      * @return A queue of flashcards with randomized order.
+     * @throws CommandException if there are no flashcards with specified tag or
+     * number of questions specified is larger than number of flashcards in database.
      */
     private Queue<Flashcard> getRandomizedQueue(Flashcard[] flashcardsReadFromDB,
             int numberOfQuestions, Set<Tag> tags) throws CommandException {
