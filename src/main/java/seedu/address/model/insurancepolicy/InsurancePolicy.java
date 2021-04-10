@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 /**
  * Represents an InsurancePolicy in the address book.
@@ -11,11 +12,26 @@ import java.util.Optional;
  */
 public class InsurancePolicy {
 
-    public static final String MESSAGE_CONSTRAINTS = "PolicyIDs should not contain '>'!. URLs should be "
-            + "preceded by '>' after the PolicyID.";
+    public static final String MESSAGE_CONSTRAINTS = "Policy input is of an incorrect format."
+            + "\nPolicyIDs should not contain '>'."
+            + "\nOptional URLs should be preceded by '>' after the PolicyID, and should be of a standard URL format."
+            + "\nDo head over to our User Guide if you are unsure of the command or input format for policies.";
     public static final String MESSAGE_NO_POLICY = "Currently does not have an active policy";
+    /*
+    Checks if a String is a valid URL.
+    Reused from: https://stackoverflow.com/a/42619410
+     */
+    public static final Pattern URL_REGEX = Pattern.compile("((ftp|http|https):\\/\\/)?(www.)?(?!.*(ftp|http"
+            + "|https|www.))[a-zA-Z0-9_-]+(\\.[a-zA-Z]+)+((\\/)[\\w#]+)*(\\/\\w+\\?[a-zA-Z0-9_]+=\\"
+            + "w+(&[a-zA-Z0-9_]+=\\w+)*)?", Pattern.CASE_INSENSITIVE);
+    /*
+    Checks if String contains angular brackets, which we do not want in a URL.
+    Reused from: https://stackoverflow.com/a/4105987
+     */
+    public static final Pattern ANGULAR_BRACKET_REGEX = Pattern.compile("^[^<>]+$");
+
     public final String policyId;
-    private String policyUrl;
+    private final String policyUrl;
 
     /**
      * Constructs an {@code InsurancePolicy} without URL.
@@ -87,36 +103,22 @@ public class InsurancePolicy {
     }
 
     /**
-     * Checks if input contains a valid policy ID without '>' character in the ID.
+     * Checks if input contains a valid policy ID without '>' character in the ID, and if the URL is of a valid
+     * format.
      *
      * @param input policy input to check.
      * @return true if policy input contains a valid policy ID.
      */
-    public static boolean isValidPolicyId(String input) {
+    public static boolean isValidPolicyInput(String input) {
         String[] splitByAngularBracket = input.split(">", 2);
-
         if (splitByAngularBracket.length == 1) {
-            // return true if length is 1, since no '>' was used, meaning no URL and valid policy ID.
+            // Return true if length is 1, since no '>' was used, meaning no URL and valid policy ID.
             return true;
         }
 
-        // If input is of a correct format, then splitting by '>' would give us policy ID in the 0th index,
-        // and policy URL in the 1st index.
-
-        // By definition, URLs should not contain angular brackets, as they are usually used as delimiters around
-        // URLs in free text. Hence our choice to use the '>' character as delimiter here.
-
-        // Thus, we want to check if the URL contains any '>' which was what the input should have been split by.
-
-        String possibleUrl = splitByAngularBracket[1];
-
-        for (int i = 0; i < possibleUrl.length(); i++) {
-            if (possibleUrl.charAt(i) == '>') {
-                return false;
-            }
-        }
-
-        return true;
+        // Due to the variable nature of policy ID names, we only need to check if after splitting, the 2nd item
+        // in the array is a valid URL for the entire input to be valid.
+        return isValidPolicyUrl(splitByAngularBracket[1]);
     }
 
     /**
@@ -127,5 +129,15 @@ public class InsurancePolicy {
      */
     public static boolean hasPolicyUrl(String[] test) {
         return test.length == 2;
+    }
+
+    /**
+     * Checks if a policy input by a user contains a valid URL.
+     *
+     * @param policyUrl policy URL entered by the user.
+     * @return true if the URL is valid.
+     */
+    public static boolean isValidPolicyUrl(String policyUrl) {
+        return URL_REGEX.matcher(policyUrl).find() && ANGULAR_BRACKET_REGEX.matcher(policyUrl).find();
     }
 }
