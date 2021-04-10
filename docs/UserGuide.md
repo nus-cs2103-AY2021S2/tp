@@ -112,7 +112,7 @@ Format: `add n/NAME s/SIZE c/COLOUR r/DRESSCODE t/TYPE [d/DESCRIPTION]...`<br>
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tips:** <br>
-* `SIZE` is a positive number.
+* `SIZE` is a positive integer.
 * `DRESSCODE` is either 'formal', 'casual' or 'active'.
 * `TYPE` is either 'lower', 'upper' or 'footwear'.
 </div>
