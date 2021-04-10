@@ -216,11 +216,11 @@ An `Appointment` consists of the following mandatory attributes,
 
 Similar design considerations as [how each attribute of `Property` is stored](#aspect-how-each-attribute-of-property-is-stored)
 
-### \[Proposed\] Undo feature
+### Undo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo mechanism is facilitated by `PocketEstate`. It implements the undo feature with an undo history, stored internally as an `previousAppointmentLists` and `previousPropertyLists`. It implements
+The undo mechanism is facilitated by `PocketEstate`. It implements the undo feature with an undo history, stored internally as an `previousAppointmentLists` and `previousPropertyLists`.
 
 * `AppointmentBook#undo()` — Restores the previous appointment book state from its history.
 * `PropertyBook#undo()` — Restores the previous property book state from its history.
