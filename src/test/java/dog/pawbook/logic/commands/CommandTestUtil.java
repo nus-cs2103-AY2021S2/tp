@@ -90,10 +90,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_OBEDIENCE_TRAINING = "Obedience Training";
     public static final String VALID_NAME_POTTY_TRAINING = "Potty Training";
-    public static final String VALID_NAME_DANCE_TRAINING = "Dance Training";
     public static final String VALID_SESSION_OBEDIENCE_TRAINING = "01-01-2022 10:30";
     public static final String VALID_SESSION_POTTY_TRAINING = "03-02-2022 20:30";
-    public static final String VALID_SESSION_DANCE_TRAINING = "11-11-2011 11:11";
     public static final int VALID_PROGRAMID_FIFTEEN = 15;
     public static final int VALID_PROGRAMID_SEVENTEEN = 17;
     public static final String VALID_TAG_PUPPIES = "Puppies";
@@ -102,13 +100,10 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_OBEDIENCE_TRAINING = " " + PREFIX_NAME + VALID_NAME_OBEDIENCE_TRAINING;
     public static final String NAME_DESC_POTTY_TRAINING = " " + PREFIX_NAME + VALID_NAME_POTTY_TRAINING;
-    public static final String NAME_DESC_DANCE_TRAINING = " " + PREFIX_NAME + VALID_NAME_DANCE_TRAINING;
     public static final String SESSION_DESC_OBEDIENCE_TRAINING = " " + PREFIX_SESSION
             + VALID_SESSION_OBEDIENCE_TRAINING;
     public static final String SESSION_DESC_POTTY_TRAINING = " " + PREFIX_SESSION
             + VALID_SESSION_POTTY_TRAINING;
-    public static final String SESSION_DESC_DANCE_TRAINING = " " + PREFIX_SESSION
-            + VALID_SESSION_DANCE_TRAINING;
 
     public static final String PROGRAMID_DESC_FIFTEEN = " " + PREFIX_PROGRAMID + VALID_PROGRAMID_FIFTEEN;
     public static final String PROGRAMID_DESC_SEVENTEEN = " " + PREFIX_PROGRAMID + VALID_PROGRAMID_SEVENTEEN;

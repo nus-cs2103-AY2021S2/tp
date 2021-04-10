@@ -4,10 +4,8 @@ import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_SESSION_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_DANCE_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_OBEDIENCE_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_POTTY_TRAINING;
-import static dog.pawbook.logic.commands.CommandTestUtil.SESSION_DESC_DANCE_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.SESSION_DESC_OBEDIENCE_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.SESSION_DESC_POTTY_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.SESSION_EMPTY;
@@ -17,7 +15,6 @@ import static dog.pawbook.logic.commands.CommandTestUtil.TAG_DESC_PUPPIES;
 import static dog.pawbook.logic.commands.CommandTestUtil.TAG_EMPTY;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_OBEDIENCE_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_POTTY_TRAINING;
-import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_DANCE_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_OBEDIENCE_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SESSION_POTTY_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_ALL;
@@ -104,7 +101,7 @@ public class EditProgramCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Integer targetId = ID_TWO;
+        int targetId = ID_TWO;
         String userInput = targetId + TAG_DESC_ALL + SESSION_DESC_OBEDIENCE_TRAINING
                 + NAME_DESC_OBEDIENCE_TRAINING + TAG_DESC_PUPPIES;
 
@@ -117,7 +114,7 @@ public class EditProgramCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Integer targetId = ID_ONE;
+        int targetId = ID_ONE;
         String userInput = targetId + SESSION_DESC_OBEDIENCE_TRAINING + NAME_DESC_POTTY_TRAINING;
 
         EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder().withName(VALID_NAME_POTTY_TRAINING)
@@ -130,7 +127,7 @@ public class EditProgramCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Integer targetId = ID_THREE;
+        int targetId = ID_THREE;
         String userInput = targetId + NAME_DESC_OBEDIENCE_TRAINING;
         EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder()
                 .withName(VALID_NAME_OBEDIENCE_TRAINING).build();
@@ -152,9 +149,8 @@ public class EditProgramCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedNames_acceptsLast() {
-        Integer targetId = ID_ONE;
-        String userInput = targetId + NAME_DESC_OBEDIENCE_TRAINING + NAME_DESC_DANCE_TRAINING
-                + NAME_DESC_OBEDIENCE_TRAINING + NAME_DESC_POTTY_TRAINING;
+        int targetId = ID_ONE;
+        String userInput = targetId + NAME_DESC_OBEDIENCE_TRAINING + NAME_DESC_POTTY_TRAINING;
 
         EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder()
                 .withName(VALID_NAME_POTTY_TRAINING).build();
@@ -164,8 +160,8 @@ public class EditProgramCommandParserTest {
     }
 
     @Test
-    public void parse_multipleRepeatedTags_acceptsAll() {
-        Integer targetId = ID_ONE;
+    public void parse_multipleRepeatedTags_acceptsUnique() {
+        int targetId = ID_ONE;
         String userInput = targetId + TAG_DESC_DOGS + TAG_DESC_PUPPIES + TAG_DESC_ALL + TAG_DESC_ALL
                 + TAG_DESC_PUPPIES + TAG_DESC_ALL + TAG_DESC_DOGS;
 
@@ -177,15 +173,13 @@ public class EditProgramCommandParserTest {
     }
 
     @Test
-    public void parse_multipleRepeatedSessions_acceptsAll() {
-        Integer targetId = ID_ONE;
-        String userInput = targetId + SESSION_DESC_OBEDIENCE_TRAINING + SESSION_DESC_POTTY_TRAINING
-                + SESSION_DESC_DANCE_TRAINING + SESSION_DESC_POTTY_TRAINING
-                + SESSION_DESC_OBEDIENCE_TRAINING + SESSION_DESC_DANCE_TRAINING;
+    public void parse_multipleRepeatedSessions_acceptsUnique() {
+        int targetId = ID_ONE;
+        String userInput = targetId + SESSION_DESC_OBEDIENCE_TRAINING + SESSION_DESC_POTTY_TRAINING +
+                SESSION_DESC_OBEDIENCE_TRAINING + SESSION_DESC_POTTY_TRAINING;
 
         EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder()
-                .withSessions(VALID_SESSION_POTTY_TRAINING, VALID_SESSION_OBEDIENCE_TRAINING,
-                        VALID_SESSION_DANCE_TRAINING).build();
+                .withSessions(VALID_SESSION_POTTY_TRAINING, VALID_SESSION_OBEDIENCE_TRAINING).build();
         EditProgramCommand expectedCommand = new EditProgramCommand(targetId, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -193,7 +187,7 @@ public class EditProgramCommandParserTest {
 
     @Test
     public void parse_resetSessions_success() {
-        Integer targetId = ID_THREE;
+        int targetId = ID_THREE;
         String userInput = targetId + SESSION_EMPTY;
 
         EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder().withSessions().build();
@@ -204,7 +198,7 @@ public class EditProgramCommandParserTest {
 
     @Test
     public void parse_resetTags_success() {
-        Integer targetId = ID_THREE;
+        int targetId = ID_THREE;
         String userInput = targetId + TAG_EMPTY;
 
         EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder().withTags().build();

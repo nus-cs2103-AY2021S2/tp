@@ -15,6 +15,7 @@ import static dog.pawbook.logic.commands.CommandTestUtil.OWNERID_DESC_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.OWNERID_DESC_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.SEX_DESC_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.SEX_DESC_BELL;
+import static dog.pawbook.logic.commands.CommandTestUtil.TAG_DESC_ALL;
 import static dog.pawbook.logic.commands.CommandTestUtil.TAG_DESC_FRIENDLY;
 import static dog.pawbook.logic.commands.CommandTestUtil.TAG_DESC_QUIET;
 import static dog.pawbook.logic.commands.CommandTestUtil.TAG_EMPTY;
@@ -26,6 +27,7 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_OWNERID_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SEX_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SEX_BELL;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_ALL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_FRIENDLY;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 import static dog.pawbook.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -50,7 +52,7 @@ public class EditDogCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditDogCommand.MESSAGE_USAGE);
 
-    private EditDogCommandParser parser = new EditDogCommandParser();
+    private final EditDogCommandParser parser = new EditDogCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -130,7 +132,7 @@ public class EditDogCommandParserTest {
     }
 
     @Test
-    public void parse_someFieldsSpecified_success() {
+    public void parse_someFieldsExceptOwnerIdSpecified_success() {
         Integer targetId = ID_ONE;
         String userInput = targetId + BREED_DESC_BELL + DATEOFBIRTH_DESC_ASHER;
 
@@ -191,6 +193,18 @@ public class EditDogCommandParserTest {
         EditDogDescriptor descriptor = new EditDogDescriptorBuilder().withBreed(VALID_BREED_BELL)
                 .withDob(VALID_DATEOFBIRTH_BELL).withSex(VALID_SEX_BELL).withOwnerId(VALID_OWNERID_ASHER)
                 .withTags(VALID_TAG_FRIENDLY, VALID_TAG_QUIET).build();
+        EditDogCommand expectedCommand = new EditDogCommand(targetId, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_multipleRepeatedTags_acceptsUnique() {
+        int targetId = ID_ONE;
+        String userInput = targetId + TAG_DESC_FRIENDLY + TAG_DESC_QUIET + TAG_DESC_ALL + TAG_DESC_ALL
+                + TAG_DESC_FRIENDLY + TAG_DESC_QUIET;
+        EditDogDescriptor descriptor = new EditDogDescriptorBuilder()
+                .withTags(VALID_TAG_FRIENDLY, VALID_TAG_QUIET, VALID_TAG_ALL).build();
         EditDogCommand expectedCommand = new EditDogCommand(targetId, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
