@@ -48,11 +48,4 @@ public class AddEventCommandParserTest {
         assertParseFailure(parser, userInput2,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
     }
-
-    @Test
-    public void parse_empty_failure() {
-        String userInput = "";
-        assertParseFailure(parser, userInput,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
-    }
 }
