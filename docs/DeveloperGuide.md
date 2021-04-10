@@ -377,15 +377,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                                                            | So that I can…​                                                                |
+| Priority | As a …​                                 | I want to …​                                                            | So that I can…​                                                                        |
 | -------- | ------------------------------------------ | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions                                                     | refer to instructions when I forget how to use the App                                    |
 | `* * *`  | user                                       | be able to add a property                                                  | keep track of my clients' properties                                                      |
 | `* * *`  | user                                       | be able to add an appointment                                              | keep track of my upcoming schedule                                                        |
 | `* * *`  | user                                       | list all properties on sale                                                | know the number of properties that I have to sell                                         |
-| `* * *`  | user                                       | list all properties on sale                                                | know which properties I have to sell                                                      |
+| `* * *`  | user                                       | list all appointments I have                                               | know all the meetings I have                                                              |
+| `* * *`  | user                                       | view all properties and appointments side by side                          | simultaneously view related property and appointment data                                 |
+| `* * *`  | user                                       | view the notes/special remarks of a seller                                 | so that I keep in mind special considerations when negotiating with a potential buyer.    |
+| `* * *`  | user                                       | identify properties with expired deadlines                                 | focus on current properties that I have to sell                                           |
 | `* * *`  | user                                       | view the client asking price of a property                                 | keep the price in mind when negotiating with the buyer                                    |
-| `* * *`  | user                                       | view the properties in the order of nearest deadline                       | prioritize selling properties with a more urgent deadline                                 |
 | `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
 | `* *`    | user                                       | search for properties based on some criteria                               | easily filter out the properties I want to see                                            |
 | `* *`    | user                                       | search for appointments based on some criteria                             | easily filter out the appointments I want to see                                          |
