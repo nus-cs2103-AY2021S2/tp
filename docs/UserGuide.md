@@ -127,7 +127,7 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
   as well as graduated students who are less likely to need private tuition.
   For more details, see the [Field Format Summary](#field-format-summary) below.
 
-* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
+* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `Bio`, `BIO`, `bio` are equivalent.
 
   They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
   subjects which students are more likely to need private tuition.
@@ -199,7 +199,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
   
 * You can remove all the student’s lessons by typing `le/` without specifying any lesson details after it.
   
-* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
+* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `Bio`, `BIO`, `bio` are equivalent.
 
   They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
   subjects which students are more likely to need private tuition.
@@ -305,7 +305,7 @@ Prefix | Searching Criteria
   
   E.g. `n/Alice Tan` will return contacts with names `Alice Ng` and `Bob Tan`.
 
-* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
+* Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, which are case-insensitive, e.g. `Bio`, `BIO`, `bio` are equivalent.
 
   They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
   subjects which students are more likely to need private tuition.
@@ -319,6 +319,7 @@ Examples:
 * `search s/woodlands` returns students studying in `woodlands primary school` and `woodlands secondary school`
 * `search s/raffles hwa` returns students studying in `Raffles Institution` and `Hwa chong institution`
 * `search t/CHEM`, `search t/chem`, and `search t/Chem` will all return students with the subject `chem`
+* `search t/chem math` returns students with the subject `chem` or with the subject `math` or with both.
 
 
 ### Sorting contacts: `sort`

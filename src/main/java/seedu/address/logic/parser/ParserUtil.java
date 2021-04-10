@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 
@@ -173,7 +174,7 @@ public class ParserUtil {
      */
     public static Subject parseSubject(String subject) throws ParseException {
         requireNonNull(subject);
-        String trimmedTag = subject.trim();
+        String trimmedTag = subject.trim().toLowerCase(Locale.ROOT);
         if (!Subject.isValidSubjectName(trimmedTag)) {
             throw new ParseException(Subject.MESSAGE_CONSTRAINTS);
         }
