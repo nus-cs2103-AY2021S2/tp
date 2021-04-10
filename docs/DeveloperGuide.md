@@ -336,7 +336,7 @@ keys in the command `find */cheese egg`:
 
 <br>
 
-![Interactions Inside the Logic Component for the `find */KEYWORD [MORE_KEYWORDS]` Command](images/FindPartialSequenceDiagram.png)
+![FindPartialSequenceDiagram](images/FindPartialSequenceDiagram.png)
 
 <br>
 
@@ -345,7 +345,7 @@ keys in the command `find Chocolate`:
 
 <br>
 
-![Interactions Inside the Logic Component for the `find KEYWORD [MORE_KEYWORDS]` Command](images/FindFullSequenceDiagram.png)
+![FindFullSequenceDiagram](images/FindFullSequenceDiagram.png)
 
 From the diagram above:
 
