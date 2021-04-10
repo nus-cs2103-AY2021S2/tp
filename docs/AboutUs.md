@@ -5,55 +5,50 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+## TutorsPet Project team
 
-## Project team
+### Andrea Tan Wan Ling
 
-### John Doe
+<img src="images/andrea-twl.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](http://github.com/andrea-twl)]
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+* Role: Documentation, Testing
+* Responsibilities: Ensures quality of various project documents
 
-* Role: Project Advisor
+### Gu Yichen
 
-### Jane Doe
+<img src="images/chenzaza.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](http://github.com/chenzaza)]
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+* Role: Code quality, Testing
+* Responsibilities: Ensures adherence to coding standards
 
-* Role: Team Lead
-* Responsibilities: UI
+### Han Zong Yu
 
-### Johnny Doe
+<img src="images/internityz.png" width="200px">
 
-<img src="images/johndoe.png" width="200px">
+[[github](https://github.com/internityz)]
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+* Role: Integration, Testing
+* Responsibilities: Versioning of code, maintaining the code repository, integrating various parts of the software to create a whole.
 
-* Role: Developer
-* Responsibilities: Data
 
-### Jean Doe
+### Kang Min Hui, Mabel
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/mabel-kang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/mabel-kang)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Scheduling and tracking, Testing
+* Responsibilities:  Defining, assigning, and tracking project tasks
 
-### James Doe
+### Sylvia Ong Kai Ting
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sylviaokt.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/sylviaokt)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Deliverables and deadlines, Testing
+* Responsibilities: Ensure project deliverables are done on time and in the right format

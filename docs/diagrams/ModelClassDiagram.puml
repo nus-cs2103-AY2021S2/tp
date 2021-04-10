@@ -21,11 +21,18 @@ Class Address
 Class Email
 Class Name
 Class Phone
+Class School
 Class UniquePersonList
 }
 
 Package Tag {
 Class Tag
+}
+
+Package Lesson {
+Class Lesson
+Class Day
+Class Time
 }
 }
 
@@ -46,7 +53,11 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> School
 Person *--> "*" Tag
+Person *--> "*" Lesson
+Lesson *--> Day
+Lesson *--> Time
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address

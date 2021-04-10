@@ -15,6 +15,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path datesBookFilePath = Paths.get("data", "datesbook.json");
+    private Path lessonBookFilePath = Paths.get("data", "lessonbook.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +38,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setDatesBookFilePath(newUserPrefs.getDatesBookFilePath());
+        setLessonBookFilePath(newUserPrefs.getLessonBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -56,6 +60,24 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
+    public Path getDatesBookFilePath() {
+        return datesBookFilePath;
+    }
+
+    public void setDatesBookFilePath(Path datesBookFilePath) {
+        requireNonNull(datesBookFilePath);
+        this.datesBookFilePath = datesBookFilePath;
+    }
+
+    public Path getLessonBookFilePath() {
+        return lessonBookFilePath;
+    }
+
+    public void setLessonBookFilePath(Path lessonBookFilePath) {
+        requireNonNull(lessonBookFilePath);
+        this.lessonBookFilePath = lessonBookFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,19 +90,23 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && addressBookFilePath.equals(o.addressBookFilePath)
+                && datesBookFilePath.equals(o.datesBookFilePath)
+                && lessonBookFilePath.equals(o.lessonBookFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, datesBookFilePath, lessonBookFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location for contacts: " + addressBookFilePath);
+        sb.append("\nLocal data file location for dates: " + datesBookFilePath);
+        sb.append("\nLocal data file location for lessons: " + lessonBookFilePath);
         return sb.toString();
     }
 

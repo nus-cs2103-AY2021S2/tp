@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DO_NOT_PROCEED_COMMAND;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -32,8 +34,12 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private PersonDetails personDetails;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ScheduleWindow scheduleWindow;
+    private CommandBox commandBox;
+    private ImportantDatesWindow importantDatesWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -50,6 +56,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private StackPane personDetailsPlaceholder;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -65,6 +74,9 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
+
+        scheduleWindow = new ScheduleWindow(logic);
+        importantDatesWindow = new ImportantDatesWindow(logic);
         helpWindow = new HelpWindow();
     }
 
@@ -74,6 +86,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+    }
+
+    void setPersonDetails(PersonDetails details) {
+        personDetailsPlaceholder.getChildren().add(details.getRoot());
     }
 
     /**
@@ -110,8 +126,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getTransformedPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        personDetails = new PersonDetails();
+        personDetailsPlaceholder.getChildren().add(personDetails.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -119,8 +138,9 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
     }
 
     /**
@@ -147,6 +167,30 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the schedule window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleSchedule() {
+        if (!scheduleWindow.isShowing()) {
+            scheduleWindow.show();
+        } else {
+            scheduleWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the important dates window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleImportantDates() {
+        if (!importantDatesWindow.isShowing()) {
+            importantDatesWindow.show();
+        } else {
+            importantDatesWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -160,6 +204,8 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        scheduleWindow.hide();
+        importantDatesWindow.hide();
         primaryStage.hide();
     }
 
@@ -174,9 +220,23 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            if (commandBox.isWaitForNextInput()) {
+                if (logic.isProceed(commandText)) {
+                    commandText = commandBox.getPreviousUserInput();
+                } else {
+                    commandBox.setWaitForNextInput(false);
+                    logic.setSavedState(false);
+                    throw new CommandException(MESSAGE_DO_NOT_PROCEED_COMMAND);
+                }
+                commandBox.setWaitForNextInput(false);
+            }
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            if (logic.getSelectedPerson() != null) {
+                personDetails.setPerson(logic.getSelectedPerson());
+                personDetails.setLessonList(logic.getSpecificLessonList(logic.getSelectedPerson()));
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -186,10 +246,26 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isShowSchedule()) {
+                handleSchedule();
+            }
+
+            if (commandResult.isShowImportantDates()) {
+                handleImportantDates();
+            }
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            if (e.getMessage().startsWith("The student name ")) {
+                commandBox.setWaitForNextInput(true);
+            }
+            if (e.getMessage().startsWith("You have a lesson at ")) {
+                commandBox.setWaitForNextInput(true);
+            }
+            if (e.getMessage().startsWith("This student name ")) {
+                commandBox.setWaitForNextInput(true);
+            }
             throw e;
         }
     }

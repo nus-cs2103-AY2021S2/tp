@@ -19,12 +19,13 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.predicate.NameSchoolAndSubjectContainsKeywordsPredicate;
+import seedu.address.model.subject.Subject;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -69,11 +70,18 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    public void parseCommand_search() throws Exception {
+        List<String> nameKeywords = Arrays.asList("alice", "bernice", "charlie");
+        List<String> schoolKeywords = Arrays.asList("woodlands", "clementi", "bedok");
+        List<String> subjectKeywords = Arrays.asList("bio", "math", "sci");
+        List<Subject> subjects = Arrays.asList(new Subject("bio"),
+                new Subject("math"), new Subject("sci"));
+        SearchCommand command = (SearchCommand) parser.parseCommand(
+                SearchCommand.COMMAND_WORD + " n/" + nameKeywords.stream().collect(Collectors.joining(" "))
+                        + " s/" + schoolKeywords.stream().collect(Collectors.joining(" "))
+                        + " t/" + subjectKeywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new SearchCommand(
+                new NameSchoolAndSubjectContainsKeywordsPredicate(nameKeywords, schoolKeywords, subjects)), command);
     }
 
     @Test

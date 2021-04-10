@@ -16,15 +16,23 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.AddressBook;
+import seedu.address.model.DatesBook;
+import seedu.address.model.LessonBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyDatesBook;
+import seedu.address.model.ReadOnlyLessonBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.DatesBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonDatesBookStorage;
+import seedu.address.storage.JsonLessonBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.LessonBookStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -36,7 +44,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 6, 0, true);
+    public static final Version VERSION = new Version(1, 2, 1, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -57,7 +65,9 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        DatesBookStorage datesBookStorage = new JsonDatesBookStorage(userPrefs.getDatesBookFilePath());
+        LessonBookStorage lessonBookStorage = new JsonLessonBookStorage(userPrefs.getLessonBookFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, datesBookStorage, lessonBookStorage);
 
         initLogging(config);
 
@@ -68,12 +78,7 @@ public class MainApp extends Application {
         ui = new UiManager(logic);
     }
 
-    /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
-     */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private ReadOnlyAddressBook initReadOnlyAddressBook(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
         try {
@@ -82,6 +87,7 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
@@ -89,8 +95,59 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
         }
+        return initialData;
+    }
 
-        return new ModelManager(initialData, userPrefs);
+    private ReadOnlyDatesBook initReadOnlyDatesBook(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        Optional<ReadOnlyDatesBook> datesBookOptional;
+        ReadOnlyDatesBook initialDatesData;
+        try {
+            datesBookOptional = storage.readDatesBook();
+            if (!datesBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample DatesBook");
+            }
+            initialDatesData = datesBookOptional.orElseGet(SampleDataUtil::getSampleDatesBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty DatesBook");
+            initialDatesData = new DatesBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty DatesBook");
+            initialDatesData = new DatesBook();
+        }
+
+        return initialDatesData;
+    }
+
+    private ReadOnlyLessonBook initReadOnlyLessonBook(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        Optional<ReadOnlyLessonBook> lessonBookOptional;
+        ReadOnlyLessonBook initialLessonData;
+        try {
+            lessonBookOptional = storage.readLessonBook();
+            if (!lessonBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample LessonBook");
+            }
+            initialLessonData = lessonBookOptional.orElseGet(SampleDataUtil::getSampleLessonBook);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty LessonBook");
+            initialLessonData = new LessonBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty LessonBook");
+            initialLessonData = new LessonBook();
+        }
+
+        return initialLessonData;
+    }
+    /**
+     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
+     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
+     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     */
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        ReadOnlyAddressBook initialData = initReadOnlyAddressBook(storage, userPrefs);
+        ReadOnlyDatesBook initialDatesData = initReadOnlyDatesBook(storage, userPrefs);
+        ReadOnlyLessonBook initialLessonData = initReadOnlyLessonBook(storage, userPrefs);
+
+        return new ModelManager(initialData, userPrefs, initialDatesData, initialLessonData);
     }
 
     private void initLogging(Config config) {

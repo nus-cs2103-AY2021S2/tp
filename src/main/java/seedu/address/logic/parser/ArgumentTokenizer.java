@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 /**
  * Tokenizes arguments string of the form: {@code preamble <prefix>value <prefix>value ...}<br>
  *     e.g. {@code some preamble text t/ 11.00 t/12.00 k/ m/ July}  where prefixes are {@code t/ k/ m/}.<br>
@@ -39,6 +41,25 @@ public class ArgumentTokenizer {
         return Arrays.stream(prefixes)
                 .flatMap(prefix -> findPrefixPositions(argsString, prefix).stream())
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Returns the first {@code Prefix} among a list of specified {@code Prefix}s to appear in the arguments.
+     *
+     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @param prefixes   Prefixes to look out for
+     * @return           First Prefix that corresponds to appear in the arguments
+     */
+    public static Prefix getLastPrefix(String argsString, Prefix... prefixes) throws ParseException {
+        Prefix firstPrefix;
+        List<PrefixPosition> prefixPositions = findAllPrefixPositions(argsString, prefixes);
+        if (prefixPositions.isEmpty()) {
+            final String noPrefixMessage = "No valid prefix provided.";
+            throw new ParseException(noPrefixMessage);
+        }
+        prefixPositions.sort((prefix1, prefix2) -> prefix1.getStartPosition() - prefix2.getStartPosition());
+        firstPrefix = prefixPositions.get(prefixPositions.size() - 1).getPrefix();
+        return firstPrefix;
     }
 
     /**

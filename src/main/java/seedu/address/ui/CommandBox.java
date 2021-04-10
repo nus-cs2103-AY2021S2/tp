@@ -17,6 +17,8 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private String previousUserInput;
+    private boolean isWaitForNextInput;
 
     @FXML
     private TextField commandTextField;
@@ -29,6 +31,8 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        previousUserInput = "";
+        isWaitForNextInput = false;
     }
 
     /**
@@ -37,16 +41,38 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleCommandEntered() {
         String commandText = commandTextField.getText();
+
         if (commandText.equals("")) {
             return;
         }
 
         try {
-            commandExecutor.execute(commandText);
             commandTextField.setText("");
+            commandExecutor.execute(commandText);
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+            if (e.getMessage().startsWith("The student name ")) {
+                previousUserInput = commandText;
+            }
+            if (e.getMessage().startsWith("You have a lesson at ")) {
+                previousUserInput = commandText;
+            }
+            if (e.getMessage().startsWith("This student name ")) {
+                previousUserInput = commandText;
+            }
         }
+    }
+
+    public String getPreviousUserInput() {
+        return this.previousUserInput;
+    }
+
+    public boolean isWaitForNextInput() {
+        return this.isWaitForNextInput;
+    }
+
+    public void setWaitForNextInput(boolean isWaitForNextInput) {
+        this.isWaitForNextInput = isWaitForNextInput;
     }
 
     /**

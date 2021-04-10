@@ -2,7 +2,12 @@
   "persons": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
+    "school": "Hans Secondary School",
     "email": "hans@example.com",
-    "address": "4th street"
+    "address": "4th street",
+    "guardianName" : "Aileen Muster",
+    "guardianPhone" : "9482422",
+    "subjects" : [ ],
+    "lessons" : [ ]
   } ]
 }

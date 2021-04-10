@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User inputs a delete important date command;
+:Command parsed by AddressBookParser;
+:Returns ImportantDatesCommand;
+:Model updates the sorted important dates list;
+:Displays the important dates list;
+stop
+
+@enduml

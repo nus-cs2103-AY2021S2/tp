@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User inputs a search command;
+:Command parsed by AddressBookParser;
+
+if () then ([command word is valid])
+    :Argument parsed by SearchCommandParser;
+    if () then ([argument is valid])
+        :Returns SearchCommand with predicate as argument;
+        :Filters the filtered person list with predicate;
+        :Displays search results;
+    else ([else])
+        :ParseException is thrown;
+    endif
+else ([else])
+    :ParseException is thrown;
+endif
+
+stop
+
+@enduml

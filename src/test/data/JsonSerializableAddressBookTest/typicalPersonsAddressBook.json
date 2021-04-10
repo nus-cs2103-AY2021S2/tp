@@ -3,44 +3,80 @@
   "persons" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
+    "school" : "Jurong West Secondary School",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "guardianName" : "Amanda Pauline",
+    "guardianPhone" : "94351254",
+    "level" : "sec1",
+    "subjects" : [ "phys" ],
+    "lessons" : [ "sunday 1000"]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
+    "school" : "Clementi Town Secondary School",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "guardianName" : "Jay Maier",
+    "guardianPhone" : "98765433",
+    "level" : "sec3",
+    "subjects" : [ "chinese", "math" ],
+    "subjects" : [ "cn", "math" ],
+    "lessons" : [ "monday 1800" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
+    "school" : "Wall Street Secondary School",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "tagged" : [ ]
+    "guardianName" : "Louis Kurz",
+    "guardianPhone" : "95352564",
+    "level" : "pri3",
+    "subjects" : [ ],
+    "lessons" : [ "friday 1000" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
+    "school" : "Clementi Town Secondary School",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "guardianName" : "Jay Maier",
+    "guardianPhone" : "98765433",
+    "level" : "sec1",
+    "subjects" : [ "cn" ],
+    "lessons" : [ ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
+    "school" : "Michegan Secondary School",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "tagged" : [ ]
+    "guardianName" : "John Meyer",
+    "guardianPhone" : "9482225",
+    "level" : "sec1",
+    "subjects" : [ ],
+    "lessons" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
+    "school" : "Tokyo Secondary School",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "tagged" : [ ]
+    "guardianName" : "Fay Kunz",
+    "guardianPhone" : "9482425",
+    "level" : "sec1",
+    "subjects" : [ ],
+    "lessons" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
+    "school" : "Fourth Secondary School",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "tagged" : [ ]
+    "guardianName" : "Barbara Best",
+    "guardianPhone" : "9482444",
+    "level" : "sec1",
+    "subjects" : [ ],
+    "lessons" : [ ]
   } ]
 }
