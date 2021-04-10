@@ -3,8 +3,12 @@ package seedu.storemando.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.storemando.commons.core.Messages.MESSAGE_NO_ITEM_IN_LIST;
+import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.storemando.logic.commands.CommandTestUtil.showEmptyListAfterFind;
 import static seedu.storemando.testutil.TypicalItems.APPLE;
 import static seedu.storemando.testutil.TypicalItems.BREAD;
+import static seedu.storemando.testutil.TypicalItems.HEATER;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import java.util.Arrays;
@@ -63,5 +67,14 @@ public class ReminderCommandTest {
         expectedModel.updateSortedItemList(comparator);
         expectedModel.setItems(expectedModel.getSortedItemList());
         assertEquals(Arrays.asList(BREAD, APPLE), expectedModel.getFilteredItemList());
+    }
+
+    @Test
+    public void execute_noItemInList() {
+        showEmptyListAfterFind(model, HEATER);
+        ItemExpiringPredicate predicate = new ItemExpiringPredicate(3L);
+
+        assertCommandFailure(new ReminderCommand(predicate, 3L, "days"),
+            model, MESSAGE_NO_ITEM_IN_LIST);
     }
 }
