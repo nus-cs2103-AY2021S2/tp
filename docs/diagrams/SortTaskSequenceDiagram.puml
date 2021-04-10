@@ -19,6 +19,12 @@ activate LogicManager
 LogicManager -> SocheduleParser : parseCommand(sort)
 activate SocheduleParser
 
+create SortTaskCommandParser
+SocheduleParser -> SortTaskCommandParser
+activate SortTaskCommandParser
+SocheduleParser <-- SortTaskCommandParser
+deactivate SortTaskCommandParser
+
 SocheduleParser -> SortTaskCommandParser: parse(args)
 activate SortTaskCommandParser
 
