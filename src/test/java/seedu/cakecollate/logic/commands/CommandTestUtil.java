@@ -7,6 +7,7 @@ import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ORDER_DESCRIPTION;
+import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ORDER_ITEM_IDX;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.cakecollate.testutil.Assert.assertThrows;
@@ -17,8 +18,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import seedu.cakecollate.commons.core.index.Index;
+import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
+import seedu.cakecollate.logic.parser.ParserUtil;
 import seedu.cakecollate.logic.parser.Prefix;
+import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.CakeCollate;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.OrderItems;
@@ -75,6 +79,10 @@ public class CommandTestUtil {
     public static final OrderItem ORDER_ITEM_AMY = new OrderItem(new Type(VALID_CHOCOLATE_ORDER));
     public static final OrderItem ORDER_ITEM_BOB = new OrderItem(new Type(VALID_BERRY_ORDER));
 
+    public static final String INDEXES_2 = "2 4";
+    public static final String ORDER_ITEM_INDEXES_1 = " " + PREFIX_ORDER_ITEM_IDX + "1 2 3";
+    public static final String ORDER_ITEM_INDEXES_2 = " " + PREFIX_ORDER_ITEM_IDX + INDEXES_2;
+
     // these are some user input fields with prefixes, invalid according to validation specified in model classes
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -91,7 +99,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditOrderDescriptor DESC_AMY;
     public static final EditCommand.EditOrderDescriptor DESC_BOB;
 
+    public static final IndexList ORDER_ITEM_INDEXLIST2;
+
     static {
+        IndexList temp;
         DESC_AMY = new EditOrderDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withOrderDescriptions(VALID_CHOCOLATE_ORDER).withTags(VALID_TAG_FRIEND)
@@ -100,6 +111,14 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withOrderDescriptions(VALID_BERRY_ORDER).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                 .withDeliveryDate(VALID_DELIVERY_DATE_BOB).build();
+
+
+        try {
+            temp = ParserUtil.parseIndexList(INDEXES_2);
+        } catch (ParseException e) {
+            temp = null;
+        }
+        ORDER_ITEM_INDEXLIST2 = temp;
     }
 
     /**

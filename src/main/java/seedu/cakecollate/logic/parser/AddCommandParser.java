@@ -71,14 +71,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         addOrderDescriptor.setDeliveryDate(deliveryDate);
         addOrderDescriptor.setRequest(request);
 
-        // Order order = new Order(name, phone, email, address, orderDescriptionSet, tagList, deliveryDate, request);
-
 
         IndexList orderItemIndexList =
                 argMultimap.getValue(PREFIX_ORDER_ITEM_IDX).isEmpty()
                         ? null
                         : ParserUtil.parseIndexList(argMultimap.getValue(PREFIX_ORDER_ITEM_IDX).get());
-        // unhelpful error messages here if oi/string is used, if can't edit error messages should put in FAQ
 
         return new AddCommand(orderItemIndexList, addOrderDescriptor);
     }
@@ -95,7 +92,6 @@ public class AddCommandParser implements Parser<AddCommand> {
      * Returns true if any one of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    // todo test this
     private static boolean isAnyPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
