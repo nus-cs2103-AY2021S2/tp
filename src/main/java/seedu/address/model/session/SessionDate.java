@@ -9,7 +9,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 
-import seedu.address.model.Year;
+import seedu.address.commons.util.DateUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents the date and time of the session
@@ -138,7 +139,8 @@ public class SessionDate {
      */
     public static boolean isValidSessionDate(String dateValue, String timeValue) {
         try {
-            if (!isValidYear(dateValue)) {
+            int year = DateUtil.parseYear(dateValue);
+            if (!DateUtil.isValidYear(year)) {
                 return false;
             }
             LocalDate localDate = LocalDate.parse(dateValue);
@@ -146,18 +148,7 @@ public class SessionDate {
 
             LocalDateTime localDateTime = localDate.atTime(localTime);
             return true;
-        } catch (DateTimeParseException e) {
-            return false;
-        }
-    }
-
-    //does a 2038 problem check on year after parsing
-    private static boolean isValidYear(String dateValue) {
-        try {
-            String[] dateValueSplit = dateValue.split("-", 2);
-            int year = Integer.parseInt(dateValueSplit[0]);
-            return Year.isValidYear(year);
-        } catch (NumberFormatException | NullPointerException e) {
+        } catch (DateTimeParseException | ParseException e) {
             return false;
         }
     }

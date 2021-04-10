@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.fee;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
