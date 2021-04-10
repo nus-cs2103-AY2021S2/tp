@@ -42,9 +42,8 @@ public class SortCommand extends Command {
 
     private final Prefix prefix;
     private final String prefixString;
-    private final Comparator<Person> comparator;
     private final Predicate<Person> predicate;
-
+    private final Comparator<Person> comparator;
 
     /**
      * Creates a SortCommand object that has a specific {@code Predicate} and {@code comparator}.
@@ -53,20 +52,20 @@ public class SortCommand extends Command {
         this.prefix = prefix;
         if (prefix.equals(PREFIX_NAME)) {
             this.prefixString = "name";
-            this.comparator = new PersonNameComparator();
             this.predicate = new HasNamePredicate();
+            this.comparator = new PersonNameComparator();
         } else if (prefix.equals(PREFIX_SCHOOL)) {
             this.prefixString = "school";
-            this.comparator = new PersonSchoolComparator();
             this.predicate = new HasSchoolPredicate();
+            this.comparator = new PersonSchoolComparator();
         } else if (prefix.equals(PREFIX_SUBJECT)) {
             this.prefixString = "subject";
-            this.comparator = new PersonSubjectComparator();
             this.predicate = new HasSubjectPredicate();
+            this.comparator = new PersonSubjectComparator();
         } else {
             this.prefixString = "lesson";
-            this.comparator = new PersonLessonComparator();
             this.predicate = new HasLessonPredicate();
+            this.comparator = new PersonLessonComparator();
         }
     }
 
