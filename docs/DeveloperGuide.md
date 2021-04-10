@@ -214,10 +214,10 @@ FriendDex allows users to add friends to a group. This section details the imple
 
 1. The user will supply the name of the group, and the indexes that will be added into said group.
 2. `AddGroupCommand` will then get the current filtered list of Persons to get all the persons with the associated indexes.
-3. `AddGroupCommand` will then check if the group already exists. If it does not a new group is added.
-4. All the specified persons' name will now be inserted into the group and display the list of persons in the group.
+3. `AddGroupCommand` will then check if the group already exists. If it does not, a new group is added.
+4. All the specified persons' names will now be inserted into the group and display the list of persons in the group.
 
-The sequence diagram below depicts the execution path when a `AddGroupCommand` is executed.
+The sequence diagram below depicts the execution path when an `AddGroupCommand` is executed.
 
 ![AddGroupSequenceDiagram](images/AddGroupSequenceDiagram.png)
 
@@ -267,7 +267,6 @@ FriendDex allows users to add a picture to their contact. This section details t
 The sequence diagram below depicts the execution path when a `AddPictureCommand` is executed.
 
 ![AddPictureSequenceDiagram](images/AddPictureSequenceDiagram.png)
-
 
 --------------------------------------------------------------------------------------------------------------------
 
