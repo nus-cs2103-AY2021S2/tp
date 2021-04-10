@@ -95,8 +95,8 @@ Prefix: `a/`
 * It can contain any type of characters.
 * It cannot be empty.
 
-##### 'DAYS'
-The number of days from the current date.
+##### `DAYS`
+The number of days from the current date.<br>
 Prefix: `none`
 * It can only contain integers greater than or equal to 0.
   E.g. `0`,`365`,`99`
@@ -120,7 +120,7 @@ Prefix: `d/`
 
 ##### `INDEX`
 Indexes are used to specify specific orders in CakeCollate. The index number can be found beside the 'name' field 
-in [order item box](#221-sections-of-the-ui).
+in [order item box](#221-sections-of-the-ui).<br>
 Prefix: `none`
 * It can only contain positive integers greater than 1, but should not be greater than the total number of orders in 
 the Orders Box.
