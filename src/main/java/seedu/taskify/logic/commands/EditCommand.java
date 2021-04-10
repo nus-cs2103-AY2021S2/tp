@@ -47,6 +47,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in Taskify.";
     public static final String MESSAGE_SWITCH_TO_HOME = "Switch back to home page to edit!";
+    public static final String MESSAGE_CANNOT_EDIT_EXPIRED_STATUS = "You can not edit expired status of a task";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -81,6 +82,10 @@ public class EditCommand extends Command {
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
+        if (taskToEdit.getStatus().toString().equals("Expired")) {
+            throw new CommandException(MESSAGE_CANNOT_EDIT_EXPIRED_STATUS);
         }
 
         model.setTask(taskToEdit, editedTask);
