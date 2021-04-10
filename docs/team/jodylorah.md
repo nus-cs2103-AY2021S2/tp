@@ -5,7 +5,7 @@ title: JodyLorah's Project Portfolio Page
 
 ## Project: insurance Sure Can Arrange Meeting (iScam)
 
-iScam is a desktop location book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 15.5 kLoC.
+iScam is a desktop location book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 18 kLoC.
 
 Given below are my contributions to the project.
 
