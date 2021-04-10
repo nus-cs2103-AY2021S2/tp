@@ -260,7 +260,7 @@ updated student index id. Student name on the other hand, stays constant through
 which he also has knowledge of. Therefore, student name can be easily entered without reference to the AddressBook, saving much more time compared
 to alternative 2.
 
-###Delete Session Feature
+### Delete Session Feature
 The `DeleteSessionCommand` does the opposite of `AddSessionCommand` -- it calls `Model#deleteSession(studentName, sessionIndex)` instead
 which calls `AddressBook#removeSession(studentName, sessionIndex)` and
 `UniqueStudentList#deleteSession(targetStudent, sessionIndex)`.
@@ -270,6 +270,13 @@ The following sequence diagram shows how deleting a session works:
 
 It shares the same design considerations as what is mentioned in Add Session Feature.
 
+### GUI Redesign
+The GUI is redesigned from [AB3](https://github.com/se-edu/addressbook-level3) to a highly intuitive interface to support 
+the features for TutorBuddy, as well as improve the overall user experience.
+
+#### Implementation
+The redesign of the GUI includes the addition of:
+* The
 
 
 --------------------------------------------------------------------------------------------------------------------
