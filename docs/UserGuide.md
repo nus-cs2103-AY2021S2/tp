@@ -88,22 +88,22 @@ component command /prefix [input] -flag
 
 Optional parts of the command will be wrapped in round brackets.
 
-><b><u>Things to note</u></b>  
->- Only one command can be executed at a time and any words after a valid command is entered will be ignored.  
->  Example:  
->  ```
->  customer list JJIMY is the best!
->  ```
->  The command above will execute `customer list` and ignore `JJIMY is the best!`
->  <p>&nbsp;</p>
+>   <b><u>Things to note</u></b>  
+>   - Only one command can be executed at a time and any words after a valid command is entered will be ignored.  
+>   Example:
+>       ```
+>       customer list JJIMY is the best!
+>       ```
+>       The command above will execute `customer list` and ignore `JJIMY is the best!`
+>   <p>&nbsp;</p>
 >
->- Only the latest input for any duplicated prefixes will be taken, any input for previous duplicated prefixes will be ignored.  
->  Examples:
->  ```
->  menu edit 5 n/Fries1 n/Fries2 p/5 p/6
->  ```
->  The command above will only take in `n/Fries2` and `p/6`, any other input for the same prefixes will be ignored.  
-  <p>&nbsp;</p>
+>   - Only the latest input for any duplicated prefixes will be taken, any input for previous duplicated prefixes will be ignored.  
+>   Examples:
+>       ```
+>       menu edit 5 n/Fries1 n/Fries2 p/5 p/6
+>       ```
+>       The command above will only take in `n/Fries2` and `p/6`, any other input for the same prefixes will be ignored.
+<p>&nbsp;</p>
 
 <a name="general"></a>
 - <details open>
@@ -119,7 +119,11 @@ Optional parts of the command will be wrapped in round brackets.
         ```
         Alternatively, you can click on the ![settings](images/settings_white.png) icon > `help` or simply press `F1` on your keyboard.
         Shortly it will open up the `User Guide` in your default browser.
-
+        
+        <p>&nbsp;</p>
+      
+        ---
+      
         </details>
 
         <a name="exit"></a>
@@ -131,12 +135,14 @@ Optional parts of the command will be wrapped in round brackets.
         exit
         ```
         Alternatively, you can click on the ![settings](images/settings_white.png) icons > `exit` or simply press `F2` on your keyboard.
-
+        
+        <p>&nbsp;</p>
+      
+        ---
+      
         </details>
-
+    
     </details>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 
 
 <a name="customer"></a>
@@ -153,8 +159,12 @@ Optional parts of the command will be wrapped in round brackets.
          ```
 
          The above command would list all the customers in the left column of the GUI in the sequence that they were added, with the most recent being at the top.
-        </details>
+        
         <p>&nbsp;</p>
+      
+        ---
+        
+        </details>
 
         <a name="customer-add"></a>
     - <details open>
@@ -172,9 +182,12 @@ Optional parts of the command will be wrapped in round brackets.
 
         The above command would add a new contact named "Alan Tan" with phone number 81236789, email address "alantan@nus.edu.sg",
         address "Lower Kent Ridge Road, Singapore 119077" and tagged with "Gluten Allergy".
-
-        </details>
+        
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
         <a name="customer-delete"></a>
     - <details open>
@@ -200,9 +213,12 @@ Optional parts of the command will be wrapped in round brackets.
 
         In the event that there are pending orders that have not been fulfilled that belong to customer 2, then deletion of the customer will not be allowed since we do not want to unknowingly delete orders that are still pending.
         If deleting all orders, even pending ones, is desired, then adding the `-f` at the end of the command acknowledges and confirms the deletion behavior. Orders associated with the customer will be deleted and will no longer be shown in the order list or order history.
-
-        </details>
+        
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
         <a name="customer-edit"></a>
     - <details open>
@@ -230,9 +246,12 @@ Optional parts of the command will be wrapped in round brackets.
         The above command changes both the name and phone number of the second customer.
 
         From the examples above, more than one field can be edited at a time but at least 1 field must be specified for it to be a valid command.
-
-        </details>
+        
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
         <a name="customer-find"></a>
     - <details open>
@@ -251,12 +270,14 @@ Optional parts of the command will be wrapped in round brackets.
         ```
 
         The above command would display all contacts with names that contain either "George", "Michael", or "Lim". Note that at least 1 keyword must be specified, `customer find n/Thomas` is a valid command too with only 1 keyword ("Thomas").
-
+        
+        <p>&nbsp;</p>
+        
+        ---
+        
         </details>
 
     </details>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 
 <a name="menu"></a>
 - <details open class="menu">
@@ -282,9 +303,12 @@ Optional parts of the command will be wrapped in round brackets.
         menu list -a
         ```
         The above command will only display the dishes that are currently available based on the available ingredients.
-
-        </details>
+        
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
         <a name="menu-add"></a>
     - <details open>
@@ -297,8 +321,11 @@ Optional parts of the command will be wrapped in round brackets.
 
         Ingredient ID and quantity must come in pairs. At least one pair must be specified, but more can be added.
 
-        </details>
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
         <a name="menu-delete"></a>
     - <details open>
@@ -329,9 +356,12 @@ Optional parts of the command will be wrapped in round brackets.
         If deleting any dishes that belongs to any uncompleted order is desired, then adding the `-f` at the
         end of the command acknowledges and confirms the deletion behavior. Orders associated with the menu dish will 
         be marked as cancelled and will no longer be shown in the order list but can be viewed in the order history.
-
-        </details>
+        
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
         <a name="menu-edit"></a>
     - <details open>
@@ -343,9 +373,12 @@ Optional parts of the command will be wrapped in round brackets.
         ```
 
         At least one of the fields in round brackets must be specified.
-
-        </details>
+        
         <p>&nbsp;</p>
+      
+        ---
+        
+        </details>
 
         <a name="menu-find"></a>
     - <details open>
@@ -360,12 +393,14 @@ Optional parts of the command will be wrapped in round brackets.
 
         - `n/` - Finds all dishes with names that contain any of the keywords (case-insensitive). Keywords are space separated.
         - `i/` - Finds all dishes with ingredient names that contain keyword (case-insensitive).
-
+        
+        <p>&nbsp;</p>
+      
+        ---
+        
         </details>
 
     </details>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 
 <a name="order"></a>
 - <details open class="order">
@@ -382,8 +417,11 @@ Optional parts of the command will be wrapped in round brackets.
         ```
         The above command would list all the order in the right column of the GUI. The list is in chronological sequence based on the order's date and time.
 
-        </details>
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
         <a name="order-add"></a>
     - <details open>
@@ -403,9 +441,12 @@ Optional parts of the command will be wrapped in round brackets.
         ```
         order add n/2 dt/14-02-2021 18:30 d/1 q/1 d/3 q/1
         ```
-
-        </details>
+        
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
         <a name="order-delete"></a>
     - <details open>
@@ -416,8 +457,12 @@ Optional parts of the command will be wrapped in round brackets.
         order delete [INDEX]
         ```
         The above command deletes the order based with that index.
-        </details>
+      
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
         <a name="order-edit"></a>
     - <details open>
@@ -429,8 +474,12 @@ Optional parts of the command will be wrapped in round brackets.
         ```
 
         At least one of the fields in brackets must be present in the edit command.
-        </details>
+      
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
         <a name="order-find"></a>
     - <details open>
@@ -446,8 +495,11 @@ Optional parts of the command will be wrapped in round brackets.
         - `n/` - Finds all orders with customer names that contain any of the keywords (case-insensitive). Keywords are space separated.
         - `d/` - Finds all orders with dish names that contain keyword (case-insensitive).
 
-        </details>
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
         <a name="order-complete"></a>
     - <details open>
@@ -458,8 +510,12 @@ Optional parts of the command will be wrapped in round brackets.
         order complete [INDEX]
         ```
         The above command would mark the order of that index as complete. The order will no longer be in the order list. Instead, it will be in order history.
-        </details>
+        
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
         <a name="order-history"></a>
     - <details open>
@@ -471,12 +527,14 @@ Optional parts of the command will be wrapped in round brackets.
         ```
  
         The above command displays the history of completed and cancelled orders in the right column of the GUI. The list is in chronological sequence based on the order's date and time.
-        </details>
+        
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
     </details>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 
 <a name="inventory"></a>
 - <details open class="inventory">
@@ -492,8 +550,12 @@ Optional parts of the command will be wrapped in round brackets.
         ```
         
         The above command would list all the ingredients in the inventory in the right column of the GUI in the sequence that they were added, with the most recent being at the top.
-        </details>
+        
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
         <a name="inventory-add"></a>
     - <details open>
@@ -506,7 +568,11 @@ Optional parts of the command will be wrapped in round brackets.
         ```
         inventory add n/[INGREDIENT_NAME] q/[QUANTITY]
         ```
-
+        
+        <p>&nbsp;</p>
+        
+        ---
+        
         </details>
 
         <a name="inventory-decrease"></a>
@@ -517,9 +583,12 @@ Optional parts of the command will be wrapped in round brackets.
         ```
         inventory decrease [INDEX] [QUANTITY]
         ```
-
-        </details>
+        
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
         <a name="inventory-delete"></a>
     - <details open>
@@ -550,9 +619,12 @@ Optional parts of the command will be wrapped in round brackets.
         If deleting any ingredient that is needed to any dishes is desired, then adding the `-f` at the
         end of the command acknowledges and confirms the deletion behavior. 
         Orders associated with the ingredient will be marked as cancelled and will no longer be shown in the order list but can be viewed in the order history.
-
-        </details>
+        
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
         <a name="inventory-edit"></a>
     - <details open>
@@ -564,9 +636,12 @@ Optional parts of the command will be wrapped in round brackets.
         ```
 
         At least one of the fields in brackets must be present in the edit command.
-
-        </details>
+        
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
         <a name="inventory-find"></a>
     - <details open>
@@ -582,8 +657,11 @@ Optional parts of the command will be wrapped in round brackets.
         - `n/` - Finds all ingredients with names that contain any of the keywords (case-insensitive). Keywords are space separated.
         - `q/` - Finds all ingredients with less than specified quantity. Must be a non-negative whole number (>= 0).
 
-        </details>
         <p>&nbsp;</p>
+        
+        ---
+        
+        </details>
 
     </details>
 
