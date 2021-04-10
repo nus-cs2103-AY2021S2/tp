@@ -1,0 +1,49 @@
+@startuml
+!include ../style.puml
+title Adding a Note
+
+start
+:User executes AddNoteCommand;
+
+if () then ([all required prefixes present])
+      :Parses the prefixes;
+
+      if () then ([all prefixes formatted correctly])
+      :Check if target index is valid;
+
+          if () then ([valid index])
+          :Check if a note already existed;
+
+              if () then ([tutor does not have notes])
+              :Add notes to tutor;
+              :Show success message;
+
+              else ([else])
+
+              :Shows a notes already exist
+              error message;
+
+              endif
+
+          else ([else])
+          :Shows an invalid target index
+          error message;
+
+      endif
+
+      else ([else])
+
+      :Shows an error message on
+      invalid prefix format;
+
+      endif
+
+else ([else])
+    :Shows an invalid command error
+    and command format message;
+
+endif
+
+stop
+
+@enduml
