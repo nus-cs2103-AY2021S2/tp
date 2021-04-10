@@ -140,7 +140,7 @@ public class SessionDate {
     public static boolean isValidSessionDate(String dateValue, String timeValue) {
         try {
             int year = DateUtil.parseYear(dateValue);
-            if (!DateUtil.pass2038Problem(year)) {
+            if (!DateUtil.isValidYear(year)) {
                 return false;
             }
             LocalDate localDate = LocalDate.parse(dateValue);

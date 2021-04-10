@@ -41,11 +41,11 @@ public class DateUtil {
     }
 
     /**
-     * Checks if given {@code year} will not give the 2038 problem
+     * Checks if given {@code year} is valid, not giving the 2038 problem
      * @param year integer
      * @return true if {@code year} is between 1970 and 2037 inclusive.
      */
-    public static boolean pass2038Problem(int year) {
+    public static boolean isValidYear(int year) {
         return year >= 1970 && year <= 2037;
     }
 }
