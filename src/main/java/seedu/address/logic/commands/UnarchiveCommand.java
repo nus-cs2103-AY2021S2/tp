@@ -21,8 +21,8 @@ public class UnarchiveCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_UNARCHIVE_PERSON_SUCCESS = "Unarchived patient: %1$s\n"
-            + ". The patient is now back in your main list.";
+    public static final String MESSAGE_UNARCHIVE_PERSON_SUCCESS = "Hey Doc, %s is now unarchived!\n"
+            + "The patient is now back in your main list.";
 
     public static final String MESSAGE_PERSON_NOT_ARCHIVED = "This patient is not in your archives.\n";
 
@@ -49,7 +49,8 @@ public class UnarchiveCommand extends Command {
         }
 
         model.unarchivePerson(patientToUnarchive);
-        return new CommandResult(String.format(MESSAGE_UNARCHIVE_PERSON_SUCCESS, patientToUnarchive));
+        return new CommandResult(String.format(MESSAGE_UNARCHIVE_PERSON_SUCCESS,
+                                                patientToUnarchive.getName().fullName));
     }
 
     @Override

@@ -45,4 +45,11 @@ public class OpenMedicalRecordCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()), false, true,
                 patient, null, null, null, false);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof OpenMedicalRecordCommand // instanceof handles nulls
+                && index.equals(((OpenMedicalRecordCommand) other).index)); // state check
+    }
 }

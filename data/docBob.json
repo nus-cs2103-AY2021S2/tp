@@ -1,0 +1,476 @@
+{
+  "persons" : [ {
+    "name" : "Alanis Hines",
+    "phone" : "92624417",
+    "email" : "alanish@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ "12/6/21 23:59", "13/12/21 12:00", "31/12/21 0:00", "31/1/22 12:00", "29/2/24 12:00" ],
+    "records" : [ {
+      "dateString" : "1/4/21 2:44",
+      "sections" : [ {
+        "title" : "appointmentLabel",
+        "body" : "else if (patientBoxMedicalRecords.getChildren().size() != 0) {\n            medicalRecordInfo.setText(String.format(\"%d medical record(s) found:\","
+      } ]
+    }, {
+      "dateString" : "6/4/21 16:19",
+      "sections" : [ {
+        "title" : "",
+        "body" : "test"
+      } ]
+    }, {
+      "dateString" : "6/4/21 16:20",
+      "sections" : [ {
+        "title" : "brrrrr",
+        "body" : ""
+      } ]
+    }, {
+      "dateString" : "6/4/21 16:22",
+      "sections" : [ {
+        "title" : "",
+        "body" : "efsdad"
+      } ]
+    } ]
+  }, {
+    "name" : "Alex Yeoh",
+    "phone" : "84893439",
+    "email" : "alexyeoh@example.com",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "height" : "175cm",
+    "weight" : "69kg",
+    "isArchived" : false,
+    "tagged" : [ "friends" ],
+    "appointments" : [ "14/4/21 14:00", "25/12/22 0:00" ],
+    "records" : [ {
+      "dateString" : "31/3/21 18:18",
+      "sections" : [ {
+        "title" : "main",
+        "body" : "content content content"
+      } ]
+    }, {
+      "dateString" : "31/3/21 19:41",
+      "sections" : [ {
+        "title" : "main",
+        "body" : ""
+      }, {
+        "title" : "New Section",
+        "body" : ""
+      } ]
+    }, {
+      "dateString" : "1/4/21 13:15",
+      "sections" : [ {
+        "title" : "newiuhfo",
+        "body" : "iasochiag"
+      }, {
+        "title" : "wcearhsrt",
+        "body" : "srtjnsrtb"
+      }, {
+        "title" : "rthnsrtbsr",
+        "body" : "tbrstnrtnj"
+      } ]
+    }, {
+      "dateString" : "3/4/21 12:50",
+      "sections" : [ {
+        "title" : "Illnesses",
+        "body" : "Covid19"
+      }, {
+        "title" : "Medication",
+        "body" : "None"
+      } ]
+    } ]
+  }, {
+    "name" : "Andreea Hanna",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "120cm",
+    "weight" : "70kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ "18/9/21 15:00" ],
+    "records" : [ {
+      "dateString" : "1/4/21 3:55",
+      "sections" : [ {
+        "title" : "dswafghbnj",
+        "body" : "sdfghjk"
+      } ]
+    } ]
+  }, {
+    "name" : "Ava Shepherd",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ "10/4/21 10:29" ],
+    "records" : [ ]
+  }, {
+    "name" : "Bernice Yu",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+    "height" : "168cm",
+    "weight" : "50kg",
+    "isArchived" : false,
+    "tagged" : [ "colleagues", "friends" ],
+    "appointments" : [ "14/5/21 14:00" ],
+    "records" : [ ]
+  }, {
+    "name" : "Breanna Frye",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ "19/6/21 19:00", "19/9/21 19:00" ],
+    "records" : [ {
+      "dateString" : "1/4/21 3:58",
+      "sections" : [ {
+        "title" : "weqrtyhj",
+        "body" : "wqedrfghnjmk,"
+      } ]
+    }, {
+      "dateString" : "6/4/21 16:29",
+      "sections" : [ {
+        "title" : "",
+        "body" : "hohoho"
+      } ]
+    } ]
+  }, {
+    "name" : "Charlotte Oliveiro",
+    "phone" : "93210283",
+    "email" : "charlotte@example.com",
+    "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
+    "height" : "170cm",
+    "weight" : "53kg",
+    "isArchived" : false,
+    "tagged" : [ "neighbours" ],
+    "appointments" : [ "14/5/21 14:00" ],
+    "records" : [ {
+      "dateString" : "29/3/21 23:49",
+      "sections" : [ {
+        "title" : "asfsdbdbfasfsdbdbf",
+        "body" : "sdvdsthbrdthtynsdvdsthbrdthtyn"
+      } ]
+    }, {
+      "dateString" : "31/3/21 22:57",
+      "sections" : [ {
+        "title" : "asfsdbdbf",
+        "body" : "sdvdsthbrdthtyn"
+      }, {
+        "title" : "esrbrdtndty",
+        "body" : "dgndgthyn"
+      }, {
+        "title" : "dn dthyn",
+        "body" : "tfyndtyndtyn"
+      }, {
+        "title" : "d",
+        "body" : "fgbdntdyn"
+      } ]
+    }, {
+      "dateString" : "31/3/21 23:35",
+      "sections" : [ {
+        "title" : "dorubhsiderubh",
+        "body" : "odifhgvilsueogiherth"
+      }, {
+        "title" : "sdrvslirutjbhlistrh",
+        "body" : "dfihblisutrhboiaurehob"
+      } ]
+    }, {
+      "dateString" : "31/3/21 23:59",
+      "sections" : [ ]
+    }, {
+      "dateString" : "1/4/21 0:04",
+      "sections" : [ ]
+    }, {
+      "dateString" : "1/4/21 0:19",
+      "sections" : [ {
+        "title" : "ewferh",
+        "body" : "ergertbt"
+      } ]
+    }, {
+      "dateString" : "1/4/21 4:20",
+      "sections" : [ ]
+    } ]
+  }, {
+    "name" : "David Li",
+    "phone" : "91031282",
+    "email" : "lidavid@example.com",
+    "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
+    "height" : "163cm",
+    "weight" : "63kg",
+    "isArchived" : false,
+    "tagged" : [ "family" ],
+    "appointments" : [ "19/9/21 19:00" ],
+    "records" : [ ]
+  }, {
+    "name" : "Gene Lyons",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ {
+      "dateString" : "6/4/21 16:29",
+      "sections" : [ {
+        "title" : "",
+        "body" : "sup"
+      } ]
+    }, {
+      "dateString" : "6/4/21 16:31",
+      "sections" : [ {
+        "title" : "",
+        "body" : "hi"
+      } ]
+    } ]
+  }, {
+    "name" : "Geoffrey Huber",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ "19/9/21 19:00" ],
+    "records" : [ ]
+  }, {
+    "name" : "Gurdeep Dejesus",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ ]
+  }, {
+    "name" : "Irfan Ibrahim",
+    "phone" : "92492021",
+    "email" : "irfan@example.com",
+    "address" : "Blk 47 Tampines Street 20, #17-35",
+    "height" : "179cm",
+    "weight" : "66kg",
+    "isArchived" : true,
+    "tagged" : [ "classmates" ],
+    "appointments" : [ ],
+    "records" : [ {
+      "dateString" : "1/4/21 0:19",
+      "sections" : [ ]
+    }, {
+      "dateString" : "1/4/21 12:59",
+      "sections" : [ {
+        "title" : "ewqrtyujkil",
+        "body" : "sfgd"
+      }, {
+        "title" : "ergvrv",
+        "body" : "ergrehreh"
+      } ]
+    } ]
+  }, {
+    "name" : "John Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "height" : "169cm",
+    "weight" : "69kg",
+    "isArchived" : false,
+    "tagged" : [ "owesMoney", "friends" ],
+    "appointments" : [ ],
+    "records" : [ {
+      "dateString" : "9/4/21 12:20",
+      "sections" : [ {
+        "title" : "Name",
+        "body" : "John Doe"
+      } ]
+    } ]
+  }, {
+    "name" : "Kaia Metcalfe",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : true,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ "19/9/21 19:00" ],
+    "records" : [ {
+      "dateString" : "1/4/21 4:03",
+      "sections" : [ {
+        "title" : "wasdefrgthyjuiklo;p'[",
+        "body" : "wedrftgyhujikol8p"
+      } ]
+    } ]
+  }, {
+    "name" : "Kimora Green",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ {
+      "dateString" : "1/4/21 4:05",
+      "sections" : [ {
+        "title" : "23435",
+        "body" : "23143546"
+      } ]
+    } ]
+  }, {
+    "name" : "Lacy Cline",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ ]
+  }, {
+    "name" : "Maisey Walmsley",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ ]
+  }, {
+    "name" : "Maksim Decker",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ ]
+  }, {
+    "name" : "Myron Wagner",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ ]
+  }, {
+    "name" : "Naya Young",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ ]
+  }, {
+    "name" : "Patsy Delgado",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ ]
+  }, {
+    "name" : "Reilly Esparza",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ ]
+  }, {
+    "name" : "Robert Vance",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ ]
+  }, {
+    "name" : "Roy Balakrishnan",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ ]
+  }, {
+    "name" : "Sommer Frost",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "bronchitis", "cough" ],
+    "appointments" : [ ],
+    "records" : [ ]
+  }, {
+    "name" : "Tala Lawson",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ ]
+  }, {
+    "name" : "Tate Britton",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ ]
+  }, {
+    "name" : "Teri Guy",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ ]
+  } ]
+}

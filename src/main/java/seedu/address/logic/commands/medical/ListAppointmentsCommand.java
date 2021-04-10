@@ -45,4 +45,9 @@ public class ListAppointmentsCommand extends Command {
                 false, false, null, null, appointments, null, false);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || other instanceof ListAppointmentsCommand; // instanceof handles nulls
+    }
 }
