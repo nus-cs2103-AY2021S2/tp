@@ -37,8 +37,6 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private FlowPane categoryTitle;
     @FXML
-    private FlowPane tagTitle;
-    @FXML
     private ImageView tickImageView;
     @FXML
     private ImageView pinImageView;
@@ -62,10 +60,6 @@ public class TaskCard extends UiPart<Region> {
 
         if (!task.getCategories().isEmpty()) {
             categoryTitle.getChildren().add(new Label("Category:"));
-        }
-
-        if (!task.getTags().isEmpty()) {
-            tagTitle.getChildren().add(new Label("Tag:"));
         }
 
         if (task.isComplete()) {

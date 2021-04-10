@@ -34,12 +34,11 @@
                         <Image url="@/images/pin.png" />
                     </ImageView>
                 </HBox>
+                <FlowPane fx:id="tags" />
                 <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
                 <Label fx:id="priority" styleClass="cell_small_label" text="\$priority" />
                 <FlowPane fx:id="categoryTitle" />
                 <FlowPane fx:id="categories" />
-                <FlowPane fx:id="tagTitle" />
-                <FlowPane fx:id="tags" />
             </VBox>
             <padding>
                 <Insets right="25" />
