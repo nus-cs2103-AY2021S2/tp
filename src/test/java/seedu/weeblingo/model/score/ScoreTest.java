@@ -48,14 +48,14 @@ public class ScoreTest {
         assertThrows(RuntimeException.class, () -> Score.of(1, 1, "    "));
 
         // not white spaces, but not in the correct format
-        assertThrows(DateTimeParseException.class, () -> Score.of(1, 1
-                , "0:03:04"));
-        assertThrows(DateTimeParseException.class, () -> Score.of(1, 1
-                , "00:61:04")); // some duration string that seems to be parsable
-        assertThrows(DateTimeParseException.class, () -> Score.of(1, 1
-                , "This will fail"));
-        assertThrows(DateTimeParseException.class, () -> Score.of(1, 1
-                ,"12345"));
+        assertThrows(DateTimeParseException.class, () -> Score.of(1, 1,
+                "0:03:04"));
+        assertThrows(DateTimeParseException.class, () -> Score.of(1, 1,
+                "00:61:04")); // some duration string that seems to be parsable
+        assertThrows(DateTimeParseException.class, () -> Score.of(1, 1,
+                "This will fail"));
+        assertThrows(DateTimeParseException.class, () -> Score.of(1, 1,
+                "12345"));
     }
 
     @Test
