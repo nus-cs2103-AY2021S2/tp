@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.Clipboard;
@@ -28,6 +29,9 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private ListView<String> helpBox;
+
+    @FXML
+    private Scene scene;
 
     /**
      * Creates a new HelpWindow.
@@ -106,4 +110,13 @@ public class HelpWindow extends UiPart<Stage> {
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
     }
+
+    /**
+     * Set themes dynamically based on user command.
+     */
+    public void setTheme(Theme theme) {
+        this.scene.getStylesheets().clear();
+        this.scene.getStylesheets().addAll(Theme.getStyleSheets(theme));
+    }
+
 }

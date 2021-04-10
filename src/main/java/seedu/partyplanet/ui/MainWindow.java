@@ -68,14 +68,13 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.helpWindow = new HelpWindow();
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
         setUiTheme(logic.getGuiSettings());
 
         setAccelerators();
-
-        helpWindow = new HelpWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -242,6 +241,9 @@ public class MainWindow extends UiPart<Stage> {
     private void setTheme(Theme theme) {
         scene.getStylesheets().clear();
         scene.getStylesheets().addAll(Theme.getStyleSheets(theme));
+
+        this.helpWindow.setTheme(theme);
+
         logic.setGuiSettings(new GuiSettings(theme));
         this.theme = theme;
     }
