@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SOCheduleParser" as SOCheduleParser LOGIC_COLOR
+participant "s:TodayTaskCommand" as TodayTaskCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : parse("today_task")
+activate LogicManager
+
+LogicManager -> SOCheduleParser : parseCommand("today_task")
+activate SOCheduleParser
+
+create TodayTaskCommand
+SOCheduleParser -> TodayTaskCommand
+activate TodayTaskCommand
+
+TodayTaskCommand --> SOCheduleParser : s
+deactivate TodayTaskCommand
+
+LogicManager <-- SOCheduleParser : s
+deactivate SOCheduleParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SOCheduleParser -[hidden]->[
+
+LogicManager -> TodayTaskCommand : execute()
+activate TodayTaskCommand
+
+TodayTaskCommand -> Model : updateFilteredList(Predicate<Task> predicate)
+activate Model
+TodayTaskCommand <-- Model
+deactivate Model
+
+create CommandResult
+TodayTaskCommand -> CommandResult
+activate CommandResult
+TodayTaskCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- TodayTaskCommand
+deactivate TodayTaskCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TodayTaskCommand -[hidden]->[
+destroy TodayTaskCommand
+
+[<-- LogicManager : CommandResult
+@enduml

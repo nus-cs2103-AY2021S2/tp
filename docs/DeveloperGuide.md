@@ -252,9 +252,9 @@ Classes used by both `Task` and `Event` are in the `seedu.address.model.common` 
 
 ## 4 Implementation
 
-This section describes some noteworthy details on how [Sochedule](#41-sochedule), [Task](#42-task) and [Event](#43-event) are implemented.
+This section describes some noteworthy details on how [SOChedule](#41-sochedule), [Task](#42-task) and [Event](#43-event) are implemented.
 
-### 4.1 Sochedule
+### 4.1 SOChedule
 
 #### 4.1.1 Overview
 
@@ -399,7 +399,8 @@ specified by the following attributes:
 Note that a `Task` is defined to be the same as another `Task` if and only if all of their attributes listed above are
 equal correspondingly.
 
-Our `Task` supports the following features through a `LogicManager`
+Our `Task` supports the following features through a `LogicManager`, the implementation of the noteworthy ones will be
+listed in the next section
 
 * `add_task`
 * `delete_task`
@@ -465,42 +466,10 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 
 ![Sequence Diagram of DeleteTask Command](images/DeleteTaskCommandSequenceDiagram.png)
 
-[Return to Table of Contents](#table-of-contents)  
-
-
-#### 4.2.2.3. List Task Feature
-
-**Implementation of ListTaskCommand**
-
-The following is a detailed explanation on how ListTaskCommand is implemented.
-
-The ListTaskCommand is supported mainly by `ListTaskCommand`.
-
-The relevant methods include:
-* `ListTaskCommand#execute(Model model)` - Updates the task list on UI to show all the tasks stored in the internal task
-list.
-  
-Given below is an example usage scenario and how the list task mechanism behaves at each step.
-
-**Step 1**: User executes `list_task` command to list all the tasks currently present in the task list. 
-A `ListTaskCommand` object is returned
-
-**Step 2**: On `ListTaskCommand#execute()`, `Model#updateFilteredTaskList(Predicate<Task> predicate)` is called. This will
-update the filtered task list with the predicate specified by the input predicate, which is `PREDICATE_SHOW_ALL_TASKS`.
-For brevity, lower level implementation of `Model#updateFilteredTasks(Predicate<Task> predicate)` is omitted.
-
-**Step 3**: On execution completion, a `CommandResult` is created. `Model#isTaskListEmpty()` is called to check whether
-the current internal task list is empty or not. If the internal task list is empty, a message indicating the emptiness 
-the task list will be appended with `CommandResult#MESSAGE_EMPTY`. Otherwise, a success message will be appended with 
-`CommandResult#MESSAGE_SUCCESS`. The UI will also update as the underlying task list that has been modified.
-
-The sequence diagram for ListTaskCommand can be found below.
-
-![Sequence Diagram of ListTaskCommand](images/ListTaskCommandSequenceDiagram.png)
-
 [Return to Table of Contents](#table-of-contents)
 
-#### 4.2.2.4 Done Task feature
+
+#### 4.2.2.3 Done Task feature
 
 **Implementation of DoneTaskCommand**
 
@@ -563,7 +532,7 @@ under normal usage. Thus, we feel alternative 1 is necessary to serve our users 
 
 [Return to Table of Contents](#table-of-contents)
 
-#### 4.2.2.5 Undone Task feature
+#### 4.2.2.4 Undone Task feature
 
 **Implementation of UndoneTaskCommand**
 
@@ -622,6 +591,77 @@ Here are our considerations.
 Alternative 1 is chosen because we believe this implementation is a more suitable choice given the limited developement and
 testing time. More importantly, unlike done task, users are unlikely to have the demand to undone multiple tasks frequently 
 under normal usage. Thus, we feel alternative 1 is sufficient to serve our users.
+
+[Return to Table of Contents](#table-of-contents)
+
+#### 4.2.2.5 Today Task Feature
+
+**Implementation of TodayTaskCommand**
+
+The following is a detailed explanation on how TodayTaskCommand is implemented.
+
+The TodayTaskCommand is supported mainly by `TodayTaskCommand`.
+
+The relevant methods include:
+* `TodayTaskCommand#execute(Model model)` - Updates the task list on UI to show all the tasks that has deadline on 
+  today which are stored in the internal task list.
+
+Given below is an example usage scenario and how the `today_task` mechanism behaves at each step.
+
+**Step 1**: User executes `today_task` command to list all the tasks with deadline on today in the task list.
+A `TodayTaskCommand` object is returned
+
+**Step 2**: On `TodayTaskCommand#execute()`, `Model#updateFilteredTaskList(Predicate<Task> predicate)` is called. This 
+will update the filtered task list with the predicate specified by the input predicate, which is a predicate of type
+`TaskDeadlineIsTodayPredicate`. For brevity, lower level implementation of 
+`Model#updateFilteredTasks(Predicate<Task> predicate)` is omitted.
+
+**Step 3**: On execution completion, a `CommandResult` is created. A success message will be appended with
+`CommandResult#MESSAGE_TODAY_TASK_SUCCESS` and `MESSAGE_TASK_LISTED_OVERVIEW`. The UI will also update as the underlying 
+task list that has been modified.
+
+The sequence diagram for TodayTaskCommand can be found below.
+
+![Sequence Diagram of TodayTaskCommand](images/TodayTaskCommandSequenceDiagram.png)
+
+[Return to Table of Contents](#table-of-contents)
+
+#### 4.2.2.6 Find Task Feature
+
+**Implementation of FindTaskCommand**
+
+The following is a detailed explanation on how FindTaskCommand is implemented.
+
+The FindTaskCommand is supported mainly by `FindTaskCommand` and `FindTaskCommandParser`.
+
+The relevant methods include:
+* `FindTaskCommandParser#parse(String args)` - Parses the user input into a list of keywords.
+* `FindTaskCommand#execute(Model model)` - Updates the task list on UI to show all the tasks whose names contain any of 
+  the given keywords from the internal task list.
+
+Given below is an example usage scenario and how the find task mechanism behaves at each step.
+
+**Step 1**: User executes `find_task homework assignment` to find all tasks whose names contain any of `homework` or 
+`assignment`.
+Let us call these task the target tasks.
+A `FindTaskCommandParser` object is created, and the `FindTaskCommandParser#parse(String args)` method is called.
+The method parses the `homework assignment` into a list of strings : [`homwork`, `assignment`], which is the original
+string splitted by whitespace. This list of strings will be passed into the constructor of 
+`TaskNameContainsKeywordPredicate`, which will then be passed into the constuctor of a `FindTaskCommand`.
+The `FindTaskCommand` object with input predicate is returned.
+
+**Step 2**:
+On `FindTaskCommand#execute()`, `Model#updateFilteredTaskList(Predicate<Task> predicate)` is called. This
+will update the filtered task list with the predicate specified by the input predicate, which is a predicate of type
+`TaskNameContainsKeywordPredicate`. For brevity, lower level implementation of
+`Model#updateFilteredTasks(Predicate<Task> predicate)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_TASKS_LISTED_OVERVIEW`.
+
+The sequence diagram for `FindTaskCommand` can be found below.
+
+![Sequence Diagram of FindTaskCommand](images/FindTaskCommandSequenceDiagram.png)
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -988,37 +1028,6 @@ so we allow users to make changes on end date time from an expired timestamp to 
 we allowed an expired task to be edited is because if the task is expired but not completed yet, it would then become 
 an “overdue task”, while there’s no “overdue event”.
 
-
-[Return to Table of Contents](#table-of-contents)
-
-**Implementation of ListEventCommand**
-
-The following is a detailed explanation on how ListEventCommand is implemented.
-
-The ListEventCommand is supported mainly by `ListEventCommand`.
-
-The relevant methods include:
-* `ListEventCommand#execute(Model model)` - Updates the event list on UI to show all the events stored in the internal
-  event list.
-
-Given below is an example usage scenario and how the list event mechanism behaves at each step.
-
-**Step 1**: User executes `list_event` command to list all the events currently present in the event list.
-A `ListEventCommand` object is returned
-
-**Step 2**: On `ListEventCommand#execute()`, `Model#updateFilteredEventList(Predicate<Event> predicate)` is called. This 
-will update the filtered event list with the predicate specified by the input predicate, which is 
-`PREDICATE_SHOW_ALL_EVENTS`. For brevity, lower level implementation of 
-`Model#updateFilteredEvents(Predicate<Event> predicate)` is omitted.
-
-**Step 3**: On execution completion, a `CommandResult` is created. `Model#isEventListEmpty()` is called to check whether
-the current internal event list is empty or not. If the internal event list is empty, a message indicating the emptiness
-of the event list will be appended with `CommandResult#MESSAGE_EMPTY`. Otherwise, a success message will be appended with
-`CommandResult#MESSAGE_SUCCESS`. The UI will also update as the underlying event list that has been modified.
-
-The sequence diagram for ListEventCommand can be found below.
-
-![Sequence Diagram of ListEventCommand](images/ListEventCommandSequenceDiagram.png)
 
 [Return to Table of Contents](#table-of-contents)
 

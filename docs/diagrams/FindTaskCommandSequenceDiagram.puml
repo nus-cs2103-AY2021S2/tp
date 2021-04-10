@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SOCheduleParser" as SOCheduleParser LOGIC_COLOR
+participant ":FindTaskCommandParser" as FindTaskCommandParser LOGIC_COLOR
+participant "d:FindTaskCommand" as FindTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find_task homework")
+activate LogicManager
+
+LogicManager -> SOCheduleParser : parseCommand("find_task homework assignment")
+activate SOCheduleParser
+
+create FindTaskCommandParser
+SOCheduleParser -> FindTaskCommandParser
+activate FindTaskCommandParser
+
+FindTaskCommandParser --> SOCheduleParser
+deactivate FindTaskCommandParser
+
+SOCheduleParser -> FindTaskCommandParser : parse("homework assignment")
+activate FindTaskCommandParser
+
+create FindTaskCommand
+FindTaskCommandParser -> FindTaskCommand
+activate FindTaskCommand
+
+FindTaskCommand --> FindTaskCommandParser : s
+deactivate FindTaskCommand
+
+FindTaskCommandParser --> SOCheduleParser : s
+deactivate FindTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindTaskCommandParser -[hidden]-> SOCheduleParser
+destroy FindTaskCommandParser
+
+SOCheduleParser --> LogicManager : s
+deactivate SOCheduleParser
+
+LogicManager -> FindTaskCommand : execute()
+activate FindTaskCommand
+
+FindTaskCommand -> Model : updateFilteredList(Predicate<Task> predicate)
+activate Model
+
+Model --> FindTaskCommand
+deactivate Model
+
+create CommandResult
+FindTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindTaskCommand
+deactivate CommandResult
+
+FindTaskCommand --> LogicManager : result
+deactivate FindTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
