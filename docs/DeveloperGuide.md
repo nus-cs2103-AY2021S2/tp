@@ -188,6 +188,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
+* stores the shortcut library data.  
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -202,6 +203,7 @@ The `Model`,
 The `Storage` component,
 * can save `UserPref` objects in JSON format and read it back.
 * can save the address book data in JSON format and read it back.
+* can save the shortcut library data in JSON format and read it back.
 
 <br><br>
 
@@ -274,7 +276,7 @@ its methods strictly resembled those of its fellow `Command` classes.
 As an insurance agent, our target user is likely to be always on the go which increases the risk of the user's clients' information being exposed to 
 unauthorised accessors. Having a lock function for ClientBook will give the user a peace of mind that all of ClientBook's information is secured by a password.
 
-#### Implemenation
+#### Implementation
 
 A new class `Authentication` was created as part of the `Storage` component. It is responsible for the locking and unlocking of ClientBook. 
 Two new commands, `LockCommand` and `UnlockCommand` were created to interface the user with `Authentication`.
@@ -356,6 +358,136 @@ an outer class instead.
 
 Compared to other commands, the `edit` command takes many arguments of varying types, so extra care should be taken during the
 parsing of its arguments and extensive testing should be done on the varying argument types.
+
+<br>
+
+### Sort list of clients in ClientBook feature
+
+#### Motivation
+
+As an insurance agent, our target user is likely to have many clients' information and will like to have some ways to organise the
+information. Having a sort function for ClientBook will give the user a way to make the list of clients more organised.
+
+#### Implementation
+
+A new command `SortCommand` was created. It extends the abstract class `Command`, overriding and implementing its `execute`
+method. When `SortCommand#execute()` is called, the list of clients is sorted through `ModelManager#updateSortedPersonList(Comparator)` 
+with the comparator created by the type and direction of sorting specified by the user.
+
+
+Below is an example usage scenario and how the information and data are passed around at each step.
+
+**Step 1.** The user types `sort -n -asc` into the input box.
+
+**Step 2.** `MainWindow` receives the `commandText` (`sort -n -asc`), which is then executed by `LogicManager`.
+
+**Step 3.** `ClientBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return a 
+`SortCommand`, which would contain the type of the sorting algorithm (in this case by name), followed by
+the direction that the user intends to sort in (in this case ascending order).
+
+**Step 4.** `SortCommand`then executes, sorting the list of clients with a comparator created and returning a `CommandResult`. 
+This `CommandResult` contains the feedback string message which indicates to the user how the list of clients is sorted.
+
+**Step 5.** This `CommandResult` is passed back to `MainWindow`, which then displays the list after the sorting is done.
+
+Below is a sequence diagram illustrating the flow of this entire process.
+
+<p align="center"><img src="images/SortSequenceDiagram.png"></p>
+
+#### Design Considerations
+
+The sort feature was designed such that the original list is modified so that the list will remain sorted even after other
+commands are executed. The list of clients in the existing data file `clientbook.json` is also sorted for the user to make
+the storage organised too.
+
+<br>
+
+### Schedule a meeting with a client in ClientBook feature
+
+#### Motivation
+
+As an insurance agent, our target user is likely to have meetings with clients and will like to have some ways to store meetings'
+information. Having a meet function for ClientBook will give the user a way to schedule meetings with clients and also to check
+for any clashes between the new meeting and the stored meetings.
+
+#### Implementation
+
+A new command `MeetCommand` was created. It extends the abstract class `Command`, overriding and implementing its `execute`
+method. When `MeetCommand#execute()` is called, either a meeting added, deleted or all meetings are cleared from a client.
+When a meeting is being added, there will be a check for clashes where if there are clashes, the meeting will be rejected.
+
+
+Below is an example usage scenario and how the information and data are passed around at each step.
+
+**Step 1.** The user types `meet 1 -add 20.06.2021 12:00 15:00 MRT` into the input box.
+
+**Step 2.** `MainWindow` receives the `commandText` (`meet 1 -add 20.06.2021 12:00 15:00 MRT`), which is then executed by `LogicManager`.
+
+**Step 3.** `ClientBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return a
+`MeetCommand`, which would contain the index of the selected client in the displayed list (in this case 1), followed by 
+the action of the meet command (in this case add) and then the date, start time, end time, place of the meetings (in this 
+case 20.06.2021 12:00 15:00 MRT).
+
+**Step 4.** `MeetCommand`then executes, and returning a `CommandResult`.
+This `CommandResult` contains the feedback string message which indicates to the user which client's meeting has been modified.
+
+**Step 5.** This `CommandResult` is passed back to `MainWindow`, which then displays the list after the meeting of the client is modified.
+
+Below is a sequence diagram illustrating the flow of this entire process.
+
+<p align="center"><img src="images/MeetSequenceDiagram.png"></p>
+
+#### Design Considerations
+
+The meet feature was designed such that there is a check for clashes so that the user would not need to worry for having 
+clashes between any meetings in ClientBook.
+
+<br>
+
+### Create a shortcut in ClientBook feature
+
+#### Motivation
+
+As an insurance agent, our target user is likely to always be meeting up with clients to discuss about their portfolios 
+and will like to have a faster way to use ClientBook to avoid wasting the clients' time. Having a shortcuts feature for 
+ClientBook will give the user a way to be more efficient during meetings with clients.
+
+#### Implementation
+
+A new command `AddShortcutCommand` was created. It extends the abstract class `Command`, overriding and implementing its
+`execute` method. When `AddShortcutCommand#execute()` is called, a shortcut is added to the shortcut library. When a 
+shortcut is added, there will be a check for any existing shortcuts with the same name.
+
+
+Below is an example usage scenario and how the information and data are passed around at each step.
+
+**Step 1.** The user types `addshortcut sn/aia sc/find i/aia` into the input box.
+
+**Step 2.** `MainWindow` receives the `commandText` (`addshortcut sn/aia sc/find i/aia`), which is then executed by 
+`LogicManager`.
+
+**Step 3.** `ClientBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return 
+a `AddShortcutCommand`, which would contain the name of the shortcut (in this case `aia`), followed by the command that 
+the name will be mapped to (in this case `find i/aia`).
+
+**Step 4.** `AddShortcutCommand`then executes, storing the shortcut in the shortcut library and returning a 
+`CommandResult`. This `CommandResult` contains the feedback string message which indicates to the user whether the 
+specified shortcut has been added successfully.
+
+**Step 5.** This `CommandResult` is passed back to `MainWindow` to be displayed to the user through the `ResultDisplay`.
+
+Below is a sequence diagram illustrating the flow of this entire process.
+
+<p align="center"><img src="images/ShortcutSequenceDiagram.png"></p>
+
+#### Design Considerations
+
+The shortcut feature was designed such that the shortcut library is stored separately from the address book in 
+`shortcutlibrary.json`. Hence, there is minimal dependency between existing components and components of the shortcuts 
+feature. It was also implemented in a way that there are checks performed for duplicate shortcuts and validity of the 
+commands mapped to the shortcuts.
+
+<br>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -727,6 +859,199 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. User enters the incorrect current password that is used to lock ClientBook.
   
     * 1a1. ClientBook shows an error message. Use case resumes at step 1.
+    
+<br>
+
+**Use case 11: Delete a shortcut**
+
+**MSS**
+
+1.  User requests to delete a specific shortcut in the shortcut library.
+
+2.  ClientBook deletes the shortcut.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given shortcut name is invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
+<br>
+
+**Use case 12: Add a shortcut**
+
+**MSS**
+
+1.  User requests to add a shortcut.
+
+2.  ClientBook adds the shortcut.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The user input does not follow the format required.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
+<br>
+
+**Use case 13: List all shortcuts**
+
+**MSS**
+
+1.  User requests to list shortcuts.
+
+2.  ClientBook shows the shortcut library.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The shortcut library is empty.
+
+    * 1a1. ClientBook shows empty shortcut library message.
+
+      Use case ends.
+
+<br>
+
+**Use case 14: Edit a shortcut**
+
+**MSS**
+
+1.  User requests to edit a specific shortcut in the shortcut library.
+
+2.  ClientBook edits the shortcut.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given shortcut name is invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+    
+<br>
+
+**Use case 15: Clear the shortcut library**
+
+**MSS**
+
+1.  User requests to clear the shortcut library.
+
+2.  ClientBook clears the shortcut library.
+
+    Use case ends.
+
+<br>
+
+**Use case 16: Launch policies window**
+
+**MSS**
+
+1.  User requests to display policies associated with a selected client.
+
+2.  Window showing all policies associated with this client is launched.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The selected client has no policies.
+
+    * 1a1. Window launched shows that selected client has no associated policies.
+
+      Use case ends.
+
+* 1a. The given index is invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
+<br>
+
+**Use case 17: Retrieve URL for policy**
+
+**MSS**
+
+1.  User requests to display policies associated with a selected client.
+
+2.  Window showing all policies associated with this client is launched.
+
+3.  User retrieves URL from the launched window.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The selected client has no policies.
+
+    * 1a1. Window launched shows that selected client has no associated policies.
+
+      Use case ends.
+
+* 1a. The given index is invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
+<br>
+
+**Use case 18: Batch edit client details**
+
+**MSS**
+
+1.  User requests to change the policy ID of a policy shared by multiple customers.
+
+2.  ClientBook updates the details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given indices are invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
+* 1a. The given arguments are invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
+<br>
+
+**Use case 19: Batch delete client contacts**
+
+**MSS**
+
+1.  User requests to delete several clients at once.
+
+2.  ClientBook removes the client contacts from the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given indices are invalid.
+
+    * 1a1. ClientBook shows an error message.
+
+      Use case resumes at step 1.
+
 
 ### Non-Functional Requirements
 
