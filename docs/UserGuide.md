@@ -18,9 +18,9 @@ title: User Guide
 * [Date format](#date-format)
 * [Features](#features)
 * [1. Body Mass Index (BMI) Tracker](#1-body-mass-index-bmi-tracker)
-  * [1.1. Input weight, height and ideal weight](#11-input-weight-height-and-ideal-weight)
-  * [1.2. Query weight, height and BMI](#12-query-weight-height-and-bmi)
-  * [1.3. Update weight, height and ideal weight](#13-update-weight-height-and-ideal-weight)
+  * [1.1. Input user information](#11-input-user-information)
+  * [1.2. View user information](#12-view-user-information)
+  * [1.3. Update user information](#13-update-user-information)
 * [2. Diet Plan Selector](#2-diet-plan-selector)
   * [2.1. Get diet recommendations based on current BMI](#21-get-diet-recommendation-based-on-current-bmi)
   * [2.2. View active diet plan](#22-view-active-diet-plan)
@@ -257,7 +257,7 @@ Save food items you frequently consume, so you don't have to re-enter them every
 **Example:** `food_add n/tomato c/10 f/10 p/10`
 
 <div markdown="span" class="alert alert-primary">
-  ✏️ <strong>Note:</strong> Food names must be unique.
+  ✏️ <strong>Note:</strong> Food names must be unique. All food nutrients' value specified must lie within the range of 0 to 1000, both inclusive, and can be up to 2 decimal places.
 </div>
 
 **Expected output:**
@@ -275,7 +275,7 @@ Update food items in your food list with new nutrition values.
 **Example:** `food_update n/tomato c/20 f/30 p/40`
 
 <div markdown="span" class="alert alert-primary">
-  ✏️ <strong>Note:</strong> Ensure that the food item exists in the application.
+  ✏️ <strong>Note:</strong> Ensure that the food item exists in the application. All food nutrients' value specified must lie within the range of 0 to 1000, both inclusive, and can be up to 2 decimal places.
 </div>
 
 <div markdown="span" class="alert alert-success">
@@ -339,7 +339,7 @@ Record your food intake for the specified date with a new food item not currentl
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
 
 <div markdown="span" class="alert alert-primary">
-  ✏️ <strong>Note:</strong> At least one nutrient value is required to create new food item. If a particular nutrient value is not provided, it will be set to 0 by default.
+  ✏️ <strong>Note:</strong> At least one nutrient value(s) is required to create new food item. If a particular nutrient value is not provided, it will be set to 0 by default. The food nutrients' value specified must lie within the range of 0 to 1000, both inclusive, and can be up to 2 decimal places.
 </div>
 
 **Expected output:**
@@ -372,7 +372,7 @@ Record your food intake for the specified date using an existing food from your 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
 
 <div markdown="span" class="alert alert-primary">
-  ✏️ <strong>Note:</strong> Any nutrient value(s) specified for an existing food item will be overwritten and updated in the food list for future use. Older food intake record(s) associated with the same food item will retain their original values.
+  ✏️ <strong>Note:</strong> Any nutrient value(s) specified for an existing food item will be overwritten and updated in the food list for future use. Older food intake record(s) associated with the same food item will retain their original values. The food nutrients' value specified must lie within the range of 0 to 1000, both inclusive, and can be up to 2 decimal places.
 </div>
 
 **Expected output:**
@@ -390,11 +390,11 @@ Update the nutrient value(s) of a previously entered food intake given the date 
 **Example:** `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
 
 <div markdown="span" class="alert alert-success">
-  💡 <strong>Tip:</strong> Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged.
+  💡 <strong>Tip:</strong> Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged. 
 </div>
 
 <div markdown="span" class="alert alert-primary">
-  ✏️ <strong>Note:</strong> At least one nutrient value is required.
+  ✏️ <strong>Note:</strong> At least one nutrient value is required. The food nutrients' value specified must lie within the range of 0 to 1000, both inclusive, and can be up to 2 decimal places. 
 </div>
 
 **Expected output:**
