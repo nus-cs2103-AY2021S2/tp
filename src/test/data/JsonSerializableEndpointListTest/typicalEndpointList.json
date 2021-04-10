@@ -60,7 +60,7 @@
 		"method" : "HEAD",
 		"address" : "https://cat-fact.herokuapp.com/facts",
 		"data" : "{\"key\": \"value\"}",
-		"headers" : [ "\"key: value\"" ],
+		"headers" : [ "\"content: accepted\"" ],
 		"tagged" : [ "tag5", "cat" ],
 		"response" : {
 			"protocolVersion" : "No Data",
@@ -74,7 +74,7 @@
 		"method" : "OPTIONS",
 		"address" : "https://gorest.co.in/public-api/users",
 		"data" : "{\"key\": \"value\"}",
-		"headers" : [ "\"key: value\"" ],
+		"headers" : [ "\"cool: accepted1\"" ],
 		"tagged" : [ "tag6", "cat" ],
 		"response" : {
 			"protocolVersion" : "No Data",
@@ -101,7 +101,7 @@
 	}, {
 		"method" : "GET",
 		"address" : "https://reqres.in/api/users/2",
-		"data" : "{\"key\": \"value\"}",
+		"data" : "{\"newData\": \"uniqueData\"}",
 		"headers" : [ "\"key: value\"" ],
 		"tagged" : [ "tag8", "human" ],
 		"response" : {
