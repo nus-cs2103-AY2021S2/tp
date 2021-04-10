@@ -174,19 +174,61 @@ Classes used by multiple components are in the `seedu.taskify.commons` package.
 
 ## Implementation
 
-### \[New] Delete multiple tasks with multiple indices
-This feature allows users to list out the indices of tasks to delete.
+### \[New] Delete multiple tasks with indices
+This feature allows users to list out the [indices](#glossary) of tasks to delete.
 
 #### Implementation
+This feature is facilitated by `DeleteMultipleCommand`, which is a `Command` that is executed with `execute()`. It relies on `DeleteUtil#hasMultipleValidIndex` as a validity check,
+which is done in `TaskifyParser`. If valid, `DeleteMultipleCommandParser#parse` is called, and returns a `DeleteMultipleCommand`.
 
-![]()
+The following class diagram shows the relationship between classes for a successful execution.
+<a name="class diag Delete Indices"></a>![](images/DeleteMultipleUsingIndicesClassDiag.png)
 
+The following sequence diagram traces the step-by-step execution of deleting multiple tasks with multiple indices.
+![](images/DeleteMultipleUsingIndicesSeqDiag.png)
 
 #### Design Consideration
-##### Aspect 1
+
+##### Aspect 1: Problem & Solution
+* **Problem**: Deleting several tasks with the default delete feature is too cumbersome
+* **Solution**: Allow listing of multiple indices after typing `delete` once.
+
+##### Aspect 2: Design of solution
+* **Solution 1 (selected)**: Create a new command that is not a subclass of `DeleteCommand`
+  * Pros: Decouple the new command from `DeleteCommand` and obey SRP.
+  * Cons: Harder to implement
+    
+* **Solution 2**: Make the new command a subclass of `DeleteCommand` or include a list of `DeleteCommand` as a field in the new command
+  * Pros: Intuitive and easy to understand, easy to implement either solution
+  * Cons: Violates SRP
+    
+Solution 1 was selected for its better benefits as well as increased testability.
 
 ### \[New] Delete multiple tasks with an index range
+This feature allows users to provide an index range to delete all tasks within the range, inclusive of the upper and lower bound indices.
 
+#### Implementation
+This feature is also facilitated by `DeleteMultipleCommand`. The execution of this `DeleteMultipleCommand` is extremely similar to that in the
+[deleting multiple tasks with **multiple indices** feature](#new-delete-multiple-tasks-with-indices), with the only difference in
+the `isDeletingByRange` field in both `DeleteMultipleCommand` objects. This field is used for handling exceptions appropriately in 
+`DeleteUtil#getTasksToDelete(List<Task>, List<Index>, boolean)`. This field is determined by `DeleteMultipleCommand#parse`, which checks
+if the user is deleting tasks using indices or an index range by consulting `DeleteUtil#isDeletingTasksByRange`.
+
+The responsible class diagram for this feature is [here](#class-diag-delete-indices), which is also the same as that in the "delete multiple tasks with indices" feature.
+
+The following sequence diagram traces the step-by-step execution of deleting multiple tasks with an index range.
+![](images/DeleteMultUsingIndexRangeSeqDiag.png)
+#### Design Consideration
+
+##### Aspect 1: Problem & Solution
+* **Problem**: Listing indices individually after typing `delete` to delete many tasks might be cumbersome as well
+* **Solution**: Allow users to delete tasks using a range.
+
+##### Aspect 2: Design of solution
+`DeleteMultipleCommand` was already implemented to store the indices of the tasks to delete. A simple solution was to parse the index range
+its individual indices, and create a `DeleteMultipleCommand` with those indices. Testability might have reduced a little by adding some
+additional exceptions to be thrown within the execution of the command, but deleting either by an index range or individual indices seems to
+be part of the same responsibility, so it likely does not violate SRP.
 
 ### \[New] Delete all tasks of a specified status
 
@@ -479,7 +521,7 @@ Use case ends.
 6. The product should not take above 10 seconds to execute any commands.
 
 ### Glossary
-
+* **SRP**: Single Responsibility Principle
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Indices**: Plural form of **Index**
 
