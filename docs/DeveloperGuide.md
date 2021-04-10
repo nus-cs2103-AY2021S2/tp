@@ -13,15 +13,15 @@ Welcome to the PocketEstate Developer Guide! This guide will take you through th
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## 1. **Setting up, getting started**
 
 Please refer to the guide [_Setting up and getting started_](SettingUp.md) to learn how to set up this project in your computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 2. **Design**
 
-### Architecture
+### 2.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -63,7 +63,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### 2.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -82,7 +82,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 2.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -105,7 +105,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddPropertyCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 2.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -124,7 +124,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Property>` and an unmodifiable `ObservableList<Appointment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change
 * does not depend on any of the other three components
 
-### Storage component
+### 2.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -135,7 +135,7 @@ The `Storage` component,
 * can save the appointment book data in json format and read it back.
 * can save the property book data in json format and read it back.
 
-### Common classes
+### 2.6 Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 
@@ -147,18 +147,18 @@ Some examples of common classes:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 3. **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Property component
+### 3.1 Property component
 
 ![Structure of the Property Component](images/PropertyClassDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some solid diamonds that are used to denote composition may overlap with each other.
 </div>
 
-#### Implementation
+#### 3.1.1 Current Implementation
 
 A `Property` is stored in a `UniquePropertyList`, which ensures that there are no duplicate properties in the `PropertyBook`. Each `Property` is uniquely identified by its `Address` and `PostalCode`.
 
@@ -168,12 +168,12 @@ A `Property consists of the following mandatory attributes,
   * an `Address`: the address of the property
   * a `PostalCode`: the postal code of the property
   * a `Deadline`: the property's deadline for selling
-  * a `Tag` set: a set of zero or more `Tag` objects
 
 and the following optional attributes,
   * a `Remark`: a note about the property
   * a `Status`: represents the current stage of the selling (Option, Sales Agreement, Completion)
   * a `Client`: represents the seller of the property
+  * a `Tag` set: a set of zero or more `Tag` objects describing the property
 
 A `Client` consists of at least one of the following attributes,
   * a `Name`: the name of the client
@@ -181,7 +181,7 @@ A `Client` consists of at least one of the following attributes,
   * an `Email`: the email of the client
   * an `AskingPrice`: the asking price of the client
 
-#### Design Consideration
+#### 3.1.2 Design Consideration
 
 ##### Aspect: How each attribute of `Property` is stored
 
@@ -202,11 +202,11 @@ A `Client` consists of at least one of the following attributes,
 ![BetterModelPropertyClassDiagram](images/BetterModelPropertyClassDiagram.png)
 
 
-### Appointment component
+### 3.2 Appointment component
 
 ![Structure of the Appointment Component](images/AppointmentClassDiagram.png)
 
-#### Implementation
+#### 3.2.1 Current Implementation
 
 An `Appointment` is stored in a `UniqueAppointmentList`, which ensures that there are no duplicate appointments in the `AppointmentBook`. Each `Appointment` is uniquely identified by its `Date` and `Time`.
 
@@ -216,15 +216,15 @@ An `Appointment` consists of the following mandatory attributes,
 * a `Date`: the date of the appointment
 * a `Time`: the time of the appointment
 
-#### Design Consideration
+#### 3.2.2 Design Consideration
 
 ##### Aspect: How each attribute of `Appointment` is stored
 
 Similar design considerations as [how each attribute of `Property` is stored](#aspect-how-each-attribute-of-property-is-stored)
 
-### Undo feature
+### 3.3 Undo feature
 
-#### Implementation
+#### 3.3.1 Current Implementation
 
 The undo mechanism is facilitated by `PocketEstate`. It implements the undo feature with an undo history, stored internally as `previousAppointmentLists` and `previousPropertyLists` respectively.
 
@@ -271,7 +271,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-#### Design consideration:
+#### 3.3.2 Design consideration:
 
 ##### Aspect: How undo executes
 
@@ -283,9 +283,9 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, may only save the appointment/property being deleted, and the deleted appointment/property is added back if the command is undone).
   * Cons: Difficult to implement, different implementations are required to restore different changes.
     
-### Update feature
+### 3.4 Update feature
 
-#### Implementation
+#### 3.4.1 Current Implementation
 
 The update mechanism is facilitated by `PocketEstate`. It implements the update feature with 3 parts, the `Status` field in `Property`, a `UpdateCommandParser` and `UpdateCommand`.
 
@@ -327,10 +327,9 @@ Step 5. The user then decides that having the `Completion` status on the first p
 
 ![UpdateStep5Cancel](images/UpdateStep5Cancel.png)
 
-#### Design consideration:
+#### 3.4.2 Design consideration:
 
 ##### Aspect: How Update executes
-
 
 The following activity diagram summarizes what happens when a user executes an `UpdateCommand`:
 
@@ -343,7 +342,7 @@ The following sequence diagram shows how the update operation works:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 4. **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
