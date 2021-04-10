@@ -26,4 +26,11 @@ class TaskDateOnDatePredicate implements Predicate<Task> {
     public boolean test(Task task) {
         return new AttributeManager(task).hasSameDate(date);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TaskDateOnDatePredicate // instanceof handles nulls
+                && date.equals(((TaskDateOnDatePredicate) other).date)); // state check
+    }
 }

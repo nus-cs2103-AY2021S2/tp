@@ -6,7 +6,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.conditions.IndexManager;
+import seedu.address.logic.conditions.ConditionLogic;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
@@ -45,7 +45,7 @@ public class DeleteTaskCommand extends Command {
 
         int targetIndexValue = targetIndex.getZeroBased();
 
-        IndexManager.verifyIndex(targetIndex, lastShownList);
+        ConditionLogic.verifyIndex(targetIndex, lastShownList);
 
         Task taskToDelete = lastShownList.get(targetIndexValue);
         taskToDelete.getTags().forEach(model::deleteTag);

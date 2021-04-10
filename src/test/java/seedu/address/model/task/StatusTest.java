@@ -56,6 +56,7 @@ public class StatusTest {
         assertFalse(Status.isValidStatus("done "));
         assertFalse(Status.isValidStatus(" not done"));
         assertFalse(Status.isValidStatus("notdone"));
+        assertFalse(Status.isValidStatus("not\ndone"));
 
         assertTrue(Status.isValidStatus("done"));
         assertTrue(Status.isValidStatus("not done"));
