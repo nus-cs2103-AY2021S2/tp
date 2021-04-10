@@ -46,11 +46,15 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the
+[diagrams](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/docs/diagrams/) folder. 
+Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) 
+to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/Main.java) 
+and [`MainApp`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -90,9 +94,13 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `NoteListPanel`, `NoteCard` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `NoteListPanel`, `NoteCard` etc. 
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files 
+that are in the `src/main/resources/view` folder. For example, 
+the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) 
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -228,17 +236,24 @@ The following is the sequence diagram for `OPENCOMMAND`
 
 #### Design Consideration
 * **Alternative 1 (current choice):** Make use of the existing command `CommandResult` class
-    * Pros: make use of the existing system and easy to implement
+    * Pros: Make use of the existing system and easy to implement
     * Cons: All command will have to decide on the response. (or use the default setting)
 * Alternative 2: Make use of the Model Component as an intermediary between Command and UI.
   The command will call a method available on the model to change the UI settings.
-    * Pros: Only the class that requires to change in UI will be needed to call the method
+    * Pros: Only the class that requires to change in UI will be needed to call the method.
     * Cons: Increasing coupling.
 
 
 #### Manipulation UI Settings through Command
 #####  Implementation
-While All Command is able open or close an UI. There are some command where 
+While All Command is able open or close an UI. There are some command where it is more specific.
+In this case, we do not want all command to inherit it behaviour, 
+implementing it with `CommandResult` like `OpenCommand` and `CloseCommand` is not ideal.
+The `UI` component use `GUISettings` to store it GUI setting on exits.  
+We can make use of the exisiting component and change the behaviour of the `UI` 
+component will actively listen for changes on the GUISettings. The features make use the existing `GUISettings` class 
+and is implemented in all `toggledivider` and `setdividerposition`command.
+
 Dictionote has an interactive user interface that allows the user to open and close any panel through command.
 Furthermore, when any command is executed, Dictionote should be able to change the user interface based on the command type/requirement.
 All commands should be able to open and close the required UI panel. The user will also be able to open and close the UI via user command.
@@ -254,15 +269,15 @@ e.g `UiActionOption.Dictionary` for `UiAction.Open` mean open dictionary panel.
 
 The following is the sequence diagram for `OPENCOMMAND`
 
-![OpenCommandSequenceDiagram](images/OpenCommandSequenceDiagram.png)
+![OpenCommandSequenceDiagram](images/ToggleCommandSequenceDiagram.png)
 
 #### Design Consideration
 * Alternative 1 Make use of the existing command `CommandResult` class
-    * Pros: make use of the existing system and easy to implement
+    * Pros: Make use of the existing system and easy to implement
     * Cons: All command will have to decide on the response. (or use the default setting)
 * **Alternative 2(current choice):**: Make use of the Model Component as an intermediary between Command and UI.
   The command will call a method available on the model to change the UI settings.
-    * Pros: Only the class that requires to change in UI will be needed to call the method
+    * Pros: Only the class that requires to change in UI will be needed to call the method.
     * Cons: Increasing coupling.
 
 

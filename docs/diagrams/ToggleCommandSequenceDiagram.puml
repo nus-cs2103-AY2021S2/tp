@@ -1,0 +1,121 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DictionoteParser" as DictionoteParser LOGIC_COLOR
+participant "o:ToggleNoteOrientationCommand" as ToggleNoteOrientationCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant "g:GUISettings" as GUISettings MODEL_COLOR
+end box
+
+[-> MainWindow : executeCommand("toggledividern")
+activate MainWindow
+
+
+MainWindow-> LogicManager : execute("toggledividern")
+activate LogicManager
+
+LogicManager -> DictionoteParser : parseCommand("toggledividern")
+activate DictionoteParser
+
+create ToggleNoteOrientationCommand
+DictionoteParser -> ToggleNoteOrientationCommand
+activate ToggleNoteOrientationCommand
+
+ToggleNoteOrientationCommand --> DictionoteParser : t
+deactivate ToggleNoteOrientationCommand
+
+
+DictionoteParser --> LogicManager : t
+deactivate DictionoteParser
+
+LogicManager -> ToggleNoteOrientationCommand : execute()
+activate ToggleNoteOrientationCommand
+
+ToggleNoteOrientationCommand -> ModelManager : getGuiSettings()
+activate ModelManager
+
+ModelManager --> ToggleNoteOrientationCommand : g
+deactivate ModelManager
+
+ToggleNoteOrientationCommand --> GUISettings : toggleNotePanelOrientation()
+activate GUISettings
+
+GUISettings --> ToggleNoteOrientationCommand :
+deactivate GUISettings
+
+
+create CommandResult
+ToggleNoteOrientationCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ToggleNoteOrientationCommand
+deactivate CommandResult
+
+ToggleNoteOrientationCommand --> LogicManager : r
+deactivate ToggleNoteOrientationCommand
+
+LogicManager --> MainWindow : r
+deactivate LogicManager
+
+
+MainWindow --> MainWindow : executeUiAAction(action, option)
+activate MainWindow
+
+
+MainWindow -> CommandResult : getUiAction()
+activate CommandResult
+
+CommandResult --> MainWindow : getUiActionOption()
+deactivate CommandResult
+
+
+MainWindow -> CommandResult
+activate CommandResult
+
+CommandResult --> MainWindow
+deactivate CommandResult
+
+MainWindow --> MainWindow : configSplit()
+activate MainWindow
+
+MainWindow --> MainWindow : configOrientation()
+activate MainWindow
+
+
+MainWindow -> LogicManager : getGuiSettings()
+activate LogicManager
+
+LogicManager -> ModelManager : getGuiSettings()
+activate ModelManager
+
+ModelManager --> LogicManager : g
+deactivate ModelManager
+
+LogicManager --> MainWindow : g
+deactivate LogicManager
+
+MainWindow -> GUISettings : getNotePanelOrientation()
+activate GUISettings
+
+GUISettings --> MainWindow
+deactivate GUISettings
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+MainWindow --> MainWindow
+deactivate MainWindow
+
+[<--MainWindow
+deactivate MainWindow
+@enduml
