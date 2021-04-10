@@ -8,7 +8,7 @@ import static seedu.iscam.commons.util.AppUtil.checkArgument;
  */
 public class Image {
     public static final String MESSAGE_CONSTRAINTS = "Images should refer to a jpg, jpeg or png file in the \"data\" "
-            + "folder";
+            + "folder, must not contain whitespaces and must end in either .jpg, .jpeg or .png";
     public static final String VALIDATION_REGEX = "^\\w+\\.(gif|png|jpg|jpeg)$"; // Must not contain spaces
     public final String value;
 
