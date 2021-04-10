@@ -3,12 +3,19 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDY_LEVEL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -79,6 +86,35 @@ public class CommandTestUtil {
 
     public static final EditStudentCommand.EditStudentDescriptor DESC_AMY;
     public static final EditStudentCommand.EditStudentDescriptor DESC_BOB;
+
+    public static final String VALID_DATE = "2010-01-01";
+    public static final String VALID_DURATION = "60";
+    public static final String VALID_SUBJECT = "Science";
+    public static final String VALID_FEE = "30";
+    public static final String VALID_REC_INTERVAL = "7";
+    public static final String VALID_REC_END = "2010-01-15";
+
+    public static final String INVALID_DURATION = "1000";
+    public static final String INVALID_REC_INTERVAL = "8";
+    public static final String INVALID_REC_END_BEFORE_START = "2009-01-03";
+    public static final String INVALID_REC_END_BEFORE_INTERVAL = "2010-01-03";
+
+    public static final String SESSION_VALID_DATE = " " + PREFIX_DATE + VALID_DATE;
+    public static final String SESSION_VALID_TIME = " " + PREFIX_TIME + VALID_TIME;
+    public static final String SESSION_VALID_DURATION = " " + PREFIX_DURATION + VALID_DURATION;
+    public static final String SESSION_VALID_SUBJECT = " " + PREFIX_SUBJECT + VALID_SUBJECT;
+    public static final String SESSION_VALID_FEE = " " + PREFIX_FEE + VALID_FEE;
+    public static final String SESSION_INVALID_DURATION = " " + PREFIX_DURATION + INVALID_DURATION;
+
+    public static final String REC_SESSION_VALID_INTERVAL = " " + PREFIX_INTERVAL + VALID_REC_INTERVAL;
+    public static final String REC_SESSION_VALID_END = " " + PREFIX_END_DATE + VALID_REC_END;
+    public static final String REC_SESSION_INVALID_INTERVAL = " " + PREFIX_INTERVAL + INVALID_REC_INTERVAL;
+    public static final String REC_SESSION_INVALID_END_BEFORE_START = " " + PREFIX_END_DATE
+            + INVALID_REC_END_BEFORE_START;
+    public static final String REC_SESSION_INVALID_END_BEFORE_INTERVAL = " " + PREFIX_END_DATE
+            + INVALID_REC_END_BEFORE_INTERVAL;
+    public static final String REC_SESSION_INVALID_END_ON_START = " " + PREFIX_END_DATE + VALID_DATE;
+
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)

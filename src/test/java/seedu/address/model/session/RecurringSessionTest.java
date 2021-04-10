@@ -9,12 +9,17 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRING_START
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRING_START_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.SessionBuilder.DEFAULT_DATE;
+import static seedu.address.testutil.SessionBuilder.DEFAULT_DURATION;
+import static seedu.address.testutil.SessionBuilder.DEFAULT_FEE;
+import static seedu.address.testutil.SessionBuilder.DEFAULT_SUBJECT;
 import static seedu.address.testutil.SessionBuilder.DEFAULT_TIME;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SESSION;
 import static seedu.address.testutil.TypicalStudents.CARL;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,8 +35,8 @@ class RecurringSessionTest extends SessionTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new RecurringSession(null,
-                null, null, null, null, null));
+        assertThrows(NullPointerException.class, () -> new RecurringSession(SESSION_DATE,
+                DURATION, SUBJECT, FEE, INTERVAL, null));
     }
 
     @Test
@@ -48,13 +53,16 @@ class RecurringSessionTest extends SessionTest {
 
     @Test
     public void lastValidDateOnOrBeforeTest() {
+        //end is on start, suggest after 1 recurrence, thus invalid
         assertEquals(SESSION_DATE.getDate(),
                 RecurringSession.lastValidDateOnOrBefore(SESSION_DATE, SESSION_DATE, INTERVAL));
 
+        //end is one interval after, thus valid
         assertEquals(SESSION_DATE.getDate().plusDays(INTERVAL.getValue()),
                 RecurringSession
                         .lastValidDateOnOrBefore(SESSION_DATE.addDays(INTERVAL.getValue()), SESSION_DATE, INTERVAL));
 
+        // end is one day after one interval, thus invalid
         assertEquals(SESSION_DATE.getDate().plusDays(INTERVAL.getValue()),
                 RecurringSession
                         .lastValidDateOnOrBefore(
@@ -94,6 +102,26 @@ class RecurringSessionTest extends SessionTest {
     }
 
     @Test
+    void endBeforeTest() {
+        RecurringSession toTest = new RecurringSession(SESSION_DATE, DURATION, SUBJECT, FEE, INTERVAL,
+                SESSION_DATE.addDays(INTERVAL.getValue() * 2));
+
+        assertFalse(toTest.endBefore(SESSION_DATE.addDays(INTERVAL.getValue())));
+        assertFalse(toTest.endBefore(SESSION_DATE.addDays(INTERVAL.getValue() * 2)));
+        assertTrue(toTest.endBefore(SESSION_DATE.addDays(INTERVAL.getValue() * 2 + 1)));
+    }
+
+    @Test
+    void startAfterTest() {
+        RecurringSession toTest = new RecurringSession(SESSION_DATE, DURATION, SUBJECT, FEE, INTERVAL,
+                SESSION_DATE.addDays(INTERVAL.getValue()));
+
+        assertFalse(toTest.startAfter(SESSION_DATE));
+        assertFalse(toTest.startAfter(SESSION_DATE.addDays(1)));
+        assertTrue(toTest.startAfter(SESSION_DATE.minusDays(1)));
+    }
+
+    @Test
     void hasSessionOnDateTest() {
         RecurringSession startAfter = new RecurringSession(new SessionDate("2021-03-01", "10:00"),
                 DURATION, SUBJECT, FEE, INTERVAL, new SessionDate("2021-03-15", "10:00"));
@@ -109,6 +137,35 @@ class RecurringSessionTest extends SessionTest {
         assertFalse(notOnDate.hasSessionOnDate(SESSION_DATE));
         assertTrue(onDate.hasSessionOnDate(SESSION_DATE));
     }
+
+    @Test
+    void buildSessionOnDateTest_sessionDateInput() {
+        RecurringSession recurringSession = new RecurringSession(SESSION_DATE, DURATION, SUBJECT, FEE, INTERVAL,
+                SESSION_DATE.addDays(INTERVAL.getValue() * 3));
+        Session firstSession = new Session(SESSION_DATE, DURATION, SUBJECT, FEE);
+        Session lastSession = new Session(SESSION_DATE.addDays(INTERVAL.getValue() * 3), DURATION, SUBJECT, FEE);
+
+        assertEquals(firstSession, recurringSession.buildSessionOnDate(SESSION_DATE));
+        assertEquals(lastSession, recurringSession.buildSessionOnDate(SESSION_DATE.addDays(INTERVAL.getValue() * 3)));
+        assertThrows(AssertionError.class, () -> recurringSession.buildSessionOnDate(SESSION_DATE.addDays(1)));
+        assertThrows(NullPointerException.class, () -> recurringSession.buildSessionOnDate((SessionDate) null));
+    }
+
+    @Test
+    void buildSessionOnDateTest_localDateInput() {
+        RecurringSession recurringSession = new RecurringSession(SESSION_DATE, DURATION, SUBJECT, FEE, INTERVAL,
+                SESSION_DATE.addDays(INTERVAL.getValue() * 3));
+        Session firstSession = new Session(SESSION_DATE, DURATION, SUBJECT, FEE);
+        Session lastSession = new Session(SESSION_DATE.addDays(INTERVAL.getValue() * 3), DURATION, SUBJECT, FEE);
+
+        assertEquals(firstSession, recurringSession.buildSessionOnDate(SESSION_DATE.getDate()));
+        assertEquals(lastSession, recurringSession
+                .buildSessionOnDate(SESSION_DATE.addDays(INTERVAL.getValue() * 3).getDate()));
+        assertThrows(AssertionError.class, () -> recurringSession
+                .buildSessionOnDate(SESSION_DATE.addDays(1).getDate()));
+        assertThrows(NullPointerException.class, () -> recurringSession.buildSessionOnDate((LocalDate) null));
+    }
+
 
     @Test
     void isRecurringOverlappingRecurring() {
@@ -312,6 +369,38 @@ class RecurringSessionTest extends SessionTest {
                 new Fee("40"), oneDayInterval, lastSessionDate);
         int ans2 = recurringSession2.numOfSessionBetween(firstOfMarch, lastOfMarch);
         assertEquals(31, ans2);
+
+        RecurringSession recurringSession = new RecurringSession(SESSION_DATE, DURATION, SUBJECT, FEE, INTERVAL,
+                SESSION_DATE.addDays(INTERVAL.getValue() * 3));
+        //same dates
+        assertEquals(1, recurringSession.numOfSessionBetween(SESSION_DATE, SESSION_DATE));
+        //inclusive end before start
+        assertEquals(0, recurringSession.numOfSessionBetween(SESSION_DATE, SESSION_DATE.minusDays(1)));
+    }
+
+    @Test
+    void equalsTest() {
+        RecurringSession recurringSession = new RecurringSessionBuilder().build();
+        RecurringSessionBuilder copiedUnBuilt = new RecurringSessionBuilder()
+                .withSessionDate(DEFAULT_DATE, DEFAULT_TIME)
+                .withDuration(DEFAULT_DURATION)
+                .withSubject(DEFAULT_SUBJECT)
+                .withFee(DEFAULT_FEE)
+                .withInterval(RecurringSessionBuilder.DEFAULT_INTERVAL)
+                .withLastSessionDate(RecurringSessionBuilder.DEFAULT_END_DATE, DEFAULT_TIME);
+
+        assertTrue(recurringSession.equals(copiedUnBuilt.build()));
+        assertFalse(recurringSession.equals(new SessionBuilder().build()));
+
+        RecurringSession editedSubject = copiedUnBuilt.withSubject(SUBJECT.toString()).build();
+        assertFalse(recurringSession.equals(editedSubject));
+
+        RecurringSession editedLastSession = copiedUnBuilt.withLastSessionDate("2021-01-08", "00:00")
+                .build();
+        assertFalse(recurringSession.equals(editedLastSession));
+
+        RecurringSession editedInterval = copiedUnBuilt.withInterval("1").build();
+        assertFalse(recurringSession.equals(editedInterval));
     }
 
 }
