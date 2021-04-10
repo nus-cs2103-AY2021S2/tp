@@ -38,6 +38,7 @@
   --background-color: #292D3E;
   --accent-color: #5b6879;
   --font-color: #e8e8e8;
+  --font-accent-color: #c3c3c3;
 }
 
 .site-title, .site-title:visited, .site-nav .page-link {
@@ -131,6 +132,11 @@ table tr:nth-child(even) {
 
 strong {
   color: var(--quaternary-color);
+}
+
+blockquote {
+  color: var(--font-accent-color);
+  font-style: normal;
 }
 
 /**
