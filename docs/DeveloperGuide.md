@@ -330,16 +330,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-* 1b. Person details are invalid or missing compulsory fields.
-    * 1b1. BookCoin To The Moon shows an error message and prompts the user to reenter their command.
-
-
 **Extensions**
 
 * 1a. The person to be added is already in the system.
     * 1a1. BookCoin To The Moon shows an error message.
 
   Use case ends.
+ 
 
 **Use case: UC04 - Delete a venue**
 
@@ -352,7 +349,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given venue is invalid.
+* 1a. The specified venue does not exist in the system.
 
     * 1a1. BookingSystem shows an error message.
 
@@ -370,7 +367,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given booking is invalid.
+* 1a. The specified booking does not exist in the system.
 
     * 1a1. BookingSystem shows an error message.
 
@@ -388,9 +385,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given person is invalid.
+* 1a. The specified person does not exist in the system.
 
-    * 1a1. BookCoin To The Moon shows an error message.
+    * 1a1. BookingSystem shows an error message.
 
       Use case resumes at step 1.
 
@@ -405,86 +402,61 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC08 - List all venues**
 
-**MSS**
-
-1.  User requests to list all venues.
-2.  BookCoin To The Moon shows a list of venues.
-
-    Use case ends.
+This use case is similar to UC07 - List all bookings, except that bookings are replaced with venues.
 
 **Use case: UC09 - List all person**
 
-**MSS**
-
-1.  User requests to list all persons.
-2.  BookCoin To The Moon shows a list of persons.
-
-    Use case ends.
+This use case is similar to UC07 - List all bookings, except that bookings are replaced with person.
 
 **Use case: UC10 - Find a venue**
 
 **MSS**
 
-1.  User requests to find information about a specific venue.
-2.  BookCoin To The Moon shows the information for that venue.
+1.  User requests to find all venues that match the specified fields.
+2.  BookCoin To The Moon shows the matching venue(s).
 
     Use case ends.
 
 **Extensions**
+
+* 1a. A venue with the specified field(s) does not exist in the system.
+
+    * 1a1. BookingSystem shows an error message.
+
+      Use case ends.
+
+* 1b. The specified field(s) is/are invalid.
+
+    * 1a1. BookingSystem shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: UC11 - Find a booking**
 
 **MSS**
 
-1.  User requests to find information about a specific booking.
-2.  BookCoin To The Moon shows the information for that booking.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The booking requested cannot be found.
-    * 1a1. BookCoin To The Moon shows an error message.
-
-  Use case ends.
-
-
-* 1a. The venue requested cannot be found.
-    * 1a1. BookCoin To The Moon shows an error message.
-
-  Use case ends.
+This use case is similar to UC10 - Find a venue, except that venues are replaced with bookings.
 
 **Use case: UC12 - Find a person**
 
-**MSS**
-
-1.  User requests to find information about a specific person.
-2.  BookCoin To The Moon shows the information for that person.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The person requested cannot be found.
-    * 1a1. BookCoin To The Moon shows an error message.
-
-  Use case ends.
+This use case is similar to UC10 - Find a venue, except that venues are replaced with persons.
 
 **Use case: UC13 - Edit a venue**
 
 **MSS**
 
-1.  User requests to edit information about a specific venue.
+1.  User requests to edit information about a specified venue.
 2.  BookCoin To The Moon updates the venue information and saves it to the booking system.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The venue requested cannot be found.
-    * 1a1. BookCoin To The Moon shows an error message.
+* 1a. The specified booking does not exist in the system.
 
-  Use case ends.
+    * 1a1. BookingSystem shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: UC14 - Edit a booking**
 
