@@ -26,6 +26,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
+import seedu.address.testutil.TypicalEvents;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -46,10 +47,10 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new UserPrefs(), model.getEventBook());
 
-        Optional<Event> optFirstEvent = model.getEventByIdentifier(IDENTIFIER_FIRST_EVENT.getValue());
-        assertTrue(optFirstEvent.isPresent());
-        Event firstEvent = optFirstEvent.get();
-        expectedModel.setEvent(firstEvent, editedEvent);
+//        Optional<Event> optFirstEvent = model.getEventByIdentifier(IDENTIFIER_FIRST_EVENT.getValue());
+//        assertTrue(optFirstEvent.isPresent());
+//        Event firstEvent = optFirstEvent.get();
+        expectedModel.setEvent(TypicalEvents.CS2030, editedEvent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
