@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.persons;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
@@ -8,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_BY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_DIRECTION;
 
+import seedu.address.logic.commands.persons.FindPersonCommand;
 import seedu.address.logic.commands.persons.SortPersonCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -37,7 +39,7 @@ public class SortPersonCommandParser implements Parser<SortPersonCommand> {
             PersonSortDirection direction = PersonSortDirection.valueOf(directionStringCaps);
             return new SortPersonCommand(option, direction);
         } catch (Exception e) {
-            throw new ParseException(SortPersonCommand.MESSAGE_USAGE);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortPersonCommand.MESSAGE_USAGE));
         }
 
     }
