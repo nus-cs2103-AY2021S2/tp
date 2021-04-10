@@ -184,8 +184,8 @@ public class Task {
             .append(getWeightage())
             .append("; Notes: ")
             .append(getNotes())
-                .append("; PriorityTag: ")
-                .append(getPriorityTag().getTagName());
+            .append("; PriorityTag: ")
+            .append(getPriorityTag().getTagName());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

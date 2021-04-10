@@ -17,6 +17,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DoTodayCommand;
+import seedu.address.logic.commands.DoneCommand;
+import seedu.address.logic.commands.DueInCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -24,7 +27,13 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.NotesCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.util.OperationFlag;
+import seedu.address.logic.util.SortingFlag;
+import seedu.address.model.person.DeadlineDateInRangePredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Notes;
 import seedu.address.model.person.Task;
@@ -54,6 +63,40 @@ public class TaskTrackerParserTest {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_TASK), command);
+    }
+
+    @Test
+    public void parseCommand_done() throws Exception {
+        DoneCommand command = (DoneCommand) parser.parseCommand(
+                DoneCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new DoneCommand(INDEX_FIRST_TASK), command);
+    }
+
+    @Test
+    public void parseCommand_doToday() throws Exception {
+        OperationFlag add = new OperationFlag("-a");
+        OperationFlag delete = new OperationFlag("-r");
+
+        // Add function
+        DoTodayCommand command = (DoTodayCommand) parser.parseCommand(
+                DoTodayCommand.COMMAND_WORD + " -a " + INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new DoTodayCommand(INDEX_FIRST_TASK, add), command);
+
+        // Delete operation
+        command = (DoTodayCommand) parser.parseCommand(
+                DoTodayCommand.COMMAND_WORD + " -r " + INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new DoTodayCommand(INDEX_FIRST_TASK, delete), command);
+    }
+
+    @Test
+    public void parseCommand_dueIn() throws Exception {
+        DeadlineDateInRangePredicate predicate = new DeadlineDateInRangePredicate(7); // 7 days
+        DueInCommand command = (DueInCommand) parser.parseCommand(
+                DueInCommand.COMMAND_WORD + " day/7");
+        assertEquals(new DueInCommand(predicate), command);
+        command = (DueInCommand) parser.parseCommand(
+                DueInCommand.COMMAND_WORD + " week/1");
+        assertEquals(new DueInCommand(predicate), command);
     }
 
     @Test
@@ -97,6 +140,42 @@ public class TaskTrackerParserTest {
         NotesCommand command = (NotesCommand) parser.parseCommand(NotesCommand.COMMAND_WORD + " "
                         + INDEX_FIRST_TASK.getOneBased() + " " + PREFIX_NOTES + notes);
         assertEquals(new NotesCommand(INDEX_FIRST_TASK, new Notes(notes)), command);
+    }
+
+    @Test
+    public void parseCommand_redo() throws Exception {
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + " 3") instanceof RedoCommand);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        SortingFlag date = new SortingFlag(SortingFlag.DATE_TIME_FLAG);
+        SortingFlag name = new SortingFlag(SortingFlag.TASK_NAME_FLAG);
+        SortingFlag code = new SortingFlag(SortingFlag.MODULE_CODE_FLAG);
+        SortingFlag ptag = new SortingFlag(SortingFlag.PRIORITY_TAG_FLAG);
+        SortingFlag weightage = new SortingFlag(SortingFlag.WEIGHTAGE_FLAG);
+        SortCommand command = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " "
+                + SortingFlag.DATE_TIME_FLAG);
+        assertEquals(new SortCommand(date), command);
+        command = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " "
+                + SortingFlag.TASK_NAME_FLAG);
+        assertEquals(new SortCommand(name), command);
+        command = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " "
+                + SortingFlag.MODULE_CODE_FLAG);
+        assertEquals(new SortCommand(code), command);
+        command = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " "
+                + SortingFlag.PRIORITY_TAG_FLAG);
+        assertEquals(new SortCommand(ptag), command);
+        command = (SortCommand) parser.parseCommand(SortCommand.COMMAND_WORD + " "
+                + SortingFlag.WEIGHTAGE_FLAG);
+        assertEquals(new SortCommand(weightage), command);
+    }
+
+    @Test
+    public void parseCommand_undo() throws Exception {
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + " 3") instanceof UndoCommand);
     }
 
     @Test

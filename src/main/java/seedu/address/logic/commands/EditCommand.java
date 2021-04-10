@@ -281,7 +281,7 @@ public class EditCommand extends Command {
                 && getDeadlineTime().equals(e.getDeadlineTime())
                 && getStatus().equals(e.getStatus())
                 && getTags().equals(e.getTags())
-                    && getPriorityTag().equals(e.getPriorityTag());
+                && getPriorityTag().equals(e.getPriorityTag());
         }
 
     }

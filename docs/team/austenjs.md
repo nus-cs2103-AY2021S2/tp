@@ -31,8 +31,9 @@ make sense to have deadline before today. Moreover, there might be multiple argu
 Hence, testing must be done rigorously and covered most of the paths possible in the dueIn command.
 
 ##Contributions to the UG
-I am the one who initially refactored the UG (removing the 'AddressBook' and change with 'TaskList',
+* I am the one who initially refactored the UG (removing the 'AddressBook' and change with 'TaskList',
 change the name of attributes used, etc). So I the one who created the backbone of our team UG.
+* Added dueIn and done to list of features
 
 ##Contributions to the DG
 I am the one who initially refactored the DG (removing the 'AddressBook' and change with 'TaskList',

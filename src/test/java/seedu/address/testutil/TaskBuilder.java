@@ -11,6 +11,7 @@ import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -26,6 +27,7 @@ public class TaskBuilder {
     public static final String DEFAULT_STATUS = "Unfinished";
     public static final Integer DEFAULT_WEIGHTAGE = 0;
     public static final String DEFAULT_REMARK = "";
+    public static final String DEFAULT_PRIORITY_TAG = "LOW";
 
     private TaskName taskName;
     private ModuleCode moduleCode;
@@ -35,6 +37,7 @@ public class TaskBuilder {
     private Weightage weightage;
     private Notes notes;
     private Set<Tag> tags;
+    private PriorityTag priorityTag;
 
     /**
      * Creates a {@code TaskBuilder} with the default details.
@@ -48,6 +51,7 @@ public class TaskBuilder {
         weightage = new Weightage(DEFAULT_WEIGHTAGE);
         notes = new Notes(DEFAULT_REMARK);
         tags = new HashSet<>();
+        priorityTag = new PriorityTag(DEFAULT_PRIORITY_TAG);
     }
 
     /**
@@ -62,6 +66,7 @@ public class TaskBuilder {
         weightage = taskToCopy.getWeightage();
         notes = taskToCopy.getNotes();
         tags = new HashSet<>(taskToCopy.getTags());
+        priorityTag = taskToCopy.getPriorityTag();
     }
 
     /**
@@ -130,11 +135,19 @@ public class TaskBuilder {
     }
 
     /**
+     * Sets the {@code PriorityTag} of the {@code Task} that we are building.
+     */
+    public TaskBuilder withPriorityTag(String priorityTag) {
+        this.priorityTag = new PriorityTag(priorityTag);
+        return this;
+    }
+
+    /**
      * Build a new Task with default attributes.
      */
     public Task build() {
         return new Task(taskName, moduleCode, deadlineDate,
-            deadlineTime, status, weightage, notes, tags);
+            deadlineTime, status, weightage, notes, tags, priorityTag);
     }
 
 }

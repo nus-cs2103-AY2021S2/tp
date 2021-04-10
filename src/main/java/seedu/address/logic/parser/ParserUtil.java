@@ -174,11 +174,11 @@ public class ParserUtil {
      */
     public static PriorityTag parsePriorityTag(String priorityTag) throws ParseException {
         requireNonNull(priorityTag);
-
-        if (priorityTag.equals("LOW")
-                || priorityTag.equals("MEDIUM")
-                || priorityTag.equals("HIGH")) {
-            return new PriorityTag(priorityTag);
+        String trimmedTag = priorityTag.trim();
+        if (trimmedTag.equals("LOW")
+                || trimmedTag.equals("MEDIUM")
+                || trimmedTag.equals("HIGH")) {
+            return new PriorityTag(trimmedTag);
         } else {
             throw new ParseException(PriorityTag.MESSAGE_CONSTRAINTS);
         }

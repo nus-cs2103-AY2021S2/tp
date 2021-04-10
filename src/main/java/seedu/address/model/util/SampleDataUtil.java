@@ -25,33 +25,33 @@ public class SampleDataUtil {
 
     public static final Notes EMPTY_NOTES = new Notes("");
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu");
-    public static final DeadlineDate defaultDate = new DeadlineDate(
+    public static final DeadlineDate DEFAULT_DATE = new DeadlineDate(
             LocalDate.now().plusDays(5).format(FORMATTER)); // 5 days after today
 
     public static Task[] getSampleTasks() {
         return new Task[]{
             new Task(new TaskName("Week 10 Quiz"), new ModuleCode("CS2103"),
-                defaultDate, new DeadlineTime("10:10"),
+                    DEFAULT_DATE, new DeadlineTime("10:10"),
                 new Status(), new Weightage(0),
                     EMPTY_NOTES, getTagSet("core")),
             new Task(new TaskName("Take Home lab 1"), new ModuleCode("CS2040"),
-                defaultDate, new DeadlineTime("10:10"),
+                    DEFAULT_DATE, new DeadlineTime("10:10"),
                 new Status(), new Weightage(10),
                     EMPTY_NOTES, getTagSet("core", "difficult")),
             new Task(new TaskName("Tutorial 6"), new ModuleCode("CS1010"),
-                defaultDate, new DeadlineTime("10:10"),
+                    DEFAULT_DATE, new DeadlineTime("10:10"),
                 new Status("Finished"), new Weightage(20),
                     EMPTY_NOTES, getTagSet("core")),
             new Task(new TaskName("Tutorial 5"), new ModuleCode("CS2030"),
-                defaultDate, new DeadlineTime("10:10"),
+                    DEFAULT_DATE, new DeadlineTime("10:10"),
                 new Status(), new Weightage(10),
                     EMPTY_NOTES, getTagSet("core")),
             new Task(new TaskName("Weekly Readings"), new ModuleCode("CS3243"),
-                defaultDate, new DeadlineTime("10:10"),
+                    DEFAULT_DATE, new DeadlineTime("10:10"),
                 new Status(), new Weightage(20),
                     EMPTY_NOTES, getTagSet("specialization")),
             new Task(new TaskName("Write Tests"), new ModuleCode("CS3244"),
-                defaultDate, new DeadlineTime("10:10"),
+                    DEFAULT_DATE, new DeadlineTime("10:10"),
                 new Status("Finished"), new Weightage(15),
                     EMPTY_NOTES, getTagSet("specialization"))
         };

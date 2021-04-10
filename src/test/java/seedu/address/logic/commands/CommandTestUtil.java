@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -44,6 +45,8 @@ public class CommandTestUtil {
     public static final String VALID_REMARK_BOB = "Favourite pastime: Kattis";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_PRIORITY_LOW = "LOW";
+    public static final String VALID_PRIORITY_HIGH = "HIGH";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -57,6 +60,8 @@ public class CommandTestUtil {
     public static final String TIME_DESC_BOB = " " + PREFIX_DEADLINE_TIME + VALID_TIME_BOB;
     public static final String REMARK_DESC_AMY = " " + PREFIX_NOTES + VALID_REMARK_AMY;
     public static final String REMARK_DESC_BOB = " " + PREFIX_NOTES + VALID_REMARK_BOB;
+    public static final String PRIORITY_DESC_AMY = " " + PREFIX_PRIORITYTAG + VALID_PRIORITY_LOW;
+    public static final String PRIORITY_DESC_BOB = " " + PREFIX_PRIORITYTAG + VALID_PRIORITY_HIGH;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -68,6 +73,8 @@ public class CommandTestUtil {
     public static final String INVALID_WEIGHTAGE_DESC_NAN = " " + PREFIX_WEIGHTAGE + "asd%";
     public static final String INVALID_WEIGHTAGE_DESC_OOB = " " + PREFIX_WEIGHTAGE + "101%"; // out of bounds
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    // must be either HIGH/MEDIUM/LOW
+    public static final String INVALID_PRIORITY_TAG = " " + PREFIX_PRIORITYTAG + "12312";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
