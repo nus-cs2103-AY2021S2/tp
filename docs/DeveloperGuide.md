@@ -381,7 +381,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to delete a specific person.
 2.  BookCoin To The Moon deletes the person.
 
-    Use case ends.
+    Use case resumes at step 1.
 
 **Extensions**
 
@@ -445,113 +445,39 @@ This use case is similar to UC10 - Find a venue, except that venues are replaced
 
 **MSS**
 
-1.  User requests to edit information about a specified venue.
+1.  User requests to edit certain fields belonging to a specified venue.
 2.  BookCoin To The Moon updates the venue information and saves it to the booking system.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The specified booking does not exist in the system.
+* 1a. The specified venue does not exist in the system.
 
     * 1a1. BookingSystem shows an error message.
 
       Use case resumes at step 1.
 
+* 1b. The specified field(s) is/are invalid.
+
+    * 1b1. BookingSystem shows an error message.
+
+      Use case resumes at step 1.
+
+
 **Use case: UC14 - Edit a booking**
 
 **MSS**
 
-1.  User requests to edit information about a specific booking.
-2.  BookCoin To The Moon updates the booking information and saves it to the booking system.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The booking requested cannot be found.
-    * 1a1. BookCoin To The Moon shows an error message.
-* 1b. The person email does not exist in the system.
-    * 1b1. BookCoin To The Moon shows an error message.
-* 1c. The venue name does not exist in the system.
-    * 1c1. BookCoin To The Moon shows an error message.
-* 1d. The ending time is not later than the starting time.
-    * 1d1. BookCoin To The Moon shows an error message.
-* 1e. The time slot required has been booked already.
-    * 1e1. BookCoin To The Moon shows an error message.
-
-  Use case ends.
+This use case is similar to UC13 - Edit a venue, except that venues are replaced with bookings.
 
 
 **Use case: UC15 - Edit a person**
 
-**MSS**
-
-1.  User requests to edit information about a specific person.
-2.  BookCoin To The Moon updates the person information and saves it to the booking system.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The person requested cannot be found.
-    * 1a1. BookCoin To The Moon shows an error message.
-
-  Use case ends.
+This use case is similar to UC13 - Edit a venue, except that venues are replaced with persons.
 
 
-**Use case: UC16 - Filter bookings by person**
-
-**MSS**
-
-1.  User requests to view bookings under a specific person.
-2.  BookCoin To The Moon displays all bookings made by the specified person.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. No booking is found under the specified person.
-    * 1a1. BookCoin To The Moon shows an error message.
-
-  Use case ends.
-
-
-**Use case: UC17 - Filter bookings by date**
-
-**MSS**
-
-1.  User requests to view bookings of a specific date.
-2.  BookCoin To The Moon displays all bookings made on the specified date.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. No booking is found one the specified date.
-    * 1a1. BookCoin To The Moon shows an error message.
-
-  Use case ends.
-
-
-**Use case: UC18 - Filter bookings by venue**
-
-**MSS**
-
-1.  User requests to view bookings under a specific venue.
-2.  BookCoin To The Moon displays all bookings made by the specified venue.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. No booking is found under the specified venue.
-    * 1a1. BookCoin To The Moon shows an error message.
-
-  Use case ends.
-
-
-**Use case: UC19 - Exit the program**
+**Use case: UC16 - Exit the program**
 
 **MSS**
 
