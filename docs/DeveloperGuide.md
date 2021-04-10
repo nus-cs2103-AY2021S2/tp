@@ -394,12 +394,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
   
 * 3c. Taskify does not recognise the status that the User wants to set
-    * 3b1. Taskify warns that it does not understand the type of status entered
+    * 3c1. Taskify warns that it does not understand the type of status entered
     
         Use case ends.
     
 * 3d. The given index is invalid
-    * 3c1. Taskify warns that the index entered is invalid.
+    * 3d1. Taskify warns that the index entered is invalid.
     
         Use case ends.
 
@@ -510,7 +510,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to got to Expired Tab.
+1. User requests to switch to Expired Tab.
 2. Taskify switches to Expired Tab.
 
    Use Case ends
@@ -534,7 +534,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to got to Completed Tab.
+1. User requests to switch to Completed Tab.
 2. Taskify switches to Completed Tab.
 
    Use Case ends
@@ -558,7 +558,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to got to Uncompleted Tab.
+1. User requests to switch to Uncompleted Tab.
 2. Taskify switches to Uncompleted Tab.
 
    Use Case ends
