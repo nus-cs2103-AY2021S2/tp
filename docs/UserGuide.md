@@ -501,6 +501,8 @@ Deadlines contain a description and a date. They can also be marked as done usin
 
 Deadlines are sorted in ascending order by date.
 
+You can add Deadline A to a project containing Deadline B with the same `DESCRIPTION` and `DATE`  as long as Deadline B has been marked as done.
+
 ##### Adding a deadline to a project: `addD`
 
 Adds a deadline to a project in CoLAB.
