@@ -220,7 +220,7 @@ Similar design considerations as [how each attribute of `Property` is stored](#a
 
 #### Implementation
 
-The undo mechanism is facilitated by `PocketEstate`. It implements the undo feature with an undo history, stored internally as an `previousAppointmentLists` and `previousPropertyLists`.
+The undo mechanism is facilitated by `PocketEstate`. It implements the undo feature with an undo history, stored internally as `previousAppointmentLists` and `previousPropertyLists` respectively.
 
 * `AppointmentBook#undo()` — Restores the previous appointment book state from its history.
 * `PropertyBook#undo()` — Restores the previous property book state from its history.
