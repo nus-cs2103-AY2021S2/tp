@@ -3,6 +3,7 @@ package seedu.heymatez.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_TASK_LIST;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.heymatez.testutil.TypicalPersons.getTypicalHeyMatez;
@@ -53,7 +54,7 @@ public class FindByPriorityCommandTest {
 
     @Test
     public void execute_zeroKeywords_noTaskFound() {
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
+        String expectedMessage = MESSAGE_EMPTY_TASK_LIST;
 
         PriorityContainsKeywordPredicate predicate = preparePredicate(" ");
 
@@ -66,7 +67,7 @@ public class FindByPriorityCommandTest {
 
     @Test
     public void execute_singleKeywords_taskFound() {
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
+        String expectedMessage = MESSAGE_EMPTY_TASK_LIST;
 
         PriorityContainsKeywordPredicate highPredicate = preparePredicate("high");
         FindByPriorityCommand highCommand = new FindByPriorityCommand(highPredicate);

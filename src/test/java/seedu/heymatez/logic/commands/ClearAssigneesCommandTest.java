@@ -108,21 +108,6 @@ public class ClearAssigneesCommandTest {
         assertCommandFailure(clearAssigneesCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
-    @Test
-    public void execute_emptyFilteredList_success() {
-        HeyMatez heyMatez = new HeyMatez();
-
-        model = new ModelManager(heyMatez, new UserPrefs());
-
-        Model expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
-
-        Index givenIndex = INDEX_SECOND_TASK;
-
-        ClearAssigneesCommand clearAssigneesCommand = new ClearAssigneesCommand(givenIndex);
-
-        assertCommandSuccess(clearAssigneesCommand, model, MESSAGE_EMPTY_TASK_LIST, expectedModel);
-    }
-
     /**
      * Updates {@code model}'s filtered list to show no one.
      */

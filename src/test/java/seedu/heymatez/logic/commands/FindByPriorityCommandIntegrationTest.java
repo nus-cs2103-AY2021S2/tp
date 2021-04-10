@@ -1,8 +1,9 @@
 package seedu.heymatez.logic.commands;
 
+import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_TASK_LIST;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.heymatez.testutil.TypicalPersons.getTypicalHeyMatez;
+import static seedu.heymatez.testutil.TypicalTasks.getTypicalHeyMatez;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,24 @@ public class FindByPriorityCommandIntegrationTest {
     private Model model = new ModelManager(getTypicalHeyMatez(), new UserPrefs());
 
     @Test
-    public void checkSuccessFinding() {
+    public void checkSuccessfulFinding() {
+
+        Model expectedModel = new ModelManager(getTypicalHeyMatez(), new UserPrefs());
+
+        ArrayList<String> newList = new ArrayList<>();
+        newList.add("low");
+
+        PriorityContainsKeywordPredicate predicate = new PriorityContainsKeywordPredicate(newList);
+        expectedModel.updateFilteredTaskList(predicate);
+
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW,
+                expectedModel.getFilteredTaskList().size());
+
+        assertCommandSuccess(new FindByPriorityCommand(predicate), model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void checkNoTasksFound() {
 
         Model expectedModel = new ModelManager(getTypicalHeyMatez(), new UserPrefs());
 
@@ -31,8 +49,7 @@ public class FindByPriorityCommandIntegrationTest {
         PriorityContainsKeywordPredicate predicate = new PriorityContainsKeywordPredicate(newList);
         expectedModel.updateFilteredTaskList(predicate);
 
-        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW,
-                expectedModel.getFilteredTaskList().size());
+        String expectedMessage = MESSAGE_EMPTY_TASK_LIST;
 
         assertCommandSuccess(new FindByPriorityCommand(predicate), model, expectedMessage, expectedModel);
     }

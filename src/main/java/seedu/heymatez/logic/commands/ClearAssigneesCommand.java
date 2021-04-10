@@ -48,10 +48,6 @@ public class ClearAssigneesCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        if (lastShownList.isEmpty()) {
-            return new CommandResult(MESSAGE_EMPTY_TASK_LIST);
-        }
-
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }

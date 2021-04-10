@@ -73,21 +73,6 @@ public class DoneTaskCommandTest {
     }
 
     @Test
-    public void execute_emptyFilteredList_success() {
-        HeyMatez heyMatez = new HeyMatez();
-
-        model = new ModelManager(heyMatez, new UserPrefs());
-
-        Model expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
-
-        Index givenIndex = INDEX_SECOND_TASK;
-
-        DoneTaskCommand doneTaskCommand = new DoneTaskCommand(givenIndex);
-
-        assertCommandSuccess(doneTaskCommand, model, MESSAGE_EMPTY_TASK_LIST, expectedModel);
-    }
-
-    @Test
     public void task_already_markedCompleted() {
         DoneTaskCommand doneCommand = new DoneTaskCommand(INDEX_THIRD_TASK);
 

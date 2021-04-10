@@ -74,21 +74,6 @@ public class UndoTaskCommandTest {
     }
 
     @Test
-    public void execute_emptyFilteredList_success() {
-        HeyMatez heyMatez = new HeyMatez();
-
-        model = new ModelManager(heyMatez, new UserPrefs());
-
-        Model expectedModel = new ModelManager(model.getHeyMatez(), new UserPrefs());
-
-        Index givenIndex = INDEX_SECOND_TASK;
-
-        UndoTaskCommand undoTaskCommand = new UndoTaskCommand(givenIndex);
-
-        assertCommandSuccess(undoTaskCommand, model, MESSAGE_EMPTY_TASK_LIST, expectedModel);
-    }
-
-    @Test
     public void task_already_markedUncompleted() {
         UndoTaskCommand undoTaskCommand = new UndoTaskCommand(INDEX_FIRST_TASK);
 

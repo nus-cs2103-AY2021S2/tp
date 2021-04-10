@@ -5,9 +5,9 @@ title: User Guide
 
 <a name="introduction"></a>
 ## Welcome to HEY MATEz
-As a Club leader, are you struggling to **keep track of the ever-changing members** of your club as well as **manage 
-the mountain of tasks** that have to be completed? Or perhaps it is a challenge to **keep track of the increasing 
-number of tasks** and be able to **assign these tasks to members efficiently**. 
+As a Club Leader, are you struggling to **keep track of the ever-changing members** of your club as well as **manage 
+the mountain of tasks** that have to be completed? Or perhaps is it a challenge to **keep track of the increasing 
+number of tasks** and be able to **assign these tasks to members efficiently**? 
 
 HEY MATEz is a desktop application to get rid of your woes by allowing you to **track 
 members** and **tasks** within the club **efficiently and easily**! It is
@@ -103,7 +103,6 @@ to manage tasks which can be identified by their unique deadlines or priorities.
 * Parameters can be in any order.<br>
   e.g. if the command specifies `e/EMAIL p/PHONE_NUMBER`, `p/PHONE_NUMBER e/EMAIL` is also acceptable.
   
-<<<<<<< HEAD
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/98562545 p/88885555`, only `p/88885555` will be taken.
   
@@ -158,7 +157,7 @@ Format: `addMember NAME p/PHONE_NUMBER e/EMAIL [r/ROLE]`
 * NAME field is case-sensitive.   
 * NAME and ROLE fields can take on any values with alphanumeric characters.
 * PHONE_NUMBER field has to have a minimum length of 3 digits and maximum length of 15 digits.
-* If ROLE field is not specified, person will be assigned a default role of member.
+* If ROLE field is not specified, person will be assigned a default role of `Member`.
 
 Assumptions:
 * Every member in the CCA has a different name. An error will be prompted when you add a member with the same name but with
@@ -178,7 +177,7 @@ Format: `deleteMember NAME`
 * NAME field is case-sensitive.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The NAME specified must be in the currently displayed list of Members when executing this command.
+The NAME specified must appear in the currently displayed list of Members in order for it to be valid.
 </div>
 
 Examples:
@@ -208,7 +207,7 @@ Format: `editMember NAME [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/NEW_
 * Existing values will be updated to the input values. 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The NAME specified must be in the currently displayed list of Members when executing this command.  
+The NAME specified must appear in the currently displayed list of Members in order for it to be valid.
 </div>
 
 Examples: 
@@ -247,10 +246,10 @@ deadline to the task list.
 Format: `addTask TITLE d/DESCRIPTION b/DEADLINE [s/STATUS] [p/PRIORITY] [a/ASSIGNEE]...`
 
 * If you did not specify a value for STATUS, the Task will be assigned a default status value of **uncompleted**.
-* STATUS field can only take on the values **completed** or **uncompleted**.
+* STATUS field can only take on the values **completed** or **uncompleted** (Values are case-sensitive).
 * If you did not specify a value for PRIORITY, the Task will be assigned a default priority of **unassigned**.
-* PRIORITY field can only take on the values **high**, **medium**, **low** or **unassigned**.
-* ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex     Yeoh" are not the same assignee.
+* PRIORITY field can only take on the values **high**, **medium**, **low** or **unassigned** (Values are case-sensitive).
+* ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex yeoh" are not the same assignee.
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
 A task can have any number of assignees (including 0). To add multiple assignees, simply use multiple assignee prefixes. 
@@ -289,7 +288,7 @@ Format: `editTask INDEX [n/NEW_TITLE] [d/NEW_DESCRIPTION] [b/NEW_DEADLINE] [s/NE
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing assignees, the existing assignees of the task will be removed i.e adding of assignees is not cumulative.
-* NEW_ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex     Yeoh" are not the same assignee.
+* NEW_ASSIGNEE is case-sensitive and format-sensitive: "Alex Yeoh" and "Alex yeoh" are not the same assignee.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Any number of assignees can be specified here (including 0). To have multiple assignees, simply use multiple assignee prefixes.    

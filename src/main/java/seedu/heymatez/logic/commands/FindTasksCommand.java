@@ -28,10 +28,13 @@ public class FindTasksCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+
+        model.updateFilteredTaskList(predicate);
+
         if (model.isTaskListEmpty()) {
             return new CommandResult(MESSAGE_EMPTY_TASK_LIST);
         }
-        model.updateFilteredTaskList(predicate);
+
         return new CommandResult(String.format(MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
     }
 
