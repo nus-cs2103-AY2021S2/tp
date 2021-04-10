@@ -509,6 +509,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Should be able to hold up to 35000 students (NUS undergraduate cohort size) and 35000 appointments without a noticeable sluggishness in performance for typical usage.
 1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 1.  The product is not required to export statistics reports to PDF files.
+1.  The product is not required to export data for printing.
 1.  There should be a mechanism to migrate data so that the application can be used with existing data on different machines.
 
 *{More to be added}*
@@ -518,7 +519,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Vaccine**: Singapore has two approved COVID-19 vaccines, one developed by Pfizer-BioNTech, 
   the other by Moderna. Both require two doses, 21 days apart for Pfizer-BioNTech, 28 days apart for Moderna.
-  Two appointments must therefore be created per student. 
+  Two appointments must therefore be created manually per student.
+* **NUS**: National University of Singapore
+* **UHC**: University Health Center, a holistic healthcare provider for the NUS community.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -552,15 +555,19 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   1. Prerequisites: List all students using the `list` command. Sample data of students and appointments shown in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete A0182345T`<br>
+      Expected: First student (Alex Yeoh) is deleted from the list. Details of the deleted student shown in the status message. 
+      Alex Yeoh's student details and appointment details disappear from the GUI.
 
-   1. Test case: `delete 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `delete A1212121J`<br>
+      Expected: No student is deleted. Error details shown in the status message telling user no student with the specified matriculation number exists. 
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Test case: `delete A12345J`<br>
+      Expected: No student is deleted. Error details shown in the status message telling user the input is not a valid matriculation number.
+
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is not a valid matriculation number) <br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
