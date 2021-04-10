@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_TAG;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_WEIGHTAGE_DESC_NAN;
@@ -16,6 +17,8 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TIME_DESC_AMY;
@@ -45,6 +48,7 @@ import seedu.address.model.person.ModuleCode;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TaskBuilder;
 
@@ -68,14 +72,30 @@ public class AddCommandParserTest {
             + DATE_DESC_AMY + TIME_DESC_AMY
             + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
+        // multiple codes - last code accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + CODE_DESC_AMY + CODE_DESC_BOB + WEIGHTAGE_DESC_BOB
+            + DATE_DESC_AMY + TIME_DESC_AMY
+            + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+
         // multiple deadline dates - last date accepted
         assertParseSuccess(parser, NAME_DESC_BOB + CODE_DESC_BOB + WEIGHTAGE_DESC_BOB
-            + DATE_DESC_AMY + DATE_DESC_AMY + TIME_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+            + DATE_DESC_BOB + DATE_DESC_AMY + TIME_DESC_AMY
+            + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
         // multiple deadline times - last time accepted
         assertParseSuccess(parser, NAME_DESC_BOB + CODE_DESC_BOB + WEIGHTAGE_DESC_BOB
-                + DATE_DESC_AMY + TIME_DESC_AMY + TIME_DESC_AMY + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+            + DATE_DESC_AMY + TIME_DESC_BOB + TIME_DESC_AMY
+            + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
+        // multiple weightage - last weigtage accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + CODE_DESC_BOB + WEIGHTAGE_DESC_AMY
+            + WEIGHTAGE_DESC_BOB + DATE_DESC_AMY + TIME_DESC_AMY
+            + TAG_DESC_FRIEND, new AddCommand(expectedTask));
+
+        // multiple priority tag - last priority tag accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + CODE_DESC_BOB + WEIGHTAGE_DESC_AMY
+                + WEIGHTAGE_DESC_BOB + DATE_DESC_AMY + TIME_DESC_AMY + PRIORITY_DESC_BOB + PRIORITY_DESC_AMY
+                + TAG_DESC_FRIEND, new AddCommand(expectedTask));
 
         // multiple tags - all accepted
         // remarks are empty by default
@@ -86,19 +106,66 @@ public class AddCommandParserTest {
             .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
             .build();
 
+        // normal input
         assertParseSuccess(parser, NAME_DESC_BOB + CODE_DESC_BOB + DATE_DESC_AMY + TIME_DESC_AMY + WEIGHTAGE_DESC_BOB
             + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedTaskMultipleTags));
     }
 
     @Test
-    public void parse_optionalFieldsMissing_success() {
-        // zero tags
+    public void parse_optionalFieldsPresent_success() {
+        // zero tags and default priority tag
         // remarks are empty by default
+        Task expectedTask = new TaskBuilder(AMY).withWeightage(25).withDeadlineDate("10-10-2022").withDeadlineTime("10"
+                + ":10")
+                .withStatus("").withNotes("").withTags().build();
 
+        //Priority tag LOW given
+        assertParseSuccess(parser, NAME_DESC_AMY + CODE_DESC_AMY + WEIGHTAGE_DESC_AMY
+                        + DATE_DESC_AMY + TIME_DESC_AMY + PRIORITY_DESC_AMY,
+                new AddCommand(expectedTask));
+
+        // zero tags and HIGH priority tag
+        // remarks are empty by default
+        expectedTask = new TaskBuilder(AMY).withWeightage(25).withDeadlineDate("10-10-2022").withDeadlineTime("10"
+                + ":10")
+                .withStatus("").withNotes("").withTags().withPriorityTag("HIGH").build();
+
+        //Priority tag HIGH given
+        assertParseSuccess(parser, NAME_DESC_AMY + CODE_DESC_AMY + WEIGHTAGE_DESC_AMY
+                        + DATE_DESC_AMY + TIME_DESC_AMY + PRIORITY_DESC_BOB,
+                new AddCommand(expectedTask));
+
+        //Multiple Priority tags given - Last one taken
+        assertParseSuccess(parser, NAME_DESC_AMY + CODE_DESC_AMY + WEIGHTAGE_DESC_AMY
+                        + DATE_DESC_AMY + TIME_DESC_AMY + PRIORITY_DESC_AMY + PRIORITY_DESC_BOB,
+                new AddCommand(expectedTask));
+
+        // a tag given
+        expectedTask = new TaskBuilder(AMY).withWeightage(25).withDeadlineDate("10-10-2022").withDeadlineTime("10"
+                + ":10")
+                .withStatus("").withNotes("").withTags(VALID_TAG_FRIEND).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + CODE_DESC_AMY + WEIGHTAGE_DESC_AMY
+                        + DATE_DESC_AMY + TIME_DESC_AMY + TAG_DESC_FRIEND,
+                new AddCommand(expectedTask));
+
+        // multiple tags given
+        expectedTask = new TaskBuilder(AMY).withWeightage(25).withDeadlineDate("10-10-2022").withDeadlineTime("10"
+                + ":10")
+                .withStatus("").withNotes("").withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
+        assertParseSuccess(parser, NAME_DESC_AMY + CODE_DESC_AMY + WEIGHTAGE_DESC_AMY
+                        + DATE_DESC_AMY + TIME_DESC_AMY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
+                new AddCommand(expectedTask));
+    }
+
+    @Test
+    public void parse_optionalFieldsMissing_success() {
+        // zero tags and zero priority tag
+        // remarks are empty by default
         Task expectedTask = new TaskBuilder(AMY).withWeightage(25).withDeadlineDate("10-10-2022").withDeadlineTime("10"
             + ":10")
             .withStatus("").withNotes("").withTags().build();
-        assertParseSuccess(parser, NAME_DESC_AMY + CODE_DESC_AMY + WEIGHTAGE_DESC_AMY + DATE_DESC_AMY + TIME_DESC_AMY,
+        assertParseSuccess(parser, NAME_DESC_AMY + CODE_DESC_AMY + WEIGHTAGE_DESC_AMY
+                        + DATE_DESC_AMY + TIME_DESC_AMY,
             new AddCommand(expectedTask));
     }
 
@@ -109,6 +176,9 @@ public class AddCommandParserTest {
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB,
             expectedMessage);
+
+        // empty input
+        assertParseFailure(parser, "", expectedMessage);
 
         // no name
         assertParseFailure(parser, CODE_DESC_BOB + DATE_DESC_BOB + WEIGHTAGE_DESC_BOB
@@ -163,7 +233,12 @@ public class AddCommandParserTest {
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + CODE_DESC_BOB + DATE_DESC_BOB + WEIGHTAGE_DESC_BOB
-            + TIME_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+            + TIME_DESC_BOB + INVALID_TAG_DESC + TAG_DESC_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+
+        // invalid priority tag
+        assertParseFailure(parser, NAME_DESC_BOB + CODE_DESC_BOB + DATE_DESC_BOB + WEIGHTAGE_DESC_BOB
+                + TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_PRIORITY_TAG,
+                PriorityTag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
 

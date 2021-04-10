@@ -38,6 +38,9 @@ public class NotesCommandParserTest {
         assertParseFailure(parser, NotesCommand.COMMAND_WORD, expectedMessage);
 
         // no index
+        assertParseFailure(parser, NotesCommand.COMMAND_WORD + " SADASDA" + nonEmptyNotes, expectedMessage);
+
+        // no index and notes
         assertParseFailure(parser, NotesCommand.COMMAND_WORD + " " + nonEmptyNotes, expectedMessage);
     }
 }

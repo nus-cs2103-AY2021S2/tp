@@ -13,6 +13,7 @@ import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,6 +44,7 @@ public class EditTaskDescriptorBuilder {
         descriptor.setWeightage(task.getWeightage());
         descriptor.setNotes(task.getNotes());
         descriptor.setTags(task.getTags());
+        descriptor.setPriorityTag(task.getPriorityTag());
     }
 
     /**
@@ -108,6 +110,14 @@ public class EditTaskDescriptorBuilder {
     public EditTaskDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Notes} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withPriorityTag(String priorityTag) {
+        descriptor.setPriorityTag(new PriorityTag(priorityTag));
         return this;
     }
 

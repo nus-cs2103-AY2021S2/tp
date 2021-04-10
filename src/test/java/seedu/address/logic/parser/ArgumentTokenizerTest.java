@@ -64,6 +64,22 @@ public class ArgumentTokenizerTest {
     }
 
     @Test
+    public void tokenize_zeroArgument() {
+        // Preamble present
+        String argsString = "  Some preamble string p/";
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash);
+        assertPreamblePresent(argMultimap, "Some preamble string");
+        assertArgumentPresent(argMultimap, pSlash, "");
+
+        // No preamble
+        argsString = " p/     ";
+        argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash);
+        assertPreambleEmpty(argMultimap);
+        assertArgumentPresent(argMultimap, pSlash, "");
+
+    }
+
+    @Test
     public void tokenize_oneArgument() {
         // Preamble present
         String argsString = "  Some preamble string p/ Argument value ";
@@ -105,6 +121,8 @@ public class ArgumentTokenizerTest {
         argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
         assertPreambleEmpty(argMultimap);
         assertArgumentAbsent(argMultimap, pSlash);
+        assertArgumentAbsent(argMultimap, dashT);
+        assertArgumentAbsent(argMultimap, hatQ);
 
         /* Also covers: testing for prefixes not specified as a prefix */
 
@@ -113,6 +131,9 @@ public class ArgumentTokenizerTest {
         argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
         assertArgumentAbsent(argMultimap, unknownPrefix);
         assertPreamblePresent(argMultimap, argsString); // Unknown prefix is taken as part of preamble
+        assertArgumentAbsent(argMultimap, pSlash);
+        assertArgumentAbsent(argMultimap, dashT);
+        assertArgumentAbsent(argMultimap, hatQ);
     }
 
     @Test
