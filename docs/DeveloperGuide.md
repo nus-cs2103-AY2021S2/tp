@@ -132,8 +132,8 @@ The `UI` component uses JavaFx UI framework. The layout of these UI parts are de
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
+* Delegates command history selection using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
-* Delegates command execution and command history selection to the logic component.
 
 ### Logic component
 
