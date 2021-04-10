@@ -97,7 +97,7 @@ public class AddCommand extends Command {
         }
 
         if (orderItemIndexList != null) {
-            mapIndexToOrderItems(model);
+            addToOrderDescriptionsBasedOnIndexes(model);
         }
 
         Order toAdd = addOrderDescriptor.build(); // slightly diff from editOrderDescriptor
@@ -132,32 +132,26 @@ public class AddCommand extends Command {
      * @param model
      * @throws CommandException thrown when invalid indexes are given
      */
-    private void mapIndexToOrderItems(Model model) throws CommandException {
+    private void addToOrderDescriptionsBasedOnIndexes(Model model) throws CommandException {
         List<OrderItem> lastShownOrderItems = model.getFilteredOrderItemsList();
 
-        List<Index> list = orderItemIndexList.getIndexList(); // gets the inner list to perform operations on each index
+        List<Index> indexList = orderItemIndexList.getIndexList(); // gets the inner list to perform operations on each index
 
-        for (Index i : list) {
+        for (Index i : indexList) {
             if (i.getZeroBased() >= lastShownOrderItems.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ORDER_ITEM_INDEX);
             }
         }
 
-        if (addOrderDescriptor.getOrderDescriptions().isPresent()) {
-            addToOrderItemsModel(model);
-        }
-
-        /*
-        for each index specified
-        get corresponding order item
-        create an order description from the order item
+        /* for each index specified
+         * get corresponding order item
+         * create an order description from the order item
          */
-        list.forEach(i -> addOrderDescriptor.setOrderDescription(
-                new OrderDescription(
-                        lastShownOrderItems
-                                .get(i.getZeroBased())
-                                .getType()
-                                .toString()
+        indexList.forEach(index -> addOrderDescriptor.setOrderDescription(
+                new OrderDescription(lastShownOrderItems
+                    .get(index.getZeroBased())
+                    .getType()
+                    .toString()
                 )
         ));
     }
