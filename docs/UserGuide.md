@@ -180,6 +180,9 @@ This section details the format of the commands available in TutorBuddy. We will
 * Extra parameters for commands that do not take in parameters (such as `emails`, `help`, `exit`, `clear` and `list`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Names are case-insensitive.<br>
+  e.g. `john` is considered to have the same name as `John`
+
 * Indexes **must be positive whole numbers** 1, 2, 3, …
 
 * The `STUDENT_INDEX` refers to the index number shown in the [displayed student list](#application-overview).
