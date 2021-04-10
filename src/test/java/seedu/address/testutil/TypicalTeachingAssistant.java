@@ -94,7 +94,7 @@ public class TypicalTeachingAssistant {
             .withTags("owesMoney", "friends").build();
 
     public static final Contact CLAIRE = new ContactBuilder().withName("Claire Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").build();
+            .withEmail("heinz@example.com").withTags("colleagues").build();
 
     public static final Contact DAVID = new ContactBuilder().withName("David Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withTags("friends").build();

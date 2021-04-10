@@ -73,7 +73,7 @@ public class FilterContactCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywordsAndSearch_noEntryFound() {
+    public void execute_multipleKeywordsOrSearch_noEntryFound() {
         String expectedMessage = String.format(MESSAGE_CONTACTS_LISTED_OVERVIEW, 0);
         ContactTagsContainKeywordsPredicate predicate = preparePredicate("friends colleagues"); // case insensitive
         FilterContactCommand command = new FilterContactCommand(predicate);
