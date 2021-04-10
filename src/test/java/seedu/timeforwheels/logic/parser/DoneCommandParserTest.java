@@ -17,5 +17,10 @@ public class DoneCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE));
     }
 
+    @Test
+    public void parse_noArgs_throwsParseException() {
+        assertParseFailure(parser, " ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE));
+    }
 
 }

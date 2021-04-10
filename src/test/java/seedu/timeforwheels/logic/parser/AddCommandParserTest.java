@@ -7,6 +7,7 @@ import static seedu.timeforwheels.logic.commands.CommandTestUtil.DATE_DESC_AMY;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.timeforwheels.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -129,6 +130,10 @@ public class AddCommandParserTest {
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + INVALID_TAG_DESC + VALID_TAG_FRAGILE + DATE_DESC_AMY, Tag.MESSAGE_CONSTRAINTS);
+
+        // invalid date
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + TAG_DESC_HEAVY + VALID_TAG_FRAGILE + INVALID_DATE_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
