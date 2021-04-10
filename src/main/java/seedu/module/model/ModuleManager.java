@@ -79,7 +79,6 @@ public class ModuleManager {
             List<Task> newList = new ArrayList<>();
             newList.add(task);
             mappingOfModulesToTasks.put(module, newList);
-            moduleWorkLoadDistribution.put(module, task.getWorkload().getWorkloadLevel());
         }
         increaseCorrectWorkloadDistribution(module, task);
         setExistingModuleList();
@@ -95,7 +94,7 @@ public class ModuleManager {
     public static void increaseCorrectWorkloadDistribution(Module module, Task task) {
         int workloadLevel = task.getWorkload().getWorkloadLevel();
         moduleWorkLoadDistribution.put(module,
-            moduleWorkLoadDistribution.get(module) + workloadLevel);
+            moduleWorkLoadDistribution.getOrDefault(module, 0) + workloadLevel);
         switch(workloadLevel) {
         case LOW_LEVEL:
             moduleLowWorkLoadDistribution.put(module,
