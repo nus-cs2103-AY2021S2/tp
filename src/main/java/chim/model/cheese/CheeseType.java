@@ -12,7 +12,8 @@ import java.util.Map;
  * Guarantees: immutable
  */
 public class CheeseType {
-    public static final String MESSAGE_CONSTRAINTS = "Cheese type can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+        "Cheese types should only contain alphanumeric characters and spaces, and it should not be blank";
     public static final String VALIDATION_REGEX = "[\\w]+[\\s&\\w+]*";
     private static final Map<String, CheeseType> typeToCheeseMap = new HashMap<>();
 
