@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.Planner;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 /**
@@ -25,6 +26,14 @@ public class PlannerBuilder {
      */
     public PlannerBuilder withTask(Task task) {
         planner.addTask(task);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code Tag} to the {@code Planner} that we are building.
+     */
+    public PlannerBuilder withTag(Tag tag) {
+        planner.addTag(tag);
         return this;
     }
 

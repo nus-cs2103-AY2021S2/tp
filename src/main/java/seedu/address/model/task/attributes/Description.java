@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Description implements Attribute {
     public static final String FIELD_NAME = "Description";
 
-    public static final String MESSAGE_CONSTRAINTS = "Descriptions can take any values";
+    public static final String MESSAGE_CONSTRAINTS = "Descriptions can take any value.";
 
     /**
      * Allows description to be any character including line breaks.

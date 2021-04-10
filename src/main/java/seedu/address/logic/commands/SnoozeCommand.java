@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.conditions.IndexManager;
+import seedu.address.logic.conditions.ConditionLogic;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.AttributeManager;
@@ -67,7 +67,7 @@ public class SnoozeCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        IndexManager.verifyIndex(index, lastShownList);
+        ConditionLogic.verifyIndex(index, lastShownList);
         Task taskToSnooze = retrieveSelectedTask(lastShownList);
         enforceNonEmptyDate(taskToSnooze);
 
