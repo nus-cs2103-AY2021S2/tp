@@ -34,6 +34,7 @@ public class UpdateTodoCommand extends Command {
 
     public static final String MESSAGE_UPDATE_TODO_SUCCESS = "Updated todo: %1$s";
     public static final String MESSAGE_DUPLICATE_TODO = "This todo already exists in this project.";
+    public static final String MESSAGE_SAME_TODO = "This todo already has this description.";
 
     private final Index projectIndex;
     private final Index targetTodoIndex;
@@ -72,6 +73,10 @@ public class UpdateTodoCommand extends Command {
 
         if (todos.hasTodo(todo) && !todos.getTodo(targetTodoIndex.getZeroBased()).equals(todo)) {
             throw new CommandException(MESSAGE_DUPLICATE_TODO);
+        }
+
+        if (todos.getTodo(targetTodoIndex.getZeroBased()).getDescription().equals(todo.getDescription())) {
+            throw new CommandException(MESSAGE_SAME_TODO);
         }
 
         if (todos.checkIsDone(targetTodoIndex.getZeroBased())) {
