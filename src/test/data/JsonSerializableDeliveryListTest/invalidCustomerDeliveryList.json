@@ -1,0 +1,12 @@
+{
+  "customers": [ {
+    "name": "Hans Muster",
+    "phone": "9482424",
+    "email": "invalid@email!3e",
+    "address": "4th street",
+    "remark": "table",
+    "date": "2021-04-15",
+    "tagged": [ "bulky" ],
+    "done": "[✓]"
+  } ]
+}

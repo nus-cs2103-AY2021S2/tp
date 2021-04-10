@@ -1,0 +1,67 @@
+{
+  "_comment": "DeliveryList save file which contains the same Customer values as in TypicalCustomers#getTypicalDeliveryList()",
+  "customers" : [ {
+    "name" : "John Tan",
+    "phone" : "96214618",
+    "email" : "johntan@gmail.com",
+    "address" : "Yeo Chu Kang Ave 11, Blk 17, #09-14",
+    "remark" : "ice cream",
+    "date" : "2021-04-01",
+    "tagged" : [ "cold", "urgent" ],
+    "done" : "[X]"
+  }, {
+    "name" : "James Ng",
+    "phone" : "82604390",
+    "email" : "jamesng@gmail.com",
+    "address" : "Serangoon Ave 2, Blk 15, #01-12",
+    "remark" : "mechanical keyboard",
+    "date" : "2021-04-15",
+    "tagged" : [ "urgent" ],
+    "done" : "[X]"
+  }, {
+    "name" : "Ian Lee",
+    "phone" : "81347122",
+    "email" : "ianlee@gmail.com",
+    "address" : "Bukit Timah Ave 9, Blk 51, #01-88",
+    "remark" : "dumbells",
+    "date" : "2021-04-10",
+    "tagged" : [ "heavy" ],
+    "done" : "[X]"
+  }, {
+    "name" : "Adi Ban",
+    "phone" : "94501234",
+    "email" : "adiban20@gmail.com",
+    "address" : "Kallang St 12, Blk 6, #03-345",
+    "remark" : "foldable bed",
+    "date" : "2021-04-12",
+    "tagged" : [ "bulky", "heavy" ],
+    "done" : "[X]"
+  }, {
+    "name" : "Jaryl Chan",
+    "phone" : "96503348",
+    "email" : "jarylchan@gmail.com",
+    "address" : "Pasir Ris Ave 7, Blk 107, #06-255",
+    "remark" : "starbucks coffee",
+    "date" : "2021-04-17",
+    "tagged" : [ "liquid", "hot" ],
+    "done" : "[X]"
+  }, {
+    "name" : "Galen Yeo",
+    "phone" : "85229402",
+    "email" : "cheunggalen@yahoo.com.sg",
+    "address" : "Bishan St 23, Blk 223, #14-133",
+    "remark" : "coffee machine",
+    "date" : "2021-04-01",
+    "tagged" : [ "bulky" ],
+    "done" : "[✓]"
+  }, {
+    "name" : "Daniel Tan",
+    "phone" : "94512214",
+    "email" : "danieltan@gmail.com",
+    "address" : "Yishun Ave 6, Blk 399, #02-420",
+    "remark" : "gaming mouse",
+    "date" : "2021-04-30",
+    "tagged" : [ "urgent" ],
+    "done" : "[✓]"
+  } ]
+}

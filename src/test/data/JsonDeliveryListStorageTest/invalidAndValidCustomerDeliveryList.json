@@ -1,0 +1,23 @@
+{
+  "customers": [ {
+    "name": "Valid Customer",
+    "phone": "9482424",
+    "email": "hans@example.com",
+    "address": "4th street",
+    "remark": "table",
+    "date": "2021-04-15",
+    "tagged": [ "bulky" ],
+    "done": "[✓]"
+
+  }, {
+    "name": "Customer With Invalid Phone Field",
+    "phone": "948asdf2424",
+    "email": "hans@example.com",
+    "address": "4th street",
+    "remark": "table",
+    "date": "2021-04-15",
+    "tagged": [ "bulky" ],
+    "done": "[✓]"
+
+  } ]
+}

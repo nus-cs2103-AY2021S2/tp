@@ -82,7 +82,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a customer).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -151,11 +151,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th customer in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new customer. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -163,7 +163,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the customer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -208,7 +208,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the customer being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -236,64 +236,604 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Freelance delivery drivers and companies that conduct delivery operations.
+* Domestic and not international delivery.
+* Delivery on land (car, motorcycle, bicycle, foot) and not on sea (ships) or in the air (planes).  
+* Need to manage many delivery entries and their respective details.
+* Need to personally manage their own deliveries.  
+* Prefers navigating using the keyboard to mouse interactions.
+* Can type fast.
+* Has basic experience and knowledge in using CLI apps.
+* Prefers using desktop app to other types when managing their workflow.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: manage delivery workflows and details faster than a typical mouse/GUI driven app for greater efficiency
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​      | I want to …​                                             | So that I can…​                                                        |
+| -------- | --------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `* * *`  | Delivery driver | Add a delivery entry to the list.                           | Keep track of all the deliveries I am supposed to make.                   |
+| `* *`    | Delivery driver | Get the customer’s details of a delivery entry in the list. | Understand the customer of that delivery better.                          |
+| `* *`    | Delivery driver | Mark a delivery entry in the list as done.                  | Keep track of which deliveries I have done.                               |
+| `* * *`  | Delivery driver | Delete a delivery entry from the list.                      | Remove completed deliveries or unwanted deliveries I do not want to make. |
+| `* *`    | Delivery driver | Clear all delivery entries from the list.                   | Clean or reset my delivery list.                                          |
+| `* * *`  | Delivery driver | Edit a delivery entry in the list.                          | Make necessary changes to the delivery details.                           |
+| `* * *`  | Delivery driver | Exit the app.                                               | Close the app.                                                            |
+| `* *`    | Delivery driver | Filter the list by tag.                                     | Get all the deliveries associated with a specific tag.                    |
+| `* *`    | Delivery driver | Filter all delivery entries by date.                        | See which deliveries I have to make on that date.                         | 
+| `* *`    | Delivery driver | Filter all delivery entries by location.                    | See which deliveries I have to make in that area.                         |
+| `* * *`  | Delivery driver | Find all delivery entries by keyword(s).                    | Get all the deliveries with details containing the keyword(s).            |
+| `* *`    | Delivery driver | Get help for issues pertaining to the app.                  | Understand the app’s features and how to use them better.                 |
+| `* * *`  | Delivery driver | Get the list of all my delivery entries.                    | See all the deliveries I have to make and have done.                      |
+| `* *`    | Delivery driver | Get the list of all my completed delivery entries.          | See all the deliveries I have done.                                       |
+| `* *`    | Delivery driver | Add a tag to a delivery entry in the list.                  | Add information categorising the parcel for that delivery.                |
+| `* *`    | Delivery driver | Delete a tag from a delivery entry in the list.             | Delete the information categorising the parcel for that delivery.         |
+| `* *`    | Delivery driver | Edit a tag of a delivery entry in the list.                 | Edit the information categorising the parcel for that delivery.           |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+**Software System: Delivery App**
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a delivery entry to the list.**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Adding a new delivery entry to the list.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User indicates that they will be adding a delivery entry.
+2.  Delivery App requests for details of the delivery entry.
+3.  User enters the delivery entry to be added to the list.
+4.  Delivery App adds the delivery entry to the list and informs the User.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 3a. The delivery entry to be added has an invalid format.
+    * 3a1. Delivery App requests for a valid delivery entry.
+    * 3a2. User enters new delivery entry details.
+      
+    Steps 3a1-3a2 are repeated until the valid details are entered.
+
+    Use case resumes from step 4.
+
+* 3b. The delivery entry to be added already exists in the list.
+    * 3b1. Delivery App informs the User of the duplicate.
+
+    Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC02 - Get the customer’s details of a delivery entry in the list.**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Getting the customer's details of the selected delivery from the list.
+
+**MSS**
+
+1.  User requests to see all delivery entries in the list.
+2.  Delivery App lists out all existing delivery entries.
+3.  User requests to see the customer details of a delivery entry by entering the entry number.
+4.  Delivery App shows the customer details of the chosen delivery entry.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  * 1a1. Delivery App informs the User that the list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The number of the delivery entry is invalid.
+  * 3a1. Delivery App requests for a valid entry number.
+  * 3a2. User enters new entry number.
 
-    * 3a1. AddressBook shows an error message.
+  Steps 3a1-3a2 are repeated until the valid entry number is entered.
 
-      Use case resumes at step 2.
+  Use case resumes from step 4.
+
+**Software System: Delivery App**
+
+**Use case: UC03 - Mark a delivery entry in the list as done.**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Marking the selected delivery entry from the list as done.
+
+**MSS**
+
+1.  User requests to see the list of delivery entries.
+2.  Delivery App shows the list.
+3.  User indicates which delivery entry to mark as done by entering the entry number.
+4.  Delivery App marks that delivery entry as done and informs the User.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+    Use case ends.
+
+* 3a. The number of the delivery entry is invalid.
+    * 3a1. Delivery App requests for a valid entry number.
+    * 3a2. User enters new entry number.
+
+    Steps 3a1-3a2 are repeated until the valid entry number is entered.
+
+    Use case resumes from step 4.
+
+**Software System: Delivery App**
+
+**Use case: UC04 - Delete a delivery entry from the list.**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Deleting the selected delivery entry from the list.
+
+**MSS**
+
+1.  User requests to see the list of delivery entries.
+2.  Delivery App shows the list.
+3.  User indicates which delivery entry to be deleted by entering the entry number.
+4.  Delivery App removes that delivery entry from the list and informs the User.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 3a. The number of the delivery entry is invalid.
+    * 3a1. Delivery App requests for a valid entry number.
+    * 3a2. User enters new entry number.
+
+  Steps 3a1-3a2 are repeated until the valid entry number is entered.
+
+  Use case resumes from step 4.
+
+**Software System: Delivery App**
+
+**Use case: UC05 - Clear all delivery entries from the list.**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Deleting all delivery entries from the list, resulting in an empty list.
+
+**MSS**
+
+1.  User indicates to delete all delivery entries from the list.
+2.  Delivery App removes all delivery entries from the list and informs the User.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that there are no delivery entries to delete.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC06 - Edit a delivery entry in the list.**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Editing and updating the selected existing delivery entry in the list.
+
+**MSS**
+
+1.  User requests to see the list of delivery entries.
+2.  Delivery App shows the list.
+3.  User indicates which delivery entry to edit by entering the entry number.
+4.  Delivery App requests for updated details of the delivery entry.
+5.  User enters the updated details.
+6.  Delivery App replaces the old delivery entry with the updated one and informs the User.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 3a. The number of the delivery entry is invalid.
+    * 3a1. Delivery App requests for a valid entry number.
+    * 3a2. User enters new entry number.
+
+  Steps 3a1-3a2 are repeated until the valid entry number is entered.
+
+  Use case resumes from step 4.
+
+* 5a. The updated details have an invalid format.
+    * 5a1. Delivery App requests for a valid format.
+    * 5a2. User enters new details.
+
+  Steps 3a1-3a2 are repeated until the valid details are entered.
+
+  Use case resumes from step 6.
+
+* 5b. The edited entry already exists in the list.
+    * 5b1. Delivery App informs the User of the duplicate.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC07 - Exit the app.**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Closing TimeForWheels.
+
+**MSS**
+
+1.  User indicates to quit the app.
+2.  Delivery App exits.
+
+    Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC08 - Filter the list by tag.**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Getting the list of deliveries associated with the specified tag.
+
+**MSS**
+
+1.  User filters the list by inputting a tag.
+2.  Delivery App lists out all existing delivery entries associated with the specified tag.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 1b. There are no delivery entries associated with the specified tag.
+  * 1b1. Delivery App informs the User that there are no delivery entries associated with the specified tag.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC09 - Filter all delivery entries by date.**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Getting the list of deliveries associated with the specified date.
+
+**MSS**
+
+1.  User filters the list by inputting a date.
+2.  Delivery App lists out all existing delivery entries associated with the specified date.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 1b. There are no delivery entries associated with the specified date.
+  * 1b1. Delivery App informs the User that there are no delivery entries associated with the specified date.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC10 - Filter all delivery entries by location.**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Getting the list of deliveries associated with the specified location.
+
+**MSS**
+
+1.  User filters the list by inputting a location.
+2.  Delivery App lists out all existing delivery entries associated with the specified location.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 1b. There are no delivery entries associated with the specified location.
+  * 1b1. Delivery App informs the User that there are no delivery entries associated with the specified location.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC11 - Find all delivery entries by the keyword(s).**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Getting the list of existing delivery entries with details containing the specified keyword(s).
+
+**MSS**
+
+1.  User requests to see all delivery entries with the matching keyword(s).
+2.  Delivery App lists out all existing delivery entries with details containing the specified keyword(s).
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 1b. There are no delivery entries with the matching keyword(s).
+  * 1b1. Delivery App informs the User that there are no delivery entries with details containing the specified keyword(s).
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC12 - Get help for issues pertaining to the app.**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Getting a link to the TimeForWheels user guide.
+
+**MSS**
+
+1.  User requests for help.
+2.  Delivery App provides a link to the app's user guide.
+
+    Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC13 - Get the list of all my delivery entries.**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Getting the list of all existing delivery entries in list.
+
+**MSS**
+
+1.  User requests to see all delivery entries in the list.
+2.  Delivery App lists out all existing delivery entries.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC14 - Get the list of all my completed delivery entries.**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Getting the list of all completed delivery entries.
+
+**MSS**
+
+1.  User requests to see all completed delivery entries in the list.
+2.  Delivery App lists out all delivery entries that are marked as done.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  * 1a1. Delivery App informs the User that the list is empty.
+
+* 1b. There are no delivery entries in the list that are marked as done.
+    * 1b1. Delivery App informs the User that there are no completed delivery entries in the list.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC15 - Add a tag to a delivery entry in the list.**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Having the selected delivery entry updated with the specified tag.
+
+**MSS**
+
+1.  User requests to see all delivery entries in the list.
+2.  Delivery App lists out all existing delivery entries.
+3.  User selects a delivery entry and inputs a tag to add.
+4.  Delivery App adds the specified tag to the selected delivery entry and informs the User.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 3a. The number of the delivery entry is invalid.
+    * 3a1. Delivery App requests for a valid entry number.
+    * 3a2. User enters new entry number.
+
+  Steps 3a1-3a2 are repeated until the valid entry number is entered.
+
+  Use case resumes from step 4.
+
+* 3b. The selected delivery entry already has the specified tag.
+  * 3b1. Delivery App informs the User that the selected delivery entry already has the specified tag.
+
+  Use case ends.
+
+**Software System: Delivery App**
+
+**Use case: UC16 - Delete a tag from a delivery entry in the list.**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Having the selected delivery entry updated without the specified tag.
+
+**MSS**
+
+1.  User requests to see all delivery entries in the list.
+2.  Delivery App lists out all existing delivery entries.
+3.  User selects a delivery entry.
+4.  Delivery App shows all the tags of the selected delivery entry.
+5.  User selects a tag to delete.
+6.  Delivery App removes the selected tag from the delivery entry and informs the User.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 3a. The number of the delivery entry is invalid.
+  * 3a1. Delivery App requests for a valid entry number.
+  * 3a2. User enters new entry number.
+
+  Steps 3a1-3a2 are repeated until the valid entry number is entered.
+
+  Use case resumes from step 4.
+
+* 5a. The number of the tag is invalid.
+  * 5a1. Delivery App requests for a valid entry number.
+  * 5a2. User enters new entry number.
+
+  Steps 5a1-5a2 are repeated until the valid entry number is entered.
+
+  Use case resumes from step 6.
+
+**Software System: Delivery App**
+
+**Use case: UC17 - Edit a tag of a delivery entry in the list.**
+
+**Actor: Delivery driver (app user)**
+
+**Guarantees:**
+
+* Having the selected delivery entry updated with the specified tag.
+
+**MSS**
+
+1.  User requests to see all delivery entries in the list.
+2.  Delivery App lists out all existing delivery entries.
+3.  User selects a delivery entry.
+4.  Delivery App shows all the tags of the selected delivery entry.
+5.  User selects a tag to edit and inputs the updated tag.
+6.  Delivery App updates the selected tag of the delivery entry and informs the User.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  * 1a1. Delivery App informs the User that the list is empty.
+
+  Use case ends.
+
+* 3a. The number of the delivery entry is invalid.
+  * 3a1. Delivery App requests for a valid entry number.
+  * 3a2. User enters new entry number.
+
+  Steps 3a1-3a2 are repeated until the valid entry number is entered.
+
+  Use case resumes from step 4.
+
+* 5a. The number of the tag is invalid.
+  * 5a1. Delivery App requests for a valid entry number.
+  * 5a2. User enters new entry number.
+
+  Steps 5a1-5a2 are repeated until the valid entry number is entered.
+
+  Use case resumes from step 6.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. **Usability**:
+    - Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+    - A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
+2. **Reliability**:
+    - Should be able to hold up to 1000 delivery entries and display all data if requested by the user in less than 5 seconds
+    - Should be able to detect and inform users of duplicate delivery entries and confirm with user if they wish to proceed in adding them to the list
+
+3. **Security:**
+    - Users that request for any delivery entry data to be deleted will have the data permanently erased from memory
+
+4. **Integrity**
+    - For any time-related data presented to the user, the date formats will be `DD-MM-YYYY`
+    - Delivery entries made by the user will be stored in a _JSON_ file inside the hard disks
+
+5. **Flexibility**
+    - TimeforWheels should be able to handle as many date format inputs as possible by the user and convert the date format to `DD-MM-YYYY`
 
 *{More to be added}*
 
@@ -301,6 +841,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **JSON:** JavaScript Object Notation
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -330,17 +871,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a customer
 
-1. Deleting a person while all persons are being shown
+1. Deleting a customer while all customers are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all customers using the `list` command. Multiple customers in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No customer is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
