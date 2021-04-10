@@ -73,7 +73,8 @@ public class TimetablePlacementPolicy {
 
 
     /**
-     * Tests if a Schedulable lies within the range of the timetable range.
+     * Tests if a Schedulable lies within the range of the timetable range. Note that to be considered within range,
+     * it must overlap with the open interval (timetableStartDate, timetableEndDate).
      *
      * @param schedulable
      * @return
@@ -86,9 +87,10 @@ public class TimetablePlacementPolicy {
 
     /**
      * Gets the column to put a schedulable in.
-     * The schedulable must lie within
+     * The schedulable start date must lie within the timetable Range.
      * Note the schedulable must lie within a day from 7am - 7pm, else it will just slot into the
-     * first available day of the schedulable. You can call the method breakIntoUnits first to get
+     * day corresponding to the schedulable's start date.
+     * You can call the method {@link #breakIntoDayUnits(Schedulable)} first to get
      * the single day slots before calling this method on each schedule.
      *
      * @param schedulable
@@ -166,7 +168,7 @@ public class TimetablePlacementPolicy {
     }
 
     /**
-     * Splits a schedulable that overlaps across several days into parts which lie within one day. Each day is treated
+     * Splits a schedulable that overlaps across several days into parts which lie within one day. A "day" is treated
      * as a timeframe from  time (startHour:startMinute) to the next day (startHour:startMinute). For example in the
      * case when startHour = 7, startMinute = 0, the day starts from 7 am to 7 am the next day.
      * If a Schedulable object overlaps across several days, for example a schedulable
