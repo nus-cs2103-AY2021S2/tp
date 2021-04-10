@@ -1,26 +1,14 @@
 @startuml
 !include ../style.puml
 
-
 skinParam DefaultFontSize 18
 skinParam ParticipantFontSize 20
 
-Participant ":Logic" as logic LOGIC_COLOR
 Participant ":ViewHistoryCommand" as cmd LOGIC_COLOR
 Participant "model:Model" as model MODEL_COLOR
 Participant "hist:ReadOnlyCommandHistory" as cmdHist MODEL_COLOR
 
--[UI_COLOR]> logic : execute("history 5")
-activate logic LOGIC_COLOR
-
-note left: Parsing details\n omitted
-logic -[LOGIC_COLOR]> cmd ** : ViewHistoryCommand(5)
-activate cmd LOGIC_COLOR
-
-cmd --[LOGIC_COLOR]> logic
-deactivate cmd
-
-logic -[LOGIC_COLOR]> cmd : execute(model)
+-[LOGIC_COLOR]> cmd : execute(model)
 activate cmd LOGIC_COLOR
 
 cmd -[LOGIC_COLOR]> model : getCommandHistory()
@@ -36,9 +24,10 @@ loop until each entry to be listed has been read
     deactivate cmdHist
 end
 
-cmd --[LOGIC_COLOR]> logic : cmdHistoryMsg
+<-[LOGIC_COLOR]- cmd : cmdHistoryMsg
 deactivate cmd
-
-<-[LOGIC_COLOR]- logic : cmdHistoryMsg
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+<-[hidden]- cmd
+destroy cmd
 
 @enduml

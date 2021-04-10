@@ -460,7 +460,7 @@ Viewing command history is implemented through `ViewHistoryCommand` and supporte
 `ViewHistoryCommand#execute()` accesses command history through the view of a `ReadOnlyCommandHistory`, reads the
 entries it needs to display, formats the entries into a message, then finally returns the message wrapped in
 a `CommandResult`, to be displayed to the user. The following sequence diagram illustrates the main interactions
-between `ViewHistoryCommand` and the Model component. It uses the example command of `history 5`.
+between `ViewHistoryCommand` and the Model component.
 
 ![ViewHistorySequenceDiagram](images/commandhistory/CmdHistViewHistorySequenceDiagram.png)
 
