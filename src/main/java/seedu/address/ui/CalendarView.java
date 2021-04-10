@@ -31,8 +31,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * UI calendar component that is displayed.
- * Adapted from https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/java/seedu/address/ui/CalendarView.java
- * and https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
+ * Solution below adapted from
+ * https://github.com/AY1920S2-CS2103T-T10-3/main/blob/master/src/main/java/seedu/saveit/ui/CalendarView.java
  */
 public class CalendarView extends UiPart<Region> {
 

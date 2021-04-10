@@ -7,7 +7,8 @@ import seedu.address.ui.UiPart;
 
 /**
  * A UI Component that that constitutes a region of a calendar view.
- * Adapted from https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
+ * Solution below adapted from
+ * https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
  * SlotContainer.java
  */
 public abstract class SlotContainer extends UiPart<Region> {

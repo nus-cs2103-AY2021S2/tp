@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.geometry.Insets?>
-<HBox id="slotPane" fx:id="slotPane" styleClass="schedule-grid-cell" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<!-- @@author RuiFengg -->
+<!-- Reused from https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/resources/view/schedulepanel/AppointmentSlotBlue.fxml with no modifications -->
+<HBox xmlns:fx="http://javafx.com/fxml/1" id="slotPane" fx:id="slotPane" styleClass="schedule-grid-cell"
+      xmlns="http://javafx.com/javafx/11">
     <VBox GridPane.columnIndex="0">
         <padding>
-            <Insets top="8" left="10" />
+            <Insets top="8" left="10"/>
         </padding>
         <HBox alignment="CENTER_LEFT">
-            <Label fx:id="title" text="\$title" style="-fx-text-fill: #1a334d; -fx-font-size: 10pt" />
+            <Label fx:id="title" text="\$title" style="-fx-text-fill: #1a334d; -fx-font-size: 10pt"/>
         </HBox>
-        <Label fx:id="time" text="\$time" style="-fx-text-fill: #1a334d; -fx-font-size: 10pt" />
-        <Label fx:id="description" style="-fx-text-fill: #1a334d; -fx-font-size: 10pt" />
+        <Label fx:id="time" text="\$time" style="-fx-text-fill: #1a334d; -fx-font-size: 10pt"/>
+        <Label fx:id="description" style="-fx-text-fill: #1a334d; -fx-font-size: 10pt"/>
     </VBox>
 </HBox>

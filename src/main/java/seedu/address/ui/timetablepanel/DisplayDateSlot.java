@@ -10,7 +10,8 @@ import javafx.scene.control.Label;
 
 /**
  * A region to display the date on the schedule.
- * Adapted from https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
+ * Solution below adapted from
+ * https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
  * DisplayDateSlot.java
  */
 public class DisplayDateSlot extends SlotContainer {
