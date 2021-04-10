@@ -182,7 +182,7 @@ This section details the format of the commands available in TutorBuddy. We will
 
 * Names are case-sensitive.<br>
   e.g. `john` is considered different from `John`. <br>
-  However, note that in [`find_student`](#locating-student-by-name-find_student), the search is case-insensitive,
+  However, note that in [`find_student`](#locating-student-by-name-find_student), the search is case-insensitive.
 
 * Names cannot be duplicates.<br>
   e.g. There cannot be 2 different students of the same name `John Tan` and `John Tan`.
