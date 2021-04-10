@@ -22,6 +22,8 @@ import dog.pawbook.model.managedentity.tag.Tag;
  */
 public class Program extends Entity {
     public static final String ENTITY_WORD = "program";
+    public static final String TIMESLOT_PREFIX = "Timeslot(s): ";
+    public static final String DOG_ID_PREFIX = "Participating Dog ID(s): ";
 
     // Data fields
     private final Set<Session> sessionSet = new HashSet<>();
@@ -120,13 +122,13 @@ public class Program extends Entity {
                 .sorted(Comparator.comparing(session -> session.dateTime))
                 .map(session -> session.value)
                 .collect(Collectors.joining(", "));
-        properties.add("Timeslot(s): " + (sessionSet.size() > 0 ? timeslots : "None"));
+        properties.add(TIMESLOT_PREFIX + (sessionSet.size() > 0 ? timeslots : "None"));
 
         if (!dogIdSet.isEmpty()) {
             properties.add(dogIdSet.stream()
                     .sorted()
                     .map(String::valueOf)
-                    .collect(Collectors.joining(", ", "Participating Dog ID(s): ", "")));
+                    .collect(Collectors.joining(", ", DOG_ID_PREFIX, "")));
         }
         return properties;
     }
