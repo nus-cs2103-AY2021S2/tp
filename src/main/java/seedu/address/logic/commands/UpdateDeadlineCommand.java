@@ -36,7 +36,8 @@ public class UpdateDeadlineCommand extends Command {
             + "[" + PREFIX_DEADLINE_DATE + "DATE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_INDEX + "1 "
-            + PREFIX_DESCRIPTION + "Submission deadline";
+            + PREFIX_DESCRIPTION + "Submission deadline "
+            + PREFIX_DEADLINE_DATE + "24-04-2021";
 
     public static final String MESSAGE_UPDATE_DEADLINE_SUCCESS = "Updated deadline: %1$s";
     public static final String MESSAGE_DUPLICATE_DEADLINE = "This deadline already exists in this project.";
