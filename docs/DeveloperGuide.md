@@ -151,9 +151,7 @@ The `Model`,
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model
 is given below. It has a `Tag` list in the `imPoster`, which `Endpoint` references. This allows `imPoster` to only 
 require one `Tag` object per unique `Tag`, instead of each `Endpoint` needing their own `Tag` object.<br>
-<p align="center">
-  <img width="500px" src="images/BetterModelClassDiagram.png" >
-</p>
+<img width="500px" src="images/BetterModelClassDiagram.png" >
 </div>
 
 <div style="page-break-after: always;"></div>
