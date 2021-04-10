@@ -3,48 +3,48 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
-skinparam linetype ortho
+'skinparam linetype polyline
 
 Package Model <<Rectangle>>{
-    Class StatefulAddressBook
+    Class AddressBook
     Class ModelManager
-    Package "                 ResidentRoom                  " {
+    Package "                ResidentRoom               " {
         Class UniqueResidentRoomList
         Class ResidentRoom
     }
-    Package "        Resident           " {
+    Package "           Resident           " {
         Class UniqueResidentList
         Class Resident
         Class Name
     }
-    Package "          Room        " {
+    Package "Room" {
         Class UniqueRoomList
         Class Room
         Class RoomNumber
     }
 }
 ' ===== Overarching stuff =====
-ModelManager "1" *-> "1" StatefulAddressBook
+ModelManager  -[hidden]->  AddressBook
 
 ' ==== Room ====
-ModelManager  *---> "~* filteredlist" Room
-StatefulAddressBook --down-> "1" UniqueRoomList
-StatefulAddressBook ..> Room
-UniqueRoomList "~* " *--> "1" Room
-Room "1" *--> RoomNumber
+ModelManager --> "*" Room : > has\nfiltered\nlist of
+AddressBook --> "1" UniqueRoomList
+AddressBook ..> Room
+UniqueRoomList --> "*" Room
+Room *--> "1" RoomNumber
 
 ' ==== Resident ====
-ModelManager  *---> "~* filteredlist" Resident
-StatefulAddressBook --down-> "1 " UniqueResidentList
-StatefulAddressBook ..> Resident
-UniqueResidentList "1" *--> "*" Resident
-Resident "1" *--> Name
+ModelManager --> "  *" Resident : > has\nfiltered\nlist of
+AddressBook --> "1" UniqueResidentList
+AddressBook ..> Resident
+UniqueResidentList --> "*" Resident
+Resident *--> "1" Name
 
 ' ==== ResidentRoom ====
-ModelManager  *---> "~* filteredlist" ResidentRoom
-StatefulAddressBook --down-> "1" UniqueResidentRoomList
-StatefulAddressBook ..>  ResidentRoom
-UniqueResidentRoomList "*" *--> "1" ResidentRoom
+ModelManager --> "*" ResidentRoom : > has\nfiltered\nlist of
+AddressBook --> "1" UniqueResidentRoomList
+AddressBook ..>  ResidentRoom
+UniqueResidentRoomList --> "*" ResidentRoom
 ResidentRoom --> "1"  Name
 ResidentRoom --> "1"  RoomNumber
 @enduml

@@ -3,7 +3,6 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
-skinparam linetype ortho
 
 Package Model <<Rectangle>>{
     Class ModelManager
@@ -15,9 +14,9 @@ Package Model <<Rectangle>>{
 }
 
 ' ==== The model in question ====
-ModelManager  *---> CommandHistory
+ModelManager  -> "  1" CommandHistory
 ModelManager  ..> CommandHistoryEntry
-CommandHistory "*" *--> CommandHistoryEntry
+CommandHistory *--> "   *" CommandHistoryEntry
 
 
 @enduml

@@ -3,21 +3,6 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
-skinparam linetype ortho
-
-note as n1
-We omit specific details of models
-Resident, Room, ResidentRoom, Issue,
-CommandHistorymand Alias as they
-areexplained in greater detail in their
-specific sections.
-
-Due to PlantUML restrictions, the
-interaction that ModelManager and
-StatefulAddressBook have with the
-packages is shown in separate
-zoomed-in diagrams.
-end note
 
 Package Model <<Rectangle>>{
     together overarching {
@@ -50,32 +35,31 @@ Package Model <<Rectangle>>{
 }
 ' ===== Overarching stuff =====
 Class HiddenOutside #FFFFFF
-HiddenOutside ...> Model
+HiddenOutside ..> Model
 
 StatefulAddressBook -left-|> AddressBook
-AddressBook .left.|> ReadOnlyAddressBook
+AddressBook .up.|> ReadOnlyAddressBook
 StatefulAddressBook -up-> "1..*" ReadOnlyAddressBook
 
 ModelManager .up.|> Model
 Model .left.> ObservableList
-ModelManager *-left-> "1" StatefulAddressBook
-ModelManager *-right-> "1" UserPrefs
+ModelManager --left-> "1" StatefulAddressBook
+ModelManager --right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 
-ModelManager *-down-> ResidentRoom
-ModelManager *-down-> Resident
-ModelManager *-down-> Room
+ModelManager --down-> ResidentRoom
+ModelManager --down-> Resident
+ModelManager --down-> Room
 
-ModelManager *-> Issue
-ModelManager *-> CommandHistory
-ModelManager *-> Alias
+ModelManager --> Issue
+ModelManager --> CommandHistory
+ModelManager --> Alias
 
-StatefulAddressBook ---down-> Resident
-StatefulAddressBook ---down-> Room
-StatefulAddressBook ---down-> ResidentRoom
-StatefulAddressBook ---down-> Issue
-StatefulAddressBook ---down-> Alias
-StatefulAddressBook ---down-> CommandHistory
+AddressBook ---down-> Resident
+AddressBook ---down-> Room
+AddressBook ---down-> ResidentRoom
+AddressBook ---down-> Issue
+AddressBook ---down-> Alias
 
 @enduml

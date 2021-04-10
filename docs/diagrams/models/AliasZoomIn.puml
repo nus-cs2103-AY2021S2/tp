@@ -6,7 +6,7 @@ skinparam classBackgroundColor MODEL_COLOR
 skinparam linetype ortho
 
 Package Model <<Rectangle>>{
-    Class StatefulAddressBook
+    Class AddressBook
     Class ModelManager
 
     Package Alias {
@@ -14,14 +14,13 @@ Package Model <<Rectangle>>{
         Class Alias
     }
 }
-' ===== Overarching stuff =====
-ModelManager *-left-> "1" StatefulAddressBook
 
 ' ==== The model in question ====
-ModelManager  *---> AliasMapping
-StatefulAddressBook  ..> Alias
-StatefulAddressBook *--down-> AliasMapping
-AliasMapping --> Alias
+ModelManager  --> "1" AliasMapping
+ModelManager  ..> Alias
+AddressBook  ..> Alias
+AddressBook -down-> "1" AliasMapping
+AliasMapping --> "*" Alias
 
 
 @enduml
