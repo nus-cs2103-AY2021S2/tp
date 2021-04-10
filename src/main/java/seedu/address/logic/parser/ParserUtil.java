@@ -15,8 +15,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.schedule.DateTime;
-import seedu.address.model.schedule.ScheduleDescription;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -52,21 +50,6 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
-    }
-
-    /**
-     * Parses a {@code String description} into a {@code ScheduleDescription}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code description} is invalid.
-     */
-    public static ScheduleDescription parseScheduleDescription(String description) throws ParseException {
-        requireNonNull(description);
-        String trimmedDescription = description.trim();
-        if (!ScheduleDescription.isValidName(trimmedDescription)) {
-            throw new ParseException(ScheduleDescription.MESSAGE_CONSTRAINTS);
-        }
-        return new ScheduleDescription(trimmedDescription);
     }
 
 
@@ -140,18 +123,6 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
-    }
-
-    /**
-     * Parses a {@code String dateTimeStr} into a {@code DateTime}.
-     */
-    public static DateTime parseDateTime(String dateTimeStr) throws ParseException {
-        requireNonNull(dateTimeStr);
-        String trimmedDateTime = dateTimeStr.trim();
-        if (!DateTime.isValidDateTime(trimmedDateTime)) {
-            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
-        }
-        return new DateTime(trimmedDateTime);
     }
 
     /**

@@ -14,7 +14,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.person.Person;
-import seedu.address.model.schedule.Schedule;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,7 +26,6 @@ public class ModelManager implements Model {
     private final FilteredList<Contact> filteredContacts;
     private final FilteredList<Entry> filteredEntries;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Schedule> filteredSchedules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,7 +41,6 @@ public class ModelManager implements Model {
         filteredContacts = new FilteredList<>(this.addressBook.getContactList());
         filteredEntries = new FilteredList<>(this.addressBook.getEntryList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredSchedules = new FilteredList<>(this.addressBook.getScheduleList());
     }
 
     public ModelManager() {
@@ -196,27 +193,6 @@ public class ModelManager implements Model {
         addressBook.clearOverdueEntries();
     }
 
-    // ====== Schedule ======
-
-    @Override
-    public boolean hasSchedule(Schedule schedule) {
-        requireNonNull(schedule);
-        return addressBook.hasSchedule(schedule);
-    }
-
-    /**
-     * adds a {@code Schedule} into schedule list
-     */
-    public void addSchedule(Schedule schedule) {
-        addressBook.addSchedule(schedule);
-        updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
-    }
-
-    @Override
-    public void deleteSchedule(Schedule schedule) {
-        addressBook.removeSchedule(schedule);
-    }
-
     //=========== Filtered Contact List Accessors =============================================================
 
     /**
@@ -266,23 +242,6 @@ public class ModelManager implements Model {
     public void updateFilteredEntryList(Predicate<Entry> predicate) {
         requireNonNull(predicate);
         filteredEntries.setPredicate(predicate);
-    }
-
-    //=========== Filtered Schedule List Accessors ===========================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Schedule} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Schedule> getFilteredScheduleList() {
-        return filteredSchedules;
-    }
-
-    @Override
-    public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
-        requireNonNull(predicate);
-        filteredSchedules.setPredicate(predicate);
     }
 
     //=========== misc ===============

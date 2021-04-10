@@ -11,8 +11,6 @@ import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.NonOverlappingEntryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.schedule.Schedule;
-import seedu.address.model.schedule.UniqueScheduleList;
 
 
 /**
@@ -24,7 +22,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueContactList contacts;
     private final NonOverlappingEntryList entries;
     private final UniquePersonList persons;
-    private final UniqueScheduleList schedules;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -37,7 +34,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         entries = new NonOverlappingEntryList();
         persons = new UniquePersonList();
         contacts = new UniqueContactList();
-        schedules = new UniqueScheduleList();
     }
 
     public AddressBook() {}
@@ -77,21 +73,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the schedule list with {@code schedules}.
-     * {@code schedules} must not contain duplicate schedules.
-     */
-    public void setSchedules(List<Schedule> schedules) {
-        this.schedules.setSchedules(schedules);
-    }
-
-    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
         setContacts(newData.getContactList());
         setPersons(newData.getPersonList());
-        setSchedules(newData.getScheduleList());
         setEntries(newData.getEntryList());
     }
 
@@ -220,30 +207,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
     //// schedule methods
 
-    /**
-     * Returns true if a schedule with the same identity as {@code schedule} exists in the schedule list.
-     */
-    public boolean hasSchedule(Schedule schedule) {
-        requireNonNull(schedule);
-        return schedules.contains(schedule);
-    }
-
-    /**
-     * Adds a schedule to the schedule list.
-     * The schedule must not already exist in the schedule list.
-     */
-    public void addSchedule(Schedule schedule) {
-        schedules.add(schedule);
-    }
-
-    /**
-     * Removes a schedule {@code key} from the schedule list.
-     * {@code key} must exist in the schedule list.
-     */
-    public void removeSchedule(Schedule key) {
-        schedules.remove(key);
-    }
-
     //// util methods
 
     @Override
@@ -265,11 +228,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Entry> getEntryList() {
         return entries.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Schedule> getScheduleList() {
-        return schedules.asUnmodifiableObservableList();
     }
 
     @Override

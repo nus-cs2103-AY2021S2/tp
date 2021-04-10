@@ -8,13 +8,11 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddEntryCommand;
-import seedu.address.logic.commands.AddScheduleCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ClearOverdueEntryCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEntryCommand;
-import seedu.address.logic.commands.DeleteScheduleCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditEntryCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -22,13 +20,11 @@ import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FilterEntryCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindEntryCommand;
-import seedu.address.logic.commands.FindScheduleCommand;
 import seedu.address.logic.commands.FreeCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListContactCommand;
 import seedu.address.logic.commands.ListEntryCommand;
-import seedu.address.logic.commands.ListScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -57,8 +53,6 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-        case AddScheduleCommand.COMMAND_WORD:
-            return new AddScheduleCommandParser().parse(arguments);
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
@@ -78,9 +72,6 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case DeleteScheduleCommand.COMMAND_WORD:
-            return new DeleteScheduleCommandParser().parse(arguments);
-
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -99,9 +90,6 @@ public class AddressBookParser {
         case FindEntryCommand.COMMAND_WORD:
             return new FindEntryCommandParser().parse(arguments);
 
-        case FindScheduleCommand.COMMAND_WORD:
-            return new FindScheduleCommandParser().parse(arguments);
-
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
@@ -110,9 +98,6 @@ public class AddressBookParser {
 
         case ListEntryCommand.COMMAND_WORD:
             return new ListEntryCommandParser().parse(arguments);
-
-        case ListScheduleCommand.COMMAND_WORD:
-            return new ListScheduleCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
