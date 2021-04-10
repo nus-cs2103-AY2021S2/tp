@@ -31,9 +31,13 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label priority;
     @FXML
-    private Label category;
+    private FlowPane categories;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane categoryTitle;
+    @FXML
+    private FlowPane tagTitle;
     @FXML
     private ImageView tickImageView;
     @FXML
@@ -52,10 +56,16 @@ public class TaskCard extends UiPart<Region> {
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        if (task.getCategories().isEmpty()) {
-            category.setVisible(false);
-        } else {
-            category.setText("Category: " + task.getCategories().toString());
+        task.getCategories().stream()
+                .sorted(Comparator.comparing(category -> category.categoryName))
+                .forEach(category -> categories.getChildren().add(new Label(category.categoryName)));
+
+        if (!task.getCategories().isEmpty()) {
+            categoryTitle.getChildren().add(new Label("Category:"));
+        }
+
+        if (!task.getTags().isEmpty()) {
+            tagTitle.getChildren().add(new Label("Tag:"));
         }
 
         if (task.isComplete()) {

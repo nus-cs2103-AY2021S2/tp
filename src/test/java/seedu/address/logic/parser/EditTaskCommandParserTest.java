@@ -1,11 +1,13 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_PAST_DEADLINE;
 import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_HOMEWORK;
 import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_TASKONE;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_TASKTWO;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CATEGORY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINEPAST_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC_0229;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -90,6 +92,9 @@ public class EditTaskCommandParserTest {
 
         // invalid deadline
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC_0229, Date.MESSAGE_CONSTRAINTS);
+
+        // past deadline
+        assertParseFailure(parser, "1" + INVALID_DEADLINEPAST_DESC, MESSAGE_PAST_DEADLINE);
 
         // invalid priority
         assertParseFailure(parser, "1" + INVALID_PRIORITY_DESC, Priority.MESSAGE_CONSTRAINTS);

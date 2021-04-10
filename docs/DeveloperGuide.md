@@ -14,14 +14,14 @@ title: Developer Guide
    3.6  [Common Classes](#36-common-classes)<br>
 1. [Implementation](#4-implementation)<br>
    4.1 [SOChedule](#41-sochedule)<br>
-       4.1.1 [Overview](#411-overview)<br>
-       4.1.2 [Implementation of SOChedule-level Commands](#412-implementation)<br>
+   &nbsp;&nbsp;4.1.1 [Overview](#411-overview)<br>
+   &nbsp;&nbsp;4.1.2 [Implementation of SOChedule-level Commands](#412-implementation)<br>
    4.2 [Task](#42-task)<br>
-       4.1.1 [Overview](#421-overview)<br>
-       4.1.2 [Implementation of Task-level Commands](#422-implementation)<br>
+   &nbsp;&nbsp;4.2.1 [Overview](#421-overview)<br>
+   &nbsp;&nbsp;4.2.2 [Implementation of Task-level Commands](#422-implementation)<br>
    4.3 [Event](#43-event)<br>
-       4.1.1 [Overview](#431-overview)<br>
-       4.1.2 [Implementation of Event-level Commands](#432-implementation)<br>
+   &nbsp;&nbsp;4.3.1 [Overview](#431-overview)<br>
+   &nbsp;&nbsp;4.3.2 [Implementation of Event-level Commands](#432-implementation)<br>
 1. [Planned Features](#5-documentation-logging-testing-configuration-dev-ops)<br>
 1. [Appendix](#appendix)<br>
    A1. [Product Scope](#a1-product-scope)<br>
@@ -133,17 +133,35 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ### 3.4 Model component
 
+This section explains the high level design of the `Model` component of our application.
+
+The `Model` stores:
+* a `UserPref` object that represents the user’s preferences.
+* the Sochedule data.
+
+There are two main packages in `Model`:
+* the `Task` package contains classes that represent a task.
+* the  `Event` package contains classes that represent an event.
+
+Also, the `Model`:
+* exposes an unmodifiable `ObservableList<Task>` and an unmodifiable `ObservableList<Event>`that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* does not depend on any of the other three components.
+
+The class diagram below gives an overview of the `Model` component. 
+Due to size constraint, this diagram omitted the details of the `Task` and `Event` packages. 
+For more information, please refer to the class diagrams for `Task` and `Event` at the later section.
+
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-The `Model`,
+The class diagram below gives the design of the `Task` package.
 
-* stores a `UserPref` object that represents the user’s preferences.
-* stores the Sochedule data.
-* exposes an unmodifiable `ObservableList<Task>` and an unmodifiable `ObservableList<Event>`that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+![Structure of the Task Package](images/TaskClassDiagram.png)
 
+The class diagram below gives the design of the `Event` package.
+
+![Structure of the Event Package](images/EventClassDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** An (arguably) more OOP model can store a `Tag` list and a `Category` list in the `Sochedule`, which `Task` and `Event` can refer.
@@ -183,6 +201,35 @@ but one is due on this Monday and the other is due the next Monday. Both of thes
 Similar to Task-related Models, we face the same challenge when choosing between checking for the equality of name only and 
 checking for all fields entered by the user. We chose to check for all fields for the same reasons as mentioned above.
 
+#### 3.4.3 Design considerations for `Name` Object
+When implementing the Name class, one of the considerations we need to decide is about its maximum length. 
+Due to constraints in GUI, if the task or event has an extremely long name, only part of the name can be displayed
+and the rest will be hidden and cannot be viewed. This is something undesirable.
+
+* Alternative 1 (Chosen Implementation): set the maximum length to 30 characters long.
+    * Pros:
+        * Resolved the potential bug where tasks or events with excessively long names are displayed
+        incompletely.
+    * Cons:
+        * More restrictive as a hard maximum limit has been set to disallow users from creating a 
+        task or event with a name of longer than 20 characters.
+* Alternative 2: do not set a maximum length and find other potential solutions.
+    * Pros:
+        * Users can have more freedom in creating or editing the tasks and events.
+    * Cons:
+        * May require major changes to the design and implementation of GUI, which may be time consuming and 
+          lead to other undesirable bugs.
+
+We chose Alternative 1 because this is the most suitable option given the limited development time 
+and more controllable impacts on other components of the application. More importantly, we estimate that 
+the current maximum length is sufficient to meet most of our users' common needs. 
+Thus, under normal usage, this additional restrictions will not cause great inconveniences to our users.
+
+#### 3.4.3 Design considerations for `Tag` and `Category` Object
+Similar to `Name` Object, we face the same chanllenge when displaying tasks or events with tags and categories
+of excessively long length. 
+We choose to set the maximum length to 15 characters long for the similar reasons as mentioned above.
+
 ### 3.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -195,7 +242,9 @@ The `Storage` component,
 
 ### 3.6 Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
+
+Classes used by both `Task` and `Event` are in the `seedu.address.model.common` package.
 
 [Return to Table of Contents](#table-of-contents)  
 
@@ -209,7 +258,7 @@ This section describes some noteworthy details on how [Sochedule](#41-sochedule)
 
 #### 4.1.1 Overview
 
-#### 4.1.2 Implementation
+#### 4.1.2 Implementation of SOChedule-Level Commands
 
 **Implementation of ClearCommand**  
 The following is a detailed explanation on how ClearCommand is implemented.
@@ -255,20 +304,29 @@ The sequence diagram for `SummaryCommand` can be found below.
 
 [Return to Table of Contents](#table-of-contents)  
 
+#### 4.1.2.3 Find Schedule feature
 **Implementation of FindScheduleCommand**  
-The following is a detailed explanation on how SummaryCommand is implemented.
 
-**Step 1**: User executes `find_schedule DATE` command to find the ongoing tasks and events before or on the given date.
+The find schedule mechanism is supported mainly by `FindScheduleCommand` and `FindScheduleCommandParser`.
+
+The relevant methods include:
+* `FindScheduleCommandParser#parse(String args)` - Parses the user input into a Date object.
+* `FindScheduleCommand#execute(Model model)` - Finds the tasks with deadline before or on the specified date and
+events with start date before or on and end date after or on the specified date.
+
+Given below is an example usage scenario and how the find schedule mechanism behaves at each step.
+
+**Step 1**: User executes `find_schedule 2021-04-01` command to find the ongoing tasks and events before or on the given date.
 An `FindScheduleCommandParser` object is created, and the `FindScheduleCommandParser#parse(String args)` method is called.
-The method conducts parses the `DATE` and conducts validation checks to ensure that it complies with the specification.
+The method parses the `2021-04-01` and conducts validation checks to ensure that it complies with the specification.
 Two predicates, `TaskFindSchedulePredicate(Date date)` and `EventFindSchedulePredicate(Date date)` are created based on the given date.
 Then, a `FindScheduleCommand` object is created given the two predicates and returned.
 
 **Step 2**: On `FindScheduleCommand#execute()`, 
 `Model#updateFilteredTaskList(TaskFindSchedulePredicate taskPredicate)` 
 and `Model#updateFilteredEventList(EventFindSchedulePredicate eventPredicate)` are called.
-This will update the task list to only show the uncompleted tasks with deadline before or on the given date.
-Similary, the event list will be updated to only show the events with start date before or on the given date and end date after or on the given date.
+This will update the task list to only show the uncompleted tasks with the deadline before or on the given date.
+Similarly, the event list will be updated to only show the events with start date before or on the given date and end date after or on the given date.
 For brevity, lower level implementation of `Model#updateFilteredTaskList(TaskFindSchedulePredicate taskPredicate)` 
 and `Model#updateFilteredEventList(EventFindSchedulePredicate eventPredicate)` are omitted.
 
@@ -284,6 +342,34 @@ The sequence diagram for `FindScheduleCommand` can be found below.
 when calling the method `Model#updateFilteredTaskList(TaskFindSchedulePredicate taskPredicate)`.
 Same for the method `Model#updateFilteredEventList(EventFindSchedulePredicate eventPredicate)`.
 </div>
+
+**Design Considerations**
+
+The purpose of find schedule is to find and show our users the list of tasks and events that are worth to be paid
+attention to at the specified date. 
+
+For events, it is clear that events which have not started at the given date (i.e. start date
+is before the given date) and events which have ended before the given date (i.e. end date is earlier than the given date)
+should not be selected. This leads to only finding events that are ongoing at the specified date 
+(i.e. with start date before or on and end date after or on the specified date). 
+
+For tasks, it is rather debatable. Tasks which are completed should not selected. However, it needs some
+considerations with regards to what kinds of uncompleted tasks to be selected.
+
+* Alternative 1 (current implementation): Select uncompleted tasks with deadline before or on the given date.
+    * Pros:
+        * Less tasks are being shown. This may be more helpful as users can focus more on these tasks with an earlier deadline
+            than the other tasks.
+    * Cons:
+        * More restrictive and less tasks being shown also means that less information may be provided to users.
+* Alternative 2: Select all existing uncompleted tasks.
+    * Pros:
+        * More tasks are being shown and presented to users.
+    * Cons:
+        * The date provided is not adding useful value here and users may find this implementation less helpful.
+
+Alternative 1 is chosen because we believe this implementation can make better use of the date provided and can be more 
+helpful for users to know what tasks should be dealt with first and improve their efficiecny in task and event managements.
 
 [Return to Table of Contents](#table-of-contents)  
 
@@ -337,23 +423,93 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 
 [Return to Table of Contents](#table-of-contents)  
 
-**Implementation of UndoneTaskCommand**  
-The following is a detailed explanation on how UndoneTaskCommand is implemented.
+#### 4.2.3.3 Done Task feature
 
-**Step 1**: User executes `undone_task Index` command to mark the completed task at the given index as uncompleted. 
+**Implementation of DoneTaskCommand**
+The done task mechanism is supported mainly by `DoneTaskCommand` and `DoneTaskCommandParser`.
+
+The relevant methods include:
+* `DoneTaskCommandParser#parse(String args)` - Parses the user input into one or more Index objects.
+* `DoneTaskCommand#execute(Model model)` - Marks the tasks at the given indexes as completed.
+
+Given below is an example usage scenario and how the done task mechanism behaves at each step.
+
+**Step 1**: User executes `done_task 1 2`.
+Let us call these task the target tasks.
+A `DoneTaskCommandParser` object is created, and the `DoneTaskCommandParser#parse(String args)` method is called.
+The method parses the `1 2` and conducts validation checks to ensure that the given indexes are all valid unsigned non-zero integers.
+A `DoneTaskCommand` object is returned.
+
+**Step 2**: On `DoneTaskCommand#execute()`, 
+the indexes are further checked to ensure the tasks they refer to exist in the task list
+and all target tasks are uncompleted.
+Afterwards, the information of the target tasks are copied and completed tasks with exactly the same information as the target tasks are created.
+Finally, `Model#setTask(Task taskToDone, Task completedTask)` are called two times to update the respective target tasks in the task list.
+`Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` method is called to refresh the UI and show the update.
+For brevity, lower level implementation of `Model#setTask(Task taskToUndone, Task uncompletedTask)`, 
+and `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` are omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_DONE_TASK_SUCCESS`.
+
+The sequence diagram for `DoneTaskCommand` can be found below.
+
+![Sequence Diagram of DoneTask Command](images/DoneTaskCommandSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** Due to the size constraint, the argument `PREDICATE_SHOW_ALL_TASKS` is not shown in the sequence diagram 
+when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`.
+</div>
+
+**Design Considerations**
+
+One of the challenges is if we should add additional support to allow done task command to mark more than one tasks as completed.
+Here are our considerations.
+
+* Alternative 1: Done task only marks one task as uncompleted.
+    * Pros:
+        * Easier to implement, maintain and integrate with other commands and components.
+    * Cons:
+        * More restrictive and users may need slightly more time to done the tasks.
+
+
+* Alternative 2 (current implementation): Done task can mark more than one tasks as uncompleted.
+    * Pros:
+        * Users may frequently need to done multiple tasks. This can save a significant amount of time.
+    * Cons:
+        * More time-consuming to implement, increases difficulty in testing and integration with other commands and components.
+
+Alternative 2 is chosen because we believe this implementation is a more suitable choice. 
+Unlike undone task, users are likely to have the demand to done multiple tasks frequently
+under normal usage. Thus, we feel alternative 1 is necessary to serve our users efficiently.
+
+[Return to Table of Contents](#table-of-contents)
+
+#### 4.2.3.4 Undone Task feature
+
+**Implementation of UndoneTaskCommand**
+
+The undone task mechanism is supported mainly by `UndoneTaskCommand` and `UndoneTaskCommandParser`.
+
+The relevant methods include:
+* `UndoneTaskCommandParser#parse(String args)` - Parses the user input into an Index object.
+* `UndoneTaskCommand#execute(Model model)` - Marks the task at the given index as uncompleted.
+
+Given below is an example usage scenario and how the undone task mechanism behaves at each step.
+
+**Step 1**: User executes `undone_task 1` command to mark the completed task at the given index as uncompleted. 
 Let us call this task the target task.
 A `UndoneTaskCommandParser` object is created, and the `UndoneTaskCommandParser#parse(String args)` method is called.
-The method conducts parses the `args` and conducts validation checks to ensure that the given index is a valid unsigned non-zero integer.
+The method parses the `1` and conducts validation checks to ensure that the given index is a valid unsigned non-zero integer.
 A `UndoneTaskCommand` object is returned.
 
 **Step 2**: On `UndoneTaskCommand#execute()`, the index is further checked to ensure it is not out of range (i.e. larger than the size of task list)
 and the target task is indeed a completed task.
-Afterwards, `UndoneTaskCommand#createUncompletedTask()` method is called.
-This method copies the information of the target task and creates an uncompleted task with exactly the same information as the target task.
+Afterwards, the information of the target task is copied ,and an uncompleted task with exactly the same information as the target task is created.
 Finally, `Model#setTask(Task taskToUndone, Task uncompletedTask)` and `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` method are called.
-These two methods updates the target task in the task list and refresh the UI to show the update.
-For brevity, lower level implementation of `UndoneTaskCommand#createUncompletedTask()`, 
-`Model#setTask(Task taskToUndone, Task uncompletedTask)`, `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` are omitted.
+These two methods update the target task in the task list and refresh the UI to show the update.
+For brevity, lower level implementation of `Model#setTask(Task taskToUndone, Task uncompletedTask)` 
+and `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` are omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_UNDONE_TASK_SUCCESS`.
@@ -367,13 +523,47 @@ The sequence diagram for `UndoneTaskCommand` can be found below.
 when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`.
 </div>
 
-**Implementation of EditTaskCommand**  
-The following is a detailed explanation on how EditTaskCommand is implemented.
+**Design Considerations**
 
-**Step 1**: User executes `Edit_task Index` command to Edit the task at the given index.
+One of the challenges is if we should add additional support to allow undone task command to mark more than one tasks as uncompleted.
+Here are our considerations.
+
+* Alternative 1 (current implementation): Undone task only marks one task as uncompleted.
+    * Pros:
+        * Easier to implement, maintain and integrate with other commands and components.
+    * Cons:
+        * More restrictive and users may need slightly more time to undone the tasks.
+    
+
+* Alternative 2: Undone task can mark more than one tasks as uncompleted.
+    * Pros:
+        * May save a small amount of time when users need to undone multiple tasks.
+    * Cons:
+        * More time-consuming to implement, increases difficulty in testing and integeration with other commands and components.
+
+Alternative 1 is chosen because we believe this implementation is a more suitable choice given the limited developement and
+testing time. More importantly, unlike done task, users are unlikely to have the demand to undone multiple tasks frequently 
+under normal usage. Thus, we feel alternative 1 is sufficient to serve our users.
+
+[Return to Table of Contents](#table-of-contents)
+
+#### 4.2.3.5 Edit Task feature
+
+**Implementation of EditTaskCommand**  
+
+The edit task mechanism is supported mainly by `EditTaskCommand` and `EditTaskCommandParser`.
+
+The relevant methods include:
+* `EditTaskCommandParser#parse(String args)` - Parses the user input arguments.
+* `EditTaskCommand#execute(Model model)` - Edits the task at the specified index and updates its respective
+values with the supplied values.
+
+Given below is an example usage scenario and how the edit task mechanism behaves at each step.
+
+**Step 1**: User executes `Edit_task 1 n/t1` command to Edit the task at the given index.
 An `EditTaskCommandParser` object is created, and the `EditTaskCommandParser#parse(String args)` method is called.
-The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
-An `EditTaskDescriptor` object is created, and it contains all the field an Task needed. 
+The method parses the `1 n/t1` and conducts validation checks to ensure that it complies with the specification.
+An `EditTaskDescriptor` object is created, and it contains all the field a task needed. 
 If the field is edited, then store the edited one; otherwise, store the original value.
 An `EditTaskCommand` object (with the `EditTaskDescriptor` as a parameter) is returned.
 
@@ -390,6 +580,31 @@ The UI will also update as the underlying task list has been modified.
 The sequence diagram for `EditTaskCommand` can be found below.
 
 ![Sequence Diagram of EditTask Command](images/EditTaskCommandSequenceDiagram.png)
+
+**Design Considerations**
+
+One of the challenges is if we should allow overdue tasks (task with deadlines before today) to be edited.
+
+* Alternative 1 (current implementation): Overdue tasks can be edited.
+    * Pros:
+        * At very frequent occasions, users may need to edit an over task. For example, users may wish to
+        extend the deadline of an overdue task, or increasing its priority to remind themselves that this task
+          needs more attention.
+    * Cons:
+        * At very rare occasions, users may not want overdue tasks to be edited. 
+          For example, they wanted to evaluate their overall progress for this week and do not wish
+          overdue tasks to be accidentally edited.
+          
+
+* Alternative 2: Overdue tasks cannot be edited.
+    * Pros:
+        * May sastify the demand of users as described in cons of alternative 1.
+    * Cons:
+        * May not meet the requirements of users as described in pros of alternative 1.
+
+Alternative 1 is chosen because we believe this implementation is a more suitable choice given our users' need at
+normal usage. Furthermore, if users wish to their overall progress for this week, they may choose to act with caution before
+editing a task or editing it back quickly if they realize they have edited the wrong task.
 
 [Return to Table of Contents](#table-of-contents)  
 
@@ -594,7 +809,10 @@ The sequence diagram for `DeleteEventCommand` can be found below.
 **Implementation of EditEventCommand**  
 The following is a detailed explanation on how EditEventCommand is implemented.
 
-**Step 1**: User executes `Edit_event Index` command to Edit the event at the given index.
+The `edit_event` feature was implemented with a static class `EditEventDescriptor` introduced.
+<img src="images/EditEventCommandClassDiagram.png" width="550" />
+
+**Step 1**: User executes `edit_event Index` command to Edit the event at the given index.
 An `EditEventParser` object is created, and the `EditEventParser#parse(String args)` method is called.
 The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
 An `EditEventDescriptor` object is created, and it contains all the field an Event needed. 
@@ -613,6 +831,11 @@ The UI will also update as the underlying event list has been modified.
 The sequence diagram for `EditEventCommand` can be found below.
 
 ![Sequence Diagram of EditEvent Command](images/EditEventCommandSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes a EditEventCommand:
+(For brevity, "Show error" actions are omitted.)
+
+<img src="images/EditEventCommandActivityDiagram.png" width="250" />
 
 [Return to Table of Contents](#table-of-contents)  
 
@@ -1139,22 +1362,13 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### A7. Launch and shutdown
-
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
+   
+   1. For testing purposes, a sample `sochedule.json` is provided [here](https://raw.githubusercontent.com/AY2021S2-CS2103-W16-1/tp/master/https://github.com/AY2021S2-CS2103-W16-1/tp/tree/master/src/test/data/sochedule.json). Place this file in a directory named `data`. `data` should be in the same relative path as `SOChedule.jar`.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample data.
 
 ### Deleting a task (Not in use yet)
 
@@ -1173,10 +1387,175 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### A8. Saving data
+### Sorting the task list
 
-1. Dealing with missing/corrupted data files
+1. Sorting the task list
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty.
+
+    1. Test case: `sort_task priority`<br>
+       Expected: "Sorted Tasks" to appear in status bar. Task list is now sorted by priority (highest priority to lowest priority). Pinned tasks remain on top, but also sorted by priority.
+
+    1. Test case: `sort_task 123`<br>
+       Expected: This is an invalid input. "Invalid command format!" to appear in status bar. Task list remains unchanged.
+
+    1. Other valid parameters to test: `name`, `completion` and `deadline`.
 
 1. _{ more test cases …​ }_
+
+### Pinning a task
+
+1. Pinning a task while all tasks are being shown
+
+    1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty.
+
+    1. Test case: `pin_task 3` (Assuming there are 3 tasks in task list)<br>
+       Expected: "Pinned Task" to appear in status bar. Third task is now on top of the task list, with a pin icon beside its name.
+
+   1. Test case: `pin_task 0`<br>
+      Expected: This is an invalid input. "Invalid command format!" to appear in status bar. No task is pinned and task list remains unchanged.
+   
+   1. Test case: `pin_task 1` (Assuming Task 1 is already pinned<br>
+      Expected: This is an invalid input. "This task is already pinned." to appear in status bar. Task list remains unchanged.
+
+   1. Test case: `pin_task 999` (Assuming there are less than 999 tasks in task list<br>
+      Expected: This is an out-of-bounds input. "The task at this index does not exist." to appear in status bar. No task is pinned and task list remains unchanged.
+
+    1. Other incorrect delete commands to try: `pin_task`, `pin_task x` (where x is larger than the list size)<br>
+       Expected: Similar to previous cases.
+
+1. _{ more test cases …​ }_
+
+### Unpinning a task
+
+1. Unpinning a task while all tasks are being shown
+
+    1. Prerequisites: List all tasks using the `list_task` command. Multiple tasks in the list. At least one task in pinned.
+
+    1. Test case: `unpin_task 1` (Assuming Task 1 is pinned) <br>
+       Expected: "Unpinned Task" to appear in status bar. First task may or may not be at the top of task list. For that task, pin icon beside its name is removed.
+
+   1. Test case: `unpin_task 0`<br>
+      Expected: This is an invalid input. "Invalid command format!" to appear in status bar. Task list remains unchanged.
+
+   1. Test case: `unpin_task 3` (Assuming Task 3 exists and is not pinned<br>
+      Expected: This is an invalid input. "This task is not pinned to begin with." to appear in status bar. Task list remains unchanged.
+
+   1. Test case: `unpin_task 999` (Assuming there are less than 999 tasks in task list<br>
+      Expected: This is an out-of-bounds input. "The task at this index does not exist." to appear in status bar. No task is pinned and task list remains unchanged.
+
+   1. Other incorrect delete commands to try: `unpin_task`, `unpin_task x` (where x is larger than the list size)<br>
+      Expected: Similar to previous cases.
+
+1. _{ more test cases …​ }_
+
+
+### Clearing completed tasks
+
+1. Clearing completed tasks
+
+   1. Test case: `clear_completed_task`<br>
+      Expected: Tasks marked as done are cleared from the list. Success message `Completed tasks (if any) have been cleared!` 
+      will always be shown in the status message, regardless of whether there is any completed task or not.   
+
+
+### Clearing expired tasks
+
+1. Clearing expired tasks
+
+   1. Test case: `clear_expired_task`<br>
+      Expected: Tasks with past deadlines are cleared from the list. Success message `Expired tasks (if any) have been cleared!` 
+      will always be shown in the status message, regardless of whether there is any expired task or not. 
+      
+### Adding an event
+
+1. Adding an event
+
+    1. Prerequisites: No duplicates events with the same ISBN exists.
+    
+    1. Test case: `add_event n/CS2103 meeting sd/2022-05-27 st/15:00 ed/2022-05-27 et/17:00`
+           Expected: Event successfully added, detailed information shown in the status bar.
+           
+    1. Test case: `add_event n/1 Year Anniversary sd/2021-03-14 st/08:00 ed/2022-03-17 et/21:00`
+                  Expected: Event successfully added, detailed information shown in the status bar.
+                  
+    1. Test case: `add_event n/Inter College Game sd/2000-03-23 st/12:00 ed/2000-03-23 et/14:00`
+                  Expected: No event is deleted, since end date time is past. Detailed error message shown in the status bar.              
+                  
+    1. Other incorrect commands to try: `add_event`, `add_event n/Meeting 1`, etc.
+    
+### Deleting an event
+
+1. Deleting an event 
+
+   1. Prerequisites: List all events using the `list` command. At least one event in the list.
+
+   1. Test case: `delete_event 1`<br>
+      Expected: First event is deleted from the list. Details of the deleted event shown in the status message.
+
+   1. Test case: `delete_event 50` (50 is larger than the list size) <br> 
+      Expected: No event is deleted. Error message `The event index provided is invalid.` shown in the status message.
+      
+   1. Test case: `delete_event -1`<br> 
+      Expected: No event is deleted. Error message `Index should be an integer greater then 0.` shown in the status message.
+
+   1. Other incorrect delete commands to try: `delete_event`, `delete_event x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+      
+      
+### Editing an event
+
+1. Editing an event
+
+    1. Prerequisites: There are events in the list.
+
+    1. Test case: `edit_event 1 t/`
+       Expected: Clearing all the tags of the first event in the list. 
+           
+    1. Test case: `edit_event 1 n/editedEventName`
+       Expected: The name of the first event in the list is changed to `editedEventName`.
+               
+    1. Other incorrect commands to try: `edit_event`, `edit_event n/editedEventName`, etc.
+
+
+### Clearing expired events
+
+1. Clearing expired events
+
+   1. Test case: `clear_expired_event`<br>
+      Expected: Events with past end date time are cleared from the list. Success message `Expired events (if any) have been cleared!` 
+      will always be shown in the status message, regardless of whether there is any expired event or not.
+
+### Finding free time slots
+
+1. Finding free time slots
+
+    1. Test case: `free_time 2021-06-10`<br>
+       Expected: Displays a list of free time slots on 2021-06-10. Success message `Found free time slots on 2021-04-27:` 
+       will be shown if free time slots were found.
+            
+       1. if there are available free time slots, a list of free time slots will be displayed after the success message.
+       2. if there are no events happening on the day, `The entire day is free!` will be displayed after the sucess message.
+       3. if no free time slots were found, `There is no free time in the day!` will be displayed.
+
+### Getting a summary of SOChedule
+
+1. Getting a summary of SOChedule
+
+    1. Test case: `summary`<br>
+       Expected: Displays a summary for SOChedule. Success message `Summary:`, followed by detailed about `Task`,
+       and details about `Event`.
+
+### Clearing SOChedule
+
+1. Clearing SOChedule
+
+    1. Test case: `clear`<br>
+       Expected: All Tasks and Events in SOChedule are cleared. Success message `Sochedule has been cleared!`
+       will always be shown in the status message, regardless of whether there is any Task or Event.
+       
+### A8. Saving data
+
+1. Dealing with missing/corrupted/missing data files
+
+   1. SOChedule will re-initialise and provide an empty Task list and Event list.

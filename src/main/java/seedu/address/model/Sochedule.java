@@ -135,6 +135,14 @@ public class Sochedule implements ReadOnlySochedule {
     }
 
     /**
+     * Undone {@code key} from {@code Sochedule}.
+     * {@code task} must exist in Sochedule.
+     */
+    public void undoneTask(Task task) {
+        task.markTaskAsUndone();
+    }
+
+    /**
      * Pins {@code key} from {@code Sochedule}.
      * {@code task} must exist in Sochedule.
      */

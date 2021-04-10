@@ -1,7 +1,7 @@
 {
   "tasks" : [ {
     "name" : "Homework 1",
-    "deadline" : "2021-01-07",
+    "deadline" : "2022-01-07",
     "priority" : "8",
     "completionStatus" : "INCOMPLETE",
     "pinnedStatus" : "UNPINNED",
@@ -9,7 +9,7 @@
     "tagged" : [ "MA3110" ]
   }, {
     "name" : "Homework 1",
-    "deadline" : "2021-01-07",
+    "deadline" : "2022-01-07",
     "priority" : "8",
     "completionStatus" : "INCOMPLETE",
     "pinnedStatus" : "UNPINNED",
