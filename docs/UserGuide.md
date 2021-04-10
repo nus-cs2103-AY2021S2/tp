@@ -277,7 +277,7 @@ Format: `clear`
 
 ### Undoing a command : `undo`
 
-Restores FlashBack to the state before the previous command was executed.
+Restores FlashBack to the state before the most recent undoable command was executed.
 <div markdown="span" class="alert alert-info">:information_source:
 **Note:**  Only commands that modify FlashBack's content can be reversed. (`add`, `delete`, `edit` and `clear`).
 </div>
@@ -299,7 +299,7 @@ Examples:
 
 ### Redoing a command : `redo`
 
-Restores FlashBack to the state before the previous command was undo.
+Redoes the most recent action that was undone (reverses the `undo` command).
 
 Format: `redo`
 <div style="page-break-after: always;"></div>
