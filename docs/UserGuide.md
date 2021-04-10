@@ -291,6 +291,10 @@ email (e.g. company email address) and insurance policies (co-owner of the same 
         <ul><li><code>URL</code> part should not contain the <code>></code> character (not a valid website link if it contains <code>></code>)</li></ul>
         <ul><li>A client should not have duplicate insurance policies</li></ul>
         <ul><li>If duplicate insurance policies are entered in a command, only 1 will be added to the client</li></ul>
+        <ul><li><code>URL</code> part should be of the form minimally be of the form <code>xxx.yyy</code>
+            <ul><li>Other basic URL formats will also be accepted, e.g. <code>https://www.xxx.yyy/page/?q=query</code></li></ul>
+        </li></ul> 
+        <ul><li>Due to the huge range of possibilities for the URL, we will have made the acceptable URL formats flexible rather than restrictive. <b>Do check your URL before entering the input!</b></li></ul>
     </td>
   </tr>
   <tr>

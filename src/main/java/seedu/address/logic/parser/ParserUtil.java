@@ -237,11 +237,11 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code policy} is invalid.
      */
-    public static InsurancePolicy parsePolicy(String policy) throws ParseException {
+    private static InsurancePolicy parsePolicy(String policy) throws ParseException {
         requireNonNull(policy);
         String trimmedPolicy = policy.trim();
 
-        if (!InsurancePolicy.isValidPolicyId(trimmedPolicy)) {
+        if (!InsurancePolicy.isValidPolicyInput(trimmedPolicy)) {
             throw new ParseException(InsurancePolicy.MESSAGE_CONSTRAINTS);
         }
 
@@ -254,13 +254,14 @@ public class ParserUtil {
         // Else contains URL too
         String policyId = idAndUrl[0];
         String policyUrl = idAndUrl[1];
+
         return new InsurancePolicy(policyId, policyUrl);
     }
 
     /**
-     * Parses {@code Collection<String> policies} into a {@code List<InsurancePolicy>}.
+     * Parses {@code Collection<String> policies} into a {@code Set<InsurancePolicy>}.
      */
-    public static List<InsurancePolicy> parsePolicies(Collection<String> policies) throws ParseException {
+    public static Set<InsurancePolicy> parsePolicies(Collection<String> policies) throws ParseException {
         requireNonNull(policies);
         final Set<InsurancePolicy> policySet = new HashSet<>();
         for (String policy : policies) {
@@ -268,10 +269,9 @@ public class ParserUtil {
             InsurancePolicy parsedPolicy = parsePolicy(policy);
             policySet.add(parsedPolicy);
         }
-        final List<InsurancePolicy> policyList = new ArrayList<>();
-        policyList.addAll(policySet);
-        return policyList;
+        return policySet;
     }
+
     /**
      * Parses a {@code String meeting} into a {@code meeting}.
      * Leading and trailing whitespaces will be trimmed.

@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -50,7 +51,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        List<InsurancePolicy> policyList = ParserUtil.parsePolicies(argMultimap.getAllValues(PREFIX_INSURANCE_POLICY));
+        Set<InsurancePolicy> policySet = ParserUtil.parsePolicies(argMultimap.getAllValues(PREFIX_INSURANCE_POLICY));
+        List<InsurancePolicy> policyList = new ArrayList<>(policySet);
         List<Meeting> meetingList = ParserUtil.parseMeetings(argMultimap.getAllValues(PREFIX_MEETING));
 
         Person person = new Person(name, phone, email, address, tagList, policyList, meetingList);
