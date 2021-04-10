@@ -58,7 +58,7 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-**API**: `Ui.java`
+**API**: [`Ui.java`](https://github.com/AY2021S2-CS2103-W16-2/tp/blob/master/src/main/java/chim/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StatusBarFooter` etc. All
 these, including the `MainWindow`, inherit from the abstract `UiPart` class.
@@ -83,9 +83,9 @@ relationships with other classes.
 
 <img src="images/LogicClassDiagram_CHIM.png">
 
-**API**: `Logic.java`
+**API**: [`Logic.java`](https://github.com/AY2021S2-CS2103-W16-2/tp/blob/master/src/main/java/chim/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `ChimParser` class to parse the user command.
 2. This results in a `Command` object which is executed by the `LogicManager`.
 3. The command execution can affect the `Model` (e.g. by adding customers, orders or cheeses).
 4. The result of the command execution is encapsulated as a `CommandResult`
@@ -108,11 +108,11 @@ for the `execute("deletecheese 1")` API call.
 
 ![Structure of the Order Component](images/OrderClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/AY2021S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103-W16-2/tp/blob/master/src/main/java/chim/model/Model.java)
 
 The `Model`,
 * stores a `UserPref` object that represents the user`s preferences.
-* stores the address book data.
+* stores Cheese Inventory Management's customers, orders, and cheeses data.
 * exposes an unmodifiable `ObservableList<Customer>`, `ObservableList<Order>`,`ObservableList<Cheese>` that can be 'observed'.
 e.g. the Ui can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
@@ -121,15 +121,15 @@ e.g. the Ui can be bound to this list so that the UI automatically updates when 
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103-W16-2/tp/blob/master/src/main/java/chim/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save CHIM's data in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `chim.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -158,15 +158,15 @@ Step 2. The user executes `deletecustomer p/87438807` to delete the customer wit
 phone number `87438807`. The command calls `DeleteCustomerCommand.execute()`
 which calls on `ModelManager.deleteCustomer()`.
 
-Step 3. The `ModelManager` calls `AddressBook.deleteCustomer()` where CHIM will delete
+Step 3. The `ModelManager` calls `Chim.deleteCustomer()` where CHIM will delete
 the customer and iterate through the orders list to find any orders placed by this customer.
-These orders are deleted by calling `AddressBook.deleteOrder()`.
+These orders are deleted by calling `Chim.deleteOrder()`.
 
-Step 4. `AddressBook.deleteOrder()` will delete the order. If the order was completed,
+Step 4. `Chim.deleteOrder()` will delete the order. If the order was completed,
 it will iterate through the cheeses list to find any cheeses assigned to this order.
-These cheeses are deleted by calling `AddressBook.deleteCheese()`.
+These cheeses are deleted by calling `Chim.deleteCheese()`.
 
-Step 5. `AddressBook.deleteCheese()` will delete the cheese.
+Step 5. `Chim.deleteCheese()` will delete the cheese.
 
 The following sequence diagram shows how the operation `deletecustomer p/87438807`
 is carried out as detailed above.
@@ -182,7 +182,7 @@ Deleting an order will not delete the customer who placed the order.
 Furthermore, deleting a cheese which has been assigned to an order is not allowed.
 This is to prevent any extra erroneous deletions.
 * All `execute()` calls by `DeleteCustomerCommand`, `DeleteOrderCommand` and `DeleteCheeseCommand`
-will call on `Model.AddressBook` which will handle the cascading of delete commands in one place.
+will call on `Model.Chim` which will handle the cascading of delete commands in one place.
 
 
 ### Automatic Toggling of UI List Panels
@@ -309,7 +309,7 @@ add a new `Order` instance in the worst case.
 
 #### implementation
 
-Marking an order as completed is implemented in [`DoneCommand.java`](https://github.com/AY2021S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/address/logic/commands/DoneCommand.java).
+Marking an order as completed is implemented in [`DoneCommand.java`](https://github.com/AY2021S2-CS2103-W16-2/tp/blob/master/src/main/java/chim/logic/commands/DoneCommand.java).
 
 `DoneCommand` extends from `command` and overwrites the operations `execute()` and `equals()`.
 
@@ -334,9 +334,9 @@ The following sequence diagram shows how the operation `done 1` is carried out a
 
 ![Sequence Diagram of the Done Command](images/DoneCommandSeqDiagram.png)
 
-#### Design consideration 
+#### Design consideration
 * Aspect : Searching for available cheese(s) for the order.
-    * Current choice : Searching for unassigned cheeses for the order is implemented in the `Model.AddressBook`.
+    * Current choice : Searching for unassigned cheeses for the order is implemented in the `Model.Chim`.
         * Pros: no dependency between `Done` command and `Cheese`.
         * Cons: performance issues due to multiple functions calls.
     * Alternative 1 : `Done` command will search for unassigned cheeses.
@@ -469,7 +469,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-#### Use case: Edit an Cheese
+#### Use case: Edit a Cheese
 
 **MSS**
 
@@ -708,12 +708,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-#### Use case: Clear all data 
+#### Use case: Clear all data
 
 **MSS**
 1. User enters the command to clear all data.
-2. CHIM clears customer , orders and cheese data and informs the user. 
-    
+2. CHIM clears customer , orders and cheese data and informs the user.
+
     Use case ends.
 
 #### Use case: Exit the application

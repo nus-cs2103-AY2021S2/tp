@@ -8,5 +8,5 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "addressbook.json"
+  "chimFilePath" : "chim.json"
 }
