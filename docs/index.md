@@ -6,6 +6,10 @@ title: FriendDex
 [![CI Status](https://github.com/AY2021S2-CS2103T-W14-1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2021S2-CS2103T-W14-1/tp/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/gh/AY2021S2-CS2103T-W14-1/tp/branch/master/graph/badge.svg?token=X3UIlIULcR)](https://codecov.io/gh/AY2021S2-CS2103T-W14-1/tp)
 
+<div style="text-align: center">
+   <img src="images/FriendDex.png" width="200" style="margin: 0 auto" />
+</div>
+
 ![Ui](images/Ui.png)
 
 **FriendDex is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
