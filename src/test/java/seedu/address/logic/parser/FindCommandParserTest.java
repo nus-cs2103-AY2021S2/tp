@@ -30,7 +30,7 @@ import seedu.address.model.person.AttributeContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
-import seedu.address.model.person.passenger.PriceContainsKeywordsPredicate;
+import seedu.address.model.person.passenger.PriceIsGreaterThanAmountPredicate;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 
@@ -133,7 +133,7 @@ public class FindCommandParserTest {
     public void parse_validPriceArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new PriceContainsKeywordsPredicate(VALID_PRICE_BOB));
+                new FindCommand(new PriceIsGreaterThanAmountPredicate(VALID_PRICE_BOB));
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n " + PRICE_DESC_BOB + "\n \t", expectedFindCommand);

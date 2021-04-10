@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PassengerBuilder;
 
-public class PriceContainsKeywordsPredicateTest {
+public class PriceIsGreaterThanAmountPredicateTest {
 
     @Test
     public void equals() {
