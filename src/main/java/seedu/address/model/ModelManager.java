@@ -597,7 +597,8 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons)
                 && meetingBook.equals(other.meetingBook)
                 && filteredMeetings.equals(other.filteredMeetings)
-                && noteBook.equals(other.noteBook);
+                && noteBook.equals(other.noteBook)
+                && timetablePrefs.equals(other.timetablePrefs);
     }
 
 }
