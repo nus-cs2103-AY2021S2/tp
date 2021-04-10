@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
+participant ":DoneTaskCommandParser" as DoneTaskCommandParser LOGIC_COLOR
+participant "d:DoneTaskCommand" as DoneTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : parse("done_task 1 2")
+activate LogicManager
+
+LogicManager -> SocheduleParser : parseCommand("done_task 1 2")
+activate SocheduleParser
+
+SocheduleParser -> DoneTaskCommandParser: parse("1 2")
+activate DoneTaskCommandParser
+
+create DoneTaskCommand
+DoneTaskCommandParser -> DoneTaskCommand
+activate DoneTaskCommand
+DoneTaskCommandParser <--DoneTaskCommand : d
+deactivate DoneTaskCommand
+
+SocheduleParser <--DoneTaskCommandParser : d
+deactivate DoneTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DoneTaskCommandParser -[hidden]->[
+destroy DoneTaskCommandParser
+
+LogicManager <-- SocheduleParser : d
+deactivate SocheduleParser
+
+LogicManager -> DoneTaskCommand : execute()
+activate DoneTaskCommand
+
+DoneTaskCommand -> Model : setTask(taskToDoneOne, completedTaskOne)
+activate Model
+DoneTaskCommand <-- Model
+deactivate Model
+
+DoneTaskCommand -> Model : setTask(taskToDoneTwo, completedTaskTwo)
+activate Model
+DoneTaskCommand <-- Model
+deactivate Model
+
+DoneTaskCommand -> Model : updateFilteredTaskList(...)
+activate Model
+DoneTaskCommand <-- Model
+deactivate Model
+
+create CommandResult
+DoneTaskCommand -> CommandResult
+activate CommandResult
+DoneTaskCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- DoneTaskCommand: result
+deactivate DoneTaskCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DoneTaskCommand -[hidden]->[
+
+[<-- LogicManager :
+@enduml

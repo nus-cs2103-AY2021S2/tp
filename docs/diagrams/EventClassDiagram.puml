@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package "Model (Event)" <<Rectangle>>{
+Class Sochedule
+
+Package Event {
+class Event
+Class Time
+Class UniqueEventList
+}
+Package Common {
+Class Tag
+Class Category
+Class Name
+Class Date
+}
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Sochedule
+
+Sochedule *--> "1" UniqueEventList
+UniqueEventList o--> "*" Event
+Event *--> "1" Name
+Event *--> "1" Date : StartDate
+Event *--> "1" Date : EndDate
+Event *--> "1" Time : StartTime
+Event *--> "1" Time : EndTime
+Event *--> "*" Tag
+Event *--> "*" Category
+
+@enduml

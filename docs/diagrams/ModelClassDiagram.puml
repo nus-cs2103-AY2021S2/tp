@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
+Package "Model (Overview)" <<Rectangle>>{
 Class "<<Interface>>\nReadOnlySochedule"
 Class "<<Interface>>\nModel"
 Class "<<Interface>>\nObservableList"
@@ -15,28 +15,12 @@ Class ReadOnlyUserPrefs
 
 Package Task {
 Class Task
-Class CompletionStatus
-Class Priority
-Class Deadline
-Class PinnedStatus
 Class UniqueTaskList
 }
 
 Package Event {
 Class Event
-Class StartDate
-Class StartTime
-Class EndDate
-Class EndTime
 Class UniqueEventList
-}
-
-Package Tag {
-Class Tag
-}
-
-Package Category {
-Class Category
 }
 }
 
@@ -53,26 +37,10 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 Sochedule *--> "1" UniqueTaskList
 UniqueTaskList o--> "*" Task
-Task *--> Deadline
-Task *--> CompletionStatus
-Task *--> PinnedStatus
-Task *--> Priority
-Task *--> "*" Tag
-Task *--> "*" Category
 
 Sochedule *--> "1" UniqueEventList
 UniqueEventList o--> "*" Event
-Event *--> StartDate
-Event *--> StartTime
-Event *--> EndDate
-Event *--> EndTime
-Event *--> "*" Tag
-Event *--> "*" Category
 
-PinnedStatus -[hidden]right-> CompletionStatus
-Deadline -[hidden]right-> Priority
-CompletionStatus -[hidden]right-> Deadline
-
-ModelManager ----->" ~* filtered list" Task
-ModelManager ----->" ~* filtered list" Event
+ModelManager ----->"1" Task : "filtered list"
+ModelManager ----->"1" Event : "filtered list"
 @enduml

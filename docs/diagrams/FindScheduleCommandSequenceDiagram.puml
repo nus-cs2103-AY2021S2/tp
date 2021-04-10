@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : parse(find_schedule DATE)
+[-> LogicManager : parse("find_schedule 2021-04-01")
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(find_schedule DATE)
+LogicManager -> SocheduleParser : parseCommand("find_schedule 2021-04-01")
 activate SocheduleParser
 
 create FindScheduleCommandParser
@@ -25,7 +25,7 @@ activate FindScheduleCommandParser
 SocheduleParser <-- FindScheduleCommandParser
 deactivate FindScheduleCommandParser
 
-SocheduleParser -> FindScheduleCommandParser: parse(DATE)
+SocheduleParser -> FindScheduleCommandParser: parse("2021-04-01")
 activate FindScheduleCommandParser
 
 create FindScheduleCommand
@@ -48,12 +48,12 @@ SocheduleParser -[hidden]->[
 LogicManager -> FindScheduleCommand : execute()
 activate FindScheduleCommand
 
-FindScheduleCommand -> Model : updateFilteredTaskList()
+FindScheduleCommand -> Model : updateFilteredTaskList(...)
 activate Model
 FindScheduleCommand <-- Model
 deactivate Model
 
-FindScheduleCommand -> Model : updateFilteredEventList
+FindScheduleCommand -> Model : updateFilteredEventList(...)
 activate Model
 FindScheduleCommand <-- Model
 deactivate Model
