@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.commons.core.identifier.Identifier;
 
 /**
  * Represents an Event in Focuris.
@@ -65,6 +66,10 @@ public class Event {
 
     public EventPriority getPriority() {
         return this.priority;
+    }
+
+    public static Identifier getLatestIdentifier() {
+        return Identifier.fromIdentifier(counter);
     }
 
     /**

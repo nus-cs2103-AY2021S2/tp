@@ -47,7 +47,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Event event = new EventBuilder().build();
+        Event event = new EventBuilder().buildWithID();
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder(event).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + IDENTIFIER_FIRST_EVENT.getOneBased() + " " + EventUtil.getEditEventDescriptorDetails(descriptor));
