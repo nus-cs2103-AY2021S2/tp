@@ -295,18 +295,30 @@ public class ModelManager implements Model {
         this.mode.switchModeMenu();
     }
 
+    /**
+     * Switches the current mode to History Mode.
+     */
     public void switchModeHistory() {
         this.mode.switchModeHistory();
     }
 
+    /**
+     * Switches the current mode to Quiz Session Mode.
+     */
     public void switchModeQuizSession() {
         this.mode.switchModeQuizSession();
     }
 
+    /**
+     * Switches the current mode to Check Success Mode.
+     */
     public void switchModeCheckSuccess() {
         this.mode.switchModeCheckSuccess();
     }
 
+    /**
+     * Switches the current mode to Quiz Session Ended Mode.
+     */
     public void switchModeQuizSessionEnded() {
         this.mode.switchModeQuizSessionEnded();
     }
