@@ -7,7 +7,6 @@ import java.net.URL;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
