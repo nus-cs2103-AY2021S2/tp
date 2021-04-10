@@ -1,8 +1,5 @@
 package dog.pawbook.model.managedentity.program;
 
-import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_DATEOFBIRTH_APRIL_DESC;
-import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_DATEOFBIRTH_FEB_DESC;
-import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_DATEOFBIRTH_SEP_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_SESSION_APRIL_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_SESSION_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_SESSION_FEB_DESC;

@@ -12,6 +12,7 @@ import static dog.pawbook.testutil.TypicalEntities.DANCING;
 import static dog.pawbook.testutil.TypicalEntities.GENERAL_KNOWLEDGE;
 import static dog.pawbook.testutil.TypicalEntities.OBEDIENCE_TRAINING;
 import static dog.pawbook.testutil.TypicalEntities.POTTY_TRAINING;
+import static dog.pawbook.testutil.TypicalId.ID_EIGHT;
 import static dog.pawbook.testutil.TypicalId.ID_FOURTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_TEN;
 import static dog.pawbook.testutil.TypicalId.ID_TWELVE;
@@ -85,7 +86,7 @@ public class ProgramTest {
 
     @Test
     public void getDogIdSet() {
-        assertEquals(Set.of(ID_TEN, ID_TWELVE, ID_FOURTEEN), GENERAL_KNOWLEDGE.getDogIdSet());
+        assertEquals(Set.of(ID_EIGHT, ID_TEN, ID_TWELVE, ID_FOURTEEN), GENERAL_KNOWLEDGE.getDogIdSet());
         assertEquals(Set.of(ID_TWO), DANCING.getDogIdSet());
     }
 
