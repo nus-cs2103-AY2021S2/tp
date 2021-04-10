@@ -1,7 +1,6 @@
 package seedu.taskify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_TASK_FOR_INDEX_RANGE;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_TASK_FOR_INDICES;
 

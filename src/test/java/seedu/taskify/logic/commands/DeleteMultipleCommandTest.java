@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taskify.logic.commands.CommandTestUtil.showTasksAtIndexes;
-import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_TASK_FOR_INDEX_RANGE;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_TASK_FOR_INDICES;
 import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_NO_TASKS_OF_GIVEN_STATUS;
@@ -133,13 +132,6 @@ public class DeleteMultipleCommandTest {
         assertCommandFailure(deleteMulCommand, model, MESSAGE_INVALID_TASK_FOR_INDICES);
     }
 
-    //@Test
-    //public void execute_deleteUsingIndicesButNoCorrespondingTask_throwsCommandException() {
-    //    showTasksAtIndexes(model, Arrays.asList(INDEX_FIRST_TASK, INDEX_SECOND_TASK));
-    //    List<Index> indexes = new ArrayList<>(INDEXES_FIRST_TO_THIRD_TASK);
-    //    DeleteMultipleCommand deleteMulCommand = new DeleteMultipleCommand(indexes, true);
-    //    assertCommandFailure(deleteMulCommand, model, MESSAGE_INVALID_TASK_FOR_INDEX_RANGE);
-    //}
 
     @Test
     public void execute_validIndexRangeButNoCorrespondingTask_throwsCommandException() {
