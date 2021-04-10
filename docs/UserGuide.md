@@ -306,8 +306,11 @@ Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... 
   The ordering is not guaranteed and this is intended behaviour.
 
 Examples:
-* `edit_task 1 n/editedTaskName` edits the name of the first task (if present in SOChedule) to be `editedTaskName`.
+* `edit_task 1 n/t1` edits the name of the first task (if present in SOChedule) to be `editedTaskName`.
 * `edit_task 2 p/3 t/` edits the priority of the second task (if present in SOChedule) to be `3` and clears all existing tags. 
+
+#### Illustration of usage of `edit_task`:
+![Example of usage of `edit task`](images/EditTaskUsage.png)
 
 [Return to Feature List](#feature-list)
 
@@ -339,6 +342,9 @@ Format: `done_task INDEX1 [INDEX2] ...`
 Examples:
 * `done_task 1 2` marks the first and second task in the task list as completed.
 
+#### Illustration of usage of `done_task`:
+![Example of usage of `done task`](images/DoneTaskUsage.png)
+
 [Return to Feature List](#feature-list)
 
 
@@ -357,6 +363,9 @@ Format: `undone_task INDEX`
 
 Examples:
 * `undone_task 1` marks the first task in the task list as uncompleted.
+
+#### Illustration of usage of `undone_task`:
+![Example of usage of `undone task`](images/UndoneTaskUsage.png)
 
 [Return to Feature List](#feature-list)
 
@@ -611,9 +620,21 @@ Format: `find_schedule DATE`
   please use the `list_task` and `list_event` respectively.
 
 Examples:
-* `find_schedule 2021-06-01` finds all existing uncompleted tasks with deadlines before or on the specified date
+* `find_schedule 2021-04-10` finds all existing uncompleted tasks with deadlines before or on the specified date
   and all existing events with start date before or on the specified date and end date after or on 
-  before or on `1st June 2021`.
+  before or on the specified date.
+
+#### Illustration of usage of `find_schedule`:
+
+Due to size constraint, this illustration is split into the before and after view for task list and that for event list.
+
+For task list:
+
+![Example of usage of `find schedule(task)`](images/FindScheduleUsageTask.png)
+
+For event list:
+
+![Example of usage of `find schedule(event)`](images/FindScheduleUsageEvent.png)
 
 [Return to Feature List](#feature-list)
 
