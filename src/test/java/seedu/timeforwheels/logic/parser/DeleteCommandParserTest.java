@@ -32,7 +32,7 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void parse_NoIndex_throwsParseException() {
+    public void parse_noIndex_throwsParseException() {
         assertParseFailure(parser, " ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
