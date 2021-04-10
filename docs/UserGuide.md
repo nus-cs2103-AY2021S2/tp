@@ -238,6 +238,7 @@ Only one command can be executed at a time and any words after a valid command i
 
     </details>
 <p>&nbsp;</p>
+<p>&nbsp;</p>
 
 <a name="menu"></a>
 - <details open class="menu">
@@ -265,6 +266,7 @@ Only one command can be executed at a time and any words after a valid command i
         The above command will only display the dishes that are currently available based on the available ingredients.
 
         </details>
+        <p>&nbsp;</p>
 
         <a name="menu-add"></a>
     - <details open>
@@ -278,6 +280,7 @@ Only one command can be executed at a time and any words after a valid command i
         Ingredient ID and quantity must come in pairs. At least one pair must be specified, but more can be added.
 
         </details>
+        <p>&nbsp;</p>
 
         <a name="menu-delete"></a>
     - <details open>
@@ -310,6 +313,7 @@ Only one command can be executed at a time and any words after a valid command i
         be marked as cancelled and will no longer be shown in the order list but can be viewed in the order history.
 
         </details>
+        <p>&nbsp;</p>
 
         <a name="menu-edit"></a>
     - <details open>
@@ -323,6 +327,7 @@ Only one command can be executed at a time and any words after a valid command i
         At least one of the fields in round brackets must be specified.
 
         </details>
+        <p>&nbsp;</p>
 
         <a name="menu-find"></a>
     - <details open>
@@ -341,6 +346,7 @@ Only one command can be executed at a time and any words after a valid command i
         </details>
 
     </details>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 
 <a name="order"></a>
@@ -444,6 +450,7 @@ Only one command can be executed at a time and any words after a valid command i
         </details>
 
     </details>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 
 <a name="inventory"></a>
