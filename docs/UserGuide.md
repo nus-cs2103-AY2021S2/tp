@@ -21,17 +21,17 @@ has to offer. Read on to learn how to use them to digitise your wardrobe and use
 
 * [Quickstart](#quickstart)
 * [Features](#features)
-    + [Viewing Help: `help`](#viewing-help---help-)
-    + [Adding a Garment to the Wardrobe: `add`](#adding-a-garment-to-the-wardrobe---add-)
-    + [Listing all Garments in the Wardrobe: `list`](#listing-all-garments-in-the-wardrobe---list-)
-    + [Deleting a singular Garment in the Wardrobe: `delete`](#deleting-a-singular-garment-in-the-wardrobe---delete-)
-    + [Clearing all Garments in Wardrobe : `clear`](#clearing-all-garments-in-wardrobe----clear-)
-    + [Editing a singular Garment in Wardrobe: `edit`](#editing-a-singular-garment-in-wardrobe---edit-)
-    + [Finding Garments in Wardrobe by keywords: `find`](#finding-garments-in-wardrobe-by-keywords---find-)
-    + [Matching Garments to create an outfit: `match`<br>](#matching-garments-to-create-an-outfit---match--br-)
-    + [Checking out a Garment from the Wardrobe: `select`](#checking-out-a-garment-from-the-wardrobe---select-)
-    + [Viewing a valid outfit: `view`](#viewing-a-valid-outfit---view-)
-    + [Exiting the program: `exit`](#exiting-the-program---exit-)
+    + [Viewing Help: `help`](#help)
+    + [Adding a Garment to the Wardrobe: `add`](#add)
+    + [Listing all Garments in the Wardrobe: `list`](#list)
+    + [Deleting a singular Garment in the Wardrobe: `delete`](#delete)
+    + [Clearing all Garments in Wardrobe : `clear`](#clear)
+    + [Editing a singular Garment in Wardrobe: `edit`](#edit)
+    + [Finding Garments in Wardrobe by keywords: `find`](#find)
+    + [Matching Garments to create an outfit: `match`<br>](#match)
+    + [Checking out a Garment from the Wardrobe: `select`](#select)
+    + [Viewing a valid outfit: `view`](#view)
+    + [Exiting the program: `exit`](#exit)
     + [Saving the data](#saving-the-data)
     + [Editing the data file](#editing-the-data-file)
 * [FAQ](#faq)
@@ -93,7 +93,7 @@ has to offer. Read on to learn how to use them to digitise your wardrobe and use
 <br><br>
 </div>
 
-### Viewing Help: `help`
+### <a name="help"></a> Viewing Help: `help`
 Shows an in-app user guide to various commands.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/helpMessage.png" alt="alt text" width="790">
@@ -101,7 +101,7 @@ Shows an in-app user guide to various commands.<br>
 Format: `help`
 <br><br>
 
-### <a name="adding-a-garment-to-the-wardrobe---add-"></a> Adding a Garment to the Wardrobe: `add` 
+### <a name="add"></a> Adding a Garment to the Wardrobe: `add` 
 Adds a garment with a name, size, colour, dress code and type into the wardrobe, along with optional descriptions.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/AddGarment.png" alt="alt text" width="790">
@@ -121,7 +121,7 @@ Example:<br>
 * `add n/favourite t shirt s/30 c/blue r/casual t/upper`
   <br><br>
   
-### Listing all Garments in the Wardrobe: `list`  
+### <a name="list"></a> Listing all Garments in the Wardrobe: `list`  
 Shows a list of all garments in the wardrobe<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ListGarment.png" alt="alt text" width="790">
@@ -137,7 +137,7 @@ Format: `list`
 </div>
 <br><br>
 
-### Deleting a singular Garment in the Wardrobe: `delete`  
+### <a name="delete"></a> Deleting a singular Garment in the Wardrobe: `delete`  
 Removes a Garment, associated with the given index, from the wardrobe.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/DeleteGarment.png" alt="alt text" width="790">
@@ -157,7 +157,7 @@ Example:<br>
 Removes the 7th Garment in list of clothes currently shown.
 <br><br>
   
-### Clearing all Garments in Wardrobe : `clear`
+### <a name="clear"></a> Clearing all Garments in Wardrobe : `clear`
 Clears all existing garments in the wardrobe.
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ClearGarment.png" alt="alt text" width="790">
@@ -165,7 +165,7 @@ Clears all existing garments in the wardrobe.
 Format: `clear`
 <br><br>
 
-### Editing a singular Garment in Wardrobe: `edit`
+### <a name="edit"></a> Editing a singular Garment in Wardrobe: `edit`
 Edits an existing garment in the wardrobe.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/EditGarment.png" alt="alt text" width="790">
@@ -186,7 +186,7 @@ Example:
   Edits the colour and size of the 1st garment in the wardrobe to be red and 30 respectively.
   <br><br>
   
-### Finding Garments in Wardrobe by keywords: `find`
+### <a name="find"></a> Finding Garments in Wardrobe by keywords: `find`
 Finds all garments that matched specified keywords during search.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/FindGarmentA.png" alt="alt text" width="790">
@@ -216,7 +216,7 @@ Example:
   Returns all garments that are white and are either sized 36 or 23.
 <br><br>
  
-### Matching Garments to create an outfit: `match`<br>
+### <a name="match"></a> Matching Garments to create an outfit: `match`<br>
 Finds all articles of clothing that match the colour and dress code,
 but do not match the type(s) of a specified garment, or two specified
 garments of different types.<br>
@@ -240,7 +240,7 @@ Returns all the articles of clothing that match the colours and dress code of
   do not match their types.
 <br><br>
 
-### Checking out a Garment from the Wardrobe: `select`
+### <a name="select"></a> Checking out a Garment from the Wardrobe: `select`
 Select a garment to check out of the wardrobe, indicating that it shall be worn today.
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/SelectGarment.png" alt="alt text" width="790">
@@ -259,7 +259,7 @@ Example:
 Updates the Last Used date, and places this garment at the end of the list
 <br><br>
 
-### Viewing a valid outfit: `view`
+### <a name="view"></a> Viewing a valid outfit: `view`
 View a set of 3 garments associated with the given indexes that create an outfit.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ViewGarment.png" alt="alt text" width="790">
@@ -282,7 +282,7 @@ Example:
 <br><br>
   
 
-### Exiting the program: `exit`
+### <a name="exit"></a> Exiting the program: `exit`
 Exits the program.<br>
 Format: `exit`
 <br><br>
