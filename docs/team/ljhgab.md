@@ -96,7 +96,7 @@ Computing, National University of Singapore (NUS).
 * Managed release v1.3.1.
 
 #### Review/mentoring contributions
-* PR reviewed (28 Pull Requests):
+* PR reviewed:
 [#41](#https://github.com/AY2021S2-CS2103-W16-1/tp/pull/41)
   [#43](#https://github.com/AY2021S2-CS2103-W16-1/tp/pull/43)
   [#44](#https://github.com/AY2021S2-CS2103-W16-1/tp/pull/44)
@@ -124,6 +124,7 @@ Computing, National University of Singapore (NUS).
   [#327](#https://github.com/AY2021S2-CS2103-W16-1/tp/pull/327)
   [#330](#https://github.com/AY2021S2-CS2103-W16-1/tp/pull/330)
   [#340](#https://github.com/AY2021S2-CS2103-W16-1/tp/pull/340)
+  [#363](#https://github.com/AY2021S2-CS2103-W16-1/tp/pull/363)
   
 #### Contribution beyond the project team
   
