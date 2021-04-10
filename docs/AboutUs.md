@@ -48,7 +48,7 @@ zou.yuting[at]u.nus.edu
 <img src="images/winniehyx.png" width="200px">
 
 [[github](http://github.com/Winniehyx)]
-[[portfolio](team/Winniehyx.md)]
+[[portfolio](team/winniehyx.md)]
 
 * Role: Deliverables and deadlines
 
