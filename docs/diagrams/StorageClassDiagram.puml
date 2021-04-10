@@ -20,15 +20,15 @@ JsonUserPrefsStorage .left.|> UserPrefsStorage
 
 Class JsonAddressBookStorage
 JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBook
+JsonAddressBookStorage -down-> JsonSerializableAddressBook
 
 Class JsonSerializableAddressBook
-JsonSerializableAddressBook .left.> JsonAdaptedIssue
-JsonSerializableAddressBook .down.> JsonAdaptedRoom
-JsonSerializableAddressBook .down.> JsonAdaptedResident
-JsonSerializableAddressBook .down.> JsonAdaptedResidentRoom
-JsonSerializableAddressBook .right.> JsonAdaptedAlias
+JsonSerializableAddressBook -left-> JsonAdaptedIssue
+JsonSerializableAddressBook -down-> JsonAdaptedRoom
+JsonSerializableAddressBook -down-> JsonAdaptedResident
+JsonSerializableAddressBook -down-> JsonAdaptedResidentRoom
+JsonSerializableAddressBook -right-> JsonAdaptedAlias
 
-JsonAdaptedRoom .left.> JsonAdaptedTag
-JsonAdaptedIssue .down.> JsonAdaptedTag
+JsonAdaptedRoom -left-> JsonAdaptedTag
+JsonAdaptedIssue -down-> JsonAdaptedTag
 @enduml
