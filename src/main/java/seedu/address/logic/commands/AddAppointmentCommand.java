@@ -29,7 +29,7 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_CONTACT + "2 "
             + PREFIX_CHILD + "Alex";
 
-    public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New appointment added: \n%1$s";
 
     private final Appointment toAdd;
 
