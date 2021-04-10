@@ -25,7 +25,7 @@ public class AddEventCommandParserTest {
     }
 
     @Test
-    public void parse_missingField_failure() {
+    public void parse_missingValue_failure() {
         //missing event description
         String userInput1 = " " + PREFIX_GENERAL_EVENT + " " + PREFIX_DATE + VALID_GENERAL_EVENT_DATE_1;
         assertParseFailure(parser, userInput1, GeneralEvent.DESCRIPTION_CONSTRAINT);
@@ -36,6 +36,21 @@ public class AddEventCommandParserTest {
 
         //missing date
         String userInput3 = " " + PREFIX_GENERAL_EVENT + VALID_GENERAL_EVENT_DESCRIPTION_1 + " " + PREFIX_DATE + "  ";
+        assertParseFailure(parser, userInput3, GeneralEvent.DATE_CONSTRAINT);
+    }
+
+    @Test
+    public void parse_wrongValue_failure() {
+        //wrong values for date
+        String userInput1 = " " + PREFIX_GENERAL_EVENT + VALID_GENERAL_EVENT_DESCRIPTION_1 + " " + PREFIX_DATE + "hi";
+        assertParseFailure(parser, userInput1, GeneralEvent.DATE_CONSTRAINT);
+
+        String userInput2 = " " + PREFIX_GENERAL_EVENT + VALID_GENERAL_EVENT_DESCRIPTION_1 + " " + PREFIX_DATE
+                + "01/01/1998";
+        assertParseFailure(parser, userInput2, GeneralEvent.DATE_CONSTRAINT);
+
+        String userInput3 = " " + PREFIX_GENERAL_EVENT + VALID_GENERAL_EVENT_DESCRIPTION_1 + " " + PREFIX_DATE
+                + "1200";
         assertParseFailure(parser, userInput3, GeneralEvent.DATE_CONSTRAINT);
     }
 
