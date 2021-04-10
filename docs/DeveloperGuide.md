@@ -212,8 +212,7 @@ switched.
 
 The Streaks Dashboard shows the streaks maintained with each contact sorted in descending order. Refer to the UG Streaks section for more information.
 Each streak has to be calculated based on the recorded meetings of each person and today's date. This operation is costly and so we want to avoid recomputing this value
-as much as possible. Since streaks can be computed from the attributes of a person, they are not stored in the data file. The classes that are used to display the Streaks Dashboard
-is shown below.
+as much as possible. Since streaks can be computed from the attributes of a person, they are not stored in the data file. The classes that are used to display the Streaks Dashboard is shown below.
 
 ![StreaksDashboardClassDiagram](images/StreaksDashboardClassDiagram.png)
 
@@ -223,11 +222,12 @@ This section will detail the steps the program takes to calculate streaks of eve
 
 1. `AddressBook` receives a copy of the deserialized `AddressBook` data. It calls `setPersons` of `PersonStreaklist` with the persons found in the data.
 2. `PersonStreakList` will process this data and create a `PersonStreak` from each `Person`. A `PersonStreak` will bind a `Person` and his/her `Streak` together in a single class. 
-3. This is done by calling `PersonStreak#fromPerson()` which will use the `Streak#from()` to calculate the Streak from a Person.
-4. Once all the `PersonStreak` are created, they will be sent back to the `PersonStreakList` and put into an internal observable list, named `internalLst`. 
+3. This is done by calling `PersonStreak#fromPerson()` which will use the `Streak#from()` to create a `Streak` from a Person. The streak will be calculated upon creation of the `Streak` object.
+4. Once all the `PersonStreak` are created, they will be sent back to the `PersonStreakList` and put into an internal observable list, named `internalList`. 
 
-`internalLst` will contain all the `PersonStreak` objects that will be used to display the dashboard. It will be enclosed by a filtered list to show only `PersonStreak` that have an active goal set. 
-An active goal is any valid goal that is not `NONE`, refer to UG `set-goal` for more information. The filtered list will then be made unmodifiable before being exposed to UI components to consume.
+`internalList` will contain all the `PersonStreak` objects that will be used to display the dashboard. It will be enclosed by a filtered list to show only `PersonStreak` that have an active goal set. 
+An active goal is any valid goal that is not `NONE`, refer to UG `set-goal` [here](https://ay2021s2-cs2103t-w14-1.github.io/tp/UserGuide.html#setting-meeting-goal-set-goal) for more information.
+The filtered list will then be made unmodifiable before being exposed to UI components to consume.
 
 The sequence diagram below depicts the execution path when the program is initialized.
 

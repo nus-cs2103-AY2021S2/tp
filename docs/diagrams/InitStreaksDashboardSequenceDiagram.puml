@@ -6,9 +6,9 @@ autoactivate on
 box Model MODEL_COLOR_T1
 participant ":AddressBook" as AddressBook MODEL_COLOR
 participant ":PersonStreakList" as PersonStreakList MODEL_COLOR
-participant ":PersonStreak" as PersonStreak MODEL_COLOR
+participant ":PersonStreak" as PersonStreak <<class>> MODEL_COLOR
 participant ":Person" as Person MODEL_COLOR
-participant ":Streak" as Streak MODEL_COLOR
+participant ":Streak" as Streak <<class>> MODEL_COLOR
 end box
 
 [-> AddressBook : setPersons(persons)
@@ -16,20 +16,18 @@ end box
 AddressBook -> PersonStreakList : setPersons(persons)
 
 loop persons.size()
-    create PersonStreak
     PersonStreakList -> PersonStreak : fromPerson(p)
-
-    PersonStreak -> Person : getMeetings()
-    Person --> PersonStreak
 
     PersonStreak -> Person : getGoal()
     Person --> PersonStreak
 
-    create Streak
-    PersonStreak -> Streak : from(meetings, goal)
-    Streak --> PersonStreak
+    PersonStreak -> Person : getMeetings()
+    Person --> PersonStreak
 
-    PersonStreak --> PersonStreakList
+    PersonStreak -> Streak : from(goal, meetings)
+    Streak --> PersonStreak : streak
+
+    PersonStreak --> PersonStreakList : personStreak
 end
 
 PersonStreakList --> AddressBook : view of PersonStreakList
