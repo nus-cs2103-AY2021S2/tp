@@ -220,7 +220,8 @@ The above mentioned Parser class inherits from the `#parse method` from the Pars
   If the arguments are valid, it creates a DeleteTaskCommand instance.
 
 Subsequently, the created `DeleteTaskCommand` object contains an `#execute` method which 
-is responsible for deleting the given Task with respect to the index. 
+is responsible for deleting the given Task with respect to the index. This is achieved by calling on
+`Model#deleteTask` with the task to be deleted where the task will be removed from the list. 
 
 Below is the usage scenario of how delete task mechanism behaves.
 
