@@ -4,6 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam defaultFontSize 30
 skinparam classBackgroundColor UI_COLOR
+skinparam noteFontSize 24
 
 package UI <<Rectangle>>{
 Interface Ui <<Interface>>
@@ -24,6 +25,8 @@ Class TodayDeadlineCard
 Class TodayEventCard
 Class StatusBarFooter
 Class CommandBox
+
+note "For clarity, we have omitted\nshowing how the different parts\nof the UI inherit from the **UiPart**\nabstract class." as Note
 }
 
 package Model <<Rectangle>> {
@@ -68,11 +71,9 @@ TodayEventCard .down...> Model
 UiManager -down--> Logic
 MainWindow -down--> Logic
 
-'CommandBox -[hidden]down- HelpPanel
-'HelpPanel -[hidden]down- ResultDisplay
-'ResultDisplay -[hidden]down- StatusBarFooter
 Ui -[hidden]right--- Model
 Ui -[hidden]up--- HiddenOutside
 Ui -[hidden]up Logic
+UI -[hidden]left Note
 
 @enduml
