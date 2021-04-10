@@ -36,9 +36,6 @@ import dog.pawbook.testutil.DogBuilder;
 import dog.pawbook.testutil.EditDogDescriptorBuilder;
 import javafx.util.Pair;
 
-
-
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditDogCommand.
  */
@@ -100,28 +97,20 @@ public class EditDogCommandTest {
         expectedModel.setEntity(ID_TWO, editedDog);
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_TWO));
 
-
-        Owner toEditOwner = (Owner) model.getEntity(ID_ONE);
-        Set<Integer> newDogIdSet = new HashSet<>(toEditOwner.getDogIdSet());
-        newDogIdSet.remove(ID_TWO);
-        model.setEntity(ID_ONE, new Owner(toEditOwner.getName(), toEditOwner.getPhone(), toEditOwner.getEmail(),
-                toEditOwner.getAddress(), toEditOwner.getTags(), newDogIdSet));
-
-
         int originalOwnerId = toEditDog.getOwnerId();
         int editedOwnerId = editedDog.getOwnerId();
 
-        if (!model.hasEntity(editedOwnerId)) {
+        if (!expectedModel.hasEntity(editedOwnerId)) {
             throw new CommandException(Messages.MESSAGE_INVALID_OWNER_ID);
         }
-        Entity entity = model.getEntity(editedOwnerId);
+        Entity entity = expectedModel.getEntity(editedOwnerId);
         if (!(entity instanceof Owner)) {
             throw new CommandException(Messages.MESSAGE_INVALID_OWNER_ID);
         }
         Owner newOwner = (Owner) entity;
 
         // delete the ID of the dog from the owner first
-        disconnectFromOwner(model, originalOwnerId, ID_TWO);
+        disconnectFromOwner(expectedModel, originalOwnerId, ID_TWO);
 
         // transfer to the new owner
         Set<Integer> editedDogIdSet = new HashSet<>(newOwner.getDogIdSet());
@@ -129,8 +118,8 @@ public class EditDogCommandTest {
 
         Owner editedOwner = new Owner(newOwner.getName(), newOwner.getPhone(), newOwner.getEmail(),
                 newOwner.getAddress(), newOwner.getTags(), editedDogIdSet);
-        model.setEntity(editedOwnerId, editedOwner);
-
+        expectedModel.setEntity(editedOwnerId, editedOwner);
+        
         assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
     }
 
