@@ -1,7 +1,6 @@
 package seedu.smartlib.model.record;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.smartlib.testutil.Assert.assertThrows;
 import static seedu.smartlib.testutil.TypicalModels.RECORD_A;
 
@@ -10,7 +9,6 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
 import seedu.smartlib.commons.core.name.Name;
-import seedu.smartlib.model.book.Barcode;
 
 public class IncompleteRecordTest {
 
@@ -49,15 +47,6 @@ public class IncompleteRecordTest {
                         RECORD_A.getBookBarcode(),
                         new DateReturned((LocalDateTime) null)
                 ));
-    }
-
-    @Test
-    public void getBookBarcode() {
-        IncompleteRecord incompleteRecord = new IncompleteRecord(
-                RECORD_A.getBookBarcode(),
-                new DateReturned(LocalDateTime.now())
-        );
-        assertEquals(new Barcode(Barcode.MAX_VALUE), incompleteRecord.getBookBarcode());
     }
 
 }

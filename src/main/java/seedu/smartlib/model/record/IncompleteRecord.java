@@ -31,31 +31,4 @@ public class IncompleteRecord extends Record {
         super(Book.TEMP_BOOKNAME, barcode, Reader.TEMP_READERNAME, dateReturned);
     }
 
-    /**
-     * Returns the book name associated with this incomplete borrow record.
-     *
-     * @return the book name associated with this incomplete borrow record.
-     */
-    public Name getBookName() {
-        return this.bookName;
-    }
-
-    /**
-     * Returns the reader name associated with this incomplete borrow record.
-     *
-     * @return the reader name associated with this incomplete borrow record.
-     */
-    public Name getReaderName() {
-        return this.readerName;
-    }
-
-    /**
-     * Returns the barcode associated with this incomplete return record.
-     *
-     * @return the barcode associated with this incomplete return record.
-     */
-    public Barcode getBookBarcode() {
-        return this.barcode;
-    }
-
 }
