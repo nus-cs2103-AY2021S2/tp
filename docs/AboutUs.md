@@ -54,7 +54,7 @@ You can reach us at the email `jjimy@comp.nus.edu.sg`
 <img src="images/sharptail.png" width="200px">
 
 [[github](http://github.com/Sharptail)]
-[[portfolio](team/Sharptail.md)]
+[[portfolio](team/sharptail.md)]
 
 * Role: Code Quality
 * Responsibility: GUI and Parsers
