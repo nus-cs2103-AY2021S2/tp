@@ -8,7 +8,7 @@ Participant ":CommandHistory" as cmdHist MODEL_COLOR
 -[UI_COLOR]> logic : execute("help")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> logic : parseAndExecute("help")
+logic -[LOGIC_COLOR]> logic : parse and execute("help")
 activate logic LOGIC_COLOR
 
 logic -[LOGIC_COLOR]-> logic
