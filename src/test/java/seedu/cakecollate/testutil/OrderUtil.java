@@ -8,6 +8,7 @@ import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ORDER_DESCRIPTION;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Map;
 import java.util.Set;
 
 import seedu.cakecollate.logic.commands.AddCommand;
@@ -37,11 +38,19 @@ public class OrderUtil {
         sb.append(PREFIX_PHONE + order.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + order.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + order.getAddress().value + " ");
-        order.getOrderDescriptions().stream().forEach(
-            s -> sb.append(PREFIX_ORDER_DESCRIPTION + s.value + " "));
+
+        // for each order description in map, for quantity number of times, add order description to command string
+        for (Map.Entry<OrderDescription, Integer> entry : order.getOrderDescriptions().entrySet()) {
+            OrderDescription o = entry.getKey();
+            for (int i = 0; i < entry.getValue(); i++) {
+                sb.append(PREFIX_ORDER_DESCRIPTION + o.value + " ");
+            }
+        }
+
         order.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+
         sb.append(PREFIX_DATE + order.getDeliveryDate().toString() + " ");
         return sb.toString();
     }
@@ -57,13 +66,17 @@ public class OrderUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
 
         if (descriptor.getOrderDescriptions().isPresent()) {
-            Set<OrderDescription> orderDescriptionSet = descriptor.getOrderDescriptions().get();
-            if (orderDescriptionSet.isEmpty()) {
+            Map<OrderDescription, Integer> orderDescriptionMap = descriptor.getOrderDescriptions().get();
+            if (orderDescriptionMap.isEmpty()) {
                 sb.append(PREFIX_ORDER_DESCRIPTION);
             } else {
-                orderDescriptionSet.forEach(
-                    orderDescription -> sb.append(PREFIX_ORDER_DESCRIPTION)
-                            .append(orderDescription.value).append(" "));
+                // for each order description in map, for quantity times, add order description to command string
+                for (Map.Entry<OrderDescription, Integer> entry : orderDescriptionMap.entrySet()) {
+                    OrderDescription o = entry.getKey();
+                    for (int i = 0; i < entry.getValue(); i++) {
+                        sb.append(PREFIX_ORDER_DESCRIPTION + o.value + " ");
+                    }
+                }
             }
         }
 

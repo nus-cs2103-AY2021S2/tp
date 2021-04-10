@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import seedu.cakecollate.commons.core.Messages;
@@ -182,16 +184,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> orderDescriptions} into a {@code Set<OrderDescription>}.
+     * Parses {@code Collection<String> orderDescriptions} into a {@code Map<OrderDescription, Integer>}.
      */
-    public static Set<OrderDescription> parseOrderDescriptions(Collection<String> orderDescriptions)
+    public static Map<OrderDescription, Integer> parseOrderDescriptions(Collection<String> orderDescriptions)
             throws ParseException {
         requireNonNull(orderDescriptions);
-        final Set<OrderDescription> orderDescriptionSet = new HashSet<>();
-        for (String o : orderDescriptions) {
-            orderDescriptionSet.add(parseOrderDescription(o));
+        final Map<OrderDescription, Integer> orderDescriptionMap = new HashMap<>();
+        for (String str : orderDescriptions) {
+            OrderDescription od = parseOrderDescription(str);
+            int quantity = orderDescriptionMap.getOrDefault(od, 0);
+            orderDescriptionMap.put(od, quantity + 1);
         }
-        return orderDescriptionSet;
+        return orderDescriptionMap;
     }
 
     /**

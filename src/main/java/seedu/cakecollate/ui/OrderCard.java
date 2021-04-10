@@ -1,13 +1,16 @@
 package seedu.cakecollate.ui;
 
 import java.util.Comparator;
+import java.util.Map;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.cakecollate.model.order.Order;
+import seedu.cakecollate.model.order.OrderDescription;
 
 /**
  * An UI component that displays information of a {@code Order}.
@@ -60,9 +63,14 @@ public class OrderCard extends UiPart<Region> {
         phone.setText(order.getPhone().value);
         address.setText(order.getAddress().value);
         email.setText(order.getEmail().value);
-        order.getOrderDescriptions().stream()
+
+        // this map maps order descriptions to quantities entered in order
+        Map<OrderDescription, Integer> orderDescriptionMap = order.getOrderDescriptions(); /*.stream()*/
+        orderDescriptionMap.keySet().stream()
                 .sorted(Comparator.comparing(orderDescription -> orderDescription.value))
-                .forEach(orderDescription -> orderDescriptions.getChildren().add(new Label(orderDescription.value)));
+                .forEach(orderDescription -> orderDescriptions
+                        .getChildren()
+                        .add(createOrderDescLabel(orderDescription, orderDescriptionMap.get(orderDescription))));
         order.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -70,6 +78,10 @@ public class OrderCard extends UiPart<Region> {
         deliveryStatus.setText(order.getDeliveryStatus().toString());
         request.setText(order.getRequest().toString());
         setDeliveryStatusStyle();
+    }
+
+    private Node createOrderDescLabel(OrderDescription orderDescription, int quantity) {
+        return new Label(String.format("%d x %s", quantity, orderDescription.value));
     }
 
     public void setDeliveryStatusStyle() {
