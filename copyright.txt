@@ -1,7 +1,7 @@
 ﻿Some code adapted from http://code.makery.ch/library/javafx-8-tutorial/ by Marco Jakob
 
 Copyright by freepik - https://www.flaticon.com/authors/freepik
-- EZManage_icon.png
+- EzManage_icon.png
 
 Copyright by Jan Jan Kovařík - http://glyphicons.com/
 - calendar.png

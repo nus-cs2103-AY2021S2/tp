@@ -292,7 +292,7 @@ While the changes to code may be minimal, the test data will have to be updated 
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: You must delete EZManage’s storage file located at `/data/persons.json` and `/data/session.json` before running it! Not doing so will cause EzManage to default to an empty address book!
+:exclamation: You must delete EzManage’s storage file located at `/data/persons.json` and `/data/session.json` before running it! Not doing so will cause EzManage to default to an empty address book!
 
 </div>
 
