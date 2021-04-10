@@ -13,8 +13,6 @@ import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
 import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_SECOND_EVENT;
 
-import java.util.Optional;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -48,9 +46,10 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new UserPrefs(), model.getEventBook());
 
-        Optional<Event> optFirstEvent = model.getEventByIdentifier(IDENTIFIER_FIRST_EVENT.getValue());
-        assertTrue(optFirstEvent.isPresent());
-        Event firstEvent = optFirstEvent.get();
+        //Optional<Event> optFirstEvent = model.getEventByIdentifier(IDENTIFIER_FIRST_EVENT.getValue());
+        //assertTrue(optFirstEvent.isPresent());
+        //Event firstEvent = optFirstEvent.get();
+        Event firstEvent = model.getEventBook().getEventList().get(IDENTIFIER_FIRST_EVENT.getZeroBased());
         expectedModel.setEvent(firstEvent, editedEvent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -61,9 +60,10 @@ public class EditCommandTest {
         model = new ModelManager(new UserPrefs(), getTypicalEventBook());
 
         Identifier lastEventIdentifier = Identifier.fromIdentifier(model.getFilteredEventList().size());
-        Optional<Event> optLastEvent = model.getEventByIdentifier(lastEventIdentifier.getValue());
-        assertTrue(optLastEvent.isPresent());
-        Event lastEvent = optLastEvent.get();
+        //Optional<Event> optLastEvent = model.getEventByIdentifier(lastEventIdentifier.getValue());
+        //assertTrue(optLastEvent.isPresent());
+        //Event lastEvent = optLastEvent.get();
+        Event lastEvent = model.getEventBook().getEventList().get(lastEventIdentifier.getZeroBased());
 
         EventBuilder eventInBook = new EventBuilder(lastEvent);
         Event editedEvent = eventInBook.withName(VALID_NAME_CS2100)
@@ -85,9 +85,10 @@ public class EditCommandTest {
     public void execute_duplicateEvent_failure() {
         model = new ModelManager(new UserPrefs(), getTypicalEventBook());
 
-        Optional<Event> optFirstEvent = model.getEventByIdentifier(IDENTIFIER_FIRST_EVENT.getValue());
-        assertTrue(optFirstEvent.isPresent());
-        Event firstEvent = optFirstEvent.get();
+        //Optional<Event> optFirstEvent = model.getEventByIdentifier(IDENTIFIER_FIRST_EVENT.getValue());
+        //assertTrue(optFirstEvent.isPresent());
+        //Event firstEvent = optFirstEvent.get();
+        Event firstEvent = model.getEventBook().getEventList().get(IDENTIFIER_FIRST_EVENT.getZeroBased());
 
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder(firstEvent).build();
         EditCommand editCommand = new EditCommand(IDENTIFIER_SECOND_EVENT, descriptor);
