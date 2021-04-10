@@ -310,6 +310,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | student                                    | tag tasks                                     | filter through my tasks easily and focus on the similar ones with the same tags   |
 | `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task                                         |
 | `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task     
+| `*`      | user with many tasks in the module book    | search for tasks by their name                | find the task quickly from the large list
+| `*`      | user with many tasks in the module book    | search for tasks by module code               | list down all the tasks from the same module clearly
 | `*`      | user with many tasks in the module book    | sort the tasks by deadline                    | see which tasks need to be addressed as soon as possible
 | `*`      | user with many tasks in the module book    | sort the tasks by workload                    | see which tasks require more effort to complete
 | `*`      | busy student                               | view workload count for each module           | decide which module requires more effort
