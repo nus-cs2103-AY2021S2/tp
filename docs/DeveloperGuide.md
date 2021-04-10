@@ -6,10 +6,17 @@ title: Developer Guide
 RemindMe Developer Guide
 ---
 RemindMe is a reminder application that features a combination of a list and a calendar. RemindMe makes use of both 
-Graphical User Interface(GUI) and Command Line Input(CLI). The target users for RemindMe are National University of 
-Singapore(NUS) School of Computing (SOC) students. SOC students can enjoy the benefits of CLI and GUI, which is not 
-common in reminder applications in the current market. Users can use RemindMe to store their modules, assignments, exams, 
-contacts and general events. RemindMe aims to reorganise students' hectic lives and solve specific needs of SOC students.
+Graphical User Interface(GUI) and Command Line Input(CLI). 
+
+The target users for RemindMe are National University of Singapore(NUS) School of Computing (SOC) students. SOC students
+can enjoy the benefits of CLI and GUI, which is not common in reminder applications in the current market. Users can use
+RemindMe to store their modules, assignments, exams, contacts and general events. RemindMe aims to reorganise students' 
+hectic lives and solve specific needs of SOC students.
+
+The main audience for the RemindMe's developer guide are future developers who wanted to further understand RemindMe's 
+inner workings. The developer guide explains the overall structure of RemindMe and the general workflow of RemindMe.
+The developer guide also explains how specific implementations work, specifically add, find, delete, edit, and calendar.
+The developer guide describes the team's motive for creating RemindMe, and the user stories used when creating RemindMe.
 
 <div style="page-break-after: always;"></div>
 
@@ -17,15 +24,30 @@ contacts and general events. RemindMe aims to reorganise students' hectic lives 
 
 * **[1. Setting up, getting started](#1-setting-up-getting-started)**
 * **[2. Design](#2-design)**
+    * **[2.1 Architecture](#2.1-architecture)**
+    * **[2.2 UI component](#2.2-UI-component)**
+    * **[2.3 Logic component](#2.3-Logic-component)**
+    * **[2.4 Model component](#2.4-Model-component)**
+    * **[2.5 Storage component](#2.5-Storage-component)**
+    * **[2.6 Common classes](#2.6-Common-classes)**
 * **[3. Implementation](#3-implementation)**
     * **[3.1 Add feature](#31-add-feature)**
     * **[3.2 Find feature](#32-find-feature)**
     * **[3.3 Delete assignment](#33-delete-assignment)**
     * **[3.4 Edit assignment](#34-edit-assignment)**
     * **[3.5 Calendar feature](#35-calendar-feature)**
-* **[Documentation, logging, testing and dev-ops](#4-documentation-logging-testing-configuration-dev-ops)**
+* **[4. Documentation, logging, testing and dev-ops](#4-documentation-logging-testing-configuration-dev-ops)**
+* **[5. Effort](#5-effort)**
 * **[Appendix-requirements](#appendix-requirements)**
+    * **[Product scope](#Product-scope)**
+    * **[User stories](#User-stories)**
+    * **[Use cases](#Use cases)**
+    * **[Non Functional Requirements](#Non-functional-Requirements)**
+    * **[Glossary](#Glossary)**
 * **[Appendix-instructions-for-manual-testing](#appendix-instructions-for-manual-testing)**
+    * **[Launch](#Launch)**
+    * **[Testing commands](#Testing-commands)**
+    * **[Saving data](#saving-data)**
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -67,7 +89,7 @@ The rest of the App consists of four components.
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class, which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
@@ -131,7 +153,7 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The details of `Module`, `Assignment`, `Exam`, `Person` and `GeneralEvent` are ommited for greater readability of the diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The details of `Module`, `Assignment`, `Exam`, `Person` and `GeneralEvent` are omitted for greater readability of the diagram.
 
 </div>
 
@@ -155,13 +177,19 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 ## **3. Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features are implemented. <br>
+The features are:
+* **[Add Feature](#31-add-feature)**
+* **[Find Feature](#32-find-feature)**
+* **[Delete Feature](#33-delete-feature)**
+* **[Edit Feature](#34-edit-feature)**
+* **[Calendar Feature](#35-calendar-feature)**
 
-### 3.1 Add feature
+### 3.1 Add Feature
 
 #### Implementation
 
-The proposed add implementation is facilitated by `ModelManager`, which extends `Model`. `ModelManager` contains FilteredList of each entities:
+The proposed add implementation is facilitated by `ModelManager`, which extends `Model`. `ModelManager` contains FilteredList of each entity:
 * Persons
 * Modules
 * General Events
@@ -219,11 +247,13 @@ The following sequence diagram shows how the find operation works:
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
 
-### 3.2 Find feature
+### 3.2 Find Feature
+
+This section shows how find feature is implemented in RemindMe. It will describe the logic flow of RemindMe step by step. 
 
 #### Implementation
 
-The proposed find implementation is facilitated by `ModelManager`, which extends `Model`. `ModelManager` contains FilteredList of each entities:
+The proposed find implementation is facilitated by `ModelManager`, which extends `Model`. `ModelManager` contains FilteredList of each entity:
 * Persons
 * Modules
 * General Events
@@ -295,7 +325,7 @@ The following activity diagram summarizes what happens when a user executes a `f
 <br>
 <br>
 
-### 3.3 Delete Assignment
+### 3.3 Delete Feature
 
 #### Implementation
 RemindMe is able to delete an existing `Assignment` in an existing `Module`
@@ -356,7 +386,7 @@ The following activity diagram summarises the general workflow for the Delete Co
 ![DeleteFeatureActivityDiagram](images/DeleteFeatureActivityDiagram.png)  
 
 
-### 3.4 Edit Assignment
+### 3.4 Edit Feature
 
 #### Implementation
 RemindMe is capable of editing an existing `assignment`. 
@@ -400,7 +430,7 @@ date and return it back to `LogicManager`.
 
 **Step 5:** `LogicManager` calls the `EditAssignmentCommand#execute(Model)` method 
 which then verifies whether the target module and assignment exists and whether
- the edited content is valid, eg. same content.
+ the edited content is valid, e.g. same content.
 <br>
 <br>
 
@@ -438,7 +468,7 @@ The following activity diagram summarises the general workflow for the Edit Comm
 ![EditFeatureActivityDiagram](images/EditFeatureActivityDiagram.png)
 
 
-### 3.5 Calendar feature
+### 3.5 Calendar Feature
 
 #### Implementation
 
@@ -507,6 +537,25 @@ as a pop-up window for you.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **5. Effort**
+
+RemindMe is an enhancement on Addressbook 3(AB3). While AB3 only stores and mutate persons, RemindMe deals with Modules, 
+Contacts, General Events, Assignments, Birthday and Exams. Assignments and Exams are directly related to Modules, where Modules have
+Assignments and Exams. 
+
+As RemindMe deals with multiple entity types, the parsers for RemindMe needs to parse new and different entries and inputs. 
+RemindMe also needs new ways to store and display the entries, ensuring that RemindMe still maintains a fresh and clear 
+GUI, compared to AB3.
+
+Birthday has a date while Assignment, Exam, and General Event contain a date time. RemindMe makes use of the date time 
+to show a reminder when RemindMe starts up. Therefore, RemindMe has to be able to parse date and time into the respective 
+entities and ensure they are of the right format. 
+
+Moreover, RemindMe has a calendar which is able to differentiate all entries in RemindMe based on the dates and time.
+Assignments in Modules has a checkbox to indicate whether an assignment is done or not. This adds a new logic into RemindMe, 
+compared to AB3, and additional GUI. 
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
 
@@ -563,7 +612,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `RemindMe` and the **Actor** is the `user`, unless specified otherwise)
 
-### Use Case: `UC01` - view help
+Use Cases:<br>
+* **[Use Case 1: View Help](#Use-Case-1:-view-help)**
+* **[Use Case 2: Exit](#Use-Case-2:-exit)**
+* **[Use Case 3: Add Module](#Use-Case-3:-add-module)**
+* **[Use Case 4: Add Assignment](#Use-Case-4:-add-assignment)**
+* **[Use Case 5: Add Exam](#Use-Case-5:-add-exam)**
+* **[Use Case 6: Add Person and Birthday](#Use-Case-6:-Add-Person-and-Birthday)**
+* **[Use Case 7: Add General Events](#Use-Case-7:-add-general-events)**
+* **[Use Case 8: Edit Module](#Use-Case-8:-edit-module)**
+* **[Use Case 9: Edit Assignment](#Use-Case-9:-edit-assignment)**
+* **[Use Case 10: Edit Exam](#Use-Case-10:-edit-exam)**
+* **[Use Case 11: Edit Person](#Use-Case-11:-edit-person)**
+* **[Use Case 12: Edit General Event](#Use-Case-12:-edit-general-event)**
+* **[Use Case 13: Delete Module](#Use-Case-13:-delete-module)**
+* **[Use Case 14: Delete Assignment](#Use-Case-14:-delete-assignment)**
+* **[Use Case 15: Delete Exam](#Use-Case-15:-delete-exam)**
+* **[Use Case 16: Delete Person](#Use-Case-16:-delete-person)**
+* **[Use Case 17: Delete General Event](#Use-Case-17:-delete-general-event)**
+* **[Use Case 18: Find Module](#Use-Case-18:-find-module)**
+* **[Use Case 19: Find Person](#Use-Case-19:-find-person)**
+* **[Use Case 20: Find General Event](#Use-Case-20:-find-general-event)**
+* **[Use Case 21: List](#Use-Case-21:-list)**
+* **[Use Case 22: Mark Assignment as Done](#Use-Case-22:-Mark-Assignment-as-Done)**
+* **[Use Case 23: Clear App](#Use-Case-23:-clear-app)**
+* **[Use Case 24: Clear Modules](#Use-Case-24:-clear-modules)**
+* **[Use Case 25: Clear Contacts](#Use-Case-25:-clear-contacts)**
+* **[Use Case 26: Clear Events](#Use-Case-26:-clear-events)**
+* **[Use Case 27: View Calendar](#Use-Case-27:-View-Calendar)**
+* **[Use Case 28: Reminder](#Use-Case-28:-Reminder)**
+
+### Use Case 1: View Help
 
 **MSS:**
 
@@ -577,7 +656,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System display error message.
       <br> Use case ends.
       
-### Use Case: `UC02` - exit
+### Use Case 2: Exit
 
 **MSS:**
 
@@ -591,7 +670,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System display error message.
       <br> Use case ends.
       
-### Use Case: `UC03` - add module
+### Use Case 3: Add Module
 
 **MSS:**
 
@@ -609,7 +688,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     <br> Use case ends.      
 
 
-### Use Case: `UC04` - add assignment
+### Use Case 4: Add Assignment
 
 **MSS:**
 
@@ -629,7 +708,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. System display duplicate assignment error message.
     <br> Use case ends.
     
-### Use Case: `UC05` - add exam
+### Use Case 5: Add Exam
 
 **MSS:**
 
@@ -642,14 +721,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends.
-* 1b. System detects that module for exam is not present in the system.
+* 1b. System detects that module for the exam is not present in the system.
     * 1b1. System display module missing error message.
     <br> Use case ends.
 * 1c. System detects that exam is present in the module.
     * 1c1. System display duplicate exam error message.
     <br> Use case ends.
 
-## Use Case: `UC06` - add person and birthday
+### Use Case 6: Add Person and Birthday
 
 **MSS:**
 
@@ -666,12 +745,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. System display duplicate person error message.
     <br> Use case ends.      
 
-### Use Case: `UC07` - add general events
+### Use Case 7: Add General Events
 
 **MSS:**
 
 1. User enters command to add a general event.
-2. System adds general event and displays general event info.
+2. System adds the general event and displays general event info.
 <br> Use case ends.
    
 **Extensions:**
@@ -683,7 +762,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. System display duplicate event error message.
     <br> Use case ends. 
 
-### Use Case: `UC08` - edit module
+### Use Case 8: Edit Module
 
 **MSS:**
 
@@ -696,11 +775,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends.
-* 1b. System detects index in command to locate module is invalid.
+* 1b. System detects index in command to locate the module is invalid.
     * 1b1. System display module missing/invalid input error message.
     <br> Use case ends. 
  
-### Use Case: `UC09` - edit assignment
+### Use Case 9: Edit Assignment
 
 **MSS:**
 
@@ -717,7 +796,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. System display assignment missing/invalid input error message.
     <br> Use case ends. 
         
-### Use Case: `UC10` - edit exam
+### Use Case 10: Edit Exam
 
 **MSS:**
 
@@ -730,11 +809,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends.
-* 1b. System detects index in command to locate exam is invalid.
+* 1b. System detects index in command to locate the exam is invalid.
     * 1b1. System display exam missing/invalid input error message.
     <br> Use case ends.      
     
-### Use Case: `UC11` - edit person
+### Use Case 11: Edit Person
 
 **MSS:**
 
@@ -747,16 +826,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends.
-* 1b. System detects index in command to locate person is invalid.
+* 1b. System detects index in command to locate the person is invalid.
     * 1b1. System display person missing error message.
     <br> Use case ends.      
 
-### Use Case: `UC12` - edit general event
+### Use Case 12: Edit General Event
 
 **MSS:**
 
 1. User enters command to edit a general event.
-2. System edits general event and displays edited event info.
+2. System edits the general event and displays edited event info.
 <br> Use case ends.
    
 **Extensions:**
@@ -764,11 +843,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends. 
-* 1b. System detects index in command to locate event is invalid.
+* 1b. System detects index in command to locate the event is invalid.
     * 1b1. System display event missing/invalid input error message.
     <br> Use case ends.
 
-### Use Case: `UC13` - delete module
+### Use Case 13: Delete Module
 
 **MSS:**
 
@@ -782,7 +861,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System display formatting error message.
         <br> Use case ends.
 
-### Use Case: `UC14` - delete assignment
+### Use Case 14: Delete Assignment
 
 **MSS:**
 
@@ -799,7 +878,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. System display assignment missing/invalid input error message.
     <br> Use case ends. 
         
-### Use Case: `UC15` - delete exam
+### Use Case 15: Delete Exam
 
 **MSS:**
 
@@ -812,11 +891,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends.
-* 1b. System detects index in command to locate exam is invalid.
+* 1b. System detects index in command to locate the exam is invalid.
     * 1b1. System display exam missing/invalid input error message.
     <br> Use case ends.      
     
-### Use Case: `UC16` - delete person
+### Use Case 16: Delete Person
 
 **MSS:**
 
@@ -829,16 +908,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends. 
-* 1b. System detects index in command to locate person is invalid.
+* 1b. System detects index in command to locate the person is invalid.
     * 1b1. System display person missing/invalid input error message.
     <br> Use case ends.    
 
-### Use Case: `UC17` - delete general event
+### Use Case 17: Delete General Event
 
 **MSS:**
 
 1. User enters command to delete a general event.
-2. System deletes general event and displays deleted event info.
+2. System deletes the general event and displays deleted event info.
 <br> Use case ends.
    
 **Extensions:**
@@ -846,11 +925,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. System detects formatting error in command.
     * 1a1. System display formatting error message.
         <br> Use case ends. 
-* 1b. System detects index in command to locate event is invalid.
+* 1b. System detects index in command to locate the event is invalid.
     * 1b1. System display event missing/invalid input error message.
     <br> Use case ends.
 
-### Use Case: `UC18` - find module
+### Use Case 18: Find Module
 
 **MSS:**
 
@@ -864,7 +943,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System display formatting error message.
         <br> Use case ends.
  
-### Use Case: `UC19` - find person
+### Use Case 19: Find Person
 
 **MSS:**
 
@@ -878,12 +957,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
  * 1a1. System display formatting error message.
      <br> Use case ends.
  
-### Use Case: `UC20` - find general event
+### Use Case 20: Find General Event
 
 **MSS:**
 
-1. User enters command to find a general event with keyword.
-2. System display general event found by the keyword.
+1. User enters command to find a general event with the user's keywords.
+2. System display the general event found by the keyword.
 <br> Use case ends.
  
 **Extensions:**
@@ -892,12 +971,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1. System display formatting error message.
       <br> Use case ends.    
 
-### Use Case: `UC21` - list
+### Use Case 21: List
 
 **MSS:**
 
 1. User enters list command.
-2. System display full list for module, person and events.
+2. System display full list for modules, persons and events.
 <br> Use case ends.
  
 **Extensions:**
@@ -906,7 +985,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1. System display formatting error message.
       <br> Use case ends.    
 
-### Use Case: `UC22` - mark assignment as done
+### Use Case 22: Mark Assignment as Done
 
 **MSS:**
 
@@ -923,7 +1002,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. System display assignment missing/invalid input error message.
     <br> Use case ends.
 
-### Use Case: `UC23` - clear App
+### Use Case 23: Clear App
 
 **MSS:**
 
@@ -937,7 +1016,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System display formatting error message.
         <br> Use case ends.
 
-### Use Case: `UC24` - clear modules
+### Use Case 24: Clear Modules
 
 **MSS:**
 
@@ -951,7 +1030,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System display formatting error message.
         <br> Use case ends.
  
-### Use Case: `UC25` - clear contacts
+### Use Case 25: Clear Contacts
 
 **MSS:**
 
@@ -965,7 +1044,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System display formatting error message.
         <br> Use case ends.
 
-### Use Case: `UC26` - clear events
+### Use Case 26: Clear Events
 
 **MSS:**
 
@@ -979,7 +1058,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System display formatting error message.
         <br> Use case ends.
 
-### Use Case: `UC27` - view calendar
+### Use Case 27: View Calendar
 
 **MSS:**
 
@@ -993,25 +1072,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System display error message.
       <br> Use case ends.
  
-### Use Case: `UC28` - reminder
+### Use Case 28: Reminder
 
 **MSS:**
 
 1. User starts the system.
 2. System shows upcoming events as a reminder.
    <br> Use case ends.
-      
-*{More to be added}*
 
-### Non-Functional Requirements
+### Non Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons and tasks without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  RemindMe should be able to respond within one seconds.
 5.  RemindMe should be usable by novice who has no prior experience with coding.
-
-*{More to be added}*
 
 ### Glossary
 
@@ -1023,6 +1098,10 @@ Term | Meaning
 **Event** | Consists of a start time and date which it occurs on.
 **Assignment** | Consists of a deadline under a relevant module.
 **GUI** | Graphic User Interface, the visible interface the user sees for the application.
+**FilteredList** | List of entries that can take a predicate and show entries that is tested true by the predicated.
+**Tokenize** | Splits the user's inputs based on the prefixes for RemindMe.
+**Prefix** | Prefixes used by RemindMe to parse user's input. <br>Prefixes used by RemindMe are `m/`, `a/`, `e/`, `n/`, `b/`, `g/`, `by/` and `on/`.
+**Preamble** | Text before the first prefix 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1041,7 +1120,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the latest [jar](https://github.com/AY2021S2-CS2103T-W15-1/tp/releases) file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI for RemdindMe.
+   2. Double-click the jar file Expected: Shows the GUI for RemindMe.
 
    3. Test the following commands according to the flow.
 
@@ -1083,7 +1162,18 @@ testers are expected to do more *exploratory* testing.
 
    2. Delete a module. Test case: `delete m/CS1101S`. CS1101S will be deleted from the contacts list.
 
-   3. Delete a event. Test case: `delete g/1` School contest will be deleted from the event list.
+   3. Delete an event. Test case: `delete g/1` School contest will be deleted from the event list.
+
+**Test clear commands**<br>
+   1. Clear all contacts. Test case: `clear n/`. All contacts should be removed from RemindMe. The contacts' section in 
+      RemindMe is empty.
+      
+   2. Clears all modules. Test case: `clear m/`. All modules should be removed. RemindMe's module section should be empty.
+
+   3. Clears all events. Test case: `clear g/`. All events should be removed. RemindMe's event section should be blank.
+
+   4. Clears RemindMe. Test case: `clear`. RemindMe is cleared completely.<br>
+      (Ensure that RemindMe has some entries in it.) 
 
 ### Saving data
 
