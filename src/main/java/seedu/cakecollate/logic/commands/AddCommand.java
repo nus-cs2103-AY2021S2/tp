@@ -135,7 +135,7 @@ public class AddCommand extends Command {
     private void addToOrderDescriptionsBasedOnIndexes(Model model) throws CommandException {
         List<OrderItem> lastShownOrderItems = model.getFilteredOrderItemsList();
 
-        List<Index> indexList = orderItemIndexList.getIndexList(); // gets the inner list to perform operations on each index
+        List<Index> indexList = orderItemIndexList.getIndexList();
 
         for (Index i : indexList) {
             if (i.getZeroBased() >= lastShownOrderItems.size()) {

@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.cakecollate.commons.exceptions.IllegalValueException;
 import seedu.cakecollate.model.order.Address;
 import seedu.cakecollate.model.order.DeliveryDate;
@@ -74,10 +75,6 @@ class JsonAdaptedOrder {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-//        orderDescriptions.addAll(
-//                source.getOrderDescriptions().keySet().stream()
-//                .map(JsonAdaptedOrderDescription::new)
-//                .collect(Collectors.toList()));
 
         // for each order description in map, for quantity number of times, add order description to command string
         for (Map.Entry<OrderDescription, Integer> entry : source.getOrderDescriptions().entrySet()) {

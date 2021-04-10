@@ -70,7 +70,7 @@ public class OrderUtil {
             if (orderDescriptionMap.isEmpty()) {
                 sb.append(PREFIX_ORDER_DESCRIPTION);
             } else {
-                // for each order description in map, for quantity number of times, add order description to command string
+                // for each order description in map, for quantity times, add order description to command string
                 for (Map.Entry<OrderDescription, Integer> entry : orderDescriptionMap.entrySet()) {
                     OrderDescription o = entry.getKey();
                     for (int i = 0; i < entry.getValue(); i++) {
