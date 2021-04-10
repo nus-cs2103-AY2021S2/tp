@@ -2,9 +2,9 @@ package dog.pawbook.model.managedentity;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import dog.pawbook.model.managedentity.tag.Tag;
@@ -68,10 +68,10 @@ public abstract class Entity {
     /**
      * Returns an array of properties that should be displayed.
      */
-    public abstract Collection<String> getOtherPropertiesAsString();
+    public abstract List<String> getOtherPropertiesAsString();
 
     /**
-     * Returns an array of IDs that are closely related to the entity.
+     * Returns a sorted list of IDs that are closely related to the entity.
      */
-    public abstract Collection<Integer> getRelatedEntityIds();
+    public abstract List<Integer> getRelatedEntityIds();
 }

@@ -3,12 +3,11 @@ package dog.pawbook.model.managedentity.owner;
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.Vector;
 import java.util.stream.Collectors;
 
 import dog.pawbook.model.managedentity.Entity;
@@ -108,8 +107,8 @@ public class Owner extends Entity {
     }
 
     @Override
-    public Collection<String> getOtherPropertiesAsString() {
-        Collection<String> properties = new Vector<>();
+    public List<String> getOtherPropertiesAsString() {
+        List<String> properties = new ArrayList<>();
         properties.add("Phone: " + phone.value);
         properties.add("Address: " + address.value);
         properties.add("Email: " + email.value);
@@ -146,11 +145,8 @@ public class Owner extends Entity {
         return builder.toString();
     }
 
-    /**
-     * Returns an array of IDs that are closely related to the entity.
-     */
     @Override
-    public Collection<Integer> getRelatedEntityIds() {
-        return new ArrayList<>(dogidSet);
+    public List<Integer> getRelatedEntityIds() {
+        return dogidSet.stream().sorted().collect(Collectors.toList());
     }
 }
