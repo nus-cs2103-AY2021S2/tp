@@ -154,6 +154,11 @@ public class Garment {
         SAMPLES.get("beige").put("upper", "images/beigeSamples/upper.png");
         SAMPLES.get("beige").put("lower", "images/beigeSamples/lower.png");
         SAMPLES.get("beige").put("footwear", "images/beigeSamples/footwear.png");
+        //Dresscode
+        SAMPLES.put("DressCode", new HashMap<>());
+        SAMPLES.get("DressCode").put("formal", "images/DressCode/formal3.png");
+        SAMPLES.get("DressCode").put("casual", "images/DressCode/casual3.png");
+        SAMPLES.get("DressCode").put("active", "images/DressCode/active3.png");
     }
 
     /**
