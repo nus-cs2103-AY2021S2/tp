@@ -174,7 +174,8 @@ Adds a person to FriendDex.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`
 
 * FriendDex only allows unique friends to be added. This means that each friend should only have a single entry in FriendDex.
-* FriendDex determines uniqueness solely based on the person's names ignoring their letter case, i.e. `John Tan` and `JoHn TaN` are the same name. 
+* FriendDex determines uniqueness solely based on the person's names ignoring their letter case, i.e. `John Tan` and `JoHn TaN` are the same name.
+* FriendDex only allow alphanumeric characters (A - Z, a - z, 0 - 9).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can provide any number of tags (including 0)
@@ -183,6 +184,9 @@ You can provide any number of tags (including 0)
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/19-01-1998`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com b/19-03-1998 a/Newgate Prison p/1234567 t/criminal`
+
+See also:
+* [What is a valid email format?](#faq)
 
 ### Adding a special date : `add-date`
 
@@ -401,7 +405,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
-* `find ^a.*h$ p/` returns contacts with names that starts with `a` and ends with `h`: `Alex Yeoh`
+* `find ^a.*h$ p/` return contacts with names that starts with `a` and ends with `h`: `Alex Yeoh`
 
 Note that the [Java regex engine](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html) conforms to PERL5 regex specification and thus PERL5 regex should be used.
 
@@ -607,6 +611,16 @@ If the previous theme file supplied is not found or unreadable, then the default
 **Q**: Where can I find more themes?<br>
 **A**: Certain online tools such as [terminal.sexy](https://terminal.sexy) can be used to generate the required `json` file.
 
+**Q**: What is a valid email format?<br>
+**A**: The email allowed in FriendDex shall adhere to the following rules:
+* Emails shall have the format `local-part@labels`.
+* `local-part` local-part can contain any characters provided that they are either
+    * Alphanumeric (A - Z, a - z, 0 -9), or
+    * Any character from the set <code>.!#$%&'*+\/=?^_`{|}~-</code>.
+* This is followed by a `@` and then one or more `label`.
+* A `label` should be shorter than 64 characters.
+* Multiple `label`s are allowed, provided that they are delimited by a single period. <br>
+Note that email does NOT conform to [RFC](https://tools.ietf.org/html/rfc5322) standards.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Troubleshooting Instructions
