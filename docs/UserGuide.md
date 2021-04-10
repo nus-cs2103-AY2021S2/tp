@@ -265,9 +265,9 @@ Format: `exit`
 ### Saving the data
 
 Vax@NUS saves your current data into your computer automatically after any command. There is no need to save manually.
-<<<<<<< Updated upstream
 
 :information_source: **NOTE:**  Vax@NUS will display our sample data file if no data file is found from your computer.
+
 
 ### Editing the data
 
@@ -278,34 +278,12 @@ Editing a student's matriculation number through the JSON file is allowed, howev
 If you change a student's matriculation number, you must also update the matriculation number for the corresponding student's appointment(s). 
 Failure to do so will result in an invalid data file format as the appointment does not belong to any student. 
 
-Please refer to the [Input Formats](#input-formats) section when editing the data file to conform to the required format.
-
 > :warning: **If your changes to the data file makes it an invalid format, Vax@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
-
-:information_source: **NOTE:** Vax@NUS will load an empty data file if you have cleared your data with the `clear` command right before exiting Vax@NUS.
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-=======
->>>>>>> Stashed changes
-
-:information_source: **NOTE:**  Vax@NUS will display our sample data file if no data file is found from your computer.
-
-### Editing the data
-
-Vax@NUS data is saved as a JSON file [JAR file location]/data/studentbook.json. Advanced users are welcome to update data directly by editing that data file.
-
-Editing a student's matriculation number through the JSON file is allowed, however, extra care must be taken to ensure data integrity. 
-
-If you change a student's matriculation number, you must also update the matriculation number for the corresponding student's appointment(s). 
-Failure to do so will result in an invalid data file format as the appointment does not belong to any student. 
 
 Please refer to the [Input Formats](#input-formats) section when editing the data file to conform to the required format.
 
-> :warning: **If your changes to the data file makes it an invalid format, Vax@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
 :information_source: **NOTE:** Vax@NUS will load an empty data file if you have cleared your data with the `clear` command right before exiting Vax@NUS.
->
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Input Formats
