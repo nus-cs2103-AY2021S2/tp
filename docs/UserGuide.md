@@ -88,6 +88,14 @@ Examples:
 * `add_person pt/tutor n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add_person pt/tutor n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
 
+Before entering the command:
+
+![add tutor initial](images/AddTutorInitial.png)
+
+After entering the command:
+
+![add tutor after](images/AddTutorAfter.png)
+
 ### Adding a student: `add_person`
 
 Adds a student to the address book.
@@ -99,8 +107,16 @@ A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add_person pt/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add_person pt/student n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
+* `add_person pt/student n/Connor Smith p/98765432 e/connors@example.com a/Green street, block 123, #01-01`
+* `add_person pt/student n/Betsy Crowe e/betsycrowe@example.com a/Newgate Tower p/1234567 tag/Sec 3`
+
+Before entering the command:
+
+![add student initial](images/AddStudentInitial.png)
+
+After entering the command:
+
+![add student after](images/AddStudentAfter.png)
 
 ### Adding a session: `add_session`
 
@@ -120,7 +136,16 @@ A session can have any number of tags (including 0)
 * Note that while persons added to EZManage must be unique, there can be duplicates of sessions to accomidate multiple sessions of the same subject occurring at once
 
 Examples:
-* `add_session d/Saturday ts/13:00 to 15:00 su/Math tag/Hard`
+* `add_session d/Saturday ts/13:00 to 15:00 su/Math tag/Hard![img.png](img.png)`
+
+Before entering the command:
+
+![add session initial](images/AddSessionInitial.png)
+
+After entering the command:
+
+![add session after](images/AddSessionAfter.png)
+
 
 ### Listing all persons : `list`
 
@@ -201,8 +226,16 @@ Format: `edit_person s/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…�
   specifying any tags after it.
 
 Examples:
-*  `edit_person s/1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the student with the ID of `s/1` to be `91234567` and `johndoe@example.com` respectively.
+*  `edit_person s/1 p/91234567 e/connorsmith@example.com` Edits the phone number and email address of the student with the ID of `s/1` to be `91234567` and `johndoe@example.com` respectively.
 *  `edit_person s/2 n/Betsy Crower tag/` Edits the name of the student with the ID of `s/2` to be `Betsy Crower` and clears all existing tags.
+
+Before entering the command:
+
+![edit person initial](images/EditPersonInitial.png)
+
+After entering the command:
+
+![edit person after](images/EditPersonAfter.png)
 
 ### Editing a tutor : `edit_person`
 
@@ -299,25 +332,25 @@ Examples:
 
 Assigns a student or multiple student and/or a tutor to a specific class
 
-3 Formats : 
+Format: `unassign [s/ID]… [t/ID] c/ID`
 
-1) `assign [s/ID]…​ [c/ID]`
+* Assigns students with the specified `s/ID` to the session with the specified `c/ID`
+* Assigns the tutor with the specified `t/ID` to the session with the specified `c/ID`
+* At least one of the optional fields must be provided.
+* Any number of students can be assigned at the same time (including 0)
 
-    * This assigns a student of `s/ID` or multiple students to a class of `c/ID`
-    
-    * Example : `assign s/2 s/1 c/1` This assigns students of `s/2` and `s/1` to class `c/1`
+Examples:
+* `assign s/2 s/1 c/1` assigns students of `s/2` and `s/1` to session `c/1`
+* `assign t/1 c/1` assigns a tutor of `t/1` to session of `c/1`
+* `assign s/1 t/1 c/1` assigns student of `s/1`, and tutor of `t/1` to the session `c/1`
 
+`view_session c/1` before entering the command:
 
-2) `assign [t/ID] [c/ID]`
-    * This assign a tutor of `t/ID` to a class of `c/ID`
-    * Example:  `assign t/1 c/1` This assign a tutor of `t/1` to class of `c/1`
-    
+![assign initial](images/AssignInitial.png)
 
-3) `assign [s/ID]…​ [t/ID] [c/ID]`
-    * This assigns a student of `s/ID` or multiple students and a tutor of `t/ID` to a class of `c/ID` 
-    
+`view_session c/1` after entering the command:
 
-A class must always be provided, either student or tutor can be optional.
+![assign after](images/AssignAfter.png)
 
 ### Unassigning people from a session : `unassign`
 
@@ -334,6 +367,14 @@ Examples:
 * `unassign s/1 c/1` unassigns the student with student ID s/1 from the session with session ID c/1.
 * `unassign c/1 t/1` unassigns the tutor with tutor ID t/1 from the session with session ID c/1.
 * `unassign s/1 s/2 t/1 c/1` unassigns students with student IDs s/1 and s/2, and the tutor with tutor ID t/1 from the session with session ID c/1.
+
+`view_session c/1` before entering the command:
+
+![unassign initial](images/UnassignInitial.png)
+
+`view_session c/1` after entering the command:
+
+![unassign after](images/UnassignAfter.png)
 
 ### Clearing all entries : `clear`
 
@@ -353,7 +394,7 @@ EzManage data are saved in the hard disk automatically after any command that ch
 
 ### Editing the data file
 
-EzManage data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+EzManage data are saved as a JSON file `[JAR file location]/data/persons.json` and `[JAR file location]/data/session.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.

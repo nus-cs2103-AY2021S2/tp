@@ -429,7 +429,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `EZManage` and the **Actor** is the `user`, unless specified otherwise)
 
 
 **Use case: Add a person**
@@ -437,7 +437,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a tutor or student in the list
-2. AddressBook adds the Person
+2. EXManage adds the Person
 
     Use case ends
 
@@ -445,7 +445,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given tutor/student information is already exist in the list
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. EZManage shows an error message.
 
   Use case ends.
 
@@ -454,7 +454,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add a class to the database
-2. AddressBook adds the class
+2. EZManage adds the class
 
    Use case ends
 
@@ -464,7 +464,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to delete a specific student in the list of persons
-2.  AddressBook deletes the student
+2.  EZManage deletes the student
 
     Use case ends.
 
@@ -472,7 +472,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given ID is invalid.
 
-    * 1a1. AddressBook shows an error message.
+    * 1a1. EZManage shows an error message.
     
     Use case ends.
 
@@ -481,7 +481,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to view a specific tutor/student in the list according to person ID
-2.  AddressBook shows the person's details and the classes assigned to the person
+2.  EZManage shows the person's details and the classes assigned to the person
 
     Use case ends.
 
@@ -489,12 +489,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given index is in the wrong format.
 
-    * 1a1. AddressBook shows an error message and show the proper usage of the command.
+    * 1a1. EZManage shows an error message and show the proper usage of the command.
 
       Use case resumes at step 2.
     
 * 1b. The given index cannot be found in the address book.
-    * 1a1. AddressBook shows an error message.
+    * 1a1. EZManage shows an error message.
 
       Use case ends.
     
