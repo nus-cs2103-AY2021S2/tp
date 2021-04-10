@@ -16,11 +16,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test class for Score
-=======
-/**
  * Automated testing for seedu.weeblingo.model.Score.
->>>>>>> 786b9459d297aad064855d99a78ad513203fa62e
  */
 public class ScoreTest {
 
