@@ -99,6 +99,15 @@ Examples:
 
 * `edit 2 r/KRH`  Edits the school residence of the second student to be KRH.
 
+| Before        | 
+| ------------- |
+|![editBefore](images/editBefore.png)
+
+| After        | 
+| ------------- |
+|![editAfter](images/editAfter.png)|
+
+
 ### Deleting a student record: `delete`
 
 Deletes the student specified by his/her matriculation number from Vax@NUS records.
