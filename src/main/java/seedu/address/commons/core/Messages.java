@@ -16,10 +16,10 @@ public class Messages {
     public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX =
             "The appointment index provided is invalid";
     public static final String MESSAGE_MISSING_PROPERTY_APPOINTMENT =
-            "To %s an appointment, use %s appointment. To %s a property, use %s property";
+            "To %1$s an appointment, use %1$s appointment. To %1$s a property, use %1$s property";
     public static final String MESSAGE_MISSING_ALL_PROPERTY_APPOINTMENT =
-            "To %s all appointments and properties, use %s all. "
-                    + "To %s all appointments, use %s appointment. To %s all properties, use %s property";
+            "To %1$s all appointments and properties, use %1$s all. "
+                    + "To %1$s all appointments, use %1$s appointment. To %1$s all properties, use %1$s property";
 
     /**
      * Returns the output message for a successful find client command.
@@ -47,7 +47,7 @@ public class Messages {
      * @return error message
      */
     public static String missingPropertyAppointmentError(String command) {
-        return String.format(MESSAGE_MISSING_PROPERTY_APPOINTMENT, command, command, command, command);
+        return String.format(MESSAGE_MISSING_PROPERTY_APPOINTMENT, command);
     }
 
     /**
@@ -56,7 +56,6 @@ public class Messages {
      * @return error message
      */
     public static String missingAllPropertyAppointmentError(String command) {
-        return String.format(MESSAGE_MISSING_ALL_PROPERTY_APPOINTMENT, command, command, command,
-                command, command, command);
+        return String.format(MESSAGE_MISSING_ALL_PROPERTY_APPOINTMENT, command);
     }
 }
