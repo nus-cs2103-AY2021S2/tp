@@ -381,6 +381,18 @@ Format: `help` <br>
 
 ![result for 'help'](images/helpMessage.png)
 
+### Entering an Invalid Command:
+Entering an invalid command will result in the app throwing an exception, and prompting the user the closest known command, based on the smallest `minimum edit distance` (minimum amount of additions, deletions, and replacements). 
+
+This feature is meant for identifying typographical errors, and as such, no other form of Natural Language Processing (NLP) is used. If the edit distance is too much (above 10 edits), `Unknown command` will be displayed.
+
+![result for ''](images/InvalidCommandMessage.png)
+
+Examples:
+* `delete-appppt` prompts `delete-appt`
+* `list` prompts `exit`
+* `too-long-command` returns `Unknown command`
+
 ### Toggle User Inputs: <kbd>&uarr;</kbd>/<kbd>&darr;</kbd>
 Format: <kbd>&uarr;</kbd>/<kbd>&darr;</kbd>
 
