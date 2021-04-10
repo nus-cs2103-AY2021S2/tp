@@ -46,7 +46,7 @@ destroy PoolCommandParser
 AddressBookParser --> LogicManager : p
 deactivate AddressBookParser
 
-LogicManager -> PoolCommand : execute()
+LogicManager -> PoolCommand : execute(model)
 activate PoolCommand
 
 PoolCommand -> PoolCommand : getPassengersFromIndexes()
