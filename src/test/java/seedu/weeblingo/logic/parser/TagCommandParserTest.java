@@ -5,6 +5,8 @@ import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_FLASHCARD_DI
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MIN;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_DIFFICULT;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_EASY;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_INPUT;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_INPUT_MULTIPLE;
 import static seedu.weeblingo.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.weeblingo.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.weeblingo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
@@ -25,6 +27,7 @@ public class TagCommandParserTest {
 
     private TagCommandParser parser = new TagCommandParser();
 
+    // only one part missing at any time
     @Test
     public void parse_missingParts_failure() {
         //no index specified
@@ -63,9 +66,9 @@ public class TagCommandParserTest {
         multipleTags.add(new Tag(VALID_TAG_DIFFICULT));
         multipleTags.add(new Tag(VALID_TAG_EASY));
 
-        String userInputSingle = "1 t/easy";
+        String userInputSingle = VALID_TAG_INPUT;
 
-        String userInputMultiple = "1 t/difficult t/easy";
+        String userInputMultiple = VALID_TAG_INPUT_MULTIPLE;
 
         //only one tag
         assertParseSuccess(parser, userInputSingle, new TagCommand(targetIndex, easyTag));

@@ -24,7 +24,10 @@ import seedu.weeblingo.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+
+    // Indicates that flashcards are given as a list and not individual questions
     public static final int LIST_INDEX = -1;
+
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -78,11 +81,13 @@ public class LogicManager implements Logic {
     }
 
 
-    // Gets current index of quiz if quiz started
+    // Gets current index of quiz question if a quiz session has started. Otherwise return LIST_INDEX.
     @Override
     public int getCurrentIndex() {
         if (getCurrentMode() == Mode.MODE_QUIZ_SESSION || getCurrentMode() == Mode.MODE_CHECK_SUCCESS) {
-            return model.getCurrentIndex();
+            int currentIndex = model.getCurrentIndex();
+            assert currentIndex != LIST_INDEX;
+            return currentIndex;
         } else {
             return LIST_INDEX;
         }
@@ -114,7 +119,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public boolean showCards() {
+    public boolean isPanelVisible() {
         if (getCurrentMode() == Mode.MODE_MENU) {
             return false;
         } else {
@@ -123,7 +128,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public boolean showAnswer() {
+    public boolean isAnswerVisible() {
         int mode = getCurrentMode();
         if (mode == Mode.MODE_CHECK_SUCCESS || mode == Mode.MODE_LEARN || mode == Mode.MODE_QUIZ_SESSION_ENDED) {
             return true;

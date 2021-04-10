@@ -14,8 +14,9 @@ import seedu.weeblingo.model.flashcard.Flashcard;
  * Panel containing the list of flashcards.
  */
 public class FlashcardListPanel extends UiPart<Region> {
+    // Indicates that flashcards are displayed as a list and not individual questions
     private static final int LIST_INDEX = -1;
-    // supposed to indicate not during a quiz session but i cannot think of names alr haha lol woof bark
+
     private static final String FXML = "FlashcardListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(FlashcardListPanel.class);
 
@@ -32,8 +33,8 @@ public class FlashcardListPanel extends UiPart<Region> {
 
     }
 
-    public void updateCard(int currIndex, boolean showAnswer) {
-        flashcardListView.setCellFactory(listView -> new FlashcardListViewCell(currIndex, showAnswer));
+    public void updateCard(int currIndex, boolean isAnswerVisible) {
+        flashcardListView.setCellFactory(listView -> new FlashcardListViewCell(currIndex, isAnswerVisible));
     }
 
     /**
@@ -41,11 +42,16 @@ public class FlashcardListPanel extends UiPart<Region> {
      */
     class FlashcardListViewCell extends ListCell<Flashcard> {
         private int currIndex;
-        private boolean showAnswer;
+        private boolean isAnswerVisible;
 
-        public FlashcardListViewCell(int currIndex, boolean showAnswer) {
+        /**
+         * @param currIndex Index of displayed flashcard. If equal to LIST_INDEX, displays flashcards with increasing
+         *                  index starting from 1.
+         * @param isAnswerVisible Shows the answer of the flashcards if true.
+         */
+        public FlashcardListViewCell(int currIndex, boolean isAnswerVisible) {
             this.currIndex = currIndex;
-            this.showAnswer = showAnswer;
+            this.isAnswerVisible = isAnswerVisible;
         }
 
         @Override
@@ -57,7 +63,7 @@ public class FlashcardListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new FlashcardCard(flashcard, currIndex == LIST_INDEX ? getIndex() + 1 : currIndex,
-                        showAnswer).getRoot());
+                        isAnswerVisible).getRoot());
             }
         }
 

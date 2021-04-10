@@ -1,5 +1,6 @@
 package seedu.weeblingo.model;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.weeblingo.commons.core.Messages.MESSAGE_TAG_NOT_FOUND;
 import static seedu.weeblingo.logic.commands.StartCommand.MESSAGE_NUMBER_LARGER_THAN_DATABASE_FLASHCARDS_SIZE;
 
@@ -87,21 +88,12 @@ public class Quiz {
     }
 
     /**
-     * Gets the current flashcard question shown to the user.
-     *
-     * @return The current flashcard shown.
-     */
-    public Flashcard getCurrentQuestion() {
-        return currentQuiz;
-    }
-
-    /**
      * Checks whether the attempt is correct with respect to the current flashcard in the quiz.
      *
      * @param attempt The answer to check.
      * @return True if the attempt is correct; false otherwise. Statistics of the quiz will be updated as well.
      */
-    public boolean isCorrectAttempt(Answer attempt) {
+    public boolean isCorrectAnswer(Answer attempt) {
         numberOfQuestionsAttempted++;
         boolean result = currentQuiz.getAnswer().equals(attempt);
         if (result) {
@@ -111,10 +103,6 @@ public class Quiz {
         return result;
     }
 
-    public Queue<Flashcard> getQuizSessionQueue() {
-        return quizSessionQueue;
-    }
-
     /**
      * Generates randomized queue that is a subset from the given array of flashcards.
      *
@@ -122,9 +110,14 @@ public class Quiz {
      * @param numberOfQuestions The number of questions to limit the quiz to. Is ignored if zero.
      * @param tags Tags used to filter the array of flashcards. Can be empty.
      * @return A queue of flashcards with randomized order.
+     * @throws CommandException if there are no flashcards with specified tag or
+     * number of questions specified is larger than number of flashcards in database.
      */
     private Queue<Flashcard> getRandomizedQueue(Flashcard[] flashcardsReadFromDB,
             int numberOfQuestions, Set<Tag> tags) throws CommandException {
+        requireNonNull(flashcardsReadFromDB);
+        requireNonNull(numberOfQuestions);
+        requireNonNull(tags);
         List<Flashcard> flashcardsToProcess = Arrays.asList(flashcardsReadFromDB);
         Collections.shuffle(flashcardsToProcess);
         Queue<Flashcard> randomizedQueue = new LinkedList<>();
@@ -207,7 +200,26 @@ public class Quiz {
         return attemptedFlashcards;
     }
 
+    /**
+     * Gets the list of flashcards the user answered correctly in this quiz session.
+     */
     public List<Flashcard> getCorrectlyAnsweredFlashcards() {
         return correctlyAnsweredFlashcards;
+    }
+
+    /**
+     * Gets the queue of flashcards to be tested.
+     */
+    public Queue<Flashcard> getQuizSessionQueue() {
+        return quizSessionQueue;
+    }
+
+    /**
+     * Returns the current quiz.
+     *
+     * @return current quiz as a flashcard.
+     */
+    public Flashcard getCurrentQuiz() {
+        return currentQuiz;
     }
 }

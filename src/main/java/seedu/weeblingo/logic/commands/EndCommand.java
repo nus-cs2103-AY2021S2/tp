@@ -7,7 +7,7 @@ import seedu.weeblingo.model.Mode;
 import seedu.weeblingo.model.Model;
 
 /**
- * Ends the current quiz session and returns the user to the original start page.
+ * Return to the menu from the different modes.
  */
 public class EndCommand extends Command {
 

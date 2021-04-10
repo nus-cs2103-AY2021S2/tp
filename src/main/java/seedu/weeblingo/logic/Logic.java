@@ -34,9 +34,7 @@ public interface Logic {
     ObservableList<Score> getFilteredScoreHistoryList();
 
 
-
-
-    /** Returns the current question number in the Quiz */
+    /** Returns the index of current question in the quiz session. If not in quiz session, returns LIST_INDEX.*/
     int getCurrentIndex();
 
     /**
@@ -65,14 +63,14 @@ public interface Logic {
     int getCurrentMode();
 
     /**
-     * True if cards should be shown.
+     * True if flashcards should be shown.
      */
-    boolean showCards();
+    boolean isPanelVisible();
 
     /**
-     * True if answer should be shown.
+     * True if answer to flashcards should be shown.
      */
-    boolean showAnswer();
+    boolean isAnswerVisible();
 
     boolean isShowingHistory();
 }

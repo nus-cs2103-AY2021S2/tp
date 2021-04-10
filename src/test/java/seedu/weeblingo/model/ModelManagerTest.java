@@ -1,14 +1,31 @@
 package seedu.weeblingo.model;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
+import static seedu.weeblingo.testutil.TypicalFlashcards.*;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.weeblingo.commons.core.GuiSettings;
+import seedu.weeblingo.logic.commands.exceptions.CommandException;
+import seedu.weeblingo.model.flashcard.Answer;
+import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.flashcard.QuestionContainsKeywordsPredicate;
+import seedu.weeblingo.testutil.FlashcardBookBuilder;
 
 public class ModelManagerTest {
 
@@ -29,14 +46,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setFlashcardsFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setFlashcardsFilePath(Paths.get("weeblingo/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setFlashcardsFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setFlashcardsFilePath(Paths.get("new/weeblingo/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -53,13 +70,13 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setFlashcardBookFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setFlashcardBookFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
+    public void setFlashcardBookFilePath_validPath_setsFlashcardBookFilePath() {
+        Path path = Paths.get("weeblingo/book/file/path");
         modelManager.setFlashcardBookFilePath(path);
         assertEquals(path, modelManager.getFlashcardBookFilePath());
     }
@@ -69,16 +86,16 @@ public class ModelManagerTest {
         assertThrows(NullPointerException.class, () -> modelManager.hasFlashcard(null));
     }
 
-    //    @Test
-    //    public void hasFlashcard_flashcardNotInAddressBook_returnsFalse() {
-    //        assertFalse(modelManager.hasFlashcard(ALICE));
-    //    }
+    @Test
+    public void hasFlashcard_flashcardNotInFlashcardBook_returnsFalse() {
+        assertFalse(modelManager.hasFlashcard(A_CARD));
+    }
 
-    //    @Test
-    //    public void hasFlashcard_flashcardInAddressBook_returnsTrue() {
-    //        modelManager.addFlashcard(ALICE);
-    //        assertTrue(modelManager.hasFlashcard(ALICE));
-    //    }
+    @Test
+    public void hasFlashcard_flashcardInFlashcardBook_returnsTrue() {
+        modelManager.addFlashcard(A_CARD);
+        assertTrue(modelManager.hasFlashcard(A_CARD));
+    }
 
     @Test
     public void getFilteredFlashcardList_modifyList_throwsUnsupportedOperationException() {
@@ -86,40 +103,190 @@ public class ModelManagerTest {
             -> modelManager.getFilteredFlashcardList().remove(0));
     }
 
-    //    @Test
-    //    public void equals() {
-    //        FlashcardBook addressBook = new FlashcardBookBuilder().withFlashcard(ALICE).withFlashcard(BENSON).build();
-    //        FlashcardBook differentAddressBook = new FlashcardBook();
-    //        UserPrefs userPrefs = new UserPrefs();
-    //
-    //        // same values -> returns true
-    //        modelManager = new ModelManager(addressBook, userPrefs);
-    //        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
-    //        assertTrue(modelManager.equals(modelManagerCopy));
-    //
-    //        // same object -> returns true
-    //        assertTrue(modelManager.equals(modelManager));
-    //
-    //        // null -> returns false
-    //        assertFalse(modelManager.equals(null));
-    //
-    //        // different types -> returns false
-    //        assertFalse(modelManager.equals(5));
-    //
-    //        // different addressBook -> returns false
-    //        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
-    //
-    //        // different filteredList -> returns false
-    //        String[] keywords = ALICE.getQuestion().value.split("\\s+");
-    //        modelManager.updateFilteredFlashcardList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
-    //        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
-    //
-    //        // resets modelManager to initial state for upcoming tests
-    //        modelManager.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-    //
-    //        // different userPrefs -> returns false
-    //        UserPrefs differentUserPrefs = new UserPrefs();
-    //        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-    //        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
-    //    }
+    //=========== Quiz Related =============================================================
+
+    @Test
+    public void startQuiz_validInputs_success() throws CommandException {
+        modelManager.addFlashcard(A_CARD);
+        modelManager.startQuiz(0, new HashSet<>());
+        assertNotNull(modelManager.getQuizInstance());
+    }
+
+    @Test
+    public void getNextFlashcard_queueNotEmpty_returnsFlashcard() throws CommandException {
+        modelManager.addFlashcard(A_CARD);
+        modelManager.addFlashcard(I_CARD);
+        modelManager.startQuiz(0, new HashSet<>());
+        Quiz quiz = modelManager.getQuizInstance();
+        Flashcard nextFlashcard = quiz.getNextQuestion();
+        assertNotNull(nextFlashcard);
+    }
+
+    @Test
+    public void getNextFlashcard_queueEmpty_returnsNull() throws CommandException {
+        modelManager.addFlashcard(A_CARD);
+        modelManager.addFlashcard(I_CARD);
+        modelManager.startQuiz(0, new HashSet<>());
+        Quiz quiz = modelManager.getQuizInstance();
+        quiz.getNextQuestion();
+        Flashcard nextFlashcard = quiz.getNextQuestion();
+        assertNull(nextFlashcard);
+    }
+
+    @Test
+    public void getCurrentIndex_atThirdQuestion_returnsIndexThree() throws CommandException {
+        modelManager.addFlashcard(A_CARD);
+        modelManager.addFlashcard(I_CARD);
+        modelManager.addFlashcard(U_CARD);
+        modelManager.startQuiz(0, new HashSet<>());
+        Quiz quiz = modelManager.getQuizInstance();
+        assertNotNull(quiz);
+        quiz.getNextQuestion();
+        quiz.getNextQuestion();
+        int expectedCurrentIndex = 3;
+        int actualCurrentIndex = modelManager.getCurrentIndex();
+        assertEquals(expectedCurrentIndex, actualCurrentIndex);
+    }
+
+    @Test
+    public void clearQuizInstance_validClear_success() {
+        modelManager.clearQuizInstance();
+        Quiz quizInstance = modelManager.getQuizInstance();
+        assertNull(quizInstance);
+    }
+
+    @Test
+    public void getCorrectAttemptsIndexes_oneCorrectAttempt_returnsCorrectIndexes() throws CommandException {
+        modelManager.addFlashcard(A_CARD);
+        modelManager.startQuiz(0, new HashSet<>());
+        modelManager.isCorrectAnswer(new Answer("a"));
+        List<Integer> expectedIndexes = List.of(1);
+        List<Integer> actualIndexes = modelManager.getCorrectAttemptsIndexes();
+        assertEquals(expectedIndexes, actualIndexes);
+    }
+
+    //=========== Mode Related =============================================================
+
+    @Test void getMode_modelManagerConstructed_success() {
+        Mode mode = modelManager.getMode();
+        assertNotNull(mode);
+    }
+
+    @Test
+    public void getCurrentMode_inMenuMode_success() {
+        int expectedCurrentMode = 1;
+        int actualCurrentMode = modelManager.getCurrentMode();
+        assertEquals(expectedCurrentMode, actualCurrentMode);
+    }
+
+    @Test
+    public void switchModeQuiz_emptyFilteredFlashcards_throwsCommandException() {
+        modelManager.updateFilteredFlashcardList(flashcard -> false);
+        assertThrows(CommandException.class, () -> modelManager.switchModeQuiz());
+    }
+
+    @Test
+    public void switchModeLearn_emptyFilteredFlashcards_throwsCommandException() {
+        modelManager.updateFilteredFlashcardList(flashcard -> false);
+        assertThrows(CommandException.class, () -> modelManager.switchModeQuiz());
+    }
+
+    @Test
+    public void switchModeQuiz_validSwitch_success() throws CommandException {
+        modelManager.addFlashcard(A_CARD);
+        modelManager.switchModeQuiz();
+        int expectedCurrentMode = 2;
+        int actualCurrentMode = modelManager.getCurrentMode();
+        assertEquals(expectedCurrentMode, actualCurrentMode);
+    }
+
+    @Test
+    public void switchModeLearn_validSwitch_success() throws CommandException {
+        modelManager.addFlashcard(A_CARD);
+        modelManager.switchModeLearn();
+        int expectedCurrentMode = 3;
+        int actualCurrentMode = modelManager.getCurrentMode();
+        assertEquals(expectedCurrentMode, actualCurrentMode);
+    }
+
+    @Test
+    public void switchModeMenu_validSwitch_quizInstanceCleared() {
+        modelManager.switchModeQuizSessionEnded();
+        int actualCurrentMode = modelManager.getCurrentMode();
+        assertNotEquals(1, actualCurrentMode);
+        modelManager.switchModeMenu();
+        actualCurrentMode = modelManager.getCurrentMode();
+        assertNull(modelManager.getQuizInstance());
+        int expectedCurrentMode = 1;
+        assertEquals(expectedCurrentMode, actualCurrentMode);
+    }
+
+    @Test
+    public void switchModeHistory_validSwitch_success() {
+        modelManager.switchModeHistory();
+        int expectedCurrentMode = 6;
+        int actualCurrentMode = modelManager.getCurrentMode();
+        assertEquals(expectedCurrentMode, actualCurrentMode);
+    }
+
+    @Test
+    public void switchModeQuizSession_validSwitch_success() {
+        modelManager.switchModeQuizSession();
+        int expectedCurrentMode = 4;
+        int actualCurrentMode = modelManager.getCurrentMode();
+        assertEquals(expectedCurrentMode, actualCurrentMode);
+    }
+
+    @Test
+    public void switchModeCheckSuccess_validSwitch_success() {
+        modelManager.switchModeCheckSuccess();
+        int expectedCurrentMode = 5;
+        int actualCurrentMode = modelManager.getCurrentMode();
+        assertEquals(expectedCurrentMode, actualCurrentMode);
+    }
+
+    @Test
+    public void switchModeQuizSessionEnded_validSwitch_success() {
+        modelManager.switchModeQuizSessionEnded();
+        int expectedCurrentMode = 7;
+        int actualCurrentMode = modelManager.getCurrentMode();
+        assertEquals(expectedCurrentMode, actualCurrentMode);
+    }
+
+    @Test
+    public void equals() {
+        FlashcardBook flashcardBook = new FlashcardBookBuilder().withFlashcard(A_CARD).withFlashcard(I_CARD).build();
+        FlashcardBook differentAddressBook = new FlashcardBook();
+        UserPrefs userPrefs = new UserPrefs();
+
+        // same values -> returns true
+        modelManager = new ModelManager(flashcardBook, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(flashcardBook, userPrefs);
+        assertTrue(modelManager.equals(modelManagerCopy));
+
+        // same object -> returns true
+        assertTrue(modelManager.equals(modelManager));
+
+        // null -> returns false
+        assertFalse(modelManager.equals(null));
+
+        // different types -> returns false
+        assertFalse(modelManager.equals(5));
+
+        // different addressBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+
+        // different filteredList -> returns false
+        String[] keywords = A_CARD.getQuestion().value.split("\\s+");
+        modelManager.updateFilteredFlashcardList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(flashcardBook, userPrefs)));
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
+
+        // different userPrefs -> returns false
+        UserPrefs differentUserPrefs = new UserPrefs();
+        differentUserPrefs.setFlashcardsFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(flashcardBook, differentUserPrefs)));
+    }
 }

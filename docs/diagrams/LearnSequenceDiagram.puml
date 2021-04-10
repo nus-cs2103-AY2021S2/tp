@@ -4,7 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":WeeblingoParser" as WeeblingoParser LOGIC_COLOR
-participant ":LearnCommand" as LearnCommand LOGIC_COLOR
+participant ":LearnCommandParser" as LearnCommandParser LOGIC_COLOR
+participant "l:LearnCommand" as LearnCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -12,26 +13,42 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("learn")
+[-> LogicManager : execute("learn t/hiragana")
 activate LogicManager
 
-LogicManager -> WeeblingoParser : parseCommand("learn")
+LogicManager -> WeeblingoParser : parseCommand("learn t/hiragana")
 activate WeeblingoParser
 
+create LearnCommandParser
+WeeblingoParser -> LearnCommandParser :
+activate LearnCommandParser
+
+LearnCommandParser --> WeeblingoParser :
+deactivate LearnCommandParser
+
+WeeblingoParser --> LearnCommandParser : parse("t/hiragana")
+activate LearnCommandParser
+
 create LearnCommand
-WeeblingoParser -> LearnCommand :
+LearnCommandParser -> LearnCommand :
 activate LearnCommand
 
-LearnCommand --> WeeblingoParser :
+LearnCommand --> LearnCommandParser : l
 deactivate LearnCommand
 
-WeeblingoParser --> LogicManager :
+LearnCommandParser --> WeeblingoParser : l
+deactivate LearnCommandParser
+
+LearnCommandParser -[hidden]-> WeeblingoParser
+destroy LearnCommandParser
+
+WeeblingoParser --> LogicManager : l
 deactivate WeeblingoParser
 
-LogicManager -> LearnCommand : execute()
+LogicManager -> LearnCommand : execute(model)
 activate LearnCommand
 
-LearnCommand -> Model : updateFilteredFlashcardList
+LearnCommand -> Model : updateFilteredFlashcardList(\nflashcard -> flashcard.checkHasTags(hiragana))
 activate Model
 
 Model --> LearnCommand
