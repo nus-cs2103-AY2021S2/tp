@@ -5,14 +5,14 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":StoreMandoParser" as StoreMandoParser LOGIC_COLOR
 participant ":ReminderCommandParser" as ReminderCommandParser LOGIC_COLOR
-participant "r:ReminderCommand" as ReminderCommand LOGIC_COLOR
+participant "command:ReminderCommand" as ReminderCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant "p:ItemExpiringPredicate" as ItemExpiringPredicate MODEL_COLOR
-participant "c: ItemComparatorByExpiryDate" as ItemComparatorByExpiryDate MODEL_COLOR
+participant "predicate:ItemExpiringPredicate" as ItemExpiringPredicate MODEL_COLOR
+participant "comparator: ItemComparatorByExpiryDate" as ItemComparatorByExpiryDate MODEL_COLOR
 end box
 
 [-> LogicManager : execute("reminder 3 days")
@@ -38,32 +38,32 @@ ReminderCommandParser --> ReminderCommandParser : 3
 deactivate ReminderCommandParser
 
 create ItemExpiringPredicate
-ReminderCommandParser -> ItemExpiringPredicate : ItemExpiringPredicate(3)
+ReminderCommandParser -> ItemExpiringPredicate
 activate ItemExpiringPredicate
 
-ItemExpiringPredicate --> ReminderCommandParser : p
+ItemExpiringPredicate --> ReminderCommandParser : predicate
 deactivate ItemExpiringPredicate
 
 create ReminderCommand
-ReminderCommandParser -> ReminderCommand : ReminderCommand(p)
+ReminderCommandParser -> ReminderCommand
 activate ReminderCommand
 
-ReminderCommand --> ReminderCommandParser : r
+ReminderCommand --> ReminderCommandParser : command
 deactivate ReminderCommand
 
-ReminderCommandParser --> StoreMandoParser : r
+ReminderCommandParser --> StoreMandoParser : command
 deactivate ReminderCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 ReminderCommandParser -[hidden]-> StoreMandoParser
 destroy ReminderCommandParser
 
-StoreMandoParser --> LogicManager : r
+StoreMandoParser --> LogicManager : command
 deactivate StoreMandoParser
 
 LogicManager -> ReminderCommand : execute(model)
 activate ReminderCommand
 
-ReminderCommand -> Model : updateCurrentPredicate(p)
+ReminderCommand -> Model : updateCurrentPredicate(predicate)
 activate Model
 
 Model --> ReminderCommand
@@ -82,13 +82,13 @@ Model --> ReminderCommand
 deactivate Model
 
 create ItemComparatorByExpiryDate
-ReminderCommand -> ItemComparatorByExpiryDate : ItemComparatorByExpiryDate()
+ReminderCommand -> ItemComparatorByExpiryDate
 activate ItemComparatorByExpiryDate
 
-ItemComparatorByExpiryDate --> ReminderCommand : c
+ItemComparatorByExpiryDate --> ReminderCommand : comparator
 deactivate ItemComparatorByExpiryDate
 
-ReminderCommand -> Model : updateSortedItemList(c)
+ReminderCommand -> Model : updateSortedItemList(comparator)
 activate Model
 
 Model --> ReminderCommand
