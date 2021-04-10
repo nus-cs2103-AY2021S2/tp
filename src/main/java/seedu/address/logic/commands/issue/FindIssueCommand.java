@@ -6,7 +6,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.issue.RoomNumberOrTagContainsKeywordsPredicate;
+import seedu.address.model.issue.IssueContainsKeywordsPredicate;
 
 /**
  * Finds and lists all issues in address book whose name contains any of the argument keywords.
@@ -16,12 +16,13 @@ public class FindIssueCommand extends Command {
 
     public static final String COMMAND_WORD = "ifind";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all issues whose room numbers contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all issues whose room number, description, or tags contain any of "
             + "the specified keywords and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " 10-100 12-120";
+            + "Example: " + COMMAND_WORD + " 10-100 12-120 Broken";
 
-    private final RoomNumberOrTagContainsKeywordsPredicate predicate;
+    private final IssueContainsKeywordsPredicate predicate;
 
     /**
      * Creates a FindIssueCommand with the given predicate used to filter issue list.
@@ -29,7 +30,7 @@ public class FindIssueCommand extends Command {
      * @param predicate Predicate to filter the issue list.
      * @throws NullPointerException If {@code predicate} is null.
      */
-    public FindIssueCommand(RoomNumberOrTagContainsKeywordsPredicate predicate) {
+    public FindIssueCommand(IssueContainsKeywordsPredicate predicate) {
         requireNonNull(predicate);
         this.predicate = predicate;
     }

@@ -51,7 +51,12 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText, model.getAddressBook());
+
+        assert command != null;
+
         commandResult = command.execute(model);
+
+        assert commandResult != null;
 
         model.appendCommandHistoryEntry(commandText);
         commandHistorySelector.navigateToOnePastLast();

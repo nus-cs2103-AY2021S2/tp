@@ -51,7 +51,7 @@ public class TypicalCommandHistoryEntries {
         final int rightLimit = 122; // letter 'z'
 
         final Random random = new Random();
-        final int targetStringLength = random.nextInt(maxStringLength + 1);
+        final int targetStringLength = random.nextInt(maxStringLength) + 1;
 
         final String generatedString = random.ints(leftLimit, rightLimit + 1)
                 .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))

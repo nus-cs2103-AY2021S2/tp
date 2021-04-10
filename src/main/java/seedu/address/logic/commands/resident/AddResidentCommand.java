@@ -6,6 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -33,6 +36,7 @@ public class AddResidentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New resident added: %1$s";
     public static final String MESSAGE_DUPLICATE_RESIDENT = "This resident already exists in SunRez.";
+    private static final Logger logger = LogsCenter.getLogger(AddResidentCommand.class);
 
     private final Resident toAdd;
 
@@ -49,6 +53,7 @@ public class AddResidentCommand extends Command {
         requireNonNull(model);
 
         if (model.hasResident(toAdd)) {
+            logger.warning("Duplicate resident added to radd command");
             throw new CommandException(MESSAGE_DUPLICATE_RESIDENT);
         }
 

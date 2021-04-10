@@ -9,7 +9,7 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
-**SunRez** is a desktop app designed for college residential staff to efficiently manage student housing services. It 
+**SunRez** is a desktop app designed for college residential staff to efficiently manage student housing services. It
 features a Graphical User Interface (GUI) but is optimized for use via a Command Line Interface (CLI).
 
 **SunRez** has the following features:
@@ -56,16 +56,16 @@ The following image shows the different parts of the SunRez application window:
 
 ### Using the UI
 
-SunRez is optimized for fast typists, so most input to SunRez takes the form of commands. To execute a command, 
+SunRez is optimized for fast typists, so most input to SunRez takes the form of commands. To execute a command,
 simply type it into the **Command Box** then press `ENTER` on the keyboard. The result (or an error message) will be
-displayed in the **Result Box** following a command execution. Details about specific commands can be found in the 
+displayed in the **Result Box** following a command execution. Details about specific commands can be found in the
 [features](#features) section.
 
 An error message may be shown for various reasons. Most commonly, one is shown if a command cannot be parsed (that is,
 if SunRez cannot understand the format of your command) or if a command has been given parameters which are out of
-the acceptable range. In the following sections, more information is given about acceptable 
-[command formats](#command-format), [command parameters](#command-parameters), and the 
-[command parsing process](#command-parsing). 
+the acceptable range. In the following sections, more information is given about acceptable
+[command formats](#command-format), [command parameters](#command-parameters), and the
+[command parsing process](#command-parsing).
 
 ### Command Format
 
@@ -80,60 +80,116 @@ Commands in this user guide follow this format:
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence 
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
   of the parameter will be taken.<br>
   e.g. if you specify `n/John Doe n/Jane Doe`, only `n/Jane Doe` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `ilist`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-  
+
 ### Command Parsing
 
 #### Repeated parameters
-All commands in SunRez default to taking the latest occurrence of a duplicate parameter **except [tags](#tag)**. 
+All commands in SunRez default to taking the latest occurrence of a duplicate parameter **except [tags](#tag)**.
 For example, if you key in this command:
 
 `radd n/John Doe n/Timmy Tan p/91234567 e/e0123456@u.nus.edu y/3`
 
 The resident's name will take the **later** occurrence of name and create a resident named "Timmy Tan".
 
-On the other hand, **all** [tags](#tag) specified will be taken. 
+On the other hand, **all** [tags](#tag) specified will be taken.
 
-For instance, `radd n/John Doe n/Timmy Tan p/91234567 e/e0123456@u.nus.edu y/3 g/tag_one g/tag_two g/tag_three` will 
+For instance, `radd n/John Doe n/Timmy Tan p/91234567 e/e0123456@u.nus.edu y/3 g/tag_one g/tag_two g/tag_three` will
 create a resident with tags `tag_one`, `tag_two` and `tag_three`.
 
 
 #### Interpreting parameter values
-Commands in SunRez have a pre-set parameter list they accept. The value for the parameter will be all characters 
+Commands in SunRez have a pre-set parameter list they accept. The value for the parameter will be all characters
 until the next occurrence of a parameter prefix for the command.
 For example, if you key in this command:
 
 `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3`
 
-The resident's name will be all characters that follows `n/` until just before the start of `p/`, including the space. 
+The resident's name will be all characters that follows `n/` until just before the start of `p/`, including the space.
 Most commands, however, trim leading and trailing spaces.
 
-Let us break this down further and assume `radd` only takes in 2 parameters for the purposes of explanation. 
+Let us break this down further and assume `radd` only takes in 2 parameters for the purposes of explanation.
 We can break the command down as follows:
 
 `radd n/[NAME_STRING] p/[PHONE_NUM_STRING]`
 
-A user can enter a `NAME_STRING` that consists of anything, including text that contains prefix-like strings such as `s/`. 
-For example, a user could enter `John s/o Tom`. 
-However, as `s/` is not a valid prefix for the `radd` command, the command parser will treat `John s/o Tom` as the 
-value for the name parameter. 
+A user can enter a `NAME_STRING` that consists of anything, including text that contains prefix-like strings such as `s/`.
+For example, a user could enter `John s/o Tom`.
+However, as `s/` is not a valid prefix for the `radd` command, the command parser will treat `John s/o Tom` as the
+value for the name parameter.
 
 
 The validation for the `Name` parameter will process `John s/o Tom` and may reject it based on the stated validation rules.
-However, a known limitation of this approach is that parameter values containing valid parameter prefixes will cause issues. 
+However, a known limitation of this approach is that parameter values containing valid parameter prefixes will cause issues.
 
 Let us take a look at another example:
 
-If `NAME_STRING` = `John p/ Tom`, the command keyed in could look like `radd p/[VALID_PHONE_NUM] n/John p/ Tom` 
-(Remember that prefix order does not matter.) 
+If `NAME_STRING` = `John p/ Tom`, the command keyed in could look like `radd p/[VALID_PHONE_NUM] n/John p/ Tom`
+(Remember that prefix order does not matter.)
 
-This will create the presence of 2 phone number parameters. In such a case, the latter value will be taken. 
+This will create the presence of 2 phone number parameters. In such a case, the latter value will be taken.
 As `Tom` is not a valid phone number, it will be rejected.
+
+#### Interpreting errors
+
+In most cases, the error displayed should be relatively self-explanatory. This sub-section aims to clear up any ambiguity 
+you might encounter when dealing with invalid commands or errors. 
+
+We will break our explanation down into the following categories:
+- Incorrect formats
+- Parameters do not conform to required values
+- Commands that require an [`INDEX`] (e.g. `redit 1 n/John`)
+
+##### Incorrect formats
+This error typically shows a message along the following lines: `Invalid command format! [Information on how to use
+the command]`
+
+![Invalid command format](images/error-invalid-cmd-format.png)
+
+Typically this happens because the command does not match the required format. Check if you are missing any parameters.
+A special case of this takes place when the `INDEX` value is not a number.
+
+##### Parameters do not conform to required values
+This error typically shows a message along the following lines: `[Parameter name] must be [some condition]`. E.g. 
+`Room numbers should be formatted as such: XY-ABC, where XY can be any pair of digits except 00, and ABC can 
+be any 3 digits.`
+
+![Invalid param format](images/error-invalid-param-format.png)
+
+Typically this happens because the parameter provided does not match the required format. Check if your parameter conforms
+to the format stated under the [command parameters](#command-parameters) section. The error message usually gives some
+helpful information in resolving the error too.
+
+##### Commands that require an `INDEX`
+The bounds of the `INDEX` parameter is documented [below](#index). This section will explain how errors with the `INDEX`
+will be dealt with.
+
+- If you do not specify the `INDEX` (e.g. `rdel`): The app will inform you that the format is invalid, and display the 
+  format that should be used. This is a specific case of [incorrect formats](#incorrect-formats).
+  
+- If the `INDEX` is not an integer (e.g. `rdel abc`): The app will inform you that the format is invalid, and display the
+  format that should be used. This is also a specific case of [incorrect formats](#incorrect-formats), as the command 
+  expects a number but did not get one.
+
+- If the `INDEX` parameter is required alongside other parameters e.g. [`redit`](#edit-a-resident-record--redit), and
+  **only** an `INDEX` (be it valid or not) value is provided (e.g. `redit 1000` or `redit 1`): The app will inform you
+  that the format is invalid, and display the format that should be used. This is another specific case 
+  of [incorrect formats](#incorrect-formats), as the command compulsorily needs at least one of the optional parameters 
+  to be provided.
+  
+- If the `INDEX` is 0 or lesser (e.g. `rdel -5`): The app will inform you that `INDEX` should be a positive integer.
+
+![Index non positive](images/error-idx-non-positive.png)
+
+- If the `INDEX` is above the range of the collection specified (e.g. `rdel 100` but there are only 6 residents): The 
+  app will inform you that `INDEX` needs to be between 1 and the size of the collection in question.
+
+![Index out of range](images/error-idx-out-of-range.png)
 
 
 ### Command Parameters
@@ -146,7 +202,7 @@ Many SunRez commands use various parameters. Their formats, constraints and rati
 | <a id="category"></a> `CATEGORY` | `c/` | `iadd` `iedit`| DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
 | <a id="command"></a> `COMMAND` | `cmd/`| `alias` | The command that an alias is short for.{::nomarkdown}  <ul><li> Must not be empty. </li><li> Must not be recursive i.e. contains another alias name. </li></ul>{:/} |
 | <a id="count"></a> `COUNT` | - | `history` | The number of command history entries wanted.{::nomarkdown} <ul><li> Must be a positive integer: 1, 2, 3, ... </li><li> Must be at most the total number of entries in command history. </li><li>Exception: if command history is empty then <code>COUNT</code> can be greater than the number of entries in command history (that is, it can be a positive integer). SunRez will simply indicate that command history is empty.</li></ul>{:/} |
-| <a id="description"></a> `DESCRIPTION` | `d/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
+| <a id="description"></a> `DESCRIPTION` | `d/` | `iadd` `iedit` | The description of an issue.{::nomarkdown} <ul><li> Accepts only alphanumeric characters and spaces. </li><li> Must not be empty. </li><li> Will wrap if too long. </li></ul>{:/} |
 | <a id="email"></a> `EMAIL` | `e/` | `radd` `redit` | The email of a resident.{::nomarkdown} <ul><li> Format: local-part@domain. </li><li> Local-part should only contain alphanumeric characters, and these special characters, excluding the parenthesis (!#$%&'*+/=?&#96;{&#124;}~^.-). </li><li> Must contain @. </li><li> Domain must be at least 2 characters long, start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any. </li><li> e.g. e0123456@u.nus.edu </li></ul>{:/} |
 | <a id="index"></a> `INDEX` | - | `redit` `rdel` `oedit` `odel` `iedit` `iclo` `idel` `alloc` `dealloc`| The index number shown in the displayed list.{::nomarkdown} <ul><li> Must be a positive integer: 1, 2, 3, ... </li></ul>{:/} |
 | <a id="keyword"></a> `KEYWORD` | - | `rfind` `ofind` `ifind` | A keyword used in the various find commands.{::nomarkdown} <ul><li> Format: Single word consisting of any character except spaces. </li><li> For best usage: Use English characters only. </li></ul>{:/} |
@@ -154,16 +210,16 @@ Many SunRez commands use various parameters. Their formats, constraints and rati
 | <a id="phone_number"></a> `PHONE_NUMBER` | `p/` | `radd` `redit` | The phone number of a resident.{::nomarkdown} <ul><li> Must contain only numbers. </li><li> Must be at least 3 digits long. </li></ul>{:/} |
 | <a id="room_number"></a> `ROOM_NUMBER` | `r/` | `oadd` `oedit` `iadd` `iedit` | Room number for a room.{::nomarkdown} <ul><li> Format: <code>XY-ABC</code>, where XY can be any pair of digits except 00, and ABC can be any 3 digits. <ul><li> Valid examples: 01-000, 11-100, 12-345. </li><li> Invalid examples: 00-000, 00-100. </li></ul> </li><li> Room numbers are unique within SunRez. </li><li> We disallow floor numbers being 00. However, unit numbers can be 000. </li></ul>{:/} |
 | <a id="room_type"></a> `ROOM_TYPE` | `t/` | `oadd` `oedit` | Room type of a room.{::nomarkdown} <ul><li> Must be one of the following strings: <code>corridor_ac</code>, <code>corridor_non_ac</code>, <code>suite_ac</code>, <code>suite_non_ac</code>. </li><li> Strings are not case-sensitive. </li></ul>{:/} |
-| <a id="status"></a> `STATUS` | `s/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
+| <a id="status"></a> `STATUS` | `s/` | `iadd` `iedit` | The status of an issue.{::nomarkdown} <ul><li> Must of one of the following strings: <code>PENDING</code>, <code>CLOSED</code>. </li><li> Short forms are available: <code>P</code> for <code>PENDING</code>, <code>C</code> for <code>CLOSED</code>. </li><li> Strings are not case-sensitive. </li></ul>{:/} |
 | <a id="tag"></a> `TAG` | `g/` | `oadd` `oedit` `iadd` `iedit` | The tag associated with a room or issue.{::nomarkdown} <ul><li> Tags must be non-blank and alphanumeric (spaces are not allowed). </li><li> Tags are limited to 25 characters. </li><li> Tags are case-sensitive: e.g. <code>SHN</code>,<code>shn</code> and <code>Shn</code> are each considered separate tags. </li><li> Insertion order of tags does not guarantee display order in any part of the user interface. </li><li> Duplicate tags will be accepted as input, but only one instance will be recorded. </li><li> For the best experience, we recommend keeping tags short and having fewer than 20 of them per entry. There is no theoretical limit to the number of tags an entry can have, but SunRez may slow down or run into unexpected problems for a huge number of tags. </li></ul>{:/} |
-| <a id="timestamp"></a> `TIMESTAMP` | `t/` | `iadd` `iedit` | DESCRIPTION OF PARAMETER{::nomarkdown} <ul><li> FORMAT AND RESTRICTIONS WITH JUSTIFICATION </li><li> (if applicable) For best usage, ... </li><li> (if applicable) Valid examples (if not clear from above) </li></ul>{:/} |
+| <a id="timestamp"></a> `TIMESTAMP` | `t/` | `iadd` `iedit` | The timestamp for which the issue occurred.{::nomarkdown} <ul><li> Must not be in the future. </li><li> Must be in the format: <code>yyyy/MM/dd hh:mma</code>. </li><li> <code>yyyy</code> - 4 digit year (e.g. <code>2021</code>). </li><li> <code>MM</code> - 2 digit month (e.g. <code>01</code>, <code>05</code>, <code>12</code>). </li><li> <code>dd</code> - 2 digit day (e.g. <code>01</code>, <code>05</code>, <code>31</code>). </li><li> <code>hh</code> - 2 digit hour (<code>01</code>-<code>12</code>) (midnight is <code>12:00am</code>). </li><li> <code>mm</code> - 2 digit minutes (<code>00</code>-<code>59</code>). </li><li> <code>a</code> - case-insensitive AM/PM. </li><li> Example: <code>2021/01/01 12:00am</code>. </li></ul>{:/} |
 | <a id="year"></a> `YEAR` | `y/` | `radd` `redit` | The year of study of a resident.{::nomarkdown} <ul><li> Must be a single digit numeric character from 1 to 5 inclusive. </li></ul>{:/} |
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
-This section contains the details on SunRez commands and features. 
+This section contains the details on SunRez commands and features.
 
 ### Resident Management
 
@@ -180,8 +236,8 @@ Parameters:
 * [YEAR](#year) The year of the resident.
 
 Examples:
-* `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3` 
-  Adds a resident named `John Doe` with phone number `91234567`, email `e0123456@u.nus.edu`, and as a 3rd year student, 
+* `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3`
+  Adds a resident named `John Doe` with phone number `91234567`, email `e0123456@u.nus.edu`, and as a 3rd year student,
   without any room allocated.
 
 
@@ -226,7 +282,7 @@ Parameters:
 * [YEAR](#year) The year of the resident.
 
 Example:
-* `redit 1 p/91234567 e/e0123456@u.nus.edu` Edits the phone number and email address of the 1st resident to 
+* `redit 1 p/91234567 e/e0123456@u.nus.edu` Edits the phone number and email address of the 1st resident to
   be `91234567` and `e0123456@u.nus.edu` respectively.
 
 
@@ -248,7 +304,7 @@ Example:
 
 <div markdown="block" class="alert alert-secondary">
 :thinking: Why do room commands start with `o`?<br>
-:point_right: Room commands are prefixed with `o` as `r` is taken up by Resident commands. `o` is the second character in R**o**om. 
+:point_right: Room commands are prefixed with `o` as `r` is taken up by Resident commands. `o` is the second character in R**o**om.
 </div>
 
 <div markdown="block" class="alert alert-info">
@@ -262,9 +318,9 @@ Adds a room to the housing management system.
 Format: `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]`
 * Room is initialised with default occupancy status of "No".
 * The occupancy status cannot be defaulted to "Yes" during room addition.
-* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. 
-  See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info. 
-  
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated.
+  See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
+
 Parameters:
 * [`ROOM_NUMBER`](#room_number) The room number of the room to add.
 * [`ROOM_TYPE`](#room_type) The type of the room being added.
@@ -287,7 +343,7 @@ Finds all rooms by room number or tag that contain any of the given keywords.
 
 Format: `ofind KEYWORD [MORE_KEYWORDS]`
 * The search matches any part of the room number. e.g. `10` will match `10-111` and `14-101`.
-* The search for tags matches any part of the tag and is NOT case-sensitive. e.g `mell`, `smell`, `smelly` or `room` 
+* The search for tags matches any part of the tag and is NOT case-sensitive. e.g. `mell`, `smell`, `smelly` or `room` 
   all work to match `smellyroom`. `s` will match both `smellyroom` and `SHN`.
 * The order of the keywords does not matter. e.g. `11- 10-` will match `10-100`, `10-101`, `11-100`, and `11-101`.
 * Only the room number and tags are searched.
@@ -314,9 +370,14 @@ Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
 * Existing values will be updated to the input values.
 * `oedit` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before making further edits.
 * The occupancy status is not controllable through the `oedit` command.
-* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. 
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated.
   See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
+* `oedit` will be blocked if there are issues tagged to the room. Run `idel` to [delete the issues](#delete-an-issue--idel) associated with the room before making further edits.
+    * This is done to prevent issues from being assigned to nonexistent rooms, by editing away a room's number after assigning an issue to it
 
+<div markdown="block" class="alert alert-info">
+:information_source: Room numbers are editable as renovation or re-numbering excercises may take place.
+</div>
 
 Parameters:
 * [`INDEX`](#index) The index of the room to edit.
@@ -334,10 +395,10 @@ Deletes the room at a specified index.
 
 Format: `odel INDEX`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
-* `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room. 
+* `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room.
   See [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
-* `odel` will be blocked if the there are issues associated with the room. 
-  Run `idel` to delete all issues associated the room before attempting to delete the room. 
+* `odel` will be blocked if the there are issues associated with the room.
+  Run `idel` to delete all issues associated the room before attempting to delete the room.
   See [delete an issue](#delete-an-issue--idel) for more info.
 
 Parameters:
@@ -364,7 +425,7 @@ Parameters:
 * [RESIDENT_INDEX](#index) The index of the displayed resident.
 * [ROOM_INDEX](#index) The index of the displayed room.
 
-Note that RESIDENT_INDEX and ROOM_INDEX both conform to [INDEX](#index). 
+Note that RESIDENT_INDEX and ROOM_INDEX both conform to [INDEX](#index).
 
 Example:
 * `alloc ri/1 oi/2` Allocates the 1st resident in the resident list to the 2nd room in the room list.
@@ -384,6 +445,11 @@ Example:
 * `dealloc 1` Deallocates the 1st resident in the resident list from its allocated room.
 
 ### Issue Management
+<div markdown="block" class="alert alert-info">
+**:information_source: Issues are always sorted by status (`Pending` then `Closed`) then by timestamp in ascending order in all views.**
+
+**:information_source: Issues are considered duplicate if their room numbers, description, timestamp, status, and category are the same.**
+</div>
 
 #### Add an open issue : `iadd`
 
@@ -391,8 +457,16 @@ Adds an issue to the housing management system.
 
 Format: `iadd r/ROOM_NUMBER d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
 
+Parameters:
+* [`ROOM_NUMBER`](#room_number) The room number of the issue to be added. Room number must exist in SunRez.
+* [`DESCRIPTION`](#description) The description of the issue to be added.
+* [`TIMESTAMP`](#timestamp) Optional timestamp of the issue to be added, defaults to the current time.
+* [`STATUS`](#status) Optional status of the issue to be added, defaults to `Pending`.
+* [`CATEGORY`](#category) Optional category that the issue belongs in, defaults to `No Category`.
+* [`TAG`](#tag) Optional tags of the issue to be added.
+
 Example:
-* `iadd r/10-100 d/Broken light c/Furniture` 
+* `iadd r/10-100 d/Broken light c/Furniture`
   Creates an issue for room number `10-100` with description `Broken light` under the category `Furniture`.
 
 
@@ -405,17 +479,24 @@ Format: `ilist`
 
 #### Find issues : `ifind`
 
-Finds all issues that contain any of the given keywords in the description, room number or tags.
+Finds all issues that contain any of the given keywords in the room number, description or tags.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: `ifind` currently only searches through issues via room number and tags. Searching by status will be implemented in the future.**
+</div>
 
 Format: `ifind KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g. `broken` will match `Broken`.
 * The order of the keywords does not matter. e.g. `Broken light` will match `light broken`.
 * The search for tags and description matches any part of the tag and is NOT case-sensitive. 
-  e.g `high`, `HIGH` or `h` all work to match `High`. `H` will match both `Hot` and `High`.
+  e.g. `high`, `HIGH` or `h` all work to match `High`. `H` will match both `Hot` and `High`.
 * The search matches any part of the room number. e.g. `10` will match `10-111` and `14-101`.
 * Only the description, room number, and tags are searched.
-* Issues matching at least one keyword will be returned (i.e. OR search). 
+* Issues matching at least one keyword will be returned (i.e. OR search).
   e.g. `Broken window` will return `Broken light`, `Dirty window`, and `Broken window`.
+
+Parameters:
+* [`KEYWORD`](#keyword) The keyword to search for in the issue list.
 
 Examples:
 * `ifind chair` returns `Broken chair` and `Chair missing wheel`.
@@ -428,9 +509,18 @@ Examples:
 Edits the existing issue record at a specified index.
 
 Format: `iedit INDEX [r/ROOM_NUMBER] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
-* `INDEX` refers to the index number shown in the displayed issue list. `INDEX` **must be a positive integer 1, 2, 3, …**.
+* `INDEX` refers to the index number shown in the displayed issue list.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+
+Parameters:
+* [`INDEX`](#index) The index of the issue to edit.
+* [`ROOM_NUMBER`](#room_number) The room number to change the issue identified by [`INDEX`](#index) to. Room number must exist in SunRez.
+* [`DESCRIPTION`](#description) The description to change the issue identified by [`INDEX`](#index) to.
+* [`TIMESTAMP`](#timestamp) The timestamp to change the issue identified by
+* [`STATUS`](#status) The status to change the issue identified by [`INDEX`](#index) to.
+* [`CATEGORY`](#category) The category to change the issue identified by [`INDEX`](#index) to.
+* [`TAG`](#tag) Optional tags that may be updated for the room identified by [`INDEX`](#index).
 
 Example:
 * `iedit 1 r/20-109 s/Closed` Edits the room number and status of the 1st issue to be `20-109` and `Closed` respectively.
@@ -441,7 +531,10 @@ Example:
 Marks as closed the issue at a specified index.
 
 Format: `iclo INDEX`
-* `INDEX` refers to the index number shown in the displayed issue list. `INDEX` **must be a positive integer 1, 2, 3, …**.
+* `INDEX` refers to the index number shown in the displayed issue list.
+
+Parameters:
+* [`INDEX`](#index) The index of the displayed issue.
 
 Example:
 * `iclo 1` Closes the 1st issue.
@@ -452,7 +545,10 @@ Example:
 Deletes the issue at a specified index.
 
 Format: `idel INDEX`
-* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
+* `INDEX` refers to the index number shown in the displayed resident list.
+
+Parameters:
+* [`INDEX`](#index) The index of the displayed issue.
 
 Example:
 * `idel 1` Deletes the 1st issue.
@@ -588,7 +684,7 @@ Examples:
 
 #### Access command history
 
-Previous successful commands can be accessed via the UP and DOWN arrow keys on the keyboard. 
+Previous successful commands can be accessed via the UP and DOWN arrow keys on the keyboard.
 UP selects the previous command. DOWN selects the next command.
 
 Example usage:
@@ -635,7 +731,7 @@ If your changes to the data file makes its format invalid, SunRez will discard a
 ### How do I transfer my data to another computer?
 * On the computer with your data, do the following:
     1. Navigate to where SunRez is installed: the location of `sunrez.jar`.
-    1. Copy the following files to your other computer: `preferences.json`, `data/commandhistory.txt`, 
+    1. Copy the following files to your other computer: `preferences.json`, `data/commandhistory.txt`,
        `data/sunrez.json`
 * Then, on your other computer, do the following:
     1. Download SunRez (`sunrez.jar`) and place it in a suitable folder.

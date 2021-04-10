@@ -153,6 +153,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The room must not already exist in SunRez.
      */
     public void addRoom(Room room) {
+        assert room != null;
         rooms.add(room);
     }
 
@@ -172,6 +173,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code Room} must exist in SunRez.
      */
     public void removeRoom(Room key) {
+        assert key != null;
         rooms.remove(key);
     }
 

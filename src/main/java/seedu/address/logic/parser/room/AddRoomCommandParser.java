@@ -47,6 +47,9 @@ public class AddRoomCommandParser implements Parser<AddRoomCommand> {
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ROOM_TAG));
 
+        assert roomNumber != null;
+        assert roomType != null;
+
         Room room = new Room(roomNumber, roomType, tagList);
 
         return new AddRoomCommand(room);

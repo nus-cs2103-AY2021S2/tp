@@ -206,12 +206,16 @@ public class ModelManager implements Model {
 
     @Override
     public void addRoom(Room room) {
+        assert room != null;
+
         statefulAddressBook.addRoom(room);
         updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
     }
 
     @Override
     public void deleteRoom(Room target) {
+        assert target != null;
+
         statefulAddressBook.removeRoom(target);
     }
 
