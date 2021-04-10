@@ -92,6 +92,27 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredTaskList().remove(0));
     }
 
+    @Test
+    public void getExpiredFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getExpiredFilteredTaskList().remove(0));
+    }
+
+    @Test
+    public void getCompletedTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getCompletedFilteredTaskList().remove(0));
+    }
+
+    @Test
+    public void getTodaysFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getTodaysFilteredTaskList().remove(0));
+    }
+
+    @Test
+    public void getUncompletedFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getUncompletedFilteredTaskList().remove(0));
+    }
+
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>
