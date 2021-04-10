@@ -44,6 +44,9 @@ public class GarmentCard extends UiPart<Region> {
     private FlowPane descriptions;
     @FXML
     private Label sampleImage;
+    @FXML
+    private Label dressCodeImage;
+
 
     /**
      * Creates a {@code GarmentCode} with the given {@code Garment} and index to display.
@@ -51,7 +54,8 @@ public class GarmentCard extends UiPart<Region> {
     public GarmentCard(Garment garment, int displayedIndex) {
         super(FXML);
         this.garment = garment;
-        String sample = Garment.SAMPLES.get(garment.getColour().colour).get(garment.getType().value);
+        String colourSample = Garment.SAMPLES.get(garment.getColour().colour).get(garment.getType().value);
+        String DressCodeSample = Garment.SAMPLES.get("DressCode").get(garment.getDressCode().value);
 
         id.setText(displayedIndex + ". ");
         name.setText(garment.getName().fullName);
@@ -63,11 +67,17 @@ public class GarmentCard extends UiPart<Region> {
                 .forEach(description -> descriptions.getChildren()
                         .add(new Label("<" + description.descriptionName + ">")));
 
-        Image image = new Image(sample);
+        Image image = new Image(colourSample);
         ImageView sampleView = new ImageView(image);
         sampleView.setFitHeight(80);
         sampleView.setPreserveRatio(true);
         sampleImage.setGraphic(sampleView);
+
+        Image dcImage = new Image(DressCodeSample);
+        ImageView dressCodeSampleView = new ImageView(dcImage);
+        dressCodeSampleView.setFitHeight(80);
+        dressCodeSampleView.setPreserveRatio(true);
+        dressCodeImage.setGraphic(dressCodeSampleView);
     }
 
     @Override
