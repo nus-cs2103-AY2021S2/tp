@@ -121,7 +121,9 @@ Optional parts of the command will be wrapped in round brackets.
         Shortly it will open up the `User Guide` in your default browser.
         
         <p>&nbsp;</p>
+      
         ---
+      
         </details>
 
         <a name="exit"></a>
@@ -135,7 +137,9 @@ Optional parts of the command will be wrapped in round brackets.
         Alternatively, you can click on the ![settings](images/settings_white.png) icons > `exit` or simply press `F2` on your keyboard.
         
         <p>&nbsp;</p>
+      
         ---
+      
         </details>
     
     </details>
