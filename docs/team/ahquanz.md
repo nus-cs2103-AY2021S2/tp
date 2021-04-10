@@ -3,7 +3,7 @@ layout: page
 title: Li Quan's Project Portfolio Page
 ---
 
-## Project: Chesse Inventory Management (CHIM)
+## Project: Cheese Inventory Management (CHIM)
 
 Cheese Inventory Management (CHIM) is a desktop app for managing the contacts, inventory, and orders of a home-based
 cheese making business. It is an extension from the AddressBook Level 3 project for Software Engineering (SE) students.

@@ -748,7 +748,7 @@ testers are expected to do more *exploratory* testing.
     2. Copy the downloaded jar file into an empty folder.
     3. Navigate your command prompt to the folder containing the downloaded jar file and run the command `java -jar <fileName>`.
 
-        Lunch the application by double-clicking only as a last resort if the command does not work.
+        Launch the application by double-clicking only as a last resort if the command does not work.
 
 2. Saving window size and location preferences.
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
@@ -959,9 +959,9 @@ testers are expected to do more *exploratory* testing.
 1. Adding a cheese into CHIM.
     1. Prerequisites:
         - Arguments are valid and compulsory parameters are provided.
-        - If manufacture_date is given , it must be any date up to current date , not in the future. 
-        - If manufacture_date is not given, it defaults to current date.
-        - expiry_date if given must occur after manufacture_date.
+        - If `MANUFACTURE_DATE` is given , it must be any date up to current date , not in the future. 
+        - If `MANUFACTURE_DATE` is not given, it defaults to current date.
+        - `EXPIRY_DATE` if given must occur after manufacture_date.
 
     2. Test case: `addcheese t/Gruyere q/4`.
 
