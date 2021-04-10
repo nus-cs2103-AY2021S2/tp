@@ -31,23 +31,33 @@ public class ViewCommandParserTest {
 
     @Test
     public void parse_emptyArguments_failure() {
-        // Test that empty arguments ParseException is thrown
+        // empty arguments exception thrown
         assertParseFailure(parser, INVALID_EMPTY_STRING, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ViewCommand.MESSAGE_USAGE));
+
+        // white spaces exception thrown
+        assertParseFailure(parser, " ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ViewCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_invalidId_failure() {
-        // Test that negative ID ParseException is thrown
+        // negative ID
         assertParseFailure(parser, INVALID_NEGATIVE_ID_STRING, MESSAGE_INVALID_ID_GENERAL);
 
-        // Test that invalid ID ParseException is thrown
+        // unknown ID
         assertParseFailure(parser, INVALID_UNKNOWN_ID_STRING, MESSAGE_INVALID_ID_GENERAL);
     }
 
     @Test
     public void parse_validId_success() {
-        // Test that no parseException thrown
-        assertParseSuccess(parser, VALID_ENTITY_ID, new ViewCommand(Integer.parseInt(VALID_ENTITY_ID)));
+
+        ViewCommand expectedCommand = new ViewCommand(Integer.parseInt(VALID_ENTITY_ID));
+
+        // no whitespaces trailing and before
+        assertParseSuccess(parser, VALID_ENTITY_ID, expectedCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, String.format(" " + VALID_ENTITY_ID + " "), expectedCommand);
     }
 }
