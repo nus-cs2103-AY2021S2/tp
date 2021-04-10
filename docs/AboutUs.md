@@ -43,6 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/zhengruoxin.png" width="200px">
 
 [[github](https://github.com/zhengruoxin)]
+[[portfolio](team/zhengruoxin.md)]
 
 ### Lee Pai Joo Yvelle
 
