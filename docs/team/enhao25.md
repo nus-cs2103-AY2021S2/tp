@@ -8,12 +8,11 @@ title: En Hao's Project Portfolio Page
 TutorBuddy is a desktop application made for freelance tutors who give one-to-one tuition to efficiently manage their students’ contacts, provide a quick overview of scheduled tuition sessions, and handle monthly tuition fees calculation. TutorBuddy is also optimized for fast typing users to handle their day-to-day administrative responsibilities effectively.
 
 ## Summary of Contributions
+Given below is a summary of my contributions to the development of TutorBuddy.
+
 ### Major Enhancement:
 * Getting the current month and previous 2 months monthly fees.
   * **What it does:** This feature calculates the current month, and the previous 2 months expected monthly fee based on existing sessions and recurring sessions. We then display the results on the UI accordingly.
-  * **Justification:** Independent tutors might want to keep track of their earnings. However, as different lesson could be priced differently,
-    we wanted to implement a feature that helps user calculate their expected total current month salary and their previous 2 months
-    monthly salary.
   * **Highlights:** Calculation are performed in a separate FeeUtil class. It performs the calculation using a loop and takes into account whether the sessions are individual sessions or recurring sessions.
     As the monthly fees are expected to show up in the UI, I had to create a list panel, and a card fxml file that represents the monthly fee.
     A student list's listener was also added, so that whenever the student list updates, the monthly fees would also updates.
@@ -21,8 +20,6 @@ TutorBuddy is a desktop application made for freelance tutors who give one-to-on
     [PR #145](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/145).
 * Feature to get a particular student's monthly fee.
     * **What it does:** Fee command to calculate the monthly fee of a particular student in a specific month and year and return the value to the user.
-    * **Justification:** When independent tutor collects their monthly fee from the students, it might be difficult for them to keep track of how much would they receive
-      when their lessons are charge on a per session basis. Hence, we wanted to create a feature such that TutorBuddy can help the tutor calculate the monthly fees instead.
     * **Highlights:** This feature makes use of the methods in FeeUtil to calculate the fees for a particular student. As this is a command based query, I would have to first
       create GetMonthlyFeeCommand class that executes the command, and a parser method for the command. New prefixes are defined, and the
       Month and Year class was created to enforce our project constraints.
@@ -32,9 +29,6 @@ TutorBuddy is a desktop application made for freelance tutors who give one-to-on
 the fields taken to be representative of a student class instead.
     * **What it does:** Refactor the person class from [AB3](https://nus-cs2103-ay2021s2.github.io/tp/) to the student class and enhance
       the fields taken to be representative of a student class instead.
-    * **Justification:** From the base project, we were given the person class to work with. However, as the
-      project was to be used for students, we had to refactor all our existing code
-      to better represent the application that we are working towards.
     * **Highlights:** I made use of Intellij to help me with refactoring the application. However, as the code base was large, it was difficult to
       made changes to the application and ensure that the entire application still works as expected. I had to do small adjustments at
       a time and consistently check that the test cases still works. This has allowed me to explore all the different components of the application such as storage, model and logic.
