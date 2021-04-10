@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindPoolCommandParser" as FindPoolCommandParser LOGIC_COLOR
+participant "alicePredicate:PooledPassengerContainsKeywordsPredicate" as PooledPassengerContainsKeywordsPredicate LOGIC_COLOR
+participant "fp:FindPoolCommand" as FindPoolCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(command)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(command)
+activate AddressBookParser
+
+create FindPoolCommandParser
+AddressBookParser -> FindPoolCommandParser
+activate FindPoolCommandParser
+
+FindPoolCommandParser --> AddressBookParser
+deactivate FindPoolCommandParser
+
+AddressBookParser -> FindPoolCommandParser : parse("n/Alice")
+activate FindPoolCommandParser
+
+FindPoolCommandParser -> FindPoolCommandParser : parsePredicate("n/", "Alice")
+activate FindPoolCommandParser
+
+create PooledPassengerContainsKeywordsPredicate
+FindPoolCommandParser -> PooledPassengerContainsKeywordsPredicate
+activate PooledPassengerContainsKeywordsPredicate
+
+PooledPassengerContainsKeywordsPredicate --> FindPoolCommandParser : alicePredicate
+deactivate PooledPassengerContainsKeywordsPredicate
+
+FindPoolCommandParser --> FindPoolCommandParser : alicePredicate
+deactivate FindPoolCommandParser
+
+create FindPoolCommand
+FindPoolCommandParser -> FindPoolCommand : FindPoolCommand(alicePredicate)
+activate FindPoolCommand
+
+FindPoolCommand --> FindPoolCommandParser : fp
+deactivate FindPoolCommand
+
+FindPoolCommandParser --> AddressBookParser : fp
+deactivate FindPoolCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindPoolCommandParser -[hidden]-> AddressBookParser
+destroy FindPoolCommandParser
+
+AddressBookParser --> LogicManager : fp
+deactivate AddressBookParser
+
+LogicManager -> FindPoolCommand : execute(model)
+activate FindPoolCommand
+
+FindPoolCommand -> Model : updateFilteredPoolList(alicePredicate))
+activate Model
+Model --> FindPoolCommand
+deactivate Model
+
+create CommandResult
+FindPoolCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindPoolCommand
+deactivate CommandResult
+
+FindPoolCommand --> LogicManager : result
+deactivate FindPoolCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
