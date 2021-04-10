@@ -398,9 +398,11 @@ Options:
 
 
 Examples:
-* `find property n/jurong west`
+* `find property n/mayfair`
 * `find property n/bishan north t/hdb pl/$1,000,000`
 * `find property pl/1000000 t/hdb a/1 Jurong East Street 32, #08-111 tags/3 bedrooms, need renovation cc/91234567`
+
+![find property example](images/findproperty.png)
 
 #### 3.9.2 Searching appointments: `find appointment`
 
@@ -435,6 +437,9 @@ Options:
 Examples:
 * `find appointment n/bob`
 * `find appointment n/alex d/25-12-2021`
+* `find appointment t/2030`
+
+![find appointment example](images/findappointment.png)
 
 #### 3.9.3 Searching clients: `find client`
 
@@ -445,6 +450,12 @@ Format:
 
 Description:
 * There can be 1 or more keywords. Keywords are case insensitive.
+
+Examples: 
+* `find client jacob`
+* `find client george`
+
+![find client example](images/findclient.png)
 
 ### 3.10 Clearing
 
