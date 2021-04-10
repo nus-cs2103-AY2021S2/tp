@@ -27,14 +27,14 @@ public class ListAppointmentCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListAppointmentCommand(), model,
-                ListAppointmentCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListAppointmentCommand(), model, String.format(ListAppointmentCommand.MESSAGE_SUCCESS,
+                model.getFilteredAppointmentList().size()), expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showAppointmentAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListAppointmentCommand(), model,
-                ListAppointmentCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListAppointmentCommand(), model, String.format(ListAppointmentCommand.MESSAGE_SUCCESS,
+                expectedModel.getFilteredAppointmentList().size()), expectedModel);
     }
 }
