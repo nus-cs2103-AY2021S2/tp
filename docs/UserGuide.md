@@ -74,7 +74,7 @@ to manage tasks which can be identified by their unique deadlines or priorities.
 
    * **`addTask`**`Proposal d/Write out detailed proposal plan for CCA timeline b/2021-04-22` : Adds a task named `Proposal` to HEY MATEz.
 
-   * **`deleteTask`**`3` : Deletes the 3rd task shown in the current list.
+   * **`deleteTask`**`3` : Deletes the 3rd task shown in the list.
 
    * **`clear`** : Deletes all tasks and members.
 
@@ -103,7 +103,7 @@ to manage tasks which can be identified by their unique deadlines or priorities.
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
   
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
   
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
@@ -264,7 +264,7 @@ Examples:
 
 <a name="deleteTask"></a>
 ### 2. Delete Task: `deleteTask`
-Deletes a task from the list with task INDEX you specified.
+If a task is no longer relevant, you can delete the task along with its details from the list with the task index you specified.
 
 Format: `deleteTask INDEX`
 
@@ -377,7 +377,8 @@ Examples:
 <a name="clearAssignees"></a>
 ### 10. Remove all Members Assigned to a Task: `clearAssignees`
 
-Removes all members assigned to a task with the task INDEX you specified.
+If you have accidentally assigned a task to the wrong group of members,
+you can easily remove all members assigned to that task with the task index you specified.
 
 Format: `clearAssignees INDEX`
 
@@ -398,7 +399,8 @@ Examples:
 <a name="findUncompleted"></a>
 ### 12. View List of Uncompleted Tasks: `viewUncompletedTasks`
 
-Displays the list of uncompleted tasks.
+In order to be on track with work, you may want to view tasks which have not been completed.
+This feature allows you to view the list of uncompleted tasks.
 
 Format: `viewUncompletedTasks`
 
@@ -409,7 +411,7 @@ Examples:
 ### 13. Find Tasks Assigned to a Single Member: `findTasksFor`
 
 In order to manage members efficiently, you may want to track the tasks that are assigned to each member.
-This feature allows you to find all tasks assigned to a single Member.
+This feature allows you to find all tasks assigned to a single member.
 
 Format: `findTasksFor NAME`
 
