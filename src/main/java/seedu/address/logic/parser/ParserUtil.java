@@ -13,7 +13,10 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.medical.Appointment;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.BloodType;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Height;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -60,6 +63,36 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String dateOfBirth} into a {@code DateOfBirth}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateOfBirth} is invalid.
+     */
+    public static DateOfBirth parseDateOfBirth(String dateOfBirth) throws ParseException {
+        requireNonNull(dateOfBirth);
+        String trimmedDateOfBirth = dateOfBirth.trim();
+        if (!DateOfBirth.isValidDateOfBirth(trimmedDateOfBirth)) {
+            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        return new DateOfBirth(trimmedDateOfBirth);
+    }
+
+    /**
+     * Parses a {@code String gender} into a {@code Gender}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gender} is invalid.
+     */
+    public static Gender parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        String trimmedGender = gender.trim();
+        if (!Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        return new Gender(trimmedGender);
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -102,6 +135,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String bloodType} into a {@code BloodType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code bloodType} is invalid.
+     */
+    public static BloodType parseBloodType(String bloodType) throws ParseException {
+        requireNonNull(bloodType);
+        String trimmedBloodType = bloodType.trim();
+        if (!BloodType.isValidBloodType(trimmedBloodType)) {
+            throw new ParseException(BloodType.MESSAGE_CONSTRAINTS);
+        }
+        return new BloodType(trimmedBloodType);
     }
 
     /**

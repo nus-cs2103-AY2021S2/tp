@@ -16,7 +16,7 @@ public class OpenMedicalRecordCommand extends Command {
 
     public static final String COMMAND_WORD = "mrec";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens an editor for a medical report for a patient "
-            + "identified by the index number used in the displayed person list. \n"
+            + "identified by the index number used in the displayed patient list. \n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 3";
 

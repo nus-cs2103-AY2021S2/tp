@@ -6,7 +6,10 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.BloodType;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Height;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Patient;
@@ -30,14 +33,17 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPersonDescriptor} with fields containing {@code patient}'s details
      */
     public EditPersonDescriptorBuilder(Patient patient) {
         descriptor = new EditPersonDescriptor();
         descriptor.setName(patient.getName());
+        descriptor.setDateOfBirth(patient.getDateOfBirth());
+        descriptor.setGender(patient.getGender());
         descriptor.setPhone(patient.getPhone());
         descriptor.setEmail(patient.getEmail());
         descriptor.setAddress(patient.getAddress());
+        descriptor.setBloodType(patient.getBloodType());
         descriptor.setHeight(patient.getHeight());
         descriptor.setWeight(patient.getWeight());
         descriptor.setTags(patient.getTags());
@@ -49,6 +55,22 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
+        return this;
+    }
+
+    /**
+     * Sets the {@code DateOfBirth} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDateOfBirth(String dateOfBirth) {
+        descriptor.setDateOfBirth(new DateOfBirth(dateOfBirth));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Gender} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withGender(String gender) {
+        descriptor.setGender(new Gender(gender));
         return this;
     }
 
@@ -73,6 +95,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
+        return this;
+    }
+
+    /**
+     * Sets the {@code BloodType} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withBloodType(String bloodType) {
+        descriptor.setBloodType(new BloodType(bloodType));
         return this;
     }
 

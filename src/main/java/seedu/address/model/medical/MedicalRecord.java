@@ -10,13 +10,12 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Represents a Appointment of a Patient.
+ * Represents the Medical Record of a Patient.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class MedicalRecord {
     // attributes from appointment
     private LocalDateTime date;
-    private String zoomMeetingUrl;
     private List<Section> sections;
 
     /**
@@ -32,7 +31,6 @@ public class MedicalRecord {
      */
     public MedicalRecord(Appointment appointment, List<String> sections) {
         this.date = appointment.getDate();
-        this.zoomMeetingUrl = appointment.getZoomMeetingUrl();
         this.sections = new ArrayList<>();
         for (String section : sections) {
             this.sections.add(new Section(section));
@@ -41,10 +39,6 @@ public class MedicalRecord {
 
     public LocalDateTime getDate() {
         return date;
-    }
-
-    public String getZoomMeetingUrl() {
-        return zoomMeetingUrl;
     }
 
     public List<Section> getSections() {

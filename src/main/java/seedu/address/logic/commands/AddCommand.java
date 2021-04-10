@@ -2,7 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATEOFBIRTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HEIGHT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -14,7 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Patient;
 
 /**
- * Adds a person to the address book.
+ * Adds a patient to DocBob.
  */
 public class AddCommand extends Command {
 
@@ -23,21 +26,27 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to DocBob. \n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
+            + PREFIX_DATEOFBIRTH + "DATEOFBIRTH "
+            + PREFIX_GENDER + "GENDER "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_BLOODTYPE + "BLOODTYPE "
             + PREFIX_HEIGHT + "HEIGHT "
             + PREFIX_WEIGHT + "WEIGHT "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
+            + PREFIX_DATEOFBIRTH + "31122000 "
+            + PREFIX_GENDER + "M "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_BLOODTYPE + "AB- "
             + PREFIX_HEIGHT + "169cm "
             + PREFIX_WEIGHT + "69kg "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "bronchitis "
+            + PREFIX_TAG + "lung cancer";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This patient already exists in DocBob!";
@@ -45,7 +54,7 @@ public class AddCommand extends Command {
     private final Patient toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Patient}
      */
     public AddCommand(Patient patient) {
         requireNonNull(patient);

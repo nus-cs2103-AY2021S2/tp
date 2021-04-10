@@ -15,21 +15,24 @@ import seedu.address.model.medical.MedicalRecord;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in DocBob.
+ * Represents a Patient in DocBob.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Patient implements Comparable<Patient> {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
-    private final Email email;
+    private final DateOfBirth dateOfBirth;
+    private final Gender gender;
 
     // Data fields
+    private final Phone phone;
+    private final Email email;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     //Health-related data fields
+    private final BloodType bloodType;
     private final Height height;
     private final Weight weight;
 
@@ -43,12 +46,16 @@ public class Patient implements Comparable<Patient> {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Height height, Weight weight, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, height, weight, tags);
+    public Patient(Name name, DateOfBirth dateOfBirth, Gender gender, Phone phone, Email email, Address address,
+                   BloodType bloodType, Height height, Weight weight, Set<Tag> tags) {
+        requireAllNonNull(name, dateOfBirth, gender, phone, email, address, bloodType, height, weight, tags);
         this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.bloodType = bloodType;
         this.height = height;
         this.weight = weight;
         this.tags.addAll(tags);
@@ -58,13 +65,17 @@ public class Patient implements Comparable<Patient> {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Height height, Weight weight,
+    public Patient(Name name, DateOfBirth dateOfBirth, Gender gender, Phone phone, Email email, Address address,
+                   BloodType bloodType, Height height, Weight weight,
                    Set<Tag> tags, List<Appointment>appointments) {
-        requireAllNonNull(name, phone, email, address, height, weight, tags);
+        requireAllNonNull(name, dateOfBirth, gender, phone, email, address, bloodType, height, weight, tags);
         this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.bloodType = bloodType;
         this.height = height;
         this.weight = weight;
         this.tags.addAll(tags);
@@ -75,13 +86,17 @@ public class Patient implements Comparable<Patient> {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Height height, Weight weight,
+    public Patient(Name name, DateOfBirth dateOfBirth, Gender gender, Phone phone, Email email, Address address,
+                   BloodType bloodType, Height height, Weight weight,
                    Set<Tag> tags, List<MedicalRecord> records, List<Appointment>appointments) {
         requireAllNonNull(name, phone, email, address, height, weight, tags);
         this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.bloodType = bloodType;
         this.height = height;
         this.weight = weight;
         this.tags.addAll(tags);
@@ -94,6 +109,14 @@ public class Patient implements Comparable<Patient> {
         return name;
     }
 
+    public DateOfBirth getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
     public Phone getPhone() {
         return phone;
     }
@@ -104,6 +127,10 @@ public class Patient implements Comparable<Patient> {
 
     public Address getAddress() {
         return address;
+    }
+
+    public BloodType getBloodType() {
+        return bloodType;
     }
 
     public Height getHeight() {
@@ -141,8 +168,8 @@ public class Patient implements Comparable<Patient> {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both patients have the same name.
+     * This defines a weaker notion of equality between two patients.
      */
     public boolean isSamePerson(Patient otherPatient) {
         if (otherPatient == this) {
@@ -154,8 +181,8 @@ public class Patient implements Comparable<Patient> {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both patients have the same identity and data fields.
+     * This defines a stronger notion of equality between two patients.
      */
     @Override
     public boolean equals(Object other) {
@@ -169,9 +196,12 @@ public class Patient implements Comparable<Patient> {
 
         Patient otherPatient = (Patient) other;
         return otherPatient.getName().equals(getName())
+                && otherPatient.getDateOfBirth().equals(getDateOfBirth())
+                && otherPatient.getGender().equals(getGender())
                 && otherPatient.getPhone().equals(getPhone())
                 && otherPatient.getEmail().equals(getEmail())
                 && otherPatient.getAddress().equals(getAddress())
+                && otherPatient.getBloodType().equals(getBloodType())
                 && otherPatient.getHeight().equals(getHeight())
                 && otherPatient.getWeight().equals(getWeight())
                 && otherPatient.getTags().equals(getTags())
@@ -183,20 +213,26 @@ public class Patient implements Comparable<Patient> {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, height, weight, tags, appointments,
-                records, isArchived);
+        return Objects.hash(name, dateOfBirth, gender, phone, email, address, bloodType, height, weight,
+                tags, appointments, records, isArchived);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Date Of Birth: ")
+                .append(getDateOfBirth())
+                .append("; Gender: ")
+                .append(getGender())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; BloodType: ")
+                .append(getBloodType())
                 .append("; Height: ")
                 .append(getHeight())
                 .append("; Weight: ")
