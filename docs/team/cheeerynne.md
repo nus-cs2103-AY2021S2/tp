@@ -27,15 +27,18 @@ Given below are my contributions to the project.
       keywords. With this easy filtering, there is no need for users to scroll through the entire list just to find a specific task. 
     * Highlights: The implementation was challenging as I had to check through the title and description field of all the tasks 
       in the task list. I decided to implement a predicate,TaskContainsKeywordPredicate, which compares the title and description of
-      a task to the list of keywords specified. 
-
+      a task to the list of keywords specified. The task list is then updated accordingly to the predicate. 
+      Furthermore, integration and unit testing had to be implemented thoroughly to ensure that the various scenarios of usage were accounted for.
+    
 * **New Feature**: Added the ability to find members with specified keywords. (Pull Requests: [\#130](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/130))
     * What it does: allows the user to find all members whose name, phone number, email or role contain any of the specified keywords.
     * Justification: This feature improves the product significantly because a user can easily filter and find members based on specific 
       keywords. With this easy filtering, there is no need for users to scroll through the entire list just to find a specific member.
     * Highlights: The implementation was challenging as I had to check through all the fields of the members in the list. 
       I decided to implement a predicate, DetailsContainsKeywordsPredicate, which compares all the fields of a member to the list of keywords specified.
-
+      The members list is then updated accordingly to the predicate. Furthermore, integration and unit testing had to be implemented 
+      thoroughly to ensure that the various scenarios of usage were accounted for.
+      
 * **New Feature**: Added the ability to remove all members assigned to a task (Pull Requests: [\#163](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/163), [\#174](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/174))
     * What it does: allows the user to remove all members assigned to a task with a single command.
     * Justification: This feature improves the product significantly because a user can easily remove all members assigned to a task
@@ -65,7 +68,7 @@ Given below are my contributions to the project.
         * Added and updated use cases in the Developer Guide (Pull Requests: [\#143](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/143), [\#171](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/171))
        
 * **Community**:
-    * PRs reviewed (Pull requests: [\#246](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/246))
+    * PRs reviewed (Pull requests: [\#246](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/246), [\#145](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/145))
     * Reported bugs and suggestions for other teams in the class (Examples: [1](https://github.com/cheeerynne/ped/issues/11), [2](https://github.com/cheeerynne/ped/issues/12), [3](https://github.com/cheeerynne/ped/issues/9))
     
 
