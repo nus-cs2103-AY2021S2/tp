@@ -17,7 +17,8 @@ public class QuizBuilder {
     /**
      * Constructor for QuizBuilder.
      *
-     * @throws CommandException if
+     * @@throws CommandException if there are no flashcards with specified tag or
+     * number of questions specified is larger than number of flashcards in database.
      */
     public QuizBuilder() throws CommandException {
         quiz = new Quiz(getTypicalFlashcards(), 1, new HashSet<>());

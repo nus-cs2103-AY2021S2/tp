@@ -9,13 +9,17 @@ import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.Quiz;
 import seedu.weeblingo.model.flashcard.Flashcard;
 
+/**
+ * A utility class to build a quiz object with ACard.
+ */
 public class QuizACard extends QuizBuilder {
     private Quiz quiz;
 
     /**
-     * Constructor to build a
+     * Constructor for QuizACard
      *
-     * @throws CommandException
+     * @throws CommandException if there are no flashcards with specified tag or
+     * number of questions specified is larger than number of flashcards in database.
      */
     public QuizACard() throws CommandException {
         ArrayList<Flashcard> list = new ArrayList<>();
