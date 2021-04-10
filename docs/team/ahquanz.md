@@ -18,7 +18,7 @@ Given below are my contributions to the project.
       team members had different ideas of how the model classes should be designed and implemented. 
       
 * **New Feature**: Marking an order as complete in the CHIM app.
-    * What id does: It allows the user of the CHIM app to mark an order as complete by a command. 
+    * What it does: It allows the user of the CHIM app to mark an order as complete by a command. 
       The CHIM app will update completed date for the order and assign available cheeses to the order 
       to provide an indication of what available cheeses the user needs to use to fulfill the order.
     * Justification: Marking an order as complete is an essential feature for the user would have to fulfill 
@@ -47,3 +47,4 @@ Given below are my contributions to the project.
     , [#\26](https://github.com/AY2021S2-CS2103-W16-2/tp/pull/26)
     , [#\38](https://github.com/AY2021S2-CS2103-W16-2/tp/pull/38)
     , [#\121](https://github.com/AY2021S2-CS2103-W16-2/tp/pull/121)
+    , [#\124](https://github.com/AY2021S2-CS2103-W16-2/tp/pull/124)
