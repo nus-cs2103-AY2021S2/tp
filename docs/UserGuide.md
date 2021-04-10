@@ -174,7 +174,8 @@ It is okay for two friends to share the same address.
 
 Your friend's birthday so that you don't forget one of their most important days of the year.
 
-This field should follow the following date format: `dd-MM-yyyy` e.g `01-01-2020`
+This field should follow the following date format: `dd-MM-yyyy` e.g `01-01-2020`.
+This field additionally should not be a date from the future.
 
 ### Debt
 
