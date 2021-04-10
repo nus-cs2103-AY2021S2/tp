@@ -6,6 +6,7 @@ import static seedu.cakecollate.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.cakecollate.testutil.Assert.assertThrows;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,6 +15,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.cakecollate.commons.core.Messages;
+import seedu.cakecollate.commons.core.index.Index;
+import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.order.Address;
 import seedu.cakecollate.model.order.DeliveryDate;
@@ -50,6 +53,54 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_DELIVERY_DATE = "01/01/2022";
 
+    private static final String VALID_INDEX_LIST_WITH_ONE_INDEX = "1";
+    private static final String VALID_INDEX_LIST_WITH_TWO_INDEXES = "1 2";
+    private static final String VALID_INDEX_LIST_WITH_THREE_INDEXES = "1 2 3";
+    private static final String VALID_INDEX_LIST_WITH_ONE_INDEX_AND_EXTRA_WHITESPACE_AT_FRONT =
+            " 1";
+    private static final String VALID_INDEX_LIST_WITH_ONE_INDEX_AND_EXTRA_WHITESPACE_AT_BACK =
+            "1 ";
+    private static final String VALID_INDEX_LIST_WITH_ONE_INDEX_AND_EXTRA_WHITESPACES_AT_FRONT_AND_BACK =
+            " 1 ";
+    private static final String VALID_INDEX_LIST_WITH_TWO_INDEXES_AND_EXTRA_WHITESPACE_AT_FRONT =
+            " 1 2";
+    private static final String VALID_INDEX_LIST_WITH_TWO_INDEXES_AND_EXTRA_WHITESPACE_AT_BACK =
+            "1 2 ";
+    private static final String VALID_INDEX_LIST_WITH_TWO_INDEXES_AND_EXTRA_WHITESPACES_AT_FRONT_AND_BACK =
+            " 1 2 ";
+    private static final String VALID_INDEX_LIST_WITH_THREE_INDEXES_AND_EXTRA_WHITESPACE_AT_FRONT =
+            " 1 2 3";
+    private static final String VALID_INDEX_LIST_WITH_THREE_INDEXES_AND_EXTRA_WHITESPACE_AT_BACK =
+            "1 2 3 ";
+    private static final String VALID_INDEX_LIST_WITH_THREE_INDEXES_AND_EXTRA_WHITESPACES_AT_FRONT_AND_BACK =
+            " 1 2 3 ";
+    private static final String VALID_INDEX_LIST_WITH_ONE_INDEX_AND_MULTIPLE_WHITESPACES_1 =
+            "   1   ";
+    private static final String VALID_INDEX_LIST_WITH_ONE_INDEX_AND_MULTIPLE_WHITESPACES_2 =
+            "            1     ";
+    private static final String VALID_INDEX_LIST_WITH_ONE_INDEX_AND_MULTIPLE_WHITESPACES_3 =
+            "                                1                 ";
+    private static final String VALID_INDEX_LIST_WITH_TWO_INDEXES_AND_MULTIPLE_WHITESPACES_1 =
+            "  1  2  ";
+    private static final String VALID_INDEX_LIST_WITH_TWO_INDEXES_AND_MULTIPLE_WHITESPACES_2 =
+            "  1          2     ";
+    private static final String VALID_INDEX_LIST_WITH_TWO_INDEXES_AND_MULTIPLE_WHITESPACES_3 =
+            "             1                   2                 ";
+    private static final String VALID_INDEX_LIST_WITH_THREE_INDEXES_AND_MULTIPLE_WHITESPACES_1 =
+            "  1  2  3  ";
+    private static final String VALID_INDEX_LIST_WITH_THREE_INDEXES_AND_MULTIPLE_WHITESPACES_2 =
+            "  1          2           3  ";
+    private static final String VALID_INDEX_LIST_WITH_THREE_INDEXES_AND_MULTIPLE_WHITESPACES_3 =
+            "             1                   2          3              ";
+
+    private static final String INVALID_INDEX_LIST_WITH_ONE_INDEX = "-1";
+    private static final String INVALID_INDEX_LIST_WITH_TWO_INDEXES = "-1 -2";
+    private static final String INVALID_INDEX_LIST_WITH_THREE_INDEXES = "-1 -2 -3";
+    private static final String INVALID_INDEX_LIST_WITH_ONE_INDEX_AND_MULTIPLE_SPACES = "  -1  ";
+    private static final String INVALID_INDEX_LIST_WITH_TWO_INDEXES_AND_MULTIPLE_SPACES = "    -1    -2   ";
+    private static final String INVALID_INDEX_LIST_WITH_THREE_INDEXES_AND_MULTIPLE_SPACES = "   -1    -2    -3   ";
+
+
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
@@ -77,7 +128,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseName(null));
     }
 
     @Test
@@ -105,7 +156,7 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone(null));
     }
 
     @Test
@@ -133,7 +184,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress(null));
     }
 
     @Test
@@ -156,7 +207,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail(null));
     }
 
     @Test
@@ -275,7 +326,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseDeliveryDate_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseDeliveryDate((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDeliveryDate(null));
     }
 
     @Test
@@ -295,4 +346,195 @@ public class ParserUtilTest {
         DeliveryDate expectedDeliveryDate = new DeliveryDate(VALID_DELIVERY_DATE);
         assertEquals(expectedDeliveryDate, ParserUtil.parseDeliveryDate(deliveryDateWithWhitespace));
     }
+
+    @Test
+    public void parseIndexList_validValueWithoutWhitespace_returnsValidIndexList() throws Exception{
+        Index indexOne = Index.fromOneBased(1);
+        Index indexTwo = Index.fromOneBased(2);
+        Index indexThree = Index.fromOneBased(3);
+
+        //index list with one index
+        IndexList expectedIndexListWithOneIndex = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithOneIndex.add(indexOne);
+        assertEquals(expectedIndexListWithOneIndex, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_ONE_INDEX));
+
+        //index list with two indexes
+        IndexList expectedIndexListWithTwoIndexes = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithTwoIndexes.add(indexOne);
+        expectedIndexListWithTwoIndexes.add(indexTwo);
+        assertEquals(expectedIndexListWithTwoIndexes, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_TWO_INDEXES));
+
+        //index list with three indexes
+        IndexList expectedIndexListWithThreeIndexes = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithThreeIndexes.add(indexOne);
+        expectedIndexListWithThreeIndexes.add(indexTwo);
+        expectedIndexListWithThreeIndexes.add(indexThree);
+        assertEquals(expectedIndexListWithThreeIndexes, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_THREE_INDEXES));
+    }
+
+    @Test
+    public void parseIndexList_validValueWithExtraWhitespaceAtFront_returnsValidIndexList() throws Exception{
+        Index indexOne = Index.fromOneBased(1);
+        Index indexTwo = Index.fromOneBased(2);
+        Index indexThree = Index.fromOneBased(3);
+
+        //index list with one index
+        IndexList expectedIndexListWithOneIndex = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithOneIndex.add(indexOne);
+        assertEquals(expectedIndexListWithOneIndex, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_ONE_INDEX_AND_EXTRA_WHITESPACE_AT_FRONT));
+
+        //index list with two indexes
+        IndexList expectedIndexListWithTwoIndexes = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithTwoIndexes.add(indexOne);
+        expectedIndexListWithTwoIndexes.add(indexTwo);
+        assertEquals(expectedIndexListWithTwoIndexes, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_TWO_INDEXES_AND_EXTRA_WHITESPACE_AT_FRONT));
+
+        //index list with three indexes
+        IndexList expectedIndexListWithThreeIndexes = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithThreeIndexes.add(indexOne);
+        expectedIndexListWithThreeIndexes.add(indexTwo);
+        expectedIndexListWithThreeIndexes.add(indexThree);
+        assertEquals(expectedIndexListWithThreeIndexes, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_THREE_INDEXES_AND_EXTRA_WHITESPACE_AT_FRONT));
+    }
+
+    @Test
+    public void parseIndexList_validValueWithExtraWhitespaceAtBack_returnsValidIndexList() throws Exception{
+        Index indexOne = Index.fromOneBased(1);
+        Index indexTwo = Index.fromOneBased(2);
+        Index indexThree = Index.fromOneBased(3);
+
+        //index list with one index
+        IndexList expectedIndexListWithOneIndex = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithOneIndex.add(indexOne);
+        assertEquals(expectedIndexListWithOneIndex, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_ONE_INDEX_AND_EXTRA_WHITESPACE_AT_BACK));
+
+        //index list with two indexes
+        IndexList expectedIndexListWithTwoIndexes = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithTwoIndexes.add(indexOne);
+        expectedIndexListWithTwoIndexes.add(indexTwo);
+        assertEquals(expectedIndexListWithTwoIndexes, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_TWO_INDEXES_AND_EXTRA_WHITESPACE_AT_BACK));
+
+        //index list with three indexes
+        IndexList expectedIndexListWithThreeIndexes = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithThreeIndexes.add(indexOne);
+        expectedIndexListWithThreeIndexes.add(indexTwo);
+        expectedIndexListWithThreeIndexes.add(indexThree);
+        assertEquals(expectedIndexListWithThreeIndexes, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_THREE_INDEXES_AND_EXTRA_WHITESPACE_AT_FRONT));
+    }
+
+    @Test
+    public void parseIndexList_validValueWithExtraWhitespaceAtFrontAndBack_returnsValidIndexList() throws Exception{
+        Index indexOne = Index.fromOneBased(1);
+        Index indexTwo = Index.fromOneBased(2);
+        Index indexThree = Index.fromOneBased(3);
+
+        //index list with one index
+        IndexList expectedIndexListWithOneIndex = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithOneIndex.add(indexOne);
+        assertEquals(expectedIndexListWithOneIndex, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_ONE_INDEX_AND_EXTRA_WHITESPACES_AT_FRONT_AND_BACK));
+
+        //index list with two indexes
+        IndexList expectedIndexListWithTwoIndexes = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithTwoIndexes.add(indexOne);
+        expectedIndexListWithTwoIndexes.add(indexTwo);
+        assertEquals(expectedIndexListWithTwoIndexes, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_TWO_INDEXES_AND_EXTRA_WHITESPACES_AT_FRONT_AND_BACK));
+
+        //index list with three indexes
+        IndexList expectedIndexListWithThreeIndexes = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithThreeIndexes.add(indexOne);
+        expectedIndexListWithThreeIndexes.add(indexTwo);
+        expectedIndexListWithThreeIndexes.add(indexThree);
+        assertEquals(expectedIndexListWithThreeIndexes, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_THREE_INDEXES_AND_EXTRA_WHITESPACES_AT_FRONT_AND_BACK));
+    }
+
+    @Test
+    public void parseIndexList_validValueWithMultipleWhitespaces_returnsValidIndexList() throws Exception{
+        Index indexOne = Index.fromOneBased(1);
+        Index indexTwo = Index.fromOneBased(2);
+        Index indexThree = Index.fromOneBased(3);
+
+        //index list with one index
+        IndexList expectedIndexListWithOneIndex_1 = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithOneIndex_1.add(indexOne);
+        assertEquals(expectedIndexListWithOneIndex_1, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_ONE_INDEX_AND_MULTIPLE_WHITESPACES_1));
+
+        IndexList expectedIndexListWithOneIndex_2 = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithOneIndex_2.add(indexOne);
+        assertEquals(expectedIndexListWithOneIndex_2, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_ONE_INDEX_AND_MULTIPLE_WHITESPACES_2));
+
+        IndexList expectedIndexListWithOneIndex_3 = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithOneIndex_3.add(indexOne);
+        assertEquals(expectedIndexListWithOneIndex_3, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_ONE_INDEX_AND_MULTIPLE_WHITESPACES_3));
+
+        //index list with two indexes
+        IndexList expectedIndexListWithTwoIndexes_1 = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithTwoIndexes_1.add(indexOne);
+        expectedIndexListWithTwoIndexes_1.add(indexTwo);
+        assertEquals(expectedIndexListWithTwoIndexes_1, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_TWO_INDEXES_AND_MULTIPLE_WHITESPACES_1));
+
+        IndexList expectedIndexListWithTwoIndexes_2 = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithTwoIndexes_2.add(indexOne);
+        expectedIndexListWithTwoIndexes_2.add(indexTwo);
+        assertEquals(expectedIndexListWithTwoIndexes_2, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_TWO_INDEXES_AND_MULTIPLE_WHITESPACES_2));
+
+        IndexList expectedIndexListWithTwoIndexes_3 = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithTwoIndexes_3.add(indexOne);
+        expectedIndexListWithTwoIndexes_3.add(indexTwo);
+        assertEquals(expectedIndexListWithTwoIndexes_3, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_TWO_INDEXES_AND_MULTIPLE_WHITESPACES_3));
+
+        //index list with three indexes
+        IndexList expectedIndexListWithThreeIndexes_1 = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithThreeIndexes_1.add(indexOne);
+        expectedIndexListWithThreeIndexes_1.add(indexTwo);
+        expectedIndexListWithThreeIndexes_1.add(indexThree);
+        assertEquals(expectedIndexListWithThreeIndexes_1, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_THREE_INDEXES_AND_MULTIPLE_WHITESPACES_1));
+
+        IndexList expectedIndexListWithThreeIndexes_2 = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithThreeIndexes_2.add(indexOne);
+        expectedIndexListWithThreeIndexes_2.add(indexTwo);
+        expectedIndexListWithThreeIndexes_2.add(indexThree);
+        assertEquals(expectedIndexListWithThreeIndexes_2, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_THREE_INDEXES_AND_MULTIPLE_WHITESPACES_2));
+
+        IndexList expectedIndexListWithThreeIndexes_3 = new IndexList(new ArrayList<Index>());
+        expectedIndexListWithThreeIndexes_3.add(indexOne);
+        expectedIndexListWithThreeIndexes_3.add(indexTwo);
+        expectedIndexListWithThreeIndexes_3.add(indexThree);
+        assertEquals(expectedIndexListWithThreeIndexes_3, ParserUtil.parseIndexList(VALID_INDEX_LIST_WITH_THREE_INDEXES_AND_MULTIPLE_WHITESPACES_3));
+    }
+
+    @Test
+    public void parseIndexList_invalidIndexListWithOneIndex_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_ONE_INDEX));
+    }
+
+    @Test
+    public void parseIndexList_invalidIndexListWithTwoIndexes_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_TWO_INDEXES));
+    }
+
+    @Test
+    public void parseIndexList_invalidIndexListWithThreeIndexes_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_THREE_INDEXES));
+    }
+
+    @Test
+    public void parseIndexList_invalidIndexListWithOneIndexAndMultipleSpaces_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_ONE_INDEX_AND_MULTIPLE_SPACES));
+    }
+
+    @Test
+    public void parseIndexList_invalidIndexListWithTwoIndexesAndMultipleSpaces_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_TWO_INDEXES_AND_MULTIPLE_SPACES));
+    }
+
+    @Test
+    public void parseIndexList_invalidIndexListWithThreeIndexesAndMultipleSpaces_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_THREE_INDEXES_AND_MULTIPLE_SPACES));
+    }
+
+    @Test
+    public void parseIndexList_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseIndexList(null));
+    }
+
 }
