@@ -567,7 +567,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC0X -  Getting the emails from the application**
+**Use case: UC10 -  Getting the emails from the application**
 
 MSS:
 
@@ -577,7 +577,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC10 - Calculate fee for a student of a particular month and year**
+**Use case: UC11 - Calculate fee for a student of a particular month and year**
 
 MSS:
 
@@ -594,7 +594,7 @@ Extensions:
 
   Use case ends.
 
-**Use case: UC11 - View 3 months monthly fee**
+**Use case: UC12 - View 3 months monthly fee**
 
 MSS:
 
@@ -603,7 +603,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC12 - Reminders for upcoming sessions**
+**Use case: UC13 - Reminders for upcoming sessions**
 
 MSS:
 
@@ -612,7 +612,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC13 - Calendar View**
+**Use case: UC14 - Calendar View**
 
 MSS:
 
@@ -629,7 +629,7 @@ Extensions:
 
   Use case ends.
 
-**Use case: UC14 - Show help**
+**Use case: UC15 - Show help**
 
 MSS:
 
@@ -638,7 +638,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC15 - Sample data for new users**
+**Use case: UC16 - Sample data for new users**
 
 MSS:
 
@@ -648,7 +648,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC16 - Clear data**
+**Use case: UC17 - Clear data**
 
 MSS:
 
@@ -657,7 +657,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC17 - Exit application**
+**Use case: UC18 - Exit application**
 
 MSS:
 
