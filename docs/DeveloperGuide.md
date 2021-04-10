@@ -240,7 +240,7 @@ The following sequence diagram shows how the `check` command works:
 
 The quiz can be scored for each individual quiz session. The scoring data will be written into the storage file
 after the quiz session is completed. A quiz session is complete if and only if the message indicating the end of
-quiz is displayed in the GUI window. The following activity diagrams summarize how the score is recorded generated
+quiz is displayed in the GUI window. The following activity diagrams summarize how the score is generated and recorded
 along with each quiz session.
 
 ![QuizScoringSequenceDiagram](images/QuizScoringSequenceDiagram-How_is_score_produced_with_quiz__.png)
@@ -251,7 +251,7 @@ along with each quiz session.
 #### View Past Quiz Attempts
 
 The view quiz history mechanism allows users to view their past attempts of quizzes. Each entry of quiz history is
-represented in a way similar how the flashcards are represented in the Weeblingo application.
+represented in a way similar to how the flashcards are represented in the Weeblingo application.
 
 Below is the class diagram
 for how `Score` is represented in *Model* component.
