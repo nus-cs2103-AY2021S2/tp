@@ -349,23 +349,27 @@ The following activity diagram summarizes what happens when a user executes the 
 ## **Appendix: Requirements**
 
 ### Product scope
+**Target user profile story**: <br> <br>
+Ian is a former air crew with Singapore Airlines. He recently lost his job due to the COVID-19 pandemic resulting in the collapse in international travel.
+He found a job with the University Health Center (UHC) as an admin executive. He is a fast typer with good knowledge of the command line interface.
+Currently, Ian is using Excel to keep track of all the student records and vaccination appointments in UHC. With so many rows and columns of data to look at, 
+Ian finds it difficult to sieve information and is prone to making human errors.
 
 **Target user profile**:
 
-* UHC staff who has a need to manage a significant number of appointments
+* UHC staff who has a need to manage a significant number of appointments and student records.
 * UHC staff who has to keep track of NUS students' COVID-19 vaccinations regarding:
   * Who has been vaccinated
-  * Who does not want to be vaccinated
+  * Who has not been vaccinated
   * Who wants to be vaccinated
-    * Priority for the vaccine
     * Medical histories, existing medical conditions and allergies
 * Prefers desktop apps over other types
 * Can type fast
 * Prefers typing to mouse interactions
 * Is reasonably comfortable using CLI apps
+* Tired of looking at multiple rows and columns in Excel for long hours daily
 
 **Value proposition**: a one stop management app to efficiently track and schedule COVID-19 vaccinations for NUS students
-
 
 ### User stories
 
