@@ -126,6 +126,9 @@ public class CommandTestUtil {
     public static final String INVALID_SESSION_TIME_DESC = " " + PREFIX_SESSION + "11-09-2021 24:30";
     public static final String INVALID_SESSION_TIME_MINUTES_DESC = " " + PREFIX_SESSION + "11-09-2021 22:60";
 
+    public static final String INVALID_SESSION_DESC = " " + PREFIX_SESSION + "12-a-12 18:00"; // 'a' not allowed
+    // in dates of birth
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
