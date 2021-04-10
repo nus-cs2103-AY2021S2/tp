@@ -36,7 +36,7 @@ Given below are my contributions to the project.
         * Included more questions and answers in the FAQ (Pull request [\#192](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/192))
 
     * Developer Guide:
-        * Added implementation details of the `learn` feature and updated various UML diagrams. (Pull requests [\#81](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/81), [\#96](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/96))
+        * Added implementation details of the `learn` feature and updated various UML diagrams. (Pull requests [\#81](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/81), [\#96](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/96), [\#195](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/195))
         * Added implementation details of the `tag` feature, along with relevant diagrams. (Pull request [\#81](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/81))
         * Update the UML diagrams to match the upstream repo after they were changed (Pull request [\#111](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/111))
         * Added implementation details of the `deleteTag` feature, along with relevant diagrams. (Pull request [\#192](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/192))
