@@ -20,7 +20,7 @@ public class Type {
      */
     private static final String VALIDATION_REGEX = "^(hdb|condo|landed)$";
 
-    private final String propertyType;
+    public final String propertyType;
 
     /**
      * Constructs a {@code Type}.

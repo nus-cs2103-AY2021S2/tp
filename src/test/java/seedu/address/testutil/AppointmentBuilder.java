@@ -8,16 +8,19 @@ import seedu.address.model.appointment.Date;
 import seedu.address.model.appointment.Time;
 import seedu.address.model.name.Name;
 import seedu.address.model.remark.Remark;
+import seedu.address.model.util.DateTimeFormat;
 
 /**
  * A utility class to help with building Appointment objects.
  */
 public class AppointmentBuilder {
 
-    public static final String DEFAULT_NAME = "Meet Alex";
-    public static final String DEFAULT_REMARK = "At M Hotel";
-    public static final LocalDate DEFAULT_DATE = LocalDate.parse("2021-12-25");
-    public static final LocalTime DEFAULT_TIME = LocalTime.parse("15:00");
+    public static final String DEFAULT_NAME = "Meet Jacob";
+    public static final String DEFAULT_REMARK = "For collection of commission";
+    public static final LocalDate DEFAULT_DATE =
+            LocalDate.parse("19-05-2021", DateTimeFormat.INPUT_DATE_FORMAT);
+    public static final LocalTime DEFAULT_TIME =
+            LocalTime.parse("1930", DateTimeFormat.INPUT_TIME_FORMAT);
 
     private Name name;
     private Remark remark;
