@@ -247,6 +247,4 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredVenueList().size());
     }
 
-
-
 }
