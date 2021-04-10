@@ -1548,7 +1548,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `edit_task 1 n/task1` <br>
        Expected: The name of the first task in the task list is updated to `task1`.
-
+       Details of the edited task to appear in status bar.
     1. Other incorrect command to try : `edit_task`
 
 ### Marking one or more tasks as done
@@ -1559,7 +1559,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `done 1 2` <br>
        Expected: The first and second task in the task list are marked as completed.
-
+       "Completed 2 Task(s)" to appear in status bar.
+       
     1. Other incorrect command to try : `done abc`.
 
 ### Marking a task as uncompleted
@@ -1571,7 +1572,8 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case: `undone 1` <br>
     Expected: The first task in the task list are marked as uncompleted.
-
+       Details of the uncompleted task to appear in status bar.
+       
     1. Other incorrect command to try : `undone abc`.
 
 ### Sorting the task list
@@ -1717,11 +1719,18 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding uncompleted tasks that are due before or on the specified date
    and events with start date before or on the specified date and end date after or on specified date.
-   
-    1. Test case: `find_schedule 2021-05-01` <br>
-    Excepted: Displays uncompleted tasks with deadline before or on `2021-05-01`
-       and events with start date before or on `2021-05-01` and end date after or on `2021-05-01`.
+
+   1. Prerequisites: List all tasks using `list_task` command and all events using the `list_event` command.
+      
+     1. Test case: `find_schedule 2021-05-01` <br>
+        1. Assuming task list only has one task and its deadline is at `2021-05-01` and 
+        event list only has one event and its start date is at `2021-04-01` and end date is at `2021-06-01`.) 
     
+        1. Excepted: Displays uncompleted tasks with deadline before or on `2021-05-01`
+        and events with start date before or on `2021-05-01` and end date after or on `2021-05-01`.
+         "Displayed the required tasks and events. <br>
+            1 task(s) listed! <br>
+            1 event(s) listed!" appears in the status bar.
     1. Other incorrect command to try: `find_schedule 2021-005-01`.
 
 ### Finding free time slots
