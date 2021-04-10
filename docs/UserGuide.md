@@ -378,6 +378,7 @@ Format: `find KEYWORD`
 
 * Searches through ModuleBook3.5 for tasks whose names contain `KEYWORD`.
 * You may key in multiple keywords. ModuleBook3.5 will list down all tasks that contains any of the given keyword.
+* Once another command is executed, even if it is not `list` command, the original unfiltered task list is restored for viewing.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `find Green` (Here, we are not looking for tasks that are coloured green, 
@@ -419,6 +420,7 @@ Format: `findTag KEYWORD`
 * Searches through ModuleBook3.5 for tasks which have a tag named `KEYWORD`.
 * Only allows one tag as input. The rest will be ignored.
 * Tag provided must be alphanumerical.
+* Once another command is executed, even if it is not `list` command, the original unfiltered task list is restored for viewing.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `findTag ethics` (To demonstrate that finding tags is case-insensitive.)
@@ -439,6 +441,7 @@ Application: Used to find tasks from one Module.
 Format: `mod MODULE`
 
 * Searches through ModuleBook3.5 for tasks which belong to `MODULE`.
+* Once another command is executed, even if it is not `list` command, the original unfiltered task list is restored for viewing.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:<br>**
 `mod CS2103T` (Note that although the CS2103T task is not shown after applying the previous tutorial command,
