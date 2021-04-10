@@ -36,7 +36,8 @@ The developer guide describes the team's motive for creating RemindMe, and the u
     * **[3.3 Delete assignment](#33-delete-assignment)**
     * **[3.4 Edit assignment](#34-edit-assignment)**
     * **[3.5 Calendar feature](#35-calendar-feature)**
-* **[Documentation, logging, testing and dev-ops](#4-documentation-logging-testing-configuration-dev-ops)**
+* **[4. Documentation, logging, testing and dev-ops](#4-documentation-logging-testing-configuration-dev-ops)**
+* **[5. Effort](#5-effort)**
 * **[Appendix-requirements](#appendix-requirements)**
     * **[Product scope](#Product-scope)**
     * **[User stories](#User-stories)**
@@ -536,6 +537,25 @@ as a pop-up window for you.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **5. Effort**
+
+RemindMe is an enhancement on Addressbook 3(AB3). While AB3 only stores and mutate persons, RemindMe deals with Modules, 
+Contacts, General Events, Assignments, Birthday and Exams. Assignments and Exams are directly related to Modules, where Modules have
+Assignments and Exams. 
+
+As RemindMe deals with multiple entity types, the parsers for RemindMe needs to parse new and different entries and inputs. 
+RemindMe also needs new ways to store and display the entries, ensuring that RemindMe still maintains a fresh and clear 
+GUI, compared to AB3.
+
+Birthday has a date while Assignment, Exam, and General Event contain a date time. RemindMe makes use of the date time 
+to show a reminder when RemindMe starts up. Therefore, RemindMe has to be able to parse date and time into the respective 
+entities and ensure they are of the right format. 
+
+Moreover, RemindMe has a calendar which is able to differentiate all entries in RemindMe based on the dates and time.
+Assignments in Modules has a checkbox to indicate whether an assignment is done or not. This adds a new logic into RemindMe, 
+compared to AB3, and additional GUI. 
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
 
