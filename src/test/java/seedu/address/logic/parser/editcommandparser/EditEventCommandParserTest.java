@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENERAL_EVENT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX_1;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX_2;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 
 import java.time.LocalDateTime;
@@ -29,14 +31,6 @@ public class EditEventCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        // no index specified
-        String userInput1 = PREFIX_GENERAL_EVENT.getPrefix() + VALID_GENERAL_EVENT_DESCRIPTION_1;
-        assertParseFailure(parser, userInput1, MESSAGE_INVALID_FORMAT);
-
-        // no index and no field specified
-        String userInput2 = "";
-        assertParseFailure(parser, userInput2,
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEventCommand.MESSAGE_USAGE));
 
         // no field specified
         String userInput3 = "1 " + PREFIX_GENERAL_EVENT.getPrefix();
@@ -51,22 +45,22 @@ public class EditEventCommandParserTest {
         // negative index
         String userInput1 = "-5 " + PREFIX_DATE.getPrefix() + VALID_GENERAL_EVENT_DATE_2;
         assertParseFailure(parser, userInput1 ,
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEventCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_INDEX_1 + "g/" + MESSAGE_INVALID_INDEX_2);
 
         // zero index
         String userInput2 = "0 " + PREFIX_DATE.getPrefix() + VALID_GENERAL_EVENT_DATE_2;
         assertParseFailure(parser, userInput2 ,
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEventCommand.MESSAGE_USAGE));
+                            MESSAGE_INVALID_INDEX_1 + "g/" + MESSAGE_INVALID_INDEX_2);
 
         // invalid arguments being parsed as preamble
         String userInput3 = "words " + PREFIX_DATE.getPrefix() + VALID_GENERAL_EVENT_DATE_2;
         assertParseFailure(parser, userInput3 ,
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEventCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_INDEX_1 + "g/" + MESSAGE_INVALID_INDEX_2);
 
         // invalid prefix being parsed as preamble
         String userInput4 = "i/ " + PREFIX_DATE.getPrefix() + VALID_GENERAL_EVENT_DATE_2;
         assertParseFailure(parser, userInput4 ,
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEventCommand.MESSAGE_USAGE));
+                MESSAGE_INVALID_INDEX_1 + "g/" + MESSAGE_INVALID_INDEX_2);
     }
 
     @Test
