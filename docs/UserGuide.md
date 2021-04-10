@@ -628,12 +628,10 @@ Format: `free_time DATE`
   indicating invalid date.
 
 Examples:
-* `free_time 2021-04-10` finds all free time slots on the given date `10th April 2021`.
+* `free_time 2022-02-01` finds all free time slots on the given date `10th April 2021`.
 
 #### Illustration of usage of `free_time`:
 ![Example of usage of `free_time`](images/FindFreeTimeExample.png)
-
-* There is only one event on 2021-04-10 (highlighted in red box).
 
 [Return to Feature List](#feature-list)
 
