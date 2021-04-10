@@ -20,7 +20,8 @@ public class CustomerCard extends UiPart<Region> {
 
     private static final String FXML = "CustomerListCard.fxml";
     private static final String DATE_OF_BIRTH = "DOB: ";
-
+    private static final String CARS_OWNED = "carsOwned|COEexpiry: ";
+    private static final String CARS_PREFERRED = "carsPreferred: ";
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX. As a consequence, UI
      * elements' variable names cannot be set to such keywords or an exception will be thrown by JavaFX during runtime.
@@ -77,12 +78,15 @@ public class CustomerCard extends UiPart<Region> {
      * @return String
      */
     private String getCarsAsTextRepresentation(Map<Car, CoeExpiry> cars) {
-        StringBuilder sb = new StringBuilder("CarsOwned: ");
+        StringBuilder sb = new StringBuilder(CARS_OWNED);
         if (cars == null || cars.isEmpty()) {
             sb.append("None");
         } else {
         }
-        cars.keySet().forEach(x -> sb.append(x + " "));
+        for (Map.Entry<Car, CoeExpiry> entry : cars.entrySet()) {
+            sb.append("[" + entry.getKey() + "|");
+            sb.append(entry.getValue() + "] ");
+        }
         return sb.toString();
     }
 
@@ -93,11 +97,11 @@ public class CustomerCard extends UiPart<Region> {
      * @return String
      */
     private String getCarsPreferredAsTextRepresentation(Set<Car> cars) {
-        StringBuilder sb = new StringBuilder("CarsPreferred: ");
+        StringBuilder sb = new StringBuilder(CARS_PREFERRED);
         if (cars == null || cars.isEmpty()) {
             sb.append("None");
         } else {
-            cars.forEach(x -> sb.append(x + " "));
+            cars.forEach(x -> sb.append("[" + x + "] "));
         }
         return sb.toString();
     }
