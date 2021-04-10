@@ -3,10 +3,11 @@ package dog.pawbook.logic.parser;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ID_GENERAL;
-import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_EMPTY_STRING;
+import static dog.pawbook.logic.commands.CommandTestUtil.EMPTY_STRING;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_NEGATIVE_ID_STRING;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_UNKNOWN_ID_STRING;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_ENTITY_ID;
+import static dog.pawbook.logic.commands.CommandTestUtil.WHITESPACE_STRING;
 import static dog.pawbook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static dog.pawbook.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
@@ -32,7 +33,7 @@ public class ViewCommandParserTest {
     @Test
     public void parse_emptyArguments_failure() {
         // empty arguments exception thrown
-        assertParseFailure(parser, INVALID_EMPTY_STRING, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, EMPTY_STRING, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ViewCommand.MESSAGE_USAGE));
 
         // white spaces exception thrown
@@ -58,6 +59,7 @@ public class ViewCommandParserTest {
         assertParseSuccess(parser, VALID_ENTITY_ID, expectedCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, String.format(" " + VALID_ENTITY_ID + " "), expectedCommand);
+        assertParseSuccess(parser,
+                String.format(WHITESPACE_STRING + VALID_ENTITY_ID + WHITESPACE_STRING), expectedCommand);
     }
 }

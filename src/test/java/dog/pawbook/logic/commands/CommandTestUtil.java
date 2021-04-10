@@ -135,7 +135,8 @@ public class CommandTestUtil {
     public static final EditOwnerCommand.EditOwnerDescriptor DESC_AMY;
     public static final EditOwnerCommand.EditOwnerDescriptor DESC_BOB;
 
-    public static final String INVALID_EMPTY_STRING = "";
+    public static final String EMPTY_STRING = "";
+    public static final String WHITESPACE_STRING = "   ";
     public static final String INVALID_NEGATIVE_ID_STRING = "-1";
     public static final String INVALID_UNKNOWN_ID_STRING = "dummy";
     public static final String INVALID_OUT_OF_BOUNDS_ID_STRING = String.valueOf(Integer.MAX_VALUE);
