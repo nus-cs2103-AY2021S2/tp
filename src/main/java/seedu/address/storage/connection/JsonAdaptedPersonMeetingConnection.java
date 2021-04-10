@@ -13,6 +13,10 @@ import seedu.address.model.person.ReadOnlyAddressBook;
 
 public class JsonAdaptedPersonMeetingConnection {
     public static final String CONNECTION_FIELD_MESSAGE_FORMAT = "Connection's %s field is missing!";
+    public static final String PERSON_NOT_FOUND_ERROR_MESSAGE = "Person Not found in the AddressBook, but found in a "
+            + "connection";
+    public static final String MEETING_NOT_FOUND_ERROR_MESSAGE = "Meeting not found in the MeetingBook, but found in "
+            + "a connection";
 
     private final String personName;
     private final String startDateTime;
@@ -51,6 +55,12 @@ public class JsonAdaptedPersonMeetingConnection {
                                                PersonMeetingConnection connection) throws IllegalValueException {
         Person person = addressBook.getPersonByName(new PersonName(personName));
         Meeting meeting = meetingBook.getMeetingByNameAndStartTime(new MeetingName(meetingName), new DateTime(startDateTime));
+        if (person == null) {
+            throw new IllegalValueException(PERSON_NOT_FOUND_ERROR_MESSAGE);
+        }
+        if (meeting == null) {
+            throw new IllegalValueException(MEETING_NOT_FOUND_ERROR_MESSAGE);
+        }
         if (connection.existPersonMeetingConnection(person, meeting)) {
             throw new IllegalValueException(JsonSerializableConnection.MESSAGE_DUPLICATE_CONNECTION);
         }
