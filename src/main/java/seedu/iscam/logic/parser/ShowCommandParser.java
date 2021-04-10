@@ -6,6 +6,7 @@ import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.ShowCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
+import seedu.iscam.logic.parser.exceptions.ParseIndexException;
 
 /**
  * Parses input arguments and creates a new ShowCommand object
@@ -22,6 +23,8 @@ public class ShowCommandParser implements Parser<ShowCommand> {
         try {
             Index index = ParserUtil.parseIndex(args);
             return new ShowCommand(index);
+        } catch (ParseIndexException pie) {
+            throw pie;
         } catch (ParseException pe) {
             throw new ParseFormatException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowCommand.MESSAGE_USAGE), pe);

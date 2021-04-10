@@ -8,6 +8,7 @@ import seedu.iscam.logic.parser.Parser;
 import seedu.iscam.logic.parser.ParserUtil;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
+import seedu.iscam.logic.parser.exceptions.ParseIndexException;
 
 /**
  * Parses input arguments and creates a new DoneMeetingCommand object.
@@ -23,6 +24,8 @@ public class DoneMeetingCommandParser implements Parser<DoneMeetingCommand> {
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DoneMeetingCommand(index);
+        } catch (ParseIndexException pie) {
+            throw pie;
         } catch (ParseException pe) {
             throw new ParseFormatException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DoneMeetingCommand.MESSAGE_USAGE));
