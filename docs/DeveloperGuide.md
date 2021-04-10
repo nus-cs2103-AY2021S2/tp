@@ -243,6 +243,33 @@ The following activity diagram summarizes what happens when a user executes a sw
     * Pros: Lesser things to remember as the format command is `switch index`
     * Cons: Less intuitive as user will have to look up what tab one corresponds to.
 
+
+### View Command
+The `view` command allows users to view `Tasks` that have the same `Date` as the input `Date`.
+
+#### Implementation
+This command essentially creates a `TaskHasSameDatePredicate`. This predicate is used on `ObservableList<Task>`
+in `Model` which filters the list by searching for `Tasks` that matches the given input `Date`.
+
+The following sequence diagram shows how the `view` command works. We will assume the user inputs
+`view 2021-04-12`, that is, the user intends to view all tasks that have the date 12th April 2021.
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+1. The user inputs `view 2021-04-12`.
+2. TaskifyParser identifies this as a `view` command and creates a `ViewCommandParser` and call its parse method
+with the arguments specified by the user (in this case, `2021-04-12`).
+3. `ViewCommandParser` creates a new `TaskHasSameDatePredicate` with the arguments `2021-04-12`.
+4. `ViewCommandParser` creates a new `ViewCommand` with the newly created `TaskHasSameDatePredicate` object.
+5. When `ViewCommand`'s execute method is called, it prompts `Model` to call `updateFilteredTaskList()` with the 
+`TaskHasSameDatePredicate` predicate.
+6. `Model` updates the filtered list based on the predicate.
+7. The result of this command is returned, and the success message String from `CommandResult` is displayed 
+to the user.
+   
+#### Design Consideration
+* **Problem**: Typing out the entire date might be too cumbersome or unintuitive.
+* **Solution**: Use intuitive keywords such as `today` or `tomorrow` to represent dates.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **5. Documentation, logging, testing, configuration, dev-ops**
@@ -429,7 +456,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. Taskify cannot find any Task with the given keywords
     * 1a1. Taskify informs the User that no Tasks are found, and that keyword(s) must match a whole word in the Task's name.
-
+      
         Use case ends.
 ---
 **Use case 8: Modifying an existing Task**
@@ -454,13 +481,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c. Taskify warns that no modifying can take place if there are no updated fields filled in.
     
         Use case ends.
+    
 ---
+
 **Use case 9: Switch to Home tab**
 
 **MSS**
 
 1. User requests to switch to Home Tab.
 2. Taskify switches to Home Tab.
+
+    Use Case ends
 
 **Extensions**
 * 1a. If the user is currently in the Home tab 
@@ -491,7 +522,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Taskify informs the User that it is currently in the Expired Tab.
 
       Use case ends.
-
+    
 * 1b. The User's input is unrecognisable to Taskify
     * 1b1. An error message is shown.
 
@@ -543,22 +574,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. An error message is shown.
 
       Use case ends.
+    
 ---
-
-
 
 **Use case 13: Viewing Tasks by date**
 
 **MSS**
 
 1. User requests to view all Tasks that are due on specified date.
-2. Taskify shows the User Tasks with the same date.
+2. Taskify shows all the User Tasks with the same date.
+   
+   Use case ends.
 
 **Extensions**
 * 1a. There are no tasks stored
-    * 1a1. Taskify informs the User there are no tasks tracked
+    * 1a1. Taskify informs the User there are no tasks with the specified date.
     
-Use case ends.
+        Use case ends.
 
 ---
 

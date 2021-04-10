@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskifyParser" as TaskifyParser LOGIC_COLOR
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
+participant "v:ViewCommand" as ViewCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "predicate:TaskHasSameDatePredicate" as TaskHasSameDatePredicate LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("view 2021-04-12")
+activate LogicManager
+
+LogicManager -> TaskifyParser : parseCommand("view 2021-04-12")
+activate TaskifyParser
+
+create ViewCommandParser
+TaskifyParser -> ViewCommandParser
+activate ViewCommandParser
+
+ViewCommandParser --> TaskifyParser
+deactivate ViewCommandParser
+
+TaskifyParser -> ViewCommandParser : parse("2021-04-12")
+activate ViewCommandParser
+create TaskHasSameDatePredicate
+ViewCommandParser -> TaskHasSameDatePredicate : TaskHasSameDatePredicate("2021-04-12")
+activate TaskHasSameDatePredicate
+TaskHasSameDatePredicate -> ViewCommandParser : predicate
+deactivate TaskHasSameDatePredicate
+create ViewCommand
+ViewCommandParser -> ViewCommand : ViewCommand(predicate)
+activate ViewCommand
+
+ViewCommand --> ViewCommandParser : v
+deactivate ViewCommand
+
+ViewCommandParser --> TaskifyParser : v
+deactivate ViewCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewCommandParser -[hidden]-> TaskifyParser
+destroy ViewCommandParser
+
+TaskifyParser --> LogicManager : v
+deactivate TaskifyParser
+
+LogicManager -> ViewCommand : execute()
+activate ViewCommand
+
+ViewCommand -> Model : updateFilteredTaskList(predicate)
+activate Model
+
+Model --> ViewCommand
+deactivate Model
+
+create CommandResult
+ViewCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewCommand
+deactivate CommandResult
+
+ViewCommand --> LogicManager : result
+deactivate ViewCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
