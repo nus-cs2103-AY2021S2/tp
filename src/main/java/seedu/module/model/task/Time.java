@@ -148,7 +148,7 @@ public class Time implements Comparable<Time> {
 
     private static boolean isValidHoursMinutes(String hoursMinutesString) {
         try {
-            parseHoursMinutes(hoursMinutesString, ISO_LOCAL_TIME);
+            parseHoursMinutes(hoursMinutesString, DateTimeFormatter.ofPattern(timeString));
         } catch (DateTimeParseException e) {
             return false;
         } catch (DateTimeException e) {
