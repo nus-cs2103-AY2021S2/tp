@@ -121,7 +121,7 @@ These commands do not process any additional parameters, including the single-ar
 | Exit the app | `exit` |
 
 A special command invoked by pressing the `TAB` key instead of `Enter` exists for `edit` and `eedit` -  details specified
-in the autocomplete section.
+in the [autocomplete section](https://ay2021s2-cs2103-w16-3.github.io/tp/UserGuide.html#autocomplete-tab)
 
 ### Contact list commands
 
@@ -208,7 +208,7 @@ Filtered contacts can be additionally sorted using the `-s` and `-o` prefixes (e
 
 Examples:
 * `list` Lists out all the contacts in the contact list.
-* `list -s n -o desc` Lists out all the contacts in descending lexicographical order.
+* `list -s name -o desc` Lists out all the contacts by name in descending lexicographical order.
 * `list -t friend` Lists out all contacts who has tags containing the word "friend"
 * `list -n alice -t friend` Lists out all contacts whose name contains the word "alice" and tag contains the word 
   "friend"
@@ -282,7 +282,7 @@ Note: Sorts by upcoming birthday ignores the sort order parameter and only sorts
 Examples:
 * `elist --exact -n Graduation party -r Get job` Lists out all events whose name is exactly "Graduation party" and remark is exactly "Get job"
 * `elist --any -n Christmas -r tarts` Lists out all events whose name contains "Christmas" or whose remarks contain "tarts"
-* `elist -s d` Lists out all events in chronological order (ascending event date)
+* `elist -s date` Lists out all events in chronological order (ascending event date)
 
 #### Marking events as done : `edone`
 
@@ -435,15 +435,15 @@ Retrieves previously entered input.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add -n NAME [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK]` <br> e.g., `add -n James Ho -p 96280000 -t friend -t colleague -r allergic to nuts`
+**Add** | `add -n NAME [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK]` <br> e.g., `add -n James Ho -p 96280000 -t friend -t colleague -r allergic to nuts`
 **EAdd** | `eadd -n NAME [-d DATE] [-r REMARK]` <br> e.g. `eadd -n April Fools -d 2021-04-01 -r Prank the april babies!`
-**Delete** | `delete [{INDEX [INDEX]…​ | [--any] -t TAG [-t TAG]...}]`<br> e.g. `delete` <br> e.g. `delete 3 4 5` <br> e.g., `delete -t colleague`
+**Delete** | `delete [{INDEX [INDEX]... | [--any] -t TAG [-t TAG]...}]`<br> e.g. `delete` <br> e.g. `delete 3 4 5` <br> e.g., `delete -t colleague`
 **EDelete** | `edelete [INDEX [INDEX]...]` <br> e.g. `edelete 1 2 3`
-**EDone** | `edone INDEX [INDEX]…​` <br> e.g. `edone 2 3 5`
-**Edit** | `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG]…​}`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit --remove -t colleague`
+**EDone** | `edone INDEX [INDEX]...` <br> e.g. `edone 2 3 5`
+**Edit** | `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]... [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG]...}`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit --remove -t colleague`
 **EEdit** | `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]` <br> e.g. `eedit 3 -r Celebrate during first combined practice`
-**List** | `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY] [-s SORT_FIELD] [-o SORT_ORDER]`<br> e.g., `list`<br> e.g., `list -s asc`
-**EList** | `elist [--exact] [--any] [-n NAME] [-r REMARK] ... [-s SORT] [-o ORDER]` <br> e.g. `elist --any -n Christmas -r tarts`
+**List** | `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`<br> e.g., `list`<br> e.g., `list -s date`
+**EList** | `elist [--exact] [--any] [-n NAME] [-r REMARK]... [-s SORT] [-o ORDER]` <br> e.g. `elist --any -n Christmas -r tarts`
 **Undo** | `undo`
 **Redo** | `redo`
 **Help** | `help [COMMAND]`<br> e.g., `help`<br> e.g.,`help list`

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -23,7 +24,10 @@ import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.event.predicates.EventNameContainsKeywordsPredicate;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.partyplanet.testutil.EditEventDescriptorBuilder;
 import seedu.partyplanet.testutil.EditPersonDescriptorBuilder;
+import seedu.partyplanet.testutil.EventBuilder;
+import seedu.partyplanet.testutil.PersonBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -70,8 +74,9 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_CNY = " " + PREFIX_NAME + " " + VALID_NAME_CNY;
     public static final String NAME_DESC_EASTER = " " + PREFIX_NAME + " " + VALID_NAME_EASTER;
-    public static final String DATE_DESC_CNY = " " + PREFIX_BIRTHDAY + " " + VALID_DATE_CNY;
-    public static final String DATE_DESC_EASTER = " " + PREFIX_BIRTHDAY + " " + VALID_DATE_EASTER;
+    public static final String DATE_DESC_CNY = " " + PREFIX_DATE + " " + VALID_DATE_CNY;
+    public static final String DATE_DESC_EASTER = " " + PREFIX_DATE + " " + VALID_DATE_EASTER;
+    public static final String REMARK_DESC_CNY = " " + PREFIX_REMARK + " " + VALID_REMARK_CNY;
     public static final String REMARK_DESC_EASTER = " " + PREFIX_REMARK + " " + VALID_REMARK_EASTER;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + " " + "James&"; // '&' not allowed in names
@@ -82,8 +87,19 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + " " + "hubby*"; // '*' not allowed in tags
 
+    public static final String INVALID_EVENT_NAME_DESC =
+            " " + PREFIX_NAME + " " + "Christmas!!"; // '!' not allowed in names
+    public static final String INVALID_EVENT_DATE_DESC =
+            " " + PREFIX_DATE + " " + "31 Jan 0000"; // 0000 not allowed as year
+    public static final String INVALID_EVENT_REMARK_DESC = " " + PREFIX_REMARK + " " + ""; // empty remark
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final String ADD_DEFAULT_PERSON_COMMAND = "add DEFAULT_PERSON";
+    public static final String DELETE_FIRST_PERSON_COMMAND = "delete 1";
+    public static final String ADD_DEFAULT_EVENT_COMMAND = "eadd DEFAULT_EVENT";
+    public static final String DELETE_FIRST_EVENT_COMMAND = "edelete 1";
 
     public static final EditFieldCommand.EditPersonDescriptor DESC_AMY;
     public static final EditFieldCommand.EditPersonDescriptor DESC_BOB;
@@ -95,6 +111,22 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withBirthday(VALID_BIRTHDAY_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    public static final EEditCommand.EditEventDescriptor DESC_CNY;
+    public static final EEditCommand.EditEventDescriptor DESC_EASTER;
+
+    static {
+        DESC_CNY = new EditEventDescriptorBuilder()
+                .withName(VALID_NAME_CNY)
+                .withDate(VALID_DATE_CNY)
+                .withRemark(VALID_REMARK_CNY)
+                .build();
+        DESC_EASTER = new EditEventDescriptorBuilder()
+                .withName(VALID_NAME_EASTER)
+                .withDate(VALID_DATE_EASTER)
+                .withRemark(VALID_REMARK_EASTER)
+                .build();
     }
 
     /**
@@ -218,5 +250,40 @@ public class CommandTestUtil {
         model.updateFilteredEventList(allEvents);
 
         assertEquals(targetIndexes.length, model.getFilteredEventList().size());
+    }
+
+    /**
+     * Adds a default person from PersonBuilder into {@code model}'s address book
+     */
+    public static void addDefaultPerson(Model model) {
+        Person defaultPerson = new PersonBuilder().build();
+        model.addPerson(defaultPerson);
+        model.addState(ADD_DEFAULT_PERSON_COMMAND);
+    }
+
+    /**
+     * Deletes the first person in {@code model}'s filtered list from {@code model}'s address book
+     */
+    public static void deleteFirstPerson(Model model) {
+        Person firstPerson = model.getFilteredPersonList().get(0);
+        model.deletePerson(firstPerson);
+        model.addState(DELETE_FIRST_PERSON_COMMAND);
+    }
+    /**
+     * Adds a default event from EventBuilder into {@code model}'s event book
+     */
+    public static void addDefaultEvent(Model model) {
+        Event defaultEvent = new EventBuilder().build();
+        model.addEvent(defaultEvent);
+        model.addState(ADD_DEFAULT_EVENT_COMMAND);
+    }
+
+    /**
+     * Deletes the first event in {@code model}'s filtered list from {@code model}'s event book
+     */
+    public static void deleteFirstEvent(Model model) {
+        Event firstEvent = model.getFilteredEventList().get(0);
+        model.deleteEvent(firstEvent);
+        model.addState(DELETE_FIRST_EVENT_COMMAND);
     }
 }
