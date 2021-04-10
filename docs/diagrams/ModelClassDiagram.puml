@@ -24,9 +24,10 @@ Class Birthday
 Class Email
 Class Picture
 Class Name
-Class Event
 Class Phone
 Class UniquePersonList
+Class SpecialDate
+Class Meeting
 }
 
 Package Group {
@@ -63,8 +64,9 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> Birthday
-Person --> "~* dates,meetings" Event
 Person --> "0...1" Picture
+Person *--> "*" SpecialDate
+Person *--> "*" Meeting
 Person *--> "*" Tag
 
 Name -[hidden]right-> Phone
