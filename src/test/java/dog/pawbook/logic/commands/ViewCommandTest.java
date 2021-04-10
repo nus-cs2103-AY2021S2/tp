@@ -2,12 +2,14 @@
 package dog.pawbook.logic.commands;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW;
+import static dog.pawbook.commons.core.Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW_FOR_ONE;
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ENTITY_ID;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_OUT_OF_BOUNDS_ID_INTEGER;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 import static dog.pawbook.testutil.TypicalId.ID_EIGHTEEN;
+import static dog.pawbook.testutil.TypicalId.ID_FIFTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_ONE;
 import static dog.pawbook.testutil.TypicalId.ID_TWO;
 
@@ -86,6 +88,18 @@ public class ViewCommandTest {
         // assert order Program -> Dog
         assert(model.getFilteredEntityList().get(0).getValue() instanceof Program);
         assert(model.getFilteredEntityList().get(1).getValue() instanceof Dog);
+    }
+
+    @Test
+    public void execute_validSingleId_success() {
+        // view single valid ID success
+        expectedModel.updateFilteredEntityList(x -> x.getKey() == 15);
+        expectedModel.sortEntities(new ViewCommandComparator(Program.class));
+
+        assertCommandSuccess(new ViewCommand(ID_FIFTEEN), model,
+                MESSAGE_ENTITIES_LISTED_OVERVIEW_FOR_ONE, expectedModel);
+        assert(model.getFilteredEntityList().equals(expectedModel.getFilteredEntityList()));
+        assert(model.getFilteredEntityList().get(0).getValue() instanceof Program);
     }
 
     @Test
