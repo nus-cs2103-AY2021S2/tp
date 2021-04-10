@@ -33,8 +33,8 @@ The developer guide describes the team's motive for creating RemindMe, and the u
 * **[3. Implementation](#3-implementation)**
     * **[3.1 Add feature](#31-add-feature)**
     * **[3.2 Find feature](#32-find-feature)**
-    * **[3.3 Delete assignment](#33-delete-assignment)**
-    * **[3.4 Edit assignment](#34-edit-assignment)**
+    * **[3.3 Delete assignment](#33-delete-feature)**
+    * **[3.4 Edit assignment](#34-edit-feature)**
     * **[3.5 Calendar feature](#35-calendar-feature)**
 * **[4. Documentation, logging, testing and dev-ops](#4-documentation-logging-testing-configuration-dev-ops)**
 * **[5. Effort](#5-effort)**
@@ -77,14 +77,14 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#26-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#22-ui-component): The UI of the App.
+* [**`Logic`**](#23-logic-component): The command executor.
+* [**`Model`**](#24-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#25-storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
@@ -381,9 +381,11 @@ and returned to `LogicManager`.
 
 The above process is shown in the following sequence diagram:
 ![DeleteFeatureSequenceDiagram](images/DeleteFeatureSequenceDiagram.png)  
+*[Delete Sequence Diagram for `delete m/CS2103 a/3`]*
 
 The following activity diagram summarises the general workflow for the Delete Command:
-![DeleteFeatureActivityDiagram](images/DeleteFeatureActivityDiagram.png)  
+![DeleteFeatureActivityDiagram](images/DeleteFeatureActivityDiagram.png) 
+*[Delete Activity Diagram for `delete m/CS2103 a/3`]* 
 
 
 ### 3.4 Edit Feature
@@ -398,6 +400,7 @@ the `Logic` component and the relationship between `Module` and `Assignment` und
 <br>
 
 ![EditFeatureClassDiagram](images/EditFeatureClassDiagram.png)
+*[Edit Feature Class Diagram]* 
 <br>
 <br>
 
@@ -454,18 +457,19 @@ and returned to `LogicManager`.
 The above process is shown in the following sequence diagram:
 
 ![EditFeatureSequenceDiagram](images/EditFeatureSequenceDiagram.png)
-
+*[Edit Feature Sequence Diagram for `edit m/CS2103 a/1 d/Tut2`]* 
 <br>
 
 Below is the separate sequence diagram for editAssignment(m, 1 , Tut2):
 
 ![EditFeatureSequenceDiagram1](images/EditFeatureSequenceDiagram1.png)
-
+*[Edit Feature Sequence Diagram for `editAssignment(m, 1, Tut2)`]* 
 <br>
 
 The following activity diagram summarises the general workflow for the Edit Command:
 
 ![EditFeatureActivityDiagram](images/EditFeatureActivityDiagram.png)
+*[Edit Feature Activity Diagram for `edit m/CS2103 a/1 d/Tut2`]* 
 
 
 ### 3.5 Calendar Feature
@@ -473,7 +477,7 @@ The following activity diagram summarises the general workflow for the Edit Comm
 #### Implementation
 
 ![CalendarSequenceDiagram2](images/CalendarSequenceDiagram2.png)
-
+*[Calendar Feature Sequence Diagram]* 
 
 **Given below is an example of how the calendar UI is created.**
 
@@ -502,6 +506,7 @@ and then the calendar will be ready to be displayed as a GUI.
 <br>
 
 ![CalendarSequenceDiagram1](images/CalendarSequenceDiagram1.png)
+*[Calendar Command Sequence Diagram]*
 
 Given below is an example usage scenario and how the calendar mechanism behaves at each step.  Input: `calendar`.
 
