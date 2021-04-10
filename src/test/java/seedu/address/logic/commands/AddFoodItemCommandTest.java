@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -157,7 +157,7 @@ public class AddFoodItemCommandTest {
         }
 
         @Override
-        public List<DietPlan> recommendDiets(PlanType planType) {
+        public HashMap<Integer, DietPlan> recommendDiets(PlanType planType) {
             throw new AssertionError("This method should not be called.");
         }
 

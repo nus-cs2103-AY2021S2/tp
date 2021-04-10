@@ -2,7 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.HashMap;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -114,7 +114,7 @@ public interface Model {
     DietPlan getActiveDiet();
 
     /** Recommend diet plan based on user's goals*/
-    List<DietPlan> recommendDiets(PlanType planType);
+    HashMap<Integer, DietPlan> recommendDiets(PlanType planType);
 
     //=========== FoodIntakeList Accessors ==============================================================
 
