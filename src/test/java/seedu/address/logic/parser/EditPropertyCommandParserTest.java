@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BURGHLEY_DRIVE;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_MAYFAIR;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_BURGHLEY_DRIVE;
@@ -66,7 +67,7 @@ public class EditPropertyCommandParserTest {
         assertParseFailure(parser, "-5" + NAME_DESC_MAYFAIR, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_MAYFAIR, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_MAYFAIR, MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
