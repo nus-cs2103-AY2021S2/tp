@@ -36,11 +36,12 @@ Given below are my contributions to the project.
     * Added page breaks to UG. [#168](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/168)
     
 * **Contributions to the DG**:
-    * Added the User Stories section [#36](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/36), [#53](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/53)
-    * Update UML class diagrams for `UI`, `Storage` and `Logic` classes. [#91](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/91/files).
-    * Added implementation details including class diagram and sequence diagram for Review feature [#91](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/91)
-    * Added use case for Review feature [#91](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/91)
-    * Added instruction for manual testing for view and review feature [#104](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/104)
+    * Added the User Stories section. [#36](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/36), [#53](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/53)
+    * Update UML class diagrams for `UI`, `Storage` and `Logic` classes. [#91](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/91)
+    * Added implementation details including class diagram and sequence diagram for Review feature .[#91](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/91)
+    * Added use case for Review feature. [#91](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/91)
+    * Added instruction for manual testing for view and review feature. [#104](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/104)
+    * Added effort section for Refactor from AB3 to FlashBack, View feature, Review Mode and UI improvement. [#104](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/104)
     * Added page breaks to DG. [#177](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/177)
     
 * **Review contributions**:
