@@ -47,9 +47,9 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new UserPrefs(), model.getEventBook());
 
-//        Optional<Event> optFirstEvent = model.getEventByIdentifier(IDENTIFIER_FIRST_EVENT.getValue());
-//        assertTrue(optFirstEvent.isPresent());
-//        Event firstEvent = optFirstEvent.get();
+        //        Optional<Event> optFirstEvent = model.getEventByIdentifier(IDENTIFIER_FIRST_EVENT.getValue());
+        //        assertTrue(optFirstEvent.isPresent());
+        //        Event firstEvent = optFirstEvent.get();
         expectedModel.setEvent(TypicalEvents.CS2030, editedEvent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
