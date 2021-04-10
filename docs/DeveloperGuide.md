@@ -1912,7 +1912,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample data.
 
-# Adding a task
+### Adding a task
 
 1. Adding a task
 

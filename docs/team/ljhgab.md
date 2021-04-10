@@ -47,7 +47,7 @@ Computing, National University of Singapore (NUS).
     - What it does:
       
         Morphed the Logic component, including `add`, `delete`, `list` and `find` features into `add_task`, 
-      `delete_task`, `done_task`, `list_task` and `find_task` and their corresponding unit 
+      `delete_task`, `done_task`, `list_task`, `list_event`, `find_task` and `find_event` and their corresponding unit 
       tests to the ones usable for SOChedule.
       
     - Justification:
@@ -88,7 +88,10 @@ Computing, National University of Singapore (NUS).
 #### Contributions to the DG
 * Updated `Logic` diagram.
 * Wrote three overview sections for SOChedule, Task and Event.
-* Added implementation details of `add_task`, `delete_task` and `list_task`.
+* Added implementation details of `add_task`, `delete_task`, `find_task`, `find_event`, `today_task`, `today_event`.
+* Added use cases for `add_task`, `delete_task`, `list_task`, `today_task`, `today_event`, `find_task`, `find_event`.
+* Added instructions for manual testing for `add_task`, `delete_task`, `list_task`, `list_event`, `today_task`, 
+  `today_event`, `find_task`, `find_event`.
 * Updated the NFR part of Developer Guide.
 
 #### Contributions to team-based tasks
