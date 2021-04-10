@@ -310,7 +310,7 @@ public class ParserUtil {
         requireNonNull(tagKeyword);
         String trimmedTagKeyword = tagKeyword.trim();
         if (!Tag.isValidTagName(trimmedTagKeyword)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Tag.ONE_TAG_CONSTRAINTS);
         }
         return new PersonTagContainsKeywordsPredicate(trimmedTagKeyword);
     }
@@ -326,7 +326,7 @@ public class ParserUtil {
         requireNonNull(tagKeyword);
         String trimmedTagKeyword = tagKeyword.trim();
         if (!Tag.isValidTagName(trimmedTagKeyword)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Tag.ONE_TAG_CONSTRAINTS);
         }
         return new VenueTagContainsKeywordsPredicate(trimmedTagKeyword);
     }
@@ -460,7 +460,7 @@ public class ParserUtil {
         requireNonNull(tagKeyword);
         String trimmedTagKeyword = tagKeyword.trim();
         if (!Tag.isValidTagName(trimmedTagKeyword)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Tag.ONE_TAG_CONSTRAINTS);
         }
         return new BookingTagContainsKeywordsPredicate(trimmedTagKeyword);
     }
