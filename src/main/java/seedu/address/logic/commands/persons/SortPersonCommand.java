@@ -88,12 +88,11 @@ public class SortPersonCommand extends Command {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SortPersonCommand that = (SortPersonCommand) o;
-        return Objects.equals(personSortDirection,that.personSortDirection) &&
-                Objects.equals(personSortOption, that.personSortOption);
+        return personSortOption == that.personSortOption && personSortDirection == that.personSortDirection;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(personComparator);
+        return Objects.hash(personSortOption, personSortDirection);
     }
 }
