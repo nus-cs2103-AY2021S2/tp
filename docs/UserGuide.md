@@ -61,21 +61,21 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 
 Adds the details of a student to Vax@NUS records. It is mandatory to include the following details of a student:
 
-* Matriculation Number, for identifying the student.
-* Email, phone number and address, for contacting the student.
-* Vaccination status, to determine if the student should be prioritised for vaccination.
-* Medical details, to determine if the vaccination is safe for the student.
-* Faculty, which will help NUS faculties determine the proportion of vaccinated students using the `stats` command.
+* `Name` and `Matriculation Number`, for identifying the student.
+* `Email`, `phone number` and `address`, for contacting the student.
+* `Vaccination status`, to determine if the student should be prioritised for vaccination.
+* `Medical details`, to determine if the vaccination is safe for the student.
+* `Faculty`, which will help NUS faculties determine the proportion of vaccinated students using the `stats` command.
 
 In addition, it is optional to include the following detail of a student:
 
-* School Residence, to determine if the student lives on campus. This will help NUS campus residences determine the proportion of vaccinated student residents using the `stats` command. 
+* `School Residence`, to determine if the student lives on campus. This will help NUS campus residences determine the proportion of vaccinated student residents using the `stats` command. 
 
-:information_source: **NOTE** If the School Residence of a student is not specified, the system will default to DOES_NOT_LIVE_ON_CAMPUS and assume that the student does not live on campus.
+:information_source: **NOTE** If the `School Residence` of a student is not specified, the system will default to `DOES_NOT_LIVE_ON_CAMPUS` and assume that the student does not live on campus.
 
-> For a smooth user experience, please refer to the  please refer to the [Input Formats](#input-formats) section below for more information regarding input formats. That section explains which prefix should be used for each piece of information and how the information should be presented to the program. 
+> For a smooth user experience, please refer to the  please refer to the [Input Formats](#input-formats) section below for more information regarding input formats. That section explains which how the information should be presented to the program. 
 
-`Add` Command Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]`
+Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]`
 
 Examples:
 * `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
@@ -97,7 +97,7 @@ All inputs specified are optional, but at least one of them must be provided. Af
 
  :information_source: **NOTE:** Every field except the student's matriculation number can be edited. Should you wish to edit the matriculation number of a student, you must first delete the student entry and add a new one with the updated matriculation number. 
 
-> For a smooth user experience, please refer to the  please refer to the [Input Formats](#input-formats) section below for more information regarding input formats. That section explains which prefix should be used for each piece of information and how the information should be presented to the program.
+> For a smooth user experience, please refer to the  please refer to the [Input Formats](#input-formats) section below for more information regarding input formats. That section explains how the information should be presented to the program.
 
 Format: `edit INDEX [n/NAME] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]`
 
@@ -277,13 +277,13 @@ Examples:
 ![Find](images/find.png)
 ### Viewing help : `help`
 
-Display a pop-up window showing a list of important commands and a link to our User Guide. 
+Display a pop-up window showing a list of commonly used commands in Vax@NUS and a link to our User Guide. 
 
 Format: `help`
 
 ### Clearing all data : `clear`
 
-Clearing all the data from VAX@NUS.
+Clearing all the data from Vax@NUS.
 
 Format: `clear`
 
