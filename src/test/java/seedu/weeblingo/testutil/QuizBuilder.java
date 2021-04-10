@@ -1,10 +1,15 @@
 package seedu.weeblingo.testutil;
 
+import static seedu.weeblingo.testutil.TypicalFlashcards.A_CARD;
+import static seedu.weeblingo.testutil.TypicalFlashcards.I_CARD;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.Quiz;
+import seedu.weeblingo.model.flashcard.Flashcard;
+
 
 /**
  * A utility class to help with building Quiz objects.
@@ -12,12 +17,22 @@ import seedu.weeblingo.model.Quiz;
 public class QuizBuilder {
     private Quiz quiz;
 
+    /**
+     * Constructor for QuizBuilder.
+     *
+     * @throws CommandException if
+     */
     public QuizBuilder() throws CommandException {
-        quiz = new Quiz(new ArrayList<>(), 0, new HashSet<>());
+        ArrayList<Flashcard> list = new ArrayList<>();
+        list.add(A_CARD);
+        list.add(I_CARD);
+        quiz = new Quiz(list, 0, new HashSet<>());
     }
 
     public Quiz build() {
         return this.quiz;
     }
+
+
 
 }

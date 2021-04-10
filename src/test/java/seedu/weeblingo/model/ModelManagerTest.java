@@ -14,13 +14,16 @@ import static seedu.weeblingo.testutil.TypicalFlashcards.I_CARD;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
+import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.flashcard.QuestionContainsKeywordsPredicate;
 import seedu.weeblingo.testutil.FlashcardBookBuilder;
+import seedu.weeblingo.testutil.FlashcardBuilder;
 
 public class ModelManagerTest {
 
@@ -96,6 +99,27 @@ public class ModelManagerTest {
     public void getFilteredFlashcardList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> modelManager.getFilteredFlashcardList().remove(0));
+    }
+
+    //=========== Quiz Related =============================================================
+
+    @Test
+    public void startQuiz_validInputs_success() throws CommandException {
+        modelManager.addFlashcard(A_CARD);
+        modelManager.startQuiz(0, new HashSet<>());
+        assertNotNull(modelManager.getQuizInstance());
+    }
+
+    @Test
+    public void getNextFlashcard_queueNotEmpty_returnsFlashcard() throws CommandException {
+        modelManager.addFlashcard(A_CARD);
+        modelManager.addFlashcard(I_CARD);
+        modelManager.startQuiz(0, new HashSet<>());
+        Quiz quiz = modelManager.getQuizInstance();
+        Flashcard next = quiz.getNextQuestion();
+        assertNotNull(next);
+        assertEquals(new FlashcardBuilder()
+                .withAnswer("i").withQuestion("い").withTags("gojuon").build(), next);
     }
 
     //=========== Mode Related =============================================================
