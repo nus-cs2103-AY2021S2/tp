@@ -22,6 +22,17 @@ public class FindCommandParserTest {
     }
 
     @Test
+    public void parse_validSingleArgs_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new AttributeContainsKeywordsPredicate(Arrays.asList("Alice")));
+        assertParseSuccess(parser, "Alice", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n Alice \n\t", expectedFindCommand);
+    }
+
+    @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
@@ -33,7 +44,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_diffAttributes_returnsFindCommand() {
+    public void parse_validArgsDiffAttributes_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new AttributeContainsKeywordsPredicate(Arrays.asList("Alice", "Clementi")));
@@ -52,6 +63,28 @@ public class FindCommandParserTest {
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n Alice \n \t Alice  \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validButNotPresentSingleArgs_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new AttributeContainsKeywordsPredicate(Arrays.asList("ABC")));
+        assertParseSuccess(parser, "ABC", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n ABC \n \t \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validButNotPresentMultipleArgs_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new AttributeContainsKeywordsPredicate(Arrays.asList("ABC", "DEF")));
+        assertParseSuccess(parser, "ABC DEF", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n ABC \n \t DEF  \t", expectedFindCommand);
     }
 
 }
