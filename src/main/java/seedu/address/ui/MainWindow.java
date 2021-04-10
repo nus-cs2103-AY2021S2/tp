@@ -44,6 +44,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private String lastFlag = "";
     private List<String> currentList = new ArrayList<>();
+    private boolean untoggleable = false;
+    private boolean showAlias = false;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -85,7 +87,7 @@ public class MainWindow extends UiPart<Stage> {
                 currentList.clear();
             }
 
-            if (event.getCode() == KeyCode.TAB) {
+            if (event.getCode() == KeyCode.TAB && !untoggleable) {
                 String currentlyInBox = commandBox.getTextFieldText();
 
                 if (currentlyInBox != null) {
@@ -221,6 +223,13 @@ public class MainWindow extends UiPart<Stage> {
         commandBox.setKeyUpCallback((value) -> {
             // Update autocomplete list on keyup
             autocompleteListPanel.updateList(logic.getAutocompleteCommands(value));
+
+            if (showAlias && !untoggleable) {
+                untoggleable = true;
+                showAlias = false;
+            } else {
+                untoggleable = false;
+            }
         });
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
@@ -286,6 +295,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowAlias()) {
+                showAlias = commandResult.isShowAlias();
             }
 
             personListPanel.updateDisplayFilter(logic.getDisplayFilter());
