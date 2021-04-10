@@ -85,7 +85,7 @@ public class EditOrderDescriptorBuilder {
         Map<OrderDescription, Integer> orderDescriptionMap = new HashMap<>();
         Stream.of(orderDescriptions)
             .map(OrderDescription::new)
-            .forEach(o -> orderDescriptionMap.put(o, 1));
+            .forEach(o -> orderDescriptionMap.put(o, 1 + orderDescriptionMap.getOrDefault(o, 0)));
         descriptor.setOrderDescriptions(orderDescriptionMap);
         return this;
     }

@@ -1,9 +1,11 @@
 package seedu.cakecollate.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_DESC_AMY;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_BERRY_ORDER;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_DELIVERY_DATE_BOB;
@@ -12,11 +14,30 @@ import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.testutil.EditOrderDescriptorBuilder;
 
 public class EditOrderDescriptorTest {
+
+    @Test
+    public void withOrderDescriptions_addDuplicateDescriptions_addsAll() {
+        EditCommand.EditOrderDescriptor e1 =
+                new EditOrderDescriptorBuilder().withOrderDescriptions(ORDER_DESC_AMY, ORDER_DESC_AMY).build();
+        EditCommand.EditOrderDescriptor e2 = new EditCommand.EditOrderDescriptor();
+
+        Map<OrderDescription, Integer> map = new HashMap<>();
+//        map.put(ORDER_DESC_AMY, 2);
+
+        e2.setOrderDescriptions(map);
+
+        assertEquals(e1, e2);
+
+    }
 
     @Test
     public void equals() {
