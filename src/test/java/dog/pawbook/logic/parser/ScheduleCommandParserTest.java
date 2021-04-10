@@ -36,7 +36,6 @@ public class ScheduleCommandParserTest {
 
         // invalid date input with whitespace failure
         assertParseFailure(parser, " " + "31-02-2021" + " ", MESSAGE_INVALID_DAY_OF_THE_MONTH);
-
     }
 
     @Test
