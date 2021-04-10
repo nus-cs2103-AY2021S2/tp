@@ -124,52 +124,6 @@ you may use a substitute module code based on the subject description.
 
 ## Command Notes
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are parameters to be supplied by you.<br>
-  e.g. in `add d/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `add d/DESCRIPTION`.
-
-* Parameters in square brackets are optional. Parameters without square brackets are compulsory.<br>
-  If you wish to include any optional parameter, you must follow its format, 
-  otherwise command parsing will fail even if all the compulsory fields are valid.<br>
-  e.g. `d/DESCRIPTION [t/TAG]` can be used as `d/CS3243 Assignment4 t/Minimax` or as `d/CS3243 Assignment4`.
-  
-* For commands that take in an `INDEX`, only one index is to be supplied.<br>
-  e.g. `delete 1` will work but `delete 1 3` (2 indices) will not.
-  
-* The `INDEX` starts from 1 and is taken relative to the list of tasks that is currently displayed.<br>
-  e.g. If you do `mod CS2101` and a task at position 4 is pushed up to position 1, the `INDEX` for this task
-  will be `1` for the next command.
-
-* For `NAME`, the length of name should not be greater than 60 English characters. We do not guarantee a correct display 
-  with the minimum window size if you exceed this limit.<br>
-
-* For `DESCRIPTION` and `TAG`, the length of these fields should not be greater than 100 English characters. We do not 
-  guarantee a correct display with the minimum window size if you exceed this limit.<br>
-
-* For `MODULE`, the letters in module code should be upper-case.<br>
-  e.g. `CS2103T` and not `cs2103t`.
-  
-* For `START TIME` and `DEADLINE`, the accepted date-time formats are: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm taken as current time).<br>
-  e.g. `2021-03-21 10:10` or `2021-03-21`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Minimax`, `t/Minimax t/CSP` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `d/DESCRIPTION t/TAG`, `t/TAG d/DESCRIPTION` is also acceptable.
-  
-* If a parameter is expected only once in the command but you specified it multiple times, 
-  only the last occurrence of the parameter will be taken. Please refer to [Duplicate Parameters](#Duplicate Parameters).<br>
-  e.g. if you specify `d/CS2103T team project for week7 d/CS3243 Assignment 4`, only `d/CS3243 Assignment 4` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as`list`) will be ignored.<br>
-  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
-
-</div>
-
 ### Parameter Prefixes
 Below is a table of prefixes mapped to the respective parameters:<br>
 
@@ -183,6 +137,49 @@ b/ | DEADLINE | "finish BY"
 w/ | WORKLOAD |
 r/ | RECURRENCE |
 t/ | TAG |
+
+
+### Parameter Descriptions
+
+* Words in `UPPER_CASE` are parameters to be supplied by you.<br>
+  e.g. in `add d/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `add d/DESCRIPTION`.
+
+* Parameters in square brackets are optional. Parameters without square brackets are compulsory.<br>
+  If you wish to include any optional parameter, you must follow its format,
+  otherwise command parsing will fail even if all the compulsory fields are valid.<br>
+  e.g. `d/DESCRIPTION [t/TAG]` can be used as `d/CS3243 Assignment4 t/Minimax` or as `d/CS3243 Assignment4`.
+
+* For commands that take in an `INDEX`, only one index is to be supplied.<br>
+  e.g. `delete 1` will work but `delete 1 3` (2 indices) will not.
+
+* The `INDEX` starts from 1 and is taken relative to the list of tasks that is currently displayed.<br>
+  e.g. If you do `mod CS2101` and a task at position 4 is pushed up to position 1, the `INDEX` for this task
+  will be `1` for the next command.
+
+* For `NAME`, the length of name should not be greater than 60 English characters. We do not guarantee a correct display
+  with the minimum window size if you exceed this limit.<br>
+
+* For `DESCRIPTION` and `TAG`, the length of these fields should not be greater than 100 English characters. We do not
+  guarantee a correct display with the minimum window size if you exceed this limit.<br>
+
+* For `MODULE`, the letters in module code should be upper-case.<br>
+  e.g. `CS2103T` and not `cs2103t`.
+
+* For `START TIME` and `DEADLINE`, the accepted date-time formats are: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm taken as current time).<br>
+  e.g. `2021-03-21 10:10` or `2021-03-21`.
+
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Minimax`, `t/Minimax t/CSP` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `d/DESCRIPTION t/TAG`, `t/TAG d/DESCRIPTION` is also acceptable.
+
+* If a parameter is expected only once in the command but you specified it multiple times,
+  only the last occurrence of the parameter will be taken. Please refer to [Duplicate Parameters](#Duplicate Parameters).<br>
+  e.g. if you specify `d/CS2103T team project for week7 d/CS3243 Assignment 4`, only `d/CS3243 Assignment 4` will be taken.
+
+* Extraneous parameters for commands that do not take in parameters (such as`list`) will be ignored.<br>
+  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 ### Duplicate Parameters
 1. Most commands take in only one instance of a unique parameter. In such cases, the last instance of the parameter is accepted.
