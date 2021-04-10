@@ -6,9 +6,9 @@ skinparam ClassBorderColor #000000
 title After command "clear"
 
 package States <<rectangle>> {
-    class State1 as "__ab0:ModuleBook__"
-    class State2 as "__ab1:ModuleBook__"
-    class State3 as "__ab3:ModuleBook__"
+    class State1 as "__mb0:ModuleBook__"
+    class State2 as "__mb1:ModuleBook__"
+    class State3 as "__mb3:ModuleBook__"
 }
 
 State1 -[hidden]right-> State2
@@ -17,5 +17,5 @@ State2 -[hidden]right-> State3
 class Pointer as "Current State" #FFF
 
 Pointer -up-> State3
-note right on link: State ab2 deleted.
+note right on link: State mb2 deleted.
 @end
