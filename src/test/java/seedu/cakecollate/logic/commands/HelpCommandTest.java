@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ModelManager;
 
-import javax.swing.*;
-
 public class HelpCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();

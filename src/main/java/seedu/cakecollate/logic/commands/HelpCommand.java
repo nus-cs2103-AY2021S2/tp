@@ -18,6 +18,9 @@ public class HelpCommand extends Command {
 
     private static final ObservableList<String> listOfCommands = FXCollections.observableArrayList();
 
+    /**
+     * Constructor which adds the command descriptions of all the commands present in CakeCollate to the listOfCommands.
+     */
     public HelpCommand() {
         if (!isAdded) {
             addAllCommands();

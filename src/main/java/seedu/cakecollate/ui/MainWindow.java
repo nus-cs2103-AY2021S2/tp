@@ -1,5 +1,7 @@
 package seedu.cakecollate.ui;
 
+import static seedu.cakecollate.logic.commands.HelpCommand.SHOWING_RETURN_MESSAGE;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -18,13 +20,10 @@ import javafx.stage.Stage;
 import seedu.cakecollate.commons.core.GuiSettings;
 import seedu.cakecollate.commons.core.LogsCenter;
 import seedu.cakecollate.logic.Logic;
-import seedu.cakecollate.logic.commands.Command;
 import seedu.cakecollate.logic.commands.CommandResult;
 import seedu.cakecollate.logic.commands.HelpCommand;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
-
-import static seedu.cakecollate.logic.commands.HelpCommand.SHOWING_RETURN_MESSAGE;
 
 /**
  * The Main Window. Provides the basic application layout containing
