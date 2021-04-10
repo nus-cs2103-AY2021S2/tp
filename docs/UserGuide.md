@@ -284,8 +284,8 @@ Examples:
 * `request 1 r/` Removes the 1st order's current special request.
 * `request 1` Removes the 1st order's current special request.
 * Assuming the special request on an order was previously empty as shown in this picture,
-![empty_request](images/Empty_request.PNG), using the command `request 1 r/More sugar, spice and everything nice` would
-update the order's current special request to ![fllled_request](images/Filled_request.PNG), 
+![empty_request](images/Empty_request.PNG) using the command `request 1 r/More sugar, spice and everything nice` would
+update the order's current special request to ![fllled_request](images/Filled_request.PNG) 
 using the command `request 1` or `request 1 r/` on the same order again would update the request of the order back to 
 ![empty_request](images/Empty_request.PNG).
 
