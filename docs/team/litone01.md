@@ -70,7 +70,7 @@ Given below are my contributions to the project.
       
         * **Justification:**
           
-          In-depth anaylsis of desgin alterantives are needed when implementing this command.
+          In-depth analysis of design alternatives are needed when implementing this command.
           For overdue tasks, we believe that users may need to edit an overdue task at very frequent occasions.
           For example, users may wish to extend the deadline of an overdue task, 
           or increasing its priority to remind themselves that this task needs more attention. 

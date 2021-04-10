@@ -311,7 +311,7 @@ The find schedule mechanism is supported mainly by `FindScheduleCommand` and `Fi
 
 The relevant methods include:
 * `FindScheduleCommandParser#parse(String args)` - Parses the user input into a Date object.
-* `FindScheduleCommand#execute(Model model)` - Finds the tasks with deadline before or on the specified date and
+* `FindScheduleCommand#execute(Model model)` - Finds the uncompleted tasks with deadlines before or on the specified date and
 events with start date before or on and end date after or on the specified date.
 
 Given below is an example usage scenario and how the find schedule mechanism behaves at each step.
@@ -369,7 +369,7 @@ considerations with regards to what kinds of uncompleted tasks to be selected.
         * The date provided is not adding useful value here and users may find this implementation less helpful.
 
 Alternative 1 is chosen because we believe this implementation can make better use of the date provided and can be more 
-helpful for users to know what tasks should be dealt with first and improve their efficiecny in task and event managements.
+helpful for users to know what tasks should be dealt with first and improve their efficiency in task and event managements.
 
 [Return to Table of Contents](#table-of-contents)  
 
@@ -525,7 +525,7 @@ when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`
 
 The activity diagram that summaries what happens when users execute the `UndoneTaskCommand` can be found below.
 
-![Acitivity Diagram of UndoneTask Command](images/UndoneTaskCommandActivityDiagram.png)
+![Activity Diagram of UndoneTask Command](images/UndoneTaskCommandActivityDiagram.png)
 
 **Design Considerations**
 
@@ -543,9 +543,9 @@ Here are our considerations.
     * Pros:
         * May save a small amount of time when users need to undone multiple tasks.
     * Cons:
-        * More time-consuming to implement, increases difficulty in testing and integeration with other commands and components.
+        * More time-consuming to implement, increases difficulty in testing and integration with other commands and components.
 
-Alternative 1 is chosen because we believe this implementation is a more suitable choice given the limited developement and
+Alternative 1 is chosen because we believe this implementation is a more suitable choice given the limited development and
 testing time. More importantly, unlike done task, users are unlikely to have the demand to undone multiple tasks frequently 
 under normal usage. Thus, we feel alternative 1 is sufficient to serve our users.
 
@@ -602,7 +602,7 @@ One of the challenges is if we should allow overdue tasks (task with deadlines b
 
 * Alternative 2: Overdue tasks cannot be edited.
     * Pros:
-        * May sastify the demand of users as described in cons of alternative 1.
+        * May satisfy the demand of users as described in cons of alternative 1.
     * Cons:
         * May not meet the requirements of users as described in pros of alternative 1.
 
@@ -928,7 +928,7 @@ The below activity diagram summarises what happens when `free_time` is called.
                 <li>Several helper functions were implemented in UniqueEventList class</li>
                 <li> Pros:
                     <ul>
-                        <li>Each function hanles a small part of logic</li>
+                        <li>Each function handles a small part of logic</li>
                         <li>Easier to detect bugs</li>
                         <li>Better readability of code</li>
                     </ul>
@@ -1091,7 +1091,7 @@ Use case ends.
 
 * 2b. The date provided for the event is invalid
 
-    * 1b1. SOChedule displays an error message suggesting that date provied for the event
+    * 1b1. SOChedule displays an error message suggesting that date provided for the event
       is invalid, or not following the `YYYY-MM-DD` format.
       Use case ends.
 
@@ -1149,7 +1149,7 @@ Use case ends.
     
 * 3b. The input by user has an invalid command format.
   Some (but not all) examples may include that no index is given, 
-  index provided is not a valid positive integer or index provided is larger than 2147483647 (the maximum value of Integer object in Java).
+  index provided is not a valid positive integer.
 
     * 3b1. SOChedule shows an error message.
 
@@ -1230,8 +1230,7 @@ Use case ends.
 
 
 * 3c. The input by user has an invalid command format.
-  Some examples may include that no index is given, any of the indexes provided is not a positive integer
-  or any of the indexes provided is larger than 2147483647 (the maximum value of Integer object in Java).
+  Some examples may include that no index is given, any of the indexes provided is not a valid positive integer.
 
     * 3c1. SOChedule shows an error message.
 
@@ -1272,8 +1271,7 @@ Use case ends.
 
 
 * 3c. The input by user has an invalid command format.
-  Some examples may include that no index is given, index provided is not a positive integer
-  or index provided is larger than 2147483647 (the maximum value of Integer object in Java).
+  Some examples may include that no index is given, index provided is not a valid positive integer.
 
     * 3c1. SOChedule shows an error message.
 
@@ -1506,7 +1504,7 @@ Use case ends.
 <br><br>
 Use case ends.
 
-**Use case: UC20 - Finding Schedule**
+**Use case: UC20 - Finding Schedule Given a Date**
 
 **MSS**
 1. User requests to <u> list events (UC06)</u>.
@@ -1638,7 +1636,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing a task
 1. Edits an uncompleted task in the task list
-    1. Prerequistes: List all tasks using the `list_task` command. Task list is not empty. 
+    1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty. 
        Currently, no tasks in the task list has a task name `task1`.
 
     1. Test case: `edit_task 1 n/task1` <br>
@@ -1649,12 +1647,12 @@ testers are expected to do more *exploratory* testing.
 ### Marking one or more tasks as done
 1. Marks one or more uncompleted tasks from the task list as completed
 
-    1. Prerequistes: List all tasks using the `list_task` command. Task list is not empty.
+    1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty.
        All of the tasks to be completed are currently marked as uncompleted.
 
     1. Test case: `done 1 2` <br>
        Expected: The first and second task in the task list are marked as completed.
-       "Completed 2 Task(s)" to appear in status bar.
+       "Completed 2 Task(s)." to appear in status bar.
        
     1. Other incorrect command to try : `done abc`.
 
@@ -1662,12 +1660,12 @@ testers are expected to do more *exploratory* testing.
 
 1. Marks a completed task from the task list as uncompleted
 
-    1. Prerequistes: List all tasks using the `list_task` command. Task list is not empty. 
+    1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty. 
        The task to be uncompleted is currently marked as completed.
     
     1. Test case: `undone 1` <br>
     Expected: The first task in the task list are marked as uncompleted.
-       Details of the uncompleted task to appear in status bar.
+       "Uncompleted 1 Task." to appear in status bar.
        
     1. Other incorrect command to try : `undone abc`.
 
@@ -1699,10 +1697,10 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `pin_task 0`<br>
       Expected: This is an invalid input. "Invalid command format!" to appear in status bar. No task is pinned and task list remains unchanged.
    
-   1. Test case: `pin_task 1` (Assuming Task 1 is already pinned<br>
+   1. Test case: `pin_task 1` (Assuming Task 1 is already pinned)<br>
       Expected: This is an invalid input. "This task is already pinned." to appear in status bar. Task list remains unchanged.
 
-   1. Test case: `pin_task 999` (Assuming there are less than 999 tasks in task list<br>
+   1. Test case: `pin_task 999` (Assuming there are less than 999 tasks in task list)<br>
       Expected: This is an out-of-bounds input. "The task at this index does not exist." to appear in status bar. No task is pinned and task list remains unchanged.
 
     1. Other incorrect delete commands to try: `pin_task`, `pin_task x` (where x is larger than the list size)<br>
@@ -1722,10 +1720,10 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `unpin_task 0`<br>
       Expected: This is an invalid input. "Invalid command format!" to appear in status bar. Task list remains unchanged.
 
-   1. Test case: `unpin_task 3` (Assuming Task 3 exists and is not pinned<br>
+   1. Test case: `unpin_task 3` (Assuming Task 3 exists and is not pinned)<br>
       Expected: This is an invalid input. "This task is not pinned to begin with." to appear in status bar. Task list remains unchanged.
 
-   1. Test case: `unpin_task 999` (Assuming there are less than 999 tasks in task list<br>
+   1. Test case: `unpin_task 999` (Assuming there are less than 999 tasks in task list)<br>
       Expected: This is an out-of-bounds input. "The task at this index does not exist." to appear in status bar. No task is pinned and task list remains unchanged.
 
    1. Other incorrect delete commands to try: `unpin_task`, `unpin_task x` (where x is larger than the list size)<br>
@@ -1810,7 +1808,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Events with past end date time are cleared from the list. Success message `Expired events (if any) have been cleared!` 
       will always be shown in the status message, regardless of whether there is any expired event or not.
 
-### Finding tasks and events before or on a given date
+### Finding schedule given a date
 
 1. Finding uncompleted tasks that are due before or on the specified date
    and events with start date before or on the specified date and end date after or on specified date.
@@ -1819,7 +1817,7 @@ testers are expected to do more *exploratory* testing.
       
      1. Test case: `find_schedule 2021-05-01` <br>
         1. Assuming task list only has one task and its deadline is at `2021-05-01` and 
-        event list only has one event and its start date is at `2021-04-01` and end date is at `2021-06-01`.) 
+        event list only has one event and its start date is at `2021-04-01` and end date is at `2021-06-01`.
     
         1. Excepted: Displays uncompleted tasks with deadline before or on `2021-05-01`
         and events with start date before or on `2021-05-01` and end date after or on `2021-05-01`.
@@ -1837,7 +1835,7 @@ testers are expected to do more *exploratory* testing.
        will be shown if free time slots were found.
             
        1. if there are available free time slots, a list of free time slots will be displayed after the success message.
-       2. if there are no events happening on the day, `The entire day is free!` will be displayed after the sucess message.
+       2. if there are no events happening on the day, `The entire day is free!` will be displayed after the success message.
        3. if no free time slots were found, `There is no free time in the day!` will be displayed.
 
 ### Getting a summary of SOChedule
@@ -1863,7 +1861,7 @@ testers are expected to do more *exploratory* testing.
    1. SOChedule will re-initialise and provide an empty Task list and Event list.
 
 ### Effort
-SOChedule morphs Addressbook 3(AB3) to an application that help NUS School of Computing (SoC) students
+SOChedule morphs AddressBook 3(AB3) to an application that help NUS School of Computing (SoC) students
 to effectively manage their tasks and events. Since we are not building our product based on AB3, significant amount of efforts
 are needed to convert the AB3 code base to suit the needs of SOChedule. This involves rewriting the major components including
 Model, Logic, UI, Storage and more. Even before we started to implement our unique features, efforts 
@@ -1878,10 +1876,10 @@ Some of them are used by both `Task` and `Event`, like `Name` and `Date`.
 
 Because of these additional attributes, Logic component needs more parsers to handle various inputs and commands to achieve
 the features we designed to improve the efficiency of our users. Such examples include parsing and validating of `Date` and `Time` from user inputs.
-Some of the challenges we faced can be ensuring no invalid events (events with start date time later than end date time) can be created. 
+Some challenges we faced can be ensuring no invalid events (events with start date time later than end date time) can be created. 
 Also, we need to add further constraints with our commands to ensure users do not perform invalid operations with our commands. 
-Fro example, users cannot edit an event to make its start date time later than end date time. 
-All of these require significant amount of efforts in designing, developing and testing.
+For example, users cannot edit an event to make its start date time later than end date time. 
+All of these require a significant amount of efforts in designing, developing and testing.
 
 Similarly, Storage component needs to deal with more complicated data and data structures that involve both tasks and events. 
 
