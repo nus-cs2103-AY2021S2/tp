@@ -17,8 +17,8 @@ public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all tasks according to one of three"
-            + "specified parameters: date & time, module code, or priority tag.\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all tasks according to one of five"
+            + " specified parameters: date & time, task name, module code, priority tag, or weightage.\n";
 
     public static final String MESSAGE_SUCCESS = "Tasks have been successfully sorted according to: ";
 
