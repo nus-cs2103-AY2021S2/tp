@@ -39,10 +39,16 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 1. Ensure you have Java 11 or above installed in your computer
 2. Download the latest GreenMileageEfforts.jar from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases)
-3. Copy the file to the folder you want to use as the [home folder](#6-glossary) for your **GreenMileageEfforts**.
-4. Double click the file to start the app.
-5. Type the command in the command box and press the Enter key to execute it
-6. Refer to the [Features](#3-features-) below for the details on each command.
+3. Copy the file to the folder you want to use as the [home folder](#6-glossary) for your **GreenMileageEfforts**
+4. Double click the file to start the app
+5. Type the command in the command box and press the Enter key to execute it. Some examples of commands you could try are:
+   * `list`: Lists all [passengers](#6-glossary) currently stored in the GME system
+   * `pool n/Dr. Iver p/92385810 d/MONDAY t/0930 c/1 c/2 c/3`: adds the employees shown at indexes 1, 2, and 3 as passengers to a new [pool](#6-glossary) with Dr. Iver as the driver.
+   * `listPool`: Lists all [pools](#6-glossary) currently stored in the GME system
+   * `unpool 2`: Removes the pool at index 2
+   * `exit`: closes the GME app
+
+6. Refer to the [Features](#3-features-) below for the details on each command
 
 --------------------------------------------------------------------------------------------------------------------
 
