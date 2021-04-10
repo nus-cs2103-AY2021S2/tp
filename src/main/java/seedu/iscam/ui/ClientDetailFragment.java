@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -58,6 +59,8 @@ public class ClientDetailFragment extends UiPart<Region> {
     private HBox clientMeetingsAndPlansBox;
     @FXML
     private ListView<InsurancePlan> plansListView;
+    @FXML
+    private Separator separator;
 
     /**
      * Creates a ClientDetailFragment that observes the given ObservableClient
@@ -100,6 +103,7 @@ public class ClientDetailFragment extends UiPart<Region> {
         tooltip.setVisible(true);
         clientSummaryBox.setVisible(false);
         clientMeetingsAndPlansBox.setVisible(false);
+        separator.setVisible(false);
     }
 
     private void setClientDetailMode() {
@@ -107,6 +111,7 @@ public class ClientDetailFragment extends UiPart<Region> {
         tooltip.setVisible(false);
         clientSummaryBox.setVisible(true);
         clientMeetingsAndPlansBox.setVisible(true);
+        separator.setVisible(true);
     }
 
     // TODO: Migrate image access to the model and storage and not hardcode the "data" path

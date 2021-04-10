@@ -29,7 +29,7 @@
             <Label fx:id="remark" styleClass="details_small_label"/>
         </VBox>
     </HBox>
-    <Separator />
+    <Separator fx:id="separator"/>
     <HBox fx:id="clientMeetingsAndPlansBox" alignment="TOP_LEFT" VBox.vgrow="SOMETIMES" spacing="10">
         <VBox alignment="CENTER" HBox.hgrow="ALWAYS" prefWidth="170">
             <Label styleClass="details_small_label" text="Meetings"/>
