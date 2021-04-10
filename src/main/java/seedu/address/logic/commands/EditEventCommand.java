@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_END_DATETIME_BEFORE_START_DATETIME;
-import static seedu.address.commons.core.Messages.MESSAGE_PAST_EVENT_END_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
@@ -39,7 +38,7 @@ public class EditEventCommand extends Command {
     public static final String COMMAND_WORD = "edit_event";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the unexpired event identified "
-            + "by the index number used in the displayed event list."
+            + "by the index number used in the displayed event list.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_STARTDATE + "STARTDATE] "
@@ -57,7 +56,11 @@ public class EditEventCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the SOChedule.";
     public static final String MESSAGE_NO_CHANGE = "No field of this event is changed.";
-    public static final String MESSAGE_EXPIRED_EVENT = "An expired event cannot be edited.";
+    public static final String MESSAGE_EXPIRED_EVENT =
+            "An expired event cannot be edited.\n"
+                    + "(Only editing the past end date and time to unexpired end date and time is allowed.)";
+    public static final String MESSAGE_EDIT_TO_EXPIRED_EVENT =
+            "An event cannot be edited to past end date and time.";
 
     private final Index index;
     private final EditEventDescriptor editEventDescriptor;
@@ -85,11 +88,15 @@ public class EditEventCommand extends Command {
 
         Event eventToEdit = lastShownList.get(index.getZeroBased());
 
-        if (!eventToEdit.isEndDateTimeBeforeNow()) {
+        Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
+
+        if (!editedEvent.isEndDateTimeBeforeNow() && !eventToEdit.isEndDateTimeBeforeNow()) {
             throw new CommandException(MESSAGE_EXPIRED_EVENT);
         }
 
-        Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
+        if (!editedEvent.isEndDateTimeBeforeNow()) {
+            throw new CommandException(MESSAGE_EDIT_TO_EXPIRED_EVENT);
+        }
 
         if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
@@ -120,9 +127,6 @@ public class EditEventCommand extends Command {
         Set<Category> updatedCategories = editEventDescriptor.getCategories().orElse(eventToEdit.getCategories());
         Set<Tag> updatedTags = editEventDescriptor.getTags().orElse(eventToEdit.getTags());
 
-        if (!isEndDateTimeValid(updatedEndDate, updatedEndTime)) {
-            throw new CommandException(String.format(MESSAGE_PAST_EVENT_END_DATE_TIME, EditEventCommand.MESSAGE_USAGE));
-        }
 
         if (!isStartDateTimeBeforeEndDateTime(updatedStartDate, updatedStartTime, updatedEndDate, updatedEndTime)) {
             throw new CommandException(String.format(MESSAGE_END_DATETIME_BEFORE_START_DATETIME,
