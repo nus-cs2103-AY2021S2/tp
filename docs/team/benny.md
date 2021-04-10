@@ -4,16 +4,16 @@ title: Phoe Chuan Yi, Benny Project Portfolio Page
 ---
 
 
-## Project: EZManage
+## Project: EzManage
 
-EZManage - EZManage is a desktop address book application used for the management of a tuition centre's sessions, students and tutors. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+EzManage - EzManage is a desktop address book application used for the management of a tuition centre's sessions, students and tutors. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
 * **New Feature** : Add Student/Tutor Feature
   * What it does: Allow the user to add a student or tutor depending on the person type
-  * Justification: Student and Tutor are the crucial entities in EZManage, without proper segregation of student and tutor, administrative tasks become difficult and tedious. This also allow filtering of personnel easier as each person is given a person type.
-  * Highlights: When a student or tutor is added, the UI is able to easily differentiate between student and tutor. The students and tutors are also saved into EZManage's addressbook with a PersonType attribute for easy future references.
+  * Justification: Student and Tutor are the crucial entities in EzManage, without proper segregation of student and tutor, administrative tasks become difficult and tedious. This also allow filtering of personnel easier as each person is given a person type.
+  * Highlights: When a student or tutor is added, the UI is able to easily differentiate between student and tutor. The students and tutors are also saved into EzManage's addressbook with a PersonType attribute for easy future references.
   * Credits: AddressBook Level 3
 
 * **New Feature** : Assign Feature

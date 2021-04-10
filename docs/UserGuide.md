@@ -14,7 +14,7 @@ EzManage is a **desktop app for managing students, tutors and classes, optimized
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `ezmanage.jar` from [here](https://github.com/AY2021S2-CS2103-W16-4/tp/releases).
+1. Download the latest `EzManage.jar` from [here](https://github.com/AY2021S2-CS2103-W16-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your EzManage.
 
@@ -78,7 +78,7 @@ Format: `help`
 
 User can add either a student, or a tutor
 
-####Adding a Tutor to EZManage
+####Adding a Tutor to EzManage
 
 Format: `add_person pt/tutor n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​`
 
@@ -90,7 +90,6 @@ Examples:
 * `add_person pt/tutor n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add_person pt/tutor n/Betsy Crowe e/betsycrowe@example.com a/Prim Street p/1234567 tag/chemistry`
 
-<<<<<<< HEAD
 Before entering the command:
 
 ![add tutor initial](images/AddTutorInitial.png)
@@ -100,10 +99,8 @@ After entering the command:
 ![add tutor after](images/AddTutorAfter.png)
 
 ### Adding a student: `add_person`
-=======
->>>>>>> upstream/master
 
-####Adding a Student to EZManage
+####Adding a Student to EzManage
 
 Format: `add_person pt/student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​`
 
@@ -112,7 +109,6 @@ A Student can have any number of tags (including 0)
 </div>
 
 Examples:
-<<<<<<< HEAD
 * `add_person pt/student n/Connor Smith p/98765432 e/connors@example.com a/Green street, block 123, #01-01`
 * `add_person pt/student n/Betsy Crowe e/betsycrowe@example.com a/Newgate Tower p/1234567 tag/Sec 3`
 
@@ -123,14 +119,10 @@ Before entering the command:
 After entering the command:
 
 ![add student after](images/AddStudentAfter.png)
-=======
-* `add_person pt/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add_person pt/student n/Betsy Crowe e/betsycrowe@example.com a/Prim Street p/1234567 tag/dedicated`
->>>>>>> upstream/master
 
 ### Adding a session: `add_session`
 
-Adds a session to EZManage.
+Adds a session to EzManage.
 
 Format: `add_session d/DAY t/TIMESLOT su/SUBJECT [tag/TAG] …
 `
@@ -143,7 +135,7 @@ A session can have any number of tags (including 0)
 * DAY should match the format of a valid day in the week.
 * TIMESLOT should be in the format `HH:MM to HH:MM` and the end time should only be after the start time.
 * DAY and SUBJECT will be capitalised when displayed but do not have to be capitalised in the input
-* Note that while persons added to EZManage must be unique, there can be duplicates of sessions to accomidate multiple sessions of the same subject occurring at once
+* Note that while persons added to EzManage must be unique, there can be duplicates of sessions to accomidate multiple sessions of the same subject occurring at once
 
 Examples:
 * `add_session d/Saturday ts/13:00 to 15:00 su/Math tag/Hard![img.png](img.png)`
@@ -266,12 +258,12 @@ Examples:
 
 ### Editing a session : `edit_session`
 
-Edits an existing session in EZManage.
+Edits an existing session in EzManage.
 
 Format: `edit_session c/ID [d/DAY] [ts/TIMESLOT] [su/SUBJECT] [tag/TAG]…​`
 
 * Edits the session with the specified session ID. The session ID can be found from the displayed session list.
-* The session ID has to be a valid session ID i.e. the session has to exist in EZManage.
+* The session ID has to be a valid session ID i.e. the session has to exist in EzManage.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * DAY should match the format of a valid day in the week.
@@ -328,7 +320,7 @@ Examples:
 
 ### Deleting a session : `delete_session`
 
-Deletes the specified session from EZManage.
+Deletes the specified session from EzManage.
 
 Format: `delete_session c/ID`
 
