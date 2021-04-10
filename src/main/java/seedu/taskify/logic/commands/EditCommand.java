@@ -1,6 +1,7 @@
 package seedu.taskify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taskify.logic.commands.util.DeleteUtil.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taskify.logic.parser.CliSyntax.PREFIX_STATUS;
@@ -16,7 +17,6 @@ import java.util.Set;
 import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.commons.util.CollectionUtil;
 import seedu.taskify.logic.commands.exceptions.CommandException;
-import seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.tag.Tag;
 import seedu.taskify.model.task.Date;
@@ -75,7 +75,7 @@ public class EditCommand extends Command {
         }
 
         if (this.index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(DeleteMultipleCommandUtil.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
