@@ -189,13 +189,13 @@ The quiz feature for users to test the vocabulary is facilitated by `Model#Quiz`
 to set model to quiz mode. When model is in quiz mode, it will take commands allowing users to start a quiz session,
 attempt answering the quiz question or skip the flashcard.
 
-`Model#Mode` implments the following operations:
+`Model#Mode` implements the following operations:
   * `switchModeQuiz()`: Sets model to quiz mode
   * `switchModeQuizSession()`: Sets model to quiz session mode
   * `switchModeCheckSuccess()`: Sets model to check success mode 
   * `switchModeQuizSessionEnded()`: Sets model to quiz session ended mode
 
-`Model#Quiz` implments the following operations:
+`Model#Quiz` implements the following operations:
   * `getRandomisedQueue()`: Generates randomised questions for the quiz session
   * `getNextQuestion()`: Provides a question to be bested
   * `isCorrectAttempt(Answer attempt)`: Checks if attempt is correct English definition of question shown on flashcard
@@ -304,12 +304,12 @@ switching UI display the other way around is similar.
 **Target user profile**:
 
 * Young aspiring J-Culture enthusiast who wants to learn basic Japanese
-* goes to a Japanese Culture Club so is low on time after school
-* interested in learning the Japanese language
-* prefers using flashcards to learn
-* prefers desktop apps over other types
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Goes to a Japanese Culture Club so is low on time after school
+* Interested in learning the Japanese language
+* Prefers using flashcards to learn
+* Prefers desktop apps over other types
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
 **Value proposition**: Ability to learn the Japanese language through flashcards in an efficient, fun and interactive manner
 
