@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Parser {
+Interface Parser <<Interface>>
+Class ClientBookParser
+Class XYZCommandParser
+Class CliSyntax
+Class ParserUtil
+Class ArgumentMultimap
+Class ArgumentTokenizer
+Class Prefix
+}
+
+
+
+@enduml

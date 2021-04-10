@@ -41,8 +41,9 @@ HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
 LogicManager -->"1" ClientBookParser
-ClientBookParser .left.> XYZCommandParser: creates >
 
+
+ClientBookParser .left.> XYZCommandParser: creates >
 XYZCommandParser ..> XYZCommandParser
 XYZCommandParser ..> XYZCommand : creates >
 XYZCommandParser .left.|> Parser
