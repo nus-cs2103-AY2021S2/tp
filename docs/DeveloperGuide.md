@@ -98,6 +98,10 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("mod CS2103T")` API call.
+
+![Interactions Inside the Logic Component for the `mod CS2103T` Command](images/FindModuleSequenceDiagram.png)
+
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("sort /w")` API call.
 
 ![Interactions Inside the Logic Component for the `sort /w` Command](images/SortSequenceDiagram.png)

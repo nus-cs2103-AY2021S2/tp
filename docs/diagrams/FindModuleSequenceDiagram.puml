@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModuleBookParser" as ModuleBookParser LOGIC_COLOR
+participant ":FindModuleCommandParser" as FindModuleCommandParser LOGIC_COLOR
+participant "s:FindModuleCommand" as FindModuleCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("mod CS2103T")
+activate LogicManager
+
+LogicManager -> ModuleBookParser : parseCommand("mod CS2103T")
+activate ModuleBookParser
+
+create FindModuleCommandParser
+ModuleBookParser -> FindModuleCommandParser
+activate FindModuleCommandParser
+
+FindModuleCommandParser --> ModuleBookParser
+deactivate FindModuleCommandParser
+
+ModuleBookParser -> FindModuleCommandParser : parse("CS2103T")
+activate FindModuleCommandParser
+
+create FindModuleCommand
+FindModuleCommandParser -> FindModuleCommand
+activate FindModuleCommand
+
+FindModuleCommand --> FindModuleCommandParser : d
+deactivate FindModuleCommand
+
+FindModuleCommandParser --> ModuleBookParser : d
+deactivate FindModuleCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindModuleCommandParser -[hidden]-> ModuleBookParser
+destroy FindModuleCommandParser
+
+ModuleBookParser --> LogicManager : d
+deactivate ModuleBookParser
+
+LogicManager -> FindModuleCommand : execute()
+activate FindModuleCommand
+
+FindModuleCommand -> Model : updateFilteredTaskList(moduleCode.equals("CS2103T"))
+activate Model
+
+Model --> FindModuleCommand
+deactivate Model
+
+create CommandResult
+FindModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindModuleCommand
+deactivate CommandResult
+
+FindModuleCommand --> LogicManager : result
+deactivate FindModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
