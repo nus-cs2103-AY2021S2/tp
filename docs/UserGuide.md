@@ -344,7 +344,7 @@ Description:
 Options:
 * `[n/NAME]`
 
-    Searches for properties with names that contain the keywords in `NAME`, i.e. "Mayfair" matches `mayfair` but not `may`. 
+    Searches for properties with names that contain the keywords in `NAME`, i.e. "Mayfair" matches `find property n/mayfair` but not `find property n/may`. 
 
 * `[pm/PRICE_UPPER_LIMIT]`
 
@@ -418,7 +418,7 @@ Description:
 Options: 
 * `[n/NAME]`
     
-    Searches for appointments that contain the keywords `[NAME]` in their names, i.e. "Meet Alex" matches `alex` but not `al`. 
+    Searches for appointments that contain the keywords `[NAME]` in their names, i.e. "Meet Alex" matches `find appointment n/alex` but not `find appointment n/al`. 
     
 * `[r/REMARKS]` 
 
