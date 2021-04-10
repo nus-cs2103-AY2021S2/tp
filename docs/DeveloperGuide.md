@@ -1245,7 +1245,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                            | I want to …​                                                        | So that …​                                                                |
 | -------- | ------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `* * *`  | SOC Student                           | Add a task to my schedule                                              | I can track my task better                                                   |
-| `* * *`  | SOC Student                           | Delete a task from my schedule from my schedule                        | I can have flexibility in my schedule                                        |
+| `* * *`  | SOC Student                           | Delete a task from my schedule                                         | I can have flexibility in my schedule                                        |
 | `* * *`  | SOC Student                           | Edit tasks in my schedule                                              | I can have flexibility in my schedule                                        |
 | `* * *`  | SOC Student                           | View tasks in my schedule                                              | I can have a better sense of what will happen in the following days or weeks |
 | `* *`    | SOC Student                           | Mark a task complete in my schedule                                    | I can track which tasks I have completed                                     |
@@ -1301,16 +1301,16 @@ Use case ends.
 
 **Extensions**
 
-* 2a. Some required information about the event is missing in the command.
+* 2a. Some required information about the task is missing in the command.
 
     * 1a1. SOChedule displays an error message suggesting that information provided when creating
-      the event is incomplete.
+      the task is incomplete.
       Use case ends.
 
 
-* 2b. The date provided for the event is invalid
+* 2b. The date provided for the deadline of task is invalid
 
-    * 1b1. SOChedule displays an error message suggesting that date provied for the event
+    * 1b1. SOChedule displays an error message suggesting that date provied for the deadline
       is invalid, or not following the `YYYY-MM-DD` format.
       Use case ends.
 
@@ -1318,7 +1318,7 @@ Use case ends.
 
 **MSS**
 
-1. User requests to <u> list tasks (UC02)</u>.
+1. User requests to <u> list tasks (UC04)</u>.
 2. SOChedule shows a list of tasks.
 3. User chooses to delete a task.
 4. User enters the index of the task to be deleted.
@@ -1344,7 +1344,7 @@ Use case ends.
 
 **MSS**
 
-1. User requests to <u> list tasks (UC02)</u>.
+1. User requests to <u> list tasks (UC04)</u>.
 2. SOChedule shows a list of tasks.
 3. User chooses to edit a task.
 4. SOChedule edits the task and displays a success message for editing the task.
@@ -1414,13 +1414,27 @@ Use case ends.
 
 **Use case: UC04 - List tasks**
 
+**MSS**
+
+1. User requests to list all tasks in the SOChedule.
+1. SOChedule displays a list of all tasks added.
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. No task have been added.
+
+    * 1a1. SOChedule displays an empty list and informs user that the task list is empty.
+
+      Use case ends.
 
 
 **Use case: UC05 - Marking one or more tasks as completed**
 
 **MSS**
 
-1. User requests to <u> list tasks (UC02)</u>.
+1. User requests to <u> list tasks (UC04)</u>.
 2. SOChedule shows a list of tasks.
 3. User chooses to mark one or more tasks as completed.
 4. SOChedule displays a success message for marking the task as completed.
@@ -1462,7 +1476,7 @@ Use case ends.
 
 **MSS**
 
-1. User requests to <u> list tasks (UC02)</u>.
+1. User requests to <u> list tasks (UC04)</u>.
 2. SOChedule shows a list of tasks.
 3. User chooses to mark a task as uncompleted.
 4. SOChedule displays a success message for marking the task as uncompleted.
@@ -1500,9 +1514,39 @@ Use case ends.
 
 **Use case: UC07 - Getting tasks today**
 
-`<pending>`
+**MSS**
 
-**Use case: UC08 - Sorting all tasks**
+1. User requests to list all tasks with deadline on today in the SOChedule.
+2. SOChedule displays a list of all tasks with deadline on today.
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. No task have deadline on today.
+
+    * 1a1. SOChedule displays an empty list and informs user that the 0 task has been listed.
+
+      Use case ends.
+
+**Use case: UC08 - Finding tasks by name**
+
+**MSS**
+
+1. User requests to search all the tasks whose name contains any of the input keywords.
+2. SOChedule displays a list of all tasks with name containing any of the input keywords.
+    <br><br>
+   Use case ends.
+   
+**Extensions**
+
+* 1a. No task name contains any of the given keywords.
+
+    * 1a1. SOChedule displays an empty list and informs user that 0 task has been listed.
+    
+        Use case ends.
+
+**Use case: UC09 - Sorting all tasks**
 
 **MSS**
 
@@ -1527,7 +1571,7 @@ Use case ends.
 
       Use case resumes at step 2.
 
-**Use case: UC09 - Pinning a task**
+**Use case: UC10 - Pinning a task**
 
 **MSS**
 
@@ -1557,7 +1601,7 @@ Use case ends.
 
       Use Case resumes at step 2.
 
-**Use case: UC10 - Unpinning a task**
+**Use case: UC11 - Unpinning a task**
 
 **MSS**
 
@@ -1587,21 +1631,21 @@ Use case ends.
     
       Use Case resumes at step 2.
 
-**Use case: UC11 - Clearing all completed tasks**
+**Use case: UC12 - Clearing all completed tasks**
 
 1. User requests to clear all completed tasks.
 1. SOChedule displays a success message for clearing all completed tasks.
 <br><br>
 Use case ends.
 
-**Use case: UC12 - Clearing all expired tasks**
+**Use case: UC13 - Clearing all expired tasks**
 
 1. User requests to clear all expired tasks.
 1. SOChedule displays a success message for clearing all expired tasks.
 <br><br>
 Use case ends.
 
-**Use case: UC13 - Adding an event**
+**Use case: UC14 - Adding an event**
 
 **MSS**
 
@@ -1625,7 +1669,7 @@ Use case ends.
       is invalid, or not following the `YYYY-MM-DD` format.
       Use case ends.
 
-**Use case: UC14 - Deleting an event**
+**Use case: UC15 - Deleting an event**
 
 **MSS**
 
@@ -1649,7 +1693,7 @@ Use case ends.
 
       Use case resumes at step 2.
 
-**Use case: UC15 - Editing an event**
+**Use case: UC16 - Editing an event**
 
 1. User requests to <u> list events (UC16)</u>.
 1. SOChedule shows a list of events.
@@ -1693,12 +1737,12 @@ Use case ends.
 
       Use case resumes at step 2.
 
-**Use case: UC16 - Listing events**
+**Use case: UC17 - Listing events**
 
 **MSS**
 
 1. User requests to list all events in the SOChedule.
-1. SOChedule displays a list of all events added.
+2. SOChedule displays a list of all events added.
    <br><br>
    Use case ends.
 
@@ -1706,26 +1750,55 @@ Use case ends.
 
 * 1a. No events have been added.
 
-    * 1a1. SOChedule displays an empty list.
+    * 1a1. SOChedule displays an empty list and informs user that the event list is empty.
     
       Use case ends.
 
-**Use case: UC17 - Getting today's events**
+**Use case: UC18 - Getting today's events**
 
-`<pending>`
+**MSS**
 
-**Use case: UC18 - Find an event**
+1. User requests to list all events that are happening on today in the SOChedule.
+1. SOChedule displays a list of all events that are happening on today.
+   <br><br>
+   Use case ends.
 
-`<pending>`
+**Extensions**
 
-**Use case: UC19 - Clearing expired events**
+* 1a. No event is happening on today.
+
+    * 1a1. SOChedule displays an empty list and informs user that the 0 event has been listed.
+
+      Use case ends.
+
+
+
+**Use case: UC19 - Find an event**
+
+**MSS**
+
+1. User requests to search all the events whose name contains any of the input keywords.
+2. SOChedule displays a list of all events with name containing any of the input keywords.
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 1a. No event name contains any of the given keywords.
+
+    * 1a1. SOChedule displays an empty list and informs user that 0 event has been listed.
+
+      Use case ends.
+
+
+**Use case: UC20 - Clearing expired events**
 
 1. User requests to clear all expired events.
 1. SOChedule displays a success message for clearing all expired events.
 <br><br>
 Use case ends.
 
-**Use case: UC20 - Finding Schedule**
+**Use case: UC21 - Finding Schedule**
 
 **MSS**
 1. User requests to <u> list events (UC06)</u>.
@@ -1762,7 +1835,7 @@ Use case ends.
       Use case ends.
 
 
-**Use case: UC21 - Finding free time slots**
+**Use case: UC22 - Finding free time slots**
 
 **MSS**
 
@@ -1783,7 +1856,7 @@ Use case ends.
 
       Use case ends.
 
-**Use case: UC22 - Getting a summary of SOChedule**
+**Use case: UC23 - Getting a summary of SOChedule**
 
 **MSS**
 
@@ -1791,7 +1864,7 @@ Use case ends.
 2. SOChedule shows a list of different types of tasks and events happening in the next 7 days.
    Use case ends.
 
-**Use case: UC23 - Clearing SOChedule**
+**Use case: UC24 - Clearing SOChedule**
 
 **MSS**
 
@@ -1839,6 +1912,27 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample data.
 
+# Adding a task
+
+1. Adding a task
+
+    1. Prerequisites: No duplicates tasks could exist.
+
+    1. Test case: `add_task n/Homework 1 d/2021-05-10 p/8`
+       
+        Expected: Task successfully added, detailed information shown in the status bar.
+
+    1. Test case: `add_task n/Assignment d/2021-05-11 p/9 c/Assignment`
+       
+        Expected: Task successfully added, detailed information shown in the status bar.
+
+    1. Test case: `add_task n/Past Task d/2021-01-07 p/7`
+       Expected: Task is not added, since deadline is past. Detailed error message shown in the status bar.
+
+    1. Other incorrect commands to try: `add_task`, `add_task n/Task 1`, etc.
+
+1. _{ more test cases …​ }_
+
 ### Deleting a task (Not in use yet)
 
 1. Deleting a task while all tasks are being shown
@@ -1869,7 +1963,7 @@ testers are expected to do more *exploratory* testing.
 ### Marking one or more tasks as done
 1. Marks one or more uncompleted tasks from the task list as completed
 
-    1. Prerequistes: List all tasks using the `list_task` command. Task list is not empty.
+    1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty.
        All of the tasks to be completed are currently marked as uncompleted.
 
     1. Test case: `done 1 2` <br>
@@ -1882,7 +1976,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Marks a completed task from the task list as uncompleted
 
-    1. Prerequistes: List all tasks using the `list_task` command. Task list is not empty. 
+    1. Prerequisites: List all tasks using the `list_task` command. Task list is not empty. 
        The task to be uncompleted is currently marked as completed.
     
     1. Test case: `undone 1` <br>
@@ -1890,6 +1984,30 @@ testers are expected to do more *exploratory* testing.
        Details of the uncompleted task to appear in status bar.
        
     1. Other incorrect command to try : `undone abc`.
+
+### Listing all tasks
+
+1. Listing all tasks
+
+    1. Test case: `list_task`<br>
+       Expected: All the tasks currently present in the task list will be shown. If the task list is currently empty,
+       a message `There is no task present!` will be shown. Otherwise, a message `Listed all task(s).` will be shown.
+
+### Getting today's tasks
+
+1. Getting today's tasks
+
+    1. Test case: `today_task`<br>
+        Expected: All the tasks with deadline on today will be shown. A message `Listed all tasks whose deadline
+       is today` and `x task(s) listed!` will be shown, where `x` is the number of tasks with deadline on today.
+
+### Finding tasks by names
+
+1. Finding tasks by names
+
+    1. Test case: `find_task homework assignment`<br>
+       Expected: All the tasks whose name contains any of `homework` or `assignment` in the task list will be shown.
+       A message `x task(s) listed!` will be shown, where `x` is the number of tasks that satisfies the condition.
 
 ### Sorting the task list
 
@@ -2020,6 +2138,31 @@ testers are expected to do more *exploratory* testing.
        Expected: The name of the first event in the list is changed to `editedEventName`.
                
     1. Other incorrect commands to try: `edit_event`, `edit_event n/editedEventName`, etc.
+
+
+### Listing all events
+
+1. Listing all events
+
+    1. Test case: `list_event`<br>
+       Expected: All the events currently present in the event list will be shown. If the event list is currently empty,
+       a message `There is no event present!` will be shown. Otherwise, a message `Listed all event(s).` will be shown.
+
+### Getting today's events
+
+1. Getting today's events
+
+    1. Test case: `today_event`<br>
+       Expected: All the events that happening on today will be shown. A message `Listed events happen on today` and 
+       `x event(s) listed!` will be shown, where `x` is the number of events that happen on today.
+
+### Finding events by names
+
+1. Finding events by names
+
+    1. Test case: `find_event project meeting`<br>
+       Expected: All the events whose name contains any of `project` or `meeting` in the event list will be shown.
+       A message `x event(s) listed!` will be shown, where `x` is the number of events that satisfies the condition.
 
 
 ### Clearing expired events

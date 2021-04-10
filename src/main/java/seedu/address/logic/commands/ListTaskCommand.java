@@ -11,7 +11,7 @@ public class ListTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "list_task";
 
-    public static final String MESSAGE_SUCCESS = "Listed all task(s)";
+    public static final String MESSAGE_SUCCESS = "Listed all task(s).";
 
     public static final String MESSAGE_EMPTY = "There is no task present!";
 
