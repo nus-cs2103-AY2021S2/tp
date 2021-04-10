@@ -19,7 +19,7 @@ imPoster is a desktop application for beginners of API development to easily gra
   - Justification: This feature improves the product significantly because a
     user can quickly type in an API URL with the required details, and the app 
     will conveniently trigger a request for the user to view the response.
-  - Highlights: This feature involves two variations of [command format](https://ay2021s2-cs2103t-t12-4.github.io/tp/UserGuide.html#429-call-an-api-endpoint-directly-without-saving-run) that can be accepted. It required an 
+  - Highlights: This feature involves two variations of [command format](https://ay2021s2-cs2103t-t12-4.github.io/tp/UserGuide.html) that can be accepted. It required an 
     in-depth analysis of command parsing order ensuring user inputs are treated correctly. The implementation too was 
     challenging as it required changes to how we verify the validity of URLs.
 
@@ -33,8 +33,6 @@ imPoster is a desktop application for beginners of API development to easily gra
 
 - **Enhancements**:
 
-  - Updated various custom command feedback messages in the result display.
-  - Wrote additional tests for existing features to increase coverage.
   - Refactored code in the request calling logic, and the handling of command result to reduce duplication and improve 
     code quality.
   - Fixed issues related to user input (such as the integer index) involved in various commands to ensure bugs are 
