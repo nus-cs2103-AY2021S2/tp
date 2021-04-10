@@ -172,6 +172,25 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.taskify.commons` package.
 
 
+## Implementation
+
+### \[New] Delete multiple tasks with multiple indices
+This feature allows users to list out the indices of tasks to delete.
+
+#### Implementation
+
+![]()
+
+
+#### Design Consideration
+##### Aspect 1
+
+### \[New] Delete multiple tasks with an index range
+
+
+### \[New] Delete all tasks of a specified status
+
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -462,6 +481,7 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Indices**: Plural form of **Index**
 
 --------------------------------------------------------------------------------------------------------------------
 
