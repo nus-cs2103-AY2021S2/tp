@@ -1,5 +1,6 @@
 package seedu.address.model.appointment;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_LOCALDATE_MEET_BOB;
@@ -8,6 +9,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_MEET_BOB
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_LOCALTIME_MEET_BOB;
 import static seedu.address.testutil.TypicalAppointments.MEET_ALEX;
 import static seedu.address.testutil.TypicalAppointments.MEET_BOB;
+import static seedu.address.testutil.TypicalAppointments.MEET_CALEB;
+import static seedu.address.testutil.TypicalAppointments.MEET_DARREN;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,7 +55,7 @@ public class AppointmentTest {
         // different type -> returns false
         assertFalse(MEET_ALEX.equals(5));
 
-        // different person -> returns false
+        // different appointment -> returns false
         assertFalse(MEET_ALEX.equals(MEET_BOB));
 
         // different name -> returns false
@@ -70,5 +73,17 @@ public class AppointmentTest {
         // different time -> returns false
         editedMeetAlex = new AppointmentBuilder(MEET_ALEX).withTime(VALID_TIME_LOCALTIME_MEET_BOB).build();
         assertFalse(MEET_ALEX.equals(editedMeetAlex));
+    }
+
+    @Test
+    public void testStringConversion() {
+        assertEquals("Meet Alex; Remarks: Bring him around Bishan to look at the properties; "
+                + "Date: Dec 25, 2021; Time: 3:00PM", MEET_ALEX.toString());
+        assertEquals("Meet Bob; Remarks: To meet with interested client for viewing of his house; "
+                + "Date: Apr 30, 2021; Time: 10:30AM", MEET_BOB.toString());
+        assertEquals("Meet Caleb; Remarks: For renegotiation of selling price; "
+                + "Date: Mar 07, 2021; Time: 10:30AM", MEET_CALEB.toString());
+        assertEquals("Meet Darren; Remarks: For signing of sales agreement at HDB; "
+                + "Date: Oct 12, 2021; Time: 2:00PM", MEET_DARREN.toString());
     }
 }
