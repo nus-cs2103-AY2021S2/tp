@@ -70,7 +70,6 @@ public class AddStudentCommandTest {
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
-
     /**
      * A Model stub that contains a single student.
      */
