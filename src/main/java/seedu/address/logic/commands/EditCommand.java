@@ -100,6 +100,7 @@ public class EditCommand extends Command {
         conditionLogic.checkInvalidDateRange();
         conditionLogic.checkForExpiredDate();
         conditionLogic.enforceAttributeConstraints();
+        conditionLogic.enforceTitleLength();
 
         editedTask = handleTagUpdates(model, taskToEdit, editedTask);
         updateModel(model, taskToEdit, editedTask);

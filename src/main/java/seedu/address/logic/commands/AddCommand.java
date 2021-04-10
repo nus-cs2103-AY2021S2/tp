@@ -75,6 +75,7 @@ public class AddCommand extends Command {
         conditionLogic.enforceAttributeConstraints();
         conditionLogic.checkInvalidDateRange();
         conditionLogic.checkForExpiredDate();
+        conditionLogic.enforceTitleLength();
         updateTags(model);
         updateModel(model);
 

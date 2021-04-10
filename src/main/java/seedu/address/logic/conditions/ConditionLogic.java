@@ -7,9 +7,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.task.Task;
 
 public class ConditionLogic {
-    private Task task;
-    private DateVerifier dateVerifier;
-    private ConstraintManager constraintManager;
+    private final Task task;
+    private final DateVerifier dateVerifier;
+    private final ConstraintManager constraintManager;
 
     public ConditionLogic(Task task) {
         this.task = task;
