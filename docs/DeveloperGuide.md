@@ -209,7 +209,7 @@ It also implements following method:
 
 * `decreaseCorrectWorkloadDistribution(Module module, Task task)` —  Based on the workload of the task, decreases the value of corresponding map and the `moduleWorkloadDistribution`.
 
-The following class diagram shows the classes related to implement workload distribution:
+The following class diagram shows the classes related to implementing workload distribution:
 
 ![WorkloadDistributionDiagram](images/WorkloadDistributionClassDiagram.png)
 
