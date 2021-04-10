@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 
 /**
@@ -23,6 +25,15 @@ public class NotifWindow extends Alert {
      * Sets the displayed message to the notifications.
      */
     public void setMessage(String message) {
-        setContentText(message);
+        getDialogPane().setMaxWidth(400);
+        ScrollPane scroll = new ScrollPane();
+        Label label = new Label(message);
+        label.setWrapText(true);
+        label.setMaxWidth(400);
+        scroll.setContent(label);
+        scroll.setPrefViewportWidth(400);
+        scroll.setFitToWidth(true);
+        scroll.setPrefViewportHeight(300);
+        getDialogPane().setContent(scroll);
     }
 }

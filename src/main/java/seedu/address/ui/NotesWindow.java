@@ -1,6 +1,11 @@
 package seedu.address.ui;
 
+import java.io.IOException;
+
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import seedu.address.model.person.Person;
 
@@ -24,6 +29,15 @@ public class NotesWindow extends Alert {
      */
     public void setMessage(Person personWithNotes) {
         setHeaderText(String.format("Notes for %s:", personWithNotes.getName()));
-        setContentText(personWithNotes.getNotesString());
+        getDialogPane().setMaxWidth(1000);
+        ScrollPane scroll = new ScrollPane();
+        Label label = new Label(personWithNotes.getNotesString());
+        label.setMaxWidth(1000);
+        label.setWrapText(true);
+        scroll.setContent(label);
+        scroll.setPrefViewportWidth(1000);
+        scroll.setFitToWidth(true);
+        scroll.setPrefViewportHeight(400);
+        getDialogPane().setContent(scroll);
     }
 }
