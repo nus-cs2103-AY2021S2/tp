@@ -1,5 +1,4 @@
 //@@ ZhangAnli
-
 package dog.pawbook.logic.parser;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -31,26 +30,23 @@ public class ViewCommandParserTest {
     }
 
     @Test
-    public void parse_emptyArguments_parseException() {
+    public void parse_emptyArguments_failure() {
         // Test that empty arguments ParseException is thrown
         assertParseFailure(parser, INVALID_EMPTY_STRING, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ViewCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_negativeId_parseException() {
+    public void parse_invalidId_failure() {
         // Test that negative ID ParseException is thrown
         assertParseFailure(parser, INVALID_NEGATIVE_ID_STRING, MESSAGE_INVALID_ID_GENERAL);
-    }
 
-    @Test
-    public void parse_invalidId_parseException() {
-        // Test that invalid ID parseException is thrown
+        // Test that invalid ID ParseException is thrown
         assertParseFailure(parser, INVALID_UNKNOWN_ID_STRING, MESSAGE_INVALID_ID_GENERAL);
     }
 
     @Test
-    public void parse_validId_parseException() {
+    public void parse_validId_success() {
         // Test that no parseException thrown
         assertParseSuccess(parser, VALID_ENTITY_ID, new ViewCommand(Integer.parseInt(VALID_ENTITY_ID)));
     }
