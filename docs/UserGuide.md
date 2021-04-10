@@ -230,10 +230,10 @@ Adds a resident to the housing management system.
 Format: `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR`
 
 Parameters:
-* [NAME](#name) The name of the resident.
-* [PHONE_NUMBER](#phone_number) The phone number of the resident.
-* [EMAIL](#email) The email of the resident.
-* [YEAR](#year) The year of the resident.
+* [`NAME`](#name) The name of the resident.
+* [`PHONE_NUMBER`](#phone_number) The phone number of the resident.
+* [`EMAIL`](#email) The email of the resident.
+* [`YEAR`](#year) The year of the resident.
 
 Examples:
 * `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3`
@@ -275,11 +275,11 @@ Format: `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR]`
   See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
 
 Parameters:
-* [INDEX](#index) The index of the displayed resident.
-* [NAME](#name) The name of the resident.
-* [PHONE_NUMBER](#phone_number) The phone number of the resident.
-* [EMAIL](#email) The email of the resident.
-* [YEAR](#year) The year of the resident.
+* [`INDEX`](#index) The index of the displayed resident.
+* [`NAME`](#name) The name of the resident.
+* [`PHONE_NUMBER`](#phone_number) The phone number of the resident.
+* [`EMAIL`](#email) The email of the resident.
+* [`YEAR`](#year) The year of the resident.
 
 Example:
 * `redit 1 p/91234567 e/e0123456@u.nus.edu` Edits the phone number and email address of the 1st resident to
@@ -295,7 +295,7 @@ Format: `rdel INDEX`
    See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
 
 Parameters:
-* [INDEX](#index) The index of the displayed resident.
+* [`INDEX`](#index) The index of the displayed resident.
 
 Example:
 * `rdel 1` deletes the 1st resident in the resident list.
@@ -423,10 +423,10 @@ Format: `alloc ri/RESIDENT_INDEX oi/ROOM_INDEX`
 * The resident and room at `RESIDENT_INDEX` and `ROOM_INDEX` respectively must both be unallocated.
 
 Parameters:
-* [RESIDENT_INDEX](#index) The index of the displayed resident.
-* [ROOM_INDEX](#index) The index of the displayed room.
+* [`RESIDENT_INDEX`](#index) The index of the displayed resident.
+* [`ROOM_INDEX`](#index) The index of the displayed room.
 
-Note that RESIDENT_INDEX and ROOM_INDEX both conform to [INDEX](#index).
+Note that `RESIDENT_INDEX` and `ROOM_INDEX` both conform to [`INDEX`](#index).
 
 Example:
 * `alloc ri/1 oi/2` Allocates the 1st resident in the resident list to the 2nd room in the room list.
@@ -438,8 +438,9 @@ Format: `dealloc RESIDENT_INDEX`
 * The resident at `RESIDENT_INDEX` must already be allocated.
 
 Parameters:
-* [RESIDENT_INDEX](#index) The index of the displayed resident.
+* [`RESIDENT_INDEX`](#index) The index of the displayed resident.
 
+Note that `RESIDENT_INDEX` conforms to [`INDEX`](#index).
 
 Example:
 * `dealloc 1` Deallocates the 1st resident in the resident list from its allocated room.
