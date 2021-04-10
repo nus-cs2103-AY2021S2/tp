@@ -251,6 +251,19 @@ increase work productivity for delivery drivers by simplifying the delivery mana
    ![Ui](images/FindDate.png)
 
 
+### Sort delivery tasks in the list: `sort`
+
+**Purpose** Sort delivery tasks first by completion status (incomplete first), 
+then urgency tags (only applicable for incomplete tasks), and lastly date.
+
+**Format:** `sort`
+
+**Examples:**
+
+* `sort` - Lists all incomplete delivery tasks (urgent ones first) followed by completed delivery tasks, which are all
+sorted by date.
+
+
 ### Statistics of delivery workflow : `stats`
 
 **Purpose:** Get a summary report of the current delivery workflow
