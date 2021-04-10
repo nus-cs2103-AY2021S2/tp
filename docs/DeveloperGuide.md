@@ -126,9 +126,38 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Archiving certain contacts
+### Archive-related features
 
-_{Coming soon}_
+**How**<br>
+
+![image](images/ArchiveCommandLogic.png)
+
+After `Logic` component receives the instruction from `Ui` component, the `LogicManager` calls the `AddressBookParser` 
+which correctly identifies that the `ArchiveCommand` is needed in the current situation. The `ArchiveCommandParser`
+checks the arguments and then creates an `ArchiveCommand` object. Next, the archiving mechanism is facilitated by the 
+`ArchiveCommand` object which extends `Command`. It overrides `Command#execute` in order to return 
+a `CommandResult` with a success message stating that the command has been successfully executed. Then, the patient to
+be archived is correctly identified from the index provided and passed to the `Model` component from the `Logic` 
+component. The `UnarchiveCommand` works similar to the implementation of the `ArchiveCommand`.
+
+![image](images/ArchiveCommandModel.png)
+
+The indicator for whether a patient is archived is implemented as a boolean in the `Patient` class. Therefore, when the
+`ArchiveCommand` is executed, `Model` component receives the instruction and patient to be archived from `Logic`. 
+Then, the `UniquePersonList` in the `AddressBook` is accessed through the `ModelManager` and the specified patient is 
+archived by removing them from the list, changing their `isArchived` status to true and then adding them back to the 
+`UniquePersonList`. The `UnarchiveCommand` works similarly except for changing the `isArchived` to false.
+
+**Why**<br>
+It was implemented in this way in order to make it easier to use the `Model#updateFilteredPersonList` in order to 
+display all archived patients using a suitable predicate when the `ArchiveListCommand` is called just like how the 
+original `ListCommand` works. Moreover, the existing `DeleteCommand` and `FindCommand` could be used with the
+archived list just like how they worked with the main list.
+Another possible implementation was to create 2 `UniquePersonList` objects in AddressBook, one for the main list and
+one for the archived list. However, this idea was scrapped as that would involve more changes throughout the component
+and involve changes in unrelated classes. This way, the changes were contained and it made more sense for the `Patient` 
+object to contain the information of whether or not they were archived.
+
 
 ### \[Proposed\] Adding Medical Information such as Appointments and Medical Records
 
