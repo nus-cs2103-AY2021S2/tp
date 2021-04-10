@@ -2,7 +2,9 @@
 layout: page
 title: Developer Guide
 ---
-Weeblingo is a desktop app for managing flashcards, **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface, users can learn Japanese at a comfortable pace with this application.
+Weeblingo is a desktop application for **learning Japanese, optimized for use via a Command Line Interface** (CLI) while
+still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface,
+users can learn Japanese at a comfortable pace and manage flashcards with this application.
 
 # Table of Contents
 * [Setting Up](#setting-up-getting-started)
@@ -309,7 +311,7 @@ switching UI display the other way around is similar.
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Ability to learn the Japanese language through flashcards in a fun and interactive manner
+**Value proposition**: Ability to learn the Japanese language through flashcards in an efficient, fun and interactive manner
 
 
 ### User stories
@@ -450,22 +452,20 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Using the  `end` command
+### Using the `end` command
 
-1. Ending a quiz before it is started
+1. Returning to menu
 
-   1. Prerequisites: No quiz has been started
+   1. Prerequisites: Not already in menu
 
-   1. Test case: `end` _while in the quiz_<br>
-      Expected: The current quiz is ended and displayed flashcard disappears.
+   2. Test case: `end` _while in a quiz session_<br>
+      Expected: The current quiz session is ended and displayed flashcard disappears.
 
-   1. Test case: `end` _while in the start menu_<br>
-      Expected: Nothing happens. An error message is displayed to the user telling them that no Quiz has started yet.
+   3. Test case: `end` _while in menu_<br>
+      Expected: Nothing happens. An error message is displayed to the user telling them the app is already in menu.
 
-   1. Other incorrect end commands locations to try: _while in learn mode_, _right after ending a Quiz, …​ <br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+   4. Other correct end commands locations to try: _while in learn mode_, _right after ending a Quiz_, …​ <br>
+      Expected: Returns to menu.
 
 ### Saving data
 
