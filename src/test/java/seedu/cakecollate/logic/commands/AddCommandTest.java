@@ -112,10 +112,6 @@ public class AddCommandTest {
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
-
-    // ======== TESTS ADDED AFTER ORDER ITEM FEATURE ========
-
-
     // ======== MODEL STUBS ========
 
 
@@ -247,6 +243,8 @@ public class AddCommandTest {
             return this.order.isSameOrder(order);
         }
 
+        // These methods are called when the order descriptions are checked for adding into the order item model
+
         @Override
         public boolean hasOrderItem(OrderItem orderItem) {
             requireNonNull(orderItem);
@@ -293,9 +291,8 @@ public class AddCommandTest {
 
         @Override
         public void addOrderItem(OrderItem item) {
+            requireNonNull(item);
             orderItemsStub.add(item);
-            // updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS); ?
         }
     }
-
 }
