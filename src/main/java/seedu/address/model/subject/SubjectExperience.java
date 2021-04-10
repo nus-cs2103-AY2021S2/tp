@@ -10,8 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class SubjectExperience {
     public static final String MESSAGE_CONSTRAINTS =
-            "Subject experience should only contain numbers, and it should be at least 1 digit long";
-    public static final String VALIDATION_REGEX = "\\d{1,}";
+            "Subject experience should only contain numbers, and it should be at least 1 digit long "
+                    + "and at most 2 digits long";
+    public static final String VALIDATION_REGEX = "\\d{1,2}";
     public final Integer experience;
 
     /**
