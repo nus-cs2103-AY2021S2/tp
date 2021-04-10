@@ -95,16 +95,9 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
 
 * Extra keywords inputted for commands that do not require parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
 ### Adding a contact: `add`
 
@@ -164,6 +157,8 @@ Examples:
 * `add n/John Doe p/98612341`
 * `add n/Alice Tan p/98765432 s/Abc Secondary School e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789`
 * `add n/Bob Lee p/87654321 s/Def Secondary School e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/math le/monday 1300`
+
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
 ### Editing a contact : `edit`
 
@@ -227,6 +222,8 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing subjects.
 *  `edit 1 le/monday 1300 le/tuesday 1400` Edits the 1st student's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
 
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+
 ### Viewing a contact details: `detail`
 
 View the full details of the specified student's contact from TutorsPet.
@@ -241,15 +238,20 @@ Format: `detail INDEX`
 
 * Views the contact at the specified `INDEX`.
 
+* Student details of a searched list can be displayed using this command.
+
 * The index refers to the index number shown in the displayed student list.
 
 * The index **must be a positive integer** ranging from 1 to 2147483647.
 
 </div>
 
-Examples:
-* `list` followed by `detail 2` views the details of the 2nd student in TutorsPet.
-* `search n/Betsy` followed by `detail 1` views the details of the 1st student in the results of the `search` command.
+Examples: <br>
+  | Command     | Result                                             |
+  | ----------- |---------------------------------------------------:|
+  |detail 1     | displays the details of the 1st student in the list|
+
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
 ### Deleting a contact : `delete`
 
@@ -272,6 +274,8 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in TutorsPet.
 * `search n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `search` command.
+
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
 ### Searching for a contact: `search`
 
@@ -310,7 +314,7 @@ Prefix | Searching Criteria
   They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
   subjects which students are more likely to need private tuition.
   For more details, see the [Field Format Summary](#field-format-summary) below.
-
+  
 </div>
 
 Examples:
@@ -321,6 +325,7 @@ Examples:
 * `search t/CHEM`, `search t/chem`, and `search t/Chem` will all return students with the subject `chem`
 * `search t/chem math` returns students with the subject `chem` or with the subject `math` or with both.
 
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
 ### Sorting contacts: `sort`
 Sorts the student contacts list by name, school, subjects or lessons.
@@ -352,11 +357,16 @@ Examples:
   of the week.
 * `sort n/ s/` sorts students by the alphabetical orders of their schools, and ignores the name prefix.
 * `sort t/` sorts students based on the alphabetical order of their first subject 
+
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+
 ### Listing all contacts : `list`
 
 Shows a list of all student contacts in TutorsPet. Each student's name, phone number, subjects and lessons are displayed.
 
 Format: `list`
+
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
 ### Viewing schedule : `schedule`
 
@@ -365,6 +375,8 @@ Shows a weekly schedule that displays lessons for the week.
 Format: `schedule`
 
 ![schedule popup](images/scheduleWindow.png)
+
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
 ### Advancing all students: `levelup`
 
@@ -402,6 +414,8 @@ Examples:
 * `levelup ex/3 4` advances all students by one level, excluding the 3rd and 4th student
   in the list, as well as any students who have `grad`.
 
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+
 ### Demoting all students: `leveldown`
 
 Demotes the education level of all the student contacts by one grade by default, unless the student is excluded.
@@ -436,7 +450,9 @@ Examples:
 * `leveldown` demotes all students except `pri1` students by one level.
 * `levelup ex/2 5` demotes all students by one level, excluding the 3rd and 4th student
   in the list, as well as any students who are `pri1`.
-  
+
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+
 ### Adding an important date: `add-date`
 
 Adds an important date to TutorsPet.
@@ -456,11 +472,15 @@ Format: `add-date d/DESCRIPTION dt/DETAILS`
 Examples:
 * `add-date d/math exam dt/2021-11-03 0800`
 
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+
 ### Listing all important dates : `list-date`
 
 Shows a list of all important dates in TutorsPet.
 
 Format: `list-date`
+
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
 ### Deleting an important date : `delete-date`
 
@@ -482,17 +502,33 @@ Format: `delete-date INDEX`
 Examples:
 * `list-date` followed by `delete-date 2` deletes the 2nd important date in TutorsPet.
 
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+
 ### Clearing all entries : `clear`
 
 Clears all entries from TutorsPet.
 
 Format: `clear`
 
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
 ### Saving the data
 
@@ -511,6 +547,8 @@ Advanced users are welcome to update data directly by editing that data file.
 If your changes to the data file makes its format invalid, TutorsPet will discard all data and start with an empty data file at the next run.
 
 </div>
+
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
 ## Coming soon
 
@@ -531,6 +569,8 @@ _Details coming soon ..._
 _Format: `add-profile INDEX FILE_PATH` <br> Add a profile picture to the contact of the specified index
 by providing the file path to the picture._
 --------------------------------------------------------------------------------------------------------------------
+
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
 ## FAQ
 
@@ -561,6 +601,8 @@ like chem and bio.
 
 </div>
 
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
+
 ## Command summary
 
 Action | Format, Examples
@@ -580,3 +622,5 @@ Action | Format, Examples
 **Delete dates** | `delete-date INDEX`<br> e.g., `delete-date 3`
 **List dates** | `list-date`
 **Help** | `help`
+
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
