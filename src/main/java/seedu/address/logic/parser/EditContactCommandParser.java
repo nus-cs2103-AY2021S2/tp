@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditContactCommand;
 import seedu.address.logic.commands.EditContactCommand.EditContactDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -34,10 +35,10 @@ public class EditContactCommandParser implements Parser<EditContactCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
-        ContactName name;
+        Index index;
 
         try {
-            name = ParserUtil.parseContactName(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String
                     .format(MESSAGE_INVALID_COMMAND_FORMAT, EditContactCommand.MESSAGE_USAGE), pe);
@@ -59,7 +60,7 @@ public class EditContactCommandParser implements Parser<EditContactCommand> {
             throw new ParseException(MESSAGE_NOT_EDITED);
         }
 
-        return new EditContactCommand(name, editContactDescriptor);
+        return new EditContactCommand(index, editContactDescriptor);
     }
 
     /**

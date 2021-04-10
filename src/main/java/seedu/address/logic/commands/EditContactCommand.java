@@ -1,9 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_CONTACT_NAME_DOES_NOT_EXIST;
+
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_CONTACT;
 import static seedu.address.commons.core.Messages.MESSAGE_EDIT_CONTACT_SUCCESS;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -35,27 +37,28 @@ public class EditContactCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the contact identified "
             + "by name used in the displayed contact list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: NAME "
+            + "Parameters: INDEX"
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " John Doe "
+            + "Example: " + COMMAND_WORD
+            + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    private final ContactName name;
+    private final Index index;
     private final EditContactDescriptor editContactDescriptor;
 
     /**
-     * @param name of the contact in the filtered contact list to edit
+     * @param index of the contact in the filtered contact list to edit
      * @param editContactDescriptor details to edit the contact with
      */
-    public EditContactCommand(ContactName name, EditContactDescriptor editContactDescriptor) {
-        requireNonNull(name);
+    public EditContactCommand(Index index, EditContactDescriptor editContactDescriptor) {
+        requireNonNull(index);
         requireNonNull(editContactDescriptor);
 
-        this.name = name;
+        this.index = index;
         this.editContactDescriptor = new EditContactDescriptor(editContactDescriptor);
     }
 
@@ -64,18 +67,11 @@ public class EditContactCommand extends Command {
         requireNonNull(model);
         List<Contact> lastShownList = model.getFilteredContactList();
 
-        Contact contactToEdit = null;
-        for (Contact contact : lastShownList) {
-            if (name.toString().equalsIgnoreCase(contact.getName().toString())) {
-                contactToEdit = contact;
-                break;
-            }
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
         }
 
-        if (contactToEdit == null) {
-            throw new CommandException(MESSAGE_CONTACT_NAME_DOES_NOT_EXIST);
-        }
-
+        Contact contactToEdit = lastShownList.get(index.getZeroBased());
         Contact editedContact = createEditedContact(contactToEdit, editContactDescriptor);
 
         if (!contactToEdit.isSameContact(editedContact) && model.hasContact(editedContact)) {
@@ -116,7 +112,7 @@ public class EditContactCommand extends Command {
 
         // state check
         EditContactCommand e = (EditContactCommand) other;
-        return name.equals(e.name)
+        return index.equals(e.index)
                 && editContactDescriptor.equals(e.editContactDescriptor);
     }
 
