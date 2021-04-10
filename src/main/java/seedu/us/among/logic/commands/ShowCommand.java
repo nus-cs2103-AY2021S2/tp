@@ -49,7 +49,7 @@ public class ShowCommand extends Command {
         }
 
         Endpoint endpointToShow = lastShownList.get(index.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, endpointToShow.toString()), endpointToShow, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, endpointToShow.toString()), endpointToShow, true);
     }
 
 

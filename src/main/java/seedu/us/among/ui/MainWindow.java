@@ -221,10 +221,26 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.getLoadingSpinnerPlaceholder().setVisible(false);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             if (commandResult.isApiResponse()) {
-                resultDisplay.setApiFeedbackToUser(commandResult.getFeedbackToUser(), commandResult.getEndpoint());
+                Endpoint e = commandResult.getEndpoint();
+                resultDisplay.setApiFeedbackToUser(commandResult.getFeedbackToUser(), e);
+                if (endpointListPanel.contains(e)) {
+                    //if command is send command
+                    endpointListPanel.focusSelectedEndpoint(e);
+                } else {
+                    //if command is run command
+                    endpointListPanel.unfocusEndpointList();
+                }
+                endpointListPanel.focusSelectedEndpoint(e);
             } else if (commandResult.getEndpoint() != null) {
-                resultDisplay.setResponseMetaFeedbackHelper(
-                        commandResult.getFeedbackToUser(), commandResult.getEndpoint());
+                Endpoint e = commandResult.getEndpoint();
+                resultDisplay.setResponseMetaFeedbackHelper(commandResult.getFeedbackToUser(), e);
+                if (commandResult.hasEndpointToShow() == true) {
+                    //if command is add, edit, show
+                    endpointListPanel.focusSelectedEndpoint(e);
+                } else {
+                    //if command is remove
+                    endpointListPanel.unfocusEndpointList();
+                }
             } else {
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             }

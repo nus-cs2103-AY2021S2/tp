@@ -114,7 +114,7 @@ public class CommandTestUtil {
      */
     public static void assertAddCommandSuccess(Command command, Model actualModel, String expectedMessage,
             Model expectedModel, Endpoint endpoint) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, endpoint, false);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, endpoint, true);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 

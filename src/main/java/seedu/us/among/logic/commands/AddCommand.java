@@ -61,7 +61,7 @@ public class AddCommand extends Command {
         }
 
         model.addEndpoint(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), toAdd, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), toAdd, true);
     }
 
     @Override
