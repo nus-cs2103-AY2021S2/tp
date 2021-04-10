@@ -46,5 +46,19 @@ public class SimplePeriod implements Schedulable {
                 || this.start.compareTo(schedulable.getTerminateLocalDateTime()) >= 0);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        } else if (obj instanceof SimplePeriod) {
+            SimplePeriod other = (SimplePeriod) obj;
+            return other.start.isEqual(this.start)
+                    && other.end.isEqual(this.end)
+                    && other.name.equals(this.name);
+        } else {
+            return false;
+        }
+    }
+
 
 }

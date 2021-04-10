@@ -1,10 +1,10 @@
 package seedu.address.model.schedule;
 
+import java.time.LocalDate;
+
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class TimetablePrefs {
     private final SimpleObjectProperty<LocalDate> timetableStartDate;
