@@ -261,7 +261,7 @@ Format: `exit`
 
 ##### Adding a student: `add_student`
 
-Adds a student to TutorBuddy with their relevant guardian and study information.
+Adds a student to TutorBuddy with their respective guardian and study information.
 
 Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` <br>
 
