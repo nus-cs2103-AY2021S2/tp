@@ -166,10 +166,10 @@ From the diagram illustrated above:
 1. The model filtered pool list is then updated with `updateFilteredPoolList()` with a predicate to show all pools in the list `PREDICATE_SHOW_ALL_POOLS`.
 1. Finally, a `CommandResult` would be returned back to `LogicManager` to indicate the completion status of the command.
 
-It is worth noting that unlike the `AddCommand` which has a constructor that takes in a single passenger created and passed from `AddCommandParser`, the `PoolCommand` is constructed using the details specified and
-parsed from `PoolCommandParser`. The rationale is due the fact that a list of passengers have to be obtained from the indexes specified, which requires interactions
-with the model. This implementation would encapsulate the interactions with model within the methods of `PoolCommand`.
-
+It is worth noting that in the case of adding a passenger, a `Passenger` object is created by `AddCommandParser` and used in the constructor of `AddCommand`.
+However, in the case of adding a pool, a `PoolCommand` is constructed using the details specified and parsed from `PoolCommandParser`, instead of creating and passing a `Pool` object.
+The rationale is due the fact that a list of passengers have to be obtained from the indexes specified, which requires interactions with the model.
+The current implementation thus encapsulates all the interactions with model, within the methods of `PoolCommand`.
 
 ### Unpool feature
 This feature allows users to remove a pool from the pool list through the specification of an index.
@@ -183,10 +183,10 @@ Given below is the Sequence Diagram for interactions within the Logic component 
 From the diagram illustrated above:
 1. `LogicManager` has its `execute()` method called when a user enters the `"unpool 1"` command.
 1. `AddressBookParser` class is then instantiated, which subsequently instantiates `UnpoolCommandParser` class to help parse the user's command.
-1. `AddressBookParser` would then have its `parse()` method invoked to parse the value of the index `"1"` to `UnpoolCommandParser`.
+1. `AddressBookParser` would then have its `parse()` method invoked, passing the argument `"1"` to `UnpoolCommandParser`.
 1. Given that the index `"1"` is a valid index, an `UnpoolCommand` object would be created and returned to `LogicManager`.
 1. `LogicManager` would subsequently invoke the `execute()` method of the `UnpoolCommand` which in turn invokes `deletePool()` method with an argument of `1`.
-1. This would update the model by deleting the specified pool, then the result of the command execution `CommandResult` would be created and returned back to `LogicManager`.
+1. This would update the model by deleting the specified pool at the first index, then the result of the command execution `CommandResult` would be created and returned back to `LogicManager`.
 
 --------------------------------------------------------------------------------------------------------------------
 
