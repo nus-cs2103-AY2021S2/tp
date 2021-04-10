@@ -30,7 +30,7 @@ public class AddGroupCommand extends Command {
             + PREFIX_NAME + "Close Friends" + " "
             + PREFIX_PERSONS + "1 2 3 4";
 
-    public static final String MESSAGE_ADD_GROUP_SUCCESS = "Added %1$s into group %2$s";
+    public static final String MESSAGE_ADD_GROUP_SUCCESS = "Added into group %1$s";
     public static final String MESSAGE_ADD_DEFAULT_GROUP_ERROR = "There is no need to add people to \"%1$s\" "
             + "as everyone is included by default.";
 
@@ -82,7 +82,6 @@ public class AddGroupCommand extends Command {
         model.updateFilteredPersonList();
         return new CommandResult(String.format(
                 MESSAGE_ADD_GROUP_SUCCESS,
-                group.toUi(),
                 groupName));
     }
 

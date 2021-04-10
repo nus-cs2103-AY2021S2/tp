@@ -68,13 +68,16 @@ public class GroupListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Name groupName, boolean empty) {
             super.updateItem(groupName, empty);
-
+            this.setMaxWidth(groupListView.getWidth());
             if (empty || groupName == null) {
                 setGraphic(null);
                 setText(null);
             } else {
                 Label label = new Label(groupName.fullName);
                 label.setPadding(new Insets(10));
+                label.setMaxWidth(groupListView.getWidth());
+                label.setPrefWidth(groupListView.getWidth());
+                label.setWrapText(true);
                 setGraphic(label);
             }
         }
