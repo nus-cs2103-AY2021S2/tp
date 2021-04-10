@@ -4,24 +4,30 @@ import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.taskify.commons.util.StringUtil.reduceWhitespaces;
 import static seedu.taskify.model.task.Status.isValidStatus;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.commons.util.StringUtil;
 import seedu.taskify.logic.commands.DeleteCommand;
+import seedu.taskify.logic.commands.exceptions.CommandException;
 import seedu.taskify.logic.parser.exceptions.ParseException;
+import seedu.taskify.model.Model;
+import seedu.taskify.model.task.Status;
+import seedu.taskify.model.task.Task;
 
 /**
  * Utility class for deleting multiple tasks at once
  */
-public class DeleteMultipleCommandUtil {
+public class DeleteUtil {
 
 
     public static final String MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX = "The string passed to ParserUtil"
             + ".parseMultipleIndex() contains only one argument";
-    public static final String MESSAGE_AT_LEAST_ONE_INVALID_INDEX = "At least one Index is not a non-zero unsigned "
-            + "integer.";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_INDEX_RANGE = "Invalid index range given. Second index should be "
             + "bigger than the first index.";
@@ -151,5 +157,69 @@ public class DeleteMultipleCommandUtil {
         }
 
         return IntStream.rangeClosed(firstNum, secondNum).mapToObj(String::valueOf).toArray(String[]::new);
+    }
+
+    /**
+     * Returns the list of tasks to delete from {@code tasksSource} using indexes from {@code targetIndexes}
+     * @param tasksSource the list of tasks that contains the tasks to be deleted
+     * @param targetIndexes the indices of the tasks to delete
+     * @param isDeletingByRange true if user was deleting using an index range, false if user listed the individual
+     *                          indices
+     * @return the list of tasks to be deleted
+     * @throws CommandException
+     */
+    public static List<Task> getTasksToDelete(List<Task> tasksSource, List<Index> targetIndexes,
+                                              boolean isDeletingByRange) throws CommandException {
+        assert targetIndexes.size() > 1;
+        List<Task> tasksToDelete = new ArrayList<>();
+
+        // Checks if the index range does not correspond to at least one task in Taskify
+        boolean isIndexReferringToInvalidTask =
+                targetIndexes.get(targetIndexes.size() - 1).getOneBased() > tasksSource.size();
+
+        if (isDeletingByRange && isIndexReferringToInvalidTask) {
+            throw new CommandException(MESSAGE_INVALID_TASK_FOR_INDEX_RANGE);
+        }
+
+        for (Index targetIndex : targetIndexes) {
+            if (targetIndex.getZeroBased() >= tasksSource.size()) {
+                throw new CommandException(MESSAGE_INVALID_TASK_FOR_INDICES);
+            }
+
+            Task taskToDelete = tasksSource.get(targetIndex.getZeroBased());
+            tasksToDelete.add(taskToDelete);
+        }
+        return tasksToDelete;
+    }
+
+    /**
+     * Returns all tasks with the specified {@code Status}, that are to be deleted
+     */
+    public static List<Task> getTasksToDelete(Status status, List<Task> tasksSource) {
+        return tasksSource.stream().filter(task -> task.getStatus().equals(status)).collect(Collectors.toList());
+    }
+
+    /**
+     * Generates the success message when multiple tasks are deleted, by any of the 3 methods to delete multiple tasks
+     */
+    public static String generateSuccessMessage(List<Task> tasksToDelete) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Deleted Tasks: \n");
+        for (Task toDelete : tasksToDelete) {
+            sb.append(toDelete);
+            sb.append("\n\n");
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Deletes tasks from a {@link Model}
+     * @param model the {@code Model} to delete the tasks from
+     * @param tasksToDelete the tasks to delete
+     */
+    public static void deleteTasksFromModel(Model model, List<Task> tasksToDelete) {
+        for (Task toDelete : tasksToDelete) {
+            model.deleteTask(toDelete);
+        }
     }
 }

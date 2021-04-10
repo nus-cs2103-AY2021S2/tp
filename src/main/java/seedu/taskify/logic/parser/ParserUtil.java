@@ -2,11 +2,11 @@ package seedu.taskify.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.taskify.commons.util.StringUtil.reduceWhitespaces;
-import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_INDEX;
-import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
-import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.extractStringArgumentsIntoIndexes;
-import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.hasMultipleValidIndex;
-import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.isDeletingTasksByStatus;
+import static seedu.taskify.logic.commands.util.DeleteUtil.MESSAGE_INVALID_INDEX;
+import static seedu.taskify.logic.commands.util.DeleteUtil.MESSAGE_PARSE_MULTIPLE_INDEX_ON_SINGLE_INDEX;
+import static seedu.taskify.logic.commands.util.DeleteUtil.extractStringArgumentsIntoIndexes;
+import static seedu.taskify.logic.commands.util.DeleteUtil.hasMultipleValidIndex;
+import static seedu.taskify.logic.commands.util.DeleteUtil.isDeletingTasksByStatus;
 
 import java.util.ArrayList;
 import java.util.Collection;

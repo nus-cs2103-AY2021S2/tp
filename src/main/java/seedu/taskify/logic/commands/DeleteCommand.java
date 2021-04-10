@@ -1,12 +1,12 @@
 package seedu.taskify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taskify.logic.commands.util.DeleteUtil.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 
 import java.util.List;
 
 import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.logic.commands.exceptions.CommandException;
-import seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.task.Task;
 
@@ -24,7 +24,7 @@ public class DeleteCommand extends Command {
             + "Note: Multiple tasks can also be deleted at once, by giving multiple indices, giving an "
             + "index range or by giving a status to delete all tasks with that status\n\n"
             + "Parameters for deleting multiple tasks:\n"
-            + "   1. Listing multiple indices: INDEX [MORE_INDICES]\n"
+            + "   1. Listing multiple indices: INDEX INDEX ...\n"
             + "   2. Stating the range of indices: INDEX-INDEX\n"
             + "   3. Indicating the status of tasks to delete by: STATUS -all\n\n"
             + "View the User Guide for more information, at https://ay2021s2-cs2103t-w14-4.github.io/tp/UserGuide.html";
@@ -54,7 +54,7 @@ public class DeleteCommand extends Command {
         }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(DeleteMultipleCommandUtil.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
