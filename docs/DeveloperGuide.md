@@ -438,7 +438,7 @@ The following class diagram shows an overview of the command history subsystem a
 ![CommandHistoryModelClassDiagram](images/commandhistory/CmdHistModelClassDiagram.png)
 
 ##### How Command History is Updated
-`Logic#execute()` triggers the update. Only _after_ a command parses and executes successfully will that command's text
+`LogicManager#execute()` triggers the update. Only _after_ a command parses and executes successfully will that command's text
 be appended to the command history via `Model#appendCommandHistoryEntry()`. If either parsing or execution fails,
 then `CommandHistory` will be unchanged. The following sequence diagram shows this process pictorially using the
 example command `help`.
@@ -447,8 +447,7 @@ example command `help`.
 
 <div markdown="span" class="alert alert-info">:information_source:
 **Note:** In the sequence diagram above, `parseAndExecute()` is not an actual method; rather it is a simplification
-of a two-step process in the Logic component. The important thing to note is that `CommandHistory` is updated only
-_after_ a command is parsed and executed successfully by the Logic component.
+of a two-step process in the `LogicManager`.
 </div>
 
 
