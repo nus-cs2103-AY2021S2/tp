@@ -182,6 +182,13 @@ The entire command string will be parsed to extract the parameters that were inp
 a Client object is constructed which is then added to the Model and saved to the local storage. Upon successful adding,
 a feedback message is displayed to the user.
 
+Note
+* When given an invalid parameters or no parameters at all, a feedback message will be displayed to the user.
+
+This process is visualised in the diagram below:
+
+![AddCommand activity diagram](images/AddClientActivityDiagram.png)
+
 ##### AddCommand
 `AddCommand` is inherited from the `Command` class and overrides its `execute()` method to initiate the
 creation of a client, addition to the model and saving to the local storage. Through the inheritance from `Command`, the
@@ -207,6 +214,8 @@ Note
 
 This process is visualised in the diagram below:
 
+![FindCommand activity diagram](images/FindClientByNameActivityDiagram.png)
+
 ##### FindCommand
 Similar to the `AddCommand` class, `FindCommand` is inherited from `Command` class and overrides its `execute()`
 method to initiate the search and filtering of the displayed list of Clients in the App's UI. Through the
@@ -230,6 +239,8 @@ Note
 * When an invalid index is provided, a feedback message will be displayed to the user.
 
 This process is visualised in the diagram below:
+
+![DeleteCommand activity diagram](images/DeleteClientActivityDiagram.png)
 
 ##### DeleteCommand
 Similar to the `AddCommand` class, `DeleteCommand` is inherited from `Command` class and overrides its `execute()`
