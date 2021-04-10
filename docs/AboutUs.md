@@ -45,7 +45,7 @@ You can reach us at the email at our individual emails below!
 
 <img src="images/tomashiwa.png" width="200px">
 
-[GitHub](http://github.com/Tomashiwa) | [Portfolio](team/Tomashiwa.md) | [Email](mailto:e0407322@u.nus.edu)
+[GitHub](http://github.com/Tomashiwa) | [Portfolio](team/tomashiwa.md) | [Email](mailto:e0407322@u.nus.edu)
 
 * Role: Developer
 * Responsibilities: Integration
