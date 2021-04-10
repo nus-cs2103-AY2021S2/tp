@@ -25,6 +25,9 @@ public class CommandResult {
     /** List should be shown to the user */
     private final boolean isList;
 
+    /** List should be shown to the user */
+    private final boolean hasEndpointToShow;
+
     /** Toggle should be done. */
     private final String toggleTheme;
 
@@ -37,12 +40,13 @@ public class CommandResult {
      */
     private CommandResult(String feedbackToUser, String toggleTheme, Endpoint endpoint,
                           boolean showHelp, boolean exit, boolean isList,
-                          boolean isApiResponse) {
+                          boolean isApiResponse, boolean hasEndpointToShow) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.isApiResponse = isApiResponse;
         this.isList = isList;
+        this.hasEndpointToShow = hasEndpointToShow;
         this.toggleTheme = toggleTheme;
         this.endpoint = endpoint;
     }
@@ -54,7 +58,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, null,
-                null, false, false, false, false);
+                null, false, false, false, false, false);
     }
 
     /**
@@ -63,23 +67,23 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, Endpoint endpoint) {
         this(feedbackToUser, null, endpoint,
-                false, false, false, true);
+                false, false, false, true, true);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields. This is the constructor for request related
-     * commands such show, add and edit.
+     * commands such show, add and edit and remove.
      */
-    public CommandResult(String feedbackToUser, Endpoint endpoint, Boolean isApiRequest) {
+    public CommandResult(String feedbackToUser, Endpoint endpoint, Boolean hasEndpointToShow) {
         this(feedbackToUser, null, endpoint,
-                false, false, false, isApiRequest);
+                false, false, false, false, hasEndpointToShow);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields, including the newly added theme to toggle.
      */
     public CommandResult(String feedbackToUser, String themeToToggle) {
-        this(feedbackToUser, themeToToggle, null, false, false, false, false);
+        this(feedbackToUser, themeToToggle, null, false, false, false, false, false);
     }
 
     /**
@@ -87,7 +91,7 @@ public class CommandResult {
      */
     public static CommandResult exitCommandResult(String feedbackToUser) {
         return new CommandResult(feedbackToUser, null, null,
-                false, true, false, false);
+                false, true, false, false, false);
     }
 
     /**
@@ -95,7 +99,7 @@ public class CommandResult {
      */
     public static CommandResult helpCommandResult(String feedbackToUser) {
         return new CommandResult(feedbackToUser, null, null,
-                true, false, false, false);
+                true, false, false, false, false);
     }
 
     /**
@@ -103,7 +107,7 @@ public class CommandResult {
      */
     public static CommandResult listCommandResult(String feedbackToUser) {
         return new CommandResult(feedbackToUser, null, null,
-                false, false, true, false);
+                false, false, true, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -130,6 +134,10 @@ public class CommandResult {
         return isList;
     }
 
+    public boolean hasEndpointToShow() {
+        return this.hasEndpointToShow;
+    }
+
     public String getToggleTheme() {
         return this.toggleTheme;
     }
@@ -151,6 +159,7 @@ public class CommandResult {
                 && exit == otherCommandResult.exit
                 && isApiResponse == otherCommandResult.isApiResponse
                 && isList == otherCommandResult.isList
+                && hasEndpointToShow == otherCommandResult.hasEndpointToShow
                 && endpoint == otherCommandResult.endpoint;
     }
 

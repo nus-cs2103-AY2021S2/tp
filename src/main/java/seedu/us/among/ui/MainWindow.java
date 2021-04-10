@@ -207,24 +207,57 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Outputs the endpoint response for send and run commands to the
+     * result display and handles endpoint focus.
+     *
+     * @param commandResult the command entered
+     */
+    public void handleApiResponse(CommandResult commandResult) {
+        Endpoint e = commandResult.getEndpoint();
+        resultDisplay.setApiFeedbackToUser(commandResult.getFeedbackToUser(), e);
+        endpointListPanel.focusSelectedEndpoint(e);
+    }
+
+    /**
+     * Outputs the endpoint response for add, edit, remove, and show commands
+     * to the result display and handles endpoint focus.
+     *
+     * @param commandResult the command entered
+     */
+    public void handleEndpointResponse(CommandResult commandResult) {
+        Endpoint e = commandResult.getEndpoint();
+        resultDisplay.setResponseMetaFeedbackHelper(commandResult.getFeedbackToUser(), e);
+        endpointListPanel.focusSelectedEndpoint(e);
+    }
+
+    /**
+     * Cleans the result display.
+     */
+    public void refreshResultDisplay() {
+        resultDisplay.setFeedbackToUser("");
+        resultDisplay.getLoadingSpinnerPlaceholder().setVisible(true);
+        resultDisplay.getEmptyListPlaceholder().setVisible(false);
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException,
             RequestException, AbortRequestException {
-        resultDisplay.setFeedbackToUser("");
-        resultDisplay.getLoadingSpinnerPlaceholder().setVisible(true);
-        resultDisplay.getEmptyListPlaceholder().setVisible(false);
+        refreshResultDisplay();
         try {
             CommandResult commandResult = logic.execute(commandText);
             resultDisplay.getLoadingSpinnerPlaceholder().setVisible(false);
             logger.info("Result: " + commandResult.getFeedbackToUser());
+
+            endpointListPanel.unfocusEndpointList();
+
             if (commandResult.isApiResponse()) {
-                resultDisplay.setApiFeedbackToUser(commandResult.getFeedbackToUser(), commandResult.getEndpoint());
+                handleApiResponse(commandResult);
             } else if (commandResult.getEndpoint() != null) {
-                resultDisplay.setResponseMetaFeedbackHelper(
-                        commandResult.getFeedbackToUser(), commandResult.getEndpoint());
+                handleEndpointResponse(commandResult);
             } else {
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             }
@@ -247,24 +280,27 @@ public class MainWindow extends UiPart<Stage> {
 
             return commandResult;
         } catch (AbortRequestException e) {
-            //stop loading spinner (if any)
-            resultDisplay.getLoadingSpinnerPlaceholder().setVisible(false);
-            logger.info("Execution failed: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            executeErrorHandling(e, commandText);
             throw e;
         } catch (CommandException | ParseException | RequestException e) {
-            //stop loading spinner (if any)
-            resultDisplay.getLoadingSpinnerPlaceholder().setVisible(false);
-
             //play error message
             resultDisplay.getErrorGifTimeline().play();
-
-            logger.info("Execution failed: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            executeErrorHandling(e, commandText);
             throw e;
         } finally {
             logger.info("Current Number of Threads: " + Thread.activeCount());
         }
+    }
+
+    /**
+     * Logs the exception message and displays it in result display.
+     * @param e the exception
+     * @param commandText the user input to be handled
+     */
+    public void executeErrorHandling(Exception e, String commandText) {
+        resultDisplay.getLoadingSpinnerPlaceholder().setVisible(false);
+        logger.info("Execution failed: " + commandText);
+        resultDisplay.setFeedbackToUser(e.getMessage());
     }
 
     /**
