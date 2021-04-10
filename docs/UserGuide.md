@@ -77,6 +77,9 @@ Adds a new residence to the list of residences, default for clean status is ‘c
 * Names can include `@` inside. e.g `pinnacle@duxton`
 * Names can include numbers. e.g `Block71`
 * Names must include at least one alphanumeric character.
+* Valid clean statuses is case-insensitive, e.g `c/Y` is the same as `c/y`, `c/clean` is the same as `c/ClEaN`.
+* Address can contain any alphanumeric character and symbols. `@!df34!@//` is considered a valid address.
+* Tags should only contain alphanumeric characters, symbols and spaces are not valid.
 
 Format: ` add n/RESIDENCE_NAME a/ADDRESS [c/VALID_CLEAN_STATUS] [t/TAG]... `
 
@@ -90,8 +93,8 @@ Shows a list of all residences in the app.
 
 Format: `list`
 
-* The displayed list of residences is always sorted.
-* Unclean residences come before clean residences.
+* The displayed list of residences will be sorted by their clean status.
+* Unclean residences come before clean residences.  
 
 ### Listing residences with bookings starting in the next 7 days: `remind`
 
@@ -114,6 +117,10 @@ Format: `edit RESIDENCE_INDEX [n/RESIDENCE_NAME] [a/ADDRESS] [c/VALID_CLEAN_STAT
 * The `RESIDENCE_INDEX` **must be a positive integer** 1, 2, 3, …​
 * At least one field must be provided.
 * If this command is used to edit tags, all tags for this residence need to be specified.
+* Address can contain any alphanumeric character and symbols. `@!df34!@//` is considered a valid address.
+* Valid clean statuses is case-insensitive, e.g `c/Y` is the same as `c/y`, `c/clean` is the same as `c/ClEaN`.
+* Tags should only contain alphanumeric characters, symbols and spaces are not valid.
+* Editing of tags overwrites all existing tags.
 
 Examples:
 *  `edit 1 c/y` Edits the clean status of the 1st residence on the list to `Clean`.
