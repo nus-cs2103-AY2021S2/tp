@@ -176,33 +176,7 @@ public class TimetablePlacementPolicy {
         return localDateTime.minusHours(startHour).minusMinutes(startMinute);
     }
 
-    /**
-     * remove the negative offset on a date Time which has previously been offset by amount startHour and startminute
-     * in @code{applyOffset}
-     *
-     * @param offSetDateTime
-     * @return
-     */
-    public LocalDateTime removeOffset(LocalDateTime offSetDateTime) {
-        return offSetDateTime.plusHours(startHour).plusMinutes(startMinute);
-    }
 
-    /**
-     * Gets the local date time of the end of the day, right before 00:00.
-     * @return
-     */
-    public LocalDateTime getEndOfTheDay(LocalDateTime localDateTime) {
-        return localDateTime.toLocalDate().atTime(LocalTime.MAX);
-    }
-
-    /**
-     * Gets the start of the day at 00:00.
-     * @param localDateTime
-     * @return
-     */
-    public LocalDateTime getStartOfTheDay(LocalDateTime localDateTime) {
-        return localDateTime.toLocalDate().atTime(0,0);
-    }
 
 
 

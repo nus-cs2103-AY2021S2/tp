@@ -22,7 +22,7 @@ import seedu.address.model.meeting.exceptions.MeetingTimeClashException;
  * so as to ensure that the meeting being added or updated is
  * unique in terms of identity in the UniqueMeetingList. However, the removal of a meeting uses Meeting#equals(Object)
  * so as to ensure that the meeting with exactly the same fields will be removed.
- * Also, it enforces that the meetings cannot overlap with each other ( i.e there is no conflicting meetings.)
+ * Also, it enforces that the meetings cannot overlap with each other ( i.e there is no clashing meetings.)
  *
  * Supports a minimal set of list operations.
  * In addition supports getting meetings happening at a certain point in time. For example, any time t,
