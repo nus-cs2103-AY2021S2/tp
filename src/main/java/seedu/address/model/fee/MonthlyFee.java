@@ -3,6 +3,8 @@ package seedu.address.model.fee;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import seedu.address.model.Year;
+
 /**
  * Represents the monthly fee of a particular month and year that is used for the UI.
  */
@@ -31,7 +33,7 @@ public class MonthlyFee {
     }
 
     private Boolean isValidMonthlyFee(double monthlyFee) {
-        return monthlyFee > 0;
+        return monthlyFee >= 0;
     }
 
     public double getMonthlyFee() {

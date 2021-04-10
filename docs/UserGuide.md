@@ -93,7 +93,7 @@ There are three main areas in TutorBuddy:
    display box, which is located directly above the command box. This area is always present in all tabs.
     * Type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
 
-  Here are some example commands you can try:
+  Using the **sample data** provided, here are some example commands you can try:
   * **`list`** : Lists all students and sessions.
   * **`add_student`** `n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother` : Adds a student named `John Doe`
     to TutorBuddy.
@@ -119,8 +119,13 @@ TutorBuddy allows the user to take full control of managing their students and t
 #### 4.1.1 Home
 The Home page is split into two views: **Reminder** and **Monthly Fees**.
 ![home page](images/HomePage.png)
+
 ##### Reminder
-The Reminder section displays tuition sessions within 3 days of the current date. Namely today, tomorrow and the day after tomorrow.
+The Reminder section displays upcoming tuition sessions for 3 consecutive days, starting today.
+<div markdown="block" class="alert alert-info">
+:information_source: If today is a Monday, then the Reminder section will display all sessions on this Monday, 
+Tuesday and Wednesday.
+</div>
 
 ##### 3 Months Monthly Fee
 The 3 Months Monthly Fees section displays tuition fees for the current month and the past two months.
@@ -137,7 +142,7 @@ The Tuition page is split into two views: **Student** and **Session**.
 The Student section displays students in TutorBuddy.
 
 ##### Session
-The Session section displays sessions corresponding to each student.
+The Session section displays sessions corresponding to each student in TutorBuddy.
 
 #### 4.1.3 Calendar
 The Calendar section provides a weekly view of all tuition sessions in TutorBuddy.
@@ -172,7 +177,7 @@ This section details the format of the commands available in TutorBuddy. We will
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/98765432 p/99999999`, only `p/99999999` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `emails`, `help`, `exit`, `clear` and `list`) will be ignored.<br>
+* Extra parameters for commands that do not take in parameters (such as `emails`, `help`, `exit`, `clear` and `list`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Indexes **must be positive whole numbers** 1, 2, 3, …
@@ -186,6 +191,11 @@ This section details the format of the commands available in TutorBuddy. We will
 
 * Date must be input in the format, `yyyy-mm-dd`.
   e.g. `2021-01-01` is allowed, but not `01-01-2021`.
+  
+* Year must be between 1970 and 2037, both inclusive, in consideration of the
+  [2038 problem](https://en.wikipedia.org/wiki/Year_2038_problem)
+  e.g. `1969` and `2038` is not allowed.
+
 
 
 </div>
@@ -237,7 +247,13 @@ Adds a student to TutorBuddy.
 Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` <br>
 
 <div markdown="block" class="alert alert-info">
-:information_source: <code>STUDENT_PHONE_NUMBER</code>, <code>GUARDIAN_PHONE_NUMBER</code> should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 and with 8 digits)
+:information_source: <code>STUDENT_PHONE_NUMBER</code>, <code>GUARDIAN_PHONE_NUMBER</code> should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 and with 8 digits).
+:information_source: TutorBuddy automatically shows the full list of students and sessions after a successful <code>add_student</code> command.
+</div>
+<div markdown="block" class="alert alert-primary">
+:bulb: TutorBuddy does not restrict the <code>STUDY_LEVEL</code> due to the vast number of education levels. The user 
+is free to input any education level.<br>
+Example: Any of the inputs here will be accepted. <code>Sec 2</code>, <code>Secondary 2</code>, <code>JC 1</code>, <code>Poly Y2</code>
 </div>
 
 Example:
@@ -245,7 +261,7 @@ Example:
 
 ##### Locating student by name: `find_student`
 
-Find student(s) whose names contain any of the given keywords.
+Filters the student and session list to only include student(s), and their respective session(s) whose student name contains any of the given keywords.
 
 Format: `find_student KEYWORD [MORE_KEYWORDS]`
 * The search will be case-insensitive. e.g. searching `john` will match `JOHN`
@@ -300,7 +316,8 @@ Examples:
 * `delete_student 2` deletes the 2nd student based on the current list of students
 
 ##### Listing students' emails based on current list: `emails`
-Displays concatenated string of students' emails based on current list, separated by `;`. Useful for sending mass emails to students.
+As a user, you might want to quickly get all the email address of your students and send them a mass email.
+This feature displays a concatenated string of students' emails based on current list, separated by `;` which can be copied to their respective email client (E.g. gmail) for mass sending of emails to students.
 
 Format: `emails`
 
@@ -328,6 +345,9 @@ Example:
 
 #### 4.2.4 Managing Sessions
 
+Please note that the following session commands can only be used after you have at least 1 student in TutorBuddy.
+Click [here](#423-managing-students) if you want to find out more on how to add your first student.
+
 ##### Adding a single tuition session: `add_session`
 
 Adds a single tuition session to TutorBuddy.
@@ -344,7 +364,7 @@ Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
 TutorBuddy takes care of overlapping session for you by giving a gentle prompt, so you don't have to worry about it.
 </div>
-<br>
+
 <div markdown="block" class="alert alert-info">
 :information_source: Note that the [Time given in <code>DATE</code> + <code>DURATION</code>] should not exceed 23:59H of the same day. 
 This is done as we do not except tutors to teach lessons beyond the day itself.
@@ -371,7 +391,7 @@ Example:
 
 ##### Deleting a tuition session: `delete_session`
 
-Deletes the specified tuition session from TutorBuddy.
+Deletes the specified tuition session (Either an individiual session or the entire recurring session) from TutorBuddy.
 
 Format: `delete_session n/STUDENT_NAME i/SESSION_INDEX`
 
@@ -380,33 +400,41 @@ Format: `delete_session n/STUDENT_NAME i/SESSION_INDEX`
 * Deletes the tuition session at the specified `SESSION_INDEX`
 * The index must be a positive integer 1, 2, 3, …​
 
+<div markdown="block" class="alert alert-info">
+:information_source: Note that deleting a student automatically deletes all sessions associated with the student as well.
+</div>
+
 Example:
-* `delete_session n/John Lee i/1` deletes John Lee's **first** session
+* `delete_session n/John Doe i/1` deletes John Doe's **first** session based on the session list in the Tuition page
 
 ##### Deleting a recurring tuition session: `delete_rec_session`
 
 Deletes a single session from an existing recurring tuition session of a specified student from TutorBuddy.
-Spawns two recurring sessions that will span the period exclusively before and after the deleted single session.
+Splits the original recurring session into two sessions that span the period exclusively before and after the deleted single session.
 
-Format: `delete_rec_session n/STUDENT_NAME i/SESSION_INDEX d/DATE t/TIME`
+Format: `delete_rec_session n/STUDENT_NAME i/SESSION_INDEX d/DATE`
 
 Arguments similar to `delete_session` command except the following:
 * `DATE` should be the date of the single session to be deleted
-* `TIME` should be the time of the single session to be deleted
 <div markdown="block" class="alert alert-info">
-:information_source: Note that the <code>DATE</code> and <code>TIME</code> should be a valid session date that belongs in the specified recurring session
+:information_source: Note that the <code>DATE</code> should fall under a valid session date that belongs in the specified recurring session range
 </div>
 
 Example:
-* `delete_rec_session n/John Doe i/1 d/2021-03-31 t/18:00` deletes a valid single session dated 2021-03-31 18:00
-from an existing recurring session. This will spawn two recurring sessions that will span the period exclusively
-before and after 2021-03-31 18:00
+* John Doe has a recurring session from 2021-03-17 to 2021-04-14.
+* `delete_rec_session n/John Doe i/1 d/2021-03-31` deletes a valid single session dated 2021-03-31
+from an existing recurring session. 
+* This will split the recurring session into two recurring sessions that span the period exclusively
+before and after 2021-03-31 as shown below.
+
+![delete_rec_session_example](images/DeleteRecurringSession.png)
+  
 
 #### 4.2.5 Fees
 
-##### Getting monthly fee for a particular student: `fee`
+##### Calculating monthly fee for a particular student: `fee`
 
-Gets the monthly fee for a particular student for a particular month and year.
+Calculates and displays the monthly fee for a particular student for a particular month and year.
 
 Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 
@@ -415,7 +443,7 @@ Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 * `YEAR` should be a positive integer between 1970 and 2037 inclusive
 
 Example:
-* `fee n/John Lee m/1 y/2021` returns John Lee monthly fee for January 2021
+* `fee n/John Doe m/1 y/2021` returns John Doe monthly fee for January 2021
 
 <div markdown="block" class="alert alert-info">
 :information_source: Note that calculation of fee is only guaranteed to be accurate for totaled fees of up to $2,147,483,647. 
@@ -454,14 +482,14 @@ Action | Format | Examples
 --------|------------------|-------
 **Add Single Session** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE` | `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 **Add Recurring Session** | `add_rec_session n/STUDENT_NAME d/DATE e/LASTDATE b/INTERVAL t/TIME k/DURATION s/SUBJECT f/FEE` | `add_rec_session n/John Doe d/2021-01-01 e/2021-01-15 b/7 t/20:00 k/120 s/Geography f/80`
-**Delete Session** | `delete_session n/STUDENT_NAME i/SESSION_INDEX` | `delete_session n/John Lee i/1`
-**Delete Recurring Session** | `delete_rec_session n/STUDENT_NAME i/SESSION_INDEX d/DATE t/TIME` | `delete_rec_session n/John Doe i/1 d/2021-03-31 t/18:00`
+**Delete Session** | `delete_session n/STUDENT_NAME i/SESSION_INDEX` | `delete_session n/John Doe i/1`
+**Delete Recurring Session** | `delete_rec_session n/STUDENT_NAME i/SESSION_INDEX d/DATE` | `delete_rec_session n/John Doe i/1 d/2021-03-31`
 
 **Fees**
 
 Action | Format | Examples
 --------|------------------|-------
-**Check fee** | `fee n/STUDENT_NAME m/MONTH y/YEAR` | `fee n/John Lee m/1 y/2021`
+**Check fee** | `fee n/STUDENT_NAME m/MONTH y/YEAR` | `fee n/John Doe m/1 y/2021`
 
 --------------------------------------------------------------------------------------------------------------------
 
