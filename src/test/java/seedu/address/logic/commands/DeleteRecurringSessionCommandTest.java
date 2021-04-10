@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SESSION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -48,16 +47,16 @@ class DeleteRecurringSessionCommandTest {
         assertThrows(NullPointerException.class, () -> new DeleteRecurringSessionCommand(null, null, null));
         // valid student name, rest null -> returns false
         assertThrows(NullPointerException.class, (
-            ) -> new DeleteRecurringSessionCommand(student.getName(), null, null));
+        ) -> new DeleteRecurringSessionCommand(student.getName(), null, null));
         // valid student name, valid session index, null session date -> returns false
         assertThrows(NullPointerException.class, (
-            ) -> new DeleteRecurringSessionCommand(student.getName(), sessionIndex, null));
+        ) -> new DeleteRecurringSessionCommand(student.getName(), sessionIndex, null));
         // null student name, valid session index, valid session date -> returns false
         assertThrows(NullPointerException.class, (
-            ) -> new DeleteRecurringSessionCommand(null, sessionIndex, sessionDate));
+        ) -> new DeleteRecurringSessionCommand(null, sessionIndex, sessionDate));
         // valid student name, null session index, valid session date -> returns false
         assertThrows(NullPointerException.class, (
-            ) -> new DeleteRecurringSessionCommand(student.getName(), null, sessionDate));
+        ) -> new DeleteRecurringSessionCommand(student.getName(), null, sessionDate));
 
     }
 
@@ -105,27 +104,47 @@ class DeleteRecurringSessionCommandTest {
 
     @Test
     void equals() {
-        RecurringSession recurringSession =
+        AddressBook addressBook = new AddressBook();
+        AddressBook comparedAddressBook = new AddressBook();
+        Model testingModel = new ModelManager(addressBook, new UserPrefs());
+        Model comparedModel = new ModelManager(comparedAddressBook, new UserPrefs());
+        RecurringSession recurringSessionA =
                 new RecurringSessionBuilder()
                         .withSessionDate(VALID_START_DATE_A, VALID_TIME)
                         .withLastSessionDate(VALID_END_DATE_A, VALID_TIME).build();
-        RecurringSession anotherRecurringSession =
+        RecurringSession copyRecurringSessionA =
+                new RecurringSessionBuilder()
+                        .withSessionDate(VALID_START_DATE_A, VALID_TIME)
+                        .withLastSessionDate(VALID_START_DATE_A, VALID_TIME).build();
+        RecurringSession recurringSessionB =
                 new RecurringSessionBuilder()
                         .withSessionDate(VALID_START_DATE_B, VALID_TIME)
-                        .withLastSessionDate(VALID_END_DATE_B, VALID_TIME).build();
-        Student student = model.getAddressBook().getStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        Student anotherStudent = model.getAddressBook().getStudentList()
-                .get(INDEX_SECOND_STUDENT.getZeroBased());
-        student.addSession(recurringSession);
-        anotherStudent.addSession(anotherRecurringSession);
+                        .withLastSessionDate(VALID_START_DATE_B, VALID_TIME).build();
+        Student exampleStudent1 = new StudentBuilder().withName("Father John").build();
+        Student copyExampleStudent1 = new StudentBuilder().withName("Father John").build();
+        Student exampleStudent2 = new StudentBuilder().withName("Mother Mary").build();
+        testingModel.addStudent(exampleStudent1);
+        comparedModel.addStudent(copyExampleStudent1);
+        testingModel.addStudent(exampleStudent2);
+        exampleStudent1.addSession(recurringSessionA);
+        copyExampleStudent1.addSession(copyRecurringSessionA);
+        exampleStudent2.addSession(recurringSessionA);
+        copyExampleStudent1.addSession(recurringSessionA);
 
         DeleteRecurringSessionCommand deleteRecurringSessionCommand =
-                new DeleteRecurringSessionCommand(student.getName(),
-                        Index.fromOneBased(student.getListOfSessions().size()), recurringSession.getSessionDate());
-        DeleteRecurringSessionCommand anotherDeleteRecurringSessionCommand =
-                new DeleteRecurringSessionCommand(anotherStudent.getName(),
-                        Index.fromOneBased(anotherStudent.getListOfSessions().size()),
-                        anotherRecurringSession.getSessionDate());
+                new DeleteRecurringSessionCommand(exampleStudent1.getName(),
+                        Index.fromOneBased(exampleStudent1.getListOfSessions().size()),
+                        recurringSessionA.getSessionDate());
+        DeleteRecurringSessionCommand similarDeleteRecurringSessionCommand =
+                new DeleteRecurringSessionCommand(copyExampleStudent1.getName(),
+                        Index.fromOneBased(1), copyRecurringSessionA.getSessionDate());
+        DeleteRecurringSessionCommand differentNameDeleteRecurringSessionCommand =
+                new DeleteRecurringSessionCommand(exampleStudent2.getName(),
+                        Index.fromOneBased(exampleStudent2.getListOfSessions().size()),
+                        recurringSessionA.getSessionDate());
+        DeleteRecurringSessionCommand differentIndexDeleteRecurringSessionCommand =
+                new DeleteRecurringSessionCommand(copyExampleStudent1.getName(),
+                        Index.fromOneBased(2), recurringSessionA.getSessionDate());
 
         // same object -> returns true
         assertTrue(deleteRecurringSessionCommand.equals(deleteRecurringSessionCommand));
@@ -136,7 +155,26 @@ class DeleteRecurringSessionCommandTest {
         // null -> returns false
         assertFalse(deleteRecurringSessionCommand.equals(null));
 
-        // different student -> returns false
-        assertFalse(deleteRecurringSessionCommand.equals(anotherDeleteRecurringSessionCommand));
+        // different object, same student name, same index, same session date -> returns true
+        assertTrue(deleteRecurringSessionCommand.equals(similarDeleteRecurringSessionCommand));
+
+        // different object, different name, same index, same session date -> returns false
+        assertFalse(deleteRecurringSessionCommand.equals(differentNameDeleteRecurringSessionCommand));
+
+        // different object, same student name, different index, same session date -> returns false
+        assertFalse(deleteRecurringSessionCommand.equals(differentIndexDeleteRecurringSessionCommand));
+
+        copyExampleStudent1.getListOfSessions().clear();
+        copyExampleStudent1.addSession(recurringSessionB);
+
+        DeleteRecurringSessionCommand differentSessionDateDeleteRecurringSessionCommand =
+                new DeleteRecurringSessionCommand(copyExampleStudent1.getName(),
+                        Index.fromOneBased(1), recurringSessionB.getSessionDate());
+        // different object, same student name, same index, different session date -> returns false
+        assertFalse(deleteRecurringSessionCommand.equals(differentSessionDateDeleteRecurringSessionCommand));
+
+
+
+
     }
 }
