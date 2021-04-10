@@ -76,14 +76,14 @@ The following typographic conventions and usage conventions occur in the User Gu
 <div markdown="block" class="alert alert-info">
 **:information_source: Note for seasoned CLI users:**<br>
 
-This section is intended for non-technical audiences to understand the CLI syntax. While A-Bash Book
+This section is intended for non-technical users to understand the CLI syntax. While A-Bash Book
 adopts Bash syntax, the implementation is not in parity with Bash's syntax. Feel free to skip
 to [Features](#features).
 
 </div>
 
-Command Line Interface (CLI) is a text based interface in which commands are entered. A-Bash Book is
-CLI based and will only interpret command that are structured properly. This is called the
+Command Line Interface (CLI) is a text-based interface in which commands are entered. A-Bash Book is
+CLI-based and will only interpret commands that are structured properly. This is called the
 **syntax** where a specific arrangement of words and arguments form a command that A-Bash Book can
 understand.
 
@@ -105,7 +105,7 @@ e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John D
 
 Square brackets `[ ]` are used around an optional argument.
 
-If there are multiple optional argument, each argument are enclosed in its own set of square
+If there are multiple optional arguments, each argument is enclosed in its own set of square
 brackets.
 
 e.g `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe` but
@@ -122,8 +122,8 @@ as `-t family` and `-t family -t cousin -t child`.
 
 ## Mutually Exclusive Arguments
 
-Braces (also known as _curly braces_) `{ }` are used around arguments where the user must choose
-one-and only one-of the items inside the braces.
+Braces (also known as _curly braces_) `{ }` are used around arguments where the user must choose **
+only one** of the items inside the braces.
 
 Vertical bars (also known as _pipes_) are used to separate the items. There can be more than two
 mutually exclusive choices.
@@ -373,13 +373,13 @@ The selected person(s) will have a highlighted index number to indicate selectio
 
 Examples:
 
-| Example        | Description                                                                                                            |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `select show`  | Shows the selected person(s)                                                                                           |
-| `select shown` | Selects all the person in the visible person list (yes, person objects that a user has to scroll down to are selected) |
-| `select clear` | Clears the current selection                                                                                           |
-| `select 1`     | Select the person with index 1 (incremental selection)                                                                 |
-| `select 1 2`   | Select persons with index 1 and 2 (incremental selection)                                                              |
+| Example        | Description                                                                                                                        |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `select show`  | Shows the selected person(s)                                                                                                       |
+| `select shown` | Selects all the person in the visible person list (visible person list refers to the list of persons that are currently displayed) |
+| `select clear` | Clears the current selection                                                                                                       |
+| `select 1`     | Select the person with index 1 (incremental selection)                                                                             |
+| `select 1 2`   | Select persons with index 1 and 2 (incremental selection)                                                                          |
 
 <div markdown="block" class="alert alert-info">
 
@@ -388,8 +388,8 @@ Examples:
 - Incremental selection means that selected items are "stacked" together. e.g. Executing `select 1`
   followed by `select 2` will result in person with index number 1 and 2 being selected.
 
-- `shown` refers to all the person objects in the current person list (including person objects that
-  requires user to scroll down).
+- `shown` refers to all the person objects in the current visible person list (visible person list
+  refers to the list of persons that are currently displayed).
 
 </div>
 
@@ -684,7 +684,7 @@ Install the app in the other computer and overwrite the empty data file it creat
 | Term     | Explanation                                                                      |
 | -------- | -------------------------------------------------------------------------------- |
 | Bash     | The well known terminal interpreter                                              |
-| CLI      | Command Line Interface. A text based interface in which commands can be entered. |
+| CLI      | Command Line Interface. A text-based interface in which commands can be entered. |
 | GUI      | Graphical User Interface                                                         |
 | JSON     | JavaScript Object Notation, data storage format                                  |
-| Terminal | The Command Line Interface that text based commands are inputted into.           |
+| Terminal | The Command Line Interface where text-based commands are entered.                |
