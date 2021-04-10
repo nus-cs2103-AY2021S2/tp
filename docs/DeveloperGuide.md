@@ -214,15 +214,14 @@ The edit mechanism is facilitated by `EditCommand` and `EditCommandParser`.
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
-Name and phone are compulsory details which must be included in add command, while school, email, address,
-guardian's name, guardian's phone, subjects and lessons are optional. Any missing optional details can be added in later
-by using Edit feature. Here, an example of a student with only compulsory details available is used.
+Assume that a student John Doe has been added in with the command `add n/John Doe p/98765432` and is currently 1st student in TutorsPet. 
+Then, the information of John Doe is edited. Here, an example of the student's phone being changed and the student's address being added with `edit` command is used.
 </div>
 
-Step 1. The user executes `edit n/John Doe p/98765432` command to add a new student who is called John Doe 
-and has a phone number of 98765432 in TutorsPet.
+Step 1. The user executes `edit 1 p/98765431 a/311, Clementi Ave 2, #02-25` command to edit the existing student John Doe 
+to change his phone number and add in his address.
 
-Step 2. The user input is parsed by `AddressBookParser`, which passes the add command's argument to `EditCommandParser`.
+Step 2. The user input is parsed by `AddressBookParser`, which passes the edit command's argument to `EditCommandParser`.
 
 Step 3. `EditCommandParser` creates a new `Person` object for the new student and returns a new `EditCommand` 
 if the argument is valid. Otherwise, a `ParseException` is thrown.
@@ -247,15 +246,22 @@ The activity diagram shows the workflow when an edit command is executed:
 
 #### Design consideration:
 
-##### Aspect: Whether to enable every optional field to clear the current stored values under a field with blank space after its prefix
+##### Aspect: Whether to enable every optional field to clear the current values under a field with blank space after its prefix
 
-* **Alternative 1 (current choice):** Certain fields are optional when a new student are added.
-    * Pros: More flexible and user-friendly.
-    * Cons: It may take some time to add in the missing fields in the future.
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+Optional fields here refer to school, email, address,guardian's name, guardian's phone, subjects and lessons, 
+whereas name and phone are compulsory details which must not be blank at any time.
+</div>
 
-* **Alternative 2:** All fields of a student must be added at first.
-    * Pros: More standardized and easier to track.
-    * Cons: Certain fields of a new student may not be known by the user at once.
+* **Alternative 1 (current choice):** Only subjects and lessons can be cleared by leaving the space blank after their respective prefixes.
+    * Pros: Fewer fields need to be taken care of and are easier to remember. 
+      Subjects and lessons taken by the students could be removed.
+    * Cons: Deletion of a wrong piece of information is disallowed once it is stored in the application and no new information is available. 
+      It might cause confusion in the future.
+
+* **Alternative 2:** All the optional fields of a student can be cleared by `edit` command with blank space after its prefix.
+    * Pros: User can alter students' information more freely.
+    * Cons: User might lose track of important personal details if they accidentally leave the field blank after any prefix.
   
 ### Delete feature
 
