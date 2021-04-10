@@ -51,7 +51,7 @@ Given below are my contributions to the project.
     * Actively looked for bugs in teammates' code.
     * Managed the deadlines for team members.
     * Enabled assertion.
-    * Managed release for `FlashBack v1.2.1` on Github.
+    * Managed release for `FlashBack v1.2.1` and `FlashBack v1.4` on Github.
 
 * **Contribution beyond project team**:
     * Bugs reported in PE Dry Run: [Issue Tracker](#https://github.com/vuminhhieunus2019/ped/issues)

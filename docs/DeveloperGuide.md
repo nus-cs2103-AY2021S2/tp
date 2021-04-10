@@ -286,7 +286,7 @@ overall statistics of the current flashcard list.
 
 A `CommandResult` is created with the generated flashcard `Statistics`. It is then passed to `MainWindow`, where the UI is updated to display the retrieved statistics.
 
-Example: `stats 3` is entered by the user
+Example: `stats 3` is entered by the user.
 
 It implements the following operations:
 
@@ -498,6 +498,7 @@ The following activity diagram summarizes what happens when a user tries to exec
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -692,7 +693,7 @@ otherwise) <br /><br />
 
 **MSS**
 
-1. User undo an undoable command (UC07).
+1. User undoes an undoable command (UC07).
 1. User requests to redo the command.
 1. FlashBack reverts to its previous state before undo command.
 
@@ -718,8 +719,6 @@ Use case ends.
 * 3b. User enters `h` command when the answer is currently hidden.
     * 3b1. FlashBack shows an error message <br>
     Use case resumes at step 3.
-<div style="page-break-after: always;"></div>
-
 * 3c. User enters `a` command when the answer is currently shown.
     * 3c1. FlashBack shows an error message <br>
     Use case resumes at step 3.
@@ -735,7 +734,7 @@ Use case ends.
 1. User requests to display statistics of a flashcard.
 1. FlashBack displays the statistics of the requested flashcard.
 
-    Use case ends
+    Use case ends.
 
 **Extensions**
 
@@ -762,7 +761,7 @@ in step 1 and 2 of MSS
 1. User requests to add an alias to a command.
 1. FlashBack displays alias added successfully.
 
-    Use case ends
+    Use case ends.
 
 **Extensions**
 
@@ -838,7 +837,6 @@ testers are expected to do more *exploratory* testing.
     
     1. Test cases: `list` <br>
     Expected: `FlashcardListPanel` displays all flashcards stored in `flashback.json` file. The result display shows a message: `Listed all flashcards`.
-<div style="page-break-after: always;"></div>
 
 ### Adding a flashcard
 1. Adding a flashcard with a specific question, answer, category, priority and tags(if possible).
@@ -1055,7 +1053,8 @@ testers are expected to do more *exploratory* testing.
       Expected: FlashBack will be updated to the previous state before `undo` is executed.
       The UI will be updated to display all flashcards in FlashBack.
       The result display shows a message: `FlashBack has been redo!`.
-      
+<div style="page-break-after: always;"></div>
+
 ### Adding an alias
 
 1. Defining an alias for a command in FlashBack
