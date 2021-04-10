@@ -411,7 +411,6 @@ _{Explain here how the data archiving feature will be implemented}_
 * increase sales efficiency by upselling according to their current insurance policy and needs
 * improve convenience by providing a one-page solution to manage clients and meetings 
   in an insurance agent's fast pace life
-* 
 
 ### User stories
 
