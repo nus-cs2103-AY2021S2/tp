@@ -23,12 +23,21 @@ on ModuleBook3.5.
 
 1. Once the jar file is ready, simply double-click the file in the download section.
 
-1. Go through the tutorial in the given order. Simply look out for blue boxes with a bulb icon and titled "Tutorial Example:".
+1. Read through the `Features` section and `Command Notes` to understand how the application should be used.
+
+1. Go through the tutorial in the given order. Simply look out for blue boxes with a bulb icon and titled "Tutorial Example:", 
+   such as the one below.
 
 1. Once you are familiar with the app, you may use the table of contents to jump to a command that you may be unsure of.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:**
+First time using the app? Or want to refresh your handling of the app? Simply look out for these boxes.
+Commands for this tutorial are arranged in the sequential order of this User Guide and are accompanied by screenshots.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 <img src="images/UiAnnotated.png" width="700">
@@ -72,11 +81,6 @@ Input Parameter | Workload Rating
 **w/3** | High
 
 E.g. for a low workload rating, key in `w/1`.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tutorial Example:**
-First time using the app? Or want to refresh your handling of the app? Simply look out for these boxes.
-Commands for this tutorial are arranged in the sequential order of this User Guide and are accompanied by screenshots.
-</div>
 
 <div style="page-break-after: always;"></div>
 
