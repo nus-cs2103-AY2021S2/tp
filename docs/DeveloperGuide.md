@@ -519,17 +519,16 @@ The activity diagram shows the workflow when a levelup command is executed:
 
 #### Design consideration:
 
-##### Aspect: Whether to also add an option to only advance some students
+##### Aspect: Whether to combine the leveldown command with the levelup command
 
-* **Alternative 1 (current choice):** Only have option to exclude students and not include students.
-  * Pros: Fits the purpose of the command, which is to advance all students at the start of the year,
-    except for those who retain a year.
-  * Cons: Does not cover the case where most of the students end up retaining.
+* **Alternative 1 (current choice):** Separate the leveldown command from the levelup command
+  * Pros: Clearly separates the two commands, because they have different purposes; levelup is meant to be used
+    at the start of the school year, while leveldown is mostly to undo levelup if a mistake is made
+  * Cons: Redundant code.
 
-* **Alternative 2:** Provide the option to include students as well.
-  * Pros: Allows for the mass advancement of a group of students that is still smaller than the
-    majority.
-  * Cons: Seems redundant, cases where a majority of the students do not advance is slim.
+* **Alternative 2:** Combine the two commands to have one levelchange command.
+  * Pros: Neater code, since the two commands manipulate the same data.
+  * Cons: Messy, because the two commands have different purposes.
 
 ### Add important date feature
 
