@@ -11,7 +11,10 @@ import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.Type;
 import seedu.address.model.property.client.Client;
+import seedu.address.model.property.status.Status;
+import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.DateTimeFormat;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -19,19 +22,22 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class PropertyBuilder {
 
-    public static final String DEFAULT_NAME = "Block 123";
-    public static final String DEFAULT_TYPE = "HDB";
-    public static final String DEFAULT_ADDRESS = "456 Chua Chu Kang Street 88, #06-123";
-    public static final String DEFAULT_POSTAL = "609456";
-    public static final LocalDate DEFAULT_DEADLINE = LocalDate.parse("2021-08-23");
+    public static final String DEFAULT_NAME = "The Trilinq";
+    public static final String DEFAULT_TYPE = "Condo";
+    public static final String DEFAULT_ADDRESS = "28 Jln Lempeng";
+    public static final String DEFAULT_POSTAL = "128807";
+    public static final LocalDate DEFAULT_DEADLINE =
+            LocalDate.parse("03-11-2021", DateTimeFormat.INPUT_DATE_FORMAT);
 
     private Name name;
     private Type type;
     private Address address;
     private PostalCode postal;
     private Deadline deadline;
+    private Remark remark;
     private Client client;
     private Set<Tag> tags;
+    private Status status;
 
     /**
      * Creates a {@code PropertyBuilder} with the default details.
@@ -42,8 +48,10 @@ public class PropertyBuilder {
         address = new Address(DEFAULT_ADDRESS);
         postal = new PostalCode(DEFAULT_POSTAL);
         deadline = new Deadline(DEFAULT_DEADLINE);
-        tags = new HashSet<>();
+        remark = null;
         client = null;
+        tags = new HashSet<>();
+        status = null;
     }
 
     /**
@@ -55,11 +63,25 @@ public class PropertyBuilder {
         address = propertyToCopy.getAddress();
         postal = propertyToCopy.getPostalCode();
         deadline = propertyToCopy.getDeadline();
-        tags = new HashSet<>(propertyToCopy.getTags());
+
+        if (propertyToCopy.getRemarks() != null) {
+            remark = propertyToCopy.getRemarks();
+        } else {
+            remark = null;
+        }
+
         if (propertyToCopy.getClient() != null) {
             client = propertyToCopy.getClient();
         } else {
             client = null;
+        }
+
+        tags = new HashSet<>(propertyToCopy.getTags());
+
+        if (propertyToCopy.getStatus() != null) {
+            status = propertyToCopy.getStatus();
+        } else {
+            status = null;
         }
     }
 
@@ -104,7 +126,15 @@ public class PropertyBuilder {
     }
 
     /**
-     * Sets the {@code Client} of the {@code Property} that we are building. TEMPORARY
+     * Sets the {@code Remark} of the {@code Property} that we are building.
+     */
+    public PropertyBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Client} of the {@code Property} that we are building.
      */
     public PropertyBuilder withClient(Client client) {
         this.client = client;
@@ -120,9 +150,17 @@ public class PropertyBuilder {
     }
 
     /**
+     * Sets the {@code Status} of the {@code Property} that we are building.
+     */
+    public PropertyBuilder withStatus(Status status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
      * Builds the {@code Property}.
      */
     public Property build() {
-        return new Property(name, type, address, postal, deadline, client, tags);
+        return new Property(name, type, address, postal, deadline, remark, client, tags, status);
     }
 }

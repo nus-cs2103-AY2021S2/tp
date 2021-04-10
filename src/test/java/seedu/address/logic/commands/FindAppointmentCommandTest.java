@@ -122,7 +122,7 @@ public class FindAppointmentCommandTest {
     @Test
     public void remarksTest() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 1);
-        String remark = "To celebrate Christmas at Fullerton Hotel";
+        String remark = "Bring him around Bishan to look at the properties";
         AppointmentRemarksPredicate predicate = new AppointmentRemarksPredicate(remark);
         FindAppointmentCommand command = new FindAppointmentCommand(
                 new AppointmentPredicateList(Collections.singletonList(predicate)));

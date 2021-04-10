@@ -195,14 +195,13 @@ public class Property {
                 && otherProperty.getPropertyType().equals(getPropertyType())
                 && otherProperty.getAddress().equals(getAddress())
                 && otherProperty.getPostalCode().equals(getPostalCode())
-                && otherProperty.getDeadline().equals(getDeadline())
-                && otherProperty.getTags().equals(getTags());
+                && otherProperty.getDeadline().equals(getDeadline());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, propertyType, address, postalCode, deadline, tags);
+        return Objects.hash(name, propertyType, address, postalCode, deadline);
     }
 
     @Override
