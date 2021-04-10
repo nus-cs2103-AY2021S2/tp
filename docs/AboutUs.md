@@ -50,7 +50,7 @@ We are team T13-1 from [CS2103T](https://github.com/nus-cs2103-ay2021s2).
 
 <img src="images/xyzhang00.png" width="200px">
 
-[[github](https://github.com/xyzhang00)] [[portfolio](team/zhangxinyi.md)]
+[[github](https://github.com/xyzhang00)] [[portfolio](team/xyzhang00.md)]
 
 * Role: Developer
 * Responsibilities: Code quality

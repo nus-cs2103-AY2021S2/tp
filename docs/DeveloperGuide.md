@@ -151,7 +151,7 @@ any unique user added tags.
 
 ![Structure of the Flashcard with tags](images/FlashcardWithTagsObjectDiagram.png)
 
-The following activity diagram summarizes what happens when a user adds a new command:
+The following activity diagram summarizes what happens when a user adds a new tag:
 
 ![NewTagActivityDiagram](images/NewTagActivityDiagram.png)
 
@@ -188,9 +188,15 @@ The following sequence diagram shows how the Quiz command works:
 
 ### Start Command
 
-The start command is used to start a quiz session, enabling users to define the number and type of
+2. The start command is used to start a quiz session, enabling users to define the number and categories of
 questions they want to be tested on. The activity diagram below shows the flow of events when a user
 enters the start command.
+
+![StartActivityDiagram](images/StartActivityDiagram.png)
+
+Thr following sequence diagram shows the interactions that occur when the start command is executed:
+
+![StartSequenceDiagram](images/StartSequenceDiagram.png)
 
 ### Quiz Scoring
 
