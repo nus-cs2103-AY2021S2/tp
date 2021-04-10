@@ -1,7 +1,8 @@
 package seedu.taskify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
+import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_TASK_FOR_INDICES;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +88,7 @@ public class DeleteMultipleCommand extends Command {
         for (int i = 0; i < targetIndexes.size(); i++) {
             Index targetIndex = targetIndexes.get(i);
             if (targetIndex.getZeroBased() >= tasksSource.size()) {
-                throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+                throw new CommandException(MESSAGE_INVALID_TASK_FOR_INDICES);
             }
 
             Task taskToDelete = tasksSource.get(targetIndex.getZeroBased());

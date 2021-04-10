@@ -29,6 +29,10 @@ public class DeleteMultipleCommandUtil {
             + " specified Status.\n" + "Parameters: STATUS_STRING (in lower caps)\n"
             + "Note: \"-all\" must be added after the specified status\n"
             + "Example: " + DeleteCommand.COMMAND_WORD + " completed -all";
+    public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The given index does not correspond to any "
+            + "tasks!";
+    public static final String MESSAGE_INVALID_TASK_FOR_INDICES = "At least one index in the indices given does not "
+            + "correspond to a task";
 
     /**
      * Checks if {@code argumentInput} contains more than one valid index and if all are valid indexes.

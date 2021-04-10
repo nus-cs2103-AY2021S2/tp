@@ -12,8 +12,8 @@ import static seedu.taskify.testutil.TypicalTasks.getTypicalTaskify;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.taskify.commons.core.Messages;
 import seedu.taskify.commons.core.index.Index;
+import seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil;
 import seedu.taskify.model.Model;
 import seedu.taskify.model.ModelManager;
 import seedu.taskify.model.UserPrefs;
@@ -50,7 +50,7 @@ public class DeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, DeleteMultipleCommandUtil.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, DeleteMultipleCommandUtil.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
