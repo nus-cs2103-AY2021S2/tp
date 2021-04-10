@@ -51,13 +51,4 @@ public class IncompleteRecordTest {
                 ));
     }
 
-    @Test
-    public void getBookBarcode() {
-        IncompleteRecord incompleteRecord = new IncompleteRecord(
-                RECORD_A.getBookBarcode(),
-                new DateReturned(LocalDateTime.now())
-        );
-        assertEquals(new Barcode(Barcode.MAX_VALUE), incompleteRecord.getBookBarcode());
-    }
-
 }
