@@ -46,7 +46,7 @@ public class Appointment {
     }
 
     /**
-     * Returns true if both appointments have the same date and time.
+     * Returns true if both appointments have the same pair of date and time.
      * This defines a weaker notion of equality between two appointments.
      */
     public boolean isSameAppointment(Appointment otherAppointment) {

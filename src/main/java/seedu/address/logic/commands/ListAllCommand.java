@@ -17,12 +17,10 @@ public class ListAllCommand extends Command {
 
     public static final String NO_APPOINTMENTS_IN_LIST = "Properties listed \nNo existing appointments available";
 
-
     public static final String NO_PROPERTIES_IN_LIST = "Appointments listed \nNo existing properties available";
 
     public static final String NO_APPOINTMENTS_AND_PROPERTIES_IN_LIST =
             "No existing properties and appointments available";
-
 
     @Override
     public CommandResult execute(Model model) {
