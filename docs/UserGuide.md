@@ -116,6 +116,11 @@ TutorBuddy allows the user to take full control of managing their students and t
 2. Tuition
 3. Calendar
 
+<div markdown="block" class="alert alert-primary">
+:bulb: Clicking and focusing on the tab header allows the user to change tab quickly
+using the arrow keys.
+</div>
+
 #### 4.1.1 Home
 The Home page is split into two views: **Reminder** and **Monthly Fees**.
 ![home page](images/HomePage.png)
@@ -156,11 +161,6 @@ The Calendar section provides a weekly view of all tuition sessions in TutorBudd
 ![calendar](images/CalendarPage.png)
 The left and right arrow allows you to view past and future tuition sessions.
 Click the 'Today' button to be brought back to this week's view.
-
-<div markdown="block" class="alert alert-primary">
-:bulb: Clicking and focusing on the tab header allows the user to change tab quickly
-using the arrow keys.
-</div>
 
 ### 4.2 Commands
 
