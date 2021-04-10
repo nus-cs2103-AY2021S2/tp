@@ -42,8 +42,9 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Updated NFR and glossary parts of ModuleBook 3.5 [\#37](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/37), [\#56](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/56)
     * Add the diagram of sort tasks and ModuleManager [\#133](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/133) 
-	- SortSequenceDiagram
-	- ModelClassDiagram.png
+        * SortSequenceDiagram
+    	* ModelClassDiagram
+    	* UiClassDiagram
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#90](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/90), [\#84](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/84), [\#64](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/64), [\#83](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/83)
