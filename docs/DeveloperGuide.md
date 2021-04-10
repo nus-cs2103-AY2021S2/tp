@@ -433,6 +433,10 @@ Given below are instructions to test the app manually.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
+By the nature of the type of application Weeblingo is, it is inconvenient for testers who do not possess some elementary
+knowledge of Japanese to test our application. Therefore, to facilitate testers, we have provided a list of flashcards which reside in the database
+of the current version of application for your reference. The link is [here](Flashcards.html).
+
 </div>
 
 ### Launch and shutdown
@@ -498,9 +502,12 @@ testers are expected to do more *exploratory* testing.
 
    1. **Close the application**, and the `data` folder and the `flashcards.json` should be present (regenerated).
     
-Points to take note of for storage related testing right above:
+<div markdown="span" class="alert alert-info">:information_source: Points to take note of for storage related testing right above: 
+
 - `learn` is only one command that you can try to check if the data is recovered. Other commands work as well, e.g. `quiz`.
 - Data file is recovered on a lazy basis. That is, if the data file is corrupted/missing, and a new application instance is
-  created and closed without **any** command entered. The data file will not be recovered. 
+  created and closed without **any** command entered. The data file will not be recovered.
+  
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
