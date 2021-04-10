@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -315,14 +316,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public List<DietPlan> recommendDiets(PlanType planType) {
-        List<DietPlan> recommendedDiets = new ArrayList<>();
+    public HashMap<Integer, DietPlan> recommendDiets(PlanType planType) {
+        HashMap<Integer, DietPlan> recommendedDiets = new HashMap<>();
         Iterator<DietPlan> iterator = dietPlanList.iterator();
+        int counter = 1;
         while (iterator.hasNext()) {
             DietPlan dietPlan = iterator.next();
             if (dietPlan.getPlanType() == planType) {
-                recommendedDiets.add(dietPlan);
+                recommendedDiets.put(new Integer(counter), dietPlan);
             }
+            counter++;
         }
         return recommendedDiets;
     }

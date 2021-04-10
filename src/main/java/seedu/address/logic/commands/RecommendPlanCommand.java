@@ -2,7 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -24,10 +27,9 @@ public class RecommendPlanCommand extends Command {
 
     }
 
-    private void appendDiets(StringBuilder recommendations, List<DietPlan> recommendedDiets) {
-        for (int count = 0; count < recommendedDiets.size(); count++) {
-            int index = count + 1;
-            DietPlan dietPlan = recommendedDiets.get(count);
+    private void appendDiets(StringBuilder recommendations, HashMap<Integer, DietPlan> recommendedDiets) {
+        for (Integer index : recommendedDiets.keySet()) {
+            DietPlan dietPlan = recommendedDiets.get(index);
             recommendations.append(index + ". " + dietPlan.getPlanName() + "\n");
         }
     }
@@ -37,7 +39,7 @@ public class RecommendPlanCommand extends Command {
         requireNonNull(model);
 
         PlanType userGoal = model.getUserGoal();
-        List<DietPlan> recommendedDiets = model.recommendDiets(userGoal);
+        HashMap<Integer, DietPlan> recommendedDiets = model.recommendDiets(userGoal);
 
         StringBuilder recommendations = new StringBuilder("Here are the recommended ");
         switch (userGoal) {
