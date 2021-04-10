@@ -1,5 +1,9 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_DOG_ID;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_DOG_ID_MULTIPLE_FORMAT;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_PROGRAM_ID;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_PROGRAM_ID_MULTIPLE_FORMAT;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static dog.pawbook.logic.commands.EnrolCommand.MESSAGE_REPEATED_ENROLMENT;
@@ -11,6 +15,7 @@ import static dog.pawbook.testutil.TypicalId.ID_EIGHTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_FIFTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_FOUR;
 import static dog.pawbook.testutil.TypicalId.ID_NINETEEN;
+import static dog.pawbook.testutil.TypicalId.ID_ONE;
 import static dog.pawbook.testutil.TypicalId.ID_SIX;
 import static dog.pawbook.testutil.TypicalId.ID_SIXTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_TWENTY;
@@ -195,6 +200,55 @@ public class EnrolCommandTest {
 
         assertCommandFailure(enrolCommand, model, MESSAGE_REPEATED_ENROLMENT_MULTIPLE_DOGS);
     }
+
+    @Test
+    public void execute_invalidDogIdOneDogOneProgram_failure() {
+        Set<Integer> dogIdSet = new HashSet<>();
+        Set<Integer> programIdSet = new HashSet<>();
+        dogIdSet.add(ID_ONE);
+        programIdSet.add(ID_EIGHTEEN);
+
+        EnrolCommand enrolCommand = new EnrolCommand(dogIdSet, programIdSet);
+
+        assertCommandFailure(enrolCommand, model, MESSAGE_INVALID_DOG_ID);
+    }
+
+    @Test
+    public void execute_invalidDogIdManyDogsOneProgram_failure() {
+        List<Integer> dogIdList = Arrays.asList(ID_ONE, ID_EIGHTEEN);
+        Set<Integer> dogIdSet = new HashSet<>(dogIdList);
+        Set<Integer> programIdSet = new HashSet<>();
+        programIdSet.add(ID_TWENTY);
+
+        EnrolCommand enrolCommand = new EnrolCommand(dogIdSet, programIdSet);
+
+        assertCommandFailure(enrolCommand, model, MESSAGE_INVALID_DOG_ID_MULTIPLE_FORMAT);
+    }
+
+    @Test
+    public void execute_invalidProgramIdOneDogOneProgram_failure() {
+        Set<Integer> dogIdSet = new HashSet<>();
+        Set<Integer> programIdSet = new HashSet<>();
+        dogIdSet.add(ID_TWO);
+        programIdSet.add(ID_ONE);
+
+        EnrolCommand enrolCommand = new EnrolCommand(dogIdSet, programIdSet);
+
+        assertCommandFailure(enrolCommand, model, MESSAGE_INVALID_PROGRAM_ID);
+    }
+
+    @Test
+    public void execute_invalidIdOneDogManyPrograms_failure() {
+        Set<Integer> dogIdSet = new HashSet<>();
+        dogIdSet.add(ID_FOUR);
+        List<Integer> programIdList = Arrays.asList(ID_ONE, ID_TWO);
+        Set<Integer> programIdSet = new HashSet<>(programIdList);
+
+        EnrolCommand enrolCommand = new EnrolCommand(dogIdSet, programIdSet);
+
+        assertCommandFailure(enrolCommand, model, MESSAGE_INVALID_PROGRAM_ID_MULTIPLE_FORMAT);
+    }
+
 
     @Test
     public void equals() {
