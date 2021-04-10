@@ -46,6 +46,9 @@ title: Developer Guide
     * [View feature](#view-feature)
     * [Review Mode](#review-mode)
     * [UI improvement](#ui-improvement)
+    * [Sort feature](#sort-feature)
+    * [UndoRedo feature](#undoredo-feature)
+    * [Alias feature](#alias-feature)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -1109,7 +1112,7 @@ testers are expected to do more *exploratory* testing.
 * AB3 did not have a `sort` feature.
 * Implemented a new enum `SortOptions` to contain sorting options for the user, as well as parse functions.
 
-### Undo/Redo feature
+### Undo/redo feature
 * Challenge was to store the states of FlashBack so that users are able to undo/redo an action.
 * As AB4 have `undo` and `redo` feature, the implementations of FlashBack's `undo` and `redo` is adapted from AB4.
 
