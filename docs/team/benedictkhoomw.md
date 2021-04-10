@@ -71,8 +71,9 @@ Given below are my contributions to the project.
   * Updated [logic component](https://ay2021s2-cs2103-t14-1.github.io/tp/DeveloperGuide.html#logic-component)
     descriptions and diagrams: [\#386](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/386).
   * Added implementation details and diagrams for command history:
-    [\#109](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/109) and
-    [\#317](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/317).
+    [\#109](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/109),
+    [\#317](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/317) and
+    [\#417](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/417).
   * Added introductory sections explaining audience and diagrams:
     [\#345](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/345) and
     [\#408](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/408).
