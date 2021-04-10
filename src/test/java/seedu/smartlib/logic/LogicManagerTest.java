@@ -8,15 +8,21 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.smartlib.testutil.Assert.assertThrows;
+import static seedu.smartlib.testutil.TypicalModels.ALICE;
 import static seedu.smartlib.testutil.TypicalModels.AMY;
+import static seedu.smartlib.testutil.TypicalModels.RECORD_A;
+import static seedu.smartlib.testutil.TypicalModels.SECRET;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.smartlib.commons.core.GuiSettings;
 import seedu.smartlib.logic.commands.AddReaderCommand;
 import seedu.smartlib.logic.commands.CommandResult;
 import seedu.smartlib.logic.commands.ListReaderCommand;
@@ -25,8 +31,11 @@ import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ModelManager;
 import seedu.smartlib.model.ReadOnlySmartLib;
+import seedu.smartlib.model.SmartLib;
 import seedu.smartlib.model.UserPrefs;
+import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.model.record.Record;
 import seedu.smartlib.storage.JsonSmartLibStorage;
 import seedu.smartlib.storage.JsonUserPrefsStorage;
 import seedu.smartlib.storage.StorageManager;
@@ -49,7 +58,6 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(smartLibStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
-
     }
 
     @Test
@@ -91,8 +99,110 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getSmartLib() {
+        // EP: empty SmartLib
+        SmartLib smartLib = new SmartLib();
+        assertEquals(smartLib, logic.getSmartLib());
+
+        // EP: SmartLib with a reader
+        model.addReader(ALICE);
+        smartLib.addReader(ALICE);
+        assertEquals(smartLib, logic.getSmartLib());
+        model.deleteReader(ALICE);
+        smartLib.removeReader(ALICE);
+
+        // EP: SmartLib with a book
+        model.addBook(SECRET);
+        smartLib.addBook(SECRET);
+        assertEquals(smartLib, logic.getSmartLib());
+        model.deleteBook(SECRET);
+        smartLib.removeBook(SECRET);
+
+        // EP: SmartLib with a record
+        model.addRecord(RECORD_A);
+        smartLib.addRecord(RECORD_A);
+        assertEquals(smartLib, logic.getSmartLib());
+    }
+
+    @Test
+    public void getFilteredReaderList() {
+        // EP: empty reader list
+        ArrayList<Reader> al = new ArrayList<>();
+        assertEquals(al, logic.getFilteredReaderList());
+
+        // EP: non-empty reader list
+        model.addReader(ALICE);
+        al.add(ALICE);
+        assertEquals(al, logic.getFilteredReaderList());
+        model.deleteReader(ALICE);
+    }
+
+    @Test
     public void getFilteredReaderList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredReaderList().remove(0));
+    }
+
+    @Test
+    public void getFilteredBookList() {
+        // EP: empty book list
+        ArrayList<Book> al = new ArrayList<>();
+        assertEquals(al, logic.getFilteredBookList());
+
+        // EP: non-empty book list
+        model.addBook(SECRET);
+        al.add(SECRET);
+        assertEquals(al, logic.getFilteredBookList());
+        model.deleteBook(SECRET);
+    }
+
+    @Test
+    public void getFilteredBookList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredBookList().remove(0));
+    }
+
+    @Test
+    public void getFilteredRecordList() {
+        // EP: empty record list
+        ArrayList<Record> al = new ArrayList<>();
+        assertEquals(al, logic.getFilteredRecordList());
+
+        // EP: non-empty record list
+        model.addRecord(RECORD_A);
+        al.add(RECORD_A);
+        assertEquals(al, logic.getFilteredRecordList());
+    }
+
+    @Test
+    public void getFilteredRecordList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredRecordList().remove(0));
+    }
+
+    @Test
+    public void getSmartLibFilePath() {
+        // EP: default file path
+        assertEquals(new UserPrefs().getSmartLibFilePath(), logic.getSmartLibFilePath());
+
+        // EP: non-default file path
+        model.setSmartLibFilePath(Paths.get("smartLib/file/path"));
+        assertEquals(Paths.get("smartLib/file/path"), logic.getSmartLibFilePath());
+    }
+
+    @Test
+    public void getGuiSettings() {
+        // EP: default GUI settings
+        assertEquals(new UserPrefs().getGuiSettings(), logic.getGuiSettings());
+
+        // EP: non-default GUI settings
+        model.setGuiSettings(new GuiSettings(1, 2, 3, 4));
+        assertEquals(new GuiSettings(1, 2, 3, 4),
+                logic.getGuiSettings());
+    }
+
+    @Test
+    public void setGuiSettings() {
+        logic.setGuiSettings(new GuiSettings(1, 1, 1, 1));
+        assertEquals(new GuiSettings(1, 1, 1, 1),
+                logic.getGuiSettings());
     }
 
     /**
