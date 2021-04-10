@@ -21,8 +21,9 @@ Class Task
 Class Description
 Class Module
 Class Name
-Class Deadline
+Class Time
 Class DoneStatus
+Class Recurrence
 Class Workload
 Class UniqueTaskList
 }
@@ -49,15 +50,16 @@ ModuleManager --> "*" Module
 ModuleManager .left.> Task
 UniqueTaskList o--right> "*" Task
 Task *--> "1" Name
-Task *--> "1" Deadline
+Task *--> "1..2" Time
 Task *--> "1" Module
 Task *--> "1" Description
 Task *--> "1" Workload
 Task *--> "1" DoneStatus
+Task *--> "0..1" Recurrence
 Task *--> "*" Tag
 
-Name -[hidden]right-> Deadline
-Deadline -[hidden]right-> Description
+Name -[hidden]right-> Time
+Time -[hidden]right-> Description
 Description -[hidden]right-> Module
 Module -[hidden]right-> DoneStatus
 DoneStatus -[hidden]right-> Workload
