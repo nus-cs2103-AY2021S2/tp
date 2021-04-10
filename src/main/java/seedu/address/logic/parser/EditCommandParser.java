@@ -24,7 +24,6 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.EditCommand.EditPolicyMode;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
 /**

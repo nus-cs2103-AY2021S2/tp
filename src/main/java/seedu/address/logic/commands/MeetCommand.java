@@ -40,7 +40,8 @@ public class MeetCommand extends Command {
             "DATE should be in dd.MM.yyyy format and should be valid.\n"
             + "Example: 18.05.2021";
     public static final String MESSAGE_INVALID_TIME =
-            "START_TIME and END_TIME should be in HH:mm format and END_TIME must be after START_TIME on the same DATE.\n"
+            "START_TIME and END_TIME should be in HH:mm format and "
+            + "END_TIME must be after START_TIME on the same DATE.\n"
             + "Example: 15:00 18:00";
 
     public static final String MESSAGE_CLASHING_MEETING = "The meeting clashes with \n%1$s";
