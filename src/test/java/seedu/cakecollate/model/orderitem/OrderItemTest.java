@@ -56,7 +56,7 @@ public class OrderItemTest {
     }
 
     @Test
-    public void toString_ChocolateCake_expectedString() {
+    public void toString_chocolateCake_expectedString() {
         String type = CHOCOLATE.getType().toString();
         String expected = "Type of cake: " + type;
         assertEquals(expected, CHOCOLATE.toString());
