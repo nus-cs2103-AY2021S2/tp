@@ -10,7 +10,6 @@ Donavan Lim, Marcus Lee Eugene, Chong Sidney, Dinesh S/O Magesvaran, Prabhakaran
 
 * Table of Contents
 {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Description
