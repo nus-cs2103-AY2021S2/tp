@@ -8,8 +8,8 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Predicate;
 import java.util.HashMap;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
