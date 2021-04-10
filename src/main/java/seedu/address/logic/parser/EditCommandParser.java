@@ -211,7 +211,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         Collection<String> policyList = policyIds.size() == 1 && policyIds.contains("")
                 ? Collections.emptySet()
                 : policyIds;
-        return Optional.of(ParserUtil.parsePolicies(policyList));
+        return Optional.of(new ArrayList<>(ParserUtil.parsePolicies(policyList)));
     }
 
     /**
