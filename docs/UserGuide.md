@@ -44,37 +44,35 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [r/SCHOOL RESIDENCE]` can be used as `n/John Doe r/RC4` or as `n/John Doe`.
-  
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  
+* For commands with prefixs, 
+  
+   * Parameters can be in any order.<br>
+   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  
+   * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
   
 
 </div>
 
 ### Adding a student record: `add`
 
-Adds the details of a student to Vax@NUS records. It is mandatory to include the following details of a student:
+Adds the details of a student to Vax@NUS records. 
 
-* Matriculation Number, for identifying the student.
-* Email, phone number and address, for contacting the student.
-* Vaccination status, to determine if the student should be prioritised for vaccination.
-* Medical details, to determine if the vaccination is safe for the student.
-* Faculty, which will help NUS faculties determine the proportion of vaccinated students using the `stats` command.
-
-In addition, it is optional to include the following detail of a student:
-
-* School Residence, to determine if the student lives on campus. This will help NUS campus residences determine the proportion of vaccinated student residents using the `stats` command. 
-
+<<<<<<< Updated upstream
 :information_source: **NOTE:** If the School Residence of a student is not specified, the system will default to DOES_NOT_LIVE_ON_CAMPUS and assume that the student does not live on campus.
 
 > For a smooth user experience, please refer to the  please refer to the [Input Formats](#input-formats) section below for more information regarding input formats. That section explains which prefix should be used for each piece of information and how the information should be presented to the program. 
+=======
+:information_source: **NOTE** The default School Residence is `DOES_NOT_LIVE_ON_CAMPUS` if it is not specified. 
+>>>>>>> Stashed changes
 
+> For a smooth user experience, please refer to the [Input Formats](#input-formats) section below for more information regarding the input accepted by the add student command.
+>
 `Add` Command Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]`
 
 Examples:
@@ -97,7 +95,7 @@ All inputs specified are optional, but at least one of them must be provided. Af
 
  :information_source: **NOTE:** Every field except the student's matriculation number can be edited. Should you wish to edit the matriculation number of a student, you must first delete the student entry and add a new one with the updated matriculation number. 
 
-> For a smooth user experience, please refer to the  please refer to the [Input Formats](#input-formats) section below for more information regarding input formats. That section explains which prefix should be used for each piece of information and how the information should be presented to the program.
+> For a smooth user experience, please refer to the [Input Formats](#input-formats) section below for more information regarding the input accepted by the edit student command.
 
 Format: `edit INDEX [n/NAME] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]`
 
@@ -130,8 +128,11 @@ Format: <br>
 <br> `filter FACULTY`
 <br> `filter SCHOOL_RESIDENCE`
 
+**:information_source: NOTE: The filter command only changes the view of the student list and not the view of the appointment list.
+
 * Only one filter condition should be specified at a time. 
-* Please refer to the parameter formats for a list of valid vaccination status, faculty and school residence input. 
+
+> For a smooth user experience, please refer to the [Input Formats](#input-formats) section below for more information regarding the input accepted by the filter command.
 
 Examples:
 * `filter vaccinated` or `filter unvaccinated`
@@ -151,6 +152,9 @@ Format: <br>
 * Only one condition should be specified at a time. 
 * If there is no available data for the specified faculty or school residence, a message will be displayed to inform
   users that the specified faculty or school residence has no available data.
+
+> For a smooth user experience, please refer to the [Input Formats](#input-formats) section below for more information regarding the input accepted by the stats command.
+
 
 Examples:
 * `stats COM` displays the percentage of vaccinated students in School of Computing.
@@ -172,7 +176,7 @@ Appointments can be added for both unvaccinated and vaccinated students, as appo
 
 Format: `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME`
 
-> For a smooth user experience, please refer to the [conditions for valid appointments](#conditions-for-valid-appointments) section below for more information regarding what the details of an appointment accepted by Vax@NUS.
+> For a smooth user experience, please refer to the [conditions for valid appointments](#conditions-for-valid-appointments) section below for more information regarding the details of an appointment accepted by Vax@NUS.
 
 Examples:
 * `addAppt i/A1234567X d/2021-12-13 ts/13:00`
@@ -248,13 +252,13 @@ Examples:
 ![Find](images/find.png)
 ### Viewing help : `help`
 
-Display a pop-up window showing a list of important commands and a link to our User Guide. 
+Display a pop-up window showing a list of commonly used commands and a link to our User Guide. 
 
 Format: `help`
 
 ### Clearing all data : `clear`
 
-Clearing all the data from VAX@NUS.
+Clearing all the data from Vax@NUS.
 
 Format: `clear`
 
@@ -267,6 +271,7 @@ Format: `exit`
 ### Saving the data
 
 Vax@NUS saves your current data into your computer automatically after any command. There is no need to save manually.
+<<<<<<< Updated upstream
 
 :information_source: **NOTE:**  VAX@NUS will display our sample data file if no data file is found from your computer.
 
@@ -288,31 +293,25 @@ Please refer to the [Input Formats](#input-formats) section when editing the dat
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+=======
+>>>>>>> Stashed changes
 
-**Q**: What do I do if I accidentally delete a student? 
-<br>
-**A**: Unfortunately, the deletion is permanent. You will have to manually re-add the student.
+:information_source: **NOTE:**  VAX@NUS will display our sample data file if no data file is found from your computer.
 
-**Q**: What can be included in medical details?
-<br>
-**A**: Allergies and past medical history.
+### Editing the data
 
-**Q** : Will I be able to add other types of appointments besides vaccination appointments?
-<br>
-**A** : No, the current version only allows you to add vaccination appointments and not any other type of appointments. 
+VAX@NUS data is saved as a JSON file [JAR file location]/data/studentbook.json. Advanced users are welcome to update data directly by editing that data file.
 
-**Q** : Am I able to reassign an appointment to another student?
-<br>
-**A** : No, you will need to add a new appointment for the new student. 
+Editing a student's matriculation number through the JSON file is allowed, however, extra care must be taken to ensure data integrity. 
 
-**Q**: Why are vaccinated students able to receive new appointments?
-<br>
-**A**: Beyond the two shots currently required for the approved Pfizer-BioNTech and Moderna vaccines in Singapore, booster shots could be required in the future to prolong immunity and provide protection against fast-emerging COVID-19 variants. 
+If you change a student's matriculation number, you must also update the matriculation number for the corresponding student's appointment(s). 
+Failure to do so will result in an invalid data file format as the appointment does not belong to any student. 
 
-**Q**: How long is a vaccination appointment?
-<br>
-**A**: The vaccination appointment lasts 30 mins, which includes registration, administering the vaccine and observation. 
+Please refer to the [Input Formats](#input-formats) section when editing the data file to conform to the required format.
 
+> :warning: **If your changes to the data file makes it an invalid format, VAX@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
+:information_source: **NOTE:** VAX@NUS will load an empty data file if you have cleared your data with the `clear` command right before exiting VAX@NUS.
+>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Input Formats
@@ -376,6 +375,34 @@ If unindicated, the `School Residence` field will default to `DOES NOT LIVE ON C
 * The duration of each appointment is fixed at 30 minutes.
 * No appointment should clash with any other appointments.
 * The student that the appointment is for must exist in the records.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## FAQ
+
+**Q**: What do I do if I accidentally delete a student? 
+<br>
+**A**: Unfortunately, the deletion is permanent. You will have to manually re-add the student.
+
+**Q**: What can be included in medical details?
+<br>
+**A**: Allergies and past medical history.
+
+**Q** : Will I be able to add other types of appointments besides vaccination appointments?
+<br>
+**A** : No, the current version only allows you to add vaccination appointments and not any other type of appointments. 
+
+**Q** : Am I able to reassign an appointment to another student?
+<br>
+**A** : No, you will need to add a new appointment for the new student. 
+
+**Q**: Why are vaccinated students able to receive new appointments?
+<br>
+**A**: Beyond the two shots currently required for the approved Pfizer-BioNTech and Moderna vaccines in Singapore, booster shots could be required in the future to prolong immunity and provide protection against fast-emerging COVID-19 variants. 
+
+**Q**: How long is a vaccination appointment?
+<br>
+**A**: The vaccination appointment lasts 30 mins, which includes registration, administering the vaccine and observation. 
 
 -----------------------------------------------------------------------------------------------------------------
 ## Command Summary
