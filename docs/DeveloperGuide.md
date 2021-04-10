@@ -746,7 +746,7 @@ testers are expected to do more *exploratory* testing.
 1. Initial launch
     1. Download the latest release jar file from [here](https://github.com/AY2021S2-CS2103-W16-2/tp/releases).
     2. Copy the downloaded jar file into an empty folder.
-    3. Navigate your command prompt to the folder containing the downloaded jar file and run the command `java -jar <fileName>`.
+    3. Navigate your command prompt to the folder containing the downloaded jar file and run the command `java -jar chim.jar`.
 
         Launch the application by double-clicking only as a last resort if the command does not work.
 
@@ -757,7 +757,7 @@ testers are expected to do more *exploratory* testing.
         Expected: The most recent window size and location is retained.
 
 3. Saving application launch display list.
-    1. launch the application and run either `listorders` , `listcustomers` or `listcheeses`. Close the window.
+    1. Launch the application and run either `listorders` , `listcustomers` or `listcheeses`. Close the window.
     2. Re-launch the application by following either the command or by double-clicking.
 
         Expected: The most recent list depending on last `list` command will be displayed.
@@ -827,7 +827,7 @@ testers are expected to do more *exploratory* testing.
 
         Expected: No customer is deleted, Error messsage with command requirements is shown in the status message.
 
-    4. Other incorrect `deletecustomer` to try: `deletecustomer p\x`(where x is a phone number does not exist in CHIM).
+    4. Other incorrect `deletecustomer` to try: `deletecustomer p/x`(where x is a phone number does not exist in CHIM).
 
 ### Finding customers
 1. Finding a customer in CHIM.
@@ -854,7 +854,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Listing Customers
 1. Listing all customers in CHIM.
-    1. Test case: `listcustomer`.
+    1. Test case: `listcustomers`.
 
         Expected: all customers are listed.
 
@@ -903,7 +903,7 @@ testers are expected to do more *exploratory* testing.
 
         Expected: No order is edited, Error message with command requires is shown in the status message.
 
-    5. Test case: `editorder 1 d\31/12/9999`.
+    5. Test case: `editorder 1 d/31/12/9999`.
 
         Expected: similar to previous.
 
@@ -961,7 +961,7 @@ testers are expected to do more *exploratory* testing.
         - Arguments are valid and compulsory parameters are provided.
         - If `MANUFACTURE_DATE` is given , it must be any date up to current date , not in the future. 
         - If `MANUFACTURE_DATE` is not given, it defaults to current date.
-        - `EXPIRY_DATE` if given must occur after manufacture_date.
+        - `EXPIRY_DATE` if given must occur after `MANUFACTURE_DATE`.
 
     2. Test case: `addcheese t/Gruyere q/4`.
 
@@ -1002,7 +1002,7 @@ testers are expected to do more *exploratory* testing.
 
         Expected: similar to previous 
     
-    5. Test case: `editcheese x e/DATE` (where DATE occurs before manufacture_date)
+    5. Test case: `editcheese x e/DATE` (where DATE occurs before `MANUFACTURE_DATE`)
 
         Expected: similar to previous
 
