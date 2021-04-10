@@ -402,13 +402,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 <!-- Updated and maintained by [Yucheng](https://github.com/cheng20010201) -->
 1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  The product should be available for downloads after each release on GitHub.
-3.  The product's size of the final Jar released should not exceed 100MB.
+2.  The product should be available for downloads after each [GitHub release](https://github.com/AY2021S2-CS2103T-T13-1/tp/releases).
+3.  The product's size in terms of the final `Jar` released should not exceed 100MB.
 4.  The product should be an offline application, which should work regardless of internet connection.
-5.  The product should allow one user to have different instances of the application running at the same time.
-6.  The product should be able to hold up to 2000 Japanese words without causing a delay in commands longer than
+5.  The product should be able to hold up to 2000 Japanese words without causing a delay in commands longer than
     0.5 seconds.
-7.  The product should be open-sourced on GitHub.
+6.  The product is not required to handle concurrency resulting from multiple instances of the applications running at the same
+    time, as the product is supposed to support single user's usage.
+6.  The product should be open-sourced in the [GitHub repo](https://github.com/AY2021S2-CS2103T-T13-1/tp).
+7.  The project is expected to adhere to a schedule that delivers a new iteration every one or two weeks throughout the whole development cycle.
 8.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) and
     should be able to accomplish most of the learning faster using commands than using the mouse/GUI.
 
