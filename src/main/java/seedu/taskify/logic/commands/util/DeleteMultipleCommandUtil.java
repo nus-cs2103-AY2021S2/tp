@@ -25,10 +25,14 @@ public class DeleteMultipleCommandUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_INDEX_RANGE = "Invalid index range given. Second index should be "
             + "bigger than the first index.";
+    public static final String MESSAGE_INVALID_TASK_FOR_INDEX_RANGE = "The given index range includes indices that do"
+            + " not correspond to a task";
     public static final String MESSAGE_DELETE_BY_STATUS_USAGE = DeleteCommand.COMMAND_WORD + ": Delete all tasks of a"
             + " specified Status.\n" + "Parameters: STATUS_STRING (in lower caps)\n"
             + "Note: \"-all\" must be added after the specified status\n"
             + "Example: " + DeleteCommand.COMMAND_WORD + " completed -all";
+    public static final String MESSAGE_NO_TASKS_OF_GIVEN_STATUS = "There are no tasks with the given status!";
+
 
     /**
      * Checks if {@code argumentInput} contains more than one valid index and if all are valid indexes.
@@ -43,6 +47,20 @@ public class DeleteMultipleCommandUtil {
         boolean hasOnlyOneArgument = arguments.length == 1;
 
         return !hasOnlyOneArgument;
+    }
+
+    /**
+     * Checks if user is trying to delete tasks using an index range
+     * @param input user's input other than the command word
+     * @return true if the user is deleting using an index range
+     */
+    public static boolean isDeletingTasksByRange(String input) {
+        input = reduceWhitespaces(input);
+        String regex = "^(?<firstNum>[0-9]+)-(?<secondNum>[0-9]+)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(input);
+
+        return matcher.find();
     }
 
     /**
@@ -83,10 +101,10 @@ public class DeleteMultipleCommandUtil {
     public static String[] extractStringArgumentsIntoIndexes(String input) throws ParseException {
         input = reduceWhitespaces(input);
 
-        String regexForRangedArgs = "^(?<firstNum>[0-9]+)-(?<secondNum>[0-9]+)$";
-        Pattern patternRangedArgs = Pattern.compile(regexForRangedArgs);
-        Matcher matcherRangedArgs = patternRangedArgs.matcher(input);
-        boolean hasFoundIndexRange = matcherRangedArgs.find();
+        String regex = "^(?<firstNum>[0-9]+)-(?<secondNum>[0-9]+)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(input);
+        boolean hasFoundIndexRange = matcher.find();
 
         if (!hasFoundIndexRange) {
             String[] arguments = input.split(" ");
@@ -99,19 +117,29 @@ public class DeleteMultipleCommandUtil {
             return arguments;
         }
 
-        String first = matcherRangedArgs.group("firstNum");
-        String second = matcherRangedArgs.group("secondNum");
+        String first = matcher.group("firstNum");
+        String second = matcher.group("secondNum");
 
+        return extractIndexesAsStringFromRange(first, second);
+    }
+
+
+
+    /**
+     * Helper method for #{@code extractStringArgumentsIntoIndexes}
+     */
+    private static String[] extractIndexesAsStringFromRange(String lowerBound, String upperBound)
+            throws ParseException {
         String leadingZeroesRegex = "0+[1-9]*";
-        boolean isFirstIndexInvalid = first.matches(leadingZeroesRegex);
-        boolean isSecondIndexInvalid = second.matches(leadingZeroesRegex);
+        boolean isFirstIndexInvalid = lowerBound.matches(leadingZeroesRegex);
+        boolean isSecondIndexInvalid = upperBound.matches(leadingZeroesRegex);
 
         if (isFirstIndexInvalid || isSecondIndexInvalid) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        int firstNum = Integer.parseInt(first);
-        int secondNum = Integer.parseInt(second);
+        int firstNum = Integer.parseInt(lowerBound);
+        int secondNum = Integer.parseInt(upperBound);
         boolean isRangeInvalid = firstNum >= secondNum;
 
         if (isRangeInvalid) {

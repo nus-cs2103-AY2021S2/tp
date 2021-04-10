@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CS2103T_TP;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_NAME_CS2103T_TP;
-import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_CS2103T_TP;
 import static seedu.taskify.logic.commands.CommandTestUtil.VALID_TAG_DEBUGGING;
 import static seedu.taskify.testutil.Assert.assertThrows;
 import static seedu.taskify.testutil.TypicalTasks.BOB;
@@ -81,9 +80,7 @@ public class TaskTest {
         editedAlice = new TaskBuilder(TASK_1).withDescription(VALID_DESCRIPTION_CS2103T_TP).build();
         assertFalse(TASK_1.equals(editedAlice));
 
-        // different tags -> returns false
-        editedAlice = new TaskBuilder(TASK_1).withTags(VALID_TAG_CS2103T_TP).build();
-        assertFalse(TASK_1.equals(editedAlice));
+
 
     }
 }
