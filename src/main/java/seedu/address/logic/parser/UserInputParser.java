@@ -70,7 +70,7 @@ public class UserInputParser {
      */
     public Command parseCommand(String userInput) throws ParseException {
         //store userInput in inputCommandStorage
-        inputCommandStorage.newInput(userInput);
+        inputCommandStorage.addInput(userInput);
 
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {

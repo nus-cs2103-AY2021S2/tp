@@ -23,6 +23,8 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentSchedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.appointment.exceptions.AppointmentDoctorNotInDoctorRecordsException;
+import seedu.address.model.appointment.exceptions.AppointmentPatientNotInPatientRecordsException;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 import seedu.address.model.util.SampleDataUtil;
@@ -93,7 +95,8 @@ public class MainApp extends Application {
         // appointment schedule before patient/doctor records
         ReadOnlyAddressBook<Patient> patientRecords = initPatientRecords(storage);
         ReadOnlyAddressBook<Doctor> doctorRecords = initDoctorRecords(storage);
-        ReadOnlyAppointmentSchedule appointmentSchedule = initAppointmentSchedule(storage);
+        ReadOnlyAppointmentSchedule appointmentSchedule =
+                initAppointmentSchedule(storage, patientRecords, doctorRecords);
         return new ModelManager(patientRecords, doctorRecords, appointmentSchedule, userPrefs);
     }
 
@@ -145,7 +148,8 @@ public class MainApp extends Application {
         return doctorRecords;
     }
 
-    private ReadOnlyAppointmentSchedule initAppointmentSchedule (Storage storage) {
+    private ReadOnlyAppointmentSchedule initAppointmentSchedule (Storage storage,
+            ReadOnlyAddressBook<Patient> patientRecords, ReadOnlyAddressBook<Doctor> doctorRecords) {
         Optional<ReadOnlyAppointmentSchedule> appointmentScheduleOptional;
         ReadOnlyAppointmentSchedule appointmentSchedule;
 
@@ -157,6 +161,8 @@ public class MainApp extends Application {
             }
 
             appointmentSchedule = appointmentScheduleOptional.orElseGet(SampleDataUtil::getSampleAppointmentSchedule);
+
+            appointmentSchedule.checkAppointmentScheduleValidity(patientRecords, doctorRecords);
         } catch (DataConversionException e) {
             LOGGER.warning("Appointment data file not in the correct format. Will be starting with an empty"
                     + " Appointment Schedule");
@@ -164,6 +170,14 @@ public class MainApp extends Application {
         } catch (IOException e) {
             LOGGER.warning("Problem while reading from the appointment data file. Will be starting with an empty"
                     + " Appointment Schedule");
+            appointmentSchedule = new AppointmentSchedule();
+        } catch (AppointmentPatientNotInPatientRecordsException e) {
+            LOGGER.warning("Some Patient data in Appointment data file does not correspond to a Patient "
+                    + "in the Patient data file. Will be starting with an empty Appointment Schedule");
+            appointmentSchedule = new AppointmentSchedule();
+        } catch (AppointmentDoctorNotInDoctorRecordsException e) {
+            LOGGER.warning("Some Doctor data in Appointment data file does not correspond to a Doctor "
+                    + "in the Doctor data file. Will be starting with an empty Appointment Schedule");
             appointmentSchedule = new AppointmentSchedule();
         }
 

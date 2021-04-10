@@ -56,23 +56,26 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
                     .setDoctorIndex(ParserUtil.parseIndex(argMultimap.getValue(PREFIX_DOCTOR).get()));
         }
 
-        if (argMultimap.getValue(PREFIX_TIMESLOT_END).isPresent()) {
-            editAppointmentDescriptor.setTimeslot(TimeslotParser
-                    .parseTimeslotByEnd(argMultimap.getValue(PREFIX_TIMESLOT_START).get(),
-                    argMultimap.getValue(PREFIX_TIMESLOT_END).get()));
+        if (argMultimap.getValue(PREFIX_TIMESLOT_START).isPresent()) {
+            editAppointmentDescriptor
+                    .setStart(TimeslotParser.parseDateTime(argMultimap.getValue(PREFIX_TIMESLOT_START).get()));
         }
+
+        if (argMultimap.getValue(PREFIX_TIMESLOT_END).isPresent()) {
+            editAppointmentDescriptor
+                    .setEnd(TimeslotParser.parseDateTime(argMultimap.getValue(PREFIX_TIMESLOT_END).get()));
+        }
+
         if (argMultimap.getValue(PREFIX_TIMESLOT_DURATION).isPresent()) {
             editAppointmentDescriptor
-                    .setTimeslot(TimeslotParser
-                            .parseTimeslotByDuration(argMultimap.getValue(PREFIX_TIMESLOT_START).get(),
-                    argMultimap.getValue(PREFIX_TIMESLOT_DURATION).get()));
+                    .setDuration(TimeslotParser.parseDuration(argMultimap.getValue(PREFIX_TIMESLOT_DURATION).get()));
         }
+
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editAppointmentDescriptor::setTags);
 
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);
         }
-
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editAppointmentDescriptor::setTags);
 
         return new EditAppointmentCommand(index, editAppointmentDescriptor);
     }
