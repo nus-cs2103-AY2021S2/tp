@@ -272,6 +272,8 @@ The ClientDetailFragment UI class directly accesses the `'data'` folder and atte
 image as an asset in the UI. If the asset cannot be found, the UI then loads the default image
 instead.
 
+![ShowCommand sequence diagram](images/ShowCommandSequenceDiagram.png)
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
