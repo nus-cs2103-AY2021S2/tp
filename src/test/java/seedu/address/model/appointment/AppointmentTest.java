@@ -78,12 +78,12 @@ public class AppointmentTest {
     @Test
     public void testStringConversion() {
         assertEquals("Meet Alex; Remarks: Bring him around Bishan to look at the properties; "
-                + "Date: Dec 25, 2021; Time: 3:00pm", MEET_ALEX.toString());
+                + "Date: Dec 25, 2021; Time: 3:00PM", MEET_ALEX.toString());
         assertEquals("Meet Bob; Remarks: To meet with interested client for viewing of his house; "
-                + "Date: Apr 30, 2021; Time: 10:30am", MEET_BOB.toString());
+                + "Date: Apr 30, 2021; Time: 10:30AM", MEET_BOB.toString());
         assertEquals("Meet Caleb; Remarks: For renegotiation of selling price; "
-                + "Date: Mar 07, 2021; Time: 10:30am", MEET_CALEB.toString());
+                + "Date: Mar 07, 2021; Time: 10:30AM", MEET_CALEB.toString());
         assertEquals("Meet Darren; Remarks: For signing of sales agreement at HDB; "
-                + "Date: Oct 12, 2021; Time: 2:00pm", MEET_DARREN.toString());
+                + "Date: Oct 12, 2021; Time: 2:00PM", MEET_DARREN.toString());
     }
 }
