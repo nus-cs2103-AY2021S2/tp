@@ -93,9 +93,6 @@ Classes used by multiple components are in the seedu.fooddiary.commons package.
 
 
 
-
-
-
 ## **Implementation**
 This section describes some noteworthy details on how certain features are implemented.
 ### AddOn Feature
@@ -158,6 +155,15 @@ The following activity diagram summarises the events that take place when a user
 command:
 ![Revise Activity Diagram](images/ReviseActivityDiagram.png)
 
+#### Design Consideration
+
+##### Aspect: Whether to revise entry in command line or in a new UI window.
+* **Alternative 1 (current choice):** Revise entry in a new UI window.
+    * Pros: View all details of an entry and easily revise them with keyboard shortcuts.
+    * Cons: Revise is not done purely in command line, but rather in a UI window.
+* **Alternative 2:** Revise entry in command line.
+  * Pros: Revise is purely done in the command line.
+  * Cons: For entry with lengthy details, it will flood the command line space and be difficult for revising.
 
 ### View Feature
 `View`: Allows the user to view a specified entry in a new window, allowing the user to carefully look through
@@ -207,8 +213,8 @@ The following activity diagram summarizes what happens when a user executes the 
 
 
 ## **Appendix A: Effort**
-### **Challenges & Effort Required**
-### **Achievements**
+### Challenges & Effort Required
+### Achievements
 
 ## **Appendix B: Product scope**
 
