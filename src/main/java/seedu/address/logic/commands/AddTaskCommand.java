@@ -12,13 +12,13 @@ import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
 /**
- * Adds a task to the Sochedule.
+ * Adds a task to the SOChedule.
  */
 public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "add_task";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the Sochedule. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the SOChedule. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DEADLINE + "DEADLINE "

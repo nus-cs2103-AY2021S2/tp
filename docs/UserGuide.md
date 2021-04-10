@@ -502,9 +502,9 @@ Format: `add_event n/EVENTNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [
 * `st/` is followed by the time in the 24-hour format and in the format of **hh:mm** Here, h is the hour, m is the minute and all has to be integers.
 * `ed/` is followed by the end date, it has to be a **valid date** and in the format of **YYYY-MM-DD**.
 * `et/` is followed by the time in the 24-hour format and in the format of **hh:mm**.
-* The STARTDATE and STARTTIME provided can be in the past (ongoing event).
-* The STARTDATE and STARTTIME provided should be earlier than ENDDATE and ENDTIME.
-* The ENDDATE and ENDTIME provided cannot be a past date time.
+* The `STARTDATE` and `STARTTIME` provided can be in the past (ongoing event).
+* The `ENDDATE` and `ENDTIME` provided should be after `STARTDATE` and `STARTTIME`.
+* The `ENDDATE` and `ENDTIME` provided cannot be a past date time.
 * Time overlapping events are allowed.
 * `c/` is followed by the category. It is optional.
 * `t/` is followed by the tag. It is optional.
@@ -534,13 +534,14 @@ Examples:
 Edits an **existing and uncompleted** event in the event list.
 
 Format: `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDATE] [et/ENDTIME] [c/CATEGORY]... [t/TAG]...`
-* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
-* You can only edit the details of an unexpired event.
-* At least one of the optional fields must be provided.
-* The STARTDATE and STARTTIME provided can be in the past (ongoing event).
-* The STARTDATE and STARTTIME provided should be earlier than ENDDATE and ENDTIME.
-* The ENDDATE and ENDTIME provided cannot be a past date time.
-* Existing values will be updated to the input values.
+* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. 
+The index must be an **integer larger than zero**. A valid example can be `1`.
+* An expired event could only be edited when users edit the past end date and time to unexpired end date and time (extend the event).
+* Other than the condition above, you can only edit the details of an **unexpired** event.
+* **At least one** of the optional fields must be provided.
+* The `STARTDATE` and `STARTTIME` provided can be in the past (ongoing event).
+* The `ENDDATE` and `ENDTIME` provided should be after `STARTDATE` and `STARTTIME`.
+* The `ENDDATE` and `ENDTIME` provided cannot be a past date time.
 * When editing tags/categories, the existing tags/categories of the event will be removed i.e. adding of tags/categories
   is not cumulative.
 * You can remove all the event’s tags by typing `t/` without specifying any tags after it. 
