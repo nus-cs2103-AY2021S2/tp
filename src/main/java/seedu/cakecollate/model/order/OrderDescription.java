@@ -4,15 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.cakecollate.commons.util.AppUtil.checkArgument;
 
 public class OrderDescription {
-
-    public static final String MESSAGE_CONSTRAINTS = "Order description should not be left blank.";
     public static final String MESSAGE_OVERFLOW = "Order description has a size limit of 70 characters.";
 
-    /*
-     * The first character of the order description must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Order description should only contain alphanumeric characters," +
+                    "\" and white spaces, and it should not be blank";
+
+    public static final String VALIDATION_REGEX = "^([\\p{Alnum}\"]|([\\p{Alnum}\"][\\p{Alnum}\" ]*))$";
 
     public final String value;
 

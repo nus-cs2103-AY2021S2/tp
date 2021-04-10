@@ -36,6 +36,7 @@ import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ORDER_ITEM_IDX;
 import static seedu.cakecollate.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.cakecollate.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -125,7 +126,6 @@ public class AddCommandParserTest {
                         + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_AMY + DELIVERY_DATE_DESC_BOB,
                 new AddCommand(indexList, descriptor));
 
-
         IndexList lastIndexList = ORDER_ITEM_INDEXLIST_2;
 
         // multiple order indexes - only last prefix accepted
@@ -134,6 +134,7 @@ public class AddCommandParserTest {
                         + ORDER_ITEM_INDEXES_1 + ORDER_ITEM_INDEXES_2,
                 new AddCommand(lastIndexList, descriptor));
     }
+
 
     @Test
     public void parse_optionalFieldsMissing_success() {
