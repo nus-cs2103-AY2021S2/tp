@@ -109,7 +109,7 @@ to manage tasks which can be identified by their unique deadlines or priorities.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* For features which use the INDEX field, the INDEX you specify must be a valid number displayed on the list of tasks.
+* For features which use the INDEX field, the INDEX you specify must be a valid number on the currently displayed list of tasks.
 
 </div>
 
@@ -323,13 +323,14 @@ Examples:
 <a name="findTask"></a>
 ### 7. Find Tasks by Keywords: `findTasks`
 
-With so many tasks, you may want to find tasks with given keywords quickly.
-This feature allows you to find all tasks which contains any of the specified keywords in its TITLE or DESCRIPTION.
+With so many tasks, you may want to find tasks quickly using some keywords.
+This feature allows you to find all tasks which contain any of the specified keywords in its TITLE or DESCRIPTION.
 
 Format: `findTasks KEYWORD [MORE_KEYWORDS]...`
 
-* KEYWORD must match an entire word, case-insensitive, in order for the particular task to be found.
+* KEYWORD must match an entire word in order for the particular task to be found.
   * E.g. `Meeting` will not match with `Meet`.
+* The search using KEYWORD is case-sensitive.
   * E.g. `Meeting` will match with `meeting`.
 
 Examples: 

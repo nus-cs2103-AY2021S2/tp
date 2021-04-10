@@ -1,7 +1,6 @@
 package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_TASK_LIST;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 
 import java.util.List;

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_EMPTY_TASK_LIST;
-import static seedu.heymatez.commons.core.Messages.MESSAGE_TASKS_LISTED_OVERVIEW;
 import static seedu.heymatez.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.heymatez.testutil.TypicalPersons.getTypicalHeyMatez;
 
