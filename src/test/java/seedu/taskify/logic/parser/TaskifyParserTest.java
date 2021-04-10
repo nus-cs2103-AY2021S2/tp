@@ -65,14 +65,14 @@ public class TaskifyParserTest {
         DeleteMultipleCommand command = (DeleteMultipleCommand) parser.parseCommand(
                 DeleteMultipleCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " "
                         + INDEX_SECOND_TASK.getOneBased() + " " + INDEX_THIRD_TASK.getOneBased());
-        assertEquals(new DeleteMultipleCommand(INDEXES_FIRST_TO_THIRD_TASK), command);
+        assertEquals(new DeleteMultipleCommand(INDEXES_FIRST_TO_THIRD_TASK, false), command);
     }
 
     @Test
     public void parseCommand_deleteMultipleUsingIndexRange() throws Exception {
         DeleteMultipleCommand command = (DeleteMultipleCommand) parser.parseCommand(
                 DeleteMultipleCommand.COMMAND_WORD + " " + "1-3");
-        assertEquals(new DeleteMultipleCommand(INDEXES_FIRST_TO_THIRD_TASK), command);
+        assertEquals(new DeleteMultipleCommand(INDEXES_FIRST_TO_THIRD_TASK, true), command);
     }
 
     @Test

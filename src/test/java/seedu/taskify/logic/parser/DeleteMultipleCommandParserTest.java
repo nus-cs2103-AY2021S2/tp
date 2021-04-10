@@ -23,7 +23,7 @@ public class DeleteMultipleCommandParserTest {
     @ParameterizedTest
     @ValueSource(strings = {" 1 2 3", "  1    2  3   ", " 1-3 "})
     public void parse_validArgs_returnsDeleteMultipleCommand(String input) {
-        assertParseSuccess(parser, input, new DeleteMultipleCommand(INDEXES_FIRST_TO_THIRD_TASK));
+        assertParseSuccess(parser, input, new DeleteMultipleCommand(INDEXES_FIRST_TO_THIRD_TASK, false));
     }
 
     @ParameterizedTest
