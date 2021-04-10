@@ -20,7 +20,7 @@ public class PropertyNamePredicate implements Predicate<Property> {
         this.keywords = new ArrayList<>();
         for (String s : names) {
             if (s.trim().isEmpty()) {
-                throw new IllegalArgumentException("Name cannot be empty. ");
+                throw new IllegalArgumentException("Name given is empty. ");
             }
             this.keywords.add(s.toLowerCase());
         }

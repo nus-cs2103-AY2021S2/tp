@@ -14,7 +14,7 @@ public class PropertyRemarksPredicate implements Predicate<Property> {
      */
     public PropertyRemarksPredicate(String keywords) throws IllegalArgumentException {
         if (keywords.trim().isEmpty()) {
-            throw new IllegalArgumentException("Remark keywords cannot be empty. ");
+            throw new IllegalArgumentException("Remark given is empty. ");
         }
         this.keywords = keywords.toLowerCase();
     }

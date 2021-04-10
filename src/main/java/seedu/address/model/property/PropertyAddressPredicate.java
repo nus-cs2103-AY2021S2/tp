@@ -16,7 +16,7 @@ public class PropertyAddressPredicate implements Predicate<Property> {
     public PropertyAddressPredicate(String address) throws IllegalArgumentException {
         requireNonNull(address);
         if (address.trim().isEmpty()) {
-            throw new IllegalArgumentException("Address cannot be empty. ");
+            throw new IllegalArgumentException("Address give is empty. ");
         }
         this.address = address;
     }
