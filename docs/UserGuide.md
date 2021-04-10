@@ -89,6 +89,7 @@ component command /prefix [input] -flag
 Optional parts of the command will be wrapped in round brackets.
 
 Only one command can be executed at a time and any words after a valid command is entered will be ignored.
+<p>&nbsp;</p>
 
 <a name="general"></a>
 - <details open>
