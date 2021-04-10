@@ -426,7 +426,6 @@ Adds a todo to a project in CoLAB.
 Format: `addT PROJECT_INDEX d/DESCRIPTION`
 
 * Adds a todo with a `DESCRIPTION` to the project at the specified `PROJECT_INDEX`.
-* You can add a todo to a project containing another todo with the same `DESCRIPTION` as long as the todo in the project has been marked as done.
 
 Parameters:
 
@@ -436,6 +435,10 @@ Parameters:
 Example:
 
 * `addT 1 d/Add unit tests` adds a todo with the description `Add unit tests` to the first project in CoLAB.
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+You can add a todo to a project containing another todo with the same `DESCRIPTION` as long as the todo in the project has been marked as done.
+</div>
 
 ##### Updating a todo of a project: `updateT`
 
@@ -507,7 +510,6 @@ Adds a deadline to a project in CoLAB.
 Format: `addD PROJECT_INDEX d/DESCRIPTION by/DATE`
 
 * Adds a deadline to the project at the specified `PROJECT_INDEX` with a `DESCRIPTION` and a `DATE`.
-* You can add a deadline to a project containing another deadline with the same `DESCRIPTION` and `DATE` as long as the deadline in the project has been marked as done.
 
 Parameters:
 
@@ -518,6 +520,10 @@ Parameters:
 Example:
 
 * `addD 1 d/Milestone v1.2 by/01-03-2021` adds a deadline to the first project with description `Milestone v1.2` and due date `01-03-2021`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+You can add a deadline to a project containing another deadline with the same `DESCRIPTION` and `DATE` as long as the deadline in the project has been marked as done.
+</div>
 
 ##### Updating a deadline of a project: `updateD`
 
@@ -596,7 +602,6 @@ Format: `addE PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
 
 * Adds an event to the project at the specified `PROJECT_INDEX` with a `DESCRIPTION` as well as the `DATE` and `TIME` of the event.
 * `REPEAT_WEEKLY` accepts values `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one time event.
-* You cannot add an event to a project containing another event with the same `DESCRIPTION`, `DATE`, `TIME` and `REPEAT_WEEKLY`.
 
 Parameters:
 
@@ -610,6 +615,10 @@ Examples:
 
 * `addE 1 d/Project Meeting on/24-04-2021 at/2000 w/Y` adds a weekly event with description `Project Meeting` starting on `24-04-2021` at `2000` to the first project.
 * `addE 2 d/CS2101 Presentation on/14-04-2021 at/1015 w/n` adds a one time event with description `CS2101 Presentation` on `14-04-2021` at `1015` to the second project.
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+You cannot add an event to a project containing another event with the same `DESCRIPTION`, `DATE`, `TIME` and `REPEAT_WEEKLY`.
+</div>
 
 ##### Updating an event of a project `updateE`
 
