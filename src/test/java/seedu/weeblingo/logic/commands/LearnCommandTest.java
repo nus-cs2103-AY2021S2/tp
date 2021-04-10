@@ -37,16 +37,16 @@ public class LearnCommandTest {
     @Test
     public void execute_menuModeGeneric_success() throws CommandException {
         ModelStubMenuMode modelStub = new ModelStubMenuMode();
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS +
-                MESSAGE_NO_TAGS, false, false);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS
+                + MESSAGE_NO_TAGS, false, false);
         assertEquals(expectedCommandResult, LEARNCOMMAND_GENERIC.execute(modelStub));
     }
 
     @Test
     public void execute_learnModeGeneric_success() throws CommandException {
         ModelStubLearnMode modelStub = new ModelStubLearnMode();
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS +
-                MESSAGE_NO_TAGS, false, false);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS
+                + MESSAGE_NO_TAGS, false, false);
         assertEquals(expectedCommandResult, LEARNCOMMAND_GENERIC.execute(modelStub));
     }
 

@@ -14,13 +14,13 @@ import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MIDDLE_DESC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MIN;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MIN_DESC;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_COMBINATION;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_GENERIC;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_GOJUON;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_HIRAGANA;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_COMBINATION_DESC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_GOJUON_DESC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_HIRAGANA_DESC;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_COMBINATION;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_GOJUON;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_HIRAGANA;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -45,7 +45,7 @@ public class StartCommandParserTest {
             new StartCommand(VALID_START_INTEGER_GENERIC, VALID_TAGS_SET_GOJUON);
     private static final StartCommand STARTCOMMAND_VALID_TAG_COMBINATION =
             new StartCommand(VALID_START_INTEGER_GENERIC, VALID_TAGS_SET_COMBINATION);
-    private  static final  StartCommand START_COMMAND_VALID_NONEXISTENT_TAGS =
+    private static final StartCommand START_COMMAND_VALID_NONEXISTENT_TAGS =
             new StartCommand(VALID_START_INTEGER_GENERIC, VALID_NONEXISTENT_TAGS_SET);
 
     private final StartCommandParser parser = new StartCommandParser();

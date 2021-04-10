@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_NONEXISTENT_TAGS_SET;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_NONEXISTENT_TAGS_SET_DESC;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_COMBINATION;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_GENERIC;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_GOJUON;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_HIRAGANA;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_COMBINATION_DESC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_GOJUON_DESC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_HIRAGANA_DESC;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_COMBINATION;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_GOJUON;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_HIRAGANA;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
