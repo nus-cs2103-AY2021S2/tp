@@ -161,8 +161,10 @@ The `UI` component,
 ### Logic component
 
 <p align="center"><img src="images/LogicClassDiagram.png"></p>
+<p align="center">Overall Logic Class Diagram</p>
 <br><br>
 <p align="center"><img src="images/ParserClassDiagram.png"></p>
+<p align="center">Parser Class Diagram in Logic Component</p>
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -311,7 +313,7 @@ of the existing data file `clientbook.json`. Hence, there is minimal dependency 
 
 <br>
 
-### Feature to allow more options for user to edit insurance policy information of each client in ClientBook.
+### Feature to allow more options for user to edit insurance policy information of each client in ClientBook
 
 #### Motivation
 
