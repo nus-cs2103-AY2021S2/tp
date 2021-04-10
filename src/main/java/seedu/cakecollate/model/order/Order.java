@@ -135,7 +135,7 @@ public class Order {
     }
 
     /**
-     * Returns true if both orders have the same identity and data fields.
+     * Returns true if both orders have the same identity and data fields (excluding Tags).
      * This defines a stronger notion of equality between two orders.
      */
     @Override
@@ -154,7 +154,7 @@ public class Order {
                 && otherOrder.getEmail().equals(getEmail())
                 && otherOrder.getAddress().equals(getAddress())
                 && otherOrder.getOrderDescriptions().equals(getOrderDescriptions())
-                && otherOrder.getTags().equals(getTags())
+                //&& otherOrder.getTags().equals(getTags())
                 && otherOrder.getDeliveryDate().equals(getDeliveryDate())
                 && otherOrder.getDeliveryStatus().equals(getDeliveryStatus())
                 && otherOrder.getRequest().equals(getRequest());
