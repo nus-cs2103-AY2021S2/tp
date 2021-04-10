@@ -48,19 +48,17 @@ public class AddBookCommand extends Command {
     }
 
     /**
-     * Executes the command and returns the result message.
+     * Verifies information of the new book to add, especially its isbn.
      *
-     * @param model {@code Model} which the command should operate on.
-     * @return feedback message of the operation result for display.
-     * @throws CommandException if an error occurs during command execution.
+     * @param model {@code Model} checks for matching isbn of books with same title.
+     * @throws CommandException if books of the same title have different ISBN.
      */
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
+    private void verifyBookInfo(Model model) throws CommandException {
         requireNonNull(model);
-
         if (model.hasBook(bookWithTempBarcode)) {
             throw new CommandException(MESSAGE_DUPLICATE_BOOK);
         }
+
         if (model.hasBook(bookWithTempBarcode.getIsbn())) {
             ArrayList<Book> booksWithIsbn = model.getBooksByIsbn(bookWithTempBarcode.getIsbn());
             Name bookName = bookWithTempBarcode.getName();
@@ -70,6 +68,19 @@ public class AddBookCommand extends Command {
                 }
             }
         }
+    }
+
+    /**
+     * Executes the command and returns the result message.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException if an error occurs during command execution.
+     */
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        verifyBookInfo(model);
 
         model.addBook(new Book(bookWithTempBarcode.getName(), bookWithTempBarcode.getAuthor(),
                 bookWithTempBarcode.getPublisher(), bookWithTempBarcode.getIsbn(),
@@ -77,6 +88,11 @@ public class AddBookCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, bookWithTempBarcode));
     }
 
+    /**
+     * Generates an barcode to to distinguish between each book.
+     *
+     * @param model to check if the newly generated barcode has already be taken up by some book in SmartLib.
+     */
     private Barcode generateBarcode(Model model) {
         Random random = new Random();
         int rv = random.nextInt(Barcode.MAX_VALUE - Barcode.MIN_VALUE) + Barcode.MIN_VALUE;

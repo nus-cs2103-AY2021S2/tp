@@ -24,7 +24,7 @@ public class IncompleteRecord extends Record {
     /**
      * Creates a returning record.
      *
-     * @param barcode     barcode of the book that is borrowed.
+     * @param barcode barcode of the book that is borrowed.
      * @param dateReturned return date of the book.
      */
     public IncompleteRecord(Barcode barcode, DateReturned dateReturned) {
