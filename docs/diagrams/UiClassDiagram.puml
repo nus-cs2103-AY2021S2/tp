@@ -20,6 +20,12 @@ Class CommandBox
 Class TuitionListPanel
 Class TuitionCard
 Class SessionCard
+Class UpcomingTuitionListPanel
+Class UpcomingTuitionCard
+Class CalendarView
+Class CalendarCard
+Class MonthlyFeeListPanel
+Class MonthlyFeeCard
 }
 
 package Model <<Rectangle>> {
@@ -71,9 +77,15 @@ CalendarView --|> UiPart
 CalendarCard --|> UiPart
 
 StudentCard ..> Model
+SessionCard ..> Model
+UpcomingTuitionCard ..> Model
+CalendarCard ..> Model
+TuitionCard ..> Model
+
 UiManager -left-> Logic
 MainWindow -left-> Logic
 
+StatusBarFooter -[hidden]left- TuitionListPanel
 StudentListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
