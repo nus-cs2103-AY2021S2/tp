@@ -103,10 +103,18 @@ public class CommandTestUtil {
     public static final String INVALID_SEX_DESC = " " + PREFIX_SEX + "Male1"; // '1' not allowed in sex
     public static final String INVALID_DATEOFBIRTH_DESC = " " + PREFIX_DOB + "aa-aa-2020"; // 'a' not
     // allowed in dates of birth
+    public static final String INVALID_DATEOFBIRTH_APRIL_DESC = " " + PREFIX_DOB + "31-04-2020";
+    public static final String INVALID_DATEOFBIRTH_FEB_DESC = " " + PREFIX_DOB + "29-02-2021";
+    public static final String INVALID_DATEOFBIRTH_SEP_DESC = " " + PREFIX_DOB + "31-09-2021";
     public static final String INVALID_BREED_DESC = " " + PREFIX_BREED + "poodle!"; // '!' not allowed for breed
     public static final String INVALID_OWNERID_DESC = " " + PREFIX_OWNERID; // empty ownerID not allowed
     public static final String INVALID_SESSION_DESC = " " + PREFIX_SESSION + "01-01-aa22 10:a0"; // 'a' not
-    // allowed in dates of birth
+    // allowed in dates
+    public static final String INVALID_SESSION_APRIL_DESC = " " + PREFIX_SESSION + "31-04-2020 10:00";
+    public static final String INVALID_SESSION_FEB_DESC = " " + PREFIX_SESSION + "29-02-2021 20:00";
+    public static final String INVALID_SESSION_SEP_DESC = " " + PREFIX_SESSION + "31-09-2021 19:30";
+    public static final String INVALID_SESSION_TIME_DESC = " " + PREFIX_SESSION + "11-09-2021 24:30";
+    public static final String INVALID_SESSION_TIME_MINUTES_DESC = " " + PREFIX_SESSION + "11-09-2021 22:60";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

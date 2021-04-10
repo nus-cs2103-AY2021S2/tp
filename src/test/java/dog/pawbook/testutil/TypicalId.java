@@ -14,6 +14,8 @@ public class TypicalId {
     public static final Integer ID_SIX = 6;
     public static final Integer ID_EIGHT = 8;
     public static final Integer ID_TEN = 10;
+    public static final Integer ID_TWELVE = 12;
+    public static final Integer ID_FOURTEEN = 14;
 
     // Programs
     public static final Integer ID_FIFTEEN = 15;
