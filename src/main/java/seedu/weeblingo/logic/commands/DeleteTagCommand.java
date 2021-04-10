@@ -6,7 +6,9 @@ import static seedu.weeblingo.model.Mode.MODE_LEARN;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.weeblingo.commons.core.LogsCenter;
 import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.commons.core.index.Index;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
@@ -16,6 +18,9 @@ import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.flashcard.Question;
 import seedu.weeblingo.model.tag.Tag;
 
+/**
+ * Deletes the user tag(s) of a Flashcard.
+ */
 public class DeleteTagCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteTag";
@@ -31,6 +36,8 @@ public class DeleteTagCommand extends Command {
 
     public static final String MESSAGE_NO_TAGS_TO_DELETE = "There are no user tags to delete!";
 
+    private static final Logger logger = LogsCenter.getLogger(DeleteTagCommand.class);
+
     private Index index;
 
     private Set<Tag> tags;
@@ -42,6 +49,8 @@ public class DeleteTagCommand extends Command {
      * @param tags The tags to be deleted.
      */
     public DeleteTagCommand(Index index, Set<Tag> tags) {
+        requireNonNull(index);
+        requireNonNull(tags);
         this.index = index;
         this.tags = tags;
     }
@@ -76,6 +85,9 @@ public class DeleteTagCommand extends Command {
         }
 
         Flashcard flashcardWithDeletedTags = createDeletedTagFlashcard(flashcardToDeleteTags, tags);
+
+        logger.info("Deleting tag(s) from flashcard at index "
+                + index.getOneBased());
 
         model.setFlashcard(flashcardToDeleteTags, flashcardWithDeletedTags);
         return new CommandResult(MESSAGE_SUCCESS, false, false);
