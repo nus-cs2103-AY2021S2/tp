@@ -519,6 +519,11 @@ Action | Format | Examples
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TutorBuddy home folder.
 
+**Q**: May I edit the data file? 
+**A**: Advanced users are welcome to update data directly by editing that data file. AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
+:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## 7. **Glossary**
