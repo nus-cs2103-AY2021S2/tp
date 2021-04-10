@@ -2,8 +2,6 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.address.storage.JsonAdaptedProperty.INCORRECT_CLIENT_FIELD_MESSAGE;
-import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalProperties.JURONG;
 import static seedu.address.testutil.TypicalProperties.WOODLANDS_CRESCENT;
 
@@ -179,15 +177,6 @@ public class JsonAdaptedPropertyTest {
         IllegalValueException thrown = assertThrows(IllegalValueException.class, adaptedPropertyNoName::toModelType);
         assertEquals(thrown.getMessage(),
                 String.format(JsonAdaptedProperty.MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
-    }
-
-    @Test
-    public void parseStringToClientTest() throws IllegalValueException {
-        assertEquals(JsonAdaptedProperty.fromStringToClient(ALICE.toString()),
-            ALICE);
-        IllegalValueException thrown = assertThrows(IllegalValueException.class, () ->
-            JsonAdaptedProperty.fromStringToClient("This is no client"));
-        assertEquals(thrown.getMessage(), INCORRECT_CLIENT_FIELD_MESSAGE);
     }
 
     @Test
