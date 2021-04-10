@@ -51,4 +51,12 @@ public class ViewDayCommand extends Command {
         return new CommandResult(String.format(
                 MESSAGE_VIEW_DAY_SUCCESS, model.getFilteredTaskList().size(), calendarMonthText, date.getYear()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewDayCommand // instanceof handles nulls
+                && predicate.equals(((ViewDayCommand) other).predicate)
+                && date.equals(((ViewDayCommand) other).date)); // state check
+    }
 }

@@ -4,14 +4,14 @@
 start
 :User executes command;
 if () then ([index is valid])
-    if () then ([field is deletable])
+    if () then ([field is removable])
         :Create new task with same attributes
-                        but with field deleted;
+                        but with field removed;
         :Update model with new task;
         :Show success message to user;
     else ([else])
         :Throw new CommandException;
-        :Show user field cannot be deleted
+        :Show user field cannot be removed
                         error message;
     endif
 else ([else])

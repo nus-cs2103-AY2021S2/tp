@@ -86,9 +86,9 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete-task 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("rmt 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete-task 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `rmt 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -126,85 +126,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete-task 5` command to delete the 5th task in the address book. The `delete-task` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete-task 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new task. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete-task`, just save the task being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### Viewing list of tags in the tags panel
 
@@ -351,12 +272,12 @@ or just use a single command `find` in addition with command line prefix to perf
           if the user keeps forgetting the various commands.
 
 
-### Deleting a field from a task
+### Removing a field from a task
 
-A task in the planner's task list can contain multiple fields. Some of these fields can be deleted without deleting
-the entire task, while other fields are compulsory and cannot be deleted. 
-- Deletable fields: `Deadline`, `RecurringSchedule`, `Description`, `Tag`, `Duration`
-- Non-deletable fields: `Title`, `Status` 
+A task in the planner's task list can contain multiple fields. Some of these fields can be removed without deleting
+the entire task, while other fields are compulsory and cannot be removed. 
+- Removable fields: `Date`, `RecurringSchedule`, `Description`, `Tags`, `Duration`
+- Non-removable fields: `Title`, `Status`
 
 An example of how a user might use this command is shown in the activity diagram below.
 
@@ -366,14 +287,20 @@ The following sequence diagram shows how the delete field command works internal
 
 ![DeleteFieldSequenceDiagram](images/DeleteFieldSequenceDiagram.png)
 
-Alternatives: 
-1) Delete field by setting it to an empty string. (Current choice) 
+Something noteworthy would be the fact that `Duration` cannot exist alone and must exist with either `Date` OR `RecurringSchedule`.
+As this approach creates a new task with the same attributes and replaces it with the existing task in the planner, when a user tries
+to remove the `Date`/`RecurringSchedule` field without removing the `Duration` first, an error will be thrown. 
+
+####Aspect: How removing a task executes
+
+####Alternatives 1 (current choice): Remove field by setting it to an empty string.  
+
 This approach was chosen as it is easy to implement, and not too much of refactoring of code is needed.
-   
-2) Delete field by setting it to null.
-    
-    This approach was not chosen as it would require more refactoring of code - if anything is missed out,
-    it will result in undesirable runtime exceptions.
+
+####Alternatives 2: Remove field by setting it to null. 
+
+This approach was not chosen as it would require more refactoring of code - if anything is missed out, 
+it will result in undesirable runtime exceptions.
 
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -391,20 +318,20 @@ This approach was chosen as it is easy to implement, and not too much of refacto
 **Target user profile**:
 
 * Mainly NUS computing students
-* has a need to manage a significant number of task, most of which has deadlines
-* For computing students, task at hand may take longer than expected
-* Might have many last minute task.
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Users have a need to manage a significant number of task, most of which has deadlines
+* For target users, task at hand may take longer than expected
+* Users might have many last minute tasks
+* Users prefer desktop applications over other types of devices
+* Users are able to type quickly
+* Users prefer typing over mouse interactions
+* User is reasonably comfortable with using CLI applications
 
 **Value proposition**:
-* Manage tasks faster than a typical mouse/GUI driven app
-* A quick way to view all tasks due on a specified day
-* Able to quickly search for an available timing for a particular task
+* Ability to manage tasks faster than with a typical mouse/GUI driven app
+* A quick way to view all tasks due on a specific day
 * Organising tasks according to projects/modules/date so that users can view these tasks with different filters
-* Able to adjust and edit task according to user needs
+* Ability to edit tasks according to user needs
+* Ability to make recurring tasks that is common in students' schedules
 
 
 ### User stories
@@ -538,6 +465,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 4a1. PlanIt shows error message.
 
       Use case resumes at step 3.
+    
+    
+#### **Use case: Remove a field from a task**
+
+**MSS**
+1. User _adds a task with removable field_ to the list.
+2. PlanIT shows task added to the list and updates list.
+3. User enters command to remove the removable field from the task.
+4. PlanIT shows task with field removed and updates list.
+   
+**Extensions**
+* 4a. The given index is invalid.
+    * 4a1. PlanIT shows error message for invalid index.
+    
+        Use case resumes at step 3.
+    
+* 4b. The given prefix is invalid. 
+    * 4b1. PlanIT shows error message for invalid prefix.
+    
+        Use case resumes at step 3.
+    
+* 4c. The field in the task is already removed.
+    * 4c1. PlanIT shows error message detailing field is already removed.
+    
+        Use case ends.
+        
 
 #### **Use case: Sort tasks according to date**
 
@@ -610,6 +563,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+#### **Use case: Counting down to a task's date**
+
+**MSS**
+1. User _adds a task with a date_ to the list. 
+2. PlanIT shows task added to the list and updates list.
+3. User enters command to display number of days left to task's date.
+4. PlanIT displays number of days left to task's date.
+
+**Extensions** 
+* 3a. The task selected does not have a date.
+    * 3a1. PlanIT shows error message detailing that task does not have a date. 
+    * 3a2. User adds a date to the task. 
+      
+        Use case resumes from step 3.
+
+* 3b. The task's date is already over. 
+    * 3b1. PlanIT shows error message detailing that task's date is already over.
+    
+        Use case ends.
+    
+#### **Use case: Displaying statistics of PlanIT**
+
+Preconditions: There is at least one task in PlanIT.
+
+**MSS**
+1. User enters command to display statistics of PlanIT.
+2. PlanIT displays its statistics.
+
 #### **Use case: View tasks on a date**
 
 **MSS**
@@ -623,9 +604,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. PlanIt requests for the correct command.
     * 1a2. User enters new data. 
       
-    Steps 1a1-1a2 are repeated until the data entered are correct.
-
-    Use case resumes from step 2.
+        Steps 1a1-1a2 are repeated until the data entered are correct.
+      
+        Use case resumes from step 2.
 
 
 ### Non-Functional Requirements
@@ -694,19 +675,19 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Deleting a task
+### Removing a task
 
-1. Deleting a task while all tasks are being shown
+1. Removing a task while all tasks are being shown
 
    1. Prerequisites: List all existing tasks using the `ls` command. Multiple tasks in the list.
 
    1. Test case: `rmt 1`<br>
-      Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
+      Expected: First task is deleted from the list. Details of the removed task shown in the status message.
 
    1. Test case: `rmt 0`<br>
-      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No task is removed. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `rmt x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect remove commands to try: `rmt`, `rmt x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Saving data

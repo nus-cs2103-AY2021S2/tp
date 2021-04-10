@@ -15,10 +15,10 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "ls";
 
     public static final String MESSAGE_UNDONE_TASKS_SUCCESS = "Listed all uncompleted tasks. "
-            + "Better get to work soon!\n"
+            + "Better get to work soon!\n\n"
             + Messages.MESSAGE_CALENDAR_SHOWING_CURRENT_MONTH;
 
-    public static final String MESSAGE_ALL_TASKS_SUCCESS = "Listed all tasks.\n"
+    public static final String MESSAGE_ALL_TASKS_SUCCESS = "Listed all tasks.\n\n"
             + Messages.MESSAGE_CALENDAR_SHOWING_CURRENT_MONTH;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists out all tasks in the planner.\n\n"

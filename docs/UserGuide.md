@@ -12,11 +12,12 @@ PlanIt also includes a calendar and a countdown feature to better manage your de
 you who prefer typing, so that bookkeeping can be done faster. Now you can make progress on the things that are
 more important to you.
 
-#### Objective:
+**Objective:**
+
 PlanIT's objective is to improve productivity for students with features and tools to help
-students manage their workload. These features significantly reduces the trouble of having to keep track of tasks,
-especially those that are essential yet repetitive. Features such as recurring schedule and date allows students to
-keep track of weekly task and due dates for tutorial homework, projects and much more. More importantly, the functionalities
+students manage their workload. These features significantly reduce the trouble of having to keep track of tasks,
+especially those that are essential yet repetitive. Features such as recurring schedule and date allow students to
+keep track of weekly tasks and due dates for tutorial homework, projects and much more. More importantly, the functionalities
 of PlanIt's simple overview allows students to see upcoming deadlines or events.
 
 Let's dive deeper into these features to see how these features can assist students
@@ -52,7 +53,7 @@ in workload management.
 
    * **`mk`**`n/eat dinner` : Makes a task titled `eat dinner` to the planner.
 
-   * **`rmt`**`3` : Deletes the 3rd task shown in the current planner.
+   * **`rmt`**`3` : Removes the 3rd task shown in the current planner.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -74,13 +75,13 @@ Tasks can have the following attributes:
 
 | Attribute | Prefix | Description |
 |---|---|---|
-| Title | `t/` | A short description or name for the task. Titles can only contain alphanumeric values. <br>:information_source:  Every task must have a title. |
-| Date | `set/` | A date to represent the deadline of a Task or to represent the day that the task will be carried out. <ul><li>Dates should be of the format dd/mm/yyyy e.g 02/06/2021</li></ul>|
-| Duration | `s/` | The start and end time of a task. You should specify start time and end time in the 24-hour clock format. <ul><li>Duration should be of the format hh:mm-hh:mm e.g 12:30-13:30 </li></ul>|
-| Recurring Schedule | `r/` | Represents a task that might repeat weekly or biweekly. <br> :bulb: You can use this to quickly add weekly tutorials or biweekly lab session for the entire semester. <br><br>Recurring Schedule should be of the format [END DATE][DAY][FREQUENCY] e.g [23/10/2021][mon][weekly] <br><br>**Recurring dates that is of the upcoming day of week up till the [END DATE] will be generated for the task.** <br><br>**Note: Suppose today is 06/04/2021 which falls on a Tuesday, user enters [30/06/2021][tue][weekly] for the recurring schedule field. The date of 06/04/2021 will not be included in the recurring dates and only recurring dates from the following tuesday will be included up till 30th June 2021 on a weekly basis.** <br><br>**Note: Existing recurring dates that has passed the current system date will be removed automatically from the existing task upon application startup.** <ul><li>END DATE should be in the format dd/mm/yyyy, any number greater than 31 is invalid for the day and any number greater than 12 is invalid for the month.</li><li>DAY should be either: mon, tue, wed, thu, fri, sat, sun and is case-insensitive.</li> <li>FREQUENCY should be either: weekly or biweekly and is also case-insensitive.</li>|
+| Title | `t/` | A short description or name for the task. Titles can only contain alphanumeric values and have at most 40 characters. <div markdown="block" class="alert alert-info"><br>:information_source:  Every task must have a title. </div>|
+| Date | `set/` | A date to represent the deadline of a Task or to represent the day that the task will be carried out. <br> Dates should be of the format dd/mm/yyyy e.g 02/06/2021|
+| Duration | `s/` | The start and end time of a task. You should specify start time and end time in the 24-hour clock format. <br> Duration should be of the format hh:mm-hh:mm e.g 12:30-13:30|
+| Recurring Schedule | `r/` | Represents a task that might repeat weekly or biweekly. <div markdown="span" class="alert alert-primary">:bulb: You can use this to quickly add weekly tutorials or biweekly lab session for the entire semester. </div><br>Recurring Schedule should be of the format [END DATE][DAY][FREQUENCY] e.g [23/10/2021][mon][weekly] <br><br>**Recurring dates that is of the upcoming day of week up till the [END DATE] will be generated for the task.** <br><br>**Note: Suppose today is 06/04/2021 which falls on a Tuesday, user enters [30/06/2021][tue][weekly] for the recurring schedule field. The date of 06/04/2021 will not be included in the recurring dates and only recurring dates from the following tuesday will be included up till 30th June 2021 on a weekly basis.** <br><br>**Note: Existing recurring dates that has passed the current system date will be removed automatically from the existing task upon application startup.** <ul><li>END DATE should be in the format dd/mm/yyyy, any number greater than 31 is invalid for the day and any number greater than 12 is invalid for the month.</li><li>DAY should be either: mon, tue, wed, thu, fri, sat, sun and is case-insensitive.</li> <li>FREQUENCY should be either: weekly or biweekly and is also case-insensitive.</li></ul>|
 | Description | `d/` | A text description of the task. Your description can be any value.|
-| Tag | `t/` | A label attached to a task for easy grouping and searching of tasks. Your tag should only contain alphanumeric values. <br> :bulb: You can use this to group tasks by modules e.g adding a `CS2103` tag to a task. |
-| Status | `s/` | Reflects the current status of your task. Status can only be either 'done' or 'not done'.<br>:information_source:   Your task's status will be set to 'not done' by default. |
+| Tag | `t/` | A label attached to a task for easy grouping and searching of tasks. Your tag should only contain alphanumeric values.<div markdown="span" class="alert alert-primary">:bulb: You can use this to group tasks by modules e.g adding a `CS2103` tag to a task. </div>|
+| Status | `s/` | Reflects the current status of your task. Status can only be either 'done' or 'not done'.<div markdown="block" class="alert alert-info"><br>:information_source:   Your task's status will be set to 'not done' by default. Status is compulsory and cannot be removed. </div>|
 
 
 ## Constraints
@@ -132,8 +133,8 @@ searching for tasks.
 ### View Commands : `help`
 
 Displays a list of commonly used possible commands along with each of their formats respectively 
-so that you can refer to commands conveniently whenever you forgot about these commands.
-  * Only a few main commands will be displayed to avoid information overload for first time and forgetful users.
+so that you can refer to commands conveniently whenever you forget about them.
+  * Only a few main commands will be displayed to avoid information overload for first-time and forgetful users.
   * Users can read the User Guide for detailed information on all the commands.
 
 Format: `help`
@@ -141,8 +142,8 @@ Format: `help`
 ### Making a task: `mk`
 
 Adds a task to the planner. <br>
-Task with the same title cannot be added to the planner
-so that you will not have to worry about adding duplicate task by accident.
+Tasks with the same title cannot be added to the planner
+so that you do not have to worry about adding duplicate tasks by accident.
 
 Format: `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION]
 [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…`
@@ -196,11 +197,6 @@ Examples:
    `10/10/2021` and `Remember to update User Guide` respectively.
 *  `edit 2 n/Buy textbook t/ set/` Edits the title of the 2nd task to be `Buy textbook` and clears all existing tags
    and the date.
-
-   
-Examples:
-*  `mk n/CS2103 team meeting r/[31/05/2021][mon][weekly]` Adds the task with the title `CS2103 team meeting` to the
-   planner and generate upcoming recurring dates that is on `mon` `weekly` up to `31/05/2021`.
    
 ### Postpone a task's date : `snooze`
 
@@ -224,10 +220,11 @@ Automatically brings your calendar back to the current date.
 
 Format: `ls`
 
-### Listing all tasks : `ls not done`
+### Listing all uncompleted tasks : `ls not done`
 
 Shows a list of all uncompleted tasks in the planner
-so that you can view all the uncompleted tasks easily.
+so that you can view all the uncompleted tasks easily. <br>
+Automatically brings your calendar back to the current date.
 
 Format: `ls not done`
 
@@ -277,6 +274,8 @@ Format: `find d/KEYWORD [MORE_KEYWORDS]`
 * Only full keywords will be matched. e.g. `proj` will not match `projects`
 * Only a single `d/` description prefix should be allowed.
 * No `t/` tag prefix should be in the search task by description query.
+* No whitespace should be allowed right after the `find d/` command like `find d/   `
+  but will be allowed between the keywords in the command like `find d/Project          CS2103`.
 
 Examples:
 * `find d/write user guide` returns matching tasks with description of following words `user`, `guide`, `write`
@@ -290,23 +289,33 @@ so that you can find matching tasks from the same category quickly when only the
 Format: `find t/KEYWORD`
 
 * The search is **case-insensitive**. e.g `cs2103t` will match `CS2103T`
-* The keyword must be **single, alphanumeric and no spacing** allowed. e.g. `project CS2103` will not be allowed
-  but `projectCS2103` will be acceptable.
 * Only full keyword will be matched. e.g. `cs2103` will not match `cs2103t`
 * No `d/` description prefix should be in the search by tag query.
 * Multiple `t/` tag prefixes are allowed in the search task by tag query.
+* For each tag, the keyword must be **single, alphanumeric** unless searching task by keyword from multiple tags. 
+  e.g. `projectCS2103` will be a single tag keyword and `project CS2103` will be recognised as keywords for 2 tags.
+* No whitespace should be allowed right after the `find t/` command like `find t/   `
+  but will be allowed between the keywords in the command like `find t/Project          CS2103`.  
 * Suppose a task with **multiple tags** of `cs2103` and `cs2105`, it will be returned as a matching task
   if the user inputs falls under the following cases:
-  1. `t/cs2103` only
-  2. `t/cs2105` only
-  3. `t/cs2103` and `t/cs2105`
+  1. `find t/cs2103` only
+  2. `find t/cs2105` only
+  3. `find t/cs2103 t/cs2105` 
+  4.  `find t/cs2103 cs2105`
+      
+**Note: Suppose you want to find a task with **multiple tags** of `cs2103` and `cs2105` 
+but entered `find t/cs2103 Project`, the task you want will not be found since it will be detected 
+as a find a task by tag with `cs2103` and `Project`. So, it is best to put lesser tag keywords when unsure.**      
+
 
 Examples:
 * `find t/CS2103` returns matching tasks with tag of `CS2103` or `cs2103`
-* Below is an illustration of searching matching tasks based on multiple tags:
+* Below is an illustration of how to search matching tasks based on multiple tags:
 
 ![Find Multiple Tags](images/FindMultipleTags.png)
 
+
+**Note: It is optional to keep putting tag prefix`t/` for searching task with multiple tags**
 
 ### Removing a task : `rmt`
 
@@ -327,16 +336,16 @@ Examples:
 
 Removes an existing field from a task in the planner
 so that you can remove certain details from the task directly
-and not go through the hassle of removing the task and adding the same task with lesser fields again.
+without having to go through the hassle of removing the task and adding the same task with lesser fields again.
 
 Format: `rmf INDEX FIELD`
 
 * Removes the specified field of task at `INDEX`.
 * The index refers to the index number shown in the displayed planner.
 * The index **must be a positive integer** 1, 2, 3, …​
-* Fields are specified in the format of `d/` `t/`.
+* Fields are specified in the format their respective attributes: `set/`, `s/`, `r/`, `d/`, `t/`.
 * Exactly one field must be specified.
-* Title field cannot be removed.
+* Title and status fields cannot be removed.
 
 Examples:
 * `ls` followed by `rmf 2 d/` removes the description from the 2nd task in the planner.
@@ -346,14 +355,14 @@ Examples:
 ### Counting down to a task : `count`
 
 Displays the number of days left to a task's date if it exists
-so that you can know how much time left to work on the task.
+so that you know how much time you have left to work on the task.
 
 Format: `count INDEX`
 
 * Counts the number of days until the date of the task at `INDEX`.
 * The index refers to the index number shown in the displayed planner.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The task at index must have a date, otherwise countdown cannot be done.
+* The task at the index must have a date, otherwise countdown cannot be done.
 
 Examples: 
 * `ls` followed by `count 4` displays the number of days left to the 4th task in the planner.
@@ -367,7 +376,9 @@ so that you can check the current task progression and determine your own work e
 
 Statistics include:
 1) The total number of tasks in the planner.
+   
 2) The percentage of tasks completed (marked as done).
+   
 3) The number of tasks due in the next 7 days from the system's current time.
 
 Format: `stat`
@@ -426,13 +437,16 @@ start with an empty data file at the next run.
 You can click on the `prev` and `next` buttons on the calendar shown above, to move to the previous and next months respectively,
 or you can simply type in the following commands, if you are more inclined to using the command line interface.
 
-**Navigate to the previous month on the calendar :** `prev`
-
-**Navigate to the next month on the calendar :** `next`
+Action | Format
+---|---
+**Navigate to the previous month on the calendar** | `prev`
+**Navigate to the next month on the calendar** | `next`
 
 * These 2 commands do not take in parameters. Extraneous parameters will be ignored.
     
     E.g. if the command specifies `prev 987`, it will be interpreted as `prev`.
+* `next` and `prev` operates on the currently displayed month.
+* The displayed date and month will revert to the current date and month upon starting up the app.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -450,11 +464,9 @@ Action | Format, Examples
 --------|------------------
 **Make** | `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br> e.g.,`mk n/eat dinner t/important`
 **Clear** | `clear`
-**Delete Task** | `rmt INDEX`<br> e.g., `rmt 3`
-**Delete Field** | `rmf INDEX FIELD`<br> e.g., `rmf 1 d/`
-
-**Edit** | `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 1 set/10/10/2021 d/Remember to update User Guide`
-
+**Remove Task** | `rmt INDEX`<br> e.g., `rmt 3`
+**Remove Field** | `rmf INDEX FIELD`<br> e.g., `rmf 1 d/`
+**Edit** | `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find CS2103 team project` <br><br>`find [t/TAG] `<br>  e.g., `find t/CS2103` <br><br> `find [d/DESCRIPTION] ` <br> e.g., `find d/CS2103 milestone postmortem`
 **Countdown** | `count INDEX` <br> e.g., `count 2`
 **Statistics** | `stat`
