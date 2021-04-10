@@ -43,6 +43,11 @@ public interface Logic {
     ObservableList<Location> getLocationList();
 
     /**
+     * Returns a unmodified view of the list of items.
+     */
+    ObservableList<Item> getItemList();
+
+    /**
      * Returns the user prefs' storemando file path.
      */
     Path getStoreMandoFilePath();
