@@ -3,6 +3,8 @@ package seedu.address.model.alias;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.logic.parser.AddressBookParser;
+
 /**
  * Represents an Alias in the address book.
  * Guarantees: immutable; alias is valid as declared in {@link #isValidAlias(String)}
@@ -10,7 +12,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Alias {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Alias can take any values except spaces, and it should not be blank";
+            "Alias can take any values except spaces and existing commands, and it should not be blank";
     public static final String VALIDATION_REGEX = "^\\S+$";
 
     public final String alias;
@@ -30,7 +32,7 @@ public class Alias {
      * Returns true if a given string is a valid alias name.
      */
     public static boolean isValidAlias(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && new AddressBookParser().isValidAliasToAlias(test);
     }
 
     @Override
