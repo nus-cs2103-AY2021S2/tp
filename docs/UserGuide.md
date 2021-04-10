@@ -181,7 +181,7 @@ Only one command can be executed at a time and any words after a valid command i
         ```
 
         In the event that there are pending orders that have not been fulfilled that belong to customer 2, then deletion of the customer will not be allowed since we do not want to unknowingly delete orders that are still pending.
-        If deleting all orders, even pending ones, is desired, then adding the `-f` at the end of the command acknowledges and confirms the deletion behavior. Orders associated with the mcustomer will be deleted and will no longer be shown in the order list or order history.
+        If deleting all orders, even pending ones, is desired, then adding the `-f` at the end of the command acknowledges and confirms the deletion behavior. Orders associated with the customer will be deleted and will no longer be shown in the order list or order history.
 
         </details>
 
