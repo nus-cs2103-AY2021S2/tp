@@ -410,11 +410,13 @@ This feature allows you to find all tasks assigned to a single member.
 
 Format: `findTasksFor NAME`
 
-* The search using NAME is case-sensitive. e.g. `David Li` will only match with `David Li`.
+* The search using NAME is case-sensitive.
+  * e.g. `David Li` will only match with `David Li`.
 * NAME must match an entire member's name exactly in order for the tasks assigned to that member to be found. 
-  
+  * e.g. `David` will not match with `David Li`
+ 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
-A NAME that does not exist in the Member List will return no tasks listed.
+A NAME that does not belong to a member inside HEY MATEz will return no tasks listed.
 </div>
 
 Examples: 
