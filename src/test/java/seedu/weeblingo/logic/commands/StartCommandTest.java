@@ -1,7 +1,7 @@
 package seedu.weeblingo.logic.commands;
 
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_GENERIC;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAGS_SET_GENERIC;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_GENERIC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.assertCommandFailure;
 //import static seedu.weeblingo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.weeblingo.logic.commands.StartCommand.MESSAGE_IN_QUIZ_SESSION;
@@ -30,35 +30,35 @@ public class StartCommandTest {
     @Test
     public void execute_startInMenu_failure() {
         model.switchModeMenu();
-        assertCommandFailure(new StartCommand(VALID_START_INTEGER_GENERIC, VALID_START_TAGS_SET_GENERIC),
+        assertCommandFailure(new StartCommand(VALID_START_INTEGER_GENERIC, VALID_TAGS_SET_GENERIC),
                 model, MESSAGE_NOT_IN_QUIZ_MODE);
     }
 
     @Test
     public void execute_startInLearn_failure() throws CommandException {
         model.getMode().switchModeLearn();
-        assertCommandFailure(new StartCommand(VALID_START_INTEGER_GENERIC, VALID_START_TAGS_SET_GENERIC),
+        assertCommandFailure(new StartCommand(VALID_START_INTEGER_GENERIC, VALID_TAGS_SET_GENERIC),
                 model, MESSAGE_NOT_IN_QUIZ_MODE);
     }
 
     @Test
     public void execute_startInQuizSession_failure() {
         model.switchModeQuizSession();
-        assertCommandFailure(new StartCommand(VALID_START_INTEGER_GENERIC, VALID_START_TAGS_SET_GENERIC),
+        assertCommandFailure(new StartCommand(VALID_START_INTEGER_GENERIC, VALID_TAGS_SET_GENERIC),
                 model, MESSAGE_IN_QUIZ_SESSION);
     }
 
     @Test
     public void execute_startInCheckSuccess_failure() {
         model.switchModeCheckSuccess();
-        assertCommandFailure(new StartCommand(VALID_START_INTEGER_GENERIC, VALID_START_TAGS_SET_GENERIC),
+        assertCommandFailure(new StartCommand(VALID_START_INTEGER_GENERIC, VALID_TAGS_SET_GENERIC),
                 model, MESSAGE_IN_QUIZ_SESSION);
     }
 
     @Test
     public void execute_startInHistory_failure() {
         model.switchModeHistory();
-        assertCommandFailure(new StartCommand(VALID_START_INTEGER_GENERIC, VALID_START_TAGS_SET_GENERIC),
+        assertCommandFailure(new StartCommand(VALID_START_INTEGER_GENERIC, VALID_TAGS_SET_GENERIC),
                 model, MESSAGE_NOT_IN_QUIZ_MODE);
     }
 

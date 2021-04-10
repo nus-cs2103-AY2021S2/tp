@@ -60,4 +60,15 @@ public class QuizCommand extends Command {
             return new CommandResult(MESSAGE_SUCCESS + MESSAGE_HAVE_TAGS + tags.toString(), false, false);
         }
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof QuizCommand) {
+            QuizCommand otherCommand = (QuizCommand) other;
+            return this.tags.containsAll(otherCommand.tags) && otherCommand.tags.containsAll(this.tags);
+        } else {
+            return false;
+        }
+    }
+
 }
