@@ -419,8 +419,6 @@ Todos contain a description. They can also be marked as done using the `markT` c
 
 Todos are sorted alphabetically.
 
-You can add Todo A to a project containing Todo B with the same `DESCRIPTION` as long as Todo B has been marked as done.
-
 ##### Adding a todo to a project: `addT`
 
 Adds a todo to a project in CoLAB.
@@ -428,6 +426,7 @@ Adds a todo to a project in CoLAB.
 Format: `addT PROJECT_INDEX d/DESCRIPTION`
 
 * Adds a todo with a `DESCRIPTION` to the project at the specified `PROJECT_INDEX`.
+* You can add a todo to a project containing another todo with the same `DESCRIPTION` as long as the todo in the project has been marked as done.
 
 Parameters:
 
@@ -501,8 +500,6 @@ Deadlines contain a description and a date. They can also be marked as done usin
 
 Deadlines are sorted in ascending order by date.
 
-You can add Deadline A to a project containing Deadline B with the same `DESCRIPTION` and `DATE` as long as Deadline B has been marked as done.
-
 ##### Adding a deadline to a project: `addD`
 
 Adds a deadline to a project in CoLAB.
@@ -510,6 +507,7 @@ Adds a deadline to a project in CoLAB.
 Format: `addD PROJECT_INDEX d/DESCRIPTION by/DATE`
 
 * Adds a deadline to the project at the specified `PROJECT_INDEX` with a `DESCRIPTION` and a `DATE`.
+* You can add a deadline to a project containing another deadline with the same `DESCRIPTION` and `DATE` as long as the deadline in the project has been marked as done.
 
 Parameters:
 
@@ -598,7 +596,7 @@ Format: `addE PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
 
 * Adds an event to the project at the specified `PROJECT_INDEX` with a `DESCRIPTION` as well as the `DATE` and `TIME` of the event.
 * `REPEAT_WEEKLY` accepts values `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one time event.
-* You cannot add Event A to a project containing Event B with the same `DESCRIPTION`, `DATE`, `TIME` and `REPEAT_WEEKLY`.
+* You cannot add an event to a project containing another event with the same `DESCRIPTION`, `DATE`, `TIME` and `REPEAT_WEEKLY`.
 
 Parameters:
 
