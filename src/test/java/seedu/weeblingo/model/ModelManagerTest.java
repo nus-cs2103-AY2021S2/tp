@@ -1,6 +1,5 @@
 package seedu.weeblingo.model;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -9,11 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
-import static seedu.weeblingo.testutil.TypicalFlashcards.*;
+import static seedu.weeblingo.testutil.TypicalFlashcards.A_CARD;
+import static seedu.weeblingo.testutil.TypicalFlashcards.I_CARD;
+import static seedu.weeblingo.testutil.TypicalFlashcards.U_CARD;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
