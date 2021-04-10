@@ -49,8 +49,6 @@ public class StudentUtil {
     public static String getEditStudentDescriptorDetails(EditStudentDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getMatriculationNumber().ifPresent(matriculationNumber -> sb.append(PREFIX_MATRICULATION_NUMBER)
-                .append(matriculationNumber.value).append(" "));
         descriptor.getFaculty().ifPresent(faculty -> sb.append(PREFIX_FACULTY).append(faculty.value).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));

@@ -218,6 +218,7 @@ The following sequence diagram shows how the delete student operation works:
 The following activity diagram summarizes what happens when a user executes the `deleteStud` command:
 
 ![Delete Student Activity Diagram](images/DeleteStudentActivityDiagram.png)
+<img src="images/DeleteStudentActivityDiagram.png" alt="Delete Student Activity Diagram" width="200" />
 
 #### Design consideration:
 

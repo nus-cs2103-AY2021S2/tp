@@ -12,8 +12,11 @@ import static seedu.student.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_SCHOOL_RESIDENCE;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_VACCINATION_STATUS;
 
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.student.commons.core.LogsCenter;
+import seedu.student.logic.LogicManager;
 import seedu.student.logic.commands.AddCommand;
 import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.student.Address;
@@ -31,7 +34,7 @@ import seedu.student.model.student.VaccinationStatus;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddCommandParser implements Parser<AddCommand> {
-
+    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -66,7 +69,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Student student = new Student(name, matriculationNumber, faculty, phone, email, address, vaccinationStatus,
                 medicalDetails, schoolResidence);
-
+        logger.info("----[Student to be added][" + student.toString() + "]");
         return new AddCommand(student);
     }
 

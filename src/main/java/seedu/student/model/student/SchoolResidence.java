@@ -16,6 +16,7 @@ public class SchoolResidence {
         public String toString() {
             return this == DOES_NOT_LIVE_ON_CAMPUS ? "DOES NOT LIVE ON CAMPUS" : super.toString();
         }
+
     }
 
     public static final List<ResidenceAbbreviation> LIST_RESIDENCES = Arrays.asList(
@@ -61,7 +62,7 @@ public class SchoolResidence {
     }
 
     public static String getStringResidences() {
-        return String.join(",", getResidenceAbbreviation());
+        return String.join(", ", getResidenceAbbreviation());
     }
 
     public static List<String> getResidenceAbbreviation() { // DOES_NOT_LIVE_ON_CAMPUS
@@ -69,7 +70,6 @@ public class SchoolResidence {
                 .map(SchoolResidence.ResidenceAbbreviation::name).toArray(String[]::new);
         return Arrays.asList(residenceArray);
     }
-
 
     @Override
     public String toString() {
