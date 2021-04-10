@@ -7,7 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_RANGE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_ENTRY_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_OVERLAPPING_ENTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -35,8 +34,7 @@ public class EditEntryCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the entry identified "
             + "by the entry index used in the displayed entry list. Index must be a positive integer."
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: "
-            + PREFIX_INDEX + "INDEX "
+            + "Parameters: INDEX "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_START_DATE + "START_DATE] "
             + "[" + PREFIX_END_DATE + "END_DATE] "
@@ -81,7 +79,7 @@ public class EditEntryCommand extends Command {
             throw new CommandException(MESSAGE_ENTRY_END_DATE_IN_PAST);
         }
 
-        if (!updatedEntryStartDate.isBefore(updatedEntryEndDate)) {
+        if (updatedEntryStartDate.isAfter(updatedEntryEndDate)) {
             throw new CommandException(MESSAGE_INVALID_DATE_RANGE);
         }
 
