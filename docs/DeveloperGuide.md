@@ -311,8 +311,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student                                    | delete a task from the list                   | remove the tasks I have completed or don't want anymore                           |
 | `* *`    | meticulous student                         | mark a task as done                           | keep track of tasks that I have completed                                         |
 | `* *`    | student                                    | mark a task as undone                         | keep track of tasks that I've yet to complete or need to make edits to            |
-| `*`      | student                                    | tag tasks                                     | filter through my tasks easily and focus on the similar ones with the same tags   |
-| `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task                                         |
+| `*`      | meticulous student                         | tag tasks                                     | filter through my tasks easily and focus on the similar ones with the same tags   |
 | `*`      | user with many tasks in the module book    | modify the deadline without deleting the task | waste less time recreating the whole task     
 | `*`      | user with many tasks in the module book    | search for tasks by their name                | find the task quickly from the large list
 | `*`      | user with many tasks in the module book    | search for tasks by module code               | list down all the tasks from the same module clearly
