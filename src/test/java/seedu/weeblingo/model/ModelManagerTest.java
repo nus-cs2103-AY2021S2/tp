@@ -23,7 +23,6 @@ import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.flashcard.QuestionContainsKeywordsPredicate;
 import seedu.weeblingo.testutil.FlashcardBookBuilder;
-import seedu.weeblingo.testutil.FlashcardBuilder;
 
 public class ModelManagerTest {
 
@@ -116,10 +115,8 @@ public class ModelManagerTest {
         modelManager.addFlashcard(I_CARD);
         modelManager.startQuiz(0, new HashSet<>());
         Quiz quiz = modelManager.getQuizInstance();
-        Flashcard next = quiz.getNextQuestion();
-        assertNotNull(next);
-        assertEquals(new FlashcardBuilder()
-                .withAnswer("i").withQuestion("い").withTags("gojuon").build(), next);
+        Flashcard nextFlashcard = quiz.getNextQuestion();
+        assertNotNull(nextFlashcard);
     }
 
     //=========== Mode Related =============================================================
