@@ -12,7 +12,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_ORDER_DISPLAYED_INDEX = "The order index provided is invalid";
     public static final String MESSAGE_INVALID_ORDER_ITEM_INDEX = "The order item index provided is invalid";
-    // shouldn't all these be more descriptive...
     public static final String MESSAGE_ORDERS_LISTED_OVERVIEW = "%1$d orders listed!";
     public static final String MESSAGE_ORDERS_REMINDER_OVERVIEW = "REMINDER! \n"
             + "Date Today is "

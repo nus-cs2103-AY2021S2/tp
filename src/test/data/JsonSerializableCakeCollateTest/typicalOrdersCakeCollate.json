@@ -41,7 +41,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "orderDescriptions": [ "1 Raisins Cake Thing", "1 x Vanilla Cake", "1 x Blackforest cake" ],
+    "orderDescriptions": [ "Raisins Cake Thing", "Vanilla Cake", "Blackforest cake" ],
     "tagged" : [ ],
     "deliveryDate": "31/12/2022",
     "request": ""

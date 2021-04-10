@@ -52,7 +52,7 @@ public class TypicalOrders {
             .withRequest("").build();
     public static final Order ELLE = new OrderBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
-            .withOrderDescriptions("1 Raisins Cake Thing", "1 x Blackforest cake", "1 x Vanilla Cake")
+            .withOrderDescriptions("Raisin Cake", "Blackforest cake", "Vanilla Cake")
             .withDeliveryDate("31/12/2022").withDeliveryStatus()
             .withRequest("").build();
     public static final Order FIONA = new OrderBuilder().withName("Fiona Kunz").withPhone("9482427")

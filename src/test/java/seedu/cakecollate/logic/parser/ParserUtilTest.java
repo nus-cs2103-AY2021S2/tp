@@ -47,7 +47,7 @@ public class ParserUtilTest {
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_ORDER_DESC_1 = "chocolate mousse";
-    private static final String VALID_ORDER_DESC_2 = "1 x strawberry thing";
+    private static final String VALID_ORDER_DESC_2 = "strawberry thing";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_DELIVERY_DATE = "01/01/2022";
