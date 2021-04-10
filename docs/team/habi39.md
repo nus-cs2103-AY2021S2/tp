@@ -15,7 +15,23 @@ Given below are my contributions to the project.
     * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
     * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: 
+  Added the ability to add dates to a given task
+  * What it does: allows the user to have deadlines for each task
+  * Justification: This feature is one of the core of the product as a task manager requires task to have deadlines
+  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+
+  Added the ability to sort dates in the given list of task
+  * What it does: allows the user to have see whats the next task that is due
+  * Justification: This feature allows user to organise their task based on when it is due.
+  * Highlights: This enhancement affects existing implementation of dates as it requires the analysis of the date of each task in the list
+
+  Added the ability to add duration to task
+  * What it does: allows the user to have a dedicated duration to finish the task
+  * Justification: This feature allows user to cater a period of time for the task
+  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+
+
 
 * **Code contributed**: [RepoSense link]()
 
