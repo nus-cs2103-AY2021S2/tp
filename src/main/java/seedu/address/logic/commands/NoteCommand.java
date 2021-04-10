@@ -24,7 +24,7 @@ public class NoteCommand extends Command {
     public static final String COMMAND_WORD = "note";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Record a note/ View notes/ Clear notes for "
-            + "the client identified by the index number used in the displayed person list.\n"
+            + "the client identified by the index number used in the displayed client list.\n"
             + "Parameters to record a note: "
             + COMMAND_WORD + " INDEX (must be a positive integer) " + PREFIX_NOTE_RECORD + "NOTE" + "\n"
             + "Parameters to view all notes: "

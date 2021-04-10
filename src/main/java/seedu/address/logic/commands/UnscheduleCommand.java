@@ -18,7 +18,7 @@ public class UnscheduleCommand extends Command {
     public static final String COMMAND_WORD = "unschedule";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unschedules a meeting with the person identified by the "
+            + ": Unschedules a meeting with the client identified by the "
             + "index number used in the displayed meeting list.\n"
             + COMMAND_WORD + " all -- removes all meetings\n"
             + COMMAND_WORD + " expired -- removes all expired meetings\n"

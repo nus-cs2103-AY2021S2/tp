@@ -17,21 +17,21 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
- * Schedules a meeting with a person identified using its displayed index from the address book.
+ * Schedules a meeting with a client identified using its displayed index from the address book.
  */
 public class ScheduleCommand extends Command {
 
     public static final String COMMAND_WORD = "schedule";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Schedules a meeting with the person identified by the "
-            + "index number used in the displayed person list.\n"
+            + ": Schedules a meeting with the client identified by the "
+            + "index number used in the displayed client list.\n"
             + "Scheduled meeting must not be in the past."
             + "Parameters: INDEX (must be a positive integer)\n"
             + PREFIX_MEETING + "MEETING_DESCRIPTION @ yyyy-mm-dd HH:MM\n"
             + "Example: " + COMMAND_WORD + " 1 m/ Insurance Plan @ 2021-03-05 14:50";
 
-    public static final String MESSAGE_SCHEDULE_PERSON_SUCCESS = "Scheduled meeting with person %1$s at %2$s";
+    public static final String MESSAGE_SCHEDULE_PERSON_SUCCESS = "Scheduled meeting with client %1$s at %2$s";
     public static final String MESSAGE_SCHEDULE_CONFLICT_FAILURE =
             "Scheduling conflict found at this meeting %1$s with %2$s";
     public static final String MESSAGE_SCHEDULE_PAST_FAILURE =
