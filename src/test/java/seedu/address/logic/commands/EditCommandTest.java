@@ -16,10 +16,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -34,10 +32,7 @@ import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.TestDataUtil;
-import seedu.address.testutil.TypicalPersons;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
