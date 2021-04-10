@@ -113,6 +113,25 @@ The `Model`,
 * does not depend on any of the other three components (`Storage`, `Logic`, `UI`).
 
 
+The above diagram does not go into detail on how the specific sub-packages interact with each other. 
+This is due to both PlantUML diagramming restrictions as well as an intention to provide a high-level visualisation at the start.
+
+The section below zooms in a **little bit** on how the `ModelManager` and `StatefulAddressBook` interact with the lower level sub-packages.
+Finer details than what is shown in the section below can be seen under the implementation section of each of the models.
+
+#### Zoomed in view of Room, Resident and ResidentRoom 
+![Zoomed in view of Room, Resident and ResidentRoom](images/high-level-models/ResidentRoomZoomIn.png)
+
+#### Zoomed in view of Issue 
+![Zoomed in view of Issue](images/high-level-models/IssueZoomIn.png)
+
+#### Zoomed in view of CommandHistory 
+![Zoomed in view of CommandHistory](images/high-level-models/CommandHistoryZoomIn.png)
+
+#### Zoomed in view of Alias 
+![Zoomed in view of Alias](images/high-level-models/AliasZoomIn.png)
+
+
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)

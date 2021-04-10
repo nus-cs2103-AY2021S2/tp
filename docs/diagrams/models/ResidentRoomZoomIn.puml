@@ -1,0 +1,47 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam linetype ortho
+
+Package Model <<Rectangle>>{
+    Class StatefulAddressBook
+    Class ModelManager
+    Package ResidentRoom {
+        Class UniqueResidentRoomList
+        Class ResidentRoom
+    }
+    Package Resident {
+        Class UniqueResidentList
+        Class Resident
+        Class Name
+    }
+    Package Room {
+        Class UniqueRoomList
+        Class Room
+        Class RoomNumber
+    }
+}
+' ===== Overarching stuff =====
+ModelManager "1" *-> "1" StatefulAddressBook
+
+' ==== Room ====
+ModelManager  *---> "~* filteredlist" Room
+StatefulAddressBook --down-> "1" UniqueRoomList
+UniqueRoomList "~* " *--> "1" Room
+Room "1" *--> RoomNumber
+
+' ==== Resident ====
+ModelManager  *---> "~* filteredlist" Resident
+StatefulAddressBook --down-> "1 " UniqueResidentList
+UniqueResidentList "1" *--> "*" Resident
+Resident "1" *--> Name
+
+' ==== ResidentRoom ====
+ModelManager  *---> "~* filteredlist" ResidentRoom
+StatefulAddressBook --down-> "1" UniqueResidentRoomList
+UniqueResidentRoomList "*" *--> "1" ResidentRoom
+ResidentRoom --> "1"  Name
+ResidentRoom --> "1"  RoomNumber
+@enduml

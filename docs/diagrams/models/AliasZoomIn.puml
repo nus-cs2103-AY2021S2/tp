@@ -1,0 +1,26 @@
+@startuml
+!include ../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam linetype ortho
+
+Package Model <<Rectangle>>{
+    Class StatefulAddressBook
+    Class ModelManager
+
+    Package Alias {
+        Class AliasMapping
+        Class Alias
+    }
+}
+' ===== Overarching stuff =====
+ModelManager *-left-> "1" StatefulAddressBook
+
+' ==== The model in question ====
+ModelManager  *---> Alias
+StatefulAddressBook --down-> AliasMapping
+AliasMapping --> Alias
+
+
+@enduml
