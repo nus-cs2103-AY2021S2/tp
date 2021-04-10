@@ -190,7 +190,7 @@ Finds passengers whose names contain any of the given keywords.
 
 Deletes the specific passenger from the GME terminal.
 
-**Format:** <code>delete INDEX [<a title="These parameters are optional.">INDEX INDEX...</a>]</code>
+**Format:** <code>delete INDEX [<a title="These extra parameters are optional.">INDEX INDEX...</a>]</code>
 
 <div markdown="block" class="alert alert-info">
 
@@ -215,7 +215,7 @@ Deletes the specific passenger from the GME terminal.
 
 Selects passengers from the current view in the bottom left pane of the GME terminal to arrange a carpool. 
 
-**Format:** <code>pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [<a title="These parameters are optional.">c/INDEX c/INDEX...</a>] [tag/TAG]</code>
+**Format:** <code>pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [<a title="These extra parameters are optional.">c/INDEX c/INDEX ...</a>] [tag/TAG]</code>
 
 <div markdown="block" class="alert alert-info">
 
@@ -258,7 +258,7 @@ Removes the [pool](#6-glossary) specified by an index from the GME terminal.
 
 Filtering pools where the name of the [pool's](#6-glossary) passengers contain any of the given keywords.
 
-**Format:** `findPool n/KEYWORD [n/KEYWORD n/KEYWORD ...]`
+**Format:** <code>findPool n/KEYWORD [<a title="These extra parameters are optional.">n/KEYWORD n/KEYWORD ...</a>]</code>
 
 <div markdown="block" class="alert alert-info">
 
