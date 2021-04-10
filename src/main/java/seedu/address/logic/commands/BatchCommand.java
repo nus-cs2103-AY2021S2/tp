@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -16,7 +17,7 @@ import seedu.address.model.shortcut.ShortcutLibrary;
  *
  * @param <T> the type of {@code Command} that will be executed by {@code BatchCommand}
  */
-public class BatchCommand<T extends Command> extends Command {
+public class BatchCommand<T extends BatchOperations> extends Command {
 
     public static final String COMMAND_WORD = "batch";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -56,16 +57,18 @@ public class BatchCommand<T extends Command> extends Command {
             // Execute on the copy first to check for errors
             Model copy = new ModelManager(model.getAddressBook(), model.getUserPrefs(), new ShortcutLibrary());
 
-            for (Command command : listOfCommands) {
-                command.execute(copy);
+            for (BatchOperations command : listOfCommands) {
+                command.executeBatch(copy);
             }
 
             // If successfully executed on copy, we can now execute on model without worrying about exceptions.
             // Avoids having to maintain state/undo/redo functionality.
-            for (Command command : listOfCommands) {
-                CommandResult commandResult = command.execute(model);
+            for (BatchOperations command : listOfCommands) {
+                CommandResult commandResult = command.executeBatch(model);
                 logger.info("Result of batch command: " + commandResult.getFeedbackToUser());
             }
+
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
             return new CommandResult(SUCCESS_MESSAGE, false, false, false, false);
         } catch (CommandException e) {
@@ -84,8 +87,8 @@ public class BatchCommand<T extends Command> extends Command {
 
             boolean areListsSame = true;
             for (int i = 0; i < listOfCommands.size(); i++) {
-                Command fromMainList = listOfCommands.get(i);
-                Command fromOtherList = (Command) otherBatchCommand.listOfCommands.get(i);
+                BatchOperations fromMainList = listOfCommands.get(i);
+                BatchOperations fromOtherList = (BatchOperations) otherBatchCommand.listOfCommands.get(i);
                 areListsSame &= fromMainList.equals(fromOtherList);
             }
 
