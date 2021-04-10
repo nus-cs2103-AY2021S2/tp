@@ -99,8 +99,8 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 * Use `GUISettings` from the `Logic`component to update the UI with new settings.
-* `DictionaryContentPanel` use` DictionaryListPanelConfig` to detect `DictionaryListPanel`Display status
-* Model Component can request for changes using `DictionaryContentConfig` and `NoteContentConfig`
+* `DictionaryContentPanel` use` DictionaryListPanelConfig` to detect `DictionaryListPanel`display status
+* Model Component can request for content change using `DictionaryContentConfig` and `NoteContentConfig`
 
 ### Logic component
 
@@ -207,17 +207,18 @@ Note that if the user does not have a mail client software set as default in the
 
 ### UI features
 
-#### Manipulation UI through Command
+#### Opening and Closing UI through Command
 #####  Implementation
-Dictionote provides a dynamic user interface that allows the user to open and close any panel.
-When executing any given command, dictionote should be able to change the user interface according to the command.
-All commands should be able to open or close the UI panel. The user will also be given the ability to manipulate UI through user command.
-The feature is implemented through the `CommandResult` that all `Command` in the system return.
+Dictionote has an interactive user interface that allows the user to open and close any panel through command.
+Furthermore, when any command is executed, Dictionote should be able to change the user interface based on the command type/requirement.
+All commands should be able to open and close the required UI panel. The user will also be able to open and close the UI via user command.
+The feature is implemented using `CommandResult`, which is returned by all `Command` in the system.
 
-`CommandResult` store a string `feedbackToUser`, enum `UiAction` and enum `UiActionOption`. `feedbackToUser` will
+`CommandResult` contain a `String` object call `feedbackToUser`, a `UiAction` enum call `uiAction`
+and `UiActionOption` enum call `uiActionOption`. `feedbackToUser` will
 be show on the `ResultDisplay` indicating the command feedback after execution.
-`UiAction` indicate the action the command want the `UI` to take.
-e.g `UiAction.OPEN`, `UiAction.CLOSE`, `UiAction.EXIT`, ... etc. `UiActionOption` is only applicable to some `UiAction`.
+`uiAction` indicate the action the command want the `UI` to take.
+e.g `UiAction.OPEN`, `UiAction.CLOSE`, ... etc. `UiActionOption` is only applicable to some `UiAction`.
 It indicate the specific option available for the `UiAction`.
 e.g `UiActionOption.Dictionary` for `UiAction.Open` mean open dictionary panel.
 
@@ -229,10 +230,41 @@ The following is the sequence diagram for `OPENCOMMAND`
 * **Alternative 1 (current choice):** Make use of the existing command `CommandResult` class
     * Pros: make use of the existing system and easy to implement
     * Cons: All command will have to decide on the response. (or use the default setting)
-* Alternative 2: Make use of the Model Component as an intermediary between Command and UI. 
-  The command will call a method available on the model to make a change to the UI.
+* Alternative 2: Make use of the Model Component as an intermediary between Command and UI.
+  The command will call a method available on the model to change the UI settings.
     * Pros: Only the class that requires to change in UI will be needed to call the method
     * Cons: Increasing coupling.
+
+
+#### Manipulation UI Settings through Command
+#####  Implementation
+While All Command is able open or close an UI. There are some command where 
+Dictionote has an interactive user interface that allows the user to open and close any panel through command.
+Furthermore, when any command is executed, Dictionote should be able to change the user interface based on the command type/requirement.
+All commands should be able to open and close the required UI panel. The user will also be able to open and close the UI via user command.
+The feature is implemented using `CommandResult`, which is returned by all `Command` in the system.
+
+`CommandResult` contain a `String` object call `feedbackToUser`, a `UiAction` enum call `uiAction`
+and `UiActionOption` enum call `uiActionOption`. `feedbackToUser` will
+be show on the `ResultDisplay` indicating the command feedback after execution.
+`uiAction` indicate the action the command want the `UI` to take.
+e.g `UiAction.OPEN`, `UiAction.CLOSE`, ... etc. `UiActionOption` is only applicable to some `UiAction`.
+It indicate the specific option available for the `UiAction`.
+e.g `UiActionOption.Dictionary` for `UiAction.Open` mean open dictionary panel.
+
+The following is the sequence diagram for `OPENCOMMAND`
+
+![OpenCommandSequenceDiagram](images/OpenCommandSequenceDiagram.png)
+
+#### Design Consideration
+* Alternative 1 Make use of the existing command `CommandResult` class
+    * Pros: make use of the existing system and easy to implement
+    * Cons: All command will have to decide on the response. (or use the default setting)
+* **Alternative 2(current choice):**: Make use of the Model Component as an intermediary between Command and UI.
+  The command will call a method available on the model to change the UI settings.
+    * Pros: Only the class that requires to change in UI will be needed to call the method
+    * Cons: Increasing coupling.
+
 
 ### Note Features
 
