@@ -119,9 +119,11 @@ Prefix: `d/`
 **:exclamation: For advanced users:** You will be able to enter a past delivery date into the save file `cakecollate.json`. As such, you are recommended to add/edit a delivery date through the application itself.
 
 ##### `INDEX`
-Indexes are used to specify specific orders in CakeCollate. 
+Indexes are used to specify specific orders in CakeCollate. The index number can be found beside the 'name' field 
+in [order item box](#221-sections-of-the-ui).
 Prefix: `none`
-* It can only contain positive integers greater than 1.
+* It can only contain positive integers greater than 1, but should not be greater than the total number of orders in 
+the Orders Box.
   E.g. `1`,`20`,`35`
   
 ##### `EMAIL`
@@ -412,7 +414,8 @@ Format: `remind DAYS`
 
 Examples:
 * `remind 0` lists all orders that have a delivery date for today.
-* `remind 3` lists all orders that have a delivery date within 3 days from today.
+* `remind 365` lists all orders that have a delivery date within 365 days from today.
+    ![result for 'remind 365'](images/Remind365.PNG) 
 
 
 ### **4.2 Order Items**
@@ -511,43 +514,52 @@ on the operating system of the computer you are running cakecollate on.
 
 ## **7. Command and prefix summary**
 
-Action  | Format, Examples
+### Order Interaction
+Action  | Format
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...` 
-<br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake 3` 
-<br><br> `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_ITEM_INDEXES [o/ORDER_DESCRIPTION]... [t/TAG]...` 
-<br> e.g. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake oi/1` <br>
-
 **Clear** | `clear`
-**Delete** | `delete INDEXES`<br> e.g., `delete 3 4`
+**Delete** | `delete INDEXES`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/ORDER_DESCRIPTION]... [t/TAG]...`
-<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find [n/KEYWORD_NAME]... [p/KEYWORD_PHONE]... [e/KEYWORD_EMAIL]... [a/KEYWORD_ADDRESS]... 
-[o/KEYWORD_ORDER_DESCRIPTION]... [t/KEYWORD_TAG]... [d/KEYWORD_DELIVERY_DATE]... [s/KEYWORD_DELIVERY_STATUS]... [r/KEYWORD_REQUEST]... 
-`<br> e.g., `find James Jake`, `find n/Alex o/Chocolate`, `find n/Bernice d/march s/undelivered`
-**List** | `list`
-**Help** | `help`
-**Remind** | `remind DAYS`<br> e.g., `remind 3`
-**Request** | `request INDEX [r/REQUEST]` <br> e.g., `request 1 r/More sugar, spice and everything nice.`
-**Undelivered** | `undelivered INDEXES`<br> e.g., `undelivered 3 4`
-**Delivered** | `delivered INDEXES`<br> e.g., `delivered 3 4`
-**Cancelled** | `cancelled INDEXES`<br> e.g., `cancelled 3 4`
-**Add Order Item** | `addItem ORDER_ITEM_DESCRIPTION`<br> e.g., `addItem 2 x Red Velvet`
-**Delete Order Item** | `deleteItem ORDER_ITEM_INDEXES`<br> e.g., `deleteItem 2 3`
+**Request** | `request INDEX r/REQUEST` 
+**Undelivered** | `undelivered INDEXES`
+**Delivered** | `delivered INDEXES`
+**Cancelled** | `cancelled INDEXES`
 
+### Order Functionalities
+Action | Format
+-------|----------
+**Find** | `find [n/KEYWORD_NAME]... [p/KEYWORD_PHONE]... [e/KEYWORD_EMAIL]... [a/KEYWORD_ADDRESS]... [o/KEYWORD_ORDER_DESCRIPTION]... [t/KEYWORD_TAG]... [d/KEYWORD_DELIVERY_DATE]... [s/KEYWORD_DELIVERY_STATUS]... [r/KEYWORD_REQUEST]...`
+**List** | `list`
+**Remind** | `remind DAYS`
+
+### Order Items
+Action | Format
+-------|----------
+**Add Order Item** | `addItem ORDER_ITEM_DESCRIPTION`
+**Delete Order Item** | `deleteItem ORDER_ITEM_INDEXES`
+
+### Others
+Action | Format
+-------|----------
+**Help** | `help`
+**Clear** | `clear`
+**Exit** | `exit`
+
+### Prefix
 Prefix  | Description
 --------|------------------
-**n/** / Name of the customer
-**p/** / Phone number of the customer
-**e/** / Email of the customer
-**a/** / Address of the customer
-**d/** / Delivery date of the order
-**o/** / Order placed by the customer
-**oi/** / Order index of the order placed by the customer, based on the order item table on the right
-**t/** / Tags for the order
-**r/** / Request placed by the customer for an order
-**s/** / Status of the order (undelivered, delivered or cancelled)
---------------------------------------------------------------------------------------------------------------------
+**n/** | Name of the customer
+**p/** | Phone number of the customer
+**e/** | Email of the customer
+**a/** | Address of the customer
+**d/** | Delivery date of the order
+**o/** | Order placed by the customer
+**oi/** | Order index of the order placed by the customer, based on the order item table on the right
+**t/** | Tags for the order
+**r/** | Request placed by the customer for an order
+**s/** | Status of the order (undelivered, delivered or cancelled)
+
 
 ## Acknowledgements
 
