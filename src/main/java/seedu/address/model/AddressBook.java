@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.Alias;
-import seedu.address.commons.core.AliasMapping;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.AliasMapping;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.IssueList;
 import seedu.address.model.resident.Name;

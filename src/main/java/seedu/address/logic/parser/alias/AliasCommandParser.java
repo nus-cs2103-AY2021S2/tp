@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMAND;
 
 import java.util.logging.Logger;
 
-import seedu.address.commons.core.Alias;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.alias.AliasCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -15,6 +14,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.alias.Alias;
 
 /**
  * Parses input arguments and creates a new AliasCommand object.

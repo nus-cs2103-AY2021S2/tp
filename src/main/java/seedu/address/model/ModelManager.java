@@ -10,11 +10,11 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.address.commons.core.Alias;
-import seedu.address.commons.core.AliasMapping;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.alias.Alias;
+import seedu.address.model.alias.AliasMapping;
 import seedu.address.model.commandhistory.CommandHistory;
 import seedu.address.model.commandhistory.CommandHistoryEntry;
 import seedu.address.model.commandhistory.ReadOnlyCommandHistory;
