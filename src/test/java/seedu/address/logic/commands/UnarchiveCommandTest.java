@@ -49,7 +49,7 @@ class UnarchiveCommandTest {
         UnarchiveCommand unarchiveCommand = new UnarchiveCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(UnarchiveCommand.MESSAGE_UNARCHIVE_PERSON_SUCCESS,
-                patientInFilteredList);
+                                                patientInFilteredList.getName().fullName);
 
         expectedModel.unarchivePerson(copy);
         assertCommandSuccess(unarchiveCommand, model, expectedMessage, expectedModel);
@@ -76,7 +76,8 @@ class UnarchiveCommandTest {
 
         UnarchiveCommand unarchiveCommand = new UnarchiveCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(UnarchiveCommand.MESSAGE_UNARCHIVE_PERSON_SUCCESS, patientToUnarchive);
+        String expectedMessage = String.format(UnarchiveCommand.MESSAGE_UNARCHIVE_PERSON_SUCCESS,
+                                                    patientToUnarchive.getName().fullName);
 
         expectedModel.unarchivePerson(copy);
 
