@@ -24,6 +24,7 @@ Class "{abstract}\nCommand" as Command
 }
 
 package Conditions {
+Class ConditionLogic
 Class ConstraintManager
 Class DateVerifier
 Class IndexManager
@@ -55,18 +56,20 @@ XYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
 XYZCommand -up-|> Command
+note left of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 LogicManager .left.> Command : executes >
 
-XYZCommand ..> DateVerifier
-XYZCommand ..> IndexManager
-XYZCommand ..> ConstraintManager
+XYZCommand ..> ConditionLogic
+ConditionLogic ..> DateVerifier
+ConditionLogic ..> IndexManager
+ConditionLogic ..> ConstraintManager
 
 LogicManager --> Model
-Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+Command .left.> Model
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult
-CommandResult -[hidden]-> Parser
+
+PlannerParser -[hidden]->LogicManager
 @enduml
