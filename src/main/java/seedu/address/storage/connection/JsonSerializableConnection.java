@@ -6,13 +6,10 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.meeting.UniqueMeetingList;
-import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
-import seedu.address.storage.connection.JsonAdaptedPersonMeetingConnection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,7 +40,7 @@ public class JsonSerializableConnection {
         for (Map.Entry<Person, UniqueMeetingList> dict : map.entrySet()) {
             Person personKey = dict.getKey();
             for (Meeting meeting : dict.getValue()) {
-                connections.add(new JsonAdaptedPersonMeetingConnection(meeting, personKey));
+                connections.add(new JsonAdaptedPersonMeetingConnection(personKey, meeting));
             }
         }
     }
