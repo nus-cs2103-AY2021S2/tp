@@ -72,6 +72,14 @@ public class ListCommand extends Command {
         this.parseArguments = parseArguments;
     }
 
+    /**
+     * Returns the comparator used to sort the filtered list.
+     * Getter implemented to expose {@code comparator} for testing.
+     */
+    public Comparator<Person> getComparator() {
+        return comparator;
+    }
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
