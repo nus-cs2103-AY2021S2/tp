@@ -12,7 +12,6 @@ public class ListMeetingCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all meetings";
 
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
