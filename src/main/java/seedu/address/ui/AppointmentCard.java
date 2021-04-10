@@ -11,7 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.appointment.Appointment;
-
+import seedu.address.model.appointment.DateTime;
 
 /**
  * An UI component that displays information of a {@code Appointment}.
@@ -57,6 +57,7 @@ public class AppointmentCard extends UiPart<Region> {
         name.setText(appointment.getName().fullName);
         checkForPlaceholder(appointment.getAddress().value, address);
         checkForPlaceholder(appointment.getDateTime().dateTime, dateTime);
+        checkForExpiry(appointment.getDateTime().dateTime, cardPane);
         setRelevantContactLabel();
         appointment.getContacts().stream()
                 .sorted(Comparator.comparing(contact -> contact.getName().toString()))
@@ -81,6 +82,12 @@ public class AppointmentCard extends UiPart<Region> {
         } else {
             label.setVisible(true);
             label.setText(value);
+        }
+    }
+
+    private void checkForExpiry(String date, HBox cardPane) {
+        if (!DateTime.isFutureDateTime(date)) {
+            cardPane.setStyle("-fx-background-color:salmon");
         }
     }
 

@@ -44,6 +44,19 @@ If you can type fast, ParentPal can get your contact management tasks done faste
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Understanding ParentPal
+
+### Expired appointments
+ParentPal helps you to manage your expired appointments by colouring them red, once expired. 
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Should the appointment not appear red despite it having expired, click on the appointment box to refresh it.
+</div>
+
+![expiredAppt](images/expiredAppt.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -65,8 +78,8 @@ If you can type fast, ParentPal can get your contact management tasks done faste
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
+  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 </div>
 
@@ -86,7 +99,8 @@ Shows information about available commands and how they can be used.
 Format: `help [COMMAND]`
 
 * If command is not specified, a summary of all available commands will be displayed, along with a link to access the full user guide.
-* If command is specified, detailed information about the command will be displayed. 
+* If command is specified, detailed information about the command will be displayed.
+* If multiple commands are specified, only the last command will be taken.
 
 Examples:
 * `help` Displays summary of all available commands.
@@ -314,6 +328,14 @@ Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILDTAG]�
 * The index refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `DATE` has to be in the format "`dd`/`MM`/`yyyy` `HH`:`mm`".
+
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+An appointment with the exact same name and date as an appointment that already exists in the appointment book cannot be added.
+</div>
+
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+ParentPal currently does not support checking for clashing appointments. Please make sure to check your availability before adding new appointments. This can be done with the help of findAppt by date.
+</div>
 
 Examples:
 * `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2 tc/amy`
