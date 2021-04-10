@@ -19,7 +19,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
 
 /**
  * Controller for a help page
@@ -31,8 +33,8 @@ public class HelpWindow extends UiPart<Stage> {
 
     private static final int TABLE_ITEM_HEIGHT = 32;
     private static final int ADDITIONAL_MARGIN = 30;
-    private static final double WINDOW_HEIGHT = 800;
-    private static final double WINDOW_WIDTH = 900;
+    private static final double WINDOW_HEIGHT = 768;
+    private static final double WINDOW_WIDTH = 1099;
 
     /**
      * Creates wrapping ability for cells in TableView.
@@ -95,12 +97,13 @@ public class HelpWindow extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
-    public HelpWindow(Stage root) {
+    public HelpWindow(Stage root, Logic logic) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
 
-        root.setWidth(WINDOW_WIDTH);
-        root.setHeight(WINDOW_HEIGHT);
+        root.setMaxHeight(WINDOW_HEIGHT);
+        root.setMaxWidth(WINDOW_WIDTH);
+        setWindowDefaultSize(root, logic.getGuiSettings());
 
         setUpTable(generalTableView, getGeneralCommands());
         setUpTable(studentTableView, getStudentCommands());
@@ -111,8 +114,8 @@ public class HelpWindow extends UiPart<Stage> {
     /**
      * Creates a new HelpWindow.
      */
-    public HelpWindow() {
-        this(new Stage());
+    public HelpWindow(Logic logic) {
+        this(new Stage(), logic);
     }
 
     /**
@@ -142,10 +145,10 @@ public class HelpWindow extends UiPart<Stage> {
 
     private static ObservableList<CommandHelper> getGeneralCommands() {
         return FXCollections.observableArrayList(
-                new CommandHelper("Open help panel", "help"),
-                new CommandHelper("List all", "list"),
-                new CommandHelper("Clear all data", "clear"),
-                new CommandHelper("Exit", "exit")
+                new CommandHelper(" Open help panel", "help"),
+                new CommandHelper(" List all", "list"),
+                new CommandHelper(" Clear all data", "clear"),
+                new CommandHelper(" Exit", "exit")
         );
     }
 
@@ -178,6 +181,18 @@ public class HelpWindow extends UiPart<Stage> {
         return FXCollections.observableArrayList(
                 new CommandHelper("Get fee", "fee n/STUDENT_NAME m/MONTH y/YEAR")
         );
+    }
+
+    /**
+     * Sets the default size based on {@code guiSettings}.
+     */
+    private void setWindowDefaultSize(Stage stage, GuiSettings guiSettings) {
+        stage.setHeight(guiSettings.getWindowHeight());
+        stage.setWidth(guiSettings.getWindowWidth());
+        if (guiSettings.getWindowCoordinates() != null) {
+            stage.setX(guiSettings.getWindowCoordinates().getX());
+            stage.setY(guiSettings.getWindowCoordinates().getY());
+        }
     }
 
     /**

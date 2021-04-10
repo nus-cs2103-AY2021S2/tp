@@ -32,6 +32,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final double WINDOW_HEIGHT = 768;
+    private static final double WINDOW_WIDTH = 1100;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -87,15 +89,18 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
+        // configure UI
+        primaryStage.setMaxHeight(WINDOW_HEIGHT);
+        primaryStage.setMaxWidth(WINDOW_WIDTH);
+        setWindowDefaultSize(logic.getGuiSettings());
+
+
         primaryStage.setTitle("TutorBuddy");
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/tutorbuddy_icon.png")));
 
         setAccelerators();
 
-        helpWindow = new HelpWindow();
-
-        // Make application window fit to entire screen
-        primaryStage.setMaximized(true);
+        helpWindow = new HelpWindow(logic);
     }
 
     public Stage getPrimaryStage() {

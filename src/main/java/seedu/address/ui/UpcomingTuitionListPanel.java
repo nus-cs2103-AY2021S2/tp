@@ -123,7 +123,7 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
         assert today.getDateTime().toLocalDate().plusDays(2).equals(dayAfterTomorrow.getDateTime().toLocalDate())
                 : "dayAfterTomorrow should be 2 days after today!";
         return today.getDate().compareTo(dateOfSingleSession) <= 0
-                && dateOfSingleSession.compareTo(dayAfterTomorrow.getDate()) < 0;
+                && dateOfSingleSession.compareTo(dayAfterTomorrow.getDate()) <= 0;
     }
 
     /**

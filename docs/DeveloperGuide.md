@@ -86,9 +86,9 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete_student 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete_student 1` Command](images/enhao/DeleteStudentSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -133,11 +133,14 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### List Student Feature
+### Students
+Students in TutorBuddy is facilitated by the `Student` class which stores specific details of
+a `student` within one `student` object. Students are not allowed to have duplicated names.
 
-#### Implementation
+#### List Student Feature
 The list student feature displays a list of existing students in the TutorBuddy application.
 
+##### Implementation
 This feature is facilitated by `ListStudentCommand` which extends `Command`.
 The method `ListStudentCommand#execute` updates the filtered student list by calling the method
 `Model#updateFilteredStudentList` exposed in the `Model` interface.
@@ -158,11 +161,10 @@ NOTE: The lifeline of `ListStudentCommand` should end at the cross but is not sh
 The following activity diagram summarizes what happens when a user executes the `list_student` command.
 ![ListStudentActivityDiagram](images/choonwei/ListStudentActivityDiagram.png)
 
-### Add Student Feature
-
-#### Implementation
+#### Add Student Feature
 The add student feature allows user to add a student to the TutorBuddy Application.
 
+##### Implementation
 This feature makes use of `AddStudentCommandParser` and `AddStudentCommand` to create a new `Student` object. The operation can be accessed in the Model interface through `Model#addStudent()`.
 
 Given below is an example of how the add student mechanism runs:
@@ -180,12 +182,46 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![AddStudentActivityDiagram](images/enhao/AddStudentActivityDiagram.png)
 
-### List Students' Email Feature
+The following sequence diagram summarizes what happens when a user executes the `add_student` command:
+![AddStudentSequenceDiagram](images/enhao/AddStudentSequenceDiagram.png)
+
+#### Delete Student Feature
+The delete student feature allows user to delete a student from the TutorBuddy Application.
+
+##### Implementation
+The delete student feature is implemented similarly to the add student feature. However, it makes use of the
+`DeleteStudentCommandParser` and `DeleteStudentCommand` instead to delete the student from the student list. 
+The command word to use is `delete_student`. In step 4, it only validates the information and do not create a new 
+`student` object. In step 7 and 8, instead of adding the student to the `AddressBook` and
+`filteredStudents`, we remove the student instead.
+
+#### Edit Student Feature
+The edit student feature allows user to edit a student profile from the TutorBuddy Application.
+
+##### Implementation
+The edit student feature is implemented similarly to the add student feature. However, it makes use of the
+`EditStudentCommandParser` and `EditStudentCommand` instead to edit the student from the student list.
+The command word to use is `edit_student`. In step 4, it only validates the information, determine the fields to be edited, 
+but it does not create a new `student` object. In step 7 and 8, instead of adding the student to the `AddressBook` and
+`filteredStudents`, we update the student list instead.
+
+#### Find Student Feature
+The find student feature allows user to specific keywords in relation to the student's name in the application.
+TutorBuddy will then filter the student list based on given keyword.
+
+##### Implementation
+The find student feature is implemented similarly to the add student feature. However, it makes use of the
+`FindStudentCommandParser` and `FindStudentCommand` instead to edit the student from the student list.
+The command word to use is `find_student`. In step 4, it only validates the information, determine the keywords,
+but it does not create a new `student` object. In step 7 and 8, instead of adding the student to the `AddressBook` and
+`filteredStudents`, we only update the `filteredStudents` list instead based on the given keywords.
+
+#### List Students' Email Feature
 The list students' email feature allows the end-user to retrieve a list of students' emails, which are concatenated with
 a semi-colon `;`. This allows for easy copy and pasting to e-mail applications, such as Microsoft Outlook, for mass
 e-mail purposes (e.g. newsletter).
 
-#### Implementation
+##### Implementation
 This feature is mainly supported by `EmailCommand`, with retrieval of students' emails through the Model interface
 `Model#getFilteredStudentList()`.
 
@@ -205,31 +241,23 @@ The following activity diagram summarizes what happens when a user executes the 
 The following sequence diagram summarizes what happens when a user executes the `emails` command:
 ![EmailCommandSequenceDiagram.png](images/sam/EmailCommandSequenceDiagram.png)
 
-
-### Add Session Feature
-The add session feature allows users to add individual tuition sessions with specific details of each session.
-
-This section explains the implementation of the add session mechanism and highlights the design considerations
-taken into account when implementing this feature.
-<!--
-### Session Feature
-The session feature is facilitated by the `Session` class which stores specific details of
+### Session
+Sessions in TutorBuddy is facilitated by the `Session` class which stores specific details of
 a tuition session with one student. Each session is composed within a `Student`,
 and a `Student` can have multiple `Session`s.
--->
 
-#### Implementation
-The add attendance mechanism is facilitated by `AddAttendanceCommand` and it extends `Command`. The method,
-`AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
-before adding the session.
-<!--
+#### Add Session Feature
+The add session feature allows users to add individual tuition sessions with specific details of each session.
+
+This section explains the implementation of the `add_session` mechanism and highlights the design considerations taken into account when implementing this feature.
+
+##### Implementation
 The creation of a session is facilitated by `AddSessionCommand` and it extends `Command`. The method,
 `AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
 before adding the session.
--->
 
 The following sequence diagram shows the interactions between the Model and Logic components during the execution of
-an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`:
+an `AddSessionCommand` with user input `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`:
 
 ![AddSessionSequenceDiagram](images/junwei/AddSessionSequenceDiagram.png)
 
@@ -240,7 +268,7 @@ an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k
    `addSession(name, sessionToAdd)` which adds the session to the specific student.
 5. The result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
 
-#### Design Considerations
+##### Design Considerations
 Aspect 1: Type of input for AddSessionCommand
 * **Alternative 1 (current choice)**: Using student name to identify the student to add the session to.
     * Pros:
@@ -260,7 +288,7 @@ updated student index id. Student name on the other hand, stays constant through
 which he also has knowledge of. Therefore, student name can be easily entered without reference to the AddressBook, saving much more time compared
 to alternative 2.
 
-### Delete Session Feature
+#### Delete Session Feature
 The `DeleteSessionCommand` does the opposite of `AddSessionCommand` -- it calls `Model#deleteSession(studentName, sessionIndex)` instead
 which calls `AddressBook#removeSession(studentName, sessionIndex)` and
 `UniqueStudentList#deleteSession(targetStudent, sessionIndex)`.
@@ -270,14 +298,52 @@ The following sequence diagram shows how deleting a session works:
 
 It shares the same design considerations as what is mentioned in Add Session Feature.
 
-### GUI Redesign
-The GUI is redesigned from [AB3](https://github.com/se-edu/addressbook-level3) to a highly intuitive interface to support 
-the features for TutorBuddy, as well as improve the overall user experience.
+### Monthly Fees
+Monthly Fees in TutorBuddy is calculated based on the session `fee`. It makes uses of the FeeUtil static method
+to perform the calculation.
 
-#### Implementation
-The redesign of the GUI includes the addition of:
-* The
+#### Calculating Monthly Fee Feature
+The monthly `fee` feature allows user to quickly calculate the amount of money they should have received
+from a particular student in a given month and year.
 
+This section explains the implementation of the `fee` command and highlights the design considerations taken into account when implementing this feature.
+
+##### Implementation
+The calculation of the fees is facilitated by the `GetMonthlyFeeCommand` and it extends `Command`. The method,
+`GetMonthlyFeeCommand#execute()`, performs a validity check on student name input to ensure that the student name exists in the application.
+
+The following sequence diagram shows the interactions between the Model, Logic and FeeUtil components during the execution of
+an `GetMonthlyFeeCommand` with user input `fee n/STUDENT_NAME m/MONTH y/YEAR`:
+
+![GetMonthlyFeeSequenceDiagram](images/enhao/GetMonthlyFeeSequenceDiagram.png)
+
+1. `Logic` uses the `AddressBookParser` class to parse the user command.
+2. A new instance of an `GetMonthlyFeeCommand` would be created by the `GetMonthlyFeeCommandParser` and returned to `AddressBookParser`.
+3. `AddressBookParser` encapsulates the `AddSessionCommand` object as a `Command` object which is executed by the `LogicManager`.
+4. The command execution calls `hasStudent(name)` to validate the inputs.
+5. The command execution the calls the `getFeePerStudent(student, startPeriod, endPeriod)` static method in `FeeUtil` and perform the calculation.  
+6. The calculation result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
+
+#### Design Considerations
+Aspect 1: Calculation for the fees
+* **Alternative 1 (current choice)**: Abstracting out the calculation to a common file such as `FeeUtil`.
+    * Pros:
+        * Ensures the "don't repeat yourself" software development principle by allowing both this command, and the 3 monthly fee feature to make use of the same methods in `FeeUtil`.
+        * Potentially easier to be maintained by further developer.
+    * Cons:
+        * Increases coupling.
+
+* **Alternative 2**: Performing the calculation inside `GetMonthlyFeeCommand`.
+    * Pros:
+        * Reduces coupling.
+    * Cons:
+        * Repeated code and increased difficult for maintenance when there is a need to update the calculation algorithm.
+
+Alternative 1 was chosen because the pros of implementing alternative 1 outweighs the cons derived from it. By having
+an abstracted `FeeUtil` method, we will only need to update the methods in `FeeUtil` which will have a rippling effect
+to the rest of the features that uses this method. This allows the UI to make use of the `FeeUtil` methods when calculating the 
+3 months fees as well. Although this results in increased coupling, with proper testing in place, we could mitigate the risk 
+as we ensure that changes in the `FeeUtil` method do not unintentionally changes the behaviour of the other feature.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -305,9 +371,9 @@ The redesign of the GUI includes the addition of:
 
 
 **Value proposition**:
-* Cut down admin overhead for independent tutors
-* All in one platform to manage their students' information
-
+* All in one platform to manage their students’ contacts
+* Provide a quick overview of scheduled tuition sessions
+* Handle monthly tuition fees calculation
 
 
 ### User stories
@@ -321,11 +387,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | remove a student's profile                        | keep track of only students that I teach                     |
 | `* * *`  | user                                       | edit the details of a student                     | keep track of up-to-date information                         |
 | `* * *`  | user                                       | add individual tuition sessions                   | keep track of my tuition sessions                            |
-| `* * *`  | user                                       | delete an individual tuition session              | update my tuition schedule                                   |
+| `* * *`  | busy user                                  | add recurring tuition sessions                    | save time by creating multiple sessions in one command       |
+| `* * *`  | user                                       | delete a non-recurring tuition session            | update my tuition schedule                                   |
+| `* * *`  | user                                       | delete the entire recurring session               | update my tuition schedule                                   |
+| `* * *`  | user                                       | delete a single session from a recurring session  | update cancelled tuition session                             |
 | `* * *`  | user                                       | see a list of all the students profile and sessions|                                                             |
 | `* * *`  | user                                       | get all the emails of the parent of my students'  | email them reminders for payment                             |
 | `* * *`  | user                                       | calculate the monthly fees of a particular student| use the information when collecting monthly fees             |
 | `* * *`  | user                                       | get the monthly fees that I would have received for the past 3 months    | manage my finance better              |
+| `* * *`  | forgetful user                             | see a list of upcoming sessions                   | be aware of my teaching schedule for the next few days       |
+| `* * *`  | user teaching many lessons                 | see my schedule in a calendar view                | have an overview of my hectic schedules at a glance          |
 | `* *`    | new user                                   | get a list of commands of the application         | know at a glance what are the features of the application    |
 | `* *`    | potential user                             | see the app populated with sample data on the first run  | try using the features easily                         |
 | `* *`    | new user                                   | purge all current data                            | get rid of sample/current data I used for exploring the app  |
@@ -337,7 +408,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *(For all use cases, the **System** is the TutorBuddy Application, **Actor** is the user, and the **Precondition** is that the application has already been opened, unless otherwise specified)*
 
-**Use case: UC0X - Create a student profile**
+**Use case: UC01 - Create a student profile**
 
 MSS:
 
@@ -354,7 +425,7 @@ Extensions:
 
     Use case ends.
 
-**Use case: UC0X - Find a student’s profile**
+**Use case: UC02 - Find a student’s profile**
 
 MSS:
 
@@ -370,7 +441,7 @@ Extensions:
 
   Use case ends.
 
-**Use case: UC0X - Delete a student profile**
+**Use case: UC03 - Delete a student profile**
 
 MSS:
 
@@ -387,7 +458,7 @@ Extensions:
 
   Use case ends.
 
-**Use case: UC0X - Edit student details**
+**Use case: UC04 - Edit student details**
 
 MSS:
 
@@ -405,31 +476,89 @@ Extensions:
     
   Use case ends.
 
-**Use case: UC0X - Create a session**
-
-**Preconditions: Student profile linked to session has been created.**
+**Use case: UC05 - Create a session**
 
 MSS:
 
-1. User enters the add session command, together with the session details.
-2. TutorBuddy creates the session.
-3. TutorBuddy displays a success message.
+1. User enters the `add_session` command, together with the session details.
+2. TutorBuddy verifies that the student exists, and the inputs are valid.
+3. TutorBuddy creates the session.
+4. TutorBuddy displays a success message.
 
    Use case ends.
 
 **Extensions:**
 
-* 1a. TutorBuddy detects an error in the entered data.
-    * 1a1. TutorBuddy prompts an error and requests for the correct data.
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
 
   Use case ends.
 
-* 1b. TutorBuddy detects another session that the user has in the same timeframe.
-    * 1b1. TutorBuddy prompts an error and requests for the correct data.
+* 2b. TutorBuddy detects another overlapping session that the user has in the same timeframe.
+    * 2b1. TutorBuddy prompts an error and requests for the correct data.
 
   Use case ends.
 
-**Use case: UC0X - List all students and sessions**
+**Use case: UC06 - Create a recurring session**
+
+MSS:
+
+1. User enters the `add_rec_session` command, together with the session details.
+2. TutorBuddy verifies that the student exists, and the inputs are valid.
+3. TutorBuddy creates the recurring session.
+4. TutorBuddy displays a success message.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+
+  Use case ends.
+
+* 2b. TutorBuddy detects another overlapping session that the user has in the same timeframe.
+    * 2b1. TutorBuddy prompts an error and requests for the correct data.
+
+  Use case ends.
+
+**Use case: UC07 - Delete a session or the entire recurring session**
+
+MSS:
+
+1. User enters the `delete_session` command with the appropriate inputs.
+2. TutorBuddy verifies that the student exists, and the inputs are valid.
+3. TutorBuddy deletes the session.
+4. TutorBuddy displays a success message.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+
+  Use case ends.
+
+**Use case: UC08 - Delete a single session from a recurring session**
+
+MSS:
+
+1. User enters the `delete_rec_session` command with the appropriate inputs.
+2. TutorBuddy verifies that the student exists, and the inputs are valid.
+3. TutorBuddy deletes the single session and splits up the remaining session into 2 recurring sessions (Before and After).
+4. TutorBuddy displays a success message.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. TutorBuddy detects an error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+
+  Use case ends.
+
+**Use case: UC09 - List all students and sessions**
 
 MSS:
 
@@ -438,7 +567,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC0X -  Getting the emails from the application**
+**Use case: UC10 -  Getting the emails from the application**
 
 MSS:
 
@@ -448,7 +577,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC0X - Calculate fee for a student of a particular month and year**
+**Use case: UC11 - Calculate fee for a student of a particular month and year**
 
 MSS:
 
@@ -465,7 +594,7 @@ Extensions:
 
   Use case ends.
 
-**UC0X - View 3 months monthly fee**
+**Use case: UC12 - View 3 months monthly fee**
 
 MSS:
 
@@ -474,7 +603,33 @@ MSS:
 
    Use case ends.
 
-**Use case: UC0X - Show help**
+**Use case: UC13 - Reminders for upcoming sessions**
+
+MSS:
+
+1. User toggles to the `Home` tab.
+2. TutorBuddy shows a list of upcoming sessions that would happen, within the next 3 days.
+
+   Use case ends.
+
+**Use case: UC14 - Calendar View**
+
+MSS:
+
+1. User toggles to the `Calendar` tab.
+2. TutorBuddy shows a calendar representation of the sessions, showing the schedule of the current week.
+
+   Use case ends.
+
+Extensions:
+
+* 2a. User can toggle between the different weeks using the left and right button in the Calendar page.
+
+* 2b. User can toggle directly move to this week's schedule by clicking on the `Today` button.
+
+  Use case ends.
+
+**Use case: UC15 - Show help**
 
 MSS:
 
@@ -483,7 +638,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC0X - Sample data for new users**
+**Use case: UC16 - Sample data for new users**
 
 MSS:
 
@@ -493,7 +648,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC0X - Clear data**
+**Use case: UC17 - Clear data**
 
 MSS:
 
@@ -502,7 +657,7 @@ MSS:
 
    Use case ends.
 
-**Use case: UC0X - Exit application**
+**Use case: UC18 - Exit application**
 
 MSS:
 
