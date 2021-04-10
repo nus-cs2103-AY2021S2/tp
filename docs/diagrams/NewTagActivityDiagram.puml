@@ -6,7 +6,7 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([Duplicate tag already exists on specified flashcard])
-    :show error message;
+    :Show error message;
 else ([else])
     :New tag is added to UniqueTagList;
     :Changes are reflected in the UI;
