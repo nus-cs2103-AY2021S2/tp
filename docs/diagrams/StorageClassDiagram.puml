@@ -12,14 +12,17 @@ Class StorageManager
 Class JsonUserPrefsStorage
 Class JsonHeyMatezStorage
 
+Storage -|> HeyMatezStorage
+Storage -|> UserPrefsStorage
+
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
 StorageManager o--> HeyMatezStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonHeyMatezStorage .left.|> HeyMatezStorage
-JsonHeyMatezStorage .down.> JsonSerializableHeyMatezStorage
-JsonSerializableHeyMatezStorage .left.> JsonSerializablePerson
-JsonSerializableHeyMatezStorage .right.> JsonSerializableTask
-JsonSerializableTask .right.> JsonSerializableAssignee
+JsonHeyMatezStorage .down.> JsonSerializableHeyMatez
+JsonSerializableHeyMatez .left.> JsonAdaptedPerson
+JsonSerializableHeyMatez .right.> JsonAdaptedTask
+JsonAdaptedTask .right.> JsonAdaptedAssignee
 @enduml
