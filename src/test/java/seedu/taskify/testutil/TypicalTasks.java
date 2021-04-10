@@ -39,7 +39,7 @@ public class TypicalTasks {
     public static final Task TASK_6 = new TaskBuilder().withName("sixthTask").withDescription("my sixth task")
             .withStatus(StatusType.UNCOMPLETED).withDate("2025-07-30 22:13").build();
     public static final Task TASK_7 = new TaskBuilder().withName("seventhTask").withDescription("my seventh task")
-            .withStatus(StatusType.EXPIRED).withDate("2019-07-30 22:13").build();
+            .withStatus(StatusType.UNCOMPLETED).withDate("2021-07-30 22:13").build();
 
     // Manually added
     public static final Task TASK_8 = new TaskBuilder().withName("eighthTask").withDescription("my eighth task")
