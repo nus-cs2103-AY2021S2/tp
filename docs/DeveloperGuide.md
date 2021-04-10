@@ -205,6 +205,43 @@ Classes used by multiple components are in the `seedu.taskify.commons` package.
 The previous Design section provides an overview on the general structure of Taskify. This section dives deeper and
 describes some noteworthy details on how certain features are implemented.
 
+### Switch between the different tabs
+
+#### Format of command
+* `home`: switch from the other tab to home tab. It will throw an error if you are already in the home tab.
+* `expired`: switch from the other tab to expired tab. It will throw an error if you are already in the expired tab.
+* `uncompleted`: switch from the other tab to uncompleted tab. It will throw an error if you are already in the uncompleted tab.
+* `completed`: switch from the other tab to uncompleted tab. It will throw an error if you are already in the completed tab.
+
+#### Implementation
+
+The tab switching functionality is facilitated by the `MainWindow#switchTab(int tabNumber)` depending on which tab you
+want to switch to and what tab users are currently on now.
+
+The model manager has 5 filtered task list. They are `filteredTasks`, `expiredFilteredTasks`,
+`uncompletedFilteredTasks`, `completedFilteredTasks` and `todaysFilteredTasks`. The first 4 filtered task list is used for tab
+switching. All the filtered task list originated from UniqueTaskList.
+
+The following sequence diagram shows how the switching tabs operation works, we will take the Expired Command as
+an example to illustrate as the other tab switching commands is similar.
+
+![ExpiredSequenceDiagram](images/ExpiredSequenceDiagram.png)
+
+:information_source: **Note:** The lifeline for \`TaskifyParser\` and \`ExpiredCommand\` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+
+The following activity diagram summarizes what happens when a user executes a switch command like `expired`:
+
+![ExpiredActivityDiagram](images/ExpiredActivityDiagram.png)
+
+#### Design Consideration
+* **Current Choice:** Switch tabs based on the tab name.
+    * Pros: More intuitive to the user. The tab name corresponds to the status of the tasks for that tab.
+    * Cons: User would have to type longer sentence as compared to `switch 1`
+
+* **Alternative Choice:** Switch tabs based on tab index
+    * Pros: Lesser things to remember as the format command is `switch index`
+    * Cons: Less intuitive as user will have to look up what tab one corresponds to.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -323,13 +360,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Taskify warns that the Task is already of the set status
       
         Use case ends.
+
+* 3b. The given status is expired. Even though `expired` is a valid status of a task, users cannot directly modify it.
+    * 3b1. Taskify warns that it can change the status of the task if it is either `uncompleted` or `completed` .
+
+      Use case ends.
   
-* 3b. Taskify does not recognise the status that the User wants to set
+* 3c. Taskify does not recognise the status that the User wants to set
     * 3b1. Taskify warns that it does not understand the type of status entered
     
         Use case ends.
     
-* 3c. The given index is invalid
+* 3d. The given index is invalid
     * 3c1. Taskify warns that the index entered is invalid.
     
         Use case ends.
@@ -376,11 +418,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to sort the Tasks.
 2. Taskify shows the Tasks in their sorted order.
 
-**Extensions**
-* 1a. There are two or more Tasks that have the same date & time.
-    * 1a1. Taskify sorts these Tasks in lexicographical order.
-    
-        Use case resumes from step 2
 ---
 **Use case 7: Search for Tasks using keywords (excluding tags)**
 
@@ -417,22 +454,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c. Taskify warns that no modifying can take place if there are no updated fields filled in.
     
         Use case ends.
-
+---
 **Use case 9: Switch to Home tab**
 
 **MSS**
 
-1. User requests to got to Home Tab.
+1. User requests to switch to Home Tab.
 2. Taskify switches to Home Tab.
 
-    Use Case ends 
-    
-
 **Extensions**
-* 1a. The User's input is unrecognisable to Taskify
-    * 1a1. An error message is shown.
+* 1a. If the user is currently in the Home tab 
+    * 1a1. Taskify informs the User that it is currently in the Home tab.
 
       Use case ends.
+
+* 1b. The User's input is unrecognisable to Taskify
+    * 1b1. An error message is shown.
+
+      Use case ends.
+      
+---
 
 **Use case 10: Switch to Expired tab**
 
@@ -445,10 +486,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 **Extensions**
-* 1a. The User's input is unrecognisable to Taskify
-    * 1a1. An error message is shown.
+
+* 1a. If the user is currently in the Expired Tab
+    * 1a1. Taskify informs the User that it is currently in the Expired Tab.
 
       Use case ends.
+
+* 1b. The User's input is unrecognisable to Taskify
+    * 1b1. An error message is shown.
+
+      Use case ends.
+
+---
 
 **Use case 11: Switch to Completed tab**
 
@@ -461,15 +510,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 **Extensions**
-* 1a. The User's input is unrecognisable to Taskify
-    * 1a1. An error message is shown.
+* 1a. If the user is currently in the Completed Tab
+    * 1a1. Taskify informs the User that it is currently in the Completed Tab.
 
       Use case ends.
 
+* 1b. The User's input is unrecognisable to Taskify
+    * 1b1. An error message is shown.
+
+      Use case ends.
+
+---
+    
+
+**Use case 12: Switch to Uncompleted tab**
+
+**MSS**
+
+1. User requests to got to Uncompleted Tab.
+2. Taskify switches to Uncompleted Tab.
+
+   Use Case ends
+
+
+**Extensions**
+* 1a. If the user is currently in the Uncompleted Tab
+    * 1a1. Taskify informs the User that it is currently in the Uncompleted Tab.
+
+      Use case ends.
+
+* 1b. The User's input is unrecognisable to Taskify
+    * 1b1. An error message is shown.
+
+      Use case ends.
+---
 
 
 
-**Use case 9: Viewing Tasks by date**
+**Use case 13: Viewing Tasks by date**
 
 **MSS**
 
@@ -481,8 +559,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Taskify informs the User there are no tasks tracked
     
 Use case ends.
-
-*{More to be added}*
 
 ---
 
