@@ -64,7 +64,7 @@ public class EditPropertyCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Edited property: %1$s";
     public static final String MESSAGE_DUPLICATE_PROPERTY =
-            "Another property with the same address and postal code already exists in the app";
+            "Another property with the same address and postal code already exist in the app";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;

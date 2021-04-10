@@ -60,10 +60,7 @@ public class AppointmentCard extends UiPart<Region> {
         date.setText(appointment.getDate().toString());
         time.setText(appointment.getTime().toString());
 
-        Date currentDate = new Date(LocalDate.now());
-        Time currentTime = new Time(LocalTime.now());
-        if (currentDate.compareTo(appointment.getDate()) > 0 || (currentDate.compareTo(appointment.getDate()) == 0
-                && currentTime.compareTo(appointment.getTime()) > 0)) {
+        if (appointment.getDate().isOver() || (appointment.getDate().isToday() && appointment.getTime().isOver())) {
             cardPane.setStyle("-fx-background-color: #696969");
             date.setStyle("-fx-text-fill: darkred");
             time.setStyle("-fx-text-fill: darkred");

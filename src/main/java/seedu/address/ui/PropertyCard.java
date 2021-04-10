@@ -182,8 +182,7 @@ public class PropertyCard extends UiPart<Region> {
      * Greys out Property with expired deadline in Ui.
      */
     public void greyOutPropertiesWithPastDeadlines() {
-        Deadline currentDate = new Deadline(LocalDate.now());
-        if (currentDate.compareTo(property.getDeadline()) > 0) {
+        if (property.getDeadline().isOver()) {
             cardPane.setStyle("-fx-background-color: #696969");
             deadline.setStyle("-fx-text-fill: darkred");
         }
