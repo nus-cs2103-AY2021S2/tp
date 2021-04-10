@@ -500,7 +500,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. App-Ointment removes the patient from the doctor records.
 
 **Extensions**
-* Similar to `delete-doctor` command.
+* Similar to `delete-patient` command.
 
 ### UC16: Delete an appointment
 **MSS**
