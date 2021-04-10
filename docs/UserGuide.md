@@ -140,6 +140,7 @@ Only one command can be executed at a time and any words after a valid command i
 
          The above command would list all the customers in the left column of the GUI in the sequence that they were added, with the most recent being at the top.
         </details>
+        <p>&nbsp;</p>
 
         <a name="customer-add"></a>
     - <details open>
@@ -159,6 +160,7 @@ Only one command can be executed at a time and any words after a valid command i
         address "Lower Kent Ridge Road, Singapore 119077" and tagged with "Gluten Allergy".
 
         </details>
+        <p>&nbsp;</p>
 
         <a name="customer-delete"></a>
     - <details open>
@@ -186,6 +188,7 @@ Only one command can be executed at a time and any words after a valid command i
         If deleting all orders, even pending ones, is desired, then adding the `-f` at the end of the command acknowledges and confirms the deletion behavior. Orders associated with the customer will be deleted and will no longer be shown in the order list or order history.
 
         </details>
+        <p>&nbsp;</p>
 
         <a name="customer-edit"></a>
     - <details open>
@@ -215,6 +218,7 @@ Only one command can be executed at a time and any words after a valid command i
         From the examples above, more than one field can be edited at a time but at least 1 field must be specified for it to be a valid command.
 
         </details>
+        <p>&nbsp;</p>
 
         <a name="customer-find"></a>
     - <details open>
@@ -365,6 +369,7 @@ Only one command can be executed at a time and any words after a valid command i
         The above command would list all the order in the right column of the GUI. The list is in chronological sequence based on the order's date and time.
 
         </details>
+        <p>&nbsp;</p>
 
         <a name="order-add"></a>
     - <details open>
@@ -386,6 +391,7 @@ Only one command can be executed at a time and any words after a valid command i
         ```
 
         </details>
+        <p>&nbsp;</p>
 
         <a name="order-delete"></a>
     - <details open>
@@ -397,6 +403,7 @@ Only one command can be executed at a time and any words after a valid command i
         ```
         The above command deletes the order based with that index.
         </details>
+        <p>&nbsp;</p>
 
         <a name="order-edit"></a>
     - <details open>
@@ -409,6 +416,7 @@ Only one command can be executed at a time and any words after a valid command i
 
         At least one of the fields in brackets must be present in the edit command.
         </details>
+        <p>&nbsp;</p>
 
         <a name="order-find"></a>
     - <details open>
@@ -425,6 +433,7 @@ Only one command can be executed at a time and any words after a valid command i
         - `d/` - Finds all orders with dish names that contain keyword (case-insensitive).
 
         </details>
+        <p>&nbsp;</p>
 
         <a name="order-complete"></a>
     - <details open>
@@ -436,6 +445,7 @@ Only one command can be executed at a time and any words after a valid command i
         ```
         The above command would mark the order of that index as complete. The order will no longer be in the order list. Instead, it will be in order history.
         </details>
+        <p>&nbsp;</p>
 
         <a name="order-history"></a>
     - <details open>
@@ -448,6 +458,7 @@ Only one command can be executed at a time and any words after a valid command i
  
         The above command displays the history of completed and cancelled orders in the right column of the GUI. The list is in chronological sequence based on the order's date and time.
         </details>
+        <p>&nbsp;</p>
 
     </details>
 <p>&nbsp;</p>
@@ -468,6 +479,7 @@ Only one command can be executed at a time and any words after a valid command i
         
         The above command would list all the ingredients in the inventory in the right column of the GUI in the sequence that they were added, with the most recent being at the top.
         </details>
+        <p>&nbsp;</p>
 
         <a name="inventory-add"></a>
     - <details open>
@@ -493,6 +505,7 @@ Only one command can be executed at a time and any words after a valid command i
         ```
 
         </details>
+        <p>&nbsp;</p>
 
         <a name="inventory-delete"></a>
     - <details open>
@@ -525,6 +538,7 @@ Only one command can be executed at a time and any words after a valid command i
         Orders associated with the ingredient will be marked as cancelled and will no longer be shown in the order list but can be viewed in the order history.
 
         </details>
+        <p>&nbsp;</p>
 
         <a name="inventory-edit"></a>
     - <details open>
@@ -538,6 +552,7 @@ Only one command can be executed at a time and any words after a valid command i
         At least one of the fields in brackets must be present in the edit command.
 
         </details>
+        <p>&nbsp;</p>
 
         <a name="inventory-find"></a>
     - <details open>
@@ -554,6 +569,7 @@ Only one command can be executed at a time and any words after a valid command i
         - `q/` - Finds all ingredients with less than specified quantity. Must be a non-negative whole number (>= 0).
 
         </details>
+        <p>&nbsp;</p>
 
     </details>
 
