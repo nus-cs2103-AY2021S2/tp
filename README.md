@@ -6,8 +6,7 @@ Team project name: **PlanIT**
 ![Ui](docs/images/Ui.png)
 
 **PlanIT** is a todo list, calendar application for NUS computer science
-students with a busy schedule to quickly and efficiently add classes
-for modules and easily view their tasks.
+students with busy schedules to quickly and efficiently manage their task schedules.
 It is optimised for users who prefer typing.
 
 This project is based on the AddressBook-Level3 project created by the

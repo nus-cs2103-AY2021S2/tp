@@ -12,11 +12,12 @@ PlanIt also includes a calendar and a countdown feature to better manage your de
 you who prefer typing, so that bookkeeping can be done faster. Now you can make progress on the things that are
 more important to you.
 
-#### Objective:
+**Objective:**
+
 PlanIT's objective is to improve productivity for students with features and tools to help
-students manage their workload. These features significantly reduces the trouble of having to keep track of tasks,
-especially those that are essential yet repetitive. Features such as recurring schedule and date allows students to
-keep track of weekly task and due dates for tutorial homework, projects and much more. More importantly, the functionalities
+students manage their workload. These features significantly reduce the trouble of having to keep track of tasks,
+especially those that are essential yet repetitive. Features such as recurring schedule and date allow students to
+keep track of weekly tasks and due dates for tutorial homework, projects and much more. More importantly, the functionalities
 of PlanIt's simple overview allows students to see upcoming deadlines or events.
 
 Let's dive deeper into these features to see how these features can assist students
@@ -77,7 +78,7 @@ Tasks can have the following attributes:
 | Title | `t/` | A short description or name for the task. Titles can only contain alphanumeric values. <div markdown="block" class="alert alert-info"><br>:information_source:  Every task must have a title. </div>|
 | Date | `set/` | A date to represent the deadline of a Task or to represent the day that the task will be carried out. <br> Dates should be of the format dd/mm/yyyy e.g 02/06/2021|
 | Duration | `s/` | The start and end time of a task. You should specify start time and end time in the 24-hour clock format. <br> Duration should be of the format hh:mm-hh:mm e.g 12:30-13:30|
-| Recurring Schedule | `r/` | Represents a task that might repeat weekly or biweekly. <div markdown="span" class="alert alert-primary">:bulb: You can use this to quickly add weekly tutorials or biweekly lab session for the entire semester. </div><br>Recurring Schedule should be of the format [END DATE][DAY][FREQUENCY] e.g [23/10/2021][mon][weekly] <br><br>**Recurring dates that is of the upcoming day of week up till the [END DATE] will be generated for the task.** <br><br>**Note: Suppose today is 06/04/2021 which falls on a Tuesday, user enters [30/06/2021][tue][weekly] for the recurring schedule field. The date of 06/04/2021 will not be included in the recurring dates and only recurring dates from the following tuesday will be included up till 30th June 2021 on a weekly basis.** <br><br>**Note: Existing recurring dates that has passed the current system date will be removed automatically from the existing task upon application startup.** <ul><li>END DATE should be in the format dd/mm/yyyy, any number greater than 31 is invalid for the day and any number greater than 12 is invalid for the month.</li><li>DAY should be either: mon, tue, wed, thu, fri, sat, sun and is case-insensitive.</li> <li>FREQUENCY should be either: weekly or biweekly and is also case-insensitive.</li>|
+| Recurring Schedule | `r/` | Represents a task that might repeat weekly or biweekly. <div markdown="span" class="alert alert-primary">:bulb: You can use this to quickly add weekly tutorials or biweekly lab session for the entire semester. </div><br>Recurring Schedule should be of the format [END DATE][DAY][FREQUENCY] e.g [23/10/2021][mon][weekly] <br><br>**Recurring dates that is of the upcoming day of week up till the [END DATE] will be generated for the task.** <br><br>**Note: Suppose today is 06/04/2021 which falls on a Tuesday, user enters [30/06/2021][tue][weekly] for the recurring schedule field. The date of 06/04/2021 will not be included in the recurring dates and only recurring dates from the following tuesday will be included up till 30th June 2021 on a weekly basis.** <br><br>**Note: Existing recurring dates that has passed the current system date will be removed automatically from the existing task upon application startup.** <ul><li>END DATE should be in the format dd/mm/yyyy, any number greater than 31 is invalid for the day and any number greater than 12 is invalid for the month.</li><li>DAY should be either: mon, tue, wed, thu, fri, sat, sun and is case-insensitive.</li> <li>FREQUENCY should be either: weekly or biweekly and is also case-insensitive.</li></ul>|
 | Description | `d/` | A text description of the task. Your description can be any value.|
 | Tag | `t/` | A label attached to a task for easy grouping and searching of tasks. Your tag should only contain alphanumeric values.<div markdown="span" class="alert alert-primary">:bulb: You can use this to group tasks by modules e.g adding a `CS2103` tag to a task. </div>|
 | Status | `s/` | Reflects the current status of your task. Status can only be either 'done' or 'not done'.<div markdown="block" class="alert alert-info"><br>:information_source:   Your task's status will be set to 'not done' by default. Status is compulsory and cannot be removed. </div>|
@@ -87,7 +88,7 @@ Tasks can have the following attributes:
 In order to maximise the efficiency of adding tasks and ensuring that there are no unnecessary attributes, there are
 two constraints to the attributes that can exist on the tasks that you create or edit.
 1. Tasks cannot have Date and Recurring Schedule at the same time.
-2. Tasks cannot have Duration on its own without a Date or Reclcurring Schedule.
+2. Tasks cannot have Duration on its own without a Date or Recurring Schedule.
 
 When it comes to Dates and Recurring Schedules, the main purpose of a Date attribute is to give a task a deadline or
 a single day to carry out the task itself. This should not co-exist with a Recurring Schedule, which can also indicate
@@ -196,11 +197,6 @@ Examples:
    `10/10/2021` and `Remember to update User Guide` respectively.
 *  `edit 2 n/Buy textbook t/ set/` Edits the title of the 2nd task to be `Buy textbook` and clears all existing tags
    and the date.
-
-   
-Examples:
-*  `mk n/CS2103 team meeting r/[31/05/2021][mon][weekly]` Adds the task with the title `CS2103 team meeting` to the
-   planner and generate upcoming recurring dates that is on `mon` `weekly` up to `31/05/2021`.
    
 ### Postpone a task's date : `snooze`
 
@@ -227,7 +223,8 @@ Format: `ls`
 ### Listing all tasks : `ls not done`
 
 Shows a list of all uncompleted tasks in the planner
-so that you can view all the uncompleted tasks easily.
+so that you can view all the uncompleted tasks easily. <br>
+Automatically brings your calendar back to the current date.
 
 Format: `ls not done`
 
@@ -428,13 +425,16 @@ start with an empty data file at the next run.
 You can click on the `prev` and `next` buttons on the calendar shown above, to move to the previous and next months respectively,
 or you can simply type in the following commands, if you are more inclined to using the command line interface.
 
-**Navigate to the previous month on the calendar :** `prev`
-
-**Navigate to the next month on the calendar :** `next`
+Action | Format
+---|---
+**Navigate to the previous month on the calendar** | `prev`
+**Navigate to the next month on the calendar** | `next`
 
 * These 2 commands do not take in parameters. Extraneous parameters will be ignored.
     
     E.g. if the command specifies `prev 987`, it will be interpreted as `prev`.
+* `next` and `prev` operates on the currently displayed month.
+* The displayed date and month will revert to the current date and month upon starting up the app.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -454,9 +454,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Remove Task** | `rmt INDEX`<br> e.g., `rmt 3`
 **Remove Field** | `rmf INDEX FIELD`<br> e.g., `rmf 1 d/`
-
-**Edit** | `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-
+**Edit** | `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find CS2103 team project` <br><br>`find [t/TAG] `<br>  e.g., `find t/CS2103` <br><br> `find [d/DESCRIPTION] ` <br> e.g., `find d/CS2103 milestone postmortem`
 **Countdown** | `count INDEX` <br> e.g., `count 2`
 **Statistics** | `stat`
