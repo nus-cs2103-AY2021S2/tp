@@ -95,6 +95,8 @@ Add a task to the list.
 
 Format: `add mc/MODULE_CODE n/TASK_NAME d/DEADLINE_DATE t/DEADLINE_TIME w/WEIGHTAGE [ptag/PRIORITY_TAG] [pt/TAGS]...`
 
+- Weightage value provided must be a positive integer percentage between `0%` to `100%`, e.g. `w/10%`
+
 Example:
 
 * `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%` will add this task to the list
@@ -113,6 +115,7 @@ Format: `edit INDEX [n/TASK_NAME] [mc/MODULE_CODE] [d/DEADLINE_DATE]
 * The index must be on the list else an error will be thrown
 * At least one of the optional fields must be provided
 * Existing values will be updated to the input values
+* Weightage value provided must be a positive integer percentage between `0%` to `100%`, e.g. `w/10%`
 * Note that the order of inputs does not matter, for e.g. there is no difference between entering `edit 1 mc/CS3243 n/Project 1` and `edit 1 n/Project 1 mc/CS3243` .
 
 Examples:
