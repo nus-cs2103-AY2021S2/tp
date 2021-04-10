@@ -35,15 +35,18 @@ public class Deadline implements Comparable<Deadline> {
     }
 
     /**
-     * Returns true if a given string is a valid deadline.
+     * Returns true if a given string is in a valid deadline format.
      *
      * @param test The string to test.
-     * @return True if the given string is a valid deadline, otherwise false.
+     * @return True if the given string is in a valid deadline format, otherwise false.
      */
     public static boolean isValidDeadline(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if this {@code Deadline} has already passed.
+     */
     public boolean isOver() {
         return deadline.compareTo(LocalDate.now()) < 0;
     }

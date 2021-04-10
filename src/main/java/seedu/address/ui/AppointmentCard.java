@@ -1,8 +1,5 @@
 package seedu.address.ui;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -11,8 +8,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.util.AppUtil;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.Date;
-import seedu.address.model.appointment.Time;
 
 /**
  * An UI component that displays information of a {@code Appointment}.
@@ -60,10 +55,7 @@ public class AppointmentCard extends UiPart<Region> {
         date.setText(appointment.getDate().toString());
         time.setText(appointment.getTime().toString());
 
-        Date currentDate = new Date(LocalDate.now());
-        Time currentTime = new Time(LocalTime.now());
-        if (currentDate.compareTo(appointment.getDate()) > 0 || (currentDate.compareTo(appointment.getDate()) == 0
-                && currentTime.compareTo(appointment.getTime()) > 0)) {
+        if (appointment.getDate().isOver() || (appointment.getDate().isToday() && appointment.getTime().isOver())) {
             cardPane.setStyle("-fx-background-color: #696969");
             date.setStyle("-fx-text-fill: darkred");
             time.setStyle("-fx-text-fill: darkred");
