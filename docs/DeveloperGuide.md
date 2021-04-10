@@ -223,7 +223,7 @@ to change his phone number and add in his address.
 
 Step 2. The user input is parsed by `AddressBookParser`, which passes the edit command's argument to `EditCommandParser`.
 
-Step 3. `EditCommandParser` creates a new `Person` object for the new student and returns a new `EditCommand` 
+Step 3. `EditCommandParser` creates a new `Person` object for the edited student and returns a new `EditCommand` 
 if the argument is valid. Otherwise, a `ParseException` is thrown.
 
 Step 4. `LogicManager` then calls `EditCommand#execute()`.
