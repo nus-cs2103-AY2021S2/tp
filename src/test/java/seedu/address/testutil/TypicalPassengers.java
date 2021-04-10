@@ -80,7 +80,8 @@ public class TypicalPassengers {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPassengers() {} // prevents instantiation
+    private TypicalPassengers() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical passengers.
@@ -95,7 +96,7 @@ public class TypicalPassengers {
     }
 
     public static List<Passenger> getTypicalPassengers() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HILARY, JACKSON,
-                KINGSLEY, IRENE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HILARY, IRENE, JACKSON,
+                KINGSLEY));
     }
 }
