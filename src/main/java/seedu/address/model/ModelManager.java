@@ -15,7 +15,6 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.Schedule;
-import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -29,7 +28,6 @@ public class ModelManager implements Model {
     private final FilteredList<Entry> filteredEntries;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Schedule> filteredSchedules;
-    private final FilteredList<Task> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -46,7 +44,6 @@ public class ModelManager implements Model {
         filteredEntries = new FilteredList<>(this.addressBook.getEntryList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredSchedules = new FilteredList<>(this.addressBook.getScheduleList());
-        filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
     }
 
     public ModelManager() {
@@ -220,25 +217,6 @@ public class ModelManager implements Model {
         addressBook.removeSchedule(schedule);
     }
 
-    // ====== Task ======
-
-    @Override
-    public boolean hasTask(Task task) {
-        requireNonNull(task);
-        return addressBook.hasTask(task);
-    }
-
-    @Override
-    public void addTask(Task task) {
-        addressBook.addTask(task);
-        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-    }
-
-    @Override
-    public void deleteTask(Task target) {
-        addressBook.removeTask(target);
-    }
-
     //=========== Filtered Contact List Accessors =============================================================
 
     /**
@@ -305,24 +283,6 @@ public class ModelManager implements Model {
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
         requireNonNull(predicate);
         filteredSchedules.setPredicate(predicate);
-    }
-
-    //=========== Filtered Task List Accessors ===============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-
-    @Override
-    public ObservableList<Task> getFilteredTaskList() {
-        return filteredTasks;
-    }
-
-    @Override
-    public void updateFilteredTaskList(Predicate<Task> predicate) {
-        requireNonNull(predicate);
-        filteredTasks.setPredicate(predicate);
     }
 
     //=========== misc ===============

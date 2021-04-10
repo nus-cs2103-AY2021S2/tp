@@ -18,8 +18,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.schedule.DateTime;
 import seedu.address.model.schedule.ScheduleDescription;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
-import seedu.address.model.task.TaskDescription;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -71,19 +69,6 @@ public class ParserUtil {
         return new ScheduleDescription(trimmedDescription);
     }
 
-    /**
-     * Parses a {@code String task description} into a {@code TaskDescription}
-     *
-     * @throws ParseException if the given {@code description} is invalid
-     */
-    public static TaskDescription parseTaskDescription(String description) throws ParseException {
-        requireNonNull(description);
-        String trimmedDescription = description.trim();
-        if (!TaskDescription.isValidDescription(trimmedDescription)) {
-            throw new ParseException(TaskDescription.MESSAGE_CONSTRAINTS);
-        }
-        return new TaskDescription(trimmedDescription);
-    }
 
     /**
      * Parses a {@code String phone} into a {@code Phone}.
@@ -155,18 +140,6 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
-    }
-
-    /**
-     * Parses a {@code String dateStr} into a {@code Date}.
-     */
-    public static Date parseDate(String dateStr) throws ParseException {
-        requireNonNull(dateStr);
-        String trimmedDate = dateStr.trim();
-        if (!Date.isValidDate(trimmedDate)) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
-        }
-        return new Date(trimmedDate);
     }
 
     /**

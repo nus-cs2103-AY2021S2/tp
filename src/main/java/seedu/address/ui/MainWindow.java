@@ -35,7 +35,6 @@ public class MainWindow extends UiPart<Stage> {
     private EntryListPanel entryListPanel;
 
     //to be deleted.................
-    private TaskListPanel taskListPanel;
     private ScheduleListPanel scheduleListPanel;
     //to be deleted.................
 
@@ -55,9 +54,6 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane entryListPanelPlaceholder;
 
     //To be deleted...........................
-
-    @FXML
-    private StackPane taskListPanelPlaceholder;
 
     @FXML
     private StackPane scheduleListPanelPlaceholder;

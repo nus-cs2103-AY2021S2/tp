@@ -9,14 +9,12 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddEntryCommand;
 import seedu.address.logic.commands.AddScheduleCommand;
-import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ClearOverdueEntryCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEntryCommand;
 import seedu.address.logic.commands.DeleteScheduleCommand;
-import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditEntryCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -25,14 +23,12 @@ import seedu.address.logic.commands.FilterEntryCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindEntryCommand;
 import seedu.address.logic.commands.FindScheduleCommand;
-import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.FreeCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListContactCommand;
 import seedu.address.logic.commands.ListEntryCommand;
 import seedu.address.logic.commands.ListScheduleCommand;
-import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -67,9 +63,6 @@ public class AddressBookParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        case AddTaskCommand.COMMAND_WORD:
-            return new AddTaskCommandParser().parse(arguments);
-
         case AddEntryCommand.COMMAND_WORD:
             return new AddEntryCommandParser().parse(arguments);
 
@@ -84,9 +77,6 @@ public class AddressBookParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-
-        case DeleteTaskCommand.COMMAND_WORD:
-            return new DeleteTaskCommandParser().parse(arguments);
 
         case DeleteScheduleCommand.COMMAND_WORD:
             return new DeleteScheduleCommandParser().parse(arguments);
@@ -112,9 +102,6 @@ public class AddressBookParser {
         case FindScheduleCommand.COMMAND_WORD:
             return new FindScheduleCommandParser().parse(arguments);
 
-        case FindTaskCommand.COMMAND_WORD:
-            return new FindTaskCommandParser().parse(arguments);
-
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
@@ -126,9 +113,6 @@ public class AddressBookParser {
 
         case ListScheduleCommand.COMMAND_WORD:
             return new ListScheduleCommandParser().parse(arguments);
-
-        case ListTaskCommand.COMMAND_WORD:
-            return new ListTaskCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

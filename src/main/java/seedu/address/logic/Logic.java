@@ -11,7 +11,6 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.Schedule;
-import seedu.address.model.task.Task;
 
 /**
  * API of the Logic component
@@ -38,9 +37,6 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of entries */
     ObservableList<Entry> getFilteredEntryList();
-
-    /** Returns an unmodifiable view of the filtered list of tasks */
-    ObservableList<Task> getFilteredTaskList();
 
     /** Returns an unmodifiable view of the filtered list of schedules */
     ObservableList<Schedule> getFilteredScheduleList();

@@ -23,7 +23,6 @@ import seedu.address.model.entry.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.schedule.Schedule;
-import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -94,7 +93,6 @@ public class AddressBookTest {
         private final ObservableList<Contact> contacts = FXCollections.observableArrayList();
         private final ObservableList<Entry> entries = FXCollections.observableArrayList();
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private final ObservableList<Task> tasks = FXCollections.observableArrayList();
         private final ObservableList<Schedule> schedules = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
@@ -114,11 +112,6 @@ public class AddressBookTest {
         @Override
         public ObservableList<Entry> getEntryList() {
             return entries;
-        }
-
-        @Override
-        public ObservableList<Task> getTaskList() {
-            return tasks;
         }
 
         @Override
