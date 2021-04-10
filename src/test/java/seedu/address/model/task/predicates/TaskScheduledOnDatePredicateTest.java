@@ -10,8 +10,8 @@ import seedu.address.testutil.TaskBuilder;
 class TaskScheduledOnDatePredicateTest {
     @Test
     public void test_scheduleContainsDate_returnsTrue() {
-        TaskScheduledOnDatePredicate predicate = new TaskScheduledOnDatePredicate("24/04/2021");
-        assertTrue(predicate.test(new TaskBuilder().withRecurringSchedule("[10/06/2021][sat][weekly]").build()));
+        TaskScheduledOnDatePredicate predicate = new TaskScheduledOnDatePredicate("15/05/2021");
+        assertTrue(predicate.test(new TaskBuilder().withRecurringSchedule("[15/05/2021][sat][weekly]").build()));
 
         // given date on schedule's end date
         predicate = new TaskScheduledOnDatePredicate("08/05/2021");

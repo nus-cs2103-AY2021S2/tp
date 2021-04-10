@@ -52,7 +52,7 @@ in workload management.
 
    * **`mk`**`n/eat dinner` : Makes a task titled `eat dinner` to the planner.
 
-   * **`rmt`**`3` : Deletes the 3rd task shown in the current planner.
+   * **`rmt`**`3` : Removes the 3rd task shown in the current planner.
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -87,7 +87,7 @@ Tasks can have the following attributes:
 In order to maximise the efficiency of adding tasks and ensuring that there are no unnecessary attributes, there are
 two constraints to the attributes that can exist on the tasks that you create or edit.
 1. Tasks cannot have Date and Recurring Schedule at the same time.
-2. Tasks cannot have Duration on its own without a Date or Recurring Schedule.
+2. Tasks cannot have Duration on its own without a Date or Reclcurring Schedule.
 
 When it comes to Dates and Recurring Schedules, the main purpose of a Date attribute is to give a task a deadline or
 a single day to carry out the task itself. This should not co-exist with a Recurring Schedule, which can also indicate
@@ -132,8 +132,8 @@ searching for tasks.
 ### View Commands : `help`
 
 Displays a list of commonly used possible commands along with each of their formats respectively 
-so that you can refer to commands conveniently whenever you forgot about these commands.
-  * Only a few main commands will be displayed to avoid information overload for first time and forgetful users.
+so that you can refer to commands conveniently whenever you forget about them.
+  * Only a few main commands will be displayed to avoid information overload for first-time and forgetful users.
   * Users can read the User Guide for detailed information on all the commands.
 
 Format: `help`
@@ -141,8 +141,8 @@ Format: `help`
 ### Making a task: `mk`
 
 Adds a task to the planner. <br>
-Task with the same title cannot be added to the planner
-so that you will not have to worry about adding duplicate task by accident.
+Tasks with the same title cannot be added to the planner
+so that you do not have to worry about adding duplicate tasks by accident.
 
 Format: `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION]
 [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…`
@@ -327,16 +327,16 @@ Examples:
 
 Removes an existing field from a task in the planner
 so that you can remove certain details from the task directly
-and not go through the hassle of removing the task and adding the same task with lesser fields again.
+without having to go through the hassle of removing the task and adding the same task with lesser fields again.
 
 Format: `rmf INDEX FIELD`
 
 * Removes the specified field of task at `INDEX`.
 * The index refers to the index number shown in the displayed planner.
 * The index **must be a positive integer** 1, 2, 3, …​
-* Fields are specified in the format of `d/` `t/`.
+* Fields are specified in the format their respective attributes: `set/`, `s/`, `r/`, `d/`, `t/`.
 * Exactly one field must be specified.
-* Title field cannot be removed.
+* Title and status fields cannot be removed.
 
 Examples:
 * `ls` followed by `rmf 2 d/` removes the description from the 2nd task in the planner.
@@ -346,14 +346,14 @@ Examples:
 ### Counting down to a task : `count`
 
 Displays the number of days left to a task's date if it exists
-so that you can know how much time left to work on the task.
+so that you know how much time you have left to work on the task.
 
 Format: `count INDEX`
 
 * Counts the number of days until the date of the task at `INDEX`.
 * The index refers to the index number shown in the displayed planner.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The task at index must have a date, otherwise countdown cannot be done.
+* The task at the index must have a date, otherwise countdown cannot be done.
 
 Examples: 
 * `ls` followed by `count 4` displays the number of days left to the 4th task in the planner.
@@ -367,7 +367,9 @@ so that you can check the current task progression and determine your own work e
 
 Statistics include:
 1) The total number of tasks in the planner.
+   
 2) The percentage of tasks completed (marked as done).
+   
 3) The number of tasks due in the next 7 days from the system's current time.
 
 Format: `stat`
@@ -450,10 +452,10 @@ Action | Format, Examples
 --------|------------------
 **Make** | `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br> e.g.,`mk n/eat dinner t/important`
 **Clear** | `clear`
-**Delete Task** | `rmt INDEX`<br> e.g., `rmt 3`
-**Delete Field** | `rmf INDEX FIELD`<br> e.g., `rmf 1 d/`
+**Remove Task** | `rmt INDEX`<br> e.g., `rmt 3`
+**Remove Field** | `rmf INDEX FIELD`<br> e.g., `rmf 1 d/`
 
-**Edit** | `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 1 set/10/10/2021 d/Remember to update User Guide`
+**Edit** | `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find CS2103 team project` <br><br>`find [t/TAG] `<br>  e.g., `find t/CS2103` <br><br> `find [d/DESCRIPTION] ` <br> e.g., `find d/CS2103 milestone postmortem`
 **Countdown** | `count INDEX` <br> e.g., `count 2`
