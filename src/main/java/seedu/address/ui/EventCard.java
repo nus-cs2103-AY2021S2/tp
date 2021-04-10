@@ -33,9 +33,13 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label endTime;
     @FXML
-    private Label category;
+    private FlowPane categories;
     @FXML
     private FlowPane tags;
+    @FXML
+    private FlowPane categoryTitle;
+    @FXML
+    private FlowPane tagTitle;
 
     /**
      * Creates a {@code EventCode} with the given {@code Event} and index to display.
@@ -52,10 +56,16 @@ public class EventCard extends UiPart<Region> {
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        if (event.getCategories().isEmpty()) {
-            category.setVisible(false);
-        } else {
-            category.setText("Category: " + event.getCategories().toString());
+        event.getCategories().stream()
+                .sorted(Comparator.comparing(category -> category.categoryName))
+                .forEach(category -> categories.getChildren().add(new Label(category.categoryName)));
+
+        if (!event.getCategories().isEmpty()) {
+            categoryTitle.getChildren().add(new Label("Category:"));
+        }
+
+        if (!event.getTags().isEmpty()) {
+            tagTitle.getChildren().add(new Label("Tag:"));
         }
     }
 
