@@ -4,7 +4,8 @@ skinparam arrowThickness 1.1
 skinparam arrowColor LOGIC_COLOR_T4
 skinparam classBackgroundColor LOGIC_COLOR
 
-Interface Parser <<Interface>>
+
+Class "<<Interface>>\nParser"
 Class SocheduleParser
 Class EditEventCommandParser
 Class EditEventCommandParserDescriptor
@@ -19,7 +20,7 @@ SocheduleParser .left.> EditEventCommandParser: creates >
 EditEventCommandParser ..> EditEventCommand : creates >
 EditEventCommandParser .left.> SocheduleParserUtil
 EditEventCommandParser ..> EditEventCommandParserDescriptor : creates >
-EditEventCommandParser .up.|> Parser
+EditEventCommandParser .up.|> "<<Interface>>\nParser"
 
 EditEventCommand -->"1" EditEventCommandParserDescriptor
 

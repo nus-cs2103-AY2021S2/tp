@@ -179,13 +179,13 @@ when he completes one and finds another task with the same description still lef
 In our application, we require users to minimally provide the name, deadline and priority when creating a task.
 To ensure duplicates are handled, our team went through several alternatives and here are our considerations.
 
-* Alternative 1 (Chosen Implementation): `equals(Task task)` method should check if the name, priority, deadline, 
+* Alternative 1 (Chosen Implementation): `isSameTask(Task task)` method should check if the name, priority, deadline, 
   tags (if any) and categories (if any) are equal.
   * Pros:  
     * Tasks with same name but different deadline, priority and/or any other fields are allowed.
   * Cons:
     * Harder to implement.
-* Alternative 2 : `equals(Task task)` method should check for the equality of task name only.
+* Alternative 2 : `isSameTask(Task task)` method should check for the equality of task name only.
     * Pros:
         * Easier to implement.
         * Ensure that the task names are always distinct.
@@ -226,7 +226,7 @@ the current maximum length is sufficient to meet most of our users' common needs
 Thus, under normal usage, this additional restrictions will not cause great inconveniences to our users.
 
 #### 3.4.3 Design considerations for `Tag` and `Category` Object
-Similar to `Name` Object, we face the same chanllenge when displaying tasks or events with tags and categories
+Similar to `Name` Object, we face the same challenge when displaying tasks or events with tags and categories
 of excessively long length. 
 We choose to set the maximum length to 15 characters long for the similar reasons as mentioned above.
 
@@ -522,6 +522,10 @@ The sequence diagram for `UndoneTaskCommand` can be found below.
 **Note:** Due to the size constraint, the argument `PREDICATE_SHOW_ALL_TASKS` is not shown in the sequence diagram 
 when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`.
 </div>
+
+The activity diagram that summaries what happens when users execute the `UndoneTaskCommand` can be found below.
+
+![Acitivity Diagram of UndoneTask Command](images/UndoneTaskCommandActivityDiagram.png)
 
 **Design Considerations**
 
@@ -837,6 +841,56 @@ The following activity diagram summarises what happens when a user executes a Ed
 
 <img src="images/EditEventCommandActivityDiagram.png" width="250" />
 
+
+***Design Considerations for `EditEventCommand`***
+<table>
+    <tr>
+        <th> Alternative 1 (Chosen Implementation) </th>
+        <th> Alternative 2 </th>
+    </tr>
+    <tr>
+        <td> 
+            <ul>
+                <li>Allows an expired event to be edited only when end date time need to be extended to an unexpired time</li>
+                <li> Pros:
+                    <ul>
+                        <li>Similar checks to AddEventCommand</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>Only end date time of an unexpired event can be edited</li>
+                        <li>Affects other classes</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+        <td> 
+            <ul>
+                <li>Allows all fields in an expired event to be edited</li>
+                <li> Pros:
+                    <ul>
+                        <li>Users have more freedom to edited things</li>
+                    </ul>
+                </li>
+                <li> Cons:
+                    <ul>
+                        <li>Need to add extra checks in EditEventCommand</li>
+                    </ul>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+<div markdown="block">
+
+We chose alternative 1 because if the event in the real world ended, it’s meaningless to let users make changes 
+on any field other than end date time. We did consider the fact that an event in the real world could be extended, 
+so we allow users to make changes on end date time from an expired timestamp to an unexpired timestamp. Besides, 
+we allowed an expired task to be edited is because if the task is expired but not completed yet, it would then become 
+an “overdue task”, while there’s no “overdue event”.
+
+
 [Return to Table of Contents](#table-of-contents)  
 
 **Implementation of FindFreeTimeCommand**  
@@ -1069,28 +1123,88 @@ Use case ends.
 
 **Use case: UC03 - Editing a task**
 
-`<pending>`
-
-**Use case: UC04 - List tasks**
-
-**MSS**
-
-1. User wishes to add a new task.
-2. User enters the corresponding command.
-3. SOChedule displays all tasks.
-<br><br>
-Use case ends.
-
-
-**Use case: UC05 - Marking tasks complete**
-*TO BE EDITED*
 **MSS**
 
 1. User requests to <u> list tasks (UC02)</u>.
 2. SOChedule shows a list of tasks.
-3. User chooses to mark a task as completed.
-4. User enters the index of the task to be marked.
-5. SOChedule displays a success message for marking the task as completed.
+3. User chooses to edit a task.
+4. SOChedule edits the task and displays a success message for editing the task.
+   <br><br>
+   Use case ends.
+   
+**Extensions**
+
+* 2a. The task list is empty.
+
+  Use case ends.
+
+  <br>
+
+* 3a. The task specified by the user is not found in the current task list.
+
+    * 3a1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+    
+    
+* 3b. The input by user has an invalid command format.
+  Some (but not all) examples may include that no index is given, 
+  index provided is not a valid positive integer or index provided is larger than 2147483647 (the maximum value of Integer object in Java).
+
+    * 3b1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+
+* 3c. Any of the given attribute by user is invalid.
+  Some examples may include that `p/10` is given to update the priority of the task,
+  but priority can only be a single digit integer from 0 to 9 inclusive.
+  
+    * 3c1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+
+* 3d. No field to edit is provided. An example may be `edit_task 1`.
+
+  * 3d1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+    
+* 3e. No field to edit is provided. An example may be `edit_task 1`.
+
+    * 3e1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+    
+
+* 3f. The edited task is equivalent to the original task.
+
+    * 3f1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+
+* 3g. The edited task is equivalent to an existing task in the task list.
+
+    * 3g1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+    
+
+**Use case: UC04 - List tasks**
+
+
+
+**Use case: UC05 - Marking one or more tasks as completed**
+
+**MSS**
+
+1. User requests to <u> list tasks (UC02)</u>.
+2. SOChedule shows a list of tasks.
+3. User chooses to mark one or more tasks as completed.
+4. SOChedule displays a success message for marking the task as completed.
    <br><br>
    Use case ends.
 
@@ -1101,15 +1215,69 @@ Use case ends.
   Use case ends.
 
 
-* 3a. The given index is invalid.
+* 3a. Any of the tasks specified by the user is not found in the current task list.
 
-    * 3a1. SOChedule shows an error message indicating the invalidity of the index.
+    * 3a1. SOChedule shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: UC06 - Undoing a task completion**
 
-`<pending>`
+* 3b. Any of the task specified by the user is already marked as completed.
+
+    * 3b1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+
+* 3c. The input by user has an invalid command format.
+  Some examples may include that no index is given, any of the indexes provided is not a positive integer
+  or any of the indexes provided is larger than 2147483647 (the maximum value of Integer object in Java).
+
+    * 3c1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+
+
+**Use case: UC06 - Undone a task**
+
+**MSS**
+
+1. User requests to <u> list tasks (UC02)</u>.
+2. SOChedule shows a list of tasks.
+3. User chooses to mark a task as uncompleted.
+4. SOChedule displays a success message for marking the task as uncompleted.
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. The task list is empty.
+
+  Use case ends.
+
+
+* 3a. The task specified by the user is not found in the current task list.
+
+    * 3a1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+
+* 3b. The task specified by the user is already marked as uncompleted.
+
+    * 3b1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+
+* 3c. The input by user has an invalid command format.
+  Some examples may include that no index is given, index provided is not a positive integer
+  or index provided is larger than 2147483647 (the maximum value of Integer object in Java).
+
+    * 3c1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
 
 **Use case: UC07 - Getting tasks today**
 
@@ -1146,9 +1314,8 @@ Use case ends.
 
 1. User requests to <u> list tasks (UC02)</u>.
 2. SOChedule shows a list of tasks.
-3. User chooses to pin a task.
-4. User enters the index of the task to be pinned.
-5. SOChedule pins the task, <u> sorts the task list (UC08)</u>, and displays a success message for pinning the task.
+3. User requests to pin a specific task in the list.
+4. SOChedule pins the task, <u> sorts the task list (UC08)</u>, and displays a success message for pinning the task.
    <br><br>
    Use case ends.
 
@@ -1177,9 +1344,8 @@ Use case ends.
 
 1. User requests to <u> list tasks (UC02)</u>.
 2. SOChedule shows a list of tasks.
-3. User chooses to unpin a task.
-4. User enters the index of the task to be unpinned.
-5. SOChedule unpins the task, <u> sorts the task list (UC08)</u>, and displays a success message for unpinning the task.
+3. User requests to unpin a specific task in the list.
+4. SOChedule unpins the task, <u> sorts the task list (UC08)</u>, and displays a success message for unpinning the task.
    <br><br>
    Use case ends.
 
@@ -1204,13 +1370,19 @@ Use case ends.
 
 **Use case: UC11 - Clearing all completed tasks**
 
-`<pending>`
+1. User requests to clear all completed tasks.
+1. SOChedule displays a success message for clearing all completed tasks.
+<br><br>
+Use case ends.
 
 **Use case: UC12 - Clearing all expired tasks**
 
-`<pending>`
+1. User requests to clear all expired tasks.
+1. SOChedule displays a success message for clearing all expired tasks.
+<br><br>
+Use case ends.
 
-**Use case: UC13 - Add an event**
+**Use case: UC13 - Adding an event**
 
 **MSS**
 
@@ -1234,15 +1406,14 @@ Use case ends.
       is invalid, or not following the `YYYY-MM-DD` format.
       Use case ends.
 
-**Use case: UC14 - Delete an event**
+**Use case: UC14 - Deleting an event**
 
 **MSS**
 
-1. User requests to <u> list events (UC06)</u>.
-2. SOChedule shows a list of events.
-3. User chooses to delete an event.
-4. User enters the index of the event to be deleted.
-5. SOChedule displays a success message for deleting the event.
+1. User requests to <u> list events (UC16)</u>.
+1. SOChedule shows a list of events.
+1. User requests to delete a specific event in the list.
+1. SOChedule displays a success message for deleting the event.
 <br><br>
 Use case ends.
 
@@ -1261,9 +1432,49 @@ Use case ends.
 
 **Use case: UC15 - Editing an event**
 
-`<pending>`
+1. User requests to <u> list events (UC16)</u>.
+1. SOChedule shows a list of events.
+1. User requests to edit a specific event in the list.
+1. SOChedule displays a success message for editing the event.
+   <br><br>
+   Use case ends.
+   
+* 3a. No edited field is provided
 
-**Use case: UC16 - List events**
+    * 3a1. SOChedule displays an error message suggesting that information provided when editing
+      the event is incomplete.
+      Use case resumes at step 2.
+
+* 3b. The event is expired
+
+    * 3b1. SOChedule displays an error message suggesting that an expired event cannot be edited.
+      Use case resumes at step 2.
+      
+* 3c. The date provided for the event is invalid
+
+    * 3c1. SOChedule displays an error message suggesting that date provided for the event
+      is invalid, or not following the `YYYY-MM-DD` format.
+      Use case resumes at step 2.
+      
+* 3d. The given index is invalid.
+
+    * 3d1. SOChedule shows an error message.
+      Use case resumes at step 2.
+
+**Extensions**
+
+* 2a. The task list is empty.
+
+  Use case ends.
+
+
+* 3a. The given index is invalid.
+
+    * 3a1. SOChedule shows an error message indicating the invalidity of the index.
+
+      Use case resumes at step 2.
+
+**Use case: UC16 - Listing events**
 
 **MSS**
 
@@ -1275,7 +1486,9 @@ Use case ends.
 **Extensions**
 
 * 1a. No events have been added.
+
     * 1a1. SOChedule displays an empty list.
+    
       Use case ends.
 
 **Use case: UC17 - Getting today's events**
@@ -1288,11 +1501,47 @@ Use case ends.
 
 **Use case: UC19 - Clearing expired events**
 
-`<pending>`
+1. User requests to clear all expired events.
+1. SOChedule displays a success message for clearing all expired events.
+<br><br>
+Use case ends.
 
-**Use case: UC20 - Finding tasks and events before or on given date**
+**Use case: UC20 - Finding Schedule**
 
-`<pending>`
+**MSS**
+1. User requests to <u> list events (UC06)</u>.
+2. SOChedule shows a list of events.
+3. User requests to <u> list tasks (UC02)</u>.
+4. SOChedule shows a list of tasks.
+5. User wishes to find schedule given a specified date.
+6. SOChedule shows uncompleted tasks that are due before or on the specified date (if any)
+   and events that are ongoing given the specified date (if any).
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 5a. The specified date is invalid or does not follow the required format.
+
+    * 5a1. SOChedule shows an error message.
+
+      Use case resumes at step 4.
+
+
+* 5b. The input by user has an invalid command format.
+  Some examples may include that no date is provided.
+  
+    * 5b1. SOChedule shows an error message.
+
+      Use case resumes at step 4.
+
+
+* 5c. Both task list and event list are empty.
+
+    * 5c1. SOChedule shows an empty task list and event list.
+
+      Use case ends.
+
 
 **Use case: UC21 - Finding free time slots**
 
@@ -1387,6 +1636,41 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Editing a task
+1. Edits an uncompleted task in the task list
+    1. Prerequistes: List all tasks using the `list_task` command. Task list is not empty. 
+       Currently, no tasks in the task list has a task name `task1`.
+
+    1. Test case: `edit_task 1 n/task1` <br>
+       Expected: The name of the first task in the task list is updated to `task1`.
+       Details of the edited task to appear in status bar.
+    1. Other incorrect command to try : `edit_task`
+
+### Marking one or more tasks as done
+1. Marks one or more uncompleted tasks from the task list as completed
+
+    1. Prerequistes: List all tasks using the `list_task` command. Task list is not empty.
+       All of the tasks to be completed are currently marked as uncompleted.
+
+    1. Test case: `done 1 2` <br>
+       Expected: The first and second task in the task list are marked as completed.
+       "Completed 2 Task(s)" to appear in status bar.
+       
+    1. Other incorrect command to try : `done abc`.
+
+### Marking a task as uncompleted
+
+1. Marks a completed task from the task list as uncompleted
+
+    1. Prerequistes: List all tasks using the `list_task` command. Task list is not empty. 
+       The task to be uncompleted is currently marked as completed.
+    
+    1. Test case: `undone 1` <br>
+    Expected: The first task in the task list are marked as uncompleted.
+       Details of the uncompleted task to appear in status bar.
+       
+    1. Other incorrect command to try : `undone abc`.
+
 ### Sorting the task list
 
 1. Sorting the task list
@@ -1471,7 +1755,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding an event
 
-    1. Prerequisites: No duplicates events with the same ISBN exists.
+    1. Prerequisites: No duplicates events could exist.
     
     1. Test case: `add_event n/CS2103 meeting sd/2022-05-27 st/15:00 ed/2022-05-27 et/17:00`
            Expected: Event successfully added, detailed information shown in the status bar.
@@ -1480,7 +1764,7 @@ testers are expected to do more *exploratory* testing.
                   Expected: Event successfully added, detailed information shown in the status bar.
                   
     1. Test case: `add_event n/Inter College Game sd/2000-03-23 st/12:00 ed/2000-03-23 et/14:00`
-                  Expected: No event is deleted, since end date time is past. Detailed error message shown in the status bar.              
+                  Expected: No event is added, since end date time is past. Detailed error message shown in the status bar.              
                   
     1. Other incorrect commands to try: `add_event`, `add_event n/Meeting 1`, etc.
     
@@ -1526,6 +1810,24 @@ testers are expected to do more *exploratory* testing.
       Expected: Events with past end date time are cleared from the list. Success message `Expired events (if any) have been cleared!` 
       will always be shown in the status message, regardless of whether there is any expired event or not.
 
+### Finding tasks and events before or on a given date
+
+1. Finding uncompleted tasks that are due before or on the specified date
+   and events with start date before or on the specified date and end date after or on specified date.
+
+   1. Prerequisites: List all tasks using `list_task` command and all events using the `list_event` command.
+      
+     1. Test case: `find_schedule 2021-05-01` <br>
+        1. Assuming task list only has one task and its deadline is at `2021-05-01` and 
+        event list only has one event and its start date is at `2021-04-01` and end date is at `2021-06-01`.) 
+    
+        1. Excepted: Displays uncompleted tasks with deadline before or on `2021-05-01`
+        and events with start date before or on `2021-05-01` and end date after or on `2021-05-01`.
+         "Displayed the required tasks and events. <br>
+            1 task(s) listed! <br>
+            1 event(s) listed!" appears in the status bar.
+    1. Other incorrect command to try: `find_schedule 2021-005-01`.
+
 ### Finding free time slots
 
 1. Finding free time slots
@@ -1559,3 +1861,30 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted/missing data files
 
    1. SOChedule will re-initialise and provide an empty Task list and Event list.
+
+### Effort
+SOChedule morphs Addressbook 3(AB3) to an application that help NUS School of Computing (SoC) students
+to effectively manage their tasks and events. Since we are not building our product based on AB3, significant amount of efforts
+are needed to convert the AB3 code base to suit the needs of SOChedule. This involves rewriting the major components including
+Model, Logic, UI, Storage and more. Even before we started to implement our unique features, efforts 
+similar to than building an AB3-level product from scratch are needed. 
+
+Compared to AB3 which only stores and updates `Person`, SOChedule doubles the difficulty and handles multiple entity types. 
+Two main ones are related to `Task` and `Event`. This means our project requires more, if not doubled, efforts as compared to implementing AB3 from scratch 
+because of the additional attributes needed to be dealt with.
+Some of them are specific to `Task`, like `Completion Status` and `Priority`. 
+Some of them are specific to `Event`, like `Time`. 
+Some of them are used by both `Task` and `Event`, like `Name` and `Date`.
+
+Because of these additional attributes, Logic component needs more parsers to handle various inputs and commands to achieve
+the features we designed to improve the efficiency of our users. Such examples include parsing and validating of `Date` and `Time` from user inputs.
+Some of the challenges we faced can be ensuring no invalid events (events with start date time later than end date time) can be created. 
+Also, we need to add further constraints with our commands to ensure users do not perform invalid operations with our commands. 
+Fro example, users cannot edit an event to make its start date time later than end date time. 
+All of these require significant amount of efforts in designing, developing and testing.
+
+Similarly, Storage component needs to deal with more complicated data and data structures that involve both tasks and events. 
+
+Also, we need to redesign the GUI to show both task list and event lists and the additional attributes we introduced as compared to AB3.
+
+Some of the achievements in SOChedule may include our `pin_task` and `sort_task` method.  

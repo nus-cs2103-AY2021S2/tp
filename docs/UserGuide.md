@@ -121,7 +121,7 @@ As listed below are the attributes to be specified for Tasks and Events. All par
         <td>
             <ul>
                 <li>Follows the format YYYY-MM-DD</li>
-                <li>Must be a date later than the date of creation</li>
+                <li>Must be a date later than or on the date of task creation</li>
             </ul>
         </td>
     </tr>
@@ -161,8 +161,8 @@ As listed below are the attributes to be specified for Tasks and Events. All par
         <td>
             <ul>
                 <li>Follows the format YYYY-MM-DD</li>
-                <li>Must be a date later than the date of creation</li>
-                <li>Must be a date after start date</li>
+                <li>Must be a date later than or on the date of creation</li>
+                <li>Must be a date after or on start date (Subject to Time attribute constraints)</li>
             </ul>
         </td>
     </tr>
@@ -304,10 +304,15 @@ Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... 
   For example, in input `edit_task 1 t/tag1 t/tag2`, `t/tag1` is before `t/tag2`, 
   but `tag2` may appear in the UI before `tag1`, then `tag1` on the right of `tag2`. 
   The ordering is not guaranteed and this is intended behaviour.
+* When editing a task, error messages will be shown if the edited task is the same as the original task or the edited task is
+equivalent to another existing task in the task list.
 
 Examples:
-* `edit_task 1 n/editedTaskName` edits the name of the first task (if present in SOChedule) to be `editedTaskName`.
+* `edit_task 1 n/t1` edits the name of the first task (if present in SOChedule) to be `editedTaskName`.
 * `edit_task 2 p/3 t/` edits the priority of the second task (if present in SOChedule) to be `3` and clears all existing tags. 
+
+#### Illustration of usage of `edit_task`:
+![Example of usage of `edit task`](images/EditTaskUsage.png)
 
 [Return to Feature List](#feature-list)
 
@@ -339,6 +344,9 @@ Format: `done_task INDEX1 [INDEX2] ...`
 Examples:
 * `done_task 1 2` marks the first and second task in the task list as completed.
 
+#### Illustration of usage of `done_task`:
+![Example of usage of `done task`](images/DoneTaskUsage.png)
+
 [Return to Feature List](#feature-list)
 
 
@@ -357,6 +365,9 @@ Format: `undone_task INDEX`
 
 Examples:
 * `undone_task 1` marks the first task in the task list as uncompleted.
+
+#### Illustration of usage of `undone_task`:
+![Example of usage of `undone task`](images/UndoneTaskUsage.png)
 
 [Return to Feature List](#feature-list)
 
@@ -611,9 +622,21 @@ Format: `find_schedule DATE`
   please use the `list_task` and `list_event` respectively.
 
 Examples:
-* `find_schedule 2021-06-01` finds all existing uncompleted tasks with deadlines before or on the specified date
+* `find_schedule 2021-04-10` finds all existing uncompleted tasks with deadlines before or on the specified date
   and all existing events with start date before or on the specified date and end date after or on 
-  before or on `1st June 2021`.
+  before or on the specified date.
+
+#### Illustration of usage of `find_schedule`:
+
+Due to size constraint, this illustration is split into the before and after view for task list and that for event list.
+
+For task list:
+
+![Example of usage of `find schedule(task)`](images/FindScheduleUsageTask.png)
+
+For event list:
+
+![Example of usage of `find schedule(event)`](images/FindScheduleUsageEvent.png)
 
 [Return to Feature List](#feature-list)
 
@@ -628,12 +651,10 @@ Format: `free_time DATE`
   indicating invalid date.
 
 Examples:
-* `free_time 2021-04-10` finds all free time slots on the given date `10th April 2021`.
+* `free_time 2022-02-01` finds all free time slots on the given date `10th April 2021`.
 
 #### Illustration of usage of `free_time`:
 ![Example of usage of `free_time`](images/FindFreeTimeExample.png)
-
-* There is only one event on 2021-04-10 (highlighted in red box).
 
 [Return to Feature List](#feature-list)
 

@@ -19,6 +19,13 @@ activate LogicManager
 LogicManager -> SocheduleParser : parseCommand(delete_event INDEX)
 activate SocheduleParser
 
+create DeleteEventCommandParser
+SocheduleParser -> DeleteEventCommandParser
+activate DeleteEventCommandParser
+
+DeleteEventCommandParser --> SocheduleParser
+deactivate DeleteEventCommandParser
+
 SocheduleParser -> DeleteEventCommandParser: parse(INDEX)
 activate DeleteEventCommandParser
 

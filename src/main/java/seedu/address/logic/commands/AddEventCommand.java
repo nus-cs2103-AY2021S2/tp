@@ -33,7 +33,7 @@ public class AddEventCommand extends Command {
             + PREFIX_NAME + "CS2103 meeting "
             + PREFIX_STARTDATE + "2021-02-27 "
             + PREFIX_STARTTIME + "15:00 "
-            + PREFIX_ENDDATE + "2021-02-27 "
+            + PREFIX_ENDDATE + "2022-02-27 "
             + PREFIX_ENDTIME + "17:00 "
             + PREFIX_CATEGORY + "School "
             + PREFIX_TAG + "TeamProject";

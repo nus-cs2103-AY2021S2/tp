@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_STARTTIME
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
+import static seedu.address.logic.commands.EditEventCommand.MESSAGE_EDIT_TO_EXPIRED_EVENT;
 import static seedu.address.testutil.TypicalEvents.getTypicalSochedule;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
@@ -151,10 +152,10 @@ public class EditEventCommandTest {
         Index indexLastEvent = Index.fromOneBased(model.getFilteredEventList().size());
 
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder()
-                .withEndDate(INVALID_EVENT_ENDDATE).build();
+                .withStartDate(INVALID_EVENT_ENDDATE).withEndDate(INVALID_EVENT_ENDDATE).build();
         EditEventCommand editEventCommand = new EditEventCommand(indexLastEvent, descriptor);
 
-        assertCommandFailure(editEventCommand, model, Messages.MESSAGE_PAST_EVENT_END_DATE_TIME);
+        assertCommandFailure(editEventCommand, model, MESSAGE_EDIT_TO_EXPIRED_EVENT);
     }
 
     @Test
