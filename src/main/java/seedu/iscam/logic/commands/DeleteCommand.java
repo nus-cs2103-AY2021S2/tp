@@ -49,7 +49,7 @@ public class DeleteCommand extends Command {
         Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteClient(clientToDelete);
 
-        if (model.getDetailedClient().getValue().equals(clientToDelete)) {
+        if (clientToDelete.equals(model.getDetailedClient().getValue())) {
             model.setDetailedClient(null);
         }
 
