@@ -87,7 +87,7 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteTask 1")` API call.
 
 ![Interactions Inside the Logic Component for the `deleteTask 1` Command](images/DeleteTaskSequenceDiagram.png)
 
@@ -195,7 +195,7 @@ Step 1. User executes the `findBefore 2021-04-04` command to show the tasks in t
 `FindTasksBeforeCommandParser` is created and it calls `FindTasksBeforeParser#parse` on the arguments
 
 Step 2. `FindTasksBeforeCommandParser#parse` method will check on the validity of the deadline argument for a `FindTasksBeforeCommand`. If is is
-valid,  it will create a new `FindTasksBeforeCommand` by calling the constructor with the DeadlineBeforeDatePredicate.
+valid,  it will create a new `FindTasksBeforeCommand` instance by calling the constructor with the DeadlineBeforeDatePredicate.
 
 Step 3. The `FindTasksBeforeCommand#execute` is then called by the `LogicManager`. The tasks with deadline before 2021-04-04 are selected by the 
 DeadlineBeforeDatePredicate.
@@ -216,7 +216,7 @@ It is also enabled by the following Parser class:
 
 The above mentioned Parser class inherits from the `#parse method` from the Parser interface.
 
-* `DeleteTaskCommandParser#parser` - checks if the arguments passed to the current DeleteTaskCommand is valid. 
+* `DeleteTaskCommandParser#parse` - checks if the arguments passed to the current DeleteTaskCommand is valid. 
   If the arguments are valid, it creates a DeleteTaskCommand instance.
 
 Subsequently, the created `DeleteTaskCommand` object contains an `#execute` method which 
@@ -232,7 +232,7 @@ Step 1. User executes the `deleteTask 1` command to delete the task at the 1st i
 A `DeleteTaskCommandParser` is created and calls the `DeleteTaskCommandParser#parse` on the arguments.
 
 Step 2. `DeleteTaskCommandParser#parse` method checks on the validity of the arguments for a `DeleteTaskCommand`. 
-If it is valid, it will create a new `DeleteTaskCommand` by calling the constructor.
+If it is valid, it will create a new `DeleteTaskCommand` instance by calling the constructor.
 
 Step 3. The `DeleteTaskCommand#execute` is then called by `Logic Manager`. The task with the same `Index` is retrieved 
 and deleted from the task list using the `deleteTask` method in the `Model` class.
@@ -438,7 +438,7 @@ Use case ends.
 **MSS**
 
 1.  User requests to view the list of tasks
-2.  HEY MATEz lists the tasks along with the description 
+2.  HEY MATEz lists the tasks along with the description
     
 Use case ends.
 
@@ -554,6 +554,12 @@ Use case ends.
     
 Use case ends.
 
+:pencil2: **Use case: View Unassigned Tasks**
+
+**MSS**
+
+Similar to viewing a list of uncompleted tasks but a list of unassigned task is displayed instead.
+
 :pencil2: **Use case: Find all Tasks assigned to a particular Members**
 
 **MSS**
@@ -572,8 +578,8 @@ Use case ends.
 
 ### Non-Functional Requirements
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Data should be persistent after exiting and reopening the app
-3. App should run locally on the user's computer
+2. Data should be persistent after exiting and reopening the app.
+3. App should run locally on the user's computer.
 
 *{More to be added}*
 
@@ -596,7 +602,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
@@ -613,7 +619,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a Member while all members are being shown
 
-   1. Prerequisites: List all members using the `viewMembers` command. Multiple members in the list. A member with the name of `Alice` exists in the list. No member with the name `Barry` exists in the list
+   1. Prerequisites: List all members using the `viewMembers` command. Multiple members in the list. A member with the name of `Alice` exists in the list. No member with the name `Barry` exists in the list.
 
    1. Test case: `delete Alice`<br>
       Expected: Member with the name `Alice` is deleted from the list. Details of the deleted contact shown in the status message.
