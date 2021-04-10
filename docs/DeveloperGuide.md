@@ -158,8 +158,14 @@ This section describes some noteworthy details on how certain features are imple
 The implementation of theme is done by parsing the raw values of the `json` file containing a color palette, and then
 transforming them into a `css` file that is then applied to `MainWindow.fxml`. All other elements will read from the
 same `css` file. When the application is first launched, it will apply the default theme constructed by `ThemeFactory`.
-When a theme is set by the command, it and it's temporary `css` file will be stored as variables in `ThemeManager`,
-which will subsequently be used by the other parts of the application (for e.g. messageboxes).
+When a theme is set by the command, it and its temporary `css` file will be stored in an instance of `ThemeManager`. It
+should be noted that `ThemeManager` is a singleton and only one instance of it will exist throughout the lifetime of
+the application. The values stored in that instance will be read by the different components of the application.
+
+FriendDex comes with several predefined theme stored in the resource folder `/themes/`. To access them, we pass the name
+of the theme prefixed with a `@` to `ThemeFactory#load`. The `ThemeFactory#load` sequence diagram can be seen here:
+
+![Sequence diagram for `ThemeFactory#load](images/ThemeFactoryLoadSequenceDiagram.png)
 
 #### Initialization
 
@@ -173,10 +179,11 @@ application continues to use the default theme. Otherwise, it attempts to load t
 
 When the command `theme` is invoked, the following happens:
 
-1. A `Theme t` instance is created by calling `ThemeManager#load(FILE)`, where `FILE` is the supplied file path.
-2. `ThemeManager#setTheme(t, FILE)` is then called. This stores/generates the following:
+1. A `Theme t` instance is created by calling `ThemeManager#load(themePath)`, where `themePath` is the supplied file path.
+2. `ThemeManager#setTheme(t, themePath)` is then called. This stores/generates the following:
     * `theme` - The `Theme` object currently used.
-    * `themePath` - The path of the `json` file.
+    * `themePath` - The location of the theme to be used. If `themePath` is prefixed with a `@`, then it will load a
+      predefined theme.
     * `cssCacheUri` - The temp file containing the `CSS` to be used by `MainWindow.fxml`'s `scene`.
 3. When the command gets executed, the result is processed by `MainWindow#executeCommand()`. The flag `theme` will be
    set, informing the application that there is a change in `cssCacheUri` and it applies the theme.
@@ -184,9 +191,9 @@ When the command `theme` is invoked, the following happens:
 The following sequence diagram depicts the simplified workings of the command:
 ![Sequence diagram for theme invocation](images/ThemeCommandSequenceDiagram.png)
 
-#### Termination
+#### Saving to file
 
-When the program terminates, `themePath` is saved into `UserPrefs` so it can locate the same theme for subsequent runs.
+Whenever `theme` is successfully invoked, `themePath` will be saved into `UserPrefs` and written to file.
 
 ### Details panel tab switching
 
