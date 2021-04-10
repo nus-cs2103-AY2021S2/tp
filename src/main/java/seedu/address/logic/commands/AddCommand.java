@@ -75,7 +75,7 @@ public class AddCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
-    private void enforceValidityOfTask() throws CommandException{
+    private void enforceValidityOfTask() throws CommandException {
         ConditionLogic conditionLogic = new ConditionLogic(toAdd);
         conditionLogic.enforceAttributeConstraints();
         conditionLogic.checkInvalidDateRange();

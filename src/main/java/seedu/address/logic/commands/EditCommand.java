@@ -90,10 +90,10 @@ public class EditCommand extends Command {
 
         Task taskToEdit = getTaskToEdit(lastShownList);
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
-        editedTask = handleTagUpdates(model, taskToEdit, editedTask);
 
         checkForDuplicateTask(model, taskToEdit, editedTask);
         verifyTask(editedTask);
+        editedTask = handleTagUpdates(model, taskToEdit, editedTask);
         updateModel(model, taskToEdit, editedTask);
 
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));

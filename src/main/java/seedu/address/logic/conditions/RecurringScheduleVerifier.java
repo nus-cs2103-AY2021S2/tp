@@ -18,6 +18,11 @@ public class RecurringScheduleVerifier {
     private Task task;
     private AttributeManager attributeManager;
 
+    /**
+     * Constructor for RecurringScheduleVerifier
+     *
+     * @param task Task to be verified.
+     */
     public RecurringScheduleVerifier(Task task) {
         this.task = task;
         this.attributeManager = new AttributeManager(task);

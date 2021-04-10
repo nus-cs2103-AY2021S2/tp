@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.task.AttributeManager;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.attributes.Attribute;
 
 /**
  * ConstraintManager checks that the necessary constraints on the attributes of Tasks are abided by.
@@ -30,6 +29,11 @@ public class ConstraintManager {
     private Task task;
     private AttributeManager attributeManager;
 
+    /**
+     * Constructor for the ConstraintManager class.
+     *
+     * @param task Task to check constraints.
+     */
     public ConstraintManager (Task task) {
         this.task = task;
         this.attributeManager = new AttributeManager(task);
