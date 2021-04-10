@@ -337,23 +337,25 @@ given below, and familiarize yourself with them.
 
 Records a borrowing activity. You need to do so whenever a reader borrows a book.
 
-Format: `borrow b/BOOKNAME r/READERNAME`
+Format: `borrow bc/BARCODE r/READERNAME`
 
 **:information_source: Notes:**
 * Refer to [Records' Command Parameters](#records-command-parameters) for more details about each parameter.
 * Lets the reader with the specified name READERNAME borrow the book specified by name BOOKNAME.
 
 Example Use:
-* `borrow b/The Old Man And The Sea r/Alex` records a rental entry that reader whose name is Alex borrowed
-a book which name is The Old Man and the Sea
+* `borrow bc/1000000000 r/Alex` records a rental entry that reader whose name is Alex borrowed
+a copy of The Old Man And The Sea which barcode is 1000000000
+
 
 More Examples:
-* `borrow b/Cloud Atlas r/Bernice` records that Bernice borrowed a copy of Cloud Atlas
-* `borrow b/The Hobbit r/Charlotte` records that Charlotte borrowed a copy of The Hobbit
+* `borrow bc/1234567890125 r/Bernice` records that Bernice borrowed a copy of Cloud Atlas which barcode is 1234567890125
+
+* `borrow bc/1000000001 r/Charlotte` records that Charlotte borrowed a copy of The Hobbit which barcode is 1000000001
   
 Steps:
 1. Type `borrow` in the _Command Box_.
-2. Type `b/BOOKNAME` where `BOOKNAME` is to be replaced by actual book name
+2. Type `bc/BARCODE` where `BARCODE` is to be replaced by actual barcode
 3. Type `r/READERNAME` where `READERNAME` is the reader borrowing the book
 
 Notes:
@@ -364,7 +366,7 @@ Outcome:
 * The _Result Display_ will show a message indicating success.
 * SmartLib will record down this borrowing activity.
 * The relevant parts in UI will be updated.
-  ![result for 'borrow b/The Old Man And The Sea r/Alex'](images/BorrowCommand.png)
+  ![result for 'borrow bc/1999999999 r/Charlotte'](images/BorrowCommand.png)
   
 #### Returning a book : `return`
 
@@ -501,7 +503,7 @@ Action | Format, Examples
 **Find reader** | `findreader KEYWORD [MORE_KEYWORDS]` or `findreader t/TAG [MORE_TAGS]`<br> e.g., `findreader James Jake`
 **List readers** | `listreader`
 **Add book** | `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/Genre` <br> e.g., `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9783161484100 g/Fantasy`
-**Borrow book** | `borrow b/BOOKNAME r/READERNAME`<br> e.g., `borrow b/The Old Man and the Sea r/Alex Yeoh`
+**Borrow book** | `borrow bc/BARCODE r/READERNAME`<br> e.g., `borrow bc/1000000000 r/Alex`
 **Delete book** | `deletebook INDEX`<br> e.g., `deletebook 3`
 **Find book** | `findbook KEYWORD [MORE_KEYWORDS]`<br> e.g., `findbook Thomas the Tank Engine`
 **List books** | `listbook`
