@@ -363,7 +363,7 @@ The Issue class consists of 5 fields, each of which contain their own methods to
 
 Examples of verification functions in each of the fields include `Category#isValidCategory()`, `Status#isValidStatus()`, etc.
 
-![The Issue Class](images/Issue/IssueClass.png)
+![The Issue Class](images/issue/IssueClass.png)
 
 The `Issue` objects are stored in an `IssueList` which is held by `AddressBook`.
 
