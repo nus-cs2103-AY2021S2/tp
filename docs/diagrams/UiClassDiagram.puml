@@ -13,7 +13,6 @@ Class HelpWindow
 Class ResultDisplay
 Class ContactListPanel
 Class ContactCard
-Class StatusBarFooter
 Class CommandBox
 }
 
@@ -34,7 +33,6 @@ MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> ContactListPanel
-MainWindow *-down-> StatusBarFooter
 
 ContactListPanel -down-> ContactCard
 
@@ -44,7 +42,6 @@ ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 ContactListPanel --|> UiPart
 ContactCard --|> UiPart
-StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
 ContactCard ..> Model
@@ -54,7 +51,6 @@ MainWindow -left-> Logic
 ContactListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow -[hidden]-|> UiPart
 @enduml

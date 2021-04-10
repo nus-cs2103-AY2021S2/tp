@@ -64,7 +64,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -192,11 +192,11 @@ for `ChildTag` resulting in the UI view shown below.
 
 #### Implementation
 
-The help mechanism is facilitated by `HelpCommandParser` and `HelpCommand`. `HelpCommandParser` implements `Parser#parse(args)` from the `Parser` interface. The `args` passed to the method specify the command to display information for. If `args` specifies more than one command, a parse exception will be thrown. Otherwise, `HepCommandParser` returns a new `HelpCommand`.
+The help mechanism is facilitated by `HelpCommandParser` and `HelpCommand`. `HelpCommandParser` implements `Parser#parse(args)` from the `Parser` interface. The `args` passed to the method specify the command to display information for. If `args` specifies more than one command, the last command will be taken. Otherwise, `HepCommandParser` returns a new `HelpCommand`.
 
 If no commands were specified in `args`, the `HelpCommand` constructor without any parameters will be called. If a single command was specified, the command will be passed as an argument to the `HelpCommand(specifiedCommand)` constructor.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If multiple commands are specified, an exception is thrown.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If multiple commands are specified, last command is taken.
 </div>
 
 To execute a `HelpCommand`, `HelpCommand#execute()` is called. The method reads and parses information in the user guide (found at resources/UserGuideCopy.md) into a `helpMessage` differently depending on whether a command was specified. `helpMessage` can contain the following:
@@ -324,9 +324,9 @@ The following sequence diagram shows how the add operation works:
 
 Note: Style of diagram to be updated.
 
-### \[Proposed\] Appointment feature
+### Appointment feature
 
-#### Proposed Implementation
+#### Implementation
 
 An appointment feature will be implemented in the next version of this application. It is a useful feature for parents to track any important appointments
 related to their children. For example, a parent teacher meeting or a birthday party at the house of their child's friend. 
@@ -364,18 +364,18 @@ for that particularly command.
 
 ![AppointmentCommandClassDiagram](images/AppointmentCommandClassDiagram.png)
 
-The main methods for the appointment feature include `AddAppointmentCommand`, `DeleteAppointmentCommand` and `FindAppointmentCommand`. These methods interact with other components in a similar way
+The main methods for the appointment feature include `AddAppointmentCommand`, `EditAppointmentCommand`, `DeleteAppointmentCommand` and `FindAppointmentCommand`. These methods interact with other components in a similar way
 to similar methods for AddressBook. 
-* For `AddAppointmentCommand`, adding of contacts is handled by `AppointmentBook#addAppointment`, similar to how adding of addresses is handled by `AddressBook#addPerson()`. 
+* For `AddAppointmentCommand`, adding of appointments is handled by `AppointmentBook#addAppointment()`, similar to how adding of contacts is handled by `AddressBook#addContact()`. 
+* For `EditAppointmentCommand`, editing of appointments is handled by `AppointmentBook#setAppointment()`, similar to how editing of contacts is handled by `AddressBook#setContact()`.
 * For `FindAppointmentCommand`, a predicate defined by given keywords is fed to the filtered list of `Appointment` handled by `ModelManager`, and this filters the `Appointment` objects.
 * For `DeleteAppointmentCommand`, `Appointment` is selected to be deleted by the given `index`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** FindAppointmentCommand only supports finding by the name of the appointment.
-</div>
-
 ##### Storage Component
 
-![AppointmentWithStorageClassDiagram](images/AppointmentWithStorageClassDiagram.png)
+![AppointmentWithStorageClassDiagram](images/AppointmentWithStorageClassDiagramUpdated.png)
+
+The storage component now saves and reads back appointment book data on top of address book and user preference data. The implementation of the appointment book storage is similar to that of the address book storage.
 
 ### \[Proposed\] Undo/redo feature
 

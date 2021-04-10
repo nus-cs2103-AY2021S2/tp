@@ -21,10 +21,6 @@
   </icons>
   <scene>
     <Scene fx:id="scene">
-      <stylesheets>
-        <URL value="@Extensions.css"/>
-      </stylesheets>
-
       <VBox minWidth="-Infinity">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
@@ -81,8 +77,6 @@
               </VBox>
             </children>
         </GridPane>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>

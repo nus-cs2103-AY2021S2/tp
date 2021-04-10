@@ -15,7 +15,6 @@ Class ContactListPanel
 Class ContactCard
 Class AppointmentListPanel
 Class AppointmentCard
-Class StatusBarFooter
 Class CommandBox
 }
 
@@ -37,7 +36,6 @@ MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> ContactListPanel
 MainWindow *-down-> AppointmentListPanel
-MainWindow *-down-> StatusBarFooter
 
 ContactListPanel -down-> ContactCard
 AppointmentListPanel -down-> AppointmentCard
@@ -50,7 +48,6 @@ ContactListPanel ---|> UiPart
 ContactCard ---|> UiPart
 AppointmentListPanel ---|> UiPart
 AppointmentCard ---|> UiPart
-StatusBarFooter ---|> UiPart
 HelpWindow -down--|> UiPart
 
 ContactCard ....> Model
@@ -62,7 +59,6 @@ ContactListPanel -[hidden]left- HelpWindow
 AppointmentListPanel -left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
 
 MainWindow ---|> UiPart
 @enduml

@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CHILD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -48,7 +47,6 @@ public class EditAppointmentCommand extends Command {
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists.";
 
     private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
@@ -78,11 +76,11 @@ public class EditAppointmentCommand extends Command {
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
 
         if (!appointmentToEdit.isSameAppointment(editedAppointment) && model.hasAppointment(editedAppointment)) {
-            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
         model.setAppointment(appointmentToEdit, editedAppointment);
-        model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        // model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));
     }
 
