@@ -354,8 +354,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user | schedule recurring tasks at a specified frequency | easily set tasks for the future at one go |
 | `* * *`  | user | see how many days I have left until a specific task is due/happening | know how much time I have left to work on the task |
 | `* * *`  | user | see all the statistics for the tasks | track my progress |
-| `* * *`  | user | see a list of tags currently used | keep track of all my tags |
 | `* * *`  | user | view all the tasks on a specific date | schedule new tasks during the free time on that day |
+| `* *`  | user | see a list of tags currently used | keep track of all my tags |
 
 ### Use cases
 
@@ -470,7 +470,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Remove a field from a task**
 
 **MSS**
-1. User _adds a task with removable field_ to the list.
+1. User <u>adds a task</u> with removable field to the list.
 2. PlanIT shows task added to the list and updates list.
 3. User enters command to remove the removable field from the task.
 4. PlanIT shows task with field removed and updates list.
@@ -566,7 +566,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### **Use case: Counting down to a task's date**
 
 **MSS**
-1. User _adds a task with a date_ to the list. 
+1. User <u>adds a task</u> with a date to the list. 
 2. PlanIT shows task added to the list and updates list.
 3. User enters command to display number of days left to task's date.
 4. PlanIT displays number of days left to task's date.
@@ -642,8 +642,6 @@ of external database management system.
 * The features within the system is only catered to a single user.
 * The system is catered to user who can type fast and prefer typing over any other means.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -694,8 +692,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. Test case: Delete the data file which is saved at the same folder as the jar file.
+   1. Test case: Delete the data file which is saved at the same folder as the jar file.<br>
       Expected: PlanIt launches with sample data loaded, and creates a new data file.
       
-   1. Test case: Remove an attribute of a task, or fill in an attribute with the wrong format.
+   1. Test case: Remove an attribute of a task, or fill in an attribute with the wrong format.<br>
       Expected: PlanIt launches with an empty list.
