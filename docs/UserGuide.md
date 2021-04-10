@@ -3,6 +3,10 @@ layout: page
 title: User Guide
 ---
 
+<div style="text-align: center">
+   <img src="images/FriendDex.png" width="200" style="margin: 0 auto" />
+</div>
+
 Our world is more connected than ever. There are numerous interactions between multiple people daily in our lives. 
 As we move forward towards more of an asynchronous and remote way of living, daily interactions become more transient and harder to remember. 
 FriendDex aims to act as a tool to bridge that gap so that interactions become more permanent. FriendDex will empower you to have better relationships with people around you.
@@ -27,13 +31,15 @@ It is generally advisable for new users to visit the [Quick Start](#quick-start)
 
 ### Symbols
 
-Note the following symbols and formatting used in this document: 
+Note the following symbols and formatting used in this document:
+
 
 <div markdown="block" class="alert alert-info">
-
 `list n/Close Friends` <br>
-This grey highlight, also known as markup, is used to distinguish parts of the document from normal text. For example, it can be used to indicate the syntax of commands.
+* This grey highlight, also known as markup, is used to distinguish parts of the document from normal text. For example, it can be used to indicate the syntax of commands.
+</div>
 
+<div markdown="block" class="alert alert-info">
 :information_source: **Notes:**<br>
 
 * This block is used for detailing information about formatting, handling exceptional cases or special keywords used in the corresponding section.
