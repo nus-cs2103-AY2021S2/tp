@@ -23,7 +23,7 @@ on ModuleBook3.5.
 
 1. Once the jar file is ready, simply double-click the file in the download section.
 
-1. Read through the `Features` section and `Command Notes` to understand how the application should be used.
+1. Read through the [Features](#Features) section and [Command Notes](#Command Notes) to understand how the application should be used.
 
 1. Go through the tutorial in the given order. Simply look out for blue boxes with a bulb icon and titled "Tutorial Example:", 
    such as the one below.
@@ -56,17 +56,6 @@ Within the workload pie chart, each module's colour may change as a command is e
 However, the colours will be arranged such that no two modules with the same colour will be next to each other.
 </div>
 
-* Tasks are colour coded based on done status. 
-   1. Done tasks are coloured pink. 
-   2. Tasks that are not done are classified into 4 different categories (colors):
-
-Color | Time to deadline 
---------|------------------
-**Green** | More than 3 days
-**Yellow** | Between 1 to 3 days
-**Orange** | Less than 1 day      
-**Purple** | Expired
-
 * The pie chart is used to show workload distribution.
    1. The color of pie chart is randomly assigned.
    2. The workload of each module is counted by summing up the workload counts of all tasks for the module 
@@ -81,6 +70,17 @@ Input Parameter | Workload Rating
 **w/3** | High
 
 E.g. for a low workload rating, key in `w/1`.
+
+* Tasks are colour coded based on done status.
+    1. Done tasks are coloured pink.
+    2. Tasks that are not done are classified into 4 different categories (colors):
+
+Color | Time to deadline
+--------|------------------
+**Green** | More than 3 days
+**Yellow** | Between 1 to 3 days
+**Orange** | Less than 1 day
+**Purple** | Expired
 
 <div style="page-break-after: always;"></div>
 
@@ -184,6 +184,7 @@ w/ | WORKLOAD |
 r/ | RECURRENCE |
 t/ | TAG |
 
+
 ### Duplicate Parameters
 1. Most commands take in only one instance of a unique parameter. In such cases, the last instance of the parameter is accepted.
 
@@ -210,6 +211,7 @@ t/ | TAG |
 
 
 ## Command list
+This list serves to categorise commands based on similarities in functionality and are not arranged in tutorial order:
 
 * **`list`** : List out tasks
 
