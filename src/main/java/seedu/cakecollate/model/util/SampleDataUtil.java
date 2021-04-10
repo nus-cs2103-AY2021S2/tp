@@ -116,7 +116,8 @@ public class SampleDataUtil {
         HashMap<OrderDescription, Integer> orderDescriptionMap = new HashMap<>();
         Arrays.stream(strings)
                 .map(OrderDescription::new)
-                .forEach(od -> orderDescriptionMap.put(od, 1));
+                .forEach(od -> orderDescriptionMap.put(od,
+                        1 + orderDescriptionMap.getOrDefault(od, 0)));
         return orderDescriptionMap;
     }
 

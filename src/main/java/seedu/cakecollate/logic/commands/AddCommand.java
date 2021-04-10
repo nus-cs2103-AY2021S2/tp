@@ -271,12 +271,13 @@ public class AddCommand extends Command {
             }
         }
 
-        public void setOrderDescription(OrderDescription orderDescription) {
+        public void setOrderDescription(OrderDescription od) {
             if (this.orderDescriptions == null) {
                 this.orderDescriptions = new HashMap<>();
             }
 
-            this.orderDescriptions.put(orderDescription, 1);
+            int quantity = this.orderDescriptions.containsKey(od) ? orderDescriptions.get(od) : 0;
+            this.orderDescriptions.put(od, quantity + 1);
         }
 
         public Optional<Map<OrderDescription, Integer>> getOrderDescriptions() {

@@ -152,7 +152,9 @@ class JsonAdaptedOrder {
         }
 
         final Map<OrderDescription, Integer> modelOrderDescriptions = new HashMap<>();
-        orderOrderDescriptions.forEach(o -> modelOrderDescriptions.put(o, 1));
+        orderOrderDescriptions.forEach(o -> modelOrderDescriptions.put(o,
+                1 + modelOrderDescriptions.getOrDefault(o, 0)));
+
 
         final DeliveryStatus modelDeliveryStatus;
         if (deliveryStatus == null) {

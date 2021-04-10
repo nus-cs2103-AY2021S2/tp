@@ -182,8 +182,10 @@ public class ParserUtil {
             throws ParseException {
         requireNonNull(orderDescriptions);
         final Map<OrderDescription, Integer> orderDescriptionMap = new HashMap<>();
-        for (String o : orderDescriptions) {
-            orderDescriptionMap.put(parseOrderDescription(o), 1);
+        for (String str : orderDescriptions) {
+            OrderDescription od = parseOrderDescription(str);
+            int quantity = orderDescriptionMap.getOrDefault(od, 0);
+            orderDescriptionMap.put(od, quantity + 1);
         }
         return orderDescriptionMap;
     }
