@@ -1766,3 +1766,30 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted/missing data files
 
    1. SOChedule will re-initialise and provide an empty Task list and Event list.
+
+### Effort
+SOChedule morphs Addressbook 3(AB3) to an application that help NUS School of Computing (SoC) students
+to effectively manage their tasks and events. Since we are not building our product based on AB3, significant amount of efforts
+are needed to convert the AB3 code base to suit the needs of SOChedule. This involves rewriting the major components including
+Model, Logic, UI, Storage and more. Even before we started to implement our unique features, efforts 
+similar to than building an AB3-level product from scratch are needed. 
+
+Compared to AB3 which only stores and updates `Person`, SOChedule doubles the difficulty and handles multiple entity types. 
+Two main ones are related to `Task` and `Event`. This means our project requires more, if not doubled, efforts as compared to implementing AB3 from scratch 
+because of the additional attributes needed to be dealt with.
+Some of them are specific to `Task`, like `Completion Status` and `Priority`. 
+Some of them are specific to `Event`, like `Time`. 
+Some of them are used by both `Task` and `Event`, like `Name` and `Date`.
+
+Because of these additional attributes, Logic component needs more parsers to handle various inputs and commands to achieve
+the features we designed to improve the efficiency of our users. Such examples include parsing and validating of `Date` and `Time` from user inputs.
+Some of the challenges we faced can be ensuring no invalid events (events with start date time later than end date time) can be created. 
+Also, we need to add further constraints with our commands to ensure users do not perform invalid operations with our commands. 
+Fro example, users cannot edit an event to make its start date time later than end date time. 
+All of these require significant amount of efforts in designing, developing and testing.
+
+Similarly, Storage component needs to deal with more complicated data and data structures that involve both tasks and events. 
+
+Also, we need to redesign the GUI to show both task list and event lists and the additional attributes we introduced as compared to AB3.
+
+Some of the achievements in SOChedule may include our `pin_task` and `sort_task` method.  
