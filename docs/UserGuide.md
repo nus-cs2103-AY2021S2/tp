@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-Welcome fellow drivers!
+Welcome fellow drivers!<br>
 TimeForWheels is a delivery task management app for delivery drivers to manage and track their own workflow. 
 It is optimized for use via a Command Line Interface while still having the benefits of a Graphical User Interface(GUI). 
 Overall, TimeForWheels aims to be your perfect delivery companion by improving productivity and simplifying the delivery planning process.
@@ -63,7 +63,7 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 **:information_source: Notes about the command format:**<br>
 
-* Attributes of a delivery tasks includes name, phone number, address, email, date, tags, date
+* Attributes of a delivery tasks includes name, phone number, address, email, date, tags, date.
 
 * Words in `UPPER_CASE` are the inputs to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is an input which can be used as `add n/John Doe`.
@@ -81,7 +81,7 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
   the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* For commands that do not take in inputs (such as `help`, `list`, `exit` and `clear`), any input will be
+* For commands that do not take in any inputs (such as `help`, `list`, `exit` and `clear`), any inputs will be
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
@@ -107,7 +107,7 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 **Examples:**
 
-* `add n/Mark p/92841234 a/20 Watten Estate e/mark1998@gmail.com d/2021-02-02
+* `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 d/2021-10-10
   `
   
 ![Ui](images/AddCommand.png)
@@ -130,15 +130,15 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 **Examples:**
 
-* `edit 8 n/Joshua`
+* `edit 7 n/Joshua`
 
 ![Ui](images/EditSingleAttribute.png)
 
-* `edit 8 a/Clementi Road d/2021-10-01`
+* `edit 7 a/Clementi Road d/2021-10-01`
 
 ![Ui](images/EditMultipleAttribute.png)
 
-### Add a remark to a delivery tasks: `add`
+### Add a remark to a delivery tasks: `remark`
 
 **Purpose:** Adds a remark to a delivery task in the delivery list.
 
@@ -146,7 +146,7 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 **Examples:**
 
-* `remark 1 r/needs utensils
+* `remark 7 r/needs utensils
   `
 
 ![Ui](images/RemarkCommand.png)
@@ -163,7 +163,7 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 
 **Examples:**
 
-* `delete 2` - delete 2 will delete the second delivery task in the delivery list.
+* `delete 7` - delete 7 will delete the seventh delivery task in the delivery list.
   
 ![Ui](images/DeleteCommand.png)
 
@@ -200,7 +200,7 @@ Overall, TimeForWheels aims to be your perfect delivery companion by improving p
 * Sets the delivery task as done [✓].
 * The TASK_NUMBER refers to the number shown in the displayed delivery list.
 * The TASK_NUMBER must be a positive number such as 1, 2, 3
-* If the delivery task is already marked as done [✓], running this command will mark it as not done [X]
+* If the delivery task is already marked as done [✓], running this command will mark it as not done [X] instead
 
 **Example:**
 
@@ -266,6 +266,8 @@ then urgency tags (only applicable for incomplete tasks), and lastly date.
 * `sort` - Lists all incomplete delivery tasks (urgent ones first) followed by completed delivery tasks, which are all
 sorted by date.
 
+   ![Ui](images/Sort.png)
+
 
 ### Statistics of delivery workflow : `stats`
 
@@ -302,6 +304,7 @@ sorted by date.
 **Example:**
 
 * `stats` - outputs the calculated figures as shown below
+       ![Ui](images/Stats.png)
 
 ### View completed delivery tasks: `completed`
 
@@ -356,12 +359,12 @@ Action | Format,<br> Example(s)
 --------|------------------
 **Help** | `help`<br> e.g., `help`
 **Add** | `add n/NAME p/PHONE a/ADDRESS e/EMAIL d/DATETIME` <br> e.g., `add n/Johnathan p/98723456 a/123, Clementi Rd, 1234665 e/johnathan@gmail.com d/01-02-2021`
-**Edit** | `edit INDEX n/NAME`, `p/PHONE`, `a/ADDRESS`, `e/EMAIL`, `t/TAG`, `d/DATE `<br> e.g.,`edit 1 a/102 Bishan Street`
-**Remark** | `remark INDEX r/REMARK`<br> e.g.,`remark 1 r/needs untensils`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Edit** | `edit TASK_NUMBER n/NAME`, `p/PHONE`, `a/ADDRESS`, `e/EMAIL`, `t/TAG`, `d/DATE `<br> e.g.,`edit 1 a/102 Bishan Street`
+**Remark** | `remark TASK_NUMBER r/REMARK`<br> e.g.,`remark 1 r/needs untensils`
+**Delete** | `delete TASK_NUMBER`<br> e.g., `delete 3`
 **Clear** | `clear`<br> e.g., `clear`
 **List** | `list`<br> e.g., `list`
-**Done** | `done INDEX`<br> e.g., `done 2`
+**Done** | `done TASK_NUMBER`<br> e.g., `done 2`
 **Find** | `find <keyword>` e.g., `find alex`
 **Stats** | `stats` <br> e.g., `stats`
 **Completed** | `completed` <br> e.g., `completed`
@@ -373,7 +376,7 @@ Action | Format,<br> Example(s)
 
 Term | Definition,<br>
 --------|------------------
-**Attribute** | `A key detail of a delivery task`<br> e.g., `name`
+**ATTRIBUTE** | `A key detail of a delivery task`<br> e.g., `name`
 **TASK_NUMBER** | `The delivery task number shown in the delivery list` <br> e.g., `add n/Johnathan p/98723456 a/123, Clementi Rd, 1234665 e/johnathan@gmail.com d/01-02-2021`
 **PREFIX** | `refers to the letter representing the respective attribute.` <br> e.g., Letter a for attribute ADDRESS`
 
