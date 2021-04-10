@@ -61,7 +61,7 @@ public class GarmentCard extends UiPart<Region> {
         garment.getDescriptions().stream()
                 .sorted(Comparator.comparing(description -> description.descriptionName))
                 .forEach(description -> descriptions.getChildren()
-                        .add(new Label("<" + description.descriptionName + ">")));
+                        .add(new Label(description.descriptionName)));
 
         Image image = new Image(sample);
         ImageView sampleView = new ImageView(image);
