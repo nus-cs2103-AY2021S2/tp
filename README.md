@@ -39,6 +39,8 @@ This project is a part of the se-education.org initiative. If you would like to 
 * Clear Contacts
 * Assign Student(s) to Session
 * Assign tutor to Session
+* Unassign Student(s) from Session
+* Unassign tutor from Session
 * Help
 * Exit
 
