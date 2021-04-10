@@ -1,7 +1,8 @@
 ---
-#Chiang Kee Woon Jonathan's Project Portfolio Page <br>
-
+layout: page
+title: Chiang Kee Woon Jonathan's Project Portfolio Page
 ---
+
 ## Introduction
 This page serves to document my contributions 
 to the project RemindMe under NUS module CS2103T in AY20/21 semester 2.
