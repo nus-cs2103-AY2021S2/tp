@@ -1,3 +1,4 @@
+
 ---
 layout: page
 title: Developer Guide
@@ -89,7 +90,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete_booking 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete_booking 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -261,17 +262,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | admin in charge of facilities              | add venues                     | make bookings in that venue.                                                                       |
-| `* * *`  | admin in charge of facilities              | edit venues                    | reflect the most up to date details of the venue.                       |
+| `* * `  | admin in charge of facilities              | edit venues                    | reflect the most up to date details of the venue.                       |
 | `* * *`  | admin in charge of facilities              | delete venues                  | remove venues not available for booking.                                                                       |
 | `* * *`  | admin in charge of facilities              | view venues                    |                                                                        |
 | `* * *`  | admin in charge of facilities              | find a venue by searching the venue's name| quickly get details of that venue.                                                                      |
 | `* * *`  | admin in charge of facilities              | add bookings                   |                                                                        |
-| `* * *`  | admin in charge of facilities              | edit bookings                  | change booking details when the person decides to amend the booking.    |
-| `* * *`  | admin in charge of facilities              | delete bookings                | remove bookings that have been cancelled by the person.                                                                       |
+| `* * `  | admin in charge of facilities              | edit bookings                  | change booking details when the person decides to amend the booking.    |
+| `* * *`  | admin in charge of facilities              | delete bookings                | remove bookings that have been cancelled by the booker.                                                                       |
 | `* * *`  | admin in charge of facilities              | view bookings                  | check the bookings that have been made.
 | `* * *`  | admin in charge of facilities              | find a booking by searching the booking's id| quickly get details of that booking.                                                                        ||
 | `* * *`  | admin in charge of facilities              | add persons                    | make bookings for that person.                                                                       |
-| `* * *`  | admin in charge of facilities              | edit persons                   | reflect the most up to date details of the person.                       |
+| `* * `  | admin in charge of facilities              | edit persons                   | reflect the most up to date details of the person.                       |
 | `* * *`  | admin in charge of facilities              | delete persons                 | remove persons who are not able to make a booking.                                                                       |
 | `* * *`  | admin in charge of facilities              | view persons                   |
 | `* * *`  | admin in charge of facilities              | find a person by searching the person's email| quickly get details of that person.                                                                        ||
@@ -300,7 +301,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 1b. The request misses compulsory fields, such as a venue name.
+* 1b. Venue details are invalid or missing compulsory fields.
     * 1b1. BookCoin To The Moon shows an error message and prompts the user to reenter their command.
 
 
@@ -328,6 +329,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  BookCoin To The Moon adds the person into the system.
 
     Use case ends.
+
+* 1b. Person details are invalid or missing compulsory fields.
+    * 1b1. BookCoin To The Moon shows an error message and prompts the user to reenter their command.
+
 
 **Extensions**
 
