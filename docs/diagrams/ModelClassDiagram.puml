@@ -16,7 +16,7 @@ Class UserPrefs
 Class ReadOnlyUserPrefs
 
 Package Person {
-Class Person
+Class Patient
 Class DateOfBirth
 Class Gender
 Class Address
@@ -53,19 +53,19 @@ ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
-UniquePersonList o-----> "*" Person
-Person *--> Name
-Person *--> DateOfBirth
-Person *--> Gender
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> BloodType
-Person *--> Height
-Person *--> Weight
-Person *--> "*" Tag
-Person *--> "*" Appointment
-Person *--> "*" MedicalRecord
+UniquePersonList o-----> "*" Patient
+Patient *--> Name
+Patient *--> DateOfBirth
+Patient *--> Gender
+Patient *--> Phone
+Patient *--> Email
+Patient *--> Address
+Patient *--> BloodType
+Patient *--> Height
+Patient *--> Weight
+Patient *--> "*" Tag
+Patient *--> "*" Appointment
+Patient *--> "*" MedicalRecord
 
 MedicalRecord *-> Section
 
@@ -79,5 +79,5 @@ BloodType -[hidden]right-> Height
 Height -[hidden]right-> Weight
 
 
-ModelManager ----->" ~* filtered list" Person
+ModelManager ----->" ~* filtered list" Patient
 @enduml
