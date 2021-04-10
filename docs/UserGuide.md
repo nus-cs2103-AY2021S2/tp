@@ -36,18 +36,18 @@ Please note the following symbols used in the User Guide which may serve as poin
 
 # 2. Quick start <a name = "quickstart"></a>
 
-1. Ensure you have Java 11 or above installed in your computer
-2. Download the latest GreenMileageEfforts.jar from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases)
-3. Copy the file to the folder you want to use as the [home folder](#6-glossary) for your **GreenMileageEfforts**
-4. Double click the file to start the app
+1. Ensure you have Java 11 or above installed in your computer.
+2. Download the latest GreenMileageEfforts.jar from [here](https://github.com/AY2021S2-CS2103T-W10-1/tp/releases).
+3. Copy the file to the folder you want to use as the [home folder](#6-glossary) for your **GreenMileageEfforts**.
+4. Double click the file to start the aplication.
 5. Type the command in the command box and press the Enter key to execute it. Some examples of commands you could try are:
-   * `list`: Lists all [passengers](#6-glossary) currently stored in the GME system
+   * `list`: Lists all [passengers](#6-glossary) currently stored in the GME system.
    * `pool n/Dr. Iver p/92385810 d/MONDAY t/0930 c/1 c/2 c/3`: adds the employees shown at indexes 1, 2, and 3 as passengers to a new [pool](#6-glossary) with Dr. Iver as the driver.
-   * `listPool`: Lists all [pools](#6-glossary) currently stored in the GME system
-   * `unpool 2`: Removes the pool at index 2
-   * `exit`: closes the GME app
+   * `listPool`: Lists all [pools](#6-glossary) currently stored in the GME system.
+   * `unpool 2`: Removes the pool at index 2.
+   * `exit`: closes the GME application.
 
-6. Refer to the [Features](#3-features-) below for the details on each command
+6. Refer to the [Features](#3-features-) below for the details on each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -126,7 +126,7 @@ Adds a new passenger in the GME terminal.
 **:information_source: Notes about the add command:**<br>
 * [TripDay](#6-glossary) is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
 * [TripTime](#6-glossary) is required to be in the 24-hour format. e.g. `0530` or `2359` 
-* [Tag](#6-glossary) is required to be an alphanumeric input at most 30 characters in length.
+* [Tag](#6-glossary) is required to be an alphanumeric input and can only have a maximum of 30 characters in length.
 * [Price](#6-glossary) is an optional amount that the passenger can include that describes how much they are willing to pay for a carpooling trip. It is required to be a positive whole number or a positive decimal number rounded to 2 decimal places.
 * The tripday and triptime specified are intended as weekly specifications for the day and time that the passenger intends to carpool every week.
 * As the current iteration of GME(v1.4) is still only a minimum viable product, every passenger can only specify one day and one time a week for when they intend to carpool.
@@ -135,7 +135,7 @@ Adds a new passenger in the GME terminal.
 **Examples:**
 * `add n/Ben Dover p/91234567 a/Geylang d/FRIDAY t/1800`
 * `add n/Jenny Talia p/98765432 a/Yishun Avenue 4 d/SATURDAY t/0830 tag/female`
-* `add n/Mike Hawk p/91234023 a/Yishun Avenue 69 d/SATURDAY t/0420 tag/male tag/high`
+* `add n/Mike Hawk p/91234023 a/Yishun Avenue 69 d/SATURDAY t/0420 tag/male tag/early`
 
 ### 3.2.2 Listing all passengers : `list`
 
@@ -153,6 +153,7 @@ Edits an existing person in the GME terminal.
 
 **:information_source: Notes about the edit command:**<br>
 
+* [Tag](#6-glossary) is required to be an alphanumeric input and can only have a maximum of 30 characters in length.
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -182,14 +183,14 @@ Finds passengers whose names contain any of the given keywords.
 * Keywords separated by space will require both keywords to be matched.
   e.g. `Hans Yang` will only return `Hans Gruber Yang` instead of `Bo Yang`.
 * Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`, price `pr/`, day `d/` and time `t/`.
-* `all` prefix for searching across names, addresses, tags and phone numbers quickly .
+* `all` prefix for searching across names, addresses, tags and phone numbers quickly.
 </div>
 
 **Examples:**
-* `find n/John` returns `john` and `John Doe`
-* `find a/serangoon` returns `Bernice Yu`, `David Li`<br>
+* `find n/John` returns `john` and `John Doe`.
+* `find a/serangoon` returns `Bernice Yu`, `David Li`.<br>
   ![result for 'find serangoon'](images/findAddress.png)
-* `find d/Monday d/Tuesday` returns `Alex Yeoh`, `Irfan Ibrahim` and `Roy Balakrishnan`
+* `find d/Monday d/Tuesday` returns `Alex Yeoh`, `Irfan Ibrahim` and `Roy Balakrishnan`.
   ![result for 'find d/Monday d/Tuesday'](images/findCommandExampleDay.png)
 
 ### 3.2.5 Deleting passengers: `delete`
@@ -258,7 +259,7 @@ Removes the [pool](#6-glossary) specified by an index from the GME terminal.
 </div>
 
 **Examples:**
-* `findPool n/Aileen` followed by `unpool 3` ungroups the *3rd* pool listed in the results of `findPool n/Aileen` command.
+* `findPool n/Aileen` followed by `unpool 3` removes the *3rd* pool listed in the results of `findPool n/Aileen` command.
 
 ### 3.3.3 Filtering pools: `findPool`
 
@@ -277,6 +278,12 @@ Filtering pools where the name of the pool's passengers contain any of the given
 **Examples:**
 * `findPool n/alex` returns `Alex`
 ![result for `findPool n/Alex`](images/findPoolAlexResult.png)
+
+### 3.3.4 Listing all passengers : `listPool`
+
+Lists the pools currently stored in the GME terminal.
+
+**Format:** `listPool`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -299,6 +306,7 @@ Action | Format, Examples
 **delete** | `delete INDEX [INDEX INDEX...]`<br> e.g.`delete 1 3`
 **pool** | `pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [c/INDEX c/INDEX ...]`<br> e.g., `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3`
 **unpool** | `unpool INDEX`<br> e.g, `unpool 3`
+**listpool** | `listPool`
 **find** | `find a/ADDRESS [a/ADDRESS a/ADDRESS ...]` or `find n/NAME [n/NAME n/NAME ...]` or `find p/PHONE NUMBER [p/PHONE NUMBER p/PHONE NUMBER ...]` or `find tag/TAG [tag/TAG tag/TAG ...]` or `find all/KEYWORD [all/KEYWORD all/KEYWORD ...]` or `find d/DAY [d/DAY d/DAY ...]` or `find t/TIME [t/TIME t/TIME ...]` <br> e.g., `find tag/female`
 **findPool** | `findPool n/PASSENGER_NAME` <br> eg., `findpool n/Alex`
 **clear** | `clear`
@@ -310,11 +318,11 @@ Action | Format, Examples
 
 Term used | Meaning
 --------|------------------
-Pool | A group of employees carpooling together. Consists of one driver and at least one passenger. The pools generated for a specifc day and time are the same every week unless reorganised by the user. Passenger | An employee carpooling with at least one driver
+Pool | A group of employees carpooling together. Consists of one driver and at least one passenger. The pools generated for a specifc day and time are the same every week unless reorganised by the user. Passenger | An employee carpooling with at least one driver.
 TripDay | Day of the intended carpooling trip.
 TripTime | Time of the intended carpooling trip.
-Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have
+Tag | A miscellaneous piece of information about the pool, passenger, or driver that isn't captured by the other fields but is good to have.
 Price | The amount of money a passenger is willing to pay for the carpooling trip.
-Alphanumeric | A combination of letters and numbers only
+Alphanumeric | A combination of letters and numbers only.
 Home Folder | The folder where the app's data will be stored
-Command Line Interface (CLI) | An interface that relies primarily on text input and little to no point and click UI elements exist
+Command Line Interface (CLI) | An interface that relies primarily on text input and little to no point and click UI elements exist.
