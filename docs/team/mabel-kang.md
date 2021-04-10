@@ -35,8 +35,10 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Updated the list displaying all the contacts so that it updates in real time when there are changes in data caused by commands such as `add`, `delete` and `clear`. (Pull request [\#108](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/108))
-    * updated search command with more specified error messages?
-    * 
+
+
+* **Enhancements to other new features**:
+    * Updated the search command with more detailed error messages which will be thrown accordingly based on the specified parameter used by the user in the search command. (Pull request [\#225](https://github.com/AY2021S2-CS2103T-T11-3/tp/pull/225))
     
 
 * **Documentation**:
@@ -45,12 +47,10 @@ Given below are my contributions to the project.
         * Edited documentation for the features `add`, to include details regarding the lesson field.
         
     * Developer Guide:
-        * Added implementation details of the `add-date`, `delete-date`, `list-date` and `delete` feature.
+        * Added implementation details and UML diagrams for the `add-date`, `delete-date`, `list-date` and `delete` feature.
 
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
+    * Reported bugs and suggestions for other teams (example: [bug reports](https://github.com/mabel-kang/ped/issues))
     
-
-* _{you can add/remove categories in the list above}_
