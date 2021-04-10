@@ -133,7 +133,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-###Add Person feature
+### Add Person feature
+
+#### Current Implementation
 
 The add person feature allows the user to add either a student or a tutor to EzManage
 
@@ -159,9 +161,7 @@ The sequence for the example scenario can be found below:
 
 ![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
 
-
-
-### Add session feature
+### Add Session Feature
 
 #### Current Implementation
 
@@ -189,7 +189,10 @@ The sequence for the example scenario can be found below:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddSessionCommandParser` and `AddSessionCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### assign person feature
+### Assign Person Feature
+
+#### Current Implementation
+
 The assign feature is able to assign `sessionId` to the list of sessions in a Person. This person can either be a Student or a Tutor. 
 
 Likewise, `studentId` and `tutorId` will be assigned to the list of students and tutor attribute of a session respectively.
@@ -209,7 +212,10 @@ Step 5: The `CommandResult` is then displayed on the UI.
 The sequence for the example scenario can be found below:
 ![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
 
-### Unassign person feature
+### Unassign Person Feature
+
+#### Current Implementation
+
 The unassign feature utilises defensive programming to ensure that the `tutor` and `students` attributes of the session correspond with those persons' `sessions` attribute.
 
 Given below is an example usage scenario and how the unassign command behaves at each step.
@@ -271,6 +277,7 @@ The sequence for the example scenario can be found below:
 ### View person feature
 
 #### Current Implementation
+
 The view person feature requires the `personID` of the student or tutor, and 
 displays the relevant information belonging to the person under that specified ID.
 As the user enters the command word `view_person`, the `ViewCommandParser` will verify
