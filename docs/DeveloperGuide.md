@@ -233,7 +233,7 @@ Finer details than what is shown in the section below can be seen under the impl
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
 **Diagram Notes**:
-* `Storage` implements `CommandHistoryStorage`, `UserPrefsStorage` and `AddressBookStorage`. However, this interface inheritance is omitted for brevity.
+* `Storage` inherits from `CommandHistoryStorage`, `UserPrefsStorage` and `AddressBookStorage`. However, this interface inheritance is omitted for brevity.
 
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
