@@ -1,12 +1,19 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static dog.pawbook.logic.commands.EnrolCommand.MESSAGE_REPEATED_ENROLMENT;
+import static dog.pawbook.logic.commands.EnrolCommand.MESSAGE_REPEATED_ENROLMENT_MULTIPLE_DOGS;
+import static dog.pawbook.logic.commands.EnrolCommand.MESSAGE_REPEATED_ENROLMENT_MULTIPLE_PROGRAMS;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
+import static dog.pawbook.testutil.TypicalId.ID_EIGHTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_FIFTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_FOUR;
+import static dog.pawbook.testutil.TypicalId.ID_NINETEEN;
 import static dog.pawbook.testutil.TypicalId.ID_SIX;
 import static dog.pawbook.testutil.TypicalId.ID_SIXTEEN;
+import static dog.pawbook.testutil.TypicalId.ID_TWENTY;
 import static dog.pawbook.testutil.TypicalId.ID_TWO;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -151,6 +158,42 @@ public class EnrolCommandTest {
         EnrolCommand enrolCommand = new EnrolCommand(dogIdSet, programIdSet);
 
         assertThrows(AssertionError.class, () -> enrolCommand.execute(model));
+    }
+
+    @Test
+    public void execute_alreadyEnrolledOneDogOneProgram_failure() {
+        Set<Integer> dogIdSet = new HashSet<>();
+        Set<Integer> programIdSet = new HashSet<>();
+        dogIdSet.add(ID_TWO);
+        programIdSet.add(ID_EIGHTEEN);
+
+        EnrolCommand enrolCommand = new EnrolCommand(dogIdSet, programIdSet);
+
+        assertCommandFailure(enrolCommand, model, MESSAGE_REPEATED_ENROLMENT);
+    }
+
+    @Test
+    public void execute_alreadyEnrolledOneDogManyPrograms_failure() {
+        Set<Integer> dogIdSet = new HashSet<>();
+        dogIdSet.add(ID_FOUR);
+        List<Integer> programIdList = Arrays.asList(ID_NINETEEN, ID_TWENTY);
+        Set<Integer> programIdSet = new HashSet<>(programIdList);
+
+        EnrolCommand enrolCommand = new EnrolCommand(dogIdSet, programIdSet);
+
+        assertCommandFailure(enrolCommand, model, MESSAGE_REPEATED_ENROLMENT_MULTIPLE_PROGRAMS);
+    }
+
+    @Test
+    public void execute_alreadyEnrolledManyDogsOneProgram_failure() {
+        List<Integer> dogIdList = Arrays.asList(ID_FOUR, ID_SIX);
+        Set<Integer> dogIdSet = new HashSet<>(dogIdList);
+        Set<Integer> programIdSet = new HashSet<>();
+        programIdSet.add(ID_TWENTY);
+
+        EnrolCommand enrolCommand = new EnrolCommand(dogIdSet, programIdSet);
+
+        assertCommandFailure(enrolCommand, model, MESSAGE_REPEATED_ENROLMENT_MULTIPLE_DOGS);
     }
 
     @Test
