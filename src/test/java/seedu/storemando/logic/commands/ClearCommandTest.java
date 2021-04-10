@@ -7,6 +7,7 @@ import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.storemando.commons.core.Messages;
 import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.StoreMando;
@@ -20,7 +21,7 @@ public class ClearCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, Messages.MESSAGE_NO_ITEM_IN_LIST, expectedModel);
     }
 
     @Test
@@ -29,7 +30,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalStoreMando(), new UserPrefs());
         expectedModel.setStoreMando(new StoreMando());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.CLEAR_MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
