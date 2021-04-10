@@ -119,7 +119,6 @@ public class EditDogCommandTest {
         Owner editedOwner = new Owner(newOwner.getName(), newOwner.getPhone(), newOwner.getEmail(),
                 newOwner.getAddress(), newOwner.getTags(), editedDogIdSet);
         expectedModel.setEntity(editedOwnerId, editedOwner);
-        
         assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
     }
 
