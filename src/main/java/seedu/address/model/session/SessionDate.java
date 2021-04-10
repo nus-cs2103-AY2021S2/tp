@@ -16,7 +16,7 @@ public class SessionDate {
 
     public static final String MESSAGE_CONSTRAINTS = "Format of date and time "
             + "should be of the format "
-            + "YYYY-MM-DD and HH:MM.";
+            + "yyyy-MM-DD and HH:MM.";
 
     private LocalDateTime dateTime;
 
@@ -24,7 +24,7 @@ public class SessionDate {
      * Constructs a {@code SessionDate}.
      * Guarantees that {@code dateValue} and {@code timeValue} creates a valid SessionDate
      *
-     * @param dateValue string of date in YYYY-MM-DD format
+     * @param dateValue string of date in yyyy-MM-DD format
      * @param timeValue string of time in HH:MM format
      */
     public SessionDate(String dateValue, String timeValue) {
@@ -40,7 +40,7 @@ public class SessionDate {
 
     /**
      * Constructs a {@code SessionDate} based on combined dateTime argument
-     * @param dateTime string of date and time in YYYY-MM-DDTHH:MM:SS (ISO8601 format)
+     * @param dateTime string of date and time in ISO_LOCAL_DATE_TIME
      */
     public SessionDate(String dateTime) {
         try {

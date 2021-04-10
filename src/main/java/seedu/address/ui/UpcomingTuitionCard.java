@@ -42,7 +42,7 @@ public class UpcomingTuitionCard extends UiPart<Region> {
         super(FXML);
         this.student = tuition.getStudent();
         this.session = tuition.getSession();
-        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("dd MMM YYYY");
+        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("dd MMM yyyy");
 
         name.setText("Name: " + student.getName().fullName);
         address.setText("Address: " + student.getAddress().value);
