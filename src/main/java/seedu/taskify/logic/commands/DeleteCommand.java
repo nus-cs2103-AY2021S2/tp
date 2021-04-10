@@ -24,7 +24,7 @@ public class DeleteCommand extends Command {
             + "Note: Multiple tasks can also be deleted at once, by giving multiple indices, giving an "
             + "index range or by giving a status to delete all tasks with that status\n\n"
             + "Parameters for deleting multiple tasks:\n"
-            + "   1. Listing multiple indices: INDEX [MORE_INDICES]\n"
+            + "   1. Listing multiple indices: INDEX INDEX ...\n"
             + "   2. Stating the range of indices: INDEX-INDEX\n"
             + "   3. Indicating the status of tasks to delete by: STATUS -all\n\n"
             + "View the User Guide for more information, at https://ay2021s2-cs2103t-w14-4.github.io/tp/UserGuide.html";

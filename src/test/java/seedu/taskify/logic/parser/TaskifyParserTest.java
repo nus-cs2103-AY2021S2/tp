@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.taskify.logic.commands.AddCommand;
 import seedu.taskify.logic.commands.ClearCommand;
+import seedu.taskify.logic.commands.DeleteByStatusCommand;
 import seedu.taskify.logic.commands.DeleteCommand;
 import seedu.taskify.logic.commands.DeleteMultipleCommand;
 import seedu.taskify.logic.commands.EditCommand;
@@ -77,8 +78,8 @@ public class TaskifyParserTest {
 
     @Test
     public void parseCommand_deleteTasksByStatus() throws Exception {
-        DeleteMultipleCommand command = (DeleteMultipleCommand) parser.parseCommand(DELETE_ALL_COMPLETED_INPUT);
-        assertEquals(new DeleteMultipleCommand(new Status(StatusType.COMPLETED)), command);
+        DeleteByStatusCommand command = (DeleteByStatusCommand) parser.parseCommand(DELETE_ALL_COMPLETED_INPUT);
+        assertEquals(new DeleteByStatusCommand(new Status(StatusType.COMPLETED)), command);
     }
 
     @Test

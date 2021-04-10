@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_DELETE_BY_STATUS_USAGE;
-import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.MESSAGE_INVALID_INDEX_RANGE;
-import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.extractStringArgumentsIntoIndexes;
-import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.hasMultipleValidIndex;
-import static seedu.taskify.logic.commands.util.DeleteMultipleCommandUtil.isDeletingTasksByStatus;
+import static seedu.taskify.logic.commands.util.DeleteUtil.MESSAGE_DELETE_BY_STATUS_USAGE;
+import static seedu.taskify.logic.commands.util.DeleteUtil.MESSAGE_INVALID_INDEX_RANGE;
+import static seedu.taskify.logic.commands.util.DeleteUtil.extractStringArgumentsIntoIndexes;
+import static seedu.taskify.logic.commands.util.DeleteUtil.hasMultipleValidIndex;
+import static seedu.taskify.logic.commands.util.DeleteUtil.isDeletingTasksByStatus;
 import static seedu.taskify.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
