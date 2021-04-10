@@ -20,6 +20,7 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         model.setClientBook(new ClientBook());
         model.setMeetingBook(new MeetingBook());
+        model.setDetailedClient(null);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
