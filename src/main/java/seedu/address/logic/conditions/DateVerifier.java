@@ -15,13 +15,18 @@ public class DateVerifier {
 
     private static final Logger logger = LogsCenter.getLogger(DateVerifier.class);
 
+    private Task task;
+
+    public DateVerifier (Task task) {
+        this.task = task;
+    }
+
     /**
      * Checks if the given date is within a valid range.
      *
-     * @param task The task added or edited by the user.
      * @throws CommandException
      */
-    public static void checkInvalidDateRange(Task task) throws CommandException {
+    public void checkInvalidDateRange() throws CommandException {
         if (new AttributeManager(task).hasInvalidDateRange()) {
             logger.info("Invalid date detected: " + MESSAGE_INVALID_DATE_RANGE);
 
@@ -32,10 +37,9 @@ public class DateVerifier {
     /**
      * Checks if the task is already over the current date.
      *
-     * @param task The task added or edited by the user.
      * @throws CommandException
      */
-    public static void checkForExpiredDate(Task task) throws CommandException {
+    public void checkForExpiredDate() throws CommandException {
         if (new AttributeManager(task).hasExpired()) {
             logger.info("Invalid date detected: " + INVALID_END_DATE);
             throw new CommandException(INVALID_END_DATE);

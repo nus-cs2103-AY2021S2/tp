@@ -17,15 +17,17 @@ public class ConstraintManagerTest {
     @Test
     public void check_durationNoDateOrRecurringSchedule_throwsCommandException() {
         Task task = new TaskBuilder().withTitle(VALID_TITLE_AMY).withDuration(VALID_DURATION_AMY).build();
+        ConstraintManager constraintManager = new ConstraintManager(task);
 
-        assertThrows(CommandException.class, () -> ConstraintManager.enforceAttributeConstraints(task));
+        assertThrows(CommandException.class, () -> constraintManager.enforceAttributeConstraints());
     }
 
     @Test
     public void check_dateAndRecurringSchedule_throwsCommandException() {
         Task task = new TaskBuilder().withTitle(VALID_TITLE_AMY).withDate(VALID_DATE_AMY)
                 .withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY).build();
+        ConstraintManager constraintManager = new ConstraintManager(task);
 
-        assertThrows(CommandException.class, () -> ConstraintManager.enforceAttributeConstraints(task));
+        assertThrows(CommandException.class, () -> constraintManager.enforceAttributeConstraints());
     }
 }
