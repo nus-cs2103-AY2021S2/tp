@@ -740,15 +740,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given attribute or direction is invalid.
+* 1a. One or more of the given arguments are invalid.
 
     * 1a1. ClientBook shows an error message.
 
       Use case resumes at step 1.
-
-* 2a. The list of clients is empty.
-
-  Use case ends.
 
 <br>
 
@@ -772,7 +768,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index, action, place, date or time is invalid.
+* 3a. One or more of the given arguments are invalid.
 
     * 3a1. ClientBook shows an error message.
 

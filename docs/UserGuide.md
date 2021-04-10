@@ -301,7 +301,8 @@ email (e.g. company email address) and insurance policies (co-owner of the same 
     <td> Meeting </td>
     <td> <code>m</code> </td>
     <td><ul><li>Optional</li></ul> 
-        <ul><li>Should be of the form <code>DATE START_TIME END_TIME PLACE</code></li></ul> 
+        <ul><li>Can only be modified by using the <code>meet</code> command</li></ul> 
+        <ul><li>Should be of the form <code>DATE START_TIME END_TIME PLACE</code></li></ul>
         <ul><li><code>DATE</code> part should be in <code>dd.MM.yyyy</code> format, for example <code>20.05.2021</code></li></ul>
         <ul><li><code>START_TIME</code> and <code>END_TIME</code> parts should be in <code>HH:mm</code> format, for example <code>15:30</code></li></ul>
         <ul><li><code>END_TIME</code> of a meeting must be after <code>START_TIME</code> of the same meeting on the same <code>DATE</code></li></ul>
@@ -390,7 +391,7 @@ A person can have any number of tags and insurance policies (including 0).
 
 **Purpose**: Edits an existing client contact in the ClientBook.
 
-**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_ID[>POLICY_URL]]…​ [t/TAG]…​ [m/MEETING]…​`
+**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_ID[>POLICY_URL]]…​ [t/TAG]…​`
 
 * Edits the client at the specified `INDEX`.
     * `INDEX` refers to the index number shown in the displayed client list.
