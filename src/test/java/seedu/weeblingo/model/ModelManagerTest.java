@@ -2,6 +2,9 @@ package seedu.weeblingo.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
@@ -15,6 +18,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.weeblingo.commons.core.GuiSettings;
+import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.flashcard.QuestionContainsKeywordsPredicate;
 import seedu.weeblingo.testutil.FlashcardBookBuilder;
 
@@ -92,6 +96,94 @@ public class ModelManagerTest {
     public void getFilteredFlashcardList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> modelManager.getFilteredFlashcardList().remove(0));
+    }
+
+    //=========== Mode Related =============================================================
+
+    @Test void getMode_modelManagerConstructed_success() {
+        Mode mode = modelManager.getMode();
+        assertNotNull(mode);
+    }
+
+    @Test
+    public void getCurrentMode_inMenuMode_success() {
+        int expectedCurrentMode = 1;
+        int actualCurrentMode = modelManager.getCurrentMode();
+        assertEquals(expectedCurrentMode, actualCurrentMode);
+    }
+
+    @Test
+    public void switchModeQuiz_emptyFilteredFlashcards_throwsCommandException() {
+        modelManager.updateFilteredFlashcardList(flashcard -> false);
+        assertThrows(CommandException.class, () -> modelManager.switchModeQuiz());
+    }
+
+    @Test
+    public void switchModeLearn_emptyFilteredFlashcards_throwsCommandException() {
+        modelManager.updateFilteredFlashcardList(flashcard -> false);
+        assertThrows(CommandException.class, () -> modelManager.switchModeQuiz());
+    }
+
+    @Test
+    public void switchModeQuiz_validSwitch_success() throws CommandException {
+        modelManager.addFlashcard(A_CARD);
+        modelManager.switchModeQuiz();
+        int expectedCurrentMode = 2;
+        int actualCurrentMode = modelManager.getCurrentMode();
+        assertEquals(expectedCurrentMode, actualCurrentMode);
+    }
+
+    @Test
+    public void switchModeLearn_validSwitch_success() throws CommandException {
+        modelManager.addFlashcard(A_CARD);
+        modelManager.switchModeLearn();
+        int expectedCurrentMode = 3;
+        int actualCurrentMode = modelManager.getCurrentMode();
+        assertEquals(expectedCurrentMode, actualCurrentMode);
+    }
+
+    @Test
+    public void switchModeMenu_validSwitch_quizInstanceCleared() {
+        modelManager.switchModeQuizSessionEnded();
+        int actualCurrentMode = modelManager.getCurrentMode();
+        assertNotEquals(1, actualCurrentMode);
+        modelManager.switchModeMenu();
+        actualCurrentMode = modelManager.getCurrentMode();
+        assertNull(modelManager.getQuizInstance());
+        int expectedCurrentMode = 1;
+        assertEquals(expectedCurrentMode, actualCurrentMode);
+    }
+
+    @Test
+    public void switchModeHistory_validSwitch_success() {
+        modelManager.switchModeHistory();
+        int expectedCurrentMode = 6;
+        int actualCurrentMode = modelManager.getCurrentMode();
+        assertEquals(expectedCurrentMode, actualCurrentMode);
+    }
+
+    @Test
+    public void switchModeQuizSession_validSwitch_success() {
+        modelManager.switchModeQuizSession();
+        int expectedCurrentMode = 4;
+        int actualCurrentMode = modelManager.getCurrentMode();
+        assertEquals(expectedCurrentMode, actualCurrentMode);
+    }
+
+    @Test
+    public void switchModeCheckSuccess_validSwitch_success() {
+        modelManager.switchModeCheckSuccess();
+        int expectedCurrentMode = 5;
+        int actualCurrentMode = modelManager.getCurrentMode();
+        assertEquals(expectedCurrentMode, actualCurrentMode);
+    }
+
+    @Test
+    public void switchModeQuizSessionEnded_validSwitch_success() {
+        modelManager.switchModeQuizSessionEnded();
+        int expectedCurrentMode = 7;
+        int actualCurrentMode = modelManager.getCurrentMode();
+        assertEquals(expectedCurrentMode, actualCurrentMode);
     }
 
     @Test
