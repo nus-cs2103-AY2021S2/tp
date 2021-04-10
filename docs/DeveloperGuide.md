@@ -61,7 +61,7 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some triangles that are used to indicate class inheritance and some solid diamonds that are used to denote composition may overlap with each other.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some triangles that are used to indicate class inheritance may overlap with each other.
 </div>
 
 **API** :
@@ -94,7 +94,7 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add property n/Mayfair t/Condo a/1 Jurong East Street 32, #08-111 p/609477 d/31-12-2021")` API call.
 
-![Interactions Inside the Logic Component for the `add property n/Mayfair t/Condo a/1 Jurong East Street 32, #08-111 p/609477 d/31-12-2021` Command](images/AddPropertySequenceDiagram.png)
+![Interactions Inside the Logic Component for the `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021` Command](images/AddPropertySequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddPropertyCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -341,10 +341,6 @@ The following sequence diagram shows how the update operation works:
 
 ![UpdateNewSequenceDiagram](images/UpdateNewSequenceDiagram.png)
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -398,11 +394,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
 | `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `PocketEsate` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `PocketEsate` app, and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC01 - Add a property**
 
@@ -421,6 +416,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+* 1b. The property to be added has a deadline that is already over.
+
+    * 1b1. PocketEstate shows an error message.
+
+      Use case ends.
 
 **Use case: UC02 - Add an appointment**
 
@@ -439,6 +439,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+* 1b. The appointment to be added has a date and time that is already over.
+
+    * 1b1. PocketEstate shows an error message.
+
+      Use case ends.
+
 **Use case: UC03 - Listing all properties and appointments**
 
 **MSS**
@@ -450,9 +456,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. List command used has unrecognized fields.
+* 1a. List command used has unrecognized fields.
 
-    * 3a1. PocketEstate shows an error message.
+    * 1a1. PocketEstate shows an error message.
 
       Use case ends.
 
@@ -473,6 +479,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+* 1b. The property to be edited has a deadline that is already over.
+
+    * 1b1. PocketEstate shows an error message.
+
+      Use case ends.
 
 **Use case: UC05 - Edit an appointment**
 
@@ -488,6 +499,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The appointment to be edited has unrecognized fields.
 
     * 1a1. PocketEstate shows an error message with the unrecognized fields.
+
+      Use case ends.
+
+* 1b. The appointment to be edited has a date and time that is already over.
+
+    * 1b1. PocketEstate shows an error message.
 
       Use case ends.
 
@@ -524,7 +541,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -537,12 +553,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. The app should be resizable and can be enlarged to the maximum window width.
 8. There should be sample data in the app when the user opens the app for the first time.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Property**: A property listing with mandatory attributes: Name, Property type, Address, Postal code, Deadline, and with optional attributes: Remarks, Status, Tags, Client name, Client contact, Client email, Client asking price
+* **Property**: A property listing with mandatory attributes: Name, Property type, Address, Postal code, Deadline, a set of Tags (containing 0 or more tags), and with optional attributes: Remarks, Status, Client name, Client contact, Client email, Client asking price
 * **Appointment**: An appointment listing with mandatory attributes: Name, Remarks, Date, Time
 
 --------------------------------------------------------------------------------------------------------------------
@@ -571,6 +586,56 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
       
+1. Exiting
+
+   1. Prerequisites: The application is running.
+
+   1. Test case: `exit` <br>
+      Expected: App shuts down.
+
+## Adding a property
+
+1. Adding a new unique property.
+
+   1. Prerequisites: None of the current properties in the app has an (address, postal code) pair of  (`Blk 150 Bishan Street 11 #02-101`, `570150`)
+
+   1. Test case: `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021`
+      Expected: A new property is added to the property list. The result display panel shows the details of the newly added property.
+
+   1. Test case: `add property` <br>
+      Expected: No property is added. An error message `Invalid command format!` is shown in the result display.
+
+   1. Other incorrect add property commands to try: `add property n/Bishan`, `add property t/Condo`
+      Expected: No property is added. An error message `Invalid command format!` is shown in the result display.
+
+1. Adding a duplicate property.
+
+   1. Prerequisites: A property with an (address, postal code) pair of (`Blk 150 Bishan Street 11 #02-101`, `570150`) already exist in the app.
+
+   1. Test case: `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021`
+      Expected: No property is added. An error message `This property already exists in the app` is shown in the result display.
+
+## Adding an appointment
+
+1. Adding a new unique appointment.
+
+    1. Prerequisites: None of the current appointments in the app has a (date, time) pair of  (`19-05-2021`, `1930`)
+
+    1. Test case: `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930`
+       Expected: A new appointment is added to the appointment list. The result display panel shows the details of the newly added appointment.
+
+    1. Test case: `add appointment` <br>
+       Expected: No appointment is added. An error message `Invalid command format!` is shown in the result display.
+
+    1. Other incorrect add appointment commands to try: `add appointment n/Meet Jacob`, `add appointment d/19-05-2021 t/1930`
+       Expected: No appointment is added. An error message `Invalid command format!` is shown in the result display.
+
+1. Adding a duplicate appointment.
+
+    1. Prerequisites: An appointment with a (date, time) pair of (`19-05-2021`, `1930`) already exist in the app.
+
+    1. Test case: `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930`
+       Expected: No appointment is added. An error message `This appointment already exists in the app` is shown in the result display.
 
 ### Deleting a property
 
