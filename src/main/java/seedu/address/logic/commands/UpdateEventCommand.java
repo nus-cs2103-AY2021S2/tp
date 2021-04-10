@@ -47,8 +47,8 @@ public class UpdateEventCommand extends Command {
 
     public static final String MESSAGE_UPDATE_EVENT_SUCCESS = "Updated event: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in this project.";
-    public static final String MESSAGE_UNCHANGED_EVENT = "This event already has this description, date," +
-            " time and repeat weekly.";
+    public static final String MESSAGE_UNCHANGED_EVENT = "This event already has this description, date,"
+            + " time and repeat weekly.";
 
     private final Index projectIndex;
     private final Index targetEventIndex;
