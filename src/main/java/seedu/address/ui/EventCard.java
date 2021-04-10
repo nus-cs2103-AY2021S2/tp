@@ -38,9 +38,6 @@ public class EventCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private FlowPane categoryTitle;
-    @FXML
-    private FlowPane tagTitle;
-
     /**
      * Creates a {@code EventCode} with the given {@code Event} and index to display.
      */
@@ -62,10 +59,6 @@ public class EventCard extends UiPart<Region> {
 
         if (!event.getCategories().isEmpty()) {
             categoryTitle.getChildren().add(new Label("Category:"));
-        }
-
-        if (!event.getTags().isEmpty()) {
-            tagTitle.getChildren().add(new Label("Tag:"));
         }
     }
 

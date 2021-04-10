@@ -27,7 +27,7 @@ public class AddTaskCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Homework 1 "
-            + PREFIX_DEADLINE + "2021-01-07 "
+            + PREFIX_DEADLINE + "2022-01-07 "
             + PREFIX_PRIORITY + "8 "
             + PREFIX_CATEGORY + "Homework "
             + PREFIX_TAG + "MA3110";
