@@ -62,7 +62,7 @@ public class EditAutocompleteUtil implements AutocompleteUtil {
      * @throws ParseException If the input command does not follow requirements.
      * @throws CommandException If the input command is out of bounds.
      */
-    public String parseCommand(Model model) throws ParseException, CommandException {
+    public String parse(Model model) throws ParseException, CommandException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(input, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_BIRTHDAY, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);

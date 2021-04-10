@@ -20,21 +20,28 @@ activate UI
 UI-> LogicManager : autoComplete("edit 1 -r")
 activate LogicManager
 
-LogicManager -> EditAutocompleteUtil : parseEditCommand("edit 1 -r")
+create EditAutocompleteUtil
+LogicManager -> EditAutocompleteUtil : parseCommand("edit 1 -r")
 activate EditAutocompleteUtil
 
-EditAutocompleteUtil -> Model
-activate Model
-
-Model -> EditAutocompleteUtil : result
-deactivate Model
-
-EditAutocompleteUtil -> LogicManager : result
+EditAutocompleteUtil -> LogicManager
 deactivate EditAutocompleteUtil
 
-LogicManager -> UI : result
+LogicManager -> EditAutocompleteUtil : parse()
+activate EditAutocompleteUtil
+
+EditAutocompleteUtil -> Model : get()
+activate Model
+
+Model -> EditAutocompleteUtil : PersonList/EventList
+deactivate Model
+
+EditAutocompleteUtil -> LogicManager : commandResult
+deactivate EditAutocompleteUtil
+
+LogicManager -> UI : commandResult
 deactivate LogicManager
 
-UI ->[ : result
+UI ->[ : commandResult
 deactivate UI
 @enduml

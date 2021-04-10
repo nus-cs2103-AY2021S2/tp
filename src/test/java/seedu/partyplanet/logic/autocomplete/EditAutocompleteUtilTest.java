@@ -23,7 +23,7 @@ public class EditAutocompleteUtilTest {
         String arguments = " 1 -n -p -e -a -t -b -r";
         EditAutocompleteUtil editAutocompleteUtil = new EditAutocompleteUtil(arguments);
 
-        String returnCommand = editAutocompleteUtil.parseCommand(model);
+        String returnCommand = editAutocompleteUtil.parse(model);
 
         Person person = model.getAddressBook().getPersonList().get(0);
 

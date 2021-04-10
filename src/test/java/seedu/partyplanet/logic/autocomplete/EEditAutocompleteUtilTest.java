@@ -20,7 +20,7 @@ public class EEditAutocompleteUtilTest {
         String arguments = " 1 -n -d -r";
         EEditAutocompleteUtil eEditAutocompleteUtil = new EEditAutocompleteUtil(arguments);
 
-        String returnCommand = eEditAutocompleteUtil.parseCommand(model);
+        String returnCommand = eEditAutocompleteUtil.parse(model);
 
         Event event = model.getEventBook().getEventList().get(0);
 

@@ -72,13 +72,13 @@ public class LogicManager implements Logic {
 
         AutocompleteUtil autocompleteUtil;
         try {
-            autocompleteUtil = autocompleteParser.parse(commandText);
+            autocompleteUtil = autocompleteParser.parseCommand(commandText);
         } catch (AutocompleteException e) {
             logger.info(e.getMessage());
             return commandText;
         }
 
-        return autocompleteUtil.parseCommand(this.model);
+        return autocompleteUtil.parse(this.model);
     }
 
     @Override

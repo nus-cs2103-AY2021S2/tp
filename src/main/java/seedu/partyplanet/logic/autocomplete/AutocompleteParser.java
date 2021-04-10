@@ -19,7 +19,7 @@ public class AutocompleteParser {
     /**
      * Parses input string and retrieves the relevant Autocomplete Util.
      */
-    public AutocompleteUtil parse(String input)
+    public AutocompleteUtil parseCommand(String input)
         throws ParseException, CommandException, AutocompleteException {
 
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());

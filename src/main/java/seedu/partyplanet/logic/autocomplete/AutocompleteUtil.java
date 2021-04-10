@@ -13,6 +13,6 @@ public interface AutocompleteUtil {
      * @throws ParseException If the input command does not follow requirements.
      * @throws CommandException If the input command is out of bounds.
      */
-    public String parseCommand(Model model) throws ParseException, CommandException;
+    public String parse(Model model) throws ParseException, CommandException;
 
 }
