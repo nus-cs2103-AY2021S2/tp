@@ -137,10 +137,10 @@ public class HelpWindow extends UiPart<Stage> {
 
         } catch (IOException e) {
             commandSummary = READ_FAIL_MSG;
-            System.out.println("Error reading file: " + e);
+            logger.info("Error reading file: " + e);
         } catch (NullPointerException e) {
             commandSummary = READ_FAIL_MSG;
-            System.out.println("Help file does not exist: " + e);
+            logger.info("Help file does not exist: " + e);
         }
 
     }
