@@ -467,13 +467,15 @@ _Non-functional requirements specify the constraints under which App-Ointment is
 
 ### Glossary
 
-* **System**: The App-Ointment App
-* **User**: The Receptionist, not the patient or doctor
-* **Person**: Patient or Doctor
 * **Appointment Schedule**: The list of appointments maintained in App-Ointment, arranged by appointment datetime.
-* **Patient Records**: The list of patients maintained in App-Ointment.
+* **Command Word**: The word that defines the behaviour of the app: eg. `add-doctor`, `list-appt`, `delete-patient`, etc.
 * **Doctor Records**: The list of doctors maintained in App-Ointment.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Patient Records**: The list of patients maintained in App-Ointment.
+* **Person**: Patient or Doctor
+* **Subcommand**: The prefixes and parameters that follow behind a Command Word entered by the user. eg. `n/Some Name`
+* **System**: The App-Ointment App
+* **User**: The Receptionist, not the patient or doctor
 
 *{More to be added}*
 
