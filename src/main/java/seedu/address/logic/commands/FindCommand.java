@@ -56,7 +56,7 @@ public class FindCommand extends Command {
             displayMessage = MESSAGE_DISPLAYED_IN_VIEW_PATIENT_BOX;
         }
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
+                String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
                 false, false, firstPatient, null, null, displayMessage, false);
 
     }
