@@ -4,14 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's height in DocBob.
+ * Represents a Patient's height in DocBob.
  * Guarantees: immutable; is valid as declared in {@link #isValidHeight(String)}
  */
 public class Height {
     public static final String MESSAGE_CONSTRAINTS =
             "Height must be a number and be in cm";
     public static final String UNIT = "cm";
-    public static final String VALIDATION_REGEX = "\\d+" + UNIT;
+    public static final String VALIDATION_REGEX = "^[1-9][0-9]*" + UNIT + "$";
 
     public final String value;
 
@@ -27,7 +27,7 @@ public class Height {
     }
 
     /**
-     * Returns true if a given string is a valid weight.
+     * Returns true if a given string is a valid height.
      */
     public static boolean isValidHeight(String test) {
         return test.matches(VALIDATION_REGEX);

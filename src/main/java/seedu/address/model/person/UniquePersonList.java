@@ -13,11 +13,11 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of patients that enforces uniqueness between its elements and does not allow nulls.
+ * A patient is considered unique by comparing using {@code Patient#isSamePerson(Patient)}. As such, adding and updating
+ * of persons uses Patient#isSamePerson(Patient) for equality so as to ensure that the patient being added or updated is
+ * unique in terms of identity in the UniquePersonList. However, the removal of a patient uses Patient#equals(Object) so
+ * as to ensure that the patient with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -30,7 +30,7 @@ public class UniquePersonList implements Iterable<Patient> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent patient as the given argument.
      */
     public boolean contains(Patient toCheck) {
         requireNonNull(toCheck);
@@ -38,8 +38,8 @@ public class UniquePersonList implements Iterable<Patient> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a patient to the list.
+     * The patient must not already exist in the list.
      */
     public void add(Patient toAdd) {
         requireNonNull(toAdd);
@@ -51,9 +51,9 @@ public class UniquePersonList implements Iterable<Patient> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the patient {@code target} in the list with {@code editedPatient}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The patient identity of {@code editedPatient} must not be the same as another existing patient in the list.
      */
     public void setPerson(Patient target, Patient editedPatient) {
         requireAllNonNull(target, editedPatient);
@@ -71,7 +71,7 @@ public class UniquePersonList implements Iterable<Patient> {
     }
 
     /**
-     * Removes the equivalent person from the list.
+     * Removes the equivalent patient from the list.
      * The person must exist in the list.
      */
     public void remove(Patient toRemove) {
@@ -82,7 +82,7 @@ public class UniquePersonList implements Iterable<Patient> {
     }
 
     /**
-     * Archives the equivalent person in the list.
+     * Archives the equivalent patient in the list.
      * The person must exist in the list.
      */
     public void archive(Patient toArchive) {
@@ -93,7 +93,7 @@ public class UniquePersonList implements Iterable<Patient> {
     }
 
     /**
-     * Unarchives the equivalent person in the list.
+     * Unarchives the equivalent patient in the list.
      * The person must exist in the list.
      */
     public void unarchive(Patient toUnarchive) {
@@ -109,8 +109,8 @@ public class UniquePersonList implements Iterable<Patient> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code patients}.
+     * {@code patients} must not contain duplicate patients.
      */
     public void setPersons(List<Patient> patients) {
         requireAllNonNull(patients);
@@ -146,7 +146,7 @@ public class UniquePersonList implements Iterable<Patient> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code patients} contains only unique patients.
      */
     private boolean personsAreUnique(List<Patient> patients) {
         for (int i = 0; i < patients.size() - 1; i++) {

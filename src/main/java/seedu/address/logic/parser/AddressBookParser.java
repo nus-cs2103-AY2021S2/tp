@@ -83,7 +83,6 @@ public class AddressBookParser {
         case UnarchiveCommand.COMMAND_WORD:
             return new UnarchiveCommandParser().parse(arguments);
 
-
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
