@@ -628,11 +628,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
       
       
-**Use case 12: Sorts tasks by Deadline**
+**Use case 12: Sorts tasks by a criterion**
 
 **MSS**
 
-1.  User request to sorts tasks by deadline.
+1.  User selects a criterion request to sorts tasks.
 
 2.  ModuleBook3.5 sorts the tasks in descending order of urgency and display them.
 
@@ -643,6 +643,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. Invalid format for the sort command.
 
     * 2a1. ModuleBook3.5 shows an error message with the correct format for sort and example.
+
+      Use case resumes at step 2.
+* 2b. User selects a wrong criterion.
+    * 2a1. ModuleBook3.5 shows an error message with the valid criterion for sort and example.
 
       Use case resumes at step 2.
     
