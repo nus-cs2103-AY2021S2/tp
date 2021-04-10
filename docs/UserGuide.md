@@ -148,7 +148,7 @@ Example(s):
 
 Edits an existing contact with the specified index in Teaching Assistant.
 
-Format: `cedit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+Format: `cedit id/INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
 * `INDEX` refers to the index numer shown in the displayed entry list.
 * `INDEX` must be a positive integer 1,2,3, ...
@@ -241,7 +241,7 @@ Example(s):
 
 Edits an existing entry with the specified index in Teaching Assistant.
 
-Format: `eedit INDEX [n/NAME] [sd/START_DATE] [ed/END_DATE] [t/TAG]...`
+Format: `eedit id/INDEX [n/NAME] [sd/START_DATE] [ed/END_DATE] [t/TAG]...`
 
 * `INDEX` refers to the index numer shown in the displayed entry list.
 * `INDEX` must be a positive integer 1,2,3, ...
