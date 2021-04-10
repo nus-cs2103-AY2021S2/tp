@@ -298,7 +298,7 @@ This feature is facilitated by `FindCommandParser` which implements the `Parser`
 
 Given below is an example usage scenario and how the find student mechanism behaves at each step.
 
-Step 1: The user executes `find A0175678U` into VAX@NUS.
+Step 1: The user executes `find A0175678U` into Vax@NUS.
 
 Step 2: The input will be parsed to the `LogicManager execute` method which invokes `FindCommandParser` to perform validation on the input.
 > **NOTE:** If the matriculation number given by the user is in the wrong format, `FindCommandParser` will throw a `ParseException` to stop the execution and inform user about the error.
