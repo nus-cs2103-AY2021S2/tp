@@ -795,6 +795,21 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+## Effort
+iScam is a product that has been developed from AddressBook Level 3. While AddressBook is a generic contact storing product, iScam is more targeted towards Insurance Agents, allowing them to keep track of their clients and meetings.
+
+Our group spent 6 weeks to develop iScam, releasing 4 versions in the process. 
+1. Version 1.1 of iScam was completed in Week 7, and it included updating the content of the User Guide, Developer's Guide, About Us and README page.
+2. Version 1.2 of iScam was completed in Week 8 and 9, the Meeting and MeetingList classes were added, an Insurance Plan attribute was added to the Client class, and the references to AddressBook were all replaced with ClientBook.
+3. Version 1.3 of iScam was completed in Week 10 and 11, and this version saw a transformation of the User Interface, introducing a Meeting List Panel alongside the Client List Panel. In addition to that, a Client Detail Fragment section was added, allowing the user to see client details easily.
+4. Version 1.4 of iScam was completed in Week 12, and focused on fixing the bugs presented to us in the Practical Exam Dry Run. A major change was to show Client List, Client Details and Meeting List all at once in the UI. <br>
+
+One of the main challenges we faced was the understanding of the code. In the AddressBook given, there was a lot of classes, packages and code to digest. Our group needed a few weeks to adjust to the code given, and fully understand how the code works.<br>
+
+This resulted in our v1.2 to be less than ideal, as a significant amount of time was spent on digesting the code, rather than actually making changes.<br>
+
+The effort required is relatively similar to that of the Individual Project, as evidenced by the much more advanced GUI, testing and User/Developer's Guide.
+
 ## Attribution
 
 Default image for profile icons retrieved from: https://vectorified.com/facebook-profile-icon#facebook-profile-icon-10.png <br>

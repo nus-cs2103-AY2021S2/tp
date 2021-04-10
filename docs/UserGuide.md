@@ -40,7 +40,7 @@ iScam is a **desktop app for insurance agents to manage clients and meetings, op
 
    * **`listmeet`** : Lists all meetings.
 
-   * **`addmeet`**`c/John Doe on/12-10-2021 10:00 l/Starbucks d/Catch up t/friend` : Adds a meeting with a client named `John Doe` to iScam.
+   * **`addmeet`**`c/John Doe on/21-10-2021 10:00 l/Starbucks d/Catch up t/friend` : Adds a meeting with a client named `John Doe` to iScam.
 
    * **`editmeet`**`1 d/Discuss insurance plan`: Change the description of the 1st meeting shown in the current list to `Discuss insurance plan`
 
@@ -311,7 +311,9 @@ Format: `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/LOCATION] [d/DESCRIPTI
   `incomplete`.
 
 Example:
-* `editmeet 1 l/Macdonald, Simei d/Client's family will be coming along` Output: (Insert Output here)
+* `editmeet 1 l/Macdonald, Simei d/Client's family will be coming along`
+  
+![editmeet result](images/editmeetResult.png)
 
 
 #### Relocating a meeting: `relocate`
@@ -445,9 +447,9 @@ Action | Format, Examples
 **Find Client by Name** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Find Client by Insurance Plan** | `findplan KEYWORD [MORE_KEYWORDS]` <br> e.g., `findplan MediShield`
 **Delete Client** | `delete INDEX`<br> e.g., `delete 3`
-**Add Meeting** | `addmeet c/CLIENT_NAME on/DATE_TIME l/LOCATION d/DESCRIPTION [t/TAG(s)]` <br> e.g., `addmeet c/John Doe on/12-10-2021 10:00 l/Starbucks, Tampines Hub d/Discuss insurance policy t/Urgent t/Premium`
+**Add Meeting** | `addmeet c/CLIENT_NAME on/DATE_TIME l/LOCATION d/DESCRIPTION [t/TAG(s)]` <br> e.g., `addmeet c/John Doe on/21-10-2021 10:00 l/Starbucks, Tampines Hub d/Discuss insurance policy t/Urgent t/Premium`
 **List Meetings** | `listmeet`
-**Edit Meeting** | `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/LOCATION] [d/DESCRIPTION] [t/TAG(s)] [s/COMPLETION_STATUS]​`<br> e.g.,`editmeet 2 c/James Lee s/yes`
+**Edit Meeting** | `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/LOCATION] [d/DESCRIPTION] [t/TAG(s)] [s/COMPLETION_STATUS]​`<br> e.g.,`editmeet 2 c/James Lee s/complete`
 **Relocate Meeting** | `relocate INDEX l/LOCATION` <br> e.g., `relocate 1 l/KFC, Blk 556 Bugis`
 **Reschedule Meeting** | `reschedule INDEX on/DATE_TIME` <br> e.g., `reschedule 2 on/20-10-2021 10:00`
 **Find Meeting** | `findmeet KEYWORD [MORE_KEYWORDS]`<br> e.g., `findmeet 05-2022 Sam`
