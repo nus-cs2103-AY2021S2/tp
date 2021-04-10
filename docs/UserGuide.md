@@ -104,7 +104,9 @@ GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanc
 
 <div markdown="block" class="alert-warning">
 
-**:warning: GME will replace the JSON file with a new one if it cannot read the file, do make a backup and edit at your own risk.**
+**:warning: GME will replace the JSON file with a new one if it cannot read the file**<br> 
+* Make a backup before any changes
+* Edit at your own risk
 
 </div>
 
@@ -122,7 +124,7 @@ Adds a new passenger in the GME terminal.
 * [TripDay](#6-glossary) is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`
 * [TripTime](#6-glossary) is required to be in the 24-hour format. e.g. `0530` or `2359` 
 * The tripday and triptime specified are intended as weekly specifications for the day and time that the passenger intends to carpool every week.
-* As the current iteration of GME(v1.4) is still only a minimum viable product, every passenger can only specify one day and one time a week for when they intend to carpool.
+* As the current iteration of GME(`v1.4`) is only a minimum viable product, each passenger can only specify one day and time a week for their carpooling time.
 </div>
 
 **Examples:**
@@ -188,7 +190,7 @@ Finds passengers whose names contain any of the given keywords.
 
 Deletes the specific passenger from the GME terminal.
 
-**Format:** `delete INDEX [INDEX INDEX...]`
+**Format:** <code>delete INDEX [<a title="These parameters are optional.">INDEX INDEX...</a>]</code>
 
 <div markdown="block" class="alert alert-info">
 
@@ -213,7 +215,7 @@ Deletes the specific passenger from the GME terminal.
 
 Selects passengers from the current view in the bottom left pane of the GME terminal to arrange a carpool. 
 
-**Format:** `pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [c/INDEX c/INDEX ...] [tag/TAG]`
+**Format:** <code>pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [<a title="These parameters are optional.">c/INDEX c/INDEX...</a>] [tag/TAG]</code>
 
 <div markdown="block" class="alert alert-info">
 
