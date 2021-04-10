@@ -6,16 +6,25 @@ skinparam classBackgroundColor MODEL_COLOR
 
 CakeCollate *-right-> "1" UniqueOrderList
 CakeCollate *-right-> "1" UniqueTagList
+CakeCollate *-down-> "1" UniqueOrderItemList
 UniqueTagList -[hidden]down- UniqueOrderList
 UniqueTagList -[hidden]down- UniqueOrderList
 
 UniqueTagList *-right-> "*" Tag
 UniqueOrderList o-right-> Order
+UniqueOrderItemList o-down-> OrderItem
 
 Order -up-> "*" Tag
+
+OrderItem *--> Type
 
 Order *--> Name
 Order *--> Phone
 Order *--> Email
 Order *--> Address
+Order *--> DeliveryDate
+Order *--> Request
+Order *--> OrderItemDescription
+
+
 @enduml
