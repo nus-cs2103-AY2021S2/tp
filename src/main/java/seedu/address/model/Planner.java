@@ -3,7 +3,6 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -244,15 +243,6 @@ public class Planner implements ReadOnlyPlanner {
         tags.remove(key);
     }
 
-    /**
-     * Returns the comparator that specifies how Tags are being sorted in the TagList.
-     *
-     * @return Comparator that is used to sort the Tags.
-     */
-    public Comparator<Tag> getTagComparator() {
-        return tags.getTagComparator();
-    }
-
     //// viewing date operations
 
     /**
@@ -265,6 +255,7 @@ public class Planner implements ReadOnlyPlanner {
     }
 
     public void setCalendarDate(LocalDate date) {
+        requireNonNull(date);
         calendarDate.set(date);
     }
 

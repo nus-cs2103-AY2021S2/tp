@@ -25,4 +25,11 @@ public class TaskScheduledOnDatePredicate implements Predicate<Task> {
     public boolean test(Task task) {
         return new AttributeManager(task).isOnRecurringScheduleDate(dateString);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TaskScheduledOnDatePredicate // instanceof handles nulls
+                && dateString.equals(((TaskScheduledOnDatePredicate) other).dateString)); // state check
+    }
 }

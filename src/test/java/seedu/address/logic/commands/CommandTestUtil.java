@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.model.tag.UniqueTagListTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -41,8 +43,6 @@ public class CommandTestUtil {
     public static final String VALID_STATUS_INDEX = "1000";
     public static final String VALID_DURATION_AMY = "12:30-13:30";
     public static final String VALID_DURATION_BOB = "12:30-13:30";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
 
     public static final String TITLE_DESC_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
     public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
@@ -66,7 +66,7 @@ public class CommandTestUtil {
             + "12/01/20002"; // Date not allowed in dates
     public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION + "djdjhej"; // ' ' not allowed in duration
     public static final String INVALID_RECURRINGSCHEDULE_DESC = " " + PREFIX_RECURRINGSCHEDULE
-             + "10/06/2021Monbiweekly"; // missing '[]' symbol within the field
+            + "10/06/2021Monbiweekly"; // missing '[]' symbol within the field
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_STATUS_INDEX = " " + "2147483648"; // Integer Overflow
 
@@ -79,7 +79,8 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_AMY).withDuration(VALID_DURATION_AMY)
                 .withDate(VALID_DATE_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
-                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_BOB).withDuration(VALID_DURATION_BOB)
                 .withDate(VALID_DATE_BOB).withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB)
                 .withDescription(VALID_DESCRIPTION_BOB).withStatus(VALID_STATUS_BOB)
@@ -128,6 +129,7 @@ public class CommandTestUtil {
         assertEquals(expectedPlanner, actualModel.getPlanner());
         assertEquals(expectedFilteredList, actualModel.getFilteredTaskList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the task at the given {@code targetIndex} in the
      * {@code model}'s planner.

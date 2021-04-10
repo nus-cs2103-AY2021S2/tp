@@ -154,7 +154,7 @@ public class ModelManager implements Model {
     @Override
     public void addTag(Tag tag) {
         planner.addTag(tag);
-        updateSortedTagList(planner.getTagComparator());
+        updateSortedTagList(COMPARATOR_NATURAL_ORDERED_TAG_LIST);
     }
 
     @Override
@@ -176,7 +176,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTags);
 
         planner.setTags(target, editedTags);
-        updateSortedTagList(planner.getTagComparator());
+        updateSortedTagList(COMPARATOR_NATURAL_ORDERED_TAG_LIST);
     }
 
     @Override
@@ -216,7 +216,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Tag> getSortedTagList() {
-        updateSortedTagList(planner.getTagComparator());
+        updateSortedTagList(COMPARATOR_NATURAL_ORDERED_TAG_LIST);
         return sortedTags;
     }
 

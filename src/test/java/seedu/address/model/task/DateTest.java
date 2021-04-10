@@ -28,7 +28,10 @@ public class DateTest {
 
         // invalid date numbers
         assertFalse(Date.isValidDate("21/03/20193")); // empty string
-
+        // extra spaces
+        assertFalse(Date.isValidDate("21/03/ 2019"));
+        // extra line break
+        assertFalse(Date.isValidDate("\n21/03/2019"));
 
         // valid date numbers
         assertTrue(Date.isValidDate("12/12/2021")); // exactly 3 numbers
