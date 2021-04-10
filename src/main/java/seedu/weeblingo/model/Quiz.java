@@ -213,4 +213,13 @@ public class Quiz {
     public Queue<Flashcard> getQuizSessionQueue() {
         return quizSessionQueue;
     }
+
+    /**
+     * Returns the current quiz.
+     *
+     * @return current quiz as a flashcard.
+     */
+    public Flashcard getCurrentQuiz() {
+        return currentQuiz;
+    }
 }

@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 
 import seedu.weeblingo.MainApp;
 import seedu.weeblingo.commons.core.LogsCenter;
+import seedu.weeblingo.logic.commands.CheckCommand;
+import seedu.weeblingo.logic.commands.StartCommand;
 import seedu.weeblingo.model.exceptions.NullInputException;
 
 /**
@@ -165,5 +167,27 @@ public class Score implements Comparable<Score> {
      */
     public String getTimeSpent() {
         return durationString;
+    }
+
+    /**
+     * Gets the LocalDateTime representing the date and time the date and time the score was awarded.
+     *
+     * @return The LocalDateTime representation of the date and time the date and time the score was awarded.
+     */
+    public LocalDateTime getLocalDateTime() {
+        return datetime;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof Score) {
+            Score otherScore = (Score) other;
+            return this.datetime.equals(otherScore.datetime)
+                    && this.questionAttempted.equals(otherScore.questionAttempted)
+                    && this.questionCorrect.equals(otherScore.questionCorrect)
+                    && this.durationString.equals(otherScore.durationString);
+        } else {
+            return false;
+        }
     }
 }
