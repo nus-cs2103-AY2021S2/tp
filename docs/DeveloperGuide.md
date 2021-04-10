@@ -59,6 +59,17 @@ The sections below give more details of each component.
 ### Logic Component
 
 ### Model Component
+![Model Architecture Diagram](images/ModelArchitectureDiagram.png)
+
+**API :** `Model.java`
+
+The `Model`,
+- stores a `UserPref` object that represents the user’s preferences.
+- stores the user's food entries data.
+- exposes an unmodifiable `ObservableList<Entry>` that can be ‘observed’ e.g. the UI can be bound to this list so that 
+  the UI automatically updates when the data in the list change.
+- does not depend on any of the other three components.
+
 
 ### Storage Component
 
