@@ -89,7 +89,8 @@ public class Passenger extends Person {
         }
 
         return otherPassenger != null
-                && otherPassenger.getName().equals(getName());
+                && otherPassenger.getName().equals(getName())
+                && otherPassenger.getPhone().equals(getPhone());
     }
 
     /**
