@@ -129,6 +129,21 @@ public class RecurringScheduleTest {
 
         // wrong order => week frequency comes before days of week and days of week comes before starting date
         assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[biWeekly][Mon][10/06/2021]"));
+
+        // spaces exist
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021][wed][weekly ]"));
+
+        // spaces exist
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021] [wed][weekly]"));
+
+        // spaces exist
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[ 10/06/2021][wed][weekly]"));
+
+        // line breaks exist
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021\n][wed][weekly]"));
+
+        // line breaks exist
+        assertFalse(RecurringSchedule.isValidRecurringScheduleInput("[10/06/2021][wed][weekly]\n"));
     }
 
     @Test

@@ -20,7 +20,7 @@ class TaskScheduledOnDatePredicateTest {
 
     @Test
     public void test_scheduleDoesNotContainDate_returnsFalse() {
-        TaskScheduledOnDatePredicate predicate = new TaskScheduledOnDatePredicate("11/04/2021");
+        TaskScheduledOnDatePredicate predicate = new TaskScheduledOnDatePredicate("16/05/2021");
         assertFalse(predicate.test(new TaskBuilder().withRecurringSchedule("[10/06/2021][sat][weekly]").build()));
 
         // given date after schedule's end date

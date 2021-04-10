@@ -23,6 +23,8 @@ public interface Model {
 
     Predicate<Task> PREDICATE_SHOW_UNDONE_TASKS = task -> !task.getStatus().isDone();
 
+    Comparator<Tag> COMPARATOR_NATURAL_ORDERED_TAG_LIST = Comparator.naturalOrder();
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */

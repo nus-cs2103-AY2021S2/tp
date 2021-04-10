@@ -3,7 +3,6 @@ package seedu.address.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -21,7 +20,7 @@ import seedu.address.model.tag.exceptions.TagNotFoundException;
  * A list of tags that enforces uniqueness between its elements and does not allow nulls.
  * A tag is considered unique by comparing using {@code Tag#equals(Object)}. As such, adding and updating of
  * tag uses Tag#equals(Object) for equality so as to ensure that the tag being added or updated is
- * unique in terms of identity in the UniqueTagList. Also will be sorted in natural sort order.
+ * unique in terms of identity in the UniqueTagList.
  * <p>
  * Supports a minimal set of list operations.
  *
@@ -155,19 +154,20 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * Provides the comparator which Tags in this list are being sorted with.
-     *
-     * @return Comparator that is used to sort the Tags.
-     */
-    public Comparator<Tag> getTagComparator() {
-        return Comparator.naturalOrder();
-    }
-
-    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Tag> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Compares another map with this map. A map is considered equal if the key value pairs in both maps are equal.
+     *
+     * @param otherMap Another map to compare with this map.
+     * @return Boolean indicating if the given map is equal to this map.
+     */
+    public boolean hasEqualMap(Map<Tag, Integer> otherMap) {
+        return otherMap.equals(mapOfTagCount);
     }
 
     @Override
@@ -179,7 +179,8 @@ public class UniqueTagList implements Iterable<Tag> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueTagList // instanceof handles nulls
-                && internalList.equals(((UniqueTagList) other).internalList));
+                && internalList.equals(((UniqueTagList) other).internalList)
+                && mapOfTagCount.equals(((UniqueTagList) other).mapOfTagCount));
     }
 
     @Override
