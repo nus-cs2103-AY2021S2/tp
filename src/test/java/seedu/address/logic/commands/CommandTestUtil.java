@@ -53,6 +53,8 @@ public class CommandTestUtil {
 
     public static final LocalDate INVALID_BOOKING_END = LocalDate.parse("01-01-1990", DATE_TIME_FORMATTER);
     public static final LocalDate OVERLAP_BOOKING_DATE = LocalDate.parse("03-03-2020", DATE_TIME_FORMATTER);
+    public static final LocalDate VALID_LOCALDATE_START1 = LocalDate.parse(VALID_BOOKING_START1, DATE_TIME_FORMATTER);
+    public static final LocalDate VALID_LOCALDATE_END1 = LocalDate.parse(VALID_BOOKING_END1, DATE_TIME_FORMATTER);
 
     public static final String NAME_DESC_RESIDENCE1 = " " + PREFIX_NAME + VALID_NAME_RESIDENCE1;
     public static final String NAME_DESC_RESIDENCE2 = " " + PREFIX_NAME + VALID_NAME_RESIDENCE2;
@@ -66,6 +68,7 @@ public class CommandTestUtil {
     public static final String UNCLEAN_STATUS_DESC = " " + PREFIX_CLEAN_STATUS_TAG + VALID_UNCLEAN_TAG;
     public static final String PHONE_DESC_BOOKING1 = " " + PREFIX_PHONE + VALID_PHONE_BOOKING1;
     public static final String PHONE_DESC_BOOKING2 = " " + PREFIX_PHONE + VALID_PHONE_BOOKING2;
+    public static final String TENANT_NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_BOOKING1;
 
     // '&' not allowed in names
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&";
