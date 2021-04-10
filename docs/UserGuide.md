@@ -88,10 +88,15 @@ Format: `add-patient n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`
 
 * When a tag is too long, an ellipsis will be automatically added to prevent overflow. 
 It is recommended that tags not be too long to avoid this.<br>
+</div>
 
 * Emails without Top Level Domains(TLDs) eg. `a@b` without `.com` are valid emails, and will be regarded as such in the app.
 
-</div><br>
+* Phone numbers must contain only numbers, and should be at least 3 digits long. It has no maximum length. 
+
+* Tags must be alphanumeric, i.e. no spaces. the same applies for all other commands which use Tags.
+
+<br>
 
 Examples:
 * `add-patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
