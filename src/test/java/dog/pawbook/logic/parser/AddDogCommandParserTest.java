@@ -74,7 +74,8 @@ public class AddDogCommandParserTest {
         Dog expectedDogMultipleTags = new DogBuilder(BELL).withTags(VALID_TAG_FRIENDLY, VALID_TAG_QUIET)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BELL + SEX_DESC_BELL + BREED_DESC_BELL + DATEOFBIRTH_DESC_BELL
-                + OWNERID_DESC_SEVENTEEN + TAG_DESC_QUIET + TAG_DESC_FRIENDLY, new AddDogCommand(expectedDogMultipleTags));
+                + OWNERID_DESC_SEVENTEEN + TAG_DESC_QUIET + TAG_DESC_FRIENDLY,
+                new AddDogCommand(expectedDogMultipleTags));
     }
 
     @Test
