@@ -269,9 +269,9 @@ View scores of all past quiz attempts.
 
 Format: `history`
 
-#### Adding and removing entries `[coming in v2.0]`
+### Adding and removing flashcards `[coming in v2.0]`
 
-_Details coming soon ..._
+_These functions are likely to be included in future versions of Weeblingo, stay tuned._
 
 --------------------------------------------------------------------------------------------------------------------
 
