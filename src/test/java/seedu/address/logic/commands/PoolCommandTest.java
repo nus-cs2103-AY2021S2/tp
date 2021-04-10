@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_FRIDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_MONDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_EVENING;
@@ -41,7 +41,7 @@ public class PoolCommandTest {
     private final TripDay tripDay = new TripDay(VALID_TRIPDAY_FRIDAY);
     private final TripTime tripTimeMorning = new TripTime(VALID_TRIPTIME_MORNING);
     private final TripTime tripTimeEvening = new TripTime(VALID_TRIPTIME_EVENING);
-    private final Set<Tag> tags = SampleDataUtil.getTagSet(VALID_TAG_FRIEND);
+    private final Set<Tag> tags = SampleDataUtil.getTagSet(VALID_TAG_IT);
 
     private final Model model = new ModelManager(getTypicalAddressBookPassengers(), new UserPrefs());
 
@@ -54,7 +54,7 @@ public class PoolCommandTest {
     @Test
     public void execute_poolAcceptedByModel_addSuccessfulWithWarning() throws Exception {
         Pool validPool = new PoolBuilder().withModel(model).withIndex(INDEX_FIRST)
-                .withIndex(INDEX_SECOND).withTripDay(VALID_TRIPDAY_FRIDAY).withTags(VALID_TAG_FRIEND).build();
+                .withIndex(INDEX_SECOND).withTripDay(VALID_TRIPDAY_FRIDAY).withTags(VALID_TAG_IT).build();
 
         CommandResult commandResult = new PoolCommand(driver, commuters, tripDay, tripTimeMorning, tags).execute(model);
 
@@ -70,7 +70,7 @@ public class PoolCommandTest {
     public void execute_poolAcceptedByModel_addSuccessfulNoWarning() throws Exception {
         Pool validPool = new PoolBuilder().withModel(model).withIndex(INDEX_FIRST)
                 .withIndex(INDEX_SECOND).withTripDay(VALID_TRIPDAY_FRIDAY)
-                .withTripTime(VALID_TRIPTIME_EVENING).withTags(VALID_TAG_FRIEND).build();
+                .withTripTime(VALID_TRIPTIME_EVENING).withTags(VALID_TAG_IT).build();
 
         CommandResult commandResult = new PoolCommand(driver, commuters, tripDay, tripTimeEvening, tags).execute(model);
 
@@ -85,7 +85,7 @@ public class PoolCommandTest {
     @Test
     public void execute_duplicatePool_throwsCommandException() {
         Pool duplicatePool = new PoolBuilder().withModel(model).withIndex(INDEX_FIRST).withIndex(INDEX_SECOND)
-                .withTags(VALID_TAG_FRIEND).withTripTime(VALID_TRIPTIME_EVENING)
+                .withTags(VALID_TAG_IT).withTripTime(VALID_TRIPTIME_EVENING)
                 .withTripDay(VALID_TRIPDAY_FRIDAY).build();
 
         model.addPool(duplicatePool);

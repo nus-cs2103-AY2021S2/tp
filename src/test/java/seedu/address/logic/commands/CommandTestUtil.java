@@ -58,8 +58,8 @@ public class CommandTestUtil {
     public static final String VALID_PRICE_STR_AMY = "1.69";
     public static final String VALID_PRICE_STR_BOB = "6.9";
 
-    public static final String VALID_TAG_GOLF = "golf";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_HR = "hr";
+    public static final String VALID_TAG_IT = "it";
     public static final String VALID_TAG_FEMALE = "female";
 
     public static final String VALID_COMMUTER_1 = "1";
@@ -75,8 +75,8 @@ public class CommandTestUtil {
     public static final String TRIPDAY_DESC_MONDAY = " " + PREFIX_TRIPDAY + VALID_TRIPDAY_STR_MONDAY;
     public static final String TRIPTIME_DESC_EVENING = " " + PREFIX_TRIPTIME + VALID_TRIPTIME_STR_EVENING;
     public static final String TRIPTIME_DESC_MORNING = " " + PREFIX_TRIPTIME + VALID_TRIPTIME_STR_MORNING;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_GOLF = " " + PREFIX_TAG + VALID_TAG_GOLF;
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_IT;
+    public static final String TAG_DESC_GOLF = " " + PREFIX_TAG + VALID_TAG_HR;
     public static final String TAG_DESC_FEMALE = " " + PREFIX_TAG + VALID_TAG_FEMALE;
     public static final String TRIPDAY_DESC_BOB = " " + PREFIX_TRIPDAY + VALID_TRIPDAY_STR_BOB;
     public static final String TRIPTIME_DESC_BOB = " " + PREFIX_TRIPTIME + VALID_TRIPTIME_STR_BOB;
@@ -108,10 +108,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPassengerDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_IT).build();
         DESC_BOB = new EditPassengerDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_GOLF, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HR, VALID_TAG_IT).build();
     }
 
     /**
