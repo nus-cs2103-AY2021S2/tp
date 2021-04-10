@@ -3,45 +3,74 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-  {:toc}
-* [Setting up, getting started](#setting-up-getting-started)
-* [Design](#design)
-    * [Architecture](#architecture)
-    * [UI component](#ui-component)
-    * [Logic component](#logic-component)
-    * [Model component](#model-component)
-    * [Storage component](#storage-component)
-    * [Common classes](#common-classes)
-* [Implementation](#implementation)
-    * [Proposed Undo/redo feature](#proposed-undoredo-feature)
-        * [Proposed Implementation](#proposed-implementation)
-        * [Design consideration:](#design-consideration)
-            * [Aspect: How undo & redo executes](#aspect-how-undo--redo-executes)
-    * [Proposed Data archiving](#proposed-data-archiving)
-* [Documentation, logging, testing, configuration, dev-ops]()
-* [Appendix: Requirements](#appendix-requirements)
-    * [Product scope](#product-scope)
-    * [User stories](#user-stories)
-    * [Use cases](#use-cases)
-    * [Non-Functional Requirements](#non-functional-requirements)
-    * [Glossary](#glossary)
-* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-    * [Launch and shutdown](#launch-and-shutdown)
-    * [Deleting a task](#deleting-a-task)
-    * [Saving data](#saving-data)
+# Table of contents
+
+- [**1. Introduction**](#1-introduction)
+    - [1.1 Purpose](#11-purpose)
+    - [1.2 Audience](#12-audience)
+    - [1.3 Taskify Overview](#13-taskify-overview)
+    - [1.4 How to use this guide](#14-how-to-use-this-guide)
+- [**2. Setting up, getting started**](#2-setting-up-getting-started)
+- [**3. Design**](#3-design)
+    - [3.1 Architecture](#31-architecture)
+    - [3.2 UI component](#32-ui-component)
+    - [3.3 Logic component](#33-logic-component)
+    - [3.4 Model component](#34-model-component)
+    - [3.5 Storage component](#35-storage-component)
+    - [3.6 Common classes](#36-common-classes)
+- [**4. Implementation**](#4-implementation)
+- [**5. Documentation, logging, testing, configuration, dev-ops**](#5-documentation-logging-testing-configuration-dev-ops)
+- [**6. Appendix: Requirements**](#6-appendix-requirements)
+    - [6.1 Product scope](#61-product-scope)
+    - [6.2 User stories](#62-user-stories)
+    - [6.3 Use cases](#63-use-cases)
+    - [6.4 Non-Functional Requirements](#64-non-functional-requirements)
+    - [6.5 Glossary](#65-glossary)
+- [**7. Appendix: Instructions for manual testing**](#7-appendix-instructions-for-manual-testing)
+    - [7.1 Launch and shutdown](#71-launch-and-shutdown)
+    - [7.2 Deleting a task](#72-deleting-a-task)
+    - [7.3 Saving data](#73-saving-data)
+- [**8. Appendix: Effort**](#8-appendix-effort)
+  
+
+--------------------------------------------------------------------------------------------------------------------
+## **1. Introduction**
+
+### 1.1 Purpose
+
+The purpose of this Developer Guide is to describe the design, implementation and documentation of Taskify. This 
+document intends for the read to understand the relationship between the components that make up Taskify.
+
+### 1.2 Audience
+
+This Developer Guide is for anyone who wishes to understand the internal software architecture of Taskify.
+In addition, the following groups are the intended target of this documentation:
+
+* CS2103T / CS2101 Teaching Team - as a means to evaluate the design, implementation and documentation of Taskify.
+* Potential Taskify Developers - as a means to understand the internal structure of Taskify to potentially expand
+upon Taskify in the future.
+  
+### 1.3 Taskify Overview
+Taskify is a desktop app intended for university students, optimized for fast typists via a Command Line Interface 
+(CLI). Taskify helps users keep track of their tasks with a a clean and simplistic interface.
+
+### 1.4 How to use this guide
+This Developer Guide is structured in a top-down manner, starting with the overall architecture of Taskify, followed
+by in-depth descriptions and implementations.
+
+For your convenience, use the **Table of Contents** above to navigate to a section quickly.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **2. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **3. Design**
 
-### Architecture
+### 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -94,7 +123,7 @@ the command `delete 1`.
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -115,7 +144,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 3.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -137,7 +166,7 @@ call.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 3.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -156,7 +185,7 @@ The `Model`,
 
 </div>
 
-### Storage component
+### 3.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -167,12 +196,19 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the Taskify data in json format and read it back.
 
-### Common classes
+### 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.taskify.commons` package.
 
+--------------------------------------------------------------------------------------------------------------------
+## **4. Implementation**
+The previous Design section provides an overview on the general structure of Taskify. This section dives deeper and
+describes some noteworthy details on how certain features are implemented.
 
-## **Documentation, logging, testing, configuration, dev-ops**
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **5. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -182,9 +218,9 @@ Classes used by multiple components are in the `seedu.taskify.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **6. Appendix: Requirements**
 
-### Product scope
+### 6.1 Product scope
 
 **Target user profile**:
 
@@ -194,7 +230,7 @@ Classes used by multiple components are in the `seedu.taskify.commons` package.
 
 **Value proposition**: help students manage their tasks in a systematic and efficient manner
 
-### User stories
+### 6.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -217,7 +253,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### 6.3 Use cases
 
 (For all use cases below, the **System** is the `Taskify` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -450,7 +486,7 @@ Use case ends.
 
 ---
 
-### Non-Functional Requirements
+### 6.4 Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 100 tasks without a noticeable sluggishness in performance for typical usage.
@@ -459,13 +495,13 @@ Use case ends.
 5. The app should be able to run with or without internet connection
 6. The product should not take above 10 seconds to execute any commands.
 
-### Glossary
+### 6.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **7. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -474,7 +510,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 7.1 Launch and shutdown
 
 1. Initial launch
 
@@ -492,7 +528,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a task
+### 7.2 Deleting a task
 
 1. Deleting a task while all tasks are being shown
 
@@ -510,10 +546,14 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### 7.3 Saving data
 
 1. Dealing with missing/corrupted data files
 
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+## **8. Appendix: Effort**
+
