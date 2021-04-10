@@ -44,6 +44,11 @@ public class AddAssignmentCommandParserTest {
         String userInput3 = " " + PREFIX_MODULE + "MOD 2" + " " + PREFIX_ASSIGNMENT + VALID_ASSIGNMENT_DESCRIPTION_1
                 + " " + PREFIX_DEADLINE;
         assertParseFailure(parser, userInput3, Assignment.DATE_CONSTRAINTS);
+
+        //blank deadline
+        String userInput4 = " " + PREFIX_MODULE + "MOD 2" + " " + PREFIX_ASSIGNMENT + VALID_ASSIGNMENT_DESCRIPTION_1
+                + " " + PREFIX_DEADLINE + "    ";
+        assertParseFailure(parser, userInput4, Assignment.DATE_CONSTRAINTS);
     }
 
     @Test

@@ -25,5 +25,9 @@ public class AddModuleCommandParserTest {
         //missing module name
         String userInput = " " + PREFIX_MODULE;
         assertParseFailure(parser, userInput, String.format(Title.MESSAGE_CONSTRAINTS, "Modules"));
+
+        //blank module name
+        String userInput2 = " " + PREFIX_MODULE + "    ";
+        assertParseFailure(parser, userInput2, String.format(Title.MESSAGE_CONSTRAINTS, "Modules"));
     }
 }

@@ -33,6 +33,10 @@ public class AddEventCommandParserTest {
         //missing date
         String userInput2 = " " + PREFIX_GENERAL_EVENT + VALID_GENERAL_EVENT_DESCRIPTION_1 + " " + PREFIX_DATE;
         assertParseFailure(parser, userInput2, GeneralEvent.DATE_CONSTRAINT);
+
+        //missing date
+        String userInput3 = " " + PREFIX_GENERAL_EVENT + VALID_GENERAL_EVENT_DESCRIPTION_1 + " " + PREFIX_DATE + "  ";
+        assertParseFailure(parser, userInput3, GeneralEvent.DATE_CONSTRAINT);
     }
 
     @Test
