@@ -9,9 +9,9 @@ import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_END_HAL
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_START_FIELD;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_START_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_TAGS_HALL;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_VENUE_NAME_FIELD;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_VENUE_NAME_HALL;
-import static seedu.booking.testutil.TypicalVenues.*;
+import static seedu.booking.testutil.TypicalVenues.VENUE1;
+import static seedu.booking.testutil.TypicalVenues.VENUE2;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -29,7 +29,6 @@ import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Name;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.person.Phone;
-import seedu.booking.model.venue.VenueName;
 
 /**
  * A utility class containing a list of {@code Booking} objects to be used in tests.
