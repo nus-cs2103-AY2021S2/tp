@@ -100,7 +100,7 @@ As an example, a basic command to add an endpoint could look like the following:
 
 <span class="main-command">add</span> <span class="compulsory-param">-x GET</span> <span class="compulsory-param">-u https://google.com</span>
 
-In the example above, <span class="main-command">add</span> is the command word while <span class="compulsory-param">-x</span> and <span class="compulsory-param">-u</span> are the prefixes of the <span class="compulsory-param">GET</span> and <span class="compulsory-param">https://google.com</span> parameters respectively. For your convenience, a list of all parameters along with their prefixes and descriptions have been included in the table below. An example usage of all the parameters are also demonstrated in the [add command](#421-add-an-api-endpoint-add).
+In the example above, <span class="main-command">add</span> is the **command word** while <span class="compulsory-param">-x</span> and <span class="compulsory-param">-u</span> are the **prefixes** of the <span class="compulsory-param">GET</span> and <span class="compulsory-param">https://google.com</span> **parameters** respectively. For your convenience, a list of all parameters along with their prefixes and descriptions have been included in the table below. An example usage of all the parameters are also demonstrated in the [add command](#421-add-an-api-endpoint-add).
 
 <a name="prefix-table"></a>
 
@@ -398,26 +398,30 @@ command box with that last command.
 
 **Description:** Do not worry if you input any commands wrongly when using our app! Our app gives helpful error messages depending on the command you entered and you can always enter the [**help command**](#411-view-help-help) if you need to refer back to the various commands available!
 
+#### 4.3.5 API Response Length
+
+**Description:** Due to performance issues with JavaFX, the maximum length of API responses that will be returned to a user in the result display is set at 100000 characters. Responses beyond this length will be trimmed but the current limit is much more than enough for a vast majority of cases.
+
 <div style="page-break-after: always;"></div>
 
 ## 5. Frequently Asked Questions (FAQ)
 
 **Q**: I am completely new to APIs, how do I get an [endpoint](#glossary-endpoint)?
 <br/><br/>
-**A**: While the use of APIs is commonplace, not all applications provide their API endpoints publicly. **Google** is your best friend for searching of public APIs but if you are new and just looking to try things out, fear not! We have prepared an extensive list of [sample endpoints](#86-sample-endpoints) to get you started!
+**A**: While the use of APIs is commonplace, not all applications provide their API endpoints publicly. **Google** is your best friend for searching of public APIs but if you are new and just looking to try things out, fear not! We have prepared an extensive list of [**sample endpoints**](#86-sample-endpoints) to get you started!
 
 **Q**: How do I transfer my data to another Computer?
 <br/><br/> 
-**A**: Install the application in the other computer and place your current data folder in the same directory as the newly installed application (overwrite the data folder of the new application if applicable).
+**A**: Install the application in the other computer and place your **current data folder** in the **same directory** as the newly installed application (overwrite the data folder of the new application if applicable).
 
 **Q**: How can I send non-JSON data in the request body?
 <br/><br/>
-**A**: This current version of imPoster only supports the sending of [JSON](#85-json-format) data in the request body which is the format used by an estimated over 70% of APIs worldwide. We apologise for the inconvenience caused but we are happy to share that plans are in place to include support for other data formats in future versions!
+**A**: This current version of imPoster only supports the sending of [JSON](#85-json-format) data in the request body which is the format used by an estimated over 70% of APIs worldwide. We apologise for the inconvenience caused but we are happy to share that plans are in place to include support for other data formats in **future versions**!
 
 <a name="data-file"></a>
 **Q**: Where are the data of imPoster saved?
 <br/><br/>
-**A**: imPoster data are saved automatically after every command into a JSON file named `imposter.json`. This file is stored within the `data` folder in the same location as the application `JAR` file and is created after the initial launch (and a command execution) of a fresh installation.
+**A**: imPoster data are **saved automatically** after every command into a JSON file named `imposter.json`. This file is stored within the `data` folder in the **same location** as the application `JAR` file and is created after the initial launch (and a command execution) of a fresh installation.
 
 <div style="page-break-after: always;"></div>
 
