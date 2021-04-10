@@ -1,16 +1,17 @@
 package seedu.weeblingo.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.weeblingo.commons.exceptions.IllegalValueException;
-import seedu.weeblingo.commons.util.JsonUtil;
-import seedu.weeblingo.model.FlashcardBook;
-import seedu.weeblingo.testutil.TypicalFlashcards;
+import static org.junit.Assert.assertEquals;
+import static seedu.weeblingo.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.Assert.assertEquals;
-import static seedu.weeblingo.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import seedu.weeblingo.commons.exceptions.IllegalValueException;
+import seedu.weeblingo.commons.util.JsonUtil;
+import seedu.weeblingo.model.FlashcardBook;
+import seedu.weeblingo.testutil.TypicalFlashcards;
 
 public class JsonSerializableFlashcardBookTest {
 
@@ -24,16 +25,16 @@ public class JsonSerializableFlashcardBookTest {
     @Test
     public void toModelType_typicalFlashcardsFile_success() throws Exception {
         JsonSerializableFlashcardBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_FLASHCARDS_FILE,
-                JsonSerializableFlashcardBook.class).get();
-                FlashcardBook flashcardBookFromFile = dataFromFile.toModelType();
-                FlashcardBook typicalFlashcardBook = TypicalFlashcards.getTypicalFlashcardBook();
-                assertEquals(flashcardBookFromFile, typicalFlashcardBook);
+            JsonSerializableFlashcardBook.class).get();
+        FlashcardBook flashcardBookFromFile = dataFromFile.toModelType();
+        FlashcardBook typicalFlashcardBook = TypicalFlashcards.getTypicalFlashcardBook();
+        assertEquals(flashcardBookFromFile, typicalFlashcardBook);
     }
 
     @Test
     public void toModelType_invalidFlashcardFile_throwsIllegalValueException() throws Exception {
         JsonSerializableFlashcardBook dataFromFile = JsonUtil.readJsonFile(INVALID_FLASHCARD_FILE,
-        JsonSerializableFlashcardBook.class).get();
+            JsonSerializableFlashcardBook.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
@@ -42,7 +43,7 @@ public class JsonSerializableFlashcardBookTest {
         JsonSerializableFlashcardBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_FLASHCARD_FILE,
                 JsonSerializableFlashcardBook.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableFlashcardBook.MESSAGE_DUPLICATE_FLASHCARD,
-        dataFromFile::toModelType);
+            dataFromFile::toModelType);
     }
 
     @Test

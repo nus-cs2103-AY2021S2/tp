@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
 import static seedu.weeblingo.testutil.TypicalFlashcards.A_CARD;
-import static seedu.weeblingo.testutil.TypicalFlashcards.I_CARD;
 import static seedu.weeblingo.testutil.TypicalFlashcards.getTypicalFlashcardBook;
 
 import java.io.IOException;
@@ -86,8 +85,8 @@ public class JsonFlashcardBookStorageTest {
 
     @Test
     public void readFlashcardBook_invalidAndValidFlashcardBook_throwDataConversionException() {
-    assertThrows(DataConversionException.class, () -> readFlashcardBook(
-        "invalidAndValidFlashcardBook.json"));
+        assertThrows(DataConversionException.class, () -> readFlashcardBook(
+            "invalidAndValidFlashcardBook.json"));
     }
 
     @Test
