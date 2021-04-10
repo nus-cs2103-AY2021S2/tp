@@ -244,8 +244,9 @@ To achieve the best possible experience, avoid adding excessively long text to C
 * Time can be only be entered in one of these formats:
     * 1730
     * 17:30
-* The Hour Field (first 2 digits) should be a non-negative number between 00 and 23 (inclusive).
-* The Minute Field (last 2 digits) should be a non-negative number between 00 and 59 (inclusive).
+* Time should be a valid time (from 0000 to 2359) where:
+    * The Hour Field (first 2 digits) should be a non-negative number between 00 and 23 (inclusive).
+    * The Minute Field (last 2 digits) should be a non-negative number between 00 and 59 (inclusive).
 
 --------------------------------------------------------------------------------------------------------------------
 
