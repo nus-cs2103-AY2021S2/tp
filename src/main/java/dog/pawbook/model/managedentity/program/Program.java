@@ -124,7 +124,7 @@ public class Program extends Entity {
                 .sorted(Comparator.comparing(session -> session.dateTime))
                 .map(session -> session.value)
                 .collect(Collectors.joining(", "));
-        properties.add("Timeslot(s): " + timeslots);
+        properties.add("Timeslot(s): " + (sessionSet.size() > 0 ? timeslots : "None"));
 
         if (!dogIdSet.isEmpty()) {
             properties.add(dogIdSet.stream()
