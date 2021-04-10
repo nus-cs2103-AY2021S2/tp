@@ -1,0 +1,3 @@
+{
+  "jsonAdaptedShortcuts" : [ "ls=list -p", "ls=listshortcut", "sna=sort -n -asc" ]
+}

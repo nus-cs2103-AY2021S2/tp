@@ -8,7 +8,7 @@ package Logic {
 
 package Parser {
 Interface Parser <<Interface>>
-Class AddressBookParser
+Class ClientBookParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
@@ -21,6 +21,7 @@ package Command {
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
+Enum "<<enumeration>>\nCommandWord" as CommandWord
 }
 
 Interface Logic <<Interface>>
@@ -31,15 +32,20 @@ package Model{
 Class HiddenModel #FFFFFF
 }
 
+package Storage{
+Class HiddenModel #FFFFFF
+}
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
-LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+LogicManager -->"1" ClientBookParser
+ClientBookParser .left.> XYZCommandParser: creates >
 
+XYZCommandParser ..> XYZCommandParser
 XYZCommandParser ..> XYZCommand : creates >
-XYZCommandParser ..|> Parser
+XYZCommandParser .left.|> Parser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
@@ -49,14 +55,22 @@ XYZCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
 XYZCommand -up-|> Command
+XYZCommand *-left-> "*" XYZCommand
 LogicManager .left.> Command : executes >
 
 LogicManager --> Model
+LogicManager --> Storage
+Storage --[hidden] Model
+Command .[hidden]up.> Storage
 Command .right.> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+note bottom of XYZCommand: Whole-part relationship only \nvalid for BatchCommand (whole) and \nEditCommand/DeleteCommand (part))
+
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult
 CommandResult -[hidden]-> Parser
+CommandWord -[hidden]up-> XYZCommand
+note right of XYZCommandParser: Association between XYZCommandParser \nand XYZCommandParser is only relevant \nfor BatchCommandParser and \nEditCommandParser/DeleteCommandParser
 @enduml

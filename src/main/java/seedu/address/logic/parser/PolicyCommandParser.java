@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.PolicyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -19,8 +17,7 @@ public class PolicyCommandParser implements Parser<PolicyCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new PolicyCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, PolicyCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getLocalizedMessage() + "\n" + PolicyCommand.MESSAGE_USAGE, pe);
         }
     }
 

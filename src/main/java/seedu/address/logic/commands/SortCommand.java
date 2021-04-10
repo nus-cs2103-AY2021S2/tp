@@ -32,13 +32,15 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the list of clients by "
             + "the specified property in the order of the specified direction.\n"
-            + "Parameters: ATTRIBUTE (-n name, -i insurance policy) DIRECTION (-asc ascending, -des descending)\n"
+            + "Parameters: -ATTRIBUTE (n or i) -DIRECTION (asc or des)\n"
             + "Example: " + COMMAND_WORD + " -n -asc";
 
     private final String attribute;
     private final String direction;
 
     /**
+     * Create a SortCommand that sort by the given {@code Attribute} in the given {@code Direction}
+     *
      * @param attribute of the client to be sorted with
      * @param direction of the sorting order
      */
@@ -83,10 +85,11 @@ public class SortCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
+        SortCommand sortCommand = (SortCommand) other;
         return other == this // short circuit if same object
                 || (other instanceof SortCommand // instanceof handles nulls
-                && attribute.equals(((SortCommand) other).attribute) // state check
-                && direction.equals(((SortCommand) other).direction)); // state check
+                && attribute.equals(sortCommand.attribute) // state check
+                && direction.equals(sortCommand.direction)); // state check
     }
 
     /**

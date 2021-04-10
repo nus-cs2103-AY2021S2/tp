@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedInsurancePolicy> policies = new ArrayList<>();
+    private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -39,7 +41,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("policies") List<JsonAdaptedInsurancePolicy> policies) {
+            @JsonProperty("policies") List<JsonAdaptedInsurancePolicy> policies,
+            @JsonProperty("meeting") List<JsonAdaptedMeeting> meeting) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,6 +52,9 @@ class JsonAdaptedPerson {
         }
         if (policies != null) {
             this.policies.addAll(policies);
+        }
+        if (meeting != null) {
+            this.meetings.addAll(meeting);
         }
     }
 
@@ -66,6 +72,9 @@ class JsonAdaptedPerson {
         policies.addAll(source.getPolicies().stream()
                 .map(JsonAdaptedInsurancePolicy::new)
                 .collect(Collectors.toList()));
+        meetings.addAll(source.getMeetings().stream()
+                .map(JsonAdaptedMeeting::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -82,6 +91,11 @@ class JsonAdaptedPerson {
         final List<InsurancePolicy> personPolicies = new ArrayList<>();
         for (JsonAdaptedInsurancePolicy policy : policies) {
             personPolicies.add(policy.toModelType());
+        }
+
+        final List<Meeting> personMeetings = new ArrayList<>();
+        for (JsonAdaptedMeeting meeting : meetings) {
+            personMeetings.add(meeting.toModelType());
         }
 
         if (name == null) {
@@ -120,7 +134,9 @@ class JsonAdaptedPerson {
 
         final List<InsurancePolicy> modelPolicies = new ArrayList<>(personPolicies);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies);
+        final List<Meeting> modelMeetings = new ArrayList<>(personMeetings);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies, modelMeetings);
     }
 
 }

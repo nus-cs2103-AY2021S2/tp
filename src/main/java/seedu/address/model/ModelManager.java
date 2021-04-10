@@ -16,6 +16,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Person;
+import seedu.address.model.shortcut.ShortcutLibrary;
 import seedu.address.storage.Authentication;
 
 /**
@@ -30,11 +31,13 @@ public class ModelManager implements Model {
     private List<Person> backUpList;
     private final Authentication authentication;
     private final ObservableList<Person> modifiedList;
+    private final ShortcutLibrary shortcutLibrary;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs and Authentication.
+     * Initializes a ModelManager with the given addressBook and userPrefs and Authentication and shortcutLibrary.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, Authentication authentication) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, Authentication authentication,
+                        ShortcutLibrary shortcutLibrary) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -46,13 +49,14 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.authentication = authentication;
         modifiedList = this.addressBook.getModifiablePersonList();
+        this.shortcutLibrary = shortcutLibrary;
     }
 
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook and userPrefs and shortcutLibrary.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ShortcutLibrary shortcutLibrary) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -64,10 +68,11 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         modifiedList = this.addressBook.getModifiablePersonList();
         this.authentication = new Authentication();
+        this.shortcutLibrary = shortcutLibrary;
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new Authentication());
+        this(new AddressBook(), new UserPrefs(), new Authentication(), new ShortcutLibrary());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -103,6 +108,17 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public Path getShortcutLibraryFilePath() {
+        return userPrefs.getShortcutLibraryFilePath();
+    }
+
+    @Override
+    public void setShortcutLibraryFilePath(Path shortcutLibraryFilePath) {
+        requireNonNull(shortcutLibraryFilePath);
+        userPrefs.setShortcutLibraryFilePath(shortcutLibraryFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -191,18 +207,65 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && shortcutLibrary.equals(other.shortcutLibrary);
     }
 
     //=========== Authenticator Accessors =============================================================
+
     public Authentication getAuthentication() {
         return this.authentication;
     }
+
     //=========== Sorted Person List Accessors =============================================================
 
     @Override
     public void updateSortedPersonList(Comparator<Person> comparator) {
         requireNonNull(comparator);
         modifiedList.sort(comparator);
+    }
+
+    //=========== Whole Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the entire person list
+     */
+    @Override
+    public ObservableList<Person> getWholePersonList() {
+        return new FilteredList<>(this.addressBook.getPersonList());
+    }
+
+    //=========== Shortcut Library ================================================================================
+
+    @Override
+    public void setShortcutLibrary(ShortcutLibrary shortcutLibrary) {
+        this.shortcutLibrary.resetData(shortcutLibrary.getShortcuts());
+    }
+
+    @Override
+    public ShortcutLibrary getShortcutLibrary() {
+        return shortcutLibrary;
+    }
+
+    @Override
+    public boolean hasShortcut(String shortcutName) {
+        requireNonNull(shortcutName);
+        return shortcutLibrary.hasShortcut(shortcutName);
+    }
+
+    @Override
+    public void deleteShortcut(String shortcutName) {
+        shortcutLibrary.removeShortcut(shortcutName);
+    }
+
+    @Override
+    public void addShortcut(String shortcutName, String shortcutCommand) {
+        shortcutLibrary.addShortcut(shortcutName, shortcutCommand);
+    }
+
+    @Override
+    public void setShortcut(String target, String shortcutCommand) {
+        requireAllNonNull(target, shortcutCommand);
+        shortcutLibrary.setShortcut(target, shortcutCommand);
     }
 }

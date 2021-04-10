@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.shortcut.ShortcutLibrary;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -19,14 +20,18 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private ShortcutLibraryStorage shortcutLibraryStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code AddressBookStorage}, {@code UserPrefStorage}
+     * and {@code ShortcutLibraryStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+                          ShortcutLibraryStorage shortcutLibraryStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.shortcutLibraryStorage = shortcutLibraryStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -74,6 +79,35 @@ public class StorageManager implements Storage {
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
+    }
+
+    // ================ ShortcutLibrary methods ==============================
+
+    @Override
+    public Path getShortcutLibraryFilePath() {
+        return shortcutLibraryStorage.getShortcutLibraryFilePath();
+    }
+
+    @Override
+    public Optional<ShortcutLibrary> readShortcutLibrary() throws DataConversionException, IOException {
+        return readShortcutLibrary(shortcutLibraryStorage.getShortcutLibraryFilePath());
+    }
+
+    @Override
+    public Optional<ShortcutLibrary> readShortcutLibrary(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return shortcutLibraryStorage.readShortcutLibrary(filePath);
+    }
+
+    @Override
+    public void saveShortcutLibrary(ShortcutLibrary shortcutLibrary) throws IOException {
+        saveShortcutLibrary(shortcutLibrary, shortcutLibraryStorage.getShortcutLibraryFilePath());
+    }
+
+    @Override
+    public void saveShortcutLibrary(ShortcutLibrary shortcutLibrary, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        shortcutLibraryStorage.saveShortcutLibrary(shortcutLibrary, filePath);
     }
 
 }

@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,13 +28,8 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (trimmedArgs.isEmpty()) {
             return new ListCommand();
         } else {
-            try {
-                List<Attribute> attributes = ParserUtil.parseAttributes(splitArgs);
-                return new ListCommand(attributes);
-            } catch (ParseException pe) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE), pe);
-            }
+            List<Attribute> attributes = ParserUtil.parseAttributes(splitArgs);
+            return new ListCommand(attributes);
         }
     }
 

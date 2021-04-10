@@ -18,10 +18,11 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.shortcut.ShortcutLibrary;
 
 public class PolicyCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ShortcutLibrary());
 
     @Test
     public void execute_validIndexUnfilteredListNoPolicies_success() {
@@ -29,10 +30,11 @@ public class PolicyCommandTest {
         PolicyCommand policyCommand = new PolicyCommand(INDEX_THIRD_PERSON);
 
         String expectedMessage = String.format(PolicyCommand.NO_POLICIES, personPoliciesToDisplay.getName());
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, true, false, false);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new ShortcutLibrary());
 
-        assertCommandSuccess(policyCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(policyCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -41,10 +43,11 @@ public class PolicyCommandTest {
         PolicyCommand policyCommand = new PolicyCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = personPoliciesToDisplay.getPersonNameAndAllPoliciesInString();
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, true, false, false);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new ShortcutLibrary());
 
-        assertCommandSuccess(policyCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(policyCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -63,12 +66,13 @@ public class PolicyCommandTest {
         PolicyCommand policyCommand = new PolicyCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(PolicyCommand.NO_POLICIES, personPoliciesToDisplay.getName());
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, true, false, false);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new ShortcutLibrary());
         // there should be no change to the model, since this is not a command which modifies the {@code model}
         showPersonAtIndex(expectedModel, INDEX_THIRD_PERSON);
 
-        assertCommandSuccess(policyCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(policyCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -79,12 +83,13 @@ public class PolicyCommandTest {
         PolicyCommand policyCommand = new PolicyCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = personPoliciesToDisplay.getPersonNameAndAllPoliciesInString();
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, true, false, false);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new ShortcutLibrary());
         // there should be no change to the model, since this is not a command which modifies the {@code model}
         showPersonAtIndex(expectedModel, INDEX_SECOND_PERSON);
 
-        assertCommandSuccess(policyCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(policyCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
@@ -121,5 +126,4 @@ public class PolicyCommandTest {
         // different person -> returns false
         assertFalse(policyFirstCommand.equals(policySecondCommand));
     }
-
 }

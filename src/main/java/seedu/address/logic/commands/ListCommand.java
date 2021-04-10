@@ -24,8 +24,9 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists clients, along with specified attributes\n"
-            + "Parameters: [-ATTRIBUTE]... (attributes must be policy, phone or email)\n"
-            + "Example: " + COMMAND_WORD + " -policy -phone";
+            + "Parameters: [-ATTRIBUTE]... (attributes must be i for policy, p for phone, e for email,"
+            + " a for address or m for meeting)\n"
+            + "Example: " + COMMAND_WORD + " -i -p";
 
     private final List<Attribute> attributes;
 
@@ -66,6 +67,9 @@ public class ListCommand extends Command {
                 break;
             case ADDRESS:
                 attributeName.append("address");
+                break;
+            case MEETING:
+                attributeName.append("meeting");
                 break;
             default:
                 throw new CommandException("Could not list with filtered attribute");

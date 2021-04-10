@@ -3,9 +3,10 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ClientBookParser" as ClientBookParser LOGIC_COLOR
 participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
 participant "s:SortCommand" as SortCommand LOGIC_COLOR
+participant "c:Comparator" as Comparator LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,20 +14,20 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("sort -n -a")
+[-> LogicManager : execute("sort -n -asc")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("sort -n -a")
-activate AddressBookParser
+LogicManager -> ClientBookParser : parseCommand("sort -n -asc")
+activate ClientBookParser
 
 create SortCommandParser
-AddressBookParser -> SortCommandParser
+ClientBookParser -> SortCommandParser
 activate SortCommandParser
 
-SortCommandParser --> AddressBookParser
+SortCommandParser --> ClientBookParser
 deactivate SortCommandParser
 
-AddressBookParser -> SortCommandParser : parse("-n -a")
+ClientBookParser -> SortCommandParser : parse("-n -asc")
 activate SortCommandParser
 
 create SortCommand
@@ -36,19 +37,26 @@ activate SortCommand
 SortCommand --> SortCommandParser : s
 deactivate SortCommand
 
-SortCommandParser --> AddressBookParser : s
+SortCommandParser --> ClientBookParser : s
 deactivate SortCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-SortCommandParser -[hidden]-> AddressBookParser
+SortCommandParser -[hidden]-> ClientBookParser
 destroy SortCommandParser
 
-AddressBookParser --> LogicManager : s
-deactivate AddressBookParser
+ClientBookParser --> LogicManager : s
+deactivate ClientBookParser
 
 LogicManager -> SortCommand : execute()
 activate SortCommand
 
-SortCommand -> Model : updateSortedPersonList(comparator)
+create Comparator
+SortCommand -> Comparator
+activate Comparator
+
+Comparator --> SortCommand : c
+deactivate Comparator
+
+SortCommand -> Model : updateSortedPersonList(c)
 activate Model
 
 Model --> SortCommand
