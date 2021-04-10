@@ -175,7 +175,7 @@ Step 4. During it's execution, the `Deadline` object would be added to a `Deadli
 
 This section explains the implementation of the View Project feature. The implementation of other commands that opens panels, windows or tabs are similar.
 
-The `ViewProject` command results in the UI displaying the specified project together with all its related information. 
+The `ViewProject` command results in the UI displaying the specified project together with all its related information.
 
 The mechanism to issue the command to display a new project is facilitated by `ViewProjectUiCommand`, a concrete implementation of the `UiCommand` abstract class, which encapsulates the project `Index` as well as the logic that determines which methods to call in the `MainWindow`.
 
@@ -205,7 +205,7 @@ Step5. Execution of this method will result in a call to `MainWindow#selectProje
 
     * Cons:
         * Many classes required.
-        * `MainWindow` and `UiCommand` are still highly coupled, as `MainWindow` both invokes the command and performs the requested action. 
+        * `MainWindow` and `UiCommand` are still highly coupled, as `MainWindow` both invokes the command and performs the requested action.
 
 * **Alternative 2 (implementation used in AB3):** Store instructions in `CommandResult` as boolean fields.
     * Pros:
@@ -294,7 +294,7 @@ Step 5: A `CommandResult` object is created (see section on [Logic Component](#l
         * This implementation will not work with an immutable implementation of `EventList`
 
 * **Alternative 2:** A new `Project` object is initialized with a new `EventList` object containing the added `Event`.
-    * Pros: 
+    * Pros:
         * If the implementation of `EventList` becomes immutable. This implementaion still works.
     * Cons:
         * This implementation requires more time and space (for creation of new 'Project` and `EventList` object).
