@@ -45,13 +45,25 @@ deactivate StudentBookParser
 LogicManager -> FindCommand : execute()
 activate FindCommand
 
-FindCommand -> Model : updateFilteredPersonList(student)
+FindCommand -> Model : updateFilteredStudentList(student)
 activate Model
 
 Model --> FindCommand
 deactivate Model
 
-FindCommand -> Model : getFilteredPersonList(student)
+FindCommand -> Model : getFilteredStudentList(student)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+FindCommand -> Model : updateFilteredAppointmentList(student)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+FindCommand -> Model : getFilteredAppointmentList(student)
 activate Model
 
 Model --> FindCommand

@@ -11,7 +11,7 @@ import seedu.student.model.appointment.Appointment;
 import seedu.student.model.student.MatriculationNumber;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to the student book.
  */
 public class AddAppointmentCommand extends Command {
 
@@ -29,8 +29,9 @@ public class AddAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "The appointment already exists in the records";
-    public static final String MESSAGE_OVERLAPPING_APPOINTMENT = "The appointment overlaps with another appointment";
-    public static final String MESSAGE_STUDENT_DOES_NOT_EXIST = "The student does not exist in the records";
+    public static final String MESSAGE_OVERLAPPING_APPOINTMENT = "The appointment overlaps with another appointment.";
+    public static final String MESSAGE_STUDENT_DOES_NOT_EXIST = "The student does not exist in the records.";
+
 
     private final Appointment toAdd;
 

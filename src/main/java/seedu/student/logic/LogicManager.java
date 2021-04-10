@@ -1,5 +1,9 @@
 package seedu.student.logic;
 
+import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
+import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENT_LISTS;
+import static seedu.student.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
@@ -16,7 +20,9 @@ import seedu.student.model.Model;
 import seedu.student.model.ReadOnlyStudentBook;
 import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.Student;
+import seedu.student.model.student.exceptions.MatriculationNumberDoesNotExistException;
 import seedu.student.storage.Storage;
+
 
 /**
  * The main LogicManager of the app.
@@ -39,12 +45,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException,
+            MatriculationNumberDoesNotExistException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
         Command command = studentBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
+
+        if (!(commandText.contains("find") || commandText.contains("filter"))) {
+            model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENT_LISTS, PREDICATE_SHOW_ALL_APPOINTMENTS);
+            model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        }
 
         try {
             storage.saveStudentBook(model.getStudentBook());
@@ -63,6 +75,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Student> getFilteredStudentList() {
         return model.getFilteredStudentList();
+    }
+
+    @Override
+    public ObservableList<Student> getStudentList() {
+        return model.getStudentList();
     }
 
     @Override

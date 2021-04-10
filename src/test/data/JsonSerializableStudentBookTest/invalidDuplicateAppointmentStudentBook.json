@@ -10,9 +10,14 @@
     "medicalDetails" : "lactose intolerant",
     "schoolResidence" : "RVRC"
   } ],
-  "appointments": [ {
+  "appointments": [{
+    "matriculationNumber" : "A0987643T",
+    "date" : "2021-12-13",
+    "startTime" : "13:00"
+  },
+    {
       "matriculationNumber" : "A0987643T",
-      "date" : "2021-12-13",
-      "startTime" : "13:20:00"
+      "date" : "2021-12-11",
+      "startTime" : "13:00"
     }]
 }
