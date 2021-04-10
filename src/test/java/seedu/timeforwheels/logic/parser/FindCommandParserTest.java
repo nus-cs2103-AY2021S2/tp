@@ -32,4 +32,26 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
     }
 
+    @Test
+    public void parse_validArgs_diffAttributes_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new AttributeContainsKeywordsPredicate(Arrays.asList("Alice", "Clementi")));
+        assertParseSuccess(parser, "Alice Clementi", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n Alice \n \t Clementi  \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validRepeatArgs_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new AttributeContainsKeywordsPredicate(Arrays.asList("Alice", "Alice")));
+        assertParseSuccess(parser, "Alice Alice", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n Alice \n \t Alice  \t", expectedFindCommand);
+    }
+
 }
