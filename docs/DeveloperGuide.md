@@ -262,7 +262,7 @@ SOChedule consists of two lists: a task list and an event list. The task list is
 specified by users while the event list is used to accommodate different events specified by users.
 
 While both task list and event list can be updated independently by their corresponding commands (e.g. `add_task`, 
-`delete_event`), there are some SOChedule-Level commands listed as follows that can act on both task list and event list
+`delete_event`), there are some SOChedule-Level commands listed as follows that can act on both task list and event list:
 
 * `clear`
 * `summary`
@@ -399,8 +399,7 @@ specified by the following attributes:
 Note that a `Task` is defined to be the same as another `Task` if and only if all of their attributes listed above are
 equal correspondingly.
 
-Our `Task` supports the following features through a `LogicManager`, the implementation of the noteworthy ones will be
-listed in the next section
+Our `Task` supports the following features through a `LogicManager`.
 
 * `add_task`
 * `delete_task`
@@ -415,6 +414,9 @@ listed in the next section
 * `unpin_task`
 * `clear_completed_task`
 * `clear_expired_task`
+
+The implementation of the noteworthy ones will be listed in the next section. Some implementations of features are 
+omitted here because their implementation is similar to that of other features.
 
 #### 4.2.2 Implementation
 
@@ -906,6 +908,10 @@ Our `Event` supports the following features through a `LogicManager`
 * `find_event`
 * `clear_expired_event`
 
+The implementation of the noteworthy ones will be listed in the next section. Some implementations of features are
+omitted here because their implementation is similar to that of other features.
+
+
 #### 4.3.2 Implementation
 
 **Implementation of AddEventCommand**
@@ -950,7 +956,77 @@ The sequence diagram for `DeleteEventCommand` can be found below.
 
 ![Sequence Diagram of DeleteEvent Command](images/DeleteEventCommandSequenceDiagram.png)
 
-[Return to Table of Contents](#table-of-contents)  
+[Return to Table of Contents](#table-of-contents)
+
+**Implementation of TodayEventCommand**
+
+The following is a detailed explanation on how TodayEventCommand is implemented.
+
+The TodayEventCommand is supported mainly by `TodayEventCommand`.
+
+The relevant methods include:
+* `TodayEventCommand#execute(Model model)` - Updates the event list on UI to show all the events whose time duration has
+  overlaps with today in the event list.
+
+Given below is an example usage scenario and how the `today_event` mechanism behaves at each step.
+
+**Step 1**: User executes `today_event` command to list all the events whose duration has overlap with today
+in the event list.
+A `TodayEventCommand` object is returned
+
+**Step 2**: On `TodayEventCommand#execute()`, `Model#updateFilteredEventList(Predicate<Event> predicate)` is called. This
+will update the filtered event list with the predicate specified by the input predicate, which is a predicate of type
+`EventCoversTodayPredicate`. For brevity, lower level implementation of
+`Model#updateFilteredEvents(Predicate<Event> predicate)` is omitted.
+
+**Step 3**: On execution completion, a `CommandResult` is created. A success message will be appended with
+`CommandResult#MESSAGE_TODAY_EVENT_SUCCESS` and `MESSAGE_EVENT_LISTED_OVERVIEW`. The UI will also update as the underlying
+event list that has been modified.
+
+The sequence diagram for TodayEventCommand can be found below.
+
+![Sequence Diagram of TodayEventCommand](images/TodayEventCommandSequenceDiagram.png)
+
+[Return to Table of Contents](#table-of-contents)
+
+
+**Implementation of FindEventCommand**
+
+The following is a detailed explanation on how FindEventCommand is implemented.
+
+The FindEventCommand is supported mainly by `FindEventCommand` and `FindEventCommandParser`.
+
+The relevant methods include:
+* `FindEventCommandParser#parse(String args)` - Parses the user input into a list of keywords.
+* `FindEventCommand#execute(Model model)` - Updates the event list on UI to show all the events whose names contain any of
+  the given keywords from the internal event list.
+
+Given below is an example usage scenario and how the find event mechanism behaves at each step.
+
+**Step 1**: User executes `find_event project meeting` to find all events whose names contain any of `project` or
+`meeting`.
+Let us call these task the target tasks.
+A `FindEventCommandParser` object is created, and the `FindEventCommandParser#parse(String args)` method is called.
+The method parses the `project meeting` into a list of strings : [`project`, `meeting`], which is the original
+string splitted by whitespace. This list of strings will be passed into the constructor of
+`EventNameContainsKeywordPredicate`, which will then be passed into the constuctor of a `FindEventCommand`.
+The `FindEventCommand` object with input predicate is returned.
+
+**Step 2**:
+On `FindEventCommand#execute()`, `Model#updateFilteredEventList(Predicate<Event> predicate)` is called. This
+will update the filtered event list with the predicate specified by the input predicate, which is a predicate of type
+`EventNameContainsKeywordPredicate`. For brevity, lower level implementation of
+`Model#updateFilteredEvents(Predicate<Eventk> predicate)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_EVENTS_LISTED_OVERVIEW`.
+
+The sequence diagram for `FindEventCommand` can be found below.
+
+![Sequence Diagram of FindEventCommand](images/FindEventCommandSequenceDiagram.png)
+
+[Return to Table of Contents](#table-of-contents)
+
 
 **Implementation of EditEventCommand**  
 The following is a detailed explanation on how EditEventCommand is implemented.
