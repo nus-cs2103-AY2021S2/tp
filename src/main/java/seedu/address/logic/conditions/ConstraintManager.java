@@ -37,7 +37,10 @@ public class ConstraintManager {
     /**
      * Check that the given task abides by the necessary constraints on its attributes.
      *
-     * @throws CommandException If a task has both Date as well as Duration or RecurringSchedule.
+     * @throws CommandException If a task has:
+     * - Duration only
+     * - Date and RecurringSchedule
+     * - No title
      */
     public void enforceAttributeConstraints() throws CommandException {
         Attribute date = task.getDate();
@@ -67,6 +70,11 @@ public class ConstraintManager {
         }
     }
 
+    /**
+     * Checks that the title length does not exceeds the max title length.
+     *
+     * @throws CommandException If the title length exceeds the max title length.
+     */
     public void enforceTitleLength() throws CommandException {
         Attribute title = task.getTitle();
         if (title.isEmptyValue()) {
