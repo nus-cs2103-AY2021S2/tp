@@ -18,8 +18,8 @@ import dog.pawbook.model.managedentity.tag.Tag;
  * Parses input arguments and creates a new AddCommand object
  */
 public class AddProgramCommandParser extends CommandWithCompulsoryPrefixNoPreambleParser<AddProgramCommand> {
-    private static final Prefix[] PROGRAM_COMPULSORY_PREFIXES = {PREFIX_NAME, PREFIX_SESSION};
-    private static final Prefix[] PROGRAM_OPTIONAL_PREFIXES = {PREFIX_TAG};
+    private static final Prefix[] PROGRAM_COMPULSORY_PREFIXES = {PREFIX_NAME};
+    private static final Prefix[] PROGRAM_OPTIONAL_PREFIXES = {PREFIX_SESSION, PREFIX_TAG};
     private static final Prefix[] PROGRAM_ALL_PREFIXES =
         Stream.of(PROGRAM_COMPULSORY_PREFIXES, PROGRAM_OPTIONAL_PREFIXES).flatMap(Stream::of).toArray(Prefix[]::new);
 
