@@ -121,6 +121,7 @@ Only one command can be executed at a time and any words after a valid command i
         </details>
 
     </details>
+<p>&nbsp;</p>
 
 <a name="customer"></a>
 - <details open class="customer">
@@ -234,6 +235,7 @@ Only one command can be executed at a time and any words after a valid command i
         </details>
 
     </details>
+<p>&nbsp;</p>
 
 <a name="menu"></a>
 - <details open class="menu">
@@ -337,6 +339,7 @@ Only one command can be executed at a time and any words after a valid command i
         </details>
 
     </details>
+<p>&nbsp;</p>
 
 <a name="order"></a>
 - <details open class="order">
@@ -439,6 +442,7 @@ Only one command can be executed at a time and any words after a valid command i
         </details>
 
     </details>
+<p>&nbsp;</p>
 
 <a name="inventory"></a>
 - <details open class="inventory">
