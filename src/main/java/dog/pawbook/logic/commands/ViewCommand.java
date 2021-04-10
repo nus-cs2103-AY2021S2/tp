@@ -4,6 +4,7 @@ package dog.pawbook.logic.commands;
 import static dog.pawbook.commons.core.Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW;
 import static dog.pawbook.commons.core.Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW_FOR_ONE;
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ENTITY_ID;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ID_GENERAL;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -42,7 +43,7 @@ public class ViewCommand extends Command {
      */
     public ViewCommand(int targetEntityId) {
         // Check that targetEntityId is not invalid.
-        assert (targetEntityId > 0);
+        assert (targetEntityId > 0) : MESSAGE_INVALID_ID_GENERAL;
 
         this.targetEntityId = targetEntityId;
     }
@@ -55,6 +56,31 @@ public class ViewCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_ENTITY_ID);
         }
 
+        List<Integer> targetIdList = generateRelatedEntityList(targetEntityId, model);
+        Entity targetEntity = model.getEntity(targetEntityId);
+
+        assert(!targetIdList.isEmpty());
+
+        model.updateFilteredEntityList(new IdMatchPredicate(targetIdList));
+        model.sortEntities(new ViewCommandComparator(targetEntity.getClass()));
+
+        if (model.getFilteredEntityList().size() == 1) {
+            return new CommandResult(String.format(
+                    MESSAGE_ENTITIES_LISTED_OVERVIEW_FOR_ONE, model.getFilteredEntityList().size()));
+        } else {
+            return new CommandResult(String.format(
+                    MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
+        }
+    }
+
+    /**
+     * Generates the related entity list from one target entity ID.
+     *
+     * @param targetEntityId target entity ID.
+     * @param model model to extract related entity IDs.
+     * @return ArrayList containing the IDs of related entities in the correct order.
+     */
+    public List<Integer> generateRelatedEntityList(int targetEntityId, Model model) {
         Entity targetEntity = model.getEntity(targetEntityId);
 
         ArrayList<Integer> targetIdList = new ArrayList<>();
@@ -69,18 +95,7 @@ public class ViewCommand extends Command {
                 .collect(Collectors.toList());
         targetIdList.addAll(enrolledPrograms);
 
-        assert(!targetIdList.isEmpty());
-
-        model.updateFilteredEntityList(new IdMatchPredicate(targetIdList));
-        model.sortEntities(new ViewCommandComparator(targetEntity.getClass()));
-
-        if (model.getFilteredEntityList().size() == 1) {
-            return new CommandResult(String.format(
-                    MESSAGE_ENTITIES_LISTED_OVERVIEW_FOR_ONE, model.getFilteredEntityList().size()));
-        } else {
-            return new CommandResult(String.format(
-                    MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
-        }
+        return targetIdList;
     }
 
     @Override
