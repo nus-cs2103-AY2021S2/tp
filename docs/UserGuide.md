@@ -117,7 +117,7 @@ Examples:
 
 Shows all student records in Vax@NUS that matches the specified vaccination status, faculty or school residence.
 
-**:information_source: NOTE: The filter command only changes the view of the student list and not the view of the appointment list.
+:information_source: NOTE: The filter command only changes the view of the student list and not the view of the appointment list.
 
 Format: <br>
 `filter VACCINATION_STATUS`
@@ -162,6 +162,7 @@ Sample Output for `stats all`:
 
 Sample Output for `stats PGPH`:
 ![StatsALl](images/statsResidence.png)
+
 ### Adding an appointment: `addAppt`
 
 Adds an appointment to Vax@NUS' records. 
