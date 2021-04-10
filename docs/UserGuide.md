@@ -420,6 +420,7 @@ Allocates an existing resident to an existing room.
 
 Format: `alloc ri/RESIDENT_INDEX oi/ROOM_INDEX`
 * Both fields must be provided.
+* The resident and room at `RESIDENT_INDEX` and `ROOM_INDEX` respectively must both be unallocated.
 
 Parameters:
 * [RESIDENT_INDEX](#index) The index of the displayed resident.
@@ -433,12 +434,11 @@ Example:
 #### Deallocate resident from room : `dealloc`
 Deallocates an existing resident from an existing room.
 
-Format: `dealloc INDEX`
-* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
-* The resident at the `INDEX` must already be allocated.
+Format: `dealloc RESIDENT_INDEX`
+* The resident at `RESIDENT_INDEX` must already be allocated.
 
 Parameters:
-* [INDEX](#index) The index of the displayed resident.
+* [RESIDENT_INDEX](#index) The index of the displayed resident.
 
 
 Example:
