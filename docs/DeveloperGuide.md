@@ -173,20 +173,44 @@ interaction with the model.
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+
+**Diagram Notes** :
+* We omit specific details of models `Resident`, `Room`, `ResidentRoom`, `Issue`, `CommandHistory` and `Alias` as they are explained
+in greater detail in their specific sections.
+
+* For simplicity, the interactions that `ModelManager` and `StatefulAddressBook`/`AddressBook` have with the 
+  lower level sub-packages are shown in separate zoomed-in diagrams.
+
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103-T14-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+* stores a `CommandHistory` object that represents all previous commands entered by the user.
+* stores an `AliasMapping` object that represents the mapping of aliases to actual commands.
+* stores the SunRez data in a `StatefulAddressBook`.
+    * the `StatefulAddressBook` stores state history as a list of `ReadOnlyAddressBook` objects, each representing a saved state after a state-changing command is executed.  
+* exposes the following unmodifiable `ObservableList<T>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
+    * `ObservableList<Resident>`
+    * `ObservableList<Room>`
+    * `ObservableList<Issue>`
+* does not depend on any of the other three components (`Storage`, `Logic`, `UI`).
+
+The section below zooms in a **little bit** on how the `ModelManager` and `AddressBook`/`StatefulAddressBook` interact with the lower level sub-packages.
+Finer details than what is shown in the section below can be seen under the implementation section of each of the models.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+#### Zoomed-in view of Room, Resident and ResidentRoom 
+![Zoomed in view of Room, Resident and ResidentRoom](images/high-level-models/ResidentRoomZoomIn.png)
 
-</div>
+#### Zoomed-in view of Issue 
+![Zoomed in view of Issue](images/high-level-models/IssueZoomIn.png)
+
+#### Zoomed-in view of CommandHistory 
+![Zoomed in view of CommandHistory](images/high-level-models/CommandHistoryZoomIn.png)
+
+#### Zoomed-in view of Alias 
+![Zoomed in view of Alias](images/high-level-models/AliasZoomIn.png)
 
 
 ### Storage component
