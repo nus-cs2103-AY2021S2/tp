@@ -177,7 +177,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email location of the 1st client to be `91234567` and `johndoe@example.com` respectively
 *  `edit 2 n/Betsy Crower t/ ip/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags and remove insurance plan
 
-#### Locating clients by name: `find`
+#### Finding clients by name: `find`
 
 Finds clients whose names contain any of the given keywords.
 
@@ -195,7 +195,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-#### Locating clients by insurance plan: `findplan`
+#### Finding clients by insurance plan: `findplan`
 
 Finds clients whose insurance plan contains any of the given keywords.
 
