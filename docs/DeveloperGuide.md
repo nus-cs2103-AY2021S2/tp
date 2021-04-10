@@ -115,13 +115,6 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-#### Command Implementations
-
-The diagram below further explains the implementation of individual commands.
-
-1. AddGroup Command
-   ![](images/AddGroupSequenceDiagram.png)
-
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
@@ -217,6 +210,51 @@ The sequence diagram below depicts the execution path when the user enters a com
 switched.
 
 ![SwitchTabSequenceDiagram](images/SwitchTabSequenceDiagram.png)
+
+### Add Friend Group
+
+FriendDex allows users to add friends to a group. This section details the implementation of this feature.
+
+#### Implementation
+
+1. The user will supply the name of the group, and the indexes that will be added into said group.
+2. `AddGroupCommand` will then get the current filtered list of Persons to get all the persons with the associated indexes.
+3. `AddGroupCommand` will then check if the group already exists. If it does not, a new group is added.
+4. All the specified persons' names will now be inserted into the group and display the list of persons in the group.
+
+The sequence diagram below depicts the execution path when an `AddGroupCommand` is executed.
+
+![AddGroupSequenceDiagram](images/AddGroupSequenceDiagram.png)
+
+### Delete Friend Group
+
+FriendDex allows users to delete groups. This section details the implementation of this feature.
+
+#### Implementation
+
+1. The user will supply the name of the group to be deleted.
+2. `DeleteGroupCommand` will then check whether the group with the specified name exists.
+3. `DeleteGroupCommand` afterwards deletes the group with the specified name.
+
+The sequence diagram below depicts the execution path when a `DeleteGroupCommand` is executed.
+
+![DeleteGroupSequenceDiagram](images/DeleteGroupSequenceDiagram.png)
+
+### Add/Subtract Debt
+
+FriendDex allows users to add/subtract debt from a friend. This section details the implementation of this feature.
+
+#### Implementation
+
+1. The user will supply the index of the user and the amount of debt to be added/subtracted.
+2. `ChangeDebtCommand` will obtain the person with the specified index and obtain their current Debt.
+3. `ChangeDebtCommand` will then obtain the changed debt depending on whether the command is adding or subtracting
+the debt.
+4.  `ChangeDebtCommand` will finally set the Person with the new changed debt.
+
+The sequence diagram below depicts the execution path when a `ChangeDebtCommand` is executed.
+
+![ChangeDebtSequenceDiagram](images/ChangeDebtSequenceDiagram.png)
 
 ### Add Picture
 
