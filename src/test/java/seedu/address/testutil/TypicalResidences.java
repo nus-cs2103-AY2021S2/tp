@@ -34,7 +34,10 @@ public class TypicalResidences {
             .withBookingList(new ArrayList<Booking>(Arrays.asList(
                     new Booking(new TenantName("Amy"), new Phone("91910606"),
                             LocalDate.parse("03-03-2020", DATE_TIME_FORMATTER),
-                            LocalDate.parse("04-03-2020", DATE_TIME_FORMATTER))
+                            LocalDate.parse("04-03-2020", DATE_TIME_FORMATTER)),
+                    new Booking(new TenantName("Bob"), new Phone("90241134"),
+                            LocalDate.parse("05-03-2020", DATE_TIME_FORMATTER),
+                            LocalDate.parse("06-03-2020", DATE_TIME_FORMATTER))
             ))).withCleanStatusTag("n").build();
     public static final Residence RESIDENCE_C = new ResidenceBuilder().withName("Casuarina Apartment")
             .withAddress("wall street").build();
