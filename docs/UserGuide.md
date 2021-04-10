@@ -515,6 +515,7 @@ on the operating system of the computer you are running cakecollate on.
 ## **7. Command and prefix summary**
 
 ### Order Interaction
+
 Action  | Format
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...` 
@@ -527,19 +528,23 @@ Action  | Format
 **Cancelled** | `cancelled INDEXES`
 
 ### Order Functionalities
+
 Action | Format
 -------|----------
 **Find** | `find [n/KEYWORD_NAME]... [p/KEYWORD_PHONE]... [e/KEYWORD_EMAIL]... [a/KEYWORD_ADDRESS]... [o/KEYWORD_ORDER_DESCRIPTION]... [t/KEYWORD_TAG]... [d/KEYWORD_DELIVERY_DATE]... [s/KEYWORD_DELIVERY_STATUS]... [r/KEYWORD_REQUEST]...`
 **List** | `list`
 **Remind** | `remind DAYS`
 
+
 ### Order Items
+
 Action | Format
 -------|----------
 **Add Order Item** | `addItem ORDER_ITEM_DESCRIPTION`
 **Delete Order Item** | `deleteItem ORDER_ITEM_INDEXES`
 
 ### Others
+
 Action | Format
 -------|----------
 **Help** | `help`
@@ -547,6 +552,7 @@ Action | Format
 **Exit** | `exit`
 
 ### Prefix
+
 Prefix  | Description
 --------|------------------
 **n/** | Name of the customer
