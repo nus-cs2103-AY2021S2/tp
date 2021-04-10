@@ -8,87 +8,95 @@ end box
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":DictionoteParser" as DictionoteParser LOGIC_COLOR
-participant "o:ToggleNoteOrientationCommand" as ToggleNoteOrientationCommand LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "s:SetNoteDividerPositionCommand" as SetNoteDividerPositionCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
-participant "g:GUISettings" as GUISettings MODEL_COLOR
+participant "g:GuiSettings" as GuiSettings MODEL_COLOR
 end box
 
-[-> MainWindow : executeCommand("toggledividern")
+[-> MainWindow : executeCommand("setdividern 3")
 activate MainWindow
 
 
-MainWindow-> LogicManager : execute("toggledividern")
+MainWindow-> LogicManager : execute("setdividern 3")
 activate LogicManager
 
-LogicManager -> DictionoteParser : parseCommand("toggledividern")
+LogicManager -> DictionoteParser : parseCommand("setdividern 3")
 activate DictionoteParser
 
-create ToggleNoteOrientationCommand
-DictionoteParser -> ToggleNoteOrientationCommand
-activate ToggleNoteOrientationCommand
+DictionoteParser -> ParserUtil : parsePosition("3")
+activate ParserUtil
 
-ToggleNoteOrientationCommand --> DictionoteParser : t
-deactivate ToggleNoteOrientationCommand
+ParserUtil --> DictionoteParser :
+deactivate ParserUtil
+
+create SetNoteDividerPositionCommand
+DictionoteParser -> SetNoteDividerPositionCommand
+activate SetNoteDividerPositionCommand
+
+SetNoteDividerPositionCommand --> DictionoteParser : s
+deactivate SetNoteDividerPositionCommand
 
 
-DictionoteParser --> LogicManager : t
+DictionoteParser --> LogicManager : s
 deactivate DictionoteParser
 
-LogicManager -> ToggleNoteOrientationCommand : execute()
-activate ToggleNoteOrientationCommand
+LogicManager -> SetNoteDividerPositionCommand : execute()
+activate SetNoteDividerPositionCommand
 
-ToggleNoteOrientationCommand -> ModelManager : getGuiSettings()
+SetNoteDividerPositionCommand -> ModelManager : getGuiSettings()
 activate ModelManager
 
-ModelManager --> ToggleNoteOrientationCommand : g
+ModelManager --> SetNoteDividerPositionCommand : g
 deactivate ModelManager
 
-ToggleNoteOrientationCommand --> GUISettings : toggleNotePanelOrientation()
-activate GUISettings
+SetNoteDividerPositionCommand --> GuiSettings : setNoteSplitRatio(0.3)
+activate GuiSettings
 
-GUISettings --> ToggleNoteOrientationCommand :
-deactivate GUISettings
+GuiSettings --> SetNoteDividerPositionCommand :
+deactivate GuiSettings
 
 
 create CommandResult
-ToggleNoteOrientationCommand -> CommandResult
+SetNoteDividerPositionCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ToggleNoteOrientationCommand
+CommandResult --> SetNoteDividerPositionCommand
 deactivate CommandResult
 
-ToggleNoteOrientationCommand --> LogicManager : r
-deactivate ToggleNoteOrientationCommand
+SetNoteDividerPositionCommand --> LogicManager : r
+deactivate SetNoteDividerPositionCommand
 
 LogicManager --> MainWindow : r
 deactivate LogicManager
 
-
-MainWindow --> MainWindow : executeUiAAction(action, option)
-activate MainWindow
-
-
 MainWindow -> CommandResult : getUiAction()
 activate CommandResult
 
-CommandResult --> MainWindow : getUiActionOption()
+CommandResult --> MainWindow :action
 deactivate CommandResult
 
 
-MainWindow -> CommandResult
+MainWindow -> CommandResult : getUiActionOption()
 activate CommandResult
 
-CommandResult --> MainWindow
+CommandResult --> MainWindow :option
 deactivate CommandResult
+
+MainWindow --> MainWindow : executeUiAction(action, option)
+activate MainWindow
+
+MainWindow --> MainWindow
+deactivate MainWindow
 
 MainWindow --> MainWindow : configSplit()
 activate MainWindow
 
-MainWindow --> MainWindow : configOrientation()
+MainWindow --> MainWindow : configNoteSplit()
 activate MainWindow
 
 
@@ -104,14 +112,13 @@ deactivate ModelManager
 LogicManager --> MainWindow : g
 deactivate LogicManager
 
-MainWindow -> GUISettings : getNotePanelOrientation()
-activate GUISettings
+MainWindow -> GuiSettings : getNoteSplitRatio()
+activate GuiSettings
 
-GUISettings --> MainWindow
-deactivate GUISettings
+GuiSettings --> MainWindow
+deactivate GuiSettings
 
-MainWindow --> MainWindow
-deactivate MainWindow
+
 
 MainWindow --> MainWindow
 deactivate MainWindow

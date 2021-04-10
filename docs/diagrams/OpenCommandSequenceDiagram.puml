@@ -68,22 +68,24 @@ LogicManager --> MainWindow : r
 deactivate LogicManager
 
 
-MainWindow --> MainWindow : executeUiAAction(action, option)
-activate MainWindow
-
-
 MainWindow -> CommandResult : getUiAction()
 activate CommandResult
 
-CommandResult --> MainWindow : getUiActionOption()
+CommandResult --> MainWindow :action
 deactivate CommandResult
 
 
-MainWindow -> CommandResult
+MainWindow -> CommandResult : getUiActionOption()
 activate CommandResult
 
-CommandResult --> MainWindow
+CommandResult --> MainWindow :option
 deactivate CommandResult
+
+MainWindow --> MainWindow : executeUiAction(action, option)
+activate MainWindow
+
+MainWindow --> MainWindow
+deactivate MainWindow
 
 
 MainWindow --> MainWindow
