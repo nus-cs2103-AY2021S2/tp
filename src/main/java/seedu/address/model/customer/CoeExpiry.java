@@ -17,7 +17,7 @@ public class CoeExpiry {
     public static final String MESSAGE_CONSTRAINTS = "Expiry dates should be of the format yyyy MM dd "
             + "EG:(2011 07 06 for 6th July, 2011)";
 
-    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy MM dd")
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("uuuu MM dd")
             .withResolverStyle(ResolverStyle.STRICT);
 
     public final String expiryDate;
