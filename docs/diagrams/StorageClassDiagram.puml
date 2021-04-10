@@ -29,8 +29,9 @@ JsonShortcutLibraryStorage .left.|> ShortcutLibraryStorage
 
 JsonAddressBookStorage .down.> JsonSerializableAddressBook
 JsonSerializableAddressBook .right.> JsonAdaptedPerson
-JsonAdaptedPerson .right.> JsonAdaptedTag
-JsonAdaptedPerson .up.> JsonAdaptedInsurancePolicy
+JsonAdaptedPerson .up.> JsonAdaptedTag
+JsonAdaptedPerson .right.> JsonAdaptedInsurancePolicy
+JsonAdaptedPerson .up.> JsonAdaptedMeeting
 JsonShortcutLibraryStorage .right.> JsonSerializableShortcutLibrary
 JsonSerializableShortcutLibrary .down.> JsonAdaptedShortcut
 

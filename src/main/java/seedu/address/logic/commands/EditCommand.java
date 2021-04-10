@@ -49,7 +49,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_INSURANCE_POLICY + " POLICY_ID] [-FLAG] where FLAG can be modify, insert or remove "
             + "for editing policy ids. If no flag is specified, the default behaviour is replace."
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "[" + PREFIX_MEETING + "MEETING]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";

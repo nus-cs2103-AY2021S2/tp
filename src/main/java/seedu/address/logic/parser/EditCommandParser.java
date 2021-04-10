@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE_POLICY;
@@ -51,6 +52,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(pe.getLocalizedMessage() + "\n" + EditCommand.MESSAGE_USAGE, pe);
         }
 
+        if (argMultimap.getValue(PREFIX_MEETING).isPresent()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
+
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -84,9 +89,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             parsePoliciesForEdit(addAndRemovePairs.get(1)).ifPresent(editPersonDescriptor::setPoliciesToAdd);
             parsePoliciesForEdit(addAndRemovePairs.get(0)).ifPresent(editPersonDescriptor::setPoliciesToRemove);
         }
-
-        parseMeetingsForEdit(argMultimap.getAllValues(PREFIX_MEETING))
-                .ifPresent(editPersonDescriptor::setMeetings);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -212,24 +214,6 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ? Collections.emptySet()
                 : policyIds;
         return Optional.of(new ArrayList<>(ParserUtil.parsePolicies(policyList)));
-    }
-
-    /**
-     * Parses {@code Collection<String> meetings} into a {@code List<Meeting>} if {@code meetings} is non-empty.
-     * If {@code meetings} contain only one element which is an empty string, it will be parsed into a
-     * {@code List<Meeting>} containing zero meetings.
-     */
-    private Optional<List<Meeting>> parseMeetingsForEdit(Collection<String> meetings) throws ParseException {
-        assert meetings != null;
-
-        if (meetings.isEmpty()) {
-            return Optional.empty();
-        }
-
-        Collection<String> meetingList = meetings.size() == 1 && meetings.contains("")
-                ? Collections.emptySet()
-                : meetings;
-        return Optional.of(ParserUtil.parseMeetings(meetingList));
     }
 
 }

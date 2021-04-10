@@ -34,6 +34,10 @@ Package InsurancePolicy {
 Class InsurancePolicy
 }
 
+Package Meeting {
+Class Meeting
+}
+
 Package Shortcut {
 Class Shortcut
 Class ShortcutLibrary
@@ -61,12 +65,14 @@ Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 Person *--> "*" InsurancePolicy
+Person *--> "*" Meeting
 
 ShortcutLibrary *--> "*" Shortcut
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+Meeting -[hidden]right-> Tag
 UniquePersonList -[hidden]right-> ShortcutLibrary
 Shortcut -[hidden]down-> InsurancePolicy
 

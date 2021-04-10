@@ -4,10 +4,9 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ClientBookParser" as ClientBookParser LOGIC_COLOR
-participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
 participant "s:SortCommand" as SortCommand LOGIC_COLOR
 participant "c:Comparator" as Comparator LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "result :CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -20,28 +19,12 @@ activate LogicManager
 LogicManager -> ClientBookParser : parseCommand("sort -n -asc")
 activate ClientBookParser
 
-create SortCommandParser
-ClientBookParser -> SortCommandParser
-activate SortCommandParser
-
-SortCommandParser --> ClientBookParser
-deactivate SortCommandParser
-
-ClientBookParser -> SortCommandParser : parse("-n -asc")
-activate SortCommandParser
-
 create SortCommand
-SortCommandParser -> SortCommand
+ClientBookParser -> SortCommand
 activate SortCommand
 
-SortCommand --> SortCommandParser : s
+SortCommand --> ClientBookParser : s
 deactivate SortCommand
-
-SortCommandParser --> ClientBookParser : s
-deactivate SortCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-SortCommandParser -[hidden]-> ClientBookParser
-destroy SortCommandParser
 
 ClientBookParser --> LogicManager : s
 deactivate ClientBookParser
@@ -66,11 +49,15 @@ create CommandResult
 SortCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> SortCommand
+CommandResult --> SortCommand : result
 deactivate CommandResult
 
 SortCommand --> LogicManager : result
 deactivate SortCommand
+
+SortCommand -[hidden]-> LogicManager : result
+destroy SortCommand
+destroy Comparator
 
 [<--LogicManager
 deactivate LogicManager
