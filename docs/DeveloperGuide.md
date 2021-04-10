@@ -585,7 +585,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Common screen resolutions**: minimum _640×480_, maximum _3840×2160_
+* **Common screen resolutions**: minimum _1024×786_, maximum _3840×2160_
 * **Mainstream OS**: Windows, Linux, Unix, macOS
 * **MSS**: Main Success Scenario
 * **Private contact detail**: A contact detail that is not meant to be shared with others
