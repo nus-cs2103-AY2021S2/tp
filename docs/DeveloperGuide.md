@@ -1,5 +1,7 @@
---------------------------------------------------------------------------------------------------------------------
-## Developer Guide for The Food Diary
+---
+layout: page
+title: Developer Guide for The Food Diary
+---
 
 * Table of Contents
   {:toc}
@@ -57,6 +59,20 @@ The sections below give more details of each component.
 ### UI component
 
 ### Logic Component
+**API:** [`Logic.java`](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/src/main/java/fooddiary/logic/Logic.java)
+
+1. `Logic` uses the `FoodDiaryParser` class to parse the user command.
+2. This results in a `Command` object which is executed by the `LogicManager`.
+3. The command execution can affect the `Model` (e.g. adding an entry to the Food Diary)
+4. The result of the command execution is encapsulated as a `CommandResult` object which is
+passed back to the `Ui`.
+5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions,
+such as displaying help to the user.
+   
+Given below is the Sequence Diagram for interactions within the `Logic` component for the
+`execute("addon 1 re/Good")` API call.
+
+![AddOn Sequence Diagram](images/AddOn_Sequence_Diagram.png)
 
 ### Model Component
 ![Model Architecture Diagram](images/ModelArchitectureDiagram.png)
@@ -85,8 +101,10 @@ Classes used by multiple components are in the seedu.fooddiary.commons package.
 This section describes some noteworthy details on how certain features are implemented.
 ### AddOn Feature
 #### Implementation
-The AddOn feature allows the user to add multiple reviews to a single entry of a food place. This will be useful
-for users who frequently visit a particular place and would like to enter their reviews every visit
+The AddOn feature allows the user to add review(s) and/or a price to a single entry of a food place. This will be useful
+for users who frequently visit a particular place and would like to enter their reviews and the price spent every visit.
+The reviews are added to the specifed entry and the price added on will be refelcted as a price range the of the user's spending history 
+(e.g. if the current entry has a price of $5, adding on a price of 10 will update the current price of 5 to a price range of $5-10)
 This feature follows the architecture of AB3.
 
 The following sequence diagram shows how the AddOn feature works:
@@ -230,29 +248,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Food Diary` and the **Actor** is the `user`, unless specified otherwise)
 
-**UC01: Add a restaurant**
+**UC01: Add an Entry**
+Preconditions: There are lesser than 1 000 000 entries in the Food Diary application. 
 
 **MSS**
 
-1.  User adds a restaurant.
-2.  Food Diary adds a new restaurant to the app.
+1.  User enters details to add an entry to the Food Diary.
+2.  Food Diary adds a new entry to the app.
     Use case ends.
 
 **Extensions**
 
 * 1a.  Food Diary detects invalid command from user.
 
-    *   1a1. Food Diary warns user about wrong syntax.
+    *   1a1. Food Diary warns user about invalid command syntax.
 
-    *	1a2. User enters correct syntax.
+    *	1a2. User enters correct command syntax.
 
          Use case resumes from step 2.
 
-* 2a. Food Diary detects duplicate restaurant that is already reviewed.
+* 2a. Food Diary detects duplicate entry that is already stored in the application.
 
-    *	2a1. Food Diary warns user about duplicate.
-
-    *	2a2. Suggests user to either delete or update review.
+    *	2a1. Food Diary warns user that the entry to be added already exists in the application.
 
          Use case ends.
 
@@ -302,45 +319,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**UC05: Add food experience of Restaurant**
+**UC05: Add on review(s) and/or price to a specified Food Diary Entry**
 
 **MSS**
 
-1. User requests to add some information about the food experience with a restaurant.
-2. Food Diary requests for restaurant details and food experience.
-3. User keys in the restaurant details and food experience.
-4. Food Diary adds the food experience to the requested restaurant.
+1. User requests to add a review(s) and/or a price to a specified entry.
+2. Food Diary checks for the specified entry.
+3. Food Diary adds review(s) and/or a price to the specified entry.
 
 **Extensions**:
 
 * 1a. Food Diary detects invalid command from user.
-    * 1a1. Food Diary warns user about wrong syntax.
-    * 1a2. User enters correct syntax.
+    * 1a1. Food Diary warns user about invalid command syntax.
+    * 1a2. User enters correct command.
 
       Use case resumes from step 2.
-* 2a. No restaurant found
-    * 2a1. Food Diary tells user that no restaurants found.
+    
+* 2a. Specified Food Diary entry not found
+    * 2a1. Food Diary tells user that the specified entry is invalid.
 
       Use case ends.
 
-    *	2a2. Suggests user to either delete or update review
-
-         Use case ends.
-
-**UC06: Delete a Restaurant**
+**UC06: Delete an Entry**
 
 **MSS**
 
-1. User deletes a restaurant or food place
-2. Food diary removes the restaurant from list
+1. User requests to delete a Food Diary entry.
+2. Food diary removes the entry from its database.
 
 **Extensions**:
 * 1a. Food diary detects invalid command from user.
-    * 1a1. Food Diary warns user about wrong syntax.
-    * 1a2. User enters correct syntax.
+    * 1a1. Food Diary warns user about invalid command syntax.
+    * 1a2. User enters a valid command.
 
-* 2a. No restaurants found
-    * 2a1. Food Diary tells user that no restaurants found.
+      Use case resumes from step 2.
+
+* 2a. Specified Food Diary entry not found
+    * 2a1. Food Diary tells user that the specified entry is invalid.
 
       Use case ends.
 
