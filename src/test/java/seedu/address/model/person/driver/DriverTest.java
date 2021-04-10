@@ -33,8 +33,12 @@ public class DriverTest {
         // null -> returns false
         assertFalse(DRIVER_ALICE.isSameDriver(null));
 
+        // different phone, all other attributes same -> returns false
+        Driver editedAlice = new DriverBuilder(DRIVER_ALICE).withPhone(VALID_PHONE_BOB).build();
+        assertFalse(DRIVER_ALICE.isSameDriver(editedAlice));
+
         // different name, all other attributes same -> returns false
-        Driver editedAlice = new DriverBuilder(DRIVER_ALICE).withName(VALID_NAME_BOB).build();
+        editedAlice = new DriverBuilder(DRIVER_ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(DRIVER_ALICE.isSameDriver(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
