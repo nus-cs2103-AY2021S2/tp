@@ -135,7 +135,7 @@ Only one command can be executed at a time and any words after a valid command i
          customer list
          ```
 
-         The above command would list all the customers in the left column in the GUI.
+         The above command would list all the customers in the left column of the GUI in the sequence that they were added, with the most recent being at the top.
 
         </details>
 
@@ -181,7 +181,7 @@ Only one command can be executed at a time and any words after a valid command i
         ```
 
         In the event that there are pending orders that have not been fulfilled that belong to customer 2, then deletion of the customer will not be allowed since we do not want to unknowingly delete orders that are still pending.
-        If deleting all orders, even pending ones, is desired, then adding the `-f` at the end of the command acknowledges and confirms the deletion behavior.
+        If deleting all orders, even pending ones, is desired, then adding the `-f` at the end of the command acknowledges and confirms the deletion behavior. Orders associated with the mcustomer will be deleted and will no longer be shown in the order list or order history.
 
         </details>
 
@@ -248,7 +248,7 @@ Only one command can be executed at a time and any words after a valid command i
         ```
         menu list (-a)
         ```
-        To show the current available dishes only, a `-a` flag has to be added to the end of the command.
+        To list the current available dishes only, a `-a` flag has to be added to the end of the command. The above command would list all the available/all dishes in the      right column of  the GUI in the sequence that they were added, with the most recent being at the top.
         Examples:
         ```
         menu list
@@ -303,7 +303,8 @@ Only one command can be executed at a time and any words after a valid command i
         In the event that there are pending orders that have not been fulfilled that contains dish id 2, then deletion
         of the dish will not be allowed since we do not want to unknowingly delete orders that are still pending.
         If deleting any dishes that belongs to any uncompleted order is desired, then adding the `-f` at the
-        end of the command acknowledges and confirms the deletion behavior.
+        end of the command acknowledges and confirms the deletion behavior. Orders associated with the menu dish will 
+        be marked as cancelled and will no longer be shown in the order list but can be viewed in the order history.
 
         </details>
 
@@ -351,6 +352,7 @@ Only one command can be executed at a time and any words after a valid command i
         ```
         order list
         ```
+        The above command would list all the order in the right column of the GUI. The list is in chronological sequence based on the order's date and time.
 
         </details>
 
@@ -396,7 +398,6 @@ Only one command can be executed at a time and any words after a valid command i
         ```
 
         At least one of the fields in brackets must be present in the edit command.
-
         </details>
 
         <a name="order-find"></a>
@@ -424,6 +425,7 @@ Only one command can be executed at a time and any words after a valid command i
         order complete [INDEX]
         ```
 
+        The above command would mark the order of that index as complete. The order will no longer be in the order list. Instead, it will be in order history.
         </details>
 
         <a name="order-history"></a>
@@ -434,7 +436,8 @@ Only one command can be executed at a time and any words after a valid command i
         ```
         order history
         ```
-
+ 
+        The above command displays the history of completed and cancelled orders. The list is in chronological sequence based on the order's date and time.
         </details>
 
     </details>
@@ -451,7 +454,8 @@ Only one command can be executed at a time and any words after a valid command i
         ```
         inventory list
         ```
-
+        
+        The above command would list all the ingredients in the inventory in the right column of the GUI in the sequence that they were added, with the most recent being at the top.
         </details>
 
         <a name="inventory-add"></a>
@@ -490,7 +494,7 @@ Only one command can be executed at a time and any words after a valid command i
 
         In the event that there are ingredients that is needed by certain dishes that is being attempted to be deleted,
         a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from
-        accidentally deleting dishes unknowingly and leads to invalid orders!
+        accidentally deleting dishes unknowingly and leads to invalid orders! 
 
         Examples:
         ```
@@ -506,7 +510,8 @@ Only one command can be executed at a time and any words after a valid command i
         In the event that there are dishes that needs ingredient id 2, then deletion
         of the dish will not be allowed since we do not want to unknowingly delete dishes that needs the ingredient.
         If deleting any ingredient that is needed to any dishes is desired, then adding the `-f` at the
-        end of the command acknowledges and confirms the deletion behavior.
+        end of the command acknowledges and confirms the deletion behavior. 
+        Orders associated with the ingredient will be marked as cancelled and will no longer be shown in the order list but can be viewed in the order history.
 
         </details>
 
