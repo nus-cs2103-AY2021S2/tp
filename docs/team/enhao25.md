@@ -8,8 +8,6 @@ title: En Hao's Project Portfolio Page
 TutorBuddy is a desktop application made for freelance tutors who give one-to-one tuition to efficiently manage their students’ contacts, provide a quick overview of scheduled tuition sessions, and handle monthly tuition fees calculation. TutorBuddy is also optimized for fast typing users to handle their day-to-day administrative responsibilities effectively.
 
 ## Summary of Contributions
-Given below is a summary of my contributions to the TutorBuddy Application.
-
 ### Major Enhancement:
 * Getting the current month and previous 2 months monthly fees.
   * **What it does:** This feature calculates the current month, and the previous 2 months expected monthly fee based on existing sessions and recurring sessions. We then display the results on the UI accordingly.
@@ -18,8 +16,7 @@ Given below is a summary of my contributions to the TutorBuddy Application.
     monthly salary.
   * **Highlights:** Calculation are performed in a separate FeeUtil class. It performs the calculation using a loop and takes into account whether the sessions are individual sessions or recurring sessions.
     As the monthly fees are expected to show up in the UI, I had to create a list panel, and a card fxml file that represents the monthly fee.
-    We had to add a listener to the student list as well, so that whenever the student list updates, the monthly fees would be updated and
-    accurate.
+    A student list's listener was also added, so that whenever the student list updates, the monthly fees would also updates.
   * **Related PR:** [PR #118](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/118) and
     [PR #145](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/145).
 * Feature to get a particular student's monthly fee.
@@ -27,9 +24,8 @@ Given below is a summary of my contributions to the TutorBuddy Application.
     * **Justification:** When independent tutor collects their monthly fee from the students, it might be difficult for them to keep track of how much would they receive
       when their lessons are charge on a per session basis. Hence, we wanted to create a feature such that TutorBuddy can help the tutor calculate the monthly fees instead.
     * **Highlights:** This feature makes use of the methods in FeeUtil to calculate the fees for a particular student. As this is a command based query, I would have to first
-      create GetMonthlyFeeCommand class that executes the command, and a parser method for the command. New prefixes are defined, and I
-      created 2 additional Month and Year class to enforce certain constraints. Constraint includes that the year must be between 1970 and 2037 (To avoid 2038 problem that can be understood [here](https://en.wikipedia.org/wiki/Year_2038_problem)),
-      and month must be between 1 and 12.
+      create GetMonthlyFeeCommand class that executes the command, and a parser method for the command. New prefixes are defined, and the
+      Month and Year class was created to enforce our project constraints.
     * **Related PR:** [PR #254](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/254), [PR #118](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/118) and
       [PR #145](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/145).
 * Refactor the person class from [AB3](https://nus-cs2103-ay2021s2.github.io/tp/) to the student class and enhance
@@ -37,9 +33,8 @@ the fields taken to be representative of a student class instead.
     * **What it does:** Refactor the person class from [AB3](https://nus-cs2103-ay2021s2.github.io/tp/) to the student class and enhance
       the fields taken to be representative of a student class instead.
     * **Justification:** From the base project, we were given the person class to work with. However, as the
-      as our project was to be used for students, we will need to refactor all our existing code
-      to better represent the application that we are working towards. To achieve that, I volunteered to work on this task
-      as it serves as a good learning opportunity for me.
+      project was to be used for students, we had to refactor all our existing code
+      to better represent the application that we are working towards.
     * **Highlights:** I made use of Intellij to help me with refactoring the application. However, as the code base was large, it was difficult to
       made changes to the application and ensure that the entire application still works as expected. I had to do small adjustments at
       a time and consistently check that the test cases still works. This has allowed me to explore all the different components of the application such as storage, model and logic.
@@ -69,4 +64,4 @@ the fields taken to be representative of a student class instead.
     * Updated the application value proposition and added 5 different use cases [PR #19](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/19/files).
     * Updated the use cases of the project [PR #270](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/270) and [PR #279](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/279).
     * Updated implementation details for students and fee command [PR #274](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/274).
-  * [RepoSense Link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=enhao25&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=enhao25&tabRepo=AY2021S2-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
+* [RepoSense Link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=enhao25&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=enhao25&tabRepo=AY2021S2-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
