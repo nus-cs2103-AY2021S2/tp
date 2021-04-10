@@ -14,9 +14,9 @@ public class SchedulableUtil {
     /**
      * Splits a schedulable into multiple schedulables on different days. For example if a schedulable is scheduled
      * on friday 2pm  to Sunday 2pm, it should split into schedulables
-     * [fri 2pm- fri 11.59.99999pm, sat 12am - sat 11.59.999999 pm , sunday 12am - 2pm]
+     * [fri 2pm- fri 11.59.99999pm, sat 12am - sat 11.59.5999999 pm , sunday 12am - 2pm]
      * @param schedulable
-     * @return
+     * @return a mutable list containing the schedulables.
      */
 
     public static List<Schedulable> splitSchedulableByDay(Schedulable schedulable) {
@@ -24,16 +24,22 @@ public class SchedulableUtil {
         LocalDateTime startDateTime = schedulable.getStartLocalDateTime();
         LocalDateTime endDateTime = schedulable.getTerminateLocalDateTime();
 
+        ArrayList<Schedulable> listOfSchedulableUnits = new ArrayList<>();
+
         //same day interval.
         if (startDateTime.toLocalDate().isEqual(endDateTime.toLocalDate())) {
-            return List.of(schedulable);
+            listOfSchedulableUnits.add(schedulable);
+            return listOfSchedulableUnits;
         }
 
-        ArrayList<Schedulable> listOfSchedulableUnits = new ArrayList<>();
         String name = schedulable.getNameString();
 
-        Schedulable firstPeriod = new SimplePeriod(name, startDateTime, getEndOfTheDay(startDateTime));
-        listOfSchedulableUnits.add(firstPeriod);
+        //Check if startTime == to 23:59.59999
+
+        if (startDateTime.toLocalTime() != LocalTime.MAX) {
+            Schedulable firstPeriod = new SimplePeriod(name, startDateTime, getEndOfTheDay(startDateTime));
+            listOfSchedulableUnits.add(firstPeriod);
+        }
 
         //Check if case !endTime == 00:00
         if (!endDateTime.isEqual(getStartOfTheDay(endDateTime))) {

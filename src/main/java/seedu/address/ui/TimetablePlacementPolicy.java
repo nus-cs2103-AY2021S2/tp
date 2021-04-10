@@ -158,15 +158,12 @@ public class TimetablePlacementPolicy {
      * @return the stream of schedulables split by day.
      */
     public Stream<Schedulable> breakIntoDayUnits(Schedulable schedulable) {
-
-        assert isWithinRange(schedulable);
         Schedulable offSetSchedule = SchedulableUtil.applyNegativeOffset(schedulable, startHour, startMinute);
         List<Schedulable> splittedSchedulables = SchedulableUtil.splitSchedulableByDay(offSetSchedule);
         return splittedSchedulables
                 .stream()
                 .map(s -> SchedulableUtil.applyPositiveOffset(s, startHour, startMinute))
                 .filter(this ::isWithinRange);
-
     }
 
     /**
