@@ -1,5 +1,7 @@
---------------------------------------------------------------------------------------------------------------------
-## Developer Guide for The Food Diary
+---
+layout: page
+title: Developer Guide for The Food Diary
+---
 
 * Table of Contents
   {:toc}
