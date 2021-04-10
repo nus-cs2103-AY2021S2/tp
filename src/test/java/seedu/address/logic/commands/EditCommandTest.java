@@ -26,7 +26,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
-import seedu.address.testutil.TypicalEvents;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
