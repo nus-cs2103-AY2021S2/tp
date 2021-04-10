@@ -31,7 +31,7 @@ Given below are my contributions to the project.
 - Added feature to search or list Tags (`tags` command) (Eventually Deprecated): [\#86](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/86)
   * What it does: Allows the user to  search or list out all Tags associated with user.
   * Justification: This feature improves the product significantly because it allows users to quickly list all tags used by users and find users based on associations.
-  * Note: This feature was depreceated as it was eventually merged with the find feature by pyuxiang in PR [\#116](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/116).
+  * Note: This feature was deprecated as it was eventually merged with the find feature by pyuxiang in PR [\#116](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/116).
 
 ### Feature enhancements
 
