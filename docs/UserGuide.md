@@ -37,15 +37,15 @@ head over to [Quick start](#quick-start) now to learn how to begin your journey 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `smartlib.jar` from [here](https://github.com/AY2021S2-CS2103T-W13-2/tp/releases).
+2. Download the latest `smartlib.jar` from [here](https://github.com/AY2021S2-CS2103T-W13-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your SmartLib.
+3. Copy the file to the folder you want to use as the _home folder_ for your SmartLib.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
 contains some sample data.<br>
 ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`listbook`** and pressing Enter will
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`listbook`** and pressing Enter will
 list all the current books in store.<br>
    Some example commands you can try:
 
@@ -54,11 +54,11 @@ list all the current books in store.<br>
 
    * **`deletereader`** `3` : Deletes the 3rd contact shown in the current list.
 
-   * **`listbook`** : Lists all contacts.
+   * **`listbook`** : Lists all stored books in SmartLib.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -69,7 +69,7 @@ list all the current books in store.<br>
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add r/NAME`, `NAME` is a parameter which can be used as `add r/John Doe`.
+  e.g. in `addreader r/NAME`, `NAME` is a parameter which can be used as `addreader r/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `r/NAME [t/TAG]` can be used as `r/John Doe t/friend` or as `r/John Doe`.
@@ -108,28 +108,39 @@ given below, and familiarize yourself with them.
 | `EMAIL`         | The email of the client.<br><br>Emails should be in `name@domain` format, where the `name` part should only contain alphanumeric and special characters, whereas the `domain` part should only contain alphanumeric characters with a period in between.<br><br>Different readers may share the same email (as we understand that some families may do that). | `bob@bmail.com`, `bob-123@bobby.sg`                                              |
 | `ADDRESS`       | The address of the reader.<br><br>It must be made up of alphanumeric and special characters (may contain spaces), and should not be blank.<br><br>Different readers may share the same address (as we understand that some readers may come from the same family).                                                                                            | `#01-23, Blk 13, Bukit Timah Road`                                               |
 | `TAG`           | The tag that you would like to attach to or search for your reader.<br><br>It must be a single alphanumeric word.                                                                                                                                                                                                                                             | `VIP`, `MostBorrows`                                                             |
-| `INDEX`         | The index of the reader in the displayed list.<br><br>It must be a valid index number (i.e. in the range [`1`,`2`, ..., `length of list`]).                                                                                                                                                                                                                   | `1`                                                                              |
-| `KEYWORD`       | The keyword that you would like to use to search for your target reader(s).<br><br>It must be a single alphanumeric word.                                                                                                                                                                                                                                     | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
-| `MORE_KEYWORDS` | Other keywords that you may want to use to search for your target reader(s).<br><br>Each additional keyword must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.                                                                                                                                          |                                                                                  |
+| `INDEX`         | The index of the reader or book in the displayed list.<br><br>It must be a valid index number (i.e. in the range [`1`,`2`, ..., `length of list`]).                                                                                                                                                                                                                   | `1`                                                                              |
+| `KEYWORD`       | The keyword that you would like to use to search for your target reader(s) or book(s).<br><br>It must be a single alphanumeric word.                                                                                                                                                                                                                                     | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
+| `MORE_KEYWORDS` | Other keywords that you may want to use to search for your target reader(s) or book(s).<br><br>Each additional keyword must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.                                                                                                                                          |                                                                                  |
 | `MORE_TAGS`     | Other tags that you may want to use to search for your target reader(s).<br><br>Each additional tag must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.                                                                                                                                                  |                                                                                  |
 
 #### Adding a reader : `addreader`
 
-Adds a reader to SmartLib's registered reader base.
+You can use this command to add a new reader to SmartLib's registered reader base.
 
 Format: `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG, t/TAG, ..., t/TAG]`
 
 **:information_source: Notes:**
 * Refer to [Readers' Command Parameters](#readers-command-parameters) for more details about each parameter.
+* Note that SmartLib uses reader's name to identify a reader. Hence, there cannot duplicate name is not allowed.
+* The reader's name is case sensitive, e.g. `Bob` and `bob` are two different readers.   
 * The `t/TAG` parameters are optional.
 
-Examples:
-* `addreader r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addreader r/Betsy Crowe p/88888888 e/betsycrowe@example.com a/Newgate Prison`
+Example use:
+
+Let's say a new reader wish to be registered as vip reader,
+you can follow the steps below to add the reader to SmartLib's registered reader list.
+
+Steps:
+1. Type `addreader r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/vip` in the _Command Box_.
+2. Press `Enter` to execute your input.
+
+Outcome:
+* _Result Display_ will show a success message with the newly added reader's information.
+  ![result for 'addreader_JohnDoe'](images/addreaderresult.png)
 
 #### Deleting a reader : `deletereader`
 
-Deletes the specified reader from SmartLib's registered reader base.
+You can use this command to delete a reader from SmartLib's registered reader base.
 
 Format: `deletereader INDEX`
 
@@ -139,12 +150,27 @@ Format: `deletereader INDEX`
 * The index refers to the index number shown in the displayed reader list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `deletereader 1`
-* `deletereader 2`
+**:warning: Warning:**<br>
+* A reader will not be deleted if he/she has unreturned books. This is to prevent the loss books.
+
+Example:
+
+If a reader wish to have his/her registration cancelled and personal information erased from SmartLib, 
+you can follow the steps below to delete the reader from SmartLib's registered reader base.
+
+Steps:
+1. Type `deletereader 3` if the reader has an index of 1 as shown on the displayed reader list.
+2. Press `Enter` to execute.
+
+Outcome:
+* _Result Display_ will show a success message with the deleted reader's information.
+  ![result for 'addreader_JohnDoe'](images/deletereaderresult.png)
+
 
 Tip:
-* `listreader` followed by `deletereader 2` deletes the 2nd reader in the displayed reader list.
+* If you have just performed a _findreader_
+  the displayed reader list on SmartLib will be a filtered result of the find command. 
+  To delete the reader by the correct index, you could do `listreader` first to get the complete reader list. 
 
 #### Finding readers : `findreader`
 
@@ -288,19 +314,67 @@ Examples:
 
 #### Finding books by keyword(s) : `findbook`
 
-Finds books whose information (Title, Author, Publisher, ISBN, Genre) contains any of the given keywords.
+##### By book title:
+
+You can use this command to find books whose title contains any of the given keywords.
 
 Format: `findbook KEYWORD [MORE_KEYWORDS]`
 
 **:information_source: Notes:**
 * Refer to [Books' Command Parameters](#books-command-parameters) for more details about each parameter.
+* The search is case-insensitive. e.g `Harry Potter` will match `harry potter`.
+* The order of the keywords do not matter. e.g. `Potter Harry` will match `Harry Potter`.
+* Only the keywords are searched.
+* Only full words will be matched e.g. `Po` will not match `Potter`.
+* Book titles matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Harry` will return books with either the title `Harry Potter and the Goblet of Fire` or `Harry Potter and the Deathly Hallows`.
 
-Examples:
-* `findbook Suspense` returns books under the genre Suspense.
-* `findbook American History` returns books related to history, especially American history.
-* `findbook Brandon Sanderson` returns books by the author Brandon Sanderson.
-* `findbook Bloomsbury` returns books published by Bloomsbury.
-* `findbook 1234567890123` returns books with the corresponding ISBN.
+Example use:
+
+Let's say you have many books in your book list,
+and you are trying to find more information about some book(s) (e.g. Harry Potter),
+You can follow the steps below to obtain a list of books with `Harry Potter` in their titles.
+
+Steps:
+
+1. Type `findbook Harry Potter ` in the _Command Box_.
+2. Press `Enter` to execute your input.
+
+Outcome:
+* The _Result Display_ will show a message with the number of matching results indicating success.
+* SmartLib will list out all the books with `Harry Potter` in their titles.
+  ![result for 'findreader t/VIP'](images/findbookresult.png)
+
+##### By other types of labels(Author, Publisher, ISBN, Genre):
+
+You can also use this command to find books whose information(Author, Publisher, ISBN, Genre) contains any of the given keywords.
+
+Format: `findbook KEYWORD [MORE_KEYWORDS]`
+
+**:information_source: Notes:**
+* Refer to [Books' Command Parameters](#books-command-parameters) for more details about each parameter.
+* Currently, SmartLib does not support finding books by name and labels, or different types of labels concurrently.
+* The search is case-insensitive. e.g `novel` will match `NOVEL`.
+* The order of the keywords do not matter. e.g. `young adult` will match `adult young`.
+* Only the keywords are searched.
+* Only full words will be matched e.g. `No` will not match `Novel`.
+* Books matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Fantasy Novel` will return books with either the genre `Fantasy` or with the genre `Novel`.
+
+Example use:
+
+Let's assume you are trying to find all the books of the genre 'Novel' in SmartLib,
+You can follow the steps below to obtain a list of books under the genre Novel.
+
+Steps:
+
+1. Type `findbook novel` in the _Command Box_.
+1. Press `Enter` to execute your input.
+
+Outcome:
+* The _Result Display_ will show a message with the number of matching results indicating success.
+* SmartLib will list out all the books under the genre `Novel`.
+  ![result for 'findreader t/VIP'](images/findbooknovel.png)
 
 #### Listing all books : `listbook`
 
@@ -337,23 +411,25 @@ given below, and familiarize yourself with them.
 
 Records a borrowing activity. You need to do so whenever a reader borrows a book.
 
-Format: `borrow b/BOOKNAME r/READERNAME`
+Format: `borrow bc/BARCODE r/READERNAME`
 
 **:information_source: Notes:**
 * Refer to [Records' Command Parameters](#records-command-parameters) for more details about each parameter.
 * Lets the reader with the specified name READERNAME borrow the book specified by name BOOKNAME.
 
 Example Use:
-* `borrow b/The Old Man And The Sea r/Alex` records a rental entry that reader whose name is Alex borrowed
-a book which name is The Old Man and the Sea
+* `borrow bc/1000000000 r/Alex` records a rental entry that reader whose name is Alex borrowed
+a copy of The Old Man And The Sea which barcode is 1000000000
+
 
 More Examples:
-* `borrow b/Cloud Atlas r/Bernice` records that Bernice borrowed a copy of Cloud Atlas
-* `borrow b/The Hobbit r/Charlotte` records that Charlotte borrowed a copy of The Hobbit
+* `borrow bc/1234567890125 r/Bernice` records that Bernice borrowed a copy of Cloud Atlas which barcode is 1234567890125
+
+* `borrow bc/1000000001 r/Charlotte` records that Charlotte borrowed a copy of The Hobbit which barcode is 1000000001
   
 Steps:
 1. Type `borrow` in the _Command Box_.
-2. Type `b/BOOKNAME` where `BOOKNAME` is to be replaced by actual book name
+2. Type `bc/BARCODE` where `BARCODE` is to be replaced by actual barcode
 3. Type `r/READERNAME` where `READERNAME` is the reader borrowing the book
 
 Notes:
@@ -364,7 +440,7 @@ Outcome:
 * The _Result Display_ will show a message indicating success.
 * SmartLib will record down this borrowing activity.
 * The relevant parts in UI will be updated.
-  ![result for 'borrow b/The Old Man And The Sea r/Alex'](images/BorrowCommand.png)
+  ![result for 'borrow bc/1999999999 r/Charlotte'](images/BorrowCommand.png)
   
 #### Returning a book : `return`
 
@@ -419,11 +495,14 @@ Format: `listrecord`
 Finally, SmartLib also provides a number of commands which will serve to be very helpful in your day-to-day use of the
 application.
 
-#### Clearing all entries : `clear`
+#### Clearing all entries : `clear-everything-in-my-database`
 
-Clears all entries from SmartLib.
+Clears all entries from SmartLib. 
 
-Format: `clear`
+As there is no undo once you clear all entries, 
+we design the command word for clearing entries in such a way that you will not wipe out your precious data by accident. 
+
+Format: `clear-everything-in-my-database`
 
 #### Viewing help : `help`
 
@@ -501,7 +580,7 @@ Action | Format, Examples
 **Find reader** | `findreader KEYWORD [MORE_KEYWORDS]` or `findreader t/TAG [MORE_TAGS]`<br> e.g., `findreader James Jake`
 **List readers** | `listreader`
 **Add book** | `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/Genre` <br> e.g., `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9783161484100 g/Fantasy`
-**Borrow book** | `borrow b/BOOKNAME r/READERNAME`<br> e.g., `borrow b/The Old Man and the Sea r/Alex Yeoh`
+**Borrow book** | `borrow bc/BARCODE r/READERNAME`<br> e.g., `borrow bc/1000000000 r/Alex`
 **Delete book** | `deletebook INDEX`<br> e.g., `deletebook 3`
 **Find book** | `findbook KEYWORD [MORE_KEYWORDS]`<br> e.g., `findbook Thomas the Tank Engine`
 **List books** | `listbook`

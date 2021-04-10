@@ -280,7 +280,7 @@ public class ModelManager implements Model {
     @Override
     public boolean borrowBook(Name readerName, Barcode barcode) {
         requireAllNonNull(barcode, readerName);
-        boolean status = smartLib.borrowBook(readerName, barcode);
+        boolean status = smartLib.isBookBorrowed(readerName, barcode);
         updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
         updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
@@ -297,7 +297,7 @@ public class ModelManager implements Model {
     @Override
     public boolean returnBook(Name readerName, Barcode barcode) {
         requireAllNonNull(barcode, readerName);
-        boolean status = smartLib.returnBook(readerName, barcode);
+        boolean status = smartLib.isBookReturned(readerName, barcode);
         updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
         updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);

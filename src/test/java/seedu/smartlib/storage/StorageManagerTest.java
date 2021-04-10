@@ -34,6 +34,13 @@ public class StorageManagerTest {
     }
 
     @Test
+    public void getUserPrefsFilePath() {
+        assertNotNull(storageManager.getUserPrefsFilePath());
+        assertEquals(getTempFilePath("prefs"),
+                storageManager.getUserPrefsFilePath());
+    }
+
+    @Test
     public void prefsReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
@@ -63,6 +70,8 @@ public class StorageManagerTest {
     @Test
     public void getSmartLibFilePath() {
         assertNotNull(storageManager.getSmartLibFilePath());
+        assertEquals(getTempFilePath("ab"),
+                storageManager.getSmartLibFilePath());
     }
 
 }

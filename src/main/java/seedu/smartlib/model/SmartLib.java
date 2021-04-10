@@ -519,8 +519,9 @@ public class SmartLib implements ReadOnlySmartLib {
      *
      * @param readerName readerName, must exist in reader base and must satisfy requirement for borrowing
      * @param barcode barcode of book, must exist in book base
+     * @return true if borrow is successful, and false otherwise
      */
-    public boolean borrowBook(Name readerName, Barcode barcode) {
+    public boolean isBookBorrowed(Name readerName, Barcode barcode) {
         Reader reader = getReaderByName(readerName);
         if (reader == null) {
             return false;
@@ -551,8 +552,9 @@ public class SmartLib implements ReadOnlySmartLib {
      *
      * @param readerName readerName, must exist in reader base
      * @param barcode barcode of book, must exist in book base
+     * @return true if return is successful, and false otherwise
      */
-    public boolean returnBook(Name readerName, Barcode barcode) {
+    public boolean isBookReturned(Name readerName, Barcode barcode) {
         Reader reader = getReaderByName(readerName);
         if (reader == null) {
             return false;

@@ -9,38 +9,44 @@ SmartLib is a desktop app for managing private book loaning services owning less
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-    * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-    * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to add a reader into the SmartLib registered reader base.
+    * What it does: allows the user to add a reader and stores his/her personal information such as email, phone number, address etc into the SmartLib's registered reader base.
+    * Justification: This feature is essential for the product because a user can then provide book rental services to these readers and keep track of borrow and return of the books.
+    * Highlights: This enhancement is very useful for the user's customer service and business activities.
+      For example, the user can tag a reader as vip and provide privileged services to this reader.
+    * Credits: _AB3's prior implementation of `add` guided the implementation of the `addreader` command._
+  
+* **New Feature**: Added the ability to delete a reader from the SmartLib's registered reader base.
+    * What it does: Allows the user to delete a reader and all his/her stored information from the SmartLib's registered reader base, by the reader's index on SmartLib's displayed reader list.
+    * Justification: This feature is essential for the product because a user can then delete a reader if he/she no longer wish to have any services from the user.
+    In addition, if the user make any mistake during addreader, he/she can rectify by deleting and then adding the correct information again.
+    * Highlights: This enhancement has also taken care of the situation when a reader is deleted before he/she returns the borrowed books.
+    Hence, the user can only delete readers who have no unreturned books.
+    * Credits: _AB3's prior implementation of `delete` guided the implementation of the `deletereader` command._
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=nanxi-huang&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=Nanxi-Huang&tabRepo=AY2021S2-CS2103T-W13-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
+
 
 * **Project management**:
-    * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+    * Helped manage releases `v1.1` - `v1.4` (5 milestones) on GitHub
+    * In charge of code quality and documentation comments
 
 * **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+    * Refactor the borrow command to accept book barcode and reader name as parameters to prevent mixing of books of the same title (Pull request [\#293]()).
+    * Refactor the return command to accept book barcode only to increase efficiency and prevent mixing of books of the same title (Pull request [\#177]())  
+    * Wrote additional tests for Book class to increase coverage (Pull requests [\#141](), [\#146]()).
+    * Improve the findbook feature to search books through book title, publisher, author, isbn, or genre (Pull request [\#158]()())
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+        * Added documentation for the features `addreader`, `deletereader` and `findbook` [\#72]()
     * Developer Guide:
-        * Added implementation details of the `delete` feature.
+        * Added implementation details of the `return` feature (Pull request [\#198]()).
+        * Added implementation details of the `addreader` feature (Pull request [\#154]()).
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+    * Reported bugs and suggestions for other teams in the class (examples: [PE-D](https://github.com/Nanxi-Huang/ped/issues))
+  
 
-* **Tools**:
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
 
-* _{you can add/remove categories in the list above}_

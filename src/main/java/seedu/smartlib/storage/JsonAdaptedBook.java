@@ -73,29 +73,39 @@ class JsonAdaptedBook {
     }
 
     /**
-     * Converts this Jackson-friendly adapted book object into the model's {@code Book} object.
+     * Verifies validity of the book name.
      *
-     * @return Book object converted from the storage file.
-     * @throws IllegalValueException if there were any data constraints violated in the adapted book.
+     * @throws IllegalValueException if the book name is null or invalid.
      */
-    public Book toModelType() throws IllegalValueException {
-
+    private void verifyBookName() throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+    }
 
+    /**
+     * Verifies validity of the book author.
+     *
+     * @throws IllegalValueException if the book author is null or invalid.
+     */
+    private void verifyBookAuthor() throws IllegalValueException {
         if (author == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Author.class.getSimpleName()));
         }
         if (!Author.isValidAuthor(author)) {
             throw new IllegalValueException(Author.MESSAGE_CONSTRAINTS);
         }
-        final Author modelAuthor = new Author(new Name(author));
+    }
 
+    /**
+     * Verifies validity of the book publisher.
+     *
+     * @throws IllegalValueException if the book publisher is null or invalid.
+     */
+    private void verifyBookPublisher() throws IllegalValueException {
         if (publisher == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Publisher.class.getSimpleName()));
@@ -103,31 +113,77 @@ class JsonAdaptedBook {
         if (!Publisher.isValidPublisher(publisher)) {
             throw new IllegalValueException(Publisher.MESSAGE_CONSTRAINTS);
         }
-        final Publisher modelPublisher = new Publisher(new Name(publisher));
+    }
 
+    /**
+     * Verifies validity of the book isbn.
+     *
+     * @throws IllegalValueException if the book isbn is null or invalid.
+     */
+    private void verifyBookIsbn() throws IllegalValueException {
         if (isbn == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Isbn.class.getSimpleName()));
         }
         if (!Isbn.isValidIsbn(isbn)) {
             throw new IllegalValueException(Isbn.MESSAGE_CONSTRAINTS);
         }
-        final Isbn modelIsbn = new Isbn(isbn);
+    }
 
+    /**
+     * Verifies validity of the book barcode.
+     *
+     * @throws IllegalValueException if the book barcode is null or invalid.
+     */
+    private void verifyBookBarcode() throws IllegalValueException {
         if (barcode == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Barcode.class.getSimpleName()));
         }
         if (!Barcode.isValidBarcode(Integer.parseInt(barcode))) {
             throw new IllegalValueException(Isbn.MESSAGE_CONSTRAINTS);
         }
-        final Barcode modelBarcode = new Barcode(Integer.parseInt(barcode));
+    }
 
+    /**
+     * Verifies validity of the book genre.
+     *
+     * @throws IllegalValueException if the book genre is null or invalid.
+     */
+    private void verifyBookGenre() throws IllegalValueException {
         if (genre == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Genre.class.getSimpleName()));
         }
         if (!Genre.isValidGenre(genre)) {
             throw new IllegalValueException(Genre.MESSAGE_CONSTRAINTS);
         }
+    }
+
+
+    /**
+     * Converts this Jackson-friendly adapted book object into the model's {@code Book} object.
+     *
+     * @return Book object converted from the storage file.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted book.
+     */
+    public Book toModelType() throws IllegalValueException {
+
+        verifyBookName();
+        final Name modelName = new Name(name);
+
+        verifyBookAuthor();
+        final Author modelAuthor = new Author(new Name(author));
+
+        verifyBookPublisher();
+        final Publisher modelPublisher = new Publisher(new Name(publisher));
+
+        verifyBookIsbn();
+        final Isbn modelIsbn = new Isbn(isbn);
+
+        verifyBookBarcode();
+        final Barcode modelBarcode = new Barcode(Integer.parseInt(barcode));
+
+        verifyBookGenre();
         final Genre modelGenre = new Genre(new Name(genre));
+
         if (borrowerName == null) {
             return new Book(modelName, modelAuthor, modelPublisher, modelIsbn, modelBarcode, modelGenre);
         } else {
