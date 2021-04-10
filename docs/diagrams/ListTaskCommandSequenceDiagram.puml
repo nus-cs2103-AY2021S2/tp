@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : parse("delete_task 1")
+[-> LogicManager : parse("list_task")
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand("delete_task 1")
+LogicManager -> SocheduleParser : parseCommand("list_task")
 activate SocheduleParser
 
 create DeleteTaskCommandParser

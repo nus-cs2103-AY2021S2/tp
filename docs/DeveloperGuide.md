@@ -418,6 +418,7 @@ Our `Task` supports the following features through a `LogicManager`
 #### 4.2.2 Implementation
 
 **Implementation of AddTaskCommand**
+
 The following is a detailed explanation on how AddTaskCommand is implemented.
 
 **Step1**: User executes `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` command to add the 
@@ -440,6 +441,7 @@ The sequence diagram for `AddTaskCommand` can be found below.
 [Return to Table of Contents](#table-of-contents)  
 
 **Implementation of DeleteTaskCommand**  
+
 The following is a detailed explanation on how DeleteTaskCommand is implemented.
 
 **Step 1**: User executes `delete_task Index` command to delete the task at the given index.
@@ -461,9 +463,39 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 
 [Return to Table of Contents](#table-of-contents)  
 
+
+#### 4.2.3.3. List Task Feature
+
+**Implementation of ListTaskCommand**
+
+The following is a detailed explanation on how ListTaskCommand is implemented.
+
+The ListTaskCommand is supported mainly by `ListTaskCommand`.
+
+The relevant methods include:
+* `ListTaskCommand#execute(Model model)` - Updates the task list on UI to show all the tasks stored in the internal task
+list.
+  
+Given below is an example usage scenario and how the list task mechanism behaves at each step.
+
+**Step 1**: User executes `list_task` command to list all the tasks currently present in the task list. 
+A `ListTaskCommand` object is returned
+
+**Step 2**: On `ListTaskCommand#execute()`, `Model#updateFilteredTaskList(Predicate<Task> predicate)` is called. This will
+update the filtered task list with the predicate specified by the input predicate, which is `PREDICATE_SHOW_ALL_TASKS`.
+For brevity, lower level implementation of `Model#updateFilteredTasks(Predicate<Task> predicate)` is omitted.
+
+**Step 3**: On execution completion, a `CommandResult` is created. `Model#isTaskListEmpty()` is called to check whether
+the current internal task list is empty or not. If the internal task list is empty, a message indicating the emptiness 
+the task list will be appended with `CommandResult#MESSAGE_EMPTY`. Otherwise, a success message will be appended with 
+`CommandResult#MESSAGE_SUCCESS`. The UI will also update as the underlying task list that has been modified.
+
+The sequence diagram for ListTaskCommand can be found below.
+
 #### 4.2.3.3 Done Task feature
 
 **Implementation of DoneTaskCommand**
+
 The done task mechanism is supported mainly by `DoneTaskCommand` and `DoneTaskCommandParser`.
 
 The relevant methods include:
