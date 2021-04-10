@@ -9,6 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Email {
 
+
+    public static final int MAX_CHARACTERS = 254;
     public static final String INVALID_LENGTH_MESSAGE =
             "ERROR: Input email should only be at most 254 characters long";
     private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
@@ -30,7 +32,6 @@ public class Email {
             + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
 
     public final String value;
-    public static final int  MAX_CHARACTERS = 254;
 
     /**
      * Constructs an {@code Email}.
