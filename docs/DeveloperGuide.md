@@ -16,7 +16,7 @@ title: Developer Guide
   - [Find](#finding-contacts-by-details)
   - [Light/Dark] >Ryan
   - [Mass Blacklist] >JB
-  - [Mode of Contact](#mode-of-contact-feature)  
+  - [Mode of Contact](#mode-of-contact-feature)
   - [Remark](#remark-feature)
   - [Mass Delete](#mass-delete-feature)
   - [Mode of Contact](#mode-of-contact-feature)
@@ -253,9 +253,9 @@ This feature is built on the current `find` command, which is used to be limited
 This command returns the persons with attributes that matches at least one of the attributes of interest (See User Guide for more details).
 Note that users are only required to provide at least one of the parameters to use this command. In other words, commands such as `find n/Alex` and `find t/autistic` are valid commands.
 
-To facilitate the implementation of this feature, several new predicate classes are introduced, for instance, `PersonTagContainsKeywordsPredicate` `AddressContainsKeywordsPredicate`, `ReturnTruePredicate` etc. Of course, As the name suggests, `ReturnTruePredicate` always returns `true`. 
+To facilitate the implementation of this feature, several new predicate classes are introduced, for instance, `PersonTagContainsKeywordsPredicate` `AddressContainsKeywordsPredicate`, `ReturnTruePredicate` etc. Of course, As the name suggests, `ReturnTruePredicate` always returns `true`.
 
-The introduction of `ReturnTruePredicate` may seem pointless, but it is of great use. The key here is to realize that if X is a boolean variable, then X `and` `true` simplifies to X. If all keywords are given, the `FindCommand` class will receive all the predicates. If, say, only `name` keywords are given, then rest of the predicates will be replaced with `ReturnTruePredicate`s. As such, the filter will now solely depend on `NameContainsKeywordsPredicate` since the other predicates always returns 
+The introduction of `ReturnTruePredicate` may seem pointless, but it is of great use. The key here is to realize that if X is a boolean variable, then X `and` `true` simplifies to X. If all keywords are given, the `FindCommand` class will receive all the predicates. If, say, only `name` keywords are given, then rest of the predicates will be replaced with `ReturnTruePredicate`s. As such, the filter will now solely depend on `NameContainsKeywordsPredicate` since the other predicates always returns
 true.
 
 The following sequence diagram shows how the `find` command works:
@@ -350,7 +350,7 @@ Step 4: After deletion, `filteredPersons` in `ModelManager` is updated to reflec
 
 The following sequence diagram illustrates how the mass delete operation works:
 ![MassDeleteSequenceDiagram](images/MassDeleteSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MassDeleteCommand` should end at the 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MassDeleteCommand` should end at the
 destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 The following activity diagram summarizes what happens when a user executes a mass delete command:
@@ -402,7 +402,7 @@ The following activity diagram summarizes what happens when a user executes a re
     * Cons: More commands for the user to remember.
 
 * **Alternative 2:** Use the existing `Edit` command to edit the `Remark` field.
-    * Pros: Easier to implement as the edit command already has a parser and many helper methods. 
+    * Pros: Easier to implement as the edit command already has a parser and many helper methods.
     * Cons: The edit command is already the largest class in the `commands` package. Adding more code will make the
       class even bigger and thus more difficult to maintain.
 
@@ -519,7 +519,7 @@ Step 4. The user now decides that adding the person was a mistake, and decides t
 , causing the command to return an error to the user rather than attempting to perform the undo.
 
 </div>
- 
+
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
@@ -665,7 +665,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to list contacts
 2. SpamEZ shows a list of contacts
-3. User requests to change the blacklist status of a specific contact 
+3. User requests to change the blacklist status of a specific contact
    in the list
 4. SpamEZ changes the blacklist status of the contact
 
