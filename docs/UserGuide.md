@@ -108,7 +108,7 @@ Example:
 Edits an existing task in the application
 
 Format: `edit INDEX [n/TASK_NAME] [mc/MODULE_CODE] [d/DEADLINE_DATE]
-[t/DEADLINE_TIME] [notes/NOTES] [pt/TAG] [ptag/PRIORITY_TAG]`
+[t/DEADLINE_TIME] [w/WEIGHTAGE] [notes/NOTES] [pt/TAG] [ptag/PRIORITY_TAG]`
 
 * Edits the task at the specified index
 * The index must be a positive integer 1,2,3,...
