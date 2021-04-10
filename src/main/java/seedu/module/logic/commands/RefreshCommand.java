@@ -2,9 +2,7 @@ package seedu.module.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import javafx.collections.ObservableList;
 import seedu.module.model.Model;
-import seedu.module.model.task.Task;
 
 /**
  * Refresh the deadline of the module book.
@@ -19,18 +17,7 @@ public class RefreshCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        ObservableList<Task> taskList = model.getFilteredTaskList();
-        for (Task taskToCheck : taskList) {
-            Task taskToBeReplaced = taskToCheck;
-            boolean isUpdated = false;
-            while (taskToCheck.isRecurring() && taskToCheck.isBehind()) {
-                taskToCheck = Task.updateRecurrenceTask(taskToCheck);
-                isUpdated = true;
-            }
-            if (isUpdated) {
-                model.setTask(taskToBeReplaced, taskToCheck);
-            }
-        }
+        model.refreshTasks();
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
