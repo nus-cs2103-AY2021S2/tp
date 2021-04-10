@@ -58,6 +58,7 @@ The sections below give more details of each component.
 ### UI component
 
 ### Logic Component
+![Logic Class Diagram](images/LogicClassDiagram.png)
 **API:** [`Logic.java`](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/src/main/java/fooddiary/logic/Logic.java)
 
 1. `Logic` uses the `FoodDiaryParser` class to parse the user command.
