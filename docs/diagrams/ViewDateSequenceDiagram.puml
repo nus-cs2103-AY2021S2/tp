@@ -4,8 +4,6 @@
 box Logic LOGIC_COLOR_T1
 participant ":ViewDayCommandParser" as ViewDayCommandParser LOGIC_COLOR
 participant ":TaskOnDatePredicate" as TaskOnDatePredicate LOGIC_COLOR
-participant ":TaskDateOnDatePredicate" as TaskDateOnDatePredicate LOGIC_COLOR
-participant ":TaskScheduledOnDatePredicate" as TaskScheduledOnDatePredicate LOGIC_COLOR
 participant ":ViewDayCommand" as ViewDayCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -14,26 +12,12 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> ViewDayCommandParser : parse(args)
+[-> ViewDayCommandParser : parse(date string)
 activate ViewDayCommandParser
 
 create TaskOnDatePredicate
 ViewDayCommandParser -> TaskOnDatePredicate
 activate TaskOnDatePredicate
-
-create TaskDateOnDatePredicate
-TaskOnDatePredicate -> TaskDateOnDatePredicate
-activate TaskDateOnDatePredicate
-
-TaskDateOnDatePredicate --> TaskOnDatePredicate
-deactivate TaskDateOnDatePredicate
-
-create TaskScheduledOnDatePredicate
-TaskOnDatePredicate -> TaskScheduledOnDatePredicate
-activate TaskScheduledOnDatePredicate
-
-TaskScheduledOnDatePredicate --> TaskOnDatePredicate
-deactivate TaskScheduledOnDatePredicate
 
 TaskOnDatePredicate --> ViewDayCommandParser : predicate
 deactivate TaskOnDatePredicate
@@ -45,10 +29,10 @@ activate ViewDayCommand
 ViewDayCommand --> ViewDayCommandParser : command
 deactivate ViewDayCommand
 
-[<-- ViewDayCommandParser : command
+[<--ViewDayCommandParser : command
 deactivate ViewDayCommandParser
 
-[-> ViewDayCommand : execute(model)
+[->ViewDayCommand : execute(model)
 activate ViewDayCommand
 
 ViewDayCommand -> Model : updateFilteredTaskList(predicate)
@@ -57,7 +41,7 @@ activate Model
 Model -> ViewDayCommand
 deactivate Model
 
-ViewDayCommand -> Model : setCalendarDate(date)
+ViewDayCommand -> Model : setCalendarDate(local date)
 activate Model
 
 Model -> ViewDayCommand
