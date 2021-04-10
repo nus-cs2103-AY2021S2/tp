@@ -242,10 +242,10 @@ an `AddSessionCommand` with user input `add_session n/STUDENT_NAME d/DATE t/TIME
 3. `AddressBookParser` encapsulates the `AddSessionCommand` object as a `Command` object which is executed by the `LogicManager`.
 4. The command execution calls `hasStudent(name)` and `hasSession(name, sessionToAdd)` to validate the inputs before calling
    `addSession(name, sessionToAdd)` which adds the session to the specific student.
-5. The result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
+5. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the Ui.
 
 ##### Design Considerations
-Aspect 1: Type of input for AddSessionCommand
+Aspect 1: Type of input for `AddSessionCommand`
 * **Alternative 1 (current choice)**: Using student name to identify the student to add the session to.
     * Pros:
         * Easier for user to add sessions without constantly having to refer to the application for student id
@@ -290,7 +290,8 @@ The following sequence diagram shows the interactions between the Model and Logi
 with user input `delete_rec_session n/STUDENT_NAME i/SESSION_INDEX d/DATE`:
 ![DeleteSessionSequenceDiagram](images/choonwei/DeleteRecurringSessionSequenceDiagram.png)
 
-NOTE: The lifeline of `DeleteRecurringSessionCommandParser` should end at the cross but is not shown due to the limitations of PlantUML.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteRecurringSessionCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 2. A new instance of a `DeleteRecurringSessionCommand` would be created by the `DeleteRecurringSessionCommandParser` and returned to `AddressBookParser`.
@@ -394,7 +395,8 @@ Given below is an example of how the list student
 The following sequence diagram shows the interactions when user executes the `list` command:
 ![ListSequenceDiagram](images/choonwei/ListSequenceDiagram.png)
 
-NOTE: The lifeline of `ListCommand` should end at the cross but is not shown due to the limitations of PlantUML.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteRecurringSessionCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 The following activity diagram summarizes what happens when a user executes the `list` command.
 ![ListActivityDiagram](images/choonwei/ListActivityDiagram.png)
