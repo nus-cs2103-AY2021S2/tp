@@ -85,8 +85,13 @@ public class CommandTestUtil {
     public static final String COMMUTER_DESC_1 = " " + PREFIX_COMMUTER + VALID_COMMUTER_1;
     public static final String COMMUTER_DESC_2 = " " + PREFIX_COMMUTER + VALID_COMMUTER_2;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_NAME_NO_PREFIX = "James&"; // '&' not allowed in names
+    public static final String INVALID_PHONE_NO_PREFIX = "911a"; // 'a' not allowed in phones
+
+    public static final String INVALID_NAME_DESC =
+            " " + PREFIX_NAME + INVALID_NAME_NO_PREFIX; // '&' not allowed in names
+    public static final String INVALID_PHONE_DESC =
+            " " + PREFIX_PHONE + INVALID_PHONE_NO_PREFIX; // 'a' not allowed in phones
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TRIPDAY = " " + PREFIX_TRIPDAY + "FUNDAY"; // not among the valid week days
     public static final String INVALID_TRIPTIME = " " + PREFIX_TRIPTIME + "21032103"; // not in the 24 hour time format
