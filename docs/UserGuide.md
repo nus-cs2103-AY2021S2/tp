@@ -67,7 +67,7 @@ Adds the details of a student to Vax@NUS records.
 
 > For a smooth user experience, please refer to the [Input Formats](#input-formats) section below for more information regarding the input accepted by the add student command.
 
-`Add` Command Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]`
+Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]`
 
 Examples:
 * `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
@@ -111,7 +111,15 @@ Format: `delete MATRICULATION NUMBER`
   
 
 Examples:
-* `delete A7654321J` deletes Betsy Crowe from the records. If Betsy Crowe has an appointment, her appointment will be deleted as well.
+* `delete A1234567X` deletes John Doe from the records. If John Doe has an appointment, his appointment will be deleted as well.
+
+| Before        | 
+| ------------- |
+|![deleteBefore](images/deleteBefore.png)
+
+| After        | 
+| ------------- |
+|![deleteAfter](images/deleteAfter.png)|
 
 ### Filtering all student records: `filter`
 
@@ -133,9 +141,11 @@ Examples:
 * `filter COM` 
 * `filter RVRC` 
 
+![filter](images/filter.png)
+
 ### Viewing statistics for student population: `stats`
 
-Displays the statistics in terms of percentage of student vaccinated for the specified faculty/school residence or whole of NUS. 
+Displays percentage of vaccinated students in the specified faculty/school residence, whole of NUS, or a list of percentages of vaccinated students in every Faculty and School Residence. 
 
 Format: <br>
 `stats FACULTY`
@@ -161,7 +171,7 @@ Sample Output for `stats all`:
 ![StatsALl](images/statsAll.png)
 
 Sample Output for `stats PGPH`:
-![StatsALl](images/statsResidence.png)
+![StatsResidence](images/statsResidence.png)
 
 ### Adding an appointment: `addAppt`
 
@@ -176,7 +186,6 @@ Format: `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME`
 Examples:
 * `addAppt i/A1234567X d/2021-12-13 ts/13:00`
 * `addAppt i/A7654321J d/2021-12-13 ts/14:00`
-
 
 | Before        | 
 | ------------- |
@@ -203,8 +212,16 @@ Format: `editAppt MATRICULATION_NUMBER d/DATE ts/START_TIME`
 > For a smooth user experience, please refer to the [conditions for valid appointments](#conditions-for-valid-appointments) section below for more information regarding what the details of an appointment accepted by Vax@NUS.
 
 Examples:
-* `editAppt A1234567X d/2021-12-13 ts/14:00`
-* `editAppt A7654321J d/2021-12-13 ts/14:00`
+* `editAppt A1234567X d/2021-11-13 ts/14:00`
+* `editAppt A7654321J d/2021-12-13 ts/10:00`
+
+| Before        | 
+| ------------- |
+|![editApptBefore](images/editApptBefore.png)
+
+| After        | 
+| ------------- |
+|![editApptAfter](images/editApptAfter.png)|
 
 ### Deleting an appointment: `deleteAppt`
 
@@ -216,14 +233,26 @@ Format: `deleteAppt MATRICULATION_NUMBER`
   the matriculation number or appointment is not found.
 
 Examples:
-* `deleteAppt A7654321J` deletes Betsy Crowe's appointments from the records, provided she had an appointment scheduled previously.
+* `deleteAppt A1234567X` deletes John Doe's appointments from the records, provided he had an appointment scheduled previously.
+
+| Before        | 
+| ------------- |
+|![DeleteApptBefore](images/deleteApptBefore.png)
+
+| After        | 
+| ------------- |
+|![DeleteApptAfter](images/deleteApptAfter.png)|
 
 ### Viewing statistics for appointments: `statsAppt`
-Displays the number of upcoming and previous appointments within 6 days from the current day and includes the day itself.
+Displays the number of upcoming and previous appointments within 1 week from the current day, including the current day.
+E.g., if today is Monday, `statsAppt` will count upcoming appointments from Monday(Today) - Sunday and past appointments from last Tuesday - Monday(Today).
 
 Format: <br>
 `statsAppt`
 
+Sample Output for `statsAppt`:
+![StatsAppt](images/statsAppt.png)
+> Remark: Screenshot was taken on 9 April 2021.
 
 ### Listing all data : `list`
 
@@ -242,13 +271,13 @@ Format: `find MATRICULATION_NUMBER`
 * If the student found does not have an appointment, the appointment list will appear as empty.
   
 Examples:
-* `find A0175678U` shows Bernice Yu's personal information, and her appointment details if it is present.
+* `find A1234567X` shows John Doe's personal information, and his appointment details if it is present.
 
 ![Find](images/find.png)
+
 ### Viewing help : `help`
 
-Display a pop-up window showing a list of commonly used commands and a link to our User Guide. 
-
+Display a pop-up window showing a list of commonly used commands in Vax@NUS and a link to our User Guide. 
 Format: `help`
 
 ### Clearing all data : `clear`
@@ -274,10 +303,10 @@ Vax@NUS saves your current data into your computer automatically after any comma
 
 Vax@NUS data is saved as a JSON file [JAR file location]/data/studentbook.json. Advanced users are welcome to update data directly by editing that data file.
 
-Editing a student's matriculation number through the JSON file is allowed, however, extra care must be taken to ensure data integrity. 
+Editing a student's matriculation number through the JSON file is allowed, however, extra care must be taken to ensure data integrity.
 
-If you change a student's matriculation number, you must also update the matriculation number for the corresponding student's appointment(s). 
-Failure to do so will result in an invalid data file format as the appointment does not belong to any student. 
+If you change a student's matriculation number, you must also update the matriculation number for the corresponding student's appointment(s).
+Failure to do so will result in an invalid data file format as the appointment does not belong to any student.
 
 > :warning: **If your changes to the data file makes it an invalid format, Vax@NUS will discard all data and start with an empty data file at the next run**: Be very careful!
 
