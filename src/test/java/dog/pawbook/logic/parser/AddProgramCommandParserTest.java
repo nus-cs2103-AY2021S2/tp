@@ -36,29 +36,29 @@ public class AddProgramCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Program expectedProgram = new ProgramBuilder(POTTY_TRAINING).withSessions(VALID_SESSION_POTTY_TRAINING)
-            .withTags(VALID_TAG_PUPPIES).build();
+                .withTags(VALID_TAG_PUPPIES).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_POTTY_TRAINING + SESSION_DESC_POTTY_TRAINING
-            + TAG_DESC_PUPPIES, new AddProgramCommand(expectedProgram));
+                + TAG_DESC_PUPPIES, new AddProgramCommand(expectedProgram));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_OBEDIENCE_TRAINING + NAME_DESC_POTTY_TRAINING
-            + SESSION_DESC_POTTY_TRAINING + TAG_DESC_PUPPIES, new AddProgramCommand(expectedProgram));
+                + SESSION_DESC_POTTY_TRAINING + TAG_DESC_PUPPIES, new AddProgramCommand(expectedProgram));
 
         // multiple sessions - all accepted
         Program expectedProgramMultipleSessions = new ProgramBuilder(POTTY_TRAINING)
-            .withSessions(VALID_SESSION_POTTY_TRAINING, VALID_SESSION_OBEDIENCE_TRAINING)
-            .build();
+                .withSessions(VALID_SESSION_POTTY_TRAINING, VALID_SESSION_OBEDIENCE_TRAINING)
+                .build();
         assertParseSuccess(parser, NAME_DESC_OBEDIENCE_TRAINING + NAME_DESC_POTTY_TRAINING
-            + SESSION_DESC_POTTY_TRAINING + SESSION_DESC_OBEDIENCE_TRAINING
-            + TAG_DESC_PUPPIES, new AddProgramCommand(expectedProgramMultipleSessions));
+                + SESSION_DESC_POTTY_TRAINING + SESSION_DESC_OBEDIENCE_TRAINING
+                + TAG_DESC_PUPPIES, new AddProgramCommand(expectedProgramMultipleSessions));
         // multiple tags - all accepted
         Program expectedProgramMultipleTags = new ProgramBuilder(POTTY_TRAINING)
-            .withTags(VALID_TAG_QUIET, VALID_TAG_PUPPIES)
-            .build();
+                .withTags(VALID_TAG_QUIET, VALID_TAG_PUPPIES)
+                .build();
         assertParseSuccess(parser, NAME_DESC_POTTY_TRAINING + SESSION_DESC_POTTY_TRAINING
-            + TAG_DESC_QUIET + TAG_DESC_PUPPIES, new AddProgramCommand(expectedProgramMultipleTags));
+                + TAG_DESC_QUIET + TAG_DESC_PUPPIES, new AddProgramCommand(expectedProgramMultipleTags));
     }
 
     @Test
@@ -66,7 +66,7 @@ public class AddProgramCommandParserTest {
         // zero tags
         Program expectedProgram = new ProgramBuilder(POTTY_TRAINING).withTags().build();
         assertParseSuccess(parser, NAME_DESC_POTTY_TRAINING + SESSION_DESC_POTTY_TRAINING,
-            new AddProgramCommand(expectedProgram));
+                new AddProgramCommand(expectedProgram));
     }
 
     @Test
@@ -75,7 +75,7 @@ public class AddProgramCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_POTTY_TRAINING + SESSION_DESC_POTTY_TRAINING,
-            expectedMessage);
+                expectedMessage);
         // missing session prefix
         assertParseFailure(parser, VALID_NAME_POTTY_TRAINING, expectedMessage);
     }
@@ -84,22 +84,22 @@ public class AddProgramCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + SESSION_DESC_POTTY_TRAINING
-            + TAG_DESC_PUPPIES, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_PUPPIES, Name.MESSAGE_CONSTRAINTS);
 
         // invalid sessions
         assertParseFailure(parser, NAME_DESC_POTTY_TRAINING + INVALID_SESSION_DESC
-            + TAG_DESC_PUPPIES, Session.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_PUPPIES, Session.MESSAGE_CONSTRAINTS);
         // invalid tag
         assertParseFailure(parser, NAME_DESC_POTTY_TRAINING + SESSION_DESC_POTTY_TRAINING
-            + INVALID_TAG_DESC + VALID_TAG_PUPPIES, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_TAG_DESC + VALID_TAG_PUPPIES, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + SESSION_DESC_POTTY_TRAINING + INVALID_TAG_DESC,
-            Name.MESSAGE_CONSTRAINTS);
+                Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_POTTY_TRAINING
                 + SESSION_DESC_POTTY_TRAINING + TAG_DESC_PUPPIES,
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProgramCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProgramCommand.MESSAGE_USAGE));
     }
 }
