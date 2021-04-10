@@ -525,7 +525,6 @@ on the operating system of the computer you are running cakecollate on.
 Action  | Format
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...` 
-**Clear** | `clear`
 **Delete** | `delete INDEXES`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/ORDER_DESCRIPTION]... [t/TAG]...`
 **Request** | `request INDEX r/REQUEST` 
