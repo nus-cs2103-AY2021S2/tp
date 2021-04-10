@@ -1,11 +1,8 @@
 package seedu.address.ui;
 
-import java.io.IOException;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import seedu.address.model.person.Person;
 
