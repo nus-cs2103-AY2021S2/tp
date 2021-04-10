@@ -1,5 +1,9 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_DOG_ID;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_DOG_ID_MULTIPLE_FORMAT;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_PROGRAM_ID;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_PROGRAM_ID_MULTIPLE_FORMAT;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static dog.pawbook.logic.commands.DropCommand.MESSAGE_NOT_ENROLLED;
@@ -12,6 +16,7 @@ import static dog.pawbook.testutil.TypicalId.ID_EIGHTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_FIFTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_FOUR;
 import static dog.pawbook.testutil.TypicalId.ID_NINETEEN;
+import static dog.pawbook.testutil.TypicalId.ID_ONE;
 import static dog.pawbook.testutil.TypicalId.ID_SIXTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_TEN;
 import static dog.pawbook.testutil.TypicalId.ID_TWENTY;
@@ -190,6 +195,55 @@ public class DropCommandTest {
         DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
 
         assertCommandFailure(dropCommand, model, MESSAGE_NOT_ENROLLED_MULTIPLE_PROGRAMS);
+    }
+
+
+    @Test
+    public void execute_invalidDogIdOneDogOneProgram_failure() {
+        Set<Integer> dogIdSet = new HashSet<>();
+        Set<Integer> programIdSet = new HashSet<>();
+        dogIdSet.add(ID_ONE);
+        programIdSet.add(ID_EIGHTEEN);
+
+        DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
+
+        assertCommandFailure(dropCommand, model, MESSAGE_INVALID_DOG_ID);
+    }
+
+    @Test
+    public void execute_invalidDogIdManyDogsOneProgram_failure() {
+        List<Integer> dogIdList = Arrays.asList(ID_ONE, ID_EIGHTEEN);
+        Set<Integer> dogIdSet = new HashSet<>(dogIdList);
+        Set<Integer> programIdSet = new HashSet<>();
+        programIdSet.add(ID_TWENTY);
+
+        DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
+
+        assertCommandFailure(dropCommand, model, MESSAGE_INVALID_DOG_ID_MULTIPLE_FORMAT);
+    }
+
+    @Test
+    public void execute_invalidProgramIdOneDogOneProgram_failure() {
+        Set<Integer> dogIdSet = new HashSet<>();
+        Set<Integer> programIdSet = new HashSet<>();
+        dogIdSet.add(ID_TWO);
+        programIdSet.add(ID_ONE);
+
+        DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
+
+        assertCommandFailure(dropCommand, model, MESSAGE_INVALID_PROGRAM_ID);
+    }
+
+    @Test
+    public void execute_invalidIdOneDogManyPrograms_failure() {
+        Set<Integer> dogIdSet = new HashSet<>();
+        dogIdSet.add(ID_FOUR);
+        List<Integer> programIdList = Arrays.asList(ID_ONE, ID_TWO);
+        Set<Integer> programIdSet = new HashSet<>(programIdList);
+
+        DropCommand dropCommand = new DropCommand(dogIdSet, programIdSet);
+
+        assertCommandFailure(dropCommand, model, MESSAGE_INVALID_PROGRAM_ID_MULTIPLE_FORMAT);
     }
 
     @Test
