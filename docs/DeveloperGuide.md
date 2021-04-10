@@ -216,7 +216,7 @@ It is also enabled by the following Parser class:
 
 The above mentioned Parser class inherits from the `#parse method` from the Parser interface.
 
-* `DeleteTaskCommandParser#parser` - checks if the arguments passed to the current DeleteTaskCommand is valid. 
+* `DeleteTaskCommandParser#parse` - checks if the arguments passed to the current DeleteTaskCommand is valid. 
   If the arguments are valid, it creates a DeleteTaskCommand instance.
 
 Subsequently, the created `DeleteTaskCommand` object contains an `#execute` method which 
