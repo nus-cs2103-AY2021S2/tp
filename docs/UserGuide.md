@@ -162,21 +162,25 @@ Format: `add_person n/NAME`
 
 #### 3.3.2. Editing a person : `edit_person`
 
-Edits an existing person in the booking system, identified by their unique email.
+Edits an existing person in the booking system. 
 
 Format: `edit_person eo/EMAIL [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
+* Edits the person with the specified `EMAIL`. Emails are unique to each person. 
+* At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified person.
 
 Example:
-* `edit_person eo/amy@example.com p/83984029` changes the phone number of the person with email amy@example.com to 83984029.
+* `edit_person eo/amy@example.com p/83984029` updates the phone number of the person with email amy@example.com to 83984029.
 
 #### 3.3.3. Deleting a person : `delete_person`
 
 Deletes a person corresponding to the email specified.
 
 Format: `delete_person e/EMAIL`
+* Deletes the person with the specified `EMAIL`. Emails are unique to each person.
+* The `EMAIL` field is case-insensitive.
 
 Example:
-* `delete_person e/johndoe@gmail.com`
+* `delete_person e/johndoe@gmail.com` deletes the person with email johndoe@gmail.com from the system.
 
 #### 3.3.4. Listing all persons : `list_person`
 
@@ -186,12 +190,17 @@ Format: `list_person`
 
 #### 3.3.5. Finding a person : `find_person`
 
-Shows information about the person corresponding to the specified field(s) - at least one field must be provided. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
+Shows a list of persons who match the specified field(s).
 
 Format: `find_person [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
+* The fields that can be specified include the person's name, phone number, email address and the associate tag(s).
+* At least one of the optional fields must be provided.
+* Only for the `NAME` field, multiple keywords can be provided (e.g. `find_person n/Jane Lim`). Matching will be done such that all of the specified name keywords must be found in the person's name, in any order.
+* Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching.
+* `NAME` and `TAG` fields go by case-insensitive matching.
 
 Example:
-* `find_person n/John Doe t/Student`
+* `find_person n/John Doe t/Student` shows a list of persons whose name contains both the specified name keywords `John` and `Doe` (in any order), and is tagged with `Student`.
 
 ### 3.4. Venue
 
@@ -209,22 +218,27 @@ Example:
 
 #### 3.4.2. Editing a venue : `edit_venue`
 
-Edits an existing venue in the booking system with the specified venue name.
+Edits an existing venue in the booking system.
 
 Format: `edit_venue vo/VENUE_NAME [v/VENUE_NAME] [max/MAXIMUM_OCCUPANCY] [d/DESCRIPTION] [t/TAG]`
+* Edits the venue with the specified `VENUE_NAME`. Venue names are unique to each venue.
+* At least one of the optional fields must be provided. The field(s) provided will replace the data in the existing field(s) of the specified venue.
 
 Examples:
-* `edit_venue vo/Lab max/30` changes the maximum capacity of the venue named Lab to 30.
-* `edit_venue vo/Victoria Hall v/Sports Hall` changes the venue name of the venue named Victoria Hall to Sports Hall.
+* `edit_venue vo/Lab max/30` updates the maximum capacity of the venue named Lab to 30.
+* `edit_venue vo/Victoria Hall v/Sports Hall` updates the venue name of the venue named Victoria Hall to Sports Hall.
+
 
 #### 3.4.3. Deleting a venue : `delete_venue`
 
 Deletes a venue corresponding to the venue name specified.
 
 Format: `delete_venue v/VENUE_NAME`
+* Deletes the venue with the specified `VENUE_NAME`. Venue names are unique to each venue.
+* The `VENUE_NAME` field is case-insensitive.
 
 Example:
-* `delete_venue v/Volleyball Court` deletes the venue with the name "Volleyball Court".
+* `delete_venue v/Volleyball Court` deletes the venue with the venue name `Volleyball Court`.
 
 #### 3.4.4. Listing all venues : `list_venue`
 
