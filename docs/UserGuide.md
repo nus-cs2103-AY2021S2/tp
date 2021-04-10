@@ -419,6 +419,8 @@ Todos contain a description. They can also be marked as done using the `markT` c
 
 Todos are sorted alphabetically.
 
+You can add Todo A to a project containing Todo B with the same `DESCRIPTION` as long as Todo B has been marked as done.
+
 ##### Adding a todo to a project: `addT`
 
 Adds a todo to a project in CoLAB.
