@@ -17,15 +17,18 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-w10-3.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Add delivery task - add n/NAME p/PHONE a/ADDRESS "
-            + "e/EMAIL t/TAG d/DATETIME \n "
-            + "Edit delivery task - edit INDEX n/NAME p/PHONE a/ADDRESS e/EMAIL t/TAG d/DATETIME \n "
-            + "Add remark - remark INDEX r/REMARK \n"
+            + "e/EMAIL t/TAG d/DATETIME \n"
+            + "Edit delivery task (only way to add tag(s)"
+            + " - edit INDEX n/NAME p/PHONE a/ADDRESS e/EMAIL t/TAG d/DATETIME \n"
+            + "Add remark (usually for parcel name) - remark INDEX r/REMARK \n"
             + "Delete delivery task - delete INDEX \n"
             + "Clear delivery tasks - clear \n"
             + "List delivery tasks - list \n"
             + "Mark delivery tasks as done - done INDEX \n"
             + "Find delivery task - find KEYWORD \n"
-            + "Statistics of delivery workdlow - stats \n"
+            + "Sort the delivery tasks by completion status (incomplete first), urgency (for incomplete), then date"
+            + " - sort \n"
+            + "Statistics of delivery workflow - stats \n"
             + "View completed delivery tasks - completed \n"
             + "View uncompleted delivery tasks - uncompleted \n"
             + "For more detailed examples, please refer to our user guide: " + USERGUIDE_URL;
