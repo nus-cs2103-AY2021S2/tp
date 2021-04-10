@@ -597,20 +597,20 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: None of the current properties in the app has an (address, postal code) pair of  (`Blk 150 Bishan Street 11 #02-101`, `570150`)
 
-   1. Test case: `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021`
+   1. Test case: `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021` <br>
       Expected: A new property is added to the property list. The result display panel shows the details of the newly added property.
 
    1. Test case: `add property` <br>
       Expected: No property is added. An error message `Invalid command format!` is shown in the result display.
 
-   1. Other incorrect add property commands to try: `add property n/Bishan`, `add property t/Condo`
+   1. Other incorrect add property commands to try: `add property n/Bishan`, `add property t/Condo` <br>
       Expected: No property is added. An error message `Invalid command format!` is shown in the result display.
 
 1. Adding a duplicate property.
 
    1. Prerequisites: A property with an (address, postal code) pair of (`Blk 150 Bishan Street 11 #02-101`, `570150`) already exist in the app.
 
-   1. Test case: `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021`
+   1. Test case: `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021` <br>
       Expected: No property is added. An error message `This property already exists in the app` is shown in the result display.
 
 ### Adding an appointment
@@ -619,20 +619,20 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: None of the current appointments in the app has a (date, time) pair of  (`19-05-2021`, `1930`)
 
-    1. Test case: `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930`
+    1. Test case: `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930` <br>
        Expected: A new appointment is added to the appointment list. The result display panel shows the details of the newly added appointment.
 
     1. Test case: `add appointment` <br>
        Expected: No appointment is added. An error message `Invalid command format!` is shown in the result display.
 
-    1. Other incorrect add appointment commands to try: `add appointment n/Meet Jacob`, `add appointment d/19-05-2021 t/1930`
+    1. Other incorrect add appointment commands to try: `add appointment n/Meet Jacob`, `add appointment d/19-05-2021 t/1930` <br>
        Expected: No appointment is added. An error message `Invalid command format!` is shown in the result display.
 
 1. Adding a duplicate appointment.
 
     1. Prerequisites: An appointment with a (date, time) pair of (`19-05-2021`, `1930`) already exist in the app.
 
-    1. Test case: `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930`
+    1. Test case: `add appointment n/Meet Jacob r/For collection of commission d/19-05-2021 t/1930` <br>
        Expected: No appointment is added. An error message `This appointment already exists in the app` is shown in the result display.
 
 ### Deleting a property
