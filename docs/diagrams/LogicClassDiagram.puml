@@ -8,8 +8,9 @@ package Logic {
 
 package Parser {
 Interface Parser <<Interface>>
-Class AddressBookParser
-Class XYZCommandParser
+Class UserInputParser
+Class XYCommandParser
+Class TimeSlotParser
 Class CliSyntax
 Class ParserUtil
 Class ArgumentMultimap
@@ -18,7 +19,7 @@ Class Prefix
 }
 
 package Command {
-Class XYZCommand
+Class XYCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 }
@@ -31,32 +32,48 @@ package Model{
 Class HiddenModel #FFFFFF
 }
 
+package Storage {
+Class HiddenStorage #FFFFFF
+}
+
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
-LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
+LogicManager -->"1" UserInputParser
+UserInputParser .left.> XYCommandParser: creates >
+UserInputParser --> Storage
 
-XYZCommandParser ..> XYZCommand : creates >
-XYZCommandParser ..|> Parser
-XYZCommandParser ..> ArgumentMultimap
-XYZCommandParser ..> ArgumentTokenizer
+XYCommandParser ..> XYCommand : creates >
+XYCommandParser .up.|> Parser
+XYCommandParser ..> TimeSlotParser
+TimeSlotParser -right-> CliSyntax
+CliSyntax -right[hidden]- ParserUtil
+XYCommandParser ..> ArgumentMultimap
+ArgumentMultimap ..> Prefix
+XYCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
-XYZCommandParser ..> CliSyntax
-CliSyntax ..> Prefix
-XYZCommandParser ..> ParserUtil
-ParserUtil .down.> Prefix
-ArgumentTokenizer .down.> Prefix
-XYZCommand -up-|> Command
+XYCommandParser ..> CliSyntax
+CliSyntax --> Prefix
+XYCommandParser ..> ParserUtil
+ArgumentTokenizer ..> Prefix
+XYCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
+LogicManager -right-> Storage
+
 LogicManager --> Model
-Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindPatientCommand, etc
+Command ..> Storage
+note bottom of XYCommand
+    X = Add, Clear, Delete, Edit, Find & List
+    Y = Appointment, Doctor & Patient
+    XYCommand = AddPatientCommand,
+    deleteDoctorCommand, etc.
+    Applies to XYCommandParser too.
+end note
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult
-CommandResult -[hidden]-> Parser
+CommandResult -right[hidden]- Parser
 @enduml
