@@ -42,7 +42,7 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
             }
             String timeUnit = wordsInTrimmedArgs[1];
             long numOfDaysFromToday = timeConversion(parsedNum, timeUnit);
-            return new ReminderCommand(new ItemExpiringPredicate(numOfDaysFromToday));
+            return new ReminderCommand(new ItemExpiringPredicate(numOfDaysFromToday), parsedNum, timeUnit);
         } catch (ArrayIndexOutOfBoundsException ex) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
         } catch (NumberFormatException ex) {

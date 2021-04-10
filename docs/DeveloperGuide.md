@@ -653,17 +653,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | user | add an item to the inventory | keep track of it’s location, quantity and expiry date |
 | `* * *` | user who discards items often | delete an item from the inventory | remove it when it is expired or used up |
 | `* * *` | user who stocks up items regularly | update my items’ details | change the items' expiry dates and/or quantities accordingly | 
-| `* * *` | user with many items | list down all items | know all the items I have in one glance |
-| `* *` | user who has many items in my room | see all items in my room | keep track of exactly what I have | 
-| `* *` | user who tags my items meaningfully | see all items with the same tag | see what items I have with that particular tag |
-| `* * *` | forgetful user with many items | search for an item quickly | locate them easily |
-| `* *` | forgetful user | be aware of my expiring items | replace them before it is expired or discard them if they have expired |
-| `* *` | grocery buyer of the household | sort my items in terms of quantity | stock up items that are running low on quantity |
-| `* *` | user who does not like to waste food | sort my food in terms of expiry date | consume food that is expiring first |
+| `* * *` | user with many items | list down all my items | know all the items I have in one glance |
+| `* * *` | forgetful user with many items | find an item quickly using its name | locate them easily |
+| `* *` | user who has many items in the storeroom | view all items in the storeroom | keep track of exactly what I have | 
+| `* *` | user who keeps track of my guests' favourites | view all items tagged with "guests" | better prepare the items when hosting my guests |
+| `* *` | grocery buyer of the household | sort my items in terms of increasing quantity | stock up items that are running low on quantity |
+| `* *` | user who does not like wastage | sort my items in terms of decreasing quantity | use up items that are high in quantity first |
+| `* *` | user who does not like to waste food | sort my food items in terms of expiry date | consume food that is expiring first |
+| `* *` | user who does not like to waste food | be reminded of all food items expiring in a specified number of days | consume them within that period |
 | `*` | user who discards large number of items at once | clear all the items in the inventory | start the list afresh without having waste time deleting each item manually |
-| `*` | user who does room cleaning during CNY | clear all the items in a certain location | add them back to different places easily |
-
-_**(more to be added)**_
+| `*` | user who does room cleaning during spring cleaning | clear all the items in a certain location | add them back to different places easily |
 
 ### Use cases
 
@@ -692,12 +691,18 @@ otherwise)
     * 1b1. StoreMando shows an error message.
 
       Use case resumes at step 1.
+    
+* 1c. User inputs a number smaller than 0 or larger than 1,000,000.
+
+    * 1c1. StoreMando shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: UC2 - Delete an item in a specific location**
 
 **MSS**
 
-1. User requests to <u> list all items in a specific location (UC3). </u>
+1. User requests to <u> list all items in a specific location (UC7). </u>
 2. StoreMando displays all items in the location.
 3. User requests to delete a specific item in the list.
 4. StoreMando deletes the specified item from the list and displays the updated list of items.
@@ -716,24 +721,7 @@ otherwise)
 
       Use case resumes at step 3.
 
-**Use case: UC3 - List all items in a specific location**
-
-**MSS**
-
-1. User requests to display all items in a specific location.
-2. StoreMando displays all items in that specific location.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. User input has invalid syntax.
-
-    * 1a1. StoreMando shows an error message.
-
-      Use case resumes at step 1.
-
-**Use case: UC4 - Find an item**
+**Use case: UC3 - Find an item**
 
 **MSS**
 
@@ -742,7 +730,7 @@ otherwise)
 
    Use case ends.
 
-**Use case: UC5 - Edit an item**
+**Use case: UC4 - Edit an item**
 
 **MSS**
 
@@ -765,18 +753,24 @@ otherwise)
 
       Use case resumes at step 1.
 
-**Use case: UC6 - Check for expiring items**
+* 1c. User inputs a number smaller than 0 or larger than 1,000,000.
+
+    * 1c1. StoreMando shows an error message.
+
+      Use case resumes at step 1.
+    
+**Use case: UC5 - Check for expiring items**
 
 **MSS**
 
-1. User wants to search for items that are expiring within the next 7 days.
-2. StoreMando displays a list of items that have either expired or are expiring within the next 7 days.
+1. User wants to search for items that are expiring within a specific number of days.
+2. StoreMando displays a list of items that have either expired or are expiring within the specified number of days.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. User inputs a negative number.
+* 1a. User inputs a number smaller than -365 or larger than 365.
 
     * 1a1. StoreMando shows an error message.
 
@@ -788,7 +782,7 @@ otherwise)
 
       Use case resumes at step 1.
 
-**Use case: UC7 - List all items**
+**Use case: UC6 - List all items**
 
 **MSS**
 
@@ -796,6 +790,23 @@ otherwise)
 2. StoreMando displays all items in the inventory.
 
    Use case ends.
+
+**Use case: UC7 - List all items in a specific location**
+
+**MSS**
+
+1. User requests to display all items in a specific location.
+2. StoreMando displays all items in that specific location.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User input has invalid syntax.
+
+    * 1a1. StoreMando shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: UC8 - List all items with a specific tag**
 
@@ -833,7 +844,16 @@ otherwise)
 
    Use case ends.
 
-**Use case: UC12 - Delete all items in a specific location**
+**Use case: UC12 - Clear all items**
+
+**MSS**
+
+1. User requests to clear all items in the inventory.
+2. StoreMando deletes all items in the inventory.
+
+Use case ends.
+
+**Use case: UC13 - Clear all items in a specific location**
 
 **MSS**
 
@@ -850,28 +870,33 @@ Use case ends.
 
       Use case resumes at step 1.
 
-*{More to be added}*
-
 ### Non-Functional Requirements
 
 1. **Performance**
     * Result should appear within 0.3 seconds after user keys in a command.
 2. **Reliability**
     * Should be able to hold up to 1000 line items in the house without any sluggish performance for typical usage.
+    * Should be able to detect and inform users of duplicate items (i.e. same name, location and expiry date) and prevent users from adding them.
+    * Should be able to detect and inform users of expired items when being added to the inventory.
 3. **Portability**
     * Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 4. **Usability**
     * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
       be able to accomplish most of the tasks faster by typing rather than using the mouse.
+    * A user should be able to use all functionalities of the application without needing to use a mouse to navigate.
     * StoreMando should work with or without Internet connection.
-
+5. **Security**
+    * Users that request to delete any item from the inventory will have that item permanently removed from memory.
+    
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **StoreMando**: Name of the application
 * **CLI**: Command Line Interface
 * **GUI**: Graphical User Interface
+* **User**: Any member under the same household
 * **Inventory**: List of all items stored in StoreMando
+* **Tag**: A miscellaneous piece of information that the user associates the item with, that isn't captured by the other fields but is good to have.
 
 --------------------------------------------------------------------------------------------------------------------
 

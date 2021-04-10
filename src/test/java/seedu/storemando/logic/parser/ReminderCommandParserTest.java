@@ -28,18 +28,21 @@ public class ReminderCommandParserTest {
     @Test
     public void parse_validArgs_returnsReminderCommand() {
         long twoWeeksInDays = 14;
-        ReminderCommand expectedReminderCommand = new ReminderCommand(new ItemExpiringPredicate(twoWeeksInDays));
+        ReminderCommand expectedReminderCommand = new ReminderCommand(new ItemExpiringPredicate(twoWeeksInDays),
+            2, "weeks");
         assertParseSuccess(parser, "2 weeks", expectedReminderCommand);
 
         long threeDays = 3;
-        ReminderCommand expectedReminderCommand2 = new ReminderCommand(new ItemExpiringPredicate(threeDays));
+        ReminderCommand expectedReminderCommand2 = new ReminderCommand(new ItemExpiringPredicate(threeDays),
+            3, "days");
         assertParseSuccess(parser, "3 days", expectedReminderCommand2);
     }
 
     @Test
     public void parse_validArgsWithMultipleWhitespace_returnsReminderCommand() {
         long twoWeeksInDays = 14;
-        ReminderCommand expectedReminderCommand = new ReminderCommand(new ItemExpiringPredicate(twoWeeksInDays));
+        ReminderCommand expectedReminderCommand = new ReminderCommand(new ItemExpiringPredicate(twoWeeksInDays),
+            2, "weeks");
 
         assertParseSuccess(parser, "2 weeks \t \n \t", expectedReminderCommand);
         assertParseSuccess(parser, "\t \n \t 2 weeks", expectedReminderCommand);
