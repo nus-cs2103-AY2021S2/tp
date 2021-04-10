@@ -46,4 +46,5 @@ AttributeManager *--> RecurringSchedule MODEL_COLOR
 AttributeManager *--> Status MODEL_COLOR
 AttributeManager *--> Duration MODEL_COLOR
 AttributeManager *--> Description MODEL_COLOR
+
 @enduml
