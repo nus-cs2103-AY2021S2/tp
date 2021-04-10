@@ -1,7 +1,6 @@
 package seedu.taskify.logic.commands.util;
 
 import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.taskify.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.taskify.commons.util.StringUtil.reduceWhitespaces;
 import static seedu.taskify.model.task.Status.isValidStatus;
 
@@ -38,6 +37,10 @@ public class DeleteUtil {
             + " specified Status.\n" + "Parameters: STATUS_STRING (in lower caps)\n"
             + "Note: \"-all\" must be added after the specified status\n"
             + "Example: " + DeleteCommand.COMMAND_WORD + " completed -all";
+    public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The given index does not correspond to any "
+            + "tasks!";
+    public static final String MESSAGE_INVALID_TASK_FOR_INDICES = "At least one index in the indices given does not "
+            + "correspond to a task";
     public static final String MESSAGE_NO_TASKS_OF_GIVEN_STATUS = "There are no tasks with the given status!";
 
 
@@ -167,6 +170,7 @@ public class DeleteUtil {
      */
     public static List<Task> getTasksToDelete(List<Task> tasksSource, List<Index> targetIndexes,
                                               boolean isDeletingByRange) throws CommandException {
+        assert targetIndexes.size() > 1;
         List<Task> tasksToDelete = new ArrayList<>();
 
         // Checks if the index range does not correspond to at least one task in Taskify
@@ -179,7 +183,7 @@ public class DeleteUtil {
 
         for (Index targetIndex : targetIndexes) {
             if (targetIndex.getZeroBased() >= tasksSource.size()) {
-                throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+                throw new CommandException(MESSAGE_INVALID_TASK_FOR_INDICES);
             }
 
             Task taskToDelete = tasksSource.get(targetIndex.getZeroBased());

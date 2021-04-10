@@ -1,10 +1,10 @@
 package seedu.taskify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.taskify.logic.commands.util.DeleteUtil.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 
 import java.util.List;
 
-import seedu.taskify.commons.core.Messages;
 import seedu.taskify.commons.core.index.Index;
 import seedu.taskify.logic.commands.exceptions.CommandException;
 import seedu.taskify.model.Model;
@@ -54,7 +54,7 @@ public class DeleteCommand extends Command {
         }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToDelete = lastShownList.get(targetIndex.getZeroBased());
