@@ -121,25 +121,25 @@ public class CommandBox extends UiPart<Region> {
          */
         public static void matchAndSet(TextField textField, KeyEvent keyEvent) {
             if (CTRL_F.match(keyEvent)) {
-                Platform.runLater(() -> setTextAndSetCaretToEnd(textField, "find"));
+                Platform.runLater(() -> insertTextAndSetCaretToEnd(textField, "find"));
             } else if (CTRL_L.match(keyEvent)) {
-                Platform.runLater(() -> setTextAndSetCaretToEnd(textField, "list"));
+                Platform.runLater(() -> insertTextAndSetCaretToEnd(textField, "list"));
             } else if (CTRL_A.match(keyEvent)) {
-                Platform.runLater(() -> setTextAndSetCaretToEnd(textField, "add"));
+                Platform.runLater(() -> insertTextAndSetCaretToEnd(textField, "add"));
             } else if (CTRL_D.match(keyEvent)) {
-                Platform.runLater(() -> setTextAndSetCaretToEnd(textField, "delete"));
+                Platform.runLater(() -> insertTextAndSetCaretToEnd(textField, "delete"));
             } else if (CTRL_E.match(keyEvent)) {
-                Platform.runLater(() -> setTextAndSetCaretToEnd(textField, "edit"));
+                Platform.runLater(() -> insertTextAndSetCaretToEnd(textField, "edit"));
             } else if (CTRL_S.match(keyEvent)) {
-                Platform.runLater(() -> setTextAndSetCaretToEnd(textField, "sort"));
+                Platform.runLater(() -> insertTextAndSetCaretToEnd(textField, "sort"));
             }
             //Prevent keyEvent from being re-handled.
             Platform.runLater(keyEvent::consume);
         }
 
 
-        private static void setTextAndSetCaretToEnd(TextField textField, String text) {
-            textField.setText(text);
+        private static void insertTextAndSetCaretToEnd(TextField textField, String text) {
+            textField.appendText(text);
             textField.positionCaret(textField.getLength());
         }
     }
