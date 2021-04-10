@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.meetings;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_BY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_DIRECTION;
 
@@ -34,7 +35,7 @@ public class SortMeetingCommandParser implements Parser<SortMeetingCommand> {
             MeetingSortDirection direction = MeetingSortDirection.valueOf(directionStringCaps);
             return new SortMeetingCommand(option, direction);
         } catch (Exception e) {
-            throw new ParseException(SortMeetingCommand.MESSAGE_USAGE);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortMeetingCommand.MESSAGE_USAGE));
         }
 
     }
