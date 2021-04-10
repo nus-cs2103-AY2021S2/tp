@@ -1,3 +1,8 @@
+---
+layout: page
+title: User Guide
+---
+
 <img width="960" alt="docboblogo" src="https://user-images.githubusercontent.com/59093518/113546749-2db63300-961f-11eb-979d-128c9fd10ee6.png">
 
 **DocBob** is a lightweight patient management system built to help small clinics better manage the appointments & medical information of their beloved patients. With DocBob, you will never have to go through the hassle of manually keeping track of your patients' medical information and appointments ever again. Leave the pen and paper in the past and let DocBob take you to an automated future. In the event of any issues, please feel free to contact the team via the email provided below under the **Issues** section
@@ -317,19 +322,19 @@ If your changes to the data file makes its format invalid, docBob will discard a
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and replace the empty data file it creates with the file that contains the data of your previous DocBob home folder.<br>
-**Q**: How do I edit a patient's details or add appointments to a patient that is archvied?<br>
+**Q**: How do I edit a patient's details or add appointments to a patient that is archived?<br>
 **A**: Unarchive the patient using the `unarchive` command and proceed with editing the patient's details or scheduling appointments with the patient.<br>
 **Q**: How do I get back the sample patient data that appeared when I first opened the app after clearing it?<br>
 **A**: Delete the data folder along with the docBob.json file inside and restart the app. Note that you will lose any patient info that you added after clearing the app of all sample patient data.<br>
-**Q**: Why are some information not visible?<br>
-**A**: Because the screen size differs for everyone, try resizing your screen if the information is not visible. That should fix the problem.
+**Q**: Why is some information not visible?<br>
+**A**: The screen size differs depending on your device, try resizing your window if some information is not visible.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary 
 
-Terminology | Definition | Examples
-------------|------------|----------
+Terminology | Definition 
+------------|------------
 **Parameter** |  In the command format given, the words in `UPPER_CASE` are the parameters or arguments to be supplied by you. For example, in the add command, the given format is: `add n/NAME p/PHONENUMBER e/EMAIL a/ADDRESS h/HEIGHT w/WEIGHT [t/TAG]`. Thus, `NAME`, `PHONENUMBER`, `EMAIL`, `ADDRESS`, `HEIGHT`, `WEIGHT` and `TAG` are the parameters to be keyed in by you. `TAG` is an optional parameter.
 **Index** | Index refers to the position of the patient in the displayed patient list. For example, if the order in which patients are displayed in the app is {Alice,Bob,Charlie} then Alice's index is 1, Bob's is 2, and Charlie's is 3.
 **Medical record** | The report that the doctor writes during an appointment with a patient.
