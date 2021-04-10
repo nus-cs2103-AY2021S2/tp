@@ -62,7 +62,7 @@ public class BookingVenueContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_bookingVenueDoesNotContainKeyworde_returnsFalse() {
+    public void test_bookingVenueDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         BookingVenueContainsKeywordsPredicate predicate =
                 new BookingVenueContainsKeywordsPredicate(Collections.emptyList());
