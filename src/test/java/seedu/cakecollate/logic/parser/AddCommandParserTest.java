@@ -123,14 +123,6 @@ public class AddCommandParserTest {
                 new AddCommand(indexList, descriptor));
     }
 
-    // todo
-    /*
-    have both index list and order descriptions
-    have only index list no o/
-    have only o/ no oi/
-    what if oi/prefix repeat? ignoring like delete index right
-     */
-
     @Test
     public void parse_optionalFieldsMissing_success() {
         Order expectedOrder = new OrderBuilder(AMY).withTags().build();
@@ -248,7 +240,7 @@ public class AddCommandParserTest {
         Order expectedOrder = new OrderBuilder(BOB).withTags(VALID_TAG_FRIEND).withOrderDescriptions().build();
         AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(expectedOrder).build();
 
-        // doesn't matter if this index doesn't exist in order items model
+        // doesn't matter if this index doesn't exist in order items model; this test is independent of model
         IndexList indexList = new IndexList(new ArrayList<>());
         indexList.add(INDEX_FIRST_ORDER);
         indexList.add(INDEX_SECOND_ORDER);

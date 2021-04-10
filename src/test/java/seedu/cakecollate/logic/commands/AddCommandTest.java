@@ -111,7 +111,7 @@ public class AddCommandTest {
         addBobCommand = new AddCommand(nonNullIndexList, descriptorBob);
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
-    
+
     // ======== MODEL STUBS ========
 
 
