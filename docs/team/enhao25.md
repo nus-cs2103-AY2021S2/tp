@@ -16,18 +16,16 @@ Given below is a summary of my contributions to the TutorBuddy Application.
   * **Justification:** Independent tutors might want to keep track of their earnings. However, as different lesson could be priced differently,
     we wanted to implement a feature that helps user calculate their expected total current month salary and their previous 2 months
     monthly salary.
-  * **Highlights:** Calculation are performed in a separate FeeUtil folders that performs the calculation. Runs a loop for each month to perform and
-    calculate the monthly fee from the session list, taking into account whether the sessions are individual sessions or recurring sessions.
+  * **Highlights:** Calculation are performed in a separate FeeUtil class. It performs the calculation using a loop and takes into account whether the sessions are individual sessions or recurring sessions.
     As the monthly fees are expected to show up in the UI, I had to create a list panel, and a card fxml file that represents the monthly fee.
     We had to add a listener to the student list as well, so that whenever the student list updates, the monthly fees would be updated and
-    accurate everytime.
+    accurate.
   * **Related PR:** [PR #118](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/118) and
     [PR #145](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/145).
 * Feature to get a particular student's monthly fee.
     * **What it does:** Fee command to calculate the monthly fee of a particular student in a specific month and year and return the value to the user.
     * **Justification:** When independent tutor collects their monthly fee from the students, it might be difficult for them to keep track of how much would they receive
-      when their lessons are charge on a per session basis. Hence, we wanted to create a feature that collects how much would a student have to
-      pay in a particular month and year, so TutorBuddy can help the tutor calculate the fee for them instead.
+      when their lessons are charge on a per session basis. Hence, we wanted to create a feature such that TutorBuddy can help the tutor calculate the monthly fees instead.
     * **Highlights:** This feature makes use of the methods in FeeUtil to calculate the fees for a particular student. As this is a command based query, I would have to first
       create GetMonthlyFeeCommand class that executes the command, and a parser method for the command. New prefixes are defined, and I
       created 2 additional Month and Year class to enforce certain constraints. Constraint includes that the year must be between 1970 and 2037 (To avoid 2038 problem that can be understood [here](https://en.wikipedia.org/wiki/Year_2038_problem)),
@@ -44,9 +42,7 @@ the fields taken to be representative of a student class instead.
       as it serves as a good learning opportunity for me.
     * **Highlights:** I made use of Intellij to help me with refactoring the application. However, as the code base was large, it was difficult to
       made changes to the application and ensure that the entire application still works as expected. I had to do small adjustments at
-      a time and consistently check that the test cases still works. This has allowed me to explore
-      all the different components of the application such as storage, model and logic. I further updated some of the
-      commands to take in different fields.
+      a time and consistently check that the test cases still works. This has allowed me to explore all the different components of the application such as storage, model and logic.
     * **Related PR:** [Successful refactor PR #34](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/34) and
       [PR #153](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/153).
 
@@ -60,10 +56,7 @@ the fields taken to be representative of a student class instead.
     * In charge of ensuring that the project is on track for completion by the given dateline.
 * Testing:
     * Written test for many of the classes such as `Month`, `Fee`, `GetMonthlyFeeCommand` and `GetMonthlyFeeCommandParser`.
-    * Non-trivial testing PR includes:
-      * [PR #128](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/128)
-      * [PR #165](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/165)
-      * [PR #271](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/271)
+    * Non-trivial testing PR includes: [PR #128](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/128), [PR #165](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/165), [PR #271](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/271)
 * Documentation:
   * User Guide:
     * Added explanation for the `FEE` command [PR #85](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/85) and [PR #254](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/254), [PR #255](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/255).
@@ -76,5 +69,4 @@ the fields taken to be representative of a student class instead.
     * Updated the application value proposition and added 5 different use cases [PR #19](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/19/files).
     * Updated the use cases of the project [PR #270](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/270) and [PR #279](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/279).
     * Updated implementation details for students and fee command [PR #274](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/274).
-  * Codes Contributed:
-    * [RepoSense Link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=enhao25&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=enhao25&tabRepo=AY2021S2-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
+  * [RepoSense Link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=enhao25&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=enhao25&tabRepo=AY2021S2-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
