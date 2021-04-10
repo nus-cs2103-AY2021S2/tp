@@ -223,7 +223,7 @@ public class Person {
         }
 
         if (!meetings.isEmpty()) {
-            builder.append("; Meeting: ");
+            builder.append("; Meetings: ");
             meetings.forEach(meetingString -> builder.append(meetingString).append(", "));
             builder.deleteCharAt(builder.length() - 1).deleteCharAt(builder.length() - 1);
         }

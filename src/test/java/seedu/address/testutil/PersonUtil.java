@@ -45,9 +45,6 @@ public class PersonUtil {
         person.getPolicies().stream().forEach(
             s -> sb.append(PREFIX_INSURANCE_POLICY + s.policyId + " ")
         );
-        person.getMeetings().stream().forEach(
-            s -> sb.append(PREFIX_MEETING + s.meeting + " ")
-        );
         return sb.toString();
     }
 
@@ -74,14 +71,6 @@ public class PersonUtil {
                 sb.append(PREFIX_INSURANCE_POLICY).append(" ");
             } else {
                 policies.forEach(s -> sb.append(PREFIX_INSURANCE_POLICY).append(s.policyId).append(" "));
-            }
-        }
-        if (descriptor.getMeetings().isPresent()) {
-            List<Meeting> meeting = descriptor.getMeetings().get();
-            if (meeting.isEmpty()) {
-                sb.append(PREFIX_MEETING);
-            } else {
-                meeting.forEach(s -> sb.append(PREFIX_MEETING).append(s.meeting).append(" "));
             }
         }
         return sb.toString();
