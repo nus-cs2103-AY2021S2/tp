@@ -31,10 +31,11 @@ Damith Chatura Rajapakse
 
 <img src="images/georgepwhuang.png" width="200px">
 
-[[github](http://github.com/georgepwhuang)] [[portfolio](team/georgepwhuang.md)]
+[[github](http://github.com/georgepwhuang)]
+[[portfolio](team/georgepwhuang.md)]
 
 * Role: Developer
-* Responsibilities: Deliverables and deadlines + IntelliJ 
+* Responsibilities: Deliverables and deadlines + IntelliJ + UI
 
 ### Koh Huai Ze
 
