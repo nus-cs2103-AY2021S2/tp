@@ -492,6 +492,76 @@ Given below are instructions to test the app manually.
 to work on.
 </div>
 
+### Launch and Shutdown
+1. Initial launch
+
+    1. Download the jar file and copy into an empty folder
+
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+
+2. Saving window preferences
+
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+    2. Re-launch the app by double-clicking the jar file.<br> 
+       Expected: The most recent window size and location is retained.
+       
+### Add an entry
+1. Add an entry with the provided details.
+    1. Prerequisite: `list` entries to ensure that the entry going to be added in not already displayed in the Food Diary application.
+
+    1. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
+    <br>Expected: Add an entry with name Subway, 5/5 Rating, 'I like this food a lot!' review, 3155 Commonwealth Ave W, Singapore 129588 address, 
+    FastFood and Vegan categories and a SOC. A new entry will be shown in the entry list panel.
+    
+    2. Test case: `add n/Subway ra/7 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
+    <br>Expected: Invalid rating error will be shown in the result display. Entry will not be added.
+    
+    3. Test case: `add n/Subway ra/5 p/1000 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
+    <br>Expected: Invalid price error will be shown in the result display. Entry will not be added.
+       
+    4. Test case: `add n/Subway ra/5 p/6 re/ a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
+    <br>Expected: Invalid review error will be shown in the result display. Entry will not be added.
+       
+    5. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/ c/FastFood c/Vegan s/SOC`
+    <br>Expected: Invalid address error will be shown in the result display. Entry will not be added.
+
+    6. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/Deck c/FastFood c/Math s/SOC`
+    <br>Expected: A list of valid categories will be shown in the result display. Entry will not be added.
+
+    7. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/Primary`
+    <br>Expected: A list of valid schools will be shown in the result display. Entry will not be added.
+
+    8. Other incorrect add commands to try: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
+    followed by `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC` (duplicate entry)
+
+## Add on to an entry
+1. Add on to an entry with the provided details
+    1. Prerequisite: `list` to select the entry you want to add on details to. There must be at least one entry displayed.
+    2. Test case: `addon 1 re/I like this food a lot! p/7`
+    <br>Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
+       out of the initial price range dispalyed in the entry).
+    3. Test case: addon 1
+    <br>Expected: Error message "At least one field to add-on must be provided." will be shown in the result display. Nothing will be added on to the specified entry.
+    4. Test case: addon 1 re/
+    <br>Expected: Invalid review error will be shown in the result display. Nothing will be added on to the specified entry.
+    5. Test case: addon 1 re/Good Food p/1000
+    <br>Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.
+    6. Other incorrect `addon` commands to try: addon 10000000000 re/Good Food (invalid index)
+    
+## Delete an Entry
+1. Delete a booking specified by booking ID.
+    1. Prerequisite: `list` all entries to find out the name of the entry to delete
+
+    Test case: delete 1
+    <br>Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.
+    
+    Test case: delete x (where x is non-existent booking ID)
+    <br>Expected: Error of invalid entry shown in result display. No entry is deleted.
+
+    Other incorrect delete commands to try: delete, delete Starbucks
+    <br>Expected: Invalid command format error. No entry is deleted.
+
 ## UI Mockup
 
 
