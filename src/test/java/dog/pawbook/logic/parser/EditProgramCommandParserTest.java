@@ -175,8 +175,8 @@ public class EditProgramCommandParserTest {
     @Test
     public void parse_multipleRepeatedSessions_acceptsUnique() {
         int targetId = ID_ONE;
-        String userInput = targetId + SESSION_DESC_OBEDIENCE_TRAINING + SESSION_DESC_POTTY_TRAINING +
-                SESSION_DESC_OBEDIENCE_TRAINING + SESSION_DESC_POTTY_TRAINING;
+        String userInput = targetId + SESSION_DESC_OBEDIENCE_TRAINING + SESSION_DESC_POTTY_TRAINING
+                + SESSION_DESC_OBEDIENCE_TRAINING + SESSION_DESC_POTTY_TRAINING;
 
         EditProgramDescriptor descriptor = new EditProgramDescriptorBuilder()
                 .withSessions(VALID_SESSION_POTTY_TRAINING, VALID_SESSION_OBEDIENCE_TRAINING).build();
