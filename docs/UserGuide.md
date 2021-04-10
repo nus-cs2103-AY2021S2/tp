@@ -251,7 +251,7 @@ Examples:
 
 Shows a list of all events in PartyPlanet's Event List. Similar to `list`.
 
-Format: `elist [--exact] [--any] [-n NAME] [-r REMARK]... [-s SORT] [-o ORDER]`
+Format: `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT] [-o ORDER]`
 
 1. If no search parameters specified, `elist [-s SORT_FIELD] [-o SORT_ORDER]`: List out all events in event list.
 2. If search parameters specified, `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT_FIELD] [-o
