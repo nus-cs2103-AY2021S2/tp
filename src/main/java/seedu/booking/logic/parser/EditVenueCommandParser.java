@@ -64,7 +64,7 @@ public class EditVenueCommandParser implements Parser<EditVenueCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editVenueDescriptor::setTags);
 
         if (!editVenueDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditVenueCommand.MESSAGE_NOT_EDITED + EditVenueCommand.MESSAGE_FIELDS);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditVenueCommand.MESSAGE_USAGE));
         }
 
         return new EditVenueCommand(venueName, editVenueDescriptor);
