@@ -271,9 +271,21 @@ View scores of all past quiz attempts.
 
 Format: `history`
 
-#### Adding and removing entries `[coming in v2.0]`
+Example:
 
-_Details coming soon ..._
+![HistoryExample](images/HistoryUseExample.png)
+- If a quiz is left unfinished (i.e. there are still questions in the quiz), the history statistics will not be updated.
+- If a quiz session has zero attempt, a default correct ratio of `0.000%` will be recorded.
+- In future versions, `history` will provide more useful information to better optimize users' learning experience.
+
+### Adding and removing flashcards `[coming in v2.0]`
+
+_These functions are likely to be included in future versions of Weeblingo, stay tuned._
+
+### Saving the data
+
+Weeblingo data is saved in the hard disk automatically after any command.
+There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -281,13 +293,24 @@ _Details coming soon ..._
 
 **Q**: How do I transfer my quiz attempt scores to other computers?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file
-that contains the data of your previous WeebLingo home folder.
+that contains the data of your previous Weeblingo home folder.
 
 **Q**: Can I add my customized flashcards?<br>
 **A**: Sorry, the current version of the application does not allow self-defined flashcards to be added. However, if you
 are advanced and know how to manipulate the storage files, you can do so if you want. However, the application assumes
 a certain format for each data field, thus if you modified the data wrongly, the app will use the fallback option, which
 is to load the storage file with built-in default flashcards and tags.
+
+**Q**: Why can't I delete some tags?<br>
+**A**: Default tags are provided by the application to aid in the learning process and guide you along the way. You can,
+however, add your own tags to any flashcard. The deletion of tags exists to complement this user tagging function, 
+in case you have a change of mind or typed any tag wrongly.
+
+**Q**: I just want to do a short quiz! Is there any way to do that?<br>
+**A**: There are multiple ways to set up a shorter quiz session: one would be to start with a selected number of
+questions, and let the application randomise some questions for you. The other option could be to tag questions you
+would like to be tested on; starting with these tags will give you a quiz session with only these selected flashcards.
+A combination of the above two options is also possible.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -312,7 +335,7 @@ Action | Format, Examples |
 --------------------------------------------------------------------------------------------------------------------
 
 ## Note for Testers
-By the nature of the type of application Weeblingo is, it is inconvenient for testers who do not possess some elementary
+By the nature of Weeblingo, it is inconvenient for testers who do not possess some elementary
 knowledge of Japanese to test our application.
 
 Therefore, to facilitate testers, we have provided a list of flashcards which reside in the database

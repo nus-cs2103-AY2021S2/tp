@@ -164,14 +164,19 @@ package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+### Learn Mode
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+The `learn` command is used to enter Learn Mode, allowing the user to view all flashcards with the question and answer
+both displayed. Tagging and deletion of tags is also only available in this mode. 
+
+The following activity diagram summarizes what happens when a user attempts to enter Learn Mode:
+
+![LearnModeActivityDiagram](images/LearnModeActivityDiagram.png)
 
 ### [Implemented] Tagging Flashcards
 
-The tagging mechanism allows users to add tags to flashcards of their choice while in the _Learn Mode_
-of the WeebLingo application. Each flashcard has a set of default tags which cannot be edited, followed by
+The tagging mechanism allows users to add tags to flashcards of their choice while in the Learn Mode
+of the Weeblingo application. Each flashcard has a set of default tags which cannot be edited, followed by
 any unique user added tags.
 
 ![Structure of the Flashcard with tags](images/FlashcardWithTagsObjectDiagram.png)
@@ -180,8 +185,18 @@ The following activity diagram summarizes what happens when a user adds a new ta
 
 ![NewTagActivityDiagram](images/NewTagActivityDiagram.png)
 
-The tags function ties together with the Start function of the application, as users can choose to start a quiz
-containing flashcards that have the same tag only.
+The tags function ties together with the Start, Learn and Quiz function of the application,
+as users can choose to start a quiz, enter Start Mode or enter Learn Mode with a filtered set of flashcards.
+
+### [Implemented] Deleting Tags from Flashcards
+
+This mechanism works with the above flashcard tagging feature to allow users to customise tags for their flashcards
+while in the Learn Mode of the Weeblingo application. 
+
+The following sequence diagram summarises how the DeleteTagCommand works:
+![QuizSequenceDiagram](images/DeleteTagSequenceDiagram.png)
+
+Default tags cannot be deleted by this command and will throw an error if the user attempts to do so.
 
 ### [Implemented] Quiz Feature
 
@@ -241,8 +256,8 @@ The following sequence diagram shows how the `check` command works:
 #### Quiz Scoring
 
 The quiz can be scored for each individual quiz session. The scoring data will be written into the storage file
-after the quiz session is completed. A quiz session is complete if and only if the message indicating the end of
-quiz is displayed in the GUI window. The following activity diagrams summarize how the score is recorded generated
+after the quiz session is completed. A quiz session is completed if and only if the message indicating the end of
+quiz is displayed in the GUI window. The following activity diagrams summarize how the score is generated and recorded
 along with each quiz session.
 
 ![QuizScoringSequenceDiagram](images/QuizScoringSequenceDiagram-How_is_score_produced_with_quiz__.png)
@@ -253,7 +268,7 @@ along with each quiz session.
 #### View Past Quiz Attempts
 
 The view quiz history mechanism allows users to view their past attempts of quizzes. Each entry of quiz history is
-represented in a way similar how the flashcards are represented in the Weeblingo application.
+represented in a way similar to how the flashcards are represented in the Weeblingo application.
 
 Below is the class diagram
 for how `Score` is represented in *Model* component.
@@ -277,7 +292,6 @@ switching UI display the other way around is similar.
     * Cons:
       * May have the overhead of writing similar code. For instance, `JsonAdaptedFlashcard` and `JsonAdaptedScore`.
       * Changing the GUI display from flashcards to score history may be cumbersome.
-      * Changing the UI display from flashcards to score history may be cumbersome.
 * **Alternative 2:** Let `Score` have inheritance relationship with `Flashcard`.
     * Pros: Changing GUI display is easy.
     * Cons:
@@ -404,13 +418,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 <!-- Updated and maintained by [Yucheng](https://github.com/cheng20010201) -->
 1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  The product should be available for downloads after each release on GitHub.
-3.  The product's size of the final Jar released should not exceed 100MB.
+2.  The product should be available for downloads after each [GitHub release](https://github.com/AY2021S2-CS2103T-T13-1/tp/releases).
+3.  The product's size in terms of the final `Jar` released should not exceed 100MB.
 4.  The product should be an offline application, which should work regardless of internet connection.
-5.  The product should allow one user to have different instances of the application running at the same time.
-6.  The product should be able to hold up to 2000 Japanese words without causing a delay in commands longer than
-    0.5 seconds.
-7.  The product should be open-sourced on GitHub.
+5.  The product should be able to hold at least 100 flashcards without causing a delay in commands longer than
+    0.2 seconds.
+6.  The product is not required to handle concurrency resulting from multiple instances of the applications running at the same
+    time, as the product is supposed to support a single user's usage.
+6.  The product should be open-sourced in the [GitHub repo](https://github.com/AY2021S2-CS2103T-T13-1/tp).
+7.  The project is expected to adhere to a schedule that delivers a new iteration every one or two weeks throughout the whole development cycle.
 8.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) and
     should be able to accomplish most of the learning faster using commands than using the mouse/GUI.
 
@@ -433,6 +449,10 @@ Given below are instructions to test the app manually.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
+By the nature of Weeblingo, it is inconvenient for testers who do not possess some elementary
+knowledge of Japanese to test our application. Therefore, to facilitate testers, we have provided a list of flashcards which reside in the database
+of the current version of application for your reference. The link is [here](Flashcards.html).
+
 </div>
 
 ### Launch and shutdown
@@ -450,7 +470,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 ### Using the `end` command
 
@@ -469,10 +488,39 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Do an initial launch of the application as described in _Launch and shutdown_ segment above. Type `learn` to view all flashcards available.
+   
+   1. Open `current_folder/data/flashcards.json`.
+    
+   1. Do some modifications that are possibly malicious.
+       - Modify a field name of `flashcards.json`. E.g. change `question` to `questions`
+       - Modify the `tag` value of some flashcard to include characters that are neither alphabetic or numeric. E.g. `&*&`, `你好世界`.
+       - Modify the `question` value of some flashcard to include latin-specific characters. E.g. `Español`.
+   
 
-1. _{ more test cases …​ }_
+   1. Relaunch the application. Type `learn` to go into the `learn` mode. Original (unmodified) data content should present.
+    
+   1. **Close the application** and inspect the `flashcards.json` file. Modified parts of the original data content should disappear.
+    
+    
+1. Dealing with missing data files
 
+   1. Delete the `flashcards.json` file, but keep the `data` folder.
 
+   1. Relaunch the application. Type `learn` to go into the `learn` mode. Original data content should present.
+
+   1. **Close the application** and inspect the `data` folder, a new `flashcards.json` loaded with content should be present.
+    
+   1. Now delete the `data` folder recursively (i.e. deleting the file(s) inside it as well).
+
+   1. Repeat the second step.
+
+   1. **Close the application**, and the `data` folder and the `flashcards.json` should be present (regenerated).
+    
+<div markdown="span" class="alert alert-info">:information_source: Data file is recovered on a lazy basis. That is, if the data file is corrupted/missing, and a new application instance is
+  created and then closed without **any** command entered. The data file will not be recovered.
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
