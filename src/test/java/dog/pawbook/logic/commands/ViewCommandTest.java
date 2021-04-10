@@ -45,7 +45,7 @@ public class ViewCommandTest {
     @Test
     public void execute_validOwnerId_success() {
         // view dog success
-        expectedModel.updateFilteredEntityList(x -> x.getKey() == 1 || x.getKey() == 2 );
+        expectedModel.updateFilteredEntityList(x -> x.getKey() == 1 || x.getKey() == 2);
         expectedModel.sortEntities(new ViewCommandComparator(Owner.class));
 
         assertCommandSuccess(new ViewCommand(ID_ONE), model, String.format(

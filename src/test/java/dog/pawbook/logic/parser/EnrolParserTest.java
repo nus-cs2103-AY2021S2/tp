@@ -4,7 +4,7 @@ import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ID_GENERAL;
 import static dog.pawbook.logic.commands.CommandTestUtil.DOGID_DESC_FOUR;
 import static dog.pawbook.logic.commands.CommandTestUtil.DOGID_DESC_TWO;
-import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_EMPTY_STRING;
+import static dog.pawbook.logic.commands.CommandTestUtil.EMPTY_STRING;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_NEGATIVE_DOGID_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_NEGATIVE_PROGRAMID_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_UNKNOWN_DOGID_DESC;
@@ -35,7 +35,7 @@ public class EnrolParserTest {
         // Test that empty arguments ParseException is thrown
 
         // Empty user input
-        assertParseFailure(parser, INVALID_EMPTY_STRING, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, EMPTY_STRING, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 EnrolCommand.MESSAGE_USAGE));
 
         // Empty dogId

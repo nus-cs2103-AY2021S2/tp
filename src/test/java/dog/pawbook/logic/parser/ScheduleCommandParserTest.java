@@ -29,13 +29,13 @@ public class ScheduleCommandParserTest {
     @Test
     public void parse_invalidDate_failure() {
 
-        String MESSAGE_INVALID_DAY_OF_THE_MONTH = "Day of the month does not exist!";
+        String messageInvalidDayOfTheMonth = "Day of the month does not exist!";
 
         // invalid date input failure
-        assertParseFailure(parser, "31-02-2021", MESSAGE_INVALID_DAY_OF_THE_MONTH);
+        assertParseFailure(parser, "31-02-2021", messageInvalidDayOfTheMonth);
 
         // invalid date input with whitespace failure
-        assertParseFailure(parser, " " + "31-02-2021" + " ", MESSAGE_INVALID_DAY_OF_THE_MONTH);
+        assertParseFailure(parser, " " + "31-02-2021" + " ", messageInvalidDayOfTheMonth);
     }
 
     @Test
