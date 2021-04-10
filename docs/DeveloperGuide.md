@@ -358,7 +358,7 @@ Ian finds it difficult to sieve information and is prone to making human errors.
 **Target user profile**:
 
 * UHC staff who has a need to manage a significant number of appointments and student records.
-* UHC staff who has to keep track of NUS students' COVID-19 vaccinations regarding:
+* UHC staff who has to keep track of NUS (National University of Singapore) students' COVID-19 vaccinations regarding:
   * Who has been vaccinated
   * Who has not been vaccinated
   * Who wants to be vaccinated
@@ -398,7 +398,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* `   | user                                         | quickly craft a vaccination appointment message | quickly send students reminder messages for their appointments |
 | `* `   | user                                         | export statistics as a PDF | submit to my supervisor to easily update about the progress of the vaccination program |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -504,7 +503,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -515,16 +513,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  The product is not required to export data for printing.
 1.  There should be a mechanism to migrate data so that the application can be used with existing data on different machines.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **COVID-19**: The COVID-19 pandemic, also known as the coronavirus pandemic, is a global pandemic of coronavirus disease 2019 (COVID-19) caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2).
 * **Vaccine**: Singapore has two approved COVID-19 vaccines, one developed by Pfizer-BioNTech, 
   the other by Moderna. Both require two doses, 21 days apart for Pfizer-BioNTech, 28 days apart for Moderna.
   Two appointments must therefore be created manually per student.
-* **NUS**: National University of Singapore
-* **UHC**: University Health Center, a holistic healthcare provider for the NUS community.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -543,7 +539,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample students and appointments. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -551,9 +547,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
+      
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
@@ -569,12 +563,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `delete A12345J`<br>
       Expected: No student is deleted. Error details shown in the status message telling user the input is not a valid matriculation number.
-
+ 
+   1. Test case: `delete aBc 123`<br>
+      Expected: No student is deleted. Error details shown in the status message telling user the input is not a valid matriculation number.
+      
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is not a valid matriculation number) <br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
+      
 ### Saving data
 
 1. Dealing with missing/corrupted data files
