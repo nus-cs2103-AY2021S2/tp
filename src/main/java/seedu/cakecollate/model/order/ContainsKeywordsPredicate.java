@@ -70,7 +70,7 @@ public class ContainsKeywordsPredicate implements Predicate<Order> {
             return order.getAddress().value;
         } else if (prefix.equals(PREFIX_ORDER_DESCRIPTION)) {
             Map<OrderDescription, Integer> orderDescriptions = order.getOrderDescriptions();
-            // keySet because find command only needs to search in terms of order desc and not quantity?
+            // keySet because find command only needs to search in terms of order desc and not quantity
             Set<String> orderDescriptionsString = orderDescriptions.keySet().stream()
                     .map(OrderDescription::toString)
                     .collect(Collectors.toSet());
