@@ -399,7 +399,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | edit the details of a student                     | keep track of up-to-date information                         |
 | `* * *`  | user                                       | add individual tuition sessions                   | keep track of my tuition sessions                            |
 | `* * *`  | busy user                                  | add recurring tuition sessions                    | save time by creating multiple sessions in one command       |
-| `* * *`  | user                                       | delete a particular tuition session               | update my tuition schedule                                   |
+| `* * *`  | user                                       | delete a non-recurring tuition session            | update my tuition schedule                                   |
 | `* * *`  | user                                       | delete the entire recurring session               | update my tuition schedule                                   |
 | `* * *`  | user                                       | delete a single session from a recurring session  | update cancelled tuition session                             |
 | `* * *`  | user                                       | see a list of all the students profile and sessions|                                                             |
