@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskifyParser" as TaskifyParser LOGIC_COLOR
+participant ":TagSearchCommandParser" as TagSearchCommandParser LOGIC_COLOR
+participant "t:TagSearchCommand" as TagSearchCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("tag-search tutorial cs2100")
+activate LogicManager
+
+LogicManager -> TaskifyParser : parseCommand("tag-search tutorial cs2100")
+activate TaskifyParser
+
+create TagSearchCommandParser
+TaskifyParser -> TagSearchCommandParser
+activate TagSearchCommandParser
+
+TagSearchCommandParser --> TaskifyParser
+deactivate TagSearchCommandParser
+
+TaskifyParser -> TagSearchCommandParser : parse("tutorial cs2100")
+activate TagSearchCommandParser
+
+create TagSearchCommand
+TagSearchCommandParser -> TagSearchCommand
+activate TagSearchCommand
+
+TagSearchCommand --> TagSearchCommandParser : t
+deactivate TagSearchCommand
+
+TagSearchCommandParser --> TaskifyParser : t
+deactivate TagSearchCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TagSearchCommandParser -[hidden]-> TaskifyParser
+destroy TagSearchCommandParser
+
+TaskifyParser --> LogicManager : t
+deactivate TaskifyParser
+
+LogicManager -> TagSearchCommand : execute()
+activate TagSearchCommand
+
+TagSearchCommand -> Model : updateFilteredTaskList(predicate)
+activate Model
+
+Model --> TagSearchCommand
+deactivate Model
+
+create CommandResult
+TagSearchCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TagSearchCommand
+deactivate CommandResult
+
+TagSearchCommand --> LogicManager : result
+deactivate TagSearchCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

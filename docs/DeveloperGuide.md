@@ -52,7 +52,7 @@ upon Taskify in the future.
   
 ### 1.3 Taskify Overview
 Taskify is a desktop app intended for university students, optimized for fast typists via a Command Line Interface 
-(CLI). Taskify helps users keep track of their tasks with a a clean and simplistic interface.
+(CLI). Taskify helps users keep track of their tasks with a clean and simplistic interface.
 
 ### 1.4 How to use this guide
 This Developer Guide is structured in a top-down manner, starting with the overall architecture of Taskify, followed
@@ -107,7 +107,7 @@ Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding
-  API `interface` mentioned in the previous point.
+  API `interface`) mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface
 and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
@@ -205,7 +205,7 @@ Classes used by multiple components are in the `seedu.taskify.commons` package.
 The previous Design section provides an overview on the general structure of Taskify. This section dives deeper and
 describes some noteworthy details on how certain features are implemented.
 
-### Switch between the different tabs
+### 4.1 Switch between the different tabs
 
 #### Format of command
 * `home`: switch from the other tab to home tab. It will throw an error if you are already in the home tab.
@@ -242,6 +242,45 @@ The following activity diagram summarizes what happens when a user executes a sw
 * **Alternative Choice:** Switch tabs based on tab index
     * Pros: Lesser things to remember as the format command is `switch index`
     * Cons: Less intuitive as user will have to look up what tab one corresponds to.
+
+### Tag Search Feature
+
+#### Implementation
+
+The implementation of the Tag Search feature is facilitated by `TagContainsKeywordsPredicate` which implements
+`Predicate<Task>` and has the `test` method's implementation overridden to test if a `Task` has tags that match any
+of the tags entered by the user.
+
+The `TagContainsKeywordsPredicate#test(Task)` iterates through the `keywords` of type `List<String>` and 
+checks if any of the `keywords` match the tags in the `Task`. If one or more of the tags match the function returns true.
+
+
+`Task` has the following function to retrieve the tags:
+* `Task#getTags()` - Return the tags of a `Task` .
+
+`TagContainsKeywordsPredicate` will be passed to `Model#updateXYZFilteredTaskList(Predicate)`
+(`updateFilteredTaskList`, `updateUncompleredFilteredTaskList`, etc.) depending on which tab is currently active. The 
+filtered list will then be updated according to the given `Predicate` and the changes will be reflected on the UI.
+
+
+The following sequence diagram shows how the tag-search command works. As an example we will take `tag-search 
+tutorial cs2100` as input.
+
+![FindSequenceDiagram](images/TagSearchSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the tag-search command:
+
+![FindActivityDiagram](images/TagSearchActivityDiagram.png)
+
+#### Design Consideration
+* **Current Choice:** Search for tasks bases on one or more tags.
+    * Pros: Simple and intuitive for user to filter out similar tasks by using tags.
+    * Cons: User would have to type out all the tags individually if there are multiple tasks with unique tags
+
+* **Alternative Choice:** Search for tasks using a collection of tags grouped together with the same label.
+    * Pros: Users can type less and save time if they have multiple tags to search for.
+    * Cons: Less intuitive as user will have to keep track of which tags are under which group.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
