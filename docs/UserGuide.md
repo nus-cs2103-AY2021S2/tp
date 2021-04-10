@@ -75,7 +75,7 @@ Tasks can have the following attributes:
 
 | Attribute | Prefix | Description |
 |---|---|---|
-| Title | `t/` | A short description or name for the task. Titles can only contain alphanumeric values. <div markdown="block" class="alert alert-info"><br>:information_source:  Every task must have a title. </div>|
+| Title | `t/` | A short description or name for the task. Titles can only contain alphanumeric values and have at most 40 characters. <div markdown="block" class="alert alert-info"><br>:information_source:  Every task must have a title. </div>|
 | Date | `set/` | A date to represent the deadline of a Task or to represent the day that the task will be carried out. <br> Dates should be of the format dd/mm/yyyy e.g 02/06/2021|
 | Duration | `s/` | The start and end time of a task. You should specify start time and end time in the 24-hour clock format. <br> Duration should be of the format hh:mm-hh:mm e.g 12:30-13:30|
 | Recurring Schedule | `r/` | Represents a task that might repeat weekly or biweekly. <div markdown="span" class="alert alert-primary">:bulb: You can use this to quickly add weekly tutorials or biweekly lab session for the entire semester. </div><br>Recurring Schedule should be of the format [END DATE][DAY][FREQUENCY] e.g [23/10/2021][mon][weekly] <br><br>**Recurring dates that is of the upcoming day of week up till the [END DATE] will be generated for the task.** <br><br>**Note: Suppose today is 06/04/2021 which falls on a Tuesday, user enters [30/06/2021][tue][weekly] for the recurring schedule field. The date of 06/04/2021 will not be included in the recurring dates and only recurring dates from the following tuesday will be included up till 30th June 2021 on a weekly basis.** <br><br>**Note: Existing recurring dates that has passed the current system date will be removed automatically from the existing task upon application startup.** <ul><li>END DATE should be in the format dd/mm/yyyy, any number greater than 31 is invalid for the day and any number greater than 12 is invalid for the month.</li><li>DAY should be either: mon, tue, wed, thu, fri, sat, sun and is case-insensitive.</li> <li>FREQUENCY should be either: weekly or biweekly and is also case-insensitive.</li></ul>|
@@ -220,7 +220,7 @@ Automatically brings your calendar back to the current date.
 
 Format: `ls`
 
-### Listing all tasks : `ls not done`
+### Listing all uncompleted tasks : `ls not done`
 
 Shows a list of all uncompleted tasks in the planner
 so that you can view all the uncompleted tasks easily. <br>
@@ -274,6 +274,8 @@ Format: `find d/KEYWORD [MORE_KEYWORDS]`
 * Only full keywords will be matched. e.g. `proj` will not match `projects`
 * Only a single `d/` description prefix should be allowed.
 * No `t/` tag prefix should be in the search task by description query.
+* No whitespace should be allowed right after the `find d/` command like `find d/   `
+  but will be allowed between the keywords in the command like `find d/Project          CS2103`.
 
 Examples:
 * `find d/write user guide` returns matching tasks with description of following words `user`, `guide`, `write`
@@ -287,23 +289,33 @@ so that you can find matching tasks from the same category quickly when only the
 Format: `find t/KEYWORD`
 
 * The search is **case-insensitive**. e.g `cs2103t` will match `CS2103T`
-* The keyword must be **single, alphanumeric and no spacing** allowed. e.g. `project CS2103` will not be allowed
-  but `projectCS2103` will be acceptable.
 * Only full keyword will be matched. e.g. `cs2103` will not match `cs2103t`
 * No `d/` description prefix should be in the search by tag query.
 * Multiple `t/` tag prefixes are allowed in the search task by tag query.
+* For each tag, the keyword must be **single, alphanumeric** unless searching task by keyword from multiple tags. 
+  e.g. `projectCS2103` will be a single tag keyword and `project CS2103` will be recognised as keywords for 2 tags.
+* No whitespace should be allowed right after the `find t/` command like `find t/   `
+  but will be allowed between the keywords in the command like `find t/Project          CS2103`.  
 * Suppose a task with **multiple tags** of `cs2103` and `cs2105`, it will be returned as a matching task
   if the user inputs falls under the following cases:
-  1. `t/cs2103` only
-  2. `t/cs2105` only
-  3. `t/cs2103` and `t/cs2105`
+  1. `find t/cs2103` only
+  2. `find t/cs2105` only
+  3. `find t/cs2103 t/cs2105` 
+  4.  `find t/cs2103 cs2105`
+      
+**Note: Suppose you want to find a task with **multiple tags** of `cs2103` and `cs2105` 
+but entered `find t/cs2103 Project`, the task you want will not be found since it will be detected 
+as a find a task by tag with `cs2103` and `Project`. So, it is best to put lesser tag keywords when unsure.**      
+
 
 Examples:
 * `find t/CS2103` returns matching tasks with tag of `CS2103` or `cs2103`
-* Below is an illustration of searching matching tasks based on multiple tags:
+* Below is an illustration of how to search matching tasks based on multiple tags:
 
 ![Find Multiple Tags](images/FindMultipleTags.png)
 
+
+**Note: It is optional to keep putting tag prefix`t/` for searching task with multiple tags**
 
 ### Removing a task : `rmt`
 

@@ -39,6 +39,7 @@ public class DeleteTaskCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getPlanner(), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
+        taskToDelete.getTags().forEach(expectedModel::deleteTag);
 
         //@@author mesyeux
         assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
@@ -67,6 +68,7 @@ public class DeleteTaskCommandTest {
 
         Model expectedModel = new ModelManager(model.getPlanner(), new UserPrefs());
         expectedModel.deleteTask(taskToDelete);
+        taskToDelete.getTags().forEach(expectedModel::deleteTag);
         showNoTask(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);

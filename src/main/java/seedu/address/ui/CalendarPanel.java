@@ -26,15 +26,16 @@ import seedu.address.model.ObservableCalendarDate;
 public class CalendarPanel extends UiPart<Region> implements Observer {
     private static final String FXML = "CalendarPanel.fxml";
 
+    // Date that the user is viewing, or else today's date.
+    protected LocalDate viewingDate;
+    // Today's date
+    private final LocalDate currentDate;
+    // The start of the month that the current view is showing.
+    private LocalDate startOfMonth;
+
     private final ArrayList<StackPane> calendarPanes = new ArrayList<>();
     private final ObservableCalendarDate observableCalendarDate;
 
-    // Today's date
-    private final LocalDate currentDate;
-    // Date that the user is viewing, or else today's date.
-    private LocalDate viewingDate;
-    // The start of the month that the current view is showing.
-    private LocalDate startOfMonth;
 
     @FXML
     private VBox calendarPanel;

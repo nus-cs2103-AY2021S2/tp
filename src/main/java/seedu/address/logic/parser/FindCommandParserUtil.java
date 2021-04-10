@@ -27,10 +27,11 @@ public class FindCommandParserUtil {
             + "\nParameter: KEYWORD [MORE_KEYWORDS]...\n"
             + "\nExample: " + FindCommand.COMMAND_WORD + " d/Fix bugs in PE dry run";
 
-    public static final String MULTIPLE_COMMANDS = "Multiple commands detected !!! For find by title query, "
-            + "please do not include search by tag (t/) or description (d/). For find by description (d/), "
-            + "please do not include any tag search (t/) and only one description search is allowed. "
-            + "For find by tag (t/), multiple tags search are allowed but do not include any description search (d/).";
+    public static final String MULTIPLE_COMMANDS = "\nMultiple commands detected !!! For find by title query (find), "
+            + "please do not include tag prefix (t/) or description prefix (d/). \n\nFor find by description query "
+            + "(find d/), please do not include any tag prefix (t/) and only one description prefix (d/) is allowed."
+            + "\n\nFor find by tag query (find t/), multiple tags prefix (t/) are allowed, not necessary"
+            + " but do not include any description prefix (d/).";
 
     private static final Logger logger = LogsCenter.getLogger(FindCommandParserUtil.class);
 
