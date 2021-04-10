@@ -52,7 +52,7 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited the info for %s!";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_ARCHIVED_PERSON = "This person is in your archives.\n"
@@ -96,7 +96,7 @@ public class EditCommand extends Command {
 
         model.setPerson(patientToEdit, editedPatient);
         model.updateFilteredPersonList(PREDICATE_SHOW_MAIN_PATIENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPatient),
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPatient.getName().fullName),
                 false, false, editedPatient, null, null, null, false);
     }
 

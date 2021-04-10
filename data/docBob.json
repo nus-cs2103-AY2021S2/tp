@@ -2,7 +2,7 @@
   "persons" : [ {
     "name" : "Alanis Hines",
     "phone" : "92624417",
-    "email" : "royb@example.com",
+    "email" : "alanish@example.com",
     "address" : "Blk 45 Aljunied Street 85, #11-31",
     "height" : "172cm",
     "weight" : "58kg",
@@ -36,7 +36,7 @@
     } ]
   }, {
     "name" : "Alex Yeoh",
-    "phone" : "87438807",
+    "phone" : "84893439",
     "email" : "alexyeoh@example.com",
     "address" : "Blk 30 Geylang Street 29, #06-40",
     "height" : "175cm",
@@ -107,7 +107,7 @@
     "weight" : "58kg",
     "isArchived" : false,
     "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
+    "appointments" : [ "10/4/21 10:29" ],
     "records" : [ ]
   }, {
     "name" : "Bernice Yu",
@@ -279,7 +279,7 @@
       } ]
     } ]
   }, {
-    "name" : "John Dough",
+    "name" : "John Doe",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
@@ -288,7 +288,13 @@
     "isArchived" : false,
     "tagged" : [ "owesMoney", "friends" ],
     "appointments" : [ ],
-    "records" : [ ]
+    "records" : [ {
+      "dateString" : "9/4/21 12:20",
+      "sections" : [ {
+        "title" : "Name",
+        "body" : "John Doe"
+      } ]
+    } ]
   }, {
     "name" : "Kaia Metcalfe",
     "phone" : "92624417",
@@ -296,7 +302,7 @@
     "address" : "Blk 45 Aljunied Street 85, #11-31",
     "height" : "172cm",
     "weight" : "58kg",
-    "isArchived" : false,
+    "isArchived" : true,
     "tagged" : [ "asidjoajc" ],
     "appointments" : [ "19/9/21 19:00" ],
     "records" : [ {
@@ -465,137 +471,6 @@
     "isArchived" : false,
     "tagged" : [ "asidjoajc" ],
     "appointments" : [ ],
-    "records" : [ ]
-  } ]
-}
-=======
-{
-  "persons" : [ {
-    "name" : "Alanis Hines",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "bronchitis", "fever", "cough" ],
-    "appointments" : [ ],
-    "records" : [ {
-      "dateString" : "1/4/21 2:44",
-      "sections" : [ {
-        "title" : "appointmentLabel",
-        "body" : "else if (patientBoxMedicalRecords.getChildren().size() != 0) {\n            medicalRecordInfo.setText(String.format(\"%d medical record(s) found:\","
-      } ]
-    } ]
-  }, {
-    "name" : "Alex Yeoh",
-    "phone" : "87438807",
-    "email" : "alexyeoh@example.com",
-    "address" : "Blk 30 Geylang Street 29, #06-40",
-    "height" : "175cm",
-    "weight" : "69kg",
-    "isArchived" : false,
-    "tagged" : [ "bronchitis", "fever", "cough" ],
-    "appointments" : [ "14/4/21 14:00" ],
-    "records" : [ {
-      "dateString" : "31/3/21 18:18",
-      "sections" : [ {
-        "title" : "main",
-        "body" : "content content content"
-      } ]
-    }, {
-      "dateString" : "31/3/21 19:41",
-      "sections" : [ {
-        "title" : "Synopsis",
-        "body" : "On February 27, patient was admitted for labor for her second child that had to be emergently converted to a caesarean section due to fetal distress. Follow this surgery, she started to complain of unbearable pain in her suprapubic region which would not abate regardless of all modalities tried.\n"
-      }, {
-        "title" : "Medical History",
-        "body" : "Patient is a healthy young woman G2P2A0, with no real medical problems. She had a normal spontaneous delivery with her first daughter who is now 2 years old. There were no complications at that time.\n"
-      }, {
-        "title" : "Social History",
-        "body" : "Non smoker, alcohol 6 oz per week, occasional wine"
-      }, {
-        "title" : "Current medications",
-        "body" : "Proventil Nebulizer Solution, Uroxatral, Calcium-Vitamin D 500-125, Nexium, Proscar"
-      } ]
-    }, {
-      "dateString" : "1/4/21 13:15",
-      "sections" : [ {
-        "title" : "newiuhfo",
-        "body" : "iasochiag"
-      }, {
-        "title" : "wcearhsrt",
-        "body" : "srtjnsrtb"
-      }, {
-        "title" : "rthnsrtbsr",
-        "body" : "tbrstnrtnj"
-      } ]
-    }, {
-      "dateString" : "1/4/21 16:34",
-      "sections" : [ {
-        "title" : "Synopsis",
-        "body" : "On February 27, patient was admitted for labor for her second child that had to be emergently converted to a caesarean section due to fetal distress. Follow this surgery, she started to complain of unbearable pain in her suprapubic region which would not abate regardless of all modalities tried.\n"
-      }, {
-        "title" : "Medical History",
-        "body" : "Patient is a healthy young woman G2P2A0, with no real medical problems. She had a normal spontaneous delivery with her first daughter who is now 2 years old. There were no complications at that time.\n"
-      }, {
-        "title" : "Social History",
-        "body" : "Non smoker, alcohol 6 oz per week, occasional wine"
-      }, {
-        "title" : "Current medications",
-        "body" : "Proventil Nebulizer Solution, Uroxatral, Calcium-Vitamin D 500-125, Nexium, Proscar"
-      } ]
-    }, {
-      "dateString" : "4/4/21 19:04",
-      "sections" : [ {
-        "title" : "Synopsis",
-        "body" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-      }, {
-        "title" : "Medical History",
-        "body" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-      }, {
-        "title" : "Social History",
-        "body" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-      } ]
-    } ]
-  }, {
-    "name" : "Andreea Hanna",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "bronchitis", "fever", "cough" ],
-    "appointments" : [ "18/9/21 15:00" ],
-    "records" : [ {
-      "dateString" : "1/4/21 3:55",
-      "sections" : [ {
-        "title" : "dswafghbnj",
-        "body" : "sdfghjkw"
-      } ]
-    } ]
-  }, {
-    "name" : "Ava Shepherd",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "allergy", "flu" ],
-    "appointments" : [ ],
-    "records" : [ ]
-  }, {
-    "name" : "Bernice Yu",
-    "phone" : "99272758",
-    "email" : "berniceyu@example.com",
-    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
-    "height" : "168cm",
-    "weight" : "50kg",
-    "isArchived" : false,
-    "tagged" : [ "stragulation" ],
-    "appointments" : [ "14/5/21 14:00" ],
     "records" : [ ]
   } ]
 }

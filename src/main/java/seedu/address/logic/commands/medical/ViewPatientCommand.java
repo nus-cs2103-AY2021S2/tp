@@ -51,4 +51,11 @@ public class ViewPatientCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, patientToView.getName()),
                             false, false, patientToView, null, null, null, false);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewPatientCommand // instanceof handles nulls
+                && index.equals(((ViewPatientCommand) other).index)); // state check
+    }
 }
