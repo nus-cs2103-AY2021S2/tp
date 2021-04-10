@@ -7,5 +7,5 @@
       "y" : 100
     }
   },
-  "dietLahFilePath" : "data\\dietLah.json"
+  "addressBookFilePath" : "data\\dietLah.json"
 }

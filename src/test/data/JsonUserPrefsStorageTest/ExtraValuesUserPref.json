@@ -9,5 +9,5 @@
       "z" : 99
     }
   },
-  "dietLahFilePath" : "data\\dietLah.json"
+  "addressBookFilePath" : "data\\dietLah.json"
 }
