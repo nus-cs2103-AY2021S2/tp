@@ -1100,8 +1100,17 @@ testers are expected to do more *exploratory* testing.
 * We considered many color choices and UI design and actively asked for feedback from all members in the team, and some of our friends also to reach the finalized design for the UI.
 * The `CommandBox` is changed so that the input can be split into multiple line, which increases the readability for the user. Although the code for the custom command box came from an online source, it was extremely difficult to find this source code.
 
-
 ### Sort feature
 * Challenge was to add flags and prefixes, totally different from other features, and parsing inputs.
 * AB3 did not have a `sort` feature.
 * Implemented a new enum `SortOptions` to contain sorting options for the user, as well as parse functions.
+
+### Undo/Redo feature
+* Challenge was to store the states of FlashBack so that users are able to undo/redo an action.
+* As AB4 have `undo` and `redo` feature, the implementations of FlashBack's `undo` and `redo` is adapted from AB4.
+
+### Alias feature
+* Challenge was to create a new class to handle the mapping of alias and command.
+* AB3 did not have a `alias` feature.
+* A new class `AliasMap` is created to handle the mapping.
+* As `AliasMap` is stored in `UserPrefs` which is stored as a json file as `preferences.json`, users are able to modify the mapping directly. Hence an additional check is added to ensure that the alias mapping is valid when starting the application.
