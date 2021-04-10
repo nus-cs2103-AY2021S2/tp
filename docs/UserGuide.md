@@ -116,7 +116,7 @@ Format: `add n/NAME p/PHONE e/EMAIL l/LOCATION [ip/INSURANCE_PLAN] [i/IMAGE_FILE
 * INSURANCE_PLAN in `ip/INSURANCE_PLAN` should not be longer than 50 alphanumeric characters. <br>
   e.g `ip/Premium Savings Plan 2` is acceptable
 
-* Individual TAG(s) in `t/TAG(s)` should not be longer than 50 alphanumeric characters. <br>
+* Individual TAG(s) in `t/TAG(s)` should not be longer than 50 alphanumeric characters and cannot contain spaces. <br>
   e.g `t/friend` is acceptable
   
 </div> <br>
@@ -180,7 +180,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOCATION] [ip/INSURANCE_PLAN
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email location of the 1st client to be `91234567` and `johndoe@example.com` respectively
-*  `edit 2 n/Betsy Crower t/ ip/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags and remove insurance plan
+*  `edit 2 n/Betsy Crower t/ ip/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags and insurance plans
 
 #### Finding clients by name: `find`
 
@@ -269,7 +269,7 @@ Format: `addmeet c/CLIENT_NAME on/DATE_TIME l/LOCATION d/DESCRIPTION [t/TAG(s)]`
 * DESCRIPTION in `d/DESCRIPTION` should not be blank or longer than 1000 characters. <br>
   e.g `d/Plan expiring soon.` is acceptable
 
-* Individual TAG(s) in `t/TAG(s)` should not be longer than 50 alphanumeric characters. <br>
+* Individual TAG(s) in `t/TAG(s)` should not be longer than 50 alphanumeric characters and cannot contain spaces. <br>
   e.g `t/friend` is acceptable
 
 </div> <br>
