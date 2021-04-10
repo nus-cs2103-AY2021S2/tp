@@ -14,7 +14,7 @@ public class DeleteAliasCommand extends AliasCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a command alias in the address book. "
             + "Parameters: " + DELETE_SUB_COMMAND_WORD + " ALIAS\n"
-            + "Example: " + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " ls " + ListCommand.COMMAND_WORD;
+            + "Example: " + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " ls ";
 
     public static final String MESSAGE_SUCCESS = "Deleted command alias added: %1$s";
     public static final String MESSAGE_ALIAS_NOT_FOUND = "This alias does not exist in the address book";
