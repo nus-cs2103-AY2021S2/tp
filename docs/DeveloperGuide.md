@@ -100,12 +100,24 @@ Classes used by multiple components are in the seedu.fooddiary.commons package.
 ## **Implementation**
 This section describes some noteworthy details on how certain features are implemented.
 ### AddOn Feature
-#### Implementation
 The AddOn feature allows the user to add review(s) and/or a price to a single entry of a food place. This will be useful
-for users who frequently visit a particular place and would like to enter their reviews and the price spent every visit.
-The reviews are added to the specifed entry and the price added on will be refelcted as a price range the of the user's spending history 
-(e.g. if the current entry has a price of $5, adding on a price of 10 will update the current price of 5 to a price range of $5-10)
-This feature follows the architecture of AB3.
+for users who frequently visit a particular place and would like to enter their reviews and the price spent on each visit.
+The reviews are added to the user specifed entry and the price added on will be reflected as a price range of the user's spending history 
+(e.g. if the current entry has a price of $5, adding on a price of 10 will update the current price of 5 to a price range of $5-10).
+
+Given below is an example usage scenario:
+
+Step 1. The user launches The Food Diary application. Data will be loaded from the storage to the application memory.
+The `FoodDiary` will be populated with a list of `Entry`, each contains: `Name`, `Address`, `Price`
+, `Rating`, `Review`, `TagCategory` and `TagSchool`.
+
+Step 2. (Optional) The user executes `list` command to list out all the entries and select the entry to add on details.
+
+Step 2. The user executes `addon 1 re/I like this food a lot! p/7` command to add on details to an existing entry. 
+The command contains values such as a "I like this food a lot!" review and a price value of 7 dollars.
+
+Step 3. If the parameters entered by the user is valid, the application will create a new `entry` and stores the information in `Model` and `Storage`.
+Else, the FoodDiary will display an appropriate error message. 
 
 The following sequence diagram shows how the AddOn feature works:
 ![AddOn Sequence Diagram](images/AddOn_Sequence_Diagram.png)
@@ -113,8 +125,18 @@ The following sequence diagram shows how the AddOn feature works:
 The following activity diagram summaries the flow of event when a user executes the addon command:
 ![AddOn_Activity_Diagram](images/AddOn_Activity_Diagram.png)
 
+#### Design Consideration
+
+##### Aspect: Whether entry class should have a List of Reviews or a single Review as an attribute (for adding on reviews to an existing entry)
+* **Alternative 1 (current choice):** Entry containing a List of Reviews as an attribute
+    * Pros: Looks neater in a design perspective, as additional reviews added on will just be appended to the list of reviews.
+      Easily extendable in the future (e.g. deleting a specific review in an entry).
+    * Cons: A lot of refactoring is needed. Takes some time.
+* **Alternative 2:** Entry containing a single review attribute 
+    * Pros: Easy to implement, as additional reviews can be concatenated as a string to the current review
+    * Cons: This cannot be easily extended in the future (e.g. deleting a specific review in an entry).
+
 ### FindAll Feature
-#### Implementation
 The FindAll feature allows a user to find entries that match all the keywords provided by the user.
 This enables the user to easily sieve out all the entries that meet every single requirement the user
 is looking for, which will be useful when deciding where to eat.
@@ -137,7 +159,6 @@ command:
 ![FindAll Activity Diagram](images/FindAllActivityDiagram.png)
 
 ### Revise Feature
-#### Implementation
 The Revise feature allows a user to quickly edit different sections of an entry. It is often misunderstood to be 
 mutually exclusive with the edit feature or the slower alternative. This feature shines when a user wishes to edit 
 while also adding into multiple sections in an entry. The edit and addon features are still necessities for making 
@@ -540,7 +561,7 @@ to work on.
     1. Prerequisite: `list` to select the entry you want to add on details to. There must be at least one entry displayed.
     2. Test case: `addon 1 re/I like this food a lot! p/7`
     <br>Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
-       out of the initial price range dispalyed in the entry).
+       out of the initial price range dispalyed in the entry). Specified Entry will be updated with the addon on fields.
     3. Test case: addon 1
     <br>Expected: Error message "At least one field to add-on must be provided." will be shown in the result display. Nothing will be added on to the specified entry.
     4. Test case: addon 1 re/
