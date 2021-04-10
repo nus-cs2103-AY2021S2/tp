@@ -56,7 +56,12 @@ public class DeleteCommand extends Command {
             }
 
             Order orderToDelete = lastShownList.get(targetIndex.getZeroBased());
-            ordersToDelete.add(orderToDelete);
+            if (!ordersToDelete.contains(orderToDelete)) {
+                ordersToDelete.add(orderToDelete);
+            }
+        }
+
+        for (Order orderToDelete:ordersToDelete) {
             model.deleteOrder(orderToDelete);
         }
 
