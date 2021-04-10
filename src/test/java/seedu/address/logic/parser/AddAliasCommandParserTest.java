@@ -15,6 +15,7 @@ import static seedu.address.testutil.TypicalAliases.ADD_COMMAND_ALIAS;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAliasCommand;
+import seedu.address.model.alias.Alias;
 import seedu.address.model.alias.Command;
 import seedu.address.model.alias.CommandAlias;
 import seedu.address.testutil.CommandAliasBuilder;
@@ -34,8 +35,8 @@ public class AddAliasCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAliasCommand.MESSAGE_USAGE);
 
-        // missing alias, therefore command taken as alias, showing command format error
-        assertParseFailure(parser, COMMAND_DESC_ADD, Command.MESSAGE_CONSTRAINTS);
+        // missing alias, command taken as alias, showing alias format error as existing command cannot be aliased
+        assertParseFailure(parser, COMMAND_DESC_ADD, Alias.MESSAGE_CONSTRAINTS);
 
         // missing command
         assertParseFailure(parser, ALIAS_DESC_ADD, Command.MESSAGE_CONSTRAINTS);
@@ -46,11 +47,17 @@ public class AddAliasCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        // empty alias, therefore command taken as alias, showing command format error
-        assertParseFailure(parser, INVALID_ALIAS_DESC + COMMAND_DESC_ADD, Command.MESSAGE_CONSTRAINTS);
+        // empty alias, command taken as alias, showing alias format error as existing command cannot be aliased
+        assertParseFailure(parser, INVALID_ALIAS_DESC + COMMAND_DESC_ADD, Alias.MESSAGE_CONSTRAINTS);
+
+        // empty alias and invalid command, command taken as alias, showing command format error
+        assertParseFailure(parser, INVALID_ALIAS_DESC + INVALID_COMMAND_DESC, Command.MESSAGE_CONSTRAINTS);
 
         // invalid command
         assertParseFailure(parser, ALIAS_DESC_ADD + INVALID_COMMAND_DESC, Command.MESSAGE_CONSTRAINTS);
+
+        // existing command is aliased
+        assertParseFailure(parser, COMMAND_DESC_ADD + COMMAND_DESC_ADD, Alias.MESSAGE_CONSTRAINTS);
     }
 
     @Test
