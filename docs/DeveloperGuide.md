@@ -161,9 +161,11 @@ The viewing mechanism is facilitated by the `ViewPatientCommand` which extends `
 
 **Why**
 
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `processResult(CommandResult)` API call.
+
 ![image](https://user-images.githubusercontent.com/48408342/114144410-e47c2100-9947-11eb-895f-afd00657b5af.png)
 
-Since `MainWindow` dictates what to show on the UI depending on the `CommandResult` after running `logic.execute(commandtext)`, we can easily allow `MainWindow#processResult` to call `MainWindow#handlePatientViewBox` when it detects that a patient is present in `CommandResult`. `MainWindow#handlePatientViewBox` can then simply contruct the `StackPane` containing the patient's information.
+Since `MainWindow#processResult` dictates what to show on the UI depending on the `CommandResult` as seen above, we can easily allow `MainWindow#processResult` to call `MainWindow#handlePatientViewBox` when it detects that a patient is present in `CommandResult`. `MainWindow#handlePatientViewBox` can then simply contruct the `StackPane` containing the patient's information.
 
 
 _{more aspects and alternatives to be added}_
