@@ -35,6 +35,7 @@ public class Date {
         this.value = dateTimeString;
     }
 
+
     /**
      * Constructs a {@code Date} using a {@link LocalDateTime} instead
      */
@@ -44,6 +45,16 @@ public class Date {
                 MESSAGE_CONSTRAINTS);
         this.localDateTime = localDateTime;
         this.value = localDateTime.toString();
+    }
+
+    /**
+     * Check if a edited task's date is valid
+     *
+     */
+
+    public boolean isValidDateForEditing() {
+        LocalDateTime timeNow = LocalDateTime.now();
+        return this.localDateTime.isAfter(timeNow);
     }
 
 
