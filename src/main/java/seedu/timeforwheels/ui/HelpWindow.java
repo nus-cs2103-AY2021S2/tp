@@ -18,8 +18,8 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-w10-3.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Add delivery task - add n/NAME p/PHONE a/ADDRESS "
             + "e/EMAIL t/TAG d/DATETIME \n"
-            + "Edit delivery task (only way to add tag(s) " 
-            + "- edit INDEX n/NAME p/PHONE a/ADDRESS e/EMAIL t/TAG d/DATETIME \n"
+            + "Edit delivery task (only way to add tag(s)"
+            + " - edit INDEX n/NAME p/PHONE a/ADDRESS e/EMAIL t/TAG d/DATETIME \n"
             + "Add remark (usually for parcel name) - remark INDEX r/REMARK \n"
             + "Delete delivery task - delete INDEX \n"
             + "Clear delivery tasks - clear \n"
