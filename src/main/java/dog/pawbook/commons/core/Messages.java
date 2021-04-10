@@ -20,8 +20,10 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_PROGRAM = String.format(MESSAGE_DUPLICATE_ENTITY_FORMAT,
             Program.ENTITY_WORD);
 
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s.";
+    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
 
+    public static final String MESSAGE_INVALID_ID_GENERAL =
+            String.format("ID must be a positive integer not exceeding %s!", Integer.MAX_VALUE);
     public static final String MESSAGE_INVALID_ID_FORMAT = "The %s ID provided is invalid.";
     public static final String MESSAGE_INVALID_ENTITY_ID = String.format(MESSAGE_INVALID_ID_FORMAT, "entity");
     public static final String MESSAGE_INVALID_OWNER_ID = String.format(MESSAGE_INVALID_ID_FORMAT, "owner");
@@ -39,6 +41,5 @@ public class Messages {
     public static final String MESSAGE_ENTITIES_LISTED_OVERVIEW_FOR_ONE = "1 entity listed!";
     public static final String MESSAGE_ENTITIES_LISTED_OVERVIEW = "%1$d entities listed!";
     public static final String MESSAGE_DOG_MISSING_OWNER_ID = "Dog to be added is missing owner ID.";
-    public static final String MESSAGE_NEGATIVE_ENTITY_ID = "Entity ID must be a positive integer!";
 
 }
