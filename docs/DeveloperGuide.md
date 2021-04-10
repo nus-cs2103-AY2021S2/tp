@@ -229,6 +229,17 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![FindBookActivityDiagram](images/FindBookActivityDiagram.png)
 
+### Listing all books
+
+The execution of listing all books is very similar to listing all readers. The difference is that a `ListBookCommand` 
+is created instead of `ListReaderCommand`. Also, `Model#updateFilteredReaderList()` is called instead of `Model#updateFilteredReaderList()`.
+
+### Listing overdue books
+
+The execution of listing overdue books is very similar to listing books. The only difference between them is the predicate passed into the method `Model#updateFilteredBookList()`.
+When listing all books, the predicate will always return true for all books (e.g. `book -> true`), but for listing overdue books, 
+the predicate is `book -> book.isOverdue()`, which will call `Book#isOverdue()`.
+
 # Reader
 
 ### Adding a reader

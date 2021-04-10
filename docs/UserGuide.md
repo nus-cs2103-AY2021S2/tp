@@ -121,6 +121,8 @@ Format: `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG, t/TAG, ..., t
 
 **:information_source: Notes:**
 * Refer to [Readers' Command Parameters](#readers-command-parameters) for more details about each parameter.
+* Note that SmartLib uses reader's name to identify a reader. Hence, there cannot duplicate name is not allowed.
+* The reader's name is case sensitive, e.g. `Bob` and `bob` are two different readers.   
 * The `t/TAG` parameters are optional.
 
 Examples:
