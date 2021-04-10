@@ -137,9 +137,9 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
   
 * A student’s contact can have any number of lessons (including 0).
 
-* Lessons should only consist of the lesson day and time e.g. `Monday 1300`
+* Lessons should only consist of the lesson day and time e.g. `monday 1300`
   
-* Lesson day must take on one of the values: **Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday**.
+* Lesson day must take on one of the values: **monday, tuesday, wednesday, thursday, friday, saturday, sunday**.
 
 * Lesson time must be in **HHmm** format e.g. **1300**
 
