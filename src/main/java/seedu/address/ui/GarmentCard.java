@@ -68,6 +68,7 @@ public class GarmentCard extends UiPart<Region> {
         sampleView.setFitHeight(80);
         sampleView.setPreserveRatio(true);
         sampleImage.setGraphic(sampleView);
+        descriptions.setMaxWidth(1);
     }
 
     @Override
