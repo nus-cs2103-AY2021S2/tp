@@ -71,16 +71,13 @@ public class UpdateContactCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredList_failure() {
         UpdateContactCommand updateContactCommand = new UpdateContactCommand(INDEX_FIRST,
                 new UpdateContactDescriptor());
-        Contact editedContact = model.getFilteredContactList().get(INDEX_FIRST.getZeroBased());
 
-        String expectedMessage = String.format(UpdateContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedContact);
+        String expectedMessage = String.format(UpdateContactCommand.MESSAGE_UNCHANGED_CONTACT);
 
-        Model expectedModel = new ModelManager(new ColabFolder(model.getColabFolder()), new UserPrefs());
-
-        assertCommandSuccess(updateContactCommand, model, expectedMessage, new ShowContactsUiCommand(), expectedModel);
+        assertCommandFailure(updateContactCommand, model, expectedMessage);
     }
 
     @Test
