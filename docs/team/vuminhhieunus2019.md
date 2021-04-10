@@ -41,7 +41,7 @@ Given below are my contributions to the project.
     * Added implementation details including class diagram and sequence diagram for Review feature .[#91](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/91)
     * Added use case for Review feature. [#91](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/91)
     * Added instruction for manual testing for view and review feature. [#104](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/104)
-    * Added effort section for Refactor from AB3 to FlashBack, View feature, Review Mode and UI improvement. [#104](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/104)
+    * Added effort section for Refactor from AB3 to FlashBack, View feature, Review Mode and UI improvement. [#104](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/104), [#181](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/181)
     * Added page breaks to DG. [#177](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/177)
     
 * **Review contributions**:
