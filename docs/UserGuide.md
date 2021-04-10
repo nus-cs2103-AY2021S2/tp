@@ -338,13 +338,13 @@ Format:
 Description:
 * There can be 1 or more parameters. 
 * If a same option is used multiple times, entries matching **either** will be returned as results. 
-    * For example: `find property n/jurong n/woodlands` will match all properties containing either "alex" or "john" in their names, i.e. both "Jurong BLK123" and "Woodlands Condo" will be matched. 
+    * For example: `find property n/jurong n/woodlands` will match all properties containing either "jurong" or "woodlands" in their names, i.e. both "Jurong BLK123" and "Woodlands Condo" will be matched. 
 * All text are case insensitive.
 
 Options:
 * `[n/NAME]`
 
-    Searches for properties with names containing `NAME`. 
+    Searches for properties with names that contain the keywords in `NAME`, i.e. "Mayfair" matches `mayfair` but not `may`. 
 
 * `[pm/PRICE_UPPER_LIMIT]`
 
@@ -418,7 +418,7 @@ Description:
 Options: 
 * `[n/NAME]`
     
-    Searches for appointments containing `[NAME]` in their names. 
+    Searches for appointments that contain the keywords `[NAME]` in their names, i.e. "Meet Alex" matches `alex` but not `al`. 
     
 * `[r/REMARKS]` 
 
