@@ -179,13 +179,13 @@ when he completes one and finds another task with the same description still lef
 In our application, we require users to minimally provide the name, deadline and priority when creating a task.
 To ensure duplicates are handled, our team went through several alternatives and here are our considerations.
 
-* Alternative 1 (Chosen Implementation): `equals(Task task)` method should check if the name, priority, deadline, 
+* Alternative 1 (Chosen Implementation): `isSameTask(Task task)` method should check if the name, priority, deadline, 
   tags (if any) and categories (if any) are equal.
   * Pros:  
     * Tasks with same name but different deadline, priority and/or any other fields are allowed.
   * Cons:
     * Harder to implement.
-* Alternative 2 : `equals(Task task)` method should check for the equality of task name only.
+* Alternative 2 : `isSameTask(Task task)` method should check for the equality of task name only.
     * Pros:
         * Easier to implement.
         * Ensure that the task names are always distinct.
@@ -226,7 +226,7 @@ the current maximum length is sufficient to meet most of our users' common needs
 Thus, under normal usage, this additional restrictions will not cause great inconveniences to our users.
 
 #### 3.4.3 Design considerations for `Tag` and `Category` Object
-Similar to `Name` Object, we face the same chanllenge when displaying tasks or events with tags and categories
+Similar to `Name` Object, we face the same challenge when displaying tasks or events with tags and categories
 of excessively long length. 
 We choose to set the maximum length to 15 characters long for the similar reasons as mentioned above.
 
@@ -1071,16 +1071,73 @@ Use case ends.
 
 **MSS**
 
-1. User wishes to edit a task.
-2. SOChedule edits the task and displays a success message for editing the task.
+1. User requests to <u> list tasks (UC02)</u>.
+2. SOChedule shows a list of tasks.
+3. User chooses to edit a task.
+4. SOChedule edits the task and displays a success message for editing the task.
    <br><br>
    Use case ends.
    
 **Extensions**
 
-* 1a. The task specified by the user is not found in the current task list.
+* 2a. The task list is empty.
 
-* 1b. The 
+  Use case ends.
+
+  <br>
+
+* 3a. The task specified by the user is not found in the current task list.
+
+    * 3a1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+    
+    
+* 3b. The input by user has an invalid command format.
+  Some (but not all) examples may include that no index is given, 
+  index provided is not a valid positive integer or index provided is larger than 2147483647 (the maximum value of Integer object in Java).
+
+    * 3b1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+
+* 3c. Any of the given attribute by user is invalid.
+  Some examples may include that `p/10` is given to update the priority of the task,
+  but priority can only be a single digit integer from 0 to 9 inclusive.
+  
+    * 3c1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+
+* 3d. No field to edit is provided. An example may be `edit_task 1`.
+
+  * 3d1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+    
+* 3e. No field to edit is provided. An example may be `edit_task 1`.
+
+    * 3e1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+    
+
+* 3f. The edited task is equivalent to the original task.
+
+    * 3f1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+
+* 3g. The edited task is equivalent to an existing task in the task list.
+
+    * 3g1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+    
 
 **Use case: UC04 - List tasks**
 
@@ -1093,15 +1150,14 @@ Use case ends.
 Use case ends.
 
 
-**Use case: UC05 - Marking one or more tasks complete**
-*TO BE EDITED*
+**Use case: UC05 - Marking one or more tasks as completed**
+
 **MSS**
 
 1. User requests to <u> list tasks (UC02)</u>.
 2. SOChedule shows a list of tasks.
-3. User chooses to mark a task as completed.
-4. User enters the index of the task to be marked.
-5. SOChedule displays a success message for marking the task as completed.
+3. User chooses to mark one or more tasks as completed.
+4. SOChedule displays a success message for marking the task as completed.
    <br><br>
    Use case ends.
 
@@ -1112,15 +1168,69 @@ Use case ends.
   Use case ends.
 
 
-* 3a. The given index is invalid.
+* 3a. Any of the tasks specified by the user is not found in the current task list.
 
-    * 3a1. SOChedule shows an error message indicating the invalidity of the index.
+    * 3a1. SOChedule shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: UC06 - Undone a task **
 
-`<pending>`
+* 3b. Any of the task specified by the user is already marked as completed.
+
+    * 3b1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+
+* 3c. The input by user has an invalid command format.
+  Some examples may include that no index is given, any of the indexes provided is not a positive integer
+  or any of the indexes provided is larger than 2147483647 (the maximum value of Integer object in Java).
+
+    * 3c1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+
+
+**Use case: UC06 - Undone a task**
+
+**MSS**
+
+1. User requests to <u> list tasks (UC02)</u>.
+2. SOChedule shows a list of tasks.
+3. User chooses to mark a task as uncompleted.
+4. SOChedule displays a success message for marking the task as uncompleted.
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 2a. The task list is empty.
+
+  Use case ends.
+
+
+* 3a. The task specified by the user is not found in the current task list.
+
+    * 3a1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+
+* 3b. The task specified by the user is already marked as uncompleted.
+
+    * 3b1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+
+* 3c. The input by user has an invalid command format.
+  Some examples may include that no index is given, index provided is not a positive integer
+  or index provided is larger than 2147483647 (the maximum value of Integer object in Java).
+
+    * 3c1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
 
 **Use case: UC07 - Getting tasks today**
 
@@ -1303,7 +1413,38 @@ Use case ends.
 
 **Use case: UC20 - Finding Schedule**
 
-`<pending>`
+**MSS**
+1. User requests to <u> list events (UC06)</u>.
+2. SOChedule shows a list of events.
+3. User requests to <u> list tasks (UC02)</u>.
+4. SOChedule shows a list of tasks.
+5. User wishes to find schedule given a specified date.
+6. SOChedule shows uncompleted tasks that are due before or on the specified date (if any)
+   and events that are ongoing given the specified date (if any).
+   <br><br>
+   Use case ends.
+
+**Extensions**
+
+* 4a. Both task list and event list are empty.
+
+  Use case ends.
+
+
+* 5a. The specified date is invalid or does not follow the required format.
+
+    * 5a1. SOChedule shows an error message.
+
+      Use case resumes at step 4.
+
+
+* 5b. The input by user has an invalid command format.
+  Some examples may include that no date is provided.
+  
+    * 5b1. SOChedule shows an error message.
+
+      Use case resumes at step 4.
+    
 
 **Use case: UC21 - Finding free time slots**
 
