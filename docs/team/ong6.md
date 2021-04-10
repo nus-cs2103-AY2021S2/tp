@@ -27,41 +27,38 @@ imPoster is a desktop application for beginners of API development to easily gra
 
 - **Enhancements**: Added the ability to find/filter through specific endpoints through the `find` command.
 
-  - What it does: Allows the user to find and filter through endpoints.
+  - What it does: Allows the user to find and filter through endpoints with a greater degree of precision.
   - Justification: Being able to quickly find the endpoint in a large list of endpoints is important as it would save the developer time and reduce confusion.
   - Highlights: Allows users to specify the field to be searched through and allows for combining of the specifications to allow for a more targeted search.
 
-- **Features**:
+<div style="page-break-after: always;"></div>
 
+- **New Features**:
   - Managed UI aspects of the application.
-  - Added the ability to show endpoints in the API list from mouse clicks.
+  - Added the beautified display for Method, response time and other fields after a add, edit, show, remove.
+  - Added the ability to show a endpoint by clicking on it in the endpoint list.
   - Added more detailed error messages to commands.
-  - Upgraded and redesigned the `imposter`, `light theme` and `dark theme` for the UI.
+  - Upgraded and redesigned all the themes to fit the UI.
 
 #### Project management
 
-  - Added the team self-initiated [main project website](https://imposter-dev.tk).
   - Managed releases `v1.4` on GitHub.
   - Maintained [project development board](https://github.com/AY2021S2-CS2103T-T12-4/tp/projects/1)
-  - Setup the GitHub team organization/repository.
   - Setup [workflow guide](../WorkflowGuide.md) to ease project workflow.
 
 #### Community
 
-  - Helped with many PRs and provided tips on how to improve code.
-  - Provided tips through forum discussions and gave input to some forum discussions.
+  - Helped with many PRs and provided tips on how to improve code. ([1](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/591), [2](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/601))
+  - Provided tips through forum discussions and gave input to forum discussions. ([1](https://github.com/nus-cs2103-AY2021S2/forum/issues/287), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/241))
   
-#### Tools
-
-  - Integrated the third party library [Apache HttpComponents](http://hc.apache.org/index.html) to the project ([\#125](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/125)).
-  - Added a [script](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/scripts/sync.sh) to easily sync local, remote individual and team repositories ([\#45](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/45)).
-
 #### Documentation
 
   - User Guide:
-    - Added documentation for `add`, `edit` and `find` command.
+    - Added documentation for `add`, `edit` and `find` command. ([1](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/258), [2](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/275/files))
     - Added documentation on general command usage and detailed find command usage.
-    - Redid the all commands summary table.
+    - Redid the all commands summary table. [1](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/378/files)
     - Added styling and formatting.
   - Developer Guide:
-    - Added implementation details of the `add` and `find` features.
+    - Added implementation details of the `add` and `find` features. [1](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/367)
+    - Added Glossary table [1](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/606)
+    - Helped with various aspects of the DG.
