@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.logic.commands.FindAppointmentCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.predicate.AddressContainsKeywordsPredicate;
@@ -58,10 +57,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             // get everything after PREFIX_OPTION
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OPTION);
             Optional<String> argsString = argMultimap.getValue(PREFIX_OPTION);
-
-            if (!argsString.isPresent()) {
+            String preamble = argMultimap.getPreamble();
+            if (!argsString.isPresent() || !preamble.isEmpty()) {
                 throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
             }
 
             String unboxedArgsString = argsString.get();

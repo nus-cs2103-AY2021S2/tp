@@ -67,7 +67,7 @@ public class FindAppointmentCommandParserTest {
 
         // option child valid args
         FindAppointmentCommand expectedChildFindAppointmentCommand =
-                new FindAppointmentCommand(new ApptTagsContainKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+                new FindAppointmentCommand(new ApptTagsContainKeywordsPredicate(Arrays.asList("alice", "bob")));
         assertParseSuccess(parser, " o/child alice bob", expectedChildFindAppointmentCommand);
 
         // option address valid args
@@ -82,7 +82,7 @@ public class FindAppointmentCommandParserTest {
 
         // option contact valid args
         FindAppointmentCommand expectedContactFindAppointmentCommand =
-                new FindAppointmentCommand(new ApptContactsContainKeywordsPredicate(Arrays.asList("Alice", "Bob")));
+                new FindAppointmentCommand(new ApptContactsContainKeywordsPredicate(Arrays.asList("alice", "bob")));
         assertParseSuccess(parser, " o/contact alice bob", expectedContactFindAppointmentCommand);
 
 
@@ -116,8 +116,12 @@ public class FindAppointmentCommandParserTest {
 
     @Test
     public void parse_invalidOption_returnsFindAppointmentCommand() {
+        // words with whitespace before option prefix but valid option
+        assertParseFailure(parser, " invalidWord o/name",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+
         // words before option prefix but valid option
-        assertParseFailure(parser, " fesfefewfwfo/name",
+        assertParseFailure(parser, " invalidWordo/name",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
 
         // no option after option prefix
@@ -139,10 +143,6 @@ public class FindAppointmentCommandParserTest {
         // invalid option no args with whitespaces
         assertParseFailure(parser, " o/invalidOption \n  \t",
                 String.format(MESSAGE_INVALID_OPTION, MESSAGE_USAGE));
-
-
-
-
     }
 
 

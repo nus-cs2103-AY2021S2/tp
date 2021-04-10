@@ -50,22 +50,20 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
             // get everything after PREFIX_OPTION
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OPTION);
             Optional<String> argsString = argMultimap.getValue(PREFIX_OPTION);
-            if (!argsString.isPresent()) {
+            String preamble = argMultimap.getPreamble();
+            if (!argsString.isPresent() || !preamble.isEmpty()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
             }
             String unboxedArgsString = argsString.get();
-
             if (unboxedArgsString.trim().isEmpty()) { // option prefix present but option not present
                 throw new ParseException(
                         String.format(MESSAGE_MISSING_OPTION, MESSAGE_MISSING_FIND_APPOINTMENT_OPTION)
                 );
             }
-
             // split args into option and remaining optionArgs
             String[] optionArgsArray = unboxedArgsString.split("\\s+", 2);
             String option = optionArgsArray[0];
-
             if (optionArgsArray.length == 1) { //if no option args provided
                 handleMissingFindAppointmentOptionsArgsExceptions(option);
             }
