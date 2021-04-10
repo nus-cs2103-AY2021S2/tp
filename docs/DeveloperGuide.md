@@ -199,6 +199,8 @@ coupling.
 The diagram below details how the user's command to add a meeting propagates through the system to eventually add a
 meeting.
 
+![AddCommand sequence diagram](images/AddClientSequenceDiagram.png)
+
 #### Find Client by Name
 This section will detail the implementation of the Find Client by Name feature via the `find` command.
 
@@ -226,6 +228,8 @@ polymorphism, further reducing coupling.
 The diagram below details how the user's command to find clients by their names propagates through the system to
 eventually displays the matching clients to the user.
 
+![FindCommand sequence diagram](images/FindClientSequenceDiagram.png)
+
 #### Delete Client
 This section will detail the implementation of the Delete Client feature via the `delete` command.
 
@@ -251,6 +255,8 @@ polymorphism, further reducing coupling.
 ##### Detailed Execution Pathway
 The diagram below details how the user's command to delete a client propagates through the system to eventually
 remove the matching client from the App.
+
+![DeleteCommand sequence diagram](images/DeleteClientSequenceDiagram.png)
 
 ### Meeting Features
 The Meeting family of features consist of the following features: Add Meeting, Edit Meeting, List Meetings,
