@@ -6,15 +6,18 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([quick run syntax])
-    :Retrieve URL and
-    construct a GET request;
-    :Send request;
-    :Display response;
+    :Retrieve URL;
+    :Construct endpoint
+    for a GET request;
 else ([else])
+    :Retrieve request details;
     :Construct endpoint
     as specified;
-    :Send request;
-    :Display response;
 endif
+:Create run command
+with the endpoint;
+:Call endpoint;
+:Display response;
+
 stop
 @enduml

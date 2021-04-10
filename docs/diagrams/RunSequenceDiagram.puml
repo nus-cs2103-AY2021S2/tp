@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ImposterParser" as ImposterParser LOGIC_COLOR
+participant ":RunCommandParser" as RunCommandParser LOGIC_COLOR
+participant "r:RunCommand" as RunCommand LOGIC_COLOR
+participant ":EndpointCaller" as EndpointCaller ENDPOINTCALLER_COLOR
+end box
+
+[-> LogicManager : execute("run reqres.in/api/users")
+activate LogicManager
+
+LogicManager -> ImposterParser : parseCommand("run reqres.in/api/users")
+activate ImposterParser
+
+create RunCommandParser
+ImposterParser -> RunCommandParser
+activate RunCommandParser
+
+return
+
+ImposterParser --> RunCommandParser : parse(" reqres.in/api/users")
+activate RunCommandParser
+
+
+create RunCommand
+RunCommandParser -> RunCommand
+activate RunCommand
+
+RunCommand --> RunCommandParser : r
+deactivate RunCommand
+
+RunCommandParser --> ImposterParser :r
+deactivate RunCommandParser
+RunCommandParser -[hidden]-> ImposterParser : hidden
+destroy RunCommandParser
+
+ImposterParser --> LogicManager : r
+deactivate ImposterParser
+
+LogicManager -> RunCommand : execute
+activate RunCommand
+
+create EndpointCaller
+RunCommand -> EndpointCaller
+activate EndpointCaller
+
+return
+
+RunCommand -[ENDPOINTCALLER_COLOR]--> EndpointCaller : callEndpoint()
+activate EndpointCaller
+
+return response
+deactivate EndpointCaller ENDPOINTCALLER_COLOR
+EndpointCaller -[hidden]-> RunCommand : result
+destroy EndpointCaller
+
+RunCommand --> LogicManager : commandResult
+deactivate RunCommand
+
+RunCommand -[hidden]-> LogicManager : result
+destroy RunCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
