@@ -3,18 +3,23 @@
 skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
+skinparam linetype polyline
+skinparam linetype ortho
 
 package UI <<Rectangle>>{
 Interface Ui <<Interface>>
-Class "{abstract}\nUiPart" as UiPart
+Class "\n\n{abstract}\nUiPart\n\n" as UiPart
 Class UiManager
-Class MainWindow
+Class "\n\nMainWindow\n\n" as MainWindow
 Class HelpWindow
 Class ResultDisplay
 Class StudentListPanel
 Class StudentCard
 Class StatusBarFooter
 Class CommandBox
+Class TuitionListPanel
+Class TuitionCard
+Class SessionCard
 }
 
 package Model <<Rectangle>> {
@@ -28,13 +33,22 @@ Class HiddenLogic #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
-UiManager .left.|> Ui
+UiManager .right.|> Ui
 UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> StudentListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> TuitionListPanel
+TuitionListPanel -down-> TuitionCard
+TuitionCard -down-> SessionCard
+MainWindow *-down-> UpcomingTuitionListPanel
+UpcomingTuitionListPanel -down-> UpcomingTuitionCard
+MainWindow *-down-> MonthlyFeeListPanel
+MonthlyFeeListPanel -down-> MonthlyFeeCard
+MainWindow *-down-> CalendarView
+CalendarView -down-> CalendarCard
 
 StudentListPanel -down-> StudentCard
 
@@ -46,15 +60,25 @@ StudentListPanel --|> UiPart
 StudentCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
+TuitionListPanel --|> UiPart
+TuitionCard --|> UiPart
+SessionCard --|> UiPart
+UpcomingTuitionListPanel --|> UiPart
+UpcomingTuitionCard --|> UiPart
+MonthlyFeeListPanel --|> UiPart
+MonthlyFeeCard --|> UiPart
+CalendarView --|> UiPart
+CalendarCard --|> UiPart
 
 StudentCard ..> Model
-UiManager -right-> Logic
+UiManager -left-> Logic
 MainWindow -left-> Logic
 
 StudentListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+ResultDisplay -[hidden]left- UpcomingTuitionListPanel
 
 MainWindow -[hidden]-|> UiPart
 @enduml
