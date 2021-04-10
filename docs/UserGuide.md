@@ -190,7 +190,7 @@ Finds passengers whose names contain any of the given keywords.
 
 Deletes the specific passenger from the GME terminal.
 
-**Format:** `delete INDEX [OPTIONAL_INDEX OPTIONAL_INDEX...]`
+**Format:** <code>delete INDEX [<a title="These parameters are optional.">INDEX INDEX...</a>]</code>
 
 <div markdown="block" class="alert alert-info">
 
@@ -215,7 +215,7 @@ Deletes the specific passenger from the GME terminal.
 
 Selects passengers from the current view in the bottom left pane of the GME terminal to arrange a carpool. 
 
-**Format:** `pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [c/OPTIONAL_INDEX c/OPTIONAL_INDEX ...] [tag/TAG]`
+**Format:** <code>pool n/DRIVER_NAME p/DRIVER_PHONE d/TRIPDAY t/TRIPTIME c/INDEX [<a title="These parameters are optional.">c/INDEX c/INDEX...</a>] [tag/TAG]</code>
 
 <div markdown="block" class="alert alert-info">
 
@@ -223,7 +223,7 @@ Selects passengers from the current view in the bottom left pane of the GME term
 
 * [TripDay](#6-glossary) is required to be a valid day of the week. e.g. `SUNDAY` or `FRIDAY`.
 * [TripTime](#6-glossary) is required to be in the 24-hour format. e.g. `0530` or `2359`.
-* Here, `c/` stands for commuter, i.e. someone to be pooled with a driver.
+* Here, c/ stands for commuter, i.e. someone to be pooled with a driver.
 * GME will not allow you to `delete` a passenger that is assigned to a Pool.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
