@@ -319,8 +319,10 @@ If your changes to the data file makes its format invalid, docBob will discard a
 **A**: Install the app in the other computer and replace the empty data file it creates with the file that contains the data of your previous DocBob home folder.<br>
 **Q**: How do I edit a patient's details or add appointments to a patient that is archvied?<br>
 **A**: Unarchive the patient using the `unarchive` command and proceed with editing the patient's details or scheduling appointments with the patient.<br>
-**Q**: How do I get back the sample patient data that appeared when I first opened the app after clearing it?
-**A**: Delete the data folder along with the docBob.json file inside and restart the app. Note that you will lose any patient info that you added after clearing the app of all sample patient data.
+**Q**: How do I get back the sample patient data that appeared when I first opened the app after clearing it?<br>
+**A**: Delete the data folder along with the docBob.json file inside and restart the app. Note that you will lose any patient info that you added after clearing the app of all sample patient data.<br>
+**Q**: Why are some information not visible?<br>
+**A**: Because the screen size differs for everyone, try resizing your screen if the information is not visible. That should fix the problem.
 
 --------------------------------------------------------------------------------------------------------------------
 
