@@ -19,7 +19,7 @@ way for you to manage your data.
 CakeCollate promises to be an efficient desktop application that allows you to easily consolidate and manage your orders. Our main features include:<br>
 1. Order management
 2. Order Item management
-3. Reminders for orders that have delivery dates approaching the current date
+3. Reminders for undelivered orders that have delivery dates approaching the current date
 4. Checking the delivery status of your orders
 
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
@@ -168,13 +168,14 @@ Prefix: `p/`
 * It cannot be longer than 20 digits.
 
 ##### `REQUEST`
-The special request or notes you can add to an order.<br>
+The special request or notes you can add to an order. What makes it different from tags it that it can contain
+large amounts of information.<br>
 Prefix: `r/`
 * It can contain any type of characters.
 * It can be empty.
   * An empty request is used to clear/reset the `REQUEST` field of the order.
 
-:information_source: `Request` and its prefix `r/` will only be processed in the [Request Command](#adding-a-special-request-to-an-order-request) and [Find Command](#locating-orders-find).
+:information_source: The user input `Request` and its prefix `r/` will only be used in the [Request Command](#adding-a-special-request-to-an-order-request) and [Find Command](#locating-orders-find).
 
 ##### `TAG`
 The tags you can add to an order. A small piece of information you can add to an order.<br>
@@ -211,7 +212,7 @@ You can use the sample data pre-loaded in the application to get play around and
 
    * **`delete`**`3` : Deletes the 3rd order shown in the current list.
    
-   * **`remind`**`2` : Lists all orders that are 2 days within the current local date.
+   * **`remind`**`2` : Lists all undelivered orders that are 2 days within the current local date.
 
    * **`clear`** : Deletes all order in the CakeCollate database.
 
@@ -279,9 +280,14 @@ Format: `request INDEX r/REQUEST`
 specifying the index without adding the prefix.
 
 Examples:
-* `request 1 r/More sugar, spice and everything nice.` Sets the special request of the 1st order to be `More sugar, spice and everything nice.`
-* `request 2 r/` Removes the 2nd order's current special request.
+* `request 1 r/More sugar, spice and everything nice` Sets the special request of the 1st order to be `More sugar, spice and everything nice.`
+* `request 1 r/` Removes the 1st order's current special request.
 * `request 1` Removes the 1st order's current special request.
+* Assuming the special request on an order was previously empty as shown in this picture,
+![empty_request](images/Empty_request.PNG), using the command `request 1 r/More sugar, spice and everything nice` would
+update the order's current special request to ![fllled_request](images/Filled_request.PNG), 
+using the command `request 1` or `request 1 r/` on the same order again would update the request of the order back to 
+![empty_request](images/Empty_request.PNG).
 
 
 ##### Deleting an order: `delete`
@@ -404,17 +410,17 @@ Format: `list`
 
 ##### Receiving reminders for orders: `remind`
 
-Displays a list of reminder for orders that are X days within the current date.
+Displays a list of reminder for all undelivered orders that are X days within the current date.
 
 Format: `remind DAYS`
 
-* Lists all orders within the current date to the numbers of days from the specified date.
+* Lists all undelivered orders within the current date to the numbers of days from the specified date.
 * The `DAYS` refers to the number of days from the current date.
 * The `DAYS` **must be a positive integer starting from 0**.
 
 Examples:
-* `remind 0` lists all orders that have a delivery date for today.
-* `remind 365` lists all orders that have a delivery date within 365 days from today.
+* `remind 0` lists all undelivered orders that have a delivery date for today.
+* `remind 365` lists all undelivered orders that have a delivery date within 365 days from today. <br>
     ![result for 'remind 365'](images/Remind365.PNG) 
 
 
