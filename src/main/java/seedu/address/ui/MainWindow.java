@@ -223,8 +223,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isLight()) {
                 if (currentCss.equals("MainWindowLight.fxml")) {
                     resultDisplay.setFeedbackToUser("Already in light mode");
-                }
-                else {
+                } else {
                     handleLightChange();
                     resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
                 }
@@ -233,8 +232,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isDark()) {
                 if (currentCss.equals("MainWindow.fxml")) {
                     resultDisplay.setFeedbackToUser("Already in dark mode");
-                }
-                else {
+                } else {
                     handleDarkChange();
                     resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
                 }

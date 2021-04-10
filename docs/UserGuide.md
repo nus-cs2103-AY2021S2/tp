@@ -243,6 +243,7 @@ Format: `sort ASCENDING_OR_DESCENDING`
 
 * The keyword (`ascending` or `descending`) must be in lower case.
 * Both the currently displayed list and the entire contact list will be sorted.
+* Contacts with the same name will be sorted by email in lexicographical order.
 
 Examples:
 
