@@ -30,7 +30,7 @@ import seedu.address.testutil.ContactBuilder;
 import seedu.address.testutil.EditContactDescriptorBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for EditContactCommand.
  */
 
 public class EditContactCommandTest {
@@ -134,7 +134,7 @@ public class EditContactCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of contact list in Teaching Assistant
      */
     @Test
     public void execute_invalidContactIndexFilteredList_failure() {
