@@ -578,8 +578,8 @@ Use case ends.
 
 ### Non-Functional Requirements
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Data should be persistent after exiting and reopening the app
-3. App should run locally on the user's computer
+2. Data should be persistent after exiting and reopening the app.
+3. App should run locally on the user's computer.
 
 *{More to be added}*
 
@@ -602,7 +602,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
@@ -619,7 +619,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a Member while all members are being shown
 
-   1. Prerequisites: List all members using the `viewMembers` command. Multiple members in the list. A member with the name of `Alice` exists in the list. No member with the name `Barry` exists in the list
+   1. Prerequisites: List all members using the `viewMembers` command. Multiple members in the list. A member with the name of `Alice` exists in the list. No member with the name `Barry` exists in the list.
 
    1. Test case: `delete Alice`<br>
       Expected: Member with the name `Alice` is deleted from the list. Details of the deleted contact shown in the status message.
