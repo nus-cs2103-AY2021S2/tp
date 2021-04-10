@@ -635,15 +635,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a property while all properties are being shown
 
-   * Prerequisites: List all properties using the `list property` command. Multiple properties in the list.
+   1. Prerequisites: List all properties using the `list property` command. Multiple properties in the list.
 
-   * Test case: `delete property 1`<br>
+   1. Test case: `delete property 1`<br>
       Expected: First property is deleted from the list. Details of the deleted property shown in the status message.
 
-   * Test case: `delete property 0`<br>
+   1. Test case: `delete property 0`<br>
       Expected: No property is deleted. Error details shown in the status message.
 
-   * Other incorrect delete commands to try: `delete`, `delete property x` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete property x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ## **Appendix G: Effort**
