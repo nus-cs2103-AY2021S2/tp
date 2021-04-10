@@ -119,6 +119,13 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Diagram note:** <br>
+
+`XYZCommand` and `XYZCommandParser` are placeholder classes. See the diagram notes in the 
+[Logic component section](#logic-component) for more information.
+</div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `rdel 1`.
