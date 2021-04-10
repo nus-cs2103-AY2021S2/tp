@@ -82,6 +82,12 @@ public class Score implements Comparable<Score> {
         return result;
     }
 
+    /**
+     * Get the correct ratio of the current quiz instance.
+     *
+     * @return The ratio questionCorrect / questionAttempted in a float point manner.
+     * If there are no attempts, the ratio would be 0 by default.
+     */
     private Double getCorrectRatio() {
         assert questionAttempted != null;
         assert questionAttempted > 0;
@@ -143,7 +149,7 @@ public class Score implements Comparable<Score> {
      * @return The String representation of the the date and time when the score is awarded in this Score object.
      */
     public String getCompletedTime() {
-        return DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss").format(datetime).toString();
+        return DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss").format(datetime);
     }
 
     /**

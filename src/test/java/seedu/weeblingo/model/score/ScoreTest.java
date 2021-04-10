@@ -15,13 +15,17 @@ import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
 
 
+/**
+ * Test class for Score
+ */
 public class ScoreTest {
 
     @Test
     public void of_null_throwsRuntimeException() {
-        assertThrows(RuntimeException.class, () -> Score.of(null, 1, "0:03:04"));
-        assertThrows(RuntimeException.class, () -> Score.of(1, null, "0:03:04"));
-        assertThrows(RuntimeException.class, () -> Score.of(null, null, "0:03:04"));
+        assertThrows(RuntimeException.class, () -> Score.of(null, 1, "00:03:04"));
+        assertThrows(RuntimeException.class, () -> Score.of(1, null, "00:03:04"));
+        assertThrows(RuntimeException.class, () -> Score.of(null, null, "00:03:04"));
+        assertThrows(RuntimeException.class, () -> Score.of(1, 1, null));
     }
 
     @Test
