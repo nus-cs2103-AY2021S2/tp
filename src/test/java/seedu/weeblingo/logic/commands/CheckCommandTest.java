@@ -24,6 +24,7 @@ import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.score.Score;
 import seedu.weeblingo.model.tag.Tag;
 import seedu.weeblingo.testutil.FlashcardBuilder;
+import seedu.weeblingo.testutil.QuizBuilder;
 
 public class CheckCommandTest {
 
@@ -163,7 +164,7 @@ public class CheckCommandTest {
         }
 
         @Override
-        public Quiz getQuizInstance() {
+        public Quiz getQuizInstance() throws CommandException {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -277,6 +278,11 @@ public class CheckCommandTest {
         public int getCurrentMode() {
             return Mode.MODE_QUIZ_SESSION;
         }
+
+        @Override
+        public Quiz getQuizInstance() throws CommandException {
+            return new QuizBuilder().build();
+        }
     }
 
     private class ModelStubCheckFailure extends ModelStub {
@@ -293,6 +299,11 @@ public class CheckCommandTest {
         @Override
         public int getCurrentMode() {
             return Mode.MODE_QUIZ_SESSION;
+        }
+
+        @Override
+        public Quiz getQuizInstance() throws CommandException {
+            return new QuizBuilder().build();
         }
     }
 

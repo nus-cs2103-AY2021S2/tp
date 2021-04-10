@@ -19,7 +19,7 @@ import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.score.Score;
-import seedu.weeblingo.testutil.QuizBuilder;
+import seedu.weeblingo.testutil.QuizACard;
 
 class QuizTest {
 
@@ -27,7 +27,7 @@ class QuizTest {
 
     {
         try {
-            quiz = new QuizBuilder().build();
+            quiz = new QuizACard().build();
         } catch (CommandException e) {
             e.printStackTrace();
         }
