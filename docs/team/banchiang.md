@@ -10,7 +10,7 @@ to the project RemindMe under NUS module CS2103T in AY20/21 semester 2.
 RemindMe is a desktop application for keeping track of user events and deadlines, optimised for use via Command Line
 Interface(CLI) while still having the benefits of a Graphic User Interface(GUI).
 RemindMe allows students to always be aware of exams and events deadline as there will be reminder pop-ups and calendar
-for students to see! It is written in Java, and has about 17 kLOC contributed.
+for students to see! It is written in Java, and has about 17k LOC contributed.
 <br>
 
 Given below are my contributions to the project
