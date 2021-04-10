@@ -38,14 +38,14 @@ ReminderCommandParser --> ReminderCommandParser : 3
 deactivate ReminderCommandParser
 
 create ItemExpiringPredicate
-ReminderCommandParser -> ItemExpiringPredicate : ItemExpiringPredicate(3)
+ReminderCommandParser -> ItemExpiringPredicate
 activate ItemExpiringPredicate
 
 ItemExpiringPredicate --> ReminderCommandParser : predicate
 deactivate ItemExpiringPredicate
 
 create ReminderCommand
-ReminderCommandParser -> ReminderCommand : ReminderCommand(predicate)
+ReminderCommandParser -> ReminderCommand
 activate ReminderCommand
 
 ReminderCommand --> ReminderCommandParser : command
@@ -82,7 +82,7 @@ Model --> ReminderCommand
 deactivate Model
 
 create ItemComparatorByExpiryDate
-ReminderCommand -> ItemComparatorByExpiryDate : ItemComparatorByExpiryDate()
+ReminderCommand -> ItemComparatorByExpiryDate
 activate ItemComparatorByExpiryDate
 
 ItemComparatorByExpiryDate --> ReminderCommand : comparator
