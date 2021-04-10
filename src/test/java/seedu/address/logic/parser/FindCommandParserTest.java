@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_FIND_OPTI
 import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_NAME_ARGS;
 import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_PHONE_ARGS;
 import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_TAG_ARGS;
+import static seedu.address.logic.commands.FindCommand.MESSAGE_MISSING_TAG_PREFIX;
 import static seedu.address.logic.commands.FindCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -83,7 +84,7 @@ public class FindCommandParserTest {
         Set<Tag> tagSet = ParserUtil.parseTags(Arrays.asList("math", "science"));
         FindCommand expectedTagFindCommand =
                 new FindCommand(new TagsMatchKeywordPredicate(tagSet));
-        assertParseSuccess(parser, " o/tag math science", expectedTagFindCommand);
+        assertParseSuccess(parser, " o/tag t/math t/science", expectedTagFindCommand);
 
     }
 
@@ -142,6 +143,13 @@ public class FindCommandParserTest {
                 String.format(MESSAGE_INVALID_OPTION, MESSAGE_USAGE));
 
 
+    }
+
+    @Test
+    public void parse_optionTagMissingTagPrefix_returnsFindCommand() {
+        // missing t/ in find by tag
+        assertParseFailure(parser, " o/tag tag1 tag2",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_MISSING_TAG_PREFIX));
     }
 
 }
