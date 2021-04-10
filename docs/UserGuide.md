@@ -143,6 +143,61 @@ The suggested command will be automatically filled into the command bar.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Friends
+
+FriendDex allows you to store certain information about your friends, so you don't have to.
+The information below provides further description about your friends' details you can store.
+
+Further description on how to add/modify these fields are provided in the [Features](#features) section.
+
+### Name
+
+Your friend's name, so you don't have those embarrassing moments where you forget their name.
+
+This field is what uniquely identifies each friend in FriendDex.
+Names are case-insensitive in FriendDex. This means that FriendDex interprets "John Doe" and "JoHn DoE" as the same name.
+
+### Phone Number
+
+Your friend's phone number, so you don't have to remember their phone number everytime you call.
+
+This field should only contain numbers and should at least be 3 digits long.
+
+### Address
+
+Your friend's home address so that you don't have to remember their address whenever you want to hang out with them.
+
+This field can take any values, but it should not be blank.
+It is okay for two friends to share the same address.
+
+### Birthday
+
+Your friend's birthday so that you don't forget one of their most important days of the year.
+
+This field should follow the following date format: `dd-MM-yyyy` e.g `01-01-2020`.
+This field additionally should not be a date from the future.
+
+### Debt
+
+The amount of debt you owe to your friend so that you can pay back your dues. 
+
+A positive amount of debt would mean that your friend owe you the specified amount
+A negative amount of debt would mean that you owe your friend the specified amount instead.
+
+Whenever a friend is added, the debt is automatically 0. The range of this debt is from -999,999,999,999 to 999,999,999,999.
+
+### Special Dates
+
+Special Dates that you would like to be reminded of yearly so that you can celebrate them whenever the date draws near.
+
+### Meetings
+
+Meetings you had with your friend that you would like to record the details of so.
+
+FriendDex additionally allows you to [set meeting goals](#setting-meeting-goal-set-goal) so you can be reminded of when to
+schedule your next meeting with your friend.
+
+--------------------------------------------------------------------------------------------------------------------
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -225,6 +280,8 @@ Format: `add-debt INDEX DEBT_AMOUNT`
 
 * `DEBT_AMOUNT` provided should be a **positive number** of up to 2 decimal places
   e.g `10.10` or `10.1000` and **not** `10.103`.
+* `DEBT_AMOUNT` provided should be within the range of from 0 to 999,999,999,999.
+* Adding by `DEBT_AMOUNT` should not cause the friend's debt to be above the limit given in [Debt](#debt)
 </div>
 
 Examples:
@@ -460,6 +517,8 @@ Subtracts a specified amount to the debt owed to the friend at the specified `IN
 
 * `DEBT_AMOUNT` provided should be a **positive number** of up to 2 decimal places,
   e.g `10.10` or `10.1000` and **not** `10.103`.
+* `DEBT_AMOUNT` provided should be within the range of from 0 to 999,999,999,999.
+* Subtracting by `DEBT_AMOUNT` should not cause the friend's debt to be below the limit given in [Debt](#debt)
 </div>
 
 Format: `subtract-debt INDEX DEBT_AMOUNT`
