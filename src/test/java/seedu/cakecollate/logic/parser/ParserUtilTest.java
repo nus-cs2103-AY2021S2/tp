@@ -624,37 +624,37 @@ public class ParserUtilTest {
     @Test
     public void parseIndexList_capitalAlphabet_throwsParseException() {
         assertThrows(ParseException.class, ()
-                -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_ALPHABETS_1));
+            -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_ALPHABETS_1));
     }
 
     @Test
     public void parseIndexList_mixedAlphabets_throwsParseException() {
         assertThrows(ParseException.class, ()
-                -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_ALPHABETS_2));
+            -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_ALPHABETS_2));
     }
 
     @Test
     public void parseIndexList_multipleAlphabets_throwsParseException() {
         assertThrows(ParseException.class, ()
-                -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_ALPHABETS_3));
+            -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_ALPHABETS_3));
     }
 
     @Test
     public void parseIndexList_positiveAndNegativeIntegersOne_throwsParseException() {
         assertThrows(ParseException.class, ()
-                -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_MIXED_INTEGERS_1));
+            -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_MIXED_INTEGERS_1));
     }
 
     @Test
     public void parseIndexList_positiveAndNegativeIntegersTwo_throwsParseException() {
         assertThrows(ParseException.class, ()
-                -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_MIXED_INTEGERS_2));
+            -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_MIXED_INTEGERS_2));
     }
 
     @Test
     public void parseIndexList_positiveAndNegativeIntegersThree_throwsParseException() {
         assertThrows(ParseException.class, ()
-                -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_MIXED_INTEGERS_3));
+            -> ParserUtil.parseIndexList(INVALID_INDEX_LIST_WITH_MIXED_INTEGERS_3));
     }
 
 }
