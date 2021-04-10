@@ -13,7 +13,7 @@ activate ui UI_COLOR
 ui -[UI_COLOR]> logic : execute("find Alex")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : deleteCustomer(c)
+logic -[LOGIC_COLOR]> model : findCustomer(c)
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic
