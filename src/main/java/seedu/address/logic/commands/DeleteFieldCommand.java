@@ -125,11 +125,11 @@ public class DeleteFieldCommand extends Command {
         boolean isDescriptionField = field.equals(PREFIX_DESCRIPTION);
         boolean isTagField = field.equals(PREFIX_TAG);
 
-        boolean fieldAlreadyDeleted = (isDateField && oldDate.isEmptyValue()) ||
-                (isRecurringScheduleField && oldRecurringSchedule.isEmptyValue()) ||
-                (isDurationField && oldDuration.isEmptyValue()) ||
-                (isDescriptionField && oldDescription.isEmptyValue()) ||
-                (isTagField && oldTags.isEmpty());
+        boolean fieldAlreadyDeleted = (isDateField && oldDate.isEmptyValue())
+                || (isRecurringScheduleField && oldRecurringSchedule.isEmptyValue())
+                || (isDurationField && oldDuration.isEmptyValue())
+                || (isDescriptionField && oldDescription.isEmptyValue())
+                || (isTagField && oldTags.isEmpty());
 
         if (isTitleField) {
             logger.info("User tried to delete title");

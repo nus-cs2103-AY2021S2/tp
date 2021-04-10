@@ -1,6 +1,13 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 /**
  * A prefix that marks the beginning of an argument in an arguments string.
@@ -22,14 +29,14 @@ public class Prefix {
     }
 
     public boolean isValidPrefix() {
-        return this.equals(PREFIX_TITLE) ||
-                this.equals(PREFIX_DATE) ||
-                this.equals(PREFIX_STATUS) ||
-                this.equals(PREFIX_TAG) ||
-                this.equals(PREFIX_DESCRIPTION) ||
-                this.equals(PREFIX_DURATION) ||
-                this.equals(PREFIX_RECURRINGSCHEDULE) ||
-                this.equals(PREFIX_SORT);
+        return this.equals(PREFIX_TITLE)
+                || this.equals(PREFIX_DATE)
+                || this.equals(PREFIX_STATUS)
+                || this.equals(PREFIX_TAG)
+                || this.equals(PREFIX_DESCRIPTION)
+                || this.equals(PREFIX_DURATION)
+                || this.equals(PREFIX_RECURRINGSCHEDULE)
+                || this.equals(PREFIX_SORT);
     }
 
     @Override
