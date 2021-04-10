@@ -121,7 +121,7 @@ As listed below are the attributes to be specified for Tasks and Events. All par
         <td>
             <ul>
                 <li>Follows the format YYYY-MM-DD</li>
-                <li>Must be a date later than the date of creation</li>
+                <li>Must be a date later than or on the date of task creation</li>
             </ul>
         </td>
     </tr>
@@ -161,8 +161,8 @@ As listed below are the attributes to be specified for Tasks and Events. All par
         <td>
             <ul>
                 <li>Follows the format YYYY-MM-DD</li>
-                <li>Must be a date later than the date of creation</li>
-                <li>Must be a date after start date</li>
+                <li>Must be a date later than or on the date of creation</li>
+                <li>Must be a date after or on start date (Subject to Time attribute constraints)</li>
             </ul>
         </td>
     </tr>
