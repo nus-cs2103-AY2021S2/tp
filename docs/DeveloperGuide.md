@@ -124,6 +124,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that
   the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
+* stores a `PersonStreakList` for use in the Streaks dashboard. The additional class diagram can be found [here](#streaks-dashboard).
 
 ### Storage component
 
@@ -210,7 +211,10 @@ switched.
 
 The Streaks Dashboard shows the streaks maintained with each contact sorted in descending order. Refer to the UG Streaks section for more information.
 Each streak has to be calculated based on the recorded meetings of each person and today's date. This operation is costly and so we want to avoid recomputing this value
-as much as possible. Since streaks can be computed from the attributes of a person, they are not stored in the data file. 
+as much as possible. Since streaks can be computed from the attributes of a person, they are not stored in the data file. The classes that are used to display the Streaks Dashboard
+is shown below.
+
+![StreaksDashboardClassDiagram](images/StreaksDashboardClassDiagram.png)
 
 #### Initialization
 
@@ -224,6 +228,10 @@ This section will detail the steps the program takes to calculate streaks of eve
 `internalLst` will contain all the `PersonStreak` objects that will be used to display the dashboard. It will be enclosed by a filtered list to show only `PersonStreak` that have an active goal set. 
 An active goal is any valid goal that is not `NONE`, refer to UG `set-goal` for more information. The filtered list will then be made unmodifiable before being exposed to UI components to consume.
 
+The sequence diagram below depicts the execution path when the program is initialized.
+
+![InitStreaksDashboardSequenceDiagram](images/InitStreaksDashboardSequenceDiagram.png)
+
 #### Updating a person
 
 This section will detail how a `PersonStreak` is updated when the `Person` in it is modified.
@@ -232,6 +240,10 @@ This section will detail how a `PersonStreak` is updated when the `Person` in it
 2. Internally, the `PersonStreakList` will remove the original `Person` and add the edited `Person` into the internal observable list, named `internalList`. 
 3. The `PersonStreakList` will calculate the streak of the added person and insert it correctly into `internalList`.
 4. Once the `internalList` is updated, any UI components listening to it through the API exposed by `PersonStreakList` will be updated automatically.
+
+The sequence diagram below depicts the execution path when a person is updated.
+
+![UpdateStreaksDashboardSequenceDiagram](images/UpdateStreaksDashboardSequenceDiagram.png)
 
 ### Add Group
 
