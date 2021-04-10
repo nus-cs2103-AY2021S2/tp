@@ -24,7 +24,7 @@ You can reach us at the email `jjimy@comp.nus.edu.sg`
 <img src="images/ianckw.png" width="200px">
 
 [[github](http://github.com/IanCKW)]
-[[portfolio](team/IanCKW.md)]
+[[portfolio](team/ianckw.md)]
 
 * Role: Testing
 * Responsibility: Commands
