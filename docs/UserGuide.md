@@ -211,37 +211,37 @@ t/ | TAG |
 
 ## Command list
 
-* **`list`** : List out tasks
+* [**`list`**](#list-out-tasks--list) : List out tasks
 
-* **`add`** : Add a task
+* [**`add`**](#add-a-task-add) : Add a task
 
-* **`clear`** : Delete all tasks
+* [**`clear`**](#delete-all-tasks-clear) : Delete all tasks
 
-* **`delete`** : Delete a task
+* [**`delete`**](#delete-a-task--delete) : Delete a task
 
-* **`done`** : Mark a task as done
+* [**`done`**](#mark-a-task-as-done--done) : Mark a task as done
 
-* **`notdone`** : Mark a task as not done
+* [**`notdone`**](#mark-a-task-as-not-done--notdone) : Mark a task as not done
 
-* **`tag`** : Add a tag to a task
+* [**`tag`**](#add-tags-tag) : Add a tag to a task
 
-* **`find`** : Search for tasks with name
+* [**`find`**](#search-tasks-with-name-of-task-find) : Search for tasks with name
 
-* **`findTag`** : Search for tasks with tag
+* [**`findTag`**](#search-tasks-with-tag-findtag) : Search for tasks with tag
 
-* **`deleteTag`** : Delete a tag of a task
+* [**`deleteTag`**](#delete-tag-of-task-deletetag) : Delete a tag of a task
 
-* **`mod`** : Search for tasks of a specific module
+* [**`mod`**](#search-tasks-associated-to-a-module-mod) : Search for tasks of a specific module
 
-* **`edit`** : Edit task
+* [**`edit`**](#edit-a-task-edit) : Edit task
 
-* **`sort`** : Sort tasks
+* [**`sort`**](#sort-tasks--sort) : Sort tasks
 
-* **`recur`** : Recur tasks
+* [**`recur`**](#recur-tasks-recur) : Recur tasks
 
-* **`refresh`** : Refresh all showing tasks
+* [**`refresh`**](#refresh-all-tasks-refresh) : Refresh all showing tasks
 
-* **`exit`** : Close the app
+* [**`exit`**](#close-app-exit) : Close the app
 
 --------------------------------------------------------------------------------------------------------------------
 
