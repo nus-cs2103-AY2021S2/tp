@@ -279,12 +279,16 @@ Format: `delete INDEX`
 * The index **must be a positive integer** ranging from 1 to 2147483647.
 
 </div>
+Example: <br>
 
-Examples: <br>
+`list` followed by `delete 2` deletes the 2nd student in TutorsPet.
+
+![delete](images/delete command.png)
+
+Other examples: <br>
 
 Command     | Result
 ----------- |---------------------------------------------------
-`list` followed by `delete 2`  | deletes the 2nd student in TutorsPet
 `search n/Betsy` followed by `delete 1`| deletes the 1st student in the results of the `search` command
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
@@ -488,6 +492,8 @@ Command     | Result
 ----------- |---------------------------------------------------
 `add-date d/math exam dt/2021-11-03 0800`  | adds an important date with description `math exam` and details `2021-11-03 0800`
 
+![add-date](images/add-date command.png)
+
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Listing all important dates : `list-date`
@@ -495,6 +501,8 @@ Command     | Result
 Shows a list of all important dates in TutorsPet.
 
 Format: `list-date`
+
+![list-date](images/list-date command.png)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
@@ -520,6 +528,8 @@ Examples: <br>
 Command     | Result
 ----------- |---------------------------------------------------
 `list-date` followed by `delete-date 2` |  deletes the 2nd important date in TutorsPet
+
+![delete-date](images/delete-date command.png)
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
