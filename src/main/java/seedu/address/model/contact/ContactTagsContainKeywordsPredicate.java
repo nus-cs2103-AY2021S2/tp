@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Contact}'s {@code Tags} matches any of the keywords given.
+ * Tests that a {@code Contact}'s {@code Tags} matches all of the keywords given.
  */
 public class ContactTagsContainKeywordsPredicate implements Predicate<Contact> {
     private final List<String> keywords;
