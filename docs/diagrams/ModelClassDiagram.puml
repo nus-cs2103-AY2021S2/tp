@@ -9,6 +9,7 @@ Interface ReadOnlyAddressBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
 Interface ReadOnlyDatesBook <<Interface>>
+Interface ReadOnlyLessonBook <<Interface>>
 Class AddressBook
 Class ReadOnlyAddressBook
 Class Model
@@ -16,6 +17,7 @@ Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 Class DatesBook
+Class LessonBook
 
 Package Person {
 Class Person
@@ -35,6 +37,7 @@ Package Lesson {
 Class Lesson
 Class Day
 Class Time
+Class UniqueLessonList
 }
 
 Package Date {
@@ -57,6 +60,8 @@ ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 ModelManager o-right-> "1" DatesBook
 DatesBook .up.|> ReadOnlyDatesBook
+ModelManager o-right-> "1" LessonBook
+LessonBook .up.|> ReadOnlyLessonBook
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person
@@ -67,8 +72,6 @@ Person *--> Address
 Person *--> School
 Person *--> "*" Tag
 Person *--> "*" Lesson
-Lesson *--> Day
-Lesson *--> Time
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
@@ -79,5 +82,12 @@ UniqueDateList o--> "*" ImportantDate
 ImportantDate *--> Description
 ImportantDate *--> Details
 
-ModelManager ----->" ~* filtered list" Person
+LessonBook *--> "1" UniqueLessonList
+UniqueLessonList o--> "*" Lesson
+Lesson *--> Day
+Lesson *--> Time
+Lesson *--> "*" Person
+
+ModelManager ----->" ~* filtered and observable list" Person
+ModelManager ----->" ~* filtered and observable list" Lesson
 @enduml

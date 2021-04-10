@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":LevelDownCommandParser" as LevelDownCommandParser LOGIC_COLOR
+participant "lv:LevelDownCommand" as LevelDownCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("leveldown ex/1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("leveldown ex/1")
+activate AddressBookParser
+
+create LevelDownCommandParser
+AddressBookParser -> LevelDownCommandParser
+activate LevelDownCommandParser
+
+LevelDownCommandParser --> AddressBookParser
+deactivate LevelDownCommandParser
+
+AddressBookParser -> LevelDownCommandParser : parse("ex/1")
+activate LevelDownCommandParser
+
+create LevelDownCommand
+LevelDownCommandParser -> LevelDownCommand
+activate LevelDownCommand
+
+LevelDownCommand --> LevelDownCommandParser : lv
+deactivate LevelDownCommand
+
+LevelDownCommandParser --> AddressBookParser : lv
+deactivate LevelDownCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+LevelDownCommandParser -[hidden]-> AddressBookParser
+destroy LevelDownCommandParser
+
+AddressBookParser --> LogicManager : lv
+deactivate AddressBookParser
+
+LogicManager -> LevelDownCommand : execute()
+activate LevelDownCommand
+
+LevelDownCommand -> Model : filterIndicesThenTransformPersonList(indices, new PersonLevelDownFunction())
+activate Model
+
+Model --> LevelDownCommand
+deactivate Model
+
+create CommandResult
+LevelDownCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> LevelDownCommand
+deactivate CommandResult
+
+LevelDownCommand --> LogicManager : result
+deactivate LevelDownCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
