@@ -302,7 +302,7 @@
     "address" : "Blk 45 Aljunied Street 85, #11-31",
     "height" : "172cm",
     "weight" : "58kg",
-    "isArchived" : false,
+    "isArchived" : true,
     "tagged" : [ "asidjoajc" ],
     "appointments" : [ "19/9/21 19:00" ],
     "records" : [ {

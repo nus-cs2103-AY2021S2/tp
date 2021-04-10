@@ -22,7 +22,7 @@ public class ArchiveCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "Archived patient: %1$s\n"
+    public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "Hey Doc, %s is now archived!\n"
             + "The patient has been stored in the archives.";
 
     public static final String MESSAGE_ALREADY_ARCHIVED_PERSON = "This person is already in your archives.\n";
@@ -49,7 +49,7 @@ public class ArchiveCommand extends Command {
         }
 
         model.archivePerson(patientToArchive);
-        return new CommandResult(String.format(MESSAGE_ARCHIVE_PERSON_SUCCESS, patientToArchive));
+        return new CommandResult(String.format(MESSAGE_ARCHIVE_PERSON_SUCCESS, patientToArchive.getName().fullName));
     }
 
     @Override
