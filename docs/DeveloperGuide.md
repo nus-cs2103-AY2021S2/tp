@@ -208,21 +208,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-[Coming Soon]
-
 (For all use cases below, the **System** is the `App-Ointment` and the **Actor** is the `User`, unless specified otherwise)
 
+<div markdown="span" class="alert alert-info">
+    For all use cases other than UC01, unless specified otherwise, the use cases will all have UC01 as a precondition (after the user enters the command and corresponding subcommands(if applicable)).
+</div>
+<br>
+
 ### UC01: Enters a command:
+**Guarantees:**
+* Command entered will have a valid command word, with all corresponding required subcommands.
+
 **MSS**
 1. User enters a command.
-2. App-Ointment performs the corresponding action.
+2. App-Ointment attempts to perform the corresponding command.
 
 **Extensions**
-* **1a.** App-Ointment detects an invalid command from the user.
-    * **1a1.** App-Ointment prompts user that the command is not recognised.<br>
-    * **1a2.** App-Ointment executes the `help` command.<br>
-    Steps 1a1 to 1a2 are repeated until command entered is recognised.
-    Use case ends.
+* **1a.** App-Ointment detects an invalid command word from the user.
+    * **1a1.** App-Ointment prompts user that the command is invalid, and suggests the closest known command, or "unknown command", if all known commands are too dissimilar.<br>
+    Use case resumes from Step 1.
+* **2a.** App-Ointment detects that required subcommands are not specified.
+    * **2a1.** App-Ointment prompts user that the command is invalid, i.e. The subcommands do not match the command word.
+    Use case resumes from Step 1.
+
+### UC02: Enters Help Command:
+**MSS**
+1. User enters the `help` command
+2. App-Ointment shows the Help Window.
+Use case ends.
 
 ### UC02: Add a patient
 **MSS**
@@ -468,6 +481,7 @@ _Non-functional requirements specify the constraints under which App-Ointment is
 ### Glossary
 
 * **Appointment Schedule**: The list of appointments maintained in App-Ointment, arranged by appointment datetime.
+* **Command**: An input containing the Command Word and Subcommands (if applicable).
 * **Command Word**: The word that defines the behaviour of the app: eg. `add-doctor`, `list-appt`, `delete-patient`, etc.
 * **Doctor Records**: The list of doctors maintained in App-Ointment.
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
