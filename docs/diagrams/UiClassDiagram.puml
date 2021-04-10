@@ -13,6 +13,7 @@ Class HelpWindow
 Class ResultDisplay
 Class StudentListPanel
 Class AppointmentListPanel
+Class SameDateAppointmentListContainer
 Class StudentCard
 Class AppointmentCard
 Class StatusBarFooter
@@ -41,7 +42,9 @@ MainWindow *-down-> StatusBarFooter
 
 StudentListPanel -down-> StudentCard
 
-AppointmentListPanel -down-> AppointmentCard
+AppointmentListPanel -down-> SameDateAppointmentListContainer
+
+SameDateAppointmentListContainer -down-> AppointmentCard
 
 MainWindow -left-|> UiPart
 
@@ -50,6 +53,7 @@ CommandBox --|> UiPart
 StudentListPanel --|> UiPart
 StudentCard --|> UiPart
 AppointmentListPanel --|> UiPart
+SameDateAppointmentListContainer --|> UiPart
 AppointmentCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
