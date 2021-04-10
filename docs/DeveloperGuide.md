@@ -721,10 +721,11 @@ Use case ends.
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The size of ModuleBook3.5 will not be larger than 20 MB.
-5.  The project is expected to adhere to a schedule that delivers a feature set every two weeks until the end of April.
+2.  Should work on any monitor which has a resolution greater than 1400 * 800.
+3.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+5.  The size of ModuleBook3.5 will not be larger than 20 MB.
+6.  The project is expected to adhere to a schedule that delivers a feature set every two weeks until the end of April.
 
 ### Glossary
 
@@ -772,12 +773,11 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Delete `.\data\modulebook.json`<br>
+   
+   1. Re-launch the app by double-clicking the jar file.<br>
+      Expected: `.\data\modulebook.json` generated automatically with some example inside.
