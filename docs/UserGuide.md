@@ -428,7 +428,7 @@ The user preferences are saved as a JSON file  `[JAR file location]/preferences.
 
 :exclamation: **Caution:**
 If your changes to the preferences file makes its format invalid, FlashBack will discard all preferences and start with an empty data file at the next run.
-If your changes to the alias mapping is invalid, for example add -> delete, FlashBack will deem the entire alias mapping corrupted and will start with an empty alias mapping.
+Also, if your changes to the alias mapping is invalid, for example mapping `add` to `delete`, FlashBack will deem the entire alias mapping corrupted and will start with an empty alias mapping.
 
 </div>
 <div style="page-break-after: always;"></div>
