@@ -334,7 +334,6 @@ Step 5: The `Model` component passes the `CommandResult` to the `Logic` componen
 The following sequence diagram shows how the add command works:
 ![ModeOfContactSequenceDiagram](images/ModeOfContactSequenceDiagram.png)
 
-<<<<<<< HEAD
 ### Mass Delete feature
 The mass delete mechanism is facilitated by `MassDeleteCommand`.
 Below is an example usage scenario.
@@ -376,24 +375,21 @@ Below is an example usage scenario.
 Step 1: The user executes `add n/John Doe...` to add a new contact. This creates a new `Person` object. By default,
 the new contact is displayed as having "No remark".
 
+![RemarkState1](images/RemarkState1.png)
+
 Step 2: The user now decides to add a new remark to the new contact by executing `remark 3 r/Absent`.
-The string is passed to the `Logic` component.
+The `Logic` component creates a new `RemarkCommand` object for execution.
 
-Step 3: The `Logic` component parses the string and creates a new `RemarkCommand` object.
-
-Step 5: `RemarkCommand` creates a new `Person` object which is identical to the original `Person` object in
+Step 4: `RemarkCommand` creates a new `Person` object which is identical to the original `Person` object in
 every field except that the `Remark` of the new `Person` object have been updated.
 
 Step 6: `RemarkCommand` calls `Model#setPerson()` to replace the original `Person` in the `AddressBook` with the new
 `Person`.
 
+![RemarkState2](images/RemarkState2.png)
+
 Step 7: After the `AddressBook` has been updated, the `ModelManager` class will update `filteredPersons`
 to reflect the change.
-
-The following sequence diagram illustrates how the remark operation works:
-![RemarkSequenceDiagram](images/RemarkSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MassDeleteCommand` should end at the 
-destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 The following activity diagram summarizes what happens when a user executes a remark command:
 ![RemarkActivityDiagram](images/RemarkActivityDiagram.png)
@@ -409,7 +405,40 @@ The following activity diagram summarizes what happens when a user executes a re
     * Pros: Easier to implement as the edit command already has a parser and many helper methods. 
     * Cons: The edit command is already the largest class in the `commands` package. Adding more code will make the
       class even bigger and thus more difficult to maintain.
-=======
+
+### Sort feature
+The sort mechanism is facilitated by `SortCommand`.
+Below is an example usage scenario.
+
+Step 1: The user executes `sort ascending` to sort the contact list by name in ascending order. The
+string is passed to the `Logic` component.
+
+Step 2: The `Logic` component parses the string and creates a corresponding `SortCommand` object.
+
+Step 3: The `SortCommand` object calls `Model#sortByName()` to sort the
+internal `AddressBook`.
+
+Step 4: After sorting, `filteredPersons` in `ModelManager` is updated to reflect the change.
+
+The following sequence diagram illustrates how the sort operation works:
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+![SortActivityDiagram](images/SortActivityDiagram.png)
+
+#### Design considerations:
+
+##### Aspect: Implementation of sort
+* **Alternative 1 (current choice):** Sort command sorts the entire address book.
+  * Pros: Easy to implement.
+  * Cons:
+
+* **Alternative 2:**
+  * Pros:
+  * Cons:
+
 ### Navigate previous commands feature
 
 #### Implementation
@@ -452,40 +481,6 @@ Similarly, when the user presses the down arrow key, there are two possible scen
 * **Alternative 2**: Use the `LinkedList` class provided by Java.
     * Pros: Easier implementation. Most operations have been provided by Java.
     * Cons: Need to devise a workaround to traverse the commands since the `ListIterator` places the cursor in between the elements.
->>>>>>> bede7268fb109b60fdf8c78acf9b87005fb8409c
-
-### Sort feature
-The sort mechanism is facilitated by `SortCommand`.
-Below is an example usage scenario.
-
-Step 1: The user executes `sort ascending` to sort the contact list by name in ascending order. The
-string is passed to the `Logic` component.
-
-Step 2: The `Logic` component parses the string and creates a corresponding `SortCommand` object.
-
-Step 3: The `SortCommand` object calls `Model#sortByName()` to sort the
-internal `AddressBook`.
-
-Step 4: After sorting, `filteredPersons` in `ModelManager` is updated to reflect the change.
-
-The following sequence diagram illustrates how the sort operation works:
-![SortSequenceDiagram](images/SortSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-The following activity diagram summarizes what happens when a user executes a sort command:
-![SortActivityDiagram](images/SortActivityDiagram.png)
-
-#### Design considerations:
-
-##### Aspect: Implementation of sort
-* **Alternative 1 (current choice):** Sort command sorts the entire address book.
-    * Pros: Easy to implement.
-    * Cons: 
-
-* **Alternative 2:** 
-    * Pros: 
-    * Cons: 
 
 ### Undo feature
 
