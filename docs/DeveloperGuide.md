@@ -149,74 +149,111 @@ low | user adopting this products | clear all my contacts from the address book 
 ---
 
 ## Use Cases
+(For all use cases below, the **System** is the `Teaching Assistant` and the **Actor** is the `user`, unless specified otherwise)
 
-### Use case: Delete a contact
+### Use case: UC01 - Add a contact
 
 **MSS**
 
-1. User requests to list all contacts.
-2. Teaching Assistant shows a list of all contacts.
-3. User requests to delete a specific contact in this list.
-4. Teaching Assistant deletes the contact.
+1. User requests to add a contact
+2. Teaching Assistant adds the contact into the list
 
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The given field(s) are invalid.
 
-  Use case ends.
+    * 2a1. Teaching Assistant shows an error message 
+      
+      Use case ends.
 
 
-* 3a. The given index is empty.
+* 2b. The contact to be added already exists in Teaching Assistant.
 
-    * 3a1. Teaching Assistant shows an error message.
-
-      Use case resumes at step 2.
-
-<br>
-
-### Use case: Add a schedule
-
-**MSS**
-
-1. User requests to add a schedule.
-2. AddressBook adds the schedule into the list.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The given date(s) are invalid.
-
-    * 2a1. Teaching Assistant shows an error message.
+    * 2b1. Teaching Assistant shows an error message.
 
       Use case ends.
 
 <br>
 
-### Use case: Delete a schedule
+### Use case: UC02 - Delete an Entry
 
 **MSS**
 
-1. User request to list schedules.
-2. Teaching Assistant shows a list of schedules.
-3. User requests to delete a specific schedule in the list.
-4. Teaching Assistant deletes the schedule.
-
+1. User requests to list entries **(UC03)**
+2. Teaching Assistant shows a list of entries
+3. User requests to delete a specific entry in the list
+4. Teaching Assistant deletes the specified entry
+   
    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The list of entries is empty.
+  
+    Use case ends.
 
-  Use case ends.
-
-* 3a. The given schedule name is invalid.
-
+* 3a. The given index is invalid
     * 3a1. Teaching Assistant shows an error message.
+    
+        Use case ends.
 
+<br>
+
+### Use case: UC03 - List entries
+
+**MSS**
+
+1. User requests to list entries.
+2. Teaching Assistant shows a list of entries.
+   
+   Use case ends.
+
+**Extensions**
+
+* 1a. User requests to list entries that occurs today.
+
+    * 1a1. Teaching Assistant shows a list of entries that happen today.
+      
       Use case ends.
+
+* 1b. User requests to list entries that occurs this week.
+
+    * 1b1. Teaching Assistant shows a list of entries that occurs this week
+
+        Use case ends.
+    
+* 1c. The given parameter is invalid.
+
+    * 1c1. Teaching Assistant shows an error message.
+    
+        Use case ends.
+
+<br>
+
+### Use case: UC04 - Check if user is free on a given timeslot
+
+**MSS**
+
+1. User requests to if he/she is free on a given timeslot.
+2. Teaching Assistant replies that the user is free.
+
+    Use case ends.
+
+* 1a. The given timeslot is invalid.
+
+    * 1a1. Teaching Assistant shows an error message.
+    
+        Use case ends
+    
+* 1b. The user is not free on the given timeslot.
+
+    * 1b1. Teaching Assistant replies that the user is not free.
+      
+    * 1b2. Teaching Assistant shows a list of entries that coincide with the given timeslot.
+    
+        Use case ends
 
 ---
 
