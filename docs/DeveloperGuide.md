@@ -218,8 +218,10 @@ Note that if the user does not have a mail client software set as default in the
 #### Opening and Closing UI through Command
 #####  Implementation
 Dictionote has an interactive user interface that allows the user to open and close any panel through command.
-Furthermore, when any command is executed, Dictionote should be able to change the user interface based on the command type/requirement.
-All commands should be able to open and close the required UI panel. The user will also be able to open and close the UI via user command.
+Furthermore, when any command is executed, 
+Dictionote should be able to change the user interface based on the command type/requirement.
+All commands should be able to open and close the required UI panel. 
+The user will also be able to open and close the UI via user command.
 The feature is implemented using `CommandResult`, which is returned by all `Command` in the system.
 
 `CommandResult` contain a `String` object call `feedbackToUser`, a `UiAction` enum call `uiAction`
@@ -230,53 +232,51 @@ e.g `UiAction.OPEN`, `UiAction.CLOSE`, ... etc. `UiActionOption` is only applica
 It indicate the specific option available for the `UiAction`.
 e.g `UiActionOption.Dictionary` for `UiAction.Open` mean open dictionary panel.
 
-The following is the sequence diagram for `OPENCOMMAND`
+The following is the sequence diagram for executing a command to open a panel.
 
 ![OpenCommandSequenceDiagram](images/OpenCommandSequenceDiagram.png)
 
 #### Design Consideration
 * **Alternative 1 (current choice):** Make use of the existing command `CommandResult` class
     * Pros: Make use of the existing system and easy to implement
-    * Cons: All command will have to decide on the response. (or use the default setting)
-* Alternative 2: Make use of the Model Component as an intermediary between Command and UI.
-  The command will call a method available on the model to change the UI settings.
+    * Cons: All command will have to decide on the response. (or use the default setting) (desire behaviour)
+* Alternative 2: Make use of the `Model` component as an intermediary between Command and UI.
+  The command will call a method available on the `Model` component to change the UI settings,
+  the `Ui` will listen to the setting on the `Model` Component.
     * Pros: Only the class that requires to change in UI will be needed to call the method.
     * Cons: Increasing coupling.
-
-
+    
 #### Manipulation UI Settings through Command
 #####  Implementation
-While All Command is able open or close an UI. There are some command where it is more specific.
-In this case, we do not want all command to inherit it behaviour, 
-implementing it with `CommandResult` like `OpenCommand` and `CloseCommand` is not ideal.
-The `UI` component use `GUISettings` to store it GUI setting on exits.  
-We can make use of the exisiting component and change the behaviour of the `UI` 
-component will actively listen for changes on the GUISettings. The features make use the existing `GUISettings` class 
-and is implemented in all `toggledivider` and `setdividerposition`command.
+While All Command has the ability to open and close a UI. There are some UI settings that are more specific.
+In this case, we don't want all commands to access its behavior, so using `CommandResult` isn't ideal.
+Because the `UI` component already uses `GuiSettings` to store its settings when it exits.
+We can make use the existing component by making existing UI component actively listen for changes to the `GuiSettings`.
+The features are implemented in all `toggledivider` and `setdividerposition` commands.
 
-Dictionote has an interactive user interface that allows the user to open and close any panel through command.
-Furthermore, when any command is executed, Dictionote should be able to change the user interface based on the command type/requirement.
-All commands should be able to open and close the required UI panel. The user will also be able to open and close the UI via user command.
-The feature is implemented using `CommandResult`, which is returned by all `Command` in the system.
+The command will change the `GuiSettings` located in `Model` componenet. 
+When the `CommandResult` is returned to the `Ui` component.
+The `Ui` Componenet will check for changes in `GuiSettings` and update it Ui according.
 
-`CommandResult` contain a `String` object call `feedbackToUser`, a `UiAction` enum call `uiAction`
-and `UiActionOption` enum call `uiActionOption`. `feedbackToUser` will
-be show on the `ResultDisplay` indicating the command feedback after execution.
-`uiAction` indicate the action the command want the `UI` to take.
-e.g `UiAction.OPEN`, `UiAction.CLOSE`, ... etc. `UiActionOption` is only applicable to some `UiAction`.
-It indicate the specific option available for the `UiAction`.
-e.g `UiActionOption.Dictionary` for `UiAction.Open` mean open dictionary panel.
-
-The following is the sequence diagram for `OPENCOMMAND`
+The following is the sequence diagram for executing a command to set note divider position.
 
 ![OpenCommandSequenceDiagram](images/ToggleCommandSequenceDiagram.png)
+
+In the sequence diagram, `executeUiAction(action,option)` is called.
+This is show that the command ensure that the user receives proper feedback when the divider position changes.
+The command will open all related panels that were affected by the divider position change.
+Note divider affect both `NoteListPanel` and `NoteContentPanel`, 
+hence if its  is closed, they will be open. If they remain closed, the user will not be able to notice the changes.
+The execution of the command will result in NoteListPanel and NoteContentPanel are both visible,
+with their divider positions adjusted to the desired position
 
 #### Design Consideration
 * Alternative 1 Make use of the existing command `CommandResult` class
     * Pros: Make use of the existing system and easy to implement
     * Cons: All command will have to decide on the response. (or use the default setting)
-* **Alternative 2(current choice):**: Make use of the Model Component as an intermediary between Command and UI.
-  The command will call a method available on the model to change the UI settings.
+* **Alternative 2(current choice):**: Make use of the `Model` component as an intermediary between Command and UI.
+  The command will call a method available on the `Model` component to change the UI settings, 
+  the `Ui` will listen to the setting on the `Model` Component.
     * Pros: Only the class that requires to change in UI will be needed to call the method.
     * Cons: Increasing coupling.
 
@@ -472,15 +472,15 @@ _{Explain here how the data archiving feature will be implemented}_
 | Priority | As a …​                                                   | I want to …​                                          | So that I can…​                                            | Category               |
 | -------- | -------------------------------------------------------------| -------------------------------------------------------- | ------------------------------------------------------------- | ---------------------- |
 |***Main***| | | |
-| `* *`    | CS2103 Student                                               | View note and dictionary side-by-side                    | Easily copy a note from dictionary                            | Main/UI/UX         |
+| `* *`    | CS2103 Student                                               | View note and dictionary side-by-side                    | Easily copy dictionary content to note                        | Main/UI/UX         |
 | `* *`    | CS2103 Student                                               | Open and close Contact panel                             | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Open and close Dictionary panel                          | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Open and close Dictionary manager panel                  | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Open and close Note panel                                | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Open and close Note Manager panel                        | Have more space for other content                             | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Save my UI configuration                                 | Save my time on re-adjust the Ui                              | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Change my UI configuration                               | do no need to adjust the UI using mouse                       | Main/Non-essential |
-| `* *`    | CS2103 Student                                               | Change my UI orientation                                 | use the space available more efficiently                      | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Dictionary Content panel                  | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Dictionary List panel                     | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Note Content panel                        | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Note List  panel                          | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Save my UI configuration                                 | Save my time on re-adjusting the Ui everytime I open the app  | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Change my UI configuration                               | Do no need to adjust the UI using mouse                       | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Change my UI orientation                                 | Use the space available more efficiently                      | Main/Non-essential |
 |***Dictionary*** | -- | -- | --  | -- |
 | `* * *`  | CS2103T student who find it troublesome to use the website   | Search for a definition of an SE term                    | Understand what it means                                      | Dictionary/Essential|
 | `* * *`  | CS2103T student                                              | Find content I need                                      | Save time having to dig through the textbook                  | Dictionary/Essential|
@@ -521,19 +521,51 @@ _{Explain here how the data archiving feature will be implemented}_
 
 (For all use cases below, the **System** is the `Dictionote` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Close Panel**
+**Use case: UC01 - Close a panel**
 
 **MSS**
-1.  User requests to close a specific display panel
-2.  Dictionote close the display Panel
+1.  User requests to close a specific display panel.
+2.  Dictionote close the display Panel.
 
     Use case ends.
 
 **Extensions**
 
 * 1a. The given display panel is invalid.
-    * 1a1. Dictionote shows an error message
+    * 1a1. Dictionote shows an error message.
 
+      Use case ends.
+
+**Use case: UC02 - Edit and save a note in edit mode**
+
+**MSS**
+1.  User requests to edit in edit mode.
+2.  Dictionote enable edit mode.
+3.  User edit note and request to save the note.
+4.  Dictionote save edited note.
+5.  Dictionote exit edit mode.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. No note is shown in note content panel.
+    * 1a1. Dictionote shows an error message.
+
+      Use case ends.
+
+* 3a. Dictionote found the note the user trying to save were a duplicate of another note in the system.
+    * 3a1. Dictionote shows an error message.
+    * 3a2. User edit note with new content and request to save the note.
+
+      Steps 3a1-3a2 are repeated until the note the User is trying to save is not a duplicate.
+
+      Use case resumes from step 4.
+
+* \* a. At any time, User chooses to exit edit mode.
+    * \*a1. Dictionote discard edited note.
+    * \*a2. Dictionote exit edit mode. 
+      
       Use case ends.
 
 
@@ -543,10 +575,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **MSS**
 
-1.  User requests to list contacts
-2.  Dictionote shows a list of contacts
-3.  User requests to delete a specific contact in the list
-4.  Dictionote deletes the contact
+1.  User requests to list contacts.
+2.  Dictionote shows a list of contacts.
+3.  User requests to delete a specific contact in the list.
+4.  Dictionote deletes the contact.
 
     Use case ends.
 
