@@ -591,7 +591,7 @@ One of the challenges is if we should allow overdue tasks (task with deadlines b
 
 * Alternative 1 (current implementation): Overdue tasks can be edited.
     * Pros:
-        * At very frequent occasions, users may need to edit an over task. For example, users may wish to
+        * At very frequent occasions, users may need to edit an overdue task. For example, users may wish to
         extend the deadline of an overdue task, or increasing its priority to remind themselves that this task
           needs more attention.
     * Cons:
