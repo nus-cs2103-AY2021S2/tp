@@ -74,7 +74,7 @@ to manage tasks which can be identified by their unique deadlines or priorities.
 
    * **`addTask`**`Proposal d/Write out detailed proposal plan for CCA timeline b/2021-04-22` : Adds a task named `Proposal` to HEY MATEz.
 
-   * **`deleteTask`**`3` : Deletes the 3rd task shown in the current list.
+   * **`deleteTask`**`3` : Deletes the 3rd task shown in the current displayed task list.
 
    * **`clear`** : Deletes all tasks and members.
 
@@ -92,7 +92,7 @@ to manage tasks which can be identified by their unique deadlines or priorities.
 **:bookmark_tabs: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addTask n/NAME`, `NAME` is a parameter which can be used as `addTask n/John Doe`.
+  e.g. in `addMember NAME`, `NAME` is a parameter which can be used as `addMember John Lim`.
 
 * Items in square brackets are optional.<br>
   e.g `d/DESCRIPTION [p/PRIORITY]` can be used as `d/Meeting p/high` or as `d/Meeting`.
@@ -101,10 +101,10 @@ to manage tasks which can be identified by their unique deadlines or priorities.
   e.g. `[a/ASSIGNEE]…​` can be used as ` ` (i.e. 0 times), `a/Duncan`, `a/Daniel a/Benson` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `e/EMAIL p/PHONE_NUMBER`, `p/PHONE_NUMBER e/EMAIL` is also acceptable.
   
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `p/98562545 p/88885555`, only `p/88885555` will be taken.
   
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -150,15 +150,14 @@ Example: `help`
 <a name="addMember"></a>
 ### 1. Add Member: `addMember`
 
-With new members joining the club, you can add a new member along with his/her contact number and email to the contact list.
+With new members joining the club, you can add a new member along with his/her contact number and email to the members list.
 
 Format: `addMember NAME p/PHONE_NUMBER e/EMAIL [r/ROLE]`
 
-* The field ROLE is optional.
+* NAME field is case-sensitive.   
 * NAME and ROLE fields can take on any values with alphanumeric characters.
-* PHONE field has to have a minimum length of 3 digits and maximum length of 15 digits.
+* PHONE_NUMBER field has to have a minimum length of 3 digits and maximum length of 15 digits.
 * If ROLE field is not specified, person will be assigned a default role of member.
-* EMAIL field must be valid with a local-part followed by '@' and then the domain name.
 
 Assumptions:
 * Every member in the CCA has a different name. An error will be prompted when you add a member with the same name but with
