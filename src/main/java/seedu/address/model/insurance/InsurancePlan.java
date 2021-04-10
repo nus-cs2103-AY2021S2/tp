@@ -21,12 +21,11 @@ public class InsurancePlan {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String NAME_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    public static final String PREMIUM_VALIDATION_REGEX = "[\\p{Digit}]+";
-    public static final String INPUT_VALIDATION_REGEX = NAME_VALIDATION_REGEX + " \\$" + PREMIUM_VALIDATION_REGEX;
+    public static final String PREMIUM_VALIDATION_REGEX = "[0]*[123456789][\\p{Digit}]*";
 
     public final String original;
     public final String name;
-    public final int premium;
+    public final String premium;
 
     /**
      * Constructs a {@code InsurancePlan}.
@@ -39,28 +38,23 @@ public class InsurancePlan {
         String[] fragments = plan.split(" \\$", 2);
         checkArgument(isValidAmount(fragments[1]), PREMIUM_CONSTRAINTS);
         this.original = plan;
-        this.name = fragments[0];
-        this.premium = Integer.parseInt(fragments[1]);
-
+        this.name = fragments[0].trim();
+        // Remove leading zeroes from the string
+        this.premium = fragments[1].replaceAll("^0+(?!\\$)", "");
     }
 
     /**
      * Returns true if a given string is a valid plan.
      */
     public static boolean isValidPlan(String plan) {
-        return plan.matches(INPUT_VALIDATION_REGEX);
+        return plan.contains(" $") && plan.split(" \\$")[0].matches(NAME_VALIDATION_REGEX);
     }
 
     /**
      * Returns true if a given premium amount is a valid amount.
      */
     public static boolean isValidAmount(String premium) {
-        try {
-            int i = Integer.parseInt(premium);
-            return i > 0;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+        return premium.matches(PREMIUM_VALIDATION_REGEX);
     }
 
 
