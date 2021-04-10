@@ -49,6 +49,8 @@ public class CalendarEventCard extends UiPart<Region> {
     }
 
     private void setDescription() {
+        this.description.setWrapText(true);
+        this.description.setMaxWidth(250);
         this.description.setText(event.getTag().tagName + ": " + event.getDescription().description);
     }
 

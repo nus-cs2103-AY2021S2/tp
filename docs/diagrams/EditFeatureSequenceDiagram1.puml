@@ -1,0 +1,43 @@
+@startuml
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":RemindMe" as RemindMe MODEL_COLOR
+participant ":Module" as Module MODEL_COLOR
+participant ":AssignmentList" as AssignmentList MODEL_COLOR
+participant ":UniqueModuleList" as UniqueModuleList MODEL_COLOR
+end Box
+
+group sd editAssignment(m, 1, Tut2) [editAssignment]
+    activate Model
+    activate RemindMe
+    Model -> RemindMe : editAssignment(m, 1, Tut2)
+
+    create UniqueModuleList
+    RemindMe -> UniqueModuleList : getModule(m)
+    activate UniqueModuleList
+    create Module
+    UniqueModuleList --> Module : module
+    activate Module
+    Module --> RemindMe : module
+    RemindMe -> Module : editAssignment(0, Tut2)
+
+    create AssignmentList
+    Module -> AssignmentList : editAssignment()
+    activate AssignmentList
+    AssignmentList --> Module : editedModule
+    deactivate AssignmentList
+
+    Module --> RemindMe : editedModule
+    deactivate Module
+
+    RemindMe -> UniqueModuleList : setModules(module, editedModule)
+    UniqueModuleList --> RemindMe
+    deactivate UniqueModuleList
+    RemindMe --> Model
+
+
+
+end
+@enduml
