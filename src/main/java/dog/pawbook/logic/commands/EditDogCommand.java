@@ -1,3 +1,4 @@
+//@@author CharlesLee01
 package dog.pawbook.logic.commands;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
@@ -19,6 +20,7 @@ import dog.pawbook.commons.util.CollectionUtil;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.IdMatchPredicate;
 import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.model.managedentity.dog.Breed;
 import dog.pawbook.model.managedentity.dog.DateOfBirth;
@@ -79,6 +81,7 @@ public class EditDogCommand extends EditEntityCommand {
         }
 
         model.setEntity(id, editedDog);
+        model.updateFilteredEntityList(new IdMatchPredicate(id));
         return new CommandResult(getSuccessMessage(editedDog));
     }
 

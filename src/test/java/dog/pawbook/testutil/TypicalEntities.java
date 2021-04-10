@@ -152,13 +152,14 @@ public class TypicalEntities {
     private TypicalEntities() {} // prevents instantiation
 
     /**
-     * Returns an {@code Database} with all the typical owners and dogs
+     * Returns an {@code Database} with all the typical owners and dogs.
      */
     public static Database getTypicalDatabase() {
         Database db = new Database();
         for (Entity entity : getTypicalOwnersWithDog()) {
             db.addEntity(entity);
         }
+
         for (Program program : getTypicalPrograms()) {
             db.addEntity(program);
         }

@@ -38,7 +38,7 @@ public class EditOwnerCommandTest {
     private Model model = new ModelManager(getTypicalDatabase(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecified_success() {
         Pair<Integer, Entity> firstIdEntity = model.getDatabase().getEntityList().get(0);
         Owner editedOwner = new OwnerBuilder((Owner) firstIdEntity.getValue()).build();
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder(editedOwner).build();
@@ -47,14 +47,14 @@ public class EditOwnerCommandTest {
         String expectedMessage = String.format(EditOwnerCommand.MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
+
         expectedModel.setEntity(firstIdEntity.getKey(), editedOwner);
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(firstIdEntity.getKey()));
-
         assertCommandSuccess(editOwnerCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecified_success() {
         Owner toEditOwner = (Owner) model.getEntity(ID_THREE);
 
         OwnerBuilder ownerInList = new OwnerBuilder(toEditOwner);
@@ -75,7 +75,7 @@ public class EditOwnerCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecified_success() {
         EditOwnerCommand editEntityCommand = new EditOwnerCommand(ID_ONE, new EditOwnerDescriptor());
         Owner editedOwner = (Owner) model.getEntity(ID_ONE);
 
@@ -90,7 +90,7 @@ public class EditOwnerCommandTest {
     // todo: restore execute_invalidOwnerIdUnfilteredList_failure after identity crisis is solved
 
     @Test
-    public void execute_invalidOwnerIdUnfilteredList_failure() {
+    public void execute_invalidOwnerId_failure() {
         Integer outOfBoundId = model.getUnfilteredEntityList().stream()
                 .map(Pair::getKey).sorted().collect(toList()).get(model.getUnfilteredEntityList().size() - 1) + 1;
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder().withName(VALID_NAME_BOB).build();

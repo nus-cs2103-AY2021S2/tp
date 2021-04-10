@@ -18,7 +18,7 @@ public class DogBuilder extends EntityBuilder<DogBuilder, Dog> {
     protected Breed breed;
     protected DateOfBirth dob;
     protected Sex sex;
-    protected int ownerID;
+    protected int ownerId;
 
     /**
      * Creates a {@code DogBuilder} with the default details.
@@ -38,7 +38,7 @@ public class DogBuilder extends EntityBuilder<DogBuilder, Dog> {
         breed = dogToCopy.getBreed();
         dob = dogToCopy.getDob();
         sex = dogToCopy.getSex();
-        ownerID = dogToCopy.getOwnerId();
+        ownerId = dogToCopy.getOwnerId();
     }
 
     /**
@@ -66,15 +66,15 @@ public class DogBuilder extends EntityBuilder<DogBuilder, Dog> {
     }
 
     /**
-     * Sets the {@code OwnerID} of the {@code Dog} that we are building.
+     * Sets the {@code ownerId} of the {@code Dog} that we are building.
      */
-    public final DogBuilder withOwnerID(int ownerID) {
-        this.ownerID = ownerID;
+    public final DogBuilder withOwnerID(int ownerId) {
+        this.ownerId = ownerId;
         return this;
     }
 
     public Dog build() {
-        return new Dog(name, breed, dob, sex, ownerID, tags);
+        return new Dog(name, breed, dob, sex, ownerId, tags);
     }
 
     @Override

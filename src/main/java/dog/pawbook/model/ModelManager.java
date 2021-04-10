@@ -167,6 +167,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
+
         return database.equals(other.database)
                 && userPrefs.equals(other.userPrefs)
                 && filteredEntities.equals(other.filteredEntities);
