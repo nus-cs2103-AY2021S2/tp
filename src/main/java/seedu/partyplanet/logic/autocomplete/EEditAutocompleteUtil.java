@@ -103,4 +103,17 @@ public class EEditAutocompleteUtil implements AutocompleteUtil {
         return output;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof EEditAutocompleteUtil)) {
+            return false;
+        }
+
+        return this.input.equals(((EEditAutocompleteUtil) obj).input);
+    }
+
 }

@@ -46,7 +46,7 @@ public class EditAutocompleteUtil implements AutocompleteUtil {
     /**
      * Used to convert Set of {@code Tag}s into a String with Tag Prefixes.
      */
-    private static String getTagsAsAutocompletedString(Set<Tag> tags) {
+    protected static String getTagsAsAutocompletedString(Set<Tag> tags) {
         return tags
             .stream()
             .map(t -> t.tagName)
@@ -164,6 +164,19 @@ public class EditAutocompleteUtil implements AutocompleteUtil {
         }
 
         return output;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof EditAutocompleteUtil)) {
+            return false;
+        }
+
+        return this.input.equals(((EditAutocompleteUtil) obj).input);
     }
 
 }
