@@ -1,5 +1,6 @@
 package seedu.weeblingo.model;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.weeblingo.commons.core.Messages.MESSAGE_TAG_NOT_FOUND;
 import static seedu.weeblingo.logic.commands.StartCommand.MESSAGE_NUMBER_LARGER_THAN_DATABASE_FLASHCARDS_SIZE;
 
@@ -109,9 +110,14 @@ public class Quiz {
      * @param numberOfQuestions The number of questions to limit the quiz to. Is ignored if zero.
      * @param tags Tags used to filter the array of flashcards. Can be empty.
      * @return A queue of flashcards with randomized order.
+     * @throws CommandException if there are no flashcards with specified tag or
+     * number of questions specified is larger than number of flashcards in database.
      */
     private Queue<Flashcard> getRandomizedQueue(Flashcard[] flashcardsReadFromDB,
             int numberOfQuestions, Set<Tag> tags) throws CommandException {
+        requireNonNull(flashcardsReadFromDB);
+        requireNonNull(numberOfQuestions);
+        requireNonNull(tags);
         List<Flashcard> flashcardsToProcess = Arrays.asList(flashcardsReadFromDB);
         Collections.shuffle(flashcardsToProcess);
         Queue<Flashcard> randomizedQueue = new LinkedList<>();
@@ -206,5 +212,14 @@ public class Quiz {
      */
     public Queue<Flashcard> getQuizSessionQueue() {
         return quizSessionQueue;
+    }
+
+    /**
+     * Returns the current quiz.
+     *
+     * @return current quiz as a flashcard.
+     */
+    public Flashcard getCurrentQuiz() {
+        return currentQuiz;
     }
 }
