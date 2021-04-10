@@ -267,7 +267,7 @@ Given below is an example usage scenario and how the detail mechanism behaves at
 
 Step 1. The user executes `detail 1` command to display the details of the 1st student in TutorsPet.
 
-Step 2. The user input is parsed by `AddressBookParser`, which passes the delete command's argument to `DetailCommandParser`.
+Step 2. The user input is parsed by `AddressBookParser`, which passes the detail command's argument to `DetailCommandParser`.
 
 Step 3. `DetailCommandParser` returns a new `DetailCommand` if the argument is valid. Otherwise, a `ParseException` is thrown.
 
@@ -363,6 +363,174 @@ The activity diagram shows the workflow when a `search` command is executed:
     * Cons: Less accurate search result due to nature of contact details. 
       For example a student's name and a guardian's name might be the same.
       
+### Sort feature
+
+#### Implementation
+
+The search mechanism is facilitated by `SortCommand` and `SortCommandParser`.
+
+`SortCommand` extends `Command` and contains a `Predicate` and a `Comparator`. It implements the following operation:
+
+* `SortCommand#execute()`  —  displays a list of students who has been sorted according to either their name, 
+  school, subject or lesson if the sorting prefix is valid, then returns a new `CommandResult` with a message indicating how the list has been sorted, and the number of students displayed.
+
+`SortCommandParser` implements the `Parser` interface and implements the following operation:
+
+* `SortCommandParser#parse()`  —  parses the user's input and returns a new `SortCommand` with the prefix specified
+  by the user.
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. The user executes `sort n/` command to sort students by the alphabetical order of their `Name`.
+
+Step 2. The user input is parsed by `AddressBookParser`, which passes the sort command's argument to `SortCommandParser`.
+
+Step 3. `SortCommandParser` returns a new `SortCommand` if the argument is valid. Otherwise, a `ParseException` is thrown.
+
+Step 4. `SortCommand` internally assigns the appropriate comparator and predicate to its fields.
+
+Step 5. `LogicManager` then calls `SortCommand#execute()`.
+
+Step 6. `SortCommand#execute()` uses the right comparator and predicate according to its fields and 
+a new `CommandResult` is returned. 
+
+Step 7. If the sort command has been successfully executed, the success message will be displayed.
+
+#### Sequence Diagram
+The sequence diagram below shows how the `search` feature works:
+
+![Sequence Diagram for Sort Command](images/SortSequenceDiagram.png)
+
+#### Activity Diagram
+The activity diagram shows the workflow when a `sort` command is executed:
+
+![Activity Diagram for Sort Command](images/SortActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to display students without the attribute to be sorted as well.
+
+* **Alternative 1 (current choice):** Filter out students without the attribute to be sorted.
+  * Pros: Neater results list.
+  * Cons: List is not complete.
+
+* **Alternative 2:** Leave all the students without the attribute to be sorted in the list display,
+  perhaps at the start or end of the list.
+  * Pros: List shows all the students every time.
+  * Cons: Might clutter the GUI with people the user does not want to see.
+
+### Advance levels feature
+
+#### Implementation
+The advancing levels mechanism is facilitated by `LevelUpCommand` and `LevelUpCommandParser`.
+
+`LevelUpCommand` extends `Command` and implements the following operation:
+
+* `LevelUpCommand#execute()` — advances all the student by one education level, unless students are excluded, and returns a new
+  `CommandResult` with a success message.
+
+`LevelUpCommandParser` implements the `Parser` interface and implements the following operation:
+
+* `LevelUpCommandParser#parse()`  —  parses the user's exclusions (if any) and returns a `LevelUpCommand` if the command format
+  is valid
+
+Given below is an example usage scenario and how the advancing mechanism behaves at each step.
+
+Step 1. The user executes `levelup ex/1` command to advance all the students except the 1st student by 
+one education level in TutorsPet.
+
+Step 2. The user input is parsed by `AddressBookParser`, which passes the advancing command's argument to `LevelUpCommandParser`.
+
+Step 3. `LevelUpCommandParser` returns a new `LevelUpCommand` with a lists of excluded indexes if the argument is valid. 
+Otherwise, a `ParseException` is thrown.
+
+Step 4. `LogicManager` then calls `levelUpCommand#execute()`.
+
+Step 5. `LevelUpCommand#execute()` checks if the indexes correspond to valid students, then the rest of the students
+are advanced by one education level. Otherwise, a `CommandException` is thrown.
+
+Step 6. If the advancing command has been successfully executed, the success message will be displayed.
+
+#### Sequence Diagram
+
+The sequence diagram below shows how the levelup feature works:
+![Sequence Diagram for LevelUp Command](images/LevelUpSequenceDiagram.png)
+
+#### Activity Diagram
+
+The activity diagram shows the workflow when a levelup command is executed:
+![Activity Diagram for LevelUp Command](images/LevelUpActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to also add an option to only advance some students
+
+* **Alternative 1 (current choice):** Only have option to exclude students and not include students.
+  * Pros: Fits the purpose of the command, which is to advance all students at the start of the year, 
+    except for those who retain a year.
+  * Cons: Does not cover the case where most of the students end up retaining.
+
+* **Alternative 2:** Provide the option to include students as well.
+  * Pros: Allows for the mass advancement of a group of students that is still smaller than the
+    majority.
+  * Cons: Seems redundant, cases where a majority of the students do not advance is slim.
+
+### Demote levels feature
+
+#### Implementation
+The demoting levels mechanism is facilitated by `LevelDownCommand` and `LevelDownCommandParser`.
+
+`LevelDownCommand` extends `Command` and implements the following operation:
+
+* `LevelDownCommand#execute()` — demotes all the student by one education level, unless students are excluded, and returns a new
+  `CommandResult` with a success message.
+
+`LevelDownCommandParser` implements the `Parser` interface and implements the following operation:
+
+* `LevelDownCommandParser#parse()`  —  parses the user's exclusions (if any) and returns a `LevelDownCommand` if the command format
+  is valid
+
+Given below is an example usage scenario and how the advancing mechanism behaves at each step.
+
+Step 1. The user executes `leveldown ex/1` command to demote all the students except the 1st student by
+one education level in TutorsPet.
+
+Step 2. The user input is parsed by `AddressBookParser`, which passes the advancing command's argument to `LevelUpCommandParser`.
+
+Step 3. `LevelDownCommandParser` returns a new `LevelDownCommand` with a lists of excluded indexes if the argument is valid.
+Otherwise, a `ParseException` is thrown.
+
+Step 4. `LogicManager` then calls `LevelDownCommand#execute()`.
+
+Step 5. `LevelDownCommand#execute()` checks if the indexes correspond to valid students, then the rest of the students
+are advanced by one education level. Otherwise, a `CommandException` is thrown.
+
+Step 6. If the advancing command has been successfully executed, the success message will be displayed.
+
+#### Sequence Diagram
+
+The sequence diagram below shows how the levelup feature works:
+![Sequence Diagram for LevelDown Command](images/LevelDownSequenceDiagram.png)
+
+#### Activity Diagram
+
+The activity diagram shows the workflow when a levelup command is executed:
+![Activity Diagram for LevelDown Command](images/LevelDownActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to also add an option to only advance some students
+
+* **Alternative 1 (current choice):** Only have option to exclude students and not include students.
+  * Pros: Fits the purpose of the command, which is to advance all students at the start of the year,
+    except for those who retain a year.
+  * Cons: Does not cover the case where most of the students end up retaining.
+
+* **Alternative 2:** Provide the option to include students as well.
+  * Pros: Allows for the mass advancement of a group of students that is still smaller than the
+    majority.
+  * Cons: Seems redundant, cases where a majority of the students do not advance is slim.
+
 ### Add important date feature
 
 #### Implementation

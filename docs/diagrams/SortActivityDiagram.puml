@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User inputs a sort command;
+:Command parsed by AddressBookParser;
+
+if () then ([command word is valid])
+    :Argument parsed by SortCommandParser;
+    if () then ([argument is valid])
+        :Returns SortCommand with sorting prefix as argument;
+        :Model filters and sorts the transformed persons list
+         using the appropriate predicate and comparator;
+        :Displays the filtered and sorted persons list;
+    else ([else])
+        :ParseException is thrown;
+    endif
+else ([else])
+    :ParseException is thrown;
+endif
+
+stop
+
+@enduml

@@ -21,16 +21,16 @@ public class SortCommandParser implements Parser<SortCommand> {
      */
     public SortCommand parse(String args) throws ParseException {
 
-        Prefix firstPrefix;
+        Prefix lastPrefix;
         try {
-            firstPrefix = ArgumentTokenizer.getLastPrefix(
+            lastPrefix = ArgumentTokenizer.getLastPrefix(
                     args, PREFIX_NAME, PREFIX_SCHOOL, PREFIX_SUBJECT, PREFIX_LESSON);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE), pe);
         }
 
-        return new SortCommand(firstPrefix);
+        return new SortCommand(lastPrefix);
 
     }
 }
