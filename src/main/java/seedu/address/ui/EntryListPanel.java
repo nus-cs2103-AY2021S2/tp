@@ -15,7 +15,7 @@ import seedu.address.model.entry.Entry;
  */
 public class EntryListPanel extends UiPart<Region> {
     private static final String FXML = "EntryListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(ScheduleListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(EntryListPanel.class);
 
     @FXML
     private ListView<Entry> entryListView;
