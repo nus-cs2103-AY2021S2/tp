@@ -10,6 +10,7 @@ import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.model.Model;
+import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.orderitem.OrderItem;
 
 /**
@@ -54,12 +55,14 @@ public class DeleteOrderItemCommand extends Command {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
             }
-
             OrderItem orderItemToDelete = lastShownList.get(targetIndex.getZeroBased());
-            orderItemsToDelete.add(orderItemToDelete);
+            if (!orderItemsToDelete.contains(orderItemToDelete)) {
+                orderItemsToDelete.add(orderItemToDelete);
+            }
+        }
+        for (OrderItem orderItemToDelete:orderItemsToDelete) {
             model.deleteOrderItem(orderItemToDelete);
         }
-
         return new CommandResult(getResultString(orderItemsToDelete));
     }
 
