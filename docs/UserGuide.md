@@ -283,7 +283,7 @@ Showcases a note.
 
 Format: `shownote INDEX​`
 
-* Shows the dictionary content at the specified `INDEX`.
+* Shows the note at the specified `INDEX`.
 * The index refers to the index number shown in the displayed Note list. The index **must be a positive integer** 1, 2, 3, …​
 
 #### List all notes : `listnote`
