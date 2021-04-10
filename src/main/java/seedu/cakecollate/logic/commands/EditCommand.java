@@ -11,8 +11,10 @@ import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.cakecollate.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -109,7 +111,7 @@ public class EditCommand extends Command {
         Phone updatedPhone = editOrderDescriptor.getPhone().orElse(orderToEdit.getPhone());
         Email updatedEmail = editOrderDescriptor.getEmail().orElse(orderToEdit.getEmail());
         Address updatedAddress = editOrderDescriptor.getAddress().orElse(orderToEdit.getAddress());
-        Set<OrderDescription> updatedOrderDescriptions =
+        Map<OrderDescription, Integer> updatedOrderDescriptions =
                 editOrderDescriptor.getOrderDescriptions().orElse(orderToEdit.getOrderDescriptions());
         Set<Tag> updatedTags = editOrderDescriptor.getTags().orElse(orderToEdit.getTags());
         DeliveryDate updatedDeliveryDate =
@@ -149,7 +151,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<OrderDescription> orderDescriptions;
+        private Map<OrderDescription, Integer> orderDescriptions;
         private Set<Tag> tags;
         private DeliveryDate deliveryDate;
         private Request request;
@@ -210,13 +212,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setOrderDescriptions(Set<OrderDescription> orderDescriptions) {
-            this.orderDescriptions = (orderDescriptions != null) ? new HashSet<>(orderDescriptions) : null;
+        public void setOrderDescriptions(Map<OrderDescription, Integer> orderDescriptions) {
+            this.orderDescriptions = (orderDescriptions != null) ? new HashMap<>(orderDescriptions) : null;
         }
 
-        public Optional<Set<OrderDescription>> getOrderDescriptions() {
+        public Optional<Map<OrderDescription, Integer>> getOrderDescriptions() {
             return (orderDescriptions != null)
-                    ? Optional.of(Collections.unmodifiableSet(orderDescriptions))
+                    ? Optional.of(Collections.unmodifiableMap(orderDescriptions))
                     : Optional.empty();
         }
 
