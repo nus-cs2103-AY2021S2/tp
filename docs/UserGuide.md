@@ -63,16 +63,10 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 
 Adds the details of a student to Vax@NUS records. 
 
-<<<<<<< Updated upstream
-:information_source: **NOTE:** If the School Residence of a student is not specified, the system will default to DOES_NOT_LIVE_ON_CAMPUS and assume that the student does not live on campus.
-
-> For a smooth user experience, please refer to the  please refer to the [Input Formats](#input-formats) section below for more information regarding input formats. That section explains which prefix should be used for each piece of information and how the information should be presented to the program. 
-=======
 :information_source: **NOTE** The default School Residence is `DOES_NOT_LIVE_ON_CAMPUS` if it is not specified. 
->>>>>>> Stashed changes
 
 > For a smooth user experience, please refer to the [Input Formats](#input-formats) section below for more information regarding the input accepted by the add student command.
->
+
 `Add` Command Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]`
 
 Examples:
@@ -89,7 +83,7 @@ Examples:
 
 ### Editing a student record: `edit`
 
-Edits a student in Vax@NUS records at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
+Edits a student in Vax@NUS records at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …
 
 All inputs specified are optional, but at least one of them must be provided. After execution of the `edit` command, the existing value specified will be updated to the input value.  
 
