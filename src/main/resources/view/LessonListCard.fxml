@@ -4,12 +4,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-<HBox id="cardPane" fx:id="cardPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="296.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
-<Label fx:id="lessonDetails" alignment="CENTER" minHeight="-Infinity" prefHeight="36.0" prefWidth="49.0" styleClass="cell_big_label">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Label fx:id="lessonDetails" alignment="CENTER" minHeight="-Infinity" prefWidth="45.0" styleClass="cell_big_label">
  <minWidth>
    <!-- Ensures that the label text is never truncated -->
    <Region fx:constant="USE_PREF_SIZE" />
  </minWidth>
 </Label>
-   <Label fx:id="personNames" minHeight="-Infinity" prefHeight="36.0" prefWidth="98.0" styleClass="cell_big_label" wrapText="true" />
+   <Label fx:id="personNames" minHeight="-Infinity" minWidth="-Infinity" prefWidth="95.0" styleClass="cell_big_label" wrapText="true" />
 </HBox>
