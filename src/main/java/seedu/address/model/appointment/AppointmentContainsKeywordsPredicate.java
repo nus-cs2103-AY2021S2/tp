@@ -1,5 +1,6 @@
 package seedu.address.model.appointment;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -11,8 +12,12 @@ import seedu.address.commons.util.StringUtil;
 public class AppointmentContainsKeywordsPredicate implements Predicate<Appointment> {
     private final List<String> keywords;
 
+    /**
+     * Constructs {@code AppointmentContainsKeywordsPredicate}.
+     */
     public AppointmentContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+        this.keywords = new ArrayList<>();
+        keywords.forEach(s -> this.keywords.add(s.toLowerCase()));
     }
 
     @Override

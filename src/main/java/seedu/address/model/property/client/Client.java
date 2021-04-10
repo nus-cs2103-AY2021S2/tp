@@ -56,40 +56,6 @@ public class Client {
         return clientAskingPrice;
     }
 
-    /**
-     * Returns true if both client have the same name.
-     * This defines a weaker notion of equality between two clients.
-     */
-    public boolean isSameClient(Client otherClient) {
-        if (otherClient == this) {
-            return true;
-        }
-
-        return otherClient != null
-                && otherClient.getClientName().equals(getClientName());
-    }
-
-    /**
-     * Returns true if both clients have the same identity and data fields.
-     * This defines a stronger notion of equality between two clients.
-     */
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Client)) {
-            return false;
-        }
-
-        Client otherClient = (Client) other;
-        return otherClient.getClientName().equals(getClientName())
-                && otherClient.getClientContact().equals(getClientContact())
-                && otherClient.getClientEmail().equals(getClientEmail())
-                && otherClient.getClientAskingPrice().equals(getClientAskingPrice());
-    }
-
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

@@ -3,6 +3,10 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_ASKING_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -39,6 +43,38 @@ import seedu.address.testutil.SortPropertyDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    // For testing clients
+    public static final String VALID_CLIENT_NAME_ALICE = "Alice";
+    public static final String VALID_CLIENT_NAME_BOB = "Bob";
+    public static final String VALID_CLIENT_CONTACT_ALICE = "91234567";
+    public static final String VALID_CLIENT_CONTACT_BOB = "98664535";
+    public static final String VALID_CLIENT_EMAIL_ALICE = "alice@gmail.com";
+    public static final String VALID_CLIENT_EMAIL_BOB = "bob@gmail.com";
+    public static final String VALID_CLIENT_ASKING_PRICE_ALICE = "$1,000,000";
+    public static final String VALID_CLIENT_ASKING_PRICE_BOB = "$800,000";
+    public static final Long DEFAULT_CLIENT_ASKING_PRICE_LONG_ALICE = Long.parseLong("1000000");
+    public static final Long DEFAULT_CLIENT_ASKING_PRICE_LONG_BOB = Long.parseLong("800000");
+
+    public static final String CLIENT_NAME_DESC_ALICE = " " + PREFIX_CLIENT_NAME + VALID_CLIENT_NAME_ALICE;
+    public static final String CLIENT_NAME_DESC_BOB = " " + PREFIX_CLIENT_NAME + VALID_CLIENT_NAME_BOB;
+    public static final String CLIENT_CONTACT_DESC_ALICE = " " + PREFIX_CLIENT_CONTACT + VALID_CLIENT_CONTACT_ALICE;
+    public static final String CLIENT_CONTACT_DESC_BOB = " " + PREFIX_CLIENT_CONTACT + VALID_CLIENT_CONTACT_BOB;
+    public static final String CLIENT_EMAIL_DESC_ALICE = " " + PREFIX_CLIENT_EMAIL + VALID_CLIENT_EMAIL_ALICE;
+    public static final String CLIENT_EMAIL_DESC_BOB = " " + PREFIX_CLIENT_EMAIL + VALID_CLIENT_EMAIL_BOB;
+    public static final String CLIENT_ASKING_PRICE_DESC_ALICE =
+            " " + PREFIX_CLIENT_ASKING_PRICE + VALID_CLIENT_ASKING_PRICE_ALICE;
+    public static final String CLIENT_ASKING_PRICE_DESC_BOB =
+            " " + PREFIX_CLIENT_ASKING_PRICE + VALID_CLIENT_ASKING_PRICE_BOB;
+
+    public static final String INVALID_CLIENT_NAME_DESC =
+            " " + PREFIX_CLIENT_NAME + "Alice&"; // '&' not allowed in names
+    public static final String INVALID_CLIENT_CONTACT_DESC =
+            " " + PREFIX_CLIENT_CONTACT + "91234567a"; // letters not allowed in contact number
+    public static final String INVALID_CLIENT_EMAIL_DESC =
+            " " + PREFIX_CLIENT_EMAIL + "alice@gmail"; // missing top level domain in email
+    public static final String INVALID_CLIENT_ASKING_PRICE_DESC =
+            " " + PREFIX_CLIENT_ASKING_PRICE + "001000000"; // leading zeroes not allowed in asking price
+
     // For testing properties
     public static final String VALID_NAME_MAYFAIR = "Mayfair";
     public static final String VALID_NAME_BURGHLEY_DRIVE = "Burghley Drive";
@@ -57,6 +93,8 @@ public class CommandTestUtil {
     public static final String VALID_PROPERTY_TAG_BALCONY = "Balcony";
     public static final String VALID_PROPERTY_TAG_4_BEDROOMS = "4 bedrooms";
     public static final String VALID_PROPERTY_TAG_99_YEAR_LEASEHOLD = "99 year leasehold";
+    public static final String VALID_REMARK_MAYFAIR = "Urgent to sell";
+    public static final String VALID_REMARK_BURGHLEY_DRIVE = "Lowest selling price is $5,040,0000";
 
     public static final String NAME_DESC_MAYFAIR = " " + PREFIX_NAME + VALID_NAME_MAYFAIR;
     public static final String NAME_DESC_BURGHLEY_DRIVE = " " + PREFIX_NAME + VALID_NAME_BURGHLEY_DRIVE;
@@ -68,6 +106,8 @@ public class CommandTestUtil {
     public static final String POSTAL_DESC_BURGHLEY_DRIVE = " " + PREFIX_POSTAL + VALID_POSTAL_BURGHLEY_DRIVE;
     public static final String DEADLINE_DESC_MAYFAIR = " " + PREFIX_DEADLINE + VALID_DEADLINE_MAYFAIR;
     public static final String DEADLINE_DESC_BURGHLEY_DRIVE = " " + PREFIX_DEADLINE + VALID_DEADLINE_BURGHLEY_DRIVE;
+    public static final String REMARK_DESC_MAYFAIR = " " + PREFIX_REMARK + VALID_REMARK_MAYFAIR;
+    public static final String REMARK_DESC_BURGHLEY_DRIVE = " " + PREFIX_REMARK + VALID_REMARK_BURGHLEY_DRIVE;
     public static final String TAG_DESC_BALCONY = " " + PREFIX_TAGS + VALID_PROPERTY_TAG_BALCONY;
     public static final String TAG_DESC_4_BEDROOMS = " " + PREFIX_TAGS + VALID_PROPERTY_TAG_4_BEDROOMS;
     public static final String TAG_DESC_99_YEAR_LEASEHOLD = " " + PREFIX_TAGS + VALID_PROPERTY_TAG_99_YEAR_LEASEHOLD;
@@ -81,19 +121,21 @@ public class CommandTestUtil {
     public static final String INVALID_PROPERTY_ADDRESS_DESC =
             " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_PROPERTY_POSTAL_DESC =
-            " " + PREFIX_POSTAL + "12a"; // 'a' not allowed in postal codes
+            " " + PREFIX_POSTAL + "12345a"; // 'a' not allowed in postal codes
     public static final String INVALID_PROPERTY_DEADLINE_IN_INVALID_FORMAT_DESC =
             " " + PREFIX_DEADLINE + "30-4-2021"; // 1 digit in month part is not valid
     public static final String INVALID_PROPERTY_DEADLINE_IN_VALID_FORMAT_DESC =
             " " + PREFIX_DEADLINE + "31-04-2021"; // 31st April not valid
+    public static final String INVALID_PROPERTY_REMARK_DESC =
+            " " + PREFIX_REMARK; // empty string not allowed for remark
     public static final String INVALID_PROPERTY_TAG_DESC =
             " " + PREFIX_TAGS + "4 bedrooms*"; // '*' not allowed in tags
 
     // For testing appointments
     public static final String VALID_NAME_MEET_ALEX = "Meet Alex";
     public static final String VALID_NAME_MEET_BOB = "Meet Bob";
-    public static final String VALID_REMARK_MEET_ALEX = "To celebrate Christmas at Fullerton Hotel";
-    public static final String VALID_REMARK_MEET_BOB = "At his house";
+    public static final String VALID_REMARK_MEET_ALEX = "Bring him around Bishan to look at the properties";
+    public static final String VALID_REMARK_MEET_BOB = "To meet with interested client for viewing of his house";
     public static final String VALID_DATE_MEET_ALEX = "25-12-2021";
     public static final LocalDate VALID_DATE_LOCALDATE_MEET_ALEX = LocalDate.parse(VALID_DATE_MEET_ALEX,
         DateTimeFormat.INPUT_DATE_FORMAT);

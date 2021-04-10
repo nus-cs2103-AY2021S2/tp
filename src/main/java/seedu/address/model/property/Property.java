@@ -56,7 +56,6 @@ public class Property {
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
                     Remark remarks, Set<Tag> tags) {
-        // requireAllNonNull(name, propertyType, address, postalCode, deadline, remarks, tags);
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
@@ -74,7 +73,6 @@ public class Property {
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
                     Client client, Set<Tag> tags) {
-        // requireAllNonNull(name, propertyType, address, postalCode, deadline, client, tags);
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
@@ -92,7 +90,6 @@ public class Property {
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
                     Remark remarks, Client client, Set<Tag> tags) {
-        // requireAllNonNull(name, propertyType, address, postalCode, deadline, remarks, client, tags);
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
@@ -110,7 +107,6 @@ public class Property {
      */
     public Property(Name name, Type propertyType, Address address, PostalCode postalCode, Deadline deadline,
                     Remark remarks, Client client, Set<Tag> tags, Status status) {
-        // requireAllNonNull(name, propertyType, address, postalCode, deadline, remarks, client, tags);
         this.name = name;
         this.propertyType = propertyType;
         this.address = address;
@@ -199,14 +195,13 @@ public class Property {
                 && otherProperty.getPropertyType().equals(getPropertyType())
                 && otherProperty.getAddress().equals(getAddress())
                 && otherProperty.getPostalCode().equals(getPostalCode())
-                && otherProperty.getDeadline().equals(getDeadline())
-                && otherProperty.getTags().equals(getTags());
+                && otherProperty.getDeadline().equals(getDeadline());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, propertyType, address, postalCode, deadline, tags);
+        return Objects.hash(name, propertyType, address, postalCode, deadline);
     }
 
     @Override
