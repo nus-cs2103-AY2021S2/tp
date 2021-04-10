@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a Customer's DateOfBirth in the customer list. Guarantees: immutable; is valid as declared in {@link
@@ -14,9 +15,10 @@ import java.time.format.DateTimeParseException;
 public class DateOfBirth {
 
     public static final String MESSAGE_CONSTRAINTS = "Birth date should be of the format yyyy MM dd "
-        + "EG:(2011 07 06 for 6th July, 2011)";
+        + "EG:(2011 07 06 for 6th July, 2011)" + ", avoid Invalid date inputs like 30 February";
 
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy MM dd");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("uuuu MM dd")
+            .withResolverStyle(ResolverStyle.STRICT);
 
     public final String birthDate;
 
@@ -33,10 +35,16 @@ public class DateOfBirth {
 
     /**
      * Returns if a given string is a valid date of birth.
+     * Date of birth should not more or equal to current date.
      */
     public static boolean isValidDateOfBirth(String test) {
         try {
-            LocalDate.parse(test, DATE_TIME_FORMATTER);
+            LocalDate inputDateOfBirth = LocalDate.parse(test, DATE_TIME_FORMATTER);
+            LocalDate now = LocalDate.now();
+
+            if (now.compareTo(inputDateOfBirth) <= 0) {
+                return false;
+            }
         } catch (DateTimeParseException e) {
             return false;
         }
