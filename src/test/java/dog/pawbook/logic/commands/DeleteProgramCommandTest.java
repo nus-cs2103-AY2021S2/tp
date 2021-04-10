@@ -1,7 +1,10 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_ID_MISMATCH_FORMAT;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ID_FORMAT;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_PROGRAM_PREDICATE;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 import static dog.pawbook.testutil.TypicalId.ID_FIFTEEN;
 import static dog.pawbook.testutil.TypicalId.ID_SIXTEEN;
@@ -22,7 +25,7 @@ import javafx.util.Pair;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteProgramCommand}.
  */
 public class DeleteProgramCommandTest {
 
@@ -47,6 +50,42 @@ public class DeleteProgramCommandTest {
         DeleteProgramCommand deleteProgramCommand = new DeleteProgramCommand(outOfBoundId);
 
         assertCommandFailure(deleteProgramCommand, model, Messages.MESSAGE_INVALID_PROGRAM_ID);
+    }
+
+    @Test
+    public void execute_validIdFilteredList_success() {
+        model.updateFilteredEntityList(IS_PROGRAM_PREDICATE);
+
+        Entity entity = model.getEntity(ID_FIFTEEN);
+        DeleteProgramCommand deleteProgramCommand = new DeleteProgramCommand(ID_FIFTEEN);
+
+        String expectedMessage = DeleteProgramCommand.MESSAGE_SUCCESS + entity;
+
+        ModelManager expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
+        expectedModel.updateFilteredEntityList(IS_PROGRAM_PREDICATE);
+        expectedModel.deleteEntity(ID_FIFTEEN);
+        assertCommandSuccess(deleteProgramCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validIdNotProgramFilteredList_throwsCommandException() {
+        model.updateFilteredEntityList(IS_PROGRAM_PREDICATE);
+
+        int notProgramId = model.getUnfilteredEntityList().get(0).getKey();
+        DeleteProgramCommand deleteProgramCommand = new DeleteProgramCommand(notProgramId);
+
+        assertCommandFailure(deleteProgramCommand, model, String.format(MESSAGE_ID_MISMATCH_FORMAT, "program"));
+    }
+
+    @Test
+    public void execute_invalidIdFilteredList_throwsCommandException() {
+        model.updateFilteredEntityList(IS_PROGRAM_PREDICATE);
+
+        List<Integer> indices = model.getUnfilteredEntityList().stream().map(Pair::getKey).sorted().collect(toList());
+        int outOfBoundId = indices.get(indices.size() - 1) + 1;
+        DeleteProgramCommand deleteProgramCommand = new DeleteProgramCommand(outOfBoundId);
+
+        assertCommandFailure(deleteProgramCommand, model, String.format(MESSAGE_INVALID_ID_FORMAT, "program"));
     }
 
     @Test
