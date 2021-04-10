@@ -2,6 +2,7 @@ package seedu.storemando.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
@@ -17,11 +18,11 @@ import seedu.storemando.model.item.LocationContainsPredicate;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyStoreMando_success() {
+    public void execute_emptyStoreMando_failure() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, Messages.MESSAGE_NO_ITEM_IN_LIST, expectedModel);
+        assertCommandFailure(new ClearCommand(), model, Messages.MESSAGE_NO_ITEM_IN_LIST);
     }
 
     @Test
