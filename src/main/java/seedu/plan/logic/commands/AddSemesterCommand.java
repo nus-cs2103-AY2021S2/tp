@@ -52,6 +52,10 @@ public class AddSemesterCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PLAN_DISPLAYED_INDEX);
         }
 
+        if (toAdd.getSemNumber() <= 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_SEM_NUMBER);
+        }
+
         if (model.hasSemester(toAddTo.getZeroBased(), toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SEMESTER);
         }

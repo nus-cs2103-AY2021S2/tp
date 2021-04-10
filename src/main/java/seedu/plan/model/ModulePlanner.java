@@ -85,8 +85,8 @@ public class ModulePlanner implements ReadOnlyModulePlanner {
     public boolean hasPlan(Plan plan) {
         requireNonNull(plan);
         boolean sameDescription = false;
-        for(Plan p : plans) {
-            if(p.getDescription().equals(plan.getDescription())) {
+        for (Plan p : plans) {
+            if (p.getDescription().equals(plan.getDescription())) {
                 sameDescription = true;
                 break;
             }
