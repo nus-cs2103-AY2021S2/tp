@@ -6,7 +6,7 @@ title: iScam
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103-W17-4/tp/actions)
 [![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://app.codecov.io/gh/AY2021S2-CS2103-W17-4/tp)
 
-![Ui](images/ActualUi.png)
+![Ui](images/Ui.png)
 
 **Welcome to iSCAM, client and meeting management app.** It helps catalogue and manage your clients' information, including upcoming appointments with them, and allows you to retrieve these data efficiently. iSCAM also presents your scheduled appointments
 in a one-page solution, where you can easily see your upcoming meetings. While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
