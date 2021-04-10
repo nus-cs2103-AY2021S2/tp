@@ -226,7 +226,7 @@ Example:
 * Task 1's task is 10 March 2020. Task 2's task is 11 March 2020. Today is 3 March 2020. `dueIn`, `dueIn day/7`,
   and `dueIn week/1` will lists task 1 on the list.
 
-### Add a task to the daily task list: `doToday`
+### Add or remove a task to the daily task list: `doToday`
 
 Adds the specified task from the regular task list to the daily task list.
 
