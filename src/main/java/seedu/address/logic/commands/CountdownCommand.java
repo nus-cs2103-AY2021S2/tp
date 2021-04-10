@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.conditions.ConditionLogic;
 import seedu.address.logic.conditions.IndexManager;
 import seedu.address.model.Model;
 import seedu.address.model.task.AttributeManager;
@@ -55,8 +56,7 @@ public class CountdownCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         int targetIndexValue = index.getZeroBased();
-
-        IndexManager.verifyIndex(index, lastShownList);
+        ConditionLogic.verifyIndex(index, lastShownList);
 
         Task taskToCountdown = lastShownList.get(targetIndexValue);
         AttributeManager attributeManager = new AttributeManager(taskToCountdown);
