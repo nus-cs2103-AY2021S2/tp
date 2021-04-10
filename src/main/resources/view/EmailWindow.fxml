@@ -29,7 +29,8 @@
                     <TextArea fx:id="emailMessageField" layoutX="217.0" layoutY="186.0" prefHeight="200.0" prefWidth="200.0" text="Good Day, a car of your preference has newly arrived! Please feel free to contact me if you are interested in viewing!" wrapText="true" />
                     <Button fx:id="sendEmailButton" layoutX="492.0" layoutY="259.0" mnemonicParsing="false" onAction="#sendEmail" text="Send" textFill="#121212" />
                     <Label fx:id="sentBoolValue" layoutX="474.0" layoutY="338.0" text="Message Sent!" visible="false" />
-                  <Label layoutX="433.0" layoutY="61.0" prefHeight="132.0" prefWidth="166.0" text="If unable to send, please turn on &quot;allow less secured apps access feature&quot; on google.                                Note: You need to restart this application if wrong password/just enabled google access." textFill="#0062ff" textOverrun="CLIP" wrapText="true">
+                    <Label fx:id="invalidEmailSignal" layoutX="455.0" layoutY="320.0" text="Invalid Email entered!" textFill="#f30000" visible="false" />
+                  <Label layoutX="432.0" layoutY="63.0" prefHeight="132.0" prefWidth="166.0" text="If unable to send, please read the end section of User guide for guide to set up." textFill="#0062ff" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font size="11.0" />
                      </font></Label>
@@ -38,7 +39,6 @@
                         <Font size="11.0" />
                      </font>
                   </Button>
-                  <Label layoutX="217.0" layoutY="40.0" text="you can use below email details for testing." />
                 </children>
             </AnchorPane>
          </root>
