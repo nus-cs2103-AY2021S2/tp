@@ -26,7 +26,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.EventBuilder;
-import seedu.address.testutil.TypicalEvents;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -38,6 +37,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecified_success() {
+        model = new ModelManager(new UserPrefs(), getTypicalEventBook());
+
         Event editedEvent = new EventBuilder().withIdentifier(IDENTIFIER_FIRST_EVENT.getValue()).buildWithID();
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder(editedEvent).build();
         Identifier editedEventIdentifier = Identifier.fromIdentifier(editedEvent.getIdentifier());
@@ -47,16 +48,18 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new UserPrefs(), model.getEventBook());
 
-        //        Optional<Event> optFirstEvent = model.getEventByIdentifier(IDENTIFIER_FIRST_EVENT.getValue());
-        //        assertTrue(optFirstEvent.isPresent());
-        //        Event firstEvent = optFirstEvent.get();
-        expectedModel.setEvent(TypicalEvents.CS2030, editedEvent);
+        Optional<Event> optFirstEvent = model.getEventByIdentifier(IDENTIFIER_FIRST_EVENT.getValue());
+        assertTrue(optFirstEvent.isPresent());
+        Event firstEvent = optFirstEvent.get();
+        expectedModel.setEvent(firstEvent, editedEvent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecified_success() {
+        model = new ModelManager(new UserPrefs(), getTypicalEventBook());
+
         Identifier lastEventIdentifier = Identifier.fromIdentifier(model.getFilteredEventList().size());
         Optional<Event> optLastEvent = model.getEventByIdentifier(lastEventIdentifier.getValue());
         assertTrue(optLastEvent.isPresent());
@@ -80,6 +83,8 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicateEvent_failure() {
+        model = new ModelManager(new UserPrefs(), getTypicalEventBook());
+
         Optional<Event> optFirstEvent = model.getEventByIdentifier(IDENTIFIER_FIRST_EVENT.getValue());
         assertTrue(optFirstEvent.isPresent());
         Event firstEvent = optFirstEvent.get();
