@@ -12,7 +12,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/austenjs.png" width="200px">
 
 [[github](https://github.com/austenjs)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/austenjs.md)]
 
 * Component: UI
 * Administrative: IC for merging PR, User Guide, and About Us
@@ -22,7 +22,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/danielonges.png" width="200px">
 
 [[github](http://github.com/danielonges)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/danielonges.md)]
 
 * Component: Logic
 * Administrative: IC for readme and Developer Guide
@@ -32,7 +32,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/geraldfan.png" width="200px">
 
 [[github](http://github.com/geraldfan)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/geraldfan.md)]
 
 * Component: Model
 * Administrative: IC for Code Quality
@@ -42,7 +42,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/mrweikiat.png" width="200px">
 
 [[github](http://github.com/mrweikiat)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/mrweikiat.md)]
 
 * Component: Storage
 * Administrative: IC for testing
