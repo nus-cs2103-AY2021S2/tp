@@ -348,9 +348,7 @@ The following sequence diagram shows how the update operation works:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
-
-### Product scope
+## **Appendix A: Product scope**
 
 **Target user profile**:
 
@@ -363,7 +361,7 @@ The following sequence diagram shows how the update operation works:
 **Value proposition**: PocketEstate enables easy organization of mass clientele property information through sorting of information by price, location and housing type, that may otherwise be difficult to manage.
 
 
-### User stories
+## **Appendix B: User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -391,7 +389,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
 
 
-### Use cases
+## **Appendix C: Use Cases**
 
 (For all use cases below, the **System** is the `PocketEsate` app, and the **Actor** is the `user`, unless specified otherwise)
 
@@ -538,7 +536,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 
-### Non-Functional Requirements
+## **Appendix D: Non-Functional Requirements**
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster by using commands over the mouse.
@@ -550,7 +548,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 8. There should be sample data in the app when the user opens the app for the first time.
 
 
-### Glossary
+## **Appendix E: Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Property**: A property listing with mandatory attributes: Name, Property type, Address, Postal code, Deadline, a set of Tags (containing 0 or more tags), and with optional attributes: Remarks, Status, Client name, Client contact, Client email, Client asking price
@@ -558,7 +556,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix F: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -648,3 +646,54 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete property x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+## **Appendix G: Effort**
+
+### Introduction
+AB3 only dealt with one entity type, but PocketEstate took twice the effort since it involved 2 entity types - Properties & Appointments. The number of commands and attributes implemented were doubled in PocketEstate, signifying greater parsing, storage and tests effort due to the numerous different commands and data types involved.
+
+To support all of that, we greatly expanded the application, increasing the lines of code from 6k to 16k. 
+
+### New Features
+**1. Update Command**
+    
+* Implementation of `update` command required effort due to addition of 3 sub commands, namely `new`, `proceed`, `cancel` commands. <br>
+  `new` command introduces a new status attribute to each property for display in Ui. <br>
+  `proceed` command moves status of the property to the next stage. <br>
+  `cancel` command removes the status bar associated with that property. 
+
+**2. Find Command**
+
+* AB3’s `find` command only searched for existence of keywords in the Names of Properties and Appointments. <br>
+  To make the `Find` command more useful and flexible, we expanded the `Find` command to apply keyword search in all attributes for Properties and Appointments. 
+
+**3. Sort Command**
+
+* Significant effort was required to implement individual comparators for each sorting key. <br>
+  For example, supporting `sort` by name requires a comparator for the `name` attribute that provides alphabetical ordering while being case insensitive.
+
+**4. Undo Command**
+
+* Great effort was necessary to retrieve and store data in the AddressBook log, as well as to save the state of property and appointment books after each command.
+
+### Challenges 1: User Interface
+
+The user interface for original AddressBook was only optimised to display only one list. During the conceptualisation of PocketEstate, we struggled to find a way to display both property and appointments list in an organised but minimalist manner due to the numerous attributes associated with properties and appointments.
+
+We found our original implementation of displaying one list at a time to be less user friendly as the user had to use `list property` or `list appointment` command before using other commands.
+
+We overcame this by displaying both properties and appointments side by side for easy referral, without having to call `list property` or `list appointment` prior to a sort or filter. This design was also optimal in allowing find features that are simultaneously done on both lists. Eg. `find client [keyword]` where keyword is searched from both property and appointment lists.
+
+The new UI structure of a side by side property and appointment list required a redesign of the user interface that was more complex, where we faced some sizing issues such as text wrapping, window issues due to the large amount of data displayed. In doing so, we also changed the colour scheme of the UI to be a light themed one in order to allow greater emphasis on some data (bolding of words) and less focus on other data Eg. Greying out of properties and appointments with expired deadlines. The original UI that was dark themed would not allow colour play with the different shades of black.
+
+### Challenges 2: Parsing
+
+Several attributes such as date, time and price are new attributes relative to AB3, so we have to implement parsing support for these attributes from scratch. The challenge was to provide maximum convenience to the user by allowing flexible inputs (such as having optional commas in prices), but at the same time ensuring correct input validation. To achieve this, a strict validation regex is implemented for all of the input attributes, and all input arguments for each attribute is validated upon the execution of a user command.
+
+There was also a challenge in determining what was considered a valid or invalid input. Eg. How do we validate postal code / email. Such problems were further reviewed during the mock practical exam, where questions to what were considered valid inputs were further raised. By considering the suggestions of our peers, we improved our input validation by implementing stricter regex.
+
+### Achievements:
+
+1. User story - We originally planned to fulfill 15 [User stories](#appendix-b-user-stories), but exceeded expectation by adding new User stories upon addition of new features,  eventually fulfilling a total of 20 user stories.
+2. Design - Kept the simplicity and cohesiveness of the features from the original AB3 project.
+
+3. Testing - Provided extensive unit and manual testing on the product, making it reliable and efficient for production usage.
