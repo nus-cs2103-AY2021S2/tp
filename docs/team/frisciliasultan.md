@@ -42,6 +42,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Wrote tests for Meeting command classes and addMeeting integration test to significantly increase test coverage on the Meetings feature,
   increasing coverage by 11.25% from 55.87% to 67.12%. ([\#222](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/222))
+  * Wrote tests for added feature findPlansCommand and findPlansCommandParser, increasing coverage from 66.87% to 67.58%. ([\#242](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/222))
   * Integrate Insurance Plan field in Client with the existing Client commands and make it optional with the use of Java Optional class.
   Configured EditCommand to remove insurance plan if "/ip" without plan name is specified.
   * Fix the display of all error message to show exactly which parameter causes the error. ([\#189](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/189))
