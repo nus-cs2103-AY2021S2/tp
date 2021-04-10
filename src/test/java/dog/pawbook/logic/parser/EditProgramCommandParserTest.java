@@ -74,9 +74,14 @@ public class EditProgramCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_SESSION_DESC, Session.MESSAGE_CONSTRAINTS); // invalid session
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+        // invalid name
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
+
+        // invalid session
+        assertParseFailure(parser, "1" + INVALID_SESSION_DESC, Session.MESSAGE_CONSTRAINTS);
+
+        // invalid tag
+        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // invalid name followed by valid session
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + SESSION_DESC_OBEDIENCE_TRAINING, Name.MESSAGE_CONSTRAINTS);
