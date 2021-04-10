@@ -46,6 +46,9 @@ title: Developer Guide
     * [View feature](#view-feature)
     * [Review Mode](#review-mode)
     * [UI improvement](#ui-improvement)
+    * [Sort feature](#sort-feature)
+    * [UndoRedo feature](#undoredo-feature)
+    * [Alias feature](#alias-feature)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -480,6 +483,10 @@ the UI is updated to display the retrieved message.
 
 </div>
 
+Now, when user executes a command in the main mode, `FlashBackParser` will check if the `commandWord` is an alias. If `commandWord` is an alias, The `commandWord` will be parsed into the actual command before the specified CommandParser is created.
+The following activity diagram summarizes what happens when a user tries to execute a command using the alias.<br><br>
+![AliasActivityDiagram](images/AliasActivityDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -662,12 +669,24 @@ otherwise) <br /><br />
 
 **MSS**
 
-1. User requests to delete a flashcard from the list.
-1. FlashBack deletes the specified flashcard.
-1. User requests to undo delete command.
-1. FlashBack reverts to its previous state before delete command.
+1. User requests to execute a command.
+1. FlashBack executes the specified command.
+1. User requests to undo a command.
+1. FlashBack reverts to its state before the previous command was executed.
 
    Use case ends.
+   
+**Extensions**
+   
+* 1a. The command is invalid.
+   
+     Use case ends.
+   
+* 3a. The command executed is not an undoable command. (Only `add`, `edit`, `delete` and `clear` can be undone)
+   * 3a1. FlashBack shows an error message.
+
+     Use case ends.
+
    
 **Use case: UC08 - Redo an undoable command**
 
@@ -1088,8 +1107,17 @@ testers are expected to do more *exploratory* testing.
 * We considered many color choices and UI design and actively asked for feedback from all members in the team, and some of our friends also to reach the finalized design for the UI.
 * The `CommandBox` is changed so that the input can be split into multiple line, which increases the readability for the user. Although the code for the custom command box came from an online source, it was extremely difficult to find this source code.
 
-
 ### Sort feature
 * Challenge was to add flags and prefixes, totally different from other features, and parsing inputs.
 * AB3 did not have a `sort` feature.
 * Implemented a new enum `SortOptions` to contain sorting options for the user, as well as parse functions.
+
+### Undo/redo feature
+* Challenge was to store the states of FlashBack so that users are able to undo/redo an action.
+* As AB4 have `undo` and `redo` feature, the implementations of FlashBack's `undo` and `redo` is adapted from AB4.
+
+### Alias feature
+* Challenge was to create a new class to handle the mapping of alias and command.
+* AB3 did not have a `alias` feature.
+* A new class `AliasMap` is created to handle the mapping.
+* As `AliasMap` is stored in `UserPrefs` which is stored as a json file as `preferences.json`, users are able to modify the mapping directly. Hence an additional check is added to ensure that the alias mapping is valid when starting the application.
