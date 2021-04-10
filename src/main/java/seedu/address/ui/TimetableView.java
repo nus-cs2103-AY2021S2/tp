@@ -103,7 +103,6 @@ public class TimetableView extends UiPart<Region> {
     };
 
     private final ChangeListener<LocalDate> dateListener = (observable, oldValue, newValue) -> {
-        resetColumns();
         timetablePlacementPolicy = new TimetablePlacementPolicy(newValue);
         populateWithData(timetableSlots);
         refreshDayLabels(newValue);
@@ -128,6 +127,8 @@ public class TimetableView extends UiPart<Region> {
     public TimetableView(ObservableList<? extends Schedulable> timetableSlots,
                          ObservableValue<LocalDate> firstDayOfTimetable) {
         super(FXML);
+        requireNonNull(timetableSlots);
+        requireNonNull(firstDayOfTimetable);
         this.timetableSlots = timetableSlots;
         this.firstDayOfTimetable = firstDayOfTimetable;
         this.timetablePlacementPolicy = new TimetablePlacementPolicy(firstDayOfTimetable.getValue());
