@@ -12,25 +12,27 @@ A good example is students who are struggling to do well in both their studies a
 
 FriendDex uses a command line interface; this means that you type commands to interact with the application. 
 
-To help you get started, you should read the [Installation](#installation) and [Quick start](#quick-start) section first.
+To help you get started, we recommend reading the [Installation](#installation) and [Quick Start](#quick-start) sections first.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 ## About
-This document can be thought of as a manual and a reference guide for FriendDex. It will guide you on how to use FriendDex and will provide complete information on each available command.
-Furthermore, the guide gives information on the User Interface (UI) and the other useful features of FriendDex. Each section of the guide can be read independently. 
-You can view the full list of content using the Table of Contents above. You can also use your document viewer’s Find function to quickly navigate to the content you want to know more about. 
+This document can be thought of as a manual and reference guide for FriendDex. It will guide you on how to use FriendDex and will provide complete information on all available commands.
+Furthermore, the guide gives information on the User Interface (UI) and the other useful features of FriendDex. Each section of the guide can be read independently.
+For an outline of the content in this document, refer to the Table of Contents above. You may also use your document viewer’s Find function to quickly navigate to the content you want to know more about.
 
-It is generally advised for new users to at least read through the [Quick Start](#quick-start) section to familiarise themselves with FriendDex.
+It is generally advisable for new users to visit the [Quick Start](#quick-start) section first to familiarise themselves with FriendDex.
 
-Note the following symbols and formatting used in this document:
+### Symbols
 
-`list n/Close Friends` <br>
-The grey highlight, also called a mark-up, indicates that the text in it can be typed into the command line and executed by the application.  
+Note the following symbols and formatting used in this document: 
 
 <div markdown="block" class="alert alert-info">
+
+`list n/Close Friends` <br>
+This grey highlight, also known as markup, is used to distinguish parts of the document from normal text. For example, it can be used to indicate the syntax of commands.
 
 :information_source: **Notes:**<br>
 
@@ -57,19 +59,19 @@ This block is used to provide you extra details about the feature that will enab
 
 3. Copy the file to the folder you want to use as the _home folder_ for FriendDex.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. Once the GUI finishes loading, you are ready to start using FriendDex.<br>
+4. Double-click the file to start the app. The GUI similar to the image below should appear in a few seconds. Note how the app contains some sample data. Once the GUI finishes loading, you are ready to start using FriendDex.<br>
    ![Ui](images/Ui.png)
    
 5. You can move on to the [Quick Start](#quick-start) section to learn about the common operations for FriendDex.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
 1. Once FriendDex is installed, you first want to begin by populating it with your friends’ information. You might notice that FriendDex comes with some sample data. You may remove this sample data using the `clear` command.
 
 2. To add a person to the FriendDex, you may use the `add` command followed by their relevant details. 
-   For example, here’s how you can add a friend, John Doe with the following particulars:
+   For example, you have a friend, John Doe, with the following particulars:
 
    Friend Detail  | Value
    ---------------|------------------
@@ -78,7 +80,7 @@ This block is used to provide you extra details about the feature that will enab
    Address | John street, block 123, #01-01
    Birthday | 19th January 1998
    
-   Type the full `add` command into the command bar to execute it
+   Using the `add` command as follows, type it into the command bar to execute it and John will be added into FriendDex.
     * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/19-01-1998`
 <br/><br/>
 
@@ -105,12 +107,12 @@ This block is used to provide you extra details about the feature that will enab
 ### Group Panel
 The left panel of FriendDex shows the list of groups that are available in the application.
 
-To list the friends within a specific group, use `list n/GROUP_NAME`. See [List Command](#listing-all-persons--list) for specific details.
+To list the friends within a specific group, use `list n/GROUP_NAME`. See [List Command](#listing-all-persons--list) for more details.
 
 ### Friend Panel
 The centre panel shows the currently listed friends in the application.
 Commands such as `list`, `find`, `add`, `clear`, `delete` will change the listed friends. 
-See [Features](#features) for specific details. 
+See [Features](#features) for more details. 
 
 ### Details Panel
 The right panel of FriendDex is a multi-purpose details panel. It displays upcoming events by default, and can be toggled to display different information. 
@@ -124,14 +126,14 @@ The Streaks dashboard shows how consistent you are in meeting your friends up ti
 
 #### Full Details of a Person
 As a person in the FriendDex can contain a lot of information, not all of it is displayed in the main list of persons.
-Upon execution of the `details` command, FriendDex will display the full details of the specified person on the details panel.
+Upon execution of the `details` command, FriendDex will display the full details of the specified person on the details panel. See [Details Command](#viewing-full-details--details) for more details.
 
---------------------------------------------------------------------------------------------------------------------
+### Autocomplete
 
-## Autocomplete
+![Autocomplete](images/Autocomplete.png)
 
-There is no need to remember commands as FriendDex will suggest them to you as you type. To use a suggested command, press up/down to the desired command and hit enter.
-The suggested command will be automatically typed into the command bar.
+There is no need to remember commands as FriendDex will suggest them to you as you type. To use a suggested command, press `up`/`down` to the desired command and hit `enter`.
+The suggested command will be automatically filled into the command bar.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -149,7 +151,7 @@ The suggested command will be automatically typed into the command bar.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.<br>
-  e.g. `p/ INDEX…​` must have at least one `INDEX`, `p/1`, `p/1 2` etc.
+  e.g. `p/INDEX…​` must have at least one `INDEX`, `p/1`, `p/1 2` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -160,8 +162,8 @@ The suggested command will be automatically typed into the command bar.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
-* The `INDEX` parameter in a command will refer to the index number shown in the currently displayed person list. The index **must be a positive integer** 1, 2, 3, ...​
-  e.g. `edit 2 n/Gregory` will change the name of the 2nd person on the displayed person list to Gregory. 
+* The `INDEX` parameter in a command will refer to the index number shown in the currently displayed person list. The index **must be a positive whole number** 1, 2, 3, ...​
+  e.g. `edit 2 n/Gregory` will change the name of the 2nd person on the displayed person list to Gregory.
 
 </div>
 
@@ -172,7 +174,8 @@ Adds a person to FriendDex.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`
 
 * FriendDex only allows unique friends to be added. This means that each friend should only have a single entry in FriendDex.
-* FriendDex determines uniqueness solely based on the person's names ignoring their letter case, i.e. `John Tan` and `JoHn TaN` are the same name. 
+* FriendDex determines uniqueness solely based on the person's names ignoring their letter case, i.e. `John Tan` and `JoHn TaN` are the same name.
+* FriendDex only allow alphanumeric characters (A - Z, a - z, 0 - 9).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can provide any number of tags (including 0)
@@ -181,6 +184,9 @@ You can provide any number of tags (including 0)
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/19-01-1998`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com b/19-03-1998 a/Newgate Prison p/1234567 t/criminal`
+
+See also:
+* [What is a valid email format?](#faq)
 
 ### Adding a special date : `add-date`
 
@@ -340,11 +346,13 @@ Format: `del-picture INDEX`
 
 ### Viewing full details : `details`
 
-Displays the full details of the specified person from FriendDex.
+Displays the full details of the specified person from FriendDex on the [Details Panel](#details-panel).
 
 Format: `details INDEX`
 
 * Displays the full details of the person at the specified `INDEX`.
+
+![Full person details on the Details Panel](images/PersonDetails.png)
 
 Examples:
 * `list` followed by `details 2` displays the details of the 2nd person in FriendDex.
@@ -397,7 +405,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
-* `find ^a.*h$ p/` returns contacts with names that starts with `a` and ends with `h`: `Alex Yeoh`
+* `find ^a.*h$ p/` return contacts with names that starts with `a` and ends with `h`: `Alex Yeoh`
 
 Note that the [Java regex engine](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html) conforms to PERL5 regex specification and thus PERL5 regex should be used.
 
@@ -481,9 +489,9 @@ Example:
 See also:
 * [Defining your own Theme](#defining-your-own-theme)
 
-### Viewing different details panel: `view`
+### Viewing a different tab on the details panel: `view`
 
-Select a details panel to display. Available panels:
+Updates the [Details Panel](#details-panel) to display the specified tab. Available tabs:
 * Upcoming Events (`upcoming events`)
 * Streaks (`streaks`)
 
@@ -492,7 +500,8 @@ Format: `view (upcoming events | streaks)`
 * You can find more information on the Streaks dashboard [here](#streaks-dashboard)
 
 Example:
-* `view streaks` will switch the details panel to show the Streaks dashboard.
+* `view streaks` will display the Streaks dashboard on the details panel.
+* `view upcoming events` will display upcoming events on the details panel.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -602,6 +611,16 @@ If the previous theme file supplied is not found or unreadable, then the default
 **Q**: Where can I find more themes?<br>
 **A**: Certain online tools such as [terminal.sexy](https://terminal.sexy) can be used to generate the required `json` file.
 
+**Q**: What is a valid email format?<br>
+**A**: The email allowed in FriendDex shall adhere to the following rules:
+* Emails shall have the format `local-part@labels`.
+* `local-part` local-part can contain any characters provided that they are either
+    * Alphanumeric (A - Z, a - z, 0 -9), or
+    * Any character from the set <code>.!#$%&'*+\/=?^_`{|}~-</code>.
+* This is followed by a `@` and then one or more `label`.
+* A `label` should be shorter than 64 characters.
+* Multiple `label`s are allowed, provided that they are delimited by a single period. <br>
+Note that email does NOT conform to [RFC](https://tools.ietf.org/html/rfc5322) standards.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Troubleshooting Instructions

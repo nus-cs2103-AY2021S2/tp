@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE;
 import static seedu.address.commons.core.Messages.MESSAGE_TIME_AFTER_NOW;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -243,7 +244,7 @@ public class ParserUtil {
     public static Debt parsePositiveDebt(String debt) throws ParseException {
         requireNonNull(debt);
         String trimmedDebt = debt.trim();
-        if (!Debt.isValidDebt(trimmedDebt)) {
+        if (!Debt.isValidDebt(trimmedDebt) || new BigDecimal(trimmedDebt).signum() == -1) {
             throw new ParseException(Debt.MESSAGE_CONSTRAINTS);
         }
         return new Debt(debt);

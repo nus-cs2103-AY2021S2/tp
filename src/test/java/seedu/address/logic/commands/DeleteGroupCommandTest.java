@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -42,5 +44,29 @@ public class DeleteGroupCommandTest {
         DeleteGroupCommand deleteGroupCommand = new DeleteGroupCommand(group.getName());
 
         assertCommandFailure(deleteGroupCommand, model, Messages.MESSAGE_UNKNOWN_GROUP);
+    }
+
+    @Test
+    public void equals() {
+        Group group = new GroupBuilder().withName("Close Friends").build();
+        Group group2 = new GroupBuilder().withName("Others").build();
+        DeleteGroupCommand deleteGroupCommand = new DeleteGroupCommand(group.getName());
+        DeleteGroupCommand deleteGroup2Command = new DeleteGroupCommand(group2.getName());
+
+        // same object -> returns true
+        assertTrue(deleteGroupCommand.equals(deleteGroupCommand));
+
+        // same values -> returns true
+        DeleteGroupCommand deleteGroupCommandCopy = new DeleteGroupCommand(group.getName());
+        assertTrue(deleteGroupCommand.equals(deleteGroupCommandCopy));
+
+        // different types -> returns false
+        assertFalse(deleteGroupCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(deleteGroupCommand.equals(null));
+
+        // different group -> returns false
+        assertFalse(deleteGroupCommand.equals(deleteGroup2Command));
     }
 }

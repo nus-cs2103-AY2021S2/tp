@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,7 +62,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
-        this.groups.setGroups(new HashMap<>());
+        List<Name> personNames = persons.stream().map(Person::getName).collect(Collectors.toList());
+        this.groups.addPersonNames(personNames);
         personStreaks.setPersons(persons);
     }
 
@@ -99,6 +101,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPerson(Person p) {
         persons.add(p);
+        groups.addPersonName(p.getName());
         personStreaks.add(p);
     }
 
@@ -132,7 +135,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a group with the same identity as {@code group} exists in the address book.
      */
-    public boolean hasGroup(Group group) {
+    public boolean hasGroupName(Name group) {
         requireNonNull(group);
         return groups.contains(group);
     }
