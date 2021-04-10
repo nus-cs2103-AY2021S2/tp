@@ -148,12 +148,13 @@ public class CommandTestUtil {
     public static final EditDogDescriptor DESC_BELL;
     public static final EditProgramDescriptor DESC_OBEDIENCE_TRAINING;
     public static final EditProgramDescriptor DESC_POTTY_TRAINING;
+
     public static final String INVALID_NEGATIVE_ID_STRING = "-1";
     public static final String INVALID_UNKNOWN_ID_STRING = "dummy";
-
     public static final String EMPTY_STRING = "";
     public static final String WHITESPACE_STRING = "   ";
     public static final String INVALID_OUT_OF_BOUNDS_ID_STRING = String.valueOf(Long.MAX_VALUE);
+    public static final String VALID_NAME_APPLE = "Apple";
 
     public static final String INVALID_NEGATIVE_DOGID_DESC = " " + PREFIX_DOGID + INVALID_NEGATIVE_ID_STRING;
     public static final String INVALID_NEGATIVE_PROGRAMID_DESC = " " + PREFIX_PROGRAMID + INVALID_NEGATIVE_ID_STRING;

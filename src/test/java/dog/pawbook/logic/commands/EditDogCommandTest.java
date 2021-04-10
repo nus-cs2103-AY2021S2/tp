@@ -8,11 +8,15 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_FRIENDLY;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static dog.pawbook.logic.commands.CommandUtil.disconnectFromOwner;
+import static dog.pawbook.logic.commands.EditDogCommand.MESSAGE_EDIT_DOG_SUCCESS;
+import static dog.pawbook.testutil.TypicalEntities.APPLE;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
+import static dog.pawbook.testutil.TypicalId.ID_FOUR;
 import static dog.pawbook.testutil.TypicalId.ID_ONE;
 import static dog.pawbook.testutil.TypicalId.ID_THREE;
 import static dog.pawbook.testutil.TypicalId.ID_TWO;
 import static java.util.stream.Collectors.toList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -50,7 +54,7 @@ public class EditDogCommandTest {
         EditDogCommand.EditDogDescriptor descriptor = new EditDogDescriptorBuilder(editedDog).build();
         EditDogCommand editDogCommand = new EditDogCommand(firstIdEntity.getKey(), descriptor);
 
-        String expectedMessage = String.format(EditDogCommand.MESSAGE_EDIT_DOG_SUCCESS, editedDog);
+        String expectedMessage = String.format(MESSAGE_EDIT_DOG_SUCCESS, editedDog);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
         expectedModel.setEntity(firstIdEntity.getKey(), editedDog);
@@ -71,7 +75,7 @@ public class EditDogCommandTest {
                 .withBreed(VALID_BREED_BELL).withTags(VALID_TAG_FRIENDLY).build();
         EditDogCommand editEntityCommand = new EditDogCommand(ID_TWO, descriptor);
 
-        String expectedMessage = String.format(EditDogCommand.MESSAGE_EDIT_DOG_SUCCESS, editedDog);
+        String expectedMessage = String.format(MESSAGE_EDIT_DOG_SUCCESS, editedDog);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
         expectedModel.setEntity(ID_TWO, editedDog);
@@ -91,7 +95,7 @@ public class EditDogCommandTest {
                 .withOwnerId(ID_THREE).build();
         EditDogCommand editEntityCommand = new EditDogCommand(ID_TWO, descriptor);
 
-        String expectedMessage = String.format(EditDogCommand.MESSAGE_EDIT_DOG_SUCCESS, editedDog);
+        String expectedMessage = String.format(MESSAGE_EDIT_DOG_SUCCESS, editedDog);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
         expectedModel.setEntity(ID_TWO, editedDog);
@@ -127,7 +131,7 @@ public class EditDogCommandTest {
         EditDogCommand editEntityCommand = new EditDogCommand(ID_TWO, new EditDogDescriptor());
         Dog editedDog = (Dog) model.getEntity(ID_TWO);
 
-        String expectedMessage = String.format(EditDogCommand.MESSAGE_EDIT_DOG_SUCCESS, editedDog);
+        String expectedMessage = String.format(MESSAGE_EDIT_DOG_SUCCESS, editedDog);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
         expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_TWO));
@@ -136,13 +140,52 @@ public class EditDogCommandTest {
     }
 
     @Test
-    public void execute_invalidDogId_failure() {
+    public void execute_getSuccessMessage_success() {
+        Dog toEditDog = (Dog) model.getEntity(ID_TWO);
+
+        DogBuilder dogInList = new DogBuilder(toEditDog);
+        Dog editedDog = dogInList.withName(VALID_NAME_BELL).withBreed(VALID_BREED_BELL)
+                .withTags(VALID_TAG_FRIENDLY).build();
+
+        EditDogCommand.EditDogDescriptor descriptor = new EditDogDescriptorBuilder().withName(VALID_NAME_BELL)
+                .withBreed(VALID_BREED_BELL).withTags(VALID_TAG_FRIENDLY).build();
+        EditDogCommand editEntityCommand = new EditDogCommand(ID_TWO, descriptor);
+
+        assertEquals(editEntityCommand.getSuccessMessage(editedDog),
+                String.format(MESSAGE_EDIT_DOG_SUCCESS, editedDog));
+    }
+
+    @Test
+    public void execute_invalidId_failure() {
         Integer outOfBoundId = model.getUnfilteredEntityList().stream()
                 .map(Pair::getKey).sorted().collect(toList()).get(model.getUnfilteredEntityList().size() - 1) + 1;
         EditDogDescriptor descriptor = new EditDogDescriptorBuilder().withName(VALID_NAME_BELL).build();
         EditDogCommand editEntityCommand = new EditDogCommand(outOfBoundId, descriptor);
 
         assertCommandFailure(editEntityCommand, model, Messages.MESSAGE_INVALID_DOG_ID);
+    }
+
+    @Test
+    public void execute_validIdInvalidEntity_failure() {
+        Integer ownerId = ID_ONE;
+        EditDogDescriptor descriptor = new EditDogDescriptorBuilder().withName(VALID_NAME_BELL).build();
+        EditDogCommand editEntityCommand = new EditDogCommand(ownerId, descriptor);
+
+        assertCommandFailure(editEntityCommand, model, Messages.MESSAGE_INVALID_DOG_ID);
+    }
+
+    @Test
+    public void execute_duplicateDog_failure() {
+        Integer targetDogId = ID_FOUR;
+        EditDogDescriptor descriptor = new EditDogDescriptorBuilder().withName(APPLE.getName().fullName)
+                .withBreed(APPLE.getBreed().value).withDob(APPLE.getDob().value).withSex(APPLE.getSex().value)
+                .withOwnerId(APPLE.getOwnerId()).withTags(APPLE.getTags()
+                        .stream()
+                        .map(x -> x.tagName)
+                        .toArray(String[]::new)).build();
+
+        EditDogCommand editEntityCommand = new EditDogCommand(targetDogId, descriptor);
+        assertCommandFailure(editEntityCommand, model, Messages.MESSAGE_DUPLICATE_DOG);
     }
 
     @Test
@@ -168,5 +211,6 @@ public class EditDogCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditDogCommand(ID_ONE, DESC_BELL)));
+
     }
 }
