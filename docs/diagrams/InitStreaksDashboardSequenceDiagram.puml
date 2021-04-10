@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+
+autoactivate on
+
+box Model LOGIC_COLOR_T1
+participant ":AddressBook" as AddressBook LOGIC_COLOR
+participant ":PersonStreakList" as PersonStreakList LOGIC_COLOR
+participant ":PersonStreak" as PersonStreak LOGIC_COLOR
+participant ":Person" as Person LOGIC_COLOR
+participant ":Streak" as Streak LOGIC_COLOR
+end box
+
+[-> AddressBook : setPersons(persons)
+
+AddressBook -> PersonStreakList : setPersons(persons)
+
+loop persons.size()
+    create PersonStreak
+    PersonStreakList -> PersonStreak : fromPerson(p)
+
+    PersonStreak -> Person : getMeetings()
+    Person --> PersonStreak
+
+    PersonStreak -> Person : getGoal()
+    Person --> PersonStreak
+
+    create Streak
+    PersonStreak -> Streak : from(meetings, goal)
+    Streak --> PersonStreak
+
+    PersonStreak --> PersonStreakList
+end
+
+PersonStreakList --> AddressBook : view of PersonStreakList
+
+[<-- AddressBook
+
+@enduml
