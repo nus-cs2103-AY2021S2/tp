@@ -52,7 +52,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/car155.png" width="200px">
 
 [[github](https://github.com/car155)]
-[[portfolio](team/carissaying.md)]
+[[portfolio](team/car155.md)]
 
 * Role: Developer
 * Responsibilities: Integration, Testing
