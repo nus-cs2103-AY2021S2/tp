@@ -4,7 +4,6 @@ import static seedu.cakecollate.commons.core.Messages.MESSAGE_INVALID_COMMAND_FO
 
 import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.logic.commands.DeliveryStatusCommand;
-import seedu.cakecollate.logic.parser.exceptions.IndexOutOfBoundsException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.order.DeliveryStatus;
 

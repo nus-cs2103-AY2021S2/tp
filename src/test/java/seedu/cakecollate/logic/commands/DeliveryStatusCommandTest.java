@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import seedu.cakecollate.commons.core.Messages;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
-import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ModelManager;
 import seedu.cakecollate.model.UserPrefs;
