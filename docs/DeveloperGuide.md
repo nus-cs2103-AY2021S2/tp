@@ -296,6 +296,29 @@ switching UI display the other way around is similar.
       * The design choice is not intuitive (`Score` does not seem to be a `Flashcard` and vice versa).
       * The overhead of maintaining the inheritance is non-trivial.
 
+### [Proposed] Auto-tagging feature for difficult Flashcards
+
+The proposed feature will track user attempts for each flashcard and suggest tagging flashcards that took more than a
+set number of attempts as difficult at the end of the quiz. This is facilitated by the `check` command triggering an
+internal check on the current number of attempts for this `flashcard`. Beyond a set number of attempts, the `Quiz` will
+store the current `flashcard` in a separate list to be shown at the end of the quiz. The user can then tag them as
+difficult if they so wish to.
+
+`Model#Quiz` will implement the following operation:
+* `Quiz#updateDifficult`: Adds the current `flashcard` to the list of difficult flashcards.
+
+### [Proposed] Tag Search
+The tag searching feature will allow users to view and search through the tags that exist, such that they can easily
+know what tags are available to be used. `Tag` will store a static map of each tag to the number of flashcards with
+that tag, updating as needed when a tag is added or deleted.
+
+`Model#Tag` will implement the following operations:
+* `Tag#showTags()`: Iterates through the map and shows all existing tags.
+* `Tag#doesTagExist(Tag tag)`: Checks if tag exists.
+* `Tag#tagCount(Tag tag)`: Searches the map for the number of flashcards with the provided tag. If the tag does not
+  exist, it should return 0.
+
+These operations will be executed through `ShowTagsCommand` and `SearchTagsCommand` in the `Logic` class.
 
 --------------------------------------------------------------------------------------------------------------------
 
