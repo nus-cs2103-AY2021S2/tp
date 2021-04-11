@@ -4,6 +4,7 @@ package seedu.address.model.user;
  * Represents a User's gender.
  */
 public class Gender {
+    //@@author SoonKeatNeo
     public static final String MESSAGE_CONSTRAINTS =
             "Gender should be either M (for Male) or F (for female)!";
     private static final String VALIDATION_REGEX = "^M$|^F$";

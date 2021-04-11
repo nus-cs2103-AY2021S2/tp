@@ -14,6 +14,7 @@ import seedu.address.model.food.FoodIntakeList;
  * Handles the representation of the User class in DieTrack.
  */
 public class User {
+    //@@author SoonKeatNeo
     // Identity fields
     private final Age age;
     private final Gender gender;
@@ -122,6 +123,8 @@ public class User {
 
         User otherUser = (User) other;
         return otherUser.getBmi().equals(getBmi())
+                && otherUser.getGender().equals(getGender())
+                && otherUser.getIdealWeight().equals(getIdealWeight())
                 && otherUser.getFoodList().equals(getFoodList());
     }
 }

@@ -4,6 +4,7 @@ package seedu.address.model.user;
  * Represents a User's Bmi.
  */
 public class Bmi {
+    //@@author SoonKeatNeo
     public static final String MESSAGE_CONSTRAINTS =
             "Weight should be in kg and Height should be in cm.\nBoth should be greater than 1"
                     + " and may include a decimal.";
