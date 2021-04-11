@@ -406,19 +406,23 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* student currently enrolled in a university
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
+Our target users are student currently enrolled in a university who,
+
+* need to manage school projects
+* prefers using desktop apps over other types
+* can type fast and prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
 
-* supports only features a university student needs without additional clutter
-* information organised by categories relevant to university students (e.g. tag by modules)
-* manage contacts faster than a typical mouse/GUI driven app
+* Organise information by projects
+    * Unlike other similar applications, CoLAB organises our users' tasks by project rather than by weeks. We believe this is better as students are likely already familiar with their weekly schedule. Grouping it by project allows us to give more emphasis to project tasks and deadlines rather than weekly recurring classes.
 
+* Minimalistic and Designed for Students
+    * CoLAB is designed to be simple and clutter free. We only add features students are likely to use and use terms that are appropriate for students. This improves the user experience for students.
+    
+* Faster compared to other applications
+    * Users who are comfortable with using a CLI can potentially do their project management tasks much faster than traditional applications as they can do everything from the keyboard.
 
 ### User stories
 
@@ -1238,10 +1242,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ### Glossary
 
+* **CLI**: Command Line Interface
 * **Common screen resolutions**: minimum _1024×786_, maximum _3840×2160_
-* **Mainstream OS**: Windows, Linux, Unix, macOS
+* **Mainstream OS**: Windows, Linux, macOS
 * **MSS**: Main Success Scenario
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
