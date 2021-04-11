@@ -57,6 +57,8 @@ public interface BudgetBabyLogic {
     List<MonthStatistics> getPastMonthStatistics();
 
     List<CategoryStatistics> getTopCategoryStatistics();
+
+    List<CategoryStatistics> getAllUnsortedCategoryStatistics();
     /**
      * Returns the user prefs' budget baby file path.
      */
