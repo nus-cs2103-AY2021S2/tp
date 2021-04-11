@@ -483,10 +483,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to delete a specific student.
-2.  System prompts for confirmation of deletion.
-3.  User confirms.
-4.  System deletes the student. 
+1.  User requests to delete a specific student by matriculation number.
+1.  System deletes the student. 
 
     Use case ends.
 
@@ -495,14 +493,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Specified student does not exist.
 
     * 1a1. System shows an error message.
-  
-        Use case ends.
+      <br>Use case ends.
 
+* 1b. System detects an error in the entered parameter.
 
-* 3a. User does not confirm.
+    * 1b1. System shows an error message.
+      <br> Use case ends.
+      
 
-  Use case ends.
+**Use case: Delete an appointment**
 
+**MSS**
+1.  User requests to delete a student's appointment by the students matriculation number.
+1.  System deletes the student's appointment.
+
+    Use case ends.
+
+* 1a. Specified student does not exist.
+
+    * 1a1. System shows an error message.
+      <br>Use case ends.
+
+* 1b. Specified student does not have a appointment.
+
+    * 1b1. System shows an error message.
+      <br> Use case ends.
+
+* 1c. System detects an error in the entered parameter.
+
+    * 1c1. System shows an error message.
+      <br> Use case ends.
 
 ### Non-Functional Requirements
 
