@@ -663,7 +663,7 @@ the indices are further checked to ensure the target tasks exist in the task lis
 Afterwards, the information of the target tasks are copied and completed tasks with exactly the same information as the target tasks are created.
 Finally, `Model#setTask(Task taskToDone, Task completedTask)` are called two times to update the respective target tasks in the task list.
 `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` method is called to refresh the UI and show the update.
-For brevity, lower level implementation of `Model#setTask(Task taskToUndone, Task uncompletedTask)`, 
+For brevity, lower level implementation of `Model#setTask(Task taskToDone, Task completedTask)`, 
 and `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` are omitted.
 
 **Step 3**: On execution completion a `CommandResult` is created.
