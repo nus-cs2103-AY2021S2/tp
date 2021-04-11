@@ -13,13 +13,13 @@ Welcome to the PocketEstate Developer Guide! This guide will take you through th
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. **Setting up, getting started**
+## **1. Setting up, getting started**
 
 Please refer to the guide [_Setting up and getting started_](SettingUp.md) to learn how to set up this project in your computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. **Design**
+## **2. Design**
 
 ### 2.1 Architecture
 
@@ -98,7 +98,7 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object, which is passed back to the `Ui`. The feedback to the user is then displayed to the user.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add property n/Mayfair t/Condo a/1 Jurong East Street 32, #08-111 p/609477 d/31-12-2021")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021")` API call.
 
 ![Interactions Inside the Logic Component for the `add property n/Bishan t/Hdb a/Blk 150 Bishan Street 11 #02-101 p/570150 d/30-06-2021` Command](images/AddPropertySequenceDiagram.png)
 
@@ -147,7 +147,7 @@ Some examples of common classes:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. **Implementation**
+## **3. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -160,11 +160,11 @@ This section describes some noteworthy details on how certain features are imple
 
 #### 3.1.1 Current Implementation
 
-A `Property` is stored in a `UniquePropertyList`, which ensures that there are no duplicate properties in the `PropertyBook`. Each `Property` is uniquely identified by its `Address` and `PostalCode`.
+A `Property` is stored in a `UniquePropertyList`, which ensures that there are no duplicate properties in the `PropertyBook`. Each `Property` is uniquely identified by its pair of `Address` and `PostalCode`.
 
 A `Property consists of the following mandatory attributes,
   * a `Name`: the name of the property
-  * a `Type`: the housing type of the property (Hdb, Condo, Landed)
+  * a `Type`: the housing type of the property (HDB ![hdb_icon](images/hdb_16.png), Condo ![condo_icon](images/condo_16.png), Landed ![landed_icon](images/landed_16.png), etc.)
   * an `Address`: the address of the property
   * a `PostalCode`: the postal code of the property
   * a `Deadline`: the property's deadline for selling
@@ -208,7 +208,7 @@ A `Client` consists of at least one of the following attributes,
 
 #### 3.2.1 Current Implementation
 
-An `Appointment` is stored in a `UniqueAppointmentList`, which ensures that there are no duplicate appointments in the `AppointmentBook`. Each `Appointment` is uniquely identified by its `Date` and `Time`.
+An `Appointment` is stored in a `UniqueAppointmentList`, which ensures that there are no duplicate appointments in the `AppointmentBook`. Each `Appointment` is uniquely identified by its pair of `Date` and `Time`.
 
 An `Appointment` consists of the following mandatory attributes,
 * a `Name`: the name of the appointment
@@ -342,7 +342,7 @@ The following sequence diagram shows how the update operation works:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. **Documentation, logging, testing, configuration, dev-ops**
+## **4. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
