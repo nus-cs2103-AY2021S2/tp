@@ -256,7 +256,23 @@ Steps for the execution of the `AddGradeCommand` (assuming that no errors are en
 then create a `CommandResult` object and return the result.
 6. The `Ui` component will detect this cahnge and update the GUI.
 ![Sequence Diagram of Add Grade](images/grade/GradeSequenceDiagram.png)
-         
+
+#### Design Consideration
+
+**Displaying Schedule in the GUI**
+
+|              | **Pros**   | **Cons** |
+| -------------|-------------| -----|
+| **Option 1** <br> Display grades with budget and reminder in the same list view. | Allows users to view everything in a single panel. | Users may have difficulty to differentiate grades, budget and reminders if a considerable number of them are all listed together.|
+| **Option 2 (current choice)** <br> Display grades in a separate tab from budget and reminder. | Clear segregation between grades, budget and reminder. | May impose inconvenience as users have to switch tabs between grades, budget and reminder depending on their needs |
+
+Reason for choosing option 2:
+* As we do not wish to overwhelm the user with too much information to provide a better user experience, we decided that option 2 may be a better option.
+* Viewing grades, reminders and budgets in the same panel is later proposed as a different solution in the `Your Information` Feature.
+
+The following activity diagram summarizes what happens when the `add_grade` command is executed.
+
+![Activity Diagram of Add Grade](images/grade/GradeActivityDiagram.png)
 
 ### [Proposed] Filter Feature
 This Filter feature would allow users to manage filters and apply them to the list of tutors
