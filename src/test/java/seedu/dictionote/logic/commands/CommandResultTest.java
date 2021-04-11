@@ -47,4 +47,12 @@ public class CommandResultTest {
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", UiAction.EXIT).hashCode());
     }
+
+    @Test
+    void getUiAction() {
+    }
+
+    @Test
+    void getUiActionOption() {
+    }
 }

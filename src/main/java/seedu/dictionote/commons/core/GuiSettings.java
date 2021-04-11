@@ -49,9 +49,8 @@ public class GuiSettings implements Serializable {
     private final boolean isDictionaryContentPanelVisible;
 
 
-
     /**
-     * Constructs a {@code GuiSettings} with the default height, width and position.
+     * Constructs a {@code GuiSettings} with default value.
      */
     public GuiSettings() {
         windowWidth = 0;
@@ -74,7 +73,23 @@ public class GuiSettings implements Serializable {
     }
 
     /**
-     * Constructs a {@code GuiSettings} with the specified height, width and position.
+     * Constructs a {@code GuiSettings} with the specified configuration.
+     *
+     * @param windowWidth width of window.
+     * @param windowHeight height of window.
+     * @param xPosition X coordinate of window position.
+     * @param yPosition Y coordinate of window position .
+     * @param contactSplitRatio contact divider split ratio.
+     * @param dictionarySplitRatio dictionary divider split ratio.
+     * @param noteSplitRatio note divider split ratio.
+     * @param mainSplitRatio main divider split ratio.
+     * @param isContactPanelVisible visibility of contact panel.
+     * @param isDictionaryContentPanelVisible visibility of dictionary content panel.
+     * @param isDictionaryListPanelVisible visibility of dictionary list panel.
+     * @param isNoteContentPanelVisible visibility of note content panel.
+     * @param isNoteListPanelVisible visibility of note list panel.
+     * @param isDictionaryPanelVerticial orientation of dictionary divider.
+     * @param isNotePanelVerticial orientation of note divider.
      */
     public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition,
                        double contactSplitRatio, double dictionarySplitRatio,
@@ -151,34 +166,56 @@ public class GuiSettings implements Serializable {
         return mainSplitRatio;
     }
 
+    /**
+     * Sets the contact divider position.
+     * @param contactSplitRatio position of the divider have to be between 0.1 - 0.9, else it will be ignored.
+     */
     public void setContactSplitRatio(double contactSplitRatio) {
         if (isValidSplitRatio(contactSplitRatio)) {
             this.contactSplitRatio = getRoundedValue(contactSplitRatio);
         }
     }
 
+    /**
+     * Sets the dictionary divider position.
+     * @param dictionarySplitRatio position of the divider have to be between 0.1 - 0.9, else it will be ignored.
+     */
     public void setDictionarySplitRatio(double dictionarySplitRatio) {
         if (isValidSplitRatio(dictionarySplitRatio)) {
             this.dictionarySplitRatio = getRoundedValue(dictionarySplitRatio);
         }
     }
 
+    /**
+     * Sets the note divider position.
+     * @param noteSplitRatio position of the divider have to be between 0.1 - 0.9, else it will be ignored.
+     */
     public void setNoteSplitRatio(double noteSplitRatio) {
         if (isValidSplitRatio(noteSplitRatio)) {
             this.noteSplitRatio = getRoundedValue(noteSplitRatio);
         }
     }
 
+    /**
+     * Sets the main divider position.
+     * @param mainSplitRatio position of the divider have to be between 0.1 - 0.9, else it will be ignored.
+     */
     public void setMainSplitRatio(double mainSplitRatio) {
         if (isValidSplitRatio(mainSplitRatio)) {
             this.mainSplitRatio = getRoundedValue(mainSplitRatio);
         }
     }
 
+    /**
+     * Ensure the value of the position is within limit.
+     */
     private boolean isValidSplitRatio(double ratio) {
         return ratio >= MIN_SPLIT_RATIO && ratio <= MAX_SPLIT_RATIO;
     }
 
+    /**
+     * Avoid rounding error when saving the position by rounding to 4 decimal place.
+     */
     private double getRoundedValue(double d) {
         return ((double) Math.round(d * 10000)) / 10000;
     }
@@ -237,18 +274,35 @@ public class GuiSettings implements Serializable {
         return sb.toString();
     }
 
+    /**
+     * Gets the orientation setting of the dictionary panel as a javafx.geometry.Orientation
+     *
+     * @return orientation as javafx.geometry.Orientation.VERTICAL or javafx.geometry.Orientation.HORIZONTAL
+     */
     public Orientation getDictionaryPanelOrientation() {
         return isDictionaryPanelVerticial ? Orientation.VERTICAL : Orientation.HORIZONTAL;
     }
 
+    /**
+     * Toggles the orientation of the Dictionary Panel.
+     * If the panel is horizontal, it will be set to vertical, vice-verse.
+     */
     public void toggleDictionaryPanelOrientation() {
         isDictionaryPanelVerticial = !isDictionaryPanelVerticial;
     }
-
+    /**
+     * Gets the orientation setting of the note panel as a javafx.geometry.Orientation
+     *
+     * @return orientation as javafx.geometry.Orientation.VERTICAL or javafx.geometry.Orientation.HORIZONTAL
+     */
     public Orientation getNotePanelOrientation() {
         return isNotePanelVerticial ? Orientation.VERTICAL : Orientation.HORIZONTAL;
     }
 
+    /**
+     * Toggles the orientation of the Note Panel.
+     * If the panel is horizontal, it will be set to vertical, vice-verse.
+     */
     public void toggleNotePanelOrientation() {
         isNotePanelVerticial = !isNotePanelVerticial;
     }
