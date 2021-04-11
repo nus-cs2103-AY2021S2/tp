@@ -49,8 +49,9 @@ Given below are my contributions to the project.
     * Modified documentation for the feature `add` [\#75](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/75)
     * Morphed documentation for existing features to remove traces of AB3 [\#52](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/52)
   * Developer Guide:
+    * Add sequence diagram and activity diagram for `recur` feature [\#274](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/274)
     * Updated target profile, user stories, value proposition [\#48](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/48)
-    * Add use cases for the feature `recur` [\#99](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/99), [\#134](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/134)
+    * Add use cases for the `recur` feature [\#99](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/99), [\#134](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/134)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#90](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/90), [\#84](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/84), [\#71](https://github.com/AY2021S2-CS2103T-T13-2/tp/pull/71)
