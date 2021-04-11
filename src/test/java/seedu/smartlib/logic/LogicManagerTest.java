@@ -69,7 +69,8 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "deletereader 9";
-        assertCommandException(deleteCommand, DeleteReaderCommand.MESSAGE_USAGE);
+        assertCommandException(deleteCommand, DeleteReaderCommand.INVALID_COMMAND_FORMAT
+                + DeleteReaderCommand.MESSAGE_USAGE);
     }
 
     @Test

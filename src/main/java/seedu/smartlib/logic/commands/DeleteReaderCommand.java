@@ -16,6 +16,7 @@ public class DeleteReaderCommand extends Command {
 
     public static final String COMMAND_WORD = "deletereader";
 
+    public static final String INVALID_COMMAND_FORMAT = "Invalid command format!\n";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the reader identified by the index number in the displayed reader list.\n"
             + "Parameter: INDEX (must be a positive integer smaller than the size of your reader list).\n"
@@ -49,7 +50,7 @@ public class DeleteReaderCommand extends Command {
         List<Reader> lastShownList = model.getFilteredReaderList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_USAGE);
+            throw new CommandException(INVALID_COMMAND_FORMAT + MESSAGE_USAGE);
         }
 
         Reader readerToDelete = lastShownList.get(targetIndex.getZeroBased());

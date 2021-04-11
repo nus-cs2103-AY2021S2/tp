@@ -43,7 +43,8 @@ public class DeleteReaderCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredReaderList().size() + 1);
         DeleteReaderCommand deleteCommand = new DeleteReaderCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, DeleteReaderCommand.MESSAGE_USAGE);
+        assertCommandFailure(deleteCommand, model, DeleteReaderCommand.INVALID_COMMAND_FORMAT
+                + DeleteReaderCommand.MESSAGE_USAGE);
     }
 
     @Test
@@ -72,7 +73,8 @@ public class DeleteReaderCommandTest {
 
         DeleteReaderCommand deleteCommand = new DeleteReaderCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, DeleteReaderCommand.MESSAGE_USAGE);
+        assertCommandFailure(deleteCommand, model, DeleteReaderCommand.INVALID_COMMAND_FORMAT
+                + DeleteReaderCommand.MESSAGE_USAGE);
     }
 
     @Test

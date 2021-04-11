@@ -43,7 +43,8 @@ public class DeleteBookCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBookList().size() + 1);
         DeleteBookCommand deleteBookCommand = new DeleteBookCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteBookCommand, model, DeleteBookCommand.MESSAGE_USAGE);
+        assertCommandFailure(deleteBookCommand, model, DeleteBookCommand.INVALID_COMMAND_FORMAT
+                + DeleteBookCommand.MESSAGE_USAGE);
     }
 
     @Test
@@ -72,7 +73,8 @@ public class DeleteBookCommandTest {
 
         DeleteBookCommand deleteBookCommand = new DeleteBookCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteBookCommand, model, DeleteBookCommand.MESSAGE_USAGE);
+        assertCommandFailure(deleteBookCommand, model, DeleteBookCommand.INVALID_COMMAND_FORMAT
+                + DeleteBookCommand.MESSAGE_USAGE);
     }
 
     @Test
