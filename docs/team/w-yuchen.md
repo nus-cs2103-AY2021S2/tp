@@ -20,7 +20,10 @@ Given below are my contributions to the project.
     * Justification: Users can easily search for all entries related to a particular client they are interested in. 
 * **Documentation**: 
     * User guide: Updated guides for the usage of `find appointment`, `find property`, and `find client` commands. 
-    * Developer guide: Added in some user stories and added instructions for manually testing `find` commands.
+    * Developer guide: 
+        * Updated user stories. 
+        * Added implementation details for `find` commands. 
+        * Added instructions for manually testing `find` commands.
 * **Testing**: 
     * Wrote unit tests for: 
         * `find` commands and parsers

@@ -1,0 +1,32 @@
+@startuml
+start
+:User executes
+FindAppointmentCommand;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:User input is passed to
+FindAppointmentCommandParser;
+
+if () then ([invalid input])
+    :Exception is thrown;
+else ([else])
+    :FindAppointmentCommand creates
+    AppointmentPredicateList for every
+    option type;
+
+    :Create predicates corresponding to
+    each option type;
+
+    :FindAppointmentCommandParser
+    creates a new FindAppointmentCommand;
+
+    :FindAppointmentCommand combines
+    predicates;
+
+    :FindAppointmentCommand is executed;
+endif
+:Result is shown to the user;
+stop
+@enduml
