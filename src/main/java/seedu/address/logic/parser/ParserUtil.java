@@ -9,11 +9,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.description.Description;
+import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.DressCode;
+import seedu.address.model.garment.Name;
+import seedu.address.model.garment.Size;
+import seedu.address.model.garment.Type;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -51,74 +52,89 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String size} into a {@code Size}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code size} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Size parseSize(String size) throws ParseException {
+        requireNonNull(size);
+        String trimmedSize = size.trim();
+        if (!Size.isValidSize(trimmedSize)) {
+            throw new ParseException(Size.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new Size(trimmedSize);
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String dresscode} into an {@code DressCode}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code dresscode} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static DressCode parseDressCode(String dresscode) throws ParseException {
+        requireNonNull(dresscode);
+        String trimmedDresscode = dresscode.trim();
+        if (!DressCode.isValidDressCode(trimmedDresscode)) {
+            throw new ParseException(DressCode.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new DressCode(trimmedDresscode);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String type} into an {@code type}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code type} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Type parseType(String type) throws ParseException {
+        requireNonNull(type);
+        String trimmedType = type.trim();
+        if (!Type.isValidType(trimmedType)) {
+            throw new ParseException(Type.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Type(trimmedType);
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String colour} into an {@code Colour}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code colour} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Colour parseColour(String colour) throws ParseException {
+        requireNonNull(colour);
+        String trimmedColour = colour.trim();
+        if (!Colour.isValidColour(trimmedColour)) {
+            throw new ParseException(Colour.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Colour(trimmedColour);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescriptionName(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return tagSet;
+        return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses {@code Collection<String> descriptions} into a {@code Set<Description>}.
+     */
+    public static Set<Description> parseDescriptions(Collection<String> descriptions) throws ParseException {
+        requireNonNull(descriptions);
+        final Set<Description> descriptionSet = new HashSet<>();
+        for (String descriptionName : descriptions) {
+            descriptionSet.add(parseDescription(descriptionName));
+        }
+        return descriptionSet;
     }
 }

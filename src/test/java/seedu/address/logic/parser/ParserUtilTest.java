@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_GARMENT;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,25 +14,25 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.description.Description;
+import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.DressCode;
+import seedu.address.model.garment.Name;
+import seedu.address.model.garment.Size;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
-    private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_SIZE = "-65";
+    private static final String INVALID_DRESSCODE = " ";
+    private static final String INVALID_COLOUR = " ";
+    private static final String INVALID_DESCRIPTION = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
-    private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_SIZE = "12";
+    private static final String VALID_DRESSCODE = "FORMAL";
+    private static final String VALID_COLOUR = "blue";
+    private static final String VALID_DESCRIPTION_1 = "friend";
+    private static final String VALID_DESCRIPTION_2 = "neighbour";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -50,10 +50,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_GARMENT, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_GARMENT, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
@@ -80,117 +80,121 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    public void parseSize_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSize((String) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    public void parseSize_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSize(INVALID_SIZE));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parseSize_validValueWithoutWhitespace_returnsSize() throws Exception {
+        Size expectedSize = new Size(VALID_SIZE);
+        assertEquals(expectedSize, ParserUtil.parseSize(VALID_SIZE));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    public void parseSize_validValueWithWhitespace_returnsTrimmedSize() throws Exception {
+        String sizeWithWhitespace = WHITESPACE + VALID_SIZE + WHITESPACE;
+        Size expectedSize = new Size(VALID_SIZE);
+        assertEquals(expectedSize, ParserUtil.parseSize(sizeWithWhitespace));
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parseDressCode_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDressCode((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseDressCode_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDressCode(INVALID_DRESSCODE));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+    public void parseDressCode_validValueWithoutWhitespace_returnsAddress() throws Exception {
+        DressCode expectedDressCode = new DressCode(VALID_DRESSCODE);
+        assertEquals(expectedDressCode, ParserUtil.parseDressCode(VALID_DRESSCODE));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    public void parseDressCode_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
+        String addressWithWhitespace = WHITESPACE + VALID_DRESSCODE + WHITESPACE;
+        DressCode expectedDressCode = new DressCode(VALID_DRESSCODE);
+        assertEquals(expectedDressCode, ParserUtil.parseDressCode(addressWithWhitespace));
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseColour_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseColour((String) null));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_EMAIL));
+    public void parseColour_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseColour(INVALID_COLOUR));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+    public void parseColour_validValueWithoutWhitespace_returnsColour() throws Exception {
+        Colour expectedColour = new Colour(VALID_COLOUR);
+        assertEquals(expectedColour, ParserUtil.parseColour(VALID_COLOUR));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    public void parseColour_validValueWithWhitespace_returnsTrimmedColour() throws Exception {
+        String colourWithWhitespace = WHITESPACE + VALID_COLOUR + WHITESPACE;
+        Colour expectedColour = new Colour(VALID_COLOUR);
+        assertEquals(expectedColour, ParserUtil.parseColour(colourWithWhitespace));
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    public void parseDescription_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription(null));
     }
 
     @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    public void parseDescription_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
     }
 
     @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
+    public void parseDescription_validValueWithoutWhitespace_returnsDescription() throws Exception {
+        Description expectedDescription = new Description(VALID_DESCRIPTION_1);
+        assertEquals(expectedDescription, ParserUtil.parseDescription(VALID_DESCRIPTION_1));
     }
 
     @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+    public void parseDescription_validValueWithWhitespace_returnsTrimmedDescription() throws Exception {
+        String descriptionWithWhitespace = WHITESPACE + VALID_DESCRIPTION_1 + WHITESPACE;
+        Description expectedDescription = new Description(VALID_DESCRIPTION_1);
+        assertEquals(expectedDescription, ParserUtil.parseDescription(descriptionWithWhitespace));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+    public void parseDescriptions_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDescriptions(null));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    public void parseDescriptions_collectionWithInvalidDescriptions_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil
+                .parseDescriptions(Arrays.asList(VALID_DESCRIPTION_1, INVALID_DESCRIPTION)));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    public void parseDescriptions_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseDescriptions(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+    public void parseDescriptions_collectionWithValidDescriptions_returnsDescriptionSet() throws Exception {
+        Set<Description> actualDescriptionSet = ParserUtil
+                .parseDescriptions(Arrays.asList(VALID_DESCRIPTION_1, VALID_DESCRIPTION_2));
+        Set<Description> expectedDescriptionSet = new HashSet<Description>(Arrays.asList(
+                new Description(VALID_DESCRIPTION_1),
+                new Description(VALID_DESCRIPTION_2)));
 
-        assertEquals(expectedTagSet, actualTagSet);
+        assertEquals(expectedDescriptionSet, actualDescriptionSet);
     }
 }

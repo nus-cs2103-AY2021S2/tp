@@ -1,5 +1,12 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +23,7 @@ import java.util.Optional;
 public class ArgumentMultimap {
 
     /** Prefixes mapped to their respective arguments**/
-    private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
+    public final Map<Prefix, List<String>> argMultimap = new HashMap<>();
 
     /**
      * Associates the specified argument value with {@code prefix} key in this map.
@@ -56,5 +63,81 @@ public class ArgumentMultimap {
      */
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        } else {
+            if (o instanceof ArgumentMultimap) {
+                ArgumentMultimap argumentMultimap = (ArgumentMultimap) o;
+                //return this.argMultimap.equals(argumentMultimap);
+                boolean isAllValuesSame = isEachPrefixSame(argumentMultimap);
+                if (!isAllValuesSame) {
+                    return false;
+                }
+
+                /*if (this.getValue(PREFIX_NAME).isPresent()) {
+                    isAllValuesSame =
+                            isAllValuesSame && this.getValue(PREFIX_NAME).get()
+                                    .equals(argumentMultimap.getValue(PREFIX_NAME).get());
+                }
+                if (this.getValue(PREFIX_SIZE).isPresent()) {
+                    isAllValuesSame =
+                            isAllValuesSame && this.getValue(PREFIX_SIZE).get()
+                                    .equals(argumentMultimap.getValue(PREFIX_SIZE).get());
+                }
+                if (this.getValue(PREFIX_COLOUR).isPresent()) {
+                    isAllValuesSame =
+                            isAllValuesSame && this.getValue(PREFIX_COLOUR).get()
+                                    .equals(argumentMultimap.getValue(PREFIX_COLOUR).get());
+                }
+                if (this.getValue(PREFIX_DRESSCODE).isPresent()) {
+                    isAllValuesSame =
+                            isAllValuesSame && this.getValue(PREFIX_DRESSCODE).get()
+                                    .equals(argumentMultimap.getValue(PREFIX_DRESSCODE).get());
+                }
+                if (this.getValue(PREFIX_TYPE).isPresent()) {
+                    isAllValuesSame =
+                            isAllValuesSame && this.getValue(PREFIX_TYPE).get()
+                                    .equals(argumentMultimap.getValue(PREFIX_TYPE).get());
+                }*/
+                isAllValuesSame = isAllValuesSame
+                        && this.isPrefixValueSame(PREFIX_NAME, argumentMultimap)
+                        && this.isPrefixValueSame(PREFIX_SIZE, argumentMultimap)
+                        && this.isPrefixValueSame(PREFIX_COLOUR, argumentMultimap)
+                        && this.isPrefixValueSame(PREFIX_DRESSCODE, argumentMultimap)
+                        && this.isPrefixValueSame(PREFIX_TYPE, argumentMultimap);
+                return isAllValuesSame && this.getAllValues(PREFIX_DESCRIPTION)
+                        .equals(argumentMultimap.getAllValues(PREFIX_DESCRIPTION));
+
+            } else {
+                return false;
+            }
+        }
+    }
+
+    /**
+     * Returns true if argumentMultiMap has the same prefixes as this object
+     */
+    public boolean isEachPrefixSame(ArgumentMultimap argumentMultimap) {
+        return !(this.getValue(PREFIX_NAME).isPresent() ^ argumentMultimap.getValue(PREFIX_NAME).isPresent())
+                && !(this.getValue(PREFIX_SIZE).isPresent() ^ argumentMultimap.getValue(PREFIX_SIZE).isPresent())
+                && !(this.getValue(PREFIX_COLOUR).isPresent() ^ argumentMultimap.getValue(PREFIX_COLOUR).isPresent())
+                && !(this.getValue(PREFIX_DRESSCODE).isPresent()
+                ^ argumentMultimap.getValue(PREFIX_DRESSCODE).isPresent())
+                && !(this.getValue(PREFIX_TYPE).isPresent() ^ argumentMultimap.getValue(PREFIX_TYPE).isPresent());
+    }
+
+    /**
+     * Returns true if the value of prefix for this object and argumentMultiMap is the same
+     */
+    public boolean isPrefixValueSame(Prefix prefix, ArgumentMultimap argumentMultimap) {
+        if (this.getValue(prefix).isPresent()) {
+            return this.getValue(prefix).get()
+                            .equals(argumentMultimap.getValue(prefix).get());
+        }
+        return true; //if not present just return true
     }
 }
