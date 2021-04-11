@@ -3,7 +3,7 @@ layout: page
 title: Teng Xin Wei's Project Portfolio Page
 ---
 
-## Project: WeebLingo
+## Project: Weeblingo
 
 Weeblingo is a desktop app for learning the Japanese language via flashcards. It is designed specifically with the needs
 of budding Japanese language students in mind, providing everything one would need to embark on their academic journey.
@@ -22,20 +22,19 @@ Given below are my contributions to the project.
     * What it does: Allows the user to choose the number of questions for a quiz session.
     * Justification: This feature improves the product because it allows the user to 
       roughly control the time spent on a quiz session, enhancing user experience and flexibility.
-    * Highlights: This feature is essential to the application as without it, users would have to be tested 
-    on all the flashcards in the database, requiring the user to spend long periods
+    * Highlights: This feature is essential to the application. Without it, each quiz session will test 
+      all the flashcards in the database, requiring the user to spend long periods
       of time on the quiz session with no flexibility provided.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=xinweit&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=xinweit&tabRepo=AY2021S2-CS2103T-T13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
+    * Manage, identify and keep track of bugs in product.
     * Release management: Create the 2nd release of the product.
-    * Identify and keep track of bugs in product. 
 
 * **Enhancements to existing features**: 
     * Modified List command in AddressBook to Learn and End commands in Weeblingo,
     to allow switching to learn and menu modes respectively.
-    
 
 * **Documentation**:
     * User Guide:
@@ -53,5 +52,11 @@ Given below are my contributions to the project.
           [\#201](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/201/files))
         * Updated use cases and user stories to match Weeblingo's latest functionalities.
           (Pull request
-          [\#105](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/105/files)
-          )
+          [\#105](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/105/files))
+          
+* **Community**:
+    * PRs reviewed (with non-trivial review comments): 
+      [\#39](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/39)
+      [\#192](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/192)
+      [\#199](https://github.com/AY2021S2-CS2103T-T13-1/tp/pull/199)
+    
