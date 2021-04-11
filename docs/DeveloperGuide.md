@@ -1127,8 +1127,8 @@ StoreMando has many significant enhancements from AB3. Here are some examples:
 
 1. There was a need to change a large portion of the AB3 code, as we had a completely different set of variables for 
    StoreMando. We had to do a lot of refactoring in the form of renaming class and attributes. The restrictions on 
-   fields in AB3 were also different from those in StoreMando (eg. Phone in AB3 must have 8 digits whereas Quantity in 
-   StoreMando can only have values within the range 1 to 1000000), and we had to edit those restrictions respectively.
+   fields in AB3 were also different from those in StoreMando (eg. Email in AB3 was a compulsory field whereas ExpiryDate in 
+   StoreMando is optional and must be provided in YYYY-MM-DD format), and we had to edit those restrictions respectively.
 
 2. StoreMando has a revamped UI to better tailor to the needs of our target users. The UI of AB3 only contained one 
    panel (ListPanel). On the other hand, StoreMando has 4 panels which added additional complexity. Beyond just 
@@ -1147,7 +1147,7 @@ StoreMando has many significant enhancements from AB3. Here are some examples:
 
 ### Working Process
 
-Our team placed heavy emphasis on communication, and efficient division of workload. We made use of github's issue trackers, which allowed efficient division and tracking of work, and also helped each
+Our team placed heavy emphasis on communication and efficient division of workload. We made use of github's issue trackers, which allowed efficient division and tracking of work, and also helped each
 team member visualise the tasks remaining.
 
 With our dedicated members and good team spirit, we were able to overcome the challenges mentioned 
