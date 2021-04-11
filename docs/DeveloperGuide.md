@@ -47,7 +47,7 @@ managers.
 
 ### Architecture
 
-![Architecture Diagram](images/ArchitectureDiagram.png)
+![Architecture Diagram](images/ArchitectureDiagram.png){: .center-image}
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -71,19 +71,19 @@ Each of the four components,
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+![Class Diagram of the Logic Component](images/LogicClassDiagram.png){: .center-image}
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete owner 1`.
 
-![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
+![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png){: .center-image}
 
 The sections below give more details of each component.
 
 ### UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram.png){: .center-image}
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-T10-1/tp/blob/master/src/main/java/dog/pawbook/ui/Ui.java)
@@ -99,7 +99,7 @@ The `UI` component,
 
 ### Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+![Structure of the Logic Component](images/LogicClassDiagram.png){: .center-image}
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-T10-1/tp/blob/master/src/main/java/dog/pawbook/logic/Logic.java)
@@ -112,14 +112,14 @@ The `UI` component,
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete owner 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete owner 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete owner 1` Command](images/DeleteSequenceDiagram.png){: .center-image}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteOwnerCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+![Structure of the Model Component](images/ModelClassDiagram.png){: .center-image}
 
 **API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T10-1/tp/blob/master/src/main/java/dog/pawbook/model/Model.java)
 
@@ -132,7 +132,7 @@ The `Model`,
 
 ### Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component](images/StorageClassDiagram.png){: .center-image}
 
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T10-1/tp/blob/master/src/main/java/dog/pawbook/storage/Storage.java)
 
@@ -152,7 +152,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Entities: Owner/Dog/Program
 
-![EntityClassDiagram](images/EntityClassDiagram.png)
+![EntityClassDiagram](images/EntityClassDiagram.png){: .center-image}
 
 Despite having three closely related entities in Pawbook, the actual implementation does not couple the 3 entities together in any ways. Instead of storing a reference between an Owner and their Dog, a symbolic ID number is used to represent these links. This ensures that data objects continue to only store information and leave the control/manipulation of data to the logic side of the application. It is therefore possible for all the various entities to remain immutable as well.
 
@@ -179,7 +179,7 @@ This current implementation though not ideal, avoid many potential rewrites sinc
 
 #### What it is
 
-![AddDeleteCommandClassDiagram](images/AddDeleteCommandClassDiagram.png)
+![AddDeleteCommandClassDiagram](images/AddDeleteCommandClassDiagram.png){: .center-image}
 
 Pawbook manages more than one type of entity, each with their own unique attributes. An OOP approach is used here whereby both the `AddCommand` and `DeleteCommand` are generic classes that extends the `Command` class. This way any number of other classes extending `entity` can be added/deleted as well.
 
@@ -189,7 +189,7 @@ Example: `add owner n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`
 
 The actual execution of the different add commands are highly similar and often differ only by the extra entity-specific checks, e.g. verifying that the owner ID refers to an actual owner instead of taking in an arbitrary number. The same applies to delete commands as well.
 
-![AddDeleteCommandParserClassDiagram](images/AddDeleteCommandParserClassDiagram.png)
+![AddDeleteCommandParserClassDiagram](images/AddDeleteCommandParserClassDiagram.png){: .center-image}
 
 In order to generate the respective commands, the raw input needs to be parsed first. It is required that the user provide a second keyword right after the `add`/`delete` command keyword to indicate the correct entity type to be added. Using this information, the arguments can be forwarded to the correct parser from within `PawbookParser` to generate the actual add/delete commands.
 
@@ -201,17 +201,17 @@ Step 2. The owner is added to the model.
 
 Below is an example activity diagram for a valid add command from the user.
 
-![AddActivityDiagram](images/DeleteActivityDiagram.png)
+![AddActivityDiagram](images/DeleteActivityDiagram.png){: .center-image}
 
 The activity diagram for both add and delete commands are mirrored. Based on the name of the entity type supplied, the correct parser will be instantiated to parse the arguments and generate the executable command. 
 
 To further illustrate how an actual deletion of an entity is performed, below is an example sequence diagram for a valid delete command from the user.
 
-![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png){: .center-image}
 
 The deletion of any entity will typically affect other related entities as well, as shown in a more details sequence diagram below.
 
-![DeleteSequenceDetailedDiagram](images/DeleteSequenceDetailedDiagram.png)
+![DeleteSequenceDetailedDiagram](images/DeleteSequenceDetailedDiagram.png){: .center-image}
 
 This is how the `DeleteDogCommand` works upon execution:
 1. The `Dog` to be deleted will first be retrieved from the `Model`.
@@ -231,7 +231,7 @@ In order to generate the respective commands, the raw input needs to be parsed f
 
 Below is an example activity diagram for a valid view command from the user.
 
-![EditActivityDiagram](images/EditActivityDiagram.png)
+![EditActivityDiagram](images/EditActivityDiagram.png){: .center-image}
 
 ### Find feature
 
@@ -247,7 +247,7 @@ CommandResult instance that is then passed on in the LogicManager.
 
 Below is an example sequence diagram for a valid find command from the user.
 
-![FindActivityDiagram](images/FindSequenceDiagram.png)
+![FindActivityDiagram](images/FindSequenceDiagram.png){: .center-image}
 
 1. The `LogicManager` uses the `PawbookParser` to parse the given user input.
 2. The `PawbookParser` identifies the user command and creates a `FindCommandParser` object. It then calls the `FindCommandParser`'s `parse()`method with user input as the parameter.
@@ -265,7 +265,7 @@ Here is a more specific breakdown of the command's execute method.
 
 Below is an example activity diagram for a valid find command from the user.
 
-![FindActivityDiagram](images/FindActivityDiagram.png)
+![FindActivityDiagram](images/FindActivityDiagram.png){: .center-image}
 
 ### View feature
 
@@ -281,7 +281,7 @@ This list is subsequently passed on to the `RelatedEntityPredicate` that will la
 
 Below is an example sequence diagram for a valid view command from the user. 
 
-![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png){: .center-image}
 
 1. The `LogicManager` uses the `PawbookParser` to parse the given user input. 
 2. The `PawbookParser` identifies the user command and creates a `ViewCommandParser` object. It then calls the `ViewCommandParser`'s `parse()`method with user input as the parameter. 
@@ -300,7 +300,7 @@ Here is a more specific breakdown of the command's execute method.
 
 Below is an example activity diagram for a valid view command from the user.
 
-![ViewActivityDiagram](images/ViewActivityDiagram.png)
+![ViewActivityDiagram](images/ViewActivityDiagram.png){: .center-image}
 
 ### Enrol feature
 
@@ -310,11 +310,11 @@ In order to enrol a dog into a program, the raw input needs to be parsed first. 
 
 Below is an example activity diagram for a valid enrol command from the user.
 
-![EnrolActivityDiagram](images/EnrolActivityDiagram.png)
+![EnrolActivityDiagram](images/EnrolActivityDiagram.png){: .center-image}
 
 Below is an example sequence diagram for a valid enrol command from the user.
 
-![EnrolSequenceDiagram](images/EnrolSequenceDiagram.png)
+![EnrolSequenceDiagram](images/EnrolSequenceDiagram.png){: .center-image}
 
 1. The `LogicManager` uses the `PawbookParser` to parse the given user input.
 1. The `PawbookParser` will identify the command given by the user based on the first command word and pass the user input down to `EnrolDropCommandParser`.
@@ -327,7 +327,7 @@ Below is an example sequence diagram for a valid enrol command from the user.
 
 Here is a more specific breakdown of the command's execute method.
 
-![EnrolSequenceSpecificDiagram](images/EnrolSequenceSpecificDiagram.png)
+![EnrolSequenceSpecificDiagram](images/EnrolSequenceSpecificDiagram.png){: .center-image}
 
 1. The `LogicManager` will call the execute method in the `EnrolCommand` object. 
 1. The `EnrolCommand` will then call the `checkIdValidity` method of the existing `Model` object.
@@ -343,11 +343,11 @@ To drop a dog from a program, the raw input is parsed and goes through several c
 
 Below is an example activity diagram for a valid drop command from the user.
 
-![DropActivityDiagram](images/DropActivityDiagram.png)
+![DropActivityDiagram](images/DropActivityDiagram.png){: .center-image}
 
 Below is an example sequence diagram for a valid drop command from the user.
 
-![DropSequenceDiagram](images/DropSequenceDiagram.png)
+![DropSequenceDiagram](images/DropSequenceDiagram.png){: .center-image}
 
 1. The `LogicManager` uses the `PawbookParser` to parse the given user input.
 1. The `PawbookParser` will identify the command given by the user based on the first command word and pass the user input down to `EnrolDropCommandParser`.
@@ -360,7 +360,7 @@ Below is an example sequence diagram for a valid drop command from the user.
 
 Here is a more specific breakdown of the command's `execute` method.
 
-![DropSequenceDiagramSpecific](images/DropSequenceDiagramSpecific.png)
+![DropSequenceDiagramSpecific](images/DropSequenceDiagramSpecific.png){: .center-image}
 
 1. The `LogicManager` will call the execute method in the `DropCommand` object. 
 1. The `DropCommand` will then call the `checkIdValidity` method of the existing `Model` object.
