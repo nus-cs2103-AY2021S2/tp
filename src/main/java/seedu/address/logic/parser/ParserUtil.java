@@ -58,9 +58,8 @@ public class ParserUtil {
         }
         return new Name(trimmedName);
     }
-
     /**
-     * Parses a {@code String name} into a {@code ContactName}.
+     * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
@@ -69,10 +68,11 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!ContactName.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ContactName.MESSAGE_CONSTRAINTS);
         }
         return new ContactName(trimmedName);
     }
+
 
     /**
      * Parses a {@code String description} into a {@code ScheduleDescription}.
@@ -127,8 +127,8 @@ public class ParserUtil {
     public static ContactPhone parseContactPhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        if (!ContactPhone.isValidPhone(trimmedPhone)) {
+            throw new ParseException(ContactPhone.MESSAGE_CONSTRAINTS);
         }
         return new ContactPhone(trimmedPhone);
     }

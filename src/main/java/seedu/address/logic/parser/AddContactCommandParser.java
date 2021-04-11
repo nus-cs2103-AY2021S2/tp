@@ -30,12 +30,10 @@ public class AddContactCommandParser implements Parser<AddContactCommand> {
     public AddContactCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
-
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));
         }
-
         ContactName name = ParserUtil.parseContactName(argMultimap.getValue(PREFIX_NAME).get());
         ContactPhone phone = ParserUtil.parseContactPhone(argMultimap.getValue(PREFIX_PHONE).get());
         ContactEmail email = ParserUtil.parseContactEmail(argMultimap.getValue(PREFIX_EMAIL).get());

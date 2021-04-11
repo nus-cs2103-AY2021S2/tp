@@ -13,12 +13,28 @@ public class TypicalContacts {
             .withEmail("alice@example.com")
             .withTags("friends")
             .build();
+
+    public static final Contact AMY = new ContactBuilder()
+            .withName("Amy Bee")
+            .withPhone("11111111")
+            .withEmail("amy@example.com")
+            .withTags("friends")
+            .build();
+
     public static final Contact BENSON = new ContactBuilder()
             .withName("Benson Meier")
             .withPhone("98765432")
             .withEmail("johnd@example.com")
             .withTags("owesMoney", "friends")
             .build();
+
+    public static final Contact BOB = new ContactBuilder()
+            .withName("Bob Choo")
+            .withPhone("22222222")
+            .withEmail("bob@example.com")
+            .withTags("owesMoney", "friends")
+            .build();
+
     public static final Contact CARL = new ContactBuilder()
             .withName("Carl Kurz")
             .withPhone("95352563")
