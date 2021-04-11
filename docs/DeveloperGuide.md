@@ -64,7 +64,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `ViewPatientBox` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -106,13 +106,6 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
-
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -133,31 +126,59 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Archiving certain contacts
+### Archive-related features
 
-_{Coming soon}_
+**How**<br>
 
-### \[Proposed\] Adding Medical Information such as Appointments and Medical Records
+![image](images/ArchiveCommandLogic.png)
 
-_{Coming soon}_
+After `Logic` component receives the instruction from `Ui` component, the `LogicManager` calls the `AddressBookParser`
+which correctly identifies that the `ArchiveCommand` is needed in the current situation. The `ArchiveCommandParser`
+checks the arguments and then creates an `ArchiveCommand` object. Next, the archiving mechanism is facilitated by the
+`ArchiveCommand` object which extends `Command`. It overrides `Command#execute` in order to return
+a `CommandResult` with a success message stating that the command has been successfully executed. Then, the patient to
+be archived is correctly identified from the index provided and passed to the `Model` component from the `Logic`
+component. The `UnarchiveCommand` works similar to the implementation of the `ArchiveCommand`.
 
-### \[Proposed\] Viewing all upcoming appointments the doctor has
+![image](images/ArchiveCommandModel.png)
 
-_{Coming soon}_
+The indicator for whether a patient is archived is implemented as a boolean in the `Patient` class. Therefore, when the
+`ArchiveCommand` is executed, `Model` component receives the instruction and patient to be archived from `Logic`.
+Then, the `UniquePersonList` in the `AddressBook` is accessed through the `ModelManager` and the specified patient is
+archived by removing them from the list, changing their `isArchived` status to true and then adding them back to the
+`UniquePersonList`. The `UnarchiveCommand` works similarly except for changing the `isArchived` to false.
+
+**Why**<br>
+It was implemented in this way in order to make it easier to use the `Model#updateFilteredPersonList` in order to
+display all archived patients using a suitable predicate when the `ArchiveListCommand` is called just like how the
+original `ListCommand` works. Moreover, the existing `DeleteCommand` and `FindCommand` could be used with the
+archived list just like how they worked with the main list.
+Another possible implementation was to create 2 `UniquePersonList` objects in AddressBook, one for the main list and
+one for the archived list. However, this idea was scrapped as that would involve more changes throughout the component
+and involve changes in unrelated classes. This way, the changes were contained and it made more sense for the `Patient`
+object to contain the information of whether or not they were archived.
 
 ### Viewing all information regarding a patient
 
-**How**
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `executeCommand("view 1")` API call.
 
 ![image](https://user-images.githubusercontent.com/48408342/114147903-c3b5ca80-994b-11eb-9bf3-add78bd3fca7.png)
 
-The viewing mechanism is facilitated by the `ViewPatientCommand` which extends `Command`. It mainly overrides `Command#execute` in order to return a `CommandResult` with a patient(`Person` object) attribute. When `MainWindow#executeCommand` is ran, the command is parsed into a `CommandResult` by the `LogicManager` and passed into `MainWindow#processResult`. The `CommandResult` will then trigger `MainWindow#handlePatientViewBox` since it has a patient. `MainWindow#handlePatientViewBox` handles the construction of the `StackPane` containing all the patient information. It clears the `viewPatienBoxPlaceholder` in case there are Javafx nodes from the previous patient, and adds a new `ViewPatientBox` to it. The constructor of `ViewPatientBox` takes in a `Person` object and extracts information such as their name, phone, address, email, tags, appointments and medical records and adds the information to the labels and Panes which will be displayed in the `ViewPatientBox` UI.
+**How**
+
+The viewing mechanism is facilitated by the `ViewPatientCommand` which extends `Command`. It mainly overrides `Command#execute` in order to return a `CommandResult` with a `Patient` attribute. When `MainWindow#executeCommand` is ran:
+1. The command is parsed into a `CommandResult` by the `LogicManager` and passed into `MainWindow#processResult`.
+2. The `CommandResult` will then trigger `MainWindow#handlePatientViewBox` since it has a patient.
+3. `MainWindow#handlePatientViewBox` handles the construction of the `StackPane` containing all the patient information. It clears the `viewPatienBoxPlaceholder` in case there are Javafx nodes from the previous patient, and adds a new `ViewPatientBox` to it.
+4. The constructor of `ViewPatientBox` takes in a `Person` object and extracts information such as their name, phone, address, email, tags, appointments and medical records and adds the information to the labels and Panes which will be displayed in the `ViewPatientBox` UI.
 
 **Why**
 
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `processResult(CommandResult)` API call.
+
 ![image](https://user-images.githubusercontent.com/48408342/114144410-e47c2100-9947-11eb-895f-afd00657b5af.png)
 
-Since `MainWindow` dictates what to show on the UI depending on the `CommandResult` after running `logic.execute(commandtext)`, we can easily allow `MainWindow#processResult` to call `MainWindow#handlePatientViewBox` when it detects that a patient is present in `CommandResult`. `MainWindow#handlePatientViewBox` can then simply contruct the `StackPane` containing the patient's information.
+Since `MainWindow#processResult` dictates what to show on the UI depending on the `CommandResult` as seen above, we can easily allow `MainWindow#processResult` to call `MainWindow#handlePatientViewBox` when it detects that a patient is present in `CommandResult`. `MainWindow#handlePatientViewBox` can then simply contruct the `StackPane` containing the patient's information.
 
 
 _{more aspects and alternatives to be added}_
@@ -193,7 +214,7 @@ _{more aspects and alternatives to be added}_
 * Ease the job of clinics with a centralised record of its patients
 * Doctors can easily access patient's personal and medical information without having to go through stacks of paper
 * Helps the clinic doctor to keep track of his appointments
-* For those proficient in typing, ease management of assets 
+* For those proficient in typing, ease management of assets
 
 
 
@@ -243,7 +264,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   *    2a1. Bob requests for the correct format of the data.
   *    2a2. User enters new data.
   *    Steps 2a1-2a2 are repeated until the data entered are correct.
-  
+
       Use case resumes from step 3.
       Use case ends.
 
@@ -277,7 +298,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   *1a. The given index is invalid
   *    1a1. Bob shows an error message.
-        
+
       Use case resumes at step 1.
 
 **Use case: View a patient's information**

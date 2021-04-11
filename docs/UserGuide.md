@@ -28,7 +28,7 @@ title: User Guide
    * **`add n/Breanna Frye y/13121999 g/F p/97890525 e/example@gmail.com a/4340 Monroe Street b/AB+ h/163cm w/54kg`** : Adds a patient named `Breanna Frye` with the given information to the patient book.
 
    * **`appt 1 d/010120301200`** : Adds a scheduled appointment with the patient at index 1 in DocBob's main patient list, on 1st January 2030 12pm.
-   
+
 > **Quick tip**: typing **`help`** and pressing Enter will list out all available commands!
 
 --------------------------------------------------------------------------------------------------------------------
@@ -112,7 +112,7 @@ Deletes a patient from DocBob's patient list, identified by the index number sho
 Format : `delete INDEX`
 where INDEX must be a positive integer (1,2,3,...)
 
-* If the displayed patient list is the main list, then `delete` will delete the specified patient from the main list. 
+* If the displayed patient list is the main list, then `delete` will delete the specified patient from the main list.
 * If the displayed patient list is the archived list, then `delete` will delete the specified patient from the archived list.
 
 Example:
@@ -132,7 +132,7 @@ where INDEX must be a positive integer (1,2,3,...)
 Examples:
 * `view 6`
 
-Output: 
+Output:
 
 ![image](https://user-images.githubusercontent.com/48408342/113469180-3ae7ec00-947e-11eb-8a80-a35a17daa1e8.png)
 
@@ -148,7 +148,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* If the displayed patient list is the main list, then `find` will only match patients from the main list. 
+* If the displayed patient list is the main list, then `find` will only match patients from the main list.
 * If the displayed patient list is the archived list, then `find` will only match patients from the archived list.
 
 Examples:
@@ -195,7 +195,7 @@ Format: `listappt`
 
 Example: `listappt`
 
-Output: 
+Output:
 
 ![image](https://user-images.githubusercontent.com/59093518/113469628-a2536b00-9481-11eb-95e0-19607d43db7c.png)
 
@@ -331,9 +331,9 @@ If your changes to the data file makes its format invalid, docBob will discard a
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary 
+## Glossary
 
-Terminology | Definition 
+Terminology | Definition
 ------------|------------
 **Parameter** |  In the command format given, the words in `UPPER_CASE` are the parameters or arguments to be supplied by you. For example, in the add command, the given format is: `add n/NAME p/PHONENUMBER e/EMAIL a/ADDRESS h/HEIGHT w/WEIGHT [t/TAG]`. Thus, `NAME`, `PHONENUMBER`, `EMAIL`, `ADDRESS`, `HEIGHT`, `WEIGHT` and `TAG` are the parameters to be keyed in by you. `TAG` is an optional parameter.
 **Index** | Index refers to the position of the patient in the displayed patient list. For example, if the order in which patients are displayed in the app is {Alice,Bob,Charlie} then Alice's index is 1, Bob's is 2, and Charlie's is 3.
