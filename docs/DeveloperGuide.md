@@ -141,24 +141,26 @@ The client creates a concrete `Todo`, `Deadline` or `Event` that encapsulates al
 
 Each of the `Completable` and `Repeatable` abstract classes specify behaviors specific to them. In particular, `Completable` should support being marked as done and `Repeatable` should support repetition. Furthermore, `Completable` has been further broken down into `CompletableTodo` and `CompletableDeadline` to facilitate Deadlines having an associated date.
 
+`CompletableTodo`, `CompletableDeadline` and '`Event` are stored in `TodoList`, `DeadlineList` and '`EventList` respevtively.
+
 `CompletableTodo`
     * Holds:
-      * A String: `Description`
-      * A Boolean: `isDone`
+      * `Description`: String
+      * `isDone`: Boolean
 
 `CompletableDeadline`
     * Holds:
-      * A String: `Description`
-      * A Boolean: `isDone`
-      * A Date: `By`
+      * `Description`: String
+      * `isDone`: Boolean
+      * `By`: Date
 
 
 `Repeatable` 
     * Holds:
-      * A String: `Description`
-      * A Date: `Date`
-      * A Time: `Time`
-      * A Boolean: `isWeekly`
+      * `Description`: String
+      * `Date`: Date
+      * `Time`: Time
+      * `isWeekly`: Boolean
 
 #### Design Considerations
 
