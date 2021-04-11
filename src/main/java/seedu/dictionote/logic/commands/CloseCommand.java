@@ -17,7 +17,7 @@ import seedu.dictionote.model.Model;
 
 
 /**
- * Close a specific UI panel specify by the user.
+ * Closes a specific UI panel specify by the user.
  */
 public class CloseCommand extends Command {
 

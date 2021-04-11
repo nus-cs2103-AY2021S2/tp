@@ -17,7 +17,7 @@ import seedu.dictionote.model.Model;
 
 
 /**
- * Open a specific UI panel specify by the user.
+ * Opens a specific UI panel specify by the user.
  */
 public class OpenCommand extends Command {
 

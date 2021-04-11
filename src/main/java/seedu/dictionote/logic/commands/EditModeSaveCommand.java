@@ -12,7 +12,7 @@ import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
 
 /**
- * Edit the note in edit mode.
+ * Saves edited content and quit edit mode.
  */
 public class EditModeSaveCommand extends Command {
     public static final String COMMAND_WORD = "save";

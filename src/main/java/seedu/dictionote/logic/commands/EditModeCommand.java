@@ -7,7 +7,7 @@ import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 
 /**
- * Edit the note in edit mode.
+ * Edits the note in edit mode.
  */
 public class EditModeCommand extends Command {
     public static final String COMMAND_WORD = "editmode";

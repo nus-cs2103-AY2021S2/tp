@@ -1,5 +1,7 @@
 package seedu.dictionote.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.dictionote.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.dictionote.testutil.TypicalContacts.getTypicalContactsList;
 import static seedu.dictionote.testutil.TypicalContent.getTypicalDictionary;
@@ -32,6 +34,24 @@ public class EditModeSaveCommandTest {
         model.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigWitouthNote());
         assertCommandFailure(new EditModeSaveCommand(), model, EditModeSaveCommand.MESSAGE_NOT_IN_EDIT_MODE);
 
+    }
+
+    @Test
+    public void equal() {
+        EditModeSaveCommand editModeSaveCommand1 = new EditModeSaveCommand();
+        EditModeSaveCommand editModeSaveCommand2 = new EditModeSaveCommand();
+
+        // same object -> returns true
+        assertTrue(editModeSaveCommand1.equals(editModeSaveCommand1));
+
+        // same values -> returns true
+        assertTrue(editModeSaveCommand1.equals(editModeSaveCommand2));
+
+        // different types -> returns false
+        assertFalse(editModeSaveCommand1.equals(1));
+
+        // null -> returns false
+        assertFalse(editModeSaveCommand1.equals(null));
     }
 
 }
