@@ -35,4 +35,5 @@ public class OrderDescriptionTest {
         assertTrue(OrderDescription.isValidOrderDescription("12345")); // numbers only
         assertTrue(OrderDescription.isValidOrderDescription("2 x Chocolate cake")); // alphanumeric characters
     }
+
 }

@@ -53,8 +53,8 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_ORDER_DESC_1 = "chocolate mousse";
-    private static final String VALID_ORDER_DESC_2 = "strawberry thing";
+    private static final String VALID_ORDER_DESC_1 = "Chocolate Mousse";
+    private static final String VALID_ORDER_DESC_2 = "Strawberry Thing";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_DELIVERY_DATE = "01/01/2022";
@@ -120,6 +120,10 @@ public class ParserUtilTest {
     private static final String INVALID_INDEX_LIST_WITH_ALPHABETS_3 = "  aaaaa 2  1  ABBB   ";
 
     private static final String WHITESPACE = " \t\r\n";
+
+    private static final String WRONG_CASE_ORDER_DESC_1 = "chocolate moussE";
+    private static final String WRONG_CASE_ORDER_DESC_2 = "ChoColatE moUssE";
+    private static final String EXPECTED_CASE_ORDER_DESC = "Chocolate Mousse";
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -683,6 +687,24 @@ public class ParserUtilTest {
     public void parseOrderItem_validValue_returnsOrderDescription() throws ParseException {
         OrderItem expectedOrderItem = new OrderItem(new Type(VALID_ORDER_DESC_1));
         assertEquals(expectedOrderItem, ParserUtil.parseOrderItem(VALID_ORDER_DESC_1));
+    }
+
+    @Test
+    public void parserOrderItem_wrongCases_forcedToExpectedCase() throws ParseException {
+        // this test checks if order item parser method forces case for order item
+        // expected case: each first letter is capital, rest is lower case
+        OrderItem expectedOrderItem = new OrderItem(new Type(EXPECTED_CASE_ORDER_DESC));
+        assertEquals(expectedOrderItem, ParserUtil.parseOrderItem(WRONG_CASE_ORDER_DESC_1));
+        assertEquals(expectedOrderItem, ParserUtil.parseOrderItem(WRONG_CASE_ORDER_DESC_2));
+    }
+
+    @Test
+    public void parserOrderDescription_wrongCases_forcedToExpectedCase() throws ParseException {
+        // this test checks if order description parser method forces case for order description
+        // expected case: each first letter is capital, rest is lower case
+        OrderDescription expectedOrderItem = new OrderDescription(EXPECTED_CASE_ORDER_DESC);
+        assertEquals(expectedOrderItem, ParserUtil.parseOrderDescription(WRONG_CASE_ORDER_DESC_1));
+        assertEquals(expectedOrderItem, ParserUtil.parseOrderDescription(WRONG_CASE_ORDER_DESC_2));
     }
 
     @Test
