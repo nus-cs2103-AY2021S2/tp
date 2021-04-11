@@ -259,15 +259,16 @@ Below is a further breakdown of the logic component of the find command using a 
 ![Find Command Logic Sequence Diagram](images/FindCommandLogicSequenceDiagram.png)
 
 Description:
-When the user keys in an input, execute method of LogicManager is called with the user input as the parameter.
-In the method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the user input.
-The DeliveryListParser parses the user input and identifies it as a FindCommand and instantiates a FindCommandParser object.
-FindListParser then invokes the parse method of the FindCommandParser object to further parse the arguments provided.
-In the parse method, the FindCommandParser ensures that the input is of the correct format and identifies the entries that match the keyword.
-If the input specified by the user is valid, a new FindCommand instance will be created and returned to LogicManager via DeliveryListParser.
-The LogicManager will then invoke the overridden execute method of the FindCommand object with Model as the argument.
-Subsequently, the FindCommand object will invoke getFilteredCustomerList method of Model with the enrties with attributes that match the keyword(s). It will then return a CommandResult object to LogicManager.
-This CommandResult will be returned at the end by LogicManager.
+When the user keys in an input, execute method of LogicManager is called with the user input as the parameter. In the
+method, LogicManager calls on the parseCommand method of DeliveryListParser to parse the user input. The
+DeliveryListParser parses the user input and identifies it as a FindCommand and instantiates a FindCommandParser object.
+DeliveryistParser then invokes the parse method of the FindCommandParser object to further parse the arguments provided.
+In the parse method, the FindCommandParser ensures that the input is of the correct format and identifies the keywords.
+If the input specified by the user is valid, a new FindCommand instance will be created and returned to LogicManager via
+DeliveryListParser. The LogicManager will then invoke the overridden execute method of the FindCommand object with Model
+as the argument. Subsequently, the FindCommand object will invoke getFilteredCustomerList method of Model with the
+enrties with attributes that match the keyword(s). It will then return a CommandResult object to LogicManager. This
+CommandResult will be returned at the end by LogicManager.
 
 The following Activity Diagram summarizes what happens when a user executes the find command:
 
