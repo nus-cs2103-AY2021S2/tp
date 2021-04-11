@@ -43,7 +43,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/csmortal.png" width="200px">
 
 [Github](https://github.com/CSmortal)
-[[portfolio](team/jovenpua.md)]
+[[portfolio](team/csmortal.md)]
 
 * Role: Developer
 * Responsibilities: Testing
