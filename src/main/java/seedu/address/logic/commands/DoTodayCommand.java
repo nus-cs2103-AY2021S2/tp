@@ -21,7 +21,8 @@ public class DoTodayCommand extends Command {
     public static final String COMMAND_WORD = "doToday";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + "Adds the task identified by the index number used in the displayed task list into "
+            + ": Adds (using the -a flag) or removes (using the -r flag) the task identified by the index number used "
+            + "in the displayed task list into "
             + "the daily to-do list.\n"
             + "Parameters: -a OR -r INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " " + OperationType.ADD.getOperationType() + " 1";
