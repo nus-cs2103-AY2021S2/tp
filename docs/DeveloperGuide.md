@@ -109,10 +109,10 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some multiplicities and association roles may be slightly out of place.
 </div>
+
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
@@ -339,6 +339,8 @@ The following sequence diagram shows how the update operation works:
 
 ![UpdateNewSequenceDiagram](images/UpdateNewSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UpdateCommandParser` and `UpdateNewCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -372,8 +374,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                 | I want to …​                                                            | So that I can…​                                                                        |
 | -------- | ------------------------------------------ | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions                                                     | refer to instructions when I forget how to use the App                                    |
-| `* * *`  | user                                       | be able to add a property                                                  | keep track of my clients' properties                                                      |
-| `* * *`  | user                                       | be able to add an appointment                                              | keep track of my upcoming schedule                                                        |
+| `* * *`  | user                                       | add a property                                                             | keep track of my clients' properties                                                      |
+| `* * *`  | user                                       | add an appointment                                                         | keep track of my upcoming schedule                                                        |
 | `* * *`  | user                                       | list all properties on sale                                                | know the number of properties that I have to sell                                         |
 | `* * *`  | user                                       | list all appointments I have                                               | know all the meetings I have                                                              |
 | `* * *`  | user                                       | view all properties and appointments side by side                          | simultaneously view related property and appointment data                                 |
@@ -385,11 +387,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | search for appointments based on some criteria                             | easily filter out the appointments I want to see                                          |
 | `* *`    | user                                       | search for all appointments and properties related to a client             | easily find out any appointments with a client and what properties they are interested in |
 | `* *`    | potential user exploring the app           | see the app populated with sample data                                     | easily see how the app looks like when it is in use                                       |
-| `* *`    | careless user                              | be able to categorize housing information based on predefined tags         | prevent typos while keying in information and avoid storing the wrong information         |
+| `* *`    | user                                       | be able to create tags to classify properties                              | easily organize my properties                                                             |
+| `* *`    | user                                       | be able to use icons to classify property types                            | easily differentiate the different property types in a list                               |
 | `* *`    | user                                       | update the status of property listings(completed, Option, Sale Agreement)  | follow up with clients on time                                                            |
 | `* *`    | user                                       | edit the deadline of the property listing                                  | extend the time period for selling the property                                           |
 | `* *`    | user                                       | edit the name of the property listing                                      | change the name of the property when I have made a mistake                                |
-| `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
 | `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
 
 
