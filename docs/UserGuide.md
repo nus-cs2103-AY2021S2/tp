@@ -59,7 +59,7 @@ The following typographic conventions and usage conventions occur in the User Gu
 
     * **`list`** : Lists all contacts.
 
-    * **`add`**`-n John Doe -p 98765432 -e johnd@example.com -a John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * **`add`**: `-n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street` : Adds a contact named `John Doe` to the Address Book.
 
     * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -197,8 +197,8 @@ Adds a person to the address book.
 | Example                                                                                                                                | Description                                                                                                                                                                                                                                                                  |
 | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `add -n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street`                                              | Adds a person named `John Doe`, with phone number `91234567`, email address `johndoe@example.com`, company `Google`, job title `HR Manager` and address `John street`.                                                                                                       |
-| `add -n Betsy Crowe -p 1234567 -e betsycrowe@example.com -c Amazon -j Manager -a Betsy Avenue -t Recruiter -t Intern Manager`          | Adds a person named `Betsy Crowe`, with phone number `1234567`, email address `betsycrowe@example.com`, company `Amazon`, job title `Manager` and address `Betsy Avenue`. This person is also tagged with the following tags: `Recruiter` and `Intern Manager`.              |
-| `add -n Charlie -p 7654321 -e charlie@example.com -c Facebook -j Software Engineer -a Charlie Road -t IT Support -r Emergency contact` | Adds a person named `Charlie`, with phone number `7654321`, email address `charlie@example.com`, company `Facebook`, job title `Software Engineer` and address `Charlie Road`. This person is also tagged with the tag `IT Support`, and has the remark `Emergency contact`. |
+| `add -n Betsy Crowe -p 1234567 -e betsycrowe@example.com -c Amazon -j Manager -a Betsy Avenue -t Recruiter -t Manager`                 | Adds a person named `Betsy Crowe`, with phone number `1234567`, email address `betsycrowe@example.com`, company `Amazon`, job title `Manager` and address `Betsy Avenue`. This person is also tagged with the following tags: `Recruiter` and `Manager`.              |
+| `add -n Charlie -p 7654321 -e charlie@example.com -c Facebook -j Software Engineer -a Charlie Road -t IT -r Emergency contact`         | Adds a person named `Charlie`, with phone number `7654321`, email address `charlie@example.com`, company `Facebook`, job title `Software Engineer` and address `Charlie Road`. This person is also tagged with the tag `IT`, and has the remark `Emergency contact`. |
 
 ## Listing all persons : `list`
 
