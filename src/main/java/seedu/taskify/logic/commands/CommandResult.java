@@ -2,6 +2,8 @@ package seedu.taskify.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -9,16 +11,11 @@ import java.util.Objects;
  */
 public class CommandResult {
 
-    private static boolean showHome = true;
-    private static boolean showExpired = false;
-    private static boolean showCompleted = false;
-    private static boolean showTodays = true;
-    private static boolean showUncompleted = false;
-    private static final String ALREADY_IN_HOMETAB = "You are already in home tab!";
-    private static final String ALREADY_IN_EXPIREDTAB = "You are already in expired tab!";
-    private static final String ALREADY_IN_COMPLETEDTAB = "You are already in completed tab!";
-    private static final String ALREADY_IN_UNCOMPLETEDTAB = "You are already in uncompleted tab!";
-
+    private static ArrayList<Boolean> showTabBoolean = new ArrayList<>(Arrays.asList(true, false, false, false));
+    private static final int HOME = 0;
+    private static final int EXPIRED = 1;
+    private static final int COMPLETED = 2;
+    private static final int UNCOMPLETED = 3;
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */
@@ -33,6 +30,7 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -43,19 +41,50 @@ public class CommandResult {
     }
 
     /**
+     * Set all showTab attributes to false
+     */
+
+    public static void resetShowTabToFalse() {
+        assert showTabBoolean != null;
+        showTabBoolean = new ArrayList<>(Arrays.asList(false, false, false, false));
+    }
+
+    public static String inSameTabErrorMessage(String tab) {
+        return "You are already in " + tab + " tab!";
+    }
+
+    public static ArrayList<Boolean> getTabBoolean() {
+        return CommandResult.showTabBoolean;
+    }
+
+    public static boolean isHomeTab() {
+        return showTabBoolean.get(HOME);
+    }
+
+    public static boolean isExpiredTab() {
+        return showTabBoolean.get(EXPIRED);
+    }
+
+    public static boolean isCompletedTab() {
+        return showTabBoolean.get(COMPLETED);
+    }
+
+    public static boolean isUncompletedTab() {
+        return showTabBoolean.get(UNCOMPLETED);
+    }
+
+    /**
      * Command Result for the user to switch to home tab
      * @param feedbackToUser
      * @return commandResult
      */
     public static CommandResult switchToHome(String feedbackToUser) {
         CommandResult newCommand = new CommandResult(feedbackToUser);
-        if (CommandResult.showHome) {
-            return new CommandResult(ALREADY_IN_HOMETAB);
+        if (showTabBoolean.get(HOME)) {
+            return new CommandResult(CommandResult.inSameTabErrorMessage("home"));
         }
-        CommandResult.showHome = true;
-        CommandResult.showExpired = false;
-        CommandResult.showCompleted = false;
-        CommandResult.showUncompleted = false;
+        resetShowTabToFalse();
+        showTabBoolean.set(HOME, true);
         return newCommand;
     }
 
@@ -66,13 +95,11 @@ public class CommandResult {
      */
     public static CommandResult switchToExpired(String feedbackToUser) {
         CommandResult newCommand = new CommandResult(feedbackToUser);
-        if (CommandResult.showExpired) {
-            return new CommandResult(ALREADY_IN_EXPIREDTAB);
+        if (showTabBoolean.get(EXPIRED)) {
+            return new CommandResult(CommandResult.inSameTabErrorMessage("expired"));
         }
-        CommandResult.showHome = false;
-        CommandResult.showExpired = true;
-        CommandResult.showCompleted = false;
-        CommandResult.showUncompleted = false;
+        resetShowTabToFalse();
+        showTabBoolean.set(EXPIRED, true);
         return newCommand;
     }
 
@@ -83,13 +110,11 @@ public class CommandResult {
      */
     public static CommandResult switchToCompleted(String feedbackToUser) {
         CommandResult newCommand = new CommandResult(feedbackToUser);
-        if (CommandResult.showCompleted) {
-            return new CommandResult(ALREADY_IN_COMPLETEDTAB);
+        if (showTabBoolean.get(COMPLETED)) {
+            return new CommandResult(CommandResult.inSameTabErrorMessage("completed"));
         }
-        CommandResult.showHome = false;
-        CommandResult.showExpired = false;
-        CommandResult.showCompleted = true;
-        CommandResult.showUncompleted = false;
+        resetShowTabToFalse();
+        showTabBoolean.set(COMPLETED, true);
         return newCommand;
     }
 
@@ -101,13 +126,11 @@ public class CommandResult {
 
     public static CommandResult switchToUncompleted(String feedbackToUser) {
         CommandResult newCommand = new CommandResult(feedbackToUser);
-        if (CommandResult.showUncompleted) {
-            return new CommandResult(ALREADY_IN_UNCOMPLETEDTAB);
+        if (showTabBoolean.get(UNCOMPLETED)) {
+            return new CommandResult(CommandResult.inSameTabErrorMessage("uncompleted"));
         }
-        CommandResult.showHome = false;
-        CommandResult.showExpired = false;
-        CommandResult.showCompleted = false;
-        CommandResult.showUncompleted = true;
+        resetShowTabToFalse();
+        showTabBoolean.set(UNCOMPLETED, true);
         return newCommand;
     }
 
@@ -129,24 +152,9 @@ public class CommandResult {
     }
 
     public static void setHomeTab() {
-        showHome = true;
+        showTabBoolean.set(HOME, true);
     }
 
-    public static boolean isHomeTab() {
-        return CommandResult.showHome;
-    }
-
-    public static boolean isExpiredTab() {
-        return CommandResult.showExpired;
-    }
-
-    public static boolean isCompletedTab() {
-        return CommandResult.showCompleted;
-    }
-
-    public static boolean isUncompletedTab() {
-        return CommandResult.showUncompleted;
-    }
 
     @Override
     public boolean equals(Object other) {
