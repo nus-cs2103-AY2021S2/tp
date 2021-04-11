@@ -222,7 +222,7 @@
   },{
     "week" : "Week 9",
     "header" : "Principles - Single Responsibility Principle",
-    "maincontent" : "ingle responsibility principle (SRP): A class should have one, and only one, reason to change. -- Robert C. Martin\n\nIf a class has only one responsibility, it needs to change only when there is a change to that responsibility."
+    "maincontent" : "Single responsibility principle (SRP): A class should have one, and only one, reason to change. -- Robert C. Martin\n\nIf a class has only one responsibility, it needs to change only when there is a change to that responsibility."
   },{
     "week" : "Week 9",
     "header" : "Principles - The Open-Closed Principle",
@@ -263,6 +263,78 @@
     "week" : "Week 9",
     "header" : "Principles - Brooks' Law",
     "maincontent" : "Brooks' law: Adding people to a late project will make it later. -- Fred Brooks (author of The Mythical Man-Month)\n\nExplanation: The additional communication overhead will outweigh the benefit of adding extra manpower, especially if done near a deadline."
+  },{
+    "week" : "Week 5",
+    "header" : "Requirements - Requirements - Intro",
+    "maincontent" : "A software requirement specifies a need to be fulfilled by the software product.\n\nA software project may be,\n\na brown-field project i.e., develop a product to replace/update an existing software product\na green-field project i.e., develop a totally new system with no precedent\nIn either case, requirements need to be gathered, analyzed, specified, and managed.\n\nRequirements come from stakeholders.\n\nIdentifying requirements is often not easy. For example, stakeholders may not be aware of their precise needs, may not know how to communicate their requirements correctly, may not be willing to spend effort in identifying requirements, etc."
+  },{
+    "week" : "Week 5",
+    "header" : "Requirements - Requirements - Non-functional Requirements",
+    "maincontent" : "Requirements can be divided into two in the following way:\n\nFunctional requirements specify what the system should do.\nNon-functional requirements specify the constraints under which the system is developed and operated.\n\nYou may have to spend an extra effort in digging NFRs out as early as possible because,\n\nNFRs are easier to miss e.g., stakeholders tend to think of functional requirements first\nsometimes NFRs are critical to the success of the software. E.g. A web application that is too slow or that has low security is unlikely to succeed even if it has all the right functionality.\n"
+  },{
+    "week" : "Week 5",
+    "header" : "Requirements - Requirements - Quality of Requirements",
+    "maincontent" : "Here are some characteristics of well-defined requirements:\n\nUnambiguous\nTestable (verifiable)\nClear (concise, terse, simple, precise)\nCorrect\nUnderstandable\nFeasible (realistic, possible)\nIndependent\nAtomic\nNecessary\nImplementation-free (i.e. abstract)\nBesides these criteria for individual requirements, the set of requirements as a whole should be\n\nConsistent\nNon-redundant\nComplete\n"
+  },{
+    "week" : "Week 5",
+    "header" : "Requirements - Requirements - Prioritizing Requirements",
+    "maincontent" : "Requirements can be prioritized based on the importance and urgency, while keeping in mind the constraints of schedule, budget, staff resources, quality goals, and other constraints.\n\nA common approach is to group requirements into priority categories. Note that all such scales are subjective, and stakeholders define the meaning of each level in the scale for the project at hand.\n\nSome requirements can be discarded if they are considered ‘out of scope’.\n\n"
+  },{
+    "week" : "Week 5",
+    "header" : "Requirements - Gathering Requirements - Brainstorming",
+    "maincontent" : "In a brainstorming session there are no \"bad\" ideas. The aim is to generate ideas; not to validate them. Brainstorming encourages you to \"think outside the box\" and put \"crazy\" ideas on the table without fear of rejection.\n\n"
+  },{
+    "week" : "Week 5",
+    "header" : "Requirements - Gathering Requirements - Product Surveys",
+    "maincontent" : "Studying existing products can unearth shortcomings of existing solutions that can be addressed by a new product. Product manuals and other forms of documentation of an existing system can tell us how the existing solutions work.\n\n"
+  },{
+    "week" : "Week 5",
+    "header" : "Requirements - Gathering Requirements - Observation",
+    "maincontent" : "Observing users in their natural work environment can uncover product requirements. Usage data of an existing system can also be used to gather information about how an existing system is being used, which can help in building a better replacement e.g. to find the situations where the user makes mistakes when using the current system.\n\n"
+  },{
+    "week": "Week 5",
+    "header": "Requirements - Gathering Requirements - User Surveys",
+    "maincontent": "Surveys can be used to solicit responses and opinions from a large number of stakeholders regarding a current product or a new product."
+  },{
+    "week": "Week 5",
+    "header": "Requirements - Gathering Requirements - Interviews",
+    "maincontent": "Interviewing stakeholders and domain experts can produce useful information about project requirements.\n\n"
+  },{
+    "week": "Week 5",
+    "header": "Requirements - Gathering Requirements - Focus Groups",
+    "maincontent": "Focus groups are a kind of informal interview within an interactive group setting. A group of people (e.g. potential users, beta testers) are asked about their understanding of a specific issue, process, product, advertisement, etc.\n\n"
+  },{
+    "week": "Week 5",
+    "header": "Requirements - Gathering Requirements - Prototyping",
+    "maincontent": "Prototyping can uncover requirements, in particular, those related to how users interact with the system. UI prototypes or mock ups are often used in brainstorming sessions, or in meetings with the users to get quick feedback from them.\n\n"
+  },{
+    "week": "Week 5",
+    "header": "Requirements - Specifying Requirements - Prose - What",
+    "maincontent": "A textual description (i.e. prose) can be used to describe requirements. Prose is especially useful when describing abstract ideas such as the vision of a product.\n\n"
+  },{
+    "week": "Week 5",
+    "header": "Requirements - Specifying Requirements - Feature Lists - What",
+    "maincontent": "Feature list: A list of features of a product grouped according to some criteria such as aspect, priority, order of delivery, etc.\n\n"
+  },{
+    "week": "Week 5",
+    "header": "Requirements - Specifying Requirements - User Stories - Introduction",
+    "maincontent": "User story: User stories are short, simple descriptions of a feature told from the perspective of the person who desires the new capability, usually a user or customer of the system. \nA common format for writing user stories is:\n\nUser story format: As a {user type/role} I can {function} so that {benefit}\n\nYou can write user stories on index cards or sticky notes, and arrange them on walls or tables, to facilitate planning and discussion. Alternatively, you can use a software (e.g., GitHub Project Boards, Trello, Google Docs, ...) to manage user stories digitally.\n\n "
+  },{
+    "week": "Week 5",
+    "header" : "Requirements - Specifying Requirements - User Stories - Details",
+    "maincontent": "The {benefit} can be omitted if it is obvious.\n\n It is recommended to confirm there is a concrete benefit even if you omit it from the user story. If not, you could end up adding features that have no real benefit.\n\nYou can add more characteristics to the {user role} to provide more context to the user story.\n\nYou can write user stories at various levels. High-level user stories, called epics (or themes) cover bigger functionality. You can then break down these epics to multiple user stories of normal size.\n\nYou can add conditions of satisfaction to a user story to specify things that need to be true for the user story implementation to be accepted as ‘done’.\n\nOther useful info that can be added to a user story includes (but not limited to)\n\nPriority: how important the user story is\nSize: the estimated effort to implement the user story\nUrgency: how soon the feature is needed."
+  },{
+    "week": "Week 5",
+    "header" : "Requirements - Specifying Requirements - User Stories - Usage",
+    "maincontent": "User stories capture user requirements in a way that is convenient for scoping, estimation, and scheduling.\n\nUser stories differ from traditional requirements specifications mainly in the level of detail. User stories should only provide enough details to make a reasonably low risk estimate of how long the user story will take to implement. When the time comes to implement the user story, the developers will meet with the customer face-to-face to work out a more detailed description of the requirements.\nUser stories can capture non-functional requirements too because even NFRs must benefit some stakeholder.\nGiven their lightweight nature, user stories are quite handy for recording requirements during early stages of requirements gathering.\n\nWhile use cases can be recorded on physical paper in the initial stages, an online tool is more suitable for longer-term management of user stories, especially if the team is not co-located.\n\n"
+  },{
+    "week": "Week 5",
+    "header" : "Requirements - Specifying Requirements - Glossary - What",
+    "maincontent": "Glossary: A glossary serves to ensure that all stakeholders have a common understanding of the noteworthy terms, abbreviations, acronyms etc.\n\n"
+  },{
+    "week": "Week 5",
+    "header" : "Requirements - Specifying Requirements - Supplementary Requirements - What",
+    "maincontent": "A supplementary requirements section can be used to capture requirements that do not fit elsewhere. Typically, this is where most Non-Functional Requirements will be listed.\n\n"
   }
   ]
 }
