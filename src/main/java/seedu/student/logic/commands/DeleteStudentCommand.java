@@ -2,9 +2,13 @@ package seedu.student.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import seedu.student.commons.core.LogsCenter;
 import seedu.student.commons.core.Messages;
 import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.Model;
+import seedu.student.model.ModelManager;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
@@ -25,7 +29,7 @@ public class DeleteStudentCommand extends Command {
     public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted student: %1$s"; // add name + matric number
 
     private final MatriculationNumber matriculationNumber;
-
+    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     /**
      * Creates a DeleteStudentCommand object responsible for deleting a student by matriculation number.
@@ -42,6 +46,8 @@ public class DeleteStudentCommand extends Command {
 
         Student studentToDelete = model.getStudent(matriculationNumber);
         if (studentToDelete == null) {
+            logger.info("Student with a matriculation number of " + matriculationNumber
+                    + " does not exist in Vax@NUS");
             throw new CommandException(Messages.MESSAGE_NONEXISTENT_MATRIC_NUM);
         }
         model.deleteStudent(studentToDelete);

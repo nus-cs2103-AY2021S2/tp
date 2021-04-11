@@ -2,8 +2,12 @@ package seedu.student.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
+import seedu.student.commons.core.LogsCenter;
 import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.Model;
+import seedu.student.model.ModelManager;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
@@ -24,6 +28,7 @@ public class DeleteApptCommand extends Command {
     public static final String MESSAGE_NONEXISTENT_APPT = "No appointment for matriculation number %s exists.";
 
     private final MatriculationNumber matriculationNumber;
+    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     /**
      * Creates a DeleteApptCommand object responsible for deleting the appointment of the student with the
@@ -42,6 +47,14 @@ public class DeleteApptCommand extends Command {
         Appointment appointmentToDelete = model.getAppointment(matriculationNumber);
         Student student = model.getStudent(matriculationNumber);
         if (appointmentToDelete == null || student == null) {
+            if (student == null) {
+                logger.info("Student with a matriculation number of " + matriculationNumber
+                        + " does not exist in Vax@NUS");
+            }
+            if (appointmentToDelete == null) {
+                logger.info("Appointment of a student with a matriculation number of " + matriculationNumber
+                        + " does not exist in Vax@NUS");
+            }
             throw new CommandException(String.format(MESSAGE_NONEXISTENT_APPT, matriculationNumber));
         }
         model.deleteAppointment(appointmentToDelete);
