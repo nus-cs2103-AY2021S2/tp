@@ -525,7 +525,7 @@ Format: `open OPTION`
 
 Examples:
 * `open -c`
-    * The Contact Panel will be visible to the user
+    * The Contact panel will be visible to the user
 * `open -a`
     * All panel will be visible to the user
 
@@ -547,7 +547,7 @@ Format: `close OPTION`
 
 Examples:
 * `close -c`
-    * The contact panel will be invisible to the user
+    * The Contact panel will be invisible to the user
 * `close -a`
     * All panel will be invisible to the user
 
@@ -699,7 +699,7 @@ _Details coming soon ..._
 * When an invalid JSON file is detected, Dictionote discards all data and starts over with an empty data file. 
 * Please use a JSON editor software to ensure that the format is still valid after you've edited it.
 
-**MI tried to open the closed panel with my mouse, but there is no content displayed when I drag the panel open.**
+**I tried to open the closed panel with my mouse, but there is no content displayed when I drag the panel open.**
 * Dictionote is designed to support fast typists, mouse action is limited, please use the `open` command instead.
 
 

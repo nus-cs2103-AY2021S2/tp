@@ -19,6 +19,9 @@ StorageManager o--> XYZStorage
 Storage -|> UserPrefsStorage
 Storage -|> XYZStorage
 
+Storage -|> UserPrefsStorage
+Storage -|> AddressBookStorage
+
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonXYZStorage .left.|> XYZStorage
 JsonXYZStorage .down.> JsonSerializableXYZ
