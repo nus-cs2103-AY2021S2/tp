@@ -150,6 +150,19 @@ public class TypicalAppObjects {
             .withName("Dr Drake Ramoray")
             .build();
 
+    // Manually added
+    public static final Doctor DR_PURPLE = new DoctorBuilder()
+            .withUuid("72ae25af-d558-4563-a106-d23594874bfb")
+            .withName("Purple Ming")
+            .withTags("medicine")
+            .build();
+    public static final Doctor DR_ORANGE = new DoctorBuilder()
+            .withUuid("65cf1272-a843-490a-a92d-14a37fb49790")
+            .withName("Orang Phon")
+            .withTags("physician")
+            .build();
+
+
     // Manually added - Timeslot details
     public static final Duration APPOINTMENT_DURATION = Duration.ofHours(1);
     public static final Timeslot TIMESLOT_1HOUR_8AM = new Timeslot(
@@ -215,7 +228,7 @@ public class TypicalAppObjects {
     }
 
     public static List<Doctor> getTypicalDoctors() {
-        return new ArrayList<>(Arrays.asList(DR_GREY, DR_WHO, DR_STRANGE, DR_JEKYLL));
+        return new ArrayList<>(Arrays.asList(DR_GREY, DR_WHO, DR_STRANGE, DR_JEKYLL, DR_MURPHY, DR_DRAKE));
     }
 
     /**
