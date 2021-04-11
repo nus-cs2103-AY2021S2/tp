@@ -47,3 +47,4 @@ Given below are my contributions to the project.
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/271), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/249), [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/123)).
   * Bug reports made for other teams: [PED](https://github.com/cnlinh/ped/issues).
   
+  
