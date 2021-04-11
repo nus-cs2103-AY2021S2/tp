@@ -20,6 +20,7 @@ Class Prefix
 package Command {
 Class XYZCommand
 Class CommandResult
+Class UiCommand
 Class "{abstract}\nCommand" as Command
 }
 
@@ -65,5 +66,7 @@ note right of XYZCommand: XYZCommand = AddProjectCommand, \nFindContactCommand, 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult
+Command .up.> UiCommand
+CommandResult -right-> UiCommand
 CommandResult -[hidden]-> Parser
 @enduml

@@ -140,7 +140,7 @@ public class HelpPanel extends UiPart<Region> {
                         "addE PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY"),
                 new CommandSyntax("updateE",
                         "updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME] "
-                                + "[w/REPEATS_WEEKLY]"),
+                                + "[w/REPEAT_WEEKLY]"),
                 new CommandSyntax("deleteE", "deleteE PROJECT_INDEX i/EVENT_INDEX")
         );
     }
