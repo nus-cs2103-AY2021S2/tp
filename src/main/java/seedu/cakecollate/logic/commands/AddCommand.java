@@ -10,8 +10,10 @@ import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -91,14 +93,14 @@ public class AddCommand extends Command {
                 : "some error here; neither order description nor order item index was provided";
 
         if (this.addOrderDescriptor.getOrderDescriptions().isPresent()) {
-            addToOrderItems(model);
+            addToOrderItemsModel(model);
         }
 
         if (orderItemIndexList != null) {
-            mapIndexToOrderItems(model);
+            addToOrderDescriptionsBasedOnIndexes(model);
         }
 
-        Order toAdd = addOrderDescriptor.build(); // slightly diff from editOrderDescriptor
+        Order toAdd = addOrderDescriptor.build();
 
         if (model.hasOrder(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);
@@ -115,8 +117,8 @@ public class AddCommand extends Command {
      *
      * @param model
      */
-    private void addToOrderItems(Model model) {
-        this.addOrderDescriptor.getOrderDescriptions().get().stream()
+    private void addToOrderItemsModel(Model model) {
+        this.addOrderDescriptor.getOrderDescriptions().get().keySet().stream()
                 .map(OrderDescription::getValue) // because a string is needed for creating a new Type for new OrderItem
                 .map(o -> new OrderItem(new Type(o))) // map to order item so can check if already in model
                 .filter(o -> !model.hasOrderItem(o)) // filters out items that already exist in model
@@ -125,54 +127,37 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Adds order items from the order model that correspond to order item indexes given by the user to the descriptor
+     * Adds order items from the order model that correspond to order item indexes
+     * given by the user, which have been added to the descriptor by the parser
      *
      * @param model
      * @throws CommandException thrown when invalid indexes are given
      */
-    private void mapIndexToOrderItems(Model model) throws CommandException {
+    private void addToOrderDescriptionsBasedOnIndexes(Model model) throws CommandException {
         List<OrderItem> lastShownOrderItems = model.getFilteredOrderItemsList();
 
-        List<Index> list = orderItemIndexList.getIndexList(); // gets the inner list to perform operations on each index
+        List<Index> indexList = orderItemIndexList.getIndexList();
 
-        for (Index i : list) {
+        for (Index i : indexList) {
             if (i.getZeroBased() >= lastShownOrderItems.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ORDER_ITEM_INDEX);
             }
         }
 
-        if (addOrderDescriptor.getOrderDescriptions().isPresent()) {
-            addToOrderItemsModel(model);
-        }
-
-        /*
-        for each index specified
-        get corresponding order item
-        create an order description from the order item
+        /* for each index specified
+         * get corresponding order item
+         * create an order description from the order item
          */
-        list.forEach(i -> addOrderDescriptor.setOrderDescription(
-                new OrderDescription(
-                        lastShownOrderItems
-                                .get(i.getZeroBased())
-                                .getType()
-                                .toString()
+        indexList.forEach(index -> addOrderDescriptor.setOrderDescription(
+                new OrderDescription(lastShownOrderItems
+                    .get(index.getZeroBased())
+                    .getType()
+                    .toString()
                 )
         ));
     }
 
-    /**
-     * If user inputs an order description that isn't in the order items model,
-     * add it to the order items model.
-     */
-    private void addToOrderItemsModel(Model model) {
-        assert addOrderDescriptor.getOrderDescriptions().isPresent();
 
-        Set<OrderDescription> orderDescriptionSet = addOrderDescriptor.getOrderDescriptions().get();
-        orderDescriptionSet.stream()
-                .map(o -> new OrderItem(new Type(o.toString())))
-                .filter(o -> !model.hasOrderItem(o))
-                .forEach(model::addOrderItem);
-    }
 
     @Override
     public boolean equals(Object other) {
@@ -196,13 +181,15 @@ public class AddCommand extends Command {
     /**
      * Stores the details to edit the order with. Each non-empty field value will replace the
      * corresponding field value of the order.
+     *
+     * Note that this order descriptor has slight differences from edit order descriptor.
      */
     public static class AddOrderDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<OrderDescription> orderDescriptions;
+        private HashMap<OrderDescription, Integer> orderDescriptions;
         private Set<Tag> tags;
         private DeliveryDate deliveryDate;
         private Request request;
@@ -257,29 +244,30 @@ public class AddCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setOrderDescriptions(Set<OrderDescription> orderDescriptions) {
+        public void setOrderDescriptions(Map<OrderDescription, Integer> orderDescriptions) {
             if (orderDescriptions == null) {
                 return;
             }
 
             if (this.orderDescriptions == null) {
-                this.orderDescriptions = new HashSet<>(orderDescriptions);
+                this.orderDescriptions = new HashMap<>(orderDescriptions);
             } else {
-                this.orderDescriptions.addAll(orderDescriptions);
+                this.orderDescriptions.putAll(orderDescriptions);
             }
         }
 
-        public void setOrderDescription(OrderDescription orderDescription) {
+        public void setOrderDescription(OrderDescription od) {
             if (this.orderDescriptions == null) {
-                this.orderDescriptions = new HashSet<>();
+                this.orderDescriptions = new HashMap<>();
             }
 
-            this.orderDescriptions.add(orderDescription);
+            int quantity = this.orderDescriptions.containsKey(od) ? orderDescriptions.get(od) : 0;
+            this.orderDescriptions.put(od, quantity + 1);
         }
 
-        public Optional<Set<OrderDescription>> getOrderDescriptions() {
+        public Optional<Map<OrderDescription, Integer>> getOrderDescriptions() {
             return (orderDescriptions != null)
-                    ? Optional.of(Collections.unmodifiableSet(orderDescriptions))
+                    ? Optional.of(Collections.unmodifiableMap(orderDescriptions))
                     : Optional.empty();
         }
 

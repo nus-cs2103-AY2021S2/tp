@@ -249,4 +249,16 @@ public class EditCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+
+    @Test
+    public void parse_duplicateOrderDescriptions_allAdded() {
+        Index targetIndex = INDEX_THIRD_ORDER;
+        String userInput = targetIndex.getOneBased() + ORDER_DESC_AMY + ORDER_DESC_AMY;
+
+        EditCommand.EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder()
+                .withOrderDescriptions(VALID_CHOCOLATE_ORDER, VALID_CHOCOLATE_ORDER).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
 }

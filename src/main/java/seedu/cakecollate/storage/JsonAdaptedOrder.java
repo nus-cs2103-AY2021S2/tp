@@ -1,8 +1,10 @@
 package seedu.cakecollate.storage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -73,10 +75,14 @@ class JsonAdaptedOrder {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        orderDescriptions.addAll(
-                source.getOrderDescriptions().stream()
-                .map(JsonAdaptedOrderDescription::new)
-                .collect(Collectors.toList()));
+
+        // for each order description in map, for quantity number of times, add order description to command string
+        for (Map.Entry<OrderDescription, Integer> entry : source.getOrderDescriptions().entrySet()) {
+            for (int i = 0; i < entry.getValue(); i++) {
+                orderDescriptions.add(new JsonAdaptedOrderDescription(entry.getKey()));
+            }
+        }
+
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -148,7 +154,11 @@ class JsonAdaptedOrder {
         for (JsonAdaptedOrderDescription o : orderDescriptions) {
             orderOrderDescriptions.add(o.toModelType());
         }
-        final Set<OrderDescription> modelOrderDescriptions = new HashSet<>(orderOrderDescriptions);
+
+        final Map<OrderDescription, Integer> modelOrderDescriptions = new HashMap<>();
+        orderOrderDescriptions.forEach(o -> modelOrderDescriptions.put(o,
+                1 + modelOrderDescriptions.getOrDefault(o, 0)));
+
 
         final DeliveryStatus modelDeliveryStatus;
         if (deliveryStatus == null) {

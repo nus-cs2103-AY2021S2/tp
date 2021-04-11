@@ -14,7 +14,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "orderDescriptions": [ "2 x Chocolate Cakes" ],
+    "orderDescriptions": [ "Chocolate Cake" ],
     "tagged" : [ "owesMoney", "friends" ],
     "deliveryDate": "01-01-2022",
     "request": "More pineapples"
@@ -23,7 +23,7 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "orderDescriptions": [ "1 Vanilla Cake" ],
+    "orderDescriptions": [ "Vanilla Cake" ],
     "tagged" : [ ],
     "deliveryDate": "01.01.2022",
     "request": "Custom cake decoration, diamond hands."
@@ -32,7 +32,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "orderDescriptions": [ "1 Chocolate Chip Muffin" ],
+    "orderDescriptions": [ "Chocolate Chip Muffin", "Chocolate Chip Muffin" ],
     "tagged" : [ "friends" ],
     "deliveryDate": "01 Jan 2022",
     "request": ""
@@ -41,7 +41,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "orderDescriptions": [ "1 Raisins Cake Thing", "1 x Vanilla Cake", "1 x Blackforest cake" ],
+    "orderDescriptions": [ "Raisin Cake", "Vanilla Cake", "Blackforest cake" ],
     "tagged" : [ ],
     "deliveryDate": "31/12/2022",
     "request": ""
@@ -50,7 +50,7 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "orderDescriptions": [ "2 x Vanilla cakes" ],
+    "orderDescriptions": [ "Vanilla cakes" ],
     "tagged" : [ ],
     "deliveryDate": "28-02-2022",
     "request": "Replace vanilla essence with banana essence."
@@ -59,7 +59,7 @@
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "orderDescriptions": [ "2 lava cakes" ],
+    "orderDescriptions": [ "lava cake" ],
     "tagged" : [ ],
     "deliveryDate": "06.03.2022",
     "request": ""
