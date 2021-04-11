@@ -33,7 +33,7 @@ public class SetDictionaryDividerPositionCommandTest {
         for (int i = 0; i < VALID_UI_POSITION.length; i++) {
             CommandResult expectedCommandResult = new CommandResult(
                 MESSAGE_SET_DIVIDER_SUCCESS + VALID_UI_POSITION[i], UiAction.OPEN,
-                UiActionOption.LIST);
+                UiActionOption.DICTIONARY);
             expectedModel.getGuiSettings().setDictionarySplitRatio(
                 VALID_UI_POSITION[i] / SetDividerPositionCommand.NORMALIZE_RATIO);
 

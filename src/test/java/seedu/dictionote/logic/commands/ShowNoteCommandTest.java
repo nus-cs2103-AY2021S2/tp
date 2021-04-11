@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
@@ -53,7 +55,8 @@ public class ShowNoteCommandTest {
         expectedModel.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigWitouthNote());
         expectedModel.showNote(noteToShow);
 
-        assertCommandSuccess(showNoteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(showNoteCommand, model, expectedMessage,
+            UiAction.OPEN, UiActionOption.NOTE_CONTENT, expectedModel);
     }
 
     @Test
@@ -82,7 +85,8 @@ public class ShowNoteCommandTest {
         expectedModel.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigWitouthNote());
         expectedModel.showNote(noteToShow);
 
-        assertCommandSuccess(showNoteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(showNoteCommand, model, expectedMessage,
+            UiAction.OPEN, UiActionOption.NOTE_CONTENT, expectedModel);
     }
 
     @Test

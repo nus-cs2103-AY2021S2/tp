@@ -17,6 +17,7 @@ import static seedu.dictionote.testutil.TypicalNotes.getTypicalNoteBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.dictionote.logic.commands.enums.UiAction;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
@@ -59,7 +60,8 @@ public class EditModeSaveCommandTest {
         //Note change
         model.setNoteContentConfig(TypicalNoteContentConfig.getTypicalNoteContentConfigEditMode());
         model.showNote(model.getNoteBook().getNoteList().get(INDEX_SECOND_NOTE.getZeroBased()));
-        assertCommandSuccess(new EditModeSaveCommand(), model, MESSAGE_EDIT_MODE_EXIT_SUCCESS, expectedModel);
+        assertCommandSuccess(new EditModeSaveCommand(), model, MESSAGE_EDIT_MODE_EXIT_SUCCESS,
+            UiAction.EDITMODEEXIT, expectedModel);
 
     }
 

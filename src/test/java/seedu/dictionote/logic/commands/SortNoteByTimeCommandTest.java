@@ -13,6 +13,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.commons.core.Messages;
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
@@ -45,8 +47,8 @@ public class SortNoteByTimeCommandTest {
 
     @Test
     public void execute_sort() {
-        assertCommandSuccess(new SortNoteByTimeCommand(), model,
-                SortNoteByTimeCommand.MESSAGE_SORT_NOTE_SUCCESS, expectedModel);
+        assertCommandSuccess(new SortNoteByTimeCommand(), model, SortNoteByTimeCommand.MESSAGE_SORT_NOTE_SUCCESS,
+            UiAction.OPEN, UiActionOption.NOTE_LIST, expectedModel);
     }
 
     @Test

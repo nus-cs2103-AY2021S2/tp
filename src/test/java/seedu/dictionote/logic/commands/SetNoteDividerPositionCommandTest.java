@@ -33,7 +33,7 @@ public class SetNoteDividerPositionCommandTest {
         for (int i = 0; i < VALID_UI_POSITION.length; i++) {
             CommandResult expectedCommandResult = new CommandResult(
                 MESSAGE_SET_DIVIDER_SUCCESS + VALID_UI_POSITION[i], UiAction.OPEN,
-                UiActionOption.LIST);
+                UiActionOption.NOTE);
             expectedModel.getGuiSettings().setNoteSplitRatio(
                 VALID_UI_POSITION[i] / SetDividerPositionCommand.NORMALIZE_RATIO);
 

@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.dictionote.commons.core.index.Index;
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.ContactsList;
 import seedu.dictionote.model.Model;
@@ -107,6 +109,28 @@ public class CommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
             Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage} and a UiAction {@code expectedUiAction}.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+            UiAction expectedUiAction, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedUiAction);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}, a UiAction {@code expectedUiAction}
+     * and a UiActionOption {@code expectedUiActionOption}.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+            UiAction expectedUiAction, UiActionOption expectedUiActionOption, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedUiAction,
+            expectedUiActionOption);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 

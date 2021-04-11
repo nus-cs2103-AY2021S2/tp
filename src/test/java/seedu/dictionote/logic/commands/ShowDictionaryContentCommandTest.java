@@ -19,6 +19,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
@@ -48,7 +50,8 @@ public class ShowDictionaryContentCommandTest {
         expectedModel.setDictionaryContentConfig(TypicalDictionaryContentConfig.getTypicalDictionaryContentConfig());
         expectedModel.showDictionaryContent(contentToShow);
 
-        assertCommandSuccess(showDictionaryContentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(showDictionaryContentCommand, model, expectedMessage,
+            UiAction.OPEN, UiActionOption.DICTIONARY_CONTENT, expectedModel);
     }
 
     @Test
@@ -79,7 +82,8 @@ public class ShowDictionaryContentCommandTest {
         expectedModel.setDictionaryContentConfig(TypicalDictionaryContentConfig.getTypicalDictionaryContentConfig());
         expectedModel.showDictionaryContent(contentToShow);
 
-        assertCommandSuccess(showDictionaryContentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(showDictionaryContentCommand, model, expectedMessage,
+            UiAction.OPEN, UiActionOption.DICTIONARY_CONTENT, expectedModel);
     }
 
     @Test

@@ -20,7 +20,7 @@ public class ToggleNoteOrientationCommandTest {
     @Test
     public void execute_toggle_success() {
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_TOGGLE_SUCCESS, UiAction.OPEN,
-            UiActionOption.NOTE_CONTENT);
+            UiActionOption.NOTE);
         expectedModel.getGuiSettings().toggleNotePanelOrientation();
         assertCommandSuccess(new ToggleNoteOrientationCommand(), model, expectedCommandResult, expectedModel);
 
