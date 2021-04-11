@@ -97,11 +97,19 @@ public class PersonMeetingConnection {
         UniqueMeetingList meetingList = meetingsInPerson.get(person);
         personList.remove(person);
         meetingList.remove(meeting);
-        personsInMeeting.put(meeting, personList);
-        meetingsInPerson.put(person, meetingList);
+        if (personList.isEmpty()) {
+            personsInMeeting.remove(meeting);
+        } else {
+            personsInMeeting.put(meeting, personList);
+        }
+        if( meetingList.isEmpty()) {
+            meetingsInPerson.remove(person);
+        } else {
+            meetingsInPerson.put(person, meetingList);
+        }
     }
     /**
-     * This method delete a all connections related to a given person.
+     * This method delete all connections related to a given person.
      */
     public void deleteAllPersonMeetingConnectionByPerson(Person person) {
         if (meetingsInPerson.get(person) != null) {

@@ -16,6 +16,7 @@ public class JsonAdaptedPersonMeetingConnection {
             + "connection";
     public static final String MEETING_NOT_FOUND_ERROR_MESSAGE = "Meeting not found in the MeetingBook, but found in "
             + "a connection";
+    public static final String MESSAGE_DUPLICATE_CONNECTION = "Connections List contains duplicate connection(s).";
 
     private final String personName;
     private final String startDateTime;
@@ -63,7 +64,7 @@ public class JsonAdaptedPersonMeetingConnection {
             throw new IllegalValueException(MEETING_NOT_FOUND_ERROR_MESSAGE);
         }
         if (connection.existPersonMeetingConnection(person, meeting)) {
-            throw new IllegalValueException(JsonSerializableConnection.MESSAGE_DUPLICATE_CONNECTION);
+            throw new IllegalValueException(MESSAGE_DUPLICATE_CONNECTION);
         }
         connection.addPersonMeetingConnection(person, meeting);
         return connection;

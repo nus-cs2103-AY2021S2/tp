@@ -203,4 +203,11 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         }
         return true;
     }
+    /**
+     * Returns true if there are no meetings, false if otherwise .
+     * @return
+     */
+    public boolean isEmpty() {
+        return internalList.isEmpty();
+    }
 }
