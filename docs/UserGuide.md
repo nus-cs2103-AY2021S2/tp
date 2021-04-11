@@ -42,11 +42,11 @@ JSON files. It will start with an empty Address Book and Event Book if there is 
 | `REMARK` | `-r`, `--remark` | any | Any value |
 | `EMAIL` | `-e`, `--email` | Contact | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>!#$%&'*+/=?`{&#124;}~^.-</code></li><li><code>DOMAIN</code> must comprise at least one non-empty label with an optional trailing period.</li><li>A label contains at least one of alphanumerics or underscores, with optional hyphens. Labels cannot start with a hyphen.</li></ul>{:/} |
 | `INDEX` | - | any | Positive integer representing the ID present in the filtered list |
-| `NAME` | `-n`, `--name` | any | Any value containing only alphanumerics and spaces, unique to the contact/event list (case-sensitive) |
+| `NAME` | `-n`, `--name` | any | Any value containing only alphanumerics and spaces, unique to the contact/event list (case-sensitive) and not longer than 25 characters|
 | `PHONE` | `-p`, `--phone` | Contact | Any number at least three digits long |
 | `SORT_FIELD` | `-s`, `--sort` | any | Any valid option, specified below in `list` and `elist` commands |
 | `SORT_ORDER` | `-o`, `--order` | any | Any of the following:{::nomarkdown}<ul><li><code>a</code>, <code>asc</code>, <code>ascending</code> (ascending order)</li><li><code>d</code>, <code>desc</code>, <code>descending</code> (descending order)</li></ul>{:/} |
-| `TAG` | `-t`, `--tag` | Contact | Any value containing only alphanumeric characters |
+| `TAG` | `-t`, `--tag` | Contact | Any value containing only alphanumeric characters and not longer than 40 characters|
 
 <div markdown="block" class="alert alert-info">
 
