@@ -72,6 +72,9 @@ deactivate CommandResult
 
 LogicManager <-- EditTaskCommand : result
 deactivate EditTaskCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditTaskCommand -[hidden]->[
+destroy EditTaskCommand
 
 [<-- LogicManager :
 @enduml
