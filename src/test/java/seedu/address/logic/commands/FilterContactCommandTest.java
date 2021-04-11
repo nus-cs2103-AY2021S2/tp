@@ -22,7 +22,7 @@ import seedu.address.model.contact.ContactTagsContainKeywordsPredicate;
  */
 public class FilterContactCommandTest {
     private Model model = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalTeachingAssistant(), new UserPrefs());
+    private Model expectedModel = new ModelManager(model.getTeachingAssistant(), new UserPrefs());
 
     @Test
     public void equals() {
