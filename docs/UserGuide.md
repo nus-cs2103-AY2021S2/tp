@@ -693,7 +693,7 @@ Format: `add_event n/EVENTNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [
 
 * The `STARTDATE` and `STARTTIME` provided can be in the past for ongoing events.
   
-* Events that overlap in time are allowed.
+* Events that overlap in date and time are allowed.
   
 * Any valid prefixes and input arguments (e.g. <code>n/Meeting 1</code> or <code>st/14:00</code>) followed by invalid prefixes and input arguments (e.g. <code>name/Name</code>, <code>tag/Tag</code> or <code>E@ent</code>) will lead to an error.
 
@@ -744,7 +744,7 @@ Format: `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDAT
 
 * The `STARTDATE` and `STARTTIME` provided can be in the past for ongoing events.
 
-* Events that overlap in time are allowed.
+* Events that overlap in date and time are allowed.
   
 * Any valid prefixes and input arguments (e.g. <code>n/Meeting</code> or <code>st/00:00</code>) followed by invalid prefixes and input arguments (e.g. <code>name/Name</code>, <code>tag/Tag</code> or <code>E@ent</code>) will lead to an error.
 
