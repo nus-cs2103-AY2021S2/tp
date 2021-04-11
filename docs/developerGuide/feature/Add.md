@@ -18,7 +18,7 @@ Additionally, the user should also be able to store remarks for that contact.
 Given below is an example usage scenario and how the `add` mechanism behaves at each step.
 
 1. The user executes `add -n James -r Loves sweets` command to add a person with name `James` and remark `Loves
-   sweets`, represented by `execute("add -n James -r Loves sweets"")`. Note that fields `Address`, `Phone`,
+   sweets`, represented by `execute("add -n James -r Loves sweets")`. Note that fields `Address`, `Phone`,
    `Birthday`, `Tag` and `Email` are not specified and hence are empty fields.
 2. `LogicManager` uses the `AddressBookParser` class to parse the user command, represented by `parseCommand("add -n
    James -r Loves sweets")`
