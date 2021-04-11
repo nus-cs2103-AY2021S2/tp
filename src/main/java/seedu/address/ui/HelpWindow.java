@@ -121,14 +121,14 @@ public class HelpWindow extends UiPart<Stage> {
             String currentLine = reader.readLine();
 
             // Keeps reading the file until Command Summary is reached
-            while (currentLine != null && !currentLine.equals("## Command summary")) {
+            while (currentLine != null && !currentLine.equals("# Command Summary")) {
                 currentLine = reader.readLine();
             }
 
             // keeps reading and parsing until the next section is reached
             StringBuilder builder = new StringBuilder();
 
-            while (currentLine != null && !currentLine.contains("\\##")) {
+            while (currentLine != null && !currentLine.contains("\\#")) {
                 builder.append(parseCommandSummary(currentLine));
                 currentLine = reader.readLine();
             }
