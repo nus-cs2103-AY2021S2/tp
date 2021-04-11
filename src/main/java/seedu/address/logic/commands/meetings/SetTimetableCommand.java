@@ -1,15 +1,14 @@
 package seedu.address.logic.commands.meetings;
 
+import static java.util.Objects.requireNonNull;
+
+import java.time.LocalDate;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.DateTimeUtil;
 import seedu.address.model.Model;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
-import static java.util.Objects.requireNonNull;
 
 public class SetTimetableCommand extends Command {
     public static final String COMMAND_WORD = "setTimetable";
@@ -22,7 +21,9 @@ public class SetTimetableCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Timetable updated to start on %s!";
     private final LocalDate localDate;
 
-
+    /**
+     * The constructor of set time table command.
+     */
     public SetTimetableCommand(LocalDate localDate) {
         requireNonNull(localDate);
         this.localDate = localDate;
