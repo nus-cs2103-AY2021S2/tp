@@ -58,6 +58,7 @@ The sections below give more details of each component.
 ### UI component
 
 ### Logic Component
+![Logic Class Diagram](images/LogicClassDiagram.png)
 **API:** [`Logic.java`](https://github.com/AY2021S2-CS2103-T14-2/tp/blob/master/src/main/java/fooddiary/logic/Logic.java)
 
 1. `Logic` uses the `FoodDiaryParser` class to parse the user command.
@@ -99,12 +100,24 @@ Classes used by multiple components are in the seedu.fooddiary.commons package.
 ## **Implementation**
 This section describes some noteworthy details on how certain features are implemented.
 ### AddOn Feature
-#### Implementation
 The AddOn feature allows the user to add review(s) and/or a price to a single entry of a food place. This will be useful
-for users who frequently visit a particular place and would like to enter their reviews and the price spent every visit.
-The reviews are added to the specifed entry and the price added on will be refelcted as a price range the of the user's spending history 
-(e.g. if the current entry has a price of $5, adding on a price of 10 will update the current price of 5 to a price range of $5-10)
-This feature follows the architecture of AB3.
+for users who frequently visit a particular place and would like to enter their reviews and the price spent on each visit.
+The reviews are added to the user specifed entry and the price added on will be reflected as a price range of the user's spending history 
+(e.g. if the current entry has a price of $5, adding on a price of 10 will update the current price of 5 to a price range of $5-10).
+
+Given below is an example usage scenario:
+
+Step 1. The user launches The Food Diary application. Data will be loaded from the storage to the application memory.
+The `FoodDiary` will be populated with a list of `Entry`, each contains: `Name`, `Address`, `Price`
+, `Rating`, `Review`, `TagCategory` and `TagSchool`.
+
+Step 2. (Optional) The user executes `list` command to list out all the entries and select the entry to add on details.
+
+Step 2. The user executes `addon 1 re/I like this food a lot! p/7` command to add on details to an existing entry. 
+The command contains values such as a "I like this food a lot!" review and a price value of 7 dollars.
+
+Step 3. If the parameters entered by the user is valid, the application will create a new `entry` and stores the information in `Model` and `Storage`.
+Else, the FoodDiary will display an appropriate error message. 
 
 The following sequence diagram shows how the AddOn feature works:
 ![AddOn Sequence Diagram](images/AddOn_Sequence_Diagram.png)
@@ -112,8 +125,36 @@ The following sequence diagram shows how the AddOn feature works:
 The following activity diagram summaries the flow of event when a user executes the addon command:
 ![AddOn_Activity_Diagram](images/AddOn_Activity_Diagram.png)
 
+#### Design Consideration
+
+##### Aspect: Whether entry class should have a List of Reviews or a single Review as an attribute (for adding on reviews to an existing entry)
+* **Alternative 1 (current choice):** Entry containing a List of Reviews as an attribute
+    * Pros: Looks neater in a design perspective, as additional reviews added on will just be appended to the list of reviews.
+      Easily extendable in the future (e.g. deleting a specific review in an entry).
+    * Cons: A lot of refactoring is needed. Takes some time.
+* **Alternative 2:** Entry containing a single review attribute 
+    * Pros: Easy to implement, as additional reviews can be concatenated as a string to the current review
+    * Cons: This cannot be easily extended in the future (e.g. deleting a specific review in an entry).
+
+###List Feature
+The List feature allows a user to list all entries that they have keyed in thus far. This will be useful when a user
+wants an overview of all the entry he/she has keyed in previously.
+
+Given below is an example usage scenario:
+
+Step 1. The user is in the Food Diary application. 
+
+Step 2. The user executes list. The Food Diary application lists all the entries in the user's database. 
+Each Entry contains the `Name`, `Address`, `Price`, `Rating`,  `Review`, `TagCategory` and `TagSchool`.
+
+This feature was brought over to The Food Diary from AB3. 
+There were not much changes apart from modifying it to list
+entries instead. Similiar to other commands,`MainWindow#executeCommand()` runs and `Logic#execute()`
+will be called to parse the user input in `FoodDiaryParser#parseCommand()`. 
+The parsed command will be identified
+as a list command.
+
 ### FindAll Feature
-#### Implementation
 The FindAll feature allows a user to find entries that match all the keywords provided by the user.
 This enables the user to easily sieve out all the entries that meet every single requirement the user
 is looking for, which will be useful when deciding where to eat.
@@ -136,7 +177,6 @@ command:
 ![FindAll Activity Diagram](images/FindAllActivityDiagram.png)
 
 ### Revise Feature
-#### Implementation
 The Revise feature allows a user to quickly edit different sections of an entry. It is often misunderstood to be 
 mutually exclusive with the edit feature or the slower alternative. This feature shines when a user wishes to edit 
 while also adding into multiple sections in an entry. The edit and addon features are still necessities for making 
@@ -188,7 +228,6 @@ The following activity diagram summarizes what happens when a user executes the 
 ![View Activity Diagram](images/ViewActivityDiagram.png)
 
 #### Design Consideration
-
 ##### Aspect: Whether to view entry with lengthy reviews in the Main UI or in a new window.
 * **Alternative 1 (current choice):** View entry with lengthy reviews in a new window.
     * Pros: Easier to implement, do not need to deal with complex UI codes. Entry information looks neater.
@@ -196,6 +235,21 @@ The following activity diagram summarizes what happens when a user executes the 
 * **Alternative 2:** View entry with lengthy reviews in the Main UI.
     * Pros: Design is integrated within Main UI, which gives it a cleaner look.
     * Cons: Difficult to implement, lesser time for testability given the project deadline duration.
+
+
+### Exit Feature
+The Exit feature allows a user to close the application.
+
+Given below is an example usage scenario:
+
+Step 1. The user is the midst of using The Food Diary application. The user has finished using the application.
+
+Step 2. The user executes `exit` and closes the application.
+
+This feature was brought over to The Food Diary from AB3. 
+There were no changes. Similiar to other commands,MainWindow#executeCommand() runs and Logic#execute()
+will be called to parse the user input in FoodDiaryParser#parseCommand().
+The parsed command will be identified as the exit command.
 
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -490,6 +544,120 @@ Given below are instructions to test the app manually.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers
 to work on.
 </div>
+
+
+### Launch and Shutdown
+
+1. Initial launch
+
+    1. Download the jar file and copy into an empty folder
+
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample food Diary entries. The window size may not be optimum.
+
+2. Saving window preferences
+
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+    2. Re-launch the app by double-clicking the jar file.<br> 
+       Expected: The most recent window size and location is retained.
+       
+### Add an entry
+1. Add an entry with the provided details.
+    1. Prerequisite: `list` entries to ensure that the entry going to be added in not already displayed in the Food Diary application.
+
+    1. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
+    <br>Expected: Add an entry with name Subway, 5/5 Rating, 'I like this food a lot!' review, 3155 Commonwealth Ave W, Singapore 129588 address, 
+    FastFood and Vegan categories and a SOC. A new entry will be shown in the entry list panel.
+    
+    2. Test case: `add n/Subway ra/7 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
+    <br>Expected: Invalid rating error will be shown in the result display. Entry will not be added.
+    
+    3. Test case: `add n/Subway ra/5 p/1000 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
+    <br>Expected: Invalid price error will be shown in the result display. Entry will not be added.
+       
+    4. Test case: `add n/Subway ra/5 p/6 re/ a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
+    <br>Expected: Invalid review error will be shown in the result display. Entry will not be added.
+       
+    5. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/ c/FastFood c/Vegan s/SOC`
+    <br>Expected: Invalid address error will be shown in the result display. Entry will not be added.
+
+    6. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/Deck c/FastFood c/Math s/SOC`
+    <br>Expected: A list of valid categories will be shown in the result display. Entry will not be added.
+
+    7. Test case: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/Primary`
+    <br>Expected: A list of valid schools will be shown in the result display. Entry will not be added.
+
+    8. Other incorrect add commands to try: `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC`
+    followed by `add n/Subway ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, Singapore 129588 c/FastFood c/Vegan s/SOC` (duplicate entry)
+
+## Add on to an entry
+1. Add on to an entry with the provided details
+    1. Prerequisite: `list` to select the entry you want to add on details to. There must be at least one entry displayed.
+    2. Test case: `addon 1 re/I like this food a lot! p/7`
+    <br>Expected: Add on the review "I like this food a lot!" and a price of $7 to the existing price/price range shown in the entry (price range updates if the input price is
+       out of the initial price range dispalyed in the entry). Specified Entry will be updated with the addon on fields.
+    3. Test case: addon 1
+    <br>Expected: Error message "At least one field to add-on must be provided." will be shown in the result display. Nothing will be added on to the specified entry.
+    4. Test case: addon 1 re/
+    <br>Expected: Invalid review error will be shown in the result display. Nothing will be added on to the specified entry.
+    5. Test case: addon 1 re/Good Food p/1000
+    <br>Expected: Invalid price error will be shown in the result display. Nothing will be added on to the specified entry.
+    6. Other incorrect `addon` commands to try: addon 10000000000 re/Good Food (invalid index)
+    
+## Delete an Entry
+1. Delete a booking specified by booking ID.
+    1. Prerequisite: `list` all entries to find out the name of the entry to delete
+
+    Test case: delete 1
+    <br>Expected: Delete entry at index 1. Success message and deleted entry details shown in the result display.
+    
+    Test case: delete x (where x is non-existent booking ID)
+    <br>Expected: Error of invalid entry shown in result display. No entry is deleted.
+
+    Other incorrect delete commands to try: delete, delete Starbucks
+    <br>Expected: Invalid command format error. No entry is deleted.
+
+###Revise an Entry
+1. Edit the `Name`, `Rating`, `Price`, `Address`, `Reviews`, `School(s)`, `Category(s)`
+    1. Prerequisite: Have a list of Entries or at least 1 Entry in view. In command line, execute `Revise <Index>`. 
+                    `Index` refers to index of Entry to revise in view.
+       
+    2. Test case: Under Name, change name to `McDonalds`. Click `Revise` button. 
+    
+        Expected: Name of entry to be changed to `McDonalds`, Revise window to close and Main Window to show a list of
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
+       
+    3. Test case: Under Rating, change rating to `2`. Click `Revise` button.
+
+        Expected: Rating of entry changes to 2/5, Revise window to close and Main Window to show a list of
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
+       
+    4. Test case: Under Price, change to `5`. Click `Revise` button.
+
+       Expected: Price of entry to be changed to `5`, Revise window to close and Main Window to show a list of
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
+
+    5. Test case: Under Address, change to `Computing Drive`. Click `Revise` button.
+    
+       Expected: Address of entry to be changed to `Computing Drive`, Revise window to close and Main Window to show a list of
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
+       
+    6. Test case: Under Categories, add `western`. Click `Revise` button.
+    
+       Expected: Categories of entry to add `Western`, Revise window to close and Main Window to show a list of
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
+
+   7. Test case: Under Categories, add to `soc`. Click `Revise` button.
+
+       Expected: Categories of entry to add `SOC`, Revise window to close and Main Window to show a list of
+       all entries. Success Message leads with `Edited Entry: ...` shown in status bar.
+      
+    8. Other valid test cases to try: Combine any of the above testcases before pressing `Revise`. All changes should be
+    accounted for.
+       
+    9. Other invalid test cases to try: Use non-alphanumeric names, change name and address to be the same as an Entry that 
+    already exists, invalid Categories `westen` and Schools `Com`. 
+       
 
 ## UI Mockup
 
