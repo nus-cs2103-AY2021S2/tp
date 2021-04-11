@@ -15,7 +15,7 @@ import static seedu.address.testutil.TypicalTags.getTypicalTags;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.TreeSet;
 import java.util.List;
 import java.util.Set;
 
@@ -55,7 +55,7 @@ public class DeleteTagCommandTest {
     @Test
     public void createWithIndexes_nullTargetIndexes_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> DeleteTagCommand.createWithTargetIndexes(
-                null, new HashSet<>()));
+                null, new TreeSet<>()));
     }
 
     @Test

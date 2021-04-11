@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
+import java.util.TreeSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -47,7 +47,7 @@ public class PersonBuilder {
         jobTitle = new JobTitle(DEFAULT_JOB_TITLE);
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
-        tags = new HashSet<>();
+        tags = new TreeSet<>();
     }
 
     /**
@@ -61,7 +61,7 @@ public class PersonBuilder {
         jobTitle = personToCopy.getJobTitle();
         address = personToCopy.getAddress();
         remark = personToCopy.getRemark();
-        tags = new HashSet<>(personToCopy.getTags());
+        tags = new TreeSet<>(personToCopy.getTags());
     }
 
     /**

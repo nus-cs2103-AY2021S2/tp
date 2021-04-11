@@ -6,9 +6,9 @@ import static seedu.address.logic.parser.TagCommandParser.tagsToString;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -169,7 +169,7 @@ public class DeleteTagCommand extends TagCommand {
         JobTitle updatedJobTitle = personToEdit.getJobTitle();
         Address updatedAddress = personToEdit.getAddress();
         Remark updatedRemark = personToEdit.getRemark();
-        Set<Tag> updatedTags = new HashSet<>(personToEdit.getTags());
+        Set<Tag> updatedTags = new TreeSet<>(personToEdit.getTags());
         updatedTags.removeAll(tags);
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedCompany, updatedJobTitle,
