@@ -5,8 +5,8 @@ title: User Guide
 
 TutorsPet is a **desktop app designed for private tutors in Singapore to manage students’ information, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TutorsPet helps improve the efficiency and effectiveness of student management by categorizing relevant contact information and keeping track of both lesson schedules and important dates.
 
-* Table of Contents
-{:toc}
+## Table of Contents
+* {:toc}
 --------------------------------------------------------------------------------------------------------------------
 ## About
 This document can be thought of as a manual, and a reference guide for TutorsPet. It will guide you on how to use TutorsPet and will provide complete information on each available command.
@@ -36,6 +36,8 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:** This block is used to point out any dangerous actions that may result in the loss of data or the app crashing.
 </div>
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -70,6 +72,10 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
 
 1. Refer to the [Features](#features) below for details of each command.
 
+1. All sample data in TutorsPet can be cleared at once using the `clear` command.
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -95,16 +101,9 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
 
 * Extra keywords inputted for commands that do not require parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Adding a contact: `add`
 
@@ -152,6 +151,8 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
   `You have a lesson at [lesson day and time] with [student(s)]. Do you wish to proceed? y/n` will be shown
   and users will have to enter either `y` (yes) or `n` (no) accordingly. If `y` is entered, the contact will be added.
   If `n` is entered, the contact would not be added.
+  
+* Student's phone number is allowed to be the same as the guardian's number.
 
 </div>
 
@@ -164,6 +165,8 @@ Examples:
 * `add n/John Doe p/98612341`
 * `add n/Alice Tan p/98765432 s/Abc Secondary School e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789`
 * `add n/Bob Lee p/87654321 s/Def Secondary School e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/math le/monday 1300`
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Editing a contact : `edit`
 
@@ -227,6 +230,8 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing subjects.
 *  `edit 1 le/monday 1300 le/tuesday 1400` Edits the 1st student's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Viewing a contact details: `detail`
 
 View the full details of the specified student's contact from TutorsPet.
@@ -241,15 +246,21 @@ Format: `detail INDEX`
 
 * Views the contact at the specified `INDEX`.
 
+* Student details of a searched list can be displayed using this command.
+
 * The index refers to the index number shown in the displayed student list.
 
 * The index **must be a positive integer** ranging from 1 to 2147483647.
 
 </div>
 
-Examples:
-* `list` followed by `detail 2` views the details of the 2nd student in TutorsPet.
-* `search n/Betsy` followed by `detail 1` views the details of the 1st student in the results of the `search` command.
+Examples: <br>
+
+Command     | Result                   
+----------- |---------------------------------------------------
+detail 1    | displays the details of the 1st student in the list
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Deleting a contact : `delete`
 
@@ -268,10 +279,19 @@ Format: `delete INDEX`
 * The index **must be a positive integer** ranging from 1 to 2147483647.
 
 </div>
+Example: <br>
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd student in TutorsPet.
-* `search n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `search` command.
+`list` followed by `delete 2` deletes the 2nd student in TutorsPet.
+
+![delete](images/delete command.png)
+
+Other examples: <br>
+
+Command     | Result
+----------- |---------------------------------------------------
+`search n/Betsy` followed by `delete 1`| deletes the 1st student in the results of the `search` command
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Searching for a contact: `search`
 
@@ -310,7 +330,7 @@ Prefix | Searching Criteria
   They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively, which are
   subjects which students are more likely to need private tuition.
   For more details, see the [Field Format Summary](#field-format-summary) below.
-
+  
 </div>
 
 Examples:
@@ -321,6 +341,7 @@ Examples:
 * `search t/CHEM`, `search t/chem`, and `search t/Chem` will all return students with the subject `chem`
 * `search t/chem math` returns students with the subject `chem` or with the subject `math` or with both.
 
+<a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
 ### Sorting contacts: `sort`
 Sorts the student contacts list by name, school, subjects or lessons.
@@ -352,11 +373,16 @@ Examples:
   of the week.
 * `sort n/ s/` sorts students by the alphabetical orders of their schools, and ignores the name prefix.
 * `sort t/` sorts students based on the alphabetical order of their first subject 
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Listing all contacts : `list`
 
 Shows a list of all student contacts in TutorsPet. Each student's name, phone number, subjects and lessons are displayed.
 
 Format: `list`
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Viewing schedule : `schedule`
 
@@ -365,6 +391,8 @@ Shows a weekly schedule that displays lessons for the week.
 Format: `schedule`
 
 ![schedule popup](images/scheduleWindow.png)
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Advancing all students: `levelup`
 
@@ -402,6 +430,8 @@ Examples:
 * `levelup ex/3 4` advances all students by one level, excluding the 3rd and 4th student
   in the list, as well as any students who have `grad`.
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Demoting all students: `leveldown`
 
 Demotes the education level of all the student contacts by one grade by default, unless the student is excluded.
@@ -436,7 +466,9 @@ Examples:
 * `leveldown` demotes all students except `pri1` students by one level.
 * `levelup ex/2 5` demotes all students by one level, excluding the 3rd and 4th student
   in the list, as well as any students who are `pri1`.
-  
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Adding an important date: `add-date`
 
 Adds an important date to TutorsPet.
@@ -448,19 +480,31 @@ Format: `add-date d/DESCRIPTION dt/DETAILS`
 :bulb:**Tips:** <br>
 
 * `DETAILS` must be in the **yyyy-mm-dd HHmm format** e.g. `2021-11-03 0800`
-*  Dates with the **exact same description and details** will be considered a duplicate and will not be added into TutorsPet
-*  To avoid confusion, dates with the same description will also not be added into TutorsPet.
+* Dates with the **exact same description and details** will be considered a duplicate and will not be added into TutorsPet
+* To avoid confusion, dates with the same description will also not be added into TutorsPet.
+* All dates would be accepted, including past dates. e.g. `2019-01-20`
 
 </div>
 
-Examples:
-* `add-date d/math exam dt/2021-11-03 0800`
+Examples: <br>
+
+Command     | Result
+----------- |---------------------------------------------------
+`add-date d/math exam dt/2021-11-03 0800`  | adds an important date with description `math exam` and details `2021-11-03 0800`
+
+![add-date](images/add-date command.png)
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Listing all important dates : `list-date`
 
 Shows a list of all important dates in TutorsPet.
 
 Format: `list-date`
+
+![list-date](images/list-date command.png)
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Deleting an important date : `delete-date`
 
@@ -479,8 +523,15 @@ Format: `delete-date INDEX`
 * The index **must be a positive integer** ranging from 1 to 2147483647.
 </div>
 
-Examples:
-* `list-date` followed by `delete-date 2` deletes the 2nd important date in TutorsPet.
+Examples: <br>
+
+Command     | Result
+----------- |---------------------------------------------------
+`list-date` followed by `delete-date 2` |  deletes the 2nd important date in TutorsPet
+
+![delete-date](images/delete-date command.png)
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Clearing all entries : `clear`
 
@@ -488,11 +539,25 @@ Clears all entries from TutorsPet.
 
 Format: `clear`
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ### Saving the data
 
@@ -512,6 +577,8 @@ If your changes to the data file makes its format invalid, TutorsPet will discar
 
 </div>
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ## Coming soon
 
 ### Add a subject to teach`[coming in v2.0]`
@@ -519,18 +586,12 @@ If your changes to the data file makes its format invalid, TutorsPet will discar
 _Format: `add-subject SUBJECT_NAME` <br> Currently, there is a fixed list of subjects that is available to teach and can be tagged in TutorsPet, 
 while in v2.0, more personalised subjects can be added in._
 
-### Undo/Redo `[coming in v2.0]`
-
-_Details coming soon ..._
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 ### Add profile picture for each contact`[coming in v2.0]`
 _Format: `add-profile INDEX FILE_PATH` <br> Add a profile picture to the contact of the specified index
 by providing the file path to the picture._
 --------------------------------------------------------------------------------------------------------------------
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
 ## FAQ
 
@@ -561,6 +622,8 @@ like chem and bio.
 
 </div>
 
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
+
 ## Command summary
 
 Action | Format, Examples
@@ -580,3 +643,5 @@ Action | Format, Examples
 **Delete dates** | `delete-date INDEX`<br> e.g., `delete-date 3`
 **List dates** | `list-date`
 **Help** | `help`
+
+<a href="#table-of-contents"> <button>Back to Table of Contents </button></a>

@@ -20,7 +20,7 @@ public class DeleteDateCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Deletes the important date identified by the index number used in the displayed important dates list.\n"
-        + "Parameters: INDEX (must be a positive integer and lesser than 2147483648)\n"
+        + "Parameters: INDEX (must be a positive integer and less than 2147483648)\n"
         + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_DATE_SUCCESS = "Deleted Date: %1$s";

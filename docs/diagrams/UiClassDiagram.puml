@@ -19,6 +19,9 @@ Class CommandBox
 Class ImportantDatesWindow
 Class DateCard
 Class DateListPanel
+Class LessonListCard
+Class LessonListPanel
+Class ScheduleWindow
 }
 
 package Model <<Rectangle>> {
@@ -41,12 +44,15 @@ MainWindow *-down-> PersonListPanel
 MainWindow *-down-> PersonDetails
 MainWindow *-down-> StatusBarFooter
 MainWindow --> ImportantDatesWindow
+MainWindow --> ScheduleWindow
 ImportantDatesWindow *-down-> DateListPanel
+ScheduleWindow *-down-> LessonListPanel
 
 PersonListPanel -down-> PersonCard
 DateListPanel -down->DateCard
+LessonListPanel -down-> LessonListCard
 
-MainWindow -left-|> UiPart
+MainWindow -down-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
@@ -56,21 +62,33 @@ PersonDetails --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 ImportantDatesWindow -down-|> UiPart
+ScheduleWindow -down-|> UiPart
 DateListPanel --|> UiPart
 DateCard --|> UiPart
+LessonListPanel --|> UiPart
+LessonListCard --|> UiPart
 
 
 PersonCard ..> Model
 PersonDetails ..> Model
 DateCard ..> Model
+LessonListCard ..> Model
 UiManager -right-> Logic
-MainWindow -left-> Logic
-ImportantDatesWindow --> Logic
+MainWindow -right-> Logic
+ImportantDatesWindow -right-> Logic
+ScheduleWindow -up-> Logic
 
+PersonDetails -[hidden]left- ScheduleWindow
+ScheduleWindow -[hidden]left- ImportantDatesWindow
+ImportantDatesWindow -[hidden]left- PersonListPanel
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+
+PersonCard -[hidden]right- DateCard
+DateCard -[hidden]right- LessonListCard
+DateListPanel -[hidden]right- LessonListPanel
 
 MainWindow -[hidden]-|> UiPart
 @enduml

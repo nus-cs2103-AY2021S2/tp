@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User inputs an edit command;
+:Command parsed by AddressBookParser;
+
+if () then ([command word is valid])
+    :Argument parsed by EditCommandParser;
+    if () then ([argument is valid])
+        :Creates a new EditPersonDescriptor object;
+        :Returns EditCommand;
+        :Checks if student to be edited is in TutorsPet;
+        if () then ([present])
+            :Edits the student;
+        else ([else])
+            :CommandException is thrown;
+        endif
+    else ([else])
+        :ParseException is thrown;
+    endif
+else ([else])
+    :ParseException is thrown;
+endif
+
+stop
+
+@enduml

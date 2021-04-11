@@ -8,23 +8,36 @@ Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
 Interface AddressBookStorage <<Interface>>
 Interface DatesBookStorage <<Interface>>
+Interface LessonBookStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
 Class JsonAddressBookStorage
 Class JsonDatesBookStorage
+Class JsonLessonBookStorage
+Class JsonAdaptedPerson
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
 StorageManager o--> AddressBookStorage
 StorageManager o--> DatesBookStorage
+StorageManager o--> LessonBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
+JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
-JsonDatesBookStorage .left.|>DatesBookStorage
+JsonSerializableAddressBookStorage .down.> JsonAdaptedPerson
+JsonAdaptedPerson .right.> JsonAdaptedSubject
+JsonAdaptedPerson .down.> JsonAdaptedLesson
+
+JsonDatesBookStorage .up.|>DatesBookStorage
 JsonDatesBookStorage .down.> JsonSerializableDatesBook
 JsonSerializableDatesBook .right.> JsonAdaptedImportantDate
+
+JsonLessonBookStorage .up.|> LessonBookStorage
+JsonLessonBookStorage .down.> JsonSerializableLessonBookStorage
+JsonSerializableLessonBookStorage .down.> JsonAdaptedLessonInSchedule
+JsonAdaptedLessonInSchedule .right.> JsonAdaptedPerson
+
+
 @enduml

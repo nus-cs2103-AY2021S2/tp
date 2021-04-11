@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User inputs a leveldown command;
+:Command parsed by AddressBookParser;
+
+if () then ([command word is valid])
+    :Argument parsed by LevelDownCommandParser;
+    if () then ([argument is valid])
+        :Returns LevelDownCommand with indexes to be excluded as argument;
+        :Model filters the excluded people then demotes the rest of the people in the
+        transformed persons list by one education level;
+        :Displays transformed persons list;
+    else ([else])
+        :ParseException is thrown;
+    endif
+else ([else])
+    :ParseException is thrown;
+endif
+
+stop
+
+@enduml

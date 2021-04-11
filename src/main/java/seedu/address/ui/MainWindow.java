@@ -254,7 +254,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleImportantDates();
             }
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | IllegalArgumentException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             if (e.getMessage().startsWith("The student name ")) {
