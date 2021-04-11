@@ -391,7 +391,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3b1. ModuleBook3.5 shows an already done message.
 
-
+      Use case resumes at step 2.
 
 **Use case 04: Mark task as not done**
 
