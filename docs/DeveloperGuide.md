@@ -492,10 +492,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to delete a specific student.
-2.  System prompts for confirmation of deletion.
-3.  User confirms.
-4.  System deletes the student. 
+1.  User requests to delete a specific student by matriculation number.
+1.  System deletes the student. 
 
     Use case ends.
 
@@ -504,37 +502,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Specified student does not exist.
 
     * 1a1. System shows an error message.
-  
-        Use case ends.
+      <br>Use case ends.
 
+* 1b. System detects that the given parameter is invalid.
 
-* 3a. User does not confirm.
+    * 1b1. System shows an error message.
+      <br> Use case ends.
+      
 
-  Use case ends.
-  
-  **Use case: Delete a student**
-  
-  **MSS**
-  
-  1.  User requests to delete a specific student.
-  2.  System prompts for confirmation of deletion.
-  3.  User confirms.
-  4.  System deletes the student. 
-  
-      Use case ends.
-  
-  **Extensions**
-  
-  * 1a. Specified student does not exist.
-  
-      * 1a1. System shows an error message.
-    
-          Use case ends.
-  
-  
-  * 3a. User does not confirm.
-  
+**Use case: Delete an appointment**
+
+**MSS**
+1.  User requests to delete a student's appointment by the student's matriculation number.
+1.  System deletes the student's appointment.
+
     Use case ends.
+
+* 1a. Specified student does not exist.
+
+    * 1a1. System shows an error message.
+      <br>Use case ends.
+
+* 1b. Specified student does not have a appointment.
+
+    * 1b1. System shows an error message.
+      <br> Use case ends.
+
+* 1c. System detects that the given parameter is invalid.
+
+    * 1c1. System shows an error message.
+      <br> Use case ends.
 
 **Use case: Filter all student records**
 
@@ -545,13 +542,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-* 1a. Given filter condition is invalid.
+* 1a. System detects that the given parameter is invalid.
 
     * 1a1. System shows an error message.
   
         Use case ends.
-
-
+        
 ### Non-Functional Requirements
 
 1.  **Accessibility**
@@ -608,9 +604,9 @@ testers are expected to do more *exploratory* testing.
       
 ### Deleting a student
 
-1. Deleting a student while all students are being shown
+1. Deleting a student
 
-   1. Prerequisites: List all students using the `list` command. Sample data of students and appointments shown in the list.
+   1. Prerequisites: Sample data of students and appointments are loaded in Vax@NUS.
 
    1. Test case: `delete A0182345T`<br>
       Expected: First student (Alex Yeoh) is deleted from the list. Details of the deleted student shown in the status message. 
