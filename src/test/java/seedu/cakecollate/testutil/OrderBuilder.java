@@ -28,7 +28,7 @@ public class OrderBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_ORDER_DESCRIPTION = "Chocolate Cake";
+    public static final String DEFAULT_ORDER_DESCRIPTION = "Mango Cheesecake";
     public static final String DEFAULT_DELIVERY_DATE = "01/01/2022";
     public static final String DEFAULT_REQUEST = "";
 
