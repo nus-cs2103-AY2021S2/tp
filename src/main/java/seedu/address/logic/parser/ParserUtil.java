@@ -25,7 +25,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Input is not a non-zero unsigned integer";
-    public static final String MESSAGE_INVALID_INDEX_1 = "Input after the ";
+    public static final String MESSAGE_INVALID_INDEX_1 = "Input for the ";
     public static final String MESSAGE_INVALID_INDEX_2 = " prefix is not a non-zero unsigned integer.";
     private static final String LOCAL_DATE_TIME_CONSTRAINT = "DATE-TIME should be DD/MM/YYYY HHmm";
 
@@ -56,6 +56,7 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be

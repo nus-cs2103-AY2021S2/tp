@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<Stage minHeight="570.0" minWidth="750.0" title="Reminder" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Stage resizable="false" minHeight="570.0" minWidth="750.0" title="Reminder" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/logo.png" />
     </icons>

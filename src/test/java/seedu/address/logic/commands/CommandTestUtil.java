@@ -42,7 +42,7 @@ public class CommandTestUtil {
     public static final String VALID_ASSIGNMENT_DESCRIPTION_1 = "Assignment 1";
     public static final String VALID_ASSIGNMENT_DESCRIPTION_2 = "Assignment 2";
     public static final String VALID_ASSIGNMENT_DEADLINE_1 = "04/04/2021 1700";
-    public static final String VALID_ASSIGNMENT_DEADLINE_2 = "04/07/2021 1700";
+    public static final String VALID_ASSIGNMENT_DEADLINE_2 = "03/05/2021 1300";
     public static final ArrayList<Exam> VALID_EXAMS_CS2103 = new ArrayList<Exam>();
 
     public static final String VALID_NAME_AMY = "Amy Bee";

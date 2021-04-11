@@ -44,7 +44,7 @@ public class EditExamCommandParser extends EditCommandParser implements Parser<E
                 )));
         Module module = new Module(title);
 
-        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_EXAM).get());
+        Index index = ParserUtil.parseExamIndex(argMultimap.getValue(PREFIX_EXAM).get());
         int intIndex = index.getOneBased();
 
         LocalDateTime edit = argMultimap.getValue(PREFIX_DATE)

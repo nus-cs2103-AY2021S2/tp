@@ -26,7 +26,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseComman
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.editcommand.EditCommand;
-import seedu.address.logic.commands.editcommand.EditEventCommand;
 import seedu.address.model.module.Title;
 
 public class EditCommandParserTest {
@@ -50,11 +49,6 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allPrefixSpecified_failure() {
-        // with preamble
-        String userInput1 = " 1 " + PREFIX_MODULE + " " + PREFIX_NAME + " " + PREFIX_TAG + " " + PREFIX_GENERAL_EVENT
-                            + " " + PREFIX_DATE + " " + PREFIX_ASSIGNMENT + " " + PREFIX_EXAM;
-        assertParseCommandFailure(parser, userInput1,
-                                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEventCommand.MESSAGE_USAGE));
 
         // without preamble
         String userInput2 = " " + PREFIX_MODULE + " " + PREFIX_NAME + " " + PREFIX_TAG + " " + PREFIX_GENERAL_EVENT
