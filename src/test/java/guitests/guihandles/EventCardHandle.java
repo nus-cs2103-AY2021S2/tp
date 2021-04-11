@@ -1,10 +1,7 @@
 package guitests.guihandles;
 
-import static seedu.address.commons.util.DateUtil.decodeDate;
-
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import seedu.address.model.task.repeatable.Event;
 
 /**
  * Provides a handle to an {@code EventCard}.
@@ -40,14 +37,5 @@ public class EventCardHandle extends NodeHandle<Node> {
 
     public String getDateTime() {
         return dateTimeLabel.getText();
-    }
-
-
-    /**
-     * Returns true if this handle contains an {@code Event}.
-     */
-    public boolean equals(Event event) {
-        return getDescription().equals(event.getDescription())
-                && getDateTime().equals(decodeDate(event.getDate()));
     }
 }
