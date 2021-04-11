@@ -292,8 +292,8 @@ Example:
 Deletes the resident record at a specified index.
 
 Format: `rdel INDEX`
-*  A resident allocated to a room cannot be deleted until it is first deallocated. Run `dealloc` commmand before deletion.
-   See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
+*  A resident allocated to a room cannot be deleted until it is first deallocated. Run `dealloc` commmand before 
+   deletion. See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
 
 Parameters:
 * [`INDEX`](#index) The index of the displayed resident.
@@ -305,7 +305,8 @@ Example:
 
 <div markdown="block" class="alert alert-secondary">
 :thinking: Why do room commands start with `o`?<br>
-:point_right: Room commands are prefixed with `o` as `r` is taken up by Resident commands. `o` is the second character in R**o**om.
+:point_right: Room commands are prefixed with `o` as `r` is taken up by Resident commands. 
+`o` is the second character in R**o**om.
 </div>
 
 <div markdown="block" class="alert alert-info">
@@ -319,8 +320,9 @@ Adds a room to the housing management system.
 Format: `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]`
 * Room is initialised with default occupancy status of "No".
 * The occupancy status cannot be defaulted to "Yes" during room addition.
-* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated.
-  See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or 
+  deallocated. See [allocate a resident](#allocate-resident-to-room-alloc) or 
+  [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
 
 Parameters:
 * [`ROOM_NUMBER`](#room_number) The room number of the room to add.
@@ -367,18 +369,25 @@ Examples:
 Edits the existing room record at a specified index.
 
 Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
-* `INDEX` refers to the index number shown in the displayed room list. `INDEX` **must be a positive integer 1, 2, 3, …**.
+* `INDEX` refers to the index number shown in the displayed room list. 
+  `INDEX` **must be a positive integer 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* `oedit` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before making further edits.
+* `oedit` will block editing of a room number **if the room is occupied**. Run `dealloc` to deallocate the room before 
+  making further edits.
+  * This is done to prevent residents from being assigned to non-existent rooms by editing away a room's number after
+    allocating a resident to it
 * The occupancy status is not controllable through the `oedit` command.
-* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated.
-  See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
-* `oedit` will be blocked if there are issues tagged to the room. Run `idel` to [delete the issues](#delete-an-issue--idel) associated with the room before making further edits.
-    * This is done to prevent issues from being assigned to nonexistent rooms, by editing away a room's number after assigning an issue to it
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or 
+  deallocated. See [allocate a resident](#allocate-resident-to-room-alloc) or 
+  [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
+* `oedit` will block editing of a room number **if there are issues tagged to the room**. Run `idel` to 
+  [delete the issues](#delete-an-issue--idel) associated with the room before making further edits.
+    * This is done to prevent issues from being assigned to non-existent rooms by editing away a room's number after
+      assigning an issue to it
 
 <div markdown="block" class="alert alert-info">
-:information_source: Room numbers are editable as renovation or re-numbering excercises may take place.
+:information_source: Room numbers are editable *in general* as renovation or re-numbering excercises may take place.
 </div>
 
 Parameters:
@@ -396,7 +405,8 @@ Example:
 Deletes the room at a specified index.
 
 Format: `odel INDEX`
-* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
+* `INDEX` refers to the index number shown in the displayed resident list. 
+  `INDEX` **must be a positive integer 1,2,3, ...**.
 * `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room.
   See [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
 * `odel` will be blocked if the there are issues associated with the room.
