@@ -251,4 +251,4 @@ Constraints:
 ![InfoCommandDemo](images/InfoCommandDemo.png)
 
 #### Example output for finding a specific module information
-![InfoCommandDemo](images/InfoCommandSingleModuleDemo.png)
+![InfoCommandDemoSingle](images/InfoCommandSingleModuleDemo.PNG)
