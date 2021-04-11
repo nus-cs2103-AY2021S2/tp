@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":SOCheduleParser" as SOCheduleParser LOGIC_COLOR
+participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
 participant ":FindEventCommandParser" as FindEventCommandParser LOGIC_COLOR
 participant "d:FindEventCommand" as FindEventCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("find_event project meeting")
 activate LogicManager
 
-LogicManager -> SOCheduleParser : parseCommand("find_event project meeting")
-activate SOCheduleParser
+LogicManager -> SocheduleParser : parseCommand("find_event project meeting")
+activate SocheduleParser
 
 create FindEventCommandParser
-SOCheduleParser -> FindEventCommandParser
+SocheduleParser -> FindEventCommandParser
 activate FindEventCommandParser
 
-FindEventCommandParser --> SOCheduleParser
+FindEventCommandParser --> SocheduleParser
 deactivate FindEventCommandParser
 
-SOCheduleParser -> FindEventCommandParser : parse("project meeting")
+SocheduleParser -> FindEventCommandParser : parse("project meeting")
 activate FindEventCommandParser
 
 create FindEventCommand
@@ -36,14 +36,14 @@ activate FindEventCommand
 FindEventCommand --> FindEventCommandParser : s
 deactivate FindEventCommand
 
-FindEventCommandParser --> SOCheduleParser : s
+FindEventCommandParser --> SocheduleParser : s
 deactivate FindEventCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-FindEventCommandParser -[hidden]-> SOCheduleParser
+FindEventCommandParser -[hidden]-> SocheduleParser
 destroy FindEventCommandParser
 
-SOCheduleParser --> LogicManager : s
-deactivate SOCheduleParser
+SocheduleParser --> LogicManager : s
+deactivate SocheduleParser
 
 LogicManager -> FindEventCommand : execute()
 activate FindEventCommand

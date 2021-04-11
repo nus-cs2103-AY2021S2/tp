@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : parse(add_task args)
+[-> LogicManager : parse("add_task ...")
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(add_task args)
+LogicManager -> SocheduleParser : parseCommand("add_task ...")
 activate SocheduleParser
 
 

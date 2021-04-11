@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":SOCheduleParser" as SOCheduleParser LOGIC_COLOR
+participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
 participant "s:TodayEventCommand" as TodayEventCommand LOGIC_COLOR
 participant "CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -15,20 +15,20 @@ end box
 [-> LogicManager : parse("today_event")
 activate LogicManager
 
-LogicManager -> SOCheduleParser : parseCommand("today_event")
-activate SOCheduleParser
+LogicManager -> SocheduleParser : parseCommand("today_event")
+activate SocheduleParser
 
 create TodayEventCommand
-SOCheduleParser -> TodayEventCommand
+SocheduleParser -> TodayEventCommand
 activate TodayEventCommand
 
-TodayEventCommand --> SOCheduleParser : s
+TodayEventCommand --> SocheduleParser : s
 deactivate TodayEventCommand
 
-LogicManager <-- SOCheduleParser : s
-deactivate SOCheduleParser
+LogicManager <-- SocheduleParser : s
+deactivate SocheduleParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-SOCheduleParser -[hidden]->[
+SocheduleParser -[hidden]->[
 
 LogicManager -> TodayEventCommand : execute()
 activate TodayEventCommand
