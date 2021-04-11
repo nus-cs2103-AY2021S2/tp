@@ -40,19 +40,20 @@ public class EditPersonCommand extends Command {
             + PREFIX_EMAIL + "doe@example.com";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the person's email used in the displayed person list. "
+            + "by the person's email used in the displayed person list.\n "
+            + "At least one parameter to be changed must be specified. "
             + "Existing values will be overwritten by the input values.\n"
             + "At least one of the optional fields must be provided.\n"
             + MESSAGE_FIELDS;
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited person: %1$s";
     public static final String MESSAGE_NOT_EDITED =
             "Incomplete command: At least one field to edit must be provided.\n";
 
     public static final String MESSAGE_DUPLICATE_EMAIL =
-            "The email to be edited to belongs to another person in the booking system.";
+            "The new email already belongs to another person currently in the booking system.";
     public static final String MESSAGE_DUPLICATE_PHONE =
-            "The phone number to be edited to belongs to another person in the booking system.";
+            "The new phone number already belongs to another person currently in the booking system.";
 
     private final Email email;
     private final EditPersonDescriptor editPersonDescriptor;

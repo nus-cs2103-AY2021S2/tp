@@ -240,7 +240,12 @@ public class ParserUtil {
             assert Capacity.isValidCapacity(Integer.parseInt(trimmedCapacity));
             return new Capacity(formattedCapacity);
         } catch (NumberFormatException e) {
-            throw new ParseException(Capacity.MESSAGE_INVALID);
+            String numericRegex = "^(?:[+\\-\\d][0-9]*)$";
+            if (capacity.matches(numericRegex)) {
+                throw new ParseException(Capacity.MESSAGE_CONSTRAINTS);
+            } else {
+                throw new ParseException(Capacity.MESSAGE_INVALID);
+            }
         }
     }
 
@@ -262,7 +267,12 @@ public class ParserUtil {
             assert Capacity.isValidCapacity(Integer.parseInt(trimmedCapacityKeyword));
             return new CapacityMatchesKeywordPredicate(formattedCapacityKeyword);
         } catch (NumberFormatException e) {
-            throw new ParseException(Capacity.MESSAGE_INVALID);
+            String numericRegex = "^(?:[+\\d].*\\d|\\d)$";
+            if (capacityKeyword.matches(numericRegex)) {
+                throw new ParseException(Capacity.MESSAGE_CONSTRAINTS);
+            } else {
+                throw new ParseException(Capacity.MESSAGE_INVALID);
+            }
         }
     }
 

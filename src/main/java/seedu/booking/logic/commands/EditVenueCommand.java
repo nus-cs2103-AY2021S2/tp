@@ -42,12 +42,13 @@ public class EditVenueCommand extends Command {
             + PREFIX_TAG + "Central";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the venue identified "
-            + "by the venue name used in the displayed venue list. "
+            + "by the venue name used in the displayed venue list.\n"
+            + "At least one parameter to be changed must be specified."
             + "Existing values will be overwritten by the input values.\n"
             + "At least one of the optional fields must be provided.\n"
             + MESSAGE_FIELDS;
 
-    public static final String MESSAGE_EDIT_VENUE_SUCCESS = "Edited Venue: %1$s";
+    public static final String MESSAGE_EDIT_VENUE_SUCCESS = "Edited venue: %1$s";
     public static final String MESSAGE_NOT_EDITED =
             "Incomplete command: At least one field to edit must be provided.\n";
 

@@ -72,6 +72,8 @@ This section gives an overview of BookCoin’s layout so that you can get starte
 
 * Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
+  
+* Limitations: certain keywords are reserved for commands and hence should not be used in your regular input field. For example, you would not be able to set a venue description to "n/a" because `n/` is a reserved keyword.
 
 </div>
 
@@ -96,10 +98,9 @@ Format: `clear`
 * The clear command is especially useful for first time users because the app would first launch with sample data for new users
   to have greater convenience when testing app functionalities. Users can then use the clear command to
   clear the database of sample data after familiarising themselves with the app.
-
-* To prevent indiscriminate or accidental use of the clear command which could be potentially disastrous, we have included an
-  inbuilt confirmation message that users would need to affirm.
-
+  
+* Be careful when using this command! All data will be deleted permanently.
+  
 </div>
 
 #### 3.1.3. Saving data
@@ -112,26 +113,20 @@ Exits the program.
 
 Format: `exit`
 
-### 3.2. Commands specific to multi-step commands
+### 3.2. Command specific to multi-step commands
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: More information about multi-step commands:**<br>
 
-* Some commands require multiple input information which can be very tedious to type in one go.
-Multi-step commands therefore allow such commands to be used with greater ease by users as the system will prompt them to input items one at a time. To skip input for optional fields, you can just press the <kbd>Enter</kbd> key without typing anything when prompted to enter an optional field.
+* Some operations require several input fields, which can be very tedious to type in one go and may be difficult to remember.
+Multi-step commands therefore allow such commands to be used with greater ease as the system will prompt you to input items one at a time. To skip input for optional fields, you can just press the <kbd>Enter</kbd> key without typing anything when prompted to enter an optional field.
 * The multi-step commands currently supported in v1.4 are `add_person`, `add_venue` and `add_booking`.
-* The commands listed in this section are specific to multi-step commands and are only applicable when the user is in the middle of a multi-step command.
+* The commands listed in this section are specific to multi-step commands and are only applicable for use when you are in the middle of a multi-step command.
 
 </div>
 
-#### 3.2.1. Undo previous input : `undo`
-
-Brings the prompt of the multi-step command back to the previous step if users made a typo and wish to re-enter their input for the previous field.
-
-Format: `undo`
-
-#### 3.2.2. Exiting prompting : `exit_prompt`
+#### 3.2.1. Exiting prompting : `exit_prompt`
 
 Exits the multi-step prompting for multi-step commands. After exiting prompting, you would be able to give command
 inputs again. Other commands would not work if you do not exit the multi-step command.
@@ -153,13 +148,18 @@ Format: `exit_prompt`
 #### 3.3.1. Adding a person : `add_person` (Multi step command)
 
 Adds a new person for the booking app. `add_person` is a multi-step command that will prompt you for additional input. Inputting 
-`add_person n/NAME` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
+`add_person n/NAME` will start the command.
+The app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
 
-After keying in a valid initial input, the multi-step prompting will prompt you to enter details for the field email, phone and tags.
-Email and phone number must be unique. Tags are optional.
-Emails should be of the format local-part@domain. Phone numbers should only contain numbers, and it should be between 7 to 15 digits long (inclusive). <br>
+After keying a valid initial input, the multi-step prompting will prompt you to enter details for the following fields in the specified order:
+* Email: must be unique and of the format <em>local-part@domain</em>.
+* Phone number: must be unique and input as digits without spaces in between. The permitted length is 7-15 digits inclusive, which is the standard length of all international phone numbers.
+* Tags: tags should be alphanumeric without spaces. To add multiple tags, tags should be separated by commas. No tag can be empty, so consecutive commas without any tag in between would be invalid.
+<br>
 Format: `add_person n/NAME`
-
+<br>
+Example: `add_person n/Christopher Nolan'
+<br>
 #### 3.3.2. Editing a person : `edit_person`
 
 Edits an existing person in the booking system. 
@@ -205,7 +205,7 @@ Example:
 
 **:information_source: About venues:**<br>
 
-* BookCoin stores information about venues which is important for scheduling/ contacting purposes. When bookers are stored, their information can be used for multiple bookings in the future which allows you to access their details easily without having to repeat the same venue details multiple times across bookings.
+* BookCoin stores information about venues which is important for scheduling/ contacting purposes. When venues are stored, their information can be used for multiple bookings in the future which allows you to access their details easily without having to repeat the same venue details multiple times across bookings.
 * Venues are identified by their venue names, hence all venue names between venues must be unique.
 
 </div>
@@ -216,9 +216,9 @@ Adds a new venue for the booking app. `add_venue` is a multi-step command that w
 `add_venue v/VENUE_NAME` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
 
 After keying in a valid initial input, the multi-step prompting will prompt you to enter details for the following optional fields in the order stated, which can be skipped by pressing the <kbd>Enter</kbd> key:
-* Venue capacity, which should be entered as a digit, with the maximum limit being 50000. Default capacity is set to 10.
+* Venue capacity: the capacity should be entered as a digit, with the maximum limit being 50000. Default capacity is set to 10.
 * Venue description
-* Tags, where multiple tags are required to be separated by commas. Tags should be alphanumeric without spaces, and consecutive commas without a tag in between are not allowed.
+* Tags: tags should be alphanumeric without spaces. To add multiple tags, tags should be separated by commas. No tag can be empty, so consecutive commas without any tag in between would be invalid.
 
 Format: `add_venue v/VENUE_NAME`
 
@@ -265,7 +265,7 @@ Format: `find_venue [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]`
 * Only for the `NAME` and `DESCRIPTION` fields, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a person's name contains words that fully matches any of the specified keywords.
 * The provision of an empty `DESCRIPTION` field is accepted.
 
-Example:
+Examples:
 * `find_venue v/Victoria Hall max/50` shows a list of venues whose name contains words that fully matches any of the two specified venue name keywords `Victoria` and `Hall`. The venue must also have a maximum capacity of at least `50`.
 * `find_venue d/` shows a list of venues that do not have description.
 
@@ -324,7 +324,7 @@ Format: `find_booking [e/BOOKER_EMAIL] [date/DATE] [v/VENUE_NAME] [d/DESCRIPTION
 * Only for the `VENUE_NAME` and `DESCRIPTION` fields, multiple keywords can be provided and must be separated by whitespace. Matching is successful as long as a person's name contains words that fully matches any of the specified keywords.
 * The provision of an empty `DESCRIPTION` field is accepted.
 
-Example:
+Examples:
 * `find_booking e/johnd@gmail.com date/2020-02-12` shows a list of bookings booked by a person with the email `johnd@gmail.com`. The booking duration must also contain the date `2020-02-12`.
 * `find_booking d/` shows a list of bookings that do not have descriptions.
 
