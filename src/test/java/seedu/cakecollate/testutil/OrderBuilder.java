@@ -1,6 +1,8 @@
 package seedu.cakecollate.testutil;
 
+import static seedu.cakecollate.testutil.TestUtil.stringify;
 import static seedu.cakecollate.testutil.TypicalOrderItems.BLACK_FOREST;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
