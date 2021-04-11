@@ -702,14 +702,13 @@ The sequence diagram for a sample usage of `DoneTaskCommand`can be found below, 
 
 ![Sequence Diagram of DoneTask Command](images/DoneTaskCommandSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">
 
 :information_source: **Note:** 
 Due to the size constraint, the argument `PREDICATE_SHOW_ALL_TASKS` is not shown in the sequence diagram 
 when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`.
 
 </div>
-
-<div style="page-break-after: always;"></div>
 
 **Design Considerations**
 
