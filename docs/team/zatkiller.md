@@ -64,8 +64,8 @@ Given below are my contributions to the project.
 
   * Developer Guide:
     * Update the user stories in the Developer Guide (Pull requests: [\#105](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/105))
-    * Update the Model UML Diagram in the Developer Guide (Pull requests: [\#188](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/188))
-    * Add implementation explanation for done and undo command (Pull requests: [\#134](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/134))
+    * Update the Model Diagram in the Developer Guide (Pull requests: [\#188](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/188))
+    * Add implementation documentation for done and undo command (Pull requests: [\#134](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/134))
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments) (Pull requests: [\#187](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/187), [\#67](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/67), [\#70](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/70))
