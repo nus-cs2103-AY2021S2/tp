@@ -3,7 +3,7 @@ layout: page
 title: imPoster Developer Guide
 nav-text: Developer Guide
 ---
-<!-- Remember to revert README! -->
+Remember to revert README!
 <p align="center">
   <img width="300px" src="images/imPosterDevGuide.png" >
 </p>
@@ -124,6 +124,8 @@ The `UI` component,
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
+<div style="page-break-after: always;"></div>
+
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("remove 1")` API call.
 
 <p align="center">
@@ -151,9 +153,9 @@ The `Model`,
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model
 is given below. It has a `Tag` list in the `imPoster`, which `Endpoint` references. This allows `imPoster` to only 
 require one `Tag` object per unique `Tag`, instead of each `Endpoint` needing their own `Tag` object.<br>
-  <p align="center">
-    <img width="500px" src="images/BetterModelClassDiagram.png" >
-  </p>
+  &lt;p align="center"&gt;
+    &lt;img width="500px" src="images/BetterModelClassDiagram.png" &gt;
+  &lt;/p&gt;
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -274,6 +276,8 @@ The following activity diagram summarizes what happens when a user executes a fi
   <img width="430px" src="images/FindActivityDiagram.png" >
 </p>
 
+<div style="page-break-after: always;"></div>
+
 ### Send & run command feature
 
 #### What it is
@@ -298,6 +302,8 @@ Step 4. The response will then be parsed and forwarded to `UI` for further forma
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a run command fails to execute, relevant error message will be provided.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how the `run` operation works:
 
@@ -336,8 +342,6 @@ The following activity diagram summarizes what happens when a user executes a va
   * Cons: Duplication of code across all command parsers that require the verification of URLs, such as `add` and
     `run` commands.
 
-<div style="page-break-after: always;"></div>
-
 ### Request feature
 
 #### What it is
@@ -368,6 +372,8 @@ Step 4. The response retrieved will also be parsed and passed to UI for further 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If an API call fails to return a response (e.g. due to connection error), it will not call `model.setEndpoint()` so the endpoint list state will not be updated or saved.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how the request operation works when a user executes a `send` command for an endpoint with a `GET` request:
 
@@ -816,6 +822,8 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 ## **Appendix D: Non-Functional Requirements**
 
 1.  Should work on any [mainstream OS](#glossary-OS) as long as it has Java `11` or above
@@ -850,9 +858,6 @@ the `user`, unless specified otherwise)
 | **Protocol** | <a name="glossary-protocol"></a> A protocol is a system of rules that define how data is exchanged within or between systems |
 | **Postman** | <a name="glossary-postman"></a> An existing API client for developers. See more [here](https://www.postman.com/) |
 
-
-<div style="page-break-after: always;"></div>
-
 ## **Appendix F: Developer Workflow**
  
 Please checkout the [workflow guide](https://ay2021s2-cs2103t-t12-4.github.io/tp/WorkflowGuide.html) to understand
@@ -861,7 +866,11 @@ the adopted approach in maintaining imPoster.
 ## **Appendix G: API definition**
 
 ### What is an API?
-Broadly speaking, an **API** is an interface that enables and defines how **two systems** interact with one another. In a classic analogy, the interaction above is usually likened to a **waiter** communicating a **customer** order to the restaurant **kitchen**. In this analogy, the **customer** and **kitchen** represents the **two systems** and the **waiter** represents the **API** allowing them to communicate. The **order** and **food** delivered then corresponds to the terms **request** and **response** associated with an API call. The annotated diagrams below capture these interactions and may aid in providing a better understanding:
+Broadly speaking, an **API** is an interface that enables and defines how **two systems** interact with one another. In a classic analogy, the interaction above is usually likened to a **waiter** communicating a **customer** order to the restaurant **kitchen**. In this analogy, the **customer** and **kitchen** represents the **two systems** and the **waiter** represents the **API** allowing them to communicate. The **order** and **food** delivered then corresponds to the terms **request** and **response** associated with an API call.
+
+<div style="page-break-after: always;"></div>
+
+The annotated diagram below captures these interactions and may aid in providing a better understanding:
 
 <p align="center">
   <img width="700px" src="images/ApiExplanation.png" >
@@ -878,6 +887,8 @@ Given below are instructions to test the app manually.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on and testers are expected to do more *exploratory* testing.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Launch and shutdown
 
@@ -1153,6 +1164,8 @@ Given below are instructions to test the app manually.
    1. Test case: `run https://thisisarandomanyhowlink.com` <br>
       Expected: No endpoint is called. Error details shown in the result display, with a result message saying `Connection could not be established.` <br>
       Other incorrect remove commands to try: `run x` (where x is any URL whose connection cannot be established).
+
+<div style="page-break-after: always;"></div>
 
 ### Saving data
 
