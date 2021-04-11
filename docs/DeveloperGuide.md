@@ -702,7 +702,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `editMember Alice n/Timothy`<br>
        Expected: No member is edited since a member with the name Timothy already exists. Error details is shown in the status
        message.
-
+       
     4. Test case: `editMember Alice n/Alice Tan p/98887777 e/aliceTan@gmail.com`
        Expected: Member with the name Alice is edited to have the new details as specified. Details of the edited member is shown
        in the status message.
@@ -787,7 +787,30 @@ testers are expected to do more *exploratory* testing.
     6. Other incorrect delete commands to try: `edit`, `editTask 0`, `editTask -1` <br>
        Expected: Similar to previous test case.
 
+       
+### Viewing tasks
 
+1. Lists all tasks within HEY MATEz. 
+   
+    1. Test case: `viewTasks`<br>
+       Expected: Lists all tasks within the HEY MATEz.
+       
+### Deleting a Task
+
+1. Deleting a Task while all tasks are being shown.
+
+    1. Prerequisites: List all tasks using the `viewTasks` command. 3 different tasks in the list. 
+       All 3 tasks have different indexes(1, 2, 3).
+
+    2. Test case: `deleteTask 1`<br>
+       Expected: Task with the index `1` is deleted from the list. Details of the deleted task shown in the status message.
+
+    3. Test case: `deleteTask 4`<br>
+       Expected: No task is deleted. Error details shown in the status message(Index is invalid).
+
+    4. Other incorrect commands to try: `deleteTask`, `deleteTask abc`, `deleteTask -1`, `...` <br>
+       Expected: Similar to previous.
+       
 ### Mark a Task as completed
 
 1. Mark a task as completed:
@@ -815,8 +838,24 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `undo 0`<br>
       Expected: No task marked as **uncompleted**. Error details is shown in the status bar.      
       
-   1. Other incorrect commands to try: `undo`, `undo -1` 
+   1. Other incorrect commands to try: `undo`, `undo -1`
       Expected: Similar to previous test case.   
+
+      
+### Viewing a list of unassigned Tasks
+
+1. Lists all unassigned tasks within HEY MATEz.
+
+    1. Test case: `viewUnassignedTasks`<br>
+       Expected: Lists all tasks that are unassigned within the HEY MATEz.
+
+### Viewing a list of uncompleted Tasks
+
+1. Lists all uncompleted tasks within HEY MATEz.
+
+    1. Test case: `viewUncompletedTasks`<br>
+       Expected: Lists all tasks that are uncompleted within the HEY MATEz.
+
 
 ### Find Tasks by priority
 
