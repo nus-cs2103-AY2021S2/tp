@@ -46,6 +46,29 @@ public class StringUtil {
     }
 
     /**
+     * Capitalises each word in a given string, and returns other letters to lowercase,
+     * assuming words are separated by whitespace.
+     * @param words
+     * @return
+     */
+    public static String capitaliseEachWord(String words) {
+        requireNonNull(words);
+
+        if (words.isBlank()) {
+            return words;
+        }
+
+        String[] wordArr = words.split("\\s+");
+
+        for (int i = 0; i < wordArr.length; i++) {
+            String s = wordArr[i];
+            String capitalised = s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
+            wordArr[i] = capitalised;
+        }
+        return String.join(" ", wordArr);
+    }
+
+    /**
      * Returns true if {@code s} represents a non-zero unsigned integer
      * e.g. 1, 2, 3, ..., {@code Integer.MAX_VALUE} <br>
      * Will return false for any other non-null string input

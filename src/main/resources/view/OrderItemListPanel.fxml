@@ -10,7 +10,7 @@
         <columns>
             <TableColumn fx:id="index" text="Index" prefWidth="100">
             </TableColumn>
-            <TableColumn fx:id="type" text="Type" prefWidth="200">
+            <TableColumn fx:id="type" text="Order Item" prefWidth="200">
                 <cellValueFactory><PropertyValueFactory property="type" />
                 </cellValueFactory>
             </TableColumn>

@@ -29,10 +29,11 @@ public class OrderDescriptionTest {
         assertFalse(OrderDescription.isValidOrderDescription(" ")); // spaces only
         assertFalse(OrderDescription.isValidOrderDescription("          ")); // spaces only
         assertFalse(OrderDescription.isValidOrderDescription("Cake##")); // with special characters excluding "
+        assertFalse(OrderDescription.isValidOrderDescription("12345")); // numbers
+        assertFalse(OrderDescription.isValidOrderDescription("2 x Chocolate cake")); // numbers
 
         // valid order descriptions
         assertTrue(OrderDescription.isValidOrderDescription("chocolate cake")); // alphabets only
-        assertTrue(OrderDescription.isValidOrderDescription("12345")); // numbers only
-        assertTrue(OrderDescription.isValidOrderDescription("2 x Chocolate cake")); // alphanumeric characters
     }
+
 }

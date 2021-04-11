@@ -196,39 +196,39 @@ public class ContainsKeywordsPredicateTest {
         HashMap<Prefix, List<String>> map = new HashMap<>();
 
         // One keyword
-        map.put(PREFIX_ORDER_DESCRIPTION, Arrays.asList("2", "x", "Strawberry Cakes"));
+        map.put(PREFIX_ORDER_DESCRIPTION, Arrays.asList("Strawberry", "Cakes"));
         ContainsKeywordsPredicate predicate = new ContainsKeywordsPredicate(map);
-        assertTrue(predicate.test(new OrderBuilder().withOrderDescriptions("2 x Strawberry Cakes").build()));
+        assertTrue(predicate.test(new OrderBuilder().withOrderDescriptions("Strawberry Cakes").build()));
 
         // One keyword, two order descriptions
-        map.put(PREFIX_ORDER_DESCRIPTION, Arrays.asList("2", "x", "Chocolate Cakes"));
+        map.put(PREFIX_ORDER_DESCRIPTION, Arrays.asList("Chocolate", "Cakes"));
         predicate = new ContainsKeywordsPredicate(map);
         assertTrue(predicate.test(new OrderBuilder()
-                .withOrderDescriptions("2 x Strawberry Cakes", "2 x Chocolate Cakes").build()));
+                .withOrderDescriptions("Strawberry Cakes", "Chocolate Cakes").build()));
 
-        // Multiple keywords
+        //Multiple keywords
         map.clear();
-        map.put(PREFIX_ORDER_DESCRIPTION, Arrays.asList("2,", "Strawberry"));
+        map.put(PREFIX_ORDER_DESCRIPTION, Arrays.asList("Strawberry"));
         predicate = new ContainsKeywordsPredicate(map);
-        assertTrue(predicate.test(new OrderBuilder().withOrderDescriptions("2 x Strawberry Cakes").build()));
+        assertTrue(predicate.test(new OrderBuilder().withOrderDescriptions("Strawberry Cakes").build()));
 
         // Only one matching keyword
         map.clear();
         map.put(PREFIX_ORDER_DESCRIPTION, Arrays.asList("Strawberry", "Chocolate"));
         predicate = new ContainsKeywordsPredicate(map);
-        assertTrue(predicate.test(new OrderBuilder().withOrderDescriptions("2 x Strawberry Cakes").build()));
+        assertTrue(predicate.test(new OrderBuilder().withOrderDescriptions("Strawberry Cakes").build()));
 
         // Mixed-case keywords
         map.clear();
         map.put(PREFIX_ORDER_DESCRIPTION, Arrays.asList("strAwBerRy", "CAKES"));
         predicate = new ContainsKeywordsPredicate(map);
-        assertTrue(predicate.test(new OrderBuilder().withOrderDescriptions("2 x Strawberry Cakes").build()));
+        assertTrue(predicate.test(new OrderBuilder().withOrderDescriptions("Strawberry Cakes").build()));
 
         // Sub keywords
         map.clear();
         map.put(PREFIX_ORDER_DESCRIPTION, Arrays.asList("berry", "ake"));
         predicate = new ContainsKeywordsPredicate(map);
-        assertTrue(predicate.test(new OrderBuilder().withOrderDescriptions("2 x Strawberry Cakes").build()));
+        assertTrue(predicate.test(new OrderBuilder().withOrderDescriptions("Strawberry Cakes").build()));
     }
 
     @Test
