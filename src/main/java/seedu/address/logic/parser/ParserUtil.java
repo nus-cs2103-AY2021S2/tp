@@ -70,10 +70,10 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        String properName = convertToTitleCase(trimmedName);
-        if (!Name.isValidName(properName)) {
+        if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
+        String properName = convertToTitleCase(trimmedName);
         return new Name(properName);
     }
 
