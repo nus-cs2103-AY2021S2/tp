@@ -231,7 +231,7 @@ their grades of different tests and different subjects. With Grade Book, users c
 related information on the same application instead of using multiple applications.
 
 #### Implementation
-A grade is composed of a `subject`, `graded item` and `grade letter`, out of which `subject` and `graded item` are used to identify a grade uniquely. 
+A grade is composed of a `subject`, `graded item` and `grade letter`, out of which `subject` and `graded item` are used to identify a grade object uniquely. 
 
 All the user's grades are stored internally in the `GradeList`. Grade Book consist of the following operations
 that can be performed on the grade:   
@@ -1086,6 +1086,7 @@ _For all use cases below, the **System** is the `TutorTracker` and the **Actor**
 * **Qualifications**: Official certificates of successful completion of an education programme, e.g, Bachelor of Science.
 * **Index**: Index number shown in the displayed list. The index must be a positive integer 1, 2, 3, …​
 * **Unfavourite**: Reverse the action of adding as a favourite
+* **Singapore-GCE O'Level grading system**: The alphanumeric grade A (1,2), B (3,4), C (5,6), D7, E8, and F9. (Reference: [Singapore-GCE O'Level grading system](https://en.wikipedia.org/wiki/Singapore-Cambridge_GCE_Ordinary_Level#Grades).)
 
 --------------------------------------------------------------------------------------------------------------------
 
