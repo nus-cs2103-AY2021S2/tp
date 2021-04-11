@@ -12,6 +12,7 @@ import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -35,7 +36,7 @@ public class AddDoctorCommandTest {
 
         CommandResult commandResult = new AddDoctorCommand(validDoctor).execute(modelStub);
 
-        assertEquals(String.format(AddDoctorCommand.MESSAGE_SUCCESS, validDoctor),
+        assertEquals(String.format(Messages.MESSAGE_ADD_DOCTOR_SUCCESS, validDoctor),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validDoctor), modelStub.doctorsAdded);
     }
@@ -46,7 +47,7 @@ public class AddDoctorCommandTest {
         AddDoctorCommand addCommand = new AddDoctorCommand(validDoctor);
         ModelStub modelStub = new ModelStubWithDoctor(validDoctor);
 
-        assertThrows(CommandException.class, AddDoctorCommand.MESSAGE_DUPLICATE_DOCTOR, () -> addCommand
+        assertThrows(CommandException.class, Messages.MESSAGE_ADD_DUPLICATE_DOCTOR, () -> addCommand
                 .execute(modelStub));
     }
 
