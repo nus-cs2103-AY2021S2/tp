@@ -116,6 +116,28 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getItemListTest() {
+        modelManager.addItem(APPLE);
+        modelManager.addItem(BREAD);
+        int numOfItems = modelManager.getItemList().size();
+        assertTrue(numOfItems == 2);
+    }
+
+    @Test
+    public void getLocationListTest() {
+        // Two unique locations and 2 items
+        modelManager.addItem(APPLE);
+        modelManager.addItem(BREAD);
+        int numOfLocations = modelManager.getLocationList().size();
+        assertTrue(numOfLocations == 2);
+
+        // Two unique location and 3 items
+        modelManager.addItem(FAKEAPPLE);
+        numOfLocations = modelManager.getLocationList().size();
+        assertTrue(numOfLocations == 2);
+    }
+
+    @Test
     public void equals() {
         StoreMando storeMando = new StoreMandoBuilder().withItem(APPLE).withItem(BREAD).build();
         StoreMando differentStoreMando = new StoreMando();
