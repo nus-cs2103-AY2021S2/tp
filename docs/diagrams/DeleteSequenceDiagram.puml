@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete A1234567X")
 activate LogicManager
 
-LogicManager -> StudentBookParser : parseCommand("delete 1")
+LogicManager -> StudentBookParser : parseCommand("delete A1234567X")
 activate StudentBookParser
 
 create DeleteCommandParser
@@ -26,7 +26,7 @@ activate DeleteCommandParser
 DeleteCommandParser --> StudentBookParser
 deactivate DeleteCommandParser
 
-StudentBookParser -> DeleteCommandParser : parse("1")
+StudentBookParser -> DeleteCommandParser : parse("A1234567X")
 activate DeleteCommandParser
 
 create DeleteCommand
@@ -48,7 +48,7 @@ deactivate StudentBookParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteStudent(1)
+DeleteCommand -> Model : deleteStudent(A1234567X)
 activate Model
 
 Model --> DeleteCommand

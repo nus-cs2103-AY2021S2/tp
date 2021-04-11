@@ -26,13 +26,11 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " A01234567R";
 
     public static final String MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND =
-            "Found student with matriculation number %s \n"
+            "A student with matriculation number %s is found \n"
                     + "If they have an appointment, their appointment will also be listed.";
 
     public static final String MESSAGE_NO_STUDENT_FOUND =
             "No student with matriculation number %s was found. \n";
-
-    public static final String MESSAGE_NONEXISTENT_APPOINTMENT = "No appointment was found.";
 
 
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -67,8 +65,9 @@ public class FindCommand extends Command {
         assert (filteredStudentListSize >= 0 && filteredAppointmentListSize >= 0);
 
         if (filteredStudentListSize == 0) {
-            model.updateFilteredStudentList(predicate->true);
-            model.updateFilteredAppointmentList(second_predicate->true, second_predicate->true);
+            model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
+            model.updateFilteredAppointmentList(Model.PREDICATE_SHOW_ALL_APPOINTMENT_LISTS,
+                    Model.PREDICATE_SHOW_ALL_APPOINTMENTS);
 
             logger.info("Student with a matriculation number of " + predicate.getKeyword()
                     + "does not exist in Vax@NUS");
@@ -77,7 +76,7 @@ public class FindCommand extends Command {
                     predicate.getKeyword()));
 
         } else if (filteredAppointmentListSize == 0) {
-            return new CommandResult(String.format(MESSAGE_NONEXISTENT_APPOINTMENT,
+            return new CommandResult(String.format(MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
                     model.getFilteredStudentList().size()));
         } else {
             return new CommandResult(String.format(MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
