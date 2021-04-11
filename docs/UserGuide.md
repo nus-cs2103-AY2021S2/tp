@@ -10,14 +10,8 @@ after week. Many students **struggle to track all their tasks in a systematic an
 where Taskify comes to the rescue! With Taskify, students can 
 **manage all their tasks (academics/personal/CCA) 
 effectively and seamlessly** through a beautiful interface. <br><br>Taskify is optimized for use via a Command Line 
-Interface (CLI) while 
-still having the 
-benefits    
-of a Graphical User Interface (GUI). Simply put, a **CLI is just a text box where you type in 
-commands** so if you can type fast, Taskify can get 
-your 
-task management 
-done faster 
+Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). Simply put, a **CLI is just 
+a text box where you type in commands** so if you can type fast, Taskify can get your task management done faster 
 than traditional GUI apps.
 
 
@@ -51,6 +45,42 @@ This user guide is to help you learn how to use Taskify to manage your tasks eff
    Some example commands you can try can be seen [here](#command-summary).
 
 6. Refer to the [Features](#features) below for the details of the main commands.
+
+--------------------------------------------------------------------------------------------------------------------
+## Introduction
+This section introduces you to the UI of Taskify. Let us take a closer look at the different sections and fields
+present in the UI of Taskify.
+
+Here is a sample usage of Taskify:
+![TaskifyIntro](images/taskifyintro.png)
+
+The UI of Taskify is split into 4 main components:
+1. Task List
+2. Command Box
+3. Response Box
+4. Due Today List
+
+### 1. Task list
+![TaskList](images/tasklist.png)
+
+Shown above are positions of the Tabs and Tasks of a Task List. The fields of a Task include Index, Name,
+Tags, Description, Status and Date.
+
+### 2. Command box
+![CommandBox](images/commandbox.png)
+
+This is the Command Box. This is where you will input your commands.
+
+### 3. Response Box
+![ResponseBox](images/responsebox.png)
+
+This is the Response Box. This is where you will see Taskify's response to your commands.
+
+### 4. Due Today List
+![DueTodayList](images/duetodaylist.png)
+
+This is the Due Today List. This is where Tasks that are due today will be displayed
+for your convenience.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
