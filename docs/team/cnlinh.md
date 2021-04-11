@@ -22,7 +22,7 @@ Given below are my contributions to the project.
   * Managed post-mortem review.
 
 * **Enhancements to existing features**:
-  * Modify AddressBook parser to support Alias and its ability to undo Alias-related command: [\#71](https://github.com/AY2021S1-CS2103-T16-3/tp/pull/71).
+  * Modify AddressBook parser to support Alias and its ability to undo Alias-related command: [\#296](https://github.com/AY2021S2-CS2103-T14-1/tp/pull/296).
 
 * **Documentation**:
   * User Guide:
