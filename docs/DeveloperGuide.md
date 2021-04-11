@@ -13,7 +13,7 @@ title: Developer Guide
 ### Purpose
 
 The purpose of this document is to provide a brief overview of the multi-level design architecture of SmartLib,
-so that our target readers would be able to gain a better understanding of the relationship between
+so that you as a developer would be able to gain a better understanding of the relationship between
 the various components that SmartLib is made up from.
 
 ### Audience
