@@ -1,4 +1,6 @@
-#Overview
+# Overview
+
+## Introduction
 
 **semester.config is a desktop application for managing your tasks.**
 While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
