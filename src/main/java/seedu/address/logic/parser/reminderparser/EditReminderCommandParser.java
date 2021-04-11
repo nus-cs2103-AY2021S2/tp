@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.remindercommands.EditReminderCommand.
 import static seedu.address.logic.commands.remindercommands.EditReminderCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.remindercommands.EditReminderCommand;
@@ -30,7 +29,7 @@ public class EditReminderCommandParser implements Parser<EditReminderCommand> {
      */
     public EditReminderCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_DATE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_DATE);
 
         Index index;
         try {
