@@ -193,12 +193,20 @@ Format: `view_session c/ID`
 * Views the specified session with the specified session ID.
 * Left Panel will show the session's information such as the session ID, day
   time slot, subject, tags and assigned tutor (if any).
-* Right Panel will show the specifed session's list of assigned students (if any).
+* Right Panel will show the session's list of assigned students (if any).
 
 Example:
 
 * `view_session c/1` views the details of the session with session ID c/1 on the Left Panel
   and views the list of assigned students (e.g. students s/1, s/2) on the Right Panel.
+
+Before entering the command:
+
+![view session_before](images/ViewSessionBefore.png)
+
+After entering the command:
+
+![view session_after](images/ViewSessionAfter.png)
 
 ### Editing a person : `edit_person`
 
@@ -276,6 +284,14 @@ Examples:
 *  `edit_session c/1 d/Monday su/Biology` Edits the day and subject of the session c/1 to be `Monday` and `Biology` respectively.
 *  `edit_session c/2 ts/12:00 to 13:00 tag/Hard` Edits the timeslot and tag of the session c/2 to be `12:00 to 13:00` and `Hard` respectively.
 
+Before entering the command:
+
+![edit session_before](images/EditSessionBefore.png)
+
+After entering the command:
+
+![edit session_after](images/EditSessionAfter.png)
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -351,6 +367,14 @@ Format: `delete_session c/ID`
 Examples:
 
 - `delete_session c/1` deletes the session with session ID c/1 in EzManage.
+
+Before entering the command:
+
+![delete session_before](images/DeleteSessionBefore.png)
+
+After entering the command:
+
+![delete session_after](images/DeleteSessionAfter.png)
 
 ### Assigning student(s)/tutor to session : `assign`
 
