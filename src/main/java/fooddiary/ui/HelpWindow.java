@@ -48,7 +48,7 @@ public class HelpWindow extends UiPart<Stage> {
                     + "findall: Finds entries whose names, ratings, address and categories match ALL "
                     + "of the provided keywords.\n\n"
                     + "     findall Amaan 5/5 $5-15 indian\n\n\n"
-                    + "view: view: Opens up a window, showing the details of a"
+                    + "view: Opens up a window, showing the details of a"
                     + "specified entry in a full expanded view."
                     + " Allows the user to read through reviews that are too "
                     + "lengthy to be shown in the main UI window."
