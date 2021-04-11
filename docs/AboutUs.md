@@ -43,10 +43,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/teohoekeat.png" width="200px">
 
 [[github](http://github.com/teohoekeat)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/teohoekeat.md)]
 
 * Role: Member
-* Responsibilities: Full Stack Developer
+* Responsibilities: Implementation and Documentation of UI & Help Feature, Weekly Meeting Documentation. 
 
 ### Tian Xindi
 
