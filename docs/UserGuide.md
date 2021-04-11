@@ -359,11 +359,12 @@ Format: `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...`
 * `t/` is followed by the tag. Different tags are separated by white space (e.g. `t/t1` `t/t2`). It is optional.
 
 <div markdown="block" class="alert alert-info">
-:information_source: Note:
-    <ul>
-        <li>Any valid prefixes and input arguments (e.g. n/Homework 1 or p/1) followed by invalid prefixes and input arguments (e.g. name/Name, tag/Tag or T&sk) will lead to an error.</li>
-        <li>If the same prefix (excluding <code>c/</code>, <code>t/</code>) appears multiple times in the input (e.g. <code>n/n1</code> <code>n/n2</code>), the latter one would be taken (i.e. <code>n/n2</code>). </li>
-    </ul>
+
+**:information_source: Note:** <br>
+
+* Any valid prefixes and input arguments (e.g. <code>n/Homework 1</code> or <code>p/1</code>) followed by invalid prefixes and input arguments (e.g. <code>name/Name</code>, <code>tag/Tag</code> or <code>T&sk</code>) will lead to an error.
+* If the same prefix (excluding <code>c/</code>, <code>t/</code>) appears multiple times in the input (e.g. <code>n/n1 n/n2</code>), the latter one would be taken (i.e. <code>n/n2</code>).
+
 </div>
 
 Examples:
@@ -402,13 +403,16 @@ Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... 
   For example, in input `edit_task 1 t/tag1 t/tag2`, `t/tag1` is before `t/tag2`, but `tag2` may appear in the UI before `tag1`.
 
 <div markdown="block" class="alert alert-info">
-:information_source:
-    <ul>
-        <li>Any valid prefixes and input arguments (e.g. n/Homework 1 or p/1) followed by invalid prefixes and input arguments (e.g. name/Name, tag/Tag or T&sk) will lead to an error.</li>
-        <li>You can remove all the task’s tags by typing <code>t/</code> without specifying any tags after it.
-            Similarly, you can remove all the task’s categories by typing <code>c/</code> without specifying any categories after it</li>
-        <li>If the same prefix (excluding <code>c/</code>, <code>t/</code>) appears multiple times in the input (e.g. <code>n/n1</code> <code>n/n2</code>), the latter one would be taken (i.e. <code>n/n2</code>). </li>
-    </ul>
+
+**:information_source: Note:** <br>
+
+* Any valid prefixes and input arguments (e.g. <code>n/Homework 1</code> or <code>p/1</code>) followed by invalid prefixes and input arguments (e.g. <code>name/Name</code>, <code>tag/Tag</code> or <code>T&sk</code>) will lead to an error.</li>
+
+* You can remove all the task’s tags by typing <code>t/</code> without specifying any tags after it.<br>
+  Similarly, you can remove all the task’s categories by typing <code>c/</code> without specifying any categories after it</li>
+  
+* If the same prefix (excluding <code>c/</code>, <code>t/</code>) appears multiple times in the input (e.g. <code>n/n1</code> <code>n/n2</code>), the latter one would be taken (i.e. <code>n/n2</code>). </li>
+
 </div>
 
 Examples:
