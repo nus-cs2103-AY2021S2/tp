@@ -220,6 +220,13 @@ MatchCommand is updated to use a find command
 with single or multiple attributes (i.e. `c/` for Colour, `r/` for dressCode and `t/` for type) and the respective 
 predicate is subsequently used to create a FindCommand Object. This is then executed.
 
+The following sequence diagram shows how the match operation works:
+![Match Sequence Diagram](images/MatchSequenceDiagram.png)  
+
+The following activity diagram summarizes what happens when a user
+executes a match command:
+![Match Activity Diagram](images/MatchActivityDiagram.png)
+
 #### Design Consideration:
 
 ##### Aspect: Matching based on multiple attributes
