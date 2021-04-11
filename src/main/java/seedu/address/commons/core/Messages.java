@@ -10,16 +10,12 @@ public class Messages {
     public static final String MESSAGE_ENTRY_END_DATE_IN_PAST = "The provided end date and time is in the past";
     public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Deleted Entry: %1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
-<<<<<<< HEAD
     public static final String MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX = "The contact index provided is invalid";
-    public static final String MESSAGE_INVALID_DATE_RANGE = "The provided start date is after the provided end date!";
-=======
     public static final String MESSAGE_ENTRY_START_DATE_IN_PAST = "Time travel is not allowed! Please provide a valid"
             + " date time!";
     public static final String MESSAGE_INVALID_DATE_RANGE = "The start date/time must be strictly before"
             + " the end date/time!";
     public static final String MESSAGE_CONTACTS_LISTED_OVERVIEW = "%1$d contacts listed!";
->>>>>>> 76ba1178fd415c1942959d9457749448f91e24b8
     public static final String MESSAGE_ENTRIES_LISTED_OVERVIEW = "%1$d entries listed!";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_OVERLAPPING_ENTRY = "This entry has dates that overlap with other"

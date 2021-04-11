@@ -157,7 +157,7 @@ public class ParserUtil {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(String.format("Tag given: %s\n%s", trimmedTag, Tag.MESSAGE_CONSTRAINTS));
+            throw new ParseException("Tags names should be alphanumeric");
         }
         return new Tag(trimmedTag);
     }

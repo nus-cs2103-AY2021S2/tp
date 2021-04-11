@@ -102,8 +102,9 @@ public class AddContactCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         String invalidUserInput = "INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_FRIEND";
+        String expectedMsg = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE);
         // invalid name
-        assertParseFailure(parser, invalidUserInput, ContactName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, invalidUserInput, expectedMsg);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB
