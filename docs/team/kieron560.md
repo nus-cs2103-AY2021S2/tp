@@ -9,7 +9,14 @@ Focuris is a desktop event management application created with a Kanban board gr
 
 Given below are my contributions to the project:
 
-- **New Feature**: Added the BackLog, Todo Commands.
+- **Front-End Component**: Focuris Kanban View 
+  - Refactored the different UI Components that made up the Kanban View, including `EventCardPaneKanbanView.java` and 
+  `EventCardKanbanView.java`, as well as the various respective `fxml` files.
+  - Refined and improved the design of the frontend to make it more component-based and neater.
+  - Implemented the `priority` tags and `Identifier` tags into the event cards.
+  - Implemented CSS for the Kanban View, including paddings, margins and colours.
+
+- **New Feature**: Added the BackLog, In-Progress Commands.
 
   - What it does: Allows the user to add the two different kinds of events as stated above into the application.
   - Justification: We require those commands to encapsulate the addition of the different events into Focuris.
@@ -22,12 +29,22 @@ Given below are my contributions to the project:
 
   - Integration of code from JavaFX to Java for the KanBan board
 
+  **Project Management:**
+  
+  - Managed release of `Focuris v1.3` on GitHub
+
 - **Documentation**:
 
   - User Guide:
-    - Refined the User Guide for grammatical errors and made the guide more user-friendly.
-    - Added more content to the FAQ Section.
+    - Refined the User Guide for grammatical errors
+    - Edited the User Guide to make the it more user-friendly.
+    - Added more content to the `FAQ Section`.
+    
+  - Developer Guide:
+    - Added the `Introduction` section.
+    - Added more content to the `Glossary` section.
+    - Added diagram for the Architecture Sequence Diagram.
+    - Revised and updated the content for the `UI Component ` section.
 
 - **Community**:
-  - PRs Reviewed (with non-trivial review comments): 1
-  
+  - PRs Reviewed: 8 (#12， #13， #14， #39，#62， #65， #79， #82)
