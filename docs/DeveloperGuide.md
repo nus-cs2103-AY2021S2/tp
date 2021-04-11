@@ -1894,38 +1894,24 @@ Use case ends.
 **Use case: UC21 - Finding Schedule Given a Date**
 
 **MSS**
-1. User requests to <u> list events (UC17)</u>.
-1. SOChedule shows a list of events.
-1. User requests to <u> list tasks (UC04)</u>.
-1. SOChedule shows a list of tasks.
 1. User wishes to find schedule given a specified date.
-1. SOChedule shows uncompleted tasks that are due before or on the specified date (if any)
-   and events that are ongoing given the specified date (if any).
+1. SOChedule shows the schedule of the user.
    <br><br>
    Use case ends.
 
 **Extensions**
 
-* 5a. The specified date is invalid or does not follow the required format.
+* 2a. User enters erroneous input.
 
-    * 5a1. SOChedule shows an error message.
+   * 2a1. SOChedule shows an error message.<br>
+     Use case resumes at step 1.
+     <br><br>
+     
+* 2b. Both task list and event list are empty.
 
-      Use case resumes at step 4.
-
-
-* 5b. The input by user has an invalid command format.
-  Some examples may include that no date is provided.
-  
-    * 5b1. SOChedule shows an error message.
-
-      Use case resumes at step 4.
-
-
-* 5c. Both task list and event list are empty.
-
-    * 5c1. SOChedule shows an empty task list and event list.
-
+    * 2b1. SOChedule shows an empty task list and event list. <br>
       Use case ends.
+      <br><br>
 
 
 **Use case: UC22 - Finding free time slots**
