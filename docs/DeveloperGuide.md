@@ -217,6 +217,14 @@ Below is the sequence diagram:
 
 ![#Interactions Inside the Logic Component for the `findBefore 2021-04-04` Command](images/FindBeforeSequenceDiagram.png)
 
+<br/>
+
+The following activity diagram summarizes what happens when a user executes the find tasks with deadline before a selected date command:
+
+![#Activity Diagram for find tasks due before a certain date](images/FindBeforeActivityDiagram.png)
+
+<br/>
+
 ### Delete a Task feature
 
 The implementation of the delete a task feature is facilitated by the DeleteTaskCommand, which extends from the Command abstract class.
