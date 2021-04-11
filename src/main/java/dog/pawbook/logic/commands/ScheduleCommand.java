@@ -24,6 +24,7 @@ public class ScheduleCommand extends Command {
     private final LocalDate date;
 
     public ScheduleCommand(LocalDate date) {
+        requireNonNull(date);
         this.date = date;
     }
 
