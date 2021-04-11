@@ -138,7 +138,7 @@ All 8 compulsory fields and 1 optional field in `Student` are updated and added 
 
 Given below is an example usage scenario and how the `Add` Student mechanism behaves at each step.
 
-Step 1: The user executes `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC` to add a student. The `StudentBookParser` class determines that the command called is `Add`, and therefore creates a new `AddCommandParser` instance to parse the command.
+Step 1: The user executes `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC` to add a student. The `StudentBookParser` class determines that the command called is `Add`, and therefore creates a new `AddCommandParser` instance to parse the command.
 
 ![Receiving an input](images/ReceiveInput.png)
 
@@ -248,7 +248,7 @@ The add appointment feature is facilitated by `AddCommandParser` and `AddAppoint
 
 Given below is an example usage scenario that elucidates the mechanism of the add appointment feature.
 
-Step 1: The user executes `addAppt i/A1234567X d/2021-12-13 ts/13:00 te/14:00` to add an appointment. `StudentBookParser` determines that the command called is to add an appointment, hence creating a new `AddCommandParser` instance.
+Step 1: The user executes `addAppt A1234567X d/2021-12-13 ts/13:00 te/14:00` to add an appointment. `StudentBookParser` determines that the command called is to add an appointment, hence creating a new `AddCommandParser` instance.
 
 Step 2: The `AddCommandParser` instance parses the user input and performs validation on the parsed data. It then creates a new `AddAppointmentCommand` instance.
 
@@ -407,12 +407,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a specific student entry.
-2.  System prompts for student's details.
-3.  User inputs the respective details.
-4.  System adds the student entry.
-
-    Use case ends.
+1.  User requests to add a student by the student's matriculation number and other details, including:
+    
+    * Name
+    * Address
+    * Email
+    * Phone number
+    * Faculty
+    * Vaccination status
+    * Medical details
+    * School residence
+1.  System adds the student. 
+    
+Use case ends
 
 **Extensions**
 
@@ -421,13 +428,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. System shows an error message.
   
         Use case ends.
+    
+* 2a. User does not give sufficient inputs to add a student entry.
 
-
-* 3a. User does not give sufficient inputs to add a student entry.
-
-    * 3a1. System shows an error message.
+    * 2a1. System shows an error message.
   
         Use case ends.  
+* 3a. System detects that the given parameter is invalid.
+
+    * 3a1. System shows an error message.
+    
+        Use case ends. 
+
+        
 
 **Use case: Add a vaccination appointment**
 
@@ -483,10 +496,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to delete a specific student.
-2.  System prompts for confirmation of deletion.
-3.  User confirms.
-4.  System deletes the student. 
+1.  User requests to delete a specific student by matriculation number.
+1.  System deletes the student. 
 
     Use case ends.
 
@@ -495,14 +506,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. Specified student does not exist.
 
     * 1a1. System shows an error message.
-  
-        Use case ends.
+      <br>Use case ends.
 
+* 1b. System detects that the given parameter is invalid.
 
-* 3a. User does not confirm.
+    * 1b1. System shows an error message.
+      <br> Use case ends.
+      
 
-  Use case ends.
+**Use case: Delete an appointment**
 
+**MSS**
+1.  User requests to delete a student's appointment by the student's matriculation number.
+1.  System deletes the student's appointment.
+
+    Use case ends.
+
+* 1a. Specified student does not exist.
+
+    * 1a1. System shows an error message.
+      <br>Use case ends.
+
+* 1b. Specified student does not have a appointment.
+
+    * 1b1. System shows an error message.
+      <br> Use case ends.
+
+* 1c. System detects that the given parameter is invalid.
+
+    * 1c1. System shows an error message.
+      <br> Use case ends.
 
 ### Non-Functional Requirements
 
@@ -557,12 +590,52 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-      
+
+### Adding a student
+
+1. Adding a student not currently in Vax@NUS
+    1. Prerequisites: Sample data of students and appointments shown in the list.
+    1. Test case: `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+
+       Expected: Adds a student (John Doe) to the list. Details of the added student is shown in the status message.
+       John Doe's student details appear in the GUI.
+       
+    1. Test case: `add A1234567X n/John Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+        This test case assumes that the test case above was performed first. 
+       
+       Expected: No student is added. Error details shown in the status message telling user that there already exists a student
+    in Vax@NUS.
+    
+    1. Test case: `add A7654321J n/Betsy Crowe f/ENG p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/unvaccinated m/nose lift surgery in 2012`   
+           Expected: Adds a student (Betsy Crowe) to the list. Details of the added student is shown in the status message. John Doe's student details appear in the GUI.
+           Betsy Crowe's `School Residence` defaults to `DOES NOT LIVE ON CAMPUS`.
+
+    1. Test case: `add A0241234N n/Jane Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC
+       `   
+       Expected: No student is added. Error details shown in the status message telling user that the correct `matriculation number`
+       format should be A + 7 digit numeric sequence + alphabet.
+    1. Test case: `add A0241234N n/Jane Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/not vaccinated m/peanut allergy r/RVRC
+       `   
+       Expected: No student is added. Error details shown in the status message telling user that the `vaccination status` should only be
+       `vaccinated` or `unvaccinated`
+    1. Test case: `add A0241234N n/Jane Doe f/SoC p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC
+       `   
+       Expected: No student is added. Error details shown in the status message telling user that the `faculty` should only be
+       one of those shown.
+    1. Test case: `add A0241234N n/Jane Doe f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/kent Ridge
+       `   
+       Expected: No student is added. Error details shown in the status telling user that the `school residence` should only be
+       one of those shown.
+    1. Other incorrect add commands to try: `add`, `add x ...` (where x is not a valid `matriculation number`), `add... f/com r/capt`(where `faculty` and `school residence`
+       are spelt in lowercase) 
+       Expected: Similar to previous.
+
+
 ### Deleting a student
 
-1. Deleting a student while all students are being shown
+1. Deleting a student
 
-   1. Prerequisites: List all students using the `list` command. Sample data of students and appointments shown in the list.
+   1. Prerequisites: Sample data of students and appointments are loaded in Vax@NUS.
 
    1. Test case: `delete A0182345T`<br>
       Expected: First student (Alex Yeoh) is deleted from the list. Details of the deleted student shown in the status message. 
@@ -580,6 +653,32 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is not a valid matriculation number) <br>
       Expected: Similar to previous.
       
+### Editing an appointment 
+
+1. Editing an appointment in the Vax@NUS records. 
+    1. Prerequisites: Sample data of students and appointments are loaded in Vax@NUS.
+    1. Test case: `editAppt A0182345T d/2021-11-13 ts/14:00
+       `
+       Expected: Alex Yeoh's appointment is changed to the given date and time
+       
+    1. Test case: `editAppt A1234567X d/2021-11-13 ts/14:00
+       `
+       Expected: No appointment is edited. Error details shown in the status message telling user that the requested appointment does not exist. 
+       
+    1. Test case: `editAppt A0182345T d/2021-11-130 ts/15:00
+       `
+       Expected: No appointment is edited. Error details shown in the status message telling the user that the date should be of the format `YYYY-MM-DD`.
+       
+    1. Test case: `editAppt A0182345T d/2021-11-13 ts/125:00
+       `
+       Expected: No appointment is edited. Error details shown in the status message telling the user that the time should be of a valid form `HH:00` or `HH:30`
+       
+    1. Other incorrect editAppt commands to try: `editAppt`, `editAppt x d/... ts/...`, where x is not a valid matriculation number
+    and date and time are of the wrong format. 
+    
+
+      
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
