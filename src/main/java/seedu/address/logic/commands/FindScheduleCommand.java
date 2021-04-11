@@ -16,12 +16,12 @@ public class FindScheduleCommand extends Command {
     public static final String COMMAND_WORD = "find_schedule";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds and displays ongoing tasks and events before or on the specified date.\n"
-            + "Ongoing tasks refer to uncompleted tasks with deadline before or on the specified date.\n"
-            + "Ongoing events refer to events with start date before or on the specified date "
+            + ": Finds uncompleted tasks with deadlines before or on the specified date "
+            + "and ongoing events on the specified date.\n"
+            + "Ongoing events refer to events with start date before or on "
             + "and end date after or on the specified date.\n"
             + "Parameters: DATE (one single valid date in YYYY-MM-DD format)\n"
-            + "Example: " + COMMAND_WORD + " 2021-03-29";
+            + "Example: " + COMMAND_WORD + " 2021-05-01";
 
     public static final String MESSAGE_FIND_SCHEDULE_SUCCESS = "Displayed the required tasks and events.\n";
 
