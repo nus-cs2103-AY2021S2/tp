@@ -149,7 +149,7 @@ Format: `help`
 
 ### 3.2 Student Management
 
-#### 3.2.1 Adding a contact: `add`
+#### 3.2.1 Adding a contact : `add`
 
 Adds a student’s contact to TutorsPet.
 
@@ -307,7 +307,7 @@ Command     | Result
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-#### 3.2.3 Viewing a contact details: `detail`
+#### 3.2.3 Viewing a contact details : `detail`
 
 View the full details of the specified student's contact from TutorsPet.
 The specified student's name, school, phone number, email, address, guardian name and guardian's phone number will
@@ -372,7 +372,7 @@ Command     | Result
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-#### 3.2.5 Searching for a contact: `search`
+#### 3.2.5 Searching for a contact : `search`
 
 Searches for a student’s contact whose details contain any of the given keywords.
 
@@ -422,7 +422,7 @@ Examples:
 
 <a class="md-btn md-btn-outline" href="#table-of-contents"> Back to Table of Contents </a>
 
-#### 3.2.6 Sorting contacts: `sort`
+#### 3.2.6 Sorting contacts : `sort`
 Sorts the student contacts list by name, school, subjects or lessons.
 
 Format: `sort PREFIX`
@@ -463,7 +463,7 @@ Format: `list`
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-#### 3.2.8 Advancing all students: `levelup`
+#### 3.2.8 Advancing all students : `levelup`
 
 Advances the education level of all the student contacts by one grade by default, unless the student is excluded.
 This feature can be used to do a mass update all the student's levels at the start of the school year.
@@ -501,7 +501,7 @@ Examples:
 
 <a href="#table-of-contents"> <button>Back to Table of Contents </button></a>
 
-#### 3.2.9 Demoting all students: `leveldown`
+#### 3.2.9 Demoting all students : `leveldown`
 
 Demotes the education level of all the student contacts by one grade by default, unless the student is excluded.
 This feature can be used to do a mass undo of `levelup` or indicate retainees. 
@@ -540,7 +540,7 @@ Examples:
 
 ### 3.3 Important Date Management
 
-#### 3.3.1 Adding an important date: `add-date`
+#### 3.3.1 Adding an important date : `add-date`
 
 Adds an important date to TutorsPet.
 
@@ -691,19 +691,19 @@ like chem and bio.
 
 Action | Format, Examples
 --------|------------------
-**[Clear](##311-clearing-all-entries--clear)** | `clear`
+**[Clear](#311-clearing-all-entries--clear)** | `clear`
 **[Exit](#312-exiting-the-program--exit)** | `exit`
 **[Help](#313-viewing-help--help)** | `help`
-**[Add](#321-adding-a-contact-add)** | `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]…​ [le/LESSON]…​` <br> e.g., `add n/Bob Lee p/87654321 s/Def Secondary School a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/geo`
+**[Add](#321-adding-a-contact--add)** | `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]…​ [le/LESSON]…​` <br> e.g., `add n/Bob Lee p/87654321 s/Def Secondary School a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/geo`
 **[Edit](#322-editing-a-contact--edit)** | `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]…​ [le/LESSON]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**[Detail](#323-viewing-a-contact-details-detail)** | `detail INDEX` <br> e.g., `detail 1`
+**[Detail](#323-viewing-a-contact-details--detail)** | `detail INDEX` <br> e.g., `detail 1`
 **[Delete](#324-deleting-a-contact--delete)** | `delete INDEX`<br> e.g., `delete 3`
-**[Search](#325-searching-for-a-contact-search)** | `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS]`<br> e.g., `search n/James Jake s/woodlands t/eng`
-**[Sort](#326-sorting-contacts-sort)** | `sort PREFIX` <br> e.g., `sort [n/]`, `sort [s/]`
+**[Search](#325-searching-for-a-contact--search)** | `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS]`<br> e.g., `search n/James Jake s/woodlands t/eng`
+**[Sort](#326-sorting-contacts--sort)** | `sort PREFIX` <br> e.g., `sort [n/]`, `sort [s/]`
 **[List](#327-listing-all-contacts--list)** | `list`
-**[Level Up](#328-advancing-all-students-levelup)** | `levelup [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/2 4`
-**[Level Down](#329-demoting-all-students-leveldown)** | `leveldown [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/1 2`
-**[Add dates](#331-adding-an-important-date-add-date)** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
+**[Level Up](#328-advancing-all-students--levelup)** | `levelup [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/2 4`
+**[Level Down](#329-demoting-all-students--leveldown)** | `leveldown [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/1 2`
+**[Add dates](#331-adding-an-important-date--add-date)** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
 **[Delete dates](#333-deleting-an-important-date--delete-date)** | `delete-date INDEX`<br> e.g., `delete-date 3`
 **[List dates](#332-listing-all-important-dates--list-date)** | `list-date`
 **[Schedule](#341-viewing-schedule--schedule)** | `schedule`
