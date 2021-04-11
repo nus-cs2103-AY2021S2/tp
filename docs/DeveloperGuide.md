@@ -840,6 +840,20 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
       
+### Making a task
+1. Making a task with a title
+    1. Test case: `mk`<br>
+    Expected: Command format error will be shown.
+       
+    1. Test case: `mk aaa`<br>
+    Expected: Command format error will be shown.
+       
+    1. Test case: `mk n/`<br>
+    Expected: Title format error will be shown.
+       
+    1. Test case: `mk n/valid task`<br>
+    Expected: Task successfully created and added to the list.
+       
 ### Adding a recurring schedule 
 1.  Adding a recurring schedule to a new task in PlanIT's task list
     1. Prerequisites: The task has a title.
@@ -1028,6 +1042,31 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `snooze 1 400`<br>
     Expected: Error message to reflect that snooze amount cannot be more that 365 days will be reflected.
 
+### Viewing a date
+
+1. Viewing tasks that have dates or recurring schedule on the given date
+    1. Test case: `view 12/12/2021`
+    Expected: If there are tasks that have their dates or recurring schedule on 12/12/2021, they will appear on the filtered list.
+       
+    1. Test case: `view 0/0/0`
+    Expected: Date format error thrown.
+       
+    1. Test case: `view a`
+    Expected: View command format error thrown.
+       
+### Navigating the calendar
+
+1. Using `next`
+    1. Test case: `next aaa`
+    Expected: Calendar displays the next relative month.
+
+1. Using `prev`
+    1. Test case: `prev 111`
+       Expected: Calendar displays the previous relative month.
+       
+1. Using the next and prev buttons
+    1. Test case: Calendar displays the next or previous month accordingly.
+    
 ### Saving data
 
 1. Dealing with missing/corrupted data files
