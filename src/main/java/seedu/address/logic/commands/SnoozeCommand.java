@@ -43,6 +43,11 @@ public class SnoozeCommand extends Command {
 
     public static final String MESSAGE_SNOOZE_TASK_SUCCESS = "Task: %1$s Snoozed by %2$d days.";
 
+    public static final String MESSAGE_MAX_SNOOZE_AMOUNT_EXCEEDED =
+            "The maximum number of days to snooze a task is 365.";
+
+    public static final int MAX_SNOOZE_AMOUNT = 365;
+
     private final Index index;
 
     private final int snoozeAmount;
@@ -70,6 +75,7 @@ public class SnoozeCommand extends Command {
         ConditionLogic.verifyIndex(index, lastShownList);
         Task taskToSnooze = retrieveSelectedTask(lastShownList);
         enforceNonEmptyDate(taskToSnooze);
+        enforceMaxSnoozeAmount();
 
         Task snoozedTask = updateTaskWithNewDate(taskToSnooze);
         String snoozedTaskTitle = retrieveTaskTitle(snoozedTask);
@@ -87,6 +93,12 @@ public class SnoozeCommand extends Command {
         if (attributeManager.isEmptyDate()) {
             logger.log(Level.INFO, "The task selected has no date attribute.\n" + MESSAGE_USAGE);
             throw new CommandException("The task selected has no date attribute.\n" + MESSAGE_USAGE);
+        }
+    }
+
+    private void enforceMaxSnoozeAmount() throws CommandException {
+        if (snoozeAmount > MAX_SNOOZE_AMOUNT) {
+            throw new CommandException(MESSAGE_MAX_SNOOZE_AMOUNT_EXCEEDED);
         }
     }
 

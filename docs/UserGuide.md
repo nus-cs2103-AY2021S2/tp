@@ -204,12 +204,24 @@ Postpones your task's date by a specified number of days. Calendar will be reset
 Format: `snooze INDEX [DAYS]`
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list.
  The index **must be a positive integer** e.g 1, 2, 3, …​
+* DAYS must be a positive integer and at most 365 (1 year).
 * The DAYS is optional and it's default value will be 1 if no number is specified in your command.
 * The snooze command will only successfully update the date of the task if the task contains a date.
 
 Examples:
 * `snooze 2` Postpones the date of the task at index 2 in the list by 1 day.
 * `snooze 3 4 ` Postpones the date of the task at index 3 in the list by 4 days.
+
+### Marking a task as done: `done`
+
+Sets a task's status to 'done'.
+
+Format: `done INDEX`
+* Sets the task at the specified `INDEX` to be done. The index refers to the index number shown in the displayed list.
+* If the task's status is already 'done', the planner will give a warning.
+
+Example:
+* `done 2` Sets the status of a task at index 2 in the list to be done.
 
 ### Listing all tasks : `ls`
 
@@ -463,8 +475,10 @@ Action | Format, Examples
 --------|------------------
 **Make** | `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br> e.g.,`mk n/eat dinner t/important`
 **Clear** | `clear`
+**Mark Done** | `done INDEX`
 **Remove Task** | `rmt INDEX`<br> e.g., `rmt 3`
 **Remove Field** | `rmf INDEX FIELD`<br> e.g., `rmf 1 d/`
+**Postpone** | `snooze INDEX [DAYS]
 **Edit** | `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find CS2103 team project` <br><br>`find [t/TAG] `<br>  e.g., `find t/CS2103` <br><br> `find [d/DESCRIPTION] ` <br> e.g., `find d/CS2103 milestone postmortem`
 **Countdown** | `count INDEX` <br> e.g., `count 2`
