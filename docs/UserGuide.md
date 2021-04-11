@@ -99,7 +99,9 @@ This section highlights the features and behaviour of Taskify when it comes to c
 this section if there are any unexpected or undesirable behaviour while using Taskify. We welcome any feedback
 or suggestions [here](https://github.com/AY2021S2-CS2103T-W14-4/tp/issues). 
 
-#### Notes about the Taskify's behaviour
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the Taskify's Behaviour:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.
   
@@ -133,7 +135,7 @@ or suggestions [here](https://github.com/AY2021S2-CS2103T-W14-4/tp/issues).
 
 * In the current implementation, for tasks which have expired, the app has to be restarted for the status of the task to be updated
 from `uncompleted` to `expired`.
-
+</div>
 
 
 ### Viewing help : `help`
@@ -172,10 +174,10 @@ Examples:
 * `add n/Consult Professor desc/Discuss project with prof date/2021-04-04 10:30 t/project`
 * `add n/Buy groceries desc/Don't forget tomatoes`
 
-| Before        | After         |
+| Screenshot         | Remark |
 | :-----------: | :-----------: |
-| <img src="images/feature-screenshots/add-task-before.png" width="450">     | <img src="images/feature-screenshots/add-task-after.png" width="550">  |
-| Command Entered: `add n/Finish 2103 Tutorial desc/Draw UML diagram date/2021-04-13 10:30` | A new task named "Finish 2103 Tutorial has been added        |
+|  <img src="images/feature-screenshots/add-task-before.png" >     | <ins>**Before**</ins><br/>Command Entered: `add n/Finish 2103 Tutorial desc/Draw UML diagram date/2021-04-13 10:30`  |
+|<img src="images/feature-screenshots/add-task-after.png">  | <ins>**After**</ins><br/>A new task named 'Finish 2103 Tutorial' has been added        |
 
 ### Listing all tasks : `list`
 
@@ -202,10 +204,11 @@ Examples:
 *  `edit 2 n/Important Task t/` Edits the name of the 2nd task to be `Important Task` and clears all existing tags.
 *  `edit 2 s/completed` sets the status of the 2nd task in the list to `completed`.
 
-| Before        | After         |
+| Screenshot         | Remark |
 | :-----------: | :-----------: |
-| <img src="images/feature-screenshots/edit-task-before.png" width="450">     | <img src="images/feature-screenshots/edit-task-after.png" width="450">  |
-| Command Entered: `edit 2 s/completed` | The status of the task at index 2 has been changed to completed       |
+|  <img src="images/feature-screenshots/edit-task-before.png" >     | <ins>**Before**</ins><br/>Command Entered: `edit 2 s/completed`  |
+|<img src="images/feature-screenshots/edit-task-after.png">  | <ins>**After**</ins><br/>The status of the task at index 2 has been changed to completed        |
+
 
 
 ### Deleting a task : `delete`
@@ -253,10 +256,10 @@ Delete multiple tasks by either:
         * All tasks have one of the 3 `Status`: `uncompleted`, `completed`, `expired`
         * Newly created tasks have `uncompleted` as their `Status`
 
-| Before        | After         |
+| Screenshot         | Remark |
 | :-----------: | :-----------: |
-| <img src="images/feature-screenshots/delete-task-before.png" width="450">     | <img src="images/feature-screenshots/delete-task-after.png" width="450">  |
-| Command Entered: `delete 2 3` | The tasks with indices 2 and 3 have been deleted       |
+|  <img src="images/feature-screenshots/delete-task-before.png" >     | <ins>**Before**</ins><br/>Command Entered: `delete 2 3`  |
+|<img src="images/feature-screenshots/delete-task-after.png">  | <ins>**After**</ins><br/>The tasks with indices 2 and 3 have been deleted        |
     
     
 
@@ -287,10 +290,11 @@ Format: `tag-search TAG [MORE_TAGS]`
 Examples:
 * `tag-search tutorial CS2103T`
 
-| Before        | After         |
+| Screenshot         | Remark |
 | :-----------: | :-----------: |
-| <img src="images/feature-screenshots/tag-search-task-before.png" width="450">     | <img src="images/feature-screenshots/tag-search-task-after.png" width="450">  |
-| Command Entered: `tag-search finals ` | All the tasks containing the 'finals' tag have been displayed      |
+ | <img src="images/feature-screenshots/tag-search-task-before.png" >     | <ins>**Before**</ins><br/>Command Entered: `tag-search finals`  |
+|<img src="images/feature-screenshots/tag-search-task-after.png">  | <ins>**After**</ins><br/>All the tasks containing the 'finals' tag have been displayed       |
+
 
 ### Viewing a task based on date : `view`
 
@@ -315,10 +319,11 @@ which tasks to prioritise.
 
 Format: `sort`
 
-| Before        | After         |
+| Screenshot         | Remark |
 | :-----------: | :-----------: |
-| <img src="images/feature-screenshots/sort-task-before.png" width="450">     | <img src="images/feature-screenshots/sort-task-after.png" width="450">  |
-| Command Entered: `sort` | All the tasks have been sorted by deadline date     |
+ |<img src="images/feature-screenshots/sort-task-before.png" >     | <ins>**Before**</ins><br/>Command Entered: `sort`  |
+|<img src="images/feature-screenshots/sort-task-after.png">  | <ins>**After**</ins><br/>All the tasks have been sorted by deadline date       |
+
 
 
 ### Switching between tabs :`home` / `uncompleted` / `completed` / `expired`
@@ -329,10 +334,10 @@ Format: `home` / `uncompleted` / `completed` / `expired`
 
 Examples: `completed` (change to the completed tab)
 
-| Before        | After         |
+| Screenshot         | Remark |
 | :-----------: | :-----------: |
-| <img src="images/feature-screenshots/swich-tabs-before.png" width="450">     | <img src="images/feature-screenshots/swich-tabs-after.png" width="450">  |
-| Comand Entered: `expired` | The UI has switched to display the expired tab       |
+ |<img src="images/feature-screenshots/swich-tabs-before.png" >     | <ins>**Before**</ins><br/>Command Entered: `expired`  |
+|<img src="images/feature-screenshots/swich-tabs-after.png">  | <ins>**After**</ins><br/>The UI has switched to display the expired tab    |
 
 
 ### Clearing all tasks : `clear`
