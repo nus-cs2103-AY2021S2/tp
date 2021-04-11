@@ -5,6 +5,7 @@ import static seedu.address.model.group.GroupHashMap.DEFAULT_GROUP_NAME;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 
 /**
  * Clears the address book.
@@ -18,6 +19,10 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+
+        // Delete old images that are tracked by data file
+        model.getAddressBook().getPersonList().forEach(Person::deletePicture);
+
         model.setAddressBook(new AddressBook());
         model.updateUpcomingDates();
         model.updateDetailedPerson(null);
