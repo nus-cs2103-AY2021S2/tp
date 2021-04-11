@@ -1,5 +1,7 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_DUPLICATE_PROGRAM;
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_PROGRAM_ID;
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SESSION;
@@ -8,7 +10,6 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Optional;
 import java.util.Set;
 
-import dog.pawbook.commons.core.Messages;
 import dog.pawbook.commons.util.CollectionUtil;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.managedentity.Entity;
@@ -47,12 +48,12 @@ public class EditProgramCommand extends EditEntityCommand {
 
     @Override
     protected String getDuplicateEntityMessage() {
-        return Messages.MESSAGE_DUPLICATE_PROGRAM;
+        return MESSAGE_DUPLICATE_PROGRAM;
     }
 
     @Override
     protected String getInvalidIdMessage() {
-        return Messages.MESSAGE_INVALID_PROGRAM_ID;
+        return MESSAGE_INVALID_PROGRAM_ID;
     }
 
     /**
@@ -65,7 +66,7 @@ public class EditProgramCommand extends EditEntityCommand {
         requireAllNonNull(entityToEdit, editEntityDescriptor);
 
         if (!(entityToEdit instanceof Program)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROGRAM_ID);
+            throw new CommandException(MESSAGE_INVALID_PROGRAM_ID);
         }
 
         assert editEntityDescriptor instanceof EditProgramDescriptor;

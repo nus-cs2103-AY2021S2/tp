@@ -1,9 +1,12 @@
 package dog.pawbook.logic.parser;
 
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static dog.pawbook.logic.commands.CommandTestUtil.EMPTY_STRING;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_NEGATIVE_ID_STRING;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_SESSION_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_ZERO_ID_STRING;
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_OBEDIENCE_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_POTTY_TRAINING;
 import static dog.pawbook.logic.commands.CommandTestUtil.SESSION_DESC_OBEDIENCE_TRAINING;
@@ -40,7 +43,7 @@ public class EditProgramCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditProgramCommand.MESSAGE_USAGE);
 
-    private EditProgramCommandParser parser = new EditProgramCommandParser();
+    private final EditProgramCommandParser parser = new EditProgramCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -48,54 +51,55 @@ public class EditProgramCommandParserTest {
         assertParseFailure(parser, VALID_NAME_OBEDIENCE_TRAINING, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditProgramCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, String.valueOf(ID_ONE), EditProgramCommand.MESSAGE_NOT_EDITED);
 
         // no id and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, EMPTY_STRING, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         // negative id
-        assertParseFailure(parser, "-5" + NAME_DESC_OBEDIENCE_TRAINING, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, INVALID_NEGATIVE_ID_STRING + NAME_DESC_OBEDIENCE_TRAINING, MESSAGE_INVALID_FORMAT);
 
         // zero id
-        assertParseFailure(parser, "0" + NAME_DESC_OBEDIENCE_TRAINING, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, INVALID_ZERO_ID_STRING + NAME_DESC_OBEDIENCE_TRAINING, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, ID_ONE + " some random string", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, ID_ONE + " i/ string", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
 
         // invalid session
-        assertParseFailure(parser, "1" + INVALID_SESSION_DESC, Session.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + INVALID_SESSION_DESC, Session.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // invalid name followed by valid session
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + SESSION_DESC_OBEDIENCE_TRAINING, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + INVALID_NAME_DESC + SESSION_DESC_OBEDIENCE_TRAINING,
+                Name.MESSAGE_CONSTRAINTS);
 
         // valid session followed by invalid session. The test case for invalid session followed by valid session
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + SESSION_DESC_OBEDIENCE_TRAINING + INVALID_SESSION_DESC,
+        assertParseFailure(parser, ID_ONE + SESSION_DESC_OBEDIENCE_TRAINING + INVALID_SESSION_DESC,
                 Session.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Program} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_ALL + TAG_DESC_PUPPIES + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_ALL + TAG_EMPTY + TAG_DESC_PUPPIES, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_ALL + TAG_DESC_PUPPIES, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + TAG_DESC_ALL + TAG_DESC_PUPPIES + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + TAG_DESC_ALL + TAG_EMPTY + TAG_DESC_PUPPIES, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + TAG_EMPTY + TAG_DESC_ALL + TAG_DESC_PUPPIES, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_SESSION_DESC + VALID_TAG_ALL,
+        assertParseFailure(parser, ID_ONE + INVALID_NAME_DESC + INVALID_SESSION_DESC + VALID_TAG_ALL,
                 Name.MESSAGE_CONSTRAINTS);
     }
 

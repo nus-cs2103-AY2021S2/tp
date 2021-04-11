@@ -5,11 +5,14 @@ import static dog.pawbook.logic.commands.CommandTestUtil.BREED_DESC_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.BREED_DESC_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.DATEOFBIRTH_DESC_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.DATEOFBIRTH_DESC_BELL;
+import static dog.pawbook.logic.commands.CommandTestUtil.EMPTY_STRING;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_BREED_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_DATEOFBIRTH_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_NEGATIVE_ID_STRING;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_SEX_DESC;
 import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static dog.pawbook.logic.commands.CommandTestUtil.INVALID_ZERO_ID_STRING;
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.OWNERID_DESC_ASHER;
 import static dog.pawbook.logic.commands.CommandTestUtil.OWNERID_DESC_BELL;
@@ -56,63 +59,63 @@ public class EditDogCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        // no id specified
+        // no ID specified
         assertParseFailure(parser, VALID_NAME_ASHER, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditDogCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, String.valueOf(ID_ONE), EditDogCommand.MESSAGE_NOT_EDITED);
 
-        // no id and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        // no ID and no field specified
+        assertParseFailure(parser, EMPTY_STRING, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
-        // negative id
-        assertParseFailure(parser, "-5" + NAME_DESC_ASHER, MESSAGE_INVALID_FORMAT);
+        // negative ID
+        assertParseFailure(parser, INVALID_NEGATIVE_ID_STRING + NAME_DESC_ASHER, MESSAGE_INVALID_FORMAT);
 
-        // zero id
-        assertParseFailure(parser, "0" + NAME_DESC_ASHER, MESSAGE_INVALID_FORMAT);
+        // zero ID
+        assertParseFailure(parser, INVALID_ZERO_ID_STRING + NAME_DESC_ASHER, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, ID_ONE + " some random string", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, ID_ONE + " i/ string", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
 
         // invalid breed
-        assertParseFailure(parser, "1" + INVALID_BREED_DESC, Breed.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + INVALID_BREED_DESC, Breed.MESSAGE_CONSTRAINTS);
 
         // invalid sex
-        assertParseFailure(parser, "1" + INVALID_SEX_DESC, Sex.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + INVALID_SEX_DESC, Sex.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // invalid dateOfBirth
-        assertParseFailure(parser, "1" + INVALID_DATEOFBIRTH_DESC, DateOfBirth.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + INVALID_DATEOFBIRTH_DESC, DateOfBirth.MESSAGE_CONSTRAINTS);
 
-        // invalid breed followed by valid dob
-        assertParseFailure(parser, "1" + INVALID_BREED_DESC + DATEOFBIRTH_DESC_ASHER, Breed.MESSAGE_CONSTRAINTS);
+        // invalid breed followed by valid date of birth
+        assertParseFailure(parser, ID_ONE + INVALID_BREED_DESC + DATEOFBIRTH_DESC_ASHER, Breed.MESSAGE_CONSTRAINTS);
 
         // valid breed followed by invalid breed. The test case for invalid breed followed by valid breed
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + BREED_DESC_BELL + INVALID_BREED_DESC, Breed.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + BREED_DESC_BELL + INVALID_BREED_DESC, Breed.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Dog} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIENDLY + TAG_DESC_QUIET + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIENDLY + TAG_EMPTY + TAG_DESC_QUIET, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIENDLY + TAG_DESC_QUIET, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + TAG_DESC_FRIENDLY + TAG_DESC_QUIET + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + TAG_DESC_FRIENDLY + TAG_EMPTY + TAG_DESC_QUIET, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, ID_ONE + TAG_EMPTY + TAG_DESC_FRIENDLY + TAG_DESC_QUIET, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_BREED_DESC + VALID_DATEOFBIRTH_ASHER
+        assertParseFailure(parser, ID_ONE + INVALID_NAME_DESC + INVALID_BREED_DESC + VALID_DATEOFBIRTH_ASHER
                 + VALID_SEX_BELL, Name.MESSAGE_CONSTRAINTS);
     }
 

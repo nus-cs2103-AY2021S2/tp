@@ -1,5 +1,6 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_DUPLICATE_DOG;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_BREED;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOB;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
@@ -56,17 +57,12 @@ public class AddDogCommand extends AddCommand<Dog> {
 
     @Override
     protected String getDuplicateMessage() {
-        return Messages.MESSAGE_DUPLICATE_DOG;
+        return MESSAGE_DUPLICATE_DOG;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        // Ensure that getOwnerId() is not null
-        if (toAdd.getOwnerId() == null) {
-            throw new CommandException(Messages.MESSAGE_DOG_MISSING_OWNER_ID);
-        }
 
         // Ensure that the owner exists and retrieve it
         if (!model.hasEntity(toAdd.getOwnerId())) {

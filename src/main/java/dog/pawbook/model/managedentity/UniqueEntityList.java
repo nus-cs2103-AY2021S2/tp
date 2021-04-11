@@ -244,8 +244,6 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
     }
 
     private static boolean checkReferencedId(List<Pair<Integer, Entity>> entities, int id, Dog dog) {
-        assert(dog.getOwnerId() != null) : "OwnerID should not return a null";
-
         int ownerId = dog.getOwnerId();
         if (PREDICATE_ILLEGAL_ID.test(ownerId)) {
             return false;

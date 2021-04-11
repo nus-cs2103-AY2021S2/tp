@@ -1,6 +1,7 @@
 //@@author CharlesLee01
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_DOG_ID;
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 import static dog.pawbook.logic.commands.CommandUtil.disconnectFromOwner;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_BREED;
@@ -59,12 +60,12 @@ public class EditDogCommand extends EditEntityCommand {
         requireNonNull(model);
 
         if (!model.hasEntity(id)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DOG_ID);
+            throw new CommandException(MESSAGE_INVALID_DOG_ID);
         }
         Entity targetEntity = model.getEntity(id);
 
         if (!(targetEntity instanceof Dog)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DOG_ID);
+            throw new CommandException(MESSAGE_INVALID_DOG_ID);
         }
         Dog targetDog = (Dog) targetEntity;
         Dog editedDog = createEditedEntity(targetEntity, editEntityDescriptor);
@@ -120,7 +121,7 @@ public class EditDogCommand extends EditEntityCommand {
 
     @Override
     protected String getInvalidIdMessage() {
-        return Messages.MESSAGE_INVALID_DOG_ID;
+        return MESSAGE_INVALID_DOG_ID;
     }
 
     /**
@@ -128,14 +129,11 @@ public class EditDogCommand extends EditEntityCommand {
      * edited with {@code editEntityDescriptor}.
      */
     @Override
-    protected Dog createEditedEntity(Entity entityToEdit, EditEntityDescriptor editEntityDescriptor)
-            throws CommandException {
+    protected Dog createEditedEntity(Entity entityToEdit, EditEntityDescriptor editEntityDescriptor) {
         requireAllNonNull(entityToEdit, editEntityDescriptor);
 
-        if (!(entityToEdit instanceof Dog)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_DOG_ID);
-        }
-
+        // caller should ensure that compatible types are passed
+        assert entityToEdit instanceof Dog : MESSAGE_INVALID_DOG_ID;
         assert editEntityDescriptor instanceof EditDogDescriptor;
 
         EditDogDescriptor editDogDescriptor = (EditDogDescriptor) editEntityDescriptor;
