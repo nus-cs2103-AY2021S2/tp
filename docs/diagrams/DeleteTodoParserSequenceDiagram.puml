@@ -25,6 +25,6 @@ activate DeleteTodoCommand
 DeleteTodoCommand --> DeleteTodoCommandParser
 deactivate DeleteTodoCommand
 
-[<-- DeleteTodoCommandParser 
+[<-- DeleteTodoCommandParser
 deactivate DeleteTodoCommandParser
 @enduml
