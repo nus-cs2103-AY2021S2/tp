@@ -215,11 +215,11 @@ Given below is an example usage scenario and how the edit mechanism behaves at e
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 Assume that a student John Doe has been added in with the command `add n/John Doe p/98765432` and is currently 1st student in TutorsPet. 
-Then, the information of John Doe is edited. Here, an example of the student's phone being changed and the student's address being added with `edit` command is used.
+Then, the information of John Doe is edited. Here, an example of the student's phone being changed and the student's subject being added with `edit` command is used.
 </div>
 
-Step 1. The user executes `edit 1 p/98765431 a/311, Clementi Ave 2, #02-25` command to edit the existing student John Doe 
-to change his phone number and add in his address.
+Step 1. The user executes `edit 1 p/98765431 t/bio` command to edit the existing student John Doe 
+to change his phone number and add in his subject.
 
 Step 2. The user input is parsed by `AddressBookParser`, which passes the edit command's argument to `EditCommandParser`.
 
