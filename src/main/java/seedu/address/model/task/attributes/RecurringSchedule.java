@@ -32,15 +32,15 @@ public class RecurringSchedule implements Attribute {
     public static final String VALIDATION_REGEX = DATE_REGEX + DAYSOFWEEK_REGEX + WEEKFREQUENCY_REGEX;
 
     public static final String MESSAGE_CONSTRAINTS = "Recurring Schedule should be in this format:"
-            + "\n\n1) Ending Date in dd-mm-yyyy format (requires leading zero for day, month) "
+            + "\n\n1) Ending Date in dd/mm/yyyy format (requires leading zero for day, month) "
             + "should be ahead of current date"
             + "\n\n2) Days of week (case-insensitive) : mon, tue, wed, thu, fri, sat, sun"
             + "\n\n3) Frequency of week (case-insensitive) : weekly, biweekly"
-            + "\n\n and without blank space arguments but can be empty if nothing is entered :-)"
+            + "\n\n and without white space between arguments but can be empty if nothing is entered :-)"
             + "\n\nHere is an example: [23/10/2021][Mon][weekly]";
 
     public static final String INVALID_END_DATE = "End date should be ahead of current date "
-            + "or the input end is less than a week without matching days found !!!";
+            + "or the input end date is less than a week without matching days found !!!";
 
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
