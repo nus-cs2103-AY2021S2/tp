@@ -157,8 +157,12 @@ The `Model`,
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/storage/Storage.java)
 
 The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the contacts list, note book, dictionary, and definitions book data in json format and read it back.
+* can save instances of the following classses in JSON format and read it back:
+    * `UserPref`.
+    * `ContactsList`.
+    * `NoteBook`.
+    * `Dictionary`.
+    * `DefinitionBook`.
 
 ### Common classes
 
@@ -182,6 +186,8 @@ The index number was selected to refer to a particular contact. This is due to i
 
 The `execute()` method attempts to open a new window of the user's operating system (OS) default mail client. This is done by navigating to a `mailto` link with the contact's email address added to the end. In case a note index number is provided, the contents of the note located at the specified index number will be copied to the messages's body field.
 
+If the command is executed successfully, the target contact's frequency counter (see [*Sorting the contacts list by most-frequently contacted*](./DeveloperGuide.md#Sorting-the-contaccts-list-by-most-frequently-contacted) below) will be incremented by one.
+
 As an example, consider running Dictionote on a Windows 10 machine with Microsoft Outlook as the OS default mail client:
 
 * Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window and the note on the right):
@@ -204,7 +210,7 @@ In case the user does not have a mail client software set as default in their OS
 ##### Design Considerations
 
 * **Alternative 1 (current choice):** make use of the OS mail client to facilitate email features.
-    * Pros: Easy to implement; utilizes a pre-existing and standardized system for invoking mail xyz.
+    * Pros: Easy to implement; utilizes a pre-existing and standardized system for invoking mail clients.
     * Cons: Requires the user to have a mail client installed on their OS, which is then set to be the default mail client of the system.
 
 * **Alternative 2:** implement basic email features directly into Dictionote.
@@ -212,7 +218,40 @@ In case the user does not have a mail client software set as default in their OS
     * Cons: Much harder to implement, as it requires the implementation of network-related functions to handle the connections to email servers.
 
 
-#### More implementation details to be added...
+#### Sorting the contacts list by most-frequently contacted
+
+##### Implementation
+
+This feature is implemented as a command, `MostFreqContact`, that extends `Command`. It can execute without arguments, and it ignores any of them if provided.
+
+The `execute()` method attempts to sort all contacts stored within the contacts list in descending order based on each contact's **frequency counter**, which is an attribute holding a non-negative integer value that represents the number of attempts an email was sent to that contact. The sorting is handled by the `sorted` method of the `ObservableList` class, of which an instance stores the contacts.
+
+As an example, consider running Dictionote as follows:
+
+* Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window):
+
+![ContactEmailFeatureInitState](images/ContactMostFreqFeatureInitState.png)
+
+* In addition, assume the successful execution of the following commands:
+    * `emailcontact 3` three times.
+    * `emailcontact 2` one time.
+    * `emailcontact 1` two times.
+
+* After typing in `mostfreqcontact` and executing it, the result would be:
+
+![ContactEmailFeatureExecute](images/ContactMostFreqFeatureExecute.png)
+
+* Note that the ordering of the contacts in the contacts list had changed, with Charlie (formerly with index number 3) being the first on the list, followed by Alice (formerly with index number 1) and finally Bob (formerly with index number 2).
+
+##### Design Considerations
+
+* **Alternative 1 (current choice):** add a new attribute to the `Contact` class in order to keep track of the number of attempts to send an email.
+    * Pros: Preserves the functionality of the `Contact` class before the implementation of the new feature; minimal integration issues with other `Contact`-dependent classes and methods.
+    * Cons: Requires the creation of a new class to represent this attribute; adds an extra attribute to the contacts list's JSON storage file, which might requires more space (although it may be minimal).
+
+* **Alternative 2:** create a `HashTable` to store a mapping between the contacts and the number of attempts to send an email of which they were the recipients.
+    * Pros: Zero modifications on the `Contact` class; `Contact` objects will not contain any attributes required by this feature.
+    * Cons: Difficult to integrate with the other classes and methods related to `Contact` objects (e.g., deletion of a contact from the list must propagate to the `HashTable`).
 
 ### UI features
 
