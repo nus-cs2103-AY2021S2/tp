@@ -542,7 +542,7 @@ Outcome:
 * SmartLib will record down this borrowing activity.
 * The relevant parts of the GUI will be updated.
   <br><br>
-  ![result for 'borrow bc/1999999999 r/Charlotte'](images/BorrowCommand.png)
+  ![result for 'borrow bc/1999999999 r/Charlotte'](images/borrowResult.png)
   
 #### Returning a book : `return`
 
@@ -573,7 +573,7 @@ Outcome:
 * SmartLib will record down this returning activity.
 * The relevant parts of the GUI will be updated.
   <br><br>
-  ![result for 'return bc/1999999999'](images/ReturnCommand.png)
+  ![result for 'return bc/1999999999'](images/returnResult.png)
 
 #### Finding records : `findrecord`
 
