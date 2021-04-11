@@ -26,18 +26,17 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JsonSerializableConnectionTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializabConnectionTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableConnectionTest");
+
     private static MeetingBook meetingBook = TypicalMeetings.getTypicalMeetingBook();
     private static AddressBook addressBook = TypicalPersons.getTypicalAddressBook();
     private static Meeting meetingOne = meetingBook.getMeetingList().get(0);
     private static Person personTwo = addressBook.getPersonList().get(1);
-    private static Person personNotInTypicalPersons = TypicalPersons.HOON;
-    private static Meeting meetingNotInTypicalMeetings = TypicalMeetings.MEETING6;
     private static PersonMeetingConnection personMeetingConnection;
 
 
-    @BeforeAll
-    public static void setUp() {
+    @BeforeEach
+    public void setUp() {
         personMeetingConnection = new PersonMeetingConnection();
         personMeetingConnection.addPersonMeetingConnection(personTwo, meetingOne);
     }
@@ -46,7 +45,9 @@ public class JsonSerializableConnectionTest {
     @Test
     public void toModelType_isValidConnection() throws Exception {
         JsonSerializableConnection jsonSerializableConnection =
-                JsonUtil.readJsonFile(TEST_DATA_FOLDER, JsonSerializableConnection.class).get();
+                JsonUtil.readJsonFile(TEST_DATA_FOLDER.resolve("validConnections.json"),
+                        JsonSerializableConnection.class).get();
         assertEquals(jsonSerializableConnection.toModelType(meetingBook, addressBook), personMeetingConnection);
     }
+
 }

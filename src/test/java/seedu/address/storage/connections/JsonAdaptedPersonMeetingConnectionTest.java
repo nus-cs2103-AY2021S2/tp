@@ -8,7 +8,6 @@ import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.storage.connection.JsonAdaptedPersonMeetingConnection;
-import seedu.address.storage.connection.JsonSerializableConnection;
 import seedu.address.testutil.TypicalMeetings;
 import seedu.address.testutil.TypicalPersons;
 
@@ -62,7 +61,7 @@ public class JsonAdaptedPersonMeetingConnectionTest {
                 new JsonAdaptedPersonMeetingConnection(personTwo, meetingOne);
         PersonMeetingConnection personMeetingConnection = new PersonMeetingConnection();
         personMeetingConnection.addPersonMeetingConnection(personTwo, meetingOne);
-        String expectedMessage = JsonSerializableConnection.MESSAGE_DUPLICATE_CONNECTION;
+        String expectedMessage = JsonAdaptedPersonMeetingConnection.MESSAGE_DUPLICATE_CONNECTION;
         assertThrows(IllegalValueException.class, expectedMessage, () -> {
             jsonAdaptedPersonMeetingConnection.toModelType(addressBook, meetingBook, personMeetingConnection);
         });
