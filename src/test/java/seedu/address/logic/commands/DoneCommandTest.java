@@ -27,7 +27,7 @@ public class DoneCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Event eventToBeDone = model.getEventBook().getEventList().get(IDENTIFIER_FIRST_EVENT.getZeroBased());
+        Event eventToBeDone = model.getEventBook().getEventList().get(IDENTIFIER_SECOND_EVENT.getZeroBased());
         Identifier eventIdentifier = Identifier.fromIdentifier(eventToBeDone.getIdentifier());
         DoneCommand doneCommand = new DoneCommand(eventIdentifier);
 
@@ -43,7 +43,7 @@ public class DoneCommandTest {
         Identifier outOfBoundIndex = Identifier.fromIdentifier(model.getEventBook().getEventList().size() + 1);
         DoneCommand doneCommand = new DoneCommand(outOfBoundIndex);
 
-        assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER);
+        assertCommandFailure(doneCommand, model, String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER ,outOfBoundIndex.getValue()));
     }
 
     //    @Test
