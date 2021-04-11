@@ -74,7 +74,7 @@ public class JsonOrderBookStorage implements BookStorage<Order> {
     }
 
     /**
-     * @see #saveBook(ReadOnlyBook<Order>)
+     * @see #saveBook(ReadOnlyBook)
      */
     public void saveBook(ReadOnlyBook<Order> orderBook, Path filePath) throws IOException {
         requireNonNull(orderBook);
