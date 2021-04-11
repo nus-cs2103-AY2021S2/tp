@@ -18,7 +18,7 @@ title: Documentation guide
 
 **Diagrams:**
 
-* See the [_[se-edu/guides] **Using PlantUML**_](https://se-education.org/guides/tutorials/plantUml.html)
+* See the UML diagrams [T14-2 UML Diagrams](https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2Fusq7ChDOFXFccaeNrY4pt3%2FCS2103-UML%3Fnode-id%3D209%253A2)
 
 **Converting a document to the PDF format:**
 
