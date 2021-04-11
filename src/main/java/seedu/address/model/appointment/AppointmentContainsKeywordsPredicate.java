@@ -69,7 +69,7 @@ public class AppointmentContainsKeywordsPredicate implements Predicate<Appointme
 
         return patientList.stream().map(patientNameSplitMapper).anyMatch(isMatchPatientName)
                 || doctorList.stream().anyMatch(isMatchDoctor)
-                || timeStartList.stream().anyMatch(isMatchTimeStart)
+                || (!timeStartList.isEmpty() && timeStartList.stream().allMatch(isMatchTimeStart))
                 || tagsList.stream().anyMatch(isMatchTags);
     }
 

@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_IN_LIST;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.AppointmentSchedule;
 import seedu.address.model.Model;
@@ -39,12 +40,12 @@ public class ListPatientCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListPatientCommand(), model, ListPatientCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListPatientCommand(), model, Messages.MESSAGE_LIST_PATIENT_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPatientAtIndex(model, INDEX_FIRST_IN_LIST);
-        assertCommandSuccess(new ListPatientCommand(), model, ListPatientCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListPatientCommand(), model, Messages.MESSAGE_LIST_PATIENT_SUCCESS, expectedModel);
     }
 }
