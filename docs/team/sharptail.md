@@ -20,7 +20,7 @@ Given below are my contributions to the project.
       - `Customer` `Menu` `Order` `Inventory`  
         
       Example:  
-      `customer add` and `menu add` both uses the `add` command but it belongs to different components.  
+      `customer add` and `menu add` both uses the `add` command, but it belongs to different components.  
     * Justification: This feature improves the product functionality significantly because a user can now manage multiple
       different list instead of the original `Contact` list only.  
     * Highlights: This enhancement will be able to add on even more components in the future if needed.
@@ -39,12 +39,14 @@ Given below are my contributions to the project.
       
 * **Enhancements to existing features**:
     * Complete overhaul of the app GUI (Pull requests [\#123](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/123))
+        * This implementation was challenging as the window border was removed, extra logic is needed to resize the app window.
     
 * **Documentation**:
     * General:
-        * Improve user-friendliness of product website and personalised it's color scheme (Pull requests [\#150](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/150))
-            * Drop-down lists and Dark mode
-            * Color code commands from different components
+        * Improve user-friendliness of product website and personalised its color scheme (Pull requests [\#150](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/150))
+            * Drop-down lists 
+                * This implementation was challenging as syntax highlighting does not work in the drop-down container.
+            * Dark mode and color code commands from different components
     * User Guide:
         * Added the documentation for feature `Help` and `Exit`. (Pull requests [\#144](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/144))
         * Fixed the documentation for the multiple features (Pull requests [\#224](https://github.com/AY2021S2-CS2103T-W15-3/tp/pull/224))

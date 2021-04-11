@@ -5,7 +5,7 @@ title: User Guide
 
 JJIMY is a **desktop app for managing your restaurant, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, JJIMY can get your restaurant management tasks done faster than traditional GUI apps.
 
-<details>
+<details open>
 <summary>Table of Contents</summary>
 
 - [Quick start](#quick-start)
@@ -78,16 +78,27 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
 
 Commands have this general format:
 ```
-component command /prefix [input] -flag
+component command prefix/[INPUT] prefix/[INPUT] (prefix/[INPUT]) -flag
 ```
 
-- `component` - list to apply the command to (e.g. `customer`, `menu`)
-- `command` - command to run (e.g. `list`, `add`)
-- `/prefix [input]` - specify details (e.g. `n/Thomas Tan`)
-- `-flag` - change behavior (e.g. `-f`)
+- `component` - Component to apply the command to.  
+    e.g. `customer`, `menu`  
+  
+- `command` - Command to run.  
+    e.g. `list`, `add`  
+  
+- `prefix/[INPUT]` - Item in square brackets are the parameters to be supplied by the user.  
+    e.g. `n/[NAME]`, `[NAME]` is a parameter which can be used as `n/Thomas Tan`
 
-Optional parts of the command will be wrapped in round brackets.
+- `prefix/[INPUT]...` - Items with `...` after them can be used multiple times including zero times.
+    e.g. `i/[INGREDIENT_ID]... q/[INGREDIENT_QUANTITY]...` can be used as ` ` (i.e. 0 times) or `i/2 q/3 i/3 q/4`.
 
+- `(prefix/[INPUT])` - Item in round brackets are optional.  
+    e.g. `n/[NAME] (t/[TAG])` can be used as `n/Thomas t/Friend` or as `n/Thomas Tan`  
+  
+- `-flag` - change behavior 
+    e.g. `-f` or `-a`
+  
 >   <b><u>Things to note</u></b>  
 >   - Only one command can be executed at a time and any words after a valid command is entered will be ignored.  
 >   Example:
@@ -97,8 +108,21 @@ Optional parts of the command will be wrapped in round brackets.
 >       The command above will execute `customer list` and ignore `JJIMY is the best!`
 >   <p>&nbsp;</p>
 >
+>   - Items that have DATETIME as a parameter has `DD-MM-YYYY HH:MM` format.  
+>   Example:
+>       ```
+>       dt/07-05-2021
+>       ```
+>       The example shown above is a valid DATETIME parameter input.
+>   <p>&nbsp;</p>
+>
+>   - Parameters can be in any order.  
+>   Example:  
+>   If the command specifies `n/NAME s/SUBJECT`, `s/SUBJECT n/NAME` is also acceptable.
+>   <p>&nbsp;</p>
+>
 >   - Only the latest input for any duplicated prefixes will be taken, any input for previous duplicated prefixes will be ignored.  
->   Examples:
+>   Example:
 >       ```
 >       menu edit 5 n/Fries1 n/Fries2 p/5 p/6
 >       ```
