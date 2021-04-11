@@ -159,8 +159,8 @@ Step 4. Any successful execution of commands `add(b)`, `edit(b)`, `delete(b)` or
 
 The proposed mechanism is facilitated by the `logic` component described above. It updates clean status of multiple `Residences` at one time. It makes use of the following new method.
 
-* `StausCommand#createUpdatedResidence()` —  Create updated residence with the required clean status and the same other data.
-* `StausCommandParser#paser()` —  Manage the status command input, return a status command with required clean status and target residence index list.
+* `StatusCommand#createUpdatedResidence()` —  Create updated residence with the required clean status and the same other data.
+* `StatusCommandParser#paser()` —  Manage the status command input, return a status command with required clean status and target residence index list.
 
 These operations make use of the `Model` interface's `Model#updateFilteredResidenceList(Predicate<Residence> predicate)` method to update the order of residence list, 
 and `Model#setResidence()` to update the residence in the residence list. 
