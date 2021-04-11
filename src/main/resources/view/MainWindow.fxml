@@ -62,13 +62,7 @@
                                 <Insets bottom="10" left="5" right="5" top="5" />
                             </padding>
                             <VBox>
-                                <VBox alignment="CENTER" styleClass="location_box" >
-                                    <Label styleClass="cell_location_header" >Expired Items</Label>
-                                </VBox>
                                 <StackPane fx:id="tablePanelPlaceholder" VBox.vgrow="ALWAYS" />
-                                <VBox alignment="CENTER" styleClass="location_box">
-                                    <Label styleClass="cell_location_header">Expiring Items</Label>
-                                </VBox>
                                 <StackPane fx:id="tablePanelPlaceholder2" VBox.vgrow="ALWAYS" />
                             </VBox>
                         </VBox>

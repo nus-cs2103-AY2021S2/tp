@@ -7,10 +7,13 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
+import javax.swing.JLabel;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,6 +28,9 @@ public class ExpiringTablePanel extends UiPart<Region> implements Initializable 
     private static final String FXML = "TablePanel.fxml";
     private final Logger logger = LogsCenter.getLogger(getClass());
     private ObservableList<Item> itemList;
+
+    @FXML
+    private Label labelid;
 
     @FXML
     private TableView<ExpiringItem> tableView;
@@ -59,6 +65,7 @@ public class ExpiringTablePanel extends UiPart<Region> implements Initializable 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        labelid.setText("Expiring Items");
         numberOfDays.setCellValueFactory(new PropertyValueFactory<ExpiringItem, String>("daysBeforeExpiry"));
         numberOfItems.setCellValueFactory(new PropertyValueFactory<ExpiringItem, String>("numberOfItems"));
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
