@@ -452,7 +452,8 @@ Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... 
 * Edited task cannot be the same as the original task or equivalent to another existing task in the task list. <br>
   Same tasks means the name, priority, deadline, tags (if any) and categories (if any) of two tasks are equal.
 * When editing tags and categories, the order given in the input and the order as shown in the UI can be different. <br>
-  For example, in input `edit_task 1 t/tag1 t/tag2`, `t/tag1` is before `t/tag2`, but `tag2` may appear in the UI before `tag1`.
+  For example, in input `edit_task 1 t/t2 t/t10`, `t/t2` is before `t/10`, but `t10` may appear in the UI before `t2`.
+  Lexicographical order is followed.
 
 <div markdown="block" class="alert alert-info">
 
