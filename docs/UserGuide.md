@@ -255,7 +255,7 @@ Format: `addmeet c/CLIENT_NAME on/DATE_TIME l/LOCATION d/DESCRIPTION [t/TAG(s)]`
 
 **:information_source: Notes about the limit for inputs:**<br>
 
-    * CLIENT_NAME in `c/CLIENT_NAME` should not be longer than 50 alphanumeric characters. <br>
+* CLIENT_NAME in `c/CLIENT_NAME` should not be longer than 50 alphanumeric characters. <br>
   e.g `c/John Doe 123` is acceptable
 
 * DATE_TIME in `on/DATE_TIME` should be in the format of `dd-MM-yyyy HH:mm` <br>
