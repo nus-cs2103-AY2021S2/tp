@@ -62,6 +62,7 @@ ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
 XYZCommand -up-|> Command
 note left of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+
 LogicManager .left.> Command : executes >
 
 XYZCommand ..> ConditionLogic

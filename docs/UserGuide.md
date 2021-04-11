@@ -7,7 +7,7 @@ title: User Guide
 gives you the confidence that your busy schedule is organized and accounted for. Quickly and efficiently make and edit
 various tasks, mark dates, take note of remaining tasks, and more.
 
-PlanIt also includes a calendar and a countdown feature to better manage your deadlines. It is even optimised for people who prefer typing, so that bookkeeping can be done faster. Now you can make progress on the things that are
+PlanIT also includes a calendar and a countdown feature to better manage your deadlines. It is even optimised for people who prefer typing, so that bookkeeping can be done faster. Now you can make progress on the things that are
 more important to you.
 
 **Objective:**
@@ -34,7 +34,8 @@ in workload management.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your planner.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+4. Double-click the file to start the app. The Graphical User Interface (GUI) 
+   similar to the below illustration should appear in a few seconds.
    
 
    Note how the app contains some sample data.<br>
@@ -42,6 +43,12 @@ in workload management.
 
    Here is a layout guide to the app.<br>
    ![UiGuide](images/UiGuide.png)
+
+* Command Box : This is where you can enter the relevant commands in PlanIT.
+* Result/ Status display : This displays feedback and useful information after you have entered the commands.
+* Calendar : This displays the current dates and future dates for you to easily plan your tasks ahead of time.
+* Tag Display : This shows all the available tags that the tasks have been categorised within PlanIT.
+* Task Display : This shows all the tasks currently saved within the PlanIT app.
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
    pressing Enter will display a list of commonly used commands for first time users.<br>
@@ -81,6 +88,19 @@ Tasks can have the following attributes:
 | Description | `d/` | A text description of the task. Your description can be any value.{::nomarkdown}<ul><li>Leading and trailing whitespaces or line breaks are trimmed unless otherwise stated in the command description.</li></ul>{:/}|
 | Tag | `t/` | A label attached to a task for easy grouping and searching of tasks. Your tag should only contain alphanumeric values.{::nomarkdown}<ul><li>Leading and trailing whitespaces or line breaks are trimmed unless otherwise stated in the command description.</li></ul>{:/} <br><div markdown="span" class="alert alert-primary">:bulb: You can use this to group tasks by modules e.g adding a `CS2103` tag to a task. </div>|
 | Status | `st/` | Reflects the current status of your task. Status can only be either 'done' or 'not done'.{::nomarkdown}<ul><li>Leading and trailing whitespaces or line breaks are trimmed.</li></ul>{:/}<br><div markdown="block" class="alert alert-info"><br>:information_source:   Your task's status will be set to 'not done' by default. Status cannot be removed. </div>|
+
+
+
+| Attribute | Prefix | Description |
+|---|---|---|
+| Title | `t/` | A short description or name for the task. Titles can only contain alphanumeric values and have at most 40 characters. <div markdown="span" class="alert alert-info">:information_source:  Every task must have a title. </div>|
+| Date | `set/` | A date to represent the deadline of a Task or to represent the day that the task will be carried out. <br> Dates should be of the format dd/mm/yyyy e.g 02/06/2021|
+| Duration | `s/` | The start and end time of a task. You should specify start time and end time in the 24-hour clock format. <br> Duration should be of the format hh:mm-hh:mm e.g 12:30-13:30|
+| Recurring Schedule | `r/` | Represents a task that might repeat weekly or biweekly. <div markdown="span" class="alert alert-primary">:bulb: You can use this to quickly add weekly tutorials or biweekly lab session for the entire semester. </div><br>Recurring Schedule should be of the format [END DATE][DAY][FREQUENCY] without white space between arguments<br> e.g [23/10/2021][mon][weekly]<br><ul><li>END DATE should be in the format dd/mm/yyyy, any number greater than 31 is invalid for the day and any number greater than 12 is invalid for the month.</li><li>DAY should be either: mon, tue, wed, thu, fri, sat, sun and is case-insensitive.</li> <li>FREQUENCY should be either: weekly or biweekly and is also case-insensitive.</li></ul>{:/}<br><br>:information_source: Recurring dates that is of the upcoming day of week up till the [END DATE] will be generated for the task.<br><br>Suppose today is 06/04/2021 which falls on a Tuesday, user enters [30/06/2021][tue][weekly] for the recurring schedule field. The date of 06/04/2021 will not be included in the recurring dates and only recurring dates from the following tuesday will be included up till 30th June 2021 on a weekly basis. <br><br>:information_source: Existing recurring dates that has passed the current system date will be removed automatically from the existing task upon application startup.{::nomarkdown}|
+| Description | `d/` | A text description of the task. Your description can be any value.|
+| Tag | `t/` | A label attached to a task for easy grouping and searching of tasks. Your tag should only contain alphanumeric values.<div markdown="span" class="alert alert-primary">:bulb: You can use this to group tasks by modules e.g adding a `CS2103` tag to a task. </div>|
+| Status | `s/` | Reflects the current status of your task. Status can only be either 'done' or 'not done'.<div markdown="block" class="alert alert-info"><br>:information_source:   Your task's status will be set to 'not done' by default. Status cannot be removed. </div>|
+
 
 
 ## Constraints
@@ -200,7 +220,8 @@ Examples:
    
 ### Postpone a task's date : `snooze`
 
-Postpones your task's date by a specified number of days. Calendar will be reset.
+Postpones your task's date by a specified number of days so that you have the flexibility
+to push back the deadline of task when necessary. Calendar will be reset.
 
 Format: `snooze INDEX [DAYS]`
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list.
@@ -215,7 +236,10 @@ Examples:
 
 ### Marking a task as done: `done`
 
-Sets a task's status to 'done'. Calendar will be reset.
+
+Sets a task's status to 'done' so that you can track the tasks that have completed easily.
+ Calendar will be reset.
+
 
 Format: `done INDEX`
 * Sets the task at the specified `INDEX` to be done. The index refers to the index number shown in the displayed list.
@@ -224,14 +248,15 @@ Format: `done INDEX`
 Example:
 * `done 2` Sets the status of a task at index 2 in the list to be done.
 
-### Listing all tasks : `ls`
+
+### Listing all tasks : `ls` ----- Kai Xiang
 
 Shows a list of all tasks in the planner
 so that you can view all the tasks easily in one place. Calendar will be reset.
 
 Format: `ls`
 
-### Listing all uncompleted tasks : `ls not done`
+### Listing all uncompleted tasks : `ls not done` ----- Kai Xiang
 
 Shows a list of all uncompleted tasks in the planner
 so that you can view all the uncompleted tasks easily. Calendar will be reset.
@@ -256,7 +281,7 @@ Format: `sort by a` or `sort by d`
 * If two tasks have the same dates, they will be ordered in equal priority.
 
 
-### Searching a task by title: `find`
+### Searching a task by title: `find` ----- Kai Xiang
 
 Find matching tasks based on the title keyword(s) provided 
 so that you can find matching tasks quickly when only certain words from the title of the task can be remembered. Calendar will be reset.
@@ -272,7 +297,7 @@ Examples:
 * `find CS2103 team project` returns matching tasks with title of following words `CS2103`, `team`, `project`
 
 
-### Searching a task by description: `find d/`
+### Searching a task by description: `find d/` ----- Kai Xiang
 
 Find matching tasks based on the description keywords provided
 so that you can find matching tasks quickly when only certain words from the multi-line description can be remembered. Calendar will be reset.
@@ -291,7 +316,7 @@ Examples:
 * `find d/write user guide` returns matching tasks with description of following words `user`, `guide`, `write`
 
 
-### Searching a task by tag: `find t/`
+### Searching a task by tag: `find t/` ----- Kai Xiang
 
 Find matching tasks based on the tag keyword provided 
 so that you can find matching tasks from the same category quickly when only the tag(s) can be remembered. Calendar will be reset.
@@ -313,9 +338,10 @@ Format: `find t/KEYWORD`
   3. `find t/cs2103 t/cs2105` 
   4.  `find t/cs2103 cs2105`
       
-**Note: Suppose you want to find a task with **multiple tags** of `cs2103` and `cs2105` 
+:bulb: Suppose you want to find a task with **multiple tags** of `cs2103` and `cs2105` 
 but entered `find t/cs2103 Project`, the task you want will not be found since it will be detected 
-as a find a task by tag with `cs2103` and `Project`. So, it is best to put lesser tag keywords when unsure.**      
+as a find a task by tag with `cs2103` and `Project`. 
+So, it is best to be more general than specific here by putting lesser tag keywords when unsure.     
 
 
 Examples:
@@ -325,7 +351,7 @@ Examples:
 ![Find Multiple Tags](images/FindMultipleTags.png)
 
 
-**Note: It is optional to keep putting tag prefix`t/` for searching task with multiple tags**
+:information_source: It is optional to keep putting tag prefix`t/` for searching task with multiple tags
 
 ### Removing a task : `rmt`
 
@@ -468,9 +494,20 @@ Action | Format
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file
 that contains the data of your previous PlanIT home folder.
 
+**Q**: Does PlanIT requires an Internet connection for the app to run?<br>
+**A**: PlanIT does not require Internet connection and can run locally on your computer.
+
+**Q**: How do I remove my data without starting up the PlanIT app?<br>
+**A**: Delete the data folder from the PlanIT home folder.
+
+**Q**: How do I backup my data in PlanIT app?<br>
+**A**: Copy the data folder from PlanIT and saved it in a external hard disk. cloud storage such as Google Drive
+        or to the internal hard disk of your computer.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command summary ----- Kai Xiang, Max, Jun Xue, Chloe, HanBin
 
 Action | Format, Examples
 ---|---
