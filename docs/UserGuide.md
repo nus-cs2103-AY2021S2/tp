@@ -109,7 +109,7 @@ to manage tasks which can be identified by their unique deadlines or priorities.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* For features which use the INDEX field, the INDEX you specify must be a valid number on the currently displayed list of tasks.
+* For features which use the INDEX field, the INDEX you specify must be a valid number in the currently displayed list of tasks.
 
 </div>
 
@@ -187,7 +187,7 @@ Format: `deleteMember NAME`
 * NAME field is case-sensitive.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The NAME specified must appear in the currently displayed list of Members in order for it to be valid.
+The NAME specified must appear in the currently displayed list of members in order for it to be valid.
 </div>
 
 Examples:
@@ -217,7 +217,7 @@ Format: `editMember NAME [n/NEW_NAME] [p/NEW_PHONE_NUMBER] [e/NEW_EMAIL] [r/NEW_
 * Existing values will be updated to the input values. 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The NAME specified must appear in the currently displayed list of Members in order for it to be valid.
+The NAME specified must appear in the currently displayed list of members in order for it to be valid.
 </div>
 
 Examples: 
@@ -235,8 +235,8 @@ any of the specified keywords.
 Format: `findMembers KEYWORD [MORE_KEYWORDS]...`
 
 * KEYWORD must match an entire word, case-insensitive, in order for the particular member to be found. 
-  * E.g. `Rachel` will not match with `Rach`.
-  * E.g. `Rachel` will match with `rachel`. 
+  * e.g. `Rachel` will not match with `Rach`.
+  * e.g. `Rachel` will match with `rachel`. 
 
 Examples: 
 * `findMembers Rachel`
@@ -349,9 +349,9 @@ This feature allows you to find all tasks which contain any of the specified key
 Format: `findTasks KEYWORD [MORE_KEYWORDS]...`
 
 * KEYWORD must match an entire word in order for the particular task to be found.
-  * E.g. `Meeting` will not match with `Meet`.
+  * e.g. `Meeting` will not match with `Meet`.
 * The search using KEYWORD is case-sensitive.
-  * E.g. `Meeting` will match with `meeting`.
+  * e.g. `Meeting` will match with `meeting`.
 
 Examples: 
 * `findTasks Meeting`
