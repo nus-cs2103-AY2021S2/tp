@@ -6,7 +6,6 @@ import static seedu.smartlib.testutil.TypicalModels.getTypicalSmartLib;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.smartlib.logic.commands.exceptions.CommandException;
 import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ModelManager;
 import seedu.smartlib.model.UserPrefs;
@@ -22,13 +21,14 @@ class BorrowCommandTest {
     public void constructor_nullRecord_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new BorrowCommand(null));
     }
-//    @Test
-//    public void verifyNameRegistration_noBookFound_throwsCommandException(){
-//        Model emptyModel = new ModelStub();
-//        assertThrows(CommandException.class, BorrowCommand.NO_BOOK_FOUND,
-//                ()->verifyNameRegistration(emptyModel));
-//
-//    }
+    //    @Test
+    //    public void verifyNameRegistration_noBookFound_throwsCommandException(){
+    //        Model emptyModel = new ModelStub();
+    //        assertThrows(CommandException.class, BorrowCommand.NO_BOOK_FOUND,
+    //                ()->verifyNameRegistration(emptyModel));
+    //
+    //   }
+
     @Test
     public void execute() {
         Record record = model.getSmartLib().getRecordList().get(0);

@@ -82,10 +82,12 @@ public class AddBookCommand extends Command {
         requireNonNull(model);
         verifyBookInfo(model);
 
-        model.addBook(new Book(bookWithTempBarcode.getName(), bookWithTempBarcode.getAuthor(),
+        Barcode barcode = generateBarcode(model);
+        Book book = new Book(bookWithTempBarcode.getName(), bookWithTempBarcode.getAuthor(),
                 bookWithTempBarcode.getPublisher(), bookWithTempBarcode.getIsbn(),
-                generateBarcode(model), bookWithTempBarcode.getGenre()));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, bookWithTempBarcode));
+                barcode, bookWithTempBarcode.getGenre());
+        model.addBook(book);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, book));
     }
 
     /**
