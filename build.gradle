@@ -70,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'modulebook.jar'
+    archiveName = '[CS2103T-T13-2][ModuleBook3.5].jar'
 }
 
 defaultTasks 'clean', 'test'
