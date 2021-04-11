@@ -22,7 +22,7 @@ public class Date {
     /**
      * Constructs an {@code Date}.
      *
-     * @param date A valid address.
+     * @param date A valid date.
      */
     public Date(String date) {
         requireNonNull(date);
@@ -32,7 +32,7 @@ public class Date {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
         try {

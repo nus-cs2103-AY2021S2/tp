@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.timeforwheels.commons.exceptions.IllegalValueException;
 import seedu.timeforwheels.model.customer.Address;
+import seedu.timeforwheels.model.customer.Date;
 import seedu.timeforwheels.model.customer.Email;
 import seedu.timeforwheels.model.customer.Name;
 import seedu.timeforwheels.model.customer.Phone;
@@ -23,6 +24,7 @@ public class JsonAdaptedCustomerTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_DATE = "10-10-10-10";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -118,6 +120,23 @@ public class JsonAdaptedCustomerTest {
                 new JsonAdaptedCustomer(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                         VALID_REMARK, VALID_DATE, invalidTags, VALID_DONE);
         assertThrows(IllegalValueException.class, customer::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidDate_throwsIllegalValueException() {
+        JsonAdaptedCustomer customer = new JsonAdaptedCustomer(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_REMARK, INVALID_DATE, VALID_TAGS, VALID_DONE);
+        String expectedMessage = Date.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class,
+                expectedMessage, customer::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullDate_throwsIllegalValueException() {
+        JsonAdaptedCustomer customer = new JsonAdaptedCustomer(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_REMARK, null, VALID_TAGS, VALID_DONE);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, customer::toModelType);
     }
 
 }
