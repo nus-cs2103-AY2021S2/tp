@@ -10,8 +10,11 @@ import java.util.Locale;
  */
 public class School implements Comparable<School> {
 
+    public static final int MAX_CHARACTERS = 60;
     public static final String MESSAGE_CONSTRAINTS =
             "Schools should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String INVALID_LENGTH_MESSAGE =
+            "ERROR: Input school name should only be at most 60 characters long";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -28,9 +31,18 @@ public class School implements Comparable<School> {
      */
     public School(String schoolName) {
         requireNonNull(schoolName);
+        checkArgument(isValidLength(schoolName), INVALID_LENGTH_MESSAGE);
         checkArgument(isValidSchool(schoolName), MESSAGE_CONSTRAINTS);
         fullSchoolName = schoolName;
     }
+
+    /**
+     * Returns true if a given string is within the characters limit
+     */
+    public static boolean isValidLength(String test) {
+        return test.length() <= MAX_CHARACTERS;
+    }
+
 
     /**
      * Returns true if a given string is a valid school.
