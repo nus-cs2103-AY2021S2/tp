@@ -8,15 +8,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.ReadOnlyBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonBook;
-import seedu.address.model.person.ReadOnlyPersonBook;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-public class JsonSerializableAddressBook {
+public class JsonSerializablePersonBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
@@ -26,7 +26,7 @@ public class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<Person> persons) {
+    public JsonSerializablePersonBook(@JsonProperty("persons") List<Person> persons) {
         this.persons.addAll(persons);
     }
 
@@ -35,8 +35,8 @@ public class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyPersonBook source) {
-        persons.addAll(source.getPersonList());
+    public JsonSerializablePersonBook(ReadOnlyBook<Person> source) {
+        persons.addAll(source.getItemList());
     }
 
     /**

@@ -7,18 +7,15 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.Pair;
+import seedu.address.model.ReadOnlyBook;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.dish.DishBook;
-import seedu.address.model.dish.ReadOnlyDishBook;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientBook;
-import seedu.address.model.ingredient.ReadOnlyIngredientBook;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderBook;
-import seedu.address.model.order.ReadOnlyOrderBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonBook;
-import seedu.address.model.person.ReadOnlyPersonBook;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -100,7 +97,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyPersonBook getSamplePersonBook() {
+    public static ReadOnlyBook<Person> getSamplePersonBook() {
         PersonBook sampleAb = new PersonBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
@@ -108,7 +105,7 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
-    public static ReadOnlyDishBook getSampleDishBook() {
+    public static ReadOnlyBook<Dish> getSampleDishBook() {
         DishBook sampleDb = new DishBook();
         for (Dish sampleDish : getSampleDishes()) {
             sampleDb.addDish(sampleDish);
@@ -116,7 +113,7 @@ public class SampleDataUtil {
         return sampleDb;
     }
 
-    public static ReadOnlyOrderBook getSampleOrderBook() {
+    public static ReadOnlyBook<Order> getSampleOrderBook() {
         OrderBook sampleOb = new OrderBook();
         for (Order sampleOrder : getSampleOrders()) {
             sampleOb.addOrder(sampleOrder);
@@ -124,7 +121,7 @@ public class SampleDataUtil {
         return sampleOb;
     }
 
-    public static ReadOnlyIngredientBook getSampleIngredientBook() {
+    public static ReadOnlyBook<Ingredient> getSampleIngredientBook() {
         IngredientBook sampleIb = new IngredientBook();
         for (Ingredient sampleIngredient : getSampleIngredients()) {
             sampleIb.addIngredient(sampleIngredient);

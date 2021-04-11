@@ -17,7 +17,6 @@ import seedu.address.model.dish.Dish;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.ReadOnlyPersonBook;
 import seedu.address.storage.Storage;
 
 /**
@@ -49,7 +48,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.savePersonBook(model.getAddressBook());
+            storage.savePersonBook(model.getPersonBook());
             storage.saveDishBook(model.getDishBook());
             storage.saveIngredientBook(model.getIngredientBook());
             storage.saveOrderBook(model.getOrderBook());
@@ -58,11 +57,6 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
-    }
-
-    @Override
-    public ReadOnlyPersonBook getAddressBook() {
-        return model.getAddressBook();
     }
 
     @Override

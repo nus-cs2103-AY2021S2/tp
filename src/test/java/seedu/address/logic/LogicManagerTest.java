@@ -24,9 +24,9 @@ import seedu.address.logic.parser.components.CustomerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.ReadOnlyPersonBook;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.dish.JsonDishBookStorage;
@@ -140,7 +140,11 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPersonBook(),
+                model.getDishBook(),
+                model.getIngredientBook(),
+                model.getOrderBook(),
+                new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -166,7 +170,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveBook(ReadOnlyPersonBook addressBook, Path filePath) throws IOException {
+        public void saveBook(ReadOnlyBook<Person> personBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

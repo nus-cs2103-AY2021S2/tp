@@ -18,16 +18,12 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Pair;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.dish.DishBook;
-import seedu.address.model.dish.ReadOnlyDishBook;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientBook;
-import seedu.address.model.ingredient.ReadOnlyIngredientBook;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderBook;
-import seedu.address.model.order.ReadOnlyOrderBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonBook;
-import seedu.address.model.person.ReadOnlyPersonBook;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -48,8 +44,8 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given books and userPrefs.
      */
-    public ModelManager(ReadOnlyPersonBook personBook, ReadOnlyDishBook dishBook,
-                        ReadOnlyIngredientBook ingredientBook, ReadOnlyOrderBook orderBook,
+    public ModelManager(ReadOnlyBook<Person> personBook, ReadOnlyBook<Dish> dishBook,
+                        ReadOnlyBook<Ingredient> ingredientBook, ReadOnlyBook<Order> orderBook,
                         ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(personBook, userPrefs);
@@ -61,16 +57,16 @@ public class ModelManager implements Model {
         this.ingredientBook = new IngredientBook(ingredientBook);
         this.orderBook = new OrderBook(orderBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.personBook.getPersonList());
-        filteredDishes = new FilteredList<>(this.dishBook.getDishList());
-        filteredIngredients = new FilteredList<>(this.ingredientBook.getIngredientList());
-        filteredOrders = new FilteredList<>(this.orderBook.getOrderList());
+        filteredPersons = new FilteredList<>(this.personBook.getItemList());
+        filteredDishes = new FilteredList<>(this.dishBook.getItemList());
+        filteredIngredients = new FilteredList<>(this.ingredientBook.getItemList());
+        filteredOrders = new FilteredList<>(this.orderBook.getItemList());
     }
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given person book and userPrefs. (Legacy used for unit tests)
      */
-    public ModelManager(ReadOnlyPersonBook personBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyBook<Person> personBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(personBook, userPrefs);
 
@@ -81,11 +77,12 @@ public class ModelManager implements Model {
         this.ingredientBook = null;
         this.orderBook = new OrderBook();
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.personBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.personBook.getItemList());
         filteredDishes = null;
         filteredIngredients = null;
-        filteredOrders = new FilteredList<>(this.orderBook.getOrderList());
+        filteredOrders = new FilteredList<>(this.orderBook.getItemList());
     }
+
 
     public ModelManager() {
         this(new PersonBook(), new DishBook(), new IngredientBook(), new OrderBook(), new UserPrefs());
@@ -129,12 +126,12 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyPersonBook addressBook) {
-        this.personBook.resetData(addressBook);
+    public void setPersonBook(ReadOnlyBook<Person> personBook) {
+        this.personBook.resetData(personBook);
     }
 
     @Override
-    public ReadOnlyPersonBook getAddressBook() {
+    public ReadOnlyBook<Person> getPersonBook() {
         return personBook;
     }
 
@@ -190,7 +187,7 @@ public class ModelManager implements Model {
     }
 
     public List<Order> getIncompleteOrders() {
-        ObservableList<Order> orders = getOrderBook().getOrderList();
+        ObservableList<Order> orders = getOrderBook().getItemList();
         List<Order> incompleteOrders = new ArrayList<>();
         for (Order o : orders) {
             if (o.getState() == Order.State.UNCOMPLETED) {
@@ -224,13 +221,13 @@ public class ModelManager implements Model {
      * Replaces address book data with the data in {@code addressBook}.
      */
     @Override
-    public void setDishBook(ReadOnlyDishBook dishBook) {
+    public void setDishBook(ReadOnlyBook<Dish> dishBook) {
         this.dishBook.resetData(dishBook);
     }
 
     /** Returns the AddressBook */
     @Override
-    public ReadOnlyDishBook getDishBook() {
+    public ReadOnlyBook<Dish> getDishBook() {
         return dishBook;
     }
 
@@ -304,7 +301,7 @@ public class ModelManager implements Model {
         for (Pair<Ingredient, Integer> ingredientQtyPair : requiredIngredients) {
             Ingredient ingredient = ingredientQtyPair.getKey();
             Integer quantity = ingredientQtyPair.getValue();
-            if (!getIngredientBook().hasSufficientIngredients(ingredient, amount * quantity)) {
+            if (!ingredientBook.hasSufficientIngredients(ingredient, amount * quantity)) {
                 return false;
             }
         }
@@ -316,13 +313,13 @@ public class ModelManager implements Model {
      * Replaces address book data with the data in {@code addressBook}.
      */
     @Override
-    public void setIngredientBook(ReadOnlyIngredientBook ingredientBook) {
+    public void setIngredientBook(ReadOnlyBook<Ingredient> ingredientBook) {
         this.ingredientBook.resetData(ingredientBook);
     }
 
     /** Returns the AddressBook */
     @Override
-    public ReadOnlyIngredientBook getIngredientBook() {
+    public ReadOnlyBook<Ingredient> getIngredientBook() {
         return ingredientBook;
     }
 
@@ -455,7 +452,7 @@ public class ModelManager implements Model {
     /** Returns a list of dishes that use a particular ingredient */
     public List<Dish> getDishesByIngredients(Ingredient ingredient) {
         List<Dish> result = new ArrayList<>();
-        List<Dish> dishes = getDishBook().getDishList();
+        List<Dish> dishes = getDishBook().getItemList();
         for (Dish d : dishes) {
             if (d.contains(ingredient)) {
                 result.add(d);
@@ -469,13 +466,13 @@ public class ModelManager implements Model {
      * Replaces address book data with the data in {@code addressBook}.
      */
     @Override
-    public void setOrderBook(ReadOnlyOrderBook orderBook) {
+    public void setOrderBook(ReadOnlyBook<Order> orderBook) {
         this.orderBook.resetData(orderBook);
     }
 
     /** Returns the OrderBook */
     @Override
-    public ReadOnlyOrderBook getOrderBook() {
+    public ReadOnlyBook<Order> getOrderBook() {
         return orderBook;
     }
 
@@ -565,7 +562,7 @@ public class ModelManager implements Model {
             }
         }
         for (Ingredient i : ingredientsTable.keySet()) {
-            if (!getIngredientBook().hasSufficientIngredients(i, ingredientsTable.get(i))) {
+            if (!ingredientBook.hasSufficientIngredients(i, ingredientsTable.get(i))) {
                 return false;
             }
         }
@@ -596,7 +593,7 @@ public class ModelManager implements Model {
     /** Returns an list of the orders belonging to a particular customer */
     public List<Order> getOrdersFromPerson(Person target) {
         List<Order> result = new ArrayList<>();
-        ObservableList<Order> orders = getOrderBook().getOrderList();
+        ObservableList<Order> orders = getOrderBook().getItemList();
         for (Order o : orders) {
             if (o.isFromCustomer(target)) {
                 result.add(o);

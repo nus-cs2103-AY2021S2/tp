@@ -12,12 +12,12 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.ingredient.ReadOnlyIngredientBook;
-import seedu.address.model.person.ReadOnlyPersonBook;
+import seedu.address.model.ReadOnlyBook;
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.storage.BookStorage;
 import seedu.address.storage.person.JsonPersonBookStorage;
 
-public class JsonIngredientBookStorage implements BookStorage<ReadOnlyIngredientBook> {
+public class JsonIngredientBookStorage implements BookStorage<Ingredient> {
 
     private static final Logger logger = LogsCenter.getLogger(JsonPersonBookStorage.class);
 
@@ -35,19 +35,19 @@ public class JsonIngredientBookStorage implements BookStorage<ReadOnlyIngredient
     }
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyPersonBook}.
+     * Returns AddressBook data as a {@link ReadOnlyBook}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    public Optional<ReadOnlyIngredientBook> readBook() throws DataConversionException, IOException {
+    public Optional<ReadOnlyBook<Ingredient>> readBook() throws DataConversionException, IOException {
         return readBook(filePath);
     }
 
     /**
      * @see #getBookFilePath()
      */
-    public Optional<ReadOnlyIngredientBook> readBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyBook<Ingredient>> readBook(Path filePath) throws DataConversionException, IOException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableIngredientBook> jsonIngredientBook = JsonUtil.readJsonFile(
@@ -65,18 +65,18 @@ public class JsonIngredientBookStorage implements BookStorage<ReadOnlyIngredient
     }
 
     /**
-     * Saves the given {@link ReadOnlyPersonBook} to the storage.
+     * Saves the given {@link ReadOnlyBook} to the storage.
      * @param ingredientBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    public void saveBook(ReadOnlyIngredientBook ingredientBook) throws IOException {
+    public void saveBook(ReadOnlyBook<Ingredient> ingredientBook) throws IOException {
         saveBook(ingredientBook, filePath);
     }
 
     /**
-     * @see #saveBook(ReadOnlyIngredientBook)
+     * @see #saveBook(ReadOnlyBook)
      */
-    public void saveBook(ReadOnlyIngredientBook ingredientBook, Path filePath) throws IOException {
+    public void saveBook(ReadOnlyBook<Ingredient> ingredientBook, Path filePath) throws IOException {
         requireNonNull(ingredientBook);
         requireNonNull(filePath);
 

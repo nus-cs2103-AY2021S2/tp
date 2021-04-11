@@ -19,7 +19,7 @@ public class CustomerClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setAddressBook(new PersonBook());
+        model.setPersonBook(new PersonBook());
         return new CommandResult(MESSAGE_SUCCESS, CommandResult.CRtype.PERSON);
     }
 }
