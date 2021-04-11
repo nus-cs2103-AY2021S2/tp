@@ -95,7 +95,7 @@ There are three main areas in TutorBuddy:
 
   Using the [sample data](#sample-data) provided, here are some example commands you can try:
   * **`list`** : Lists all students and sessions.
-  * **`add_student`** `n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother` : Adds a student named `John Doe`
+  * **`add_student`** `n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother` : Adds a student named **John Doe**
     to TutorBuddy.
   * **`delete_student`** `3` : Deletes the 3rd student shown in the Student section.
   * **`add_session`** `n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a single tuition session for John Doe happening on 2021-01-01
@@ -284,13 +284,13 @@ Example: Add a <code>John Doe Bespectacled</code> and a <code>John Doe Unadorned
 </div>
 
 Example:
-1. You would like to add a new student, `John Doe` to TutorBuddy.
+1. You would like to add a new student, **John Doe** to TutorBuddy.
 2. Type in `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother` 
    which includes all the essential information the application needs from the student and press <kbd>enter</kbd>.
 
 ![add_student_example](images/enhao/add_student%20-%20edited.png)
 
-3. Scrolling down to the end of the student list, you will see that `John Doe` has been added to TutorBuddy.
+3. Scrolling down to the end of the student list, you will see that **John Doe** has been added to TutorBuddy.
 
 ![add_student_result_example](images/enhao/add_student_result%20-%20edited.png)
 
@@ -373,7 +373,7 @@ Example:
 
 ![delete_student_example](images/enhao/delete_student%20-%20edited.png)
 
-3. The 2nd student in the list (`Bernice Yu`) and her associated sessions will be deleted.
+3. The 2nd student in the list (**Bernice Yu**) and her associated sessions will be deleted.
 
 ![delete_student_result_example](images/enhao/delete_student_result%20-%20edited.png)
 
@@ -515,7 +515,7 @@ Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 * `YEAR` should be a positive integer between 1970 and 2037 inclusive
 
 Example:
-1. You want to get the monthly fee payable by `Alex Yeoh` for March 2021.
+1. You want to get the monthly fee payable by **Alex Yeoh** for March 2021.
 2. Type `fee n/Alex Yeoh m/3 y/2021` and press <kbd>enter</kbd>. 
 
 ![fee_example](images/enhao/fee%20-%20Edited.PNG)
