@@ -29,7 +29,7 @@ public class Statistics {
     private List<Month> getPastMonths() {
         List<Month> monthList = new ArrayList<Month>(model.getFullMonthList());
         monthList = monthList.stream()
-                .filter(month -> month.getMonth().isAfter(this.monthList.get(0).getMonth().minusMonths(6)))
+                .filter(month -> month.getMonth().isBefore(this.monthList.get(0).getMonth().plusMonths(1)))
                 .collect(Collectors.toList());
         Collections.sort(monthList);
         return monthList.stream().limit(6).collect(Collectors.toList());
