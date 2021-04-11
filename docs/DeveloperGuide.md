@@ -51,9 +51,9 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_person s/1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png" width="650" />
 
 The sections below give more details of each component.
 
@@ -133,7 +133,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add Person feature
+### Add person feature
 
 #### Current Implementation
 
@@ -161,7 +161,7 @@ The sequence for the example scenario can be found below:
 
 ![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
 
-### Add Session Feature
+### Add session feature
 
 #### Current Implementation
 
@@ -189,7 +189,7 @@ The sequence for the example scenario can be found below:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddSessionCommandParser` and `AddSessionCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Assign Person Feature
+### Assign person feature
 
 #### Current Implementation
 
@@ -212,7 +212,7 @@ Step 5: The `CommandResult` is then displayed on the UI.
 The sequence for the example scenario can be found below:
 ![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
 
-### Unassign Person Feature
+### Unassign person feature
 
 #### Current Implementation
 
@@ -273,38 +273,6 @@ The sequence for the example scenario can be found below:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePersonCommandParser` and `DeletePersonCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
-
-### View person feature
-
-#### Current Implementation
-
-The view person feature requires the `personID` of the student or tutor, and 
-displays the relevant information belonging to the person under that specified ID.
-As the user enters the command word `view_person`, the `ViewCommandParser` will verify
-if a `personID` has been provided, and an error is thrown if otherwise. With the given `personID`, 
-a `PersonIdPredicate` will be created, and subsequently a `ViewPersonCommmand` object will be created. <br>
-
-The `ViewPersonCommand` class inherits from the `Command` abstract class, and it implements the `execute()`
-class where it will use the `PersonIdPredicate` to update the model with the filtered list. <br>
-
-Given below is an example usage scenario and how the view person merchanism behaves at each step. <br>
-
-Step 1. The user launches the application and executes `view_person s/1` command to view student with personID `s/1`. <br>
-
-Step 2. The `parseCommand` method under `AddressBookParser` class passes the user input to `ViewCommandParser`. <br>
-
-Step 3. The `ViewCommandParser` verifies that a valid `personID` has been provided and throw an exception if otherwise.
-The parser then return a `ViewPersonCommand` object using the `PersonIdPredicate` created from the `personID`. <br>
-
-Step 4. The `LogicManager` then executes the `ViewPersonCommand`. <br>
-
-Step 5. The `VierPersonCommand` updates the model by calling `Model#updateFilteredPersonList` using the `PersonIdPredicate` created previously.
-
-Step 6. A `CommandResult` object is returned and displayed on the UI.
-
-The following activity diagram illustrates what happens when a user executes a view person command:
-
-![ViewPersonActivityDiagram](images/ViewPersonActivityDiagram.png)
 
 ### Delete session feature
 
@@ -369,6 +337,38 @@ The sequence for the example scenario can be found below:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditSessionCommandParser`, `EditSessionCommand` and `EditSessionDescriptor` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+### View person feature
+
+#### Current Implementation
+
+The view person feature requires the `personID` of the student or tutor, and 
+displays the relevant information belonging to the person under that specified ID.
+As the user enters the command word `view_person`, the `ViewCommandParser` will verify
+if a `personID` has been provided, and an error is thrown if otherwise. With the given `personID`, 
+a `PersonIdPredicate` will be created, and subsequently a `ViewPersonCommmand` object will be created. <br>
+
+The `ViewPersonCommand` class inherits from the `Command` abstract class, and it implements the `execute()`
+class where it will use the `PersonIdPredicate` to update the model with the filtered list. <br>
+
+Given below is an example usage scenario and how the view person merchanism behaves at each step. <br>
+
+Step 1. The user launches the application and executes `view_person s/1` command to view student with personID `s/1`. <br>
+
+Step 2. The `parseCommand` method under `AddressBookParser` class passes the user input to `ViewCommandParser`. <br>
+
+Step 3. The `ViewCommandParser` verifies that a valid `personID` has been provided and throw an exception if otherwise.
+The parser then return a `ViewPersonCommand` object using the `PersonIdPredicate` created from the `personID`. <br>
+
+Step 4. The `LogicManager` then executes the `ViewPersonCommand`. <br>
+
+Step 5. The `VierPersonCommand` updates the model by calling `Model#updateFilteredPersonList` using the `PersonIdPredicate` created previously.
+
+Step 6. A `CommandResult` object is returned and displayed on the UI.
+
+The following activity diagram illustrates what happens when a user executes a view person command:
+
+![ViewPersonActivityDiagram](images/ViewPersonActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -503,13 +503,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | manager                               | delete a class                 | remove classes that are no longer available              |
 | `* * `   | manager                               | edit tutor information         | ensure tutor information are up to date                  |
 | `* * `   | manager                               | edit student information       | ensure student information are up to date                |
-| `* * `   | manager                               | manage of class enrollment size  | be aware of how many more students should be allocated to this class |
-| `* * `   | manager                               | filter out suitable tutors by available timings and subjects    | allocate a suitable tutor to a class |
-| `* `     | manager                               | update and check the status of students’ bills  |                                         |
-| `* `     | manager                               | update and check the status of payments owed to tutors |                                  |
-| `* `     | manager                               | get notified when students’ bills are due |                                               |
-
-*{More to be added}*
 
 
 ### Use cases
@@ -561,6 +554,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
 
+* 1b. The given ID is a person who is currently assigned to a session.
+
+    * 1b1. EzManage shows an error message, informing user to unassign the person from all of his/her sessions, before he/she can be deleted.
+    
+    Use case ends.
+
 **Use case: View an individual person**
 
 **MSS**
@@ -582,8 +581,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. EzManage shows an error message.
 
       Use case ends.
-    
-*{More to be added}*
 
 
 ### Non-Functional Requirements
