@@ -25,8 +25,6 @@ public class TodayEventCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label id;
-    @FXML
     private Label eventDescription;
     @FXML
     private Label dateTime;
@@ -34,14 +32,13 @@ public class TodayEventCard extends UiPart<Region> {
     private Label projectName;
 
     /**
-     * Creates an {@code EventCard} with the given {@code Event} without an index to display.
+     * Creates a {@code TodayEventCard} with the given {@code EventWithProject}.
      */
     public TodayEventCard(EventWithProject eventWithProject) {
         super(FXML);
         requireNonNull(eventWithProject);
 
         this.eventWithProject = eventWithProject;
-        id.setText("");
         eventDescription.setText(eventWithProject.getDescription());
         projectName.setText(eventWithProject.getProjectName().toString());
 
@@ -72,7 +69,6 @@ public class TodayEventCard extends UiPart<Region> {
 
         // state check
         TodayEventCard card = (TodayEventCard) other;
-        return id.getText().equals(card.id.getText())
-                && eventWithProject.equals(card.eventWithProject);
+        return eventWithProject.equals(card.eventWithProject);
     }
 }

@@ -30,6 +30,7 @@ public class ContactListPanel extends UiPart<Region> {
      */
     public ContactListPanel(ObservableList<Contact> contactList) {
         super(FXML);
+        contactListView.setId("contactListView");
         contactListView.setItems(contactList);
         contactListView.setCellFactory(listView -> new ContactListViewCell());
 
@@ -58,4 +59,7 @@ public class ContactListPanel extends UiPart<Region> {
         }
     }
 
+    public ListView<Contact> getContactListView() {
+        return contactListView;
+    }
 }
