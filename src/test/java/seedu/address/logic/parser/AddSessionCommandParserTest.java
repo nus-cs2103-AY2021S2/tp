@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.SESSION_ANOTHER_VALID_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.SESSION_INVALID_DURATION;
 import static seedu.address.logic.commands.CommandTestUtil.SESSION_VALID_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.SESSION_VALID_DURATION;
@@ -50,9 +51,9 @@ public class AddSessionCommandParserTest {
                 new AddSessionCommand(session, new Name(VALID_NAME_BOB)));
 
         // multiple session date - last accepted
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_AMY + SESSION_VALID_DATE + SESSION_VALID_DATE
-                        + SESSION_VALID_TIME + SESSION_VALID_DURATION + SESSION_VALID_SUBJECT + SESSION_VALID_FEE,
-                new AddSessionCommand(session, new Name(VALID_NAME_AMY)));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_AMY + SESSION_ANOTHER_VALID_DATE
+                    + SESSION_VALID_DATE + SESSION_VALID_TIME + SESSION_VALID_DURATION + SESSION_VALID_SUBJECT
+                    + SESSION_VALID_FEE, new AddSessionCommand(session, new Name(VALID_NAME_AMY)));
     }
 
     @Test

@@ -88,6 +88,7 @@ public class CommandTestUtil {
     public static final EditStudentCommand.EditStudentDescriptor DESC_BOB;
 
     public static final String VALID_DATE = "2010-01-01";
+    public static final String ANOTHER_VALID_DATE = "2011-11-11";
     public static final String VALID_DURATION = "60";
     public static final String VALID_SUBJECT = "Science";
     public static final String VALID_FEE = "30";
@@ -100,6 +101,7 @@ public class CommandTestUtil {
     public static final String INVALID_REC_END_BEFORE_INTERVAL = "2010-01-03";
 
     public static final String SESSION_VALID_DATE = " " + PREFIX_DATE + VALID_DATE;
+    public static final String SESSION_ANOTHER_VALID_DATE = " " + PREFIX_DATE + ANOTHER_VALID_DATE;
     public static final String SESSION_VALID_TIME = " " + PREFIX_TIME + VALID_TIME;
     public static final String SESSION_VALID_DURATION = " " + PREFIX_DURATION + VALID_DURATION;
     public static final String SESSION_VALID_SUBJECT = " " + PREFIX_SUBJECT + VALID_SUBJECT;
