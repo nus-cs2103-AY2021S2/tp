@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.ScheduleCommand.SHOWING_HELP_MESSAGE;
+import static seedu.address.logic.commands.ScheduleCommand.SHOWING_SCHEDULE_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ public class ScheduleCommandTest {
 
     @Test
     public void execute_schedule_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false, false, false);
+        CommandResult expectedCommandResult = new CommandResult(SHOWING_SCHEDULE_MESSAGE, true, false, false, false);
         assertCommandSuccess(new ScheduleCommand(), model, expectedCommandResult, expectedModel);
     }
 }

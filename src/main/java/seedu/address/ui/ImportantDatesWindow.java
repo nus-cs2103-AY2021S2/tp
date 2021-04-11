@@ -9,7 +9,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 
 /**
- * Controller for a schedule page
+ * Controller for the Important Dates page
  */
 public class ImportantDatesWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(ImportantDatesWindow.class);
