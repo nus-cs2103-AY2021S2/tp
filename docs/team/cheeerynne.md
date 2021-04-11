@@ -68,7 +68,7 @@ Given below are my contributions to the project.
         * Added and updated use cases in the Developer Guide (Pull Requests: [\#143](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/143), [\#171](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/171))
        
 * **Community**:
-    * PRs reviewed (Pull requests: [\#246](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/246), [\#145](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/145))
+    * PRs reviewed (Pull requests: [\#246](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/246), [\#276](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/276))
     * Reported bugs and suggestions for other teams in the class (Examples: [1](https://github.com/cheeerynne/ped/issues/11), [2](https://github.com/cheeerynne/ped/issues/12), [3](https://github.com/cheeerynne/ped/issues/9))
     
 
