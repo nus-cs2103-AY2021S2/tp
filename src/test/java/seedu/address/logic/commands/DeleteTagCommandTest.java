@@ -77,11 +77,8 @@ public class DeleteTagCommandTest {
 
         DeleteTagCommand deleteTagCommand = DeleteTagCommand.createWithSelectedIndex(tags);
 
-        String singularOrPlural = selectedPersonList.size() > 1 ? "s" : "";
         int updateCount = selectedPersonList.size();
-
-        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, singularOrPlural,
-                updateCount, tagsToString(tags));
+        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, updateCount, tagsToString(tags));
         assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
     }
 
@@ -99,11 +96,8 @@ public class DeleteTagCommandTest {
 
         DeleteTagCommand deleteTagCommand = DeleteTagCommand.createWithShownIndex(tags);
 
-        String singularOrPlural = personList.size() > 1 ? "s" : "";
         int updateCount = personList.size();
-
-        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, singularOrPlural,
-                updateCount, tagsToString(tags));
+        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, updateCount, tagsToString(tags));
         assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
     }
 
@@ -124,11 +118,8 @@ public class DeleteTagCommandTest {
 
         DeleteTagCommand deleteTagCommand = DeleteTagCommand.createWithTargetIndexes(indexes, tags);
 
-        String singularOrPlural = indexes.size() > 1 ? "s" : "";
         int updateCount = indexes.size();
-
-        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, singularOrPlural,
-                updateCount, tagsToString(tags));
+        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, updateCount, tagsToString(tags));
         assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
     }
 
