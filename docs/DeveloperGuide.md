@@ -8,15 +8,19 @@ title: Developer Guide for The Food Diary
 
 ## **Description**
 
-The Food Diary is a **desktop app for managing food diary entries**, optimized with a Command Line Interface (CLI) and packaged with a Graphical User Interface (GUI).
+The Food Diary is a desktop app for managing food diary entries, optimized with a Command Line Interface (CLI) and 
+packaged with a Graphical User Interface (GUI).
 
-The Food Diary **caters to food-passionate NUS students** who would ideally benefit from keeping records of food options tasted in the vicinity of NUS.
+The Food Diary caters to food-passionate NUS students who would ideally benefit from keeping records of food options 
+tasted in the vicinity of NUS.
 
-The Food Diary will **allow students to save time and effort** when finding places to eat around the NUS vicinity. 
-The Food Diary especially caters to students chiefly on 3 aspects:
-1. The ability for users to log personal food reviews tagged under different categories for future reference;
-1. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI; and
-1. The ability to import and export their personal food diary to share with friends.
+The Food Diary will allow students to save time and effort when finding places to eat around the NUS vicinity. The Food 
+Diary especially caters to students mainly on 4 aspects:
+
+1. The ability for users to save food diary entries for future reference.
+2. The ability for users to find entries based on specific fields.
+3. The ability for users to have multiple food reviews for a food place.
+4. The option for users to use Commands / UI to perform some tasks quickly.
 
 ## **Design**
 ### Architecture
@@ -515,7 +519,44 @@ Given below are instructions to test the app manually.
 to work on.
 </div>
 
-## UI Mockup
+### Launch and shutdown
+1. Initial launch
+    1. Download the jar file and copy into an empty folder
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
+2. Saving window preferences
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    2. Re-launch the app by double-clicking the jar file.
+    
+        Expected: The most recent window size and location is retained.
+
+### View an entry
+1. View an expanded view of an entry with lengthy review
+    1. Correct command with valid parameters:`view 1` (provided that entry of index 1 already exists)
+        
+        Expected: A window pops up which shows all details of the specified entry.
+    2. Command without parameters: `view`
+       
+        Expected: User will be notified that invalid command format is provided. The command box
+        Will show the correct syntax for `view` command.
+    3. Command not in lower-case: `ViEw 1` (provided that entry of index 1 already exists)
+    
+        Expected: User will be notified about unknown command in the command box.
+    4. Correct command but with non-existent index: `view 100000` (provided that entry of index 100000 
+       do not exists)
+       
+        Expected: User will be notified of invalid command and the number of entries in The Food Diary.
+
+### Clear all entries
+1. Remove all entries from The Food Diary
+    1. Correct command:`clear` 
+
+       Expected: Success message will show up in command box informing user that all entries are cleared.
+    2. Command not in lower-case: `cLeAr`
+
+       Expected: User will be notified about unknown command in the command box.
+    
+
+## **UI Mockup**
 
 ![Ui Mock-up](images/Ui.png)
