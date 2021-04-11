@@ -30,8 +30,9 @@ public class AddSemesterCommandParser implements Parser<AddSemesterCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSemesterCommand.MESSAGE_USAGE));
         }
 
-        int semNumber = ParserUtil.parseSemesterNumber(argMultimap.getValue(PREFIX_SEM_NUMBER).get());
+        int semNumber = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_SEM_NUMBER).get()).getOneBased();
         Index planNumber = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PLAN_NUMBER).get());
+
 
         Semester semester = new Semester(semNumber);
         return new AddSemesterCommand(planNumber, semester);
@@ -44,5 +45,4 @@ public class AddSemesterCommandParser implements Parser<AddSemesterCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

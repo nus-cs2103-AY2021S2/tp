@@ -172,6 +172,7 @@ The output will show whether the operation was successful and include the semest
 Constraints:
 * Trying to add a semester that already exist will not be allowed
 * Trying to delete a semester that does not exist will not be allowed
+* A semester number must be a positive integer
 
 Example output for adding semester:
 ![add_semester](images/AddSemester.png)
@@ -254,3 +255,13 @@ Constraints:
 
 #### Example output for finding a specific module information
 ![InfoCommandDemoSingle](images/InfoCommandSingleModuleDemo.PNG)
+
+
+### Overall input constraints
+The NUS Module Planner app is designed to help students track their typical study plans.
+Hence, user inputs for indexes such as plan numbers or semester numbers are only guaranteed to work within reasonable limits. For example a student should never have 2 billion semesters in their study plan as this would exceed the typical human lifetime.
+
+Explicitly, the following should take on values between 1 and 100 only.
+* Semester number
+* Plan number
+* Number of modules in a plan or semester
