@@ -84,7 +84,7 @@ public class Assignment extends Event {
 
     @Override
     public String toString() {
-        return description + " due: " + deadline.format(LocalDateTimeUtil.DATETIME_FORMATTER)
+        return description + "\n   due: " + deadline.format(LocalDateTimeUtil.DATETIME_FORMATTER)
             + "    " + isDone();
     }
 
