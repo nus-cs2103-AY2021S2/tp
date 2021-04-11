@@ -109,10 +109,10 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Due to the limitation of PlantUML, some multiplicities and association roles may be slightly out of place.
 </div>
+
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
@@ -339,6 +339,66 @@ The following sequence diagram shows how the update operation works:
 
 ![UpdateNewSequenceDiagram](images/UpdateNewSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UpdateCommandParser` and `UpdateNewCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+### 3.5 Find feature
+
+#### 3.5.1 Current Implementation
+
+The find mechanism is facilitated by `PocketEstate`. It implements the search feature that allows the user to specify the fields to search for and use multiple parameters. 
+This feature is implemented separately for both property and appointment, as well as an additional `find client` feature that searches both properties and appointments. 
+
+`find appointment` and `find property` uses `AppointmentPredicateList` and `PropertyPredicateList` to keep track of all 
+predicates that `FindAppointmentCommandParser` and `FindPropertyCommandParser` generated respectively. A unique predicate 
+class exist for every attribute that `Appointment` and `Property` classes have. `find client` command is implemented by 
+combining an `AppointmentNamePredicate` and a `PropertyClientNamePredicate`, and using the same keywords for both. 
+
+Since they are implemented similarly, given below is an example usage scenario and how the find mechanism behaves at each step for `find appointment`.  
+
+Step 1. The user executes `find appointment n/alex d/25-12-2021 n/john` command to find an appointment in the appointment book 
+that contains `alex` in its name and has date set to `25-12-2021`. 
+
+Step 2. `PocketEstateParser` parses user input and calls `FindAppointmentParser`. 
+
+Step 3. For each unique option type in the input, in this case `n/` for name, and `d/` for date, `FindAppointmentCommandParser` 
+creates a `AppointmentPredicateList`, then creates `predicates` for each keyword, storing them in the `AppointmentPredicateList` 
+for their corresponding option type. i.e. the `AppointmentPredicateList` for `d/` will contain 1 `AppointmentDatePredicate` 
+that checks for `25-12-2021`, while that for `n/` will contain 2 `AppointmentNamePredicates`, 1 checking for `alex`, and the other 
+checking for `john`. 
+
+Step 4. `FindAppointmentCommandParser` creates a new `AppointmentPredicateList` containing a list of all 
+previously created `AppointmentPredicateList`.  
+
+Step 5: `FindAppointmentCommandParser` creates a `FindAppointmentCommand` with the `AppointmentPredicateList` as argument. 
+
+Step 6: `FindAppointmentCommand` creates a single `Predicate` by calling `AppointmentPredicateList#combine`. 
+    * This function combines all `predicates` by: 
+        1. Calling `AppointmentPredicateList#combineDisjunction`, which combines predicates with logical **`OR`**, on every `AppointmentPredicateList` 
+        stored within itself
+        1. Combining all created `predicates` into a single `Predicate` with logical **`AND`**
+        
+Step 7: `FindAppointmentCommand` calls `Model#updateFilteredAppointmentList` with the new `Predicate` to update the filtered 
+list that is viewed by the user. 
+
+#### 3.5.2 Design consideration:
+
+##### Aspect: How Find executes
+
+The following activity diagram summarizes what happens when a user executes a `FindAppointmentCommand`:
+
+![FindAppointmentActivityDiagram](images/FindActivityDiagram.png)
+
+##### Aspect: How predicates of the same type interact with each other
+
+* **Initial implementation**: Conjunction of all predicates where all predicates are combined with logical **`AND`**. 
+    * Pros: Easy to implement. 
+    * Cons: Very restrictive for users, testers also complained that this felt unintuitive. 
+    
+* **Current implementation**: All predicates of the same type are first combined with logical **`OR`**, then combined 
+with other predicates with logical **`AND`**. 
+    * Pros: Allows for more flexible searches. 
+    * Cons: More difficult to implement and test.    
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -372,8 +432,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                 | I want to …​                                                            | So that I can…​                                                                        |
 | -------- | ------------------------------------------ | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions                                                     | refer to instructions when I forget how to use the App                                    |
-| `* * *`  | user                                       | be able to add a property                                                  | keep track of my clients' properties                                                      |
-| `* * *`  | user                                       | be able to add an appointment                                              | keep track of my upcoming schedule                                                        |
+| `* * *`  | user                                       | add a property                                                             | keep track of my clients' properties                                                      |
+| `* * *`  | user                                       | add an appointment                                                         | keep track of my upcoming schedule                                                        |
 | `* * *`  | user                                       | list all properties on sale                                                | know the number of properties that I have to sell                                         |
 | `* * *`  | user                                       | list all appointments I have                                               | know all the meetings I have                                                              |
 | `* * *`  | user                                       | view all properties and appointments side by side                          | simultaneously view related property and appointment data                                 |
@@ -385,11 +445,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | search for appointments based on some criteria                             | easily filter out the appointments I want to see                                          |
 | `* *`    | user                                       | search for all appointments and properties related to a client             | easily find out any appointments with a client and what properties they are interested in |
 | `* *`    | potential user exploring the app           | see the app populated with sample data                                     | easily see how the app looks like when it is in use                                       |
-| `* *`    | careless user                              | be able to categorize housing information based on predefined tags         | prevent typos while keying in information and avoid storing the wrong information         |
+| `* *`    | user                                       | be able to create tags to classify properties                              | easily organize my properties                                                             |
+| `* *`    | user                                       | be able to use icons to classify property types                            | easily differentiate the different property types in a list                               |
 | `* *`    | user                                       | update the status of property listings(completed, Option, Sale Agreement)  | follow up with clients on time                                                            |
 | `* *`    | user                                       | edit the deadline of the property listing                                  | extend the time period for selling the property                                           |
 | `* *`    | user                                       | edit the name of the property listing                                      | change the name of the property when I have made a mistake                                |
-| `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
 | `* *`    | user                                       | edit the address of the property listing                                   | change the address of the property when I have made a mistake                             |
 
 
