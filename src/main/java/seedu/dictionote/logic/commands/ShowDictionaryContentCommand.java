@@ -20,7 +20,7 @@ public class ShowDictionaryContentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Showed a specific dictionary content identified by the index number used in the displayed"
-            + "dictionary content list.\n"
+            + " dictionary content list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

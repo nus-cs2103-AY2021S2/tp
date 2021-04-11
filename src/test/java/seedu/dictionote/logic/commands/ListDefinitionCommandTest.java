@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.ModelManager;
 import seedu.dictionote.model.UserPrefs;
+import seedu.dictionote.testutil.TypicalDictionaryContentConfig;
 
 public class ListDefinitionCommandTest {
     private Model model;
@@ -23,6 +24,9 @@ public class ListDefinitionCommandTest {
                 getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
         expectedModel = new ModelManager(model.getContactsList(), new UserPrefs(),
                 getTypicalNoteBook(), getTypicalDictionary(), getTypicalDefinitionBook());
+
+        model.setDictionaryContentConfig(TypicalDictionaryContentConfig.getTypicalDictionaryContentConfig());
+        expectedModel.setDictionaryContentConfig(TypicalDictionaryContentConfig.getTypicalDictionaryContentConfig());
     }
 
     @Test
