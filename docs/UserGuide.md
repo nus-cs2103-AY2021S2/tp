@@ -776,11 +776,12 @@ Finds events whose names contain any of the given keywords from the event list.
 Format: `find_event KEYWORD1 [KEYWORD2] ...`
 * The search is case-insensitive. e.g. `meeting` will match `Meeting`.
 * The search scope is the **full** task list.
-* The order of the keywords does not matter. e.g. `Attending Lecture` will match `Lecture Attending`.
+* The order of the keywords does not matter. <br>
+  E.g. `Attending Lecture` will match `Lecture Attending`.
 * Only the name of the events is searched.
 * Only full words will be matched. e.g. `CS` will not match `CS2103`.
-* Events matching at least one keyword will be returned (i.e. `OR` search). e.g. `CS2103 Meeting` will return
-  `Project Meeting`, `CS2103 Lecture`.
+* Events matching at least one keyword will be returned (i.e. `OR` search). <br>
+  E.g. `CS2103 Meeting` will return `Project Meeting`, `CS2103 Lecture`.
 
 Examples:
 * `find_event Meeting` returns `project meeting` and `Research Meeting`.
