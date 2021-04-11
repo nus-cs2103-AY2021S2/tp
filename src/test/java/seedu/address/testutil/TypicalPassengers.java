@@ -6,8 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GOLF;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IT;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -28,17 +28,17 @@ public class TypicalPassengers {
     public static final Passenger ALICE = new PassengerBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withPhone("94351253").withTripDay(DayOfWeek.FRIDAY).withTripTime(LocalTime.of(18, 0))
-            .withTags("friends").build();
+            .withTags("marketing").build();
     public static final Passenger BENSON = new PassengerBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withPhone("98765432").withTripDay(DayOfWeek.FRIDAY).withTripTime(LocalTime.of(18, 0))
-            .withTags("owesMoney", "friends").build();
+            .withTags("sales", "marketing").build();
     public static final Passenger CARL = new PassengerBuilder().withName("Carl Kurz").withPhone("95352563")
             .withTripDay(DayOfWeek.FRIDAY).withTripTime(LocalTime.of(18, 0))
             .withAddress("wall street").build();
     public static final Passenger DANIEL = new PassengerBuilder().withName("Daniel Meier").withPhone("87652533")
             .withTripDay(DayOfWeek.FRIDAY).withTripTime(LocalTime.of(18, 0))
-            .withAddress("10th street").withTags("friends").build();
+            .withAddress("10th street").withTags("marketing").build();
     public static final Passenger ELLE = new PassengerBuilder().withName("Elle Meyer").withPhone("9482224")
             .withTripDay(DayOfWeek.FRIDAY).withTripTime(LocalTime.of(21, 0))
             .withAddress("michegan ave").build();
@@ -72,15 +72,16 @@ public class TypicalPassengers {
     // Manually added - Passenger's details found in {@code CommandTestUtil}
     public static final Passenger AMY = new PassengerBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withTripDay(DayOfWeek.FRIDAY).withTripTime(LocalTime.of(18, 0)).withPrice(1.69)
-            .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_IT).build();
     public static final Passenger BOB = new PassengerBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withTripDay(DayOfWeek.FRIDAY).withTripTime(LocalTime.of(18, 0)).withPrice(1.69)
-            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_GOLF, VALID_TAG_FRIEND)
+            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HR, VALID_TAG_IT)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPassengers() {} // prevents instantiation
+    private TypicalPassengers() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical passengers.
@@ -95,7 +96,7 @@ public class TypicalPassengers {
     }
 
     public static List<Passenger> getTypicalPassengers() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HILARY, JACKSON,
-                KINGSLEY, IRENE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HILARY, IRENE, JACKSON,
+                KINGSLEY));
     }
 }

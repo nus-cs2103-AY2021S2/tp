@@ -15,21 +15,27 @@ Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Passenger {
+Package Person {
 Class Passenger
 Class Address
 Class Name
 Class Phone
 Class UniquePassengerList
-Class TripDay
-Class TripTime
-Class Price
+Class Driver
+}
+
+Package Pool {
+Class UniquePoolList
+Class Pool
 Class Driver
 }
 
 Package Tag {
 Class Tag
 }
+
+Class TripDay
+Class TripTime
 }
 
 Class HiddenOutside #FFFFFF
@@ -44,19 +50,30 @@ ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePassengerList
+AddressBook *--> "1" UniquePoolList
+
 UniquePassengerList o--> "*" Passenger
 Passenger *--> Name
 Passenger *--> Phone
 Passenger *--> Address
 Passenger *--> TripDay
 Passenger *--> TripTime
-Passenger *--> "0..1" Price
-Passenger *--> "0..1" Driver
 Passenger *--> "*" Tag
 
+Driver *--> Name
+Driver *---> Phone
+
+UniquePoolList o--> "*" Pool
+Pool *--> Driver
+Pool *--> TripDay
+Pool *--> TripTime
+Pool *--> "1..*" Passenger
+Pool *--> "*" Tag
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 
-ModelManager ----->" ~* filtered list" Passenger
+ModelManager ---->" * filtered pool" Pool
+ModelManager ---->"~* filtered passenger" Passenger
+
 @enduml

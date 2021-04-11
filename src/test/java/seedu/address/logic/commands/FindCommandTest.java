@@ -119,7 +119,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPassengerList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(FIONA, HILARY, JACKSON, KINGSLEY, IRENE), model.getFilteredPassengerList());
+        assertEquals(Arrays.asList(FIONA, HILARY, IRENE, JACKSON, KINGSLEY), model.getFilteredPassengerList());
     }
 
     @Test
@@ -130,7 +130,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPassengerList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, HILARY, JACKSON, KINGSLEY, IRENE),
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, HILARY, IRENE, JACKSON, KINGSLEY),
                 model.getFilteredPassengerList());
     }
 
@@ -152,7 +152,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPassengerList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(FIONA, HILARY, JACKSON, KINGSLEY, IRENE), model.getFilteredPassengerList());
+        assertEquals(Arrays.asList(FIONA, HILARY, IRENE, JACKSON, KINGSLEY), model.getFilteredPassengerList());
     }
 
     /**
