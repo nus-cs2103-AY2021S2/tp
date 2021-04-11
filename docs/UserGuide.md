@@ -198,8 +198,7 @@ Below are a few arguments commonly found in SOChedule commands, and their corres
         <th>Attribute</th>
         <th>Restriction(s)</th>
         <th>Used in</th>
-        <th>Valid Example</th>
-        <th>Invalid Example</th>
+        <th>Examples</th>
     </tr>
     <tr>
         <td><code>INDEX</code></td>
@@ -224,12 +223,12 @@ Below are a few arguments commonly found in SOChedule commands, and their corres
             </ul>
         </td>
         <td>
+            Valid:
             <ul>
                 <li><code>1</code></li>
                 <li><code>2147483647</code></li>
             </ul>
-        </td>
-        <td>
+            Invalid:
             <ul>
                 <li><code>!#&%</code></li>
                 <li><code>2147483648</code></li>
@@ -264,12 +263,12 @@ Below are a few arguments commonly found in SOChedule commands, and their corres
             </ul>
         </td>
         <td>
+            Valid:
             <ul>
                 <li><code>1990-12-25</code></li>
                 <li><code>2020-04-01</code></li>
             </ul>
-        </td>
-        <td>
+            Invalid:
             <ul>
                 <li><code>!#&%</code></li>
                 <li><code>XXXX-XX-XX</code></li>
