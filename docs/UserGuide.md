@@ -502,11 +502,11 @@ autocompletion.
 | `edit 3`                       | `edit 3 -n` |
 | `edit 3 -n John Doe -p 94326543`                       | `edit 3 -n John Doe -p 94326543 -e ` |
 
-## Alias : `alias`
+## Aliasing commands : `alias`
 
-Alias creates shortcut command of the actual command.
+The alias command allows you to create shortcut command (also known as command alias) to the actual command.
 
-### Add Alias: `alias add`
+### Add an alias: `alias add`
 
 Adds an alias to address book.
 
@@ -516,11 +516,11 @@ Adds an alias to address book.
 
 | Example                             | Description                                                                                                                                                                                |
 | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `alias add ls list`                 | Associates a new `ls` command to list, such that the ls command will behave identically to the list command (i.e ls will now generate the list of all contacts).                           |
-| `alias add ls list -n  -p  -e  -t ` | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command with the options (i.e `list -n  -p  -e  -t`).                                |
+| `alias add ls list`                 | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command (i.e ls will now generate the list of all contacts).                           |
+| `alias add ls list -n  -p  -e  -t` | Associates a new `ls` command to list, such that the `ls` command will behave identically to the list command with the options (i.e `list -n  -p  -e  -t`).                                |
 | `alias add f find`                  | Associates a new `f` command to `find`, such that the `f` command will behave identically to the `find` command (i.e f Alex Yeoh will now return contacts equals or similar to Alex Yeoh). |
 
-### Delete Alias: `alias delete`
+### Delete an alias: `alias delete`
 
 Deletes an existing alias from address book.
 
@@ -531,7 +531,7 @@ Deletes an existing alias from address book.
 | Example           | Description            |
 | ----------------- | ---------------------- |
 | `alias delete ls` | Removes the alias `ls` |
-| `alias delete d`  | Removes the alias `d`  |
+| `alias delete f`  | Removes the alias `f`  |
 
 ### List Alias: `alias list`
 
@@ -573,15 +573,15 @@ options.
 
 Users will be able to press tab to cycle through the available options. -->
 
-## Tag : `tag`
+## Tagging persons: `tag`
 
-Tag allows addition and deletion of specific tags of person.
+The tag commands allows you to add and delete specific tags of persons.
 
-### Add Tag: `tag add`
+### Add tags to persons: `tag add`
 
-Adds tags to person in address book.
+Add tags to persons in address book.
 
-**Format**: `tag add { shown | selected | INDEX ... } -t TAG ...`
+**Format**: `tag add { shown | selected | INDEX ... } -t TAG...`
 
 **Examples**:
 
@@ -591,11 +591,11 @@ Adds tags to person in address book.
 | `tag add selected -t Illustrator`           | Adds `Illustrator` tag to the people selected.                               |
 | `tag add 1 2 3 -t Photoshop -t Illustrator` | Adds `Photoshop` and `Illustrator` tags to people at index `1`, `2` and `3`. |
 
-### Delete Tag: `tag delete`
+### Delete tags from persons: `tag delete`
 
-Deletes tags from person in address book.
+Delete tags from persons in address book.
 
-**Format**: `tag delete { shown | selected | INDEX... } -t TAG [-t TAG]...`
+**Format**: `tag delete { shown | selected | INDEX... } -t TAG...`
 
 **Examples**:
 
