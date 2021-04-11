@@ -11,7 +11,6 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.model.Aggregator;
 import seedu.address.model.Item;
 import seedu.address.model.ingredient.Ingredient;
-import seedu.address.model.order.Order;
 
 public class Dish implements Item, Aggregator<Ingredient> {
     private String name;

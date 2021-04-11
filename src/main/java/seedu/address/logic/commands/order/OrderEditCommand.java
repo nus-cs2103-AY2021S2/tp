@@ -70,13 +70,27 @@ public class OrderEditCommand extends Command {
         }
 
         Order orderToEdit = lastShownList.get(index.getZeroBased());
+
         Order editedOrder = createEditedOrder(orderToEdit, editOrderDescriptor, model);
 
         if (!orderToEdit.isSame(editedOrder) && model.hasOrder(editedOrder)) {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);
         }
 
-        model.setOrder(orderToEdit, editedOrder);
+        model.deleteOrder(orderToEdit);
+        model.increaseIngredientByOrder(orderToEdit);
+
+        try {
+            // isValidOrderAddition throws a command exception and acts as a guard clause
+            OrderCommandUtil.isValidOrderAddition(editedOrder, model);
+            model.addOrder(editedOrder);
+            model.decreaseIngredientByOrder(editedOrder);
+        } catch (CommandException exception) {
+            model.addOrder(orderToEdit);
+            model.decreaseIngredientByOrder(orderToEdit);
+            throw exception;
+        }
+
         return new CommandResult(String.format(MESSAGE_EDIT_ORDER_SUCCESS, editedOrder),
                 CommandResult.CRtype.PERSON);
     }
