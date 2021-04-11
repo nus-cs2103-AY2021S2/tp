@@ -11,7 +11,7 @@ import seedu.address.testutil.TypicalFilters;
 /**
  * Integration tests for AddTutorFilterCommandParser.
  */
-public class AddTutorFilterCommandParserTest {
+public class AddPersonFilterCommandParserTest {
     private AddPersonFilterCommandParser parser = new AddPersonFilterCommandParser();
 
     @Test

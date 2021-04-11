@@ -18,9 +18,9 @@ import seedu.address.model.filter.TutorFilter;
 import seedu.address.testutil.TypicalFilters;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for AddPersonFilterCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for DeletePersonFilterCommand.
  */
-public class AddTutorFilterCommandTest {
+public class DeletePersonFilterCommandTest {
     private Model model;
     private Model expectedModel;
 
@@ -33,37 +33,41 @@ public class AddTutorFilterCommandTest {
         expectedModel = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
                 getTypicalAppointmentBook(), new BudgetBook(), getTypicalGradeBook(),
                 getTypicalScheduleTracker(), getTypicalReminderTracker());
+
+        TutorFilter tutorFilter = TypicalFilters.getBensonTwoSubjectsFilter();
+        model.addTutorFilter(tutorFilter);
+        expectedModel.addTutorFilter(tutorFilter);
     }
 
     @Test
     public void execute_allFieldsSpecified_success() {
         TutorFilter tutorFilter = TypicalFilters.getBensonTwoSubjectsFilter();
-        AddPersonFilterCommand addPersonFilterCommand = new AddPersonFilterCommand(tutorFilter);
+        DeletePersonFilterCommand deletePersonFilterCommand = new DeletePersonFilterCommand(tutorFilter);
 
-        expectedModel.addTutorFilter(tutorFilter);
-        String expectedMessage = String.format(AddPersonFilterCommand.MESSAGE_SUCCESS, tutorFilter);
+        expectedModel.removeTutorFilter(tutorFilter);
+        String expectedMessage = String.format(DeletePersonFilterCommand.MESSAGE_SUCCESS, tutorFilter);
 
-        assertCommandSuccess(addPersonFilterCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deletePersonFilterCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecified_success() {
         TutorFilter tutorFilter = TypicalFilters.getBensonNoSubjectsFilter();
-        AddPersonFilterCommand addPersonFilterCommand = new AddPersonFilterCommand(tutorFilter);
+        DeletePersonFilterCommand deletePersonFilterCommand = new DeletePersonFilterCommand(tutorFilter);
 
-        expectedModel.addTutorFilter(tutorFilter);
-        String expectedMessage = String.format(AddPersonFilterCommand.MESSAGE_SUCCESS, tutorFilter);
+        expectedModel.removeTutorFilter(tutorFilter);
+        String expectedMessage = String.format(DeletePersonFilterCommand.MESSAGE_SUCCESS, tutorFilter);
 
-        assertCommandSuccess(addPersonFilterCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deletePersonFilterCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecified_success() {
         TutorFilter tutorFilter = new TutorFilter();
-        AddPersonFilterCommand addPersonFilterCommand = new AddPersonFilterCommand(tutorFilter);
+        DeletePersonFilterCommand deletePersonFilterCommand = new DeletePersonFilterCommand(tutorFilter);
 
-        String expectedMessage = String.format(AddPersonFilterCommand.MESSAGE_SUCCESS, tutorFilter);
+        String expectedMessage = String.format(DeletePersonFilterCommand.MESSAGE_SUCCESS, tutorFilter);
 
-        assertCommandSuccess(addPersonFilterCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deletePersonFilterCommand, model, expectedMessage, expectedModel);
     }
 }
