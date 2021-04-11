@@ -1,13 +1,18 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_OWNER_ID;
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
+import static dog.pawbook.logic.commands.AddDogCommand.MESSAGE_SUCCESS;
 import static dog.pawbook.testutil.Assert.assertThrows;
+import static dog.pawbook.testutil.TypicalEntities.HAPPY_PUPPY;
+import static dog.pawbook.testutil.TypicalEntities.HOON;
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -29,13 +34,40 @@ import javafx.collections.ObservableList;
 import javafx.util.Pair;
 
 public class AddDogCommandTest {
-
     @Test
     public void constructor_nullDog_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddDogCommand(null));
     }
 
-    //TO DO execute_dogAcceptedByModel_addSuccessful()
+    @Test
+    public void execute_dogAcceptedByModel_success() throws CommandException {
+        ModelStubAcceptingDogAdded modelStub = new ModelStubAcceptingDogAdded();
+        Dog validDog = new DogBuilder().withOwnerID(1).build();
+
+        CommandResult commandResult = new AddDogCommand(validDog).execute(modelStub);
+        assertEquals(MESSAGE_SUCCESS + validDog, commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(new OwnerBuilder(HOON).withDogs(3).build(), HAPPY_PUPPY, validDog),
+                modelStub.entitiesAdded);
+    }
+
+    @Test
+    public void execute_dogOwnerNotOwner_throwsCommandException() {
+        ModelStubAcceptingDogAdded modelStub = new ModelStubAcceptingDogAdded();
+        Dog validDog = new DogBuilder().withOwnerID(2).build();
+
+        AddDogCommand command = new AddDogCommand(validDog);
+        assertThrows(CommandException.class, MESSAGE_INVALID_OWNER_ID, () -> command.execute(modelStub));
+    }
+
+    @Test
+    public void execute_dogOwnerIdInvalid_throwsCommandException() {
+        ModelStubAcceptingDogAdded modelStub = new ModelStubAcceptingDogAdded();
+        Dog validDog = new DogBuilder().withOwnerID(4).build();
+
+        AddDogCommand command = new AddDogCommand(validDog);
+        assertThrows(CommandException.class, MESSAGE_INVALID_OWNER_ID, () -> command.execute(modelStub));
+    }
+
     @Test
     public void execute_duplicateDog_throwsCommandException() {
         Dog validDog = new DogBuilder().build();
@@ -55,20 +87,20 @@ public class AddDogCommandTest {
         AddDogCommand addBubblesCommand = new AddDogCommand(bubbles);
 
         // same object -> returns true
-        assertTrue(addAppleCommand.equals(addAppleCommand));
+        assertEquals(addAppleCommand, addAppleCommand);
 
         // same values -> returns true
         AddDogCommand addAppleCommandCopy = new AddDogCommand(apple);
-        assertTrue(addAppleCommand.equals(addAppleCommandCopy));
+        assertEquals(addAppleCommandCopy, addAppleCommand);
 
         // different types -> returns false
-        assertFalse(addAppleCommand.equals(1));
+        assertNotEquals(addAppleCommand, 1);
 
         // null -> returns false
-        assertFalse(addAppleCommand.equals(null));
+        assertNotEquals(addAppleCommand, null);
 
         // different dog -> returns false
-        assertFalse(addAppleCommand.equals(addBubblesCommand));
+        assertNotEquals(addBubblesCommand, addAppleCommand);
     }
 
     /**
@@ -201,10 +233,15 @@ public class AddDogCommandTest {
     }
 
     /**
-     * A Model stub that always accept the dog being added.
+     * A Model stub that always accept the owner being added.
      */
-    private class ModelStubAcceptingEntityAdded extends ModelStub {
+    private class ModelStubAcceptingDogAdded extends ModelStub {
         final ArrayList<Entity> entitiesAdded = new ArrayList<>();
+
+        public ModelStubAcceptingDogAdded() {
+            entitiesAdded.add(HOON);
+            entitiesAdded.add(HAPPY_PUPPY);
+        }
 
         @Override
         public boolean hasEntity(Entity entity) {
@@ -213,16 +250,34 @@ public class AddDogCommandTest {
         }
 
         @Override
+        public boolean hasEntity(int id) {
+            return id <= entitiesAdded.size();
+        }
+
+        @Override
+        public Entity getEntity(int targetId) {
+            return entitiesAdded.get(targetId - 1);
+        }
+
+        @Override
+        public void setEntity(int targetId, Entity editedEntity) {
+            entitiesAdded.set(targetId - 1, editedEntity);
+        }
+
+        @Override
         public int addEntity(Entity entity) {
             requireNonNull(entity);
             entitiesAdded.add(entity);
-            return entitiesAdded.indexOf(entity);
+            return entitiesAdded.indexOf(entity) + 1;
         }
 
         @Override
         public ReadOnlyDatabase getDatabase() {
             return new Database();
         }
+
+        @Override
+        public void updateFilteredEntityList(Predicate<Pair<Integer, Entity>> predicate) {}
     }
 
 }

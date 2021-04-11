@@ -3,12 +3,11 @@ package dog.pawbook.logic.commands;
 import static dog.pawbook.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -42,7 +41,7 @@ public class AddOwnerCommandTest {
         CommandResult commandResult = new AddOwnerCommand(validOwner).execute(modelStub);
 
         assertEquals(AddOwnerCommand.MESSAGE_SUCCESS + validOwner, commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validOwner), modelStub.entitiesAdded);
+        assertEquals(Collections.singletonList(validOwner), modelStub.entitiesAdded);
     }
 
     @Test
@@ -63,20 +62,20 @@ public class AddOwnerCommandTest {
         AddOwnerCommand addBobCommand = new AddOwnerCommand(bob);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertEquals(addAliceCommand, addAliceCommand);
 
         // same values -> returns true
         AddOwnerCommand addAliceCommandCopy = new AddOwnerCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        assertEquals(addAliceCommandCopy, addAliceCommand);
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertNotEquals(addAliceCommand, 1);
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertNotEquals(addAliceCommand, null);
 
         // different owner -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertNotEquals(addBobCommand, addAliceCommand);
     }
 
     /**
@@ -216,9 +215,7 @@ public class AddOwnerCommandTest {
         }
 
         @Override
-        public void updateFilteredEntityList(Predicate<Pair<Integer, Entity>> predicate) {
-            return;
-        }
+        public void updateFilteredEntityList(Predicate<Pair<Integer, Entity>> predicate) {}
     }
 
 }

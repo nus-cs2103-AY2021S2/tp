@@ -20,7 +20,7 @@ public class Dog extends Entity {
     public static final String ENTITY_WORD = "dog";
 
     //Identity Fields
-    private final Integer ownerID;
+    private final int ownerId;
 
     // Data fields
     private final Breed breed;
@@ -30,13 +30,13 @@ public class Dog extends Entity {
     /**
      * Every field must be present and not null.
      */
-    public Dog(Name name, Breed breed, DateOfBirth dob, Sex sex, Integer ownerID, Set<Tag> tags) {
+    public Dog(Name name, Breed breed, DateOfBirth dob, Sex sex, Integer ownerId, Set<Tag> tags) {
         super(name, tags);
-        requireAllNonNull(name, breed, dob, sex, ownerID, tags);
+        requireAllNonNull(name, breed, dob, sex, ownerId, tags);
         this.breed = breed;
         this.dob = dob;
         this.sex = sex;
-        this.ownerID = ownerID;
+        this.ownerId = ownerId;
     }
 
     public Breed getBreed() {
@@ -51,8 +51,8 @@ public class Dog extends Entity {
         return dob;
     }
 
-    public Integer getOwnerId() {
-        return ownerID;
+    public int getOwnerId() {
+        return ownerId;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class Dog extends Entity {
         Dog otherDog = (Dog) otherEntity;
 
         return super.isSameAs(otherEntity)
-                && otherDog.getOwnerId().equals(getOwnerId());
+                && otherDog.getOwnerId() == getOwnerId();
     }
 
     /**
@@ -90,13 +90,13 @@ public class Dog extends Entity {
                 && otherDog.getBreed().equals(getBreed())
                 && otherDog.getSex().equals(getSex())
                 && otherDog.getDob().equals(getDob())
-                && otherDog.getOwnerId().equals(getOwnerId());
+                && otherDog.getOwnerId() == getOwnerId();
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, breed, dob, sex, ownerID, tags);
+        return Objects.hash(name, breed, dob, sex, ownerId, tags);
     }
 
     @Override
@@ -123,7 +123,7 @@ public class Dog extends Entity {
 
     @Override
     public List<Integer> getRelatedEntityIds() {
-        return Collections.singletonList(ownerID);
+        return Collections.singletonList(ownerId);
     }
 
     @Override
@@ -132,7 +132,7 @@ public class Dog extends Entity {
         properties.add("Breed: " + breed.value);
         properties.add("Date of Birth: " + dob.value);
         properties.add("Sex: " + sex.value);
-        properties.add("Owner's ID: " + ownerID);
+        properties.add("Owner's ID: " + ownerId);
         return properties;
     }
 }
