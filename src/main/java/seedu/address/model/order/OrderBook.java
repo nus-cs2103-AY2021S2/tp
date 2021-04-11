@@ -57,16 +57,16 @@ public class OrderBook implements ReadOnlyBook<Order> {
 
     /**
      * Add order to list
-     * @param o
+     * @param order order to be added
      */
-    public void addOrder(Order o) {
-        orders.add(o);
+    public void addOrder(Order order) {
+        orders.add(order);
     }
 
     /**
      * Set order to new order details
-     * @param target
-     * @param editedOrder
+     * @param target target order to be edited
+     * @param editedOrder edited version of order
      */
     public void setOrder(Order target, Order editedOrder) {
         requireNonNull(editedOrder);
@@ -75,7 +75,7 @@ public class OrderBook implements ReadOnlyBook<Order> {
 
     /**
      * Remove specific order
-     * @param key
+     * @param key order to be removed
      */
     public void removeOrder(Order key) {
         orders.remove(key);
@@ -83,7 +83,7 @@ public class OrderBook implements ReadOnlyBook<Order> {
 
     /**
      * Turns the state of an order to complete
-     * @param key
+     * @param key order to be completed
      */
     public void completeOrder(Order key) {
         key.setState(Order.State.COMPLETED);
@@ -91,7 +91,7 @@ public class OrderBook implements ReadOnlyBook<Order> {
 
     /**
      * Cancel an order
-     * @param key
+     * @param key order to be cancelled
      */
     public void cancelOrder(Order key) {
         key.setState(Order.State.CANCELLED);
@@ -99,10 +99,10 @@ public class OrderBook implements ReadOnlyBook<Order> {
 
     /**
      * Sorts item with a comparator that compares datetime
-     * @param c
+     * @param comp comparator to use for sorting
      */
-    public void sortItemsByDateTime(Comparator<Order> c) {
-        orders.sort(c);
+    public void sortItemsByDateTime(Comparator<Order> comp) {
+        orders.sort(comp);
     }
 
     @Override

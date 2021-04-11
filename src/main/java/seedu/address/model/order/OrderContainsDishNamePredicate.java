@@ -3,7 +3,7 @@ package seedu.address.model.order;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a Order's dish name contains this keyword
  */
 public class OrderContainsDishNamePredicate implements Predicate<Order> {
     private final String keyword;
