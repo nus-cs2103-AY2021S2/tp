@@ -93,6 +93,7 @@ Double click the file to start the app.
 Type in `java -jar RemindMe.jar` in the command box and press Enter to execute it.<br>
 <br>
 <br>
+<br>
 The following windows should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](./images/Ui2.png)<br>
    *[Start up image of RemindMe]*
@@ -853,10 +854,10 @@ application to exit the program.
 ## 4. FAQ
 
 **Q: Can I add an assignment/exam first before the module?**<br>
-A: No, you need to add a module first.
+A: Sorry it is not allowed to add assignment/exam before the module, you will need to add a module first.
 
 **Q: Can I add multiple modules with the same name?**<br>
-A: No, modules must have unique names to identify them.
+A: Sorry it is not allowed to have duplicate module names, the modules must have unique names to identify them.
 
 **Q: How do I clear away all my data?**<br> 
 A: You can use the [`clear` command](#38-clearing-clear).
