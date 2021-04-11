@@ -58,14 +58,14 @@ public class OrderItemTest {
     @Test
     public void toString_chocolateCake_expectedString() {
         String type = CHOCOLATE.getType().toString();
-        String expected = "Type of cake: " + type;
+        String expected = type;
         assertEquals(expected, CHOCOLATE.toString());
     }
 
     @Test
-    public void toString_missingWhitespace_invalidExpectedString() {
+    public void toString_extraWhitespace_invalidExpectedString() {
         String type = CHOCOLATE.getType().toString();
-        String expected = "Type of cake:" + type;
+        String expected = " " + type;
         assertNotEquals(expected, CHOCOLATE.toString());
 
     }
