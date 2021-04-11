@@ -15,17 +15,18 @@ Given below are my contributions to the project.
     * What it does previously: Allows the user to delete a person in AddressBook.
     * What it does now: Allows the user to delete a flashcard in FlashBack.
     <br><br>
-* **New features**: Added the ability to undo an undoable command. [#65](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/65)
+* **New feature**: Added the ability to undo an undoable command. [#65](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/65)
     * What it does: Allows user to reverse a command that changes flashcard.
     * Justification: In the event that users accidentally execute a wrong command that modifies flashcards, this feature allows user to undo the action.
     * Highlights: This feature mainly involves creating a versionedFlashBack that stores the states of FlashBack.
     * Credit: Implementations adapted from [SE-EDU](https://github.com/se-edu/addressbook-level4) on Github
     <br><br>
-* **New features**: Added the ability to redo a command. [#88](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/88)
+* **New feature**: Added the ability to redo a command. [#88](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/88)
     * What it does: Similar to undo, except it reverses the undo command.
     * Justification: Similar to undo, this features allows user to redo a command when the users accidentally undo a command.
     <br><br>
-* **New features**: Added the ability to define an alias for a command. [#111](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/111)
+<div style="page-break-after: always;"></div>
+* **New feature**: Added the ability to define an alias for a command. [#111](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/111)
     * What it does: Allows the user to define an alias for a command.
     * Justification: For advanced users who wish to rename their command to something else so that there are able to use the application more effectively. Example: delete -> rm, list -> ls, etc. for users who are familiar to Unix-like operating system.
     * Highlights: This feature requires the implementation of a new class that handles the mapping of aliases and commands. As the alias mapping is saved in preferences.json file, it is possible for users to change the mapping directly to something invalid, for example add -> delete. Hence an additional check is also added when loading the preferences.json into FlashBack.
