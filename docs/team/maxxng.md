@@ -76,16 +76,12 @@ Given below are my contributions to the project.
     * Add user story: 
     
 * **Community**:
-  * PRs reviewed (with non-trivial review comments or bugs found): 
-  [\#74](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/74), 
-  [\#68](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/68), 
-  [\#63](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/63), 
-  [\#7](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/7)
+  * PRs reviewed (with non-trivial review comments or bugs found): [\#74](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/74), [\#68](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/68), [\#63](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/63), [\#7](https://github.com/AY2021S2-CS2103T-T10-2/tp/pull/7)
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/263), [2](https://github.com/nus-cs2103-AY2021S2/forum/issues/143), [3](https://github.com/nus-cs2103-AY2021S2/forum/issues/122))
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/maxxng/ped/issues/1), [2](https://github.com/maxxng/ped/issues/3), [3](https://github.com/maxxng/ped/issues/6))
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+* **Contribution to team-based tasks**:
+    * In charge of merging pull requests and ensuring that reviews for PRs are valid.
+    * Help set up the GitHub team org and repo.
+    * Managed issue tracker, assigning of issues and tagging of issues for PE-D.
+    * Monitored team tasks using Github Project board.
