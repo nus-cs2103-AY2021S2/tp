@@ -42,6 +42,8 @@ i.e. SOChedule, SoChedule, Sochedule can be used interchangeably.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Preface
 SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).  
@@ -1387,7 +1389,7 @@ The sequence diagram for `FindFreeTimeCommand` can be found below.
 
 The below activity diagram summarises what happens when `free_time` is called.
 
-![Activity Diagram of FindFreeTimeCommand](images/FindFreeTimeActivityDiagram.png)
+<img src="images/FindFreeTimeActivityDiagram.png" width="450" />
 
 <div style="page-break-after: always;"></div>
 
