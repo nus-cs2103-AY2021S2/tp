@@ -65,7 +65,7 @@ public class ClearPatientCommandTest {
 
         Model nonEmptyDoctorRecordsModel = new ModelManager(getTypicalPatientRecords(), getTypicalDoctorRecords(),
                 getTypicalAppointmentSchedule(), new UserPrefs());
-        
+
         assertCommandFailure(new ClearPatientCommand(), emptyDoctorRecordsModel,
                 MESSAGE_CLEAR_APPOINTMENTS_BEFORE_PATIENTS_REQUIRED);
         assertCommandFailure(new ClearPatientCommand(), nonEmptyDoctorRecordsModel,
