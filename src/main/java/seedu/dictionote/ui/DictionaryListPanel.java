@@ -45,7 +45,7 @@ public class DictionaryListPanel extends UiPart<Region> implements DictionaryLis
     }
 
     /**
-     * Displays content display.
+     * Displays content display and close definition display.
      */
     public void openContentDisplay() {
         if (!dictionaryContentListView.isVisible()) {
@@ -57,7 +57,7 @@ public class DictionaryListPanel extends UiPart<Region> implements DictionaryLis
     }
 
     /**
-     * Displays definition display.
+     * Displays definition display and close content display.
      */
     public void openDefinitionDisplay() {
         if (!dictionaryDefinitionListView.isVisible()) {
