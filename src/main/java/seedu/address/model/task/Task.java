@@ -170,7 +170,7 @@ public class Task {
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; \n").append(Tag.FIELD_NAME).append("s: ");
+            builder.append(Tag.FIELD_NAME).append("s: ");
             tags.forEach(builder::append);
         }
         return builder.toString();
