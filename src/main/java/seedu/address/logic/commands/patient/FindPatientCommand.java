@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.patient;
+package seedu.address.logic.commands.patient;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_FIND_PATIENT_SUCCESS;

@@ -22,7 +22,7 @@ import seedu.address.logic.commands.patient.EditPatientCommand;
 import seedu.address.logic.commands.patient.EditPatientCommand.EditPatientDescriptor;
 import seedu.address.logic.commands.patient.ListPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.patient.FindPatientCommand;
+import seedu.address.logic.commands.patient.FindPatientCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Patient;
 import seedu.address.testutil.EditPatientDescriptorBuilder;

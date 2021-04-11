@@ -17,7 +17,6 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.patient.FindPatientCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.AppointmentSchedule;
 import seedu.address.model.Model;

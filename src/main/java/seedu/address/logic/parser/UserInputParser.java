@@ -41,7 +41,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.patient.AddPatientCommandParser;
 import seedu.address.logic.parser.patient.DeletePatientCommandParser;
 import seedu.address.logic.parser.patient.EditPatientCommandParser;
-import seedu.address.logic.parser.patient.FindPatientCommand;
+import seedu.address.logic.commands.patient.FindPatientCommand;
 import seedu.address.logic.parser.patient.FindPatientCommandParser;
 import seedu.address.storage.InputCommandStorage;
 
