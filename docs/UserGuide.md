@@ -344,8 +344,8 @@ Format: `edit_student STUDENT_INDEX [n/NAME] [p/STUDENT_PHONE_NUMBER] [e/EMAIL] 
 * `STUDENT_PHONE_NUMBER` and `GUARDIAN_PHONE_NUMBER` should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 with 8 digits)
 
 Example:
-1. You would like to edit `Alex Yeoh` student's phone number, email address and address as they are wrong. 
-2. Type `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01` and press <kbd>enter</kbd>. (This edits the student `Alex Yeoh`'s `STUDENT_PHONE_NUMBER`, `EMAIL`, and `ADDRESS` which is at index 1)
+1. You would like to edit **Alex Yeoh** student's phone number, email address and address as they are wrong. 
+2. Type `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01` and press <kbd>enter</kbd>. (This edits the student **Alex Yeoh's** `STUDENT_PHONE_NUMBER`, `EMAIL`, and `ADDRESS` which is at index 1)
 
 ![edit_student_example](images/enhao/edit_student%20-%20edited.png)
 
