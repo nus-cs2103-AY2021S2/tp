@@ -167,6 +167,9 @@ Examples:
 * `addMember Dylan p/64529356 e/dylan@gmail.com`
 * `addMember Dylan p/64529356 e/dylan@gmail.com r/President`
 
+<br/>
+<br/>
+
 Using the following addMember command, `addMember Erynne p/96398428 e/erynne@gmail.com`, the addMember command
 can be used as shown below:
  
@@ -268,6 +271,9 @@ A task can have any number of assignees (including 0). To add multiple assignees
 Examples: 
 * `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 s/completed p/high a/Rachel`
 * `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 a/Rachel a/James`
+
+<br/>
+<br/>
 
 Using the following addTask command, `addTask CCA Timeline d/Plan semester's timeline b/2021-04-04 a/Alex Yeoh a/Bernice Yu`, the 
 addTask command can be used as shown below:
