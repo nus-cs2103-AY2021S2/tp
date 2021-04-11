@@ -37,7 +37,8 @@ public class MainWindow extends UiPart<Stage> {
     private ItemListPanel itemListPanel;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
-    private TablePanel tablePanel;
+    private ExpiredTablePanel expiredTablePanel;
+    private ExpiringTablePanel expiringTablePanel;
     private LocationListPanel locationListPanel;
 
     @FXML
@@ -57,6 +58,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane tablePanelPlaceholder;
+
+    @FXML
+    private StackPane tablePanelPlaceholder2;
 
     @FXML
     private StackPane locationPanelPlaceholder;
@@ -135,8 +139,11 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
         resultDisplay.welcomeMsg();
 
-        tablePanel = new TablePanel(logic.getFilteredItemList());
-        tablePanelPlaceholder.getChildren().add(tablePanel.getRoot());
+        expiredTablePanel = new ExpiredTablePanel(logic.getItemList());
+        tablePanelPlaceholder.getChildren().add(expiredTablePanel.getRoot());
+
+        expiringTablePanel = new ExpiringTablePanel(logic.getItemList());
+        tablePanelPlaceholder2.getChildren().add(expiringTablePanel.getRoot());
     }
 
     /**
@@ -187,11 +194,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Updates the expiring item table.
+     * Updates the both the expiring and expired item table.
      */
     private void updateExpiringItemTablePanel() {
-        tablePanel = new TablePanel(logic.getFilteredItemList());
-        tablePanelPlaceholder.getChildren().add(tablePanel.getRoot());
+        expiredTablePanel = new ExpiredTablePanel(logic.getItemList());
+        tablePanelPlaceholder.getChildren().add(expiredTablePanel.getRoot());
+
+        expiringTablePanel = new ExpiringTablePanel(logic.getItemList());
+        tablePanelPlaceholder2.getChildren().add(expiringTablePanel.getRoot());
     }
     /**
      * Updates the list of unique locations of items stored in the inventory.

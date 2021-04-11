@@ -32,7 +32,7 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
             }
 
             String[] wordsInTrimmedArgs = trimmedArgs.replaceAll("\\s{2,}", " ").split(" ");
-            if (!isNumber(wordsInTrimmedArgs[0])) {
+            if (!isNumber(wordsInTrimmedArgs[0]) || wordsInTrimmedArgs.length > 2) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
             }
 

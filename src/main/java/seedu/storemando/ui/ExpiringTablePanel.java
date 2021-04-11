@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -21,24 +22,27 @@ import seedu.storemando.model.item.Item;
 /**
  * Table displaying all items expiring in a week
  */
-public class TablePanel extends UiPart<Region> implements Initializable {
+public class ExpiringTablePanel extends UiPart<Region> implements Initializable {
     private static final String FXML = "TablePanel.fxml";
     private final Logger logger = LogsCenter.getLogger(getClass());
     private ObservableList<Item> itemList;
 
     @FXML
+    private Label labelid;
+
+    @FXML
     private TableView<ExpiringItem> tableView;
 
     @FXML
-    private TableColumn<ExpiringItem, String> daysBeforeExpiryCol;
+    private TableColumn<ExpiringItem, String> numberOfDays;
 
     @FXML
     private TableColumn<ExpiringItem, String> numberOfItems;
 
     /**
-     * Creates a {@code TablePanel} with the given {@code ObservableList}.
+     * Creates a {@code ExpiringTablePanel} with the given {@code ObservableList}.
      */
-    public TablePanel(ObservableList<Item> itemList) {
+    public ExpiringTablePanel(ObservableList<Item> itemList) {
         super(FXML);
         this.itemList = itemList;
         tableView.setItems(getExpiringItems(itemList));
@@ -51,7 +55,7 @@ public class TablePanel extends UiPart<Region> implements Initializable {
      */
     private ObservableList<ExpiringItem> getExpiringItems(ObservableList<Item> itemList) {
         ObservableList<ExpiringItem> tableRows = FXCollections.observableArrayList();
-        for (int i = 1; i <= 14; i++) {
+        for (int i = 0; i <= 7; i++) {
             tableRows.add(new ExpiringItem(i, itemList));
         }
         return tableRows;
@@ -59,9 +63,11 @@ public class TablePanel extends UiPart<Region> implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        daysBeforeExpiryCol.setCellValueFactory(new PropertyValueFactory<ExpiringItem, String>("daysBeforeExpiry"));
+        labelid.setText("Expiring Items");
+        numberOfDays.setCellValueFactory(new PropertyValueFactory<ExpiringItem, String>("daysBeforeExpiry"));
         numberOfItems.setCellValueFactory(new PropertyValueFactory<ExpiringItem, String>("numberOfItems"));
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
         try {
             tableView.setSelectionModel(null);
         } catch (NullPointerException ex) {
@@ -94,7 +100,7 @@ public class TablePanel extends UiPart<Region> implements Initializable {
          * @return The string representation of days.
          */
         private String convertDaysInIntToString(int daysBeforeExpiry) {
-            if (daysBeforeExpiry == 1) {
+            if (daysBeforeExpiry <= 1) {
                 return String.valueOf(daysBeforeExpiry) + " day";
             } else {
                 return String.valueOf(daysBeforeExpiry) + " days";

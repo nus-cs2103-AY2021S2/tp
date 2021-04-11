@@ -21,7 +21,8 @@ public class ClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
     public static final String CLEAR_MESSAGE_SUCCESS = "All items in the inventory are cleared!";
     public static final String CLEAR_LOCATION_MESSAGE_SUCCESS = "All items in the specified location are cleared!";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clear items in storemando or a specified location. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clear all items in storemando or a specified "
+        + "location.\n"
         + "Parameters: "
         + "[" + PREFIX_LOCATION + "LOCATION]\n"
         + "Example:\n"

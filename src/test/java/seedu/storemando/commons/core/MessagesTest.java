@@ -8,7 +8,7 @@ class MessagesTest {
 
     @Test
     public void unknownCommandMessage_correctString() {
-        String message = "Unknown command";
+        String message = "Unknown command.";
         assertEquals(message, Messages.MESSAGE_UNKNOWN_COMMAND);
     }
 
@@ -20,7 +20,7 @@ class MessagesTest {
 
     @Test
     public void invalidItemDisplayedIndexMessage_correctString() {
-        String message = "The item index provided is invalid";
+        String message = "The item index provided is invalid.";
         assertEquals(message, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
     }
 

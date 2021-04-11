@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
 
-<TableView fx:id="tableView" minWidth="100" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-  <columns>
-    <TableColumn fx:id="daysBeforeExpiryCol" editable="false" sortable="false" text="Days Before Expiry" />
-    <TableColumn fx:id="numberOfItems" editable="false" sortable="false" text="Number of Items" />
-  </columns>
-</TableView>
+<VBox xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
+  <VBox alignment="CENTER" styleClass="location_box">
+    <Label fx:id="labelid" styleClass="cell_location_header" />
+  </VBox>
+  <TableView fx:id="tableView" minWidth="100" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
+    <columns>
+      <TableColumn fx:id="numberOfDays" editable="false" sortable="false" text="Number of days" />
+      <TableColumn fx:id="numberOfItems" editable="false" sortable="false" text="Number of Items" />
+    </columns>
+  </TableView>
+</VBox>

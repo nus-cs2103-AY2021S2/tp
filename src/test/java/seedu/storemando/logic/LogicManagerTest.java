@@ -90,6 +90,16 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void getLocationList_modifyList_throwsIndexOutOfBoundsException() {
+        assertThrows(IndexOutOfBoundsException.class, () -> logic.getLocationList().remove(0));
+    }
+
+    @Test
+    public void getItemList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getItemList().remove(0));
+    }
+
+    @Test
     public void getFilteredItemList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredItemList().remove(0));
     }

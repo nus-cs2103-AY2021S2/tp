@@ -80,6 +80,12 @@ public class ReminderCommandParserTest {
         // integer provided greater than maximum integer
         assertParseFailure(parser, "9223372036854775810 days", ReminderCommand.MESSAGE_INCORRECT_INTEGER);
         assertParseFailure(parser, "-9223372036854775810 weeks", ReminderCommand.MESSAGE_INCORRECT_INTEGER);
+
+        // irrelevant trailing words
+        assertParseFailure(parser, "2 days chocolate",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "2 weeks chocolate",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
     }
 
 }
