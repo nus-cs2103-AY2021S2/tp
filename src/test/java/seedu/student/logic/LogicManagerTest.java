@@ -7,11 +7,11 @@ import static seedu.student.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.student.logic.commands.CommandTestUtil.DETAILS_DESC_AMY;
 import static seedu.student.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.student.logic.commands.CommandTestUtil.FACULTY_DESC_AMY;
-import static seedu.student.logic.commands.CommandTestUtil.MATRIC_DESC_AMY;
 import static seedu.student.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.student.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.student.logic.commands.CommandTestUtil.RESIDENCE_DESC_AMY;
 import static seedu.student.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
+import static seedu.student.logic.commands.CommandTestUtil.VALID_MATRIC_AMY;
 import static seedu.student.testutil.Assert.assertThrows;
 import static seedu.student.testutil.TypicalStudents.AMY;
 
@@ -40,6 +40,7 @@ import seedu.student.testutil.StudentBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
+    private static final String SPACE = " ";
 
     @TempDir
     public Path temporaryFolder;
@@ -85,7 +86,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + MATRIC_DESC_AMY + FACULTY_DESC_AMY
+        String addCommand = AddCommand.COMMAND_WORD + SPACE + VALID_MATRIC_AMY + NAME_DESC_AMY + FACULTY_DESC_AMY
                 + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + STATUS_DESC_AMY + DETAILS_DESC_AMY
                 + RESIDENCE_DESC_AMY;
         Student expectedStudent = new StudentBuilder(AMY).build();
