@@ -357,7 +357,7 @@ Example:
 Use <code>find_student</code> command to filter the list of students you want.<br>
 The <code>STUDENT_INDEX</code> will be based on the current / filtered list.<br>
 (E.g. If John Doe is the 500th student, instead of <code>edit_student 500 [...]</code>, you can use <code>find_student John Doe</code> and
-<code>edit_student 1 [...]</code> if the particular John Doe you would like to edit is the 1st in the list)
+<code>edit_student 1 [...]</code> if the particular John Doe you wish to edit is the 1st in the list)
 </div>
 
 
@@ -381,7 +381,7 @@ Example:
 Similar to <code>edit_student</code>, you can also use <code>find_student</code> command to filter the list of students you want.<br>
 The <code>STUDENT_INDEX</code> will be based on the current / filtered list.<br>
 (E.g. If John Doe is the 500th student, instead of <code>delete_student 500</code>, you can use <code>find_student John Doe</code> and
-<code>delete_student 1</code> if the particular John Doe you would like to delete is the 1st in the list)
+<code>delete_student 1</code> if the particular John Doe you wish to delete is the 1st in the list)
 </div>
 
 ##### Listing students' emails based on current list: `emails`
