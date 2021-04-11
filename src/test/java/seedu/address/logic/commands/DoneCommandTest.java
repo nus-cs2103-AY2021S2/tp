@@ -41,7 +41,7 @@ public class DoneCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Identifier outOfBoundIndex = Identifier.fromIdentifier(model.getEventBook().getEventList().size() + 1);
-        DoneCommand doneCommand  = new DoneCommand(outOfBoundIndex);
+        DoneCommand doneCommand = new DoneCommand(outOfBoundIndex);
 
         assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_IDENTIFIER);
     }
