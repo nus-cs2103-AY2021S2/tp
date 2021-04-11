@@ -8,6 +8,8 @@ import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.DESCR
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.DESCRIPTION_DESC_MEETING2;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.END_DESC_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.END_DESC_MEETING2;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.GROUP_DESC_MEETING1;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.GROUP_DESC_MEETING2;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.INVALID_CONNECTION1_DESC;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.INVALID_DATETIME_DESC;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.INVALID_NAME_DESC;
@@ -20,12 +22,10 @@ import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.PRIOR
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.PRIORITY_DESC_MEETING2;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.START_DESC_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.START_DESC_MEETING2;
-import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.TAG_DESC_MEETING1;
-import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.TAG_DESC_MEETING2;
-import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_GROUP_MEETING1;
-import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_GROUP_MEETING2;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_NAME_MEETING1;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_START_MEETING1;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_GROUP_MEETING1;
+import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_GROUP_MEETING2;
 import static seedu.address.logic.commands.meetings.MeetingCommandTestUtil.VALID_TERMINATE_MEETING1;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.GROUP_DESC_FRIEND;
 import static seedu.address.logic.commands.persons.PersonCommandTestUtil.INVALID_GROUP_DESC;
@@ -54,32 +54,32 @@ class AddMeetingCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_MEETING1
                 + START_DESC_MEETING1 + END_DESC_MEETING1
                 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
-                + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
+                + GROUP_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_MEETING2 + NAME_DESC_MEETING1 + START_DESC_MEETING1
                 + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
-                + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
+                + GROUP_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
 
         // multiple start time - last start time accepted
         assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING2 + START_DESC_MEETING1
                 + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
-                + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
+                + GROUP_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
 
         // multiple end time - last end time accepted
         assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1 + END_DESC_MEETING2
                 + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
-                + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
+                + GROUP_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
 
         // multiple priorities - last priority accepted
         assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1 + END_DESC_MEETING1
                 + PRIORITY_DESC_MEETING2 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
-                + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
+                + GROUP_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
 
         // multiple descriptions - last description accepted
         assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1
                 + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING2
-                + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
+                + DESCRIPTION_DESC_MEETING1 + GROUP_DESC_MEETING1, new AddMeetingCommand(expectedMeeting));
 
         // multiple groups - all accepted
         Meeting expectedMeetingMultipleGroups = new MeetingBuilder(MEETING1).withGroups(VALID_GROUP_MEETING1,
@@ -87,7 +87,7 @@ class AddMeetingCommandParserTest {
                 .build();
         assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1 + END_DESC_MEETING1
                 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
-                + TAG_DESC_MEETING1 + TAG_DESC_MEETING2, new AddMeetingCommand(expectedMeetingMultipleGroups));
+                + GROUP_DESC_MEETING1 + GROUP_DESC_MEETING2, new AddMeetingCommand(expectedMeetingMultipleGroups));
 
     }
 
@@ -98,29 +98,29 @@ class AddMeetingCommandParserTest {
         // parse one connection will not influence the meeting object.
         assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1
             + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING2
-            + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1 + CONNECTION1_DESC, new AddMeetingCommand(expectedMeeting));
+            + DESCRIPTION_DESC_MEETING1 + GROUP_DESC_MEETING1 + CONNECTION1_DESC, new AddMeetingCommand(expectedMeeting));
 
         assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1
             + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING2
-            + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1 + CONNECTION1_DESC + CONNECTION2_DESC,
+            + DESCRIPTION_DESC_MEETING1 + GROUP_DESC_MEETING1 + CONNECTION1_DESC + CONNECTION2_DESC,
             new AddMeetingCommand(expectedMeeting));
 
         // parse two connection will not influence the meeting object.
         assertParseSuccess(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1
             + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING2
-            + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1 + CONNECTION1_DESC + CONNECTION2_DESC,
+            + DESCRIPTION_DESC_MEETING1 + GROUP_DESC_MEETING1 + CONNECTION1_DESC + CONNECTION2_DESC,
             new AddMeetingCommand(expectedMeeting));
 
         // parse invalid connection statement will raise an exception
         assertParseFailure(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1
             + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING2
-            + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1 + INVALID_CONNECTION1_DESC,
+            + DESCRIPTION_DESC_MEETING1 + GROUP_DESC_MEETING1 + INVALID_CONNECTION1_DESC,
             "Index of a person or a meeting is not a non-zero unsigned integer.");
 
         // as long as there is one invalid input of index, it will raise an error
         assertParseFailure(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1
                 + END_DESC_MEETING1 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING2
-                + DESCRIPTION_DESC_MEETING1 + TAG_DESC_MEETING1 + CONNECTION1_DESC + INVALID_CONNECTION1_DESC,
+                + DESCRIPTION_DESC_MEETING1 + GROUP_DESC_MEETING1 + CONNECTION1_DESC + INVALID_CONNECTION1_DESC,
             "Index of a person or a meeting is not a non-zero unsigned integer.");
     }
 
@@ -159,17 +159,17 @@ class AddMeetingCommandParserTest {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + START_DESC_MEETING1 + END_DESC_MEETING1
                 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
-                + TAG_DESC_MEETING1, MeetingName.MESSAGE_CONSTRAINTS);
+                + GROUP_DESC_MEETING1, MeetingName.MESSAGE_CONSTRAINTS);
 
         // invalid date time
         assertParseFailure(parser, NAME_DESC_MEETING1 + INVALID_DATETIME_DESC + END_DESC_MEETING1
                 + PRIORITY_DESC_MEETING1 + DESCRIPTION_DESC_MEETING1
-                + TAG_DESC_MEETING1, DateTime.MESSAGE_CONSTRAINTS);
+                + GROUP_DESC_MEETING1, DateTime.MESSAGE_CONSTRAINTS);
 
         // invalid priority
         assertParseFailure(parser, NAME_DESC_MEETING1 + START_DESC_MEETING1 + END_DESC_MEETING1
                 + INVALID_PRIORITY_DESC + DESCRIPTION_DESC_MEETING1
-                + TAG_DESC_MEETING1, Priority.MESSAGE_CONSTRAINTS);
+                + GROUP_DESC_MEETING1, Priority.MESSAGE_CONSTRAINTS);
 
 
         // invalid group

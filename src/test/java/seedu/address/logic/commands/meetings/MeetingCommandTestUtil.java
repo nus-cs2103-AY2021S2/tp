@@ -58,8 +58,8 @@ public class MeetingCommandTestUtil {
     public static final String PRIORITY_DESC_MEETING2 = " " + PREFIX_PRIORITY + VALID_PRIORITY_MEETING2;
     public static final String DESCRIPTION_DESC_MEETING1 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MEETING1;
     public static final String DESCRIPTION_DESC_MEETING2 = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MEETING2;
-    public static final String TAG_DESC_MEETING1 = " " + PREFIX_GROUP + VALID_GROUP_MEETING1;
-    public static final String TAG_DESC_MEETING2 = " " + PREFIX_GROUP + VALID_GROUP_MEETING2;
+    public static final String GROUP_DESC_MEETING1 = " " + PREFIX_GROUP + VALID_GROUP_MEETING1;
+    public static final String GROUP_DESC_MEETING2 = " " + PREFIX_GROUP + VALID_GROUP_MEETING2;
     public static final String CONNECTION1_DESC = " " + PREFIX_PERSON_CONNECTION + VALID_PERSON_CONNECTION_INDEX1;
     public static final String CONNECTION2_DESC = " " + PREFIX_PERSON_CONNECTION + VALID_PERSON_CONNECTION_INDEX2;
 
@@ -69,7 +69,7 @@ public class MeetingCommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Lectures&"; // '&' not allowed in names
     public static final String INVALID_DATETIME_DESC = " " + PREFIX_START_TIME + "2020/02/03 09:00";
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "-2";
-    public static final String INVALID_TAG_DESC = " " + PREFIX_GROUP + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_GROUP_DESC = " " + PREFIX_GROUP + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_CONNECTION1_DESC = " " + PREFIX_PERSON_CONNECTION + "a";
     public static final String INVALID_CONNECTION2_DESC = " " + PREFIX_PERSON_CONNECTION + "-1";
 
