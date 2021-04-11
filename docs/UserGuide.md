@@ -77,6 +77,7 @@ Ellipsis | Repeatable parameters | [t/TAG]... | When adding a dog for example, m
 In this section, you will be introduced to the layout of Pawbook's Graphical User Interface (GUI). This will help you better understand what each component that you observe on-screen represents.
 
 There are a total of two views that you can navigate to when using Pawbook:
+
 * [Main Page View](#main-page-view)
 * [Help Page View](#help-page-view)
 
@@ -137,7 +138,7 @@ Format:
 ```
 add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]...
 add owner n/OWNER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...
-add program n/PROGRAM_NAME [s/DATETIME_OF_SESSION]... [t/TAG]...
+add program n/PROGRAM_NAME [s/SESSION_TIME]... [t/TAG]...
 ```
 
 Note:
@@ -234,7 +235,7 @@ Format:
 ```
 edit dog DOG_ID [n/DOG_NAME] [b/BREED] [d/DATE_OF_BIRTH] [s/SEX] [o/OWNER_ID] [t/TAG]...
 edit owner OWNER_ID [n/OWNER_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...
-edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION]... [t/TAG]...
+edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION_TIME]... [t/TAG]...
 ```
 
 Note:
@@ -533,10 +534,10 @@ A: Pawbook does not access any web services and can be run completely offline.
 
 Action | Format
 --------|------------------
-**Add** | 1. `add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]...`<br> 2. `add owner n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br> 3. `add program n/PROGRAM_NAME [s/DATE_OF_SESSION]... [t/TAG]...`
+**Add** | 1. `add dog n/DOG_NAME b/BREED d/DATE_OF_BIRTH s/SEX o/OWNER_ID [t/TAG]...`<br> 2. `add owner n/OWNER_NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br> 3. `add program n/PROGRAM_NAME [s/SESSION_TIME]... [t/TAG]...`
 **Delete** | 1. `delete dog DOG_ID`<br> 2. `delete owner OWNER_ID`<br> 3. `delete program PROGRAM_ID`
 **Drop** | 1. `drop d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID`<br> 2. `drop d/DOG_ID p/PROGRAM_ID [p/PROGRAM_ID]...`
-**Edit** | 1. `edit dog DOG_ID [n/DOG_NAME] [b/BREED] [d/DATE_OF_BIRTH] [s/SEX] [o/OWNER_ID] [t/TAG]...`<br> 2. `edit owner OWNER_ID [n/OWNER_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`<br> 3. `edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION]... [t/TAG]...`
+**Edit** | 1. `edit dog DOG_ID [n/DOG_NAME] [b/BREED] [d/DATE_OF_BIRTH] [s/SEX] [o/OWNER_ID] [t/TAG]...`<br> 2. `edit owner OWNER_ID [n/OWNER_NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`<br> 3. `edit program PROGRAM_ID [n/PROGRAM_NAME] [s/SESSION_TIME]... [t/TAG]...`
 **Enrol** | 1. `enrol d/DOG_ID [d/DOG_ID]... p/PROGRAM_ID`<br> 2. `enrol d/DOG_ID p/PROGRAM_ID [p/PROGRAM_ID]...`
 **Exit** | `exit`
 **Find** | `find KEYWORD [MORE_KEYWORDS]...`
@@ -550,8 +551,8 @@ Action | Format
 # Glossary
 
 Term  | Explanation
------|------------------
+------|------------------
 CLI | Short for Command Line Interface. CLI-based applications are primarily used through processing text commands.
 GUI | Short for Graphical User Interface. GUIs work as the tangible user interface between program and user. Users interact with Pawbook through the GUI on their devices.
 Entity | Refers to either an owner, a dog or a program.
-Camel Case | Refers the a style of writing without spaces and indicating the separation of words using a single capitalized letter.
+Camel Case | Refers to a style of writing without spaces and indicating the separation of words using a single capitalized letter.
