@@ -253,6 +253,10 @@ Below is an example activity diagram for a valid enrol command from the user.
 
 ![EnrolActivityDiagram](images/EnrolActivityDiagram.png)
 
+Below is an example sequence diagram for a valid enrol command from the user.
+
+![EnrolSequenceDiagram](images/EnrolSequenceDiagram.png)
+
 ### Alternate implementations
 As dogs and programs can also be identified by their respective names instead of IDs, another implementation could be replacing the parameters of `dogId` and `programId` with their respective names.
 
@@ -372,10 +376,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The program ID is invalid/not specified.
+* 1a. The dog/program ID is invalid/not specified.
 
     * 1a1. Pawbook shows an error message.
-    * 1a2. User supplies correct program ID.
+    * 1a2. User supplies correct dog/program ID.
 
       Use case resumes at step 2.
 
@@ -769,14 +773,14 @@ testers are expected to do more *exploratory* testing.
 
     1. Add a sample owner with `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`. Ensure John Doe has ID 1.
 
-    1. Add a sample dog with `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`
+    1. Add a sample dog with `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active` Ensure Bruce has ID 2.
 
-    1. Add a sample program with `add program n/Obedience Training s/01-02-2021 18:00 t/puppies`
+    1. Add a sample program with `add program n/Obedience Training s/01-02-2021 18:00 t/puppies` Ensure Obedience Training has ID 3.
     
 1. Enrol valid dog into valid program 
 
     1. Test case: `enrol d/2 p/3` <br>
-       Expected:Bruce is successfully added to the Obedience Training program.
+       Expected: Bruce is successfully added to the Obedience Training program.
        
 1. Enrol valid dog into invalid program 
 
@@ -787,6 +791,35 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case:  `enrol d/3 p/3` <br>
        Expected: Error status message stating dog ID is invalid.
+       
+1. Enrol multiple valid dogs into valid program
+
+    1. Repeat Pre-requisites
+    
+    1. Add another sample dog with `add dog n/Apple b/Golden Retriever d/28-04-2020 s/Female o/1 t/friendly` Ensure Apple as ID 4.
+    
+    1. Test case: `enrol d/2 d/4 p/3` <br>
+        Expected: Bruce and Apple are successfully added to the Obedience Training program.
+        
+1. Enrol one valid dog into multiple valid programs
+
+    1. Repeat Pre-requisites
+    
+    1. Add another sample program with `add program n/Potty Training s/14-03-2021 12:00 t/puppies` Ensure Potty Training has ID 4.
+    
+    1. Test case: `enrol d/2 p/3 p/4` <br>
+        Expected: Bruce is successfully added to the Obedience Training program and the Potty Training program.
+        
+1. Enrol multiple valid dogs into multiple valid programs
+    
+    1. Repeat Pre-requisites
+    
+    1. Add another sample dog with `add dog n/Apple b/Golden Retriever d/28-04-2020 s/Female o/1 t/friendly` Ensure Apple has ID 4.
+    
+    1. Add another sample program with `add program n/Potty Training s/14-03-2021 12:00 t/puppies` Ensure Potty Training has ID 5.
+        
+    1. Test case: `enrol d/2 d/4 p/3 p/5 ` <br>
+        Expected: Error messaging stating that enrollment of multiple dogs into multiple programs is not supported.
        
 1. Invalid enrol command 
 
@@ -807,18 +840,59 @@ testers are expected to do more *exploratory* testing.
 
 1. Drop valid dog from valid program
 
+    1. Enrol dog into program with: `enrol d/2 p/3`
+    
     1. Test case: `drop d/2 p/3` <br>
-       Expected:Bruce is successfully dropped from Obedience Training program.
+       Expected: Bruce is successfully dropped from Obedience Training program.
 
-1. Drop valid dog into invalid program
+1. Drop valid dog from invalid program
 
+    1. Enrol dog into program with: `enrol d/2 p/3`
+    
     1. Test case: `drop d/2 p/4` <br>
        Expected: Error status message stating program ID is invalid.
 
-1. Drop invalid dog into valid program
+1. Drop invalid dog from valid program
+
+    1. Enrol dog into program with: `enrol d/2 p/3`
 
     1. Test case:  `drop d/3 p/3` <br>
        Expected: Error status message stating dog ID is invalid.
+       
+1. Drop multiple valid dogs from valid program
+
+    1. Repeat Pre-requisites
+    
+    1. Add another sample dog with `add dog n/Apple b/Golden Retriever d/28-04-2020 s/Female o/1 t/friendly` Ensure Apple as ID 4.
+    
+    1. Enrol dogs into program with: `enrol d/2 d/4 p/3`
+    
+    1. Test case: `drop d/2 d/4 p/3` <br>
+        Expected: Bruce and Apple are successfully added to the Obedience Training program.
+        
+1. Drop one valid dog from multiple valid programs
+
+    1. Repeat Pre-requisites
+    
+    1. Add another sample program with `add program n/Potty Training s/14-03-2021 12:00 t/puppies` Ensure Potty Training has ID 4.
+    
+    1. Enrol dog into programs with: `enrol d/2 p/3 p/4`
+    
+    1. Test case: `drop d/2 p/3 p/4` <br>
+        Expected: Bruce is successfully added to the Obedience Training program and the Potty Training program.
+        
+1. Drop multiple valid dogs from multiple valid programs
+    
+    1. Repeat Pre-requisites
+    
+    1. Add another sample dog with `add dog n/Apple b/Golden Retriever d/28-04-2020 s/Female o/1 t/friendly` Ensure Apple has ID 4.
+    
+    1. Add another sample program with `add program n/Potty Training s/14-03-2021 12:00 t/puppies` Ensure Potty Training has ID 5.
+        
+    1. Enrol dog into program with: `enrol d/2 p/3` and `enrol d/4 p/5`
+    
+    1. Test case: `drop d/2 d/4 p/3 p/5 ` <br>
+        Expected: Error messaging stating that droplment of multiple dogs from multiple programs is not supported.
 
 1. Invalid drop command
 
